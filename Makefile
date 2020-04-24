@@ -1,7 +1,7 @@
-PROJECT_NAME := xyz Package
+PROJECT_NAME := scaleway Package
 include build/common.mk
 
-PACK             := xyz
+PACK             := scaleway
 PACKDIR          := sdk
 ORG              := pulumi
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
@@ -36,38 +36,43 @@ prepare::
 	mv "provider/cmd/pulumi-resource-x${EMPTY_TO_AVOID_SED}yz" provider/cmd/pulumi-resource-${NAME}
 
 	if [[ "${OS}" != "Darwin" ]]; then \
-		sed -i 's,github.com/pulumi/pulumi-xyz,${PROJECT},g' provider/go.mod; \
+		find ./ ! -path './.git/*' -type f -exec sed -i 's,github.com/pulumi/pulumi-[x]yz,${PROJECT},g' {} \; &> /dev/null; \
 		find ./ ! -path './.git/*' -type f -exec sed -i 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
 	fi
 
 	# In MacOS the -i parameter needs an empty string to execute in place.
 	if [[ "${OS}" == "Darwin" ]]; then \
-		sed -i '' 's,github.com/pulumi/pulumi-xyz,${PROJECT},g' provider/go.mod; \
+		find ./ ! -path './.git/*' -type f -exec sed -i '' 's,github.com/pulumi/pulumi-[x]yz,${PROJECT},g' {} \; &> /dev/null; \
 		find ./ ! -path './.git/*' -type f -exec sed -i '' 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
 	fi
 
-# NOTE: Since the plugin is published using the nodejs style semver version
-# We set the PLUGIN_VERSION to be the same as the version we use when building
-# the provider (e.g. x.y.z-dev-... instead of x.y.zdev...)
-build:: tfgen provider
-	cd provider && for LANGUAGE in "nodejs" "python" "go" "dotnet" ; do \
-		$(TFGEN) $$LANGUAGE --overlays overlays/$$LANGUAGE/ --out ../${PACKDIR}/$$LANGUAGE/ || exit 3 ; \
-	done
+build:: tfgen provider build_node build_python build_go build_dotnet
+
+build_node:: tfgen provider
+	cd provider && ./bin/$(TFGEN) nodejs --overlays overlays/nodejs --out ../${PACKDIR}/nodejs/
 	cd ${PACKDIR}/nodejs/ && \
-		yarn install && \
-		yarn run tsc && \
-		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
-		sed -i.bak "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+        yarn install && \
+        yarn run tsc && \
+        cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
+		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+
+build_python:: tfgen provider
+	cd provider && ./bin/$(TFGEN) python --overlays overlays/python --out ../${PACKDIR}/python/
 	cd ${PACKDIR}/python/ && \
-		cp ../../README.md . && \
-		$(PYTHON) setup.py clean --all 2>/dev/null && \
-		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-		sed -i.bak -e "s/\$${VERSION}/$(PYPI_VERSION)/g" -e "s/\$${PLUGIN_VERSION}/$(VERSION)/g" ./bin/setup.py && \
-		rm ./bin/setup.py.bak && \
-		cd ./bin && $(PYTHON) setup.py build sdist
+        cp ../../README.md . && \
+        $(PYTHON) setup.py clean --all 2>/dev/null && \
+        rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
+        sed -i.bak -e "s/\$${VERSION}/$(PYPI_VERSION)/g" -e "s/\$${PLUGIN_VERSION}/$(VERSION)/g" ./bin/setup.py && \
+        rm ./bin/setup.py.bak && \
+        cd ./bin && $(PYTHON) setup.py build sdist
+
+build_go:: tfgen provider
+	cd provider && ./bin/$(TFGEN) go --overlays overlays/go --out ../${PACKDIR}/go/
+
+build_dotnet:: tfgen provider
+	cd provider && ./bin/$(TFGEN) dotnet --overlays overlays/dotnet --out ../${PACKDIR}/dotnet/
 	cd ${PACKDIR}/dotnet/ && \
-		echo "${VERSION:v%=%}" >version.txt && \
-		dotnet build /p:Version=${DOTNET_VERSION}
+        dotnet build /p:Version=${DOTNET_VERSION}
 
 generate_schema:: tfgen
 	$(TFGEN) schema --out ./provider/cmd/${PROVIDER}

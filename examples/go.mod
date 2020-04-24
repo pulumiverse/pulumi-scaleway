@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/examples
+module github.com/jaxxstorm/pulumi-scaleway/examples
 
 go 1.13
 

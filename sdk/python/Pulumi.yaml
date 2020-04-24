@@ -1,0 +1,3 @@
+name: scaleway
+description: A Pulumi resource provider for scaleway.
+language: python

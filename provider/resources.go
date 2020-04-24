@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package scaleway
 
 import (
 	"unicode"
@@ -22,20 +22,20 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
+	"github.com/terraform-providers/terraform-provider-scaleway/scaleway"
 )
 
 // all of the token components used below.
 const (
 	// packages:
-	mainPkg = "xyz"
+	scalewayPkg = "scaleway"
 	// modules:
-	mainMod = "index" // the y module
+	scalewayMod = "index" // the y module
 )
 
 // makeMember manufactures a type token for the package and the given module and type.
 func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
+	return tokens.ModuleMember(scalewayPkg + ":" + mod + ":" + mem)
 }
 
 // makeType manufactures a type token for the package and the given module and type.
@@ -84,20 +84,47 @@ func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig
 // managedByPulumi is a default used for some managed resources, in the absence of something more meaningful.
 var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 
+// scalewayMember manufactures a type token for the Scaleway package and the given module and type.
+func scalewayMember(mod string, mem string) tokens.ModuleMember {
+	return tokens.ModuleMember(scalewayPkg + ":" + mod + ":" + mem)
+}
+
+// scalewayType manufactures a type token for the Scaleway package and the given module and type.
+func scalewayType(mod string, typ string) tokens.Type {
+	return tokens.Type(scalewayMember(mod, typ))
+}
+
+// scalewayDataSource manufactures a standard resource token given a module and resource name.
+// It automatically uses the Scaleway package and names the file by simply lower casing the data
+// source's first character.
+func scalewayDataSource(mod string, res string) tokens.ModuleMember {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return scalewayMember(mod+"/"+fn, res)
+}
+
+// scalewayResource manufactures a standard resource token given a module and resource name.
+// It automatically uses the Scaleway package and names the file by simply lower casing the resource's
+// first character.
+func scalewayResource(mod string, res string) tokens.Type {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return scalewayType(mod+"/"+fn, res)
+}
+
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := xyz.Provider().(*schema.Provider)
+	p := scaleway.Provider().(*schema.Provider)
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "xyz",
-		Description: "A Pulumi package for creating and managing xyz cloud resources.",
-		Keywords:    []string{"pulumi", "xyz"},
+		Name:        "scaleway",
+		Description: "A Pulumi package for creating and managing scaleway cloud resources.",
+		Keywords:    []string{"pulumi", "scaleway"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-xyz",
+		Repository:  "https://github.com/jaxxstorm/pulumi-scaleway",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -110,23 +137,58 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: makeResource(mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
+			"scaleway_account_ssh_key": {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
+			"scaleway_baremetal_server_beta": {Tok: scalewayResource(scalewayMod, "BaremetalServerBeta")},
+			"scaleway_bucket": {Tok: scalewayResource(scalewayMod, "Bucket")},
+			"scaleway_instance_ip": {Tok: scalewayResource(scalewayMod, "InstanceIP")},
+			"scaleway_instance_ip_reverse_dns": {Tok: scalewayResource(scalewayMod, "InstanceIPReverseDNS")},
+			"scaleway_instance_security_group": {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroup")},
+			"scaleway_instance_security_group_rules": {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroupRules")},
+			"scaleway_instance_server": {Tok: scalewayResource(scalewayMod, "InstanceServer")},
+			"scaleway_instance_volume": {Tok: scalewayResource(scalewayMod, "InstanceVolume")},
+			"scaleway_ip": {Tok: scalewayResource(scalewayMod, "IP")},
+			"scaleway_ip_reverse_dns": {Tok: scalewayResource(scalewayMod, "IPReverseDNS")},
+			"scaleway_k8s_cluster_beta": {Tok: scalewayResource(scalewayMod, "KubernetesClusterBeta")},
+			"scaleway_k8s_pool_beta": {Tok: scalewayResource(scalewayMod, "KubernetesNodePoolBeta")},
+			"scaleway_lb_backend_beta": {Tok: scalewayResource(scalewayMod, "LoadbalancerBackendBeta")},
+			"scaleway_lb_beta": {Tok: scalewayResource(scalewayMod, "LoadbalancerBeta")},
+			"scaleway_lb_certificate_beta": {Tok: scalewayResource(scalewayMod, "LoadbalancerCertificateBeta")},
+			"scaleway_lb_frontend_beta": {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontendBeta")},
+			"scaleway_object_bucket": {Tok: scalewayResource(scalewayMod, "ObjectBucket")},
+			"scaleway_instance_placement_group": {Tok: scalewayResource(scalewayMod, "InstancePlacementGroup")},
+			"scaleway_rdb_instance_beta": {Tok: scalewayResource(scalewayMod, "DatabaseInstanceBeta")},
+			"scaleway_registry_namespace_beta": {Tok: scalewayResource(scalewayMod, "RegistryNamespaceBeta")},
+			"scaleway_security_group": {Tok: scalewayResource(scalewayMod, "SecurityGroup")},
+			"scaleway_security_group_rule": {Tok: scalewayResource(scalewayMod, "SecurityGroupRule")},
+			"scaleway_server": {Tok: scalewayResource(scalewayMod, "Server")},
+			"scaleway_ssh_key": {Tok: scalewayResource(scalewayMod, "SshKey")},
+			"scaleway_token": {Tok: scalewayResource(scalewayMod, "Token")},
+			"scaleway_user_data": {Tok: scalewayResource(scalewayMod, "UserData")},
+			"scaleway_volume": {Tok: scalewayResource(scalewayMod, "Volume")},
+			"scaleway_volume_attachment": {Tok: scalewayResource(scalewayMod, "VolumeAttachment")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
+			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
+			"scaleway_baremetal_offer_beta": {
+				Tok: scalewayDataSource(scalewayMod, "getBaremetalOfferBeta"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"cpu": {
+						MaxItemsOne: boolRef(true),
+					},
+				},
+			},
+			"scaleway_bootscript": {Tok: scalewayDataSource(scalewayMod, "getBootscript")},
+			"scaleway_image": {Tok: scalewayDataSource(scalewayMod, "getImage")},
+			"scaleway_instance_image": {Tok: scalewayDataSource(scalewayMod, "getInstanceImage")},
+			"scaleway_instance_security_group": {Tok: scalewayDataSource(scalewayMod, "getInstanceSecurityGroup")},
+			"scaleway_instance_server": {Tok: scalewayDataSource(scalewayMod, "getInstanceServer")},
+			"scaleway_instance_volume": {Tok: scalewayDataSource(scalewayMod, "getInstanceVolume")},
+			"scaleway_marketplace_image_beta": {Tok: scalewayDataSource(scalewayMod, "getMarketplaceImageBeta")},
+			"scaleway_registry_image_beta": {Tok: scalewayDataSource(scalewayMod, "getRegistryImageBeta")},
+			"scaleway_registry_namespace_beta": {Tok: scalewayDataSource(scalewayMod, "getRegistryNamespaceBeta")},
+			"scaleway_security_group": {Tok: scalewayDataSource(scalewayMod, "getSecurityGroup")},
+			"scaleway_volume": {Tok: scalewayDataSource(scalewayMod, "getVolume")},
+
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			AsyncDataSources: true,
