@@ -38,7 +38,7 @@ jobs:
       - name: Build SDK
         run: make build_node ORG=jaxxstorm
       - name: Publish to NPM
-        run: yarn --cwd sdk/nodejs/bin publish
+        run: yarn --cwd sdk/nodejs/bin publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
   python:
