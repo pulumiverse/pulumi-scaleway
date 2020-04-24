@@ -22,6 +22,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.13.10'
+      - name: Install tf2pulumi
+        uses: pulumi/action-install-tf2pulumi@releases/v1
+        with:
+          tf2pulumi-version: 0.6.0
       - name: Ensure dependencies
         run: make ensure
       - name: Generate provider deps
@@ -49,6 +53,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.13.10'
+      - name: Install tf2pulumi
+        uses: pulumi/action-install-tf2pulumi@releases/v1
+        with:
+          tf2pulumi-version: 0.6.0
       - name: Ensure dependencies
         run: make ensure
       - name: Generate provider deps
@@ -77,6 +85,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.13.10'
+      - name: Install tf2pulumi
+        uses: pulumi/action-install-tf2pulumi@releases/v1
+        with:
+          tf2pulumi-version: 0.6.0
       - name: Ensure dependencies
         run: make ensure
       - name: Generate provider deps
@@ -102,6 +114,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.13.10'
+      - name: Install tf2pulumi
+        uses: pulumi/action-install-tf2pulumi@releases/v1
+        with:
+          tf2pulumi-version: 0.6.0
       - name: Ensure dependencies
         run: make ensure
       - name: Generate provider deps
