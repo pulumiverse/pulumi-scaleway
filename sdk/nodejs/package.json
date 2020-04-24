@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/scaleway",
+    "name": "@jaxxstorm/pulumi-scaleway",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing scaleway cloud resources.",
     "keywords": [

@@ -11,31 +11,31 @@ from .. import utilities, tables
 
 __config__ = pulumi.Config('scaleway')
 
-access_key = __config__.get('accessKey')
+access_key = __config__.get('accessKey') or utilities.get_env('SCW_ACCESS_KEY')
 """
 The Scaleway access key.
 """
 
 organization = __config__.get('organization')
 
-organization_id = __config__.get('organizationId')
+organization_id = __config__.get('organizationId') or utilities.get_env('SCW_DEFAULT_ORGANIZATION_ID')
 """
 The Scaleway organization ID.
 """
 
-region = __config__.get('region')
+region = __config__.get('region') or utilities.get_env('SCW_DEFAULT_REGION')
 """
 The Scaleway default region to use for your resources.
 """
 
-secret_key = __config__.get('secretKey')
+secret_key = __config__.get('secretKey') or utilities.get_env('SCW_SECRET_KEY')
 """
 The Scaleway secret Key.
 """
 
 token = __config__.get('token')
 
-zone = __config__.get('zone')
+zone = __config__.get('zone') or utilities.get_env('SCW_ZONE')
 """
 The Scaleway default zone to use for your resources.
 """

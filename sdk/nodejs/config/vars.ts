@@ -9,22 +9,22 @@ let __config = new pulumi.Config("scaleway");
 /**
  * The Scaleway access key.
  */
-export let accessKey: string | undefined = __config.get("accessKey");
+export let accessKey: string | undefined = __config.get("accessKey") || utilities.getEnv("SCW_ACCESS_KEY");
 export let organization: string | undefined = __config.get("organization");
 /**
  * The Scaleway organization ID.
  */
-export let organizationId: string | undefined = __config.get("organizationId");
+export let organizationId: string | undefined = __config.get("organizationId") || utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
 /**
  * The Scaleway default region to use for your resources.
  */
-export let region: string | undefined = __config.get("region");
+export let region: string | undefined = __config.get("region") || utilities.getEnv("SCW_DEFAULT_REGION");
 /**
  * The Scaleway secret Key.
  */
-export let secretKey: string | undefined = __config.get("secretKey");
+export let secretKey: string | undefined = __config.get("secretKey") || utilities.getEnv("SCW_SECRET_KEY");
 export let token: string | undefined = __config.get("token");
 /**
  * The Scaleway default zone to use for your resources.
  */
-export let zone: string | undefined = __config.get("zone");
+export let zone: string | undefined = __config.get("zone") || utilities.getEnv("SCW_ZONE");

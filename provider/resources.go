@@ -126,14 +126,31 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/jaxxstorm/pulumi-scaleway",
 		Config:      map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: makeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+			"access_key": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SCW_ACCESS_KEY"},
+				},
+			},
+			"secret_key": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SCW_SECRET_KEY"},
+				},
+			},
+			"organization_id": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SCW_DEFAULT_ORGANIZATION_ID"},
+				},
+			},
+			"region": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SCW_DEFAULT_REGION"},
+				},
+			},
+			"zone": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SCW_ZONE"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources:            map[string]*tfbridge.ResourceInfo{

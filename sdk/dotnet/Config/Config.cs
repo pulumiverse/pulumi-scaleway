@@ -11,31 +11,31 @@ namespace Pulumi.Scaleway
         /// <summary>
         /// The Scaleway access key.
         /// </summary>
-        public static string? AccessKey { get; set; } = __config.Get("accessKey");
+        public static string? AccessKey { get; set; } = __config.Get("accessKey") ?? Utilities.GetEnv("SCW_ACCESS_KEY");
 
         public static string? Organization { get; set; } = __config.Get("organization");
 
         /// <summary>
         /// The Scaleway organization ID.
         /// </summary>
-        public static string? OrganizationId { get; set; } = __config.Get("organizationId");
+        public static string? OrganizationId { get; set; } = __config.Get("organizationId") ?? Utilities.GetEnv("SCW_DEFAULT_ORGANIZATION_ID");
 
         /// <summary>
         /// The Scaleway default region to use for your resources.
         /// </summary>
-        public static string? Region { get; set; } = __config.Get("region");
+        public static string? Region { get; set; } = __config.Get("region") ?? Utilities.GetEnv("SCW_DEFAULT_REGION");
 
         /// <summary>
         /// The Scaleway secret Key.
         /// </summary>
-        public static string? SecretKey { get; set; } = __config.Get("secretKey");
+        public static string? SecretKey { get; set; } = __config.Get("secretKey") ?? Utilities.GetEnv("SCW_SECRET_KEY");
 
         public static string? Token { get; set; } = __config.Get("token");
 
         /// <summary>
         /// The Scaleway default zone to use for your resources.
         /// </summary>
-        public static string? Zone { get; set; } = __config.Get("zone");
+        public static string? Zone { get; set; } = __config.Get("zone") ?? Utilities.GetEnv("SCW_ZONE");
 
     }
 }
