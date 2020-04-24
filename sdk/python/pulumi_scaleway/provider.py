@@ -42,12 +42,22 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            if access_key is None:
+                access_key = utilities.get_env('SCW_ACCESS_KEY')
             __props__['access_key'] = access_key
             __props__['organization'] = organization
+            if organization_id is None:
+                organization_id = utilities.get_env('SCW_DEFAULT_ORGANIZATION_ID')
             __props__['organization_id'] = organization_id
+            if region is None:
+                region = utilities.get_env('SCW_DEFAULT_REGION')
             __props__['region'] = region
+            if secret_key is None:
+                secret_key = utilities.get_env('SCW_SECRET_KEY')
             __props__['secret_key'] = secret_key
             __props__['token'] = token
+            if zone is None:
+                zone = utilities.get_env('SCW_ZONE')
             __props__['zone'] = zone
         super(Provider, __self__).__init__(
             'scaleway',

@@ -23,6 +23,21 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
+	if args.AccessKey == nil {
+		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string))
+	}
+	if args.OrganizationId == nil {
+		args.OrganizationId = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ORGANIZATION_ID").(string))
+	}
+	if args.Region == nil {
+		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string))
+	}
+	if args.SecretKey == nil {
+		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string))
+	}
+	if args.Zone == nil {
+		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ZONE").(string))
+	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:scaleway", name, args, &resource, opts...)
 	if err != nil {

@@ -40,13 +40,13 @@ export class Provider extends pulumi.ProviderResource {
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
         {
-            inputs["accessKey"] = args ? args.accessKey : undefined;
+            inputs["accessKey"] = (args ? args.accessKey : undefined) || utilities.getEnv("SCW_ACCESS_KEY");
             inputs["organization"] = args ? args.organization : undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["secretKey"] = args ? args.secretKey : undefined;
+            inputs["organizationId"] = (args ? args.organizationId : undefined) || utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
+            inputs["region"] = (args ? args.region : undefined) || utilities.getEnv("SCW_DEFAULT_REGION");
+            inputs["secretKey"] = (args ? args.secretKey : undefined) || utilities.getEnv("SCW_SECRET_KEY");
             inputs["token"] = args ? args.token : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
+            inputs["zone"] = (args ? args.zone : undefined) || utilities.getEnv("SCW_ZONE");
         }
         if (!opts) {
             opts = {}

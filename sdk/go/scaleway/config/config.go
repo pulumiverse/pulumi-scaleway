@@ -10,7 +10,11 @@ import (
 
 // The Scaleway access key.
 func GetAccessKey(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:accessKey")
+	v, err := config.Try(ctx, "scaleway:accessKey")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string)
 }
 func GetOrganization(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:organization")
@@ -18,17 +22,29 @@ func GetOrganization(ctx *pulumi.Context) string {
 
 // The Scaleway organization ID.
 func GetOrganizationId(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:organizationId")
+	v, err := config.Try(ctx, "scaleway:organizationId")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "SCW_DEFAULT_ORGANIZATION_ID").(string)
 }
 
 // The Scaleway default region to use for your resources.
 func GetRegion(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:region")
+	v, err := config.Try(ctx, "scaleway:region")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string)
 }
 
 // The Scaleway secret Key.
 func GetSecretKey(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:secretKey")
+	v, err := config.Try(ctx, "scaleway:secretKey")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string)
 }
 func GetToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:token")
@@ -36,5 +52,9 @@ func GetToken(ctx *pulumi.Context) string {
 
 // The Scaleway default zone to use for your resources.
 func GetZone(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:zone")
+	v, err := config.Try(ctx, "scaleway:zone")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "SCW_ZONE").(string)
 }
