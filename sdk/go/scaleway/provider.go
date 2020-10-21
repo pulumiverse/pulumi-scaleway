@@ -36,7 +36,7 @@ func NewProvider(ctx *pulumi.Context,
 		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string))
 	}
 	if args.Zone == nil {
-		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ZONE").(string))
+		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string))
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:scaleway", name, args, &resource, opts...)
@@ -48,7 +48,8 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// The Scaleway access key.
-	AccessKey    *string `pulumi:"accessKey"`
+	AccessKey *string `pulumi:"accessKey"`
+	// Deprecated: Use `organization_id` instead.
 	Organization *string `pulumi:"organization"`
 	// The Scaleway organization ID.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -56,7 +57,8 @@ type providerArgs struct {
 	Region *string `pulumi:"region"`
 	// The Scaleway secret Key.
 	SecretKey *string `pulumi:"secretKey"`
-	Token     *string `pulumi:"token"`
+	// Deprecated: Use `secret_key` instead.
+	Token *string `pulumi:"token"`
 	// The Scaleway default zone to use for your resources.
 	Zone *string `pulumi:"zone"`
 }
@@ -64,7 +66,8 @@ type providerArgs struct {
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// The Scaleway access key.
-	AccessKey    pulumi.StringPtrInput
+	AccessKey pulumi.StringPtrInput
+	// Deprecated: Use `organization_id` instead.
 	Organization pulumi.StringPtrInput
 	// The Scaleway organization ID.
 	OrganizationId pulumi.StringPtrInput
@@ -72,7 +75,8 @@ type ProviderArgs struct {
 	Region pulumi.StringPtrInput
 	// The Scaleway secret Key.
 	SecretKey pulumi.StringPtrInput
-	Token     pulumi.StringPtrInput
+	// Deprecated: Use `secret_key` instead.
+	Token pulumi.StringPtrInput
 	// The Scaleway default zone to use for your resources.
 	Zone pulumi.StringPtrInput
 }

@@ -12,11 +12,18 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class LoadbalancerCertificateBetaLetsencryptArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Main domain of the certificate.
+        /// </summary>
         [Input("commonName", required: true)]
         public Input<string> CommonName { get; set; } = null!;
 
         [Input("subjectAlternativeNames")]
         private InputList<string>? _subjectAlternativeNames;
+
+        /// <summary>
+        /// Array of alternative domain names.
+        /// </summary>
         public InputList<string> SubjectAlternativeNames
         {
             get => _subjectAlternativeNames ?? (_subjectAlternativeNames = new InputList<string>());

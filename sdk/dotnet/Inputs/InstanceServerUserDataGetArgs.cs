@@ -12,6 +12,9 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class InstanceServerUserDataGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The user data key. The `cloud-init` key is reserved, please use `cloud_init` attribute instead.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

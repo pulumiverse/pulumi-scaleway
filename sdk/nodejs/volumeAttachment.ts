@@ -2,20 +2,35 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
  * Please use `scaleway_instance_server.additional_volumes` instead.
- * 
- * This allows volumes to be attached to servers.
- * 
- * > **Warning:** Attaching volumes requires the servers to be powered off. This will lead to downtime if the server is already in use.
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/volume_attachment.html.markdown.
+ * This allows volumes to be attached to servers.
+ *
+ * > **Warning:** Attaching volumes requires the servers to be powered off. This will lead to downtime if the server is already in use.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const testServer = new scaleway.Server("testServer", {
+ *     image: "aecaed73-51a5-4439-a127-6d8229847145",
+ *     type: "C2S",
+ * });
+ * const testVolume = new scaleway.Volume("testVolume", {
+ *     sizeInGb: 20,
+ *     type: "l_ssd",
+ * });
+ * const testVolumeAttachment = new scaleway.VolumeAttachment("testVolumeAttachment", {
+ *     server: testServer.id,
+ *     volume: testVolume.id,
+ * });
+ * ```
  */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**
@@ -25,6 +40,7 @@ export class VolumeAttachment extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VolumeAttachmentState, opts?: pulumi.CustomResourceOptions): VolumeAttachment {
         return new VolumeAttachment(name, <any>state, { ...opts, id: id });

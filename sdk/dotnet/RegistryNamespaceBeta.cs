@@ -12,6 +12,28 @@ namespace Pulumi.Scaleway
     /// <summary>
     /// Creates and manages Scaleway Container Registry. For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
     /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var main = new Scaleway.RegistryNamespaceBeta("main", new Scaleway.RegistryNamespaceBetaArgs
+    ///         {
+    ///             Description = "Main container registry",
+    ///             IsPublic = false,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Attibutes Reference
     /// 
     /// In addition to all arguments above, the following attibutes are exported:
@@ -22,7 +44,7 @@ namespace Pulumi.Scaleway
     public partial class RegistryNamespaceBeta : Pulumi.CustomResource
     {
         /// <summary>
-        /// The description of the container registry namespace
+        /// The description of the container registry namespace.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -34,25 +56,25 @@ namespace Pulumi.Scaleway
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Define the default visibity policy
+        /// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
         /// </summary>
         [Output("isPublic")]
         public Output<bool?> IsPublic { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the container registry namespace
+        /// The unique name of the container registry namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the registry is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the container registry namespace should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -104,31 +126,31 @@ namespace Pulumi.Scaleway
     public sealed class RegistryNamespaceBetaArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the container registry namespace
+        /// The description of the container registry namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Define the default visibity policy
+        /// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
         /// </summary>
         [Input("isPublic")]
         public Input<bool>? IsPublic { get; set; }
 
         /// <summary>
-        /// The name of the container registry namespace
+        /// The unique name of the container registry namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the registry is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the container registry namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -141,7 +163,7 @@ namespace Pulumi.Scaleway
     public sealed class RegistryNamespaceBetaState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the container registry namespace
+        /// The description of the container registry namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -153,25 +175,25 @@ namespace Pulumi.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// Define the default visibity policy
+        /// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
         /// </summary>
         [Input("isPublic")]
         public Input<bool>? IsPublic { get; set; }
 
         /// <summary>
-        /// The name of the container registry namespace
+        /// The unique name of the container registry namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the registry is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the container registry namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

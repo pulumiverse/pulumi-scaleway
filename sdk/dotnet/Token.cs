@@ -13,6 +13,26 @@ namespace Pulumi.Scaleway
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
     /// 
     /// Provides Tokens for scaleway API access. For additional details please refer to [API documentation](https://developer.scaleway.com/#tokens-tokens-post).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var karlsToken = new Scaleway.Token("karlsToken", new Scaleway.TokenArgs
+    ///         {
+    ///             Description = "karls scaleway access: karl@company.com",
+    ///             Expires = false,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Token : Pulumi.CustomResource
     {

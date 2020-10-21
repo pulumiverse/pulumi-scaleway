@@ -8,6 +8,40 @@ import (
 )
 
 // Gets information about a Volume.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.LookupVolume(ctx, &scaleway.LookupVolumeArgs{
+// 			Name: "data",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test, err := scaleway.NewServer(ctx, "test", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewVolumeAttachment(ctx, "dataVolumeAttachment", &scaleway.VolumeAttachmentArgs{
+// 			Server: test.ID(),
+// 			Volume: pulumi.Any(scaleway_volume.Data.Id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
 	var rv LookupVolumeResult
 	err := ctx.Invoke("scaleway:index/getVolume:getVolume", args, &rv, opts...)
@@ -25,7 +59,7 @@ type LookupVolumeArgs struct {
 
 // A collection of values returned by getVolume.
 type LookupVolumeResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 	// The ID of the Server which this Volume is currently attached to.

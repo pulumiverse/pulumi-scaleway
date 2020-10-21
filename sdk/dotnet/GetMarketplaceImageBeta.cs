@@ -15,6 +15,26 @@ namespace Pulumi.Scaleway
         /// Gets local image ID of an image from its label name.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myImage = Output.Create(Scaleway.GetMarketplaceImageBeta.InvokeAsync(new Scaleway.GetMarketplaceImageBetaArgs
+        ///         {
+        ///             Label = "ubuntu_focal",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMarketplaceImageBetaResult> InvokeAsync(GetMarketplaceImageBetaArgs args, InvokeOptions? options = null)
@@ -24,12 +44,23 @@ namespace Pulumi.Scaleway
 
     public sealed class GetMarketplaceImageBetaArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The instance type the image is compatible with.
+        /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+        /// </summary>
         [Input("instanceType")]
         public string? InstanceType { get; set; }
 
+        /// <summary>
+        /// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
+        /// to find the right `label`.
+        /// </summary>
         [Input("label", required: true)]
         public string Label { get; set; } = null!;
 
+        /// <summary>
+        /// `zone`) The zone in which the image exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -43,7 +74,7 @@ namespace Pulumi.Scaleway
     public sealed class GetMarketplaceImageBetaResult
     {
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? InstanceType;

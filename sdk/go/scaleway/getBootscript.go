@@ -10,7 +10,33 @@ import (
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
 //
 // Use this data source to get the ID of a registered Bootscript for use with the
-// `.Server` resource.
+// `Server` resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "arm"
+// 		opt1 := "Rescue"
+// 		_, err := scaleway.GetBootscript(ctx, &scaleway.GetBootscriptArgs{
+// 			Architecture: &opt0,
+// 			NameFilter:   &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetBootscript(ctx *pulumi.Context, args *GetBootscriptArgs, opts ...pulumi.InvokeOption) (*GetBootscriptResult, error) {
 	var rv GetBootscriptResult
 	err := ctx.Invoke("scaleway:index/getBootscript:getBootscript", args, &rv, opts...)
@@ -38,7 +64,7 @@ type GetBootscriptResult struct {
 	BootCmdArgs string `pulumi:"bootCmdArgs"`
 	// path to Device Tree Blob detailing hardware information
 	Dtb string `pulumi:"dtb"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// URL to initial ramdisk content
 	Initrd string `pulumi:"initrd"`

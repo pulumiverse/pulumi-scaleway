@@ -11,10 +11,37 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-    /// Please use `scaleway..InstanceServer` instead.
+    /// Please use `scaleway.InstanceServer` instead.
     /// 
     /// Provides user data for servers.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#user-data).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @base = new Scaleway.Server("base", new Scaleway.ServerArgs
+    ///         {
+    ///             Image = "5faef9cd-ea9b-4a63-9171-9e26bec03dbc",
+    ///             Type = "C1",
+    ///             State = "stopped",
+    ///         });
+    ///         var gcp = new Scaleway.UserData("gcp", new Scaleway.UserDataArgs
+    ///         {
+    ///             Server = @base.Id,
+    ///             Key = "gcp_username",
+    ///             Value = "supersecret",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class UserData : Pulumi.CustomResource
     {

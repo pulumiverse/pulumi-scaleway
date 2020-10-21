@@ -16,6 +16,9 @@ namespace Pulumi.Scaleway.Outputs
         public readonly bool? Autohealing;
         public readonly bool? Autoscaling;
         public readonly string? ContainerRuntime;
+        /// <summary>
+        /// The creation date of the cluster.
+        /// </summary>
         public readonly string? CreatedAt;
         public readonly int? MaxSize;
         public readonly int? MinSize;
@@ -24,8 +27,17 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string? PlacementGroupId;
         public readonly string? PoolId;
         public readonly int Size;
+        /// <summary>
+        /// The status of the Kubernetes cluster.
+        /// </summary>
         public readonly string? Status;
+        /// <summary>
+        /// The tags associated with the Kubernetes cluster.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The last update date of the cluster.
+        /// </summary>
         public readonly string? UpdatedAt;
         public readonly bool? WaitForPoolReady;
 

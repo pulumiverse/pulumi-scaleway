@@ -8,6 +8,29 @@ import (
 )
 
 // Gets local image ID of an image from its label name.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.GetMarketplaceImageBeta(ctx, &scaleway.GetMarketplaceImageBetaArgs{
+// 			Label: "ubuntu_focal",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetMarketplaceImageBeta(ctx *pulumi.Context, args *GetMarketplaceImageBetaArgs, opts ...pulumi.InvokeOption) (*GetMarketplaceImageBetaResult, error) {
 	var rv GetMarketplaceImageBetaResult
 	err := ctx.Invoke("scaleway:index/getMarketplaceImageBeta:getMarketplaceImageBeta", args, &rv, opts...)
@@ -19,14 +42,19 @@ func GetMarketplaceImageBeta(ctx *pulumi.Context, args *GetMarketplaceImageBetaA
 
 // A collection of arguments for invoking getMarketplaceImageBeta.
 type GetMarketplaceImageBetaArgs struct {
+	// The instance type the image is compatible with.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType *string `pulumi:"instanceType"`
-	Label        string  `pulumi:"label"`
-	Zone         *string `pulumi:"zone"`
+	// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// to find the right `label`.
+	Label string `pulumi:"label"`
+	// `zone`) The zone in which the image exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getMarketplaceImageBeta.
 type GetMarketplaceImageBetaResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id           string  `pulumi:"id"`
 	InstanceType *string `pulumi:"instanceType"`
 	Label        string  `pulumi:"label"`

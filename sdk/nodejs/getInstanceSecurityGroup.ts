@@ -8,22 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a Security Group.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * // Get info by security group id
- * const myKey = scaleway.getInstanceSecurityGroup({
- *     securityGroupId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/instance_security_group.html.markdown.
+ * // Get info by security group id
+ * const myKey = pulumi.output(scaleway.getInstanceSecurityGroup({
+ *     securityGroupId: "11111111-1111-1111-1111-111111111111",
+ * }, { async: true }));
+ * ```
  */
 export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSecurityGroupResult> {
     args = args || {};
@@ -45,8 +41,17 @@ export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, op
  * A collection of arguments for invoking getInstanceSecurityGroup.
  */
 export interface GetInstanceSecurityGroupArgs {
+    /**
+     * The security group name. Only one of `name` and `securityGroupId` should be specified.
+     */
     readonly name?: string;
+    /**
+     * The security group id. Only one of `name` and `securityGroupId` should be specified.
+     */
     readonly securityGroupId?: string;
+    /**
+     * `zone`) The zone in which the security group exists.
+     */
     readonly zone?: string;
 }
 
@@ -56,16 +61,32 @@ export interface GetInstanceSecurityGroupArgs {
 export interface GetInstanceSecurityGroupResult {
     readonly description: string;
     readonly externalRules: boolean;
-    readonly inboundDefaultPolicy: string;
-    readonly inboundRules: outputs.GetInstanceSecurityGroupInboundRule[];
-    readonly name?: string;
-    readonly organizationId: string;
-    readonly outboundDefaultPolicy: string;
-    readonly outboundRules: outputs.GetInstanceSecurityGroupOutboundRule[];
-    readonly securityGroupId?: string;
-    readonly zone?: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+     */
+    readonly inboundDefaultPolicy: string;
+    /**
+     * A list of inbound rule to add to the security group. (Structure is documented below.)
+     */
+    readonly inboundRules: outputs.GetInstanceSecurityGroupInboundRule[];
+    readonly name?: string;
+    /**
+     * The ID of the organization the security group is associated with.
+     */
+    readonly organizationId: string;
+    /**
+     * The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+     */
+    readonly outboundDefaultPolicy: string;
+    /**
+     * A list of outbound rule to add to the security group. (Structure is documented below.)
+     */
+    readonly outboundRules: outputs.GetInstanceSecurityGroupOutboundRule[];
+    readonly securityGroupId?: string;
+    readonly stateful: boolean;
+    readonly zone?: string;
 }

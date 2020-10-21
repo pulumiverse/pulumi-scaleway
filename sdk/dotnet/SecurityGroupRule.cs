@@ -15,6 +15,34 @@ namespace Pulumi.Scaleway
     /// 
     /// Provides security group rules. This allows security group rules to be created, updated and deleted.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#security-groups-manage-rules).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Scaleway.SecurityGroup("test", new Scaleway.SecurityGroupArgs
+    ///         {
+    ///             Description = "test",
+    ///         });
+    ///         var smtpDrop1 = new Scaleway.SecurityGroupRule("smtpDrop1", new Scaleway.SecurityGroupRuleArgs
+    ///         {
+    ///             SecurityGroup = test.Id,
+    ///             Action = "accept",
+    ///             Direction = "inbound",
+    ///             IpRange = "0.0.0.0/0",
+    ///             Protocol = "TCP",
+    ///             Port = 25,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecurityGroupRule : Pulumi.CustomResource
     {

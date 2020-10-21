@@ -11,14 +11,37 @@ import (
 )
 
 // Manages user SSH keys to access servers provisioned on Scaleway.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewAccountSshKey(ctx, "main", &scaleway.AccountSshKeyArgs{
+// 			PublicKey: pulumi.String("<YOUR-PUBLIC-SSH-KEY>"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AccountSshKey struct {
 	pulumi.CustomResourceState
 
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
 
@@ -53,20 +76,20 @@ func GetAccountSshKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccountSshKey resources.
 type accountSshKeyState struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey *string `pulumi:"publicKey"`
 }
 
 type AccountSshKeyState struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey pulumi.StringPtrInput
 }
 
@@ -75,21 +98,21 @@ func (AccountSshKeyState) ElementType() reflect.Type {
 }
 
 type accountSshKeyArgs struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey string `pulumi:"publicKey"`
 }
 
 // The set of arguments for constructing a AccountSshKey resource.
 type AccountSshKeyArgs struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey pulumi.StringInput
 }
 

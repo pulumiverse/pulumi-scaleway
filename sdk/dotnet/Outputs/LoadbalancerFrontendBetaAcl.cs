@@ -13,8 +13,17 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class LoadbalancerFrontendBetaAcl
     {
+        /// <summary>
+        /// Action to undertake when an ACL filter matches.
+        /// </summary>
         public readonly Outputs.LoadbalancerFrontendBetaAclAction Action;
+        /// <summary>
+        /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        /// </summary>
         public readonly Outputs.LoadbalancerFrontendBetaAclMatch Match;
+        /// <summary>
+        /// The ACL name. If not provided it will be randomly generated.
+        /// </summary>
         public readonly string? Name;
         public readonly string? OrganizationId;
         public readonly string? Region;

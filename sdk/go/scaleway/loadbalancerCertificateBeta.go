@@ -13,25 +13,25 @@ import (
 type LoadbalancerCertificateBeta struct {
 	pulumi.CustomResourceState
 
-	// The main domain name of the certificate
+	// Main domain of the certificate.
 	CommonName pulumi.StringOutput `pulumi:"commonName"`
-	// The custom type certificate type configuration
+	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate LoadbalancerCertificateBetaCustomCertificatePtrOutput `pulumi:"customCertificate"`
 	// The identifier (SHA-1) of the certificate
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
-	// The load-balancer ID
+	// The load-balancer ID this certificate is attached to.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
-	// The Let's Encrypt type certificate configuration
+	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt LoadbalancerCertificateBetaLetsencryptPtrOutput `pulumi:"letsencrypt"`
-	// The name of the load-balancer certificate
+	// The name of the certificate backend.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The not valid after validity bound timestamp
 	NotValidAfter pulumi.StringOutput `pulumi:"notValidAfter"`
 	// The not valid before validity bound timestamp
 	NotValidBefore pulumi.StringOutput `pulumi:"notValidBefore"`
-	// The status of certificate
+	// Certificate status
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The alternative domain names of the certificate
+	// Array of alternative domain names.
 	SubjectAlternativeName pulumi.StringOutput `pulumi:"subjectAlternativeName"`
 }
 
@@ -66,48 +66,48 @@ func GetLoadbalancerCertificateBeta(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerCertificateBeta resources.
 type loadbalancerCertificateBetaState struct {
-	// The main domain name of the certificate
+	// Main domain of the certificate.
 	CommonName *string `pulumi:"commonName"`
-	// The custom type certificate type configuration
+	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate *LoadbalancerCertificateBetaCustomCertificate `pulumi:"customCertificate"`
 	// The identifier (SHA-1) of the certificate
 	Fingerprint *string `pulumi:"fingerprint"`
-	// The load-balancer ID
+	// The load-balancer ID this certificate is attached to.
 	LbId *string `pulumi:"lbId"`
-	// The Let's Encrypt type certificate configuration
+	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt *LoadbalancerCertificateBetaLetsencrypt `pulumi:"letsencrypt"`
-	// The name of the load-balancer certificate
+	// The name of the certificate backend.
 	Name *string `pulumi:"name"`
 	// The not valid after validity bound timestamp
 	NotValidAfter *string `pulumi:"notValidAfter"`
 	// The not valid before validity bound timestamp
 	NotValidBefore *string `pulumi:"notValidBefore"`
-	// The status of certificate
+	// Certificate status
 	Status *string `pulumi:"status"`
-	// The alternative domain names of the certificate
+	// Array of alternative domain names.
 	SubjectAlternativeName *string `pulumi:"subjectAlternativeName"`
 }
 
 type LoadbalancerCertificateBetaState struct {
-	// The main domain name of the certificate
+	// Main domain of the certificate.
 	CommonName pulumi.StringPtrInput
-	// The custom type certificate type configuration
+	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate LoadbalancerCertificateBetaCustomCertificatePtrInput
 	// The identifier (SHA-1) of the certificate
 	Fingerprint pulumi.StringPtrInput
-	// The load-balancer ID
+	// The load-balancer ID this certificate is attached to.
 	LbId pulumi.StringPtrInput
-	// The Let's Encrypt type certificate configuration
+	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt LoadbalancerCertificateBetaLetsencryptPtrInput
-	// The name of the load-balancer certificate
+	// The name of the certificate backend.
 	Name pulumi.StringPtrInput
 	// The not valid after validity bound timestamp
 	NotValidAfter pulumi.StringPtrInput
 	// The not valid before validity bound timestamp
 	NotValidBefore pulumi.StringPtrInput
-	// The status of certificate
+	// Certificate status
 	Status pulumi.StringPtrInput
-	// The alternative domain names of the certificate
+	// Array of alternative domain names.
 	SubjectAlternativeName pulumi.StringPtrInput
 }
 
@@ -116,25 +116,25 @@ func (LoadbalancerCertificateBetaState) ElementType() reflect.Type {
 }
 
 type loadbalancerCertificateBetaArgs struct {
-	// The custom type certificate type configuration
+	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate *LoadbalancerCertificateBetaCustomCertificate `pulumi:"customCertificate"`
-	// The load-balancer ID
+	// The load-balancer ID this certificate is attached to.
 	LbId string `pulumi:"lbId"`
-	// The Let's Encrypt type certificate configuration
+	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt *LoadbalancerCertificateBetaLetsencrypt `pulumi:"letsencrypt"`
-	// The name of the load-balancer certificate
+	// The name of the certificate backend.
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a LoadbalancerCertificateBeta resource.
 type LoadbalancerCertificateBetaArgs struct {
-	// The custom type certificate type configuration
+	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate LoadbalancerCertificateBetaCustomCertificatePtrInput
-	// The load-balancer ID
+	// The load-balancer ID this certificate is attached to.
 	LbId pulumi.StringInput
-	// The Let's Encrypt type certificate configuration
+	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt LoadbalancerCertificateBetaLetsencryptPtrInput
-	// The name of the load-balancer certificate
+	// The name of the certificate backend.
 	Name pulumi.StringPtrInput
 }
 

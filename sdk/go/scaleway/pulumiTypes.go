@@ -10,125 +10,140 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-type BaremetalServerBetaIp struct {
+type BaremetalServerIp struct {
+	// The address of the IP.
 	Address *string `pulumi:"address"`
-	Id      *string `pulumi:"id"`
+	// The ID of the IP.
+	Id *string `pulumi:"id"`
+	// The reverse of the IP.
 	Reverse *string `pulumi:"reverse"`
+	Version *string `pulumi:"version"`
 }
 
-// BaremetalServerBetaIpInput is an input type that accepts BaremetalServerBetaIpArgs and BaremetalServerBetaIpOutput values.
-// You can construct a concrete instance of `BaremetalServerBetaIpInput` via:
+// BaremetalServerIpInput is an input type that accepts BaremetalServerIpArgs and BaremetalServerIpOutput values.
+// You can construct a concrete instance of `BaremetalServerIpInput` via:
 //
-// 		 BaremetalServerBetaIpArgs{...}
-//
-type BaremetalServerBetaIpInput interface {
+//          BaremetalServerIpArgs{...}
+type BaremetalServerIpInput interface {
 	pulumi.Input
 
-	ToBaremetalServerBetaIpOutput() BaremetalServerBetaIpOutput
-	ToBaremetalServerBetaIpOutputWithContext(context.Context) BaremetalServerBetaIpOutput
+	ToBaremetalServerIpOutput() BaremetalServerIpOutput
+	ToBaremetalServerIpOutputWithContext(context.Context) BaremetalServerIpOutput
 }
 
-type BaremetalServerBetaIpArgs struct {
+type BaremetalServerIpArgs struct {
+	// The address of the IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	Id      pulumi.StringPtrInput `pulumi:"id"`
+	// The ID of the IP.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The reverse of the IP.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
+	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
-func (BaremetalServerBetaIpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*BaremetalServerBetaIp)(nil)).Elem()
+func (BaremetalServerIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerIp)(nil)).Elem()
 }
 
-func (i BaremetalServerBetaIpArgs) ToBaremetalServerBetaIpOutput() BaremetalServerBetaIpOutput {
-	return i.ToBaremetalServerBetaIpOutputWithContext(context.Background())
+func (i BaremetalServerIpArgs) ToBaremetalServerIpOutput() BaremetalServerIpOutput {
+	return i.ToBaremetalServerIpOutputWithContext(context.Background())
 }
 
-func (i BaremetalServerBetaIpArgs) ToBaremetalServerBetaIpOutputWithContext(ctx context.Context) BaremetalServerBetaIpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerBetaIpOutput)
+func (i BaremetalServerIpArgs) ToBaremetalServerIpOutputWithContext(ctx context.Context) BaremetalServerIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerIpOutput)
 }
 
-// BaremetalServerBetaIpArrayInput is an input type that accepts BaremetalServerBetaIpArray and BaremetalServerBetaIpArrayOutput values.
-// You can construct a concrete instance of `BaremetalServerBetaIpArrayInput` via:
+// BaremetalServerIpArrayInput is an input type that accepts BaremetalServerIpArray and BaremetalServerIpArrayOutput values.
+// You can construct a concrete instance of `BaremetalServerIpArrayInput` via:
 //
-// 		 BaremetalServerBetaIpArray{ BaremetalServerBetaIpArgs{...} }
-//
-type BaremetalServerBetaIpArrayInput interface {
+//          BaremetalServerIpArray{ BaremetalServerIpArgs{...} }
+type BaremetalServerIpArrayInput interface {
 	pulumi.Input
 
-	ToBaremetalServerBetaIpArrayOutput() BaremetalServerBetaIpArrayOutput
-	ToBaremetalServerBetaIpArrayOutputWithContext(context.Context) BaremetalServerBetaIpArrayOutput
+	ToBaremetalServerIpArrayOutput() BaremetalServerIpArrayOutput
+	ToBaremetalServerIpArrayOutputWithContext(context.Context) BaremetalServerIpArrayOutput
 }
 
-type BaremetalServerBetaIpArray []BaremetalServerBetaIpInput
+type BaremetalServerIpArray []BaremetalServerIpInput
 
-func (BaremetalServerBetaIpArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]BaremetalServerBetaIp)(nil)).Elem()
+func (BaremetalServerIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerIp)(nil)).Elem()
 }
 
-func (i BaremetalServerBetaIpArray) ToBaremetalServerBetaIpArrayOutput() BaremetalServerBetaIpArrayOutput {
-	return i.ToBaremetalServerBetaIpArrayOutputWithContext(context.Background())
+func (i BaremetalServerIpArray) ToBaremetalServerIpArrayOutput() BaremetalServerIpArrayOutput {
+	return i.ToBaremetalServerIpArrayOutputWithContext(context.Background())
 }
 
-func (i BaremetalServerBetaIpArray) ToBaremetalServerBetaIpArrayOutputWithContext(ctx context.Context) BaremetalServerBetaIpArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerBetaIpArrayOutput)
+func (i BaremetalServerIpArray) ToBaremetalServerIpArrayOutputWithContext(ctx context.Context) BaremetalServerIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerIpArrayOutput)
 }
 
-type BaremetalServerBetaIpOutput struct{ *pulumi.OutputState }
+type BaremetalServerIpOutput struct{ *pulumi.OutputState }
 
-func (BaremetalServerBetaIpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BaremetalServerBetaIp)(nil)).Elem()
+func (BaremetalServerIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerIp)(nil)).Elem()
 }
 
-func (o BaremetalServerBetaIpOutput) ToBaremetalServerBetaIpOutput() BaremetalServerBetaIpOutput {
+func (o BaremetalServerIpOutput) ToBaremetalServerIpOutput() BaremetalServerIpOutput {
 	return o
 }
 
-func (o BaremetalServerBetaIpOutput) ToBaremetalServerBetaIpOutputWithContext(ctx context.Context) BaremetalServerBetaIpOutput {
+func (o BaremetalServerIpOutput) ToBaremetalServerIpOutputWithContext(ctx context.Context) BaremetalServerIpOutput {
 	return o
 }
 
-func (o BaremetalServerBetaIpOutput) Address() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v BaremetalServerBetaIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+// The address of the IP.
+func (o BaremetalServerIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-func (o BaremetalServerBetaIpOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v BaremetalServerBetaIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+// The ID of the IP.
+func (o BaremetalServerIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o BaremetalServerBetaIpOutput) Reverse() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v BaremetalServerBetaIp) *string { return v.Reverse }).(pulumi.StringPtrOutput)
+// The reverse of the IP.
+func (o BaremetalServerIpOutput) Reverse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Reverse }).(pulumi.StringPtrOutput)
 }
 
-type BaremetalServerBetaIpArrayOutput struct{ *pulumi.OutputState }
-
-func (BaremetalServerBetaIpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]BaremetalServerBetaIp)(nil)).Elem()
+func (o BaremetalServerIpOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-func (o BaremetalServerBetaIpArrayOutput) ToBaremetalServerBetaIpArrayOutput() BaremetalServerBetaIpArrayOutput {
+type BaremetalServerIpArrayOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerIp)(nil)).Elem()
+}
+
+func (o BaremetalServerIpArrayOutput) ToBaremetalServerIpArrayOutput() BaremetalServerIpArrayOutput {
 	return o
 }
 
-func (o BaremetalServerBetaIpArrayOutput) ToBaremetalServerBetaIpArrayOutputWithContext(ctx context.Context) BaremetalServerBetaIpArrayOutput {
+func (o BaremetalServerIpArrayOutput) ToBaremetalServerIpArrayOutputWithContext(ctx context.Context) BaremetalServerIpArrayOutput {
 	return o
 }
 
-func (o BaremetalServerBetaIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerBetaIpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerBetaIp {
-		return vs[0].([]BaremetalServerBetaIp)[vs[1].(int)]
-	}).(BaremetalServerBetaIpOutput)
+func (o BaremetalServerIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerIp {
+		return vs[0].([]BaremetalServerIp)[vs[1].(int)]
+	}).(BaremetalServerIpOutput)
 }
 
 type DatabaseInstanceBetaReadReplica struct {
-	Ip   *string `pulumi:"ip"`
+	// IP of the replica.
+	Ip *string `pulumi:"ip"`
+	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	Port *int    `pulumi:"port"`
+	// Port of the replica.
+	Port *int `pulumi:"port"`
 }
 
 // DatabaseInstanceBetaReadReplicaInput is an input type that accepts DatabaseInstanceBetaReadReplicaArgs and DatabaseInstanceBetaReadReplicaOutput values.
 // You can construct a concrete instance of `DatabaseInstanceBetaReadReplicaInput` via:
 //
-// 		 DatabaseInstanceBetaReadReplicaArgs{...}
-//
+//          DatabaseInstanceBetaReadReplicaArgs{...}
 type DatabaseInstanceBetaReadReplicaInput interface {
 	pulumi.Input
 
@@ -137,9 +152,12 @@ type DatabaseInstanceBetaReadReplicaInput interface {
 }
 
 type DatabaseInstanceBetaReadReplicaArgs struct {
-	Ip   pulumi.StringPtrInput `pulumi:"ip"`
+	// IP of the replica.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	Port pulumi.IntPtrInput    `pulumi:"port"`
+	// Port of the replica.
+	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
 func (DatabaseInstanceBetaReadReplicaArgs) ElementType() reflect.Type {
@@ -157,8 +175,7 @@ func (i DatabaseInstanceBetaReadReplicaArgs) ToDatabaseInstanceBetaReadReplicaOu
 // DatabaseInstanceBetaReadReplicaArrayInput is an input type that accepts DatabaseInstanceBetaReadReplicaArray and DatabaseInstanceBetaReadReplicaArrayOutput values.
 // You can construct a concrete instance of `DatabaseInstanceBetaReadReplicaArrayInput` via:
 //
-// 		 DatabaseInstanceBetaReadReplicaArray{ DatabaseInstanceBetaReadReplicaArgs{...} }
-//
+//          DatabaseInstanceBetaReadReplicaArray{ DatabaseInstanceBetaReadReplicaArgs{...} }
 type DatabaseInstanceBetaReadReplicaArrayInput interface {
 	pulumi.Input
 
@@ -194,14 +211,17 @@ func (o DatabaseInstanceBetaReadReplicaOutput) ToDatabaseInstanceBetaReadReplica
 	return o
 }
 
+// IP of the replica.
 func (o DatabaseInstanceBetaReadReplicaOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceBetaReadReplica) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// The name of the Database Instance.
 func (o DatabaseInstanceBetaReadReplicaOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceBetaReadReplica) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Port of the replica.
 func (o DatabaseInstanceBetaReadReplicaOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceBetaReadReplica) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -227,19 +247,23 @@ func (o DatabaseInstanceBetaReadReplicaArrayOutput) Index(i pulumi.IntInput) Dat
 }
 
 type InstanceSecurityGroupInboundRule struct {
-	Action    string  `pulumi:"action"`
-	Ip        *string `pulumi:"ip"`
-	IpRange   *string `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action string `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip *string `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange *string `pulumi:"ipRange"`
+	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port      *int    `pulumi:"port"`
 	PortRange *string `pulumi:"portRange"`
-	Protocol  *string `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol *string `pulumi:"protocol"`
 }
 
 // InstanceSecurityGroupInboundRuleInput is an input type that accepts InstanceSecurityGroupInboundRuleArgs and InstanceSecurityGroupInboundRuleOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupInboundRuleInput` via:
 //
-// 		 InstanceSecurityGroupInboundRuleArgs{...}
-//
+//          InstanceSecurityGroupInboundRuleArgs{...}
 type InstanceSecurityGroupInboundRuleInput interface {
 	pulumi.Input
 
@@ -248,12 +272,17 @@ type InstanceSecurityGroupInboundRuleInput interface {
 }
 
 type InstanceSecurityGroupInboundRuleArgs struct {
-	Action    pulumi.StringInput    `pulumi:"action"`
-	Ip        pulumi.StringPtrInput `pulumi:"ip"`
-	IpRange   pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port      pulumi.IntPtrInput    `pulumi:"port"`
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
-	Protocol  pulumi.StringPtrInput `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
 func (InstanceSecurityGroupInboundRuleArgs) ElementType() reflect.Type {
@@ -271,8 +300,7 @@ func (i InstanceSecurityGroupInboundRuleArgs) ToInstanceSecurityGroupInboundRule
 // InstanceSecurityGroupInboundRuleArrayInput is an input type that accepts InstanceSecurityGroupInboundRuleArray and InstanceSecurityGroupInboundRuleArrayOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupInboundRuleArrayInput` via:
 //
-// 		 InstanceSecurityGroupInboundRuleArray{ InstanceSecurityGroupInboundRuleArgs{...} }
-//
+//          InstanceSecurityGroupInboundRuleArray{ InstanceSecurityGroupInboundRuleArgs{...} }
 type InstanceSecurityGroupInboundRuleArrayInput interface {
 	pulumi.Input
 
@@ -308,18 +336,22 @@ func (o InstanceSecurityGroupInboundRuleOutput) ToInstanceSecurityGroupInboundRu
 	return o
 }
 
+// The action to take when rule match. Possible values are: `accept` or `drop`.
 func (o InstanceSecurityGroupInboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
+// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupInboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupInboundRuleOutput) IpRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.IpRange }).(pulumi.StringPtrOutput)
 }
 
+// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 func (o InstanceSecurityGroupInboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -328,6 +360,7 @@ func (o InstanceSecurityGroupInboundRuleOutput) PortRange() pulumi.StringPtrOutp
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
 
+// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 func (o InstanceSecurityGroupInboundRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -353,19 +386,23 @@ func (o InstanceSecurityGroupInboundRuleArrayOutput) Index(i pulumi.IntInput) In
 }
 
 type InstanceSecurityGroupOutboundRule struct {
-	Action    string  `pulumi:"action"`
-	Ip        *string `pulumi:"ip"`
-	IpRange   *string `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action string `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip *string `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange *string `pulumi:"ipRange"`
+	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port      *int    `pulumi:"port"`
 	PortRange *string `pulumi:"portRange"`
-	Protocol  *string `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol *string `pulumi:"protocol"`
 }
 
 // InstanceSecurityGroupOutboundRuleInput is an input type that accepts InstanceSecurityGroupOutboundRuleArgs and InstanceSecurityGroupOutboundRuleOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupOutboundRuleInput` via:
 //
-// 		 InstanceSecurityGroupOutboundRuleArgs{...}
-//
+//          InstanceSecurityGroupOutboundRuleArgs{...}
 type InstanceSecurityGroupOutboundRuleInput interface {
 	pulumi.Input
 
@@ -374,12 +411,17 @@ type InstanceSecurityGroupOutboundRuleInput interface {
 }
 
 type InstanceSecurityGroupOutboundRuleArgs struct {
-	Action    pulumi.StringInput    `pulumi:"action"`
-	Ip        pulumi.StringPtrInput `pulumi:"ip"`
-	IpRange   pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port      pulumi.IntPtrInput    `pulumi:"port"`
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
-	Protocol  pulumi.StringPtrInput `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
 func (InstanceSecurityGroupOutboundRuleArgs) ElementType() reflect.Type {
@@ -397,8 +439,7 @@ func (i InstanceSecurityGroupOutboundRuleArgs) ToInstanceSecurityGroupOutboundRu
 // InstanceSecurityGroupOutboundRuleArrayInput is an input type that accepts InstanceSecurityGroupOutboundRuleArray and InstanceSecurityGroupOutboundRuleArrayOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupOutboundRuleArrayInput` via:
 //
-// 		 InstanceSecurityGroupOutboundRuleArray{ InstanceSecurityGroupOutboundRuleArgs{...} }
-//
+//          InstanceSecurityGroupOutboundRuleArray{ InstanceSecurityGroupOutboundRuleArgs{...} }
 type InstanceSecurityGroupOutboundRuleArrayInput interface {
 	pulumi.Input
 
@@ -434,18 +475,22 @@ func (o InstanceSecurityGroupOutboundRuleOutput) ToInstanceSecurityGroupOutbound
 	return o
 }
 
+// The action to take when rule match. Possible values are: `accept` or `drop`.
 func (o InstanceSecurityGroupOutboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
+// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupOutboundRuleOutput) IpRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.IpRange }).(pulumi.StringPtrOutput)
 }
 
+// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 func (o InstanceSecurityGroupOutboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -454,6 +499,7 @@ func (o InstanceSecurityGroupOutboundRuleOutput) PortRange() pulumi.StringPtrOut
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
 
+// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 func (o InstanceSecurityGroupOutboundRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -479,19 +525,23 @@ func (o InstanceSecurityGroupOutboundRuleArrayOutput) Index(i pulumi.IntInput) I
 }
 
 type InstanceSecurityGroupRulesInboundRule struct {
-	Action    string  `pulumi:"action"`
-	Ip        *string `pulumi:"ip"`
-	IpRange   *string `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action string `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip *string `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange *string `pulumi:"ipRange"`
+	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port      *int    `pulumi:"port"`
 	PortRange *string `pulumi:"portRange"`
-	Protocol  *string `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol *string `pulumi:"protocol"`
 }
 
 // InstanceSecurityGroupRulesInboundRuleInput is an input type that accepts InstanceSecurityGroupRulesInboundRuleArgs and InstanceSecurityGroupRulesInboundRuleOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupRulesInboundRuleInput` via:
 //
-// 		 InstanceSecurityGroupRulesInboundRuleArgs{...}
-//
+//          InstanceSecurityGroupRulesInboundRuleArgs{...}
 type InstanceSecurityGroupRulesInboundRuleInput interface {
 	pulumi.Input
 
@@ -500,12 +550,17 @@ type InstanceSecurityGroupRulesInboundRuleInput interface {
 }
 
 type InstanceSecurityGroupRulesInboundRuleArgs struct {
-	Action    pulumi.StringInput    `pulumi:"action"`
-	Ip        pulumi.StringPtrInput `pulumi:"ip"`
-	IpRange   pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port      pulumi.IntPtrInput    `pulumi:"port"`
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
-	Protocol  pulumi.StringPtrInput `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
 func (InstanceSecurityGroupRulesInboundRuleArgs) ElementType() reflect.Type {
@@ -523,8 +578,7 @@ func (i InstanceSecurityGroupRulesInboundRuleArgs) ToInstanceSecurityGroupRulesI
 // InstanceSecurityGroupRulesInboundRuleArrayInput is an input type that accepts InstanceSecurityGroupRulesInboundRuleArray and InstanceSecurityGroupRulesInboundRuleArrayOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupRulesInboundRuleArrayInput` via:
 //
-// 		 InstanceSecurityGroupRulesInboundRuleArray{ InstanceSecurityGroupRulesInboundRuleArgs{...} }
-//
+//          InstanceSecurityGroupRulesInboundRuleArray{ InstanceSecurityGroupRulesInboundRuleArgs{...} }
 type InstanceSecurityGroupRulesInboundRuleArrayInput interface {
 	pulumi.Input
 
@@ -560,18 +614,22 @@ func (o InstanceSecurityGroupRulesInboundRuleOutput) ToInstanceSecurityGroupRule
 	return o
 }
 
+// The action to take when rule match. Possible values are: `accept` or `drop`.
 func (o InstanceSecurityGroupRulesInboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
+// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupRulesInboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupRulesInboundRuleOutput) IpRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.IpRange }).(pulumi.StringPtrOutput)
 }
 
+// The port this rule apply to. If no port is specified, rule will apply to all port.
 func (o InstanceSecurityGroupRulesInboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -580,6 +638,7 @@ func (o InstanceSecurityGroupRulesInboundRuleOutput) PortRange() pulumi.StringPt
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
 
+// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 func (o InstanceSecurityGroupRulesInboundRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -605,19 +664,23 @@ func (o InstanceSecurityGroupRulesInboundRuleArrayOutput) Index(i pulumi.IntInpu
 }
 
 type InstanceSecurityGroupRulesOutboundRule struct {
-	Action    string  `pulumi:"action"`
-	Ip        *string `pulumi:"ip"`
-	IpRange   *string `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action string `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip *string `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange *string `pulumi:"ipRange"`
+	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port      *int    `pulumi:"port"`
 	PortRange *string `pulumi:"portRange"`
-	Protocol  *string `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol *string `pulumi:"protocol"`
 }
 
 // InstanceSecurityGroupRulesOutboundRuleInput is an input type that accepts InstanceSecurityGroupRulesOutboundRuleArgs and InstanceSecurityGroupRulesOutboundRuleOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupRulesOutboundRuleInput` via:
 //
-// 		 InstanceSecurityGroupRulesOutboundRuleArgs{...}
-//
+//          InstanceSecurityGroupRulesOutboundRuleArgs{...}
 type InstanceSecurityGroupRulesOutboundRuleInput interface {
 	pulumi.Input
 
@@ -626,12 +689,17 @@ type InstanceSecurityGroupRulesOutboundRuleInput interface {
 }
 
 type InstanceSecurityGroupRulesOutboundRuleArgs struct {
-	Action    pulumi.StringInput    `pulumi:"action"`
-	Ip        pulumi.StringPtrInput `pulumi:"ip"`
-	IpRange   pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
+	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port      pulumi.IntPtrInput    `pulumi:"port"`
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
-	Protocol  pulumi.StringPtrInput `pulumi:"protocol"`
+	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
 func (InstanceSecurityGroupRulesOutboundRuleArgs) ElementType() reflect.Type {
@@ -649,8 +717,7 @@ func (i InstanceSecurityGroupRulesOutboundRuleArgs) ToInstanceSecurityGroupRules
 // InstanceSecurityGroupRulesOutboundRuleArrayInput is an input type that accepts InstanceSecurityGroupRulesOutboundRuleArray and InstanceSecurityGroupRulesOutboundRuleArrayOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupRulesOutboundRuleArrayInput` via:
 //
-// 		 InstanceSecurityGroupRulesOutboundRuleArray{ InstanceSecurityGroupRulesOutboundRuleArgs{...} }
-//
+//          InstanceSecurityGroupRulesOutboundRuleArray{ InstanceSecurityGroupRulesOutboundRuleArgs{...} }
 type InstanceSecurityGroupRulesOutboundRuleArrayInput interface {
 	pulumi.Input
 
@@ -686,18 +753,22 @@ func (o InstanceSecurityGroupRulesOutboundRuleOutput) ToInstanceSecurityGroupRul
 	return o
 }
 
+// The action to take when rule match. Possible values are: `accept` or `drop`.
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
+// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) IpRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.IpRange }).(pulumi.StringPtrOutput)
 }
 
+// The port this rule apply to. If no port is specified, rule will apply to all port.
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -706,6 +777,7 @@ func (o InstanceSecurityGroupRulesOutboundRuleOutput) PortRange() pulumi.StringP
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
 
+// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -731,16 +803,21 @@ func (o InstanceSecurityGroupRulesOutboundRuleArrayOutput) Index(i pulumi.IntInp
 }
 
 type InstanceServerRootVolume struct {
-	DeleteOnTermination *bool   `pulumi:"deleteOnTermination"`
-	SizeInGb            *int    `pulumi:"sizeInGb"`
-	VolumeId            *string `pulumi:"volumeId"`
+	// Forces deletion of the root volume on instance termination.
+	DeleteOnTermination *bool `pulumi:"deleteOnTermination"`
+	// Size of the root volume in gigabytes.
+	// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
+	// Updates to this field will recreate a new resource.
+	SizeInGb *int `pulumi:"sizeInGb"`
+	// The volume ID of the root volume of the server.
+	VolumeId *string `pulumi:"volumeId"`
 }
 
 // InstanceServerRootVolumeInput is an input type that accepts InstanceServerRootVolumeArgs and InstanceServerRootVolumeOutput values.
 // You can construct a concrete instance of `InstanceServerRootVolumeInput` via:
 //
-// 		 InstanceServerRootVolumeArgs{...}
-//
+//          InstanceServerRootVolumeArgs{...}
 type InstanceServerRootVolumeInput interface {
 	pulumi.Input
 
@@ -749,9 +826,15 @@ type InstanceServerRootVolumeInput interface {
 }
 
 type InstanceServerRootVolumeArgs struct {
-	DeleteOnTermination pulumi.BoolPtrInput   `pulumi:"deleteOnTermination"`
-	SizeInGb            pulumi.IntPtrInput    `pulumi:"sizeInGb"`
-	VolumeId            pulumi.StringPtrInput `pulumi:"volumeId"`
+	// Forces deletion of the root volume on instance termination.
+	DeleteOnTermination pulumi.BoolPtrInput `pulumi:"deleteOnTermination"`
+	// Size of the root volume in gigabytes.
+	// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
+	// Updates to this field will recreate a new resource.
+	SizeInGb pulumi.IntPtrInput `pulumi:"sizeInGb"`
+	// The volume ID of the root volume of the server.
+	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
 }
 
 func (InstanceServerRootVolumeArgs) ElementType() reflect.Type {
@@ -777,12 +860,11 @@ func (i InstanceServerRootVolumeArgs) ToInstanceServerRootVolumePtrOutputWithCon
 // InstanceServerRootVolumePtrInput is an input type that accepts InstanceServerRootVolumeArgs, InstanceServerRootVolumePtr and InstanceServerRootVolumePtrOutput values.
 // You can construct a concrete instance of `InstanceServerRootVolumePtrInput` via:
 //
-// 		 InstanceServerRootVolumeArgs{...}
+//          InstanceServerRootVolumeArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type InstanceServerRootVolumePtrInput interface {
 	pulumi.Input
 
@@ -831,14 +913,21 @@ func (o InstanceServerRootVolumeOutput) ToInstanceServerRootVolumePtrOutputWithC
 		return &v
 	}).(InstanceServerRootVolumePtrOutput)
 }
+
+// Forces deletion of the root volume on instance termination.
 func (o InstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *bool { return v.DeleteOnTermination }).(pulumi.BoolPtrOutput)
 }
 
+// Size of the root volume in gigabytes.
+// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
+// Updates to this field will recreate a new resource.
 func (o InstanceServerRootVolumeOutput) SizeInGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *int { return v.SizeInGb }).(pulumi.IntPtrOutput)
 }
 
+// The volume ID of the root volume of the server.
 func (o InstanceServerRootVolumeOutput) VolumeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
@@ -861,19 +950,41 @@ func (o InstanceServerRootVolumePtrOutput) Elem() InstanceServerRootVolumeOutput
 	return o.ApplyT(func(v *InstanceServerRootVolume) InstanceServerRootVolume { return *v }).(InstanceServerRootVolumeOutput)
 }
 
+// Forces deletion of the root volume on instance termination.
 func (o InstanceServerRootVolumePtrOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v InstanceServerRootVolume) *bool { return v.DeleteOnTermination }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *InstanceServerRootVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DeleteOnTermination
+	}).(pulumi.BoolPtrOutput)
 }
 
+// Size of the root volume in gigabytes.
+// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
+// Updates to this field will recreate a new resource.
 func (o InstanceServerRootVolumePtrOutput) SizeInGb() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v InstanceServerRootVolume) *int { return v.SizeInGb }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *InstanceServerRootVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SizeInGb
+	}).(pulumi.IntPtrOutput)
 }
 
+// The volume ID of the root volume of the server.
 func (o InstanceServerRootVolumePtrOutput) VolumeId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *InstanceServerRootVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.VolumeId
+	}).(pulumi.StringPtrOutput)
 }
 
 type InstanceServerUserData struct {
+	// The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
@@ -881,8 +992,7 @@ type InstanceServerUserData struct {
 // InstanceServerUserDataInput is an input type that accepts InstanceServerUserDataArgs and InstanceServerUserDataOutput values.
 // You can construct a concrete instance of `InstanceServerUserDataInput` via:
 //
-// 		 InstanceServerUserDataArgs{...}
-//
+//          InstanceServerUserDataArgs{...}
 type InstanceServerUserDataInput interface {
 	pulumi.Input
 
@@ -891,6 +1001,7 @@ type InstanceServerUserDataInput interface {
 }
 
 type InstanceServerUserDataArgs struct {
+	// The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
 	Key   pulumi.StringInput `pulumi:"key"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
@@ -910,8 +1021,7 @@ func (i InstanceServerUserDataArgs) ToInstanceServerUserDataOutputWithContext(ct
 // InstanceServerUserDataArrayInput is an input type that accepts InstanceServerUserDataArray and InstanceServerUserDataArrayOutput values.
 // You can construct a concrete instance of `InstanceServerUserDataArrayInput` via:
 //
-// 		 InstanceServerUserDataArray{ InstanceServerUserDataArgs{...} }
-//
+//          InstanceServerUserDataArray{ InstanceServerUserDataArgs{...} }
 type InstanceServerUserDataArrayInput interface {
 	pulumi.Input
 
@@ -947,6 +1057,7 @@ func (o InstanceServerUserDataOutput) ToInstanceServerUserDataOutputWithContext(
 	return o
 }
 
+// The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
 func (o InstanceServerUserDataOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceServerUserData) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -976,16 +1087,19 @@ func (o InstanceServerUserDataArrayOutput) Index(i pulumi.IntInput) InstanceServ
 }
 
 type KubernetesClusterBetaAutoUpgrade struct {
-	Enable                     bool   `pulumi:"enable"`
-	MaintenanceWindowDay       string `pulumi:"maintenanceWindowDay"`
-	MaintenanceWindowStartHour int    `pulumi:"maintenanceWindowStartHour"`
+	// Set to `true` to enable Kubernetes patch version auto upgrades.
+	// > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+	Enable bool `pulumi:"enable"`
+	// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+	MaintenanceWindowDay string `pulumi:"maintenanceWindowDay"`
+	// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+	MaintenanceWindowStartHour int `pulumi:"maintenanceWindowStartHour"`
 }
 
 // KubernetesClusterBetaAutoUpgradeInput is an input type that accepts KubernetesClusterBetaAutoUpgradeArgs and KubernetesClusterBetaAutoUpgradeOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaAutoUpgradeInput` via:
 //
-// 		 KubernetesClusterBetaAutoUpgradeArgs{...}
-//
+//          KubernetesClusterBetaAutoUpgradeArgs{...}
 type KubernetesClusterBetaAutoUpgradeInput interface {
 	pulumi.Input
 
@@ -994,9 +1108,13 @@ type KubernetesClusterBetaAutoUpgradeInput interface {
 }
 
 type KubernetesClusterBetaAutoUpgradeArgs struct {
-	Enable                     pulumi.BoolInput   `pulumi:"enable"`
-	MaintenanceWindowDay       pulumi.StringInput `pulumi:"maintenanceWindowDay"`
-	MaintenanceWindowStartHour pulumi.IntInput    `pulumi:"maintenanceWindowStartHour"`
+	// Set to `true` to enable Kubernetes patch version auto upgrades.
+	// > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+	Enable pulumi.BoolInput `pulumi:"enable"`
+	// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+	MaintenanceWindowDay pulumi.StringInput `pulumi:"maintenanceWindowDay"`
+	// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+	MaintenanceWindowStartHour pulumi.IntInput `pulumi:"maintenanceWindowStartHour"`
 }
 
 func (KubernetesClusterBetaAutoUpgradeArgs) ElementType() reflect.Type {
@@ -1022,12 +1140,11 @@ func (i KubernetesClusterBetaAutoUpgradeArgs) ToKubernetesClusterBetaAutoUpgrade
 // KubernetesClusterBetaAutoUpgradePtrInput is an input type that accepts KubernetesClusterBetaAutoUpgradeArgs, KubernetesClusterBetaAutoUpgradePtr and KubernetesClusterBetaAutoUpgradePtrOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaAutoUpgradePtrInput` via:
 //
-// 		 KubernetesClusterBetaAutoUpgradeArgs{...}
+//          KubernetesClusterBetaAutoUpgradeArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type KubernetesClusterBetaAutoUpgradePtrInput interface {
 	pulumi.Input
 
@@ -1076,14 +1193,19 @@ func (o KubernetesClusterBetaAutoUpgradeOutput) ToKubernetesClusterBetaAutoUpgra
 		return &v
 	}).(KubernetesClusterBetaAutoUpgradePtrOutput)
 }
+
+// Set to `true` to enable Kubernetes patch version auto upgrades.
+// > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
 func (o KubernetesClusterBetaAutoUpgradeOutput) Enable() pulumi.BoolOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoUpgrade) bool { return v.Enable }).(pulumi.BoolOutput)
 }
 
+// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
 func (o KubernetesClusterBetaAutoUpgradeOutput) MaintenanceWindowDay() pulumi.StringOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoUpgrade) string { return v.MaintenanceWindowDay }).(pulumi.StringOutput)
 }
 
+// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
 func (o KubernetesClusterBetaAutoUpgradeOutput) MaintenanceWindowStartHour() pulumi.IntOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoUpgrade) int { return v.MaintenanceWindowStartHour }).(pulumi.IntOutput)
 }
@@ -1106,33 +1228,60 @@ func (o KubernetesClusterBetaAutoUpgradePtrOutput) Elem() KubernetesClusterBetaA
 	return o.ApplyT(func(v *KubernetesClusterBetaAutoUpgrade) KubernetesClusterBetaAutoUpgrade { return *v }).(KubernetesClusterBetaAutoUpgradeOutput)
 }
 
-func (o KubernetesClusterBetaAutoUpgradePtrOutput) Enable() pulumi.BoolOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoUpgrade) bool { return v.Enable }).(pulumi.BoolOutput)
+// Set to `true` to enable Kubernetes patch version auto upgrades.
+// > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+func (o KubernetesClusterBetaAutoUpgradePtrOutput) Enable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoUpgrade) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enable
+	}).(pulumi.BoolPtrOutput)
 }
 
-func (o KubernetesClusterBetaAutoUpgradePtrOutput) MaintenanceWindowDay() pulumi.StringOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoUpgrade) string { return v.MaintenanceWindowDay }).(pulumi.StringOutput)
+// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+func (o KubernetesClusterBetaAutoUpgradePtrOutput) MaintenanceWindowDay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoUpgrade) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MaintenanceWindowDay
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o KubernetesClusterBetaAutoUpgradePtrOutput) MaintenanceWindowStartHour() pulumi.IntOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoUpgrade) int { return v.MaintenanceWindowStartHour }).(pulumi.IntOutput)
+// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+func (o KubernetesClusterBetaAutoUpgradePtrOutput) MaintenanceWindowStartHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoUpgrade) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaintenanceWindowStartHour
+	}).(pulumi.IntPtrOutput)
 }
 
 type KubernetesClusterBetaAutoscalerConfig struct {
-	BalanceSimilarNodeGroups     *bool   `pulumi:"balanceSimilarNodeGroups"`
-	DisableScaleDown             *bool   `pulumi:"disableScaleDown"`
-	Estimator                    *string `pulumi:"estimator"`
-	Expander                     *string `pulumi:"expander"`
-	ExpendablePodsPriorityCutoff *int    `pulumi:"expendablePodsPriorityCutoff"`
-	IgnoreDaemonsetsUtilization  *bool   `pulumi:"ignoreDaemonsetsUtilization"`
-	ScaleDownDelayAfterAdd       *string `pulumi:"scaleDownDelayAfterAdd"`
+	// Detect similar node groups and balance the number of nodes between them.
+	BalanceSimilarNodeGroups *bool `pulumi:"balanceSimilarNodeGroups"`
+	// Disables the scale down feature of the autoscaler.
+	DisableScaleDown *bool `pulumi:"disableScaleDown"`
+	// Type of resource estimator to be used in scale up.
+	Estimator *string `pulumi:"estimator"`
+	// Type of node group expander to be used in scale up.
+	Expander *string `pulumi:"expander"`
+	// Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+	ExpendablePodsPriorityCutoff *int `pulumi:"expendablePodsPriorityCutoff"`
+	// Ignore DaemonSet pods when calculating resource utilization for scaling down.
+	IgnoreDaemonsetsUtilization *bool `pulumi:"ignoreDaemonsetsUtilization"`
+	// How long after scale up that scale down evaluation resumes.
+	ScaleDownDelayAfterAdd *string `pulumi:"scaleDownDelayAfterAdd"`
+	// How long a node should be unneeded before it is eligible for scale down.
+	ScaleDownUnneededTime *string `pulumi:"scaleDownUnneededTime"`
 }
 
 // KubernetesClusterBetaAutoscalerConfigInput is an input type that accepts KubernetesClusterBetaAutoscalerConfigArgs and KubernetesClusterBetaAutoscalerConfigOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaAutoscalerConfigInput` via:
 //
-// 		 KubernetesClusterBetaAutoscalerConfigArgs{...}
-//
+//          KubernetesClusterBetaAutoscalerConfigArgs{...}
 type KubernetesClusterBetaAutoscalerConfigInput interface {
 	pulumi.Input
 
@@ -1141,13 +1290,22 @@ type KubernetesClusterBetaAutoscalerConfigInput interface {
 }
 
 type KubernetesClusterBetaAutoscalerConfigArgs struct {
-	BalanceSimilarNodeGroups     pulumi.BoolPtrInput   `pulumi:"balanceSimilarNodeGroups"`
-	DisableScaleDown             pulumi.BoolPtrInput   `pulumi:"disableScaleDown"`
-	Estimator                    pulumi.StringPtrInput `pulumi:"estimator"`
-	Expander                     pulumi.StringPtrInput `pulumi:"expander"`
-	ExpendablePodsPriorityCutoff pulumi.IntPtrInput    `pulumi:"expendablePodsPriorityCutoff"`
-	IgnoreDaemonsetsUtilization  pulumi.BoolPtrInput   `pulumi:"ignoreDaemonsetsUtilization"`
-	ScaleDownDelayAfterAdd       pulumi.StringPtrInput `pulumi:"scaleDownDelayAfterAdd"`
+	// Detect similar node groups and balance the number of nodes between them.
+	BalanceSimilarNodeGroups pulumi.BoolPtrInput `pulumi:"balanceSimilarNodeGroups"`
+	// Disables the scale down feature of the autoscaler.
+	DisableScaleDown pulumi.BoolPtrInput `pulumi:"disableScaleDown"`
+	// Type of resource estimator to be used in scale up.
+	Estimator pulumi.StringPtrInput `pulumi:"estimator"`
+	// Type of node group expander to be used in scale up.
+	Expander pulumi.StringPtrInput `pulumi:"expander"`
+	// Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+	ExpendablePodsPriorityCutoff pulumi.IntPtrInput `pulumi:"expendablePodsPriorityCutoff"`
+	// Ignore DaemonSet pods when calculating resource utilization for scaling down.
+	IgnoreDaemonsetsUtilization pulumi.BoolPtrInput `pulumi:"ignoreDaemonsetsUtilization"`
+	// How long after scale up that scale down evaluation resumes.
+	ScaleDownDelayAfterAdd pulumi.StringPtrInput `pulumi:"scaleDownDelayAfterAdd"`
+	// How long a node should be unneeded before it is eligible for scale down.
+	ScaleDownUnneededTime pulumi.StringPtrInput `pulumi:"scaleDownUnneededTime"`
 }
 
 func (KubernetesClusterBetaAutoscalerConfigArgs) ElementType() reflect.Type {
@@ -1173,12 +1331,11 @@ func (i KubernetesClusterBetaAutoscalerConfigArgs) ToKubernetesClusterBetaAutosc
 // KubernetesClusterBetaAutoscalerConfigPtrInput is an input type that accepts KubernetesClusterBetaAutoscalerConfigArgs, KubernetesClusterBetaAutoscalerConfigPtr and KubernetesClusterBetaAutoscalerConfigPtrOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaAutoscalerConfigPtrInput` via:
 //
-// 		 KubernetesClusterBetaAutoscalerConfigArgs{...}
+//          KubernetesClusterBetaAutoscalerConfigArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type KubernetesClusterBetaAutoscalerConfigPtrInput interface {
 	pulumi.Input
 
@@ -1227,32 +1384,45 @@ func (o KubernetesClusterBetaAutoscalerConfigOutput) ToKubernetesClusterBetaAuto
 		return &v
 	}).(KubernetesClusterBetaAutoscalerConfigPtrOutput)
 }
+
+// Detect similar node groups and balance the number of nodes between them.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) BalanceSimilarNodeGroups() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *bool { return v.BalanceSimilarNodeGroups }).(pulumi.BoolPtrOutput)
 }
 
+// Disables the scale down feature of the autoscaler.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) DisableScaleDown() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *bool { return v.DisableScaleDown }).(pulumi.BoolPtrOutput)
 }
 
+// Type of resource estimator to be used in scale up.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) Estimator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.Estimator }).(pulumi.StringPtrOutput)
 }
 
+// Type of node group expander to be used in scale up.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) Expander() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.Expander }).(pulumi.StringPtrOutput)
 }
 
+// Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) ExpendablePodsPriorityCutoff() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *int { return v.ExpendablePodsPriorityCutoff }).(pulumi.IntPtrOutput)
 }
 
+// Ignore DaemonSet pods when calculating resource utilization for scaling down.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) IgnoreDaemonsetsUtilization() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolPtrOutput)
 }
 
+// How long after scale up that scale down evaluation resumes.
 func (o KubernetesClusterBetaAutoscalerConfigOutput) ScaleDownDelayAfterAdd() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.ScaleDownDelayAfterAdd }).(pulumi.StringPtrOutput)
+}
+
+// How long a node should be unneeded before it is eligible for scale down.
+func (o KubernetesClusterBetaAutoscalerConfigOutput) ScaleDownUnneededTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.ScaleDownUnneededTime }).(pulumi.StringPtrOutput)
 }
 
 type KubernetesClusterBetaAutoscalerConfigPtrOutput struct{ *pulumi.OutputState }
@@ -1273,57 +1443,123 @@ func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) Elem() KubernetesCluster
 	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) KubernetesClusterBetaAutoscalerConfig { return *v }).(KubernetesClusterBetaAutoscalerConfigOutput)
 }
 
+// Detect similar node groups and balance the number of nodes between them.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) BalanceSimilarNodeGroups() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *bool { return v.BalanceSimilarNodeGroups }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.BalanceSimilarNodeGroups
+	}).(pulumi.BoolPtrOutput)
 }
 
+// Disables the scale down feature of the autoscaler.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) DisableScaleDown() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *bool { return v.DisableScaleDown }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableScaleDown
+	}).(pulumi.BoolPtrOutput)
 }
 
+// Type of resource estimator to be used in scale up.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) Estimator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.Estimator }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Estimator
+	}).(pulumi.StringPtrOutput)
 }
 
+// Type of node group expander to be used in scale up.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) Expander() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.Expander }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Expander
+	}).(pulumi.StringPtrOutput)
 }
 
+// Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) ExpendablePodsPriorityCutoff() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *int { return v.ExpendablePodsPriorityCutoff }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ExpendablePodsPriorityCutoff
+	}).(pulumi.IntPtrOutput)
 }
 
+// Ignore DaemonSet pods when calculating resource utilization for scaling down.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) IgnoreDaemonsetsUtilization() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreDaemonsetsUtilization
+	}).(pulumi.BoolPtrOutput)
 }
 
+// How long after scale up that scale down evaluation resumes.
 func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) ScaleDownDelayAfterAdd() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaAutoscalerConfig) *string { return v.ScaleDownDelayAfterAdd }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ScaleDownDelayAfterAdd
+	}).(pulumi.StringPtrOutput)
+}
+
+// How long a node should be unneeded before it is eligible for scale down.
+func (o KubernetesClusterBetaAutoscalerConfigPtrOutput) ScaleDownUnneededTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterBetaAutoscalerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ScaleDownUnneededTime
+	}).(pulumi.StringPtrOutput)
 }
 
 type KubernetesClusterBetaDefaultPool struct {
-	Autohealing      *bool                                  `pulumi:"autohealing"`
-	Autoscaling      *bool                                  `pulumi:"autoscaling"`
-	ContainerRuntime *string                                `pulumi:"containerRuntime"`
-	CreatedAt        *string                                `pulumi:"createdAt"`
-	MaxSize          *int                                   `pulumi:"maxSize"`
-	MinSize          *int                                   `pulumi:"minSize"`
-	NodeType         string                                 `pulumi:"nodeType"`
-	Nodes            []KubernetesClusterBetaDefaultPoolNode `pulumi:"nodes"`
-	PlacementGroupId *string                                `pulumi:"placementGroupId"`
-	PoolId           *string                                `pulumi:"poolId"`
-	Size             int                                    `pulumi:"size"`
-	Status           *string                                `pulumi:"status"`
-	Tags             []string                               `pulumi:"tags"`
-	UpdatedAt        *string                                `pulumi:"updatedAt"`
-	WaitForPoolReady *bool                                  `pulumi:"waitForPoolReady"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Autohealing *bool `pulumi:"autohealing"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Autoscaling *bool `pulumi:"autoscaling"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	ContainerRuntime *string `pulumi:"containerRuntime"`
+	// The creation date of the cluster.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	MaxSize *int `pulumi:"maxSize"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	MinSize *int `pulumi:"minSize"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	NodeType string                                 `pulumi:"nodeType"`
+	Nodes    []KubernetesClusterBetaDefaultPoolNode `pulumi:"nodes"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	PlacementGroupId *string `pulumi:"placementGroupId"`
+	PoolId           *string `pulumi:"poolId"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Size int `pulumi:"size"`
+	// The status of the Kubernetes cluster.
+	Status *string `pulumi:"status"`
+	// The tags associated with the Kubernetes cluster.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Tags []string `pulumi:"tags"`
+	// The last update date of the cluster.
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	WaitForPoolReady *bool `pulumi:"waitForPoolReady"`
 }
 
 // KubernetesClusterBetaDefaultPoolInput is an input type that accepts KubernetesClusterBetaDefaultPoolArgs and KubernetesClusterBetaDefaultPoolOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaDefaultPoolInput` via:
 //
-// 		 KubernetesClusterBetaDefaultPoolArgs{...}
-//
+//          KubernetesClusterBetaDefaultPoolArgs{...}
 type KubernetesClusterBetaDefaultPoolInput interface {
 	pulumi.Input
 
@@ -1332,21 +1568,36 @@ type KubernetesClusterBetaDefaultPoolInput interface {
 }
 
 type KubernetesClusterBetaDefaultPoolArgs struct {
-	Autohealing      pulumi.BoolPtrInput                            `pulumi:"autohealing"`
-	Autoscaling      pulumi.BoolPtrInput                            `pulumi:"autoscaling"`
-	ContainerRuntime pulumi.StringPtrInput                          `pulumi:"containerRuntime"`
-	CreatedAt        pulumi.StringPtrInput                          `pulumi:"createdAt"`
-	MaxSize          pulumi.IntPtrInput                             `pulumi:"maxSize"`
-	MinSize          pulumi.IntPtrInput                             `pulumi:"minSize"`
-	NodeType         pulumi.StringInput                             `pulumi:"nodeType"`
-	Nodes            KubernetesClusterBetaDefaultPoolNodeArrayInput `pulumi:"nodes"`
-	PlacementGroupId pulumi.StringPtrInput                          `pulumi:"placementGroupId"`
-	PoolId           pulumi.StringPtrInput                          `pulumi:"poolId"`
-	Size             pulumi.IntInput                                `pulumi:"size"`
-	Status           pulumi.StringPtrInput                          `pulumi:"status"`
-	Tags             pulumi.StringArrayInput                        `pulumi:"tags"`
-	UpdatedAt        pulumi.StringPtrInput                          `pulumi:"updatedAt"`
-	WaitForPoolReady pulumi.BoolPtrInput                            `pulumi:"waitForPoolReady"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Autohealing pulumi.BoolPtrInput `pulumi:"autohealing"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Autoscaling pulumi.BoolPtrInput `pulumi:"autoscaling"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	ContainerRuntime pulumi.StringPtrInput `pulumi:"containerRuntime"`
+	// The creation date of the cluster.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	MaxSize pulumi.IntPtrInput `pulumi:"maxSize"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	MinSize pulumi.IntPtrInput `pulumi:"minSize"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	NodeType pulumi.StringInput                             `pulumi:"nodeType"`
+	Nodes    KubernetesClusterBetaDefaultPoolNodeArrayInput `pulumi:"nodes"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	PlacementGroupId pulumi.StringPtrInput `pulumi:"placementGroupId"`
+	PoolId           pulumi.StringPtrInput `pulumi:"poolId"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The status of the Kubernetes cluster.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// The tags associated with the Kubernetes cluster.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The last update date of the cluster.
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	WaitForPoolReady pulumi.BoolPtrInput `pulumi:"waitForPoolReady"`
 }
 
 func (KubernetesClusterBetaDefaultPoolArgs) ElementType() reflect.Type {
@@ -1372,12 +1623,11 @@ func (i KubernetesClusterBetaDefaultPoolArgs) ToKubernetesClusterBetaDefaultPool
 // KubernetesClusterBetaDefaultPoolPtrInput is an input type that accepts KubernetesClusterBetaDefaultPoolArgs, KubernetesClusterBetaDefaultPoolPtr and KubernetesClusterBetaDefaultPoolPtrOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaDefaultPoolPtrInput` via:
 //
-// 		 KubernetesClusterBetaDefaultPoolArgs{...}
+//          KubernetesClusterBetaDefaultPoolArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type KubernetesClusterBetaDefaultPoolPtrInput interface {
 	pulumi.Input
 
@@ -1426,30 +1676,38 @@ func (o KubernetesClusterBetaDefaultPoolOutput) ToKubernetesClusterBetaDefaultPo
 		return &v
 	}).(KubernetesClusterBetaDefaultPoolPtrOutput)
 }
+
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) Autohealing() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *bool { return v.Autohealing }).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) Autoscaling() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *bool { return v.Autoscaling }).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) ContainerRuntime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.ContainerRuntime }).(pulumi.StringPtrOutput)
 }
 
+// The creation date of the cluster.
 func (o KubernetesClusterBetaDefaultPoolOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) MaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *int { return v.MaxSize }).(pulumi.IntPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) MinSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *int { return v.MinSize }).(pulumi.IntPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) string { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -1458,6 +1716,7 @@ func (o KubernetesClusterBetaDefaultPoolOutput) Nodes() KubernetesClusterBetaDef
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) []KubernetesClusterBetaDefaultPoolNode { return v.Nodes }).(KubernetesClusterBetaDefaultPoolNodeArrayOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
 }
@@ -1466,22 +1725,29 @@ func (o KubernetesClusterBetaDefaultPoolOutput) PoolId() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.PoolId }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// The status of the Kubernetes cluster.
 func (o KubernetesClusterBetaDefaultPoolOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// The tags associated with the Kubernetes cluster.
+//
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The last update date of the cluster.
 func (o KubernetesClusterBetaDefaultPoolOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolOutput) WaitForPoolReady() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *bool { return v.WaitForPoolReady }).(pulumi.BoolPtrOutput)
 }
@@ -1504,78 +1770,169 @@ func (o KubernetesClusterBetaDefaultPoolPtrOutput) Elem() KubernetesClusterBetaD
 	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) KubernetesClusterBetaDefaultPool { return *v }).(KubernetesClusterBetaDefaultPoolOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) Autohealing() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *bool { return v.Autohealing }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Autohealing
+	}).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) Autoscaling() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *bool { return v.Autoscaling }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Autoscaling
+	}).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) ContainerRuntime() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.ContainerRuntime }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContainerRuntime
+	}).(pulumi.StringPtrOutput)
 }
 
+// The creation date of the cluster.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) MaxSize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *int { return v.MaxSize }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSize
+	}).(pulumi.IntPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) MinSize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *int { return v.MinSize }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MinSize
+	}).(pulumi.IntPtrOutput)
 }
 
-func (o KubernetesClusterBetaDefaultPoolPtrOutput) NodeType() pulumi.StringOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) string { return v.NodeType }).(pulumi.StringOutput)
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+func (o KubernetesClusterBetaDefaultPoolPtrOutput) NodeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NodeType
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) Nodes() KubernetesClusterBetaDefaultPoolNodeArrayOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) []KubernetesClusterBetaDefaultPoolNode { return v.Nodes }).(KubernetesClusterBetaDefaultPoolNodeArrayOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) []KubernetesClusterBetaDefaultPoolNode {
+		if v == nil {
+			return nil
+		}
+		return v.Nodes
+	}).(KubernetesClusterBetaDefaultPoolNodeArrayOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) PlacementGroupId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PlacementGroupId
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) PoolId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.PoolId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PoolId
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o KubernetesClusterBetaDefaultPoolPtrOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) int { return v.Size }).(pulumi.IntOutput)
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+func (o KubernetesClusterBetaDefaultPoolPtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Size
+	}).(pulumi.IntPtrOutput)
 }
 
+// The status of the Kubernetes cluster.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.Status }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
 }
 
+// The tags associated with the Kubernetes cluster.
+//
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) []string { return v.Tags }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringArrayOutput)
 }
 
+// The last update date of the cluster.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 func (o KubernetesClusterBetaDefaultPoolPtrOutput) WaitForPoolReady() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaDefaultPool) *bool { return v.WaitForPoolReady }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaDefaultPool) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.WaitForPoolReady
+	}).(pulumi.BoolPtrOutput)
 }
 
 type KubernetesClusterBetaDefaultPoolNode struct {
+	// The name for the Kubernetes cluster.
 	Name       *string `pulumi:"name"`
 	PublicIp   *string `pulumi:"publicIp"`
 	PublicIpV6 *string `pulumi:"publicIpV6"`
-	Status     *string `pulumi:"status"`
+	// The status of the Kubernetes cluster.
+	Status *string `pulumi:"status"`
 }
 
 // KubernetesClusterBetaDefaultPoolNodeInput is an input type that accepts KubernetesClusterBetaDefaultPoolNodeArgs and KubernetesClusterBetaDefaultPoolNodeOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaDefaultPoolNodeInput` via:
 //
-// 		 KubernetesClusterBetaDefaultPoolNodeArgs{...}
-//
+//          KubernetesClusterBetaDefaultPoolNodeArgs{...}
 type KubernetesClusterBetaDefaultPoolNodeInput interface {
 	pulumi.Input
 
@@ -1584,10 +1941,12 @@ type KubernetesClusterBetaDefaultPoolNodeInput interface {
 }
 
 type KubernetesClusterBetaDefaultPoolNodeArgs struct {
+	// The name for the Kubernetes cluster.
 	Name       pulumi.StringPtrInput `pulumi:"name"`
 	PublicIp   pulumi.StringPtrInput `pulumi:"publicIp"`
 	PublicIpV6 pulumi.StringPtrInput `pulumi:"publicIpV6"`
-	Status     pulumi.StringPtrInput `pulumi:"status"`
+	// The status of the Kubernetes cluster.
+	Status pulumi.StringPtrInput `pulumi:"status"`
 }
 
 func (KubernetesClusterBetaDefaultPoolNodeArgs) ElementType() reflect.Type {
@@ -1605,8 +1964,7 @@ func (i KubernetesClusterBetaDefaultPoolNodeArgs) ToKubernetesClusterBetaDefault
 // KubernetesClusterBetaDefaultPoolNodeArrayInput is an input type that accepts KubernetesClusterBetaDefaultPoolNodeArray and KubernetesClusterBetaDefaultPoolNodeArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaDefaultPoolNodeArrayInput` via:
 //
-// 		 KubernetesClusterBetaDefaultPoolNodeArray{ KubernetesClusterBetaDefaultPoolNodeArgs{...} }
-//
+//          KubernetesClusterBetaDefaultPoolNodeArray{ KubernetesClusterBetaDefaultPoolNodeArgs{...} }
 type KubernetesClusterBetaDefaultPoolNodeArrayInput interface {
 	pulumi.Input
 
@@ -1642,6 +2000,7 @@ func (o KubernetesClusterBetaDefaultPoolNodeOutput) ToKubernetesClusterBetaDefau
 	return o
 }
 
+// The name for the Kubernetes cluster.
 func (o KubernetesClusterBetaDefaultPoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -1654,6 +2013,7 @@ func (o KubernetesClusterBetaDefaultPoolNodeOutput) PublicIpV6() pulumi.StringPt
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPoolNode) *string { return v.PublicIpV6 }).(pulumi.StringPtrOutput)
 }
 
+// The status of the Kubernetes cluster.
 func (o KubernetesClusterBetaDefaultPoolNodeOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaDefaultPoolNode) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -1679,17 +2039,20 @@ func (o KubernetesClusterBetaDefaultPoolNodeArrayOutput) Index(i pulumi.IntInput
 }
 
 type KubernetesClusterBetaKubeconfig struct {
+	// The CA certificate of the Kubernetes API server.
 	ClusterCaCertificate *string `pulumi:"clusterCaCertificate"`
-	ConfigFile           *string `pulumi:"configFile"`
-	Host                 *string `pulumi:"host"`
-	Token                *string `pulumi:"token"`
+	// The raw kubeconfig file.
+	ConfigFile *string `pulumi:"configFile"`
+	// The URL of the Kubernetes API server.
+	Host *string `pulumi:"host"`
+	// The token to connect to the Kubernetes API server.
+	Token *string `pulumi:"token"`
 }
 
 // KubernetesClusterBetaKubeconfigInput is an input type that accepts KubernetesClusterBetaKubeconfigArgs and KubernetesClusterBetaKubeconfigOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaKubeconfigInput` via:
 //
-// 		 KubernetesClusterBetaKubeconfigArgs{...}
-//
+//          KubernetesClusterBetaKubeconfigArgs{...}
 type KubernetesClusterBetaKubeconfigInput interface {
 	pulumi.Input
 
@@ -1698,10 +2061,14 @@ type KubernetesClusterBetaKubeconfigInput interface {
 }
 
 type KubernetesClusterBetaKubeconfigArgs struct {
+	// The CA certificate of the Kubernetes API server.
 	ClusterCaCertificate pulumi.StringPtrInput `pulumi:"clusterCaCertificate"`
-	ConfigFile           pulumi.StringPtrInput `pulumi:"configFile"`
-	Host                 pulumi.StringPtrInput `pulumi:"host"`
-	Token                pulumi.StringPtrInput `pulumi:"token"`
+	// The raw kubeconfig file.
+	ConfigFile pulumi.StringPtrInput `pulumi:"configFile"`
+	// The URL of the Kubernetes API server.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// The token to connect to the Kubernetes API server.
+	Token pulumi.StringPtrInput `pulumi:"token"`
 }
 
 func (KubernetesClusterBetaKubeconfigArgs) ElementType() reflect.Type {
@@ -1727,12 +2094,11 @@ func (i KubernetesClusterBetaKubeconfigArgs) ToKubernetesClusterBetaKubeconfigPt
 // KubernetesClusterBetaKubeconfigPtrInput is an input type that accepts KubernetesClusterBetaKubeconfigArgs, KubernetesClusterBetaKubeconfigPtr and KubernetesClusterBetaKubeconfigPtrOutput values.
 // You can construct a concrete instance of `KubernetesClusterBetaKubeconfigPtrInput` via:
 //
-// 		 KubernetesClusterBetaKubeconfigArgs{...}
+//          KubernetesClusterBetaKubeconfigArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type KubernetesClusterBetaKubeconfigPtrInput interface {
 	pulumi.Input
 
@@ -1781,18 +2147,23 @@ func (o KubernetesClusterBetaKubeconfigOutput) ToKubernetesClusterBetaKubeconfig
 		return &v
 	}).(KubernetesClusterBetaKubeconfigPtrOutput)
 }
+
+// The CA certificate of the Kubernetes API server.
 func (o KubernetesClusterBetaKubeconfigOutput) ClusterCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.ClusterCaCertificate }).(pulumi.StringPtrOutput)
 }
 
+// The raw kubeconfig file.
 func (o KubernetesClusterBetaKubeconfigOutput) ConfigFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.ConfigFile }).(pulumi.StringPtrOutput)
 }
 
+// The URL of the Kubernetes API server.
 func (o KubernetesClusterBetaKubeconfigOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.Host }).(pulumi.StringPtrOutput)
 }
 
+// The token to connect to the Kubernetes API server.
 func (o KubernetesClusterBetaKubeconfigOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
@@ -1815,34 +2186,62 @@ func (o KubernetesClusterBetaKubeconfigPtrOutput) Elem() KubernetesClusterBetaKu
 	return o.ApplyT(func(v *KubernetesClusterBetaKubeconfig) KubernetesClusterBetaKubeconfig { return *v }).(KubernetesClusterBetaKubeconfigOutput)
 }
 
+// The CA certificate of the Kubernetes API server.
 func (o KubernetesClusterBetaKubeconfigPtrOutput) ClusterCaCertificate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.ClusterCaCertificate }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClusterCaCertificate
+	}).(pulumi.StringPtrOutput)
 }
 
+// The raw kubeconfig file.
 func (o KubernetesClusterBetaKubeconfigPtrOutput) ConfigFile() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.ConfigFile }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ConfigFile
+	}).(pulumi.StringPtrOutput)
 }
 
+// The URL of the Kubernetes API server.
 func (o KubernetesClusterBetaKubeconfigPtrOutput) Host() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.Host }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
 }
 
+// The token to connect to the Kubernetes API server.
 func (o KubernetesClusterBetaKubeconfigPtrOutput) Token() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterBetaKubeconfig) *string { return v.Token }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *KubernetesClusterBetaKubeconfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Token
+	}).(pulumi.StringPtrOutput)
 }
 
 type KubernetesNodePoolBetaNode struct {
-	Name       *string `pulumi:"name"`
-	PublicIp   *string `pulumi:"publicIp"`
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
+	Name *string `pulumi:"name"`
+	// The public IPv4.
+	PublicIp *string `pulumi:"publicIp"`
+	// The public IPv6.
 	PublicIpV6 *string `pulumi:"publicIpV6"`
-	Status     *string `pulumi:"status"`
+	// The status of the node.
+	Status *string `pulumi:"status"`
 }
 
 // KubernetesNodePoolBetaNodeInput is an input type that accepts KubernetesNodePoolBetaNodeArgs and KubernetesNodePoolBetaNodeOutput values.
 // You can construct a concrete instance of `KubernetesNodePoolBetaNodeInput` via:
 //
-// 		 KubernetesNodePoolBetaNodeArgs{...}
-//
+//          KubernetesNodePoolBetaNodeArgs{...}
 type KubernetesNodePoolBetaNodeInput interface {
 	pulumi.Input
 
@@ -1851,10 +2250,15 @@ type KubernetesNodePoolBetaNodeInput interface {
 }
 
 type KubernetesNodePoolBetaNodeArgs struct {
-	Name       pulumi.StringPtrInput `pulumi:"name"`
-	PublicIp   pulumi.StringPtrInput `pulumi:"publicIp"`
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The public IPv4.
+	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
+	// The public IPv6.
 	PublicIpV6 pulumi.StringPtrInput `pulumi:"publicIpV6"`
-	Status     pulumi.StringPtrInput `pulumi:"status"`
+	// The status of the node.
+	Status pulumi.StringPtrInput `pulumi:"status"`
 }
 
 func (KubernetesNodePoolBetaNodeArgs) ElementType() reflect.Type {
@@ -1872,8 +2276,7 @@ func (i KubernetesNodePoolBetaNodeArgs) ToKubernetesNodePoolBetaNodeOutputWithCo
 // KubernetesNodePoolBetaNodeArrayInput is an input type that accepts KubernetesNodePoolBetaNodeArray and KubernetesNodePoolBetaNodeArrayOutput values.
 // You can construct a concrete instance of `KubernetesNodePoolBetaNodeArrayInput` via:
 //
-// 		 KubernetesNodePoolBetaNodeArray{ KubernetesNodePoolBetaNodeArgs{...} }
-//
+//          KubernetesNodePoolBetaNodeArray{ KubernetesNodePoolBetaNodeArgs{...} }
 type KubernetesNodePoolBetaNodeArrayInput interface {
 	pulumi.Input
 
@@ -1909,18 +2312,23 @@ func (o KubernetesNodePoolBetaNodeOutput) ToKubernetesNodePoolBetaNodeOutputWith
 	return o
 }
 
+// The name for the pool.
+// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolBetaNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolBetaNode) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The public IPv4.
 func (o KubernetesNodePoolBetaNodeOutput) PublicIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolBetaNode) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
 }
 
+// The public IPv6.
 func (o KubernetesNodePoolBetaNodeOutput) PublicIpV6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolBetaNode) *string { return v.PublicIpV6 }).(pulumi.StringPtrOutput)
 }
 
+// The status of the node.
 func (o KubernetesNodePoolBetaNodeOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolBetaNode) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -1946,16 +2354,18 @@ func (o KubernetesNodePoolBetaNodeArrayOutput) Index(i pulumi.IntInput) Kubernet
 }
 
 type LoadbalancerBackendBetaHealthCheckHttp struct {
-	Code   *int    `pulumi:"code"`
+	// The expected HTTP status code.
+	Code *int `pulumi:"code"`
+	// The HTTP method to use for HC requests.
 	Method *string `pulumi:"method"`
-	Uri    string  `pulumi:"uri"`
+	// The HTTPS endpoint URL to call for HC requests.
+	Uri string `pulumi:"uri"`
 }
 
 // LoadbalancerBackendBetaHealthCheckHttpInput is an input type that accepts LoadbalancerBackendBetaHealthCheckHttpArgs and LoadbalancerBackendBetaHealthCheckHttpOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendBetaHealthCheckHttpInput` via:
 //
-// 		 LoadbalancerBackendBetaHealthCheckHttpArgs{...}
-//
+//          LoadbalancerBackendBetaHealthCheckHttpArgs{...}
 type LoadbalancerBackendBetaHealthCheckHttpInput interface {
 	pulumi.Input
 
@@ -1964,9 +2374,12 @@ type LoadbalancerBackendBetaHealthCheckHttpInput interface {
 }
 
 type LoadbalancerBackendBetaHealthCheckHttpArgs struct {
-	Code   pulumi.IntPtrInput    `pulumi:"code"`
+	// The expected HTTP status code.
+	Code pulumi.IntPtrInput `pulumi:"code"`
+	// The HTTP method to use for HC requests.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	Uri    pulumi.StringInput    `pulumi:"uri"`
+	// The HTTPS endpoint URL to call for HC requests.
+	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
 func (LoadbalancerBackendBetaHealthCheckHttpArgs) ElementType() reflect.Type {
@@ -1992,12 +2405,11 @@ func (i LoadbalancerBackendBetaHealthCheckHttpArgs) ToLoadbalancerBackendBetaHea
 // LoadbalancerBackendBetaHealthCheckHttpPtrInput is an input type that accepts LoadbalancerBackendBetaHealthCheckHttpArgs, LoadbalancerBackendBetaHealthCheckHttpPtr and LoadbalancerBackendBetaHealthCheckHttpPtrOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendBetaHealthCheckHttpPtrInput` via:
 //
-// 		 LoadbalancerBackendBetaHealthCheckHttpArgs{...}
+//          LoadbalancerBackendBetaHealthCheckHttpArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type LoadbalancerBackendBetaHealthCheckHttpPtrInput interface {
 	pulumi.Input
 
@@ -2046,14 +2458,18 @@ func (o LoadbalancerBackendBetaHealthCheckHttpOutput) ToLoadbalancerBackendBetaH
 		return &v
 	}).(LoadbalancerBackendBetaHealthCheckHttpPtrOutput)
 }
+
+// The expected HTTP status code.
 func (o LoadbalancerBackendBetaHealthCheckHttpOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttp) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
+// The HTTP method to use for HC requests.
 func (o LoadbalancerBackendBetaHealthCheckHttpOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttp) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
+// The HTTPS endpoint URL to call for HC requests.
 func (o LoadbalancerBackendBetaHealthCheckHttpOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -2076,29 +2492,49 @@ func (o LoadbalancerBackendBetaHealthCheckHttpPtrOutput) Elem() LoadbalancerBack
 	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttp) LoadbalancerBackendBetaHealthCheckHttp { return *v }).(LoadbalancerBackendBetaHealthCheckHttpOutput)
 }
 
+// The expected HTTP status code.
 func (o LoadbalancerBackendBetaHealthCheckHttpPtrOutput) Code() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttp) *int { return v.Code }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Code
+	}).(pulumi.IntPtrOutput)
 }
 
+// The HTTP method to use for HC requests.
 func (o LoadbalancerBackendBetaHealthCheckHttpPtrOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttp) *string { return v.Method }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o LoadbalancerBackendBetaHealthCheckHttpPtrOutput) Uri() pulumi.StringOutput {
-	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
+// The HTTPS endpoint URL to call for HC requests.
+func (o LoadbalancerBackendBetaHealthCheckHttpPtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uri
+	}).(pulumi.StringPtrOutput)
 }
 
 type LoadbalancerBackendBetaHealthCheckHttps struct {
-	Code   *int    `pulumi:"code"`
+	// The expected HTTP status code.
+	Code *int `pulumi:"code"`
+	// The HTTP method to use for HC requests.
 	Method *string `pulumi:"method"`
-	Uri    string  `pulumi:"uri"`
+	// The HTTPS endpoint URL to call for HC requests.
+	Uri string `pulumi:"uri"`
 }
 
 // LoadbalancerBackendBetaHealthCheckHttpsInput is an input type that accepts LoadbalancerBackendBetaHealthCheckHttpsArgs and LoadbalancerBackendBetaHealthCheckHttpsOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendBetaHealthCheckHttpsInput` via:
 //
-// 		 LoadbalancerBackendBetaHealthCheckHttpsArgs{...}
-//
+//          LoadbalancerBackendBetaHealthCheckHttpsArgs{...}
 type LoadbalancerBackendBetaHealthCheckHttpsInput interface {
 	pulumi.Input
 
@@ -2107,9 +2543,12 @@ type LoadbalancerBackendBetaHealthCheckHttpsInput interface {
 }
 
 type LoadbalancerBackendBetaHealthCheckHttpsArgs struct {
-	Code   pulumi.IntPtrInput    `pulumi:"code"`
+	// The expected HTTP status code.
+	Code pulumi.IntPtrInput `pulumi:"code"`
+	// The HTTP method to use for HC requests.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	Uri    pulumi.StringInput    `pulumi:"uri"`
+	// The HTTPS endpoint URL to call for HC requests.
+	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
 func (LoadbalancerBackendBetaHealthCheckHttpsArgs) ElementType() reflect.Type {
@@ -2135,12 +2574,11 @@ func (i LoadbalancerBackendBetaHealthCheckHttpsArgs) ToLoadbalancerBackendBetaHe
 // LoadbalancerBackendBetaHealthCheckHttpsPtrInput is an input type that accepts LoadbalancerBackendBetaHealthCheckHttpsArgs, LoadbalancerBackendBetaHealthCheckHttpsPtr and LoadbalancerBackendBetaHealthCheckHttpsPtrOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendBetaHealthCheckHttpsPtrInput` via:
 //
-// 		 LoadbalancerBackendBetaHealthCheckHttpsArgs{...}
+//          LoadbalancerBackendBetaHealthCheckHttpsArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type LoadbalancerBackendBetaHealthCheckHttpsPtrInput interface {
 	pulumi.Input
 
@@ -2189,14 +2627,18 @@ func (o LoadbalancerBackendBetaHealthCheckHttpsOutput) ToLoadbalancerBackendBeta
 		return &v
 	}).(LoadbalancerBackendBetaHealthCheckHttpsPtrOutput)
 }
+
+// The expected HTTP status code.
 func (o LoadbalancerBackendBetaHealthCheckHttpsOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttps) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
+// The HTTP method to use for HC requests.
 func (o LoadbalancerBackendBetaHealthCheckHttpsOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttps) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
+// The HTTPS endpoint URL to call for HC requests.
 func (o LoadbalancerBackendBetaHealthCheckHttpsOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttps) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -2219,16 +2661,34 @@ func (o LoadbalancerBackendBetaHealthCheckHttpsPtrOutput) Elem() LoadbalancerBac
 	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttps) LoadbalancerBackendBetaHealthCheckHttps { return *v }).(LoadbalancerBackendBetaHealthCheckHttpsOutput)
 }
 
+// The expected HTTP status code.
 func (o LoadbalancerBackendBetaHealthCheckHttpsPtrOutput) Code() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttps) *int { return v.Code }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttps) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Code
+	}).(pulumi.IntPtrOutput)
 }
 
+// The HTTP method to use for HC requests.
 func (o LoadbalancerBackendBetaHealthCheckHttpsPtrOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttps) *string { return v.Method }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttps) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o LoadbalancerBackendBetaHealthCheckHttpsPtrOutput) Uri() pulumi.StringOutput {
-	return o.ApplyT(func(v LoadbalancerBackendBetaHealthCheckHttps) string { return v.Uri }).(pulumi.StringOutput)
+// The HTTPS endpoint URL to call for HC requests.
+func (o LoadbalancerBackendBetaHealthCheckHttpsPtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackendBetaHealthCheckHttps) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uri
+	}).(pulumi.StringPtrOutput)
 }
 
 type LoadbalancerBackendBetaHealthCheckTcp struct {
@@ -2237,8 +2697,7 @@ type LoadbalancerBackendBetaHealthCheckTcp struct {
 // LoadbalancerBackendBetaHealthCheckTcpInput is an input type that accepts LoadbalancerBackendBetaHealthCheckTcpArgs and LoadbalancerBackendBetaHealthCheckTcpOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendBetaHealthCheckTcpInput` via:
 //
-// 		 LoadbalancerBackendBetaHealthCheckTcpArgs{...}
-//
+//          LoadbalancerBackendBetaHealthCheckTcpArgs{...}
 type LoadbalancerBackendBetaHealthCheckTcpInput interface {
 	pulumi.Input
 
@@ -2272,12 +2731,11 @@ func (i LoadbalancerBackendBetaHealthCheckTcpArgs) ToLoadbalancerBackendBetaHeal
 // LoadbalancerBackendBetaHealthCheckTcpPtrInput is an input type that accepts LoadbalancerBackendBetaHealthCheckTcpArgs, LoadbalancerBackendBetaHealthCheckTcpPtr and LoadbalancerBackendBetaHealthCheckTcpPtrOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendBetaHealthCheckTcpPtrInput` via:
 //
-// 		 LoadbalancerBackendBetaHealthCheckTcpArgs{...}
+//          LoadbalancerBackendBetaHealthCheckTcpArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type LoadbalancerBackendBetaHealthCheckTcpPtrInput interface {
 	pulumi.Input
 
@@ -2346,14 +2804,14 @@ func (o LoadbalancerBackendBetaHealthCheckTcpPtrOutput) Elem() LoadbalancerBacke
 }
 
 type LoadbalancerCertificateBetaCustomCertificate struct {
+	// Full PEM-formatted certificate chain.
 	CertificateChain string `pulumi:"certificateChain"`
 }
 
 // LoadbalancerCertificateBetaCustomCertificateInput is an input type that accepts LoadbalancerCertificateBetaCustomCertificateArgs and LoadbalancerCertificateBetaCustomCertificateOutput values.
 // You can construct a concrete instance of `LoadbalancerCertificateBetaCustomCertificateInput` via:
 //
-// 		 LoadbalancerCertificateBetaCustomCertificateArgs{...}
-//
+//          LoadbalancerCertificateBetaCustomCertificateArgs{...}
 type LoadbalancerCertificateBetaCustomCertificateInput interface {
 	pulumi.Input
 
@@ -2362,6 +2820,7 @@ type LoadbalancerCertificateBetaCustomCertificateInput interface {
 }
 
 type LoadbalancerCertificateBetaCustomCertificateArgs struct {
+	// Full PEM-formatted certificate chain.
 	CertificateChain pulumi.StringInput `pulumi:"certificateChain"`
 }
 
@@ -2388,12 +2847,11 @@ func (i LoadbalancerCertificateBetaCustomCertificateArgs) ToLoadbalancerCertific
 // LoadbalancerCertificateBetaCustomCertificatePtrInput is an input type that accepts LoadbalancerCertificateBetaCustomCertificateArgs, LoadbalancerCertificateBetaCustomCertificatePtr and LoadbalancerCertificateBetaCustomCertificatePtrOutput values.
 // You can construct a concrete instance of `LoadbalancerCertificateBetaCustomCertificatePtrInput` via:
 //
-// 		 LoadbalancerCertificateBetaCustomCertificateArgs{...}
+//          LoadbalancerCertificateBetaCustomCertificateArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type LoadbalancerCertificateBetaCustomCertificatePtrInput interface {
 	pulumi.Input
 
@@ -2442,6 +2900,8 @@ func (o LoadbalancerCertificateBetaCustomCertificateOutput) ToLoadbalancerCertif
 		return &v
 	}).(LoadbalancerCertificateBetaCustomCertificatePtrOutput)
 }
+
+// Full PEM-formatted certificate chain.
 func (o LoadbalancerCertificateBetaCustomCertificateOutput) CertificateChain() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerCertificateBetaCustomCertificate) string { return v.CertificateChain }).(pulumi.StringOutput)
 }
@@ -2466,20 +2926,27 @@ func (o LoadbalancerCertificateBetaCustomCertificatePtrOutput) Elem() Loadbalanc
 	}).(LoadbalancerCertificateBetaCustomCertificateOutput)
 }
 
-func (o LoadbalancerCertificateBetaCustomCertificatePtrOutput) CertificateChain() pulumi.StringOutput {
-	return o.ApplyT(func(v LoadbalancerCertificateBetaCustomCertificate) string { return v.CertificateChain }).(pulumi.StringOutput)
+// Full PEM-formatted certificate chain.
+func (o LoadbalancerCertificateBetaCustomCertificatePtrOutput) CertificateChain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerCertificateBetaCustomCertificate) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CertificateChain
+	}).(pulumi.StringPtrOutput)
 }
 
 type LoadbalancerCertificateBetaLetsencrypt struct {
-	CommonName              string   `pulumi:"commonName"`
+	// Main domain of the certificate.
+	CommonName string `pulumi:"commonName"`
+	// Array of alternative domain names.
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
 
 // LoadbalancerCertificateBetaLetsencryptInput is an input type that accepts LoadbalancerCertificateBetaLetsencryptArgs and LoadbalancerCertificateBetaLetsencryptOutput values.
 // You can construct a concrete instance of `LoadbalancerCertificateBetaLetsencryptInput` via:
 //
-// 		 LoadbalancerCertificateBetaLetsencryptArgs{...}
-//
+//          LoadbalancerCertificateBetaLetsencryptArgs{...}
 type LoadbalancerCertificateBetaLetsencryptInput interface {
 	pulumi.Input
 
@@ -2488,7 +2955,9 @@ type LoadbalancerCertificateBetaLetsencryptInput interface {
 }
 
 type LoadbalancerCertificateBetaLetsencryptArgs struct {
-	CommonName              pulumi.StringInput      `pulumi:"commonName"`
+	// Main domain of the certificate.
+	CommonName pulumi.StringInput `pulumi:"commonName"`
+	// Array of alternative domain names.
 	SubjectAlternativeNames pulumi.StringArrayInput `pulumi:"subjectAlternativeNames"`
 }
 
@@ -2515,12 +2984,11 @@ func (i LoadbalancerCertificateBetaLetsencryptArgs) ToLoadbalancerCertificateBet
 // LoadbalancerCertificateBetaLetsencryptPtrInput is an input type that accepts LoadbalancerCertificateBetaLetsencryptArgs, LoadbalancerCertificateBetaLetsencryptPtr and LoadbalancerCertificateBetaLetsencryptPtrOutput values.
 // You can construct a concrete instance of `LoadbalancerCertificateBetaLetsencryptPtrInput` via:
 //
-// 		 LoadbalancerCertificateBetaLetsencryptArgs{...}
+//          LoadbalancerCertificateBetaLetsencryptArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type LoadbalancerCertificateBetaLetsencryptPtrInput interface {
 	pulumi.Input
 
@@ -2569,10 +3037,13 @@ func (o LoadbalancerCertificateBetaLetsencryptOutput) ToLoadbalancerCertificateB
 		return &v
 	}).(LoadbalancerCertificateBetaLetsencryptPtrOutput)
 }
+
+// Main domain of the certificate.
 func (o LoadbalancerCertificateBetaLetsencryptOutput) CommonName() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerCertificateBetaLetsencrypt) string { return v.CommonName }).(pulumi.StringOutput)
 }
 
+// Array of alternative domain names.
 func (o LoadbalancerCertificateBetaLetsencryptOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerCertificateBetaLetsencrypt) []string { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
 }
@@ -2595,27 +3066,41 @@ func (o LoadbalancerCertificateBetaLetsencryptPtrOutput) Elem() LoadbalancerCert
 	return o.ApplyT(func(v *LoadbalancerCertificateBetaLetsencrypt) LoadbalancerCertificateBetaLetsencrypt { return *v }).(LoadbalancerCertificateBetaLetsencryptOutput)
 }
 
-func (o LoadbalancerCertificateBetaLetsencryptPtrOutput) CommonName() pulumi.StringOutput {
-	return o.ApplyT(func(v LoadbalancerCertificateBetaLetsencrypt) string { return v.CommonName }).(pulumi.StringOutput)
+// Main domain of the certificate.
+func (o LoadbalancerCertificateBetaLetsencryptPtrOutput) CommonName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerCertificateBetaLetsencrypt) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CommonName
+	}).(pulumi.StringPtrOutput)
 }
 
+// Array of alternative domain names.
 func (o LoadbalancerCertificateBetaLetsencryptPtrOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LoadbalancerCertificateBetaLetsencrypt) []string { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *LoadbalancerCertificateBetaLetsencrypt) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectAlternativeNames
+	}).(pulumi.StringArrayOutput)
 }
 
 type LoadbalancerFrontendBetaAcl struct {
-	Action         LoadbalancerFrontendBetaAclAction `pulumi:"action"`
-	Match          LoadbalancerFrontendBetaAclMatch  `pulumi:"match"`
-	Name           *string                           `pulumi:"name"`
-	OrganizationId *string                           `pulumi:"organizationId"`
-	Region         *string                           `pulumi:"region"`
+	// Action to undertake when an ACL filter matches.
+	Action LoadbalancerFrontendBetaAclAction `pulumi:"action"`
+	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	Match LoadbalancerFrontendBetaAclMatch `pulumi:"match"`
+	// The ACL name. If not provided it will be randomly generated.
+	Name           *string `pulumi:"name"`
+	OrganizationId *string `pulumi:"organizationId"`
+	Region         *string `pulumi:"region"`
 }
 
 // LoadbalancerFrontendBetaAclInput is an input type that accepts LoadbalancerFrontendBetaAclArgs and LoadbalancerFrontendBetaAclOutput values.
 // You can construct a concrete instance of `LoadbalancerFrontendBetaAclInput` via:
 //
-// 		 LoadbalancerFrontendBetaAclArgs{...}
-//
+//          LoadbalancerFrontendBetaAclArgs{...}
 type LoadbalancerFrontendBetaAclInput interface {
 	pulumi.Input
 
@@ -2624,11 +3109,14 @@ type LoadbalancerFrontendBetaAclInput interface {
 }
 
 type LoadbalancerFrontendBetaAclArgs struct {
-	Action         LoadbalancerFrontendBetaAclActionInput `pulumi:"action"`
-	Match          LoadbalancerFrontendBetaAclMatchInput  `pulumi:"match"`
-	Name           pulumi.StringPtrInput                  `pulumi:"name"`
-	OrganizationId pulumi.StringPtrInput                  `pulumi:"organizationId"`
-	Region         pulumi.StringPtrInput                  `pulumi:"region"`
+	// Action to undertake when an ACL filter matches.
+	Action LoadbalancerFrontendBetaAclActionInput `pulumi:"action"`
+	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	Match LoadbalancerFrontendBetaAclMatchInput `pulumi:"match"`
+	// The ACL name. If not provided it will be randomly generated.
+	Name           pulumi.StringPtrInput `pulumi:"name"`
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	Region         pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LoadbalancerFrontendBetaAclArgs) ElementType() reflect.Type {
@@ -2646,8 +3134,7 @@ func (i LoadbalancerFrontendBetaAclArgs) ToLoadbalancerFrontendBetaAclOutputWith
 // LoadbalancerFrontendBetaAclArrayInput is an input type that accepts LoadbalancerFrontendBetaAclArray and LoadbalancerFrontendBetaAclArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerFrontendBetaAclArrayInput` via:
 //
-// 		 LoadbalancerFrontendBetaAclArray{ LoadbalancerFrontendBetaAclArgs{...} }
-//
+//          LoadbalancerFrontendBetaAclArray{ LoadbalancerFrontendBetaAclArgs{...} }
 type LoadbalancerFrontendBetaAclArrayInput interface {
 	pulumi.Input
 
@@ -2683,14 +3170,17 @@ func (o LoadbalancerFrontendBetaAclOutput) ToLoadbalancerFrontendBetaAclOutputWi
 	return o
 }
 
+// Action to undertake when an ACL filter matches.
 func (o LoadbalancerFrontendBetaAclOutput) Action() LoadbalancerFrontendBetaAclActionOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAcl) LoadbalancerFrontendBetaAclAction { return v.Action }).(LoadbalancerFrontendBetaAclActionOutput)
 }
 
+// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 func (o LoadbalancerFrontendBetaAclOutput) Match() LoadbalancerFrontendBetaAclMatchOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAcl) LoadbalancerFrontendBetaAclMatch { return v.Match }).(LoadbalancerFrontendBetaAclMatchOutput)
 }
 
+// The ACL name. If not provided it will be randomly generated.
 func (o LoadbalancerFrontendBetaAclOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAcl) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -2724,14 +3214,14 @@ func (o LoadbalancerFrontendBetaAclArrayOutput) Index(i pulumi.IntInput) Loadbal
 }
 
 type LoadbalancerFrontendBetaAclAction struct {
+	// The action type. Possible values are: `allow` or `deny`.
 	Type string `pulumi:"type"`
 }
 
 // LoadbalancerFrontendBetaAclActionInput is an input type that accepts LoadbalancerFrontendBetaAclActionArgs and LoadbalancerFrontendBetaAclActionOutput values.
 // You can construct a concrete instance of `LoadbalancerFrontendBetaAclActionInput` via:
 //
-// 		 LoadbalancerFrontendBetaAclActionArgs{...}
-//
+//          LoadbalancerFrontendBetaAclActionArgs{...}
 type LoadbalancerFrontendBetaAclActionInput interface {
 	pulumi.Input
 
@@ -2740,6 +3230,7 @@ type LoadbalancerFrontendBetaAclActionInput interface {
 }
 
 type LoadbalancerFrontendBetaAclActionArgs struct {
+	// The action type. Possible values are: `allow` or `deny`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -2769,22 +3260,28 @@ func (o LoadbalancerFrontendBetaAclActionOutput) ToLoadbalancerFrontendBetaAclAc
 	return o
 }
 
+// The action type. Possible values are: `allow` or `deny`.
 func (o LoadbalancerFrontendBetaAclActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAclAction) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type LoadbalancerFrontendBetaAclMatch struct {
-	HttpFilter       *string  `pulumi:"httpFilter"`
+	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd` or `regex`.
+	HttpFilter *string `pulumi:"httpFilter"`
+	// A list of possible values to match for the given HTTP filter.
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
-	Invert           *bool    `pulumi:"invert"`
-	IpSubnets        []string `pulumi:"ipSubnets"`
+	// If set to `true`, the condition will be of type "unless".
+	Invert *bool `pulumi:"invert"`
+	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	IpSubnets []string `pulumi:"ipSubnets"`
 }
 
 // LoadbalancerFrontendBetaAclMatchInput is an input type that accepts LoadbalancerFrontendBetaAclMatchArgs and LoadbalancerFrontendBetaAclMatchOutput values.
 // You can construct a concrete instance of `LoadbalancerFrontendBetaAclMatchInput` via:
 //
-// 		 LoadbalancerFrontendBetaAclMatchArgs{...}
-//
+//          LoadbalancerFrontendBetaAclMatchArgs{...}
 type LoadbalancerFrontendBetaAclMatchInput interface {
 	pulumi.Input
 
@@ -2793,10 +3290,16 @@ type LoadbalancerFrontendBetaAclMatchInput interface {
 }
 
 type LoadbalancerFrontendBetaAclMatchArgs struct {
-	HttpFilter       pulumi.StringPtrInput   `pulumi:"httpFilter"`
+	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd` or `regex`.
+	HttpFilter pulumi.StringPtrInput `pulumi:"httpFilter"`
+	// A list of possible values to match for the given HTTP filter.
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
-	Invert           pulumi.BoolPtrInput     `pulumi:"invert"`
-	IpSubnets        pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// If set to `true`, the condition will be of type "unless".
+	Invert pulumi.BoolPtrInput `pulumi:"invert"`
+	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
 }
 
 func (LoadbalancerFrontendBetaAclMatchArgs) ElementType() reflect.Type {
@@ -2825,18 +3328,24 @@ func (o LoadbalancerFrontendBetaAclMatchOutput) ToLoadbalancerFrontendBetaAclMat
 	return o
 }
 
+// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd` or `regex`.
 func (o LoadbalancerFrontendBetaAclMatchOutput) HttpFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAclMatch) *string { return v.HttpFilter }).(pulumi.StringPtrOutput)
 }
 
+// A list of possible values to match for the given HTTP filter.
 func (o LoadbalancerFrontendBetaAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
 }
 
+// If set to `true`, the condition will be of type "unless".
 func (o LoadbalancerFrontendBetaAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
+// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
 func (o LoadbalancerFrontendBetaAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendBetaAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
 }
@@ -2851,8 +3360,7 @@ type ServerVolume struct {
 // ServerVolumeInput is an input type that accepts ServerVolumeArgs and ServerVolumeOutput values.
 // You can construct a concrete instance of `ServerVolumeInput` via:
 //
-// 		 ServerVolumeArgs{...}
-//
+//          ServerVolumeArgs{...}
 type ServerVolumeInput interface {
 	pulumi.Input
 
@@ -2882,8 +3390,7 @@ func (i ServerVolumeArgs) ToServerVolumeOutputWithContext(ctx context.Context) S
 // ServerVolumeArrayInput is an input type that accepts ServerVolumeArray and ServerVolumeArrayOutput values.
 // You can construct a concrete instance of `ServerVolumeArrayInput` via:
 //
-// 		 ServerVolumeArray{ ServerVolumeArgs{...} }
-//
+//          ServerVolumeArray{ ServerVolumeArgs{...} }
 type ServerVolumeArrayInput interface {
 	pulumi.Input
 
@@ -2952,291 +3459,302 @@ func (o ServerVolumeArrayOutput) Index(i pulumi.IntInput) ServerVolumeOutput {
 	}).(ServerVolumeOutput)
 }
 
-type GetBaremetalOfferBetaCpu struct {
-	CoreCount   int    `pulumi:"coreCount"`
-	Frequency   int    `pulumi:"frequency"`
+type GetBaremetalOfferCpu struct {
+	CoreCount int `pulumi:"coreCount"`
+	// Frequency of the memory in MHz.
+	Frequency int `pulumi:"frequency"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
 	Name        string `pulumi:"name"`
 	ThreadCount int    `pulumi:"threadCount"`
 }
 
-// GetBaremetalOfferBetaCpuInput is an input type that accepts GetBaremetalOfferBetaCpuArgs and GetBaremetalOfferBetaCpuOutput values.
-// You can construct a concrete instance of `GetBaremetalOfferBetaCpuInput` via:
+// GetBaremetalOfferCpuInput is an input type that accepts GetBaremetalOfferCpuArgs and GetBaremetalOfferCpuOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferCpuInput` via:
 //
-// 		 GetBaremetalOfferBetaCpuArgs{...}
-//
-type GetBaremetalOfferBetaCpuInput interface {
+//          GetBaremetalOfferCpuArgs{...}
+type GetBaremetalOfferCpuInput interface {
 	pulumi.Input
 
-	ToGetBaremetalOfferBetaCpuOutput() GetBaremetalOfferBetaCpuOutput
-	ToGetBaremetalOfferBetaCpuOutputWithContext(context.Context) GetBaremetalOfferBetaCpuOutput
+	ToGetBaremetalOfferCpuOutput() GetBaremetalOfferCpuOutput
+	ToGetBaremetalOfferCpuOutputWithContext(context.Context) GetBaremetalOfferCpuOutput
 }
 
-type GetBaremetalOfferBetaCpuArgs struct {
-	CoreCount   pulumi.IntInput    `pulumi:"coreCount"`
-	Frequency   pulumi.IntInput    `pulumi:"frequency"`
+type GetBaremetalOfferCpuArgs struct {
+	CoreCount pulumi.IntInput `pulumi:"coreCount"`
+	// Frequency of the memory in MHz.
+	Frequency pulumi.IntInput `pulumi:"frequency"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
 	Name        pulumi.StringInput `pulumi:"name"`
 	ThreadCount pulumi.IntInput    `pulumi:"threadCount"`
 }
 
-func (GetBaremetalOfferBetaCpuArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBaremetalOfferBetaCpu)(nil)).Elem()
+func (GetBaremetalOfferCpuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferCpu)(nil)).Elem()
 }
 
-func (i GetBaremetalOfferBetaCpuArgs) ToGetBaremetalOfferBetaCpuOutput() GetBaremetalOfferBetaCpuOutput {
-	return i.ToGetBaremetalOfferBetaCpuOutputWithContext(context.Background())
+func (i GetBaremetalOfferCpuArgs) ToGetBaremetalOfferCpuOutput() GetBaremetalOfferCpuOutput {
+	return i.ToGetBaremetalOfferCpuOutputWithContext(context.Background())
 }
 
-func (i GetBaremetalOfferBetaCpuArgs) ToGetBaremetalOfferBetaCpuOutputWithContext(ctx context.Context) GetBaremetalOfferBetaCpuOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferBetaCpuOutput)
+func (i GetBaremetalOfferCpuArgs) ToGetBaremetalOfferCpuOutputWithContext(ctx context.Context) GetBaremetalOfferCpuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferCpuOutput)
 }
 
-type GetBaremetalOfferBetaCpuOutput struct{ *pulumi.OutputState }
+type GetBaremetalOfferCpuOutput struct{ *pulumi.OutputState }
 
-func (GetBaremetalOfferBetaCpuOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBaremetalOfferBetaCpu)(nil)).Elem()
+func (GetBaremetalOfferCpuOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferCpu)(nil)).Elem()
 }
 
-func (o GetBaremetalOfferBetaCpuOutput) ToGetBaremetalOfferBetaCpuOutput() GetBaremetalOfferBetaCpuOutput {
+func (o GetBaremetalOfferCpuOutput) ToGetBaremetalOfferCpuOutput() GetBaremetalOfferCpuOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaCpuOutput) ToGetBaremetalOfferBetaCpuOutputWithContext(ctx context.Context) GetBaremetalOfferBetaCpuOutput {
+func (o GetBaremetalOfferCpuOutput) ToGetBaremetalOfferCpuOutputWithContext(ctx context.Context) GetBaremetalOfferCpuOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaCpuOutput) CoreCount() pulumi.IntOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaCpu) int { return v.CoreCount }).(pulumi.IntOutput)
+func (o GetBaremetalOfferCpuOutput) CoreCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBaremetalOfferCpu) int { return v.CoreCount }).(pulumi.IntOutput)
 }
 
-func (o GetBaremetalOfferBetaCpuOutput) Frequency() pulumi.IntOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaCpu) int { return v.Frequency }).(pulumi.IntOutput)
+// Frequency of the memory in MHz.
+func (o GetBaremetalOfferCpuOutput) Frequency() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBaremetalOfferCpu) int { return v.Frequency }).(pulumi.IntOutput)
 }
 
-func (o GetBaremetalOfferBetaCpuOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaCpu) string { return v.Name }).(pulumi.StringOutput)
+// The offer name. Only one of `name` and `offerId` should be specified.
+func (o GetBaremetalOfferCpuOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalOfferCpu) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetBaremetalOfferBetaCpuOutput) ThreadCount() pulumi.IntOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaCpu) int { return v.ThreadCount }).(pulumi.IntOutput)
+func (o GetBaremetalOfferCpuOutput) ThreadCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBaremetalOfferCpu) int { return v.ThreadCount }).(pulumi.IntOutput)
 }
 
-type GetBaremetalOfferBetaDisk struct {
-	Capacity int    `pulumi:"capacity"`
-	Type     string `pulumi:"type"`
+type GetBaremetalOfferDisk struct {
+	Capacity int `pulumi:"capacity"`
+	// Type of memory.
+	Type string `pulumi:"type"`
 }
 
-// GetBaremetalOfferBetaDiskInput is an input type that accepts GetBaremetalOfferBetaDiskArgs and GetBaremetalOfferBetaDiskOutput values.
-// You can construct a concrete instance of `GetBaremetalOfferBetaDiskInput` via:
+// GetBaremetalOfferDiskInput is an input type that accepts GetBaremetalOfferDiskArgs and GetBaremetalOfferDiskOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferDiskInput` via:
 //
-// 		 GetBaremetalOfferBetaDiskArgs{...}
-//
-type GetBaremetalOfferBetaDiskInput interface {
+//          GetBaremetalOfferDiskArgs{...}
+type GetBaremetalOfferDiskInput interface {
 	pulumi.Input
 
-	ToGetBaremetalOfferBetaDiskOutput() GetBaremetalOfferBetaDiskOutput
-	ToGetBaremetalOfferBetaDiskOutputWithContext(context.Context) GetBaremetalOfferBetaDiskOutput
+	ToGetBaremetalOfferDiskOutput() GetBaremetalOfferDiskOutput
+	ToGetBaremetalOfferDiskOutputWithContext(context.Context) GetBaremetalOfferDiskOutput
 }
 
-type GetBaremetalOfferBetaDiskArgs struct {
-	Capacity pulumi.IntInput    `pulumi:"capacity"`
-	Type     pulumi.StringInput `pulumi:"type"`
+type GetBaremetalOfferDiskArgs struct {
+	Capacity pulumi.IntInput `pulumi:"capacity"`
+	// Type of memory.
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
-func (GetBaremetalOfferBetaDiskArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBaremetalOfferBetaDisk)(nil)).Elem()
+func (GetBaremetalOfferDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferDisk)(nil)).Elem()
 }
 
-func (i GetBaremetalOfferBetaDiskArgs) ToGetBaremetalOfferBetaDiskOutput() GetBaremetalOfferBetaDiskOutput {
-	return i.ToGetBaremetalOfferBetaDiskOutputWithContext(context.Background())
+func (i GetBaremetalOfferDiskArgs) ToGetBaremetalOfferDiskOutput() GetBaremetalOfferDiskOutput {
+	return i.ToGetBaremetalOfferDiskOutputWithContext(context.Background())
 }
 
-func (i GetBaremetalOfferBetaDiskArgs) ToGetBaremetalOfferBetaDiskOutputWithContext(ctx context.Context) GetBaremetalOfferBetaDiskOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferBetaDiskOutput)
+func (i GetBaremetalOfferDiskArgs) ToGetBaremetalOfferDiskOutputWithContext(ctx context.Context) GetBaremetalOfferDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferDiskOutput)
 }
 
-// GetBaremetalOfferBetaDiskArrayInput is an input type that accepts GetBaremetalOfferBetaDiskArray and GetBaremetalOfferBetaDiskArrayOutput values.
-// You can construct a concrete instance of `GetBaremetalOfferBetaDiskArrayInput` via:
+// GetBaremetalOfferDiskArrayInput is an input type that accepts GetBaremetalOfferDiskArray and GetBaremetalOfferDiskArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferDiskArrayInput` via:
 //
-// 		 GetBaremetalOfferBetaDiskArray{ GetBaremetalOfferBetaDiskArgs{...} }
-//
-type GetBaremetalOfferBetaDiskArrayInput interface {
+//          GetBaremetalOfferDiskArray{ GetBaremetalOfferDiskArgs{...} }
+type GetBaremetalOfferDiskArrayInput interface {
 	pulumi.Input
 
-	ToGetBaremetalOfferBetaDiskArrayOutput() GetBaremetalOfferBetaDiskArrayOutput
-	ToGetBaremetalOfferBetaDiskArrayOutputWithContext(context.Context) GetBaremetalOfferBetaDiskArrayOutput
+	ToGetBaremetalOfferDiskArrayOutput() GetBaremetalOfferDiskArrayOutput
+	ToGetBaremetalOfferDiskArrayOutputWithContext(context.Context) GetBaremetalOfferDiskArrayOutput
 }
 
-type GetBaremetalOfferBetaDiskArray []GetBaremetalOfferBetaDiskInput
+type GetBaremetalOfferDiskArray []GetBaremetalOfferDiskInput
 
-func (GetBaremetalOfferBetaDiskArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetBaremetalOfferBetaDisk)(nil)).Elem()
+func (GetBaremetalOfferDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalOfferDisk)(nil)).Elem()
 }
 
-func (i GetBaremetalOfferBetaDiskArray) ToGetBaremetalOfferBetaDiskArrayOutput() GetBaremetalOfferBetaDiskArrayOutput {
-	return i.ToGetBaremetalOfferBetaDiskArrayOutputWithContext(context.Background())
+func (i GetBaremetalOfferDiskArray) ToGetBaremetalOfferDiskArrayOutput() GetBaremetalOfferDiskArrayOutput {
+	return i.ToGetBaremetalOfferDiskArrayOutputWithContext(context.Background())
 }
 
-func (i GetBaremetalOfferBetaDiskArray) ToGetBaremetalOfferBetaDiskArrayOutputWithContext(ctx context.Context) GetBaremetalOfferBetaDiskArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferBetaDiskArrayOutput)
+func (i GetBaremetalOfferDiskArray) ToGetBaremetalOfferDiskArrayOutputWithContext(ctx context.Context) GetBaremetalOfferDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferDiskArrayOutput)
 }
 
-type GetBaremetalOfferBetaDiskOutput struct{ *pulumi.OutputState }
+type GetBaremetalOfferDiskOutput struct{ *pulumi.OutputState }
 
-func (GetBaremetalOfferBetaDiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBaremetalOfferBetaDisk)(nil)).Elem()
+func (GetBaremetalOfferDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferDisk)(nil)).Elem()
 }
 
-func (o GetBaremetalOfferBetaDiskOutput) ToGetBaremetalOfferBetaDiskOutput() GetBaremetalOfferBetaDiskOutput {
+func (o GetBaremetalOfferDiskOutput) ToGetBaremetalOfferDiskOutput() GetBaremetalOfferDiskOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaDiskOutput) ToGetBaremetalOfferBetaDiskOutputWithContext(ctx context.Context) GetBaremetalOfferBetaDiskOutput {
+func (o GetBaremetalOfferDiskOutput) ToGetBaremetalOfferDiskOutputWithContext(ctx context.Context) GetBaremetalOfferDiskOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaDiskOutput) Capacity() pulumi.IntOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaDisk) int { return v.Capacity }).(pulumi.IntOutput)
+func (o GetBaremetalOfferDiskOutput) Capacity() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBaremetalOfferDisk) int { return v.Capacity }).(pulumi.IntOutput)
 }
 
-func (o GetBaremetalOfferBetaDiskOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaDisk) string { return v.Type }).(pulumi.StringOutput)
+// Type of memory.
+func (o GetBaremetalOfferDiskOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalOfferDisk) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetBaremetalOfferBetaDiskArrayOutput struct{ *pulumi.OutputState }
+type GetBaremetalOfferDiskArrayOutput struct{ *pulumi.OutputState }
 
-func (GetBaremetalOfferBetaDiskArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetBaremetalOfferBetaDisk)(nil)).Elem()
+func (GetBaremetalOfferDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalOfferDisk)(nil)).Elem()
 }
 
-func (o GetBaremetalOfferBetaDiskArrayOutput) ToGetBaremetalOfferBetaDiskArrayOutput() GetBaremetalOfferBetaDiskArrayOutput {
+func (o GetBaremetalOfferDiskArrayOutput) ToGetBaremetalOfferDiskArrayOutput() GetBaremetalOfferDiskArrayOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaDiskArrayOutput) ToGetBaremetalOfferBetaDiskArrayOutputWithContext(ctx context.Context) GetBaremetalOfferBetaDiskArrayOutput {
+func (o GetBaremetalOfferDiskArrayOutput) ToGetBaremetalOfferDiskArrayOutputWithContext(ctx context.Context) GetBaremetalOfferDiskArrayOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaDiskArrayOutput) Index(i pulumi.IntInput) GetBaremetalOfferBetaDiskOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalOfferBetaDisk {
-		return vs[0].([]GetBaremetalOfferBetaDisk)[vs[1].(int)]
-	}).(GetBaremetalOfferBetaDiskOutput)
+func (o GetBaremetalOfferDiskArrayOutput) Index(i pulumi.IntInput) GetBaremetalOfferDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalOfferDisk {
+		return vs[0].([]GetBaremetalOfferDisk)[vs[1].(int)]
+	}).(GetBaremetalOfferDiskOutput)
 }
 
-type GetBaremetalOfferBetaMemory struct {
-	Capacity  int    `pulumi:"capacity"`
-	Ecc       bool   `pulumi:"ecc"`
-	Frequency int    `pulumi:"frequency"`
-	Type      string `pulumi:"type"`
+type GetBaremetalOfferMemory struct {
+	Capacity int `pulumi:"capacity"`
+	// Frequency of the memory in MHz.
+	Frequency int  `pulumi:"frequency"`
+	IsEcc     bool `pulumi:"isEcc"`
+	// Type of memory.
+	Type string `pulumi:"type"`
 }
 
-// GetBaremetalOfferBetaMemoryInput is an input type that accepts GetBaremetalOfferBetaMemoryArgs and GetBaremetalOfferBetaMemoryOutput values.
-// You can construct a concrete instance of `GetBaremetalOfferBetaMemoryInput` via:
+// GetBaremetalOfferMemoryInput is an input type that accepts GetBaremetalOfferMemoryArgs and GetBaremetalOfferMemoryOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferMemoryInput` via:
 //
-// 		 GetBaremetalOfferBetaMemoryArgs{...}
-//
-type GetBaremetalOfferBetaMemoryInput interface {
+//          GetBaremetalOfferMemoryArgs{...}
+type GetBaremetalOfferMemoryInput interface {
 	pulumi.Input
 
-	ToGetBaremetalOfferBetaMemoryOutput() GetBaremetalOfferBetaMemoryOutput
-	ToGetBaremetalOfferBetaMemoryOutputWithContext(context.Context) GetBaremetalOfferBetaMemoryOutput
+	ToGetBaremetalOfferMemoryOutput() GetBaremetalOfferMemoryOutput
+	ToGetBaremetalOfferMemoryOutputWithContext(context.Context) GetBaremetalOfferMemoryOutput
 }
 
-type GetBaremetalOfferBetaMemoryArgs struct {
-	Capacity  pulumi.IntInput    `pulumi:"capacity"`
-	Ecc       pulumi.BoolInput   `pulumi:"ecc"`
-	Frequency pulumi.IntInput    `pulumi:"frequency"`
-	Type      pulumi.StringInput `pulumi:"type"`
+type GetBaremetalOfferMemoryArgs struct {
+	Capacity pulumi.IntInput `pulumi:"capacity"`
+	// Frequency of the memory in MHz.
+	Frequency pulumi.IntInput  `pulumi:"frequency"`
+	IsEcc     pulumi.BoolInput `pulumi:"isEcc"`
+	// Type of memory.
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
-func (GetBaremetalOfferBetaMemoryArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBaremetalOfferBetaMemory)(nil)).Elem()
+func (GetBaremetalOfferMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferMemory)(nil)).Elem()
 }
 
-func (i GetBaremetalOfferBetaMemoryArgs) ToGetBaremetalOfferBetaMemoryOutput() GetBaremetalOfferBetaMemoryOutput {
-	return i.ToGetBaremetalOfferBetaMemoryOutputWithContext(context.Background())
+func (i GetBaremetalOfferMemoryArgs) ToGetBaremetalOfferMemoryOutput() GetBaremetalOfferMemoryOutput {
+	return i.ToGetBaremetalOfferMemoryOutputWithContext(context.Background())
 }
 
-func (i GetBaremetalOfferBetaMemoryArgs) ToGetBaremetalOfferBetaMemoryOutputWithContext(ctx context.Context) GetBaremetalOfferBetaMemoryOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferBetaMemoryOutput)
+func (i GetBaremetalOfferMemoryArgs) ToGetBaremetalOfferMemoryOutputWithContext(ctx context.Context) GetBaremetalOfferMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferMemoryOutput)
 }
 
-// GetBaremetalOfferBetaMemoryArrayInput is an input type that accepts GetBaremetalOfferBetaMemoryArray and GetBaremetalOfferBetaMemoryArrayOutput values.
-// You can construct a concrete instance of `GetBaremetalOfferBetaMemoryArrayInput` via:
+// GetBaremetalOfferMemoryArrayInput is an input type that accepts GetBaremetalOfferMemoryArray and GetBaremetalOfferMemoryArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferMemoryArrayInput` via:
 //
-// 		 GetBaremetalOfferBetaMemoryArray{ GetBaremetalOfferBetaMemoryArgs{...} }
-//
-type GetBaremetalOfferBetaMemoryArrayInput interface {
+//          GetBaremetalOfferMemoryArray{ GetBaremetalOfferMemoryArgs{...} }
+type GetBaremetalOfferMemoryArrayInput interface {
 	pulumi.Input
 
-	ToGetBaremetalOfferBetaMemoryArrayOutput() GetBaremetalOfferBetaMemoryArrayOutput
-	ToGetBaremetalOfferBetaMemoryArrayOutputWithContext(context.Context) GetBaremetalOfferBetaMemoryArrayOutput
+	ToGetBaremetalOfferMemoryArrayOutput() GetBaremetalOfferMemoryArrayOutput
+	ToGetBaremetalOfferMemoryArrayOutputWithContext(context.Context) GetBaremetalOfferMemoryArrayOutput
 }
 
-type GetBaremetalOfferBetaMemoryArray []GetBaremetalOfferBetaMemoryInput
+type GetBaremetalOfferMemoryArray []GetBaremetalOfferMemoryInput
 
-func (GetBaremetalOfferBetaMemoryArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetBaremetalOfferBetaMemory)(nil)).Elem()
+func (GetBaremetalOfferMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalOfferMemory)(nil)).Elem()
 }
 
-func (i GetBaremetalOfferBetaMemoryArray) ToGetBaremetalOfferBetaMemoryArrayOutput() GetBaremetalOfferBetaMemoryArrayOutput {
-	return i.ToGetBaremetalOfferBetaMemoryArrayOutputWithContext(context.Background())
+func (i GetBaremetalOfferMemoryArray) ToGetBaremetalOfferMemoryArrayOutput() GetBaremetalOfferMemoryArrayOutput {
+	return i.ToGetBaremetalOfferMemoryArrayOutputWithContext(context.Background())
 }
 
-func (i GetBaremetalOfferBetaMemoryArray) ToGetBaremetalOfferBetaMemoryArrayOutputWithContext(ctx context.Context) GetBaremetalOfferBetaMemoryArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferBetaMemoryArrayOutput)
+func (i GetBaremetalOfferMemoryArray) ToGetBaremetalOfferMemoryArrayOutputWithContext(ctx context.Context) GetBaremetalOfferMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferMemoryArrayOutput)
 }
 
-type GetBaremetalOfferBetaMemoryOutput struct{ *pulumi.OutputState }
+type GetBaremetalOfferMemoryOutput struct{ *pulumi.OutputState }
 
-func (GetBaremetalOfferBetaMemoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBaremetalOfferBetaMemory)(nil)).Elem()
+func (GetBaremetalOfferMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferMemory)(nil)).Elem()
 }
 
-func (o GetBaremetalOfferBetaMemoryOutput) ToGetBaremetalOfferBetaMemoryOutput() GetBaremetalOfferBetaMemoryOutput {
+func (o GetBaremetalOfferMemoryOutput) ToGetBaremetalOfferMemoryOutput() GetBaremetalOfferMemoryOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaMemoryOutput) ToGetBaremetalOfferBetaMemoryOutputWithContext(ctx context.Context) GetBaremetalOfferBetaMemoryOutput {
+func (o GetBaremetalOfferMemoryOutput) ToGetBaremetalOfferMemoryOutputWithContext(ctx context.Context) GetBaremetalOfferMemoryOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaMemoryOutput) Capacity() pulumi.IntOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaMemory) int { return v.Capacity }).(pulumi.IntOutput)
+func (o GetBaremetalOfferMemoryOutput) Capacity() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBaremetalOfferMemory) int { return v.Capacity }).(pulumi.IntOutput)
 }
 
-func (o GetBaremetalOfferBetaMemoryOutput) Ecc() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaMemory) bool { return v.Ecc }).(pulumi.BoolOutput)
+// Frequency of the memory in MHz.
+func (o GetBaremetalOfferMemoryOutput) Frequency() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBaremetalOfferMemory) int { return v.Frequency }).(pulumi.IntOutput)
 }
 
-func (o GetBaremetalOfferBetaMemoryOutput) Frequency() pulumi.IntOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaMemory) int { return v.Frequency }).(pulumi.IntOutput)
+func (o GetBaremetalOfferMemoryOutput) IsEcc() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBaremetalOfferMemory) bool { return v.IsEcc }).(pulumi.BoolOutput)
 }
 
-func (o GetBaremetalOfferBetaMemoryOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBaremetalOfferBetaMemory) string { return v.Type }).(pulumi.StringOutput)
+// Type of memory.
+func (o GetBaremetalOfferMemoryOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalOfferMemory) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetBaremetalOfferBetaMemoryArrayOutput struct{ *pulumi.OutputState }
+type GetBaremetalOfferMemoryArrayOutput struct{ *pulumi.OutputState }
 
-func (GetBaremetalOfferBetaMemoryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetBaremetalOfferBetaMemory)(nil)).Elem()
+func (GetBaremetalOfferMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalOfferMemory)(nil)).Elem()
 }
 
-func (o GetBaremetalOfferBetaMemoryArrayOutput) ToGetBaremetalOfferBetaMemoryArrayOutput() GetBaremetalOfferBetaMemoryArrayOutput {
+func (o GetBaremetalOfferMemoryArrayOutput) ToGetBaremetalOfferMemoryArrayOutput() GetBaremetalOfferMemoryArrayOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaMemoryArrayOutput) ToGetBaremetalOfferBetaMemoryArrayOutputWithContext(ctx context.Context) GetBaremetalOfferBetaMemoryArrayOutput {
+func (o GetBaremetalOfferMemoryArrayOutput) ToGetBaremetalOfferMemoryArrayOutputWithContext(ctx context.Context) GetBaremetalOfferMemoryArrayOutput {
 	return o
 }
 
-func (o GetBaremetalOfferBetaMemoryArrayOutput) Index(i pulumi.IntInput) GetBaremetalOfferBetaMemoryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalOfferBetaMemory {
-		return vs[0].([]GetBaremetalOfferBetaMemory)[vs[1].(int)]
-	}).(GetBaremetalOfferBetaMemoryOutput)
+func (o GetBaremetalOfferMemoryArrayOutput) Index(i pulumi.IntInput) GetBaremetalOfferMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalOfferMemory {
+		return vs[0].([]GetBaremetalOfferMemory)[vs[1].(int)]
+	}).(GetBaremetalOfferMemoryOutput)
 }
 
 type GetInstanceSecurityGroupInboundRule struct {
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action    string `pulumi:"action"`
 	Ip        string `pulumi:"ip"`
 	IpRange   string `pulumi:"ipRange"`
@@ -3248,8 +3766,7 @@ type GetInstanceSecurityGroupInboundRule struct {
 // GetInstanceSecurityGroupInboundRuleInput is an input type that accepts GetInstanceSecurityGroupInboundRuleArgs and GetInstanceSecurityGroupInboundRuleOutput values.
 // You can construct a concrete instance of `GetInstanceSecurityGroupInboundRuleInput` via:
 //
-// 		 GetInstanceSecurityGroupInboundRuleArgs{...}
-//
+//          GetInstanceSecurityGroupInboundRuleArgs{...}
 type GetInstanceSecurityGroupInboundRuleInput interface {
 	pulumi.Input
 
@@ -3258,6 +3775,7 @@ type GetInstanceSecurityGroupInboundRuleInput interface {
 }
 
 type GetInstanceSecurityGroupInboundRuleArgs struct {
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action    pulumi.StringInput `pulumi:"action"`
 	Ip        pulumi.StringInput `pulumi:"ip"`
 	IpRange   pulumi.StringInput `pulumi:"ipRange"`
@@ -3281,8 +3799,7 @@ func (i GetInstanceSecurityGroupInboundRuleArgs) ToGetInstanceSecurityGroupInbou
 // GetInstanceSecurityGroupInboundRuleArrayInput is an input type that accepts GetInstanceSecurityGroupInboundRuleArray and GetInstanceSecurityGroupInboundRuleArrayOutput values.
 // You can construct a concrete instance of `GetInstanceSecurityGroupInboundRuleArrayInput` via:
 //
-// 		 GetInstanceSecurityGroupInboundRuleArray{ GetInstanceSecurityGroupInboundRuleArgs{...} }
-//
+//          GetInstanceSecurityGroupInboundRuleArray{ GetInstanceSecurityGroupInboundRuleArgs{...} }
 type GetInstanceSecurityGroupInboundRuleArrayInput interface {
 	pulumi.Input
 
@@ -3318,6 +3835,7 @@ func (o GetInstanceSecurityGroupInboundRuleOutput) ToGetInstanceSecurityGroupInb
 	return o
 }
 
+// The action to take when rule match. Possible values are: `accept` or `drop`.
 func (o GetInstanceSecurityGroupInboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupInboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -3363,6 +3881,7 @@ func (o GetInstanceSecurityGroupInboundRuleArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetInstanceSecurityGroupOutboundRule struct {
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action    string `pulumi:"action"`
 	Ip        string `pulumi:"ip"`
 	IpRange   string `pulumi:"ipRange"`
@@ -3374,8 +3893,7 @@ type GetInstanceSecurityGroupOutboundRule struct {
 // GetInstanceSecurityGroupOutboundRuleInput is an input type that accepts GetInstanceSecurityGroupOutboundRuleArgs and GetInstanceSecurityGroupOutboundRuleOutput values.
 // You can construct a concrete instance of `GetInstanceSecurityGroupOutboundRuleInput` via:
 //
-// 		 GetInstanceSecurityGroupOutboundRuleArgs{...}
-//
+//          GetInstanceSecurityGroupOutboundRuleArgs{...}
 type GetInstanceSecurityGroupOutboundRuleInput interface {
 	pulumi.Input
 
@@ -3384,6 +3902,7 @@ type GetInstanceSecurityGroupOutboundRuleInput interface {
 }
 
 type GetInstanceSecurityGroupOutboundRuleArgs struct {
+	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action    pulumi.StringInput `pulumi:"action"`
 	Ip        pulumi.StringInput `pulumi:"ip"`
 	IpRange   pulumi.StringInput `pulumi:"ipRange"`
@@ -3407,8 +3926,7 @@ func (i GetInstanceSecurityGroupOutboundRuleArgs) ToGetInstanceSecurityGroupOutb
 // GetInstanceSecurityGroupOutboundRuleArrayInput is an input type that accepts GetInstanceSecurityGroupOutboundRuleArray and GetInstanceSecurityGroupOutboundRuleArrayOutput values.
 // You can construct a concrete instance of `GetInstanceSecurityGroupOutboundRuleArrayInput` via:
 //
-// 		 GetInstanceSecurityGroupOutboundRuleArray{ GetInstanceSecurityGroupOutboundRuleArgs{...} }
-//
+//          GetInstanceSecurityGroupOutboundRuleArray{ GetInstanceSecurityGroupOutboundRuleArgs{...} }
 type GetInstanceSecurityGroupOutboundRuleArrayInput interface {
 	pulumi.Input
 
@@ -3444,6 +3962,7 @@ func (o GetInstanceSecurityGroupOutboundRuleOutput) ToGetInstanceSecurityGroupOu
 	return o
 }
 
+// The action to take when rule match. Possible values are: `accept` or `drop`.
 func (o GetInstanceSecurityGroupOutboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupOutboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -3489,16 +4008,18 @@ func (o GetInstanceSecurityGroupOutboundRuleArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetInstanceServerRootVolume struct {
-	DeleteOnTermination bool   `pulumi:"deleteOnTermination"`
-	SizeInGb            int    `pulumi:"sizeInGb"`
-	VolumeId            string `pulumi:"volumeId"`
+	// Forces deletion of the root volume on instance termination.
+	DeleteOnTermination bool `pulumi:"deleteOnTermination"`
+	// Size of the root volume in gigabytes.
+	SizeInGb int `pulumi:"sizeInGb"`
+	// The volume ID of the root volume of the server.
+	VolumeId string `pulumi:"volumeId"`
 }
 
 // GetInstanceServerRootVolumeInput is an input type that accepts GetInstanceServerRootVolumeArgs and GetInstanceServerRootVolumeOutput values.
 // You can construct a concrete instance of `GetInstanceServerRootVolumeInput` via:
 //
-// 		 GetInstanceServerRootVolumeArgs{...}
-//
+//          GetInstanceServerRootVolumeArgs{...}
 type GetInstanceServerRootVolumeInput interface {
 	pulumi.Input
 
@@ -3507,9 +4028,12 @@ type GetInstanceServerRootVolumeInput interface {
 }
 
 type GetInstanceServerRootVolumeArgs struct {
-	DeleteOnTermination pulumi.BoolInput   `pulumi:"deleteOnTermination"`
-	SizeInGb            pulumi.IntInput    `pulumi:"sizeInGb"`
-	VolumeId            pulumi.StringInput `pulumi:"volumeId"`
+	// Forces deletion of the root volume on instance termination.
+	DeleteOnTermination pulumi.BoolInput `pulumi:"deleteOnTermination"`
+	// Size of the root volume in gigabytes.
+	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
+	// The volume ID of the root volume of the server.
+	VolumeId pulumi.StringInput `pulumi:"volumeId"`
 }
 
 func (GetInstanceServerRootVolumeArgs) ElementType() reflect.Type {
@@ -3527,8 +4051,7 @@ func (i GetInstanceServerRootVolumeArgs) ToGetInstanceServerRootVolumeOutputWith
 // GetInstanceServerRootVolumeArrayInput is an input type that accepts GetInstanceServerRootVolumeArray and GetInstanceServerRootVolumeArrayOutput values.
 // You can construct a concrete instance of `GetInstanceServerRootVolumeArrayInput` via:
 //
-// 		 GetInstanceServerRootVolumeArray{ GetInstanceServerRootVolumeArgs{...} }
-//
+//          GetInstanceServerRootVolumeArray{ GetInstanceServerRootVolumeArgs{...} }
 type GetInstanceServerRootVolumeArrayInput interface {
 	pulumi.Input
 
@@ -3564,14 +4087,17 @@ func (o GetInstanceServerRootVolumeOutput) ToGetInstanceServerRootVolumeOutputWi
 	return o
 }
 
+// Forces deletion of the root volume on instance termination.
 func (o GetInstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetInstanceServerRootVolume) bool { return v.DeleteOnTermination }).(pulumi.BoolOutput)
 }
 
+// Size of the root volume in gigabytes.
 func (o GetInstanceServerRootVolumeOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceServerRootVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
 }
 
+// The volume ID of the root volume of the server.
 func (o GetInstanceServerRootVolumeOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerRootVolume) string { return v.VolumeId }).(pulumi.StringOutput)
 }
@@ -3597,15 +4123,16 @@ func (o GetInstanceServerRootVolumeArrayOutput) Index(i pulumi.IntInput) GetInst
 }
 
 type GetInstanceServerUserData struct {
-	Key   string `pulumi:"key"`
+	// The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
+	Key string `pulumi:"key"`
+	// The user data content.
 	Value string `pulumi:"value"`
 }
 
 // GetInstanceServerUserDataInput is an input type that accepts GetInstanceServerUserDataArgs and GetInstanceServerUserDataOutput values.
 // You can construct a concrete instance of `GetInstanceServerUserDataInput` via:
 //
-// 		 GetInstanceServerUserDataArgs{...}
-//
+//          GetInstanceServerUserDataArgs{...}
 type GetInstanceServerUserDataInput interface {
 	pulumi.Input
 
@@ -3614,7 +4141,9 @@ type GetInstanceServerUserDataInput interface {
 }
 
 type GetInstanceServerUserDataArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The user data content.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3633,8 +4162,7 @@ func (i GetInstanceServerUserDataArgs) ToGetInstanceServerUserDataOutputWithCont
 // GetInstanceServerUserDataArrayInput is an input type that accepts GetInstanceServerUserDataArray and GetInstanceServerUserDataArrayOutput values.
 // You can construct a concrete instance of `GetInstanceServerUserDataArrayInput` via:
 //
-// 		 GetInstanceServerUserDataArray{ GetInstanceServerUserDataArgs{...} }
-//
+//          GetInstanceServerUserDataArray{ GetInstanceServerUserDataArgs{...} }
 type GetInstanceServerUserDataArrayInput interface {
 	pulumi.Input
 
@@ -3670,10 +4198,12 @@ func (o GetInstanceServerUserDataOutput) ToGetInstanceServerUserDataOutputWithCo
 	return o
 }
 
+// The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
 func (o GetInstanceServerUserDataOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerUserData) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// The user data content.
 func (o GetInstanceServerUserDataOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerUserData) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3699,8 +4229,8 @@ func (o GetInstanceServerUserDataArrayOutput) Index(i pulumi.IntInput) GetInstan
 }
 
 func init() {
-	pulumi.RegisterOutputType(BaremetalServerBetaIpOutput{})
-	pulumi.RegisterOutputType(BaremetalServerBetaIpArrayOutput{})
+	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
+	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceBetaReadReplicaOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceBetaReadReplicaArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})
@@ -3743,11 +4273,11 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendBetaAclMatchOutput{})
 	pulumi.RegisterOutputType(ServerVolumeOutput{})
 	pulumi.RegisterOutputType(ServerVolumeArrayOutput{})
-	pulumi.RegisterOutputType(GetBaremetalOfferBetaCpuOutput{})
-	pulumi.RegisterOutputType(GetBaremetalOfferBetaDiskOutput{})
-	pulumi.RegisterOutputType(GetBaremetalOfferBetaDiskArrayOutput{})
-	pulumi.RegisterOutputType(GetBaremetalOfferBetaMemoryOutput{})
-	pulumi.RegisterOutputType(GetBaremetalOfferBetaMemoryArrayOutput{})
+	pulumi.RegisterOutputType(GetBaremetalOfferCpuOutput{})
+	pulumi.RegisterOutputType(GetBaremetalOfferDiskOutput{})
+	pulumi.RegisterOutputType(GetBaremetalOfferDiskArrayOutput{})
+	pulumi.RegisterOutputType(GetBaremetalOfferMemoryOutput{})
+	pulumi.RegisterOutputType(GetBaremetalOfferMemoryArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupOutboundRuleOutput{})

@@ -3,24 +3,22 @@
 
 // Export members:
 export * from "./accountSshKey";
-export * from "./baremetalServerBeta";
-export * from "./bucket";
+export * from "./baremetalServer";
 export * from "./databaseInstanceBeta";
 export * from "./getAccountSshKey";
-export * from "./getBaremetalOfferBeta";
+export * from "./getBaremetalOffer";
 export * from "./getBootscript";
 export * from "./getImage";
 export * from "./getInstanceImage";
 export * from "./getInstanceSecurityGroup";
 export * from "./getInstanceServer";
 export * from "./getInstanceVolume";
+export * from "./getLoadbalancerIPBeta";
 export * from "./getMarketplaceImageBeta";
 export * from "./getRegistryImageBeta";
 export * from "./getRegistryNamespaceBeta";
 export * from "./getSecurityGroup";
 export * from "./getVolume";
-export * from "./iP";
-export * from "./iPReverseDNS";
 export * from "./instanceIP";
 export * from "./instanceIPReverseDNS";
 export * from "./instancePlacementGroup";
@@ -28,12 +26,15 @@ export * from "./instanceSecurityGroup";
 export * from "./instanceSecurityGroupRules";
 export * from "./instanceServer";
 export * from "./instanceVolume";
+export * from "./ip";
+export * from "./ipreverseDNS";
 export * from "./kubernetesClusterBeta";
 export * from "./kubernetesNodePoolBeta";
 export * from "./loadbalancerBackendBeta";
 export * from "./loadbalancerBeta";
 export * from "./loadbalancerCertificateBeta";
 export * from "./loadbalancerFrontendBeta";
+export * from "./loadbalancerIPBeta";
 export * from "./objectBucket";
 export * from "./provider";
 export * from "./registryNamespaceBeta";
@@ -47,6 +48,6 @@ export * from "./volume";
 export * from "./volumeAttachment";
 
 // Export sub-modules:
-import * as config from "./config/index";
-import * as types from "./types/index";
+import * as config from "./config";
+import * as types from "./types";
 export {config, types};

@@ -15,6 +15,27 @@ namespace Pulumi.Scaleway
         /// Gets information about a registry image.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myImage = Output.Create(Scaleway.GetRegistryImageBeta.InvokeAsync(new Scaleway.GetRegistryImageBetaArgs
+        ///         {
+        ///             ImageId = "11111111-1111-1111-1111-111111111111",
+        ///             NamespaceId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRegistryImageBetaResult> InvokeAsync(GetRegistryImageBetaArgs? args = null, InvokeOptions? options = null)
@@ -24,23 +45,44 @@ namespace Pulumi.Scaleway
 
     public sealed class GetRegistryImageBetaArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The image ID.
+        /// Only one of `name` and `image_id` should be specified.
+        /// </summary>
         [Input("imageId")]
         public string? ImageId { get; set; }
 
+        /// <summary>
+        /// The image name.
+        /// Only one of `name` and `image_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The namespace ID in which the image is.
+        /// </summary>
         [Input("namespaceId")]
         public string? NamespaceId { get; set; }
 
+        /// <summary>
+        /// `organization_id`) The ID of the organization the image is associated with.
+        /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the image exists.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         [Input("tags")]
         private List<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the registry image
+        /// </summary>
         public List<string> Tags
         {
             get => _tags ?? (_tags = new List<string>());
@@ -57,7 +99,7 @@ namespace Pulumi.Scaleway
     public sealed class GetRegistryImageBetaResult
     {
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? ImageId;
@@ -65,8 +107,17 @@ namespace Pulumi.Scaleway
         public readonly string NamespaceId;
         public readonly string OrganizationId;
         public readonly string Region;
+        /// <summary>
+        /// The size of the registry image.
+        /// </summary>
         public readonly int Size;
+        /// <summary>
+        /// The tags associated with the registry image
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The privacy policy of the registry image.
+        /// </summary>
         public readonly string Visibility;
 
         [OutputConstructor]

@@ -16,6 +16,8 @@ func GetAccessKey(ctx *pulumi.Context) string {
 	}
 	return getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string)
 }
+
+// Deprecated: Use `organization_id` instead.
 func GetOrganization(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:organization")
 }
@@ -46,6 +48,8 @@ func GetSecretKey(ctx *pulumi.Context) string {
 	}
 	return getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string)
 }
+
+// Deprecated: Use `secret_key` instead.
 func GetToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:token")
 }
@@ -56,5 +60,5 @@ func GetZone(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_ZONE").(string)
+	return getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string)
 }

@@ -8,10 +8,42 @@ import (
 )
 
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-// Please use `.getInstanceImage` instead or `.getMarketplaceImageBeta` depending on your usage.
+// Please use `getInstanceImage` instead or `getMarketplaceImageBeta` depending on your usage.
 //
 // Use this data source to get the ID of a registered Image for use with the
-// `.Server` resource.
+// `Server` resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "Ubuntu Precise"
+// 		ubuntu, err := scaleway.GetImage(ctx, &scaleway.GetImageArgs{
+// 			Architecture: "arm",
+// 			Name:         &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewServer(ctx, "base", &scaleway.ServerArgs{
+// 			Image: pulumi.String(ubuntu.Id),
+// 			Type:  pulumi.String("C1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetImage(ctx *pulumi.Context, args *GetImageArgs, opts ...pulumi.InvokeOption) (*GetImageResult, error) {
 	var rv GetImageResult
 	err := ctx.Invoke("scaleway:index/getImage:getImage", args, &rv, opts...)
@@ -39,7 +71,7 @@ type GetImageResult struct {
 	Architecture string `pulumi:"architecture"`
 	// date when image was created
 	CreationDate string `pulumi:"creationDate"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
 	MostRecent *bool   `pulumi:"mostRecent"`
 	Name       string  `pulumi:"name"`

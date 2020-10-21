@@ -6,21 +6,17 @@ import * as utilities from "./utilities";
 
 /**
  * Manages user SSH keys to access servers provisioned on Scaleway.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
+ *
  * const main = new scaleway.AccountSshKey("main", {
  *     publicKey: "<YOUR-PUBLIC-SSH-KEY>",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/account_ssh_key.html.markdown.
  */
 export class AccountSshKey extends pulumi.CustomResource {
     /**
@@ -30,6 +26,7 @@ export class AccountSshKey extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccountSshKeyState, opts?: pulumi.CustomResourceOptions): AccountSshKey {
         return new AccountSshKey(name, <any>state, { ...opts, id: id });
@@ -50,15 +47,15 @@ export class AccountSshKey extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the SSH key
+     * The name of the SSH key.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the IP is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The public SSH key
+     * The public SSH key to be added.
      */
     public readonly publicKey!: pulumi.Output<string>;
 
@@ -102,15 +99,15 @@ export class AccountSshKey extends pulumi.CustomResource {
  */
 export interface AccountSshKeyState {
     /**
-     * The name of the SSH key
+     * The name of the SSH key.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the IP is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The public SSH key
+     * The public SSH key to be added.
      */
     readonly publicKey?: pulumi.Input<string>;
 }
@@ -120,15 +117,15 @@ export interface AccountSshKeyState {
  */
 export interface AccountSshKeyArgs {
     /**
-     * The name of the SSH key
+     * The name of the SSH key.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the IP is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The public SSH key
+     * The public SSH key to be added.
      */
     readonly publicKey: pulumi.Input<string>;
 }

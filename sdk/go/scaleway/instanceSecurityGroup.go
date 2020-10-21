@@ -9,26 +9,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Creates and manages Scaleway Compute Instance security groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
 type InstanceSecurityGroup struct {
 	pulumi.CustomResourceState
 
-	// The description of the security group
-	Description   pulumi.StringPtrOutput `pulumi:"description"`
-	ExternalRules pulumi.BoolPtrOutput   `pulumi:"externalRules"`
-	// Default inbound traffic policy for this security group
+	// The description of the security group.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// A boolean to specify whether to use instance_security_group_rules. If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
+	ExternalRules pulumi.BoolPtrOutput `pulumi:"externalRules"`
+	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
 	InboundDefaultPolicy pulumi.StringPtrOutput `pulumi:"inboundDefaultPolicy"`
-	// Inbound rules for this security group
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules InstanceSecurityGroupInboundRuleArrayOutput `pulumi:"inboundRules"`
-	// The name of the security group
+	// The name of the security group.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the project the security group is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Default outbound traffic policy for this security group
+	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
 	OutboundDefaultPolicy pulumi.StringPtrOutput `pulumi:"outboundDefaultPolicy"`
-	// Outbound rules for this security group
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayOutput `pulumi:"outboundRules"`
-	// The zone you want to attach the resource to
+	// A boolean to specify whether the security group should be stateful or not.
+	Stateful pulumi.BoolPtrOutput `pulumi:"stateful"`
+	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -60,42 +62,48 @@ func GetInstanceSecurityGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceSecurityGroup resources.
 type instanceSecurityGroupState struct {
-	// The description of the security group
-	Description   *string `pulumi:"description"`
-	ExternalRules *bool   `pulumi:"externalRules"`
-	// Default inbound traffic policy for this security group
+	// The description of the security group.
+	Description *string `pulumi:"description"`
+	// A boolean to specify whether to use instance_security_group_rules. If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
+	ExternalRules *bool `pulumi:"externalRules"`
+	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
 	InboundDefaultPolicy *string `pulumi:"inboundDefaultPolicy"`
-	// Inbound rules for this security group
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules []InstanceSecurityGroupInboundRule `pulumi:"inboundRules"`
-	// The name of the security group
+	// The name of the security group.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the project the security group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Default outbound traffic policy for this security group
+	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
 	OutboundDefaultPolicy *string `pulumi:"outboundDefaultPolicy"`
-	// Outbound rules for this security group
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules []InstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
-	// The zone you want to attach the resource to
+	// A boolean to specify whether the security group should be stateful or not.
+	Stateful *bool `pulumi:"stateful"`
+	// `zone`) The zone in which the security group should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceSecurityGroupState struct {
-	// The description of the security group
-	Description   pulumi.StringPtrInput
+	// The description of the security group.
+	Description pulumi.StringPtrInput
+	// A boolean to specify whether to use instance_security_group_rules. If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
 	ExternalRules pulumi.BoolPtrInput
-	// Default inbound traffic policy for this security group
+	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
 	InboundDefaultPolicy pulumi.StringPtrInput
-	// Inbound rules for this security group
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules InstanceSecurityGroupInboundRuleArrayInput
-	// The name of the security group
+	// The name of the security group.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the project the security group is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Default outbound traffic policy for this security group
+	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
 	OutboundDefaultPolicy pulumi.StringPtrInput
-	// Outbound rules for this security group
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayInput
-	// The zone you want to attach the resource to
+	// A boolean to specify whether the security group should be stateful or not.
+	Stateful pulumi.BoolPtrInput
+	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -104,43 +112,49 @@ func (InstanceSecurityGroupState) ElementType() reflect.Type {
 }
 
 type instanceSecurityGroupArgs struct {
-	// The description of the security group
-	Description   *string `pulumi:"description"`
-	ExternalRules *bool   `pulumi:"externalRules"`
-	// Default inbound traffic policy for this security group
+	// The description of the security group.
+	Description *string `pulumi:"description"`
+	// A boolean to specify whether to use instance_security_group_rules. If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
+	ExternalRules *bool `pulumi:"externalRules"`
+	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
 	InboundDefaultPolicy *string `pulumi:"inboundDefaultPolicy"`
-	// Inbound rules for this security group
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules []InstanceSecurityGroupInboundRule `pulumi:"inboundRules"`
-	// The name of the security group
+	// The name of the security group.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the project the security group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Default outbound traffic policy for this security group
+	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
 	OutboundDefaultPolicy *string `pulumi:"outboundDefaultPolicy"`
-	// Outbound rules for this security group
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules []InstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
-	// The zone you want to attach the resource to
+	// A boolean to specify whether the security group should be stateful or not.
+	Stateful *bool `pulumi:"stateful"`
+	// `zone`) The zone in which the security group should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceSecurityGroup resource.
 type InstanceSecurityGroupArgs struct {
-	// The description of the security group
-	Description   pulumi.StringPtrInput
+	// The description of the security group.
+	Description pulumi.StringPtrInput
+	// A boolean to specify whether to use instance_security_group_rules. If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
 	ExternalRules pulumi.BoolPtrInput
-	// Default inbound traffic policy for this security group
+	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
 	InboundDefaultPolicy pulumi.StringPtrInput
-	// Inbound rules for this security group
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules InstanceSecurityGroupInboundRuleArrayInput
-	// The name of the security group
+	// The name of the security group.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the project the security group is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Default outbound traffic policy for this security group
+	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
 	OutboundDefaultPolicy pulumi.StringPtrInput
-	// Outbound rules for this security group
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayInput
-	// The zone you want to attach the resource to
+	// A boolean to specify whether the security group should be stateful or not.
+	Stateful pulumi.BoolPtrInput
+	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrInput
 }
 

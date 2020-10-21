@@ -11,3 +11,11 @@ sdk/nodejs/node_modules
 *.iml
 
 yarn.lock
+
+**/schema.go
+**/version.txt
+
+**/ci-scripts
+**/nuget
+
+**/node_modules

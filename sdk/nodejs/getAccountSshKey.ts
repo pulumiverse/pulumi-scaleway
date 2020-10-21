@@ -8,22 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get SSH key information based on its ID or name.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * // Get info by SSH key id
- * const myKey = scaleway.getAccountSshKey({
- *     sshKeyId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/account_ssh_key.html.markdown.
+ * // Get info by SSH key id
+ * const myKey = pulumi.output(scaleway.getAccountSshKey({
+ *     sshKeyId: "11111111-1111-1111-1111-111111111111",
+ * }, { async: true }));
+ * ```
  */
 export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountSshKeyResult> {
     args = args || {};
@@ -45,8 +41,17 @@ export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getAccountSshKey.
  */
 export interface GetAccountSshKeyArgs {
+    /**
+     * The SSH key name. Only one of `name` and `sshKeyId` should be specified.
+     */
     readonly name?: string;
+    /**
+     * `organizationId`) The ID of the organization the server is associated with.
+     */
     readonly organizationId?: string;
+    /**
+     * The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+     */
     readonly sshKeyId?: string;
 }
 
@@ -54,12 +59,15 @@ export interface GetAccountSshKeyArgs {
  * A collection of values returned by getAccountSshKey.
  */
 export interface GetAccountSshKeyResult {
-    readonly name: string;
-    readonly organizationId: string;
-    readonly publicKey: string;
-    readonly sshKeyId: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly name: string;
+    readonly organizationId: string;
+    /**
+     * The SSH public key string
+     */
+    readonly publicKey: string;
+    readonly sshKeyId: string;
 }

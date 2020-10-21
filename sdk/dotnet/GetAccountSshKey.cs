@@ -15,6 +15,26 @@ namespace Pulumi.Scaleway
         /// Use this data source to get SSH key information based on its ID or name.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myKey = Output.Create(Scaleway.GetAccountSshKey.InvokeAsync(new Scaleway.GetAccountSshKeyArgs
+        ///         {
+        ///             SshKeyId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAccountSshKeyResult> InvokeAsync(GetAccountSshKeyArgs? args = null, InvokeOptions? options = null)
@@ -24,12 +44,21 @@ namespace Pulumi.Scaleway
 
     public sealed class GetAccountSshKeyArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// `organization_id`) The ID of the organization the server is associated with.
+        /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
+        /// <summary>
+        /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+        /// </summary>
         [Input("sshKeyId")]
         public string? SshKeyId { get; set; }
 
@@ -43,11 +72,14 @@ namespace Pulumi.Scaleway
     public sealed class GetAccountSshKeyResult
     {
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string Name;
         public readonly string OrganizationId;
+        /// <summary>
+        /// The SSH public key string
+        /// </summary>
         public readonly string PublicKey;
         public readonly string SshKeyId;
 

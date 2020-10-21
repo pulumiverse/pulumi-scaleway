@@ -13,9 +13,15 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class KubernetesClusterBetaDefaultPoolNode
     {
+        /// <summary>
+        /// The name for the Kubernetes cluster.
+        /// </summary>
         public readonly string? Name;
         public readonly string? PublicIp;
         public readonly string? PublicIpV6;
+        /// <summary>
+        /// The status of the Kubernetes cluster.
+        /// </summary>
         public readonly string? Status;
 
         [OutputConstructor]

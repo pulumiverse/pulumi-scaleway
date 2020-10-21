@@ -18,9 +18,8 @@ import (
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
+	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-scaleway/scaleway"
 )
@@ -33,56 +32,10 @@ const (
 	scalewayMod = "index" // the y module
 )
 
-// makeMember manufactures a type token for the package and the given module and type.
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(scalewayPkg + ":" + mod + ":" + mem)
-}
-
-// makeType manufactures a type token for the package and the given module and type.
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
-}
-
-// makeDataSource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the data source's
-// first character.
-func makeDataSource(mod string, res string) tokens.ModuleMember {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeMember(mod+"/"+fn, res)
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
-}
-
 // boolRef returns a reference to the bool argument.
 func boolRef(b bool) *bool {
 	return &b
 }
-
-// stringValue gets a string value from a property map if present, else ""
-func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
-	val, ok := vars[prop]
-	if ok && val.IsString() {
-		return val.StringValue()
-	}
-	return ""
-}
-
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig) error {
-	return nil
-}
-
-// managedByPulumi is a default used for some managed resources, in the absence of something more meaningful.
-var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 
 // scalewayMember manufactures a type token for the Scaleway package and the given module and type.
 func scalewayMember(mod string, mem string) tokens.ModuleMember {
@@ -110,20 +63,24 @@ func scalewayResource(mod string, res string) tokens.Type {
 	return scalewayType(mod+"/"+fn, res)
 }
 
+func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProviderLicense {
+	return &license
+}
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := scaleway.Provider().(*schema.Provider)
-
+	p := shimv1.NewProvider(scaleway.Provider().(*schema.Provider))
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "scaleway",
-		Description: "A Pulumi package for creating and managing scaleway cloud resources.",
-		Keywords:    []string{"pulumi", "scaleway"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/jaxxstorm/pulumi-scaleway",
+		P:                 p,
+		Name:              "scaleway",
+		Description:       "A Pulumi package for creating and managing scaleway cloud resources.",
+		Keywords:          []string{"pulumi", "scaleway"},
+		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
+		License:           "Apache-2.0",
+		Homepage:          "https://pulumi.io",
+		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{
@@ -151,7 +108,6 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 		},
-		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"scaleway_account_ssh_key":               {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
 			"scaleway_baremetal_server":              {Tok: scalewayResource(scalewayMod, "BaremetalServer")},
@@ -207,7 +163,6 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_volume":                  {Tok: scalewayDataSource(scalewayMod, "getVolume")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			AsyncDataSources: true,
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^2.0.0",
@@ -236,22 +191,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	// For all resources with name properties, we will add an auto-name property.  Make sure to skip those that
-	// already have a name mapping entry, since those may have custom overrides set above (e.g., for length).
-	const nameProperty = "name"
-	for resname, res := range prov.Resources {
-		if schema := p.ResourcesMap[resname]; schema != nil {
-			// Only apply auto-name to input properties (Optional || Required) named `name`
-			if tfs, has := schema.Schema[nameProperty]; has && (tfs.Optional || tfs.Required) {
-				if _, hasfield := res.Fields[nameProperty]; !hasfield {
-					if res.Fields == nil {
-						res.Fields = make(map[string]*tfbridge.SchemaInfo)
-					}
-					res.Fields[nameProperty] = tfbridge.AutoName(nameProperty, 255)
-				}
-			}
-		}
-	}
+	prov.SetAutonaming(255, "-")
 
 	return prov
 }

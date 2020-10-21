@@ -8,6 +8,30 @@ import (
 )
 
 // Gets information about a Security Group.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "11111111-1111-1111-1111-111111111111"
+// 		_, err := scaleway.LookupInstanceSecurityGroup(ctx, &scaleway.LookupInstanceSecurityGroupArgs{
+// 			SecurityGroupId: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupInstanceSecurityGroup(ctx *pulumi.Context, args *LookupInstanceSecurityGroupArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSecurityGroupResult, error) {
 	var rv LookupInstanceSecurityGroupResult
 	err := ctx.Invoke("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args, &rv, opts...)
@@ -19,23 +43,32 @@ func LookupInstanceSecurityGroup(ctx *pulumi.Context, args *LookupInstanceSecuri
 
 // A collection of arguments for invoking getInstanceSecurityGroup.
 type LookupInstanceSecurityGroupArgs struct {
-	Name            *string `pulumi:"name"`
+	// The security group name. Only one of `name` and `securityGroupId` should be specified.
+	Name *string `pulumi:"name"`
+	// The security group id. Only one of `name` and `securityGroupId` should be specified.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
-	Zone            *string `pulumi:"zone"`
+	// `zone`) The zone in which the security group exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getInstanceSecurityGroup.
 type LookupInstanceSecurityGroupResult struct {
 	Description   string `pulumi:"description"`
 	ExternalRules bool   `pulumi:"externalRules"`
-	// id is the provider-assigned unique ID for this managed resource.
-	Id                    string                                 `pulumi:"id"`
-	InboundDefaultPolicy  string                                 `pulumi:"inboundDefaultPolicy"`
-	InboundRules          []GetInstanceSecurityGroupInboundRule  `pulumi:"inboundRules"`
-	Name                  *string                                `pulumi:"name"`
-	OrganizationId        string                                 `pulumi:"organizationId"`
-	OutboundDefaultPolicy string                                 `pulumi:"outboundDefaultPolicy"`
-	OutboundRules         []GetInstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
-	SecurityGroupId       *string                                `pulumi:"securityGroupId"`
-	Zone                  *string                                `pulumi:"zone"`
+	// The provider-assigned unique ID for this managed resource.
+	Id string `pulumi:"id"`
+	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+	InboundDefaultPolicy string `pulumi:"inboundDefaultPolicy"`
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
+	InboundRules []GetInstanceSecurityGroupInboundRule `pulumi:"inboundRules"`
+	Name         *string                               `pulumi:"name"`
+	// The ID of the organization the security group is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+	OutboundDefaultPolicy string `pulumi:"outboundDefaultPolicy"`
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
+	OutboundRules   []GetInstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
+	SecurityGroupId *string                                `pulumi:"securityGroupId"`
+	Stateful        bool                                   `pulumi:"stateful"`
+	Zone            *string                                `pulumi:"zone"`
 }

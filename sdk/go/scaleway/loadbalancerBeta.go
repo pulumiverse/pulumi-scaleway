@@ -13,25 +13,28 @@ import (
 type LoadbalancerBeta struct {
 	pulumi.CustomResourceState
 
-	// The load-balance public IP address
+	// The load-balance public IP Address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// The load-balance public IP ID
+	// The ID of the associated IP. See below.
 	IpId pulumi.StringOutput `pulumi:"ipId"`
-	// Name of the lb
+	// The name of the load-balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the load-balancer is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the load-balancer should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Array of tags to associate with the load-balancer
+	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of load-balancer you want to create
+	// The type of the load-balancer.  For now only `LB-S` is available
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
 // NewLoadbalancerBeta registers a new resource with the given unique name, arguments, and options.
 func NewLoadbalancerBeta(ctx *pulumi.Context,
 	name string, args *LoadbalancerBetaArgs, opts ...pulumi.ResourceOption) (*LoadbalancerBeta, error) {
+	if args == nil || args.IpId == nil {
+		return nil, errors.New("missing required argument 'IpId'")
+	}
 	if args == nil || args.Type == nil {
 		return nil, errors.New("missing required argument 'Type'")
 	}
@@ -60,36 +63,36 @@ func GetLoadbalancerBeta(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerBeta resources.
 type loadbalancerBetaState struct {
-	// The load-balance public IP address
+	// The load-balance public IP Address
 	IpAddress *string `pulumi:"ipAddress"`
-	// The load-balance public IP ID
+	// The ID of the associated IP. See below.
 	IpId *string `pulumi:"ipId"`
-	// Name of the lb
+	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the load-balancer is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the load-balancer should be created.
 	Region *string `pulumi:"region"`
-	// Array of tags to associate with the load-balancer
+	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
-	// The type of load-balancer you want to create
+	// The type of the load-balancer.  For now only `LB-S` is available
 	Type *string `pulumi:"type"`
 }
 
 type LoadbalancerBetaState struct {
-	// The load-balance public IP address
+	// The load-balance public IP Address
 	IpAddress pulumi.StringPtrInput
-	// The load-balance public IP ID
+	// The ID of the associated IP. See below.
 	IpId pulumi.StringPtrInput
-	// Name of the lb
+	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the load-balancer is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the load-balancer should be created.
 	Region pulumi.StringPtrInput
-	// Array of tags to associate with the load-balancer
+	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
-	// The type of load-balancer you want to create
+	// The type of the load-balancer.  For now only `LB-S` is available
 	Type pulumi.StringPtrInput
 }
 
@@ -98,29 +101,33 @@ func (LoadbalancerBetaState) ElementType() reflect.Type {
 }
 
 type loadbalancerBetaArgs struct {
-	// Name of the lb
+	// The ID of the associated IP. See below.
+	IpId string `pulumi:"ipId"`
+	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the load-balancer is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the load-balancer should be created.
 	Region *string `pulumi:"region"`
-	// Array of tags to associate with the load-balancer
+	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
-	// The type of load-balancer you want to create
+	// The type of the load-balancer.  For now only `LB-S` is available
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a LoadbalancerBeta resource.
 type LoadbalancerBetaArgs struct {
-	// Name of the lb
+	// The ID of the associated IP. See below.
+	IpId pulumi.StringInput
+	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the load-balancer is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the load-balancer should be created.
 	Region pulumi.StringPtrInput
-	// Array of tags to associate with the load-balancer
+	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
-	// The type of load-balancer you want to create
+	// The type of the load-balancer.  For now only `LB-S` is available
 	Type pulumi.StringInput
 }
 

@@ -16,6 +16,36 @@ namespace Pulumi.Scaleway
     /// This allows volumes to be attached to servers.
     /// 
     /// &gt; **Warning:** Attaching volumes requires the servers to be powered off. This will lead to downtime if the server is already in use.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testServer = new Scaleway.Server("testServer", new Scaleway.ServerArgs
+    ///         {
+    ///             Image = "aecaed73-51a5-4439-a127-6d8229847145",
+    ///             Type = "C2S",
+    ///         });
+    ///         var testVolume = new Scaleway.Volume("testVolume", new Scaleway.VolumeArgs
+    ///         {
+    ///             SizeInGb = 20,
+    ///             Type = "l_ssd",
+    ///         });
+    ///         var testVolumeAttachment = new Scaleway.VolumeAttachment("testVolumeAttachment", new Scaleway.VolumeAttachmentArgs
+    ///         {
+    ///             Server = testServer.Id,
+    ///             Volume = testVolume.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class VolumeAttachment : Pulumi.CustomResource
     {

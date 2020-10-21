@@ -86,7 +86,7 @@ namespace Pulumi.Scaleway
             OrganizationId = Utilities.GetEnv("SCW_DEFAULT_ORGANIZATION_ID");
             Region = Utilities.GetEnv("SCW_DEFAULT_REGION");
             SecretKey = Utilities.GetEnv("SCW_SECRET_KEY");
-            Zone = Utilities.GetEnv("SCW_ZONE");
+            Zone = Utilities.GetEnv("SCW_DEFAULT_ZONE");
         }
     }
 }

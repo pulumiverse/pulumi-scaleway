@@ -8,22 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a registry namespace.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * // Get info by namespace ID
- * const myNamespace = scaleway.getRegistryNamespaceBeta({
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/registry_namespace_beta.html.markdown.
+ * // Get info by namespace ID
+ * const myNamespace = pulumi.output(scaleway.getRegistryNamespaceBeta({
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * }, { async: true }));
+ * ```
  */
 export function getRegistryNamespaceBeta(args?: GetRegistryNamespaceBetaArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceBetaResult> {
     args = args || {};
@@ -45,8 +41,19 @@ export function getRegistryNamespaceBeta(args?: GetRegistryNamespaceBetaArgs, op
  * A collection of arguments for invoking getRegistryNamespaceBeta.
  */
 export interface GetRegistryNamespaceBetaArgs {
+    /**
+     * The namespace name.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     readonly name?: string;
+    /**
+     * The namespace id.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     readonly namespaceId?: string;
+    /**
+     * `region`) The region in which the namespace exists.
+     */
     readonly region?: string;
 }
 
@@ -55,14 +62,20 @@ export interface GetRegistryNamespaceBetaArgs {
  */
 export interface GetRegistryNamespaceBetaResult {
     readonly description: string;
+    /**
+     * The endpoint of the Registry Namespace.
+     */
     readonly endpoint: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
+     * The Namespace Privacy Policy: whether or not the images are public.
+     */
     readonly isPublic: boolean;
     readonly name?: string;
     readonly namespaceId?: string;
     readonly organizationId: string;
     readonly region?: string;
-    /**
-     * id is the provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -11,10 +11,28 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-    /// Please use `scaleway..InstanceIP` instead.
+    /// Please use `scaleway.InstanceIP` instead.
     /// 
     /// Provides IPs for servers. This allows IPs to be created, updated and deleted.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#ips).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testIp = new Scaleway.IP("testIp", new Scaleway.IPArgs
+    ///         {
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class IP : Pulumi.CustomResource
     {
@@ -25,7 +43,7 @@ namespace Pulumi.Scaleway
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
-        /// Please us the scaleway..IPReverseDNS resource instead.
+        /// Please us the scaleway.IPReverseDNS resource instead.
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
@@ -83,7 +101,7 @@ namespace Pulumi.Scaleway
     public sealed class IPArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Please us the scaleway..IPReverseDNS resource instead.
+        /// Please us the scaleway.IPReverseDNS resource instead.
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
@@ -108,7 +126,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// Please us the scaleway..IPReverseDNS resource instead.
+        /// Please us the scaleway.IPReverseDNS resource instead.
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }

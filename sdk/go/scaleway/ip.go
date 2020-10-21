@@ -10,16 +10,39 @@ import (
 )
 
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-// Please use `.InstanceIP` instead.
+// Please use `InstanceIP` instead.
 //
 // Provides IPs for servers. This allows IPs to be created, updated and deleted.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#ips).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewIP(ctx, "testIp", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type IP struct {
 	pulumi.CustomResourceState
 
 	// IP of the new resource
 	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Please us the .IPReverseDNS resource instead.
+	// Please us the IPReverseDNS resource instead.
+	//
+	// Deprecated: use scaleway_ip_reverse_dns resource instead
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// ID of server to associate IP with
 	Server pulumi.StringOutput `pulumi:"server"`
@@ -55,7 +78,9 @@ func GetIP(ctx *pulumi.Context,
 type ipState struct {
 	// IP of the new resource
 	Ip *string `pulumi:"ip"`
-	// Please us the .IPReverseDNS resource instead.
+	// Please us the IPReverseDNS resource instead.
+	//
+	// Deprecated: use scaleway_ip_reverse_dns resource instead
 	Reverse *string `pulumi:"reverse"`
 	// ID of server to associate IP with
 	Server *string `pulumi:"server"`
@@ -64,7 +89,9 @@ type ipState struct {
 type IPState struct {
 	// IP of the new resource
 	Ip pulumi.StringPtrInput
-	// Please us the .IPReverseDNS resource instead.
+	// Please us the IPReverseDNS resource instead.
+	//
+	// Deprecated: use scaleway_ip_reverse_dns resource instead
 	Reverse pulumi.StringPtrInput
 	// ID of server to associate IP with
 	Server pulumi.StringPtrInput
@@ -75,7 +102,9 @@ func (IPState) ElementType() reflect.Type {
 }
 
 type ipArgs struct {
-	// Please us the .IPReverseDNS resource instead.
+	// Please us the IPReverseDNS resource instead.
+	//
+	// Deprecated: use scaleway_ip_reverse_dns resource instead
 	Reverse *string `pulumi:"reverse"`
 	// ID of server to associate IP with
 	Server *string `pulumi:"server"`
@@ -83,7 +112,9 @@ type ipArgs struct {
 
 // The set of arguments for constructing a IP resource.
 type IPArgs struct {
-	// Please us the .IPReverseDNS resource instead.
+	// Please us the IPReverseDNS resource instead.
+	//
+	// Deprecated: use scaleway_ip_reverse_dns resource instead
 	Reverse pulumi.StringPtrInput
 	// ID of server to associate IP with
 	Server pulumi.StringPtrInput

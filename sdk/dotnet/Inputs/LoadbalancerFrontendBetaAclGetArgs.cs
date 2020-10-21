@@ -12,12 +12,21 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class LoadbalancerFrontendBetaAclGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Action to undertake when an ACL filter matches.
+        /// </summary>
         [Input("action", required: true)]
         public Input<Inputs.LoadbalancerFrontendBetaAclActionGetArgs> Action { get; set; } = null!;
 
+        /// <summary>
+        /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        /// </summary>
         [Input("match", required: true)]
         public Input<Inputs.LoadbalancerFrontendBetaAclMatchGetArgs> Match { get; set; } = null!;
 
+        /// <summary>
+        /// The ACL name. If not provided it will be randomly generated.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

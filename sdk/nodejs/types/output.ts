@@ -2,40 +2,78 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface BaremetalServerBetaIp {
+export interface BaremetalServerIp {
+    /**
+     * The address of the IP.
+     */
     address: string;
+    /**
+     * The ID of the IP.
+     */
     id: string;
+    /**
+     * The reverse of the IP.
+     */
     reverse: string;
+    version: string;
 }
 
 export interface DatabaseInstanceBetaReadReplica {
+    /**
+     * IP of the replica.
+     */
     ip: string;
+    /**
+     * The name of the Database Instance.
+     */
     name: string;
+    /**
+     * Port of the replica.
+     */
     port: number;
 }
 
-export interface GetBaremetalOfferBetaCpu {
+export interface GetBaremetalOfferCpu {
     coreCount: number;
+    /**
+     * Frequency of the memory in MHz.
+     */
     frequency: number;
+    /**
+     * The offer name. Only one of `name` and `offerId` should be specified.
+     */
     name: string;
     threadCount: number;
 }
 
-export interface GetBaremetalOfferBetaDisk {
+export interface GetBaremetalOfferDisk {
     capacity: number;
+    /**
+     * Type of memory.
+     */
     type: string;
 }
 
-export interface GetBaremetalOfferBetaMemory {
+export interface GetBaremetalOfferMemory {
     capacity: number;
-    ecc: boolean;
+    /**
+     * Frequency of the memory in MHz.
+     */
     frequency: number;
+    isEcc: boolean;
+    /**
+     * Type of memory.
+     */
     type: string;
 }
 
 export interface GetInstanceSecurityGroupInboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: string;
     ip: string;
     ipRange: string;
@@ -45,6 +83,9 @@ export interface GetInstanceSecurityGroupInboundRule {
 }
 
 export interface GetInstanceSecurityGroupOutboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: string;
     ip: string;
     ipRange: string;
@@ -54,159 +95,408 @@ export interface GetInstanceSecurityGroupOutboundRule {
 }
 
 export interface GetInstanceServerRootVolume {
+    /**
+     * Forces deletion of the root volume on instance termination.
+     */
     deleteOnTermination: boolean;
+    /**
+     * Size of the root volume in gigabytes.
+     */
     sizeInGb: number;
+    /**
+     * The volume ID of the root volume of the server.
+     */
     volumeId: string;
 }
 
 export interface GetInstanceServerUserData {
+    /**
+     * The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
+     */
     key: string;
+    /**
+     * The user data content.
+     */
     value: string;
 }
 
 export interface InstanceSecurityGroupInboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: string;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: string;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: string;
+    /**
+     * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+     */
     port?: number;
     portRange?: string;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: string;
 }
 
 export interface InstanceSecurityGroupOutboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: string;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: string;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: string;
+    /**
+     * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+     */
     port?: number;
     portRange?: string;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: string;
 }
 
 export interface InstanceSecurityGroupRulesInboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: string;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: string;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: string;
+    /**
+     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     */
     port?: number;
     portRange?: string;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: string;
 }
 
 export interface InstanceSecurityGroupRulesOutboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: string;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: string;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: string;
+    /**
+     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     */
     port?: number;
     portRange?: string;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: string;
 }
 
 export interface InstanceServerRootVolume {
+    /**
+     * Forces deletion of the root volume on instance termination.
+     */
     deleteOnTermination?: boolean;
+    /**
+     * Size of the root volume in gigabytes.
+     * To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+     * check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
+     * Updates to this field will recreate a new resource.
+     */
     sizeInGb: number;
+    /**
+     * The volume ID of the root volume of the server.
+     */
     volumeId: string;
 }
 
 export interface InstanceServerUserData {
+    /**
+     * The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
+     */
     key: string;
     value: string;
 }
 
 export interface KubernetesClusterBetaAutoUpgrade {
+    /**
+     * Set to `true` to enable Kubernetes patch version auto upgrades.
+     * > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+     */
     enable: boolean;
+    /**
+     * The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+     */
     maintenanceWindowDay: string;
+    /**
+     * The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+     */
     maintenanceWindowStartHour: number;
 }
 
 export interface KubernetesClusterBetaAutoscalerConfig {
+    /**
+     * Detect similar node groups and balance the number of nodes between them.
+     */
     balanceSimilarNodeGroups?: boolean;
+    /**
+     * Disables the scale down feature of the autoscaler.
+     */
     disableScaleDown?: boolean;
+    /**
+     * Type of resource estimator to be used in scale up.
+     */
     estimator?: string;
+    /**
+     * Type of node group expander to be used in scale up.
+     */
     expander?: string;
+    /**
+     * Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+     */
     expendablePodsPriorityCutoff?: number;
+    /**
+     * Ignore DaemonSet pods when calculating resource utilization for scaling down.
+     */
     ignoreDaemonsetsUtilization?: boolean;
+    /**
+     * How long after scale up that scale down evaluation resumes.
+     */
     scaleDownDelayAfterAdd?: string;
+    /**
+     * How long a node should be unneeded before it is eligible for scale down.
+     */
+    scaleDownUnneededTime?: string;
 }
 
 export interface KubernetesClusterBetaDefaultPool {
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     autohealing?: boolean;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     autoscaling?: boolean;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     containerRuntime?: string;
+    /**
+     * The creation date of the cluster.
+     */
     createdAt: string;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     maxSize: number;
-    minSize?: number;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
+    minSize: number;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     nodeType: string;
     nodes: outputs.KubernetesClusterBetaDefaultPoolNode[];
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     placementGroupId?: string;
     poolId: string;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     size: number;
+    /**
+     * The status of the Kubernetes cluster.
+     */
     status: string;
+    /**
+     * The tags associated with the Kubernetes cluster.
+     *
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     tags?: string[];
+    /**
+     * The last update date of the cluster.
+     */
     updatedAt: string;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     waitForPoolReady?: boolean;
 }
 
 export interface KubernetesClusterBetaDefaultPoolNode {
+    /**
+     * The name for the Kubernetes cluster.
+     */
     name: string;
     publicIp: string;
     publicIpV6: string;
+    /**
+     * The status of the Kubernetes cluster.
+     */
     status: string;
 }
 
 export interface KubernetesClusterBetaKubeconfig {
+    /**
+     * The CA certificate of the Kubernetes API server.
+     */
     clusterCaCertificate: string;
+    /**
+     * The raw kubeconfig file.
+     */
     configFile: string;
+    /**
+     * The URL of the Kubernetes API server.
+     */
     host: string;
+    /**
+     * The token to connect to the Kubernetes API server.
+     */
     token: string;
 }
 
 export interface KubernetesNodePoolBetaNode {
+    /**
+     * The name for the pool.
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
     name: string;
+    /**
+     * The public IPv4.
+     */
     publicIp: string;
+    /**
+     * The public IPv6.
+     */
     publicIpV6: string;
+    /**
+     * The status of the node.
+     */
     status: string;
 }
 
 export interface LoadbalancerBackendBetaHealthCheckHttp {
+    /**
+     * The expected HTTP status code.
+     */
     code?: number;
+    /**
+     * The HTTP method to use for HC requests.
+     */
     method?: string;
+    /**
+     * The HTTPS endpoint URL to call for HC requests.
+     */
     uri: string;
 }
 
 export interface LoadbalancerBackendBetaHealthCheckHttps {
+    /**
+     * The expected HTTP status code.
+     */
     code?: number;
+    /**
+     * The HTTP method to use for HC requests.
+     */
     method?: string;
+    /**
+     * The HTTPS endpoint URL to call for HC requests.
+     */
     uri: string;
 }
 
 export interface LoadbalancerBackendBetaHealthCheckTcp {
-
 }
 
 export interface LoadbalancerCertificateBetaCustomCertificate {
+    /**
+     * Full PEM-formatted certificate chain.
+     */
     certificateChain: string;
 }
 
 export interface LoadbalancerCertificateBetaLetsencrypt {
+    /**
+     * Main domain of the certificate.
+     */
     commonName: string;
+    /**
+     * Array of alternative domain names.
+     */
     subjectAlternativeNames?: string[];
 }
 
 export interface LoadbalancerFrontendBetaAcl {
+    /**
+     * Action to undertake when an ACL filter matches.
+     */
     action: outputs.LoadbalancerFrontendBetaAclAction;
+    /**
+     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     */
     match: outputs.LoadbalancerFrontendBetaAclMatch;
+    /**
+     * The ACL name. If not provided it will be randomly generated.
+     */
     name: string;
     organizationId: string;
     region: string;
 }
 
 export interface LoadbalancerFrontendBetaAclAction {
+    /**
+     * The action type. Possible values are: `allow` or `deny`.
+     */
     type: string;
 }
 
 export interface LoadbalancerFrontendBetaAclMatch {
+    /**
+     * The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+     * It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+     * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd` or `regex`.
+     */
     httpFilter?: string;
+    /**
+     * A list of possible values to match for the given HTTP filter.
+     */
     httpFilterValues?: string[];
+    /**
+     * If set to `true`, the condition will be of type "unless".
+     */
     invert?: boolean;
+    /**
+     * A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+     */
     ipSubnets?: string[];
 }
 

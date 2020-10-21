@@ -8,24 +8,20 @@ import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
- * Please use `scaleway..InstanceSecurityGroup` instead.
- * 
+ * Please use `scaleway.InstanceSecurityGroup` instead.
+ *
  * Gets information about a Security Group.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * const test = scaleway.getSecurityGroup({
- *     name: "my-security-group",
- * });
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/security_group.html.markdown.
+ * const test = pulumi.output(scaleway.getSecurityGroup({
+ *     name: "my-security-group",
+ * }, { async: true }));
+ * ```
  */
 export function getSecurityGroup(args: GetSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetSecurityGroupResult> {
     if (!opts) {
@@ -62,9 +58,9 @@ export interface GetSecurityGroupResult {
      * have default security group rules been added to this security group?
      */
     readonly enableDefaultSecurity: boolean;
-    readonly name: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly name: string;
 }

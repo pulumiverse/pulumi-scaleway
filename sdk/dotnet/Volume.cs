@@ -11,10 +11,39 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-    /// Please use `scaleway..InstanceVolume` instead.
+    /// Please use `scaleway.InstanceVolume` instead.
     /// 
     /// Provides volumes. This allows volumes to be created, updated and deleted.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#volumes).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testVolume = new Scaleway.Volume("testVolume", new Scaleway.VolumeArgs
+    ///         {
+    ///             SizeInGb = 20,
+    ///             Type = "l_ssd",
+    ///         });
+    ///         var testServer = new Scaleway.Server("testServer", new Scaleway.ServerArgs
+    ///         {
+    ///             Image = "aecaed73-51a5-4439-a127-6d8229847145",
+    ///             Type = "C2S",
+    ///             Volumes = 
+    ///             {
+    ///                 testVolume.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Volume : Pulumi.CustomResource
     {
@@ -25,7 +54,7 @@ namespace Pulumi.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Read Only) the `scaleway..Server` instance which has this volume mounted right now
+        /// (Read Only) the `scaleway.Server` instance which has this volume mounted right now
         /// </summary>
         [Output("server")]
         public Output<string> Server { get; private set; } = null!;
@@ -120,7 +149,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Read Only) the `scaleway..Server` instance which has this volume mounted right now
+        /// (Read Only) the `scaleway.Server` instance which has this volume mounted right now
         /// </summary>
         [Input("server")]
         public Input<string>? Server { get; set; }

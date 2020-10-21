@@ -6,36 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
- * 
- * ## Examples
- * 
- * ### Basic
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * 
- * const jack = new scaleway.KubernetesClusterBeta("jack", {
- *     cni: "calico",
- *     defaultPool: {
- *         nodeType: "GP1-XS",
- *         size: 3,
- *     },
- *     version: "1.16.1",
- * });
- * ```
- * 
- * ## nodes
- * 
- * - `name` - The name of the node.
- * - `publicIp` - The public IPv4.
- * - `publicIpV6` - The public IPv6.
- * - `status` - The status of the node.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/k8s_cluster_beta.html.markdown.
- */
 export class KubernetesClusterBeta extends pulumi.CustomResource {
     /**
      * Get an existing KubernetesClusterBeta resource's state with the given name, ID, and optional extra
@@ -44,6 +14,7 @@ export class KubernetesClusterBeta extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: KubernetesClusterBetaState, opts?: pulumi.CustomResourceOptions): KubernetesClusterBeta {
         return new KubernetesClusterBeta(name, <any>state, { ...opts, id: id });
@@ -64,47 +35,50 @@ export class KubernetesClusterBeta extends pulumi.CustomResource {
     }
 
     /**
-     * The list of admission plugins to enable on the cluster
+     * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      */
     public readonly admissionPlugins!: pulumi.Output<string[] | undefined>;
     /**
-     * Kubernetes API server URL
+     * The URL of the Kubernetes API server.
      */
     public /*out*/ readonly apiserverUrl!: pulumi.Output<string>;
     /**
-     * The auto upgrade configuration for the cluster
+     * The auto upgrade configuration.
      */
     public readonly autoUpgrade!: pulumi.Output<outputs.KubernetesClusterBetaAutoUpgrade>;
     /**
-     * The autoscaler configuration for the cluster
+     * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      */
     public readonly autoscalerConfig!: pulumi.Output<outputs.KubernetesClusterBetaAutoscalerConfig>;
     /**
-     * The CNI plugin of the cluster
+     * The Container Network Interface (CNI) for the Kubernetes cluster.
+     * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly cni!: pulumi.Output<string>;
     /**
-     * The date and time of the creation of the Kubernetes cluster
+     * The creation date of the cluster.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Default pool created for the cluster on creation
+     * See below.
+     *
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
      */
-    public readonly defaultPool!: pulumi.Output<outputs.KubernetesClusterBetaDefaultPool>;
+    public readonly defaultPool!: pulumi.Output<outputs.KubernetesClusterBetaDefaultPool | undefined>;
     /**
-     * The description of the cluster
+     * A description for the Kubernetes cluster.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Enable the dashboard on the cluster
+     * Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
      */
     public readonly enableDashboard!: pulumi.Output<boolean | undefined>;
     /**
-     * The list of feature gates to enable on the cluster
+     * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      */
     public readonly featureGates!: pulumi.Output<string[] | undefined>;
     /**
-     * The ingress to be deployed on the cluster
+     * The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
      */
     public readonly ingress!: pulumi.Output<string | undefined>;
     /**
@@ -112,39 +86,40 @@ export class KubernetesClusterBeta extends pulumi.CustomResource {
      */
     public /*out*/ readonly kubeconfig!: pulumi.Output<outputs.KubernetesClusterBetaKubeconfig>;
     /**
-     * The name of the cluster
+     * The name for the Kubernetes cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the cluster is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the cluster should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The status of the cluster
+     * The status of the Kubernetes cluster.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The tags associated with the cluster
+     * The tags associated with the Kubernetes cluster.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the Kubernetes cluster
+     * The last update date of the cluster.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * True if an upgrade is available
+     * Set to `true` if a newer Kubernetes version is available.
      */
     public /*out*/ readonly upgradeAvailable!: pulumi.Output<boolean>;
     /**
-     * The version of the cluster
+     * The version of the Kubernetes cluster.
      */
     public readonly version!: pulumi.Output<string>;
     /**
-     * Wildcard DNS pointing to all the ready nodes
+     * The DNS wildcard that points to all ready nodes.
+     * - `kubeconfig`
      */
     public /*out*/ readonly wildcardDns!: pulumi.Output<string>;
 
@@ -185,9 +160,6 @@ export class KubernetesClusterBeta extends pulumi.CustomResource {
             const args = argsOrState as KubernetesClusterBetaArgs | undefined;
             if (!args || args.cni === undefined) {
                 throw new Error("Missing required property 'cni'");
-            }
-            if (!args || args.defaultPool === undefined) {
-                throw new Error("Missing required property 'defaultPool'");
             }
             if (!args || args.version === undefined) {
                 throw new Error("Missing required property 'version'");
@@ -230,47 +202,50 @@ export class KubernetesClusterBeta extends pulumi.CustomResource {
  */
 export interface KubernetesClusterBetaState {
     /**
-     * The list of admission plugins to enable on the cluster
+     * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      */
     readonly admissionPlugins?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Kubernetes API server URL
+     * The URL of the Kubernetes API server.
      */
     readonly apiserverUrl?: pulumi.Input<string>;
     /**
-     * The auto upgrade configuration for the cluster
+     * The auto upgrade configuration.
      */
     readonly autoUpgrade?: pulumi.Input<inputs.KubernetesClusterBetaAutoUpgrade>;
     /**
-     * The autoscaler configuration for the cluster
+     * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      */
     readonly autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterBetaAutoscalerConfig>;
     /**
-     * The CNI plugin of the cluster
+     * The Container Network Interface (CNI) for the Kubernetes cluster.
+     * > **Important:** Updates to this field will recreate a new resource.
      */
     readonly cni?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the Kubernetes cluster
+     * The creation date of the cluster.
      */
     readonly createdAt?: pulumi.Input<string>;
     /**
-     * Default pool created for the cluster on creation
+     * See below.
+     *
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
      */
     readonly defaultPool?: pulumi.Input<inputs.KubernetesClusterBetaDefaultPool>;
     /**
-     * The description of the cluster
+     * A description for the Kubernetes cluster.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Enable the dashboard on the cluster
+     * Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
      */
     readonly enableDashboard?: pulumi.Input<boolean>;
     /**
-     * The list of feature gates to enable on the cluster
+     * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      */
     readonly featureGates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The ingress to be deployed on the cluster
+     * The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
      */
     readonly ingress?: pulumi.Input<string>;
     /**
@@ -278,39 +253,40 @@ export interface KubernetesClusterBetaState {
      */
     readonly kubeconfig?: pulumi.Input<inputs.KubernetesClusterBetaKubeconfig>;
     /**
-     * The name of the cluster
+     * The name for the Kubernetes cluster.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the cluster is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the cluster should be created.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * The status of the cluster
+     * The status of the Kubernetes cluster.
      */
     readonly status?: pulumi.Input<string>;
     /**
-     * The tags associated with the cluster
+     * The tags associated with the Kubernetes cluster.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The date and time of the last update of the Kubernetes cluster
+     * The last update date of the cluster.
      */
     readonly updatedAt?: pulumi.Input<string>;
     /**
-     * True if an upgrade is available
+     * Set to `true` if a newer Kubernetes version is available.
      */
     readonly upgradeAvailable?: pulumi.Input<boolean>;
     /**
-     * The version of the cluster
+     * The version of the Kubernetes cluster.
      */
     readonly version?: pulumi.Input<string>;
     /**
-     * Wildcard DNS pointing to all the ready nodes
+     * The DNS wildcard that points to all ready nodes.
+     * - `kubeconfig`
      */
     readonly wildcardDns?: pulumi.Input<string>;
 }
@@ -320,59 +296,62 @@ export interface KubernetesClusterBetaState {
  */
 export interface KubernetesClusterBetaArgs {
     /**
-     * The list of admission plugins to enable on the cluster
+     * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      */
     readonly admissionPlugins?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The auto upgrade configuration for the cluster
+     * The auto upgrade configuration.
      */
     readonly autoUpgrade?: pulumi.Input<inputs.KubernetesClusterBetaAutoUpgrade>;
     /**
-     * The autoscaler configuration for the cluster
+     * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      */
     readonly autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterBetaAutoscalerConfig>;
     /**
-     * The CNI plugin of the cluster
+     * The Container Network Interface (CNI) for the Kubernetes cluster.
+     * > **Important:** Updates to this field will recreate a new resource.
      */
     readonly cni: pulumi.Input<string>;
     /**
-     * Default pool created for the cluster on creation
+     * See below.
+     *
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
      */
-    readonly defaultPool: pulumi.Input<inputs.KubernetesClusterBetaDefaultPool>;
+    readonly defaultPool?: pulumi.Input<inputs.KubernetesClusterBetaDefaultPool>;
     /**
-     * The description of the cluster
+     * A description for the Kubernetes cluster.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Enable the dashboard on the cluster
+     * Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
      */
     readonly enableDashboard?: pulumi.Input<boolean>;
     /**
-     * The list of feature gates to enable on the cluster
+     * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      */
     readonly featureGates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The ingress to be deployed on the cluster
+     * The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
      */
     readonly ingress?: pulumi.Input<string>;
     /**
-     * The name of the cluster
+     * The name for the Kubernetes cluster.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the cluster is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the cluster should be created.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * The tags associated with the cluster
+     * The tags associated with the Kubernetes cluster.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The version of the cluster
+     * The version of the Kubernetes cluster.
      */
     readonly version: pulumi.Input<string>;
 }

@@ -11,18 +11,46 @@ import (
 )
 
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-// Please use `.InstanceServer` instead.
+// Please use `InstanceServer` instead.
 //
 // Provides servers. This allows servers to be created, updated and deleted.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#servers).
 //
+// ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewServer(ctx, "test", &scaleway.ServerArgs{
+// 			Image: pulumi.String("5faef9cd-ea9b-4a63-9171-9e26bec03dbc"),
+// 			Type:  pulumi.String("VC1M"),
+// 			Volumes: scaleway.ServerVolumeArray{
+// 				&scaleway.ServerVolumeArgs{
+// 					SizeInGb: pulumi.Int(20),
+// 					Type:     pulumi.String("l_ssd"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ## Volume
 //
 // You can attach additional volumes to your instance, which will share the lifetime
-// of your `.Server` resource.
+// of your `Server` resource.
 //
-// > **Warning:** Using the `volume` attribute does not modify the System Volume provided default with every `.Server` instance. Instead it adds additional volumes to the server instance.
+// > **Warning:** Using the `volume` attribute does not modify the System Volume provided default with every `Server` instance. Instead it adds additional volumes to the server instance.
 //
 // > **Warning:** Some instance types require an additional volume to work. This includes for example *START-1M* and *VC1M*. If you run into this issue add an additional volume of the specified size.
 //

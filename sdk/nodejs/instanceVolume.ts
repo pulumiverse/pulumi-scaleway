@@ -2,26 +2,22 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Compute Instance Volumes. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
- * 
+ *
  * ## Example
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * const serverVolume = new scaleway.InstanceVolume("serverVolume", {
+ *
+ * const serverVolume = new scaleway.InstanceVolume("server_volume", {
  *     sizeInGb: 20,
- *     type: "lSsd",
+ *     type: "l_ssd",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/instance_volume.html.markdown.
  */
 export class InstanceVolume extends pulumi.CustomResource {
     /**
@@ -31,6 +27,7 @@ export class InstanceVolume extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceVolumeState, opts?: pulumi.CustomResourceOptions): InstanceVolume {
         return new InstanceVolume(name, <any>state, { ...opts, id: id });
@@ -55,31 +52,31 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public readonly fromSnapshotId!: pulumi.Output<string | undefined>;
     /**
-     * Create a copy of an existing volume
+     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
     public readonly fromVolumeId!: pulumi.Output<string | undefined>;
     /**
-     * The name of the volume
+     * The name of the volume. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the volume is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The server associated with this volume
+     * The id of the associated server.
      */
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
-     * The size of the volume in gigabyte
+     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
     public readonly sizeInGb!: pulumi.Output<number>;
     /**
-     * The volume type
+     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the volume should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -137,31 +134,31 @@ export interface InstanceVolumeState {
      */
     readonly fromSnapshotId?: pulumi.Input<string>;
     /**
-     * Create a copy of an existing volume
+     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
     readonly fromVolumeId?: pulumi.Input<string>;
     /**
-     * The name of the volume
+     * The name of the volume. If not provided it will be randomly generated.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the volume is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The server associated with this volume
+     * The id of the associated server.
      */
     readonly serverId?: pulumi.Input<string>;
     /**
-     * The size of the volume in gigabyte
+     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
     readonly sizeInGb?: pulumi.Input<number>;
     /**
-     * The volume type
+     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
      */
     readonly type?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the volume should be created.
      */
     readonly zone?: pulumi.Input<string>;
 }
@@ -175,27 +172,27 @@ export interface InstanceVolumeArgs {
      */
     readonly fromSnapshotId?: pulumi.Input<string>;
     /**
-     * Create a copy of an existing volume
+     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
     readonly fromVolumeId?: pulumi.Input<string>;
     /**
-     * The name of the volume
+     * The name of the volume. If not provided it will be randomly generated.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the volume is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The size of the volume in gigabyte
+     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
     readonly sizeInGb?: pulumi.Input<number>;
     /**
-     * The volume type
+     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
      */
     readonly type: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the volume should be created.
      */
     readonly zone?: pulumi.Input<string>;
 }

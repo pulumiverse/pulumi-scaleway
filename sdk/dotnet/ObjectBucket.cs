@@ -11,6 +11,25 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway object storage buckets. For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var someBucket = new Scaleway.ObjectBucket("someBucket", new Scaleway.ObjectBucketArgs
+    ///         {
+    ///             Acl = "private",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class ObjectBucket : Pulumi.CustomResource
     {

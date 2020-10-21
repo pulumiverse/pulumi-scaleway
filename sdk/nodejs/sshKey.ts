@@ -2,31 +2,25 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
  * Please use `accountSshKey` instead.
- * 
+ *
  * Manages user SSH Keys to access servers provisioned on scaleway.
  * For additional details please refer to [API documentation](https://developer.scaleway.com/#users-user-get).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
+ *
  * const test = new scaleway.SshKey("test", {
  *     key: "ssh-rsa <some-key>",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/ssh_key.html.markdown.
  */
 export class SshKey extends pulumi.CustomResource {
     /**
@@ -36,6 +30,7 @@ export class SshKey extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SshKeyState, opts?: pulumi.CustomResourceOptions): SshKey {
         return new SshKey(name, <any>state, { ...opts, id: id });
@@ -56,7 +51,7 @@ export class SshKey extends pulumi.CustomResource {
     }
 
     /**
-     * The ssh key
+     * public key of the SSH key to be added
      */
     public readonly key!: pulumi.Output<string>;
 
@@ -96,7 +91,7 @@ export class SshKey extends pulumi.CustomResource {
  */
 export interface SshKeyState {
     /**
-     * The ssh key
+     * public key of the SSH key to be added
      */
     readonly key?: pulumi.Input<string>;
 }
@@ -106,7 +101,7 @@ export interface SshKeyState {
  */
 export interface SshKeyArgs {
     /**
-     * The ssh key
+     * public key of the SSH key to be added
      */
     readonly key: pulumi.Input<string>;
 }

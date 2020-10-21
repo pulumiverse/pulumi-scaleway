@@ -15,11 +15,30 @@ namespace Pulumi.Scaleway
     /// 
     /// Manages user SSH Keys to access servers provisioned on scaleway.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#users-user-get).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Scaleway.SshKey("test", new Scaleway.SshKeyArgs
+    ///         {
+    ///             Key = "ssh-rsa &lt;some-key&gt;",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SshKey : Pulumi.CustomResource
     {
         /// <summary>
-        /// The ssh key
+        /// public key of the SSH key to be added
         /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
@@ -71,7 +90,7 @@ namespace Pulumi.Scaleway
     public sealed class SshKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ssh key
+        /// public key of the SSH key to be added
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
@@ -84,7 +103,7 @@ namespace Pulumi.Scaleway
     public sealed class SshKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ssh key
+        /// public key of the SSH key to be added
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }

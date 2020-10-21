@@ -35,7 +35,7 @@ namespace Pulumi.Scaleway
         /// <summary>
         /// The Scaleway default zone to use for your resources.
         /// </summary>
-        public static string? Zone { get; set; } = __config.Get("zone") ?? Utilities.GetEnv("SCW_ZONE");
+        public static string? Zone { get; set; } = __config.Get("zone") ?? Utilities.GetEnv("SCW_DEFAULT_ZONE");
 
     }
 }

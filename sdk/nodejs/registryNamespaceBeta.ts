@@ -2,35 +2,31 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Container Registry. For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
- * 
+ *
  * ## Examples
- * 
+ *
  * ### Basic
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
+ *
  * const main = new scaleway.RegistryNamespaceBeta("main", {
  *     description: "Main container registry",
  *     isPublic: false,
  * });
  * ```
- * 
+ *
  * ## Attibutes Reference
- * 
+ *
  * In addition to all arguments above, the following attibutes are exported:
- * 
+ *
  * - `id` - The ID of the namespace
  * - `endpoint` - Endpoint reachable by docker.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/registry_namespace_beta.markdown.
  */
 export class RegistryNamespaceBeta extends pulumi.CustomResource {
     /**
@@ -40,6 +36,7 @@ export class RegistryNamespaceBeta extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegistryNamespaceBetaState, opts?: pulumi.CustomResourceOptions): RegistryNamespaceBeta {
         return new RegistryNamespaceBeta(name, <any>state, { ...opts, id: id });
@@ -60,7 +57,7 @@ export class RegistryNamespaceBeta extends pulumi.CustomResource {
     }
 
     /**
-     * The description of the container registry namespace
+     * The description of the container registry namespace.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -68,19 +65,19 @@ export class RegistryNamespaceBeta extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * Define the default visibity policy
+     * Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
      */
     public readonly isPublic!: pulumi.Output<boolean | undefined>;
     /**
-     * The name of the container registry namespace
+     * The unique name of the container registry namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the registry is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the container registry namespace should be created.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -127,7 +124,7 @@ export class RegistryNamespaceBeta extends pulumi.CustomResource {
  */
 export interface RegistryNamespaceBetaState {
     /**
-     * The description of the container registry namespace
+     * The description of the container registry namespace.
      */
     readonly description?: pulumi.Input<string>;
     /**
@@ -135,19 +132,19 @@ export interface RegistryNamespaceBetaState {
      */
     readonly endpoint?: pulumi.Input<string>;
     /**
-     * Define the default visibity policy
+     * Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
      */
     readonly isPublic?: pulumi.Input<boolean>;
     /**
-     * The name of the container registry namespace
+     * The unique name of the container registry namespace.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the registry is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the container registry namespace should be created.
      */
     readonly region?: pulumi.Input<string>;
 }
@@ -157,23 +154,23 @@ export interface RegistryNamespaceBetaState {
  */
 export interface RegistryNamespaceBetaArgs {
     /**
-     * The description of the container registry namespace
+     * The description of the container registry namespace.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Define the default visibity policy
+     * Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
      */
     readonly isPublic?: pulumi.Input<boolean>;
     /**
-     * The name of the container registry namespace
+     * The unique name of the container registry namespace.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the registry is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the container registry namespace should be created.
      */
     readonly region?: pulumi.Input<string>;
 }

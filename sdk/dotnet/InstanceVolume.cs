@@ -11,6 +11,26 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Compute Instance Volumes. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
+    /// 
+    /// ## Example
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var serverVolume = new Scaleway.InstanceVolume("serverVolume", new Scaleway.InstanceVolumeArgs
+    ///         {
+    ///             SizeInGb = 20,
+    ///             Type = "l_ssd",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class InstanceVolume : Pulumi.CustomResource
     {
@@ -21,43 +41,43 @@ namespace Pulumi.Scaleway
         public Output<string?> FromSnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// Create a copy of an existing volume
+        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Output("fromVolumeId")]
         public Output<string?> FromVolumeId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the volume
+        /// The name of the volume. If not provided it will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the volume is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The server associated with this volume
+        /// The id of the associated server.
         /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume in gigabyte
+        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int> SizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// The volume type
+        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the volume should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -115,37 +135,37 @@ namespace Pulumi.Scaleway
         public Input<string>? FromSnapshotId { get; set; }
 
         /// <summary>
-        /// Create a copy of an existing volume
+        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Input("fromVolumeId")]
         public Input<string>? FromVolumeId { get; set; }
 
         /// <summary>
-        /// The name of the volume
+        /// The name of the volume. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the volume is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The size of the volume in gigabyte
+        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
 
         /// <summary>
-        /// The volume type
+        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the volume should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -164,43 +184,43 @@ namespace Pulumi.Scaleway
         public Input<string>? FromSnapshotId { get; set; }
 
         /// <summary>
-        /// Create a copy of an existing volume
+        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Input("fromVolumeId")]
         public Input<string>? FromVolumeId { get; set; }
 
         /// <summary>
-        /// The name of the volume
+        /// The name of the volume. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the volume is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The server associated with this volume
+        /// The id of the associated server.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The size of the volume in gigabyte
+        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
 
         /// <summary>
-        /// The volume type
+        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the volume should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

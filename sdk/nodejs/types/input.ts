@@ -3,162 +3,416 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
-export interface BaremetalServerBetaIp {
+export interface BaremetalServerIp {
+    /**
+     * The address of the IP.
+     */
     address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * The reverse of the IP.
+     */
     reverse?: pulumi.Input<string>;
+    version?: pulumi.Input<string>;
 }
 
 export interface DatabaseInstanceBetaReadReplica {
+    /**
+     * IP of the replica.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * The name of the Database Instance.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Port of the replica.
+     */
     port?: pulumi.Input<number>;
 }
 
 export interface InstanceSecurityGroupInboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: pulumi.Input<string>;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: pulumi.Input<string>;
+    /**
+     * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+     */
     port?: pulumi.Input<number>;
     portRange?: pulumi.Input<string>;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: pulumi.Input<string>;
 }
 
 export interface InstanceSecurityGroupOutboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: pulumi.Input<string>;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: pulumi.Input<string>;
+    /**
+     * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+     */
     port?: pulumi.Input<number>;
     portRange?: pulumi.Input<string>;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: pulumi.Input<string>;
 }
 
 export interface InstanceSecurityGroupRulesInboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: pulumi.Input<string>;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: pulumi.Input<string>;
+    /**
+     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     */
     port?: pulumi.Input<number>;
     portRange?: pulumi.Input<string>;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: pulumi.Input<string>;
 }
 
 export interface InstanceSecurityGroupRulesOutboundRule {
+    /**
+     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     */
     action: pulumi.Input<string>;
+    /**
+     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     */
     ipRange?: pulumi.Input<string>;
+    /**
+     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     */
     port?: pulumi.Input<number>;
     portRange?: pulumi.Input<string>;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol?: pulumi.Input<string>;
 }
 
 export interface InstanceServerRootVolume {
+    /**
+     * Forces deletion of the root volume on instance termination.
+     */
     deleteOnTermination?: pulumi.Input<boolean>;
+    /**
+     * Size of the root volume in gigabytes.
+     * To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+     * check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
+     * Updates to this field will recreate a new resource.
+     */
     sizeInGb?: pulumi.Input<number>;
+    /**
+     * The volume ID of the root volume of the server.
+     */
     volumeId?: pulumi.Input<string>;
 }
 
 export interface InstanceServerUserData {
+    /**
+     * The user data key. The `cloud-init` key is reserved, please use `cloudInit` attribute instead.
+     */
     key: pulumi.Input<string>;
     value: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterBetaAutoUpgrade {
+    /**
+     * Set to `true` to enable Kubernetes patch version auto upgrades.
+     * > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+     */
     enable: pulumi.Input<boolean>;
+    /**
+     * The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+     */
     maintenanceWindowDay: pulumi.Input<string>;
+    /**
+     * The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+     */
     maintenanceWindowStartHour: pulumi.Input<number>;
 }
 
 export interface KubernetesClusterBetaAutoscalerConfig {
+    /**
+     * Detect similar node groups and balance the number of nodes between them.
+     */
     balanceSimilarNodeGroups?: pulumi.Input<boolean>;
+    /**
+     * Disables the scale down feature of the autoscaler.
+     */
     disableScaleDown?: pulumi.Input<boolean>;
+    /**
+     * Type of resource estimator to be used in scale up.
+     */
     estimator?: pulumi.Input<string>;
+    /**
+     * Type of node group expander to be used in scale up.
+     */
     expander?: pulumi.Input<string>;
+    /**
+     * Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+     */
     expendablePodsPriorityCutoff?: pulumi.Input<number>;
+    /**
+     * Ignore DaemonSet pods when calculating resource utilization for scaling down.
+     */
     ignoreDaemonsetsUtilization?: pulumi.Input<boolean>;
+    /**
+     * How long after scale up that scale down evaluation resumes.
+     */
     scaleDownDelayAfterAdd?: pulumi.Input<string>;
+    /**
+     * How long a node should be unneeded before it is eligible for scale down.
+     */
+    scaleDownUnneededTime?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterBetaDefaultPool {
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     autohealing?: pulumi.Input<boolean>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     autoscaling?: pulumi.Input<boolean>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     containerRuntime?: pulumi.Input<string>;
+    /**
+     * The creation date of the cluster.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     maxSize?: pulumi.Input<number>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     minSize?: pulumi.Input<number>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     nodeType: pulumi.Input<string>;
     nodes?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterBetaDefaultPoolNode>[]>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     placementGroupId?: pulumi.Input<string>;
     poolId?: pulumi.Input<string>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     size: pulumi.Input<number>;
+    /**
+     * The status of the Kubernetes cluster.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * The tags associated with the Kubernetes cluster.
+     *
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The last update date of the cluster.
+     */
     updatedAt?: pulumi.Input<string>;
+    /**
+     * @deprecated This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+     */
     waitForPoolReady?: pulumi.Input<boolean>;
 }
 
 export interface KubernetesClusterBetaDefaultPoolNode {
+    /**
+     * The name for the Kubernetes cluster.
+     */
     name?: pulumi.Input<string>;
     publicIp?: pulumi.Input<string>;
     publicIpV6?: pulumi.Input<string>;
+    /**
+     * The status of the Kubernetes cluster.
+     */
     status?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterBetaKubeconfig {
+    /**
+     * The CA certificate of the Kubernetes API server.
+     */
     clusterCaCertificate?: pulumi.Input<string>;
+    /**
+     * The raw kubeconfig file.
+     */
     configFile?: pulumi.Input<string>;
+    /**
+     * The URL of the Kubernetes API server.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * The token to connect to the Kubernetes API server.
+     */
     token?: pulumi.Input<string>;
 }
 
 export interface KubernetesNodePoolBetaNode {
+    /**
+     * The name for the pool.
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The public IPv4.
+     */
     publicIp?: pulumi.Input<string>;
+    /**
+     * The public IPv6.
+     */
     publicIpV6?: pulumi.Input<string>;
+    /**
+     * The status of the node.
+     */
     status?: pulumi.Input<string>;
 }
 
 export interface LoadbalancerBackendBetaHealthCheckHttp {
+    /**
+     * The expected HTTP status code.
+     */
     code?: pulumi.Input<number>;
+    /**
+     * The HTTP method to use for HC requests.
+     */
     method?: pulumi.Input<string>;
+    /**
+     * The HTTPS endpoint URL to call for HC requests.
+     */
     uri: pulumi.Input<string>;
 }
 
 export interface LoadbalancerBackendBetaHealthCheckHttps {
+    /**
+     * The expected HTTP status code.
+     */
     code?: pulumi.Input<number>;
+    /**
+     * The HTTP method to use for HC requests.
+     */
     method?: pulumi.Input<string>;
+    /**
+     * The HTTPS endpoint URL to call for HC requests.
+     */
     uri: pulumi.Input<string>;
 }
 
 export interface LoadbalancerBackendBetaHealthCheckTcp {
-
 }
 
 export interface LoadbalancerCertificateBetaCustomCertificate {
+    /**
+     * Full PEM-formatted certificate chain.
+     */
     certificateChain: pulumi.Input<string>;
 }
 
 export interface LoadbalancerCertificateBetaLetsencrypt {
+    /**
+     * Main domain of the certificate.
+     */
     commonName: pulumi.Input<string>;
+    /**
+     * Array of alternative domain names.
+     */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface LoadbalancerFrontendBetaAcl {
+    /**
+     * Action to undertake when an ACL filter matches.
+     */
     action: pulumi.Input<inputs.LoadbalancerFrontendBetaAclAction>;
+    /**
+     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     */
     match: pulumi.Input<inputs.LoadbalancerFrontendBetaAclMatch>;
+    /**
+     * The ACL name. If not provided it will be randomly generated.
+     */
     name?: pulumi.Input<string>;
     organizationId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
 }
 
 export interface LoadbalancerFrontendBetaAclAction {
+    /**
+     * The action type. Possible values are: `allow` or `deny`.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface LoadbalancerFrontendBetaAclMatch {
+    /**
+     * The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+     * It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+     * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd` or `regex`.
+     */
     httpFilter?: pulumi.Input<string>;
+    /**
+     * A list of possible values to match for the given HTTP filter.
+     */
     httpFilterValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set to `true`, the condition will be of type "unless".
+     */
     invert?: pulumi.Input<boolean>;
+    /**
+     * A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+     */
     ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
 }
 

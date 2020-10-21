@@ -13,42 +13,46 @@ import (
 type LoadbalancerBackendBeta struct {
 	pulumi.CustomResourceState
 
-	// User sessions will be forwarded to this port of backend servers
+	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort pulumi.IntOutput `pulumi:"forwardPort"`
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
 	ForwardPortAlgorithm pulumi.StringPtrOutput `pulumi:"forwardPortAlgorithm"`
-	// Backend protocol
+	// Backend protocol. Possible values are: `tcp` or `http`.
 	ForwardProtocol pulumi.StringOutput `pulumi:"forwardProtocol"`
-	// Interval between two HC requests
-	HealthCheckDelay pulumi.StringPtrOutput                           `pulumi:"healthCheckDelay"`
-	HealthCheckHttp  LoadbalancerBackendBetaHealthCheckHttpPtrOutput  `pulumi:"healthCheckHttp"`
+	// Interval between two HC requests.
+	HealthCheckDelay pulumi.StringPtrOutput `pulumi:"healthCheckDelay"`
+	// This block enable HTTP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckHttp LoadbalancerBackendBetaHealthCheckHttpPtrOutput `pulumi:"healthCheckHttp"`
+	// This block enable HTTPS health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckHttps LoadbalancerBackendBetaHealthCheckHttpsPtrOutput `pulumi:"healthCheckHttps"`
-	// Number of allowed failed HC requests before the backend server is marked down
+	// Number of allowed failed HC requests before the backend server is marked down.
 	HealthCheckMaxRetries pulumi.IntPtrOutput `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be send to. Default to `forward_port`
-	HealthCheckPort pulumi.IntOutput                            `pulumi:"healthCheckPort"`
-	HealthCheckTcp  LoadbalancerBackendBetaHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
-	// Timeout before we consider a HC request failed
+	// Port the HC requests will be send to.
+	HealthCheckPort pulumi.IntOutput `pulumi:"healthCheckPort"`
+	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckTcp LoadbalancerBackendBetaHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
+	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrOutput `pulumi:"healthCheckTimeout"`
-	// The load-balancer ID
+	// The load-balancer ID this backend is attached to.
+	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
-	// The name of the backend
+	// The name of the load-balancer backend.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Modify what occurs when a backend server is marked down
+	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrOutput `pulumi:"onMarkedDownAction"`
-	// Enables PROXY protocol version 2
+	// Enables PROXY protocol version 2.
 	SendProxyV2 pulumi.BoolPtrOutput `pulumi:"sendProxyV2"`
-	// Backend server IP addresses list (IPv4 or IPv6)
+	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayOutput `pulumi:"serverIps"`
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrOutput `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions
+	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName pulumi.StringPtrOutput `pulumi:"stickySessionsCookieName"`
-	// Maximum initial server connection establishment time
+	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrOutput `pulumi:"timeoutConnect"`
-	// Maximum server connection inactivity time
+	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrOutput `pulumi:"timeoutServer"`
-	// Maximum tunnel inactivity time
+	// Maximum tunnel inactivity time. (e.g.: `1s`)
 	TimeoutTunnel pulumi.StringPtrOutput `pulumi:"timeoutTunnel"`
 }
 
@@ -89,82 +93,90 @@ func GetLoadbalancerBackendBeta(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerBackendBeta resources.
 type loadbalancerBackendBetaState struct {
-	// User sessions will be forwarded to this port of backend servers
+	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort *int `pulumi:"forwardPort"`
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
 	ForwardPortAlgorithm *string `pulumi:"forwardPortAlgorithm"`
-	// Backend protocol
+	// Backend protocol. Possible values are: `tcp` or `http`.
 	ForwardProtocol *string `pulumi:"forwardProtocol"`
-	// Interval between two HC requests
-	HealthCheckDelay *string                                  `pulumi:"healthCheckDelay"`
-	HealthCheckHttp  *LoadbalancerBackendBetaHealthCheckHttp  `pulumi:"healthCheckHttp"`
+	// Interval between two HC requests.
+	HealthCheckDelay *string `pulumi:"healthCheckDelay"`
+	// This block enable HTTP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckHttp *LoadbalancerBackendBetaHealthCheckHttp `pulumi:"healthCheckHttp"`
+	// This block enable HTTPS health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckHttps *LoadbalancerBackendBetaHealthCheckHttps `pulumi:"healthCheckHttps"`
-	// Number of allowed failed HC requests before the backend server is marked down
+	// Number of allowed failed HC requests before the backend server is marked down.
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be send to. Default to `forward_port`
-	HealthCheckPort *int                                   `pulumi:"healthCheckPort"`
-	HealthCheckTcp  *LoadbalancerBackendBetaHealthCheckTcp `pulumi:"healthCheckTcp"`
-	// Timeout before we consider a HC request failed
+	// Port the HC requests will be send to.
+	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckTcp *LoadbalancerBackendBetaHealthCheckTcp `pulumi:"healthCheckTcp"`
+	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
-	// The load-balancer ID
+	// The load-balancer ID this backend is attached to.
+	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId *string `pulumi:"lbId"`
-	// The name of the backend
+	// The name of the load-balancer backend.
 	Name *string `pulumi:"name"`
-	// Modify what occurs when a backend server is marked down
+	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction *string `pulumi:"onMarkedDownAction"`
-	// Enables PROXY protocol version 2
+	// Enables PROXY protocol version 2.
 	SendProxyV2 *bool `pulumi:"sendProxyV2"`
-	// Backend server IP addresses list (IPv4 or IPv6)
+	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps []string `pulumi:"serverIps"`
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions *string `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions
+	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
-	// Maximum initial server connection establishment time
+	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
-	// Maximum server connection inactivity time
+	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer *string `pulumi:"timeoutServer"`
-	// Maximum tunnel inactivity time
+	// Maximum tunnel inactivity time. (e.g.: `1s`)
 	TimeoutTunnel *string `pulumi:"timeoutTunnel"`
 }
 
 type LoadbalancerBackendBetaState struct {
-	// User sessions will be forwarded to this port of backend servers
+	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort pulumi.IntPtrInput
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
 	ForwardPortAlgorithm pulumi.StringPtrInput
-	// Backend protocol
+	// Backend protocol. Possible values are: `tcp` or `http`.
 	ForwardProtocol pulumi.StringPtrInput
-	// Interval between two HC requests
+	// Interval between two HC requests.
 	HealthCheckDelay pulumi.StringPtrInput
-	HealthCheckHttp  LoadbalancerBackendBetaHealthCheckHttpPtrInput
+	// This block enable HTTP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckHttp LoadbalancerBackendBetaHealthCheckHttpPtrInput
+	// This block enable HTTPS health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckHttps LoadbalancerBackendBetaHealthCheckHttpsPtrInput
-	// Number of allowed failed HC requests before the backend server is marked down
+	// Number of allowed failed HC requests before the backend server is marked down.
 	HealthCheckMaxRetries pulumi.IntPtrInput
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntPtrInput
-	HealthCheckTcp  LoadbalancerBackendBetaHealthCheckTcpPtrInput
-	// Timeout before we consider a HC request failed
+	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckTcp LoadbalancerBackendBetaHealthCheckTcpPtrInput
+	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
-	// The load-balancer ID
+	// The load-balancer ID this backend is attached to.
+	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringPtrInput
-	// The name of the backend
+	// The name of the load-balancer backend.
 	Name pulumi.StringPtrInput
-	// Modify what occurs when a backend server is marked down
+	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrInput
-	// Enables PROXY protocol version 2
+	// Enables PROXY protocol version 2.
 	SendProxyV2 pulumi.BoolPtrInput
-	// Backend server IP addresses list (IPv4 or IPv6)
+	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayInput
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrInput
-	// Cookie name for for sticky sessions
+	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName pulumi.StringPtrInput
-	// Maximum initial server connection establishment time
+	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
-	// Maximum server connection inactivity time
+	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrInput
-	// Maximum tunnel inactivity time
+	// Maximum tunnel inactivity time. (e.g.: `1s`)
 	TimeoutTunnel pulumi.StringPtrInput
 }
 
@@ -173,83 +185,91 @@ func (LoadbalancerBackendBetaState) ElementType() reflect.Type {
 }
 
 type loadbalancerBackendBetaArgs struct {
-	// User sessions will be forwarded to this port of backend servers
+	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort int `pulumi:"forwardPort"`
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
 	ForwardPortAlgorithm *string `pulumi:"forwardPortAlgorithm"`
-	// Backend protocol
+	// Backend protocol. Possible values are: `tcp` or `http`.
 	ForwardProtocol string `pulumi:"forwardProtocol"`
-	// Interval between two HC requests
-	HealthCheckDelay *string                                  `pulumi:"healthCheckDelay"`
-	HealthCheckHttp  *LoadbalancerBackendBetaHealthCheckHttp  `pulumi:"healthCheckHttp"`
+	// Interval between two HC requests.
+	HealthCheckDelay *string `pulumi:"healthCheckDelay"`
+	// This block enable HTTP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckHttp *LoadbalancerBackendBetaHealthCheckHttp `pulumi:"healthCheckHttp"`
+	// This block enable HTTPS health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckHttps *LoadbalancerBackendBetaHealthCheckHttps `pulumi:"healthCheckHttps"`
-	// Number of allowed failed HC requests before the backend server is marked down
+	// Number of allowed failed HC requests before the backend server is marked down.
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be send to. Default to `forward_port`
-	HealthCheckPort *int                                   `pulumi:"healthCheckPort"`
-	HealthCheckTcp  *LoadbalancerBackendBetaHealthCheckTcp `pulumi:"healthCheckTcp"`
-	// Timeout before we consider a HC request failed
+	// Port the HC requests will be send to.
+	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckTcp *LoadbalancerBackendBetaHealthCheckTcp `pulumi:"healthCheckTcp"`
+	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
-	// The load-balancer ID
+	// The load-balancer ID this backend is attached to.
+	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId string `pulumi:"lbId"`
-	// The name of the backend
+	// The name of the load-balancer backend.
 	Name *string `pulumi:"name"`
-	// Modify what occurs when a backend server is marked down
+	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction *string `pulumi:"onMarkedDownAction"`
-	// Enables PROXY protocol version 2
+	// Enables PROXY protocol version 2.
 	SendProxyV2 *bool `pulumi:"sendProxyV2"`
-	// Backend server IP addresses list (IPv4 or IPv6)
+	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps []string `pulumi:"serverIps"`
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions *string `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions
+	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
-	// Maximum initial server connection establishment time
+	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
-	// Maximum server connection inactivity time
+	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer *string `pulumi:"timeoutServer"`
-	// Maximum tunnel inactivity time
+	// Maximum tunnel inactivity time. (e.g.: `1s`)
 	TimeoutTunnel *string `pulumi:"timeoutTunnel"`
 }
 
 // The set of arguments for constructing a LoadbalancerBackendBeta resource.
 type LoadbalancerBackendBetaArgs struct {
-	// User sessions will be forwarded to this port of backend servers
+	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort pulumi.IntInput
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
 	ForwardPortAlgorithm pulumi.StringPtrInput
-	// Backend protocol
+	// Backend protocol. Possible values are: `tcp` or `http`.
 	ForwardProtocol pulumi.StringInput
-	// Interval between two HC requests
+	// Interval between two HC requests.
 	HealthCheckDelay pulumi.StringPtrInput
-	HealthCheckHttp  LoadbalancerBackendBetaHealthCheckHttpPtrInput
+	// This block enable HTTP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckHttp LoadbalancerBackendBetaHealthCheckHttpPtrInput
+	// This block enable HTTPS health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckHttps LoadbalancerBackendBetaHealthCheckHttpsPtrInput
-	// Number of allowed failed HC requests before the backend server is marked down
+	// Number of allowed failed HC requests before the backend server is marked down.
 	HealthCheckMaxRetries pulumi.IntPtrInput
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntPtrInput
-	HealthCheckTcp  LoadbalancerBackendBetaHealthCheckTcpPtrInput
-	// Timeout before we consider a HC request failed
+	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
+	HealthCheckTcp LoadbalancerBackendBetaHealthCheckTcpPtrInput
+	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
-	// The load-balancer ID
+	// The load-balancer ID this backend is attached to.
+	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringInput
-	// The name of the backend
+	// The name of the load-balancer backend.
 	Name pulumi.StringPtrInput
-	// Modify what occurs when a backend server is marked down
+	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrInput
-	// Enables PROXY protocol version 2
+	// Enables PROXY protocol version 2.
 	SendProxyV2 pulumi.BoolPtrInput
-	// Backend server IP addresses list (IPv4 or IPv6)
+	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayInput
-	// Load balancing algorithm
+	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrInput
-	// Cookie name for for sticky sessions
+	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName pulumi.StringPtrInput
-	// Maximum initial server connection establishment time
+	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
-	// Maximum server connection inactivity time
+	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrInput
-	// Maximum tunnel inactivity time
+	// Maximum tunnel inactivity time. (e.g.: `1s`)
 	TimeoutTunnel pulumi.StringPtrInput
 }
 

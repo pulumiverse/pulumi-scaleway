@@ -15,6 +15,26 @@ namespace Pulumi.Scaleway
         /// Gets information about an instance server.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myKey = Output.Create(Scaleway.GetInstanceServer.InvokeAsync(new Scaleway.GetInstanceServerArgs
+        ///         {
+        ///             ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceServerResult> InvokeAsync(GetInstanceServerArgs? args = null, InvokeOptions? options = null)
@@ -24,12 +44,21 @@ namespace Pulumi.Scaleway
 
     public sealed class GetInstanceServerArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The server id. Only one of `name` and `server_id` should be specified.
+        /// </summary>
         [Input("serverId")]
         public string? ServerId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the server exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -42,34 +71,93 @@ namespace Pulumi.Scaleway
     [OutputType]
     public sealed class GetInstanceServerResult
     {
+        /// <summary>
+        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        /// attached to the server.
+        /// </summary>
         public readonly ImmutableArray<string> AdditionalVolumeIds;
         public readonly string BootType;
+        /// <summary>
+        /// The cloud init script associated with this server.
+        /// </summary>
         public readonly string CloudInit;
         public readonly bool DisableDynamicIp;
         public readonly bool DisablePublicIp;
+        /// <summary>
+        /// True is dynamic IP in enable on the server.
+        /// </summary>
         public readonly bool EnableDynamicIp;
+        /// <summary>
+        /// Determines if IPv6 is enabled for the server.
+        /// </summary>
         public readonly bool EnableIpv6;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The UUID and the label of the base image used by the server.
+        /// </summary>
         public readonly string Image;
         public readonly string IpId;
+        /// <summary>
+        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// </summary>
         public readonly string Ipv6Address;
+        /// <summary>
+        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// </summary>
         public readonly string Ipv6Gateway;
+        /// <summary>
+        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// </summary>
         public readonly int Ipv6PrefixLength;
         public readonly string? Name;
+        /// <summary>
+        /// The ID of the organization the server is associated with.
+        /// </summary>
         public readonly string OrganizationId;
+        /// <summary>
+        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// </summary>
         public readonly string PlacementGroupId;
+        /// <summary>
+        /// True when the placement group policy is respected.
+        /// </summary>
         public readonly bool PlacementGroupPolicyRespected;
+        /// <summary>
+        /// The Scaleway internal IP address of the server.
+        /// </summary>
         public readonly string PrivateIp;
+        /// <summary>
+        /// The public IPv4 address of the server.
+        /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> RootVolumes;
+        /// <summary>
+        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// </summary>
         public readonly string SecurityGroupId;
         public readonly string? ServerId;
+        /// <summary>
+        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// </summary>
         public readonly string State;
+        /// <summary>
+        /// The tags associated with the server.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The commercial type of the server.
+        /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The user data associated with the server.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceServerUserDataResult> UserDatas;
         public readonly string? Zone;
 

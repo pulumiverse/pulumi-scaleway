@@ -13,7 +13,13 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class LoadbalancerCertificateBetaLetsencrypt
     {
+        /// <summary>
+        /// Main domain of the certificate.
+        /// </summary>
         public readonly string CommonName;
+        /// <summary>
+        /// Array of alternative domain names.
+        /// </summary>
         public readonly ImmutableArray<string> SubjectAlternativeNames;
 
         [OutputConstructor]

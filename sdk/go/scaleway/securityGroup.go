@@ -11,10 +11,37 @@ import (
 )
 
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-// Please use `.InstanceSecurityGroup` instead.
+// Please use `InstanceSecurityGroup` instead.
 //
 // Provides security groups. This allows security groups to be created, updated and deleted.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#security-groups).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewSecurityGroup(ctx, "test", &scaleway.SecurityGroupArgs{
+// 			Description:           pulumi.String("test"),
+// 			EnableDefaultSecurity: pulumi.Bool(true),
+// 			InboundDefaultPolicy:  pulumi.String("accept"),
+// 			OutboundDefaultPolicy: pulumi.String("drop"),
+// 			Stateful:              pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecurityGroup struct {
 	pulumi.CustomResourceState
 

@@ -11,23 +11,42 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// Manages user SSH keys to access servers provisioned on Scaleway.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var main = new Scaleway.AccountSshKey("main", new Scaleway.AccountSshKeyArgs
+    ///         {
+    ///             PublicKey = "&lt;YOUR-PUBLIC-SSH-KEY&gt;",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AccountSshKey : Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the SSH key
+        /// The name of the SSH key.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the IP is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The public SSH key
+        /// The public SSH key to be added.
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
@@ -79,19 +98,19 @@ namespace Pulumi.Scaleway
     public sealed class AccountSshKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the SSH key
+        /// The name of the SSH key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the IP is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The public SSH key
+        /// The public SSH key to be added.
         /// </summary>
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
@@ -104,19 +123,19 @@ namespace Pulumi.Scaleway
     public sealed class AccountSshKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the SSH key
+        /// The name of the SSH key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the IP is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The public SSH key
+        /// The public SSH key to be added.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }

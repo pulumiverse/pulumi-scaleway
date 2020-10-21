@@ -12,85 +12,85 @@ namespace Pulumi.Scaleway
     public partial class DatabaseInstanceBeta : Pulumi.CustomResource
     {
         /// <summary>
-        /// Certificate of the database instance
+        /// Certificate of the database instance.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// Disable automated backup for the database instance
+        /// Disable automated backup for the database instance.
         /// </summary>
         [Output("disableBackup")]
         public Output<bool?> DisableBackup { get; private set; } = null!;
 
         /// <summary>
-        /// Endpoint IP of the database instance
+        /// The IP of the Database Instance.
         /// </summary>
         [Output("endpointIp")]
         public Output<string> EndpointIp { get; private set; } = null!;
 
         /// <summary>
-        /// Endpoint port of the database instance
+        /// The port of the Database Instance.
         /// </summary>
         [Output("endpointPort")]
         public Output<int> EndpointPort { get; private set; } = null!;
 
         /// <summary>
-        /// Database's engine version id
+        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance
+        /// Enable or disable high availability for the database instance.
         /// </summary>
         [Output("isHaCluster")]
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the database instance
+        /// The name of the Database Instance.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of database instance you want to create
+        /// The type of database instance you want to create (e.g. `db-dev-s`).
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the Database Instance is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the database instance
+        /// Password for the first user of the database instance.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Read replicas of the database instance
+        /// List of read replicas of the database instance.
         /// </summary>
         [Output("readReplicas")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceBetaReadReplica>> ReadReplicas { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a database instance
+        /// The tags associated with the Database Instance.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Identifier for the first user of the database instance
+        /// Identifier for the first user of the database instance.
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
@@ -142,49 +142,49 @@ namespace Pulumi.Scaleway
     public sealed class DatabaseInstanceBetaArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Disable automated backup for the database instance
+        /// Disable automated backup for the database instance.
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// Database's engine version id
+        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance
+        /// Enable or disable high availability for the database instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
         /// <summary>
-        /// Name of the database instance
+        /// The name of the Database Instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create
+        /// The type of database instance you want to create (e.g. `db-dev-s`).
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the Database Instance is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Password for the first user of the database instance
+        /// Password for the first user of the database instance.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -193,7 +193,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a database instance
+        /// The tags associated with the Database Instance.
         /// </summary>
         public InputList<string> Tags
         {
@@ -202,7 +202,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// Identifier for the first user of the database instance
+        /// Identifier for the first user of the database instance.
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
@@ -215,61 +215,61 @@ namespace Pulumi.Scaleway
     public sealed class DatabaseInstanceBetaState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Certificate of the database instance
+        /// Certificate of the database instance.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance
+        /// Disable automated backup for the database instance.
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// Endpoint IP of the database instance
+        /// The IP of the Database Instance.
         /// </summary>
         [Input("endpointIp")]
         public Input<string>? EndpointIp { get; set; }
 
         /// <summary>
-        /// Endpoint port of the database instance
+        /// The port of the Database Instance.
         /// </summary>
         [Input("endpointPort")]
         public Input<int>? EndpointPort { get; set; }
 
         /// <summary>
-        /// Database's engine version id
+        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
 
         /// <summary>
-        /// Enable or disable high availability for the database instance
+        /// Enable or disable high availability for the database instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
         /// <summary>
-        /// Name of the database instance
+        /// The name of the Database Instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create
+        /// The type of database instance you want to create (e.g. `db-dev-s`).
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the Database Instance is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Password for the first user of the database instance
+        /// Password for the first user of the database instance.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -278,7 +278,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DatabaseInstanceBetaReadReplicaGetArgs>? _readReplicas;
 
         /// <summary>
-        /// Read replicas of the database instance
+        /// List of read replicas of the database instance.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceBetaReadReplicaGetArgs> ReadReplicas
         {
@@ -287,7 +287,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -296,7 +296,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a database instance
+        /// The tags associated with the Database Instance.
         /// </summary>
         public InputList<string> Tags
         {
@@ -305,7 +305,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// Identifier for the first user of the database instance
+        /// Identifier for the first user of the database instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }

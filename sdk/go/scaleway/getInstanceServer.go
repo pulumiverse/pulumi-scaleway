@@ -8,6 +8,30 @@ import (
 )
 
 // Gets information about an instance server.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "11111111-1111-1111-1111-111111111111"
+// 		_, err := scaleway.LookupInstanceServer(ctx, &scaleway.LookupInstanceServerArgs{
+// 			ServerId: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, opts ...pulumi.InvokeOption) (*LookupInstanceServerResult, error) {
 	var rv LookupInstanceServerResult
 	err := ctx.Invoke("scaleway:index/getInstanceServer:getInstanceServer", args, &rv, opts...)
@@ -19,39 +43,63 @@ func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, o
 
 // A collection of arguments for invoking getInstanceServer.
 type LookupInstanceServerArgs struct {
-	Name     *string `pulumi:"name"`
+	// The server name. Only one of `name` and `serverId` should be specified.
+	Name *string `pulumi:"name"`
+	// The server id. Only one of `name` and `serverId` should be specified.
 	ServerId *string `pulumi:"serverId"`
-	Zone     *string `pulumi:"zone"`
+	// `zone`) The zone in which the server exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getInstanceServer.
 type LookupInstanceServerResult struct {
+	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+	// attached to the server.
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	BootType            string   `pulumi:"bootType"`
-	CloudInit           string   `pulumi:"cloudInit"`
-	DisableDynamicIp    bool     `pulumi:"disableDynamicIp"`
-	DisablePublicIp     bool     `pulumi:"disablePublicIp"`
-	EnableDynamicIp     bool     `pulumi:"enableDynamicIp"`
-	EnableIpv6          bool     `pulumi:"enableIpv6"`
-	// id is the provider-assigned unique ID for this managed resource.
-	Id                            string                        `pulumi:"id"`
-	Image                         string                        `pulumi:"image"`
-	IpId                          string                        `pulumi:"ipId"`
-	Ipv6Address                   string                        `pulumi:"ipv6Address"`
-	Ipv6Gateway                   string                        `pulumi:"ipv6Gateway"`
-	Ipv6PrefixLength              int                           `pulumi:"ipv6PrefixLength"`
-	Name                          *string                       `pulumi:"name"`
-	OrganizationId                string                        `pulumi:"organizationId"`
-	PlacementGroupId              string                        `pulumi:"placementGroupId"`
-	PlacementGroupPolicyRespected bool                          `pulumi:"placementGroupPolicyRespected"`
-	PrivateIp                     string                        `pulumi:"privateIp"`
-	PublicIp                      string                        `pulumi:"publicIp"`
-	RootVolumes                   []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
-	SecurityGroupId               string                        `pulumi:"securityGroupId"`
-	ServerId                      *string                       `pulumi:"serverId"`
-	State                         string                        `pulumi:"state"`
-	Tags                          []string                      `pulumi:"tags"`
-	Type                          string                        `pulumi:"type"`
-	UserDatas                     []GetInstanceServerUserData   `pulumi:"userDatas"`
-	Zone                          *string                       `pulumi:"zone"`
+	// The cloud init script associated with this server.
+	CloudInit        string `pulumi:"cloudInit"`
+	DisableDynamicIp bool   `pulumi:"disableDynamicIp"`
+	DisablePublicIp  bool   `pulumi:"disablePublicIp"`
+	// True is dynamic IP in enable on the server.
+	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
+	// Determines if IPv6 is enabled for the server.
+	EnableIpv6 bool `pulumi:"enableIpv6"`
+	// The provider-assigned unique ID for this managed resource.
+	Id string `pulumi:"id"`
+	// The UUID and the label of the base image used by the server.
+	Image string `pulumi:"image"`
+	IpId  string `pulumi:"ipId"`
+	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+	Ipv6Address string `pulumi:"ipv6Address"`
+	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+	Ipv6Gateway string `pulumi:"ipv6Gateway"`
+	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+	Ipv6PrefixLength int     `pulumi:"ipv6PrefixLength"`
+	Name             *string `pulumi:"name"`
+	// The ID of the organization the server is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+	PlacementGroupId string `pulumi:"placementGroupId"`
+	// True when the placement group policy is respected.
+	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
+	// The Scaleway internal IP address of the server.
+	PrivateIp string `pulumi:"privateIp"`
+	// The public IPv4 address of the server.
+	PublicIp string `pulumi:"publicIp"`
+	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+	RootVolumes []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
+	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+	SecurityGroupId string  `pulumi:"securityGroupId"`
+	ServerId        *string `pulumi:"serverId"`
+	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+	State string `pulumi:"state"`
+	// The tags associated with the server.
+	Tags []string `pulumi:"tags"`
+	// The commercial type of the server.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+	Type string `pulumi:"type"`
+	// The user data associated with the server.
+	UserDatas []GetInstanceServerUserData `pulumi:"userDatas"`
+	Zone      *string                     `pulumi:"zone"`
 }

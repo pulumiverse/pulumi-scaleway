@@ -13,8 +13,18 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class KubernetesClusterBetaAutoUpgrade
     {
+        /// <summary>
+        /// Set to `true` to enable Kubernetes patch version auto upgrades.
+        /// &gt; **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+        /// </summary>
         public readonly bool Enable;
+        /// <summary>
+        /// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        /// </summary>
         public readonly string MaintenanceWindowDay;
+        /// <summary>
+        /// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+        /// </summary>
         public readonly int MaintenanceWindowStartHour;
 
         [OutputConstructor]

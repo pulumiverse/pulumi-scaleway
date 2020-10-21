@@ -15,10 +15,33 @@ import (
 //
 // Manages user SSH Keys to access servers provisioned on scaleway.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#users-user-get).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewSshKey(ctx, "test", &scaleway.SshKeyArgs{
+// 			Key: pulumi.String("ssh-rsa <some-key>"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SshKey struct {
 	pulumi.CustomResourceState
 
-	// The ssh key
+	// public key of the SSH key to be added
 	Key pulumi.StringOutput `pulumi:"key"`
 }
 
@@ -53,12 +76,12 @@ func GetSshKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SshKey resources.
 type sshKeyState struct {
-	// The ssh key
+	// public key of the SSH key to be added
 	Key *string `pulumi:"key"`
 }
 
 type SshKeyState struct {
-	// The ssh key
+	// public key of the SSH key to be added
 	Key pulumi.StringPtrInput
 }
 
@@ -67,13 +90,13 @@ func (SshKeyState) ElementType() reflect.Type {
 }
 
 type sshKeyArgs struct {
-	// The ssh key
+	// public key of the SSH key to be added
 	Key string `pulumi:"key"`
 }
 
 // The set of arguments for constructing a SshKey resource.
 type SshKeyArgs struct {
-	// The ssh key
+	// public key of the SSH key to be added
 	Key pulumi.StringInput
 }
 

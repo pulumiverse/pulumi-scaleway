@@ -10,16 +10,37 @@ import (
 )
 
 // Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewInstanceIP(ctx, "serverIp", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type InstanceIP struct {
 	pulumi.CustomResourceState
 
-	// The IP address
+	// The IP address.
 	Address pulumi.StringOutput `pulumi:"address"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The reverse DNS for this IP
+	// The reverse dns attached to this IP
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -51,24 +72,24 @@ func GetInstanceIP(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceIP resources.
 type instanceIPState struct {
-	// The IP address
+	// The IP address.
 	Address *string `pulumi:"address"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The reverse DNS for this IP
+	// The reverse dns attached to this IP
 	Reverse *string `pulumi:"reverse"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceIPState struct {
-	// The IP address
+	// The IP address.
 	Address pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The reverse DNS for this IP
+	// The reverse dns attached to this IP
 	Reverse pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
 
@@ -77,17 +98,17 @@ func (InstanceIPState) ElementType() reflect.Type {
 }
 
 type instanceIPArgs struct {
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceIP resource.
 type InstanceIPArgs struct {
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the IP is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
 

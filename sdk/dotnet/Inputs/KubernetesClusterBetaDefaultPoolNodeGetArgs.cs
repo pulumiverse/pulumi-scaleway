@@ -12,6 +12,9 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class KubernetesClusterBetaDefaultPoolNodeGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name for the Kubernetes cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -21,6 +24,9 @@ namespace Pulumi.Scaleway.Inputs
         [Input("publicIpV6")]
         public Input<string>? PublicIpV6 { get; set; }
 
+        /// <summary>
+        /// The status of the Kubernetes cluster.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

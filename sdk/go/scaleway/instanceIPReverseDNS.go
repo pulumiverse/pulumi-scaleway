@@ -11,14 +11,42 @@ import (
 )
 
 // Manages Scaleway Compute Instance IPs Reverse DNS.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		serverIp, err := scaleway.NewInstanceIP(ctx, "serverIp", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewInstanceIPReverseDNS(ctx, "reverse", &scaleway.InstanceIPReverseDNSArgs{
+// 			IpId:    serverIp.ID(),
+// 			Reverse: pulumi.String("www.scaleway.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type InstanceIPReverseDNS struct {
 	pulumi.CustomResourceState
 
-	// The IP ID or IP address
+	// The IP ID
 	IpId pulumi.StringOutput `pulumi:"ipId"`
-	// The reverse DNS for this IP
+	// The reverse DNS for this IP.
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -56,20 +84,20 @@ func GetInstanceIPReverseDNS(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceIPReverseDNS resources.
 type instanceIPReverseDNSState struct {
-	// The IP ID or IP address
+	// The IP ID
 	IpId *string `pulumi:"ipId"`
-	// The reverse DNS for this IP
+	// The reverse DNS for this IP.
 	Reverse *string `pulumi:"reverse"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceIPReverseDNSState struct {
-	// The IP ID or IP address
+	// The IP ID
 	IpId pulumi.StringPtrInput
-	// The reverse DNS for this IP
+	// The reverse DNS for this IP.
 	Reverse pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
 
@@ -78,21 +106,21 @@ func (InstanceIPReverseDNSState) ElementType() reflect.Type {
 }
 
 type instanceIPReverseDNSArgs struct {
-	// The IP ID or IP address
+	// The IP ID
 	IpId string `pulumi:"ipId"`
-	// The reverse DNS for this IP
+	// The reverse DNS for this IP.
 	Reverse string `pulumi:"reverse"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceIPReverseDNS resource.
 type InstanceIPReverseDNSArgs struct {
-	// The IP ID or IP address
+	// The IP ID
 	IpId pulumi.StringInput
-	// The reverse DNS for this IP
+	// The reverse DNS for this IP.
 	Reverse pulumi.StringInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
 
