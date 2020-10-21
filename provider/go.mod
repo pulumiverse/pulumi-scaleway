@@ -8,6 +8,6 @@ require (
     github.com/hashicorp/terraform-plugin-sdk v1.14.0 
     github.com/pulumi/pulumi-terraform-bridge/v2 v2.11.0
     github.com/pulumi/pulumi/pkg/v2 v2.12.0
-	github.com/pulumi/pulumi/sdk/v2 v2.12.0
-	github.com/terraform-providers/terraform-provider-scaleway v1.16.0
+    github.com/pulumi/pulumi/sdk/v2 v2.12.0
+    github.com/terraform-providers/terraform-provider-scaleway v1.16.0
 )
