@@ -154,10 +154,10 @@ func Provider() tfbridge.ProviderInfo {
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"scaleway_account_ssh_key":               {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
-			"scaleway_baremetal_server_beta":         {Tok: scalewayResource(scalewayMod, "BaremetalServerBeta")},
-			"scaleway_bucket":                        {Tok: scalewayResource(scalewayMod, "Bucket")},
+			"scaleway_baremetal_server":              {Tok: scalewayResource(scalewayMod, "BaremetalServer")},
 			"scaleway_instance_ip":                   {Tok: scalewayResource(scalewayMod, "InstanceIP")},
 			"scaleway_instance_ip_reverse_dns":       {Tok: scalewayResource(scalewayMod, "InstanceIPReverseDNS")},
+			"scaleway_instance_placement_group":      {Tok: scalewayResource(scalewayMod, "InstancePlacementGroup")},
 			"scaleway_instance_security_group":       {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroup")},
 			"scaleway_instance_security_group_rules": {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroupRules")},
 			"scaleway_instance_server":               {Tok: scalewayResource(scalewayMod, "InstanceServer")},
@@ -170,8 +170,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_lb_beta":                       {Tok: scalewayResource(scalewayMod, "LoadbalancerBeta")},
 			"scaleway_lb_certificate_beta":           {Tok: scalewayResource(scalewayMod, "LoadbalancerCertificateBeta")},
 			"scaleway_lb_frontend_beta":              {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontendBeta")},
+			"scaleway_lb_ip_beta":                    {Tok: scalewayResource(scalewayMod, "LoadbalancerIPBeta")},
 			"scaleway_object_bucket":                 {Tok: scalewayResource(scalewayMod, "ObjectBucket")},
-			"scaleway_instance_placement_group":      {Tok: scalewayResource(scalewayMod, "InstancePlacementGroup")},
 			"scaleway_rdb_instance_beta":             {Tok: scalewayResource(scalewayMod, "DatabaseInstanceBeta")},
 			"scaleway_registry_namespace_beta":       {Tok: scalewayResource(scalewayMod, "RegistryNamespaceBeta")},
 			"scaleway_security_group":                {Tok: scalewayResource(scalewayMod, "SecurityGroup")},
@@ -185,8 +185,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
-			"scaleway_baremetal_offer_beta": {
-				Tok: scalewayDataSource(scalewayMod, "getBaremetalOfferBeta"),
+			"scaleway_baremetal_offer": {
+				Tok: scalewayDataSource(scalewayMod, "getBaremetalOffer"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"cpu": {
 						MaxItemsOne: boolRef(true),
@@ -199,6 +199,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_instance_security_group": {Tok: scalewayDataSource(scalewayMod, "getInstanceSecurityGroup")},
 			"scaleway_instance_server":         {Tok: scalewayDataSource(scalewayMod, "getInstanceServer")},
 			"scaleway_instance_volume":         {Tok: scalewayDataSource(scalewayMod, "getInstanceVolume")},
+			"scaleway_lb_ip_beta":              {Tok: scalewayDataSource(scalewayMod, "getLoadbalancerIPBeta")},
 			"scaleway_marketplace_image_beta":  {Tok: scalewayDataSource(scalewayMod, "getMarketplaceImageBeta")},
 			"scaleway_registry_image_beta":     {Tok: scalewayDataSource(scalewayMod, "getRegistryImageBeta")},
 			"scaleway_registry_namespace_beta": {Tok: scalewayDataSource(scalewayMod, "getRegistryNamespaceBeta")},
