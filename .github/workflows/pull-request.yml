@@ -137,7 +137,7 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@b811287a6e06bb7e5d8b91132b839c67e3f9c6ed
     - name: Run golangci
-      run: cd sdk/go/kong && golangci-lint run -c ../../../.golangci.yml
+      run: cd sdk/go/scaleway && golangci-lint run -c ../../../.golangci.yml
   prerequisites:
     name: prerequisites
     runs-on: ubuntu-latest
