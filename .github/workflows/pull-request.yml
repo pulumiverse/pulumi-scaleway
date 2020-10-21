@@ -82,7 +82,7 @@ jobs:
         - dotnet
         - go
         nodeversion:
-        - 13.x
+        - 14.x
         pythonversion:
         - "3.7"
   lint:
