@@ -9,7 +9,7 @@ env:
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-  PYPI_USERNAME: jaxxstorm
+  PYPI_USERNAME: __token__
   TRAVIS_OS_NAME: linux
 jobs:
   build_sdk:
