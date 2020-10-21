@@ -1,3 +1,0 @@
-b0fd174991bbc30ab689cb8989d76f316f5afa6fa89b42ddbe5d83fd7dcb63ef  pulumi-resource-scaleway-v0.0.0-darwin-amd64.tar.gz
-a2a659a23dab52a3b91e72d6f7aa66c295a5412e02e3393bc3645ce0908aa1ea  pulumi-resource-scaleway-v0.0.0-linux-amd64.tar.gz
-d27c7966397aec236e9637b07f6efda34ab4bf03297ad500a14c8400c942049a  pulumi-resource-scaleway-v0.0.0-windows-amd64.tar.gz

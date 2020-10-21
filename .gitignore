@@ -19,3 +19,5 @@ yarn.lock
 **/nuget
 
 **/node_modules
+
+dist/**
