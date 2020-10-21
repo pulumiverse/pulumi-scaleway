@@ -4,11 +4,12 @@ archives:
 before:
   hooks:
   - make tfgen
-#uploads:
-#- name: bintray
-#  target: https://api.bintray.com/content/jaxxstorm/pulumi/pulumi-scaleway/{{ .Tag }}/
-#  username: jaxxstorm
-#  mode: archive
+uploads:
+- name: bintray
+  target: https://api.bintray.com/content/jaxxstorm/pulumi/pulumi-scaleway/{{ .Tag }}
+  username: jaxxstorm
+  mode: archive
+  method: PUT
 builds:
 - binary: pulumi-resource-scaleway
   dir: provider

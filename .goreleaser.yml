@@ -9,6 +9,7 @@ uploads:
   target: https://api.bintray.com/content/jaxxstorm/pulumi/pulumi-scaleway/{{ .Version }}/
   username: jaxxstorm
   mode: archive
+  method: PUT
 builds:
 - binary: pulumi-resource-scaleway
   dir: provider

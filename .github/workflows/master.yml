@@ -1,14 +1,14 @@
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GO111MODULE: "on"
-  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   PROVIDER: scaleway
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
-  PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   TRAVIS_OS_NAME: linux
 jobs:
   build_sdk:
@@ -265,7 +265,7 @@ jobs:
     - name: Unzip DotNet SDK
       run: tar -zxf ${{ github.workspace}}/sdk/dotnet.tar.gz -C ${{ github.workspace}}/sdk/dotnet
     - env:
-        NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       name: Publish SDKs
       run: ./ci-scripts/ci/publish-tfgen-package ${{ github.workspace }}
   test:
