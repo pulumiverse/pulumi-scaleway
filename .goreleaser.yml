@@ -8,6 +8,7 @@ uploads:
 - name: bintray
   target: https://api.bintray.com/content/jaxxstorm/pulumi/pulumi-scaleway/{{ .Version }}/
   username: jaxxstorm
+  mode: archive
 builds:
 - binary: pulumi-resource-scaleway
   dir: provider

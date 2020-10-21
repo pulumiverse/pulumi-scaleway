@@ -235,6 +235,7 @@ jobs:
       with:
         always-auth: true
         registry-url: https://registry.npmjs.org
+    - run: npm whoami
     - name: Setup DotNet
       uses: actions/setup-dotnet@v1
     - name: Setup Python
