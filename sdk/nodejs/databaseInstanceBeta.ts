@@ -14,6 +14,7 @@ export class DatabaseInstanceBeta extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseInstanceBetaState, opts?: pulumi.CustomResourceOptions): DatabaseInstanceBeta {
         return new DatabaseInstanceBeta(name, <any>state, { ...opts, id: id });
@@ -34,59 +35,59 @@ export class DatabaseInstanceBeta extends pulumi.CustomResource {
     }
 
     /**
-     * Certificate of the database instance
+     * Certificate of the database instance.
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
     /**
-     * Disable automated backup for the database instance
+     * Disable automated backup for the database instance.
      */
     public readonly disableBackup!: pulumi.Output<boolean | undefined>;
     /**
-     * Endpoint IP of the database instance
+     * The IP of the Database Instance.
      */
     public /*out*/ readonly endpointIp!: pulumi.Output<string>;
     /**
-     * Endpoint port of the database instance
+     * The port of the Database Instance.
      */
     public /*out*/ readonly endpointPort!: pulumi.Output<number>;
     /**
-     * Database's engine version id
+     * Database Instance's engine version (e.g. `PostgreSQL-11`).
      */
     public readonly engine!: pulumi.Output<string>;
     /**
-     * Enable or disable high availability for the database instance
+     * Enable or disable high availability for the database instance.
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
-     * Name of the database instance
+     * The name of the Database Instance.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The type of database instance you want to create
+     * The type of database instance you want to create (e.g. `db-dev-s`).
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the Database Instance is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * Password for the first user of the database instance
+     * Password for the first user of the database instance.
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * Read replicas of the database instance
+     * List of read replicas of the database instance.
      */
     public /*out*/ readonly readReplicas!: pulumi.Output<outputs.DatabaseInstanceBetaReadReplica[]>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a database instance
+     * The tags associated with the Database Instance.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * Identifier for the first user of the database instance
+     * Identifier for the first user of the database instance.
      */
     public readonly userName!: pulumi.Output<string>;
 
@@ -161,59 +162,59 @@ export class DatabaseInstanceBeta extends pulumi.CustomResource {
  */
 export interface DatabaseInstanceBetaState {
     /**
-     * Certificate of the database instance
+     * Certificate of the database instance.
      */
     readonly certificate?: pulumi.Input<string>;
     /**
-     * Disable automated backup for the database instance
+     * Disable automated backup for the database instance.
      */
     readonly disableBackup?: pulumi.Input<boolean>;
     /**
-     * Endpoint IP of the database instance
+     * The IP of the Database Instance.
      */
     readonly endpointIp?: pulumi.Input<string>;
     /**
-     * Endpoint port of the database instance
+     * The port of the Database Instance.
      */
     readonly endpointPort?: pulumi.Input<number>;
     /**
-     * Database's engine version id
+     * Database Instance's engine version (e.g. `PostgreSQL-11`).
      */
     readonly engine?: pulumi.Input<string>;
     /**
-     * Enable or disable high availability for the database instance
+     * Enable or disable high availability for the database instance.
      */
     readonly isHaCluster?: pulumi.Input<boolean>;
     /**
-     * Name of the database instance
+     * The name of the Database Instance.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The type of database instance you want to create
+     * The type of database instance you want to create (e.g. `db-dev-s`).
      */
     readonly nodeType?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the Database Instance is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * Password for the first user of the database instance
+     * Password for the first user of the database instance.
      */
     readonly password?: pulumi.Input<string>;
     /**
-     * Read replicas of the database instance
+     * List of read replicas of the database instance.
      */
     readonly readReplicas?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceBetaReadReplica>[]>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a database instance
+     * The tags associated with the Database Instance.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Identifier for the first user of the database instance
+     * Identifier for the first user of the database instance.
      */
     readonly userName?: pulumi.Input<string>;
 }
@@ -223,43 +224,43 @@ export interface DatabaseInstanceBetaState {
  */
 export interface DatabaseInstanceBetaArgs {
     /**
-     * Disable automated backup for the database instance
+     * Disable automated backup for the database instance.
      */
     readonly disableBackup?: pulumi.Input<boolean>;
     /**
-     * Database's engine version id
+     * Database Instance's engine version (e.g. `PostgreSQL-11`).
      */
     readonly engine: pulumi.Input<string>;
     /**
-     * Enable or disable high availability for the database instance
+     * Enable or disable high availability for the database instance.
      */
     readonly isHaCluster?: pulumi.Input<boolean>;
     /**
-     * Name of the database instance
+     * The name of the Database Instance.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The type of database instance you want to create
+     * The type of database instance you want to create (e.g. `db-dev-s`).
      */
     readonly nodeType: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the Database Instance is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * Password for the first user of the database instance
+     * Password for the first user of the database instance.
      */
     readonly password: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a database instance
+     * The tags associated with the Database Instance.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Identifier for the first user of the database instance
+     * Identifier for the first user of the database instance.
      */
     readonly userName: pulumi.Input<string>;
 }

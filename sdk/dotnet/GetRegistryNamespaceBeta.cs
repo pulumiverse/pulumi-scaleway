@@ -15,6 +15,26 @@ namespace Pulumi.Scaleway
         /// Gets information about a registry namespace.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myNamespace = Output.Create(Scaleway.GetRegistryNamespaceBeta.InvokeAsync(new Scaleway.GetRegistryNamespaceBetaArgs
+        ///         {
+        ///             NamespaceId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRegistryNamespaceBetaResult> InvokeAsync(GetRegistryNamespaceBetaArgs? args = null, InvokeOptions? options = null)
@@ -24,12 +44,23 @@ namespace Pulumi.Scaleway
 
     public sealed class GetRegistryNamespaceBetaArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The namespace name.
+        /// Only one of `name` and `namespace_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The namespace id.
+        /// Only one of `name` and `namespace_id` should be specified.
+        /// </summary>
         [Input("namespaceId")]
         public string? NamespaceId { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the namespace exists.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -43,11 +74,17 @@ namespace Pulumi.Scaleway
     public sealed class GetRegistryNamespaceBetaResult
     {
         public readonly string Description;
+        /// <summary>
+        /// The endpoint of the Registry Namespace.
+        /// </summary>
         public readonly string Endpoint;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The Namespace Privacy Policy: whether or not the images are public.
+        /// </summary>
         public readonly bool IsPublic;
         public readonly string? Name;
         public readonly string? NamespaceId;

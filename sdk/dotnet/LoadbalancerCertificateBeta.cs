@@ -12,13 +12,13 @@ namespace Pulumi.Scaleway
     public partial class LoadbalancerCertificateBeta : Pulumi.CustomResource
     {
         /// <summary>
-        /// The main domain name of the certificate
+        /// Main domain of the certificate.
         /// </summary>
         [Output("commonName")]
         public Output<string> CommonName { get; private set; } = null!;
 
         /// <summary>
-        /// The custom type certificate type configuration
+        /// Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
         /// </summary>
         [Output("customCertificate")]
         public Output<Outputs.LoadbalancerCertificateBetaCustomCertificate?> CustomCertificate { get; private set; } = null!;
@@ -30,19 +30,19 @@ namespace Pulumi.Scaleway
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this certificate is attached to.
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
-        /// The Let's Encrypt type certificate configuration
+        /// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
         /// </summary>
         [Output("letsencrypt")]
         public Output<Outputs.LoadbalancerCertificateBetaLetsencrypt?> Letsencrypt { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the load-balancer certificate
+        /// The name of the certificate backend.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -60,13 +60,13 @@ namespace Pulumi.Scaleway
         public Output<string> NotValidBefore { get; private set; } = null!;
 
         /// <summary>
-        /// The status of certificate
+        /// Certificate status
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The alternative domain names of the certificate
+        /// Array of alternative domain names.
         /// </summary>
         [Output("subjectAlternativeName")]
         public Output<string> SubjectAlternativeName { get; private set; } = null!;
@@ -118,25 +118,25 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerCertificateBetaArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The custom type certificate type configuration
+        /// Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
         /// </summary>
         [Input("customCertificate")]
         public Input<Inputs.LoadbalancerCertificateBetaCustomCertificateArgs>? CustomCertificate { get; set; }
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this certificate is attached to.
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
-        /// The Let's Encrypt type certificate configuration
+        /// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
         /// </summary>
         [Input("letsencrypt")]
         public Input<Inputs.LoadbalancerCertificateBetaLetsencryptArgs>? Letsencrypt { get; set; }
 
         /// <summary>
-        /// The name of the load-balancer certificate
+        /// The name of the certificate backend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -149,13 +149,13 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerCertificateBetaState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The main domain name of the certificate
+        /// Main domain of the certificate.
         /// </summary>
         [Input("commonName")]
         public Input<string>? CommonName { get; set; }
 
         /// <summary>
-        /// The custom type certificate type configuration
+        /// Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
         /// </summary>
         [Input("customCertificate")]
         public Input<Inputs.LoadbalancerCertificateBetaCustomCertificateGetArgs>? CustomCertificate { get; set; }
@@ -167,19 +167,19 @@ namespace Pulumi.Scaleway
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this certificate is attached to.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The Let's Encrypt type certificate configuration
+        /// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
         /// </summary>
         [Input("letsencrypt")]
         public Input<Inputs.LoadbalancerCertificateBetaLetsencryptGetArgs>? Letsencrypt { get; set; }
 
         /// <summary>
-        /// The name of the load-balancer certificate
+        /// The name of the certificate backend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -197,13 +197,13 @@ namespace Pulumi.Scaleway
         public Input<string>? NotValidBefore { get; set; }
 
         /// <summary>
-        /// The status of certificate
+        /// Certificate status
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The alternative domain names of the certificate
+        /// Array of alternative domain names.
         /// </summary>
         [Input("subjectAlternativeName")]
         public Input<string>? SubjectAlternativeName { get; set; }

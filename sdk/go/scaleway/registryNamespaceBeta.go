@@ -11,6 +11,32 @@ import (
 
 // Creates and manages Scaleway Container Registry. For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
 //
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewRegistryNamespaceBeta(ctx, "main", &scaleway.RegistryNamespaceBetaArgs{
+// 			Description: pulumi.String("Main container registry"),
+// 			IsPublic:    pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Attibutes Reference
 //
 // In addition to all arguments above, the following attibutes are exported:
@@ -20,17 +46,17 @@ import (
 type RegistryNamespaceBeta struct {
 	pulumi.CustomResourceState
 
-	// The description of the container registry namespace
+	// The description of the container registry namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The endpoint reachable by docker
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// Define the default visibity policy
+	// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic pulumi.BoolPtrOutput `pulumi:"isPublic"`
-	// The name of the container registry namespace
+	// The unique name of the container registry namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the registry is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the container registry namespace should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -62,32 +88,32 @@ func GetRegistryNamespaceBeta(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RegistryNamespaceBeta resources.
 type registryNamespaceBetaState struct {
-	// The description of the container registry namespace
+	// The description of the container registry namespace.
 	Description *string `pulumi:"description"`
 	// The endpoint reachable by docker
 	Endpoint *string `pulumi:"endpoint"`
-	// Define the default visibity policy
+	// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic *bool `pulumi:"isPublic"`
-	// The name of the container registry namespace
+	// The unique name of the container registry namespace.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the registry is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the container registry namespace should be created.
 	Region *string `pulumi:"region"`
 }
 
 type RegistryNamespaceBetaState struct {
-	// The description of the container registry namespace
+	// The description of the container registry namespace.
 	Description pulumi.StringPtrInput
 	// The endpoint reachable by docker
 	Endpoint pulumi.StringPtrInput
-	// Define the default visibity policy
+	// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic pulumi.BoolPtrInput
-	// The name of the container registry namespace
+	// The unique name of the container registry namespace.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the registry is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`). The region in which the container registry namespace should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -96,29 +122,29 @@ func (RegistryNamespaceBetaState) ElementType() reflect.Type {
 }
 
 type registryNamespaceBetaArgs struct {
-	// The description of the container registry namespace
+	// The description of the container registry namespace.
 	Description *string `pulumi:"description"`
-	// Define the default visibity policy
+	// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic *bool `pulumi:"isPublic"`
-	// The name of the container registry namespace
+	// The unique name of the container registry namespace.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the registry is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the container registry namespace should be created.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a RegistryNamespaceBeta resource.
 type RegistryNamespaceBetaArgs struct {
-	// The description of the container registry namespace
+	// The description of the container registry namespace.
 	Description pulumi.StringPtrInput
-	// Define the default visibity policy
+	// Whether or not the registry images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic pulumi.BoolPtrInput
-	// The name of the container registry namespace
+	// The unique name of the container registry namespace.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the registry is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`). The region in which the container registry namespace should be created.
 	Region pulumi.StringPtrInput
 }
 

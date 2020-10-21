@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,8 +9,6 @@ import * as utilities from "./utilities";
  * settings, however an explicit `Provider` instance may be created and passed during resource
  * construction to achieve fine-grained programmatic control over provider settings. See the
  * [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/index.html.markdown.
  */
 export class Provider extends pulumi.ProviderResource {
     /** @internal */
@@ -46,7 +42,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["region"] = (args ? args.region : undefined) || utilities.getEnv("SCW_DEFAULT_REGION");
             inputs["secretKey"] = (args ? args.secretKey : undefined) || utilities.getEnv("SCW_SECRET_KEY");
             inputs["token"] = args ? args.token : undefined;
-            inputs["zone"] = (args ? args.zone : undefined) || utilities.getEnv("SCW_ZONE");
+            inputs["zone"] = (args ? args.zone : undefined) || utilities.getEnv("SCW_DEFAULT_ZONE");
         }
         if (!opts) {
             opts = {}
@@ -67,6 +63,9 @@ export interface ProviderArgs {
      * The Scaleway access key.
      */
     readonly accessKey?: pulumi.Input<string>;
+    /**
+     * @deprecated Use `organization_id` instead.
+     */
     readonly organization?: pulumi.Input<string>;
     /**
      * The Scaleway organization ID.
@@ -80,6 +79,9 @@ export interface ProviderArgs {
      * The Scaleway secret Key.
      */
     readonly secretKey?: pulumi.Input<string>;
+    /**
+     * @deprecated Use `secret_key` instead.
+     */
     readonly token?: pulumi.Input<string>;
     /**
      * The Scaleway default zone to use for your resources.

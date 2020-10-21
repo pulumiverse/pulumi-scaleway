@@ -15,6 +15,40 @@ import (
 //
 // Provides security group rules. This allows security group rules to be created, updated and deleted.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#security-groups-manage-rules).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := scaleway.NewSecurityGroup(ctx, "test", &scaleway.SecurityGroupArgs{
+// 			Description: pulumi.String("test"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewSecurityGroupRule(ctx, "smtpDrop1", &scaleway.SecurityGroupRuleArgs{
+// 			SecurityGroup: test.ID(),
+// 			Action:        pulumi.String("accept"),
+// 			Direction:     pulumi.String("inbound"),
+// 			IpRange:       pulumi.String("0.0.0.0/0"),
+// 			Protocol:      pulumi.String("TCP"),
+// 			Port:          pulumi.Int(25),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecurityGroupRule struct {
 	pulumi.CustomResourceState
 

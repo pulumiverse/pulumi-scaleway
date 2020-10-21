@@ -11,16 +11,50 @@ import (
 )
 
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-// Please use `.InstanceVolume` instead.
+// Please use `InstanceVolume` instead.
 //
 // Provides volumes. This allows volumes to be created, updated and deleted.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#volumes).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testVolume, err := scaleway.NewVolume(ctx, "testVolume", &scaleway.VolumeArgs{
+// 			SizeInGb: pulumi.Int(20),
+// 			Type:     pulumi.String("l_ssd"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewServer(ctx, "testServer", &scaleway.ServerArgs{
+// 			Image: pulumi.String("aecaed73-51a5-4439-a127-6d8229847145"),
+// 			Type:  pulumi.String("C2S"),
+// 			Volumes: scaleway.ServerVolumeArray{
+// 				testVolume.ID(),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Volume struct {
 	pulumi.CustomResourceState
 
 	// name of volume
 	Name pulumi.StringOutput `pulumi:"name"`
-	// (Read Only) the `.Server` instance which has this volume mounted right now
+	// (Read Only) the `Server` instance which has this volume mounted right now
 	Server pulumi.StringOutput `pulumi:"server"`
 	// size of the volume in GB
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
@@ -64,7 +98,7 @@ func GetVolume(ctx *pulumi.Context,
 type volumeState struct {
 	// name of volume
 	Name *string `pulumi:"name"`
-	// (Read Only) the `.Server` instance which has this volume mounted right now
+	// (Read Only) the `Server` instance which has this volume mounted right now
 	Server *string `pulumi:"server"`
 	// size of the volume in GB
 	SizeInGb *int `pulumi:"sizeInGb"`
@@ -75,7 +109,7 @@ type volumeState struct {
 type VolumeState struct {
 	// name of volume
 	Name pulumi.StringPtrInput
-	// (Read Only) the `.Server` instance which has this volume mounted right now
+	// (Read Only) the `Server` instance which has this volume mounted right now
 	Server pulumi.StringPtrInput
 	// size of the volume in GB
 	SizeInGb pulumi.IntPtrInput

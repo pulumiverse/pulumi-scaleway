@@ -13,12 +13,38 @@ namespace Pulumi.Scaleway
     {
         /// <summary>
         /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-        /// Please use `scaleway..getInstanceImage` instead or `scaleway..getMarketplaceImageBeta` depending on your usage.
+        /// Please use `scaleway.getInstanceImage` instead or `scaleway.getMarketplaceImageBeta` depending on your usage.
         /// 
         /// Use this data source to get the ID of a registered Image for use with the
-        /// `scaleway..Server` resource.
+        /// `scaleway.Server` resource.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var ubuntu = Output.Create(Scaleway.GetImage.InvokeAsync(new Scaleway.GetImageArgs
+        ///         {
+        ///             Architecture = "arm",
+        ///             Name = "Ubuntu Precise",
+        ///         }));
+        ///         var @base = new Scaleway.Server("base", new Scaleway.ServerArgs
+        ///         {
+        ///             Image = ubuntu.Apply(ubuntu =&gt; ubuntu.Id),
+        ///             Type = "C1",
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetImageResult> InvokeAsync(GetImageArgs args, InvokeOptions? options = null)
@@ -70,7 +96,7 @@ namespace Pulumi.Scaleway
         /// </summary>
         public readonly string CreationDate;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly bool? MostRecent;

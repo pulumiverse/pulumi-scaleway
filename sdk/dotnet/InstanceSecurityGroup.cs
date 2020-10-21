@@ -9,58 +9,64 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Compute Instance security groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
-    /// </summary>
     public partial class InstanceSecurityGroup : Pulumi.CustomResource
     {
         /// <summary>
-        /// The description of the security group
+        /// The description of the security group.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// A boolean to specify whether to use instance_security_group_rules. If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// </summary>
         [Output("externalRules")]
         public Output<bool?> ExternalRules { get; private set; } = null!;
 
         /// <summary>
-        /// Default inbound traffic policy for this security group
+        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Output("inboundDefaultPolicy")]
         public Output<string?> InboundDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// Inbound rules for this security group
+        /// A list of inbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         [Output("inboundRules")]
         public Output<ImmutableArray<Outputs.InstanceSecurityGroupInboundRule>> InboundRules { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the security group
+        /// The name of the security group.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the project the security group is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Default outbound traffic policy for this security group
+        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Output("outboundDefaultPolicy")]
         public Output<string?> OutboundDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// Outbound rules for this security group
+        /// A list of outbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         [Output("outboundRules")]
         public Output<ImmutableArray<Outputs.InstanceSecurityGroupOutboundRule>> OutboundRules { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// A boolean to specify whether the security group should be stateful or not.
+        /// </summary>
+        [Output("stateful")]
+        public Output<bool?> Stateful { get; private set; } = null!;
+
+        /// <summary>
+        /// `zone`) The zone in which the security group should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -112,16 +118,19 @@ namespace Pulumi.Scaleway
     public sealed class InstanceSecurityGroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the security group
+        /// The description of the security group.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// A boolean to specify whether to use instance_security_group_rules. If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// </summary>
         [Input("externalRules")]
         public Input<bool>? ExternalRules { get; set; }
 
         /// <summary>
-        /// Default inbound traffic policy for this security group
+        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Input("inboundDefaultPolicy")]
         public Input<string>? InboundDefaultPolicy { get; set; }
@@ -130,7 +139,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupInboundRuleArgs>? _inboundRules;
 
         /// <summary>
-        /// Inbound rules for this security group
+        /// A list of inbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupInboundRuleArgs> InboundRules
         {
@@ -139,19 +148,19 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The name of the security group
+        /// The name of the security group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the project the security group is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Default outbound traffic policy for this security group
+        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Input("outboundDefaultPolicy")]
         public Input<string>? OutboundDefaultPolicy { get; set; }
@@ -160,7 +169,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupOutboundRuleArgs>? _outboundRules;
 
         /// <summary>
-        /// Outbound rules for this security group
+        /// A list of outbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupOutboundRuleArgs> OutboundRules
         {
@@ -169,7 +178,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// A boolean to specify whether the security group should be stateful or not.
+        /// </summary>
+        [Input("stateful")]
+        public Input<bool>? Stateful { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the security group should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -182,16 +197,19 @@ namespace Pulumi.Scaleway
     public sealed class InstanceSecurityGroupState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the security group
+        /// The description of the security group.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// A boolean to specify whether to use instance_security_group_rules. If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// </summary>
         [Input("externalRules")]
         public Input<bool>? ExternalRules { get; set; }
 
         /// <summary>
-        /// Default inbound traffic policy for this security group
+        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Input("inboundDefaultPolicy")]
         public Input<string>? InboundDefaultPolicy { get; set; }
@@ -200,7 +218,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupInboundRuleGetArgs>? _inboundRules;
 
         /// <summary>
-        /// Inbound rules for this security group
+        /// A list of inbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupInboundRuleGetArgs> InboundRules
         {
@@ -209,19 +227,19 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The name of the security group
+        /// The name of the security group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the project the security group is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Default outbound traffic policy for this security group
+        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Input("outboundDefaultPolicy")]
         public Input<string>? OutboundDefaultPolicy { get; set; }
@@ -230,7 +248,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupOutboundRuleGetArgs>? _outboundRules;
 
         /// <summary>
-        /// Outbound rules for this security group
+        /// A list of outbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupOutboundRuleGetArgs> OutboundRules
         {
@@ -239,7 +257,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// A boolean to specify whether the security group should be stateful or not.
+        /// </summary>
+        [Input("stateful")]
+        public Input<bool>? Stateful { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the security group should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

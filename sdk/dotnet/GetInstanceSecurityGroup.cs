@@ -15,6 +15,26 @@ namespace Pulumi.Scaleway
         /// Gets information about a Security Group.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myKey = Output.Create(Scaleway.GetInstanceSecurityGroup.InvokeAsync(new Scaleway.GetInstanceSecurityGroupArgs
+        ///         {
+        ///             SecurityGroupId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceSecurityGroupResult> InvokeAsync(GetInstanceSecurityGroupArgs? args = null, InvokeOptions? options = null)
@@ -24,12 +44,21 @@ namespace Pulumi.Scaleway
 
     public sealed class GetInstanceSecurityGroupArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The security group name. Only one of `name` and `security_group_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The security group id. Only one of `name` and `security_group_id` should be specified.
+        /// </summary>
         [Input("securityGroupId")]
         public string? SecurityGroupId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the security group exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -45,16 +74,32 @@ namespace Pulumi.Scaleway
         public readonly string Description;
         public readonly bool ExternalRules;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        /// </summary>
         public readonly string InboundDefaultPolicy;
+        /// <summary>
+        /// A list of inbound rule to add to the security group. (Structure is documented below.)
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceSecurityGroupInboundRuleResult> InboundRules;
         public readonly string? Name;
+        /// <summary>
+        /// The ID of the organization the security group is associated with.
+        /// </summary>
         public readonly string OrganizationId;
+        /// <summary>
+        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        /// </summary>
         public readonly string OutboundDefaultPolicy;
+        /// <summary>
+        /// A list of outbound rule to add to the security group. (Structure is documented below.)
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceSecurityGroupOutboundRuleResult> OutboundRules;
         public readonly string? SecurityGroupId;
+        public readonly bool Stateful;
         public readonly string? Zone;
 
         [OutputConstructor]
@@ -79,6 +124,8 @@ namespace Pulumi.Scaleway
 
             string? securityGroupId,
 
+            bool stateful,
+
             string? zone)
         {
             Description = description;
@@ -91,6 +138,7 @@ namespace Pulumi.Scaleway
             OutboundDefaultPolicy = outboundDefaultPolicy;
             OutboundRules = outboundRules;
             SecurityGroupId = securityGroupId;
+            Stateful = stateful;
             Zone = zone;
         }
     }

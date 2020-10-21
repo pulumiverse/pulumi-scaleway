@@ -11,10 +11,33 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-    /// Please use `scaleway..InstanceSecurityGroup` instead.
+    /// Please use `scaleway.InstanceSecurityGroup` instead.
     /// 
     /// Provides security groups. This allows security groups to be created, updated and deleted.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#security-groups).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Scaleway.SecurityGroup("test", new Scaleway.SecurityGroupArgs
+    ///         {
+    ///             Description = "test",
+    ///             EnableDefaultSecurity = true,
+    ///             InboundDefaultPolicy = "accept",
+    ///             OutboundDefaultPolicy = "drop",
+    ///             Stateful = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecurityGroup : Pulumi.CustomResource
     {

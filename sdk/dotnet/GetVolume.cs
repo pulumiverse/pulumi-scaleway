@@ -15,6 +15,35 @@ namespace Pulumi.Scaleway
         /// Gets information about a Volume.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var dataVolume = Output.Create(Scaleway.GetVolume.InvokeAsync(new Scaleway.GetVolumeArgs
+        ///         {
+        ///             Name = "data",
+        ///         }));
+        ///         var test = new Scaleway.Server("test", new Scaleway.ServerArgs
+        ///         {
+        ///         });
+        ///         // ...
+        ///         var dataVolumeAttachment = new Scaleway.VolumeAttachment("dataVolumeAttachment", new Scaleway.VolumeAttachmentArgs
+        ///         {
+        ///             Server = test.Id,
+        ///             Volume = scaleway_volume.Data.Id,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVolumeResult> InvokeAsync(GetVolumeArgs args, InvokeOptions? options = null)
@@ -40,7 +69,7 @@ namespace Pulumi.Scaleway
     public sealed class GetVolumeResult
     {
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string Name;

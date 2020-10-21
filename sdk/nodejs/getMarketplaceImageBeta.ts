@@ -8,21 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * Gets local image ID of an image from its label name.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * const myImage = scaleway.getMarketplaceImageBeta({
- *     label: "ubuntuBionic",
- * });
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/marketplace_image_beta.html.markdown.
+ * const myImage = pulumi.output(scaleway.getMarketplaceImageBeta({
+ *     label: "ubuntu_focal",
+ * }, { async: true }));
+ * ```
  */
 export function getMarketplaceImageBeta(args: GetMarketplaceImageBetaArgs, opts?: pulumi.InvokeOptions): Promise<GetMarketplaceImageBetaResult> {
     if (!opts) {
@@ -43,8 +39,19 @@ export function getMarketplaceImageBeta(args: GetMarketplaceImageBetaArgs, opts?
  * A collection of arguments for invoking getMarketplaceImageBeta.
  */
 export interface GetMarketplaceImageBetaArgs {
+    /**
+     * The instance type the image is compatible with.
+     * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+     */
     readonly instanceType?: string;
+    /**
+     * Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * to find the right `label`.
+     */
     readonly label: string;
+    /**
+     * `zone`) The zone in which the image exists.
+     */
     readonly zone?: string;
 }
 
@@ -52,11 +59,11 @@ export interface GetMarketplaceImageBetaArgs {
  * A collection of values returned by getMarketplaceImageBeta.
  */
 export interface GetMarketplaceImageBetaResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly instanceType?: string;
     readonly label: string;
     readonly zone: string;
-    /**
-     * id is the provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

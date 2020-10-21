@@ -12,12 +12,24 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class InstanceServerRootVolumeArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Forces deletion of the root volume on instance termination.
+        /// </summary>
         [Input("deleteOnTermination")]
         public Input<bool>? DeleteOnTermination { get; set; }
 
+        /// <summary>
+        /// Size of the root volume in gigabytes.
+        /// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+        /// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
+        /// Updates to this field will recreate a new resource.
+        /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
 
+        /// <summary>
+        /// The volume ID of the root volume of the server.
+        /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 

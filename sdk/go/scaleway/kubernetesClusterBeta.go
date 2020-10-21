@@ -10,58 +10,54 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
-//
-// ## nodes
-//
-// - `name` - The name of the node.
-// - `publicIp` - The public IPv4.
-// - `publicIpV6` - The public IPv6.
-// - `status` - The status of the node.
 type KubernetesClusterBeta struct {
 	pulumi.CustomResourceState
 
-	// The list of admission plugins to enable on the cluster
+	// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
 	AdmissionPlugins pulumi.StringArrayOutput `pulumi:"admissionPlugins"`
-	// Kubernetes API server URL
+	// The URL of the Kubernetes API server.
 	ApiserverUrl pulumi.StringOutput `pulumi:"apiserverUrl"`
-	// The auto upgrade configuration for the cluster
+	// The auto upgrade configuration.
 	AutoUpgrade KubernetesClusterBetaAutoUpgradeOutput `pulumi:"autoUpgrade"`
-	// The autoscaler configuration for the cluster
+	// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
 	AutoscalerConfig KubernetesClusterBetaAutoscalerConfigOutput `pulumi:"autoscalerConfig"`
-	// The CNI plugin of the cluster
+	// The Container Network Interface (CNI) for the Kubernetes cluster.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Cni pulumi.StringOutput `pulumi:"cni"`
-	// The date and time of the creation of the Kubernetes cluster
+	// The creation date of the cluster.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Default pool created for the cluster on creation
-	DefaultPool KubernetesClusterBetaDefaultPoolOutput `pulumi:"defaultPool"`
-	// The description of the cluster
+	// See below.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	DefaultPool KubernetesClusterBetaDefaultPoolPtrOutput `pulumi:"defaultPool"`
+	// A description for the Kubernetes cluster.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Enable the dashboard on the cluster
+	// Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
 	EnableDashboard pulumi.BoolPtrOutput `pulumi:"enableDashboard"`
-	// The list of feature gates to enable on the cluster
+	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
 	FeatureGates pulumi.StringArrayOutput `pulumi:"featureGates"`
-	// The ingress to be deployed on the cluster
+	// The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
 	Ingress pulumi.StringPtrOutput `pulumi:"ingress"`
 	// The kubeconfig configuration file of the Kubernetes cluster
 	Kubeconfig KubernetesClusterBetaKubeconfigOutput `pulumi:"kubeconfig"`
-	// The name of the cluster
+	// The name for the Kubernetes cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the cluster is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the cluster should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The status of the cluster
+	// The status of the Kubernetes cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The tags associated with the cluster
+	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The date and time of the last update of the Kubernetes cluster
+	// The last update date of the cluster.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// True if an upgrade is available
+	// Set to `true` if a newer Kubernetes version is available.
 	UpgradeAvailable pulumi.BoolOutput `pulumi:"upgradeAvailable"`
-	// The version of the cluster
+	// The version of the Kubernetes cluster.
 	Version pulumi.StringOutput `pulumi:"version"`
-	// Wildcard DNS pointing to all the ready nodes
+	// The DNS wildcard that points to all ready nodes.
+	// - `kubeconfig`
 	WildcardDns pulumi.StringOutput `pulumi:"wildcardDns"`
 }
 
@@ -70,9 +66,6 @@ func NewKubernetesClusterBeta(ctx *pulumi.Context,
 	name string, args *KubernetesClusterBetaArgs, opts ...pulumi.ResourceOption) (*KubernetesClusterBeta, error) {
 	if args == nil || args.Cni == nil {
 		return nil, errors.New("missing required argument 'Cni'")
-	}
-	if args == nil || args.DefaultPool == nil {
-		return nil, errors.New("missing required argument 'DefaultPool'")
 	}
 	if args == nil || args.Version == nil {
 		return nil, errors.New("missing required argument 'Version'")
@@ -102,92 +95,100 @@ func GetKubernetesClusterBeta(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesClusterBeta resources.
 type kubernetesClusterBetaState struct {
-	// The list of admission plugins to enable on the cluster
+	// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
 	AdmissionPlugins []string `pulumi:"admissionPlugins"`
-	// Kubernetes API server URL
+	// The URL of the Kubernetes API server.
 	ApiserverUrl *string `pulumi:"apiserverUrl"`
-	// The auto upgrade configuration for the cluster
+	// The auto upgrade configuration.
 	AutoUpgrade *KubernetesClusterBetaAutoUpgrade `pulumi:"autoUpgrade"`
-	// The autoscaler configuration for the cluster
+	// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
 	AutoscalerConfig *KubernetesClusterBetaAutoscalerConfig `pulumi:"autoscalerConfig"`
-	// The CNI plugin of the cluster
+	// The Container Network Interface (CNI) for the Kubernetes cluster.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Cni *string `pulumi:"cni"`
-	// The date and time of the creation of the Kubernetes cluster
+	// The creation date of the cluster.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Default pool created for the cluster on creation
+	// See below.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 	DefaultPool *KubernetesClusterBetaDefaultPool `pulumi:"defaultPool"`
-	// The description of the cluster
+	// A description for the Kubernetes cluster.
 	Description *string `pulumi:"description"`
-	// Enable the dashboard on the cluster
+	// Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
 	EnableDashboard *bool `pulumi:"enableDashboard"`
-	// The list of feature gates to enable on the cluster
+	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
 	FeatureGates []string `pulumi:"featureGates"`
-	// The ingress to be deployed on the cluster
+	// The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
 	Ingress *string `pulumi:"ingress"`
 	// The kubeconfig configuration file of the Kubernetes cluster
 	Kubeconfig *KubernetesClusterBetaKubeconfig `pulumi:"kubeconfig"`
-	// The name of the cluster
+	// The name for the Kubernetes cluster.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the cluster should be created.
 	Region *string `pulumi:"region"`
-	// The status of the cluster
+	// The status of the Kubernetes cluster.
 	Status *string `pulumi:"status"`
-	// The tags associated with the cluster
+	// The tags associated with the Kubernetes cluster.
 	Tags []string `pulumi:"tags"`
-	// The date and time of the last update of the Kubernetes cluster
+	// The last update date of the cluster.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// True if an upgrade is available
+	// Set to `true` if a newer Kubernetes version is available.
 	UpgradeAvailable *bool `pulumi:"upgradeAvailable"`
-	// The version of the cluster
+	// The version of the Kubernetes cluster.
 	Version *string `pulumi:"version"`
-	// Wildcard DNS pointing to all the ready nodes
+	// The DNS wildcard that points to all ready nodes.
+	// - `kubeconfig`
 	WildcardDns *string `pulumi:"wildcardDns"`
 }
 
 type KubernetesClusterBetaState struct {
-	// The list of admission plugins to enable on the cluster
+	// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
 	AdmissionPlugins pulumi.StringArrayInput
-	// Kubernetes API server URL
+	// The URL of the Kubernetes API server.
 	ApiserverUrl pulumi.StringPtrInput
-	// The auto upgrade configuration for the cluster
+	// The auto upgrade configuration.
 	AutoUpgrade KubernetesClusterBetaAutoUpgradePtrInput
-	// The autoscaler configuration for the cluster
+	// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
 	AutoscalerConfig KubernetesClusterBetaAutoscalerConfigPtrInput
-	// The CNI plugin of the cluster
+	// The Container Network Interface (CNI) for the Kubernetes cluster.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Cni pulumi.StringPtrInput
-	// The date and time of the creation of the Kubernetes cluster
+	// The creation date of the cluster.
 	CreatedAt pulumi.StringPtrInput
-	// Default pool created for the cluster on creation
+	// See below.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
 	DefaultPool KubernetesClusterBetaDefaultPoolPtrInput
-	// The description of the cluster
+	// A description for the Kubernetes cluster.
 	Description pulumi.StringPtrInput
-	// Enable the dashboard on the cluster
+	// Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
 	EnableDashboard pulumi.BoolPtrInput
-	// The list of feature gates to enable on the cluster
+	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
 	FeatureGates pulumi.StringArrayInput
-	// The ingress to be deployed on the cluster
+	// The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
 	Ingress pulumi.StringPtrInput
 	// The kubeconfig configuration file of the Kubernetes cluster
 	Kubeconfig KubernetesClusterBetaKubeconfigPtrInput
-	// The name of the cluster
+	// The name for the Kubernetes cluster.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the cluster should be created.
 	Region pulumi.StringPtrInput
-	// The status of the cluster
+	// The status of the Kubernetes cluster.
 	Status pulumi.StringPtrInput
-	// The tags associated with the cluster
+	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayInput
-	// The date and time of the last update of the Kubernetes cluster
+	// The last update date of the cluster.
 	UpdatedAt pulumi.StringPtrInput
-	// True if an upgrade is available
+	// Set to `true` if a newer Kubernetes version is available.
 	UpgradeAvailable pulumi.BoolPtrInput
-	// The version of the cluster
+	// The version of the Kubernetes cluster.
 	Version pulumi.StringPtrInput
-	// Wildcard DNS pointing to all the ready nodes
+	// The DNS wildcard that points to all ready nodes.
+	// - `kubeconfig`
 	WildcardDns pulumi.StringPtrInput
 }
 
@@ -196,65 +197,71 @@ func (KubernetesClusterBetaState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterBetaArgs struct {
-	// The list of admission plugins to enable on the cluster
+	// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
 	AdmissionPlugins []string `pulumi:"admissionPlugins"`
-	// The auto upgrade configuration for the cluster
+	// The auto upgrade configuration.
 	AutoUpgrade *KubernetesClusterBetaAutoUpgrade `pulumi:"autoUpgrade"`
-	// The autoscaler configuration for the cluster
+	// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
 	AutoscalerConfig *KubernetesClusterBetaAutoscalerConfig `pulumi:"autoscalerConfig"`
-	// The CNI plugin of the cluster
+	// The Container Network Interface (CNI) for the Kubernetes cluster.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Cni string `pulumi:"cni"`
-	// Default pool created for the cluster on creation
-	DefaultPool KubernetesClusterBetaDefaultPool `pulumi:"defaultPool"`
-	// The description of the cluster
+	// See below.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	DefaultPool *KubernetesClusterBetaDefaultPool `pulumi:"defaultPool"`
+	// A description for the Kubernetes cluster.
 	Description *string `pulumi:"description"`
-	// Enable the dashboard on the cluster
+	// Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
 	EnableDashboard *bool `pulumi:"enableDashboard"`
-	// The list of feature gates to enable on the cluster
+	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
 	FeatureGates []string `pulumi:"featureGates"`
-	// The ingress to be deployed on the cluster
+	// The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
 	Ingress *string `pulumi:"ingress"`
-	// The name of the cluster
+	// The name for the Kubernetes cluster.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the cluster should be created.
 	Region *string `pulumi:"region"`
-	// The tags associated with the cluster
+	// The tags associated with the Kubernetes cluster.
 	Tags []string `pulumi:"tags"`
-	// The version of the cluster
+	// The version of the Kubernetes cluster.
 	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a KubernetesClusterBeta resource.
 type KubernetesClusterBetaArgs struct {
-	// The list of admission plugins to enable on the cluster
+	// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
 	AdmissionPlugins pulumi.StringArrayInput
-	// The auto upgrade configuration for the cluster
+	// The auto upgrade configuration.
 	AutoUpgrade KubernetesClusterBetaAutoUpgradePtrInput
-	// The autoscaler configuration for the cluster
+	// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
 	AutoscalerConfig KubernetesClusterBetaAutoscalerConfigPtrInput
-	// The CNI plugin of the cluster
+	// The Container Network Interface (CNI) for the Kubernetes cluster.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Cni pulumi.StringInput
-	// Default pool created for the cluster on creation
-	DefaultPool KubernetesClusterBetaDefaultPoolInput
-	// The description of the cluster
+	// See below.
+	//
+	// Deprecated: This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.
+	DefaultPool KubernetesClusterBetaDefaultPoolPtrInput
+	// A description for the Kubernetes cluster.
 	Description pulumi.StringPtrInput
-	// Enable the dashboard on the cluster
+	// Enables the [Kubernetes dashboard](https://github.com/kubernetes/dashboard) for the Kubernetes cluster.
 	EnableDashboard pulumi.BoolPtrInput
-	// The list of feature gates to enable on the cluster
+	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
 	FeatureGates pulumi.StringArrayInput
-	// The ingress to be deployed on the cluster
+	// The [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to be deployed on the Kubernetes cluster.
 	Ingress pulumi.StringPtrInput
-	// The name of the cluster
+	// The name for the Kubernetes cluster.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the cluster should be created.
 	Region pulumi.StringPtrInput
-	// The tags associated with the cluster
+	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayInput
-	// The version of the cluster
+	// The version of the Kubernetes cluster.
 	Version pulumi.StringInput
 }
 

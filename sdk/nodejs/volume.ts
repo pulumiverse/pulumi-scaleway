@@ -2,19 +2,31 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
- * Please use `scaleway..InstanceVolume` instead.
- * 
+ * Please use `scaleway.InstanceVolume` instead.
+ *
  * Provides volumes. This allows volumes to be created, updated and deleted.
  * For additional details please refer to [API documentation](https://developer.scaleway.com/#volumes).
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/volume.html.markdown.
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const testVolume = new scaleway.Volume("testVolume", {
+ *     sizeInGb: 20,
+ *     type: "l_ssd",
+ * });
+ * const testServer = new scaleway.Server("testServer", {
+ *     image: "aecaed73-51a5-4439-a127-6d8229847145",
+ *     type: "C2S",
+ *     volumes: [testVolume.id],
+ * });
+ * ```
  */
 export class Volume extends pulumi.CustomResource {
     /**
@@ -24,6 +36,7 @@ export class Volume extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VolumeState, opts?: pulumi.CustomResourceOptions): Volume {
         return new Volume(name, <any>state, { ...opts, id: id });
@@ -48,7 +61,7 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * (Read Only) the `scaleway..Server` instance which has this volume mounted right now
+     * (Read Only) the `scaleway.Server` instance which has this volume mounted right now
      */
     public /*out*/ readonly server!: pulumi.Output<string>;
     /**
@@ -109,7 +122,7 @@ export interface VolumeState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * (Read Only) the `scaleway..Server` instance which has this volume mounted right now
+     * (Read Only) the `scaleway.Server` instance which has this volume mounted right now
      */
     readonly server?: pulumi.Input<string>;
     /**

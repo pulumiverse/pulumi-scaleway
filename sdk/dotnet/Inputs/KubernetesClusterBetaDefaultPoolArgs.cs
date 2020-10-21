@@ -21,6 +21,9 @@ namespace Pulumi.Scaleway.Inputs
         [Input("containerRuntime")]
         public Input<string>? ContainerRuntime { get; set; }
 
+        /// <summary>
+        /// The creation date of the cluster.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
@@ -50,17 +53,28 @@ namespace Pulumi.Scaleway.Inputs
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
+        /// <summary>
+        /// The status of the Kubernetes cluster.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the Kubernetes cluster.
+        /// </summary>
+        [Obsolete(@"This fields is deprecated and will be removed in the next major version, please use scaleway_k8s_pool_beta instead.")]
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// The last update date of the cluster.
+        /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 

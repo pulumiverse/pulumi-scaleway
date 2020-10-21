@@ -15,6 +15,26 @@ namespace Pulumi.Scaleway
         /// Gets information about an instance volume.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myVolume = Output.Create(Scaleway.GetInstanceVolume.InvokeAsync(new Scaleway.GetInstanceVolumeArgs
+        ///         {
+        ///             VolumeId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceVolumeResult> InvokeAsync(GetInstanceVolumeArgs? args = null, InvokeOptions? options = null)
@@ -24,12 +44,23 @@ namespace Pulumi.Scaleway
 
     public sealed class GetInstanceVolumeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The volume name.
+        /// Only one of `name` and `volume_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The volume id.
+        /// Only one of `name` and `volume_id` should be specified.
+        /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the volume exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -45,7 +76,7 @@ namespace Pulumi.Scaleway
         public readonly string FromSnapshotId;
         public readonly string FromVolumeId;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? Name;

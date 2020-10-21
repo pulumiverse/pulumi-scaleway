@@ -11,18 +11,44 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-    /// Please use `scaleway..InstanceServer` instead.
+    /// Please use `scaleway.InstanceServer` instead.
     /// 
     /// Provides servers. This allows servers to be created, updated and deleted.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#servers).
     /// 
+    /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Scaleway.Server("test", new Scaleway.ServerArgs
+    ///         {
+    ///             Image = "5faef9cd-ea9b-4a63-9171-9e26bec03dbc",
+    ///             Type = "VC1M",
+    ///             Volumes = 
+    ///             {
+    ///                 new Scaleway.Inputs.ServerVolumeArgs
+    ///                 {
+    ///                     SizeInGb = 20,
+    ///                     Type = "l_ssd",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ## Volume
     /// 
     /// You can attach additional volumes to your instance, which will share the lifetime
-    /// of your `scaleway..Server` resource.
+    /// of your `scaleway.Server` resource.
     /// 
-    /// &gt; **Warning:** Using the `volume` attribute does not modify the System Volume provided default with every `scaleway..Server` instance. Instead it adds additional volumes to the server instance.
+    /// &gt; **Warning:** Using the `volume` attribute does not modify the System Volume provided default with every `scaleway.Server` instance. Instead it adds additional volumes to the server instance.
     /// 
     /// &gt; **Warning:** Some instance types require an additional volume to work. This includes for example *START-1M* and *VC1M*. If you run into this issue add an additional volume of the specified size.
     /// 

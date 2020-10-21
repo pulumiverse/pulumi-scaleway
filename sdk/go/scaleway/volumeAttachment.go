@@ -16,6 +16,44 @@ import (
 // This allows volumes to be attached to servers.
 //
 // > **Warning:** Attaching volumes requires the servers to be powered off. This will lead to downtime if the server is already in use.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testServer, err := scaleway.NewServer(ctx, "testServer", &scaleway.ServerArgs{
+// 			Image: pulumi.String("aecaed73-51a5-4439-a127-6d8229847145"),
+// 			Type:  pulumi.String("C2S"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testVolume, err := scaleway.NewVolume(ctx, "testVolume", &scaleway.VolumeArgs{
+// 			SizeInGb: pulumi.Int(20),
+// 			Type:     pulumi.String("l_ssd"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewVolumeAttachment(ctx, "testVolumeAttachment", &scaleway.VolumeAttachmentArgs{
+// 			Server: testServer.ID(),
+// 			Volume: testVolume.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type VolumeAttachment struct {
 	pulumi.CustomResourceState
 

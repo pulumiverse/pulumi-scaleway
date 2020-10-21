@@ -8,13 +8,26 @@ import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
- * Please use `scaleway..getInstanceImage` instead or `scaleway..getMarketplaceImageBeta` depending on your usage.
- * 
- * Use this data source to get the ID of a registered Image for use with the
- * `scaleway..Server` resource.
- * 
+ * Please use `scaleway.getInstanceImage` instead or `scaleway.getMarketplaceImageBeta` depending on your usage.
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/image.html.markdown.
+ * Use this data source to get the ID of a registered Image for use with the
+ * `scaleway.Server` resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const ubuntu = scaleway.getImage({
+ *     architecture: "arm",
+ *     name: "Ubuntu Precise",
+ * });
+ * const base = new scaleway.Server("base", {
+ *     image: ubuntu.then(ubuntu => ubuntu.id),
+ *     type: "C1",
+ * });
+ * ```
  */
 export function getImage(args: GetImageArgs, opts?: pulumi.InvokeOptions): Promise<GetImageResult> {
     if (!opts) {
@@ -66,6 +79,10 @@ export interface GetImageResult {
      * date when image was created
      */
     readonly creationDate: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly mostRecent?: boolean;
     readonly name: string;
     readonly nameFilter?: string;
@@ -77,8 +94,4 @@ export interface GetImageResult {
      * is this a public image
      */
     readonly public: boolean;
-    /**
-     * id is the provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

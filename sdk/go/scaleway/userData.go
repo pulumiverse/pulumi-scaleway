@@ -11,10 +11,43 @@ import (
 )
 
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-// Please use `.InstanceServer` instead.
+// Please use `InstanceServer` instead.
 //
 // Provides user data for servers.
 // For additional details please refer to [API documentation](https://developer.scaleway.com/#user-data).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		base, err := scaleway.NewServer(ctx, "base", &scaleway.ServerArgs{
+// 			Image: pulumi.String("5faef9cd-ea9b-4a63-9171-9e26bec03dbc"),
+// 			Type:  pulumi.String("C1"),
+// 			State: pulumi.String("stopped"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = scaleway.NewUserData(ctx, "gcp", &scaleway.UserDataArgs{
+// 			Server: base.ID(),
+// 			Key:    pulumi.String("gcp_username"),
+// 			Value:  pulumi.String("supersecret"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type UserData struct {
 	pulumi.CustomResourceState
 

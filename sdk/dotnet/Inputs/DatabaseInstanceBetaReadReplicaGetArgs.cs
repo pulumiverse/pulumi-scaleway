@@ -12,12 +12,21 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class DatabaseInstanceBetaReadReplicaGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// IP of the replica.
+        /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
+        /// <summary>
+        /// The name of the Database Instance.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Port of the replica.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 

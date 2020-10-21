@@ -9,7 +9,127 @@ import * as utilities from "./utilities";
 /**
  * Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/instance_server.html.markdown.
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const publicIp = new scaleway.InstanceIP("publicIp", {});
+ * const web = new scaleway.InstanceServer("web", {
+ *     type: "DEV1-S",
+ *     image: "ubuntu_focal",
+ *     ipId: publicIp.id,
+ * });
+ * ```
+ *
+ * ### With additional volumes and tags
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const data = new scaleway.InstanceVolume("data", {
+ *     sizeInGb: 100,
+ *     type: "b_ssd",
+ * });
+ * const web = new scaleway.InstanceServer("web", {
+ *     type: "DEV1-L",
+ *     image: "ubuntu_focal",
+ *     tags: [
+ *         "hello",
+ *         "public",
+ *     ],
+ *     rootVolume: {
+ *         deleteOnTermination: false,
+ *     },
+ *     additionalVolumeIds: [data.id],
+ * });
+ * ```
+ *
+ * ### With a reserved IP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const ip = new scaleway.InstanceIP("ip", {});
+ * const web = new scaleway.InstanceServer("web", {
+ *     type: "DEV1-L",
+ *     image: "f974feac-abae-4365-b988-8ec7d1cec10d",
+ *     tags: [
+ *         "hello",
+ *         "public",
+ *     ],
+ *     ipId: ip.id,
+ * });
+ * ```
+ *
+ * ### With security group
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const www = new scaleway.InstanceSecurityGroup("www", {
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "accept",
+ *     inboundRules: [
+ *         {
+ *             action: "accept",
+ *             port: "22",
+ *             ip: "212.47.225.64",
+ *         },
+ *         {
+ *             action: "accept",
+ *             port: "80",
+ *         },
+ *         {
+ *             action: "accept",
+ *             port: "443",
+ *         },
+ *     ],
+ *     outboundRules: [{
+ *         action: "drop",
+ *         ipRange: "10.20.0.0/24",
+ *     }],
+ * });
+ * const web = new scaleway.InstanceServer("web", {
+ *     type: "DEV1-S",
+ *     image: "ubuntu_focal",
+ *     securityGroupId: www.id,
+ * });
+ * ```
+ *
+ * ### With user data and cloud-init
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * from "fs";
+ *
+ * const web = new scaleway.InstanceServer("web", {
+ *     type: "DEV1-L",
+ *     image: "ubuntu_focal",
+ *     tags: [
+ *         "web",
+ *         "public",
+ *     ],
+ *     userDatas: [
+ *         {
+ *             key: "plop",
+ *             value: "world",
+ *         },
+ *         {
+ *             key: "xavier",
+ *             value: "niel",
+ *         },
+ *     ],
+ *     cloudInit: fs.readFileSync(`${path.module}/cloud-init.yml`),
+ * });
+ * ```
  */
 export class InstanceServer extends pulumi.CustomResource {
     /**
@@ -19,6 +139,7 @@ export class InstanceServer extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceServerState, opts?: pulumi.CustomResourceOptions): InstanceServer {
         return new InstanceServer(name, <any>state, { ...opts, id: id });
@@ -39,95 +160,100 @@ export class InstanceServer extends pulumi.CustomResource {
     }
 
     /**
-     * The additional volumes attached to the server
+     * The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+     * attached to the server. Updates to this field will trigger a stop/start of the server.
      */
     public readonly additionalVolumeIds!: pulumi.Output<string[] | undefined>;
     /**
-     * The boot type of the server
+     * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
     public /*out*/ readonly bootType!: pulumi.Output<string>;
     /**
-     * The cloud init script associated with this server
+     * The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
      */
     public readonly cloudInit!: pulumi.Output<string | undefined>;
     /**
-     * Enable dynamic IP on the server
+     * If true a dynamic IP will be attached to the server.
      */
     public readonly enableDynamicIp!: pulumi.Output<boolean | undefined>;
     /**
-     * Determines if IPv6 is enabled for the server
+     * Determines if IPv6 is enabled for the server.
      */
     public readonly enableIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * The UUID or the label of the base image used by the server
+     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * to find either the right `label` or the right local image `ID` for a given `type`.
      */
     public readonly image!: pulumi.Output<string>;
     /**
-     * The ID of the reserved IP for the server
+     * = (Optional) The ID of the reserved IP that is attached to the server.
      */
     public readonly ipId!: pulumi.Output<string | undefined>;
     /**
-     * The default public IPv6 address routed to the server.
+     * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      */
     public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
     /**
-     * The IPv6 gateway address
+     * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
      */
     public /*out*/ readonly ipv6Gateway!: pulumi.Output<string>;
     /**
-     * The IPv6 prefix length routed to the server.
+     * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
      */
     public /*out*/ readonly ipv6PrefixLength!: pulumi.Output<number>;
     /**
-     * The name of the server
+     * The name of the server.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the server is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The placement group the server is attached to
+     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
     /**
-     * True when the placement group policy is respected
+     * True when the placement group policy is respected.
+     * - `rootVolume`
      */
     public /*out*/ readonly placementGroupPolicyRespected!: pulumi.Output<boolean>;
     /**
-     * The Scaleway internal IP address of the server
+     * The Scaleway internal IP address of the server.
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
     /**
-     * The public IPv4 address of the server
+     * The public IPv4 address of the server.
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
-     * Root volume attached to the server on creation
+     * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     public readonly rootVolume!: pulumi.Output<outputs.InstanceServerRootVolume>;
     /**
-     * The security group the server is attached to
+     * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
     public readonly securityGroupId!: pulumi.Output<string>;
     /**
-     * The state of the server should be: started, stopped, standby
+     * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
     public readonly state!: pulumi.Output<string | undefined>;
     /**
-     * The tags associated with the server
+     * The tags associated with the server.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The instance type of the server
+     * The commercial type of the server.
+     * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+     * Updates to this field will recreate a new resource.
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The user data associated with the server
+     * The user data associated with the server.
      */
     public readonly userDatas!: pulumi.Output<outputs.InstanceServerUserData[] | undefined>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -214,95 +340,100 @@ export class InstanceServer extends pulumi.CustomResource {
  */
 export interface InstanceServerState {
     /**
-     * The additional volumes attached to the server
+     * The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+     * attached to the server. Updates to this field will trigger a stop/start of the server.
      */
     readonly additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The boot type of the server
+     * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
     readonly bootType?: pulumi.Input<string>;
     /**
-     * The cloud init script associated with this server
+     * The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
      */
     readonly cloudInit?: pulumi.Input<string>;
     /**
-     * Enable dynamic IP on the server
+     * If true a dynamic IP will be attached to the server.
      */
     readonly enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server
+     * Determines if IPv6 is enabled for the server.
      */
     readonly enableIpv6?: pulumi.Input<boolean>;
     /**
-     * The UUID or the label of the base image used by the server
+     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * to find either the right `label` or the right local image `ID` for a given `type`.
      */
     readonly image?: pulumi.Input<string>;
     /**
-     * The ID of the reserved IP for the server
+     * = (Optional) The ID of the reserved IP that is attached to the server.
      */
     readonly ipId?: pulumi.Input<string>;
     /**
-     * The default public IPv6 address routed to the server.
+     * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      */
     readonly ipv6Address?: pulumi.Input<string>;
     /**
-     * The IPv6 gateway address
+     * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
      */
     readonly ipv6Gateway?: pulumi.Input<string>;
     /**
-     * The IPv6 prefix length routed to the server.
+     * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
      */
     readonly ipv6PrefixLength?: pulumi.Input<number>;
     /**
-     * The name of the server
+     * The name of the server.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the server is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The placement group the server is attached to
+     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
     readonly placementGroupId?: pulumi.Input<string>;
     /**
-     * True when the placement group policy is respected
+     * True when the placement group policy is respected.
+     * - `rootVolume`
      */
     readonly placementGroupPolicyRespected?: pulumi.Input<boolean>;
     /**
-     * The Scaleway internal IP address of the server
+     * The Scaleway internal IP address of the server.
      */
     readonly privateIp?: pulumi.Input<string>;
     /**
-     * The public IPv4 address of the server
+     * The public IPv4 address of the server.
      */
     readonly publicIp?: pulumi.Input<string>;
     /**
-     * Root volume attached to the server on creation
+     * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     readonly rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
     /**
-     * The security group the server is attached to
+     * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
     readonly securityGroupId?: pulumi.Input<string>;
     /**
-     * The state of the server should be: started, stopped, standby
+     * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
     readonly state?: pulumi.Input<string>;
     /**
-     * The tags associated with the server
+     * The tags associated with the server.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The instance type of the server
+     * The commercial type of the server.
+     * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+     * Updates to this field will recreate a new resource.
      */
     readonly type?: pulumi.Input<string>;
     /**
-     * The user data associated with the server
+     * The user data associated with the server.
      */
     readonly userDatas?: pulumi.Input<pulumi.Input<inputs.InstanceServerUserData>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server should be created.
      */
     readonly zone?: pulumi.Input<string>;
 }
@@ -312,67 +443,71 @@ export interface InstanceServerState {
  */
 export interface InstanceServerArgs {
     /**
-     * The additional volumes attached to the server
+     * The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+     * attached to the server. Updates to this field will trigger a stop/start of the server.
      */
     readonly additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The cloud init script associated with this server
+     * The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
      */
     readonly cloudInit?: pulumi.Input<string>;
     /**
-     * Enable dynamic IP on the server
+     * If true a dynamic IP will be attached to the server.
      */
     readonly enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server
+     * Determines if IPv6 is enabled for the server.
      */
     readonly enableIpv6?: pulumi.Input<boolean>;
     /**
-     * The UUID or the label of the base image used by the server
+     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * to find either the right `label` or the right local image `ID` for a given `type`.
      */
     readonly image: pulumi.Input<string>;
     /**
-     * The ID of the reserved IP for the server
+     * = (Optional) The ID of the reserved IP that is attached to the server.
      */
     readonly ipId?: pulumi.Input<string>;
     /**
-     * The name of the server
+     * The name of the server.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the server is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The placement group the server is attached to
+     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
     readonly placementGroupId?: pulumi.Input<string>;
     /**
-     * Root volume attached to the server on creation
+     * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     readonly rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
     /**
-     * The security group the server is attached to
+     * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
     readonly securityGroupId?: pulumi.Input<string>;
     /**
-     * The state of the server should be: started, stopped, standby
+     * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
     readonly state?: pulumi.Input<string>;
     /**
-     * The tags associated with the server
+     * The tags associated with the server.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The instance type of the server
+     * The commercial type of the server.
+     * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+     * Updates to this field will recreate a new resource.
      */
     readonly type: pulumi.Input<string>;
     /**
-     * The user data associated with the server
+     * The user data associated with the server.
      */
     readonly userDatas?: pulumi.Input<pulumi.Input<inputs.InstanceServerUserData>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server should be created.
      */
     readonly zone?: pulumi.Input<string>;
 }

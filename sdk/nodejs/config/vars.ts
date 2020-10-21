@@ -27,4 +27,4 @@ export let token: string | undefined = __config.get("token");
 /**
  * The Scaleway default zone to use for your resources.
  */
-export let zone: string | undefined = __config.get("zone") || utilities.getEnv("SCW_ZONE");
+export let zone: string | undefined = __config.get("zone") || utilities.getEnv("SCW_DEFAULT_ZONE");

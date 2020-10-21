@@ -2,15 +2,23 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Manages Scaleway Compute Instance IPs Reverse DNS.
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/instance_ip_reverse_dns.html.markdown.
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const serverIp = new scaleway.InstanceIP("serverIp", {});
+ * const reverse = new scaleway.InstanceIPReverseDNS("reverse", {
+ *     ipId: serverIp.id,
+ *     reverse: "www.scaleway.com",
+ * });
+ * ```
  */
 export class InstanceIPReverseDNS extends pulumi.CustomResource {
     /**
@@ -20,6 +28,7 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIPReverseDNSState, opts?: pulumi.CustomResourceOptions): InstanceIPReverseDNS {
         return new InstanceIPReverseDNS(name, <any>state, { ...opts, id: id });
@@ -40,15 +49,15 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
     }
 
     /**
-     * The IP ID or IP address
+     * The IP ID
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse DNS for this IP.
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -95,15 +104,15 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
  */
 export interface InstanceIPReverseDNSState {
     /**
-     * The IP ID or IP address
+     * The IP ID
      */
     readonly ipId?: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse DNS for this IP.
      */
     readonly reverse?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     readonly zone?: pulumi.Input<string>;
 }
@@ -113,15 +122,15 @@ export interface InstanceIPReverseDNSState {
  */
 export interface InstanceIPReverseDNSArgs {
     /**
-     * The IP ID or IP address
+     * The IP ID
      */
     readonly ipId: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse DNS for this IP.
      */
     readonly reverse: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     readonly zone?: pulumi.Input<string>;
 }

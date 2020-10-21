@@ -8,23 +8,19 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a registry image.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
+ *
  * // Get info by image ID
- * const myImage = scaleway.getRegistryImageBeta({
+ * const myImage = pulumi.output(scaleway.getRegistryImageBeta({
  *     imageId: "11111111-1111-1111-1111-111111111111",
  *     namespaceId: "11111111-1111-1111-1111-111111111111", // Optional
- * });
+ * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/registry_image_beta.html.markdown.
  */
 export function getRegistryImageBeta(args?: GetRegistryImageBetaArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageBetaResult> {
     args = args || {};
@@ -49,11 +45,31 @@ export function getRegistryImageBeta(args?: GetRegistryImageBetaArgs, opts?: pul
  * A collection of arguments for invoking getRegistryImageBeta.
  */
 export interface GetRegistryImageBetaArgs {
+    /**
+     * The image ID.
+     * Only one of `name` and `imageId` should be specified.
+     */
     readonly imageId?: string;
+    /**
+     * The image name.
+     * Only one of `name` and `imageId` should be specified.
+     */
     readonly name?: string;
+    /**
+     * The namespace ID in which the image is.
+     */
     readonly namespaceId?: string;
+    /**
+     * `organizationId`) The ID of the organization the image is associated with.
+     */
     readonly organizationId?: string;
+    /**
+     * `region`) The region in which the image exists.
+     */
     readonly region?: string;
+    /**
+     * The tags associated with the registry image
+     */
     readonly tags?: string[];
 }
 
@@ -61,16 +77,25 @@ export interface GetRegistryImageBetaArgs {
  * A collection of values returned by getRegistryImageBeta.
  */
 export interface GetRegistryImageBetaResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly imageId?: string;
     readonly name?: string;
     readonly namespaceId: string;
     readonly organizationId: string;
     readonly region: string;
-    readonly size: number;
-    readonly tags: string[];
-    readonly visibility: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The size of the registry image.
      */
-    readonly id: string;
+    readonly size: number;
+    /**
+     * The tags associated with the registry image
+     */
+    readonly tags: string[];
+    /**
+     * The privacy policy of the registry image.
+     */
+    readonly visibility: string;
 }

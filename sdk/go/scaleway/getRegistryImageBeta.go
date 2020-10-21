@@ -8,6 +8,32 @@ import (
 )
 
 // Gets information about a registry image.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "11111111-1111-1111-1111-111111111111"
+// 		opt1 := "11111111-1111-1111-1111-111111111111"
+// 		_, err := scaleway.GetRegistryImageBeta(ctx, &scaleway.GetRegistryImageBetaArgs{
+// 			ImageId:     &opt0,
+// 			NamespaceId: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetRegistryImageBeta(ctx *pulumi.Context, args *GetRegistryImageBetaArgs, opts ...pulumi.InvokeOption) (*GetRegistryImageBetaResult, error) {
 	var rv GetRegistryImageBetaResult
 	err := ctx.Invoke("scaleway:index/getRegistryImageBeta:getRegistryImageBeta", args, &rv, opts...)
@@ -19,24 +45,35 @@ func GetRegistryImageBeta(ctx *pulumi.Context, args *GetRegistryImageBetaArgs, o
 
 // A collection of arguments for invoking getRegistryImageBeta.
 type GetRegistryImageBetaArgs struct {
-	ImageId        *string  `pulumi:"imageId"`
-	Name           *string  `pulumi:"name"`
-	NamespaceId    *string  `pulumi:"namespaceId"`
-	OrganizationId *string  `pulumi:"organizationId"`
-	Region         *string  `pulumi:"region"`
-	Tags           []string `pulumi:"tags"`
+	// The image ID.
+	// Only one of `name` and `imageId` should be specified.
+	ImageId *string `pulumi:"imageId"`
+	// The image name.
+	// Only one of `name` and `imageId` should be specified.
+	Name *string `pulumi:"name"`
+	// The namespace ID in which the image is.
+	NamespaceId *string `pulumi:"namespaceId"`
+	// `organizationId`) The ID of the organization the image is associated with.
+	OrganizationId *string `pulumi:"organizationId"`
+	// `region`) The region in which the image exists.
+	Region *string `pulumi:"region"`
+	// The tags associated with the registry image
+	Tags []string `pulumi:"tags"`
 }
 
 // A collection of values returned by getRegistryImageBeta.
 type GetRegistryImageBetaResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
-	Id             string   `pulumi:"id"`
-	ImageId        *string  `pulumi:"imageId"`
-	Name           *string  `pulumi:"name"`
-	NamespaceId    string   `pulumi:"namespaceId"`
-	OrganizationId string   `pulumi:"organizationId"`
-	Region         string   `pulumi:"region"`
-	Size           int      `pulumi:"size"`
-	Tags           []string `pulumi:"tags"`
-	Visibility     string   `pulumi:"visibility"`
+	// The provider-assigned unique ID for this managed resource.
+	Id             string  `pulumi:"id"`
+	ImageId        *string `pulumi:"imageId"`
+	Name           *string `pulumi:"name"`
+	NamespaceId    string  `pulumi:"namespaceId"`
+	OrganizationId string  `pulumi:"organizationId"`
+	Region         string  `pulumi:"region"`
+	// The size of the registry image.
+	Size int `pulumi:"size"`
+	// The tags associated with the registry image
+	Tags []string `pulumi:"tags"`
+	// The privacy policy of the registry image.
+	Visibility string `pulumi:"visibility"`
 }

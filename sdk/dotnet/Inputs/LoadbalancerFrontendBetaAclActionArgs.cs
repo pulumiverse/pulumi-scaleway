@@ -12,6 +12,9 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class LoadbalancerFrontendBetaAclActionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The action type. Possible values are: `allow` or `deny`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

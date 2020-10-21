@@ -2,29 +2,23 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
- * Please use `scaleway..InstanceIP` instead.
- * 
+ * Please use `scaleway.InstanceIP` instead.
+ *
  * Provides IPs for servers. This allows IPs to be created, updated and deleted.
  * For additional details please refer to [API documentation](https://developer.scaleway.com/#ips).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * const testIp = new scaleway.IP("testIp", {});
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/r/ip.html.markdown.
+ * const testIp = new scaleway.IP("test_ip", {});
+ * ```
  */
 export class IP extends pulumi.CustomResource {
     /**
@@ -34,6 +28,7 @@ export class IP extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IPState, opts?: pulumi.CustomResourceOptions): IP {
         return new IP(name, <any>state, { ...opts, id: id });
@@ -58,7 +53,9 @@ export class IP extends pulumi.CustomResource {
      */
     public /*out*/ readonly ip!: pulumi.Output<string>;
     /**
-     * Please us the scaleway..IPReverseDNS resource instead.
+     * Please us the scaleway.IPReverseDNS resource instead.
+     *
+     * @deprecated use scaleway_ip_reverse_dns resource instead
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
@@ -107,8 +104,8 @@ export interface IPState {
      */
     readonly ip?: pulumi.Input<string>;
     /**
-     * Please us the scaleway..IPReverseDNS resource instead.
-     * 
+     * Please us the scaleway.IPReverseDNS resource instead.
+     *
      * @deprecated use scaleway_ip_reverse_dns resource instead
      */
     readonly reverse?: pulumi.Input<string>;
@@ -123,8 +120,8 @@ export interface IPState {
  */
 export interface IPArgs {
     /**
-     * Please us the scaleway..IPReverseDNS resource instead.
-     * 
+     * Please us the scaleway.IPReverseDNS resource instead.
+     *
      * @deprecated use scaleway_ip_reverse_dns resource instead
      */
     readonly reverse?: pulumi.Input<string>;

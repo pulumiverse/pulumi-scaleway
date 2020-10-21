@@ -8,9 +8,23 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a Volume.
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/volume.html.markdown.
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const dataVolume = scaleway.getVolume({
+ *     name: "data",
+ * });
+ * const test = new scaleway.Server("test", {});
+ * // ...
+ * const dataVolumeAttachment = new scaleway.VolumeAttachment("dataVolumeAttachment", {
+ *     server: test.id,
+ *     volume: scaleway_volume.data.id,
+ * });
+ * ```
  */
 export function getVolume(args: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     if (!opts) {
@@ -39,6 +53,10 @@ export interface GetVolumeArgs {
  * A collection of values returned by getVolume.
  */
 export interface GetVolumeResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly name: string;
     /**
      * The ID of the Server which this Volume is currently attached to.
@@ -52,8 +70,4 @@ export interface GetVolumeResult {
      * The type of volume this is, such as `lSsd`.
      */
     readonly type: string;
-    /**
-     * id is the provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

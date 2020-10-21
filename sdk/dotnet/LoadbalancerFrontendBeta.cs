@@ -12,43 +12,43 @@ namespace Pulumi.Scaleway
     public partial class LoadbalancerFrontendBeta : Pulumi.CustomResource
     {
         /// <summary>
-        /// ACL rules
+        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.LoadbalancerFrontendBetaAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer backend ID
+        /// The load-balancer backend ID this frontend is attached to.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate ID
+        /// Certificate ID that should be used by the frontend.
         /// </summary>
         [Output("certificateId")]
         public Output<string?> CertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// TCP port to listen on the front side
+        /// TCP port to listen on the front side.
         /// </summary>
         [Output("inboundPort")]
         public Output<int> InboundPort { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this frontend is attached to.
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the frontend
+        /// The ACL name. If not provided it will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Set the maximum inactivity time on the client side
+        /// Maximum inactivity time on the client side. (e.g.: `1s`)
         /// </summary>
         [Output("timeoutClient")]
         public Output<string?> TimeoutClient { get; private set; } = null!;
@@ -103,7 +103,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.LoadbalancerFrontendBetaAclArgs>? _acls;
 
         /// <summary>
-        /// ACL rules
+        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendBetaAclArgs> Acls
         {
@@ -112,37 +112,37 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer backend ID
+        /// The load-balancer backend ID this frontend is attached to.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
 
         /// <summary>
-        /// Certificate ID
+        /// Certificate ID that should be used by the frontend.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
         /// <summary>
-        /// TCP port to listen on the front side
+        /// TCP port to listen on the front side.
         /// </summary>
         [Input("inboundPort", required: true)]
         public Input<int> InboundPort { get; set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this frontend is attached to.
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the frontend
+        /// The ACL name. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Set the maximum inactivity time on the client side
+        /// Maximum inactivity time on the client side. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }
@@ -158,7 +158,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.LoadbalancerFrontendBetaAclGetArgs>? _acls;
 
         /// <summary>
-        /// ACL rules
+        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendBetaAclGetArgs> Acls
         {
@@ -167,37 +167,37 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer backend ID
+        /// The load-balancer backend ID this frontend is attached to.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// Certificate ID
+        /// Certificate ID that should be used by the frontend.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
         /// <summary>
-        /// TCP port to listen on the front side
+        /// TCP port to listen on the front side.
         /// </summary>
         [Input("inboundPort")]
         public Input<int>? InboundPort { get; set; }
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this frontend is attached to.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The name of the frontend
+        /// The ACL name. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Set the maximum inactivity time on the client side
+        /// Maximum inactivity time on the client side. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }

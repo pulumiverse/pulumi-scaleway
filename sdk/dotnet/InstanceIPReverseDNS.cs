@@ -11,23 +11,46 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// Manages Scaleway Compute Instance IPs Reverse DNS.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var serverIp = new Scaleway.InstanceIP("serverIp", new Scaleway.InstanceIPArgs
+    ///         {
+    ///         });
+    ///         var reverse = new Scaleway.InstanceIPReverseDNS("reverse", new Scaleway.InstanceIPReverseDNSArgs
+    ///         {
+    ///             IpId = serverIp.Id,
+    ///             Reverse = "www.scaleway.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class InstanceIPReverseDNS : Pulumi.CustomResource
     {
         /// <summary>
-        /// The IP ID or IP address
+        /// The IP ID
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
 
         /// <summary>
-        /// The reverse DNS for this IP
+        /// The reverse DNS for this IP.
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -79,19 +102,19 @@ namespace Pulumi.Scaleway
     public sealed class InstanceIPReverseDNSArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP ID or IP address
+        /// The IP ID
         /// </summary>
         [Input("ipId", required: true)]
         public Input<string> IpId { get; set; } = null!;
 
         /// <summary>
-        /// The reverse DNS for this IP
+        /// The reverse DNS for this IP.
         /// </summary>
         [Input("reverse", required: true)]
         public Input<string> Reverse { get; set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -104,19 +127,19 @@ namespace Pulumi.Scaleway
     public sealed class InstanceIPReverseDNSState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP ID or IP address
+        /// The IP ID
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The reverse DNS for this IP
+        /// The reverse DNS for this IP.
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

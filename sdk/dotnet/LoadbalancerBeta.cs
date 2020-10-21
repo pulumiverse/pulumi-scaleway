@@ -12,43 +12,43 @@ namespace Pulumi.Scaleway
     public partial class LoadbalancerBeta : Pulumi.CustomResource
     {
         /// <summary>
-        /// The load-balance public IP address
+        /// The load-balance public IP Address
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balance public IP ID
+        /// The ID of the associated IP. See below.
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the lb
+        /// The name of the load-balancer.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the load-balancer is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the load-balancer should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Array of tags to associate with the load-balancer
+        /// The tags associated with the load-balancers.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of load-balancer you want to create
+        /// The type of the load-balancer.  For now only `LB-S` is available
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -100,19 +100,25 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerBetaArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the lb
+        /// The ID of the associated IP. See below.
+        /// </summary>
+        [Input("ipId", required: true)]
+        public Input<string> IpId { get; set; } = null!;
+
+        /// <summary>
+        /// The name of the load-balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the load-balancer is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the load-balancer should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -121,7 +127,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// Array of tags to associate with the load-balancer
+        /// The tags associated with the load-balancers.
         /// </summary>
         public InputList<string> Tags
         {
@@ -130,7 +136,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The type of load-balancer you want to create
+        /// The type of the load-balancer.  For now only `LB-S` is available
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -143,31 +149,31 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerBetaState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The load-balance public IP address
+        /// The load-balance public IP Address
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The load-balance public IP ID
+        /// The ID of the associated IP. See below.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// Name of the lb
+        /// The name of the load-balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// `organization_id`) The ID of the organization the load-balancer is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the load-balancer should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -176,7 +182,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// Array of tags to associate with the load-balancer
+        /// The tags associated with the load-balancers.
         /// </summary>
         public InputList<string> Tags
         {
@@ -185,7 +191,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The type of load-balancer you want to create
+        /// The type of the load-balancer.  For now only `LB-S` is available
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -15,9 +15,30 @@ namespace Pulumi.Scaleway
         /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
         /// 
         /// Use this data source to get the ID of a registered Bootscript for use with the
-        /// `scaleway..Server` resource.
+        /// `scaleway.Server` resource.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var debug = Output.Create(Scaleway.GetBootscript.InvokeAsync(new Scaleway.GetBootscriptArgs
+        ///         {
+        ///             Architecture = "arm",
+        ///             NameFilter = "Rescue",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetBootscriptResult> InvokeAsync(GetBootscriptArgs? args = null, InvokeOptions? options = null)
@@ -67,7 +88,7 @@ namespace Pulumi.Scaleway
         /// </summary>
         public readonly string Dtb;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

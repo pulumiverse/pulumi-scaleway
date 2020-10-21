@@ -13,7 +13,13 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class GetInstanceServerUserDataResult
     {
+        /// <summary>
+        /// The user data key. The `cloud-init` key is reserved, please use `cloud_init` attribute instead.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// The user data content.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

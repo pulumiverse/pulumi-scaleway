@@ -12,6 +12,30 @@ import (
 // **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
 //
 // Provides Tokens for scaleway API access. For additional details please refer to [API documentation](https://developer.scaleway.com/#tokens-tokens-post).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := scaleway.NewToken(ctx, "karlsToken", &scaleway.TokenArgs{
+// 			Description: pulumi.String("karls scaleway access: karl@company.com"),
+// 			Expires:     pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Token struct {
 	pulumi.CustomResourceState
 

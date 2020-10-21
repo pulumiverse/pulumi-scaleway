@@ -13,11 +13,31 @@ namespace Pulumi.Scaleway
     {
         /// <summary>
         /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-        /// Please use `scaleway..InstanceSecurityGroup` instead.
+        /// Please use `scaleway.InstanceSecurityGroup` instead.
         /// 
         /// Gets information about a Security Group.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Scaleway.GetSecurityGroup.InvokeAsync(new Scaleway.GetSecurityGroupArgs
+        ///         {
+        ///             Name = "my-security-group",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSecurityGroupResult> InvokeAsync(GetSecurityGroupArgs args, InvokeOptions? options = null)
@@ -51,7 +71,7 @@ namespace Pulumi.Scaleway
         /// </summary>
         public readonly bool EnableDefaultSecurity;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string Name;

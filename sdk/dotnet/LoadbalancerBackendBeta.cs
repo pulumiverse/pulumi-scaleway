@@ -12,112 +12,122 @@ namespace Pulumi.Scaleway
     public partial class LoadbalancerBackendBeta : Pulumi.CustomResource
     {
         /// <summary>
-        /// User sessions will be forwarded to this port of backend servers
+        /// User sessions will be forwarded to this port of backend servers.
         /// </summary>
         [Output("forwardPort")]
         public Output<int> ForwardPort { get; private set; } = null!;
 
         /// <summary>
-        /// Load balancing algorithm
+        /// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
         /// </summary>
         [Output("forwardPortAlgorithm")]
         public Output<string?> ForwardPortAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Backend protocol
+        /// Backend protocol. Possible values are: `tcp` or `http`.
         /// </summary>
         [Output("forwardProtocol")]
         public Output<string> ForwardProtocol { get; private set; } = null!;
 
         /// <summary>
-        /// Interval between two HC requests
+        /// Interval between two HC requests.
         /// </summary>
         [Output("healthCheckDelay")]
         public Output<string?> HealthCheckDelay { get; private set; } = null!;
 
+        /// <summary>
+        /// This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Output("healthCheckHttp")]
         public Output<Outputs.LoadbalancerBackendBetaHealthCheckHttp?> HealthCheckHttp { get; private set; } = null!;
 
+        /// <summary>
+        /// This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Output("healthCheckHttps")]
         public Output<Outputs.LoadbalancerBackendBetaHealthCheckHttps?> HealthCheckHttps { get; private set; } = null!;
 
         /// <summary>
-        /// Number of allowed failed HC requests before the backend server is marked down
+        /// Number of allowed failed HC requests before the backend server is marked down.
         /// </summary>
         [Output("healthCheckMaxRetries")]
         public Output<int?> HealthCheckMaxRetries { get; private set; } = null!;
 
         /// <summary>
-        /// Port the HC requests will be send to. Default to `forward_port`
+        /// Port the HC requests will be send to.
         /// </summary>
         [Output("healthCheckPort")]
         public Output<int> HealthCheckPort { get; private set; } = null!;
 
+        /// <summary>
+        /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Output("healthCheckTcp")]
         public Output<Outputs.LoadbalancerBackendBetaHealthCheckTcp> HealthCheckTcp { get; private set; } = null!;
 
         /// <summary>
-        /// Timeout before we consider a HC request failed
+        /// Timeout before we consider a HC request failed.
         /// </summary>
         [Output("healthCheckTimeout")]
         public Output<string?> HealthCheckTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this backend is attached to.
+        /// &gt; **Important:** Updates to `lb_id` will recreate the backend.
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the backend
+        /// The name of the load-balancer backend.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Modify what occurs when a backend server is marked down
+        /// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         /// </summary>
         [Output("onMarkedDownAction")]
         public Output<string?> OnMarkedDownAction { get; private set; } = null!;
 
         /// <summary>
-        /// Enables PROXY protocol version 2
+        /// Enables PROXY protocol version 2.
         /// </summary>
         [Output("sendProxyV2")]
         public Output<bool?> SendProxyV2 { get; private set; } = null!;
 
         /// <summary>
-        /// Backend server IP addresses list (IPv4 or IPv6)
+        /// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         /// </summary>
         [Output("serverIps")]
         public Output<ImmutableArray<string>> ServerIps { get; private set; } = null!;
 
         /// <summary>
-        /// Load balancing algorithm
+        /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         /// </summary>
         [Output("stickySessions")]
         public Output<string?> StickySessions { get; private set; } = null!;
 
         /// <summary>
-        /// Cookie name for for sticky sessions
+        /// Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         /// </summary>
         [Output("stickySessionsCookieName")]
         public Output<string?> StickySessionsCookieName { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum initial server connection establishment time
+        /// Maximum initial server connection establishment time. (e.g.: `1s`)
         /// </summary>
         [Output("timeoutConnect")]
         public Output<string?> TimeoutConnect { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum server connection inactivity time
+        /// Maximum server connection inactivity time. (e.g.: `1s`)
         /// </summary>
         [Output("timeoutServer")]
         public Output<string?> TimeoutServer { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum tunnel inactivity time
+        /// Maximum tunnel inactivity time. (e.g.: `1s`)
         /// </summary>
         [Output("timeoutTunnel")]
         public Output<string?> TimeoutTunnel { get; private set; } = null!;
@@ -169,76 +179,86 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerBackendBetaArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// User sessions will be forwarded to this port of backend servers
+        /// User sessions will be forwarded to this port of backend servers.
         /// </summary>
         [Input("forwardPort", required: true)]
         public Input<int> ForwardPort { get; set; } = null!;
 
         /// <summary>
-        /// Load balancing algorithm
+        /// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
         /// </summary>
         [Input("forwardPortAlgorithm")]
         public Input<string>? ForwardPortAlgorithm { get; set; }
 
         /// <summary>
-        /// Backend protocol
+        /// Backend protocol. Possible values are: `tcp` or `http`.
         /// </summary>
         [Input("forwardProtocol", required: true)]
         public Input<string> ForwardProtocol { get; set; } = null!;
 
         /// <summary>
-        /// Interval between two HC requests
+        /// Interval between two HC requests.
         /// </summary>
         [Input("healthCheckDelay")]
         public Input<string>? HealthCheckDelay { get; set; }
 
+        /// <summary>
+        /// This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Input("healthCheckHttp")]
         public Input<Inputs.LoadbalancerBackendBetaHealthCheckHttpArgs>? HealthCheckHttp { get; set; }
 
+        /// <summary>
+        /// This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Input("healthCheckHttps")]
         public Input<Inputs.LoadbalancerBackendBetaHealthCheckHttpsArgs>? HealthCheckHttps { get; set; }
 
         /// <summary>
-        /// Number of allowed failed HC requests before the backend server is marked down
+        /// Number of allowed failed HC requests before the backend server is marked down.
         /// </summary>
         [Input("healthCheckMaxRetries")]
         public Input<int>? HealthCheckMaxRetries { get; set; }
 
         /// <summary>
-        /// Port the HC requests will be send to. Default to `forward_port`
+        /// Port the HC requests will be send to.
         /// </summary>
         [Input("healthCheckPort")]
         public Input<int>? HealthCheckPort { get; set; }
 
+        /// <summary>
+        /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Input("healthCheckTcp")]
         public Input<Inputs.LoadbalancerBackendBetaHealthCheckTcpArgs>? HealthCheckTcp { get; set; }
 
         /// <summary>
-        /// Timeout before we consider a HC request failed
+        /// Timeout before we consider a HC request failed.
         /// </summary>
         [Input("healthCheckTimeout")]
         public Input<string>? HealthCheckTimeout { get; set; }
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this backend is attached to.
+        /// &gt; **Important:** Updates to `lb_id` will recreate the backend.
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the backend
+        /// The name of the load-balancer backend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Modify what occurs when a backend server is marked down
+        /// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         /// </summary>
         [Input("onMarkedDownAction")]
         public Input<string>? OnMarkedDownAction { get; set; }
 
         /// <summary>
-        /// Enables PROXY protocol version 2
+        /// Enables PROXY protocol version 2.
         /// </summary>
         [Input("sendProxyV2")]
         public Input<bool>? SendProxyV2 { get; set; }
@@ -247,7 +267,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _serverIps;
 
         /// <summary>
-        /// Backend server IP addresses list (IPv4 or IPv6)
+        /// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         /// </summary>
         public InputList<string> ServerIps
         {
@@ -256,31 +276,31 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// Load balancing algorithm
+        /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         /// </summary>
         [Input("stickySessions")]
         public Input<string>? StickySessions { get; set; }
 
         /// <summary>
-        /// Cookie name for for sticky sessions
+        /// Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         /// </summary>
         [Input("stickySessionsCookieName")]
         public Input<string>? StickySessionsCookieName { get; set; }
 
         /// <summary>
-        /// Maximum initial server connection establishment time
+        /// Maximum initial server connection establishment time. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutConnect")]
         public Input<string>? TimeoutConnect { get; set; }
 
         /// <summary>
-        /// Maximum server connection inactivity time
+        /// Maximum server connection inactivity time. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutServer")]
         public Input<string>? TimeoutServer { get; set; }
 
         /// <summary>
-        /// Maximum tunnel inactivity time
+        /// Maximum tunnel inactivity time. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutTunnel")]
         public Input<string>? TimeoutTunnel { get; set; }
@@ -293,76 +313,86 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerBackendBetaState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// User sessions will be forwarded to this port of backend servers
+        /// User sessions will be forwarded to this port of backend servers.
         /// </summary>
         [Input("forwardPort")]
         public Input<int>? ForwardPort { get; set; }
 
         /// <summary>
-        /// Load balancing algorithm
+        /// Load balancing algorithm. Possible values are: `roundrobin` and `leastconn`.
         /// </summary>
         [Input("forwardPortAlgorithm")]
         public Input<string>? ForwardPortAlgorithm { get; set; }
 
         /// <summary>
-        /// Backend protocol
+        /// Backend protocol. Possible values are: `tcp` or `http`.
         /// </summary>
         [Input("forwardProtocol")]
         public Input<string>? ForwardProtocol { get; set; }
 
         /// <summary>
-        /// Interval between two HC requests
+        /// Interval between two HC requests.
         /// </summary>
         [Input("healthCheckDelay")]
         public Input<string>? HealthCheckDelay { get; set; }
 
+        /// <summary>
+        /// This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Input("healthCheckHttp")]
         public Input<Inputs.LoadbalancerBackendBetaHealthCheckHttpGetArgs>? HealthCheckHttp { get; set; }
 
+        /// <summary>
+        /// This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Input("healthCheckHttps")]
         public Input<Inputs.LoadbalancerBackendBetaHealthCheckHttpsGetArgs>? HealthCheckHttps { get; set; }
 
         /// <summary>
-        /// Number of allowed failed HC requests before the backend server is marked down
+        /// Number of allowed failed HC requests before the backend server is marked down.
         /// </summary>
         [Input("healthCheckMaxRetries")]
         public Input<int>? HealthCheckMaxRetries { get; set; }
 
         /// <summary>
-        /// Port the HC requests will be send to. Default to `forward_port`
+        /// Port the HC requests will be send to.
         /// </summary>
         [Input("healthCheckPort")]
         public Input<int>? HealthCheckPort { get; set; }
 
+        /// <summary>
+        /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        /// </summary>
         [Input("healthCheckTcp")]
         public Input<Inputs.LoadbalancerBackendBetaHealthCheckTcpGetArgs>? HealthCheckTcp { get; set; }
 
         /// <summary>
-        /// Timeout before we consider a HC request failed
+        /// Timeout before we consider a HC request failed.
         /// </summary>
         [Input("healthCheckTimeout")]
         public Input<string>? HealthCheckTimeout { get; set; }
 
         /// <summary>
-        /// The load-balancer ID
+        /// The load-balancer ID this backend is attached to.
+        /// &gt; **Important:** Updates to `lb_id` will recreate the backend.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The name of the backend
+        /// The name of the load-balancer backend.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Modify what occurs when a backend server is marked down
+        /// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         /// </summary>
         [Input("onMarkedDownAction")]
         public Input<string>? OnMarkedDownAction { get; set; }
 
         /// <summary>
-        /// Enables PROXY protocol version 2
+        /// Enables PROXY protocol version 2.
         /// </summary>
         [Input("sendProxyV2")]
         public Input<bool>? SendProxyV2 { get; set; }
@@ -371,7 +401,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _serverIps;
 
         /// <summary>
-        /// Backend server IP addresses list (IPv4 or IPv6)
+        /// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         /// </summary>
         public InputList<string> ServerIps
         {
@@ -380,31 +410,31 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// Load balancing algorithm
+        /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         /// </summary>
         [Input("stickySessions")]
         public Input<string>? StickySessions { get; set; }
 
         /// <summary>
-        /// Cookie name for for sticky sessions
+        /// Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         /// </summary>
         [Input("stickySessionsCookieName")]
         public Input<string>? StickySessionsCookieName { get; set; }
 
         /// <summary>
-        /// Maximum initial server connection establishment time
+        /// Maximum initial server connection establishment time. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutConnect")]
         public Input<string>? TimeoutConnect { get; set; }
 
         /// <summary>
-        /// Maximum server connection inactivity time
+        /// Maximum server connection inactivity time. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutServer")]
         public Input<string>? TimeoutServer { get; set; }
 
         /// <summary>
-        /// Maximum tunnel inactivity time
+        /// Maximum tunnel inactivity time. (e.g.: `1s`)
         /// </summary>
         [Input("timeoutTunnel")]
         public Input<string>? TimeoutTunnel { get; set; }

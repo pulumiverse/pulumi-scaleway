@@ -13,33 +13,33 @@ import (
 type DatabaseInstanceBeta struct {
 	pulumi.CustomResourceState
 
-	// Certificate of the database instance
+	// Certificate of the database instance.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
-	// Endpoint IP of the database instance
+	// The IP of the Database Instance.
 	EndpointIp pulumi.StringOutput `pulumi:"endpointIp"`
-	// Endpoint port of the database instance
+	// The port of the Database Instance.
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringOutput `pulumi:"engine"`
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// Read replicas of the database instance
+	// List of read replicas of the database instance.
 	ReadReplicas DatabaseInstanceBetaReadReplicaArrayOutput `pulumi:"readReplicas"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
 
@@ -83,64 +83,64 @@ func GetDatabaseInstanceBeta(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseInstanceBeta resources.
 type databaseInstanceBetaState struct {
-	// Certificate of the database instance
+	// Certificate of the database instance.
 	Certificate *string `pulumi:"certificate"`
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// Endpoint IP of the database instance
+	// The IP of the Database Instance.
 	EndpointIp *string `pulumi:"endpointIp"`
-	// Endpoint port of the database instance
+	// The port of the Database Instance.
 	EndpointPort *int `pulumi:"endpointPort"`
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine *string `pulumi:"engine"`
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType *string `pulumi:"nodeType"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
-	// Read replicas of the database instance
+	// List of read replicas of the database instance.
 	ReadReplicas []DatabaseInstanceBetaReadReplica `pulumi:"readReplicas"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName *string `pulumi:"userName"`
 }
 
 type DatabaseInstanceBetaState struct {
-	// Certificate of the database instance
+	// Certificate of the database instance.
 	Certificate pulumi.StringPtrInput
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
-	// Endpoint IP of the database instance
+	// The IP of the Database Instance.
 	EndpointIp pulumi.StringPtrInput
-	// Endpoint port of the database instance
+	// The port of the Database Instance.
 	EndpointPort pulumi.IntPtrInput
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringPtrInput
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
-	// Read replicas of the database instance
+	// List of read replicas of the database instance.
 	ReadReplicas DatabaseInstanceBetaReadReplicaArrayInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrInput
 }
 
@@ -149,49 +149,49 @@ func (DatabaseInstanceBetaState) ElementType() reflect.Type {
 }
 
 type databaseInstanceBetaArgs struct {
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine string `pulumi:"engine"`
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType string `pulumi:"nodeType"`
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password string `pulumi:"password"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName string `pulumi:"userName"`
 }
 
 // The set of arguments for constructing a DatabaseInstanceBeta resource.
 type DatabaseInstanceBetaArgs struct {
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringInput
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType pulumi.StringInput
-	// The organization_id you want to attach the resource to
+	// `organizationId`) The ID of the organization the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password pulumi.StringInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName pulumi.StringInput
 }
 

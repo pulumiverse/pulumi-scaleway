@@ -11,15 +11,38 @@ namespace Pulumi.Scaleway
 {
     /// <summary>
     /// **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
-    /// Please use `scaleway..InstanceIP` instead.
+    /// Please use `scaleway.InstanceIP` instead.
     /// 
     /// Provides reverse DNS settings for IPs.
     /// For additional details please refer to [API documentation](https://developer.scaleway.com/#ips).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testService = new Scaleway.IP("testService", new Scaleway.IPArgs
+    ///         {
+    ///         });
+    ///         var google = new Scaleway.IPReverseDNS("google", new Scaleway.IPReverseDNSArgs
+    ///         {
+    ///             Ip = testService.Id,
+    ///             Reverse = "test_service.awesome-corp.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class IPReverseDNS : Pulumi.CustomResource
     {
         /// <summary>
-        /// ID or Address of IP 
+        /// ID or Address of IP
         /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
@@ -77,7 +100,7 @@ namespace Pulumi.Scaleway
     public sealed class IPReverseDNSArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID or Address of IP 
+        /// ID or Address of IP
         /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
@@ -96,7 +119,7 @@ namespace Pulumi.Scaleway
     public sealed class IPReverseDNSState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID or Address of IP 
+        /// ID or Address of IP
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }

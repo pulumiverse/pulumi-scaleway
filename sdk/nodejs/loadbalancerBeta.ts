@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class LoadbalancerBeta extends pulumi.CustomResource {
@@ -14,6 +12,7 @@ export class LoadbalancerBeta extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerBetaState, opts?: pulumi.CustomResourceOptions): LoadbalancerBeta {
         return new LoadbalancerBeta(name, <any>state, { ...opts, id: id });
@@ -34,31 +33,31 @@ export class LoadbalancerBeta extends pulumi.CustomResource {
     }
 
     /**
-     * The load-balance public IP address
+     * The load-balance public IP Address
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The load-balance public IP ID
+     * The ID of the associated IP. See below.
      */
-    public /*out*/ readonly ipId!: pulumi.Output<string>;
+    public readonly ipId!: pulumi.Output<string>;
     /**
-     * Name of the lb
+     * The name of the load-balancer.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the load-balancer is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the load-balancer should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Array of tags to associate with the load-balancer
+     * The tags associated with the load-balancers.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of load-balancer you want to create
+     * The type of the load-balancer.  For now only `LB-S` is available
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -83,16 +82,19 @@ export class LoadbalancerBeta extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as LoadbalancerBetaArgs | undefined;
+            if (!args || args.ipId === undefined) {
+                throw new Error("Missing required property 'ipId'");
+            }
             if (!args || args.type === undefined) {
                 throw new Error("Missing required property 'type'");
             }
+            inputs["ipId"] = args ? args.ipId : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["organizationId"] = args ? args.organizationId : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["tags"] = args ? args.tags : undefined;
             inputs["type"] = args ? args.type : undefined;
             inputs["ipAddress"] = undefined /*out*/;
-            inputs["ipId"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -110,31 +112,31 @@ export class LoadbalancerBeta extends pulumi.CustomResource {
  */
 export interface LoadbalancerBetaState {
     /**
-     * The load-balance public IP address
+     * The load-balance public IP Address
      */
     readonly ipAddress?: pulumi.Input<string>;
     /**
-     * The load-balance public IP ID
+     * The ID of the associated IP. See below.
      */
     readonly ipId?: pulumi.Input<string>;
     /**
-     * Name of the lb
+     * The name of the load-balancer.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the load-balancer is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the load-balancer should be created.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * Array of tags to associate with the load-balancer
+     * The tags associated with the load-balancers.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of load-balancer you want to create
+     * The type of the load-balancer.  For now only `LB-S` is available
      */
     readonly type?: pulumi.Input<string>;
 }
@@ -144,23 +146,27 @@ export interface LoadbalancerBetaState {
  */
 export interface LoadbalancerBetaArgs {
     /**
-     * Name of the lb
+     * The ID of the associated IP. See below.
+     */
+    readonly ipId: pulumi.Input<string>;
+    /**
+     * The name of the load-balancer.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * `organizationId`) The ID of the organization the load-balancer is associated with.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the load-balancer should be created.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * Array of tags to associate with the load-balancer
+     * The tags associated with the load-balancers.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of load-balancer you want to create
+     * The type of the load-balancer.  For now only `LB-S` is available
      */
     readonly type: pulumi.Input<string>;
 }

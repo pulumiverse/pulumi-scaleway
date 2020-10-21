@@ -8,6 +8,30 @@ import (
 )
 
 // Gets information about an instance volume.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "11111111-1111-1111-1111-111111111111"
+// 		_, err := scaleway.LookupInstanceVolume(ctx, &scaleway.LookupInstanceVolumeArgs{
+// 			VolumeId: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, opts ...pulumi.InvokeOption) (*LookupInstanceVolumeResult, error) {
 	var rv LookupInstanceVolumeResult
 	err := ctx.Invoke("scaleway:index/getInstanceVolume:getInstanceVolume", args, &rv, opts...)
@@ -19,16 +43,21 @@ func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, o
 
 // A collection of arguments for invoking getInstanceVolume.
 type LookupInstanceVolumeArgs struct {
-	Name     *string `pulumi:"name"`
+	// The volume name.
+	// Only one of `name` and `volumeId` should be specified.
+	Name *string `pulumi:"name"`
+	// The volume id.
+	// Only one of `name` and `volumeId` should be specified.
 	VolumeId *string `pulumi:"volumeId"`
-	Zone     *string `pulumi:"zone"`
+	// `zone`) The zone in which the volume exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getInstanceVolume.
 type LookupInstanceVolumeResult struct {
 	FromSnapshotId string `pulumi:"fromSnapshotId"`
 	FromVolumeId   string `pulumi:"fromVolumeId"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`

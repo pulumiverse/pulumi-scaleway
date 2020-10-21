@@ -13,6 +13,9 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class GetInstanceSecurityGroupOutboundRuleResult
     {
+        /// <summary>
+        /// The action to take when rule match. Possible values are: `accept` or `drop`.
+        /// </summary>
         public readonly string Action;
         public readonly string Ip;
         public readonly string IpRange;

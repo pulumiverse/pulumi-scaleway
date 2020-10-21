@@ -8,22 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about an instance volume.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * // Get info by volume ID
- * const myVolume = scaleway.getInstanceVolume({
- *     volumeId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/instance_volume.html.markdown.
+ * // Get info by volume ID
+ * const myVolume = pulumi.output(scaleway.getInstanceVolume({
+ *     volumeId: "11111111-1111-1111-1111-111111111111",
+ * }, { async: true }));
+ * ```
  */
 export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceVolumeResult> {
     args = args || {};
@@ -45,8 +41,19 @@ export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.In
  * A collection of arguments for invoking getInstanceVolume.
  */
 export interface GetInstanceVolumeArgs {
+    /**
+     * The volume name.
+     * Only one of `name` and `volumeId` should be specified.
+     */
     readonly name?: string;
+    /**
+     * The volume id.
+     * Only one of `name` and `volumeId` should be specified.
+     */
     readonly volumeId?: string;
+    /**
+     * `zone`) The zone in which the volume exists.
+     */
     readonly zone?: string;
 }
 
@@ -56,6 +63,10 @@ export interface GetInstanceVolumeArgs {
 export interface GetInstanceVolumeResult {
     readonly fromSnapshotId: string;
     readonly fromVolumeId: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly name?: string;
     readonly organizationId: string;
     readonly serverId: string;
@@ -63,8 +74,4 @@ export interface GetInstanceVolumeResult {
     readonly type: string;
     readonly volumeId?: string;
     readonly zone?: string;
-    /**
-     * id is the provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

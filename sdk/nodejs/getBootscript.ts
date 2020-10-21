@@ -8,25 +8,21 @@ import * as utilities from "./utilities";
 
 /**
  * **DEPRECATED**: This resource is deprecated and will be removed in `v2.0+`.
- * 
+ *
  * Use this data source to get the ID of a registered Bootscript for use with the
- * `scaleway..Server` resource.
- * 
+ * `scaleway.Server` resource.
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
- * 
- * const debug = scaleway.getBootscript({
+ *
+ * const debug = pulumi.output(scaleway.getBootscript({
  *     architecture: "arm",
  *     nameFilter: "Rescue",
- * });
+ * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-scaleway/blob/master/website/docs/d/bootscript.html.markdown.
  */
 export function getBootscript(args?: GetBootscriptArgs, opts?: pulumi.InvokeOptions): Promise<GetBootscriptResult> {
     args = args || {};
@@ -79,6 +75,10 @@ export interface GetBootscriptResult {
      */
     readonly dtb: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * URL to initial ramdisk content
      */
     readonly initrd: string;
@@ -96,8 +96,4 @@ export interface GetBootscriptResult {
      * is this a public bootscript
      */
     readonly public: boolean;
-    /**
-     * id is the provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
