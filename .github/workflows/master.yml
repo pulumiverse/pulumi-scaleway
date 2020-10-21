@@ -4,7 +4,7 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
-  PROVIDER: kong
+  PROVIDER: scaleway
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
@@ -139,7 +139,7 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@b811287a6e06bb7e5d8b91132b839c67e3f9c6ed
     - name: Run golangci
-      run: cd sdk/go/kong && golangci-lint run -c ../../../.golangci.yml
+      run: cd sdk/go/scaleway && golangci-lint run -c ../../../.golangci.yml
   prerequisites:
     name: prerequisites
     runs-on: ubuntu-latest
