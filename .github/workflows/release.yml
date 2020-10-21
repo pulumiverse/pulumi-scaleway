@@ -198,6 +198,9 @@ jobs:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@b811287a6e06bb7e5d8b91132b839c67e3f9c6ed
+    - name: Set PreRelease Version
+      run: |
+        echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
@@ -205,6 +208,9 @@ jobs:
         version: latest
       env:
         UPLOAD_BINTRAY_SECRET: ${{ secrets.UPLOAD_BINTRAY_SECRET }}
+    - name: Bintray publish
+      run: |
+        curl -X POST -ujaxxstorm:${{ secrets.UPLOAD_BINTRAY_SECRET }} https://api.bintray.com/content/jaxxstorm/pulumi/pulumi-scaleway/${{ env.GORELEASER_CURRENT_TAG }}/publish
   publish_sdk:
     name: publish_sdk
     needs: publish
