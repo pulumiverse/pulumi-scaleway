@@ -9,6 +9,7 @@ env:
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  PYPI_USERNAME: jaxxstorm
   TRAVIS_OS_NAME: linux
 jobs:
   build_sdk:
@@ -188,6 +189,7 @@ jobs:
       with:
         path: ci-scripts
         repository: pulumi/scripts
+        ref: 3411cb21fe253c2a65eaaf3a39db2320077ce675
     - name: Setup Go
       uses: actions/setup-go@v2
       with:
@@ -220,6 +222,7 @@ jobs:
       with:
         path: ci-scripts
         repository: pulumi/scripts
+        ref: 3411cb21fe253c2a65eaaf3a39db2320077ce675
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
