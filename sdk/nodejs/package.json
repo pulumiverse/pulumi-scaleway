@@ -20,6 +20,7 @@
         "@types/node": "^8.0.25"
     },
     "pulumi": {
-        "resource": true
+        "resource": true,
+        "pluginDownloadURL": "https://bintray.com/jaxxstorm/pulumi/download_file?file_path="
     }
 }
