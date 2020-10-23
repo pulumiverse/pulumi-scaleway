@@ -222,7 +222,7 @@ jobs:
       with:
         path: ci-scripts
         repository: pulumi/scripts
-        ref: 3411cb21fe253c2a65eaaf3a39db2320077ce675
+        ref: d52b4829f015a7d4e76833db73b805a69dde4339
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
