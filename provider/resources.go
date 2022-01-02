@@ -17,11 +17,10 @@ package scaleway
 import (
 	"unicode"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
-	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-scaleway/scaleway"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/scaleway/terraform-provider-scaleway/scaleway/v2"
 )
 
 // all of the token components used below.
@@ -70,7 +69,7 @@ func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProvider
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(scaleway.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(scaleway.Provider().(*schema.Provider))
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
