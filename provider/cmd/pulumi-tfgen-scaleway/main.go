@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 
 	scaleway "github.com/jaxxstorm/pulumi-scaleway/provider"
 	"github.com/jaxxstorm/pulumi-scaleway/provider/pkg/version"
