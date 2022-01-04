@@ -8,6 +8,7 @@ blobs:
 - bucket: lbrlabs
   endpoint: https://s3.nl-ams.scw.cloud
   folder: pulumi/releases/plugins/
+  region: nl-ams
   ids:
   - archive
   provider: s3

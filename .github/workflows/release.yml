@@ -79,7 +79,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         language:
         - nodejs
         - python
@@ -162,7 +162,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -187,12 +187,11 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v2
     - name: Set PreRelease Version
-      run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)"
-        >> $GITHUB_ENV
+      run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
-        args: -p 3 release --rm-dist --timeout 60m0s
+        args: release --rm-dist --timeout 60m0s
         version: latest
     strategy:
       fail-fast: true
@@ -200,7 +199,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -274,7 +273,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -349,7 +348,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.16.x
+        - 1.17.x
         language:
         - nodejs
         - python
