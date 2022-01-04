@@ -4,13 +4,15 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Compute Instance Volumes. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
+// Creates and manages Scaleway Compute Instance Volumes.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
 //
 // ## Example
 //
@@ -19,7 +21,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -35,21 +37,31 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// volumes can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//  $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
+// ```
 type InstanceVolume struct {
 	pulumi.CustomResourceState
 
 	// Create a volume based on a image
 	FromSnapshotId pulumi.StringPtrOutput `pulumi:"fromSnapshotId"`
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId pulumi.StringPtrOutput `pulumi:"fromVolumeId"`
 	// The name of the volume. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `organizationId`) The ID of the organization the volume is associated with.
+	// The organization ID the volume is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the volume is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The id of the associated server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
-	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
+	SizeInGb pulumi.IntPtrOutput `pulumi:"sizeInGb"`
 	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
@@ -59,11 +71,12 @@ type InstanceVolume struct {
 // NewInstanceVolume registers a new resource with the given unique name, arguments, and options.
 func NewInstanceVolume(ctx *pulumi.Context,
 	name string, args *InstanceVolumeArgs, opts ...pulumi.ResourceOption) (*InstanceVolume, error) {
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &InstanceVolumeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource InstanceVolume
 	err := ctx.RegisterResource("scaleway:index/instanceVolume:InstanceVolume", name, args, &resource, opts...)
@@ -89,12 +102,14 @@ func GetInstanceVolume(ctx *pulumi.Context,
 type instanceVolumeState struct {
 	// Create a volume based on a image
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId *string `pulumi:"fromVolumeId"`
 	// The name of the volume. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `organizationId`) The ID of the organization the volume is associated with.
+	// The organization ID the volume is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the volume is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The id of the associated server.
 	ServerId *string `pulumi:"serverId"`
 	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
@@ -108,12 +123,14 @@ type instanceVolumeState struct {
 type InstanceVolumeState struct {
 	// Create a volume based on a image
 	FromSnapshotId pulumi.StringPtrInput
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId pulumi.StringPtrInput
 	// The name of the volume. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `organizationId`) The ID of the organization the volume is associated with.
+	// The organization ID the volume is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the volume is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The id of the associated server.
 	ServerId pulumi.StringPtrInput
 	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
@@ -131,12 +148,12 @@ func (InstanceVolumeState) ElementType() reflect.Type {
 type instanceVolumeArgs struct {
 	// Create a volume based on a image
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId *string `pulumi:"fromVolumeId"`
 	// The name of the volume. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `organizationId`) The ID of the organization the volume is associated with.
-	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the volume is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
@@ -149,12 +166,12 @@ type instanceVolumeArgs struct {
 type InstanceVolumeArgs struct {
 	// Create a volume based on a image
 	FromSnapshotId pulumi.StringPtrInput
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId pulumi.StringPtrInput
 	// The name of the volume. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `organizationId`) The ID of the organization the volume is associated with.
-	OrganizationId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the volume is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
 	SizeInGb pulumi.IntPtrInput
 	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
@@ -165,4 +182,42 @@ type InstanceVolumeArgs struct {
 
 func (InstanceVolumeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceVolumeArgs)(nil)).Elem()
+}
+
+type InstanceVolumeInput interface {
+	pulumi.Input
+
+	ToInstanceVolumeOutput() InstanceVolumeOutput
+	ToInstanceVolumeOutputWithContext(ctx context.Context) InstanceVolumeOutput
+}
+
+func (*InstanceVolume) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceVolume)(nil)).Elem()
+}
+
+func (i *InstanceVolume) ToInstanceVolumeOutput() InstanceVolumeOutput {
+	return i.ToInstanceVolumeOutputWithContext(context.Background())
+}
+
+func (i *InstanceVolume) ToInstanceVolumeOutputWithContext(ctx context.Context) InstanceVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeOutput)
+}
+
+type InstanceVolumeOutput struct{ *pulumi.OutputState }
+
+func (InstanceVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceVolume)(nil)).Elem()
+}
+
+func (o InstanceVolumeOutput) ToInstanceVolumeOutput() InstanceVolumeOutput {
+	return o
+}
+
+func (o InstanceVolumeOutput) ToInstanceVolumeOutputWithContext(ctx context.Context) InstanceVolumeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceVolumeInput)(nil)).Elem(), &InstanceVolume{})
+	pulumi.RegisterOutputType(InstanceVolumeOutput{})
 }

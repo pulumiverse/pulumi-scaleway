@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -18,7 +17,7 @@ import * as utilities from "./utilities";
  * // Get info by server id
  * const myKey = pulumi.output(scaleway.getInstanceServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServerResult> {
@@ -44,15 +43,15 @@ export interface GetInstanceServerArgs {
     /**
      * The server name. Only one of `name` and `serverId` should be specified.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The server id. Only one of `name` and `serverId` should be specified.
      */
-    readonly serverId?: string;
+    serverId?: string;
     /**
      * `zone`) The zone in which the server exists.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -65,12 +64,11 @@ export interface GetInstanceServerResult {
      */
     readonly additionalVolumeIds: string[];
     readonly bootType: string;
+    readonly bootscriptId: string;
     /**
      * The cloud init script associated with this server.
      */
     readonly cloudInit: string;
-    readonly disableDynamicIp: boolean;
-    readonly disablePublicIp: boolean;
     /**
      * True is dynamic IP in enable on the server.
      */
@@ -117,6 +115,11 @@ export interface GetInstanceServerResult {
      * The Scaleway internal IP address of the server.
      */
     readonly privateIp: string;
+    readonly privateNetworks: outputs.GetInstanceServerPrivateNetwork[];
+    /**
+     * The ID of the project the server is associated with.
+     */
+    readonly projectId: string;
     /**
      * The public IPv4 address of the server.
      */
@@ -146,6 +149,28 @@ export interface GetInstanceServerResult {
     /**
      * The user data associated with the server.
      */
-    readonly userDatas: outputs.GetInstanceServerUserData[];
+    readonly userData: {[key: string]: string};
     readonly zone?: string;
+}
+
+export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServerResult> {
+    return pulumi.output(args).apply(a => getInstanceServer(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstanceServer.
+ */
+export interface GetInstanceServerOutputArgs {
+    /**
+     * The server name. Only one of `name` and `serverId` should be specified.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The server id. Only one of `name` and `serverId` should be specified.
+     */
+    serverId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the server exists.
+     */
+    zone?: pulumi.Input<string>;
 }

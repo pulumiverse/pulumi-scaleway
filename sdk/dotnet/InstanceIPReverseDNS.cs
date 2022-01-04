@@ -34,7 +34,16 @@ namespace Pulumi.Scaleway
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS")]
     public partial class InstanceIPReverseDNS : Pulumi.CustomResource
     {
         /// <summary>

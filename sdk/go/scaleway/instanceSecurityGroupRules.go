@@ -4,54 +4,19 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+// ## Import
 //
-// This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
+// Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
 //
-// > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
-//
-// ## Examples
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sg01, err := scaleway.NewInstanceSecurityGroup(ctx, "sg01", &scaleway.InstanceSecurityGroupArgs{
-// 			ExternalRules: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = scaleway.NewInstanceSecurityGroupRules(ctx, "sgrs01", &scaleway.InstanceSecurityGroupRulesArgs{
-// 			SecurityGroupId: sg01.ID(),
-// 			InboundRules: scaleway.InstanceSecurityGroupRulesInboundRuleArray{
-// 				&scaleway.InstanceSecurityGroupRulesInboundRuleArgs{
-// 					Action:  pulumi.String("accept"),
-// 					Port:    pulumi.Int(80),
-// 					IpRange: pulumi.String("0.0.0.0/0"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+// ```sh
+//  $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceSecurityGroupRules struct {
 	pulumi.CustomResourceState
@@ -67,11 +32,12 @@ type InstanceSecurityGroupRules struct {
 // NewInstanceSecurityGroupRules registers a new resource with the given unique name, arguments, and options.
 func NewInstanceSecurityGroupRules(ctx *pulumi.Context,
 	name string, args *InstanceSecurityGroupRulesArgs, opts ...pulumi.ResourceOption) (*InstanceSecurityGroupRules, error) {
-	if args == nil || args.SecurityGroupId == nil {
-		return nil, errors.New("missing required argument 'SecurityGroupId'")
-	}
 	if args == nil {
-		args = &InstanceSecurityGroupRulesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SecurityGroupId == nil {
+		return nil, errors.New("invalid value for required argument 'SecurityGroupId'")
 	}
 	var resource InstanceSecurityGroupRules
 	err := ctx.RegisterResource("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules", name, args, &resource, opts...)
@@ -137,4 +103,42 @@ type InstanceSecurityGroupRulesArgs struct {
 
 func (InstanceSecurityGroupRulesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceSecurityGroupRulesArgs)(nil)).Elem()
+}
+
+type InstanceSecurityGroupRulesInput interface {
+	pulumi.Input
+
+	ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput
+	ToInstanceSecurityGroupRulesOutputWithContext(ctx context.Context) InstanceSecurityGroupRulesOutput
+}
+
+func (*InstanceSecurityGroupRules) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceSecurityGroupRules)(nil)).Elem()
+}
+
+func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput {
+	return i.ToInstanceSecurityGroupRulesOutputWithContext(context.Background())
+}
+
+func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutputWithContext(ctx context.Context) InstanceSecurityGroupRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupRulesOutput)
+}
+
+type InstanceSecurityGroupRulesOutput struct{ *pulumi.OutputState }
+
+func (InstanceSecurityGroupRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceSecurityGroupRules)(nil)).Elem()
+}
+
+func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput {
+	return o
+}
+
+func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutputWithContext(ctx context.Context) InstanceSecurityGroupRulesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesInput)(nil)).Elem(), &InstanceSecurityGroupRules{})
+	pulumi.RegisterOutputType(InstanceSecurityGroupRulesOutput{})
 }

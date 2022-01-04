@@ -5,13 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
 __all__ = [
     'GetInstanceImageResult',
     'AwaitableGetInstanceImageResult',
     'get_instance_image',
+    'get_instance_image_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetInstanceImageResult:
     """
     A collection of values returned by getInstanceImage.
     """
-    def __init__(__self__, additional_volume_ids=None, architecture=None, creation_date=None, default_bootscript_id=None, from_server_id=None, id=None, image_id=None, latest=None, modification_date=None, name=None, organization_id=None, public=None, root_volume_id=None, state=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, architecture=None, creation_date=None, default_bootscript_id=None, from_server_id=None, id=None, image_id=None, latest=None, modification_date=None, name=None, organization_id=None, project_id=None, public=None, root_volume_id=None, state=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -53,6 +54,9 @@ class GetInstanceImageResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if public and not isinstance(public, bool):
             raise TypeError("Expected argument 'public' to be a bool")
         pulumi.set(__self__, "public", public)
@@ -143,6 +147,14 @@ class GetInstanceImageResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project the image is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
     @pulumi.getter
     def public(self) -> bool:
         """
@@ -189,6 +201,7 @@ class AwaitableGetInstanceImageResult(GetInstanceImageResult):
             modification_date=self.modification_date,
             name=self.name,
             organization_id=self.organization_id,
+            project_id=self.project_id,
             public=self.public,
             root_volume_id=self.root_volume_id,
             state=self.state,
@@ -199,7 +212,7 @@ def get_instance_image(architecture: Optional[str] = None,
                        image_id: Optional[str] = None,
                        latest: Optional[bool] = None,
                        name: Optional[str] = None,
-                       organization_id: Optional[str] = None,
+                       project_id: Optional[str] = None,
                        zone: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceImageResult:
     """
@@ -219,7 +232,7 @@ def get_instance_image(architecture: Optional[str] = None,
     :param str image_id: The image id. Only one of `name` and `image_id` should be specified.
     :param bool latest: Use the latest image ID.
     :param str name: The image name. Only one of `name` and `image_id` should be specified.
-    :param str organization_id: The ID of the organization the image is associated with.
+    :param str project_id: The ID of the project the image is associated with.
     :param str zone: `zone`) The zone in which the image exists.
     """
     __args__ = dict()
@@ -227,7 +240,7 @@ def get_instance_image(architecture: Optional[str] = None,
     __args__['imageId'] = image_id
     __args__['latest'] = latest
     __args__['name'] = name
-    __args__['organizationId'] = organization_id
+    __args__['projectId'] = project_id
     __args__['zone'] = zone
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -247,7 +260,39 @@ def get_instance_image(architecture: Optional[str] = None,
         modification_date=__ret__.modification_date,
         name=__ret__.name,
         organization_id=__ret__.organization_id,
+        project_id=__ret__.project_id,
         public=__ret__.public,
         root_volume_id=__ret__.root_volume_id,
         state=__ret__.state,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_instance_image)
+def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]] = None,
+                              image_id: Optional[pulumi.Input[Optional[str]]] = None,
+                              latest: Optional[pulumi.Input[Optional[bool]]] = None,
+                              name: Optional[pulumi.Input[Optional[str]]] = None,
+                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                              zone: Optional[pulumi.Input[Optional[str]]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceImageResult]:
+    """
+    Gets information about an instance image.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_image = scaleway.get_instance_image(image_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
+    :param str image_id: The image id. Only one of `name` and `image_id` should be specified.
+    :param bool latest: Use the latest image ID.
+    :param str name: The image name. Only one of `name` and `image_id` should be specified.
+    :param str project_id: The ID of the project the image is associated with.
+    :param str zone: `zone`) The zone in which the image exists.
+    """
+    ...

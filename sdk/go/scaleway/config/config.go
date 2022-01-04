@@ -4,8 +4,8 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi/config"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
 // The Scaleway access key.
@@ -17,21 +17,26 @@ func GetAccessKey(ctx *pulumi.Context) string {
 	return getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string)
 }
 
-// Deprecated: Use `organization_id` instead.
-func GetOrganization(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:organization")
+// The Scaleway API URL to use.
+func GetApiUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "scaleway:apiUrl")
 }
 
-// The Scaleway organization ID.
-func GetOrganizationId(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "scaleway:organizationId")
+// The Scaleway profile to use.
+func GetProfile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "scaleway:profile")
+}
+
+// The Scaleway project ID.
+func GetProjectId(ctx *pulumi.Context) string {
+	v, err := config.Try(ctx, "scaleway:projectId")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_DEFAULT_ORGANIZATION_ID").(string)
+	return getEnvOrDefault("", nil, "SCW_DEFAULT_PROJECT_ID").(string)
 }
 
-// The Scaleway default region to use for your resources.
+// The region you want to attach the resource to
 func GetRegion(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "scaleway:region")
 	if err == nil {
@@ -49,12 +54,7 @@ func GetSecretKey(ctx *pulumi.Context) string {
 	return getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string)
 }
 
-// Deprecated: Use `secret_key` instead.
-func GetToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:token")
-}
-
-// The Scaleway default zone to use for your resources.
+// The zone you want to attach the resource to
 func GetZone(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "scaleway:zone")
 	if err == nil {

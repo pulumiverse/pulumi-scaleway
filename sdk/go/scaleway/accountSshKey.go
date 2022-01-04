@@ -4,10 +4,11 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Manages user SSH keys to access servers provisioned on Scaleway.
@@ -19,7 +20,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -34,13 +35,23 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// SSH keys can be imported using the `id`, e.g. bash
+//
+// ```sh
+//  $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+// ```
 type AccountSshKey struct {
 	pulumi.CustomResourceState
 
 	// The name of the SSH key.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `organizationId`) The ID of the organization the IP is associated with.
+	// The organization ID the SSH key is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
@@ -48,11 +59,12 @@ type AccountSshKey struct {
 // NewAccountSshKey registers a new resource with the given unique name, arguments, and options.
 func NewAccountSshKey(ctx *pulumi.Context,
 	name string, args *AccountSshKeyArgs, opts ...pulumi.ResourceOption) (*AccountSshKey, error) {
-	if args == nil || args.PublicKey == nil {
-		return nil, errors.New("missing required argument 'PublicKey'")
-	}
 	if args == nil {
-		args = &AccountSshKeyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PublicKey == nil {
+		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
 	var resource AccountSshKey
 	err := ctx.RegisterResource("scaleway:index/accountSshKey:AccountSshKey", name, args, &resource, opts...)
@@ -78,8 +90,10 @@ func GetAccountSshKey(ctx *pulumi.Context,
 type accountSshKeyState struct {
 	// The name of the SSH key.
 	Name *string `pulumi:"name"`
-	// `organizationId`) The ID of the organization the IP is associated with.
+	// The organization ID the SSH key is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey *string `pulumi:"publicKey"`
 }
@@ -87,8 +101,10 @@ type accountSshKeyState struct {
 type AccountSshKeyState struct {
 	// The name of the SSH key.
 	Name pulumi.StringPtrInput
-	// `organizationId`) The ID of the organization the IP is associated with.
+	// The organization ID the SSH key is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The public SSH key to be added.
 	PublicKey pulumi.StringPtrInput
 }
@@ -100,8 +116,8 @@ func (AccountSshKeyState) ElementType() reflect.Type {
 type accountSshKeyArgs struct {
 	// The name of the SSH key.
 	Name *string `pulumi:"name"`
-	// `organizationId`) The ID of the organization the IP is associated with.
-	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey string `pulumi:"publicKey"`
 }
@@ -110,12 +126,50 @@ type accountSshKeyArgs struct {
 type AccountSshKeyArgs struct {
 	// The name of the SSH key.
 	Name pulumi.StringPtrInput
-	// `organizationId`) The ID of the organization the IP is associated with.
-	OrganizationId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The public SSH key to be added.
 	PublicKey pulumi.StringInput
 }
 
 func (AccountSshKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountSshKeyArgs)(nil)).Elem()
+}
+
+type AccountSshKeyInput interface {
+	pulumi.Input
+
+	ToAccountSshKeyOutput() AccountSshKeyOutput
+	ToAccountSshKeyOutputWithContext(ctx context.Context) AccountSshKeyOutput
+}
+
+func (*AccountSshKey) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccountSshKey)(nil)).Elem()
+}
+
+func (i *AccountSshKey) ToAccountSshKeyOutput() AccountSshKeyOutput {
+	return i.ToAccountSshKeyOutputWithContext(context.Background())
+}
+
+func (i *AccountSshKey) ToAccountSshKeyOutputWithContext(ctx context.Context) AccountSshKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyOutput)
+}
+
+type AccountSshKeyOutput struct{ *pulumi.OutputState }
+
+func (AccountSshKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccountSshKey)(nil)).Elem()
+}
+
+func (o AccountSshKeyOutput) ToAccountSshKeyOutput() AccountSshKeyOutput {
+	return o
+}
+
+func (o AccountSshKeyOutput) ToAccountSshKeyOutputWithContext(ctx context.Context) AccountSshKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountSshKeyInput)(nil)).Elem(), &AccountSshKey{})
+	pulumi.RegisterOutputType(AccountSshKeyOutput{})
 }

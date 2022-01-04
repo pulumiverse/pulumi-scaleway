@@ -29,7 +29,16 @@ namespace Pulumi.Scaleway
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Placement groups can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/instancePlacementGroup:InstancePlacementGroup")]
     public partial class InstancePlacementGroup : Pulumi.CustomResource
     {
         /// <summary>
@@ -39,7 +48,7 @@ namespace Pulumi.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the project the placement group is associated with.
+        /// The organization ID the placement group is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -61,6 +70,12 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Output("policyType")]
         public Output<string?> PolicyType { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the placement group is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the placement group should be created.
@@ -121,12 +136,6 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the project the placement group is associated with.
-        /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
-
-        /// <summary>
         /// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
         /// </summary>
         [Input("policyMode")]
@@ -137,6 +146,12 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the placement group is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the placement group should be created.
@@ -158,7 +173,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the project the placement group is associated with.
+        /// The organization ID the placement group is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -180,6 +195,12 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the placement group is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the placement group should be created.

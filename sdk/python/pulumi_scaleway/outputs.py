@@ -5,41 +5,74 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 
 __all__ = [
     'BaremetalServerIp',
-    'DatabaseInstanceBetaReadReplica',
+    'DatabaseACLAclRule',
+    'DatabaseInstanceLoadBalancer',
+    'DatabaseInstancePrivateNetwork',
+    'DatabaseInstanceReadReplica',
+    'DomainRecordGeoIp',
+    'DomainRecordGeoIpMatch',
+    'DomainRecordHttpService',
+    'DomainRecordView',
+    'DomainRecordWeighted',
+    'IOTDeviceCertificate',
+    'IOTDeviceMessageFilters',
+    'IOTDeviceMessageFiltersPublish',
+    'IOTDeviceMessageFiltersSubscribe',
+    'IOTRouteDatabase',
+    'IOTRouteRest',
+    'IOTRouteS3',
     'InstanceSecurityGroupInboundRule',
     'InstanceSecurityGroupOutboundRule',
     'InstanceSecurityGroupRulesInboundRule',
     'InstanceSecurityGroupRulesOutboundRule',
+    'InstanceServerPrivateNetwork',
     'InstanceServerRootVolume',
-    'InstanceServerUserData',
-    'KubernetesClusterBetaAutoUpgrade',
-    'KubernetesClusterBetaAutoscalerConfig',
-    'KubernetesClusterBetaDefaultPool',
-    'KubernetesClusterBetaDefaultPoolNode',
-    'KubernetesClusterBetaKubeconfig',
-    'KubernetesNodePoolBetaNode',
-    'LoadbalancerBackendBetaHealthCheckHttp',
-    'LoadbalancerBackendBetaHealthCheckHttps',
-    'LoadbalancerBackendBetaHealthCheckTcp',
-    'LoadbalancerCertificateBetaCustomCertificate',
-    'LoadbalancerCertificateBetaLetsencrypt',
-    'LoadbalancerFrontendBetaAcl',
-    'LoadbalancerFrontendBetaAclAction',
-    'LoadbalancerFrontendBetaAclMatch',
-    'ServerVolume',
+    'KubernetesClusterAutoUpgrade',
+    'KubernetesClusterAutoscalerConfig',
+    'KubernetesClusterKubeconfig',
+    'KubernetesClusterOpenIdConnectConfig',
+    'KubernetesNodePoolNode',
+    'KubernetesNodePoolUpgradePolicy',
+    'LoadbalancerBackendHealthCheckHttp',
+    'LoadbalancerBackendHealthCheckHttps',
+    'LoadbalancerBackendHealthCheckTcp',
+    'LoadbalancerCertificateCustomCertificate',
+    'LoadbalancerCertificateLetsencrypt',
+    'LoadbalancerFrontendAcl',
+    'LoadbalancerFrontendAclAction',
+    'LoadbalancerFrontendAclMatch',
+    'LoadbalancerPrivateNetwork',
+    'ObjectBucketCorsRule',
+    'ObjectBucketVersioning',
     'GetBaremetalOfferCpuResult',
     'GetBaremetalOfferDiskResult',
     'GetBaremetalOfferMemoryResult',
+    'GetDatabaseACLAclRuleResult',
+    'GetDatabaseInstanceLoadBalancerResult',
+    'GetDatabaseInstancePrivateNetworkResult',
+    'GetDatabaseInstanceReadReplicaResult',
+    'GetDomainRecordGeoIpResult',
+    'GetDomainRecordGeoIpMatchResult',
+    'GetDomainRecordHttpServiceResult',
+    'GetDomainRecordViewResult',
+    'GetDomainRecordWeightedResult',
     'GetInstanceSecurityGroupInboundRuleResult',
     'GetInstanceSecurityGroupOutboundRuleResult',
+    'GetInstanceServerPrivateNetworkResult',
     'GetInstanceServerRootVolumeResult',
-    'GetInstanceServerUserDataResult',
+    'GetKubernetesClusterAutoUpgradeResult',
+    'GetKubernetesClusterAutoscalerConfigResult',
+    'GetKubernetesClusterKubeconfigResult',
+    'GetKubernetesClusterOpenIdConnectConfigResult',
+    'GetKubernetesNodePoolNodeResult',
+    'GetKubernetesNodePoolUpgradePolicyResult',
+    'GetLoadbalancerPrivateNetworkResult',
 ]
 
 @pulumi.output_type
@@ -92,21 +125,73 @@ class BaremetalServerIp(dict):
     def version(self) -> Optional[str]:
         return pulumi.get(self, "version")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class DatabaseACLAclRule(dict):
+    def __init__(__self__, *,
+                 ip: str,
+                 description: Optional[str] = None):
+        """
+        :param str ip: The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param str description: A simple text describing this rule
+        """
+        pulumi.set(__self__, "ip", ip)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A simple text describing this rule
+        """
+        return pulumi.get(self, "description")
 
 
 @pulumi.output_type
-class DatabaseInstanceBetaReadReplica(dict):
+class DatabaseInstanceLoadBalancer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endpointId":
+            suggest = "endpoint_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseInstanceLoadBalancer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseInstanceLoadBalancer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseInstanceLoadBalancer.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 endpoint_id: Optional[str] = None,
+                 hostname: Optional[str] = None,
                  ip: Optional[str] = None,
                  name: Optional[str] = None,
                  port: Optional[int] = None):
         """
-        :param str ip: IP of the replica.
+        :param str endpoint_id: The ID of the endpoint of the private network.
+        :param str hostname: Name of the endpoint.
+        :param str ip: IP of the endpoint.
         :param str name: The name of the Database Instance.
-        :param int port: Port of the replica.
+        :param int port: Port of the endpoint.
         """
+        if endpoint_id is not None:
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if name is not None:
@@ -115,10 +200,26 @@ class DatabaseInstanceBetaReadReplica(dict):
             pulumi.set(__self__, "port", port)
 
     @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> Optional[str]:
+        """
+        The ID of the endpoint of the private network.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        """
+        Name of the endpoint.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
     @pulumi.getter
     def ip(self) -> Optional[str]:
         """
-        IP of the replica.
+        IP of the endpoint.
         """
         return pulumi.get(self, "ip")
 
@@ -134,16 +235,633 @@ class DatabaseInstanceBetaReadReplica(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        Port of the replica.
+        Port of the endpoint.
         """
         return pulumi.get(self, "port")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class DatabaseInstancePrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipNet":
+            suggest = "ip_net"
+        elif key == "pnId":
+            suggest = "pn_id"
+        elif key == "endpointId":
+            suggest = "endpoint_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseInstancePrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseInstancePrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseInstancePrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ip_net: str,
+                 pn_id: str,
+                 endpoint_id: Optional[str] = None,
+                 hostname: Optional[str] = None,
+                 ip: Optional[str] = None,
+                 name: Optional[str] = None,
+                 port: Optional[int] = None,
+                 zone: Optional[str] = None):
+        """
+        :param str endpoint_id: The ID of the endpoint of the private network.
+        :param str hostname: Name of the endpoint.
+        :param str ip: IP of the endpoint.
+        :param str name: The name of the Database Instance.
+        :param int port: Port of the endpoint.
+        """
+        pulumi.set(__self__, "ip_net", ip_net)
+        pulumi.set(__self__, "pn_id", pn_id)
+        if endpoint_id is not None:
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="ipNet")
+    def ip_net(self) -> str:
+        return pulumi.get(self, "ip_net")
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> str:
+        return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> Optional[str]:
+        """
+        The ID of the endpoint of the private network.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        """
+        Name of the endpoint.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        IP of the endpoint.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the Database Instance.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port of the endpoint.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[str]:
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class DatabaseInstanceReadReplica(dict):
+    def __init__(__self__, *,
+                 ip: Optional[str] = None,
+                 name: Optional[str] = None,
+                 port: Optional[int] = None):
+        """
+        :param str ip: IP of the endpoint.
+        :param str name: The name of the Database Instance.
+        :param int port: Port of the endpoint.
+        """
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        IP of the endpoint.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the Database Instance.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port of the endpoint.
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class DomainRecordGeoIp(dict):
+    def __init__(__self__, *,
+                 matches: Sequence['outputs.DomainRecordGeoIpMatch']):
+        """
+        :param Sequence['DomainRecordGeoIpMatchArgs'] matches: The list of matches. *(Can be more than 1)*
+        """
+        pulumi.set(__self__, "matches", matches)
+
+    @property
+    @pulumi.getter
+    def matches(self) -> Sequence['outputs.DomainRecordGeoIpMatch']:
+        """
+        The list of matches. *(Can be more than 1)*
+        """
+        return pulumi.get(self, "matches")
+
+
+@pulumi.output_type
+class DomainRecordGeoIpMatch(dict):
+    def __init__(__self__, *,
+                 data: str,
+                 continents: Optional[Sequence[str]] = None,
+                 countries: Optional[Sequence[str]] = None):
+        """
+        :param str data: The data of the view record
+        :param Sequence[str] continents: List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+        :param Sequence[str] countries: List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+        """
+        pulumi.set(__self__, "data", data)
+        if continents is not None:
+            pulumi.set(__self__, "continents", continents)
+        if countries is not None:
+            pulumi.set(__self__, "countries", countries)
+
+    @property
+    @pulumi.getter
+    def data(self) -> str:
+        """
+        The data of the view record
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def continents(self) -> Optional[Sequence[str]]:
+        """
+        List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+        """
+        return pulumi.get(self, "continents")
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Optional[Sequence[str]]:
+        """
+        List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+        """
+        return pulumi.get(self, "countries")
+
+
+@pulumi.output_type
+class DomainRecordHttpService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mustContain":
+            suggest = "must_contain"
+        elif key == "userAgent":
+            suggest = "user_agent"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainRecordHttpService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainRecordHttpService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainRecordHttpService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ips: Sequence[str],
+                 must_contain: str,
+                 strategy: str,
+                 url: str,
+                 user_agent: Optional[str] = None):
+        """
+        :param Sequence[str] ips: List of IPs to check
+        :param str must_contain: Text to search
+        :param str strategy: Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+        :param str url: URL to match the `must_contain` text to validate an IP
+        :param str user_agent: User-agent used when checking the URL
+        """
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "must_contain", must_contain)
+        pulumi.set(__self__, "strategy", strategy)
+        pulumi.set(__self__, "url", url)
+        if user_agent is not None:
+            pulumi.set(__self__, "user_agent", user_agent)
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        """
+        List of IPs to check
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="mustContain")
+    def must_contain(self) -> str:
+        """
+        Text to search
+        """
+        return pulumi.get(self, "must_contain")
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> str:
+        """
+        Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+        """
+        return pulumi.get(self, "strategy")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        URL to match the `must_contain` text to validate an IP
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> Optional[str]:
+        """
+        User-agent used when checking the URL
+        """
+        return pulumi.get(self, "user_agent")
+
+
+@pulumi.output_type
+class DomainRecordView(dict):
+    def __init__(__self__, *,
+                 data: str,
+                 subnet: str):
+        """
+        :param str data: The data of the view record
+        :param str subnet: The subnet of the view
+        """
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def data(self) -> str:
+        """
+        The data of the view record
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> str:
+        """
+        The subnet of the view
+        """
+        return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
+class DomainRecordWeighted(dict):
+    def __init__(__self__, *,
+                 ip: str,
+                 weight: int):
+        """
+        :param str ip: The weighted IP
+        :param int weight: The weight of the IP as an integer UInt32.
+        """
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The weighted IP
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the IP as an integer UInt32.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class IOTDeviceCertificate(dict):
+    def __init__(__self__, *,
+                 crt: Optional[str] = None,
+                 key: Optional[str] = None):
+        """
+        :param str key: The private key of the device, in case it is generated by Scaleway.
+        """
+        if crt is not None:
+            pulumi.set(__self__, "crt", crt)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def crt(self) -> Optional[str]:
+        return pulumi.get(self, "crt")
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The private key of the device, in case it is generated by Scaleway.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class IOTDeviceMessageFilters(dict):
+    def __init__(__self__, *,
+                 publish: Optional['outputs.IOTDeviceMessageFiltersPublish'] = None,
+                 subscribe: Optional['outputs.IOTDeviceMessageFiltersSubscribe'] = None):
+        """
+        :param 'IOTDeviceMessageFiltersPublishArgs' publish: Rules used to restrict topics the device can publish to.
+        :param 'IOTDeviceMessageFiltersSubscribeArgs' subscribe: Rules used to restrict topics the device can subscribe to.
+        """
+        if publish is not None:
+            pulumi.set(__self__, "publish", publish)
+        if subscribe is not None:
+            pulumi.set(__self__, "subscribe", subscribe)
+
+    @property
+    @pulumi.getter
+    def publish(self) -> Optional['outputs.IOTDeviceMessageFiltersPublish']:
+        """
+        Rules used to restrict topics the device can publish to.
+        """
+        return pulumi.get(self, "publish")
+
+    @property
+    @pulumi.getter
+    def subscribe(self) -> Optional['outputs.IOTDeviceMessageFiltersSubscribe']:
+        """
+        Rules used to restrict topics the device can subscribe to.
+        """
+        return pulumi.get(self, "subscribe")
+
+
+@pulumi.output_type
+class IOTDeviceMessageFiltersPublish(dict):
+    def __init__(__self__, *,
+                 policy: Optional[str] = None,
+                 topics: Optional[Sequence[str]] = None):
+        """
+        :param str policy: Same as publish rules.
+        :param Sequence[str] topics: Same as publish rules.
+        """
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if topics is not None:
+            pulumi.set(__self__, "topics", topics)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[str]:
+        """
+        Same as publish rules.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def topics(self) -> Optional[Sequence[str]]:
+        """
+        Same as publish rules.
+        """
+        return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class IOTDeviceMessageFiltersSubscribe(dict):
+    def __init__(__self__, *,
+                 policy: Optional[str] = None,
+                 topics: Optional[Sequence[str]] = None):
+        """
+        :param str policy: Same as publish rules.
+        :param Sequence[str] topics: Same as publish rules.
+        """
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if topics is not None:
+            pulumi.set(__self__, "topics", topics)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[str]:
+        """
+        Same as publish rules.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def topics(self) -> Optional[Sequence[str]]:
+        """
+        Same as publish rules.
+        """
+        return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class IOTRouteDatabase(dict):
+    def __init__(__self__, *,
+                 dbname: str,
+                 host: str,
+                 password: str,
+                 port: int,
+                 query: str,
+                 username: str):
+        pulumi.set(__self__, "dbname", dbname)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> str:
+        return pulumi.get(self, "dbname")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class IOTRouteRest(dict):
+    def __init__(__self__, *,
+                 headers: Mapping[str, str],
+                 uri: str,
+                 verb: str):
+        pulumi.set(__self__, "headers", headers)
+        pulumi.set(__self__, "uri", uri)
+        pulumi.set(__self__, "verb", verb)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Mapping[str, str]:
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        return pulumi.get(self, "uri")
+
+    @property
+    @pulumi.getter
+    def verb(self) -> str:
+        return pulumi.get(self, "verb")
+
+
+@pulumi.output_type
+class IOTRouteS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "bucketRegion":
+            suggest = "bucket_region"
+        elif key == "objectPrefix":
+            suggest = "object_prefix"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IOTRouteS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IOTRouteS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IOTRouteS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 bucket_region: str,
+                 strategy: str,
+                 object_prefix: Optional[str] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "bucket_region", bucket_region)
+        pulumi.set(__self__, "strategy", strategy)
+        if object_prefix is not None:
+            pulumi.set(__self__, "object_prefix", object_prefix)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> str:
+        return pulumi.get(self, "bucket_region")
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> str:
+        return pulumi.get(self, "strategy")
+
+    @property
+    @pulumi.getter(name="objectPrefix")
+    def object_prefix(self) -> Optional[str]:
+        return pulumi.get(self, "object_prefix")
 
 
 @pulumi.output_type
 class InstanceSecurityGroupInboundRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipRange":
+            suggest = "ip_range"
+        elif key == "portRange":
+            suggest = "port_range"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceSecurityGroupInboundRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceSecurityGroupInboundRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceSecurityGroupInboundRule.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  action: str,
                  ip: Optional[str] = None,
@@ -214,13 +932,29 @@ class InstanceSecurityGroupInboundRule(dict):
         The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         return pulumi.get(self, "protocol")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class InstanceSecurityGroupOutboundRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipRange":
+            suggest = "ip_range"
+        elif key == "portRange":
+            suggest = "port_range"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceSecurityGroupOutboundRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceSecurityGroupOutboundRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceSecurityGroupOutboundRule.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  action: str,
                  ip: Optional[str] = None,
@@ -292,12 +1026,28 @@ class InstanceSecurityGroupOutboundRule(dict):
         """
         return pulumi.get(self, "protocol")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class InstanceSecurityGroupRulesInboundRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipRange":
+            suggest = "ip_range"
+        elif key == "portRange":
+            suggest = "port_range"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceSecurityGroupRulesInboundRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceSecurityGroupRulesInboundRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceSecurityGroupRulesInboundRule.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  action: str,
                  ip: Optional[str] = None,
@@ -368,13 +1118,29 @@ class InstanceSecurityGroupRulesInboundRule(dict):
         The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         return pulumi.get(self, "protocol")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class InstanceSecurityGroupRulesOutboundRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipRange":
+            suggest = "ip_range"
+        elif key == "portRange":
+            suggest = "port_range"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceSecurityGroupRulesOutboundRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceSecurityGroupRulesOutboundRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceSecurityGroupRulesOutboundRule.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  action: str,
                  ip: Optional[str] = None,
@@ -446,13 +1212,93 @@ class InstanceSecurityGroupRulesOutboundRule(dict):
         """
         return pulumi.get(self, "protocol")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class InstanceServerPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pnId":
+            suggest = "pn_id"
+        elif key == "macAddress":
+            suggest = "mac_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceServerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceServerPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceServerPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pn_id: str,
+                 mac_address: Optional[str] = None,
+                 status: Optional[str] = None,
+                 zone: Optional[str] = None):
+        """
+        :param str zone: `zone`) The zone in which the server should be created.
+        """
+        pulumi.set(__self__, "pn_id", pn_id)
+        if mac_address is not None:
+            pulumi.set(__self__, "mac_address", mac_address)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> str:
+        return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> Optional[str]:
+        return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[str]:
+        """
+        `zone`) The zone in which the server should be created.
+        """
+        return pulumi.get(self, "zone")
 
 
 @pulumi.output_type
 class InstanceServerRootVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deleteOnTermination":
+            suggest = "delete_on_termination"
+        elif key == "sizeInGb":
+            suggest = "size_in_gb"
+        elif key == "volumeId":
+            suggest = "volume_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceServerRootVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceServerRootVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceServerRootVolume.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 boot: Optional[bool] = None,
                  delete_on_termination: Optional[bool] = None,
                  size_in_gb: Optional[int] = None,
                  volume_id: Optional[str] = None):
@@ -464,12 +1310,19 @@ class InstanceServerRootVolume(dict):
                Updates to this field will recreate a new resource.
         :param str volume_id: The volume ID of the root volume of the server.
         """
+        if boot is not None:
+            pulumi.set(__self__, "boot", boot)
         if delete_on_termination is not None:
             pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if size_in_gb is not None:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
         if volume_id is not None:
             pulumi.set(__self__, "volume_id", volume_id)
+
+    @property
+    @pulumi.getter
+    def boot(self) -> Optional[bool]:
+        return pulumi.get(self, "boot")
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -498,40 +1351,28 @@ class InstanceServerRootVolume(dict):
         """
         return pulumi.get(self, "volume_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class InstanceServerUserData(dict):
-    def __init__(__self__, *,
-                 key: str,
-                 value: str):
-        """
-        :param str key: The user data key. The `cloud-init` key is reserved, please use `cloud_init` attribute instead.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+class KubernetesClusterAutoUpgrade(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maintenanceWindowDay":
+            suggest = "maintenance_window_day"
+        elif key == "maintenanceWindowStartHour":
+            suggest = "maintenance_window_start_hour"
 
-    @property
-    @pulumi.getter
-    def key(self) -> str:
-        """
-        The user data key. The `cloud-init` key is reserved, please use `cloud_init` attribute instead.
-        """
-        return pulumi.get(self, "key")
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesClusterAutoUpgrade. Access the value via the '{suggest}' property getter instead.")
 
-    @property
-    @pulumi.getter
-    def value(self) -> str:
-        return pulumi.get(self, "value")
+    def __getitem__(self, key: str) -> Any:
+        KubernetesClusterAutoUpgrade.__key_warning(key)
+        return super().__getitem__(key)
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+    def get(self, key: str, default = None) -> Any:
+        KubernetesClusterAutoUpgrade.__key_warning(key)
+        return super().get(key, default)
 
-
-@pulumi.output_type
-class KubernetesClusterBetaAutoUpgrade(dict):
     def __init__(__self__, *,
                  enable: bool,
                  maintenance_window_day: str,
@@ -571,12 +1412,40 @@ class KubernetesClusterBetaAutoUpgrade(dict):
         """
         return pulumi.get(self, "maintenance_window_start_hour")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class KubernetesClusterBetaAutoscalerConfig(dict):
+class KubernetesClusterAutoscalerConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "balanceSimilarNodeGroups":
+            suggest = "balance_similar_node_groups"
+        elif key == "disableScaleDown":
+            suggest = "disable_scale_down"
+        elif key == "expendablePodsPriorityCutoff":
+            suggest = "expendable_pods_priority_cutoff"
+        elif key == "ignoreDaemonsetsUtilization":
+            suggest = "ignore_daemonsets_utilization"
+        elif key == "maxGracefulTerminationSec":
+            suggest = "max_graceful_termination_sec"
+        elif key == "scaleDownDelayAfterAdd":
+            suggest = "scale_down_delay_after_add"
+        elif key == "scaleDownUnneededTime":
+            suggest = "scale_down_unneeded_time"
+        elif key == "scaleDownUtilizationThreshold":
+            suggest = "scale_down_utilization_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesClusterAutoscalerConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesClusterAutoscalerConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesClusterAutoscalerConfig.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  balance_similar_node_groups: Optional[bool] = None,
                  disable_scale_down: Optional[bool] = None,
@@ -584,8 +1453,10 @@ class KubernetesClusterBetaAutoscalerConfig(dict):
                  expander: Optional[str] = None,
                  expendable_pods_priority_cutoff: Optional[int] = None,
                  ignore_daemonsets_utilization: Optional[bool] = None,
+                 max_graceful_termination_sec: Optional[int] = None,
                  scale_down_delay_after_add: Optional[str] = None,
-                 scale_down_unneeded_time: Optional[str] = None):
+                 scale_down_unneeded_time: Optional[str] = None,
+                 scale_down_utilization_threshold: Optional[float] = None):
         """
         :param bool balance_similar_node_groups: Detect similar node groups and balance the number of nodes between them.
         :param bool disable_scale_down: Disables the scale down feature of the autoscaler.
@@ -593,8 +1464,10 @@ class KubernetesClusterBetaAutoscalerConfig(dict):
         :param str expander: Type of node group expander to be used in scale up.
         :param int expendable_pods_priority_cutoff: Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
         :param bool ignore_daemonsets_utilization: Ignore DaemonSet pods when calculating resource utilization for scaling down.
+        :param int max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param str scale_down_delay_after_add: How long after scale up that scale down evaluation resumes.
         :param str scale_down_unneeded_time: How long a node should be unneeded before it is eligible for scale down.
+        :param float scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         """
         if balance_similar_node_groups is not None:
             pulumi.set(__self__, "balance_similar_node_groups", balance_similar_node_groups)
@@ -608,10 +1481,14 @@ class KubernetesClusterBetaAutoscalerConfig(dict):
             pulumi.set(__self__, "expendable_pods_priority_cutoff", expendable_pods_priority_cutoff)
         if ignore_daemonsets_utilization is not None:
             pulumi.set(__self__, "ignore_daemonsets_utilization", ignore_daemonsets_utilization)
+        if max_graceful_termination_sec is not None:
+            pulumi.set(__self__, "max_graceful_termination_sec", max_graceful_termination_sec)
         if scale_down_delay_after_add is not None:
             pulumi.set(__self__, "scale_down_delay_after_add", scale_down_delay_after_add)
         if scale_down_unneeded_time is not None:
             pulumi.set(__self__, "scale_down_unneeded_time", scale_down_unneeded_time)
+        if scale_down_utilization_threshold is not None:
+            pulumi.set(__self__, "scale_down_utilization_threshold", scale_down_utilization_threshold)
 
     @property
     @pulumi.getter(name="balanceSimilarNodeGroups")
@@ -662,6 +1539,14 @@ class KubernetesClusterBetaAutoscalerConfig(dict):
         return pulumi.get(self, "ignore_daemonsets_utilization")
 
     @property
+    @pulumi.getter(name="maxGracefulTerminationSec")
+    def max_graceful_termination_sec(self) -> Optional[int]:
+        """
+        Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
+        """
+        return pulumi.get(self, "max_graceful_termination_sec")
+
+    @property
     @pulumi.getter(name="scaleDownDelayAfterAdd")
     def scale_down_delay_after_add(self) -> Optional[str]:
         """
@@ -677,206 +1562,36 @@ class KubernetesClusterBetaAutoscalerConfig(dict):
         """
         return pulumi.get(self, "scale_down_unneeded_time")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+    @property
+    @pulumi.getter(name="scaleDownUtilizationThreshold")
+    def scale_down_utilization_threshold(self) -> Optional[float]:
+        """
+        Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+        """
+        return pulumi.get(self, "scale_down_utilization_threshold")
 
 
 @pulumi.output_type
-class KubernetesClusterBetaDefaultPool(dict):
-    def __init__(__self__, *,
-                 node_type: str,
-                 size: int,
-                 autohealing: Optional[bool] = None,
-                 autoscaling: Optional[bool] = None,
-                 container_runtime: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 max_size: Optional[int] = None,
-                 min_size: Optional[int] = None,
-                 nodes: Optional[Sequence['outputs.KubernetesClusterBetaDefaultPoolNode']] = None,
-                 placement_group_id: Optional[str] = None,
-                 pool_id: Optional[str] = None,
-                 status: Optional[str] = None,
-                 tags: Optional[Sequence[str]] = None,
-                 updated_at: Optional[str] = None,
-                 wait_for_pool_ready: Optional[bool] = None):
-        """
-        :param str created_at: The creation date of the cluster.
-        :param str status: The status of the Kubernetes cluster.
-        :param Sequence[str] tags: The tags associated with the Kubernetes cluster.
-        :param str updated_at: The last update date of the cluster.
-        """
-        pulumi.set(__self__, "node_type", node_type)
-        pulumi.set(__self__, "size", size)
-        if autohealing is not None:
-            pulumi.set(__self__, "autohealing", autohealing)
-        if autoscaling is not None:
-            pulumi.set(__self__, "autoscaling", autoscaling)
-        if container_runtime is not None:
-            pulumi.set(__self__, "container_runtime", container_runtime)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
-        if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
-        if nodes is not None:
-            pulumi.set(__self__, "nodes", nodes)
-        if placement_group_id is not None:
-            pulumi.set(__self__, "placement_group_id", placement_group_id)
-        if pool_id is not None:
-            pulumi.set(__self__, "pool_id", pool_id)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
-        if wait_for_pool_ready is not None:
-            pulumi.set(__self__, "wait_for_pool_ready", wait_for_pool_ready)
+class KubernetesClusterKubeconfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clusterCaCertificate":
+            suggest = "cluster_ca_certificate"
+        elif key == "configFile":
+            suggest = "config_file"
 
-    @property
-    @pulumi.getter(name="nodeType")
-    def node_type(self) -> str:
-        return pulumi.get(self, "node_type")
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesClusterKubeconfig. Access the value via the '{suggest}' property getter instead.")
 
-    @property
-    @pulumi.getter
-    def size(self) -> int:
-        return pulumi.get(self, "size")
+    def __getitem__(self, key: str) -> Any:
+        KubernetesClusterKubeconfig.__key_warning(key)
+        return super().__getitem__(key)
 
-    @property
-    @pulumi.getter
-    def autohealing(self) -> Optional[bool]:
-        return pulumi.get(self, "autohealing")
+    def get(self, key: str, default = None) -> Any:
+        KubernetesClusterKubeconfig.__key_warning(key)
+        return super().get(key, default)
 
-    @property
-    @pulumi.getter
-    def autoscaling(self) -> Optional[bool]:
-        return pulumi.get(self, "autoscaling")
-
-    @property
-    @pulumi.getter(name="containerRuntime")
-    def container_runtime(self) -> Optional[str]:
-        return pulumi.get(self, "container_runtime")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        """
-        The creation date of the cluster.
-        """
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[int]:
-        return pulumi.get(self, "max_size")
-
-    @property
-    @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[int]:
-        return pulumi.get(self, "min_size")
-
-    @property
-    @pulumi.getter
-    def nodes(self) -> Optional[Sequence['outputs.KubernetesClusterBetaDefaultPoolNode']]:
-        return pulumi.get(self, "nodes")
-
-    @property
-    @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[str]:
-        return pulumi.get(self, "placement_group_id")
-
-    @property
-    @pulumi.getter(name="poolId")
-    def pool_id(self) -> Optional[str]:
-        return pulumi.get(self, "pool_id")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[str]:
-        """
-        The status of the Kubernetes cluster.
-        """
-        return pulumi.get(self, "status")
-
-    @property
-    @pulumi.getter
-    def tags(self) -> Optional[Sequence[str]]:
-        """
-        The tags associated with the Kubernetes cluster.
-        """
-        return pulumi.get(self, "tags")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        """
-        The last update date of the cluster.
-        """
-        return pulumi.get(self, "updated_at")
-
-    @property
-    @pulumi.getter(name="waitForPoolReady")
-    def wait_for_pool_ready(self) -> Optional[bool]:
-        return pulumi.get(self, "wait_for_pool_ready")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-
-@pulumi.output_type
-class KubernetesClusterBetaDefaultPoolNode(dict):
-    def __init__(__self__, *,
-                 name: Optional[str] = None,
-                 public_ip: Optional[str] = None,
-                 public_ip_v6: Optional[str] = None,
-                 status: Optional[str] = None):
-        """
-        :param str name: The name for the Kubernetes cluster.
-        :param str status: The status of the Kubernetes cluster.
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if public_ip is not None:
-            pulumi.set(__self__, "public_ip", public_ip)
-        if public_ip_v6 is not None:
-            pulumi.set(__self__, "public_ip_v6", public_ip_v6)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        The name for the Kubernetes cluster.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="publicIp")
-    def public_ip(self) -> Optional[str]:
-        return pulumi.get(self, "public_ip")
-
-    @property
-    @pulumi.getter(name="publicIpV6")
-    def public_ip_v6(self) -> Optional[str]:
-        return pulumi.get(self, "public_ip_v6")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[str]:
-        """
-        The status of the Kubernetes cluster.
-        """
-        return pulumi.get(self, "status")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-
-@pulumi.output_type
-class KubernetesClusterBetaKubeconfig(dict):
     def __init__(__self__, *,
                  cluster_ca_certificate: Optional[str] = None,
                  config_file: Optional[str] = None,
@@ -929,12 +1644,146 @@ class KubernetesClusterBetaKubeconfig(dict):
         """
         return pulumi.get(self, "token")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class KubernetesClusterOpenIdConnectConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "issuerUrl":
+            suggest = "issuer_url"
+        elif key == "groupsClaims":
+            suggest = "groups_claims"
+        elif key == "groupsPrefix":
+            suggest = "groups_prefix"
+        elif key == "requiredClaims":
+            suggest = "required_claims"
+        elif key == "usernameClaim":
+            suggest = "username_claim"
+        elif key == "usernamePrefix":
+            suggest = "username_prefix"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesClusterOpenIdConnectConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesClusterOpenIdConnectConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesClusterOpenIdConnectConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: str,
+                 issuer_url: str,
+                 groups_claims: Optional[Sequence[str]] = None,
+                 groups_prefix: Optional[str] = None,
+                 required_claims: Optional[Sequence[str]] = None,
+                 username_claim: Optional[str] = None,
+                 username_prefix: Optional[str] = None):
+        """
+        :param str client_id: A client id that all tokens must be issued for
+        :param str issuer_url: URL of the provider which allows the API server to discover public signing keys
+        :param Sequence[str] groups_claims: JWT claim to use as the user's group
+        :param str groups_prefix: Prefix prepended to group claims
+        :param Sequence[str] required_claims: Multiple key=value pairs that describes a required claim in the ID Token
+        :param str username_claim: JWT claim to use as the user name
+        :param str username_prefix: Prefix prepended to username
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "issuer_url", issuer_url)
+        if groups_claims is not None:
+            pulumi.set(__self__, "groups_claims", groups_claims)
+        if groups_prefix is not None:
+            pulumi.set(__self__, "groups_prefix", groups_prefix)
+        if required_claims is not None:
+            pulumi.set(__self__, "required_claims", required_claims)
+        if username_claim is not None:
+            pulumi.set(__self__, "username_claim", username_claim)
+        if username_prefix is not None:
+            pulumi.set(__self__, "username_prefix", username_prefix)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        A client id that all tokens must be issued for
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> str:
+        """
+        URL of the provider which allows the API server to discover public signing keys
+        """
+        return pulumi.get(self, "issuer_url")
+
+    @property
+    @pulumi.getter(name="groupsClaims")
+    def groups_claims(self) -> Optional[Sequence[str]]:
+        """
+        JWT claim to use as the user's group
+        """
+        return pulumi.get(self, "groups_claims")
+
+    @property
+    @pulumi.getter(name="groupsPrefix")
+    def groups_prefix(self) -> Optional[str]:
+        """
+        Prefix prepended to group claims
+        """
+        return pulumi.get(self, "groups_prefix")
+
+    @property
+    @pulumi.getter(name="requiredClaims")
+    def required_claims(self) -> Optional[Sequence[str]]:
+        """
+        Multiple key=value pairs that describes a required claim in the ID Token
+        """
+        return pulumi.get(self, "required_claims")
+
+    @property
+    @pulumi.getter(name="usernameClaim")
+    def username_claim(self) -> Optional[str]:
+        """
+        JWT claim to use as the user name
+        """
+        return pulumi.get(self, "username_claim")
+
+    @property
+    @pulumi.getter(name="usernamePrefix")
+    def username_prefix(self) -> Optional[str]:
+        """
+        Prefix prepended to username
+        """
+        return pulumi.get(self, "username_prefix")
 
 
 @pulumi.output_type
-class KubernetesNodePoolBetaNode(dict):
+class KubernetesNodePoolNode(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "publicIp":
+            suggest = "public_ip"
+        elif key == "publicIpV6":
+            suggest = "public_ip_v6"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesNodePoolNode. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesNodePoolNode.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesNodePoolNode.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: Optional[str] = None,
                  public_ip: Optional[str] = None,
@@ -989,12 +1838,59 @@ class KubernetesNodePoolBetaNode(dict):
         """
         return pulumi.get(self, "status")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class KubernetesNodePoolUpgradePolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSurge":
+            suggest = "max_surge"
+        elif key == "maxUnavailable":
+            suggest = "max_unavailable"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesNodePoolUpgradePolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesNodePoolUpgradePolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesNodePoolUpgradePolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_surge: Optional[int] = None,
+                 max_unavailable: Optional[int] = None):
+        """
+        :param int max_surge: The maximum number of nodes to be created during the upgrade
+        :param int max_unavailable: The maximum number of nodes that can be not ready at the same time
+        """
+        if max_surge is not None:
+            pulumi.set(__self__, "max_surge", max_surge)
+        if max_unavailable is not None:
+            pulumi.set(__self__, "max_unavailable", max_unavailable)
+
+    @property
+    @pulumi.getter(name="maxSurge")
+    def max_surge(self) -> Optional[int]:
+        """
+        The maximum number of nodes to be created during the upgrade
+        """
+        return pulumi.get(self, "max_surge")
+
+    @property
+    @pulumi.getter(name="maxUnavailable")
+    def max_unavailable(self) -> Optional[int]:
+        """
+        The maximum number of nodes that can be not ready at the same time
+        """
+        return pulumi.get(self, "max_unavailable")
 
 
 @pulumi.output_type
-class LoadbalancerBackendBetaHealthCheckHttp(dict):
+class LoadbalancerBackendHealthCheckHttp(dict):
     def __init__(__self__, *,
                  uri: str,
                  code: Optional[int] = None,
@@ -1034,12 +1930,9 @@ class LoadbalancerBackendBetaHealthCheckHttp(dict):
         """
         return pulumi.get(self, "method")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerBackendBetaHealthCheckHttps(dict):
+class LoadbalancerBackendHealthCheckHttps(dict):
     def __init__(__self__, *,
                  uri: str,
                  code: Optional[int] = None,
@@ -1079,21 +1972,32 @@ class LoadbalancerBackendBetaHealthCheckHttps(dict):
         """
         return pulumi.get(self, "method")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerBackendBetaHealthCheckTcp(dict):
+class LoadbalancerBackendHealthCheckTcp(dict):
     def __init__(__self__):
         pass
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerCertificateBetaCustomCertificate(dict):
+class LoadbalancerCertificateCustomCertificate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "certificateChain":
+            suggest = "certificate_chain"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerCertificateCustomCertificate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerCertificateCustomCertificate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerCertificateCustomCertificate.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  certificate_chain: str):
         """
@@ -1109,12 +2013,28 @@ class LoadbalancerCertificateBetaCustomCertificate(dict):
         """
         return pulumi.get(self, "certificate_chain")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerCertificateBetaLetsencrypt(dict):
+class LoadbalancerCertificateLetsencrypt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "commonName":
+            suggest = "common_name"
+        elif key == "subjectAlternativeNames":
+            suggest = "subject_alternative_names"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerCertificateLetsencrypt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerCertificateLetsencrypt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerCertificateLetsencrypt.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  common_name: str,
                  subject_alternative_names: Optional[Sequence[str]] = None):
@@ -1142,35 +2062,26 @@ class LoadbalancerCertificateBetaLetsencrypt(dict):
         """
         return pulumi.get(self, "subject_alternative_names")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerFrontendBetaAcl(dict):
+class LoadbalancerFrontendAcl(dict):
     def __init__(__self__, *,
-                 action: 'outputs.LoadbalancerFrontendBetaAclAction',
-                 match: 'outputs.LoadbalancerFrontendBetaAclMatch',
-                 name: Optional[str] = None,
-                 organization_id: Optional[str] = None,
-                 region: Optional[str] = None):
+                 action: 'outputs.LoadbalancerFrontendAclAction',
+                 match: 'outputs.LoadbalancerFrontendAclMatch',
+                 name: Optional[str] = None):
         """
-        :param 'LoadbalancerFrontendBetaAclActionArgs' action: Action to undertake when an ACL filter matches.
-        :param 'LoadbalancerFrontendBetaAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param 'LoadbalancerFrontendAclActionArgs' action: Action to undertake when an ACL filter matches.
+        :param 'LoadbalancerFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param str name: The ACL name. If not provided it will be randomly generated.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
-    def action(self) -> 'outputs.LoadbalancerFrontendBetaAclAction':
+    def action(self) -> 'outputs.LoadbalancerFrontendAclAction':
         """
         Action to undertake when an ACL filter matches.
         """
@@ -1178,7 +2089,7 @@ class LoadbalancerFrontendBetaAcl(dict):
 
     @property
     @pulumi.getter
-    def match(self) -> 'outputs.LoadbalancerFrontendBetaAclMatch':
+    def match(self) -> 'outputs.LoadbalancerFrontendAclMatch':
         """
         The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         """
@@ -1192,22 +2103,9 @@ class LoadbalancerFrontendBetaAcl(dict):
         """
         return pulumi.get(self, "name")
 
-    @property
-    @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[str]:
-        return pulumi.get(self, "organization_id")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[str]:
-        return pulumi.get(self, "region")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerFrontendBetaAclAction(dict):
+class LoadbalancerFrontendAclAction(dict):
     def __init__(__self__, *,
                  type: str):
         """
@@ -1223,12 +2121,30 @@ class LoadbalancerFrontendBetaAclAction(dict):
         """
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class LoadbalancerFrontendBetaAclMatch(dict):
+class LoadbalancerFrontendAclMatch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpFilter":
+            suggest = "http_filter"
+        elif key == "httpFilterValues":
+            suggest = "http_filter_values"
+        elif key == "ipSubnets":
+            suggest = "ip_subnets"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendAclMatch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerFrontendAclMatch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerFrontendAclMatch.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  http_filter: Optional[str] = None,
                  http_filter_values: Optional[Sequence[str]] = None,
@@ -1285,44 +2201,189 @@ class LoadbalancerFrontendBetaAclMatch(dict):
         """
         return pulumi.get(self, "ip_subnets")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class ServerVolume(dict):
+class LoadbalancerPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateNetworkId":
+            suggest = "private_network_id"
+        elif key == "dhcpConfig":
+            suggest = "dhcp_config"
+        elif key == "staticConfigs":
+            suggest = "static_configs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadbalancerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadbalancerPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadbalancerPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 size_in_gb: int,
-                 type: str,
-                 volume_id: Optional[str] = None):
+                 private_network_id: str,
+                 dhcp_config: Optional[bool] = None,
+                 static_configs: Optional[Sequence[str]] = None,
+                 status: Optional[str] = None,
+                 zone: Optional[str] = None):
         """
-        :param str type: type of server
+        :param str status: The Private Network attachment status
+        :param str zone: `zone`) The zone in which the IP should be reserved.
         """
-        pulumi.set(__self__, "size_in_gb", size_in_gb)
-        pulumi.set(__self__, "type", type)
-        if volume_id is not None:
-            pulumi.set(__self__, "volume_id", volume_id)
+        pulumi.set(__self__, "private_network_id", private_network_id)
+        if dhcp_config is not None:
+            pulumi.set(__self__, "dhcp_config", dhcp_config)
+        if static_configs is not None:
+            pulumi.set(__self__, "static_configs", static_configs)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
 
     @property
-    @pulumi.getter(name="sizeInGb")
-    def size_in_gb(self) -> int:
-        return pulumi.get(self, "size_in_gb")
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> str:
+        return pulumi.get(self, "private_network_id")
+
+    @property
+    @pulumi.getter(name="dhcpConfig")
+    def dhcp_config(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcp_config")
+
+    @property
+    @pulumi.getter(name="staticConfigs")
+    def static_configs(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "static_configs")
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def status(self) -> Optional[str]:
         """
-        type of server
+        The Private Network attachment status
         """
-        return pulumi.get(self, "type")
+        return pulumi.get(self, "status")
 
     @property
-    @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[str]:
-        return pulumi.get(self, "volume_id")
+    @pulumi.getter
+    def zone(self) -> Optional[str]:
+        """
+        `zone`) The zone in which the IP should be reserved.
+        """
+        return pulumi.get(self, "zone")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class ObjectBucketCorsRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedMethods":
+            suggest = "allowed_methods"
+        elif key == "allowedOrigins":
+            suggest = "allowed_origins"
+        elif key == "allowedHeaders":
+            suggest = "allowed_headers"
+        elif key == "exposeHeaders":
+            suggest = "expose_headers"
+        elif key == "maxAgeSeconds":
+            suggest = "max_age_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ObjectBucketCorsRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ObjectBucketCorsRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ObjectBucketCorsRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allowed_methods: Sequence[str],
+                 allowed_origins: Sequence[str],
+                 allowed_headers: Optional[Sequence[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
+                 max_age_seconds: Optional[int] = None):
+        """
+        :param Sequence[str] allowed_methods: Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        :param Sequence[str] allowed_origins: Specifies which origins are allowed.
+        :param Sequence[str] allowed_headers: Specifies which headers are allowed.
+        :param Sequence[str] expose_headers: Specifies expose header in the response.
+        :param int max_age_seconds: Specifies time in seconds that browser can cache the response for a preflight request.
+        """
+        pulumi.set(__self__, "allowed_methods", allowed_methods)
+        pulumi.set(__self__, "allowed_origins", allowed_origins)
+        if allowed_headers is not None:
+            pulumi.set(__self__, "allowed_headers", allowed_headers)
+        if expose_headers is not None:
+            pulumi.set(__self__, "expose_headers", expose_headers)
+        if max_age_seconds is not None:
+            pulumi.set(__self__, "max_age_seconds", max_age_seconds)
+
+    @property
+    @pulumi.getter(name="allowedMethods")
+    def allowed_methods(self) -> Sequence[str]:
+        """
+        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        """
+        return pulumi.get(self, "allowed_methods")
+
+    @property
+    @pulumi.getter(name="allowedOrigins")
+    def allowed_origins(self) -> Sequence[str]:
+        """
+        Specifies which origins are allowed.
+        """
+        return pulumi.get(self, "allowed_origins")
+
+    @property
+    @pulumi.getter(name="allowedHeaders")
+    def allowed_headers(self) -> Optional[Sequence[str]]:
+        """
+        Specifies which headers are allowed.
+        """
+        return pulumi.get(self, "allowed_headers")
+
+    @property
+    @pulumi.getter(name="exposeHeaders")
+    def expose_headers(self) -> Optional[Sequence[str]]:
+        """
+        Specifies expose header in the response.
+        """
+        return pulumi.get(self, "expose_headers")
+
+    @property
+    @pulumi.getter(name="maxAgeSeconds")
+    def max_age_seconds(self) -> Optional[int]:
+        """
+        Specifies time in seconds that browser can cache the response for a preflight request.
+        """
+        return pulumi.get(self, "max_age_seconds")
+
+
+@pulumi.output_type
+class ObjectBucketVersioning(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        """
+        :param bool enabled: Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
+        return pulumi.get(self, "enabled")
 
 
 @pulumi.output_type
@@ -1437,6 +2498,318 @@ class GetBaremetalOfferMemoryResult(dict):
 
 
 @pulumi.output_type
+class GetDatabaseACLAclRuleResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 ip: str):
+        """
+        :param str description: A simple text describing this rule
+        :param str ip: The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ip", ip)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A simple text describing this rule
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        """
+        return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class GetDatabaseInstanceLoadBalancerResult(dict):
+    def __init__(__self__, *,
+                 endpoint_id: str,
+                 hostname: str,
+                 ip: str,
+                 name: str,
+                 port: int):
+        """
+        :param str name: The name of the RDB instance.
+               Only one of `name` and `instance_id` should be specified.
+        """
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the RDB instance.
+        Only one of `name` and `instance_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetDatabaseInstancePrivateNetworkResult(dict):
+    def __init__(__self__, *,
+                 endpoint_id: str,
+                 hostname: str,
+                 ip: str,
+                 ip_net: str,
+                 name: str,
+                 pn_id: str,
+                 port: int,
+                 zone: str):
+        """
+        :param str name: The name of the RDB instance.
+               Only one of `name` and `instance_id` should be specified.
+        """
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "ip_net", ip_net)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pn_id", pn_id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="ipNet")
+    def ip_net(self) -> str:
+        return pulumi.get(self, "ip_net")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the RDB instance.
+        Only one of `name` and `instance_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> str:
+        return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetDatabaseInstanceReadReplicaResult(dict):
+    def __init__(__self__, *,
+                 ip: str,
+                 name: str,
+                 port: int):
+        """
+        :param str name: The name of the RDB instance.
+               Only one of `name` and `instance_id` should be specified.
+        """
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the RDB instance.
+        Only one of `name` and `instance_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetDomainRecordGeoIpResult(dict):
+    def __init__(__self__, *,
+                 matches: Sequence['outputs.GetDomainRecordGeoIpMatchResult']):
+        pulumi.set(__self__, "matches", matches)
+
+    @property
+    @pulumi.getter
+    def matches(self) -> Sequence['outputs.GetDomainRecordGeoIpMatchResult']:
+        return pulumi.get(self, "matches")
+
+
+@pulumi.output_type
+class GetDomainRecordGeoIpMatchResult(dict):
+    def __init__(__self__, *,
+                 continents: Sequence[str],
+                 countries: Sequence[str],
+                 data: str):
+        """
+        :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+               Cannot be used with `record_id`.
+        """
+        pulumi.set(__self__, "continents", continents)
+        pulumi.set(__self__, "countries", countries)
+        pulumi.set(__self__, "data", data)
+
+    @property
+    @pulumi.getter
+    def continents(self) -> Sequence[str]:
+        return pulumi.get(self, "continents")
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Sequence[str]:
+        return pulumi.get(self, "countries")
+
+    @property
+    @pulumi.getter
+    def data(self) -> str:
+        """
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        Cannot be used with `record_id`.
+        """
+        return pulumi.get(self, "data")
+
+
+@pulumi.output_type
+class GetDomainRecordHttpServiceResult(dict):
+    def __init__(__self__, *,
+                 ips: Sequence[str],
+                 must_contain: str,
+                 strategy: str,
+                 url: str,
+                 user_agent: str):
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "must_contain", must_contain)
+        pulumi.set(__self__, "strategy", strategy)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "user_agent", user_agent)
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="mustContain")
+    def must_contain(self) -> str:
+        return pulumi.get(self, "must_contain")
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> str:
+        return pulumi.get(self, "strategy")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> str:
+        return pulumi.get(self, "user_agent")
+
+
+@pulumi.output_type
+class GetDomainRecordViewResult(dict):
+    def __init__(__self__, *,
+                 data: str,
+                 subnet: str):
+        """
+        :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+               Cannot be used with `record_id`.
+        """
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def data(self) -> str:
+        """
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        Cannot be used with `record_id`.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> str:
+        return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
+class GetDomainRecordWeightedResult(dict):
+    def __init__(__self__, *,
+                 ip: str,
+                 weight: int):
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
 class GetInstanceSecurityGroupInboundRuleResult(dict):
     def __init__(__self__, *,
                  action: str,
@@ -1543,8 +2916,48 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceServerPrivateNetworkResult(dict):
+    def __init__(__self__, *,
+                 mac_address: str,
+                 pn_id: str,
+                 status: str,
+                 zone: str):
+        """
+        :param str zone: `zone`) The zone in which the server exists.
+        """
+        pulumi.set(__self__, "mac_address", mac_address)
+        pulumi.set(__self__, "pn_id", pn_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> str:
+        return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> str:
+        return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        `zone`) The zone in which the server exists.
+        """
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
 class GetInstanceServerRootVolumeResult(dict):
     def __init__(__self__, *,
+                 boot: bool,
                  delete_on_termination: bool,
                  size_in_gb: int,
                  volume_id: str):
@@ -1553,9 +2966,15 @@ class GetInstanceServerRootVolumeResult(dict):
         :param int size_in_gb: Size of the root volume in gigabytes.
         :param str volume_id: The volume ID of the root volume of the server.
         """
+        pulumi.set(__self__, "boot", boot)
         pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         pulumi.set(__self__, "size_in_gb", size_in_gb)
         pulumi.set(__self__, "volume_id", volume_id)
+
+    @property
+    @pulumi.getter
+    def boot(self) -> bool:
+        return pulumi.get(self, "boot")
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -1583,31 +3002,372 @@ class GetInstanceServerRootVolumeResult(dict):
 
 
 @pulumi.output_type
-class GetInstanceServerUserDataResult(dict):
+class GetKubernetesClusterAutoUpgradeResult(dict):
     def __init__(__self__, *,
-                 key: str,
-                 value: str):
+                 enable: bool,
+                 maintenance_window_day: str,
+                 maintenance_window_start_hour: int):
         """
-        :param str key: The user data key. The `cloud-init` key is reserved, please use `cloud_init` attribute instead.
-        :param str value: The user data content.
+        :param bool enable: True if Kubernetes patch version auto upgrades is enabled.
+        :param str maintenance_window_day: The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        :param int maintenance_window_start_hour: The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "maintenance_window_day", maintenance_window_day)
+        pulumi.set(__self__, "maintenance_window_start_hour", maintenance_window_start_hour)
 
     @property
     @pulumi.getter
-    def key(self) -> str:
+    def enable(self) -> bool:
         """
-        The user data key. The `cloud-init` key is reserved, please use `cloud_init` attribute instead.
+        True if Kubernetes patch version auto upgrades is enabled.
         """
-        return pulumi.get(self, "key")
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowDay")
+    def maintenance_window_day(self) -> str:
+        """
+        The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        """
+        return pulumi.get(self, "maintenance_window_day")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowStartHour")
+    def maintenance_window_start_hour(self) -> int:
+        """
+        The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+        """
+        return pulumi.get(self, "maintenance_window_start_hour")
+
+
+@pulumi.output_type
+class GetKubernetesClusterAutoscalerConfigResult(dict):
+    def __init__(__self__, *,
+                 balance_similar_node_groups: bool,
+                 disable_scale_down: bool,
+                 estimator: str,
+                 expander: str,
+                 expendable_pods_priority_cutoff: int,
+                 ignore_daemonsets_utilization: bool,
+                 max_graceful_termination_sec: int,
+                 scale_down_delay_after_add: str,
+                 scale_down_unneeded_time: str,
+                 scale_down_utilization_threshold: float):
+        """
+        :param bool balance_similar_node_groups: True if detecting similar node groups and balance the number of nodes between them is enabled.
+        :param bool disable_scale_down: True if the scale down feature of the autoscaler is disabled.
+        :param str estimator: The type of resource estimator used in scale up.
+        :param str expander: The type of node group expander be used in scale up.
+        :param int expendable_pods_priority_cutoff: Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+        :param bool ignore_daemonsets_utilization: True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
+        :param str scale_down_delay_after_add: The duration after scale up that scale down evaluation resumes.
+        :param str scale_down_unneeded_time: The duration a node should be unneeded before it is eligible for scale down.
+        """
+        pulumi.set(__self__, "balance_similar_node_groups", balance_similar_node_groups)
+        pulumi.set(__self__, "disable_scale_down", disable_scale_down)
+        pulumi.set(__self__, "estimator", estimator)
+        pulumi.set(__self__, "expander", expander)
+        pulumi.set(__self__, "expendable_pods_priority_cutoff", expendable_pods_priority_cutoff)
+        pulumi.set(__self__, "ignore_daemonsets_utilization", ignore_daemonsets_utilization)
+        pulumi.set(__self__, "max_graceful_termination_sec", max_graceful_termination_sec)
+        pulumi.set(__self__, "scale_down_delay_after_add", scale_down_delay_after_add)
+        pulumi.set(__self__, "scale_down_unneeded_time", scale_down_unneeded_time)
+        pulumi.set(__self__, "scale_down_utilization_threshold", scale_down_utilization_threshold)
+
+    @property
+    @pulumi.getter(name="balanceSimilarNodeGroups")
+    def balance_similar_node_groups(self) -> bool:
+        """
+        True if detecting similar node groups and balance the number of nodes between them is enabled.
+        """
+        return pulumi.get(self, "balance_similar_node_groups")
+
+    @property
+    @pulumi.getter(name="disableScaleDown")
+    def disable_scale_down(self) -> bool:
+        """
+        True if the scale down feature of the autoscaler is disabled.
+        """
+        return pulumi.get(self, "disable_scale_down")
 
     @property
     @pulumi.getter
-    def value(self) -> str:
+    def estimator(self) -> str:
         """
-        The user data content.
+        The type of resource estimator used in scale up.
         """
-        return pulumi.get(self, "value")
+        return pulumi.get(self, "estimator")
+
+    @property
+    @pulumi.getter
+    def expander(self) -> str:
+        """
+        The type of node group expander be used in scale up.
+        """
+        return pulumi.get(self, "expander")
+
+    @property
+    @pulumi.getter(name="expendablePodsPriorityCutoff")
+    def expendable_pods_priority_cutoff(self) -> int:
+        """
+        Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+        """
+        return pulumi.get(self, "expendable_pods_priority_cutoff")
+
+    @property
+    @pulumi.getter(name="ignoreDaemonsetsUtilization")
+    def ignore_daemonsets_utilization(self) -> bool:
+        """
+        True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
+        """
+        return pulumi.get(self, "ignore_daemonsets_utilization")
+
+    @property
+    @pulumi.getter(name="maxGracefulTerminationSec")
+    def max_graceful_termination_sec(self) -> int:
+        return pulumi.get(self, "max_graceful_termination_sec")
+
+    @property
+    @pulumi.getter(name="scaleDownDelayAfterAdd")
+    def scale_down_delay_after_add(self) -> str:
+        """
+        The duration after scale up that scale down evaluation resumes.
+        """
+        return pulumi.get(self, "scale_down_delay_after_add")
+
+    @property
+    @pulumi.getter(name="scaleDownUnneededTime")
+    def scale_down_unneeded_time(self) -> str:
+        """
+        The duration a node should be unneeded before it is eligible for scale down.
+        """
+        return pulumi.get(self, "scale_down_unneeded_time")
+
+    @property
+    @pulumi.getter(name="scaleDownUtilizationThreshold")
+    def scale_down_utilization_threshold(self) -> float:
+        return pulumi.get(self, "scale_down_utilization_threshold")
+
+
+@pulumi.output_type
+class GetKubernetesClusterKubeconfigResult(dict):
+    def __init__(__self__, *,
+                 cluster_ca_certificate: str,
+                 config_file: str,
+                 host: str,
+                 token: str):
+        """
+        :param str cluster_ca_certificate: The CA certificate of the Kubernetes API server.
+        :param str config_file: The raw kubeconfig file.
+        :param str host: The URL of the Kubernetes API server.
+        :param str token: The token to connect to the Kubernetes API server.
+        """
+        pulumi.set(__self__, "cluster_ca_certificate", cluster_ca_certificate)
+        pulumi.set(__self__, "config_file", config_file)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "token", token)
+
+    @property
+    @pulumi.getter(name="clusterCaCertificate")
+    def cluster_ca_certificate(self) -> str:
+        """
+        The CA certificate of the Kubernetes API server.
+        """
+        return pulumi.get(self, "cluster_ca_certificate")
+
+    @property
+    @pulumi.getter(name="configFile")
+    def config_file(self) -> str:
+        """
+        The raw kubeconfig file.
+        """
+        return pulumi.get(self, "config_file")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The URL of the Kubernetes API server.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        The token to connect to the Kubernetes API server.
+        """
+        return pulumi.get(self, "token")
+
+
+@pulumi.output_type
+class GetKubernetesClusterOpenIdConnectConfigResult(dict):
+    def __init__(__self__, *,
+                 client_id: str,
+                 groups_claims: Sequence[str],
+                 groups_prefix: str,
+                 issuer_url: str,
+                 required_claims: Sequence[str],
+                 username_claim: str,
+                 username_prefix: str):
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "groups_claims", groups_claims)
+        pulumi.set(__self__, "groups_prefix", groups_prefix)
+        pulumi.set(__self__, "issuer_url", issuer_url)
+        pulumi.set(__self__, "required_claims", required_claims)
+        pulumi.set(__self__, "username_claim", username_claim)
+        pulumi.set(__self__, "username_prefix", username_prefix)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="groupsClaims")
+    def groups_claims(self) -> Sequence[str]:
+        return pulumi.get(self, "groups_claims")
+
+    @property
+    @pulumi.getter(name="groupsPrefix")
+    def groups_prefix(self) -> str:
+        return pulumi.get(self, "groups_prefix")
+
+    @property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> str:
+        return pulumi.get(self, "issuer_url")
+
+    @property
+    @pulumi.getter(name="requiredClaims")
+    def required_claims(self) -> Sequence[str]:
+        return pulumi.get(self, "required_claims")
+
+    @property
+    @pulumi.getter(name="usernameClaim")
+    def username_claim(self) -> str:
+        return pulumi.get(self, "username_claim")
+
+    @property
+    @pulumi.getter(name="usernamePrefix")
+    def username_prefix(self) -> str:
+        return pulumi.get(self, "username_prefix")
+
+
+@pulumi.output_type
+class GetKubernetesNodePoolNodeResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 public_ip: str,
+                 public_ip_v6: str,
+                 status: str):
+        """
+        :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        :param str public_ip: The public IPv4.
+        :param str public_ip_v6: The public IPv6.
+        :param str status: The status of the node.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "public_ip_v6", public_ip_v6)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> str:
+        """
+        The public IPv4.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @property
+    @pulumi.getter(name="publicIpV6")
+    def public_ip_v6(self) -> str:
+        """
+        The public IPv6.
+        """
+        return pulumi.get(self, "public_ip_v6")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the node.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesNodePoolUpgradePolicyResult(dict):
+    def __init__(__self__, *,
+                 max_surge: int,
+                 max_unavailable: int):
+        pulumi.set(__self__, "max_surge", max_surge)
+        pulumi.set(__self__, "max_unavailable", max_unavailable)
+
+    @property
+    @pulumi.getter(name="maxSurge")
+    def max_surge(self) -> int:
+        return pulumi.get(self, "max_surge")
+
+    @property
+    @pulumi.getter(name="maxUnavailable")
+    def max_unavailable(self) -> int:
+        return pulumi.get(self, "max_unavailable")
+
+
+@pulumi.output_type
+class GetLoadbalancerPrivateNetworkResult(dict):
+    def __init__(__self__, *,
+                 dhcp_config: bool,
+                 private_network_id: str,
+                 static_configs: Sequence[str],
+                 status: str,
+                 zone: str):
+        """
+        :param str zone: `region`) The region in which the LB exists.
+        """
+        pulumi.set(__self__, "dhcp_config", dhcp_config)
+        pulumi.set(__self__, "private_network_id", private_network_id)
+        pulumi.set(__self__, "static_configs", static_configs)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="dhcpConfig")
+    def dhcp_config(self) -> bool:
+        return pulumi.get(self, "dhcp_config")
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> str:
+        return pulumi.get(self, "private_network_id")
+
+    @property
+    @pulumi.getter(name="staticConfigs")
+    def static_configs(self) -> Sequence[str]:
+        return pulumi.get(self, "static_configs")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        `region`) The region in which the LB exists.
+        """
+        return pulumi.get(self, "zone")
 
 

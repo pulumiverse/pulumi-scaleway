@@ -81,6 +81,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
 		PluginDownloadURL: "https://bintray.com/jaxxstorm/pulumi/download_file?file_path=",
+		GitHubOrg:         "scaleway", // not in the terraform-providers repo
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{
@@ -109,45 +110,13 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"scaleway_account_ssh_key": {
-				Tok: scalewayResource(scalewayMod, "AccountSshKey"),
-				// Docs: &tfbridge.DocInfo{
-				// 	Source: "account_ssh_key.md",
-				// },
-			},
-			"scaleway_apple_silicon_server": {
-				Tok: scalewayResource(scalewayMod, "AppleSliconValleyServer"),
-			},
-			"scaleway_baremetal_server":              {
-				Tok: scalewayResource(scalewayMod, "BaremetalServer"),
-				Docs: &tfbridge.DocInfo{
-					Source: "baremetal_server.md",
-				},
-			},
-			"scaleway_domain_record":                 {
-				Tok: scalewayResource(scalewayMod, "DomainRecord"),
-				Docs: &tfbridge.DocInfo{
-					Source: "domain_record.md",
-				},
-			},
-			"scaleway_instance_ip":                   {
-				Tok: scalewayResource(scalewayMod, "InstanceIP"),
-				Docs: &tfbridge.DocInfo{
-					Source: "instance_ip.md",
-				},
-			},
-			"scaleway_instance_ip_reverse_dns":       {
-				Tok: scalewayResource(scalewayMod, "InstanceIPReverseDNS"),
-				Docs: &tfbridge.DocInfo{
-					Source: "instance_ip_reverse_dns.md",
-				},
-			},
-			"scaleway_instance_placement_group":      {
-				Tok: scalewayResource(scalewayMod, "InstancePlacementGroup"),
-				Docs: &tfbridge.DocInfo{
-					Source: "instance_placement_group.md",
-				},
-			},
+			"scaleway_account_ssh_key":               {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
+			"scaleway_apple_silicon_server":          {Tok: scalewayResource(scalewayMod, "AppleSliconValleyServer")},
+			"scaleway_baremetal_server":              {Tok: scalewayResource(scalewayMod, "BaremetalServer")},
+			"scaleway_domain_record":                 {Tok: scalewayResource(scalewayMod, "DomainRecord")},
+			"scaleway_instance_ip":                   {Tok: scalewayResource(scalewayMod, "InstanceIP")},
+			"scaleway_instance_ip_reverse_dns":       {Tok: scalewayResource(scalewayMod, "InstanceIPReverseDNS")},
+			"scaleway_instance_placement_group":      {Tok: scalewayResource(scalewayMod, "InstancePlacementGroup")},
 			"scaleway_instance_private_nic":          {Tok: scalewayResource(scalewayMod, "InstancePrivateNIC")},
 			"scaleway_instance_security_group":       {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroup")},
 			"scaleway_instance_security_group_rules": {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroupRules")},
@@ -215,10 +184,10 @@ func Provider() tfbridge.ProviderInfo {
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^2.0.0",
+				"@pulumi/pulumi": "^3.0.0",
 			},
 			DevDependencies: map[string]string{
-				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
+				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
 			PackageName: "@jaxxstorm/pulumi-scaleway",
@@ -230,13 +199,12 @@ func Provider() tfbridge.ProviderInfo {
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
-				"pulumi": ">=2.0.0,<3.0.0",
+				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "2.*",
-				"System.Collections.Immutable": "1.6.0",
+				"Pulumi": "3.*",
 			},
 		},
 	}

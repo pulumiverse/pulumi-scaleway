@@ -8,31 +8,37 @@ from setuptools.command.install import install
 from subprocess import check_call
 
 
+VERSION = "0.0.0"
+PLUGIN_VERSION = "0.0.0"
+
 class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', '${PLUGIN_VERSION}', '--server', 'https://bintray.com/jaxxstorm/pulumi/download_file?file_path='])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'https://bintray.com/jaxxstorm/pulumi/download_file?file_path='])
         except OSError as error:
             if error.errno == errno.ENOENT:
-                print("""
+                print(f"""
                 There was an error installing the scaleway resource provider plugin.
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource scaleway ${PLUGIN_VERSION}`
+                `pulumi plugin install resource scaleway {PLUGIN_VERSION}`
                 """)
             else:
                 raise
 
 
 def readme():
-    with open('README.md', encoding='utf-8') as f:
-        return f.read()
+    try:
+        with open('README.md', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        return "scaleway Pulumi Package - Development Version"
 
 
 setup(name='pulumi_scaleway',
-      version='${VERSION}',
+      version=VERSION,
       description="A Pulumi package for creating and managing scaleway cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
@@ -48,12 +54,13 @@ setup(name='pulumi_scaleway',
       packages=find_packages(),
       package_data={
           'pulumi_scaleway': [
-              'py.typed'
+              'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=2.0.0,<3.0.0',
+          'pulumi>=3.0.0,<4.0.0',
           'semver>=2.8.1'
       ],
       zip_safe=False)

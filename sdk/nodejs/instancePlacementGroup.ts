@@ -15,6 +15,14 @@ import * as utilities from "./utilities";
  *
  * const availabilityGroup = new scaleway.InstancePlacementGroup("availability_group", {});
  * ```
+ *
+ * ## Import
+ *
+ * Placement groups can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
  */
 export class InstancePlacementGroup extends pulumi.CustomResource {
     /**
@@ -49,9 +57,9 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `organizationId`) The ID of the project the placement group is associated with.
+     * The organization ID the placement group is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
      * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
@@ -64,6 +72,10 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     public readonly policyType!: pulumi.Output<string | undefined>;
+    /**
+     * `projectId`) The ID of the project the placement group is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the placement group should be created.
      */
@@ -78,32 +90,31 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: InstancePlacementGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstancePlacementGroupArgs | InstancePlacementGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstancePlacementGroupState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["policyMode"] = state ? state.policyMode : undefined;
-            inputs["policyRespected"] = state ? state.policyRespected : undefined;
-            inputs["policyType"] = state ? state.policyType : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["policyMode"] = state ? state.policyMode : undefined;
+            resourceInputs["policyRespected"] = state ? state.policyRespected : undefined;
+            resourceInputs["policyType"] = state ? state.policyType : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstancePlacementGroupArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["policyMode"] = args ? args.policyMode : undefined;
-            inputs["policyType"] = args ? args.policyType : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["policyRespected"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policyMode"] = args ? args.policyMode : undefined;
+            resourceInputs["policyType"] = args ? args.policyType : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["policyRespected"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstancePlacementGroup.__pulumiType, name, inputs, opts);
+        super(InstancePlacementGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -114,27 +125,31 @@ export interface InstancePlacementGroupState {
     /**
      * The name of the placement group.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the project the placement group is associated with.
+     * The organization ID the placement group is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
     /**
      * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
-    readonly policyMode?: pulumi.Input<string>;
+    policyMode?: pulumi.Input<string>;
     /**
      * Is true when the policy is respected.
      */
-    readonly policyRespected?: pulumi.Input<boolean>;
+    policyRespected?: pulumi.Input<boolean>;
     /**
      * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
-    readonly policyType?: pulumi.Input<string>;
+    policyType?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the placement group is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the placement group should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -144,21 +159,21 @@ export interface InstancePlacementGroupArgs {
     /**
      * The name of the placement group.
      */
-    readonly name?: pulumi.Input<string>;
-    /**
-     * `organizationId`) The ID of the project the placement group is associated with.
-     */
-    readonly organizationId?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
-    readonly policyMode?: pulumi.Input<string>;
+    policyMode?: pulumi.Input<string>;
     /**
      * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
-    readonly policyType?: pulumi.Input<string>;
+    policyType?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the placement group is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the placement group should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

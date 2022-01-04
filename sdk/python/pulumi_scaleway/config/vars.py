@@ -5,47 +5,61 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from .. import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from .. import _utilities
 
-__all__ = [
-    'access_key',
-    'organization',
-    'organization_id',
-    'region',
-    'secret_key',
-    'token',
-    'zone',
-]
+import types
 
 __config__ = pulumi.Config('scaleway')
 
-access_key = __config__.get('accessKey') or _utilities.get_env('SCW_ACCESS_KEY')
-"""
-The Scaleway access key.
-"""
 
-organization = __config__.get('organization')
+class _ExportableConfig(types.ModuleType):
+    @property
+    def access_key(self) -> Optional[str]:
+        """
+        The Scaleway access key.
+        """
+        return __config__.get('accessKey') or _utilities.get_env('SCW_ACCESS_KEY')
 
-organization_id = __config__.get('organizationId') or _utilities.get_env('SCW_DEFAULT_ORGANIZATION_ID')
-"""
-The Scaleway organization ID.
-"""
+    @property
+    def api_url(self) -> Optional[str]:
+        """
+        The Scaleway API URL to use.
+        """
+        return __config__.get('apiUrl')
 
-region = __config__.get('region') or _utilities.get_env('SCW_DEFAULT_REGION')
-"""
-The Scaleway default region to use for your resources.
-"""
+    @property
+    def profile(self) -> Optional[str]:
+        """
+        The Scaleway profile to use.
+        """
+        return __config__.get('profile')
 
-secret_key = __config__.get('secretKey') or _utilities.get_env('SCW_SECRET_KEY')
-"""
-The Scaleway secret Key.
-"""
+    @property
+    def project_id(self) -> Optional[str]:
+        """
+        The Scaleway project ID.
+        """
+        return __config__.get('projectId') or _utilities.get_env('SCW_DEFAULT_PROJECT_ID')
 
-token = __config__.get('token')
+    @property
+    def region(self) -> Optional[str]:
+        """
+        The region you want to attach the resource to
+        """
+        return __config__.get('region') or _utilities.get_env('SCW_DEFAULT_REGION')
 
-zone = __config__.get('zone') or _utilities.get_env('SCW_DEFAULT_ZONE')
-"""
-The Scaleway default zone to use for your resources.
-"""
+    @property
+    def secret_key(self) -> Optional[str]:
+        """
+        The Scaleway secret Key.
+        """
+        return __config__.get('secretKey') or _utilities.get_env('SCW_SECRET_KEY')
+
+    @property
+    def zone(self) -> Optional[str]:
+        """
+        The zone you want to attach the resource to
+        """
+        return __config__.get('zone') or _utilities.get_env('SCW_DEFAULT_ZONE')
 

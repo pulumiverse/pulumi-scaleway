@@ -25,6 +25,34 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * The Scaleway access key.
+     */
+    public readonly accessKey!: pulumi.Output<string | undefined>;
+    /**
+     * The Scaleway API URL to use.
+     */
+    public readonly apiUrl!: pulumi.Output<string | undefined>;
+    /**
+     * The Scaleway profile to use.
+     */
+    public readonly profile!: pulumi.Output<string | undefined>;
+    /**
+     * The Scaleway project ID.
+     */
+    public readonly projectId!: pulumi.Output<string | undefined>;
+    /**
+     * The region you want to attach the resource to
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
+    /**
+     * The Scaleway secret Key.
+     */
+    public readonly secretKey!: pulumi.Output<string | undefined>;
+    /**
+     * The zone you want to attach the resource to
+     */
+    public readonly zone!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -34,24 +62,21 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
-            inputs["accessKey"] = (args ? args.accessKey : undefined) || utilities.getEnv("SCW_ACCESS_KEY");
-            inputs["organization"] = args ? args.organization : undefined;
-            inputs["organizationId"] = (args ? args.organizationId : undefined) || utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
-            inputs["region"] = (args ? args.region : undefined) || utilities.getEnv("SCW_DEFAULT_REGION");
-            inputs["secretKey"] = (args ? args.secretKey : undefined) || utilities.getEnv("SCW_SECRET_KEY");
-            inputs["token"] = args ? args.token : undefined;
-            inputs["zone"] = (args ? args.zone : undefined) || utilities.getEnv("SCW_DEFAULT_ZONE");
+            resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
+            resourceInputs["apiUrl"] = args ? args.apiUrl : undefined;
+            resourceInputs["profile"] = args ? args.profile : undefined;
+            resourceInputs["projectId"] = (args ? args.projectId : undefined) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
+            resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("SCW_DEFAULT_REGION");
+            resourceInputs["secretKey"] = (args ? args.secretKey : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
+            resourceInputs["zone"] = (args ? args.zone : undefined) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Provider.__pulumiType, name, inputs, opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -62,29 +87,29 @@ export interface ProviderArgs {
     /**
      * The Scaleway access key.
      */
-    readonly accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
     /**
-     * @deprecated Use `organization_id` instead.
+     * The Scaleway API URL to use.
      */
-    readonly organization?: pulumi.Input<string>;
+    apiUrl?: pulumi.Input<string>;
     /**
-     * The Scaleway organization ID.
+     * The Scaleway profile to use.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    profile?: pulumi.Input<string>;
     /**
-     * The Scaleway default region to use for your resources.
+     * The Scaleway project ID.
      */
-    readonly region?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    region?: pulumi.Input<string>;
     /**
      * The Scaleway secret Key.
      */
-    readonly secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
     /**
-     * @deprecated Use `secret_key` instead.
+     * The zone you want to attach the resource to
      */
-    readonly token?: pulumi.Input<string>;
-    /**
-     * The Scaleway default zone to use for your resources.
-     */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

@@ -55,7 +55,7 @@ namespace Pulumi.Scaleway
     ///         });
     ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
     ///         {
-    ///             Type = "DEV1-L",
+    ///             Type = "DEV1-S",
     ///             Image = "ubuntu_focal",
     ///             Tags = 
     ///             {
@@ -91,7 +91,7 @@ namespace Pulumi.Scaleway
     ///         });
     ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
     ///         {
-    ///             Type = "DEV1-L",
+    ///             Type = "DEV1-S",
     ///             Image = "f974feac-abae-4365-b988-8ec7d1cec10d",
     ///             Tags = 
     ///             {
@@ -171,33 +171,72 @@ namespace Pulumi.Scaleway
     ///     {
     ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
     ///         {
-    ///             Type = "DEV1-L",
+    ///             Type = "DEV1-S",
     ///             Image = "ubuntu_focal",
-    ///             Tags = 
+    ///             UserData = 
     ///             {
-    ///                 "web",
-    ///                 "public",
+    ///                 { "foo", "bar" },
+    ///                 { "cloud-init", File.ReadAllText($"{path.Module}/cloud-init.yml") },
     ///             },
-    ///             UserDatas = 
-    ///             {
-    ///                 new Scaleway.Inputs.InstanceServerUserDataArgs
-    ///                 {
-    ///                     Key = "plop",
-    ///                     Value = "world",
-    ///                 },
-    ///                 new Scaleway.Inputs.InstanceServerUserDataArgs
-    ///                 {
-    ///                     Key = "xavier",
-    ///                     Value = "niel",
-    ///                 },
-    ///             },
-    ///             CloudInit = File.ReadAllText($"{path.Module}/cloud-init.yml"),
     ///         });
     ///     }
     /// 
     /// }
     /// ```
+    /// 
+    /// ### With private network
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new Scaleway.VpcPrivateNetworkArgs
+    ///         {
+    ///         });
+    ///         var @base = new Scaleway.InstanceServer("base", new Scaleway.InstanceServerArgs
+    ///         {
+    ///             Image = "ubuntu_focal",
+    ///             Type = "DEV1-S",
+    ///             PrivateNetworks = 
+    ///             {
+    ///                 new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
+    ///                 {
+    ///                     PnId = pn01.Id,
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Private Network
+    /// 
+    /// &gt; **Important:** Updates to `private_network` will recreate a new private network interface.
+    /// 
+    /// - `pn_id` - (Required) The private network ID where to connect.
+    /// - `mac_address` The private NIC MAC address.
+    /// - `status` The private NIC state.
+    /// - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+    /// 
+    /// &gt; **Important:**
+    /// 
+    /// - You can only attach an instance in the same zone as a private network.
+    /// - Instance supports maximum 8 different private networks.
+    /// 
+    /// ## Import
+    /// 
+    /// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/instanceServer:InstanceServer")]
     public partial class InstanceServer : Pulumi.CustomResource
     {
         /// <summary>
@@ -211,10 +250,16 @@ namespace Pulumi.Scaleway
         /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         /// </summary>
         [Output("bootType")]
-        public Output<string> BootType { get; private set; } = null!;
+        public Output<string?> BootType { get; private set; } = null!;
 
         /// <summary>
-        /// The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
+        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// </summary>
+        [Output("bootscriptId")]
+        public Output<string> BootscriptId { get; private set; } = null!;
+
+        /// <summary>
+        /// The cloud init script associated with this server
         /// </summary>
         [Output("cloudInit")]
         public Output<string?> CloudInit { get; private set; } = null!;
@@ -269,7 +314,7 @@ namespace Pulumi.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the server is associated with.
+        /// The organization ID the server is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -292,6 +337,19 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Output("privateIp")]
         public Output<string> PrivateIp { get; private set; } = null!;
+
+        /// <summary>
+        /// The private network associated with the server.
+        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// </summary>
+        [Output("privateNetworks")]
+        public Output<ImmutableArray<Outputs.InstanceServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the server is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The public IPv4 address of the server.
@@ -332,10 +390,10 @@ namespace Pulumi.Scaleway
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The user data associated with the server.
+        /// The user data associated with the server
         /// </summary>
-        [Output("userDatas")]
-        public Output<ImmutableArray<Outputs.InstanceServerUserData>> UserDatas { get; private set; } = null!;
+        [Output("userData")]
+        public Output<ImmutableDictionary<string, string>?> UserData { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.
@@ -403,7 +461,19 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
+        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// </summary>
+        [Input("bootType")]
+        public Input<string>? BootType { get; set; }
+
+        /// <summary>
+        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// </summary>
+        [Input("bootscriptId")]
+        public Input<string>? BootscriptId { get; set; }
+
+        /// <summary>
+        /// The cloud init script associated with this server
         /// </summary>
         [Input("cloudInit")]
         public Input<string>? CloudInit { get; set; }
@@ -440,16 +510,29 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the server is associated with.
-        /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
-
-        /// <summary>
         /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
+
+        [Input("privateNetworks")]
+        private InputList<Inputs.InstanceServerPrivateNetworkArgs>? _privateNetworks;
+
+        /// <summary>
+        /// The private network associated with the server.
+        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// </summary>
+        public InputList<Inputs.InstanceServerPrivateNetworkArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.InstanceServerPrivateNetworkArgs>());
+            set => _privateNetworks = value;
+        }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
@@ -489,16 +572,16 @@ namespace Pulumi.Scaleway
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        [Input("userDatas")]
-        private InputList<Inputs.InstanceServerUserDataArgs>? _userDatas;
+        [Input("userData")]
+        private InputMap<string>? _userData;
 
         /// <summary>
-        /// The user data associated with the server.
+        /// The user data associated with the server
         /// </summary>
-        public InputList<Inputs.InstanceServerUserDataArgs> UserDatas
+        public InputMap<string> UserData
         {
-            get => _userDatas ?? (_userDatas = new InputList<Inputs.InstanceServerUserDataArgs>());
-            set => _userDatas = value;
+            get => _userData ?? (_userData = new InputMap<string>());
+            set => _userData = value;
         }
 
         /// <summary>
@@ -534,7 +617,13 @@ namespace Pulumi.Scaleway
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
+        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// </summary>
+        [Input("bootscriptId")]
+        public Input<string>? BootscriptId { get; set; }
+
+        /// <summary>
+        /// The cloud init script associated with this server
         /// </summary>
         [Input("cloudInit")]
         public Input<string>? CloudInit { get; set; }
@@ -589,7 +678,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the server is associated with.
+        /// The organization ID the server is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -612,6 +701,25 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
+
+        [Input("privateNetworks")]
+        private InputList<Inputs.InstanceServerPrivateNetworkGetArgs>? _privateNetworks;
+
+        /// <summary>
+        /// The private network associated with the server.
+        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// </summary>
+        public InputList<Inputs.InstanceServerPrivateNetworkGetArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.InstanceServerPrivateNetworkGetArgs>());
+            set => _privateNetworks = value;
+        }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The public IPv4 address of the server.
@@ -657,16 +765,16 @@ namespace Pulumi.Scaleway
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        [Input("userDatas")]
-        private InputList<Inputs.InstanceServerUserDataGetArgs>? _userDatas;
+        [Input("userData")]
+        private InputMap<string>? _userData;
 
         /// <summary>
-        /// The user data associated with the server.
+        /// The user data associated with the server
         /// </summary>
-        public InputList<Inputs.InstanceServerUserDataGetArgs> UserDatas
+        public InputMap<string> UserData
         {
-            get => _userDatas ?? (_userDatas = new InputList<Inputs.InstanceServerUserDataGetArgs>());
-            set => _userDatas = value;
+            get => _userData ?? (_userData = new InputMap<string>());
+            set => _userData = value;
         }
 
         /// <summary>

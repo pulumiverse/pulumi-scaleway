@@ -5,13 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
 __all__ = [
     'GetInstanceVolumeResult',
     'AwaitableGetInstanceVolumeResult',
     'get_instance_volume',
+    'get_instance_volume_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetInstanceVolumeResult:
     """
     A collection of values returned by getInstanceVolume.
     """
-    def __init__(__self__, from_snapshot_id=None, from_volume_id=None, id=None, name=None, organization_id=None, server_id=None, size_in_gb=None, type=None, volume_id=None, zone=None):
+    def __init__(__self__, from_snapshot_id=None, from_volume_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, type=None, volume_id=None, zone=None):
         if from_snapshot_id and not isinstance(from_snapshot_id, str):
             raise TypeError("Expected argument 'from_snapshot_id' to be a str")
         pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
@@ -35,6 +36,9 @@ class GetInstanceVolumeResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
@@ -77,7 +81,15 @@ class GetInstanceVolumeResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the organization the volume is associated with.
+        """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="serverId")
@@ -116,6 +128,7 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
+            project_id=self.project_id,
             server_id=self.server_id,
             size_in_gb=self.size_in_gb,
             type=self.type,
@@ -162,8 +175,36 @@ def get_instance_volume(name: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         organization_id=__ret__.organization_id,
+        project_id=__ret__.project_id,
         server_id=__ret__.server_id,
         size_in_gb=__ret__.size_in_gb,
         type=__ret__.type,
         volume_id=__ret__.volume_id,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_instance_volume)
+def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               volume_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               zone: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceVolumeResult]:
+    """
+    Gets information about an instance volume.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The volume name.
+           Only one of `name` and `volume_id` should be specified.
+    :param str volume_id: The volume id.
+           Only one of `name` and `volume_id` should be specified.
+    :param str zone: `zone`) The zone in which the volume exists.
+    """
+    ...

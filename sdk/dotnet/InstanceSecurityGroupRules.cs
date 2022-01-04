@@ -10,46 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+    /// ## Import
     /// 
-    /// This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+    /// Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
     /// 
-    /// &gt; **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new Scaleway.InstanceSecurityGroupArgs
-    ///         {
-    ///             ExternalRules = true,
-    ///         });
-    ///         var sgrs01 = new Scaleway.InstanceSecurityGroupRules("sgrs01", new Scaleway.InstanceSecurityGroupRulesArgs
-    ///         {
-    ///             SecurityGroupId = sg01.Id,
-    ///             InboundRules = 
-    ///             {
-    ///                 new Scaleway.Inputs.InstanceSecurityGroupRulesInboundRuleArgs
-    ///                 {
-    ///                     Action = "accept",
-    ///                     Port = 80,
-    ///                     IpRange = "0.0.0.0/0",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules")]
     public partial class InstanceSecurityGroupRules : Pulumi.CustomResource
     {
         /// <summary>

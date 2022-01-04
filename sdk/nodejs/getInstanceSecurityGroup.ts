@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -18,7 +17,7 @@ import * as utilities from "./utilities";
  * // Get info by security group id
  * const myKey = pulumi.output(scaleway.getInstanceSecurityGroup({
  *     securityGroupId: "11111111-1111-1111-1111-111111111111",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSecurityGroupResult> {
@@ -44,15 +43,15 @@ export interface GetInstanceSecurityGroupArgs {
     /**
      * The security group name. Only one of `name` and `securityGroupId` should be specified.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The security group id. Only one of `name` and `securityGroupId` should be specified.
      */
-    readonly securityGroupId?: string;
+    securityGroupId?: string;
     /**
      * `zone`) The zone in which the security group exists.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -60,6 +59,7 @@ export interface GetInstanceSecurityGroupArgs {
  */
 export interface GetInstanceSecurityGroupResult {
     readonly description: string;
+    readonly enableDefaultSecurity: boolean;
     readonly externalRules: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -86,7 +86,33 @@ export interface GetInstanceSecurityGroupResult {
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
     readonly outboundRules: outputs.GetInstanceSecurityGroupOutboundRule[];
+    /**
+     * The ID of the project the security group is associated with.
+     */
+    readonly projectId: string;
     readonly securityGroupId?: string;
     readonly stateful: boolean;
     readonly zone?: string;
+}
+
+export function getInstanceSecurityGroupOutput(args?: GetInstanceSecurityGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSecurityGroupResult> {
+    return pulumi.output(args).apply(a => getInstanceSecurityGroup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstanceSecurityGroup.
+ */
+export interface GetInstanceSecurityGroupOutputArgs {
+    /**
+     * The security group name. Only one of `name` and `securityGroupId` should be specified.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The security group id. Only one of `name` and `securityGroupId` should be specified.
+     */
+    securityGroupId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the security group exists.
+     */
+    zone?: pulumi.Input<string>;
 }

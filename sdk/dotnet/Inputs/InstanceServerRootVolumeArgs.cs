@@ -12,6 +12,9 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class InstanceServerRootVolumeArgs : Pulumi.ResourceArgs
     {
+        [Input("boot")]
+        public Input<bool>? Boot { get; set; }
+
         /// <summary>
         /// Forces deletion of the root volume on instance termination.
         /// </summary>

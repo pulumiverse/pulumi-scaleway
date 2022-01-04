@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Scaleway
         /// </summary>
         public static Task<GetInstanceVolumeResult> InvokeAsync(GetInstanceVolumeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Gets information about an instance volume.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myVolume = Output.Create(Scaleway.GetInstanceVolume.InvokeAsync(new Scaleway.GetInstanceVolumeArgs
+        ///         {
+        ///             VolumeId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetInstanceVolumeResult> Invoke(GetInstanceVolumeInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithVersion());
     }
 
 
@@ -69,6 +99,33 @@ namespace Pulumi.Scaleway
         }
     }
 
+    public sealed class GetInstanceVolumeInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The volume name.
+        /// Only one of `name` and `volume_id` should be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The volume id.
+        /// Only one of `name` and `volume_id` should be specified.
+        /// </summary>
+        [Input("volumeId")]
+        public Input<string>? VolumeId { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the volume exists.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetInstanceVolumeInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetInstanceVolumeResult
@@ -80,7 +137,11 @@ namespace Pulumi.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? Name;
+        /// <summary>
+        /// The ID of the organization the volume is associated with.
+        /// </summary>
         public readonly string OrganizationId;
+        public readonly string ProjectId;
         public readonly string ServerId;
         public readonly int SizeInGb;
         public readonly string Type;
@@ -99,6 +160,8 @@ namespace Pulumi.Scaleway
 
             string organizationId,
 
+            string projectId,
+
             string serverId,
 
             int sizeInGb,
@@ -114,6 +177,7 @@ namespace Pulumi.Scaleway
             Id = id;
             Name = name;
             OrganizationId = organizationId;
+            ProjectId = projectId;
             ServerId = serverId;
             SizeInGb = sizeInGb;
             Type = type;

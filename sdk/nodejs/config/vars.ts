@@ -4,27 +4,83 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("scaleway");
+declare var exports: any;
+const __config = new pulumi.Config("scaleway");
 
 /**
  * The Scaleway access key.
  */
-export let accessKey: string | undefined = __config.get("accessKey") || utilities.getEnv("SCW_ACCESS_KEY");
-export let organization: string | undefined = __config.get("organization");
+export declare const accessKey: string | undefined;
+Object.defineProperty(exports, "accessKey", {
+    get() {
+        return __config.get("accessKey") ?? utilities.getEnv("SCW_ACCESS_KEY");
+    },
+    enumerable: true,
+});
+
 /**
- * The Scaleway organization ID.
+ * The Scaleway API URL to use.
  */
-export let organizationId: string | undefined = __config.get("organizationId") || utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
+export declare const apiUrl: string | undefined;
+Object.defineProperty(exports, "apiUrl", {
+    get() {
+        return __config.get("apiUrl");
+    },
+    enumerable: true,
+});
+
 /**
- * The Scaleway default region to use for your resources.
+ * The Scaleway profile to use.
  */
-export let region: string | undefined = __config.get("region") || utilities.getEnv("SCW_DEFAULT_REGION");
+export declare const profile: string | undefined;
+Object.defineProperty(exports, "profile", {
+    get() {
+        return __config.get("profile");
+    },
+    enumerable: true,
+});
+
+/**
+ * The Scaleway project ID.
+ */
+export declare const projectId: string | undefined;
+Object.defineProperty(exports, "projectId", {
+    get() {
+        return __config.get("projectId") ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
+    },
+    enumerable: true,
+});
+
+/**
+ * The region you want to attach the resource to
+ */
+export declare const region: string | undefined;
+Object.defineProperty(exports, "region", {
+    get() {
+        return __config.get("region") ?? utilities.getEnv("SCW_DEFAULT_REGION");
+    },
+    enumerable: true,
+});
+
 /**
  * The Scaleway secret Key.
  */
-export let secretKey: string | undefined = __config.get("secretKey") || utilities.getEnv("SCW_SECRET_KEY");
-export let token: string | undefined = __config.get("token");
+export declare const secretKey: string | undefined;
+Object.defineProperty(exports, "secretKey", {
+    get() {
+        return __config.get("secretKey") ?? utilities.getEnv("SCW_SECRET_KEY");
+    },
+    enumerable: true,
+});
+
 /**
- * The Scaleway default zone to use for your resources.
+ * The zone you want to attach the resource to
  */
-export let zone: string | undefined = __config.get("zone") || utilities.getEnv("SCW_DEFAULT_ZONE");
+export declare const zone: string | undefined;
+Object.defineProperty(exports, "zone", {
+    get() {
+        return __config.get("zone") ?? utilities.getEnv("SCW_DEFAULT_ZONE");
+    },
+    enumerable: true,
+});
+

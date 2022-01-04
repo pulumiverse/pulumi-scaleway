@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -18,7 +16,7 @@ import * as utilities from "./utilities";
  * // Get info by volume ID
  * const myVolume = pulumi.output(scaleway.getInstanceVolume({
  *     volumeId: "11111111-1111-1111-1111-111111111111",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceVolumeResult> {
@@ -45,16 +43,16 @@ export interface GetInstanceVolumeArgs {
      * The volume name.
      * Only one of `name` and `volumeId` should be specified.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The volume id.
      * Only one of `name` and `volumeId` should be specified.
      */
-    readonly volumeId?: string;
+    volumeId?: string;
     /**
      * `zone`) The zone in which the volume exists.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -68,10 +66,38 @@ export interface GetInstanceVolumeResult {
      */
     readonly id: string;
     readonly name?: string;
+    /**
+     * The ID of the organization the volume is associated with.
+     */
     readonly organizationId: string;
+    readonly projectId: string;
     readonly serverId: string;
     readonly sizeInGb: number;
     readonly type: string;
     readonly volumeId?: string;
     readonly zone?: string;
+}
+
+export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceVolumeResult> {
+    return pulumi.output(args).apply(a => getInstanceVolume(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstanceVolume.
+ */
+export interface GetInstanceVolumeOutputArgs {
+    /**
+     * The volume name.
+     * Only one of `name` and `volumeId` should be specified.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The volume id.
+     * Only one of `name` and `volumeId` should be specified.
+     */
+    volumeId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the volume exists.
+     */
+    zone?: pulumi.Input<string>;
 }

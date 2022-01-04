@@ -5,13 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
 __all__ = [
     'GetAccountSshKeyResult',
     'AwaitableGetAccountSshKeyResult',
     'get_account_ssh_key',
+    'get_account_ssh_key_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetAccountSshKeyResult:
     """
     A collection of values returned by getAccountSshKey.
     """
-    def __init__(__self__, id=None, name=None, organization_id=None, public_key=None, ssh_key_id=None):
+    def __init__(__self__, id=None, name=None, organization_id=None, project_id=None, public_key=None, ssh_key_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -29,6 +30,9 @@ class GetAccountSshKeyResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if public_key and not isinstance(public_key, str):
             raise TypeError("Expected argument 'public_key' to be a str")
         pulumi.set(__self__, "public_key", public_key)
@@ -46,13 +50,21 @@ class GetAccountSshKeyResult:
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the organization the SSH key is associated with.
+        """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="publicKey")
@@ -64,7 +76,7 @@ class GetAccountSshKeyResult:
 
     @property
     @pulumi.getter(name="sshKeyId")
-    def ssh_key_id(self) -> str:
+    def ssh_key_id(self) -> Optional[str]:
         return pulumi.get(self, "ssh_key_id")
 
 
@@ -77,12 +89,12 @@ class AwaitableGetAccountSshKeyResult(GetAccountSshKeyResult):
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
+            project_id=self.project_id,
             public_key=self.public_key,
             ssh_key_id=self.ssh_key_id)
 
 
 def get_account_ssh_key(name: Optional[str] = None,
-                        organization_id: Optional[str] = None,
                         ssh_key_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountSshKeyResult:
     """
@@ -99,12 +111,10 @@ def get_account_ssh_key(name: Optional[str] = None,
 
 
     :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
-    :param str organization_id: `organization_id`) The ID of the organization the server is associated with.
     :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
     """
     __args__ = dict()
     __args__['name'] = name
-    __args__['organizationId'] = organization_id
     __args__['sshKeyId'] = ssh_key_id
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -116,5 +126,29 @@ def get_account_ssh_key(name: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         organization_id=__ret__.organization_id,
+        project_id=__ret__.project_id,
         public_key=__ret__.public_key,
         ssh_key_id=__ret__.ssh_key_id)
+
+
+@_utilities.lift_output_func(get_account_ssh_key)
+def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               ssh_key_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountSshKeyResult]:
+    """
+    Use this data source to get SSH key information based on its ID or name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_key = scaleway.get_account_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+    :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+    """
+    ...

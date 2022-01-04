@@ -30,7 +30,16 @@ namespace Pulumi.Scaleway
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// SSH keys can be imported using the `id`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/accountSshKey:AccountSshKey")]
     public partial class AccountSshKey : Pulumi.CustomResource
     {
         /// <summary>
@@ -40,10 +49,16 @@ namespace Pulumi.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the IP is associated with.
+        /// The organization ID the SSH key is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the SSH key is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The public SSH key to be added.
@@ -104,10 +119,10 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the IP is associated with.
+        /// `project_id`) The ID of the project the SSH key is associated with.
         /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The public SSH key to be added.
@@ -129,10 +144,16 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the IP is associated with.
+        /// The organization ID the SSH key is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the SSH key is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The public SSH key to be added.

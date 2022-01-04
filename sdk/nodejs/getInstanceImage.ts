@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -18,7 +16,7 @@ import * as utilities from "./utilities";
  * // Get info by image id
  * const myImage = pulumi.output(scaleway.getInstanceImage({
  *     imageId: "11111111-1111-1111-1111-111111111111",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceImageResult> {
@@ -35,7 +33,7 @@ export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.Invo
         "imageId": args.imageId,
         "latest": args.latest,
         "name": args.name,
-        "organizationId": args.organizationId,
+        "projectId": args.projectId,
         "zone": args.zone,
     }, opts);
 }
@@ -47,27 +45,27 @@ export interface GetInstanceImageArgs {
     /**
      * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
      */
-    readonly architecture?: string;
+    architecture?: string;
     /**
      * The image id. Only one of `name` and `imageId` should be specified.
      */
-    readonly imageId?: string;
+    imageId?: string;
     /**
      * Use the latest image ID.
      */
-    readonly latest?: boolean;
+    latest?: boolean;
     /**
      * The image name. Only one of `name` and `imageId` should be specified.
      */
-    readonly name?: string;
+    name?: string;
     /**
-     * The ID of the organization the image is associated with.
+     * The ID of the project the image is associated with.
      */
-    readonly organizationId?: string;
+    projectId?: string;
     /**
      * `zone`) The zone in which the image exists.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -107,6 +105,10 @@ export interface GetInstanceImageResult {
      */
     readonly organizationId: string;
     /**
+     * The ID of the project the image is associated with.
+     */
+    readonly projectId: string;
+    /**
      * Set to `true` if the image is public.
      */
     readonly public: boolean;
@@ -119,4 +121,38 @@ export interface GetInstanceImageResult {
      */
     readonly state: string;
     readonly zone: string;
+}
+
+export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceImageResult> {
+    return pulumi.output(args).apply(a => getInstanceImage(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstanceImage.
+ */
+export interface GetInstanceImageOutputArgs {
+    /**
+     * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
+     */
+    architecture?: pulumi.Input<string>;
+    /**
+     * The image id. Only one of `name` and `imageId` should be specified.
+     */
+    imageId?: pulumi.Input<string>;
+    /**
+     * Use the latest image ID.
+     */
+    latest?: pulumi.Input<boolean>;
+    /**
+     * The image name. Only one of `name` and `imageId` should be specified.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the image is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the image exists.
+     */
+    zone?: pulumi.Input<string>;
 }

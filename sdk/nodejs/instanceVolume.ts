@@ -5,7 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Compute Instance Volumes. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
+ * Creates and manages Scaleway Compute Instance Volumes.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
  *
  * ## Example
  *
@@ -17,6 +18,14 @@ import * as utilities from "./utilities";
  *     sizeInGb: 20,
  *     type: "l_ssd",
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * volumes can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceVolume extends pulumi.CustomResource {
@@ -52,7 +61,7 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public readonly fromSnapshotId!: pulumi.Output<string | undefined>;
     /**
-     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     public readonly fromVolumeId!: pulumi.Output<string | undefined>;
     /**
@@ -60,9 +69,13 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `organizationId`) The ID of the organization the volume is associated with.
+     * The organization ID the volume is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    /**
+     * `projectId`) The ID of the project the volume is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The id of the associated server.
      */
@@ -70,7 +83,7 @@ export class InstanceVolume extends pulumi.CustomResource {
     /**
      * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
-    public readonly sizeInGb!: pulumi.Output<number>;
+    public readonly sizeInGb!: pulumi.Output<number | undefined>;
     /**
      * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
      */
@@ -89,39 +102,38 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceVolumeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceVolumeArgs | InstanceVolumeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceVolumeState | undefined;
-            inputs["fromSnapshotId"] = state ? state.fromSnapshotId : undefined;
-            inputs["fromVolumeId"] = state ? state.fromVolumeId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["serverId"] = state ? state.serverId : undefined;
-            inputs["sizeInGb"] = state ? state.sizeInGb : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["fromSnapshotId"] = state ? state.fromSnapshotId : undefined;
+            resourceInputs["fromVolumeId"] = state ? state.fromVolumeId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["serverId"] = state ? state.serverId : undefined;
+            resourceInputs["sizeInGb"] = state ? state.sizeInGb : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceVolumeArgs | undefined;
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["fromSnapshotId"] = args ? args.fromSnapshotId : undefined;
-            inputs["fromVolumeId"] = args ? args.fromVolumeId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["sizeInGb"] = args ? args.sizeInGb : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["serverId"] = undefined /*out*/;
+            resourceInputs["fromSnapshotId"] = args ? args.fromSnapshotId : undefined;
+            resourceInputs["fromVolumeId"] = args ? args.fromVolumeId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["sizeInGb"] = args ? args.sizeInGb : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["serverId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceVolume.__pulumiType, name, inputs, opts);
+        super(InstanceVolume.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -132,35 +144,39 @@ export interface InstanceVolumeState {
     /**
      * Create a volume based on a image
      */
-    readonly fromSnapshotId?: pulumi.Input<string>;
+    fromSnapshotId?: pulumi.Input<string>;
     /**
-     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
-    readonly fromVolumeId?: pulumi.Input<string>;
+    fromVolumeId?: pulumi.Input<string>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the volume is associated with.
+     * The organization ID the volume is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the volume is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The id of the associated server.
      */
-    readonly serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string>;
     /**
      * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
-    readonly sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number>;
     /**
      * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -170,29 +186,29 @@ export interface InstanceVolumeArgs {
     /**
      * Create a volume based on a image
      */
-    readonly fromSnapshotId?: pulumi.Input<string>;
+    fromSnapshotId?: pulumi.Input<string>;
     /**
-     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
-    readonly fromVolumeId?: pulumi.Input<string>;
+    fromVolumeId?: pulumi.Input<string>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the volume is associated with.
+     * `projectId`) The ID of the project the volume is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
      */
-    readonly sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number>;
     /**
      * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

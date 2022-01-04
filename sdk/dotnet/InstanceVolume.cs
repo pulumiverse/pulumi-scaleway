@@ -10,7 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Compute Instance Volumes. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
+    /// Creates and manages Scaleway Compute Instance Volumes.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
     /// 
     /// ## Example
     /// 
@@ -31,7 +32,16 @@ namespace Pulumi.Scaleway
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// volumes can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/instanceVolume:InstanceVolume")]
     public partial class InstanceVolume : Pulumi.CustomResource
     {
         /// <summary>
@@ -41,7 +51,7 @@ namespace Pulumi.Scaleway
         public Output<string?> FromSnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Output("fromVolumeId")]
         public Output<string?> FromVolumeId { get; private set; } = null!;
@@ -53,10 +63,16 @@ namespace Pulumi.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the volume is associated with.
+        /// The organization ID the volume is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the volume is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The id of the associated server.
@@ -68,7 +84,7 @@ namespace Pulumi.Scaleway
         /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
         /// </summary>
         [Output("sizeInGb")]
-        public Output<int> SizeInGb { get; private set; } = null!;
+        public Output<int?> SizeInGb { get; private set; } = null!;
 
         /// <summary>
         /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
@@ -135,7 +151,7 @@ namespace Pulumi.Scaleway
         public Input<string>? FromSnapshotId { get; set; }
 
         /// <summary>
-        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("fromVolumeId")]
         public Input<string>? FromVolumeId { get; set; }
@@ -147,10 +163,10 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the volume is associated with.
+        /// `project_id`) The ID of the project the volume is associated with.
         /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
@@ -184,7 +200,7 @@ namespace Pulumi.Scaleway
         public Input<string>? FromSnapshotId { get; set; }
 
         /// <summary>
-        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("fromVolumeId")]
         public Input<string>? FromVolumeId { get; set; }
@@ -196,10 +212,16 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the volume is associated with.
+        /// The organization ID the volume is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The id of the associated server.

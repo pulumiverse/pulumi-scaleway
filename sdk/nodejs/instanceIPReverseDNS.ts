@@ -19,6 +19,14 @@ import * as utilities from "./utilities";
  *     reverse: "www.scaleway.com",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
  */
 export class InstanceIPReverseDNS extends pulumi.CustomResource {
     /**
@@ -70,32 +78,29 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceIPReverseDNSArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceIPReverseDNSArgs | InstanceIPReverseDNSState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceIPReverseDNSState | undefined;
-            inputs["ipId"] = state ? state.ipId : undefined;
-            inputs["reverse"] = state ? state.reverse : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["reverse"] = state ? state.reverse : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceIPReverseDNSArgs | undefined;
-            if (!args || args.ipId === undefined) {
+            if ((!args || args.ipId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ipId'");
             }
-            if (!args || args.reverse === undefined) {
+            if ((!args || args.reverse === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'reverse'");
             }
-            inputs["ipId"] = args ? args.ipId : undefined;
-            inputs["reverse"] = args ? args.reverse : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["reverse"] = args ? args.reverse : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceIPReverseDNS.__pulumiType, name, inputs, opts);
+        super(InstanceIPReverseDNS.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -106,15 +111,15 @@ export interface InstanceIPReverseDNSState {
     /**
      * The IP ID
      */
-    readonly ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string>;
     /**
      * The reverse DNS for this IP.
      */
-    readonly reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -124,13 +129,13 @@ export interface InstanceIPReverseDNSArgs {
     /**
      * The IP ID
      */
-    readonly ipId: pulumi.Input<string>;
+    ipId: pulumi.Input<string>;
     /**
      * The reverse DNS for this IP.
      */
-    readonly reverse: pulumi.Input<string>;
+    reverse: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

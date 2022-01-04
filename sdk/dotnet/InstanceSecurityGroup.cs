@@ -9,6 +9,16 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
+    [ScalewayResourceType("scaleway:index/instanceSecurityGroup:InstanceSecurityGroup")]
     public partial class InstanceSecurityGroup : Pulumi.CustomResource
     {
         /// <summary>
@@ -18,7 +28,14 @@ namespace Pulumi.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A boolean to specify whether to use instance_security_group_rules. If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        /// </summary>
+        [Output("enableDefaultSecurity")]
+        public Output<bool?> EnableDefaultSecurity { get; private set; } = null!;
+
+        /// <summary>
+        /// A boolean to specify whether to use instance_security_group_rules.
+        /// If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
         /// </summary>
         [Output("externalRules")]
         public Output<bool?> ExternalRules { get; private set; } = null!;
@@ -42,7 +59,7 @@ namespace Pulumi.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the project the security group is associated with.
+        /// The organization ID the security group is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -58,6 +75,12 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Output("outboundRules")]
         public Output<ImmutableArray<Outputs.InstanceSecurityGroupOutboundRule>> OutboundRules { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the security group is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// A boolean to specify whether the security group should be stateful or not.
@@ -124,7 +147,14 @@ namespace Pulumi.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A boolean to specify whether to use instance_security_group_rules. If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        /// </summary>
+        [Input("enableDefaultSecurity")]
+        public Input<bool>? EnableDefaultSecurity { get; set; }
+
+        /// <summary>
+        /// A boolean to specify whether to use instance_security_group_rules.
+        /// If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
         /// </summary>
         [Input("externalRules")]
         public Input<bool>? ExternalRules { get; set; }
@@ -154,12 +184,6 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the project the security group is associated with.
-        /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
-
-        /// <summary>
         /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         /// </summary>
         [Input("outboundDefaultPolicy")]
@@ -176,6 +200,12 @@ namespace Pulumi.Scaleway
             get => _outboundRules ?? (_outboundRules = new InputList<Inputs.InstanceSecurityGroupOutboundRuleArgs>());
             set => _outboundRules = value;
         }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the security group is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// A boolean to specify whether the security group should be stateful or not.
@@ -203,7 +233,14 @@ namespace Pulumi.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A boolean to specify whether to use instance_security_group_rules. If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        /// </summary>
+        [Input("enableDefaultSecurity")]
+        public Input<bool>? EnableDefaultSecurity { get; set; }
+
+        /// <summary>
+        /// A boolean to specify whether to use instance_security_group_rules.
+        /// If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
         /// </summary>
         [Input("externalRules")]
         public Input<bool>? ExternalRules { get; set; }
@@ -233,7 +270,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the project the security group is associated with.
+        /// The organization ID the security group is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -255,6 +292,12 @@ namespace Pulumi.Scaleway
             get => _outboundRules ?? (_outboundRules = new InputList<Inputs.InstanceSecurityGroupOutboundRuleGetArgs>());
             set => _outboundRules = value;
         }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the security group is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// A boolean to specify whether the security group should be stateful or not.

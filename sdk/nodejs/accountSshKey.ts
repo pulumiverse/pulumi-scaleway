@@ -17,6 +17,14 @@ import * as utilities from "./utilities";
  *     publicKey: "<YOUR-PUBLIC-SSH-KEY>",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * SSH keys can be imported using the `id`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+ * ```
  */
 export class AccountSshKey extends pulumi.CustomResource {
     /**
@@ -51,9 +59,13 @@ export class AccountSshKey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `organizationId`) The ID of the organization the IP is associated with.
+     * The organization ID the SSH key is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    /**
+     * `projectId`) The ID of the project the SSH key is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The public SSH key to be added.
      */
@@ -68,29 +80,28 @@ export class AccountSshKey extends pulumi.CustomResource {
      */
     constructor(name: string, args: AccountSshKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AccountSshKeyArgs | AccountSshKeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AccountSshKeyState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as AccountSshKeyArgs | undefined;
-            if (!args || args.publicKey === undefined) {
+            if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["organizationId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(AccountSshKey.__pulumiType, name, inputs, opts);
+        super(AccountSshKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -101,15 +112,19 @@ export interface AccountSshKeyState {
     /**
      * The name of the SSH key.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the IP is associated with.
+     * The organization ID the SSH key is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the SSH key is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The public SSH key to be added.
      */
-    readonly publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string>;
 }
 
 /**
@@ -119,13 +134,13 @@ export interface AccountSshKeyArgs {
     /**
      * The name of the SSH key.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the IP is associated with.
+     * `projectId`) The ID of the project the SSH key is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The public SSH key to be added.
      */
-    readonly publicKey: pulumi.Input<string>;
+    publicKey: pulumi.Input<string>;
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -19,7 +18,7 @@ import * as utilities from "./utilities";
  * const myOffer = pulumi.output(scaleway.getBaremetalOffer({
  *     offerId: "3ab0dc29-2fd4-486e-88bf-d08fbf49214b",
  *     zone: "fr-par-2",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOfferResult> {
@@ -43,19 +42,19 @@ export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.In
  * A collection of arguments for invoking getBaremetalOffer.
  */
 export interface GetBaremetalOfferArgs {
-    readonly includeDisabled?: boolean;
+    includeDisabled?: boolean;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The offer id. Only one of `name` and `offerId` should be specified.
      */
-    readonly offerId?: string;
+    offerId?: string;
     /**
      * `zone`) The zone in which the offer should be created.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -97,4 +96,27 @@ export interface GetBaremetalOfferResult {
      */
     readonly stock: string;
     readonly zone: string;
+}
+
+export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOfferResult> {
+    return pulumi.output(args).apply(a => getBaremetalOffer(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBaremetalOffer.
+ */
+export interface GetBaremetalOfferOutputArgs {
+    includeDisabled?: pulumi.Input<boolean>;
+    /**
+     * The offer name. Only one of `name` and `offerId` should be specified.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The offer id. Only one of `name` and `offerId` should be specified.
+     */
+    offerId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the offer should be created.
+     */
+    zone?: pulumi.Input<string>;
 }

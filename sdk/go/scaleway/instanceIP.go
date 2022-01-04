@@ -4,9 +4,10 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
@@ -18,7 +19,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -31,15 +32,27 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// IPs can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//  $ pulumi import scaleway:index/instanceIP:InstanceIP server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+// ```
 type InstanceIP struct {
 	pulumi.CustomResourceState
 
 	// The IP address.
 	Address pulumi.StringOutput `pulumi:"address"`
-	// `organizationId`) The ID of the organization the IP is associated with.
+	// The organization ID the IP is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The reverse dns attached to this IP
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
+	// The server associated with this IP
+	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -50,6 +63,7 @@ func NewInstanceIP(ctx *pulumi.Context,
 	if args == nil {
 		args = &InstanceIPArgs{}
 	}
+
 	var resource InstanceIP
 	err := ctx.RegisterResource("scaleway:index/instanceIP:InstanceIP", name, args, &resource, opts...)
 	if err != nil {
@@ -74,10 +88,14 @@ func GetInstanceIP(ctx *pulumi.Context,
 type instanceIPState struct {
 	// The IP address.
 	Address *string `pulumi:"address"`
-	// `organizationId`) The ID of the organization the IP is associated with.
+	// The organization ID the IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The reverse dns attached to this IP
 	Reverse *string `pulumi:"reverse"`
+	// The server associated with this IP
+	ServerId *string `pulumi:"serverId"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
@@ -85,10 +103,14 @@ type instanceIPState struct {
 type InstanceIPState struct {
 	// The IP address.
 	Address pulumi.StringPtrInput
-	// `organizationId`) The ID of the organization the IP is associated with.
+	// The organization ID the IP is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The reverse dns attached to this IP
 	Reverse pulumi.StringPtrInput
+	// The server associated with this IP
+	ServerId pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
@@ -98,20 +120,58 @@ func (InstanceIPState) ElementType() reflect.Type {
 }
 
 type instanceIPArgs struct {
-	// `organizationId`) The ID of the organization the IP is associated with.
-	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceIP resource.
 type InstanceIPArgs struct {
-	// `organizationId`) The ID of the organization the IP is associated with.
-	OrganizationId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
 
 func (InstanceIPArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIPArgs)(nil)).Elem()
+}
+
+type InstanceIPInput interface {
+	pulumi.Input
+
+	ToInstanceIPOutput() InstanceIPOutput
+	ToInstanceIPOutputWithContext(ctx context.Context) InstanceIPOutput
+}
+
+func (*InstanceIP) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIP)(nil)).Elem()
+}
+
+func (i *InstanceIP) ToInstanceIPOutput() InstanceIPOutput {
+	return i.ToInstanceIPOutputWithContext(context.Background())
+}
+
+func (i *InstanceIP) ToInstanceIPOutputWithContext(ctx context.Context) InstanceIPOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIPOutput)
+}
+
+type InstanceIPOutput struct{ *pulumi.OutputState }
+
+func (InstanceIPOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIP)(nil)).Elem()
+}
+
+func (o InstanceIPOutput) ToInstanceIPOutput() InstanceIPOutput {
+	return o
+}
+
+func (o InstanceIPOutput) ToInstanceIPOutputWithContext(ctx context.Context) InstanceIPOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIPInput)(nil)).Elem(), &InstanceIP{})
+	pulumi.RegisterOutputType(InstanceIPOutput{})
 }

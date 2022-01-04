@@ -4,9 +4,10 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // The provider type for the scaleway package. By default, resources use package-wide configuration
@@ -15,6 +16,21 @@ import (
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 type Provider struct {
 	pulumi.ProviderResourceState
+
+	// The Scaleway access key.
+	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
+	// The Scaleway API URL to use.
+	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// The Scaleway profile to use.
+	Profile pulumi.StringPtrOutput `pulumi:"profile"`
+	// The Scaleway project ID.
+	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
+	// The region you want to attach the resource to
+	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The Scaleway secret Key.
+	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
+	// The zone you want to attach the resource to
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -23,19 +39,20 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
-	if args.AccessKey == nil {
+
+	if isZero(args.AccessKey) {
 		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string))
 	}
-	if args.OrganizationId == nil {
-		args.OrganizationId = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ORGANIZATION_ID").(string))
+	if isZero(args.ProjectId) {
+		args.ProjectId = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_PROJECT_ID").(string))
 	}
-	if args.Region == nil {
+	if isZero(args.Region) {
 		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string))
 	}
-	if args.SecretKey == nil {
+	if isZero(args.SecretKey) {
 		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string))
 	}
-	if args.Zone == nil {
+	if isZero(args.Zone) {
 		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string))
 	}
 	var resource Provider
@@ -49,17 +66,17 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// The Scaleway access key.
 	AccessKey *string `pulumi:"accessKey"`
-	// Deprecated: Use `organization_id` instead.
-	Organization *string `pulumi:"organization"`
-	// The Scaleway organization ID.
-	OrganizationId *string `pulumi:"organizationId"`
-	// The Scaleway default region to use for your resources.
+	// The Scaleway API URL to use.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// The Scaleway profile to use.
+	Profile *string `pulumi:"profile"`
+	// The Scaleway project ID.
+	ProjectId *string `pulumi:"projectId"`
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 	// The Scaleway secret Key.
 	SecretKey *string `pulumi:"secretKey"`
-	// Deprecated: Use `secret_key` instead.
-	Token *string `pulumi:"token"`
-	// The Scaleway default zone to use for your resources.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
@@ -67,20 +84,58 @@ type providerArgs struct {
 type ProviderArgs struct {
 	// The Scaleway access key.
 	AccessKey pulumi.StringPtrInput
-	// Deprecated: Use `organization_id` instead.
-	Organization pulumi.StringPtrInput
-	// The Scaleway organization ID.
-	OrganizationId pulumi.StringPtrInput
-	// The Scaleway default region to use for your resources.
+	// The Scaleway API URL to use.
+	ApiUrl pulumi.StringPtrInput
+	// The Scaleway profile to use.
+	Profile pulumi.StringPtrInput
+	// The Scaleway project ID.
+	ProjectId pulumi.StringPtrInput
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 	// The Scaleway secret Key.
 	SecretKey pulumi.StringPtrInput
-	// Deprecated: Use `secret_key` instead.
-	Token pulumi.StringPtrInput
-	// The Scaleway default zone to use for your resources.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+type ProviderInput interface {
+	pulumi.Input
+
+	ToProviderOutput() ProviderOutput
+	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
+}
+
+func (*Provider) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil)).Elem()
+}
+
+func (i *Provider) ToProviderOutput() ProviderOutput {
+	return i.ToProviderOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+}
+
+type ProviderOutput struct{ *pulumi.OutputState }
+
+func (ProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil)).Elem()
+}
+
+func (o ProviderOutput) ToProviderOutput() ProviderOutput {
+	return o
+}
+
+func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
+	pulumi.RegisterOutputType(ProviderOutput{})
 }

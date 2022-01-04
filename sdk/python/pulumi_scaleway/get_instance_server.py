@@ -5,14 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 
 __all__ = [
     'GetInstanceServerResult',
     'AwaitableGetInstanceServerResult',
     'get_instance_server',
+    'get_instance_server_output',
 ]
 
 @pulumi.output_type
@@ -20,22 +21,19 @@ class GetInstanceServerResult:
     """
     A collection of values returned by getInstanceServer.
     """
-    def __init__(__self__, additional_volume_ids=None, boot_type=None, cloud_init=None, disable_dynamic_ip=None, disable_public_ip=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, public_ip=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_datas=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, public_ip=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
         if boot_type and not isinstance(boot_type, str):
             raise TypeError("Expected argument 'boot_type' to be a str")
         pulumi.set(__self__, "boot_type", boot_type)
+        if bootscript_id and not isinstance(bootscript_id, str):
+            raise TypeError("Expected argument 'bootscript_id' to be a str")
+        pulumi.set(__self__, "bootscript_id", bootscript_id)
         if cloud_init and not isinstance(cloud_init, str):
             raise TypeError("Expected argument 'cloud_init' to be a str")
         pulumi.set(__self__, "cloud_init", cloud_init)
-        if disable_dynamic_ip and not isinstance(disable_dynamic_ip, bool):
-            raise TypeError("Expected argument 'disable_dynamic_ip' to be a bool")
-        pulumi.set(__self__, "disable_dynamic_ip", disable_dynamic_ip)
-        if disable_public_ip and not isinstance(disable_public_ip, bool):
-            raise TypeError("Expected argument 'disable_public_ip' to be a bool")
-        pulumi.set(__self__, "disable_public_ip", disable_public_ip)
         if enable_dynamic_ip and not isinstance(enable_dynamic_ip, bool):
             raise TypeError("Expected argument 'enable_dynamic_ip' to be a bool")
         pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
@@ -75,6 +73,12 @@ class GetInstanceServerResult:
         if private_ip and not isinstance(private_ip, str):
             raise TypeError("Expected argument 'private_ip' to be a str")
         pulumi.set(__self__, "private_ip", private_ip)
+        if private_networks and not isinstance(private_networks, list):
+            raise TypeError("Expected argument 'private_networks' to be a list")
+        pulumi.set(__self__, "private_networks", private_networks)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if public_ip and not isinstance(public_ip, str):
             raise TypeError("Expected argument 'public_ip' to be a str")
         pulumi.set(__self__, "public_ip", public_ip)
@@ -96,9 +100,9 @@ class GetInstanceServerResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
-        if user_datas and not isinstance(user_datas, list):
-            raise TypeError("Expected argument 'user_datas' to be a list")
-        pulumi.set(__self__, "user_datas", user_datas)
+        if user_data and not isinstance(user_data, dict):
+            raise TypeError("Expected argument 'user_data' to be a dict")
+        pulumi.set(__self__, "user_data", user_data)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -118,22 +122,17 @@ class GetInstanceServerResult:
         return pulumi.get(self, "boot_type")
 
     @property
+    @pulumi.getter(name="bootscriptId")
+    def bootscript_id(self) -> str:
+        return pulumi.get(self, "bootscript_id")
+
+    @property
     @pulumi.getter(name="cloudInit")
     def cloud_init(self) -> str:
         """
         The cloud init script associated with this server.
         """
         return pulumi.get(self, "cloud_init")
-
-    @property
-    @pulumi.getter(name="disableDynamicIp")
-    def disable_dynamic_ip(self) -> bool:
-        return pulumi.get(self, "disable_dynamic_ip")
-
-    @property
-    @pulumi.getter(name="disablePublicIp")
-    def disable_public_ip(self) -> bool:
-        return pulumi.get(self, "disable_public_ip")
 
     @property
     @pulumi.getter(name="enableDynamicIp")
@@ -234,6 +233,19 @@ class GetInstanceServerResult:
         return pulumi.get(self, "private_ip")
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Sequence['outputs.GetInstanceServerPrivateNetworkResult']:
+        return pulumi.get(self, "private_networks")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project the server is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
         """
@@ -288,12 +300,12 @@ class GetInstanceServerResult:
         return pulumi.get(self, "type")
 
     @property
-    @pulumi.getter(name="userDatas")
-    def user_datas(self) -> Sequence['outputs.GetInstanceServerUserDataResult']:
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Mapping[str, str]:
         """
         The user data associated with the server.
         """
-        return pulumi.get(self, "user_datas")
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter
@@ -309,9 +321,8 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
         return GetInstanceServerResult(
             additional_volume_ids=self.additional_volume_ids,
             boot_type=self.boot_type,
+            bootscript_id=self.bootscript_id,
             cloud_init=self.cloud_init,
-            disable_dynamic_ip=self.disable_dynamic_ip,
-            disable_public_ip=self.disable_public_ip,
             enable_dynamic_ip=self.enable_dynamic_ip,
             enable_ipv6=self.enable_ipv6,
             id=self.id,
@@ -325,6 +336,8 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
             placement_group_id=self.placement_group_id,
             placement_group_policy_respected=self.placement_group_policy_respected,
             private_ip=self.private_ip,
+            private_networks=self.private_networks,
+            project_id=self.project_id,
             public_ip=self.public_ip,
             root_volumes=self.root_volumes,
             security_group_id=self.security_group_id,
@@ -332,7 +345,7 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
             state=self.state,
             tags=self.tags,
             type=self.type,
-            user_datas=self.user_datas,
+            user_data=self.user_data,
             zone=self.zone)
 
 
@@ -370,9 +383,8 @@ def get_instance_server(name: Optional[str] = None,
     return AwaitableGetInstanceServerResult(
         additional_volume_ids=__ret__.additional_volume_ids,
         boot_type=__ret__.boot_type,
+        bootscript_id=__ret__.bootscript_id,
         cloud_init=__ret__.cloud_init,
-        disable_dynamic_ip=__ret__.disable_dynamic_ip,
-        disable_public_ip=__ret__.disable_public_ip,
         enable_dynamic_ip=__ret__.enable_dynamic_ip,
         enable_ipv6=__ret__.enable_ipv6,
         id=__ret__.id,
@@ -386,6 +398,8 @@ def get_instance_server(name: Optional[str] = None,
         placement_group_id=__ret__.placement_group_id,
         placement_group_policy_respected=__ret__.placement_group_policy_respected,
         private_ip=__ret__.private_ip,
+        private_networks=__ret__.private_networks,
+        project_id=__ret__.project_id,
         public_ip=__ret__.public_ip,
         root_volumes=__ret__.root_volumes,
         security_group_id=__ret__.security_group_id,
@@ -393,5 +407,30 @@ def get_instance_server(name: Optional[str] = None,
         state=__ret__.state,
         tags=__ret__.tags,
         type=__ret__.type,
-        user_datas=__ret__.user_datas,
+        user_data=__ret__.user_data,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_instance_server)
+def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               server_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               zone: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceServerResult]:
+    """
+    Gets information about an instance server.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_key = scaleway.get_instance_server(server_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
+    :param str zone: `zone`) The zone in which the server exists.
+    """
+    ...

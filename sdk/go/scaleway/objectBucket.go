@@ -4,12 +4,14 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway object storage buckets. For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+// Creates and manages Scaleway object storage buckets.
+// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
 //
 // ## Example Usage
 //
@@ -18,13 +20,16 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := scaleway.NewObjectBucket(ctx, "someBucket", &scaleway.ObjectBucketArgs{
 // 			Acl: pulumi.String("private"),
+// 			Tags: pulumi.StringMap{
+// 				"key": pulumi.String("value"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -33,15 +38,31 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+//
+// ```sh
+//  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+// ```
 type ObjectBucket struct {
 	pulumi.CustomResourceState
 
-	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
+	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+	CorsRules ObjectBucketCorsRuleArrayOutput `pulumi:"corsRules"`
+	// The endpoint URL of the bucket
+	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// The name of the bucket.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// A list of tags (key / value) for the bucket.
+	Tags pulumi.StringMapOutput `pulumi:"tags"`
+	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+	Versioning ObjectBucketVersioningOutput `pulumi:"versioning"`
 }
 
 // NewObjectBucket registers a new resource with the given unique name, arguments, and options.
@@ -50,6 +71,7 @@ func NewObjectBucket(ctx *pulumi.Context,
 	if args == nil {
 		args = &ObjectBucketArgs{}
 	}
+
 	var resource ObjectBucket
 	err := ctx.RegisterResource("scaleway:index/objectBucket:ObjectBucket", name, args, &resource, opts...)
 	if err != nil {
@@ -72,21 +94,37 @@ func GetObjectBucket(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectBucket resources.
 type objectBucketState struct {
-	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
+	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
+	// The endpoint URL of the bucket
+	Endpoint *string `pulumi:"endpoint"`
 	// The name of the bucket.
 	Name *string `pulumi:"name"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
+	// A list of tags (key / value) for the bucket.
+	Tags map[string]string `pulumi:"tags"`
+	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+	Versioning *ObjectBucketVersioning `pulumi:"versioning"`
 }
 
 type ObjectBucketState struct {
-	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
+	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+	CorsRules ObjectBucketCorsRuleArrayInput
+	// The endpoint URL of the bucket
+	Endpoint pulumi.StringPtrInput
 	// The name of the bucket.
 	Name pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
+	// A list of tags (key / value) for the bucket.
+	Tags pulumi.StringMapInput
+	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+	Versioning ObjectBucketVersioningPtrInput
 }
 
 func (ObjectBucketState) ElementType() reflect.Type {
@@ -94,24 +132,74 @@ func (ObjectBucketState) ElementType() reflect.Type {
 }
 
 type objectBucketArgs struct {
-	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
+	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
 	// The name of the bucket.
 	Name *string `pulumi:"name"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
+	// A list of tags (key / value) for the bucket.
+	Tags map[string]string `pulumi:"tags"`
+	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+	Versioning *ObjectBucketVersioning `pulumi:"versioning"`
 }
 
 // The set of arguments for constructing a ObjectBucket resource.
 type ObjectBucketArgs struct {
-	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+	// The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
+	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+	CorsRules ObjectBucketCorsRuleArrayInput
 	// The name of the bucket.
 	Name pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
+	// A list of tags (key / value) for the bucket.
+	Tags pulumi.StringMapInput
+	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+	Versioning ObjectBucketVersioningPtrInput
 }
 
 func (ObjectBucketArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectBucketArgs)(nil)).Elem()
+}
+
+type ObjectBucketInput interface {
+	pulumi.Input
+
+	ToObjectBucketOutput() ObjectBucketOutput
+	ToObjectBucketOutputWithContext(ctx context.Context) ObjectBucketOutput
+}
+
+func (*ObjectBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucket)(nil)).Elem()
+}
+
+func (i *ObjectBucket) ToObjectBucketOutput() ObjectBucketOutput {
+	return i.ToObjectBucketOutputWithContext(context.Background())
+}
+
+func (i *ObjectBucket) ToObjectBucketOutputWithContext(ctx context.Context) ObjectBucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketOutput)
+}
+
+type ObjectBucketOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucket)(nil)).Elem()
+}
+
+func (o ObjectBucketOutput) ToObjectBucketOutput() ObjectBucketOutput {
+	return o
+}
+
+func (o ObjectBucketOutput) ToObjectBucketOutputWithContext(ctx context.Context) ObjectBucketOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketInput)(nil)).Elem(), &ObjectBucket{})
+	pulumi.RegisterOutputType(ObjectBucketOutput{})
 }

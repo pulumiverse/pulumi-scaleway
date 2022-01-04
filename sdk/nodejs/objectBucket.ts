@@ -2,10 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway object storage buckets. For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * Creates and manages Scaleway object storage buckets.
+ * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
  *
  * ## Example Usage
  *
@@ -15,7 +17,18 @@ import * as utilities from "./utilities";
  *
  * const someBucket = new scaleway.ObjectBucket("some_bucket", {
  *     acl: "private",
+ *     tags: {
+ *         key: "value",
+ *     },
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
  * ```
  */
 export class ObjectBucket extends pulumi.CustomResource {
@@ -47,9 +60,17 @@ export class ObjectBucket extends pulumi.CustomResource {
     }
 
     /**
-     * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+     * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
+    /**
+     * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+     */
+    public readonly corsRules!: pulumi.Output<outputs.ObjectBucketCorsRule[] | undefined>;
+    /**
+     * The endpoint URL of the bucket
+     */
+    public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
      * The name of the bucket.
      */
@@ -58,6 +79,14 @@ export class ObjectBucket extends pulumi.CustomResource {
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
     public readonly region!: pulumi.Output<string>;
+    /**
+     * A list of tags (key / value) for the bucket.
+     */
+    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+     */
+    public readonly versioning!: pulumi.Output<outputs.ObjectBucketVersioning>;
 
     /**
      * Create a ObjectBucket resource with the given unique name, arguments, and options.
@@ -68,26 +97,31 @@ export class ObjectBucket extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ObjectBucketArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ObjectBucketArgs | ObjectBucketState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ObjectBucketState | undefined;
-            inputs["acl"] = state ? state.acl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["region"] = state ? state.region : undefined;
+            resourceInputs["acl"] = state ? state.acl : undefined;
+            resourceInputs["corsRules"] = state ? state.corsRules : undefined;
+            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["versioning"] = state ? state.versioning : undefined;
         } else {
             const args = argsOrState as ObjectBucketArgs | undefined;
-            inputs["acl"] = args ? args.acl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["region"] = args ? args.region : undefined;
+            resourceInputs["acl"] = args ? args.acl : undefined;
+            resourceInputs["corsRules"] = args ? args.corsRules : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["versioning"] = args ? args.versioning : undefined;
+            resourceInputs["endpoint"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(ObjectBucket.__pulumiType, name, inputs, opts);
+        super(ObjectBucket.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -96,17 +130,33 @@ export class ObjectBucket extends pulumi.CustomResource {
  */
 export interface ObjectBucketState {
     /**
-     * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+     * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
      */
-    readonly acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string>;
+    /**
+     * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+     */
+    corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
+    /**
+     * The endpoint URL of the bucket
+     */
+    endpoint?: pulumi.Input<string>;
     /**
      * The name of the bucket.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    /**
+     * A list of tags (key / value) for the bucket.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+     */
+    versioning?: pulumi.Input<inputs.ObjectBucketVersioning>;
 }
 
 /**
@@ -114,15 +164,27 @@ export interface ObjectBucketState {
  */
 export interface ObjectBucketArgs {
     /**
-     * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) you want to apply to the bucket.
+     * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) you want to apply to the bucket.
      */
-    readonly acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string>;
+    /**
+     * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+     */
+    corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
     /**
      * The name of the bucket.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    /**
+     * A list of tags (key / value) for the bucket.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+     */
+    versioning?: pulumi.Input<inputs.ObjectBucketVersioning>;
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -36,7 +35,7 @@ import * as utilities from "./utilities";
  *     type: "b_ssd",
  * });
  * const web = new scaleway.InstanceServer("web", {
- *     type: "DEV1-L",
+ *     type: "DEV1-S",
  *     image: "ubuntu_focal",
  *     tags: [
  *         "hello",
@@ -57,7 +56,7 @@ import * as utilities from "./utilities";
  *
  * const ip = new scaleway.InstanceIP("ip", {});
  * const web = new scaleway.InstanceServer("web", {
- *     type: "DEV1-L",
+ *     type: "DEV1-S",
  *     image: "f974feac-abae-4365-b988-8ec7d1cec10d",
  *     tags: [
  *         "hello",
@@ -111,24 +110,51 @@ import * as utilities from "./utilities";
  * import * from "fs";
  *
  * const web = new scaleway.InstanceServer("web", {
- *     type: "DEV1-L",
+ *     type: "DEV1-S",
  *     image: "ubuntu_focal",
- *     tags: [
- *         "web",
- *         "public",
- *     ],
- *     userDatas: [
- *         {
- *             key: "plop",
- *             value: "world",
- *         },
- *         {
- *             key: "xavier",
- *             value: "niel",
- *         },
- *     ],
- *     cloudInit: fs.readFileSync(`${path.module}/cloud-init.yml`),
+ *     userData: {
+ *         foo: "bar",
+ *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`),
+ *     },
  * });
+ * ```
+ *
+ * ### With private network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const base = new scaleway.InstanceServer("base", {
+ *     image: "ubuntu_focal",
+ *     type: "DEV1-S",
+ *     privateNetworks: [{
+ *         pnId: pn01.id,
+ *     }],
+ * });
+ * ```
+ *
+ * ## Private Network
+ *
+ * > **Important:** Updates to `privateNetwork` will recreate a new private network interface.
+ *
+ * - `pnId` - (Required) The private network ID where to connect.
+ * - `macAddress` The private NIC MAC address.
+ * - `status` The private NIC state.
+ * - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+ *
+ * > **Important:**
+ *
+ * - You can only attach an instance in the same zone as a private network.
+ * - Instance supports maximum 8 different private networks.
+ *
+ * ## Import
+ *
+ * Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceServer extends pulumi.CustomResource {
@@ -167,9 +193,13 @@ export class InstanceServer extends pulumi.CustomResource {
     /**
      * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
-    public /*out*/ readonly bootType!: pulumi.Output<string>;
+    public readonly bootType!: pulumi.Output<string | undefined>;
     /**
-     * The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
+     * The ID of the bootscript to use  (set bootType to `bootscript`).
+     */
+    public readonly bootscriptId!: pulumi.Output<string>;
+    /**
+     * The cloud init script associated with this server
      */
     public readonly cloudInit!: pulumi.Output<string | undefined>;
     /**
@@ -206,9 +236,9 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `organizationId`) The ID of the organization the server is associated with.
+     * The organization ID the server is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
      * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
@@ -222,6 +252,15 @@ export class InstanceServer extends pulumi.CustomResource {
      * The Scaleway internal IP address of the server.
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
+    /**
+     * The private network associated with the server.
+     * Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+     */
+    public readonly privateNetworks!: pulumi.Output<outputs.InstanceServerPrivateNetwork[] | undefined>;
+    /**
+     * `projectId`) The ID of the project the server is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The public IPv4 address of the server.
      */
@@ -249,9 +288,9 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The user data associated with the server.
+     * The user data associated with the server
      */
-    public readonly userDatas!: pulumi.Output<outputs.InstanceServerUserData[] | undefined>;
+    public readonly userData!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * `zone`) The zone in which the server should be created.
      */
@@ -266,72 +305,75 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceServerArgs | InstanceServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceServerState | undefined;
-            inputs["additionalVolumeIds"] = state ? state.additionalVolumeIds : undefined;
-            inputs["bootType"] = state ? state.bootType : undefined;
-            inputs["cloudInit"] = state ? state.cloudInit : undefined;
-            inputs["enableDynamicIp"] = state ? state.enableDynamicIp : undefined;
-            inputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
-            inputs["image"] = state ? state.image : undefined;
-            inputs["ipId"] = state ? state.ipId : undefined;
-            inputs["ipv6Address"] = state ? state.ipv6Address : undefined;
-            inputs["ipv6Gateway"] = state ? state.ipv6Gateway : undefined;
-            inputs["ipv6PrefixLength"] = state ? state.ipv6PrefixLength : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["placementGroupId"] = state ? state.placementGroupId : undefined;
-            inputs["placementGroupPolicyRespected"] = state ? state.placementGroupPolicyRespected : undefined;
-            inputs["privateIp"] = state ? state.privateIp : undefined;
-            inputs["publicIp"] = state ? state.publicIp : undefined;
-            inputs["rootVolume"] = state ? state.rootVolume : undefined;
-            inputs["securityGroupId"] = state ? state.securityGroupId : undefined;
-            inputs["state"] = state ? state.state : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["userDatas"] = state ? state.userDatas : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["additionalVolumeIds"] = state ? state.additionalVolumeIds : undefined;
+            resourceInputs["bootType"] = state ? state.bootType : undefined;
+            resourceInputs["bootscriptId"] = state ? state.bootscriptId : undefined;
+            resourceInputs["cloudInit"] = state ? state.cloudInit : undefined;
+            resourceInputs["enableDynamicIp"] = state ? state.enableDynamicIp : undefined;
+            resourceInputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
+            resourceInputs["image"] = state ? state.image : undefined;
+            resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
+            resourceInputs["ipv6Gateway"] = state ? state.ipv6Gateway : undefined;
+            resourceInputs["ipv6PrefixLength"] = state ? state.ipv6PrefixLength : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
+            resourceInputs["placementGroupPolicyRespected"] = state ? state.placementGroupPolicyRespected : undefined;
+            resourceInputs["privateIp"] = state ? state.privateIp : undefined;
+            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["publicIp"] = state ? state.publicIp : undefined;
+            resourceInputs["rootVolume"] = state ? state.rootVolume : undefined;
+            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["userData"] = state ? state.userData : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceServerArgs | undefined;
-            if (!args || args.image === undefined) {
+            if ((!args || args.image === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'image'");
             }
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["additionalVolumeIds"] = args ? args.additionalVolumeIds : undefined;
-            inputs["cloudInit"] = args ? args.cloudInit : undefined;
-            inputs["enableDynamicIp"] = args ? args.enableDynamicIp : undefined;
-            inputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
-            inputs["image"] = args ? args.image : undefined;
-            inputs["ipId"] = args ? args.ipId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["placementGroupId"] = args ? args.placementGroupId : undefined;
-            inputs["rootVolume"] = args ? args.rootVolume : undefined;
-            inputs["securityGroupId"] = args ? args.securityGroupId : undefined;
-            inputs["state"] = args ? args.state : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["userDatas"] = args ? args.userDatas : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["bootType"] = undefined /*out*/;
-            inputs["ipv6Address"] = undefined /*out*/;
-            inputs["ipv6Gateway"] = undefined /*out*/;
-            inputs["ipv6PrefixLength"] = undefined /*out*/;
-            inputs["placementGroupPolicyRespected"] = undefined /*out*/;
-            inputs["privateIp"] = undefined /*out*/;
-            inputs["publicIp"] = undefined /*out*/;
+            resourceInputs["additionalVolumeIds"] = args ? args.additionalVolumeIds : undefined;
+            resourceInputs["bootType"] = args ? args.bootType : undefined;
+            resourceInputs["bootscriptId"] = args ? args.bootscriptId : undefined;
+            resourceInputs["cloudInit"] = args ? args.cloudInit : undefined;
+            resourceInputs["enableDynamicIp"] = args ? args.enableDynamicIp : undefined;
+            resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
+            resourceInputs["image"] = args ? args.image : undefined;
+            resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
+            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
+            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
+            resourceInputs["state"] = args ? args.state : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["userData"] = args ? args.userData : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipv6Address"] = undefined /*out*/;
+            resourceInputs["ipv6Gateway"] = undefined /*out*/;
+            resourceInputs["ipv6PrefixLength"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["placementGroupPolicyRespected"] = undefined /*out*/;
+            resourceInputs["privateIp"] = undefined /*out*/;
+            resourceInputs["publicIp"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceServer.__pulumiType, name, inputs, opts);
+        super(InstanceServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -343,99 +385,112 @@ export interface InstanceServerState {
      * The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
      * attached to the server. Updates to this field will trigger a stop/start of the server.
      */
-    readonly additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
-    readonly bootType?: pulumi.Input<string>;
+    bootType?: pulumi.Input<string>;
     /**
-     * The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
+     * The ID of the bootscript to use  (set bootType to `bootscript`).
      */
-    readonly cloudInit?: pulumi.Input<string>;
+    bootscriptId?: pulumi.Input<string>;
+    /**
+     * The cloud init script associated with this server
+     */
+    cloudInit?: pulumi.Input<string>;
     /**
      * If true a dynamic IP will be attached to the server.
      */
-    readonly enableDynamicIp?: pulumi.Input<boolean>;
+    enableDynamicIp?: pulumi.Input<boolean>;
     /**
      * Determines if IPv6 is enabled for the server.
      */
-    readonly enableIpv6?: pulumi.Input<boolean>;
+    enableIpv6?: pulumi.Input<boolean>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
      * to find either the right `label` or the right local image `ID` for a given `type`.
      */
-    readonly image?: pulumi.Input<string>;
+    image?: pulumi.Input<string>;
     /**
      * = (Optional) The ID of the reserved IP that is attached to the server.
      */
-    readonly ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      */
-    readonly ipv6Address?: pulumi.Input<string>;
+    ipv6Address?: pulumi.Input<string>;
     /**
      * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
      */
-    readonly ipv6Gateway?: pulumi.Input<string>;
+    ipv6Gateway?: pulumi.Input<string>;
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
      */
-    readonly ipv6PrefixLength?: pulumi.Input<number>;
+    ipv6PrefixLength?: pulumi.Input<number>;
     /**
      * The name of the server.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the server is associated with.
+     * The organization ID the server is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
     /**
      * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
-    readonly placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string>;
     /**
      * True when the placement group policy is respected.
      * - `rootVolume`
      */
-    readonly placementGroupPolicyRespected?: pulumi.Input<boolean>;
+    placementGroupPolicyRespected?: pulumi.Input<boolean>;
     /**
      * The Scaleway internal IP address of the server.
      */
-    readonly privateIp?: pulumi.Input<string>;
+    privateIp?: pulumi.Input<string>;
+    /**
+     * The private network associated with the server.
+     * Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.InstanceServerPrivateNetwork>[]>;
+    /**
+     * `projectId`) The ID of the project the server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The public IPv4 address of the server.
      */
-    readonly publicIp?: pulumi.Input<string>;
+    publicIp?: pulumi.Input<string>;
     /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
-    readonly rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
+    rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
-    readonly securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string>;
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
-    readonly state?: pulumi.Input<string>;
+    state?: pulumi.Input<string>;
     /**
      * The tags associated with the server.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
      * Updates to this field will recreate a new resource.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     /**
-     * The user data associated with the server.
+     * The user data associated with the server
      */
-    readonly userDatas?: pulumi.Input<pulumi.Input<inputs.InstanceServerUserData>[]>;
+    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -446,68 +501,81 @@ export interface InstanceServerArgs {
      * The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
      * attached to the server. Updates to this field will trigger a stop/start of the server.
      */
-    readonly additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The cloud init script associated with this server. Updates to this field will trigger a stop/start of the server.
+     * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
-    readonly cloudInit?: pulumi.Input<string>;
+    bootType?: pulumi.Input<string>;
+    /**
+     * The ID of the bootscript to use  (set bootType to `bootscript`).
+     */
+    bootscriptId?: pulumi.Input<string>;
+    /**
+     * The cloud init script associated with this server
+     */
+    cloudInit?: pulumi.Input<string>;
     /**
      * If true a dynamic IP will be attached to the server.
      */
-    readonly enableDynamicIp?: pulumi.Input<boolean>;
+    enableDynamicIp?: pulumi.Input<boolean>;
     /**
      * Determines if IPv6 is enabled for the server.
      */
-    readonly enableIpv6?: pulumi.Input<boolean>;
+    enableIpv6?: pulumi.Input<boolean>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
      * to find either the right `label` or the right local image `ID` for a given `type`.
      */
-    readonly image: pulumi.Input<string>;
+    image: pulumi.Input<string>;
     /**
      * = (Optional) The ID of the reserved IP that is attached to the server.
      */
-    readonly ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string>;
     /**
      * The name of the server.
      */
-    readonly name?: pulumi.Input<string>;
-    /**
-     * `organizationId`) The ID of the organization the server is associated with.
-     */
-    readonly organizationId?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
-    readonly placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string>;
+    /**
+     * The private network associated with the server.
+     * Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.InstanceServerPrivateNetwork>[]>;
+    /**
+     * `projectId`) The ID of the project the server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
-    readonly rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
+    rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
-    readonly securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string>;
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
-    readonly state?: pulumi.Input<string>;
+    state?: pulumi.Input<string>;
     /**
      * The tags associated with the server.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
      * Updates to this field will recreate a new resource.
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
     /**
-     * The user data associated with the server.
+     * The user data associated with the server
      */
-    readonly userDatas?: pulumi.Input<pulumi.Input<inputs.InstanceServerUserData>[]>;
+    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

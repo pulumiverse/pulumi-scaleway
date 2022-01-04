@@ -4,10 +4,11 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -21,13 +22,13 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "main"
-// 		main, err := scaleway.LookupAccountSshKey(ctx, &scaleway.LookupAccountSshKeyArgs{
+// 		main, err := scaleway.LookupAccountSshKey(ctx, &GetAccountSshKeyArgs{
 // 			Name: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -35,10 +36,10 @@ import (
 // 		}
 // 		_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 // 			Zone:  pulumi.String("fr-par-2"),
-// 			Offer: pulumi.String("GP-BM1-M"),
+// 			Offer: pulumi.String("GP-BM1-S"),
 // 			Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
 // 			SshKeyIds: pulumi.StringArray{
-// 				scaleway.LookupAccountSshKeyResult(main),
+// 				GetAccountSshKeyResult(main),
 // 			},
 // 		})
 // 		if err != nil {
@@ -47,6 +48,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//  $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
 // ```
 type BaremetalServer struct {
 	pulumi.CustomResourceState
@@ -66,14 +75,18 @@ type BaremetalServer struct {
 	Offer pulumi.StringOutput `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
-	// `organizationId`) The ID of the organization the server is associated with.
+	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringOutput `pulumi:"os"`
 	// The ID of the os.
 	OsId pulumi.StringOutput `pulumi:"osId"`
+	// `projectId`) The ID of the project the server is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of SSH keys allowed to connect to the server.
+	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds pulumi.StringArrayOutput `pulumi:"sshKeyIds"`
 	// The tags associated with the server.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -84,17 +97,18 @@ type BaremetalServer struct {
 // NewBaremetalServer registers a new resource with the given unique name, arguments, and options.
 func NewBaremetalServer(ctx *pulumi.Context,
 	name string, args *BaremetalServerArgs, opts ...pulumi.ResourceOption) (*BaremetalServer, error) {
-	if args == nil || args.Offer == nil {
-		return nil, errors.New("missing required argument 'Offer'")
-	}
-	if args == nil || args.Os == nil {
-		return nil, errors.New("missing required argument 'Os'")
-	}
-	if args == nil || args.SshKeyIds == nil {
-		return nil, errors.New("missing required argument 'SshKeyIds'")
-	}
 	if args == nil {
-		args = &BaremetalServerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Offer == nil {
+		return nil, errors.New("invalid value for required argument 'Offer'")
+	}
+	if args.Os == nil {
+		return nil, errors.New("invalid value for required argument 'Os'")
+	}
+	if args.SshKeyIds == nil {
+		return nil, errors.New("invalid value for required argument 'SshKeyIds'")
 	}
 	var resource BaremetalServer
 	err := ctx.RegisterResource("scaleway:index/baremetalServer:BaremetalServer", name, args, &resource, opts...)
@@ -133,14 +147,18 @@ type baremetalServerState struct {
 	Offer *string `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId *string `pulumi:"offerId"`
-	// `organizationId`) The ID of the organization the server is associated with.
+	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+	// > **Important:** Updates to `os` will reinstall the server.
 	Os *string `pulumi:"os"`
 	// The ID of the os.
 	OsId *string `pulumi:"osId"`
+	// `projectId`) The ID of the project the server is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// List of SSH keys allowed to connect to the server.
+	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds []string `pulumi:"sshKeyIds"`
 	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
@@ -164,14 +182,18 @@ type BaremetalServerState struct {
 	Offer pulumi.StringPtrInput
 	// The ID of the offer.
 	OfferId pulumi.StringPtrInput
-	// `organizationId`) The ID of the organization the server is associated with.
+	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrInput
 	// The ID of the os.
 	OsId pulumi.StringPtrInput
+	// `projectId`) The ID of the project the server is associated with.
+	ProjectId pulumi.StringPtrInput
 	// List of SSH keys allowed to connect to the server.
+	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds pulumi.StringArrayInput
 	// The tags associated with the server.
 	Tags pulumi.StringArrayInput
@@ -193,12 +215,14 @@ type baremetalServerArgs struct {
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
 	Offer string `pulumi:"offer"`
-	// `organizationId`) The ID of the organization the server is associated with.
-	OrganizationId *string `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+	// > **Important:** Updates to `os` will reinstall the server.
 	Os string `pulumi:"os"`
+	// `projectId`) The ID of the project the server is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// List of SSH keys allowed to connect to the server.
+	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds []string `pulumi:"sshKeyIds"`
 	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
@@ -217,12 +241,14 @@ type BaremetalServerArgs struct {
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
 	Offer pulumi.StringInput
-	// `organizationId`) The ID of the organization the server is associated with.
-	OrganizationId pulumi.StringPtrInput
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringInput
+	// `projectId`) The ID of the project the server is associated with.
+	ProjectId pulumi.StringPtrInput
 	// List of SSH keys allowed to connect to the server.
+	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds pulumi.StringArrayInput
 	// The tags associated with the server.
 	Tags pulumi.StringArrayInput
@@ -232,4 +258,42 @@ type BaremetalServerArgs struct {
 
 func (BaremetalServerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*baremetalServerArgs)(nil)).Elem()
+}
+
+type BaremetalServerInput interface {
+	pulumi.Input
+
+	ToBaremetalServerOutput() BaremetalServerOutput
+	ToBaremetalServerOutputWithContext(ctx context.Context) BaremetalServerOutput
+}
+
+func (*BaremetalServer) ElementType() reflect.Type {
+	return reflect.TypeOf((**BaremetalServer)(nil)).Elem()
+}
+
+func (i *BaremetalServer) ToBaremetalServerOutput() BaremetalServerOutput {
+	return i.ToBaremetalServerOutputWithContext(context.Background())
+}
+
+func (i *BaremetalServer) ToBaremetalServerOutputWithContext(ctx context.Context) BaremetalServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerOutput)
+}
+
+type BaremetalServerOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BaremetalServer)(nil)).Elem()
+}
+
+func (o BaremetalServerOutput) ToBaremetalServerOutput() BaremetalServerOutput {
+	return o
+}
+
+func (o BaremetalServerOutput) ToBaremetalServerOutputWithContext(ctx context.Context) BaremetalServerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerInput)(nil)).Elem(), &BaremetalServer{})
+	pulumi.RegisterOutputType(BaremetalServerOutput{})
 }

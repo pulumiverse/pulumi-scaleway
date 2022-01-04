@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -22,10 +21,18 @@ import * as utilities from "./utilities";
  * });
  * const base = new scaleway.BaremetalServer("base", {
  *     zone: "fr-par-2",
- *     offer: "GP-BM1-M",
+ *     offer: "GP-BM1-S",
  *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
  *     sshKeyIds: [main],
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class BaremetalServer extends pulumi.CustomResource {
@@ -86,12 +93,13 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly offerId!: pulumi.Output<string>;
     /**
-     * `organizationId`) The ID of the organization the server is associated with.
+     * The organization ID the server is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+     * > **Important:** Updates to `os` will reinstall the server.
      */
     public readonly os!: pulumi.Output<string>;
     /**
@@ -99,7 +107,12 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly osId!: pulumi.Output<string>;
     /**
+     * `projectId`) The ID of the project the server is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
+    /**
      * List of SSH keys allowed to connect to the server.
+     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     public readonly sshKeyIds!: pulumi.Output<string[]>;
     /**
@@ -120,55 +133,54 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: BaremetalServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BaremetalServerArgs | BaremetalServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as BaremetalServerState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["ips"] = state ? state.ips : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["offer"] = state ? state.offer : undefined;
-            inputs["offerId"] = state ? state.offerId : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["os"] = state ? state.os : undefined;
-            inputs["osId"] = state ? state.osId : undefined;
-            inputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["ips"] = state ? state.ips : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["offer"] = state ? state.offer : undefined;
+            resourceInputs["offerId"] = state ? state.offerId : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["os"] = state ? state.os : undefined;
+            resourceInputs["osId"] = state ? state.osId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as BaremetalServerArgs | undefined;
-            if (!args || args.offer === undefined) {
+            if ((!args || args.offer === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'offer'");
             }
-            if (!args || args.os === undefined) {
+            if ((!args || args.os === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'os'");
             }
-            if (!args || args.sshKeyIds === undefined) {
+            if ((!args || args.sshKeyIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sshKeyIds'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["offer"] = args ? args.offer : undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["os"] = args ? args.os : undefined;
-            inputs["sshKeyIds"] = args ? args.sshKeyIds : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["domain"] = undefined /*out*/;
-            inputs["ips"] = undefined /*out*/;
-            inputs["offerId"] = undefined /*out*/;
-            inputs["osId"] = undefined /*out*/;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["offer"] = args ? args.offer : undefined;
+            resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["sshKeyIds"] = args ? args.sshKeyIds : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["domain"] = undefined /*out*/;
+            resourceInputs["ips"] = undefined /*out*/;
+            resourceInputs["offerId"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["osId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(BaremetalServer.__pulumiType, name, inputs, opts);
+        super(BaremetalServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -179,57 +191,63 @@ export interface BaremetalServerState {
     /**
      * A description for the server.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The domain of the server.
      */
-    readonly domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string>;
     /**
      * The hostname of the server.
      */
-    readonly hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
     /**
      * (List of) The IPs of the server.
      */
-    readonly ips?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIp>[]>;
+    ips?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIp>[]>;
     /**
      * The name of the server.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      */
-    readonly offer?: pulumi.Input<string>;
+    offer?: pulumi.Input<string>;
     /**
      * The ID of the offer.
      */
-    readonly offerId?: pulumi.Input<string>;
+    offerId?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the server is associated with.
+     * The organization ID the server is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+     * > **Important:** Updates to `os` will reinstall the server.
      */
-    readonly os?: pulumi.Input<string>;
+    os?: pulumi.Input<string>;
     /**
      * The ID of the os.
      */
-    readonly osId?: pulumi.Input<string>;
+    osId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * List of SSH keys allowed to connect to the server.
+     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
-    readonly sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags associated with the server.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -239,39 +257,41 @@ export interface BaremetalServerArgs {
     /**
      * A description for the server.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The hostname of the server.
      */
-    readonly hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
     /**
      * The name of the server.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      */
-    readonly offer: pulumi.Input<string>;
-    /**
-     * `organizationId`) The ID of the organization the server is associated with.
-     */
-    readonly organizationId?: pulumi.Input<string>;
+    offer: pulumi.Input<string>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+     * > **Important:** Updates to `os` will reinstall the server.
      */
-    readonly os: pulumi.Input<string>;
+    os: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * List of SSH keys allowed to connect to the server.
+     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
-    readonly sshKeyIds: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyIds: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags associated with the server.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

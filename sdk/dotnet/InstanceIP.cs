@@ -29,7 +29,16 @@ namespace Pulumi.Scaleway
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IPs can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instanceIP:InstanceIP server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/instanceIP:InstanceIP")]
     public partial class InstanceIP : Pulumi.CustomResource
     {
         /// <summary>
@@ -39,16 +48,28 @@ namespace Pulumi.Scaleway
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the IP is associated with.
+        /// The organization ID the IP is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the IP is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The reverse dns attached to this IP
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
+
+        /// <summary>
+        /// The server associated with this IP
+        /// </summary>
+        [Output("serverId")]
+        public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
@@ -103,10 +124,10 @@ namespace Pulumi.Scaleway
     public sealed class InstanceIPArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `organization_id`) The ID of the organization the IP is associated with.
+        /// `project_id`) The ID of the project the IP is associated with.
         /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
@@ -128,16 +149,28 @@ namespace Pulumi.Scaleway
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the IP is associated with.
+        /// The organization ID the IP is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the IP is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The reverse dns attached to this IP
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
+
+        /// <summary>
+        /// The server associated with this IP
+        /// </summary>
+        [Input("serverId")]
+        public Input<string>? ServerId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.

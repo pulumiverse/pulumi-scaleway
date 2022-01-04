@@ -15,6 +15,14 @@ import * as utilities from "./utilities";
  *
  * const serverIp = new scaleway.InstanceIP("server_ip", {});
  * ```
+ *
+ * ## Import
+ *
+ * IPs can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceIP:InstanceIP server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
  */
 export class InstanceIP extends pulumi.CustomResource {
     /**
@@ -49,13 +57,21 @@ export class InstanceIP extends pulumi.CustomResource {
      */
     public /*out*/ readonly address!: pulumi.Output<string>;
     /**
-     * `organizationId`) The ID of the organization the IP is associated with.
+     * The organization ID the IP is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    /**
+     * `projectId`) The ID of the project the IP is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The reverse dns attached to this IP
      */
     public /*out*/ readonly reverse!: pulumi.Output<string>;
+    /**
+     * The server associated with this IP
+     */
+    public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
@@ -70,28 +86,29 @@ export class InstanceIP extends pulumi.CustomResource {
      */
     constructor(name: string, args?: InstanceIPArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceIPArgs | InstanceIPState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceIPState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["reverse"] = state ? state.reverse : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["reverse"] = state ? state.reverse : undefined;
+            resourceInputs["serverId"] = state ? state.serverId : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceIPArgs | undefined;
-            inputs["organizationId"] = args ? args.organizationId : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["address"] = undefined /*out*/;
-            inputs["reverse"] = undefined /*out*/;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["address"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["reverse"] = undefined /*out*/;
+            resourceInputs["serverId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceIP.__pulumiType, name, inputs, opts);
+        super(InstanceIP.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -102,19 +119,27 @@ export interface InstanceIPState {
     /**
      * The IP address.
      */
-    readonly address?: pulumi.Input<string>;
+    address?: pulumi.Input<string>;
     /**
-     * `organizationId`) The ID of the organization the IP is associated with.
+     * The organization ID the IP is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the IP is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The reverse dns attached to this IP
      */
-    readonly reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string>;
+    /**
+     * The server associated with this IP
+     */
+    serverId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -122,11 +147,11 @@ export interface InstanceIPState {
  */
 export interface InstanceIPArgs {
     /**
-     * `organizationId`) The ID of the organization the IP is associated with.
+     * `projectId`) The ID of the project the IP is associated with.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

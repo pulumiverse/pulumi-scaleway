@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Scaleway
         /// </summary>
         public static Task<GetInstanceServerResult> InvokeAsync(GetInstanceServerArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Gets information about an instance server.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myKey = Output.Create(Scaleway.GetInstanceServer.InvokeAsync(new Scaleway.GetInstanceServerArgs
+        ///         {
+        ///             ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetInstanceServerResult> Invoke(GetInstanceServerInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerInvokeArgs(), options.WithVersion());
     }
 
 
@@ -67,6 +97,31 @@ namespace Pulumi.Scaleway
         }
     }
 
+    public sealed class GetInstanceServerInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The server id. Only one of `name` and `server_id` should be specified.
+        /// </summary>
+        [Input("serverId")]
+        public Input<string>? ServerId { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the server exists.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetInstanceServerInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetInstanceServerResult
@@ -77,12 +132,11 @@ namespace Pulumi.Scaleway
         /// </summary>
         public readonly ImmutableArray<string> AdditionalVolumeIds;
         public readonly string BootType;
+        public readonly string BootscriptId;
         /// <summary>
         /// The cloud init script associated with this server.
         /// </summary>
         public readonly string CloudInit;
-        public readonly bool DisableDynamicIp;
-        public readonly bool DisablePublicIp;
         /// <summary>
         /// True is dynamic IP in enable on the server.
         /// </summary>
@@ -129,6 +183,11 @@ namespace Pulumi.Scaleway
         /// The Scaleway internal IP address of the server.
         /// </summary>
         public readonly string PrivateIp;
+        public readonly ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> PrivateNetworks;
+        /// <summary>
+        /// The ID of the project the server is associated with.
+        /// </summary>
+        public readonly string ProjectId;
         /// <summary>
         /// The public IPv4 address of the server.
         /// </summary>
@@ -158,7 +217,7 @@ namespace Pulumi.Scaleway
         /// <summary>
         /// The user data associated with the server.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetInstanceServerUserDataResult> UserDatas;
+        public readonly ImmutableDictionary<string, string> UserData;
         public readonly string? Zone;
 
         [OutputConstructor]
@@ -167,11 +226,9 @@ namespace Pulumi.Scaleway
 
             string bootType,
 
+            string bootscriptId,
+
             string cloudInit,
-
-            bool disableDynamicIp,
-
-            bool disablePublicIp,
 
             bool enableDynamicIp,
 
@@ -199,6 +256,10 @@ namespace Pulumi.Scaleway
 
             string privateIp,
 
+            ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> privateNetworks,
+
+            string projectId,
+
             string publicIp,
 
             ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> rootVolumes,
@@ -213,15 +274,14 @@ namespace Pulumi.Scaleway
 
             string type,
 
-            ImmutableArray<Outputs.GetInstanceServerUserDataResult> userDatas,
+            ImmutableDictionary<string, string> userData,
 
             string? zone)
         {
             AdditionalVolumeIds = additionalVolumeIds;
             BootType = bootType;
+            BootscriptId = bootscriptId;
             CloudInit = cloudInit;
-            DisableDynamicIp = disableDynamicIp;
-            DisablePublicIp = disablePublicIp;
             EnableDynamicIp = enableDynamicIp;
             EnableIpv6 = enableIpv6;
             Id = id;
@@ -235,6 +295,8 @@ namespace Pulumi.Scaleway
             PlacementGroupId = placementGroupId;
             PlacementGroupPolicyRespected = placementGroupPolicyRespected;
             PrivateIp = privateIp;
+            PrivateNetworks = privateNetworks;
+            ProjectId = projectId;
             PublicIp = publicIp;
             RootVolumes = rootVolumes;
             SecurityGroupId = securityGroupId;
@@ -242,7 +304,7 @@ namespace Pulumi.Scaleway
             State = state;
             Tags = tags;
             Type = type;
-            UserDatas = userDatas;
+            UserData = userData;
             Zone = zone;
         }
     }

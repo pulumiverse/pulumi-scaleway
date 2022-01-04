@@ -31,7 +31,7 @@ namespace Pulumi.Scaleway
     ///         var @base = new Scaleway.BaremetalServer("base", new Scaleway.BaremetalServerArgs
     ///         {
     ///             Zone = "fr-par-2",
-    ///             Offer = "GP-BM1-M",
+    ///             Offer = "GP-BM1-S",
     ///             Os = "d17d6872-0412-45d9-a198-af82c34d3c5c",
     ///             SshKeyIds = 
     ///             {
@@ -42,7 +42,16 @@ namespace Pulumi.Scaleway
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
+    /// ```
     /// </summary>
+    [ScalewayResourceType("scaleway:index/baremetalServer:BaremetalServer")]
     public partial class BaremetalServer : Pulumi.CustomResource
     {
         /// <summary>
@@ -89,7 +98,7 @@ namespace Pulumi.Scaleway
         public Output<string> OfferId { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the server is associated with.
+        /// The organization ID the server is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -97,6 +106,7 @@ namespace Pulumi.Scaleway
         /// <summary>
         /// The UUID of the os to install on the server.
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Output("os")]
         public Output<string> Os { get; private set; } = null!;
@@ -108,7 +118,14 @@ namespace Pulumi.Scaleway
         public Output<string> OsId { get; private set; } = null!;
 
         /// <summary>
+        /// `project_id`) The ID of the project the server is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
         /// List of SSH keys allowed to connect to the server.
+        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         [Output("sshKeyIds")]
         public Output<ImmutableArray<string>> SshKeyIds { get; private set; } = null!;
@@ -197,23 +214,25 @@ namespace Pulumi.Scaleway
         public Input<string> Offer { get; set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the server is associated with.
-        /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
-
-        /// <summary>
         /// The UUID of the os to install on the server.
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Input("os", required: true)]
         public Input<string> Os { get; set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("sshKeyIds", required: true)]
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
         /// List of SSH keys allowed to connect to the server.
+        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         public InputList<string> SshKeyIds
         {
@@ -296,7 +315,7 @@ namespace Pulumi.Scaleway
         public Input<string>? OfferId { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the server is associated with.
+        /// The organization ID the server is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -304,6 +323,7 @@ namespace Pulumi.Scaleway
         /// <summary>
         /// The UUID of the os to install on the server.
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
@@ -314,11 +334,18 @@ namespace Pulumi.Scaleway
         [Input("osId")]
         public Input<string>? OsId { get; set; }
 
+        /// <summary>
+        /// `project_id`) The ID of the project the server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
         [Input("sshKeyIds")]
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
         /// List of SSH keys allowed to connect to the server.
+        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         public InputList<string> SshKeyIds
         {

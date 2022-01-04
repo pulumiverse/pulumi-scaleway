@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Scaleway
         /// </summary>
         public static Task<GetInstanceSecurityGroupResult> InvokeAsync(GetInstanceSecurityGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceSecurityGroupResult>("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args ?? new GetInstanceSecurityGroupArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Gets information about a Security Group.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myKey = Output.Create(Scaleway.GetInstanceSecurityGroup.InvokeAsync(new Scaleway.GetInstanceSecurityGroupArgs
+        ///         {
+        ///             SecurityGroupId = "11111111-1111-1111-1111-111111111111",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetInstanceSecurityGroupResult> Invoke(GetInstanceSecurityGroupInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceSecurityGroupResult>("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args ?? new GetInstanceSecurityGroupInvokeArgs(), options.WithVersion());
     }
 
 
@@ -67,11 +97,37 @@ namespace Pulumi.Scaleway
         }
     }
 
+    public sealed class GetInstanceSecurityGroupInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The security group name. Only one of `name` and `security_group_id` should be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The security group id. Only one of `name` and `security_group_id` should be specified.
+        /// </summary>
+        [Input("securityGroupId")]
+        public Input<string>? SecurityGroupId { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the security group exists.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetInstanceSecurityGroupInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetInstanceSecurityGroupResult
     {
         public readonly string Description;
+        public readonly bool EnableDefaultSecurity;
         public readonly bool ExternalRules;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -98,6 +154,10 @@ namespace Pulumi.Scaleway
         /// A list of outbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceSecurityGroupOutboundRuleResult> OutboundRules;
+        /// <summary>
+        /// The ID of the project the security group is associated with.
+        /// </summary>
+        public readonly string ProjectId;
         public readonly string? SecurityGroupId;
         public readonly bool Stateful;
         public readonly string? Zone;
@@ -105,6 +165,8 @@ namespace Pulumi.Scaleway
         [OutputConstructor]
         private GetInstanceSecurityGroupResult(
             string description,
+
+            bool enableDefaultSecurity,
 
             bool externalRules,
 
@@ -122,6 +184,8 @@ namespace Pulumi.Scaleway
 
             ImmutableArray<Outputs.GetInstanceSecurityGroupOutboundRuleResult> outboundRules,
 
+            string projectId,
+
             string? securityGroupId,
 
             bool stateful,
@@ -129,6 +193,7 @@ namespace Pulumi.Scaleway
             string? zone)
         {
             Description = description;
+            EnableDefaultSecurity = enableDefaultSecurity;
             ExternalRules = externalRules;
             Id = id;
             InboundDefaultPolicy = inboundDefaultPolicy;
@@ -137,6 +202,7 @@ namespace Pulumi.Scaleway
             OrganizationId = organizationId;
             OutboundDefaultPolicy = outboundDefaultPolicy;
             OutboundRules = outboundRules;
+            ProjectId = projectId;
             SecurityGroupId = securityGroupId;
             Stateful = stateful;
             Zone = zone;

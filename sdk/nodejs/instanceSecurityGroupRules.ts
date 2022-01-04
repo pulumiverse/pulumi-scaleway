@@ -2,34 +2,16 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+ * ## Import
  *
- * This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
+ * Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
  *
- * > **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
- *
- * ## Examples
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {externalRules: true});
- * const sgrs01 = new scaleway.InstanceSecurityGroupRules("sgrs01", {
- *     securityGroupId: sg01.id,
- *     inboundRules: [{
- *         action: "accept",
- *         port: 80,
- *         ipRange: "0.0.0.0/0",
- *     }],
- * });
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceSecurityGroupRules extends pulumi.CustomResource {
@@ -82,29 +64,26 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceSecurityGroupRulesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceSecurityGroupRulesArgs | InstanceSecurityGroupRulesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceSecurityGroupRulesState | undefined;
-            inputs["inboundRules"] = state ? state.inboundRules : undefined;
-            inputs["outboundRules"] = state ? state.outboundRules : undefined;
-            inputs["securityGroupId"] = state ? state.securityGroupId : undefined;
+            resourceInputs["inboundRules"] = state ? state.inboundRules : undefined;
+            resourceInputs["outboundRules"] = state ? state.outboundRules : undefined;
+            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
         } else {
             const args = argsOrState as InstanceSecurityGroupRulesArgs | undefined;
-            if (!args || args.securityGroupId === undefined) {
+            if ((!args || args.securityGroupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'securityGroupId'");
             }
-            inputs["inboundRules"] = args ? args.inboundRules : undefined;
-            inputs["outboundRules"] = args ? args.outboundRules : undefined;
-            inputs["securityGroupId"] = args ? args.securityGroupId : undefined;
+            resourceInputs["inboundRules"] = args ? args.inboundRules : undefined;
+            resourceInputs["outboundRules"] = args ? args.outboundRules : undefined;
+            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceSecurityGroupRules.__pulumiType, name, inputs, opts);
+        super(InstanceSecurityGroupRules.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -115,15 +94,15 @@ export interface InstanceSecurityGroupRulesState {
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    readonly inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
+    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    readonly outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
+    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
     /**
      * The ID of the security group.
      */
-    readonly securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string>;
 }
 
 /**
@@ -133,13 +112,13 @@ export interface InstanceSecurityGroupRulesArgs {
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    readonly inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
+    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    readonly outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
+    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
     /**
      * The ID of the security group.
      */
-    readonly securityGroupId: pulumi.Input<string>;
+    securityGroupId: pulumi.Input<string>;
 }

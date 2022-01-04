@@ -15,8 +15,52 @@ namespace Pulumi.Scaleway
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
+    [ScalewayResourceType("pulumi:providers:scaleway")]
     public partial class Provider : Pulumi.ProviderResource
     {
+        /// <summary>
+        /// The Scaleway access key.
+        /// </summary>
+        [Output("accessKey")]
+        public Output<string?> AccessKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway API URL to use.
+        /// </summary>
+        [Output("apiUrl")]
+        public Output<string?> ApiUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway profile to use.
+        /// </summary>
+        [Output("profile")]
+        public Output<string?> Profile { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway project ID.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string?> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway secret Key.
+        /// </summary>
+        [Output("secretKey")]
+        public Output<string?> SecretKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
+        [Output("zone")]
+        public Output<string?> Zone { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
@@ -50,17 +94,26 @@ namespace Pulumi.Scaleway
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
-        [Input("organization")]
-        public Input<string>? Organization { get; set; }
-
         /// <summary>
-        /// The Scaleway organization ID.
+        /// The Scaleway API URL to use.
         /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
+        [Input("apiUrl")]
+        public Input<string>? ApiUrl { get; set; }
 
         /// <summary>
-        /// The Scaleway default region to use for your resources.
+        /// The Scaleway profile to use.
+        /// </summary>
+        [Input("profile")]
+        public Input<string>? Profile { get; set; }
+
+        /// <summary>
+        /// The Scaleway project ID.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -71,11 +124,8 @@ namespace Pulumi.Scaleway
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
-        [Input("token")]
-        public Input<string>? Token { get; set; }
-
         /// <summary>
-        /// The Scaleway default zone to use for your resources.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -83,7 +133,7 @@ namespace Pulumi.Scaleway
         public ProviderArgs()
         {
             AccessKey = Utilities.GetEnv("SCW_ACCESS_KEY");
-            OrganizationId = Utilities.GetEnv("SCW_DEFAULT_ORGANIZATION_ID");
+            ProjectId = Utilities.GetEnv("SCW_DEFAULT_PROJECT_ID");
             Region = Utilities.GetEnv("SCW_DEFAULT_REGION");
             SecretKey = Utilities.GetEnv("SCW_SECRET_KEY");
             Zone = Utilities.GetEnv("SCW_DEFAULT_ZONE");

@@ -4,10 +4,11 @@
 package scaleway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Manages Scaleway Compute Instance IPs Reverse DNS.
@@ -19,7 +20,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -39,6 +40,14 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//  $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+// ```
 type InstanceIPReverseDNS struct {
 	pulumi.CustomResourceState
 
@@ -53,14 +62,15 @@ type InstanceIPReverseDNS struct {
 // NewInstanceIPReverseDNS registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIPReverseDNS(ctx *pulumi.Context,
 	name string, args *InstanceIPReverseDNSArgs, opts ...pulumi.ResourceOption) (*InstanceIPReverseDNS, error) {
-	if args == nil || args.IpId == nil {
-		return nil, errors.New("missing required argument 'IpId'")
-	}
-	if args == nil || args.Reverse == nil {
-		return nil, errors.New("missing required argument 'Reverse'")
-	}
 	if args == nil {
-		args = &InstanceIPReverseDNSArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IpId == nil {
+		return nil, errors.New("invalid value for required argument 'IpId'")
+	}
+	if args.Reverse == nil {
+		return nil, errors.New("invalid value for required argument 'Reverse'")
 	}
 	var resource InstanceIPReverseDNS
 	err := ctx.RegisterResource("scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS", name, args, &resource, opts...)
@@ -126,4 +136,42 @@ type InstanceIPReverseDNSArgs struct {
 
 func (InstanceIPReverseDNSArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIPReverseDNSArgs)(nil)).Elem()
+}
+
+type InstanceIPReverseDNSInput interface {
+	pulumi.Input
+
+	ToInstanceIPReverseDNSOutput() InstanceIPReverseDNSOutput
+	ToInstanceIPReverseDNSOutputWithContext(ctx context.Context) InstanceIPReverseDNSOutput
+}
+
+func (*InstanceIPReverseDNS) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIPReverseDNS)(nil)).Elem()
+}
+
+func (i *InstanceIPReverseDNS) ToInstanceIPReverseDNSOutput() InstanceIPReverseDNSOutput {
+	return i.ToInstanceIPReverseDNSOutputWithContext(context.Background())
+}
+
+func (i *InstanceIPReverseDNS) ToInstanceIPReverseDNSOutputWithContext(ctx context.Context) InstanceIPReverseDNSOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIPReverseDNSOutput)
+}
+
+type InstanceIPReverseDNSOutput struct{ *pulumi.OutputState }
+
+func (InstanceIPReverseDNSOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIPReverseDNS)(nil)).Elem()
+}
+
+func (o InstanceIPReverseDNSOutput) ToInstanceIPReverseDNSOutput() InstanceIPReverseDNSOutput {
+	return o
+}
+
+func (o InstanceIPReverseDNSOutput) ToInstanceIPReverseDNSOutputWithContext(ctx context.Context) InstanceIPReverseDNSOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIPReverseDNSInput)(nil)).Elem(), &InstanceIPReverseDNS{})
+	pulumi.RegisterOutputType(InstanceIPReverseDNSOutput{})
 }

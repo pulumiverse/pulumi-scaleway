@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
@@ -40,6 +41,36 @@ namespace Pulumi.Scaleway
         /// </summary>
         public static Task<GetBaremetalOfferResult> InvokeAsync(GetBaremetalOfferArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalOfferResult>("scaleway:index/getBaremetalOffer:getBaremetalOffer", args ?? new GetBaremetalOfferArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myOffer = Output.Create(Scaleway.GetBaremetalOffer.InvokeAsync(new Scaleway.GetBaremetalOfferArgs
+        ///         {
+        ///             OfferId = "3ab0dc29-2fd4-486e-88bf-d08fbf49214b",
+        ///             Zone = "fr-par-2",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetBaremetalOfferResult> Invoke(GetBaremetalOfferInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetBaremetalOfferResult>("scaleway:index/getBaremetalOffer:getBaremetalOffer", args ?? new GetBaremetalOfferInvokeArgs(), options.WithVersion());
     }
 
 
@@ -67,6 +98,34 @@ namespace Pulumi.Scaleway
         public string? Zone { get; set; }
 
         public GetBaremetalOfferArgs()
+        {
+        }
+    }
+
+    public sealed class GetBaremetalOfferInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("includeDisabled")]
+        public Input<bool>? IncludeDisabled { get; set; }
+
+        /// <summary>
+        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The offer id. Only one of `name` and `offer_id` should be specified.
+        /// </summary>
+        [Input("offerId")]
+        public Input<string>? OfferId { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the offer should be created.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetBaremetalOfferInvokeArgs()
         {
         }
     }

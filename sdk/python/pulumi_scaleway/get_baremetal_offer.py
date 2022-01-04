@@ -5,14 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 
 __all__ = [
     'GetBaremetalOfferResult',
     'AwaitableGetBaremetalOfferResult',
     'get_baremetal_offer',
+    'get_baremetal_offer_output',
 ]
 
 @pulumi.output_type
@@ -200,3 +201,30 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
         offer_id=__ret__.offer_id,
         stock=__ret__.stock,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_baremetal_offer)
+def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[bool]]] = None,
+                               name: Optional[pulumi.Input[Optional[str]]] = None,
+                               offer_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               zone: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOfferResult]:
+    """
+    Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_offer = scaleway.get_baremetal_offer(offer_id="3ab0dc29-2fd4-486e-88bf-d08fbf49214b",
+        zone="fr-par-2")
+    ```
+
+
+    :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+    :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
+    :param str zone: `zone`) The zone in which the offer should be created.
+    """
+    ...
