@@ -1,0 +1,81 @@
+"on":
+  repository_dispatch:
+    types:
+      - publish_provider
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GO111MODULE: "on"
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
+  PROVIDER: scaleway
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  PULUMI_API: https://api.pulumi-staging.io
+  PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  TRAVIS_OS_NAME: linux
+jobs:
+  publish_provider:
+    name: publish-provider
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Checkout Scripts Repo
+        uses: actions/checkout@v2
+        with:
+          path: ci-scripts
+          repository: pulumi/scripts
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.x
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.1.0
+        with:
+          repo: pulumi/pulumictl
+      - name: Install Pulumi CLI
+        uses: pulumi/action-install-pulumi-cli@v1.0.1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.nodeversion}}
+          registry-url: https://registry.npmjs.org
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{matrix.dotnetverson}}
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{matrix.pythonversion}}
+      - name: Install Chg for changelog
+        run: sudo npm install -g chg
+      - name: Update Changelog with Release Version
+        run: chg release ${{ github.event.client_payload.ref }}
+      - run: git --no-pager diff
+      - name: Stage + Commit
+        run: |
+          git config --local user.name "pulumi-bot"
+          git config --local user.email "bot@pulumi.com"
+          git add .
+          git commit -m "Prepare for v${{ github.event.client_payload.ref }} release"
+          git push origin master
+          git tag v${{ github.event.client_payload.ref }}
+          git tag sdk/v${{ github.event.client_payload.ref }}
+          git push origin v${{ github.event.client_payload.ref }}
+          git push origin sdk/v${{ github.event.client_payload.ref }}
+    strategy:
+      fail-fast: true
+      matrix:
+        dotnetversion:
+          - 3.1.301
+        goversion:
+          - 1.15.x
+        nodeversion:
+          - 13.x
+        pythonversion:
+          - "3.7"
