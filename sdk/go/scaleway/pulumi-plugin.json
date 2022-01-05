@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "scaleway",
-  "server": "https://bintray.com/jaxxstorm/pulumi/download_file?file_path="
+  "server": "https://dl.briggs.work/pulumi/releases/plugins"
 }

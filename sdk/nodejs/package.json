@@ -22,6 +22,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://bintray.com/jaxxstorm/pulumi/download_file?file_path="
+        "pluginDownloadURL": "https://dl.briggs.work/pulumi/releases/plugins"
     }
 }

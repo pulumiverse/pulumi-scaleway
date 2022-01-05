@@ -6,6 +6,7 @@ require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.15.0
 	github.com/pulumi/pulumi/sdk/v3 v3.21.0
 	github.com/scaleway/terraform-provider-scaleway v1.17.1-0.20211230161835-24df682dbb8e
+	github.com/ulikunitz/xz v0.5.8 // indirect
 )
 
 replace (

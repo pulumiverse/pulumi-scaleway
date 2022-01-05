@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'https://bintray.com/jaxxstorm/pulumi/download_file?file_path='])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'https://dl.briggs.work/pulumi/releases/plugins'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
