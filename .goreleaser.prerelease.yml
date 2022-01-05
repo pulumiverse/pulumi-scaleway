@@ -26,6 +26,8 @@ builds:
   - windows
   - linux
   ldflags:
+  - -s
+  - -w
   - -X github.com/jaxxstorm/pulumi-scaleway/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-scaleway/
 changelog:
