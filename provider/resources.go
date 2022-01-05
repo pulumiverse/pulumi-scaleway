@@ -80,7 +80,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:           "Apache-2.0",
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
-		PluginDownloadURL: "https://bintray.com/jaxxstorm/pulumi/download_file?file_path=",
+		PluginDownloadURL: "https://dl.briggs.work/pulumi/releases/plugins",
 		GitHubOrg:         "scaleway", // not in the terraform-providers repo
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
