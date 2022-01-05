@@ -31,7 +31,7 @@ builds:
   - -X github.com/jaxxstorm/pulumi-scaleway/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-scaleway/
   hooks:
-    - upx -9 "{{ .Path }}"
+    post: upx -9 "{{ .Path }}"
 changelog:
   skip: true
 release:

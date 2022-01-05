@@ -6,7 +6,7 @@
     <Company>Pulumi Corp.</Company>
     <Description>A Pulumi package for creating and managing scaleway cloud resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://pulumi.io</PackageProjectUrl>
+    <PackageProjectUrl>https://leebriggs.co.uk/projects#pulumi-scaleway</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jaxxstorm/pulumi-scaleway</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 

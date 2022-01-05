@@ -78,7 +78,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:          []string{"pulumi", "scaleway"},
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		License:           "Apache-2.0",
-		Homepage:          "https://pulumi.io",
+		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
 		PluginDownloadURL: "https://dl.briggs.work/pulumi/releases/plugins",
 		GitHubOrg:         "scaleway", // not in the terraform-providers repo

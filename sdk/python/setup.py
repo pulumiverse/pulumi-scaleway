@@ -46,7 +46,7 @@ setup(name='pulumi_scaleway',
           'install': InstallPluginCommand,
       },
       keywords='pulumi scaleway',
-      url='https://pulumi.io',
+      url='https://leebriggs.co.uk/projects#pulumi-scaleway',
       project_urls={
           'Repository': 'https://github.com/jaxxstorm/pulumi-scaleway'
       },

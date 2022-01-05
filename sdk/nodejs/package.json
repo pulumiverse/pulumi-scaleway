@@ -6,7 +6,7 @@
         "pulumi",
         "scaleway"
     ],
-    "homepage": "https://pulumi.io",
+    "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
     "repository": "https://github.com/jaxxstorm/pulumi-scaleway",
     "license": "Apache-2.0",
     "scripts": {
