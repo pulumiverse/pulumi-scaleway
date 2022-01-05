@@ -5,7 +5,7 @@ before:
   hooks:
   - make tfgen
 blobs:
-- bucket: lbrlabs
+- bucket: dl.briggs.work
   endpoint: https://s3.nl-ams.scw.cloud
   folder: pulumi/releases/plugins/
   region: nl-ams
