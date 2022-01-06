@@ -139,7 +139,7 @@ jobs:
     #     message: |
     #       ### Does the PR have any schema changes?
 
-          ${{ env.SCHEMA_CHANGES }}
+    #      ${{ env.SCHEMA_CHANGES }}
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
         }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
