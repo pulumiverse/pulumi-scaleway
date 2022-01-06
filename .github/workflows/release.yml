@@ -124,21 +124,21 @@ jobs:
         repo: mikhailshilkov/schema-tools
     - name: Build tfgen & provider binaries
       run: make provider
-    - if: github.event_name == 'pull_request'
-      name: Check Schema is Valid
-      run: |-
-        echo 'SCHEMA_CHANGES<<EOF' >> $GITHUB_ENV
-        schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-    - if: github.event_name == 'pull_request'
-      name: Comment on PR with Details of Schema Check
-      uses: thollander/actions-comment-pull-request@1.0.1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        message: |
-          ### Does the PR have any schema changes?
+    # - if: github.event_name == 'pull_request'
+    #   name: Check Schema is Valid
+    #   run: |-
+    #     echo 'SCHEMA_CHANGES<<EOF' >> $GITHUB_ENV
+    #     schema-tools compare ${{ env.PROVIDER }} master --local-path=provider/cmd/pulumi-resource-${{ env.PROVIDER }}/schema.json >> $GITHUB_ENV
+    #     echo 'EOF' >> $GITHUB_ENV
+    # - if: github.event_name == 'pull_request'
+    #   name: Comment on PR with Details of Schema Check
+    #   uses: thollander/actions-comment-pull-request@1.0.1
+    #   with:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     message: |
+    #       ### Does the PR have any schema changes?
 
-          ${{ env.SCHEMA_CHANGES }}
+    #       ${{ env.SCHEMA_CHANGES }}
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
         }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
