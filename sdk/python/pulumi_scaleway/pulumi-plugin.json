@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "scaleway",
-  "server": "https://dl.briggs.work/pulumi/releases/plugins"
-}
