@@ -13,7 +13,7 @@ import (
 func TestAccWebserver(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "ts/webserver"),
+			Dir: path.Join(getCwd(t), "ts/server"),
 		})
 
 	integration.ProgramTest(t, &test)
