@@ -11,12 +11,12 @@ import * as utilities from "./utilities";
  * IoT devices can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iOTDevice:IOTDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class IOTDevice extends pulumi.CustomResource {
+export class IotDevice extends pulumi.CustomResource {
     /**
-     * Get an existing IOTDevice resource's state with the given name, ID, and optional extra
+     * Get an existing IotDevice resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -24,22 +24,22 @@ export class IOTDevice extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IOTDeviceState, opts?: pulumi.CustomResourceOptions): IOTDevice {
-        return new IOTDevice(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotDeviceState, opts?: pulumi.CustomResourceOptions): IotDevice {
+        return new IotDevice(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/iOTDevice:IOTDevice';
+    public static readonly __pulumiType = 'scaleway:index/iotDevice:IotDevice';
 
     /**
-     * Returns true if the given object is an instance of IOTDevice.  This is designed to work even
+     * Returns true if the given object is an instance of IotDevice.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is IOTDevice {
+    public static isInstance(obj: any): obj is IotDevice {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === IOTDevice.__pulumiType;
+        return obj['__pulumiType'] === IotDevice.__pulumiType;
     }
 
     /**
@@ -53,7 +53,7 @@ export class IOTDevice extends pulumi.CustomResource {
     /**
      * The certificate bundle of the device.
      */
-    public readonly certificate!: pulumi.Output<outputs.IOTDeviceCertificate>;
+    public readonly certificate!: pulumi.Output<outputs.IotDeviceCertificate>;
     /**
      * The date and time the device was created.
      */
@@ -77,7 +77,7 @@ export class IOTDevice extends pulumi.CustomResource {
     /**
      * Rules that define which messages are authorized or denied based on their topic.
      */
-    public readonly messageFilters!: pulumi.Output<outputs.IOTDeviceMessageFilters | undefined>;
+    public readonly messageFilters!: pulumi.Output<outputs.IotDeviceMessageFilters | undefined>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      */
@@ -96,18 +96,18 @@ export class IOTDevice extends pulumi.CustomResource {
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
-     * Create a IOTDevice resource with the given unique name, arguments, and options.
+     * Create a IotDevice resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: IOTDeviceArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: IOTDeviceArgs | IOTDeviceState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: IotDeviceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: IotDeviceArgs | IotDeviceState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as IOTDeviceState | undefined;
+            const state = argsOrState as IotDeviceState | undefined;
             resourceInputs["allowInsecure"] = state ? state.allowInsecure : undefined;
             resourceInputs["allowMultipleConnections"] = state ? state.allowMultipleConnections : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
@@ -122,7 +122,7 @@ export class IOTDevice extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
-            const args = argsOrState as IOTDeviceArgs | undefined;
+            const args = argsOrState as IotDeviceArgs | undefined;
             if ((!args || args.hubId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
@@ -143,14 +143,14 @@ export class IOTDevice extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(IOTDevice.__pulumiType, name, resourceInputs, opts);
+        super(IotDevice.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering IOTDevice resources.
+ * Input properties used for looking up and filtering IotDevice resources.
  */
-export interface IOTDeviceState {
+export interface IotDeviceState {
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
      */
@@ -162,7 +162,7 @@ export interface IOTDeviceState {
     /**
      * The certificate bundle of the device.
      */
-    certificate?: pulumi.Input<inputs.IOTDeviceCertificate>;
+    certificate?: pulumi.Input<inputs.IotDeviceCertificate>;
     /**
      * The date and time the device was created.
      */
@@ -186,7 +186,7 @@ export interface IOTDeviceState {
     /**
      * Rules that define which messages are authorized or denied based on their topic.
      */
-    messageFilters?: pulumi.Input<inputs.IOTDeviceMessageFilters>;
+    messageFilters?: pulumi.Input<inputs.IotDeviceMessageFilters>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      */
@@ -206,9 +206,9 @@ export interface IOTDeviceState {
 }
 
 /**
- * The set of arguments for constructing a IOTDevice resource.
+ * The set of arguments for constructing a IotDevice resource.
  */
-export interface IOTDeviceArgs {
+export interface IotDeviceArgs {
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
      */
@@ -220,7 +220,7 @@ export interface IOTDeviceArgs {
     /**
      * The certificate bundle of the device.
      */
-    certificate?: pulumi.Input<inputs.IOTDeviceCertificate>;
+    certificate?: pulumi.Input<inputs.IotDeviceCertificate>;
     /**
      * The description of the IoT device (e.g. `living room`).
      */
@@ -232,7 +232,7 @@ export interface IOTDeviceArgs {
     /**
      * Rules that define which messages are authorized or denied based on their topic.
      */
-    messageFilters?: pulumi.Input<inputs.IOTDeviceMessageFilters>;
+    messageFilters?: pulumi.Input<inputs.IotDeviceMessageFilters>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      */

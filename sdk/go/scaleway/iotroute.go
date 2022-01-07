@@ -11,13 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type IOTRoute struct {
+type IotRoute struct {
 	pulumi.CustomResourceState
 
 	// The date and time of the creation of the IoT Route
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Database Route parameters
-	Database IOTRouteDatabasePtrOutput `pulumi:"database"`
+	Database IotRouteDatabasePtrOutput `pulumi:"database"`
 	// The ID of the route's hub
 	HubId pulumi.StringOutput `pulumi:"hubId"`
 	// The name of the route
@@ -25,16 +25,16 @@ type IOTRoute struct {
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Rest Route parameters
-	Rest IOTRouteRestPtrOutput `pulumi:"rest"`
+	Rest IotRouteRestPtrOutput `pulumi:"rest"`
 	// S3 Route parameters
-	S3 IOTRouteS3PtrOutput `pulumi:"s3"`
+	S3 IotRouteS3PtrOutput `pulumi:"s3"`
 	// The Topic the route subscribes to (wildcards allowed)
 	Topic pulumi.StringOutput `pulumi:"topic"`
 }
 
-// NewIOTRoute registers a new resource with the given unique name, arguments, and options.
-func NewIOTRoute(ctx *pulumi.Context,
-	name string, args *IOTRouteArgs, opts ...pulumi.ResourceOption) (*IOTRoute, error) {
+// NewIotRoute registers a new resource with the given unique name, arguments, and options.
+func NewIotRoute(ctx *pulumi.Context,
+	name string, args *IotRouteArgs, opts ...pulumi.ResourceOption) (*IotRoute, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -45,32 +45,32 @@ func NewIOTRoute(ctx *pulumi.Context,
 	if args.Topic == nil {
 		return nil, errors.New("invalid value for required argument 'Topic'")
 	}
-	var resource IOTRoute
-	err := ctx.RegisterResource("scaleway:index/iOTRoute:IOTRoute", name, args, &resource, opts...)
+	var resource IotRoute
+	err := ctx.RegisterResource("scaleway:index/iotRoute:IotRoute", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetIOTRoute gets an existing IOTRoute resource's state with the given name, ID, and optional
+// GetIotRoute gets an existing IotRoute resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetIOTRoute(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *IOTRouteState, opts ...pulumi.ResourceOption) (*IOTRoute, error) {
-	var resource IOTRoute
-	err := ctx.ReadResource("scaleway:index/iOTRoute:IOTRoute", name, id, state, &resource, opts...)
+func GetIotRoute(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *IotRouteState, opts ...pulumi.ResourceOption) (*IotRoute, error) {
+	var resource IotRoute
+	err := ctx.ReadResource("scaleway:index/iotRoute:IotRoute", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering IOTRoute resources.
-type iotrouteState struct {
+// Input properties used for looking up and filtering IotRoute resources.
+type iotRouteState struct {
 	// The date and time of the creation of the IoT Route
 	CreatedAt *string `pulumi:"createdAt"`
 	// Database Route parameters
-	Database *IOTRouteDatabase `pulumi:"database"`
+	Database *IotRouteDatabase `pulumi:"database"`
 	// The ID of the route's hub
 	HubId *string `pulumi:"hubId"`
 	// The name of the route
@@ -78,18 +78,18 @@ type iotrouteState struct {
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 	// Rest Route parameters
-	Rest *IOTRouteRest `pulumi:"rest"`
+	Rest *IotRouteRest `pulumi:"rest"`
 	// S3 Route parameters
-	S3 *IOTRouteS3 `pulumi:"s3"`
+	S3 *IotRouteS3 `pulumi:"s3"`
 	// The Topic the route subscribes to (wildcards allowed)
 	Topic *string `pulumi:"topic"`
 }
 
-type IOTRouteState struct {
+type IotRouteState struct {
 	// The date and time of the creation of the IoT Route
 	CreatedAt pulumi.StringPtrInput
 	// Database Route parameters
-	Database IOTRouteDatabasePtrInput
+	Database IotRouteDatabasePtrInput
 	// The ID of the route's hub
 	HubId pulumi.StringPtrInput
 	// The name of the route
@@ -97,20 +97,20 @@ type IOTRouteState struct {
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 	// Rest Route parameters
-	Rest IOTRouteRestPtrInput
+	Rest IotRouteRestPtrInput
 	// S3 Route parameters
-	S3 IOTRouteS3PtrInput
+	S3 IotRouteS3PtrInput
 	// The Topic the route subscribes to (wildcards allowed)
 	Topic pulumi.StringPtrInput
 }
 
-func (IOTRouteState) ElementType() reflect.Type {
-	return reflect.TypeOf((*iotrouteState)(nil)).Elem()
+func (IotRouteState) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotRouteState)(nil)).Elem()
 }
 
-type iotrouteArgs struct {
+type iotRouteArgs struct {
 	// Database Route parameters
-	Database *IOTRouteDatabase `pulumi:"database"`
+	Database *IotRouteDatabase `pulumi:"database"`
 	// The ID of the route's hub
 	HubId string `pulumi:"hubId"`
 	// The name of the route
@@ -118,17 +118,17 @@ type iotrouteArgs struct {
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 	// Rest Route parameters
-	Rest *IOTRouteRest `pulumi:"rest"`
+	Rest *IotRouteRest `pulumi:"rest"`
 	// S3 Route parameters
-	S3 *IOTRouteS3 `pulumi:"s3"`
+	S3 *IotRouteS3 `pulumi:"s3"`
 	// The Topic the route subscribes to (wildcards allowed)
 	Topic string `pulumi:"topic"`
 }
 
-// The set of arguments for constructing a IOTRoute resource.
-type IOTRouteArgs struct {
+// The set of arguments for constructing a IotRoute resource.
+type IotRouteArgs struct {
 	// Database Route parameters
-	Database IOTRouteDatabasePtrInput
+	Database IotRouteDatabasePtrInput
 	// The ID of the route's hub
 	HubId pulumi.StringInput
 	// The name of the route
@@ -136,51 +136,51 @@ type IOTRouteArgs struct {
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 	// Rest Route parameters
-	Rest IOTRouteRestPtrInput
+	Rest IotRouteRestPtrInput
 	// S3 Route parameters
-	S3 IOTRouteS3PtrInput
+	S3 IotRouteS3PtrInput
 	// The Topic the route subscribes to (wildcards allowed)
 	Topic pulumi.StringInput
 }
 
-func (IOTRouteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*iotrouteArgs)(nil)).Elem()
+func (IotRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotRouteArgs)(nil)).Elem()
 }
 
-type IOTRouteInput interface {
+type IotRouteInput interface {
 	pulumi.Input
 
-	ToIOTRouteOutput() IOTRouteOutput
-	ToIOTRouteOutputWithContext(ctx context.Context) IOTRouteOutput
+	ToIotRouteOutput() IotRouteOutput
+	ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutput
 }
 
-func (*IOTRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRoute)(nil)).Elem()
+func (*IotRoute) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRoute)(nil)).Elem()
 }
 
-func (i *IOTRoute) ToIOTRouteOutput() IOTRouteOutput {
-	return i.ToIOTRouteOutputWithContext(context.Background())
+func (i *IotRoute) ToIotRouteOutput() IotRouteOutput {
+	return i.ToIotRouteOutputWithContext(context.Background())
 }
 
-func (i *IOTRoute) ToIOTRouteOutputWithContext(ctx context.Context) IOTRouteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteOutput)
+func (i *IotRoute) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteOutput)
 }
 
-type IOTRouteOutput struct{ *pulumi.OutputState }
+type IotRouteOutput struct{ *pulumi.OutputState }
 
-func (IOTRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRoute)(nil)).Elem()
+func (IotRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRoute)(nil)).Elem()
 }
 
-func (o IOTRouteOutput) ToIOTRouteOutput() IOTRouteOutput {
+func (o IotRouteOutput) ToIotRouteOutput() IotRouteOutput {
 	return o
 }
 
-func (o IOTRouteOutput) ToIOTRouteOutputWithContext(ctx context.Context) IOTRouteOutput {
+func (o IotRouteOutput) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteInput)(nil)).Elem(), &IOTRoute{})
-	pulumi.RegisterOutputType(IOTRouteOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteInput)(nil)).Elem(), &IotRoute{})
+	pulumi.RegisterOutputType(IotRouteOutput{})
 }

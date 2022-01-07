@@ -26,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewVpcPublicGatewayDHCP(ctx, "main", &scaleway.VpcPublicGatewayDHCPArgs{
+// 		_, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "main", &scaleway.VpcPublicGatewayDhcpArgs{
 // 			Subnet: pulumi.String("192.168.1.0/24"),
 // 		})
 // 		if err != nil {
@@ -42,9 +42,9 @@ import (
 // Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP main fr-par-1/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
-type VpcPublicGatewayDHCP struct {
+type VpcPublicGatewayDhcp struct {
 	pulumi.CustomResourceState
 
 	// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
@@ -90,9 +90,9 @@ type VpcPublicGatewayDHCP struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewVpcPublicGatewayDHCP registers a new resource with the given unique name, arguments, and options.
-func NewVpcPublicGatewayDHCP(ctx *pulumi.Context,
-	name string, args *VpcPublicGatewayDHCPArgs, opts ...pulumi.ResourceOption) (*VpcPublicGatewayDHCP, error) {
+// NewVpcPublicGatewayDhcp registers a new resource with the given unique name, arguments, and options.
+func NewVpcPublicGatewayDhcp(ctx *pulumi.Context,
+	name string, args *VpcPublicGatewayDhcpArgs, opts ...pulumi.ResourceOption) (*VpcPublicGatewayDhcp, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -100,28 +100,28 @@ func NewVpcPublicGatewayDHCP(ctx *pulumi.Context,
 	if args.Subnet == nil {
 		return nil, errors.New("invalid value for required argument 'Subnet'")
 	}
-	var resource VpcPublicGatewayDHCP
-	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP", name, args, &resource, opts...)
+	var resource VpcPublicGatewayDhcp
+	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetVpcPublicGatewayDHCP gets an existing VpcPublicGatewayDHCP resource's state with the given name, ID, and optional
+// GetVpcPublicGatewayDhcp gets an existing VpcPublicGatewayDhcp resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetVpcPublicGatewayDHCP(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *VpcPublicGatewayDHCPState, opts ...pulumi.ResourceOption) (*VpcPublicGatewayDHCP, error) {
-	var resource VpcPublicGatewayDHCP
-	err := ctx.ReadResource("scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP", name, id, state, &resource, opts...)
+func GetVpcPublicGatewayDhcp(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *VpcPublicGatewayDhcpState, opts ...pulumi.ResourceOption) (*VpcPublicGatewayDhcp, error) {
+	var resource VpcPublicGatewayDhcp
+	err := ctx.ReadResource("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering VpcPublicGatewayDHCP resources.
-type vpcPublicGatewayDHCPState struct {
+// Input properties used for looking up and filtering VpcPublicGatewayDhcp resources.
+type vpcPublicGatewayDhcpState struct {
 	// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
 	// address of the subnet
 	Address *string `pulumi:"address"`
@@ -165,7 +165,7 @@ type vpcPublicGatewayDHCPState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type VpcPublicGatewayDHCPState struct {
+type VpcPublicGatewayDhcpState struct {
 	// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
 	// address of the subnet
 	Address pulumi.StringPtrInput
@@ -209,11 +209,11 @@ type VpcPublicGatewayDHCPState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (VpcPublicGatewayDHCPState) ElementType() reflect.Type {
-	return reflect.TypeOf((*vpcPublicGatewayDHCPState)(nil)).Elem()
+func (VpcPublicGatewayDhcpState) ElementType() reflect.Type {
+	return reflect.TypeOf((*vpcPublicGatewayDhcpState)(nil)).Elem()
 }
 
-type vpcPublicGatewayDHCPArgs struct {
+type vpcPublicGatewayDhcpArgs struct {
 	// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
 	// address of the subnet
 	Address *string `pulumi:"address"`
@@ -251,8 +251,8 @@ type vpcPublicGatewayDHCPArgs struct {
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a VpcPublicGatewayDHCP resource.
-type VpcPublicGatewayDHCPArgs struct {
+// The set of arguments for constructing a VpcPublicGatewayDhcp resource.
+type VpcPublicGatewayDhcpArgs struct {
 	// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
 	// address of the subnet
 	Address pulumi.StringPtrInput
@@ -290,44 +290,44 @@ type VpcPublicGatewayDHCPArgs struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (VpcPublicGatewayDHCPArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*vpcPublicGatewayDHCPArgs)(nil)).Elem()
+func (VpcPublicGatewayDhcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*vpcPublicGatewayDhcpArgs)(nil)).Elem()
 }
 
-type VpcPublicGatewayDHCPInput interface {
+type VpcPublicGatewayDhcpInput interface {
 	pulumi.Input
 
-	ToVpcPublicGatewayDHCPOutput() VpcPublicGatewayDHCPOutput
-	ToVpcPublicGatewayDHCPOutputWithContext(ctx context.Context) VpcPublicGatewayDHCPOutput
+	ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput
+	ToVpcPublicGatewayDhcpOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpOutput
 }
 
-func (*VpcPublicGatewayDHCP) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayDHCP)(nil)).Elem()
+func (*VpcPublicGatewayDhcp) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPublicGatewayDhcp)(nil)).Elem()
 }
 
-func (i *VpcPublicGatewayDHCP) ToVpcPublicGatewayDHCPOutput() VpcPublicGatewayDHCPOutput {
-	return i.ToVpcPublicGatewayDHCPOutputWithContext(context.Background())
+func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput {
+	return i.ToVpcPublicGatewayDhcpOutputWithContext(context.Background())
 }
 
-func (i *VpcPublicGatewayDHCP) ToVpcPublicGatewayDHCPOutputWithContext(ctx context.Context) VpcPublicGatewayDHCPOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDHCPOutput)
+func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpOutput)
 }
 
-type VpcPublicGatewayDHCPOutput struct{ *pulumi.OutputState }
+type VpcPublicGatewayDhcpOutput struct{ *pulumi.OutputState }
 
-func (VpcPublicGatewayDHCPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayDHCP)(nil)).Elem()
+func (VpcPublicGatewayDhcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPublicGatewayDhcp)(nil)).Elem()
 }
 
-func (o VpcPublicGatewayDHCPOutput) ToVpcPublicGatewayDHCPOutput() VpcPublicGatewayDHCPOutput {
+func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput {
 	return o
 }
 
-func (o VpcPublicGatewayDHCPOutput) ToVpcPublicGatewayDHCPOutputWithContext(ctx context.Context) VpcPublicGatewayDHCPOutput {
+func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDHCPInput)(nil)).Elem(), &VpcPublicGatewayDHCP{})
-	pulumi.RegisterOutputType(VpcPublicGatewayDHCPOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpInput)(nil)).Elem(), &VpcPublicGatewayDhcp{})
+	pulumi.RegisterOutputType(VpcPublicGatewayDhcpOutput{})
 }

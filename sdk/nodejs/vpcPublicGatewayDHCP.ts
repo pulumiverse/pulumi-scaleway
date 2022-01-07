@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayDHCP("main", {
+ * const main = new scaleway.VpcPublicGatewayDhcp("main", {
  *     subnet: "192.168.1.0/24",
  * });
  * ```
@@ -24,12 +24,12 @@ import * as utilities from "./utilities";
  * Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP main fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class VpcPublicGatewayDHCP extends pulumi.CustomResource {
+export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     /**
-     * Get an existing VpcPublicGatewayDHCP resource's state with the given name, ID, and optional extra
+     * Get an existing VpcPublicGatewayDhcp resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -37,22 +37,22 @@ export class VpcPublicGatewayDHCP extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayDHCPState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayDHCP {
-        return new VpcPublicGatewayDHCP(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayDhcpState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayDhcp {
+        return new VpcPublicGatewayDhcp(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP';
+    public static readonly __pulumiType = 'scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp';
 
     /**
-     * Returns true if the given object is an instance of VpcPublicGatewayDHCP.  This is designed to work even
+     * Returns true if the given object is an instance of VpcPublicGatewayDhcp.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is VpcPublicGatewayDHCP {
+    public static isInstance(obj: any): obj is VpcPublicGatewayDhcp {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === VpcPublicGatewayDHCP.__pulumiType;
+        return obj['__pulumiType'] === VpcPublicGatewayDhcp.__pulumiType;
     }
 
     /**
@@ -134,18 +134,18 @@ export class VpcPublicGatewayDHCP extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a VpcPublicGatewayDHCP resource with the given unique name, arguments, and options.
+     * Create a VpcPublicGatewayDhcp resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: VpcPublicGatewayDHCPArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: VpcPublicGatewayDHCPArgs | VpcPublicGatewayDHCPState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: VpcPublicGatewayDhcpArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: VpcPublicGatewayDhcpArgs | VpcPublicGatewayDhcpState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as VpcPublicGatewayDHCPState | undefined;
+            const state = argsOrState as VpcPublicGatewayDhcpState | undefined;
             resourceInputs["address"] = state ? state.address : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dnsLocalName"] = state ? state.dnsLocalName : undefined;
@@ -165,7 +165,7 @@ export class VpcPublicGatewayDHCP extends pulumi.CustomResource {
             resourceInputs["validLifetime"] = state ? state.validLifetime : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as VpcPublicGatewayDHCPArgs | undefined;
+            const args = argsOrState as VpcPublicGatewayDhcpArgs | undefined;
             if ((!args || args.subnet === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnet'");
             }
@@ -191,14 +191,14 @@ export class VpcPublicGatewayDHCP extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(VpcPublicGatewayDHCP.__pulumiType, name, resourceInputs, opts);
+        super(VpcPublicGatewayDhcp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering VpcPublicGatewayDHCP resources.
+ * Input properties used for looking up and filtering VpcPublicGatewayDhcp resources.
  */
-export interface VpcPublicGatewayDHCPState {
+export interface VpcPublicGatewayDhcpState {
     /**
      * Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
      * address of the subnet
@@ -279,9 +279,9 @@ export interface VpcPublicGatewayDHCPState {
 }
 
 /**
- * The set of arguments for constructing a VpcPublicGatewayDHCP resource.
+ * The set of arguments for constructing a VpcPublicGatewayDhcp resource.
  */
-export interface VpcPublicGatewayDHCPArgs {
+export interface VpcPublicGatewayDhcpArgs {
     /**
      * Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
      * address of the subnet

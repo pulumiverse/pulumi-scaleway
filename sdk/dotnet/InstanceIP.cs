@@ -22,7 +22,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var serverIp = new Scaleway.InstanceIP("serverIp", new Scaleway.InstanceIPArgs
+    ///         var serverIp = new Scaleway.InstanceIp("serverIp", new Scaleway.InstanceIpArgs
     ///         {
     ///         });
     ///     }
@@ -35,11 +35,11 @@ namespace Pulumi.Scaleway
     /// IPs can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/instanceIP:InstanceIP server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/instanceIP:InstanceIP")]
-    public partial class InstanceIP : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/instanceIp:InstanceIp")]
+    public partial class InstanceIp : Pulumi.CustomResource
     {
         /// <summary>
         /// The IP address.
@@ -79,19 +79,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a InstanceIP resource with the given unique name, arguments, and options.
+        /// Create a InstanceIp resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public InstanceIP(string name, InstanceIPArgs? args = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/instanceIP:InstanceIP", name, args ?? new InstanceIPArgs(), MakeResourceOptions(options, ""))
+        public InstanceIp(string name, InstanceIpArgs? args = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/instanceIp:InstanceIp", name, args ?? new InstanceIpArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private InstanceIP(string name, Input<string> id, InstanceIPState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/instanceIP:InstanceIP", name, state, MakeResourceOptions(options, id))
+        private InstanceIp(string name, Input<string> id, InstanceIpState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/instanceIp:InstanceIp", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -107,7 +107,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing InstanceIP resource's state with the given name, ID, and optional extra
+        /// Get an existing InstanceIp resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -115,13 +115,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static InstanceIP Get(string name, Input<string> id, InstanceIPState? state = null, CustomResourceOptions? options = null)
+        public static InstanceIp Get(string name, Input<string> id, InstanceIpState? state = null, CustomResourceOptions? options = null)
         {
-            return new InstanceIP(name, id, state, options);
+            return new InstanceIp(name, id, state, options);
         }
     }
 
-    public sealed class InstanceIPArgs : Pulumi.ResourceArgs
+    public sealed class InstanceIpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// `project_id`) The ID of the project the IP is associated with.
@@ -135,12 +135,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public InstanceIPArgs()
+        public InstanceIpArgs()
         {
         }
     }
 
-    public sealed class InstanceIPState : Pulumi.ResourceArgs
+    public sealed class InstanceIpState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The IP address.
@@ -178,7 +178,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public InstanceIPState()
+        public InstanceIpState()
         {
         }
     }

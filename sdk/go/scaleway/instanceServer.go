@@ -27,7 +27,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		publicIp, err := scaleway.NewInstanceIP(ctx, "publicIp", nil)
+// 		publicIp, err := scaleway.NewInstanceIp(ctx, "publicIp", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -97,7 +97,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		ip, err := scaleway.NewInstanceIP(ctx, "ip", nil)
+// 		ip, err := scaleway.NewInstanceIp(ctx, "ip", nil)
 // 		if err != nil {
 // 			return err
 // 		}

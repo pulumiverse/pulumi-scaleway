@@ -8,17 +8,17 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['IOTNetworkArgs', 'IOTNetwork']
+__all__ = ['IotNetworkArgs', 'IotNetwork']
 
 @pulumi.input_type
-class IOTNetworkArgs:
+class IotNetworkArgs:
     def __init__(__self__, *,
                  hub_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
                  topic_prefix: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a IOTNetwork resource.
+        The set of arguments for constructing a IotNetwork resource.
         :param pulumi.Input[str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[str] type: The network type to create (e.g. `sigfox`).
         :param pulumi.Input[str] name: The name of the IoT Network you want to create (e.g. `my-net`).
@@ -81,7 +81,7 @@ class IOTNetworkArgs:
 
 
 @pulumi.input_type
-class _IOTNetworkState:
+class _IotNetworkState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
@@ -91,7 +91,7 @@ class _IOTNetworkState:
                  topic_prefix: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering IOTNetwork resources.
+        Input properties used for looking up and filtering IotNetwork resources.
         :param pulumi.Input[str] created_at: The date and time the Network was created.
         :param pulumi.Input[str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[str] hub_id: The hub ID to which the Network will be attached to.
@@ -200,7 +200,7 @@ class _IOTNetworkState:
         pulumi.set(self, "type", value)
 
 
-class IOTNetwork(pulumi.CustomResource):
+class IotNetwork(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -216,7 +216,7 @@ class IOTNetwork(pulumi.CustomResource):
         IoT Networks can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/iOTNetwork:IOTNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -230,7 +230,7 @@ class IOTNetwork(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: IOTNetworkArgs,
+                 args: IotNetworkArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Import
@@ -238,16 +238,16 @@ class IOTNetwork(pulumi.CustomResource):
         IoT Networks can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/iOTNetwork:IOTNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param IOTNetworkArgs args: The arguments to use to populate this resource's properties.
+        :param IotNetworkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(IOTNetworkArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(IotNetworkArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -270,7 +270,7 @@ class IOTNetwork(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = IOTNetworkArgs.__new__(IOTNetworkArgs)
+            __props__ = IotNetworkArgs.__new__(IotNetworkArgs)
 
             if hub_id is None and not opts.urn:
                 raise TypeError("Missing required property 'hub_id'")
@@ -283,8 +283,8 @@ class IOTNetwork(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["endpoint"] = None
             __props__.__dict__["secret"] = None
-        super(IOTNetwork, __self__).__init__(
-            'scaleway:index/iOTNetwork:IOTNetwork',
+        super(IotNetwork, __self__).__init__(
+            'scaleway:index/iotNetwork:IotNetwork',
             resource_name,
             __props__,
             opts)
@@ -299,9 +299,9 @@ class IOTNetwork(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
             topic_prefix: Optional[pulumi.Input[str]] = None,
-            type: Optional[pulumi.Input[str]] = None) -> 'IOTNetwork':
+            type: Optional[pulumi.Input[str]] = None) -> 'IotNetwork':
         """
-        Get an existing IOTNetwork resource's state with the given name, id, and optional extra
+        Get an existing IotNetwork resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -317,7 +317,7 @@ class IOTNetwork(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _IOTNetworkState.__new__(_IOTNetworkState)
+        __props__ = _IotNetworkState.__new__(_IotNetworkState)
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["endpoint"] = endpoint
@@ -326,7 +326,7 @@ class IOTNetwork(pulumi.CustomResource):
         __props__.__dict__["secret"] = secret
         __props__.__dict__["topic_prefix"] = topic_prefix
         __props__.__dict__["type"] = type
-        return IOTNetwork(resource_name, opts=opts, __props__=__props__)
+        return IotNetwork(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createdAt")

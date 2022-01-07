@@ -25,7 +25,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var ip = new Scaleway.LoadbalancerIP("ip", new Scaleway.LoadbalancerIPArgs
+    ///         var ip = new Scaleway.LoadbalancerIp("ip", new Scaleway.LoadbalancerIpArgs
     ///         {
     ///         });
     ///         var @base = new Scaleway.Loadbalancer("base", new Scaleway.LoadbalancerArgs
@@ -42,9 +42,9 @@ namespace Pulumi.Scaleway
     /// 
     /// ## IP ID
     /// 
-    /// Since v1.15.0, `ip_id` is a required field. This means that now a separate `scaleway.LoadbalancerIP` is required.
+    /// Since v1.15.0, `ip_id` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
     /// When importing, the IP needs to be imported as well as the LB.
-    /// When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIP` resource and import it.
+    /// When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
     /// 
     /// For instance, if you had the following:
     /// 
@@ -76,7 +76,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var ip = new Scaleway.LoadbalancerIP("ip", new Scaleway.LoadbalancerIPArgs
+    ///         var ip = new Scaleway.LoadbalancerIp("ip", new Scaleway.LoadbalancerIpArgs
     ///         {
     ///         });
     ///         var @base = new Scaleway.Loadbalancer("base", new Scaleway.LoadbalancerArgs
@@ -101,7 +101,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var ip01 = new Scaleway.LoadbalancerIP("ip01", new Scaleway.LoadbalancerIPArgs
+    ///         var ip01 = new Scaleway.LoadbalancerIp("ip01", new Scaleway.LoadbalancerIpArgs
     ///         {
     ///         });
     ///         var pnLB01 = new Scaleway.VpcPrivateNetwork("pnLB01", new Scaleway.VpcPrivateNetworkArgs

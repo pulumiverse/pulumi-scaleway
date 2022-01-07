@@ -16,9 +16,9 @@ import (
 // IoT devices can be imported using the `{region}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/iOTDevice:IOTDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type IOTDevice struct {
+type IotDevice struct {
 	pulumi.CustomResourceState
 
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
@@ -26,7 +26,7 @@ type IOTDevice struct {
 	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections pulumi.BoolPtrOutput `pulumi:"allowMultipleConnections"`
 	// The certificate bundle of the device.
-	Certificate IOTDeviceCertificateOutput `pulumi:"certificate"`
+	Certificate IotDeviceCertificateOutput `pulumi:"certificate"`
 	// The date and time the device was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The description of the IoT device (e.g. `living room`).
@@ -38,7 +38,7 @@ type IOTDevice struct {
 	// The last MQTT activity of the device.
 	LastActivityAt pulumi.StringOutput `pulumi:"lastActivityAt"`
 	// Rules that define which messages are authorized or denied based on their topic.
-	MessageFilters IOTDeviceMessageFiltersPtrOutput `pulumi:"messageFilters"`
+	MessageFilters IotDeviceMessageFiltersPtrOutput `pulumi:"messageFilters"`
 	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region you want to attach the resource to
@@ -49,9 +49,9 @@ type IOTDevice struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
-// NewIOTDevice registers a new resource with the given unique name, arguments, and options.
-func NewIOTDevice(ctx *pulumi.Context,
-	name string, args *IOTDeviceArgs, opts ...pulumi.ResourceOption) (*IOTDevice, error) {
+// NewIotDevice registers a new resource with the given unique name, arguments, and options.
+func NewIotDevice(ctx *pulumi.Context,
+	name string, args *IotDeviceArgs, opts ...pulumi.ResourceOption) (*IotDevice, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -59,34 +59,34 @@ func NewIOTDevice(ctx *pulumi.Context,
 	if args.HubId == nil {
 		return nil, errors.New("invalid value for required argument 'HubId'")
 	}
-	var resource IOTDevice
-	err := ctx.RegisterResource("scaleway:index/iOTDevice:IOTDevice", name, args, &resource, opts...)
+	var resource IotDevice
+	err := ctx.RegisterResource("scaleway:index/iotDevice:IotDevice", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetIOTDevice gets an existing IOTDevice resource's state with the given name, ID, and optional
+// GetIotDevice gets an existing IotDevice resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetIOTDevice(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *IOTDeviceState, opts ...pulumi.ResourceOption) (*IOTDevice, error) {
-	var resource IOTDevice
-	err := ctx.ReadResource("scaleway:index/iOTDevice:IOTDevice", name, id, state, &resource, opts...)
+func GetIotDevice(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *IotDeviceState, opts ...pulumi.ResourceOption) (*IotDevice, error) {
+	var resource IotDevice
+	err := ctx.ReadResource("scaleway:index/iotDevice:IotDevice", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering IOTDevice resources.
-type iotdeviceState struct {
+// Input properties used for looking up and filtering IotDevice resources.
+type iotDeviceState struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure *bool `pulumi:"allowInsecure"`
 	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections *bool `pulumi:"allowMultipleConnections"`
 	// The certificate bundle of the device.
-	Certificate *IOTDeviceCertificate `pulumi:"certificate"`
+	Certificate *IotDeviceCertificate `pulumi:"certificate"`
 	// The date and time the device was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The description of the IoT device (e.g. `living room`).
@@ -98,7 +98,7 @@ type iotdeviceState struct {
 	// The last MQTT activity of the device.
 	LastActivityAt *string `pulumi:"lastActivityAt"`
 	// Rules that define which messages are authorized or denied based on their topic.
-	MessageFilters *IOTDeviceMessageFilters `pulumi:"messageFilters"`
+	MessageFilters *IotDeviceMessageFilters `pulumi:"messageFilters"`
 	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name *string `pulumi:"name"`
 	// The region you want to attach the resource to
@@ -109,13 +109,13 @@ type iotdeviceState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
-type IOTDeviceState struct {
+type IotDeviceState struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure pulumi.BoolPtrInput
 	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections pulumi.BoolPtrInput
 	// The certificate bundle of the device.
-	Certificate IOTDeviceCertificatePtrInput
+	Certificate IotDeviceCertificatePtrInput
 	// The date and time the device was created.
 	CreatedAt pulumi.StringPtrInput
 	// The description of the IoT device (e.g. `living room`).
@@ -127,7 +127,7 @@ type IOTDeviceState struct {
 	// The last MQTT activity of the device.
 	LastActivityAt pulumi.StringPtrInput
 	// Rules that define which messages are authorized or denied based on their topic.
-	MessageFilters IOTDeviceMessageFiltersPtrInput
+	MessageFilters IotDeviceMessageFiltersPtrInput
 	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name pulumi.StringPtrInput
 	// The region you want to attach the resource to
@@ -138,87 +138,87 @@ type IOTDeviceState struct {
 	UpdatedAt pulumi.StringPtrInput
 }
 
-func (IOTDeviceState) ElementType() reflect.Type {
-	return reflect.TypeOf((*iotdeviceState)(nil)).Elem()
+func (IotDeviceState) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotDeviceState)(nil)).Elem()
 }
 
-type iotdeviceArgs struct {
+type iotDeviceArgs struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure *bool `pulumi:"allowInsecure"`
 	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections *bool `pulumi:"allowMultipleConnections"`
 	// The certificate bundle of the device.
-	Certificate *IOTDeviceCertificate `pulumi:"certificate"`
+	Certificate *IotDeviceCertificate `pulumi:"certificate"`
 	// The description of the IoT device (e.g. `living room`).
 	Description *string `pulumi:"description"`
 	// The ID of the hub on which this device will be created.
 	HubId string `pulumi:"hubId"`
 	// Rules that define which messages are authorized or denied based on their topic.
-	MessageFilters *IOTDeviceMessageFilters `pulumi:"messageFilters"`
+	MessageFilters *IotDeviceMessageFilters `pulumi:"messageFilters"`
 	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name *string `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
-// The set of arguments for constructing a IOTDevice resource.
-type IOTDeviceArgs struct {
+// The set of arguments for constructing a IotDevice resource.
+type IotDeviceArgs struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure pulumi.BoolPtrInput
 	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections pulumi.BoolPtrInput
 	// The certificate bundle of the device.
-	Certificate IOTDeviceCertificatePtrInput
+	Certificate IotDeviceCertificatePtrInput
 	// The description of the IoT device (e.g. `living room`).
 	Description pulumi.StringPtrInput
 	// The ID of the hub on which this device will be created.
 	HubId pulumi.StringInput
 	// Rules that define which messages are authorized or denied based on their topic.
-	MessageFilters IOTDeviceMessageFiltersPtrInput
+	MessageFilters IotDeviceMessageFiltersPtrInput
 	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 }
 
-func (IOTDeviceArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*iotdeviceArgs)(nil)).Elem()
+func (IotDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotDeviceArgs)(nil)).Elem()
 }
 
-type IOTDeviceInput interface {
+type IotDeviceInput interface {
 	pulumi.Input
 
-	ToIOTDeviceOutput() IOTDeviceOutput
-	ToIOTDeviceOutputWithContext(ctx context.Context) IOTDeviceOutput
+	ToIotDeviceOutput() IotDeviceOutput
+	ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceOutput
 }
 
-func (*IOTDevice) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDevice)(nil)).Elem()
+func (*IotDevice) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDevice)(nil)).Elem()
 }
 
-func (i *IOTDevice) ToIOTDeviceOutput() IOTDeviceOutput {
-	return i.ToIOTDeviceOutputWithContext(context.Background())
+func (i *IotDevice) ToIotDeviceOutput() IotDeviceOutput {
+	return i.ToIotDeviceOutputWithContext(context.Background())
 }
 
-func (i *IOTDevice) ToIOTDeviceOutputWithContext(ctx context.Context) IOTDeviceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceOutput)
+func (i *IotDevice) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceOutput)
 }
 
-type IOTDeviceOutput struct{ *pulumi.OutputState }
+type IotDeviceOutput struct{ *pulumi.OutputState }
 
-func (IOTDeviceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDevice)(nil)).Elem()
+func (IotDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDevice)(nil)).Elem()
 }
 
-func (o IOTDeviceOutput) ToIOTDeviceOutput() IOTDeviceOutput {
+func (o IotDeviceOutput) ToIotDeviceOutput() IotDeviceOutput {
 	return o
 }
 
-func (o IOTDeviceOutput) ToIOTDeviceOutputWithContext(ctx context.Context) IOTDeviceOutput {
+func (o IotDeviceOutput) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceInput)(nil)).Elem(), &IOTDevice{})
-	pulumi.RegisterOutputType(IOTDeviceOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceInput)(nil)).Elem(), &IotDevice{})
+	pulumi.RegisterOutputType(IotDeviceOutput{})
 }

@@ -13,13 +13,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayIP("main", {});
- * const ipById = main.id.apply(id => scaleway.getVpcPublicGatewayIP({
+ * const main = new scaleway.VpcPublicGatewayIp("main", {});
+ * const ipById = main.id.apply(id => scaleway.getVpcPublicGatewayIp({
  *     ipId: id,
  * }));
  * ```
  */
-export function getVpcPublicGatewayIP(args?: GetVpcPublicGatewayIPArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayIPResult> {
+export function getVpcPublicGatewayIp(args?: GetVpcPublicGatewayIpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayIpResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -28,22 +28,22 @@ export function getVpcPublicGatewayIP(args?: GetVpcPublicGatewayIPArgs, opts?: p
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayIP:getVpcPublicGatewayIP", {
+    return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", {
         "ipId": args.ipId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getVpcPublicGatewayIP.
+ * A collection of arguments for invoking getVpcPublicGatewayIp.
  */
-export interface GetVpcPublicGatewayIPArgs {
+export interface GetVpcPublicGatewayIpArgs {
     ipId?: string;
 }
 
 /**
- * A collection of values returned by getVpcPublicGatewayIP.
+ * A collection of values returned by getVpcPublicGatewayIp.
  */
-export interface GetVpcPublicGatewayIPResult {
+export interface GetVpcPublicGatewayIpResult {
     readonly address: string;
     readonly createdAt: string;
     /**
@@ -59,13 +59,13 @@ export interface GetVpcPublicGatewayIPResult {
     readonly zone: string;
 }
 
-export function getVpcPublicGatewayIPOutput(args?: GetVpcPublicGatewayIPOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayIPResult> {
-    return pulumi.output(args).apply(a => getVpcPublicGatewayIP(a, opts))
+export function getVpcPublicGatewayIpOutput(args?: GetVpcPublicGatewayIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayIpResult> {
+    return pulumi.output(args).apply(a => getVpcPublicGatewayIp(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getVpcPublicGatewayIP.
+ * A collection of arguments for invoking getVpcPublicGatewayIp.
  */
-export interface GetVpcPublicGatewayIPOutputArgs {
+export interface GetVpcPublicGatewayIpOutputArgs {
     ipId?: pulumi.Input<string>;
 }

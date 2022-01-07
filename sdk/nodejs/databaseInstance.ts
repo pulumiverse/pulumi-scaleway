@@ -39,27 +39,27 @@ import * as utilities from "./utilities";
  * // keep it one week
  * // with private network and dhcp configuration
  * const pn02 = new scaleway.VpcPrivateNetwork("pn02", {});
- * const mainVpcPublicGatewayDHCP = new scaleway.VpcPublicGatewayDHCP("mainVpcPublicGatewayDHCP", {subnet: "192.168.1.0/24"});
- * const mainVpcPublicGatewayIP = new scaleway.VpcPublicGatewayIP("mainVpcPublicGatewayIP", {});
+ * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", {subnet: "192.168.1.0/24"});
+ * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
  * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("mainVpcPublicGateway", {
  *     type: "VPC-GW-S",
- *     ipId: mainVpcPublicGatewayIP.id,
+ *     ipId: mainVpcPublicGatewayIp.id,
  * });
  * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", {
  *     gatewayId: mainVpcPublicGateway.id,
  *     privateNetworkId: pn02.id,
- *     dhcpId: mainVpcPublicGatewayDHCP.id,
+ *     dhcpId: mainVpcPublicGatewayDhcp.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * }, {
  *     dependsOn: [
- *         mainVpcPublicGatewayIP,
+ *         mainVpcPublicGatewayIp,
  *         pn02,
  *     ],
  * });
- * const mainVpcPublicGatewayPATRule = new scaleway.VpcPublicGatewayPATRule("mainVpcPublicGatewayPATRule", {
+ * const mainVpcPublicGatewayPatRule = new scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", {
  *     gatewayId: mainVpcPublicGateway.id,
- *     privateIp: mainVpcPublicGatewayDHCP.address,
+ *     privateIp: mainVpcPublicGatewayDhcp.address,
  *     privatePort: mainDatabaseInstance.privateNetwork.apply(privateNetwork => privateNetwork?.port),
  *     publicPort: 42,
  *     protocol: "both",

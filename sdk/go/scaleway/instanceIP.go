@@ -24,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewInstanceIP(ctx, "serverIp", nil)
+// 		_, err := scaleway.NewInstanceIp(ctx, "serverIp", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -38,9 +38,9 @@ import (
 // IPs can be imported using the `{zone}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/instanceIP:InstanceIP server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
-type InstanceIP struct {
+type InstanceIp struct {
 	pulumi.CustomResourceState
 
 	// The IP address.
@@ -57,35 +57,35 @@ type InstanceIP struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewInstanceIP registers a new resource with the given unique name, arguments, and options.
-func NewInstanceIP(ctx *pulumi.Context,
-	name string, args *InstanceIPArgs, opts ...pulumi.ResourceOption) (*InstanceIP, error) {
+// NewInstanceIp registers a new resource with the given unique name, arguments, and options.
+func NewInstanceIp(ctx *pulumi.Context,
+	name string, args *InstanceIpArgs, opts ...pulumi.ResourceOption) (*InstanceIp, error) {
 	if args == nil {
-		args = &InstanceIPArgs{}
+		args = &InstanceIpArgs{}
 	}
 
-	var resource InstanceIP
-	err := ctx.RegisterResource("scaleway:index/instanceIP:InstanceIP", name, args, &resource, opts...)
+	var resource InstanceIp
+	err := ctx.RegisterResource("scaleway:index/instanceIp:InstanceIp", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetInstanceIP gets an existing InstanceIP resource's state with the given name, ID, and optional
+// GetInstanceIp gets an existing InstanceIp resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetInstanceIP(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *InstanceIPState, opts ...pulumi.ResourceOption) (*InstanceIP, error) {
-	var resource InstanceIP
-	err := ctx.ReadResource("scaleway:index/instanceIP:InstanceIP", name, id, state, &resource, opts...)
+func GetInstanceIp(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *InstanceIpState, opts ...pulumi.ResourceOption) (*InstanceIp, error) {
+	var resource InstanceIp
+	err := ctx.ReadResource("scaleway:index/instanceIp:InstanceIp", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering InstanceIP resources.
-type instanceIPState struct {
+// Input properties used for looking up and filtering InstanceIp resources.
+type instanceIpState struct {
 	// The IP address.
 	Address *string `pulumi:"address"`
 	// The organization ID the IP is associated with.
@@ -100,7 +100,7 @@ type instanceIPState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type InstanceIPState struct {
+type InstanceIpState struct {
 	// The IP address.
 	Address pulumi.StringPtrInput
 	// The organization ID the IP is associated with.
@@ -115,63 +115,63 @@ type InstanceIPState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (InstanceIPState) ElementType() reflect.Type {
-	return reflect.TypeOf((*instanceIPState)(nil)).Elem()
+func (InstanceIpState) ElementType() reflect.Type {
+	return reflect.TypeOf((*instanceIpState)(nil)).Elem()
 }
 
-type instanceIPArgs struct {
+type instanceIpArgs struct {
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a InstanceIP resource.
-type InstanceIPArgs struct {
+// The set of arguments for constructing a InstanceIp resource.
+type InstanceIpArgs struct {
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
 
-func (InstanceIPArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*instanceIPArgs)(nil)).Elem()
+func (InstanceIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*instanceIpArgs)(nil)).Elem()
 }
 
-type InstanceIPInput interface {
+type InstanceIpInput interface {
 	pulumi.Input
 
-	ToInstanceIPOutput() InstanceIPOutput
-	ToInstanceIPOutputWithContext(ctx context.Context) InstanceIPOutput
+	ToInstanceIpOutput() InstanceIpOutput
+	ToInstanceIpOutputWithContext(ctx context.Context) InstanceIpOutput
 }
 
-func (*InstanceIP) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceIP)(nil)).Elem()
+func (*InstanceIp) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIp)(nil)).Elem()
 }
 
-func (i *InstanceIP) ToInstanceIPOutput() InstanceIPOutput {
-	return i.ToInstanceIPOutputWithContext(context.Background())
+func (i *InstanceIp) ToInstanceIpOutput() InstanceIpOutput {
+	return i.ToInstanceIpOutputWithContext(context.Background())
 }
 
-func (i *InstanceIP) ToInstanceIPOutputWithContext(ctx context.Context) InstanceIPOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIPOutput)
+func (i *InstanceIp) ToInstanceIpOutputWithContext(ctx context.Context) InstanceIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpOutput)
 }
 
-type InstanceIPOutput struct{ *pulumi.OutputState }
+type InstanceIpOutput struct{ *pulumi.OutputState }
 
-func (InstanceIPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceIP)(nil)).Elem()
+func (InstanceIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIp)(nil)).Elem()
 }
 
-func (o InstanceIPOutput) ToInstanceIPOutput() InstanceIPOutput {
+func (o InstanceIpOutput) ToInstanceIpOutput() InstanceIpOutput {
 	return o
 }
 
-func (o InstanceIPOutput) ToInstanceIPOutputWithContext(ctx context.Context) InstanceIPOutput {
+func (o InstanceIpOutput) ToInstanceIpOutputWithContext(ctx context.Context) InstanceIpOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIPInput)(nil)).Elem(), &InstanceIP{})
-	pulumi.RegisterOutputType(InstanceIPOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpInput)(nil)).Elem(), &InstanceIp{})
+	pulumi.RegisterOutputType(InstanceIpOutput{})
 }

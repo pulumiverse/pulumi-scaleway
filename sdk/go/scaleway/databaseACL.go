@@ -28,10 +28,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewDatabaseACL(ctx, "main", &scaleway.DatabaseACLArgs{
+// 		_, err := scaleway.NewDatabaseAcl(ctx, "main", &scaleway.DatabaseAclArgs{
 // 			InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
-// 			AclRules: DatabaseACLAclRuleArray{
-// 				&DatabaseACLAclRuleArgs{
+// 			AclRules: DatabaseAclAclRuleArray{
+// 				&DatabaseAclAclRuleArgs{
 // 					Ip:          pulumi.String("1.2.3.4/32"),
 // 					Description: pulumi.String("foo"),
 // 				},
@@ -50,22 +50,22 @@ import (
 // Database Instance can be imported using the `{region}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/databaseACL:DatabaseACL acl01 fr-par/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type DatabaseACL struct {
+type DatabaseAcl struct {
 	pulumi.CustomResourceState
 
 	// A list of ACLs (structure is described below)
-	AclRules DatabaseACLAclRuleArrayOutput `pulumi:"aclRules"`
+	AclRules DatabaseAclAclRuleArrayOutput `pulumi:"aclRules"`
 	// The instance on which to create the ACL.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
-// NewDatabaseACL registers a new resource with the given unique name, arguments, and options.
-func NewDatabaseACL(ctx *pulumi.Context,
-	name string, args *DatabaseACLArgs, opts ...pulumi.ResourceOption) (*DatabaseACL, error) {
+// NewDatabaseAcl registers a new resource with the given unique name, arguments, and options.
+func NewDatabaseAcl(ctx *pulumi.Context,
+	name string, args *DatabaseAclArgs, opts ...pulumi.ResourceOption) (*DatabaseAcl, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -76,106 +76,106 @@ func NewDatabaseACL(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	var resource DatabaseACL
-	err := ctx.RegisterResource("scaleway:index/databaseACL:DatabaseACL", name, args, &resource, opts...)
+	var resource DatabaseAcl
+	err := ctx.RegisterResource("scaleway:index/databaseAcl:DatabaseAcl", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDatabaseACL gets an existing DatabaseACL resource's state with the given name, ID, and optional
+// GetDatabaseAcl gets an existing DatabaseAcl resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDatabaseACL(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DatabaseACLState, opts ...pulumi.ResourceOption) (*DatabaseACL, error) {
-	var resource DatabaseACL
-	err := ctx.ReadResource("scaleway:index/databaseACL:DatabaseACL", name, id, state, &resource, opts...)
+func GetDatabaseAcl(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DatabaseAclState, opts ...pulumi.ResourceOption) (*DatabaseAcl, error) {
+	var resource DatabaseAcl
+	err := ctx.ReadResource("scaleway:index/databaseAcl:DatabaseAcl", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DatabaseACL resources.
-type databaseACLState struct {
+// Input properties used for looking up and filtering DatabaseAcl resources.
+type databaseAclState struct {
 	// A list of ACLs (structure is described below)
-	AclRules []DatabaseACLAclRule `pulumi:"aclRules"`
+	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
 	// The instance on which to create the ACL.
 	InstanceId *string `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
-type DatabaseACLState struct {
+type DatabaseAclState struct {
 	// A list of ACLs (structure is described below)
-	AclRules DatabaseACLAclRuleArrayInput
+	AclRules DatabaseAclAclRuleArrayInput
 	// The instance on which to create the ACL.
 	InstanceId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 }
 
-func (DatabaseACLState) ElementType() reflect.Type {
-	return reflect.TypeOf((*databaseACLState)(nil)).Elem()
+func (DatabaseAclState) ElementType() reflect.Type {
+	return reflect.TypeOf((*databaseAclState)(nil)).Elem()
 }
 
-type databaseACLArgs struct {
+type databaseAclArgs struct {
 	// A list of ACLs (structure is described below)
-	AclRules []DatabaseACLAclRule `pulumi:"aclRules"`
+	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
 	// The instance on which to create the ACL.
 	InstanceId string `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
-// The set of arguments for constructing a DatabaseACL resource.
-type DatabaseACLArgs struct {
+// The set of arguments for constructing a DatabaseAcl resource.
+type DatabaseAclArgs struct {
 	// A list of ACLs (structure is described below)
-	AclRules DatabaseACLAclRuleArrayInput
+	AclRules DatabaseAclAclRuleArrayInput
 	// The instance on which to create the ACL.
 	InstanceId pulumi.StringInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 }
 
-func (DatabaseACLArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*databaseACLArgs)(nil)).Elem()
+func (DatabaseAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*databaseAclArgs)(nil)).Elem()
 }
 
-type DatabaseACLInput interface {
+type DatabaseAclInput interface {
 	pulumi.Input
 
-	ToDatabaseACLOutput() DatabaseACLOutput
-	ToDatabaseACLOutputWithContext(ctx context.Context) DatabaseACLOutput
+	ToDatabaseAclOutput() DatabaseAclOutput
+	ToDatabaseAclOutputWithContext(ctx context.Context) DatabaseAclOutput
 }
 
-func (*DatabaseACL) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseACL)(nil)).Elem()
+func (*DatabaseAcl) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseAcl)(nil)).Elem()
 }
 
-func (i *DatabaseACL) ToDatabaseACLOutput() DatabaseACLOutput {
-	return i.ToDatabaseACLOutputWithContext(context.Background())
+func (i *DatabaseAcl) ToDatabaseAclOutput() DatabaseAclOutput {
+	return i.ToDatabaseAclOutputWithContext(context.Background())
 }
 
-func (i *DatabaseACL) ToDatabaseACLOutputWithContext(ctx context.Context) DatabaseACLOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseACLOutput)
+func (i *DatabaseAcl) ToDatabaseAclOutputWithContext(ctx context.Context) DatabaseAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclOutput)
 }
 
-type DatabaseACLOutput struct{ *pulumi.OutputState }
+type DatabaseAclOutput struct{ *pulumi.OutputState }
 
-func (DatabaseACLOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseACL)(nil)).Elem()
+func (DatabaseAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseAcl)(nil)).Elem()
 }
 
-func (o DatabaseACLOutput) ToDatabaseACLOutput() DatabaseACLOutput {
+func (o DatabaseAclOutput) ToDatabaseAclOutput() DatabaseAclOutput {
 	return o
 }
 
-func (o DatabaseACLOutput) ToDatabaseACLOutputWithContext(ctx context.Context) DatabaseACLOutput {
+func (o DatabaseAclOutput) ToDatabaseAclOutputWithContext(ctx context.Context) DatabaseAclOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseACLInput)(nil)).Elem(), &DatabaseACL{})
-	pulumi.RegisterOutputType(DatabaseACLOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclInput)(nil)).Elem(), &DatabaseAcl{})
+	pulumi.RegisterOutputType(DatabaseAclOutput{})
 }

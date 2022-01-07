@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const serverIp = new scaleway.InstanceIP("serverIp", {});
- * const reverse = new scaleway.InstanceIPReverseDNS("reverse", {
+ * const serverIp = new scaleway.InstanceIp("serverIp", {});
+ * const reverse = new scaleway.InstanceIpReverseDns("reverse", {
  *     ipId: serverIp.id,
  *     reverse: "www.scaleway.com",
  * });
@@ -25,12 +25,12 @@ import * as utilities from "./utilities";
  * IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class InstanceIPReverseDNS extends pulumi.CustomResource {
+export class InstanceIpReverseDns extends pulumi.CustomResource {
     /**
-     * Get an existing InstanceIPReverseDNS resource's state with the given name, ID, and optional extra
+     * Get an existing InstanceIpReverseDns resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -38,22 +38,22 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIPReverseDNSState, opts?: pulumi.CustomResourceOptions): InstanceIPReverseDNS {
-        return new InstanceIPReverseDNS(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIpReverseDnsState, opts?: pulumi.CustomResourceOptions): InstanceIpReverseDns {
+        return new InstanceIpReverseDns(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS';
+    public static readonly __pulumiType = 'scaleway:index/instanceIpReverseDns:InstanceIpReverseDns';
 
     /**
-     * Returns true if the given object is an instance of InstanceIPReverseDNS.  This is designed to work even
+     * Returns true if the given object is an instance of InstanceIpReverseDns.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is InstanceIPReverseDNS {
+    public static isInstance(obj: any): obj is InstanceIpReverseDns {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === InstanceIPReverseDNS.__pulumiType;
+        return obj['__pulumiType'] === InstanceIpReverseDns.__pulumiType;
     }
 
     /**
@@ -70,23 +70,23 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a InstanceIPReverseDNS resource with the given unique name, arguments, and options.
+     * Create a InstanceIpReverseDns resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: InstanceIPReverseDNSArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: InstanceIPReverseDNSArgs | InstanceIPReverseDNSState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: InstanceIpReverseDnsArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: InstanceIpReverseDnsArgs | InstanceIpReverseDnsState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as InstanceIPReverseDNSState | undefined;
+            const state = argsOrState as InstanceIpReverseDnsState | undefined;
             resourceInputs["ipId"] = state ? state.ipId : undefined;
             resourceInputs["reverse"] = state ? state.reverse : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as InstanceIPReverseDNSArgs | undefined;
+            const args = argsOrState as InstanceIpReverseDnsArgs | undefined;
             if ((!args || args.ipId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ipId'");
             }
@@ -100,14 +100,14 @@ export class InstanceIPReverseDNS extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceIPReverseDNS.__pulumiType, name, resourceInputs, opts);
+        super(InstanceIpReverseDns.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering InstanceIPReverseDNS resources.
+ * Input properties used for looking up and filtering InstanceIpReverseDns resources.
  */
-export interface InstanceIPReverseDNSState {
+export interface InstanceIpReverseDnsState {
     /**
      * The IP ID
      */
@@ -123,9 +123,9 @@ export interface InstanceIPReverseDNSState {
 }
 
 /**
- * The set of arguments for constructing a InstanceIPReverseDNS resource.
+ * The set of arguments for constructing a InstanceIpReverseDns resource.
  */
-export interface InstanceIPReverseDNSArgs {
+export interface InstanceIpReverseDnsArgs {
     /**
      * The IP ID
      */

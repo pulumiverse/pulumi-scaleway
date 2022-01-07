@@ -8,10 +8,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['IOTHubArgs', 'IOTHub']
+__all__ = ['IotHubArgs', 'IotHub']
 
 @pulumi.input_type
-class IOTHubArgs:
+class IotHubArgs:
     def __init__(__self__, *,
                  product_plan: pulumi.Input[str],
                  device_auto_provisioning: Optional[pulumi.Input[bool]] = None,
@@ -24,7 +24,7 @@ class IOTHubArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a IOTHub resource.
+        The set of arguments for constructing a IotHub resource.
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
@@ -178,7 +178,7 @@ class IOTHubArgs:
 
 
 @pulumi.input_type
-class _IOTHubState:
+class _IotHubState:
     def __init__(__self__, *,
                  connected_device_count: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
@@ -198,7 +198,7 @@ class _IOTHubState:
                  status: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering IOTHub resources.
+        Input properties used for looking up and filtering IotHub resources.
         :param pulumi.Input[int] connected_device_count: The current number of connected devices in the Hub.
         :param pulumi.Input[str] created_at: The date and time the Hub was created.
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
@@ -457,7 +457,7 @@ class _IOTHubState:
         pulumi.set(self, "updated_at", value)
 
 
-class IOTHub(pulumi.CustomResource):
+class IotHub(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -479,7 +479,7 @@ class IOTHub(pulumi.CustomResource):
         IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/iOTHub:IOTHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -499,7 +499,7 @@ class IOTHub(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: IOTHubArgs,
+                 args: IotHubArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Import
@@ -507,16 +507,16 @@ class IOTHub(pulumi.CustomResource):
         IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/iOTHub:IOTHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param IOTHubArgs args: The arguments to use to populate this resource's properties.
+        :param IotHubArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(IOTHubArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(IotHubArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -545,7 +545,7 @@ class IOTHub(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = IOTHubArgs.__new__(IOTHubArgs)
+            __props__ = IotHubArgs.__new__(IotHubArgs)
 
             __props__.__dict__["device_auto_provisioning"] = device_auto_provisioning
             __props__.__dict__["disable_events"] = disable_events
@@ -566,8 +566,8 @@ class IOTHub(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
-        super(IOTHub, __self__).__init__(
-            'scaleway:index/iOTHub:IOTHub',
+        super(IotHub, __self__).__init__(
+            'scaleway:index/iotHub:IotHub',
             resource_name,
             __props__,
             opts)
@@ -592,9 +592,9 @@ class IOTHub(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            updated_at: Optional[pulumi.Input[str]] = None) -> 'IOTHub':
+            updated_at: Optional[pulumi.Input[str]] = None) -> 'IotHub':
         """
-        Get an existing IOTHub resource's state with the given name, id, and optional extra
+        Get an existing IotHub resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -620,7 +620,7 @@ class IOTHub(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _IOTHubState.__new__(_IOTHubState)
+        __props__ = _IotHubState.__new__(_IotHubState)
 
         __props__.__dict__["connected_device_count"] = connected_device_count
         __props__.__dict__["created_at"] = created_at
@@ -639,7 +639,7 @@ class IOTHub(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
-        return IOTHub(resource_name, opts=opts, __props__=__props__)
+        return IotHub(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="connectedDeviceCount")

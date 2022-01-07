@@ -57,10 +57,10 @@ from .loadbalancer_backend import *
 from .loadbalancer_certificate import *
 from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
+from .loadbalancer_route import *
 from .object_bucket import *
 from .provider import *
 from .registry_namespace import *
-from .route import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
 from .vpc_public_gateway import *
@@ -114,10 +114,10 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/databaseACL",
+  "mod": "index/databaseAcl",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/databaseACL:DatabaseACL": "DatabaseACL"
+   "scaleway:index/databaseAcl:DatabaseAcl": "DatabaseAcl"
   }
  },
  {
@@ -154,50 +154,18 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/iOTDevice",
+  "mod": "index/instanceIp",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/iOTDevice:IOTDevice": "IOTDevice"
+   "scaleway:index/instanceIp:InstanceIp": "InstanceIp"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/iOTHub",
+  "mod": "index/instanceIpReverseDns",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/iOTHub:IOTHub": "IOTHub"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/iOTNetwork",
-  "fqn": "pulumi_scaleway",
-  "classes": {
-   "scaleway:index/iOTNetwork:IOTNetwork": "IOTNetwork"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/iOTRoute",
-  "fqn": "pulumi_scaleway",
-  "classes": {
-   "scaleway:index/iOTRoute:IOTRoute": "IOTRoute"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/instanceIP",
-  "fqn": "pulumi_scaleway",
-  "classes": {
-   "scaleway:index/instanceIP:InstanceIP": "InstanceIP"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/instanceIPReverseDNS",
-  "fqn": "pulumi_scaleway",
-  "classes": {
-   "scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS": "InstanceIPReverseDNS"
+   "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns": "InstanceIpReverseDns"
   }
  },
  {
@@ -210,10 +178,10 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/instancePrivateNIC",
+  "mod": "index/instancePrivateNic",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/instancePrivateNIC:InstancePrivateNIC": "InstancePrivateNIC"
+   "scaleway:index/instancePrivateNic:InstancePrivateNic": "InstancePrivateNic"
   }
  },
  {
@@ -254,6 +222,38 @@ _utilities.register(
   "fqn": "pulumi_scaleway",
   "classes": {
    "scaleway:index/instanceVolume:InstanceVolume": "InstanceVolume"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iotDevice",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iotDevice:IotDevice": "IotDevice"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iotHub",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iotHub:IotHub": "IotHub"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iotNetwork",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iotNetwork:IotNetwork": "IotNetwork"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iotRoute",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iotRoute:IotRoute": "IotRoute"
   }
  },
  {
@@ -306,10 +306,18 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/loadbalancerIP",
+  "mod": "index/loadbalancerIp",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/loadbalancerIP:LoadbalancerIP": "LoadbalancerIP"
+   "scaleway:index/loadbalancerIp:LoadbalancerIp": "LoadbalancerIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/loadbalancerRoute",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/loadbalancerRoute:LoadbalancerRoute": "LoadbalancerRoute"
   }
  },
  {
@@ -326,14 +334,6 @@ _utilities.register(
   "fqn": "pulumi_scaleway",
   "classes": {
    "scaleway:index/registryNamespace:RegistryNamespace": "RegistryNamespace"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/route",
-  "fqn": "pulumi_scaleway",
-  "classes": {
-   "scaleway:index/route:Route": "Route"
   }
  },
  {
@@ -362,26 +362,26 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/vpcPublicGatewayDHCP",
+  "mod": "index/vpcPublicGatewayDhcp",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP": "VpcPublicGatewayDHCP"
+   "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp": "VpcPublicGatewayDhcp"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/vpcPublicGatewayIP",
+  "mod": "index/vpcPublicGatewayIp",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP": "VpcPublicGatewayIP"
+   "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp": "VpcPublicGatewayIp"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/vpcPublicGatewayPATRule",
+  "mod": "index/vpcPublicGatewayPatRule",
   "fqn": "pulumi_scaleway",
   "classes": {
-   "scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule": "VpcPublicGatewayPATRule"
+   "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule": "VpcPublicGatewayPatRule"
   }
  }
 ]

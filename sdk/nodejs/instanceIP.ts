@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const serverIp = new scaleway.InstanceIP("server_ip", {});
+ * const serverIp = new scaleway.InstanceIp("server_ip", {});
  * ```
  *
  * ## Import
@@ -21,12 +21,12 @@ import * as utilities from "./utilities";
  * IPs can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instanceIP:InstanceIP server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class InstanceIP extends pulumi.CustomResource {
+export class InstanceIp extends pulumi.CustomResource {
     /**
-     * Get an existing InstanceIP resource's state with the given name, ID, and optional extra
+     * Get an existing InstanceIp resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -34,22 +34,22 @@ export class InstanceIP extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIPState, opts?: pulumi.CustomResourceOptions): InstanceIP {
-        return new InstanceIP(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIpState, opts?: pulumi.CustomResourceOptions): InstanceIp {
+        return new InstanceIp(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/instanceIP:InstanceIP';
+    public static readonly __pulumiType = 'scaleway:index/instanceIp:InstanceIp';
 
     /**
-     * Returns true if the given object is an instance of InstanceIP.  This is designed to work even
+     * Returns true if the given object is an instance of InstanceIp.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is InstanceIP {
+    public static isInstance(obj: any): obj is InstanceIp {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === InstanceIP.__pulumiType;
+        return obj['__pulumiType'] === InstanceIp.__pulumiType;
     }
 
     /**
@@ -78,18 +78,18 @@ export class InstanceIP extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a InstanceIP resource with the given unique name, arguments, and options.
+     * Create a InstanceIp resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: InstanceIPArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: InstanceIPArgs | InstanceIPState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: InstanceIpArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: InstanceIpArgs | InstanceIpState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as InstanceIPState | undefined;
+            const state = argsOrState as InstanceIpState | undefined;
             resourceInputs["address"] = state ? state.address : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -97,7 +97,7 @@ export class InstanceIP extends pulumi.CustomResource {
             resourceInputs["serverId"] = state ? state.serverId : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as InstanceIPArgs | undefined;
+            const args = argsOrState as InstanceIpArgs | undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["address"] = undefined /*out*/;
@@ -108,14 +108,14 @@ export class InstanceIP extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceIP.__pulumiType, name, resourceInputs, opts);
+        super(InstanceIp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering InstanceIP resources.
+ * Input properties used for looking up and filtering InstanceIp resources.
  */
-export interface InstanceIPState {
+export interface InstanceIpState {
     /**
      * The IP address.
      */
@@ -143,9 +143,9 @@ export interface InstanceIPState {
 }
 
 /**
- * The set of arguments for constructing a InstanceIP resource.
+ * The set of arguments for constructing a InstanceIp resource.
  */
-export interface InstanceIPArgs {
+export interface InstanceIpArgs {
     /**
      * `projectId`) The ID of the project the IP is associated with.
      */

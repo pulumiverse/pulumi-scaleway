@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    [ScalewayResourceType("scaleway:index/iOTRoute:IOTRoute")]
-    public partial class IOTRoute : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/iotRoute:IotRoute")]
+    public partial class IotRoute : Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time of the creation of the IoT Route
@@ -22,7 +22,7 @@ namespace Pulumi.Scaleway
         /// Database Route parameters
         /// </summary>
         [Output("database")]
-        public Output<Outputs.IOTRouteDatabase?> Database { get; private set; } = null!;
+        public Output<Outputs.IotRouteDatabase?> Database { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the route's hub
@@ -46,13 +46,13 @@ namespace Pulumi.Scaleway
         /// Rest Route parameters
         /// </summary>
         [Output("rest")]
-        public Output<Outputs.IOTRouteRest?> Rest { get; private set; } = null!;
+        public Output<Outputs.IotRouteRest?> Rest { get; private set; } = null!;
 
         /// <summary>
         /// S3 Route parameters
         /// </summary>
         [Output("s3")]
-        public Output<Outputs.IOTRouteS3?> S3 { get; private set; } = null!;
+        public Output<Outputs.IotRouteS3?> S3 { get; private set; } = null!;
 
         /// <summary>
         /// The Topic the route subscribes to (wildcards allowed)
@@ -62,19 +62,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a IOTRoute resource with the given unique name, arguments, and options.
+        /// Create a IotRoute resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public IOTRoute(string name, IOTRouteArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTRoute:IOTRoute", name, args ?? new IOTRouteArgs(), MakeResourceOptions(options, ""))
+        public IotRoute(string name, IotRouteArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotRoute:IotRoute", name, args ?? new IotRouteArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private IOTRoute(string name, Input<string> id, IOTRouteState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTRoute:IOTRoute", name, state, MakeResourceOptions(options, id))
+        private IotRoute(string name, Input<string> id, IotRouteState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotRoute:IotRoute", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -90,7 +90,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing IOTRoute resource's state with the given name, ID, and optional extra
+        /// Get an existing IotRoute resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -98,19 +98,19 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static IOTRoute Get(string name, Input<string> id, IOTRouteState? state = null, CustomResourceOptions? options = null)
+        public static IotRoute Get(string name, Input<string> id, IotRouteState? state = null, CustomResourceOptions? options = null)
         {
-            return new IOTRoute(name, id, state, options);
+            return new IotRoute(name, id, state, options);
         }
     }
 
-    public sealed class IOTRouteArgs : Pulumi.ResourceArgs
+    public sealed class IotRouteArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database Route parameters
         /// </summary>
         [Input("database")]
-        public Input<Inputs.IOTRouteDatabaseArgs>? Database { get; set; }
+        public Input<Inputs.IotRouteDatabaseArgs>? Database { get; set; }
 
         /// <summary>
         /// The ID of the route's hub
@@ -134,13 +134,13 @@ namespace Pulumi.Scaleway
         /// Rest Route parameters
         /// </summary>
         [Input("rest")]
-        public Input<Inputs.IOTRouteRestArgs>? Rest { get; set; }
+        public Input<Inputs.IotRouteRestArgs>? Rest { get; set; }
 
         /// <summary>
         /// S3 Route parameters
         /// </summary>
         [Input("s3")]
-        public Input<Inputs.IOTRouteS3Args>? S3 { get; set; }
+        public Input<Inputs.IotRouteS3Args>? S3 { get; set; }
 
         /// <summary>
         /// The Topic the route subscribes to (wildcards allowed)
@@ -148,12 +148,12 @@ namespace Pulumi.Scaleway
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;
 
-        public IOTRouteArgs()
+        public IotRouteArgs()
         {
         }
     }
 
-    public sealed class IOTRouteState : Pulumi.ResourceArgs
+    public sealed class IotRouteState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time of the creation of the IoT Route
@@ -165,7 +165,7 @@ namespace Pulumi.Scaleway
         /// Database Route parameters
         /// </summary>
         [Input("database")]
-        public Input<Inputs.IOTRouteDatabaseGetArgs>? Database { get; set; }
+        public Input<Inputs.IotRouteDatabaseGetArgs>? Database { get; set; }
 
         /// <summary>
         /// The ID of the route's hub
@@ -189,13 +189,13 @@ namespace Pulumi.Scaleway
         /// Rest Route parameters
         /// </summary>
         [Input("rest")]
-        public Input<Inputs.IOTRouteRestGetArgs>? Rest { get; set; }
+        public Input<Inputs.IotRouteRestGetArgs>? Rest { get; set; }
 
         /// <summary>
         /// S3 Route parameters
         /// </summary>
         [Input("s3")]
-        public Input<Inputs.IOTRouteS3GetArgs>? S3 { get; set; }
+        public Input<Inputs.IotRouteS3GetArgs>? S3 { get; set; }
 
         /// <summary>
         /// The Topic the route subscribes to (wildcards allowed)
@@ -203,7 +203,7 @@ namespace Pulumi.Scaleway
         [Input("topic")]
         public Input<string>? Topic { get; set; }
 
-        public IOTRouteState()
+        public IotRouteState()
         {
         }
     }

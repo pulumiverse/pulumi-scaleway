@@ -27,7 +27,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewLoadbalancerIP(ctx, "ip", &scaleway.LoadbalancerIPArgs{
+// 		_, err := scaleway.NewLoadbalancerIp(ctx, "ip", &scaleway.LoadbalancerIpArgs{
 // 			Reverse: pulumi.String("my-reverse.com"),
 // 		})
 // 		if err != nil {
@@ -43,9 +43,9 @@ import (
 // IPs can be imported using the `{zone}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/loadbalancerIP:LoadbalancerIP ip01 fr-par-1/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
-type LoadbalancerIP struct {
+type LoadbalancerIp struct {
 	pulumi.CustomResourceState
 
 	// The IP Address
@@ -64,35 +64,35 @@ type LoadbalancerIP struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewLoadbalancerIP registers a new resource with the given unique name, arguments, and options.
-func NewLoadbalancerIP(ctx *pulumi.Context,
-	name string, args *LoadbalancerIPArgs, opts ...pulumi.ResourceOption) (*LoadbalancerIP, error) {
+// NewLoadbalancerIp registers a new resource with the given unique name, arguments, and options.
+func NewLoadbalancerIp(ctx *pulumi.Context,
+	name string, args *LoadbalancerIpArgs, opts ...pulumi.ResourceOption) (*LoadbalancerIp, error) {
 	if args == nil {
-		args = &LoadbalancerIPArgs{}
+		args = &LoadbalancerIpArgs{}
 	}
 
-	var resource LoadbalancerIP
-	err := ctx.RegisterResource("scaleway:index/loadbalancerIP:LoadbalancerIP", name, args, &resource, opts...)
+	var resource LoadbalancerIp
+	err := ctx.RegisterResource("scaleway:index/loadbalancerIp:LoadbalancerIp", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetLoadbalancerIP gets an existing LoadbalancerIP resource's state with the given name, ID, and optional
+// GetLoadbalancerIp gets an existing LoadbalancerIp resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetLoadbalancerIP(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *LoadbalancerIPState, opts ...pulumi.ResourceOption) (*LoadbalancerIP, error) {
-	var resource LoadbalancerIP
-	err := ctx.ReadResource("scaleway:index/loadbalancerIP:LoadbalancerIP", name, id, state, &resource, opts...)
+func GetLoadbalancerIp(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *LoadbalancerIpState, opts ...pulumi.ResourceOption) (*LoadbalancerIp, error) {
+	var resource LoadbalancerIp
+	err := ctx.ReadResource("scaleway:index/loadbalancerIp:LoadbalancerIp", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering LoadbalancerIP resources.
-type loadbalancerIPState struct {
+// Input properties used for looking up and filtering LoadbalancerIp resources.
+type loadbalancerIpState struct {
 	// The IP Address
 	IpAddress *string `pulumi:"ipAddress"`
 	// The associated load-balance ID if any
@@ -109,7 +109,7 @@ type loadbalancerIPState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type LoadbalancerIPState struct {
+type LoadbalancerIpState struct {
 	// The IP Address
 	IpAddress pulumi.StringPtrInput
 	// The associated load-balance ID if any
@@ -126,11 +126,11 @@ type LoadbalancerIPState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (LoadbalancerIPState) ElementType() reflect.Type {
-	return reflect.TypeOf((*loadbalancerIPState)(nil)).Elem()
+func (LoadbalancerIpState) ElementType() reflect.Type {
+	return reflect.TypeOf((*loadbalancerIpState)(nil)).Elem()
 }
 
-type loadbalancerIPArgs struct {
+type loadbalancerIpArgs struct {
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
@@ -139,8 +139,8 @@ type loadbalancerIPArgs struct {
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a LoadbalancerIP resource.
-type LoadbalancerIPArgs struct {
+// The set of arguments for constructing a LoadbalancerIp resource.
+type LoadbalancerIpArgs struct {
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain associated with this IP.
@@ -149,44 +149,44 @@ type LoadbalancerIPArgs struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (LoadbalancerIPArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*loadbalancerIPArgs)(nil)).Elem()
+func (LoadbalancerIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*loadbalancerIpArgs)(nil)).Elem()
 }
 
-type LoadbalancerIPInput interface {
+type LoadbalancerIpInput interface {
 	pulumi.Input
 
-	ToLoadbalancerIPOutput() LoadbalancerIPOutput
-	ToLoadbalancerIPOutputWithContext(ctx context.Context) LoadbalancerIPOutput
+	ToLoadbalancerIpOutput() LoadbalancerIpOutput
+	ToLoadbalancerIpOutputWithContext(ctx context.Context) LoadbalancerIpOutput
 }
 
-func (*LoadbalancerIP) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerIP)(nil)).Elem()
+func (*LoadbalancerIp) ElementType() reflect.Type {
+	return reflect.TypeOf((**LoadbalancerIp)(nil)).Elem()
 }
 
-func (i *LoadbalancerIP) ToLoadbalancerIPOutput() LoadbalancerIPOutput {
-	return i.ToLoadbalancerIPOutputWithContext(context.Background())
+func (i *LoadbalancerIp) ToLoadbalancerIpOutput() LoadbalancerIpOutput {
+	return i.ToLoadbalancerIpOutputWithContext(context.Background())
 }
 
-func (i *LoadbalancerIP) ToLoadbalancerIPOutputWithContext(ctx context.Context) LoadbalancerIPOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIPOutput)
+func (i *LoadbalancerIp) ToLoadbalancerIpOutputWithContext(ctx context.Context) LoadbalancerIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpOutput)
 }
 
-type LoadbalancerIPOutput struct{ *pulumi.OutputState }
+type LoadbalancerIpOutput struct{ *pulumi.OutputState }
 
-func (LoadbalancerIPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerIP)(nil)).Elem()
+func (LoadbalancerIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LoadbalancerIp)(nil)).Elem()
 }
 
-func (o LoadbalancerIPOutput) ToLoadbalancerIPOutput() LoadbalancerIPOutput {
+func (o LoadbalancerIpOutput) ToLoadbalancerIpOutput() LoadbalancerIpOutput {
 	return o
 }
 
-func (o LoadbalancerIPOutput) ToLoadbalancerIPOutputWithContext(ctx context.Context) LoadbalancerIPOutput {
+func (o LoadbalancerIpOutput) ToLoadbalancerIpOutputWithContext(ctx context.Context) LoadbalancerIpOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIPInput)(nil)).Elem(), &LoadbalancerIP{})
-	pulumi.RegisterOutputType(LoadbalancerIPOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIpInput)(nil)).Elem(), &LoadbalancerIp{})
+	pulumi.RegisterOutputType(LoadbalancerIpOutput{})
 }

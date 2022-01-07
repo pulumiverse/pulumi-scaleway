@@ -9,16 +9,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'GetInstanceIPResult',
-    'AwaitableGetInstanceIPResult',
+    'GetInstanceIpResult',
+    'AwaitableGetInstanceIpResult',
     'get_instance_ip',
     'get_instance_ip_output',
 ]
 
 @pulumi.output_type
-class GetInstanceIPResult:
+class GetInstanceIpResult:
     """
-    A collection of values returned by getInstanceIP.
+    A collection of values returned by getInstanceIp.
     """
     def __init__(__self__, address=None, id=None, organization_id=None, project_id=None, reverse=None, server_id=None, zone=None):
         if address and not isinstance(address, str):
@@ -91,12 +91,12 @@ class GetInstanceIPResult:
         return pulumi.get(self, "zone")
 
 
-class AwaitableGetInstanceIPResult(GetInstanceIPResult):
+class AwaitableGetInstanceIpResult(GetInstanceIpResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetInstanceIPResult(
+        return GetInstanceIpResult(
             address=self.address,
             id=self.id,
             organization_id=self.organization_id,
@@ -108,7 +108,7 @@ class AwaitableGetInstanceIPResult(GetInstanceIPResult):
 
 def get_instance_ip(address: Optional[str] = None,
                     id: Optional[str] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceIPResult:
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceIpResult:
     """
     Gets information about an instance IP.
 
@@ -134,9 +134,9 @@ def get_instance_ip(address: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceIP:getInstanceIP', __args__, opts=opts, typ=GetInstanceIPResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceIp:getInstanceIp', __args__, opts=opts, typ=GetInstanceIpResult).value
 
-    return AwaitableGetInstanceIPResult(
+    return AwaitableGetInstanceIpResult(
         address=__ret__.address,
         id=__ret__.id,
         organization_id=__ret__.organization_id,
@@ -149,7 +149,7 @@ def get_instance_ip(address: Optional[str] = None,
 @_utilities.lift_output_func(get_instance_ip)
 def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None,
                            id: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIPResult]:
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIpResult]:
     """
     Gets information about an instance IP.
 

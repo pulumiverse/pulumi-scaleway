@@ -16,9 +16,9 @@ import (
 // IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/iOTHub:IOTHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type IOTHub struct {
+type IotHub struct {
 	pulumi.CustomResourceState
 
 	// The current number of connected devices in the Hub.
@@ -57,9 +57,9 @@ type IOTHub struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
-// NewIOTHub registers a new resource with the given unique name, arguments, and options.
-func NewIOTHub(ctx *pulumi.Context,
-	name string, args *IOTHubArgs, opts ...pulumi.ResourceOption) (*IOTHub, error) {
+// NewIotHub registers a new resource with the given unique name, arguments, and options.
+func NewIotHub(ctx *pulumi.Context,
+	name string, args *IotHubArgs, opts ...pulumi.ResourceOption) (*IotHub, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -67,28 +67,28 @@ func NewIOTHub(ctx *pulumi.Context,
 	if args.ProductPlan == nil {
 		return nil, errors.New("invalid value for required argument 'ProductPlan'")
 	}
-	var resource IOTHub
-	err := ctx.RegisterResource("scaleway:index/iOTHub:IOTHub", name, args, &resource, opts...)
+	var resource IotHub
+	err := ctx.RegisterResource("scaleway:index/iotHub:IotHub", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetIOTHub gets an existing IOTHub resource's state with the given name, ID, and optional
+// GetIotHub gets an existing IotHub resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetIOTHub(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *IOTHubState, opts ...pulumi.ResourceOption) (*IOTHub, error) {
-	var resource IOTHub
-	err := ctx.ReadResource("scaleway:index/iOTHub:IOTHub", name, id, state, &resource, opts...)
+func GetIotHub(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *IotHubState, opts ...pulumi.ResourceOption) (*IotHub, error) {
+	var resource IotHub
+	err := ctx.ReadResource("scaleway:index/iotHub:IotHub", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering IOTHub resources.
-type iothubState struct {
+// Input properties used for looking up and filtering IotHub resources.
+type iotHubState struct {
 	// The current number of connected devices in the Hub.
 	ConnectedDeviceCount *int `pulumi:"connectedDeviceCount"`
 	// The date and time the Hub was created.
@@ -125,7 +125,7 @@ type iothubState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
-type IOTHubState struct {
+type IotHubState struct {
 	// The current number of connected devices in the Hub.
 	ConnectedDeviceCount pulumi.IntPtrInput
 	// The date and time the Hub was created.
@@ -162,11 +162,11 @@ type IOTHubState struct {
 	UpdatedAt pulumi.StringPtrInput
 }
 
-func (IOTHubState) ElementType() reflect.Type {
-	return reflect.TypeOf((*iothubState)(nil)).Elem()
+func (IotHubState) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotHubState)(nil)).Elem()
 }
 
-type iothubArgs struct {
+type iotHubArgs struct {
 	// Wether to enable the device auto provisioning or not
 	DeviceAutoProvisioning *bool `pulumi:"deviceAutoProvisioning"`
 	// Whether to enable the hub events or not
@@ -189,8 +189,8 @@ type iothubArgs struct {
 	Region *string `pulumi:"region"`
 }
 
-// The set of arguments for constructing a IOTHub resource.
-type IOTHubArgs struct {
+// The set of arguments for constructing a IotHub resource.
+type IotHubArgs struct {
 	// Wether to enable the device auto provisioning or not
 	DeviceAutoProvisioning pulumi.BoolPtrInput
 	// Whether to enable the hub events or not
@@ -213,44 +213,44 @@ type IOTHubArgs struct {
 	Region pulumi.StringPtrInput
 }
 
-func (IOTHubArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*iothubArgs)(nil)).Elem()
+func (IotHubArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotHubArgs)(nil)).Elem()
 }
 
-type IOTHubInput interface {
+type IotHubInput interface {
 	pulumi.Input
 
-	ToIOTHubOutput() IOTHubOutput
-	ToIOTHubOutputWithContext(ctx context.Context) IOTHubOutput
+	ToIotHubOutput() IotHubOutput
+	ToIotHubOutputWithContext(ctx context.Context) IotHubOutput
 }
 
-func (*IOTHub) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTHub)(nil)).Elem()
+func (*IotHub) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotHub)(nil)).Elem()
 }
 
-func (i *IOTHub) ToIOTHubOutput() IOTHubOutput {
-	return i.ToIOTHubOutputWithContext(context.Background())
+func (i *IotHub) ToIotHubOutput() IotHubOutput {
+	return i.ToIotHubOutputWithContext(context.Background())
 }
 
-func (i *IOTHub) ToIOTHubOutputWithContext(ctx context.Context) IOTHubOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTHubOutput)
+func (i *IotHub) ToIotHubOutputWithContext(ctx context.Context) IotHubOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotHubOutput)
 }
 
-type IOTHubOutput struct{ *pulumi.OutputState }
+type IotHubOutput struct{ *pulumi.OutputState }
 
-func (IOTHubOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTHub)(nil)).Elem()
+func (IotHubOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotHub)(nil)).Elem()
 }
 
-func (o IOTHubOutput) ToIOTHubOutput() IOTHubOutput {
+func (o IotHubOutput) ToIotHubOutput() IotHubOutput {
 	return o
 }
 
-func (o IOTHubOutput) ToIOTHubOutputWithContext(ctx context.Context) IOTHubOutput {
+func (o IotHubOutput) ToIotHubOutputWithContext(ctx context.Context) IotHubOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTHubInput)(nil)).Elem(), &IOTHub{})
-	pulumi.RegisterOutputType(IOTHubOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotHubInput)(nil)).Elem(), &IotHub{})
+	pulumi.RegisterOutputType(IotHubOutput{})
 }

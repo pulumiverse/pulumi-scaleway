@@ -23,7 +23,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var pnic01 = new Scaleway.InstancePrivateNIC("pnic01", new Scaleway.InstancePrivateNICArgs
+    ///         var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new Scaleway.InstancePrivateNicArgs
     ///         {
     ///             PrivateNetworkId = "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
     ///             ServerId = "fr-par-1/11111111-1111-1111-1111-111111111111",
@@ -38,11 +38,11 @@ namespace Pulumi.Scaleway
     /// Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/instancePrivateNIC:InstancePrivateNIC server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+    ///  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/instancePrivateNIC:InstancePrivateNIC")]
-    public partial class InstancePrivateNIC : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/instancePrivateNic:InstancePrivateNic")]
+    public partial class InstancePrivateNic : Pulumi.CustomResource
     {
         /// <summary>
         /// MAC address of the NIC
@@ -70,19 +70,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a InstancePrivateNIC resource with the given unique name, arguments, and options.
+        /// Create a InstancePrivateNic resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public InstancePrivateNIC(string name, InstancePrivateNICArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/instancePrivateNIC:InstancePrivateNIC", name, args ?? new InstancePrivateNICArgs(), MakeResourceOptions(options, ""))
+        public InstancePrivateNic(string name, InstancePrivateNicArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/instancePrivateNic:InstancePrivateNic", name, args ?? new InstancePrivateNicArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private InstancePrivateNIC(string name, Input<string> id, InstancePrivateNICState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/instancePrivateNIC:InstancePrivateNIC", name, state, MakeResourceOptions(options, id))
+        private InstancePrivateNic(string name, Input<string> id, InstancePrivateNicState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/instancePrivateNic:InstancePrivateNic", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -98,7 +98,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing InstancePrivateNIC resource's state with the given name, ID, and optional extra
+        /// Get an existing InstancePrivateNic resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -106,13 +106,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static InstancePrivateNIC Get(string name, Input<string> id, InstancePrivateNICState? state = null, CustomResourceOptions? options = null)
+        public static InstancePrivateNic Get(string name, Input<string> id, InstancePrivateNicState? state = null, CustomResourceOptions? options = null)
         {
-            return new InstancePrivateNIC(name, id, state, options);
+            return new InstancePrivateNic(name, id, state, options);
         }
     }
 
-    public sealed class InstancePrivateNICArgs : Pulumi.ResourceArgs
+    public sealed class InstancePrivateNicArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the private network attached to.
@@ -132,12 +132,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public InstancePrivateNICArgs()
+        public InstancePrivateNicArgs()
         {
         }
     }
 
-    public sealed class InstancePrivateNICState : Pulumi.ResourceArgs
+    public sealed class InstancePrivateNicState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// MAC address of the NIC
@@ -163,7 +163,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public InstancePrivateNICState()
+        public InstancePrivateNicState()
         {
         }
     }

@@ -8,10 +8,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['VpcPublicGatewayPATRuleArgs', 'VpcPublicGatewayPATRule']
+__all__ = ['VpcPublicGatewayPatRuleArgs', 'VpcPublicGatewayPatRule']
 
 @pulumi.input_type
-class VpcPublicGatewayPATRuleArgs:
+class VpcPublicGatewayPatRuleArgs:
     def __init__(__self__, *,
                  gateway_id: pulumi.Input[str],
                  private_ip: pulumi.Input[str],
@@ -20,7 +20,7 @@ class VpcPublicGatewayPATRuleArgs:
                  protocol: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a VpcPublicGatewayPATRule resource.
+        The set of arguments for constructing a VpcPublicGatewayPatRule resource.
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
         :param pulumi.Input[str] private_ip: The Private IP to forward data to (IP address).
         :param pulumi.Input[int] private_port: The Private port to translate to.
@@ -111,7 +111,7 @@ class VpcPublicGatewayPATRuleArgs:
 
 
 @pulumi.input_type
-class _VpcPublicGatewayPATRuleState:
+class _VpcPublicGatewayPatRuleState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
@@ -123,7 +123,7 @@ class _VpcPublicGatewayPATRuleState:
                  updated_at: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering VpcPublicGatewayPATRule resources.
+        Input properties used for looking up and filtering VpcPublicGatewayPatRule resources.
         :param pulumi.Input[str] created_at: The date and time of the creation of the pat rule config.
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
         :param pulumi.Input[str] organization_id: The organization ID the pat rule config is associated with.
@@ -262,7 +262,7 @@ class _VpcPublicGatewayPATRuleState:
         pulumi.set(self, "zone", value)
 
 
-class VpcPublicGatewayPATRule(pulumi.CustomResource):
+class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -285,14 +285,14 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
 
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
-        dhcp01 = scaleway.VpcPublicGatewayDHCP("dhcp01", subnet="192.168.1.0/24")
+        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
         pn01 = scaleway.VpcPrivateNetwork("pn01")
         gn01 = scaleway.VpcGatewayNetwork("gn01",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             dhcp_id=dhcp01.id,
             cleanup_dhcp=True)
-        main = scaleway.VpcPublicGatewayPATRule("main",
+        main = scaleway.VpcPublicGatewayPatRule("main",
             gateway_id=pg01.id,
             private_ip=dhcp01.address,
             private_port=42,
@@ -309,7 +309,7 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule main fr-par-1/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -325,7 +325,7 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: VpcPublicGatewayPATRuleArgs,
+                 args: VpcPublicGatewayPatRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
@@ -338,14 +338,14 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
 
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
-        dhcp01 = scaleway.VpcPublicGatewayDHCP("dhcp01", subnet="192.168.1.0/24")
+        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
         pn01 = scaleway.VpcPrivateNetwork("pn01")
         gn01 = scaleway.VpcGatewayNetwork("gn01",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             dhcp_id=dhcp01.id,
             cleanup_dhcp=True)
-        main = scaleway.VpcPublicGatewayPATRule("main",
+        main = scaleway.VpcPublicGatewayPatRule("main",
             gateway_id=pg01.id,
             private_ip=dhcp01.address,
             private_port=42,
@@ -362,16 +362,16 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule main fr-par-1/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param VpcPublicGatewayPATRuleArgs args: The arguments to use to populate this resource's properties.
+        :param VpcPublicGatewayPatRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(VpcPublicGatewayPATRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(VpcPublicGatewayPatRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -396,7 +396,7 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = VpcPublicGatewayPATRuleArgs.__new__(VpcPublicGatewayPATRuleArgs)
+            __props__ = VpcPublicGatewayPatRuleArgs.__new__(VpcPublicGatewayPatRuleArgs)
 
             if gateway_id is None and not opts.urn:
                 raise TypeError("Missing required property 'gateway_id'")
@@ -415,8 +415,8 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["updated_at"] = None
-        super(VpcPublicGatewayPATRule, __self__).__init__(
-            'scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule',
+        super(VpcPublicGatewayPatRule, __self__).__init__(
+            'scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule',
             resource_name,
             __props__,
             opts)
@@ -433,9 +433,9 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
             protocol: Optional[pulumi.Input[str]] = None,
             public_port: Optional[pulumi.Input[int]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            zone: Optional[pulumi.Input[str]] = None) -> 'VpcPublicGatewayPATRule':
+            zone: Optional[pulumi.Input[str]] = None) -> 'VpcPublicGatewayPatRule':
         """
-        Get an existing VpcPublicGatewayPATRule resource's state with the given name, id, and optional extra
+        Get an existing VpcPublicGatewayPatRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -453,7 +453,7 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _VpcPublicGatewayPATRuleState.__new__(_VpcPublicGatewayPATRuleState)
+        __props__ = _VpcPublicGatewayPatRuleState.__new__(_VpcPublicGatewayPatRuleState)
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["gateway_id"] = gateway_id
@@ -464,7 +464,7 @@ class VpcPublicGatewayPATRule(pulumi.CustomResource):
         __props__.__dict__["public_port"] = public_port
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
-        return VpcPublicGatewayPATRule(resource_name, opts=opts, __props__=__props__)
+        return VpcPublicGatewayPatRule(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createdAt")

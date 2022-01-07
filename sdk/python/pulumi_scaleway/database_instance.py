@@ -688,8 +688,8 @@ class DatabaseInstance(pulumi.CustomResource):
         # keep it one week
         # with private network and dhcp configuration
         pn02 = scaleway.VpcPrivateNetwork("pn02")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDHCP("mainVpcPublicGatewayDHCP", subnet="192.168.1.0/24")
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIP("mainVpcPublicGatewayIP")
+        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
+        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
         main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
             type="VPC-GW-S",
             ip_id=main_vpc_public_gateway_ip.id)
@@ -703,7 +703,7 @@ class DatabaseInstance(pulumi.CustomResource):
                     main_vpc_public_gateway_ip,
                     pn02,
                 ]))
-        main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPATRule("mainVpcPublicGatewayPATRule",
+        main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule",
             gateway_id=main_vpc_public_gateway.id,
             private_ip=main_vpc_public_gateway_dhcp.address,
             private_port=main_database_instance.private_network.port,
@@ -807,8 +807,8 @@ class DatabaseInstance(pulumi.CustomResource):
         # keep it one week
         # with private network and dhcp configuration
         pn02 = scaleway.VpcPrivateNetwork("pn02")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDHCP("mainVpcPublicGatewayDHCP", subnet="192.168.1.0/24")
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIP("mainVpcPublicGatewayIP")
+        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
+        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
         main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
             type="VPC-GW-S",
             ip_id=main_vpc_public_gateway_ip.id)
@@ -822,7 +822,7 @@ class DatabaseInstance(pulumi.CustomResource):
                     main_vpc_public_gateway_ip,
                     pn02,
                 ]))
-        main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPATRule("mainVpcPublicGatewayPATRule",
+        main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule",
             gateway_id=main_vpc_public_gateway.id,
             private_ip=main_vpc_public_gateway_dhcp.address,
             private_port=main_database_instance.private_network.port,

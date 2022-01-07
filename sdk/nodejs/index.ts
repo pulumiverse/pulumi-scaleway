@@ -9,7 +9,7 @@ export * from "./accountSshKey";
 export * from "./appleSliconValleyServer";
 export * from "./baremetalServer";
 export * from "./database";
-export * from "./databaseACL";
+export * from "./databaseAcl";
 export * from "./databaseInstance";
 export * from "./databasePrivilege";
 export * from "./databaseUser";
@@ -17,56 +17,56 @@ export * from "./domainRecord";
 export * from "./getAccountSshKey";
 export * from "./getBaremetalOffer";
 export * from "./getDatabase";
-export * from "./getDatabaseACL";
+export * from "./getDatabaseAcl";
 export * from "./getDatabaseInstance";
 export * from "./getDatabasePrivilege";
 export * from "./getDomainRecord";
-export * from "./getInstanceIP";
 export * from "./getInstanceImage";
+export * from "./getInstanceIp";
 export * from "./getInstanceSecurityGroup";
 export * from "./getInstanceServer";
 export * from "./getInstanceVolume";
 export * from "./getKubernetesCluster";
 export * from "./getKubernetesNodePool";
 export * from "./getLoadbalancer";
-export * from "./getLoadbalancerIP";
+export * from "./getLoadbalancerIp";
 export * from "./getMarketplaceImage";
 export * from "./getRegistryImage";
 export * from "./getRegistryNamespace";
 export * from "./getVpcPrivateNetwork";
 export * from "./getVpcPublicGateway";
-export * from "./getVpcPublicGatewayDHCP";
-export * from "./getVpcPublicGatewayIP";
-export * from "./instanceIP";
-export * from "./instanceIPReverseDNS";
+export * from "./getVpcPublicGatewayDhcp";
+export * from "./getVpcPublicGatewayIp";
+export * from "./instanceIp";
+export * from "./instanceIpReverseDns";
 export * from "./instancePlacementGroup";
-export * from "./instancePrivateNIC";
+export * from "./instancePrivateNic";
 export * from "./instanceSecurityGroup";
 export * from "./instanceSecurityGroupRules";
 export * from "./instanceServer";
 export * from "./instanceSnapshot";
 export * from "./instanceVolume";
-export * from "./iotdevice";
-export * from "./iothub";
-export * from "./iotnetwork";
-export * from "./iotroute";
+export * from "./iotDevice";
+export * from "./iotHub";
+export * from "./iotNetwork";
+export * from "./iotRoute";
 export * from "./kubernetesCluster";
 export * from "./kubernetesNodePool";
 export * from "./loadbalancer";
 export * from "./loadbalancerBackend";
 export * from "./loadbalancerCertificate";
 export * from "./loadbalancerFrontend";
-export * from "./loadbalancerIP";
+export * from "./loadbalancerIp";
+export * from "./loadbalancerRoute";
 export * from "./objectBucket";
 export * from "./provider";
 export * from "./registryNamespace";
-export * from "./route";
 export * from "./vpcGatewayNetwork";
 export * from "./vpcPrivateNetwork";
 export * from "./vpcPublicGateway";
-export * from "./vpcPublicGatewayDHCP";
-export * from "./vpcPublicGatewayIP";
-export * from "./vpcPublicGatewayPATRule";
+export * from "./vpcPublicGatewayDhcp";
+export * from "./vpcPublicGatewayIp";
+export * from "./vpcPublicGatewayPatRule";
 
 // Export sub-modules:
 import * as config from "./config";
@@ -82,40 +82,40 @@ import { AccountSshKey } from "./accountSshKey";
 import { AppleSliconValleyServer } from "./appleSliconValleyServer";
 import { BaremetalServer } from "./baremetalServer";
 import { Database } from "./database";
-import { DatabaseACL } from "./databaseACL";
+import { DatabaseAcl } from "./databaseAcl";
 import { DatabaseInstance } from "./databaseInstance";
 import { DatabasePrivilege } from "./databasePrivilege";
 import { DatabaseUser } from "./databaseUser";
 import { DomainRecord } from "./domainRecord";
-import { IOTDevice } from "./iotdevice";
-import { IOTHub } from "./iothub";
-import { IOTNetwork } from "./iotnetwork";
-import { IOTRoute } from "./iotroute";
-import { InstanceIP } from "./instanceIP";
-import { InstanceIPReverseDNS } from "./instanceIPReverseDNS";
+import { InstanceIp } from "./instanceIp";
+import { InstanceIpReverseDns } from "./instanceIpReverseDns";
 import { InstancePlacementGroup } from "./instancePlacementGroup";
-import { InstancePrivateNIC } from "./instancePrivateNIC";
+import { InstancePrivateNic } from "./instancePrivateNic";
 import { InstanceSecurityGroup } from "./instanceSecurityGroup";
 import { InstanceSecurityGroupRules } from "./instanceSecurityGroupRules";
 import { InstanceServer } from "./instanceServer";
 import { InstanceSnapshot } from "./instanceSnapshot";
 import { InstanceVolume } from "./instanceVolume";
+import { IotDevice } from "./iotDevice";
+import { IotHub } from "./iotHub";
+import { IotNetwork } from "./iotNetwork";
+import { IotRoute } from "./iotRoute";
 import { KubernetesCluster } from "./kubernetesCluster";
 import { KubernetesNodePool } from "./kubernetesNodePool";
 import { Loadbalancer } from "./loadbalancer";
 import { LoadbalancerBackend } from "./loadbalancerBackend";
 import { LoadbalancerCertificate } from "./loadbalancerCertificate";
 import { LoadbalancerFrontend } from "./loadbalancerFrontend";
-import { LoadbalancerIP } from "./loadbalancerIP";
+import { LoadbalancerIp } from "./loadbalancerIp";
+import { LoadbalancerRoute } from "./loadbalancerRoute";
 import { ObjectBucket } from "./objectBucket";
 import { RegistryNamespace } from "./registryNamespace";
-import { Route } from "./route";
 import { VpcGatewayNetwork } from "./vpcGatewayNetwork";
 import { VpcPrivateNetwork } from "./vpcPrivateNetwork";
 import { VpcPublicGateway } from "./vpcPublicGateway";
-import { VpcPublicGatewayDHCP } from "./vpcPublicGatewayDHCP";
-import { VpcPublicGatewayIP } from "./vpcPublicGatewayIP";
-import { VpcPublicGatewayPATRule } from "./vpcPublicGatewayPATRule";
+import { VpcPublicGatewayDhcp } from "./vpcPublicGatewayDhcp";
+import { VpcPublicGatewayIp } from "./vpcPublicGatewayIp";
+import { VpcPublicGatewayPatRule } from "./vpcPublicGatewayPatRule";
 
 const _module = {
     version: utilities.getVersion(),
@@ -129,8 +129,8 @@ const _module = {
                 return new BaremetalServer(name, <any>undefined, { urn })
             case "scaleway:index/database:Database":
                 return new Database(name, <any>undefined, { urn })
-            case "scaleway:index/databaseACL:DatabaseACL":
-                return new DatabaseACL(name, <any>undefined, { urn })
+            case "scaleway:index/databaseAcl:DatabaseAcl":
+                return new DatabaseAcl(name, <any>undefined, { urn })
             case "scaleway:index/databaseInstance:DatabaseInstance":
                 return new DatabaseInstance(name, <any>undefined, { urn })
             case "scaleway:index/databasePrivilege:DatabasePrivilege":
@@ -139,22 +139,14 @@ const _module = {
                 return new DatabaseUser(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
-            case "scaleway:index/iOTDevice:IOTDevice":
-                return new IOTDevice(name, <any>undefined, { urn })
-            case "scaleway:index/iOTHub:IOTHub":
-                return new IOTHub(name, <any>undefined, { urn })
-            case "scaleway:index/iOTNetwork:IOTNetwork":
-                return new IOTNetwork(name, <any>undefined, { urn })
-            case "scaleway:index/iOTRoute:IOTRoute":
-                return new IOTRoute(name, <any>undefined, { urn })
-            case "scaleway:index/instanceIP:InstanceIP":
-                return new InstanceIP(name, <any>undefined, { urn })
-            case "scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS":
-                return new InstanceIPReverseDNS(name, <any>undefined, { urn })
+            case "scaleway:index/instanceIp:InstanceIp":
+                return new InstanceIp(name, <any>undefined, { urn })
+            case "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns":
+                return new InstanceIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/instancePlacementGroup:InstancePlacementGroup":
                 return new InstancePlacementGroup(name, <any>undefined, { urn })
-            case "scaleway:index/instancePrivateNIC:InstancePrivateNIC":
-                return new InstancePrivateNIC(name, <any>undefined, { urn })
+            case "scaleway:index/instancePrivateNic:InstancePrivateNic":
+                return new InstancePrivateNic(name, <any>undefined, { urn })
             case "scaleway:index/instanceSecurityGroup:InstanceSecurityGroup":
                 return new InstanceSecurityGroup(name, <any>undefined, { urn })
             case "scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules":
@@ -165,6 +157,14 @@ const _module = {
                 return new InstanceSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/instanceVolume:InstanceVolume":
                 return new InstanceVolume(name, <any>undefined, { urn })
+            case "scaleway:index/iotDevice:IotDevice":
+                return new IotDevice(name, <any>undefined, { urn })
+            case "scaleway:index/iotHub:IotHub":
+                return new IotHub(name, <any>undefined, { urn })
+            case "scaleway:index/iotNetwork:IotNetwork":
+                return new IotNetwork(name, <any>undefined, { urn })
+            case "scaleway:index/iotRoute:IotRoute":
+                return new IotRoute(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesCluster:KubernetesCluster":
                 return new KubernetesCluster(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -177,26 +177,26 @@ const _module = {
                 return new LoadbalancerCertificate(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerFrontend:LoadbalancerFrontend":
                 return new LoadbalancerFrontend(name, <any>undefined, { urn })
-            case "scaleway:index/loadbalancerIP:LoadbalancerIP":
-                return new LoadbalancerIP(name, <any>undefined, { urn })
+            case "scaleway:index/loadbalancerIp:LoadbalancerIp":
+                return new LoadbalancerIp(name, <any>undefined, { urn })
+            case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
+                return new LoadbalancerRoute(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
                 return new RegistryNamespace(name, <any>undefined, { urn })
-            case "scaleway:index/route:Route":
-                return new Route(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
                 return new VpcGatewayNetwork(name, <any>undefined, { urn })
             case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
                 return new VpcPrivateNetwork(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGateway:VpcPublicGateway":
                 return new VpcPublicGateway(name, <any>undefined, { urn })
-            case "scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP":
-                return new VpcPublicGatewayDHCP(name, <any>undefined, { urn })
-            case "scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP":
-                return new VpcPublicGatewayIP(name, <any>undefined, { urn })
-            case "scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule":
-                return new VpcPublicGatewayPATRule(name, <any>undefined, { urn })
+            case "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp":
+                return new VpcPublicGatewayDhcp(name, <any>undefined, { urn })
+            case "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp":
+                return new VpcPublicGatewayIp(name, <any>undefined, { urn })
+            case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
+                return new VpcPublicGatewayPatRule(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -206,40 +206,40 @@ pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/database", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/databaseACL", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/databaseAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/iOTDevice", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/iOTHub", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/iOTNetwork", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/iOTRoute", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/instanceIP", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/instanceIPReverseDNS", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instancePlacementGroup", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/instancePrivateNIC", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/instancePrivateNic", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceSecurityGroup", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceSecurityGroupRules", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceVolume", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iotDevice", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iotNetwork", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerBackend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerCertificate", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIP", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/route", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGateway", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDHCP", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIP", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPATRule", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPatRule", _module)
 
 import { Provider } from "./provider";
 

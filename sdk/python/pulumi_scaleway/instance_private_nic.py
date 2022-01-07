@@ -8,16 +8,16 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['InstancePrivateNICArgs', 'InstancePrivateNIC']
+__all__ = ['InstancePrivateNicArgs', 'InstancePrivateNic']
 
 @pulumi.input_type
-class InstancePrivateNICArgs:
+class InstancePrivateNicArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[str],
                  server_id: pulumi.Input[str],
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a InstancePrivateNIC resource.
+        The set of arguments for constructing a InstancePrivateNic resource.
         :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
@@ -65,14 +65,14 @@ class InstancePrivateNICArgs:
 
 
 @pulumi.input_type
-class _InstancePrivateNICState:
+class _InstancePrivateNicState:
     def __init__(__self__, *,
                  mac_address: Optional[pulumi.Input[str]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering InstancePrivateNIC resources.
+        Input properties used for looking up and filtering InstancePrivateNic resources.
         :param pulumi.Input[str] mac_address: MAC address of the NIC
         :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
         :param pulumi.Input[str] server_id: The ID of the server associated with.
@@ -136,7 +136,7 @@ class _InstancePrivateNICState:
         pulumi.set(self, "zone", value)
 
 
-class InstancePrivateNIC(pulumi.CustomResource):
+class InstancePrivateNic(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -155,7 +155,7 @@ class InstancePrivateNIC(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        pnic01 = scaleway.InstancePrivateNIC("pnic01",
+        pnic01 = scaleway.InstancePrivateNic("pnic01",
             private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
             server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
         ```
@@ -165,7 +165,7 @@ class InstancePrivateNIC(pulumi.CustomResource):
         Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/instancePrivateNIC:InstancePrivateNIC server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+         $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
         ```
 
         :param str resource_name: The name of the resource.
@@ -178,7 +178,7 @@ class InstancePrivateNIC(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: InstancePrivateNICArgs,
+                 args: InstancePrivateNicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Instance Private NICs. For more information, see
@@ -190,7 +190,7 @@ class InstancePrivateNIC(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        pnic01 = scaleway.InstancePrivateNIC("pnic01",
+        pnic01 = scaleway.InstancePrivateNic("pnic01",
             private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
             server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
         ```
@@ -200,16 +200,16 @@ class InstancePrivateNIC(pulumi.CustomResource):
         Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/instancePrivateNIC:InstancePrivateNIC server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+         $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
         ```
 
         :param str resource_name: The name of the resource.
-        :param InstancePrivateNICArgs args: The arguments to use to populate this resource's properties.
+        :param InstancePrivateNicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(InstancePrivateNICArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(InstancePrivateNicArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -231,7 +231,7 @@ class InstancePrivateNIC(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = InstancePrivateNICArgs.__new__(InstancePrivateNICArgs)
+            __props__ = InstancePrivateNicArgs.__new__(InstancePrivateNicArgs)
 
             if private_network_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_network_id'")
@@ -241,8 +241,8 @@ class InstancePrivateNIC(pulumi.CustomResource):
             __props__.__dict__["server_id"] = server_id
             __props__.__dict__["zone"] = zone
             __props__.__dict__["mac_address"] = None
-        super(InstancePrivateNIC, __self__).__init__(
-            'scaleway:index/instancePrivateNIC:InstancePrivateNIC',
+        super(InstancePrivateNic, __self__).__init__(
+            'scaleway:index/instancePrivateNic:InstancePrivateNic',
             resource_name,
             __props__,
             opts)
@@ -254,9 +254,9 @@ class InstancePrivateNIC(pulumi.CustomResource):
             mac_address: Optional[pulumi.Input[str]] = None,
             private_network_id: Optional[pulumi.Input[str]] = None,
             server_id: Optional[pulumi.Input[str]] = None,
-            zone: Optional[pulumi.Input[str]] = None) -> 'InstancePrivateNIC':
+            zone: Optional[pulumi.Input[str]] = None) -> 'InstancePrivateNic':
         """
-        Get an existing InstancePrivateNIC resource's state with the given name, id, and optional extra
+        Get an existing InstancePrivateNic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -269,13 +269,13 @@ class InstancePrivateNIC(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _InstancePrivateNICState.__new__(_InstancePrivateNICState)
+        __props__ = _InstancePrivateNicState.__new__(_InstancePrivateNicState)
 
         __props__.__dict__["mac_address"] = mac_address
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["server_id"] = server_id
         __props__.__dict__["zone"] = zone
-        return InstancePrivateNIC(resource_name, opts=opts, __props__=__props__)
+        return InstancePrivateNic(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="macAddress")

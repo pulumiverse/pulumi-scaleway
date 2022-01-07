@@ -543,7 +543,7 @@ class DomainRecord(pulumi.CustomResource):
         config = pulumi.Config()
         project_id = config.require("projectId")
         dns_zone = config.require("dnsZone")
-        public_ip = scaleway.InstanceIP("publicIp", project_id=project_id)
+        public_ip = scaleway.InstanceIp("publicIp", project_id=project_id)
         web = scaleway.InstanceServer("web",
             project_id=project_id,
             type="DEV1-S",
@@ -725,7 +725,7 @@ class DomainRecord(pulumi.CustomResource):
         config = pulumi.Config()
         project_id = config.require("projectId")
         dns_zone = config.require("dnsZone")
-        public_ip = scaleway.InstanceIP("publicIp", project_id=project_id)
+        public_ip = scaleway.InstanceIp("publicIp", project_id=project_id)
         web = scaleway.InstanceServer("web",
             project_id=project_id,
             type="DEV1-S",

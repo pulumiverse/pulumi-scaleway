@@ -10,12 +10,12 @@ import * as utilities from "./utilities";
  * IoT Networks can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iOTNetwork:IOTNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class IOTNetwork extends pulumi.CustomResource {
+export class IotNetwork extends pulumi.CustomResource {
     /**
-     * Get an existing IOTNetwork resource's state with the given name, ID, and optional extra
+     * Get an existing IotNetwork resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -23,22 +23,22 @@ export class IOTNetwork extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IOTNetworkState, opts?: pulumi.CustomResourceOptions): IOTNetwork {
-        return new IOTNetwork(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotNetworkState, opts?: pulumi.CustomResourceOptions): IotNetwork {
+        return new IotNetwork(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/iOTNetwork:IOTNetwork';
+    public static readonly __pulumiType = 'scaleway:index/iotNetwork:IotNetwork';
 
     /**
-     * Returns true if the given object is an instance of IOTNetwork.  This is designed to work even
+     * Returns true if the given object is an instance of IotNetwork.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is IOTNetwork {
+    public static isInstance(obj: any): obj is IotNetwork {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === IOTNetwork.__pulumiType;
+        return obj['__pulumiType'] === IotNetwork.__pulumiType;
     }
 
     /**
@@ -71,18 +71,18 @@ export class IOTNetwork extends pulumi.CustomResource {
     public readonly type!: pulumi.Output<string>;
 
     /**
-     * Create a IOTNetwork resource with the given unique name, arguments, and options.
+     * Create a IotNetwork resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: IOTNetworkArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: IOTNetworkArgs | IOTNetworkState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: IotNetworkArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: IotNetworkArgs | IotNetworkState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as IOTNetworkState | undefined;
+            const state = argsOrState as IotNetworkState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["hubId"] = state ? state.hubId : undefined;
@@ -91,7 +91,7 @@ export class IOTNetwork extends pulumi.CustomResource {
             resourceInputs["topicPrefix"] = state ? state.topicPrefix : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
-            const args = argsOrState as IOTNetworkArgs | undefined;
+            const args = argsOrState as IotNetworkArgs | undefined;
             if ((!args || args.hubId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
@@ -109,14 +109,14 @@ export class IOTNetwork extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(IOTNetwork.__pulumiType, name, resourceInputs, opts);
+        super(IotNetwork.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering IOTNetwork resources.
+ * Input properties used for looking up and filtering IotNetwork resources.
  */
-export interface IOTNetworkState {
+export interface IotNetworkState {
     /**
      * The date and time the Network was created.
      */
@@ -148,9 +148,9 @@ export interface IOTNetworkState {
 }
 
 /**
- * The set of arguments for constructing a IOTNetwork resource.
+ * The set of arguments for constructing a IotNetwork resource.
  */
-export interface IOTNetworkArgs {
+export interface IotNetworkArgs {
     /**
      * The hub ID to which the Network will be attached to.
      */

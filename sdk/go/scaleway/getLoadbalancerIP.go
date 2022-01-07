@@ -25,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "11111111-1111-1111-1111-111111111111"
-// 		_, err := scaleway.LookupLoadbalancerIP(ctx, &GetLoadbalancerIPArgs{
+// 		_, err := scaleway.LookupLoadbalancerIp(ctx, &GetLoadbalancerIpArgs{
 // 			IpId: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -35,17 +35,17 @@ import (
 // 	})
 // }
 // ```
-func LookupLoadbalancerIP(ctx *pulumi.Context, args *LookupLoadbalancerIPArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerIPResult, error) {
-	var rv LookupLoadbalancerIPResult
-	err := ctx.Invoke("scaleway:index/getLoadbalancerIP:getLoadbalancerIP", args, &rv, opts...)
+func LookupLoadbalancerIp(ctx *pulumi.Context, args *LookupLoadbalancerIpArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerIpResult, error) {
+	var rv LookupLoadbalancerIpResult
+	err := ctx.Invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getLoadbalancerIP.
-type LookupLoadbalancerIPArgs struct {
+// A collection of arguments for invoking getLoadbalancerIp.
+type LookupLoadbalancerIpArgs struct {
 	// The IP address.
 	// Only one of `ipAddress` and `lbId` should be specified.
 	IpAddress *string `pulumi:"ipAddress"`
@@ -54,8 +54,8 @@ type LookupLoadbalancerIPArgs struct {
 	IpId *string `pulumi:"ipId"`
 }
 
-// A collection of values returned by getLoadbalancerIP.
-type LookupLoadbalancerIPResult struct {
+// A collection of values returned by getLoadbalancerIp.
+type LookupLoadbalancerIpResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	IpAddress *string `pulumi:"ipAddress"`
@@ -71,17 +71,17 @@ type LookupLoadbalancerIPResult struct {
 	Zone    string `pulumi:"zone"`
 }
 
-func LookupLoadbalancerIPOutput(ctx *pulumi.Context, args LookupLoadbalancerIPOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerIPResultOutput {
+func LookupLoadbalancerIpOutput(ctx *pulumi.Context, args LookupLoadbalancerIpOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerIpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLoadbalancerIPResult, error) {
-			args := v.(LookupLoadbalancerIPArgs)
-			r, err := LookupLoadbalancerIP(ctx, &args, opts...)
+		ApplyT(func(v interface{}) (LookupLoadbalancerIpResult, error) {
+			args := v.(LookupLoadbalancerIpArgs)
+			r, err := LookupLoadbalancerIp(ctx, &args, opts...)
 			return *r, err
-		}).(LookupLoadbalancerIPResultOutput)
+		}).(LookupLoadbalancerIpResultOutput)
 }
 
-// A collection of arguments for invoking getLoadbalancerIP.
-type LookupLoadbalancerIPOutputArgs struct {
+// A collection of arguments for invoking getLoadbalancerIp.
+type LookupLoadbalancerIpOutputArgs struct {
 	// The IP address.
 	// Only one of `ipAddress` and `lbId` should be specified.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
@@ -90,65 +90,65 @@ type LookupLoadbalancerIPOutputArgs struct {
 	IpId pulumi.StringPtrInput `pulumi:"ipId"`
 }
 
-func (LookupLoadbalancerIPOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupLoadbalancerIPArgs)(nil)).Elem()
+func (LookupLoadbalancerIpOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupLoadbalancerIpArgs)(nil)).Elem()
 }
 
-// A collection of values returned by getLoadbalancerIP.
-type LookupLoadbalancerIPResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getLoadbalancerIp.
+type LookupLoadbalancerIpResultOutput struct{ *pulumi.OutputState }
 
-func (LookupLoadbalancerIPResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupLoadbalancerIPResult)(nil)).Elem()
+func (LookupLoadbalancerIpResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupLoadbalancerIpResult)(nil)).Elem()
 }
 
-func (o LookupLoadbalancerIPResultOutput) ToLookupLoadbalancerIPResultOutput() LookupLoadbalancerIPResultOutput {
+func (o LookupLoadbalancerIpResultOutput) ToLookupLoadbalancerIpResultOutput() LookupLoadbalancerIpResultOutput {
 	return o
 }
 
-func (o LookupLoadbalancerIPResultOutput) ToLookupLoadbalancerIPResultOutputWithContext(ctx context.Context) LookupLoadbalancerIPResultOutput {
+func (o LookupLoadbalancerIpResultOutput) ToLookupLoadbalancerIpResultOutputWithContext(ctx context.Context) LookupLoadbalancerIpResultOutput {
 	return o
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o LookupLoadbalancerIPResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupLoadbalancerIPResultOutput) IpAddress() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+func (o LookupLoadbalancerIpResultOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupLoadbalancerIPResultOutput) IpId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) *string { return v.IpId }).(pulumi.StringPtrOutput)
+func (o LookupLoadbalancerIpResultOutput) IpId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) *string { return v.IpId }).(pulumi.StringPtrOutput)
 }
 
 // The associated load-balance ID if any
-func (o LookupLoadbalancerIPResultOutput) LbId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.LbId }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) LbId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.LbId }).(pulumi.StringOutput)
 }
 
 // (Defaults to provider `organizationId`) The ID of the organization the LB IP is associated with.
-func (o LookupLoadbalancerIPResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupLoadbalancerIPResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o LookupLoadbalancerIPResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The reverse domain associated with this IP.
-func (o LookupLoadbalancerIPResultOutput) Reverse() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.Reverse }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.Reverse }).(pulumi.StringOutput)
 }
 
-func (o LookupLoadbalancerIPResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIPResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupLoadbalancerIPResultOutput{})
+	pulumi.RegisterOutputType(LookupLoadbalancerIpResultOutput{})
 }

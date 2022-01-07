@@ -28,8 +28,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BaremetalServer{}
 	case "scaleway:index/database:Database":
 		r = &Database{}
-	case "scaleway:index/databaseACL:DatabaseACL":
-		r = &DatabaseACL{}
+	case "scaleway:index/databaseAcl:DatabaseAcl":
+		r = &DatabaseAcl{}
 	case "scaleway:index/databaseInstance:DatabaseInstance":
 		r = &DatabaseInstance{}
 	case "scaleway:index/databasePrivilege:DatabasePrivilege":
@@ -38,22 +38,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DatabaseUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
-	case "scaleway:index/iOTDevice:IOTDevice":
-		r = &IOTDevice{}
-	case "scaleway:index/iOTHub:IOTHub":
-		r = &IOTHub{}
-	case "scaleway:index/iOTNetwork:IOTNetwork":
-		r = &IOTNetwork{}
-	case "scaleway:index/iOTRoute:IOTRoute":
-		r = &IOTRoute{}
-	case "scaleway:index/instanceIP:InstanceIP":
-		r = &InstanceIP{}
-	case "scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS":
-		r = &InstanceIPReverseDNS{}
+	case "scaleway:index/instanceIp:InstanceIp":
+		r = &InstanceIp{}
+	case "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns":
+		r = &InstanceIpReverseDns{}
 	case "scaleway:index/instancePlacementGroup:InstancePlacementGroup":
 		r = &InstancePlacementGroup{}
-	case "scaleway:index/instancePrivateNIC:InstancePrivateNIC":
-		r = &InstancePrivateNIC{}
+	case "scaleway:index/instancePrivateNic:InstancePrivateNic":
+		r = &InstancePrivateNic{}
 	case "scaleway:index/instanceSecurityGroup:InstanceSecurityGroup":
 		r = &InstanceSecurityGroup{}
 	case "scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules":
@@ -64,6 +56,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &InstanceSnapshot{}
 	case "scaleway:index/instanceVolume:InstanceVolume":
 		r = &InstanceVolume{}
+	case "scaleway:index/iotDevice:IotDevice":
+		r = &IotDevice{}
+	case "scaleway:index/iotHub:IotHub":
+		r = &IotHub{}
+	case "scaleway:index/iotNetwork:IotNetwork":
+		r = &IotNetwork{}
+	case "scaleway:index/iotRoute:IotRoute":
+		r = &IotRoute{}
 	case "scaleway:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
 	case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -76,26 +76,26 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerCertificate{}
 	case "scaleway:index/loadbalancerFrontend:LoadbalancerFrontend":
 		r = &LoadbalancerFrontend{}
-	case "scaleway:index/loadbalancerIP:LoadbalancerIP":
-		r = &LoadbalancerIP{}
+	case "scaleway:index/loadbalancerIp:LoadbalancerIp":
+		r = &LoadbalancerIp{}
+	case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
+		r = &LoadbalancerRoute{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
-	case "scaleway:index/route:Route":
-		r = &Route{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
 		r = &VpcGatewayNetwork{}
 	case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
 		r = &VpcPrivateNetwork{}
 	case "scaleway:index/vpcPublicGateway:VpcPublicGateway":
 		r = &VpcPublicGateway{}
-	case "scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP":
-		r = &VpcPublicGatewayDHCP{}
-	case "scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP":
-		r = &VpcPublicGatewayIP{}
-	case "scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule":
-		r = &VpcPublicGatewayPATRule{}
+	case "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp":
+		r = &VpcPublicGatewayDhcp{}
+	case "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp":
+		r = &VpcPublicGatewayIp{}
+	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
+		r = &VpcPublicGatewayPatRule{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -149,7 +149,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/databaseACL",
+		"index/databaseAcl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -174,32 +174,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/iOTDevice",
+		"index/instanceIp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/iOTHub",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/iOTNetwork",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/iOTRoute",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/instanceIP",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/instanceIPReverseDNS",
+		"index/instanceIpReverseDns",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -209,7 +189,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/instancePrivateNIC",
+		"index/instancePrivateNic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -235,6 +215,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/instanceVolume",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iotDevice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iotHub",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iotNetwork",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iotRoute",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -269,7 +269,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/loadbalancerIP",
+		"index/loadbalancerIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/loadbalancerRoute",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -280,11 +285,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/registryNamespace",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/route",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -304,17 +304,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/vpcPublicGatewayDHCP",
+		"index/vpcPublicGatewayDhcp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/vpcPublicGatewayIP",
+		"index/vpcPublicGatewayIp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/vpcPublicGatewayPATRule",
+		"index/vpcPublicGatewayPatRule",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

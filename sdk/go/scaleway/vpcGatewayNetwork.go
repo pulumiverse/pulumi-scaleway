@@ -31,11 +31,11 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		gw01, err := scaleway.NewVpcPublicGatewayIP(ctx, "gw01", nil)
+// 		gw01, err := scaleway.NewVpcPublicGatewayIp(ctx, "gw01", nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		dhcp01, err := scaleway.NewVpcPublicGatewayDHCP(ctx, "dhcp01", &scaleway.VpcPublicGatewayDHCPArgs{
+// 		dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
 // 			Subnet: pulumi.String("192.168.1.0/24"),
 // 		})
 // 		if err != nil {

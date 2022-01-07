@@ -25,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "fr-par-1/11111111-1111-1111-1111-111111111111"
-// 		_, err := scaleway.LookupInstanceIP(ctx, &GetInstanceIPArgs{
+// 		_, err := scaleway.LookupInstanceIp(ctx, &GetInstanceIpArgs{
 // 			Id: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -35,17 +35,17 @@ import (
 // 	})
 // }
 // ```
-func LookupInstanceIP(ctx *pulumi.Context, args *LookupInstanceIPArgs, opts ...pulumi.InvokeOption) (*LookupInstanceIPResult, error) {
-	var rv LookupInstanceIPResult
-	err := ctx.Invoke("scaleway:index/getInstanceIP:getInstanceIP", args, &rv, opts...)
+func LookupInstanceIp(ctx *pulumi.Context, args *LookupInstanceIpArgs, opts ...pulumi.InvokeOption) (*LookupInstanceIpResult, error) {
+	var rv LookupInstanceIpResult
+	err := ctx.Invoke("scaleway:index/getInstanceIp:getInstanceIp", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getInstanceIP.
-type LookupInstanceIPArgs struct {
+// A collection of arguments for invoking getInstanceIp.
+type LookupInstanceIpArgs struct {
 	// The IPv4 address to retrieve
 	// Only one of `address` and `id` should be specified.
 	Address *string `pulumi:"address"`
@@ -54,8 +54,8 @@ type LookupInstanceIPArgs struct {
 	Id *string `pulumi:"id"`
 }
 
-// A collection of values returned by getInstanceIP.
-type LookupInstanceIPResult struct {
+// A collection of values returned by getInstanceIp.
+type LookupInstanceIpResult struct {
 	// The IP address.
 	Address *string `pulumi:"address"`
 	// The ID of the IP.
@@ -69,17 +69,17 @@ type LookupInstanceIPResult struct {
 	Zone     string `pulumi:"zone"`
 }
 
-func LookupInstanceIPOutput(ctx *pulumi.Context, args LookupInstanceIPOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceIPResultOutput {
+func LookupInstanceIpOutput(ctx *pulumi.Context, args LookupInstanceIpOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceIpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInstanceIPResult, error) {
-			args := v.(LookupInstanceIPArgs)
-			r, err := LookupInstanceIP(ctx, &args, opts...)
+		ApplyT(func(v interface{}) (LookupInstanceIpResult, error) {
+			args := v.(LookupInstanceIpArgs)
+			r, err := LookupInstanceIp(ctx, &args, opts...)
 			return *r, err
-		}).(LookupInstanceIPResultOutput)
+		}).(LookupInstanceIpResultOutput)
 }
 
-// A collection of arguments for invoking getInstanceIP.
-type LookupInstanceIPOutputArgs struct {
+// A collection of arguments for invoking getInstanceIp.
+type LookupInstanceIpOutputArgs struct {
 	// The IPv4 address to retrieve
 	// Only one of `address` and `id` should be specified.
 	Address pulumi.StringPtrInput `pulumi:"address"`
@@ -88,57 +88,57 @@ type LookupInstanceIPOutputArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
-func (LookupInstanceIPOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupInstanceIPArgs)(nil)).Elem()
+func (LookupInstanceIpOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceIpArgs)(nil)).Elem()
 }
 
-// A collection of values returned by getInstanceIP.
-type LookupInstanceIPResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getInstanceIp.
+type LookupInstanceIpResultOutput struct{ *pulumi.OutputState }
 
-func (LookupInstanceIPResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupInstanceIPResult)(nil)).Elem()
+func (LookupInstanceIpResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceIpResult)(nil)).Elem()
 }
 
-func (o LookupInstanceIPResultOutput) ToLookupInstanceIPResultOutput() LookupInstanceIPResultOutput {
+func (o LookupInstanceIpResultOutput) ToLookupInstanceIpResultOutput() LookupInstanceIpResultOutput {
 	return o
 }
 
-func (o LookupInstanceIPResultOutput) ToLookupInstanceIPResultOutputWithContext(ctx context.Context) LookupInstanceIPResultOutput {
+func (o LookupInstanceIpResultOutput) ToLookupInstanceIpResultOutputWithContext(ctx context.Context) LookupInstanceIpResultOutput {
 	return o
 }
 
 // The IP address.
-func (o LookupInstanceIPResultOutput) Address() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) *string { return v.Address }).(pulumi.StringPtrOutput)
+func (o LookupInstanceIpResultOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the IP.
-func (o LookupInstanceIPResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupInstanceIpResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The organization ID the IP is associated with.
-func (o LookupInstanceIPResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+func (o LookupInstanceIpResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupInstanceIPResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupInstanceIpResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The reverse dns attached to this IP
-func (o LookupInstanceIPResultOutput) Reverse() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) string { return v.Reverse }).(pulumi.StringOutput)
+func (o LookupInstanceIpResultOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.Reverse }).(pulumi.StringOutput)
 }
 
-func (o LookupInstanceIPResultOutput) ServerId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) string { return v.ServerId }).(pulumi.StringOutput)
+func (o LookupInstanceIpResultOutput) ServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
-func (o LookupInstanceIPResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceIPResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupInstanceIpResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupInstanceIPResultOutput{})
+	pulumi.RegisterOutputType(LookupInstanceIpResultOutput{})
 }

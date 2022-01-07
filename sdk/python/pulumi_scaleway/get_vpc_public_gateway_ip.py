@@ -9,16 +9,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'GetVpcPublicGatewayIPResult',
-    'AwaitableGetVpcPublicGatewayIPResult',
+    'GetVpcPublicGatewayIpResult',
+    'AwaitableGetVpcPublicGatewayIpResult',
     'get_vpc_public_gateway_ip',
     'get_vpc_public_gateway_ip_output',
 ]
 
 @pulumi.output_type
-class GetVpcPublicGatewayIPResult:
+class GetVpcPublicGatewayIpResult:
     """
-    A collection of values returned by getVpcPublicGatewayIP.
+    A collection of values returned by getVpcPublicGatewayIp.
     """
     def __init__(__self__, address=None, created_at=None, id=None, ip_id=None, organization_id=None, project_id=None, reverse=None, tags=None, updated_at=None, zone=None):
         if address and not isinstance(address, str):
@@ -106,12 +106,12 @@ class GetVpcPublicGatewayIPResult:
         return pulumi.get(self, "zone")
 
 
-class AwaitableGetVpcPublicGatewayIPResult(GetVpcPublicGatewayIPResult):
+class AwaitableGetVpcPublicGatewayIpResult(GetVpcPublicGatewayIpResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetVpcPublicGatewayIPResult(
+        return GetVpcPublicGatewayIpResult(
             address=self.address,
             created_at=self.created_at,
             id=self.id,
@@ -125,7 +125,7 @@ class AwaitableGetVpcPublicGatewayIPResult(GetVpcPublicGatewayIPResult):
 
 
 def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayIPResult:
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayIpResult:
     """
     Gets information about a public gateway IP.
 
@@ -135,7 +135,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayIP("main")
+    main = scaleway.VpcPublicGatewayIp("main")
     ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
     """
@@ -145,9 +145,9 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayIP:getVpcPublicGatewayIP', __args__, opts=opts, typ=GetVpcPublicGatewayIPResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp', __args__, opts=opts, typ=GetVpcPublicGatewayIpResult).value
 
-    return AwaitableGetVpcPublicGatewayIPResult(
+    return AwaitableGetVpcPublicGatewayIpResult(
         address=__ret__.address,
         created_at=__ret__.created_at,
         id=__ret__.id,
@@ -162,7 +162,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_vpc_public_gateway_ip)
 def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayIPResult]:
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayIpResult]:
     """
     Gets information about a public gateway IP.
 
@@ -172,7 +172,7 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayIP("main")
+    main = scaleway.VpcPublicGatewayIp("main")
     ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
     """

@@ -10,16 +10,16 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
-    'GetDatabaseACLResult',
-    'AwaitableGetDatabaseACLResult',
+    'GetDatabaseAclResult',
+    'AwaitableGetDatabaseAclResult',
     'get_database_acl',
     'get_database_acl_output',
 ]
 
 @pulumi.output_type
-class GetDatabaseACLResult:
+class GetDatabaseAclResult:
     """
-    A collection of values returned by getDatabaseACL.
+    A collection of values returned by getDatabaseAcl.
     """
     def __init__(__self__, acl_rules=None, id=None, instance_id=None, region=None):
         if acl_rules and not isinstance(acl_rules, list):
@@ -37,7 +37,7 @@ class GetDatabaseACLResult:
 
     @property
     @pulumi.getter(name="aclRules")
-    def acl_rules(self) -> Sequence['outputs.GetDatabaseACLAclRuleResult']:
+    def acl_rules(self) -> Sequence['outputs.GetDatabaseAclAclRuleResult']:
         """
         A list of ACLs (structure is described below)
         """
@@ -62,12 +62,12 @@ class GetDatabaseACLResult:
         return pulumi.get(self, "region")
 
 
-class AwaitableGetDatabaseACLResult(GetDatabaseACLResult):
+class AwaitableGetDatabaseAclResult(GetDatabaseAclResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetDatabaseACLResult(
+        return GetDatabaseAclResult(
             acl_rules=self.acl_rules,
             id=self.id,
             instance_id=self.instance_id,
@@ -75,7 +75,7 @@ class AwaitableGetDatabaseACLResult(GetDatabaseACLResult):
 
 
 def get_database_acl(instance_id: Optional[str] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseACLResult:
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseAclResult:
     """
     Gets information about the RDB instance network Access Control List.
 
@@ -97,9 +97,9 @@ def get_database_acl(instance_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseACL:getDatabaseACL', __args__, opts=opts, typ=GetDatabaseACLResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseAcl:getDatabaseAcl', __args__, opts=opts, typ=GetDatabaseAclResult).value
 
-    return AwaitableGetDatabaseACLResult(
+    return AwaitableGetDatabaseAclResult(
         acl_rules=__ret__.acl_rules,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
@@ -108,7 +108,7 @@ def get_database_acl(instance_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_database_acl)
 def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseACLResult]:
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseAclResult]:
     """
     Gets information about the RDB instance network Access Control List.
 

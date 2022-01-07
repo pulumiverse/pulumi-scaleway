@@ -25,7 +25,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewVpcPublicGatewayIP(ctx, "main", &scaleway.VpcPublicGatewayIPArgs{
+// 		_, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", &scaleway.VpcPublicGatewayIpArgs{
 // 			Reverse: pulumi.String("example.com"),
 // 			Tags: pulumi.StringArray{
 // 				pulumi.String("demo"),
@@ -45,9 +45,9 @@ import (
 // Public gateway can be imported using the `{zone}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP main fr-par-1/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
-type VpcPublicGatewayIP struct {
+type VpcPublicGatewayIp struct {
 	pulumi.CustomResourceState
 
 	// The IP address itself.
@@ -68,35 +68,35 @@ type VpcPublicGatewayIP struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewVpcPublicGatewayIP registers a new resource with the given unique name, arguments, and options.
-func NewVpcPublicGatewayIP(ctx *pulumi.Context,
-	name string, args *VpcPublicGatewayIPArgs, opts ...pulumi.ResourceOption) (*VpcPublicGatewayIP, error) {
+// NewVpcPublicGatewayIp registers a new resource with the given unique name, arguments, and options.
+func NewVpcPublicGatewayIp(ctx *pulumi.Context,
+	name string, args *VpcPublicGatewayIpArgs, opts ...pulumi.ResourceOption) (*VpcPublicGatewayIp, error) {
 	if args == nil {
-		args = &VpcPublicGatewayIPArgs{}
+		args = &VpcPublicGatewayIpArgs{}
 	}
 
-	var resource VpcPublicGatewayIP
-	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP", name, args, &resource, opts...)
+	var resource VpcPublicGatewayIp
+	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetVpcPublicGatewayIP gets an existing VpcPublicGatewayIP resource's state with the given name, ID, and optional
+// GetVpcPublicGatewayIp gets an existing VpcPublicGatewayIp resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetVpcPublicGatewayIP(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *VpcPublicGatewayIPState, opts ...pulumi.ResourceOption) (*VpcPublicGatewayIP, error) {
-	var resource VpcPublicGatewayIP
-	err := ctx.ReadResource("scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP", name, id, state, &resource, opts...)
+func GetVpcPublicGatewayIp(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *VpcPublicGatewayIpState, opts ...pulumi.ResourceOption) (*VpcPublicGatewayIp, error) {
+	var resource VpcPublicGatewayIp
+	err := ctx.ReadResource("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering VpcPublicGatewayIP resources.
-type vpcPublicGatewayIPState struct {
+// Input properties used for looking up and filtering VpcPublicGatewayIp resources.
+type vpcPublicGatewayIpState struct {
 	// The IP address itself.
 	Address *string `pulumi:"address"`
 	// The date and time of the creation of the public gateway ip.
@@ -115,7 +115,7 @@ type vpcPublicGatewayIPState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type VpcPublicGatewayIPState struct {
+type VpcPublicGatewayIpState struct {
 	// The IP address itself.
 	Address pulumi.StringPtrInput
 	// The date and time of the creation of the public gateway ip.
@@ -134,11 +134,11 @@ type VpcPublicGatewayIPState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (VpcPublicGatewayIPState) ElementType() reflect.Type {
-	return reflect.TypeOf((*vpcPublicGatewayIPState)(nil)).Elem()
+func (VpcPublicGatewayIpState) ElementType() reflect.Type {
+	return reflect.TypeOf((*vpcPublicGatewayIpState)(nil)).Elem()
 }
 
-type vpcPublicGatewayIPArgs struct {
+type vpcPublicGatewayIpArgs struct {
 	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain name for the IP address
@@ -149,8 +149,8 @@ type vpcPublicGatewayIPArgs struct {
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a VpcPublicGatewayIP resource.
-type VpcPublicGatewayIPArgs struct {
+// The set of arguments for constructing a VpcPublicGatewayIp resource.
+type VpcPublicGatewayIpArgs struct {
 	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain name for the IP address
@@ -161,44 +161,44 @@ type VpcPublicGatewayIPArgs struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (VpcPublicGatewayIPArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*vpcPublicGatewayIPArgs)(nil)).Elem()
+func (VpcPublicGatewayIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*vpcPublicGatewayIpArgs)(nil)).Elem()
 }
 
-type VpcPublicGatewayIPInput interface {
+type VpcPublicGatewayIpInput interface {
 	pulumi.Input
 
-	ToVpcPublicGatewayIPOutput() VpcPublicGatewayIPOutput
-	ToVpcPublicGatewayIPOutputWithContext(ctx context.Context) VpcPublicGatewayIPOutput
+	ToVpcPublicGatewayIpOutput() VpcPublicGatewayIpOutput
+	ToVpcPublicGatewayIpOutputWithContext(ctx context.Context) VpcPublicGatewayIpOutput
 }
 
-func (*VpcPublicGatewayIP) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayIP)(nil)).Elem()
+func (*VpcPublicGatewayIp) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPublicGatewayIp)(nil)).Elem()
 }
 
-func (i *VpcPublicGatewayIP) ToVpcPublicGatewayIPOutput() VpcPublicGatewayIPOutput {
-	return i.ToVpcPublicGatewayIPOutputWithContext(context.Background())
+func (i *VpcPublicGatewayIp) ToVpcPublicGatewayIpOutput() VpcPublicGatewayIpOutput {
+	return i.ToVpcPublicGatewayIpOutputWithContext(context.Background())
 }
 
-func (i *VpcPublicGatewayIP) ToVpcPublicGatewayIPOutputWithContext(ctx context.Context) VpcPublicGatewayIPOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIPOutput)
+func (i *VpcPublicGatewayIp) ToVpcPublicGatewayIpOutputWithContext(ctx context.Context) VpcPublicGatewayIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpOutput)
 }
 
-type VpcPublicGatewayIPOutput struct{ *pulumi.OutputState }
+type VpcPublicGatewayIpOutput struct{ *pulumi.OutputState }
 
-func (VpcPublicGatewayIPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayIP)(nil)).Elem()
+func (VpcPublicGatewayIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPublicGatewayIp)(nil)).Elem()
 }
 
-func (o VpcPublicGatewayIPOutput) ToVpcPublicGatewayIPOutput() VpcPublicGatewayIPOutput {
+func (o VpcPublicGatewayIpOutput) ToVpcPublicGatewayIpOutput() VpcPublicGatewayIpOutput {
 	return o
 }
 
-func (o VpcPublicGatewayIPOutput) ToVpcPublicGatewayIPOutputWithContext(ctx context.Context) VpcPublicGatewayIPOutput {
+func (o VpcPublicGatewayIpOutput) ToVpcPublicGatewayIpOutputWithContext(ctx context.Context) VpcPublicGatewayIpOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayIPInput)(nil)).Elem(), &VpcPublicGatewayIP{})
-	pulumi.RegisterOutputType(VpcPublicGatewayIPOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayIpInput)(nil)).Elem(), &VpcPublicGatewayIp{})
+	pulumi.RegisterOutputType(VpcPublicGatewayIpOutput{})
 }

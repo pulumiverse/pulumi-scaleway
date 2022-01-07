@@ -180,7 +180,7 @@ namespace Pulumi.Scaleway
     ///         var config = new Config();
     ///         var projectId = config.Require("projectId");
     ///         var dnsZone = config.Require("dnsZone");
-    ///         var publicIp = new Scaleway.InstanceIP("publicIp", new Scaleway.InstanceIPArgs
+    ///         var publicIp = new Scaleway.InstanceIp("publicIp", new Scaleway.InstanceIpArgs
     ///         {
     ///             ProjectId = projectId,
     ///         });

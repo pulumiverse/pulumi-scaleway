@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.DatabaseACL("main", {
+ * const main = new scaleway.DatabaseAcl("main", {
  *     instanceId: scaleway_rdb_instance.main.id,
  *     aclRules: [{
  *         ip: "1.2.3.4/32",
@@ -31,12 +31,12 @@ import * as utilities from "./utilities";
  * Database Instance can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/databaseACL:DatabaseACL acl01 fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class DatabaseACL extends pulumi.CustomResource {
+export class DatabaseAcl extends pulumi.CustomResource {
     /**
-     * Get an existing DatabaseACL resource's state with the given name, ID, and optional extra
+     * Get an existing DatabaseAcl resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -44,28 +44,28 @@ export class DatabaseACL extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseACLState, opts?: pulumi.CustomResourceOptions): DatabaseACL {
-        return new DatabaseACL(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseAclState, opts?: pulumi.CustomResourceOptions): DatabaseAcl {
+        return new DatabaseAcl(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/databaseACL:DatabaseACL';
+    public static readonly __pulumiType = 'scaleway:index/databaseAcl:DatabaseAcl';
 
     /**
-     * Returns true if the given object is an instance of DatabaseACL.  This is designed to work even
+     * Returns true if the given object is an instance of DatabaseAcl.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DatabaseACL {
+    public static isInstance(obj: any): obj is DatabaseAcl {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DatabaseACL.__pulumiType;
+        return obj['__pulumiType'] === DatabaseAcl.__pulumiType;
     }
 
     /**
      * A list of ACLs (structure is described below)
      */
-    public readonly aclRules!: pulumi.Output<outputs.DatabaseACLAclRule[]>;
+    public readonly aclRules!: pulumi.Output<outputs.DatabaseAclAclRule[]>;
     /**
      * The instance on which to create the ACL.
      */
@@ -76,23 +76,23 @@ export class DatabaseACL extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
 
     /**
-     * Create a DatabaseACL resource with the given unique name, arguments, and options.
+     * Create a DatabaseAcl resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DatabaseACLArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DatabaseACLArgs | DatabaseACLState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DatabaseAclArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DatabaseAclArgs | DatabaseAclState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DatabaseACLState | undefined;
+            const state = argsOrState as DatabaseAclState | undefined;
             resourceInputs["aclRules"] = state ? state.aclRules : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
-            const args = argsOrState as DatabaseACLArgs | undefined;
+            const args = argsOrState as DatabaseAclArgs | undefined;
             if ((!args || args.aclRules === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'aclRules'");
             }
@@ -106,18 +106,18 @@ export class DatabaseACL extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DatabaseACL.__pulumiType, name, resourceInputs, opts);
+        super(DatabaseAcl.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DatabaseACL resources.
+ * Input properties used for looking up and filtering DatabaseAcl resources.
  */
-export interface DatabaseACLState {
+export interface DatabaseAclState {
     /**
      * A list of ACLs (structure is described below)
      */
-    aclRules?: pulumi.Input<pulumi.Input<inputs.DatabaseACLAclRule>[]>;
+    aclRules?: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
      * The instance on which to create the ACL.
      */
@@ -129,13 +129,13 @@ export interface DatabaseACLState {
 }
 
 /**
- * The set of arguments for constructing a DatabaseACL resource.
+ * The set of arguments for constructing a DatabaseAcl resource.
  */
-export interface DatabaseACLArgs {
+export interface DatabaseAclArgs {
     /**
      * A list of ACLs (structure is described below)
      */
-    aclRules: pulumi.Input<pulumi.Input<inputs.DatabaseACLAclRule>[]>;
+    aclRules: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
      * The instance on which to create the ACL.
      */

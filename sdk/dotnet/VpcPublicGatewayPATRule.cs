@@ -27,7 +27,7 @@ namespace Pulumi.Scaleway
     ///         {
     ///             Type = "VPC-GW-S",
     ///         });
-    ///         var dhcp01 = new Scaleway.VpcPublicGatewayDHCP("dhcp01", new Scaleway.VpcPublicGatewayDHCPArgs
+    ///         var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new Scaleway.VpcPublicGatewayDhcpArgs
     ///         {
     ///             Subnet = "192.168.1.0/24",
     ///         });
@@ -41,7 +41,7 @@ namespace Pulumi.Scaleway
     ///             DhcpId = dhcp01.Id,
     ///             CleanupDhcp = true,
     ///         });
-    ///         var main = new Scaleway.VpcPublicGatewayPATRule("main", new Scaleway.VpcPublicGatewayPATRuleArgs
+    ///         var main = new Scaleway.VpcPublicGatewayPatRule("main", new Scaleway.VpcPublicGatewayPatRuleArgs
     ///         {
     ///             GatewayId = pg01.Id,
     ///             PrivateIp = dhcp01.Address,
@@ -66,11 +66,11 @@ namespace Pulumi.Scaleway
     /// Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule main fr-par-1/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule")]
-    public partial class VpcPublicGatewayPATRule : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule")]
+    public partial class VpcPublicGatewayPatRule : Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time of the creation of the pat rule config.
@@ -128,19 +128,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a VpcPublicGatewayPATRule resource with the given unique name, arguments, and options.
+        /// Create a VpcPublicGatewayPatRule resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public VpcPublicGatewayPATRule(string name, VpcPublicGatewayPATRuleArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule", name, args ?? new VpcPublicGatewayPATRuleArgs(), MakeResourceOptions(options, ""))
+        public VpcPublicGatewayPatRule(string name, VpcPublicGatewayPatRuleArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule", name, args ?? new VpcPublicGatewayPatRuleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private VpcPublicGatewayPATRule(string name, Input<string> id, VpcPublicGatewayPATRuleState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule", name, state, MakeResourceOptions(options, id))
+        private VpcPublicGatewayPatRule(string name, Input<string> id, VpcPublicGatewayPatRuleState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -156,7 +156,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing VpcPublicGatewayPATRule resource's state with the given name, ID, and optional extra
+        /// Get an existing VpcPublicGatewayPatRule resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -164,13 +164,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static VpcPublicGatewayPATRule Get(string name, Input<string> id, VpcPublicGatewayPATRuleState? state = null, CustomResourceOptions? options = null)
+        public static VpcPublicGatewayPatRule Get(string name, Input<string> id, VpcPublicGatewayPatRuleState? state = null, CustomResourceOptions? options = null)
         {
-            return new VpcPublicGatewayPATRule(name, id, state, options);
+            return new VpcPublicGatewayPatRule(name, id, state, options);
         }
     }
 
-    public sealed class VpcPublicGatewayPATRuleArgs : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayPatRuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the public gateway.
@@ -208,12 +208,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public VpcPublicGatewayPATRuleArgs()
+        public VpcPublicGatewayPatRuleArgs()
         {
         }
     }
 
-    public sealed class VpcPublicGatewayPATRuleState : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayPatRuleState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time of the creation of the pat rule config.
@@ -269,7 +269,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public VpcPublicGatewayPATRuleState()
+        public VpcPublicGatewayPatRuleState()
         {
         }
     }

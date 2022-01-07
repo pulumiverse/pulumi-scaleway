@@ -804,7 +804,7 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        public_ip = scaleway.InstanceIP("publicIp")
+        public_ip = scaleway.InstanceIp("publicIp")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_focal",
@@ -839,7 +839,7 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip = scaleway.InstanceIP("ip")
+        ip = scaleway.InstanceIp("ip")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="f974feac-abae-4365-b988-8ec7d1cec10d",
@@ -980,7 +980,7 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        public_ip = scaleway.InstanceIP("publicIp")
+        public_ip = scaleway.InstanceIp("publicIp")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_focal",
@@ -1015,7 +1015,7 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip = scaleway.InstanceIP("ip")
+        ip = scaleway.InstanceIp("ip")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="f974feac-abae-4365-b988-8ec7d1cec10d",

@@ -4,9 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-export class Route extends pulumi.CustomResource {
+export class LoadbalancerRoute extends pulumi.CustomResource {
     /**
-     * Get an existing Route resource's state with the given name, ID, and optional extra
+     * Get an existing LoadbalancerRoute resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -14,22 +14,22 @@ export class Route extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RouteState, opts?: pulumi.CustomResourceOptions): Route {
-        return new Route(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerRouteState, opts?: pulumi.CustomResourceOptions): LoadbalancerRoute {
+        return new LoadbalancerRoute(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/route:Route';
+    public static readonly __pulumiType = 'scaleway:index/loadbalancerRoute:LoadbalancerRoute';
 
     /**
-     * Returns true if the given object is an instance of Route.  This is designed to work even
+     * Returns true if the given object is an instance of LoadbalancerRoute.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Route {
+    public static isInstance(obj: any): obj is LoadbalancerRoute {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Route.__pulumiType;
+        return obj['__pulumiType'] === LoadbalancerRoute.__pulumiType;
     }
 
     /**
@@ -46,23 +46,23 @@ export class Route extends pulumi.CustomResource {
     public readonly matchSni!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a Route resource with the given unique name, arguments, and options.
+     * Create a LoadbalancerRoute resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RouteArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: RouteArgs | RouteState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: LoadbalancerRouteArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: LoadbalancerRouteArgs | LoadbalancerRouteState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as RouteState | undefined;
+            const state = argsOrState as LoadbalancerRouteState | undefined;
             resourceInputs["backendId"] = state ? state.backendId : undefined;
             resourceInputs["frontendId"] = state ? state.frontendId : undefined;
             resourceInputs["matchSni"] = state ? state.matchSni : undefined;
         } else {
-            const args = argsOrState as RouteArgs | undefined;
+            const args = argsOrState as LoadbalancerRouteArgs | undefined;
             if ((!args || args.backendId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backendId'");
             }
@@ -76,14 +76,14 @@ export class Route extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Route.__pulumiType, name, resourceInputs, opts);
+        super(LoadbalancerRoute.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Route resources.
+ * Input properties used for looking up and filtering LoadbalancerRoute resources.
  */
-export interface RouteState {
+export interface LoadbalancerRouteState {
     /**
      * The backend ID destination of redirection
      */
@@ -99,9 +99,9 @@ export interface RouteState {
 }
 
 /**
- * The set of arguments for constructing a Route resource.
+ * The set of arguments for constructing a LoadbalancerRoute resource.
  */
-export interface RouteArgs {
+export interface LoadbalancerRouteArgs {
     /**
      * The backend ID destination of redirection
      */

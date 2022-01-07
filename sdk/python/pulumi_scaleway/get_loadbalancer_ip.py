@@ -9,16 +9,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'GetLoadbalancerIPResult',
-    'AwaitableGetLoadbalancerIPResult',
+    'GetLoadbalancerIpResult',
+    'AwaitableGetLoadbalancerIpResult',
     'get_loadbalancer_ip',
     'get_loadbalancer_ip_output',
 ]
 
 @pulumi.output_type
-class GetLoadbalancerIPResult:
+class GetLoadbalancerIpResult:
     """
-    A collection of values returned by getLoadbalancerIP.
+    A collection of values returned by getLoadbalancerIp.
     """
     def __init__(__self__, id=None, ip_address=None, ip_id=None, lb_id=None, organization_id=None, project_id=None, region=None, reverse=None, zone=None):
         if id and not isinstance(id, str):
@@ -107,12 +107,12 @@ class GetLoadbalancerIPResult:
         return pulumi.get(self, "zone")
 
 
-class AwaitableGetLoadbalancerIPResult(GetLoadbalancerIPResult):
+class AwaitableGetLoadbalancerIpResult(GetLoadbalancerIpResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetLoadbalancerIPResult(
+        return GetLoadbalancerIpResult(
             id=self.id,
             ip_address=self.ip_address,
             ip_id=self.ip_id,
@@ -126,7 +126,7 @@ class AwaitableGetLoadbalancerIPResult(GetLoadbalancerIPResult):
 
 def get_loadbalancer_ip(ip_address: Optional[str] = None,
                         ip_id: Optional[str] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerIPResult:
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerIpResult:
     """
     Gets information about a Load Balancer IP.
 
@@ -152,9 +152,9 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancerIP:getLoadbalancerIP', __args__, opts=opts, typ=GetLoadbalancerIPResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancerIp:getLoadbalancerIp', __args__, opts=opts, typ=GetLoadbalancerIpResult).value
 
-    return AwaitableGetLoadbalancerIPResult(
+    return AwaitableGetLoadbalancerIpResult(
         id=__ret__.id,
         ip_address=__ret__.ip_address,
         ip_id=__ret__.ip_id,
@@ -169,7 +169,7 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
 @_utilities.lift_output_func(get_loadbalancer_ip)
 def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                                ip_id: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerIPResult]:
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
     """
     Gets information about a Load Balancer IP.
 

@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-export class IOTRoute extends pulumi.CustomResource {
+export class IotRoute extends pulumi.CustomResource {
     /**
-     * Get an existing IOTRoute resource's state with the given name, ID, and optional extra
+     * Get an existing IotRoute resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -15,22 +15,22 @@ export class IOTRoute extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IOTRouteState, opts?: pulumi.CustomResourceOptions): IOTRoute {
-        return new IOTRoute(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotRouteState, opts?: pulumi.CustomResourceOptions): IotRoute {
+        return new IotRoute(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/iOTRoute:IOTRoute';
+    public static readonly __pulumiType = 'scaleway:index/iotRoute:IotRoute';
 
     /**
-     * Returns true if the given object is an instance of IOTRoute.  This is designed to work even
+     * Returns true if the given object is an instance of IotRoute.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is IOTRoute {
+    public static isInstance(obj: any): obj is IotRoute {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === IOTRoute.__pulumiType;
+        return obj['__pulumiType'] === IotRoute.__pulumiType;
     }
 
     /**
@@ -40,7 +40,7 @@ export class IOTRoute extends pulumi.CustomResource {
     /**
      * Database Route parameters
      */
-    public readonly database!: pulumi.Output<outputs.IOTRouteDatabase | undefined>;
+    public readonly database!: pulumi.Output<outputs.IotRouteDatabase | undefined>;
     /**
      * The ID of the route's hub
      */
@@ -56,29 +56,29 @@ export class IOTRoute extends pulumi.CustomResource {
     /**
      * Rest Route parameters
      */
-    public readonly rest!: pulumi.Output<outputs.IOTRouteRest | undefined>;
+    public readonly rest!: pulumi.Output<outputs.IotRouteRest | undefined>;
     /**
      * S3 Route parameters
      */
-    public readonly s3!: pulumi.Output<outputs.IOTRouteS3 | undefined>;
+    public readonly s3!: pulumi.Output<outputs.IotRouteS3 | undefined>;
     /**
      * The Topic the route subscribes to (wildcards allowed)
      */
     public readonly topic!: pulumi.Output<string>;
 
     /**
-     * Create a IOTRoute resource with the given unique name, arguments, and options.
+     * Create a IotRoute resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: IOTRouteArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: IOTRouteArgs | IOTRouteState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: IotRouteArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: IotRouteArgs | IotRouteState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as IOTRouteState | undefined;
+            const state = argsOrState as IotRouteState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["database"] = state ? state.database : undefined;
             resourceInputs["hubId"] = state ? state.hubId : undefined;
@@ -88,7 +88,7 @@ export class IOTRoute extends pulumi.CustomResource {
             resourceInputs["s3"] = state ? state.s3 : undefined;
             resourceInputs["topic"] = state ? state.topic : undefined;
         } else {
-            const args = argsOrState as IOTRouteArgs | undefined;
+            const args = argsOrState as IotRouteArgs | undefined;
             if ((!args || args.hubId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
@@ -107,14 +107,14 @@ export class IOTRoute extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(IOTRoute.__pulumiType, name, resourceInputs, opts);
+        super(IotRoute.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering IOTRoute resources.
+ * Input properties used for looking up and filtering IotRoute resources.
  */
-export interface IOTRouteState {
+export interface IotRouteState {
     /**
      * The date and time of the creation of the IoT Route
      */
@@ -122,7 +122,7 @@ export interface IOTRouteState {
     /**
      * Database Route parameters
      */
-    database?: pulumi.Input<inputs.IOTRouteDatabase>;
+    database?: pulumi.Input<inputs.IotRouteDatabase>;
     /**
      * The ID of the route's hub
      */
@@ -138,11 +138,11 @@ export interface IOTRouteState {
     /**
      * Rest Route parameters
      */
-    rest?: pulumi.Input<inputs.IOTRouteRest>;
+    rest?: pulumi.Input<inputs.IotRouteRest>;
     /**
      * S3 Route parameters
      */
-    s3?: pulumi.Input<inputs.IOTRouteS3>;
+    s3?: pulumi.Input<inputs.IotRouteS3>;
     /**
      * The Topic the route subscribes to (wildcards allowed)
      */
@@ -150,13 +150,13 @@ export interface IOTRouteState {
 }
 
 /**
- * The set of arguments for constructing a IOTRoute resource.
+ * The set of arguments for constructing a IotRoute resource.
  */
-export interface IOTRouteArgs {
+export interface IotRouteArgs {
     /**
      * Database Route parameters
      */
-    database?: pulumi.Input<inputs.IOTRouteDatabase>;
+    database?: pulumi.Input<inputs.IotRouteDatabase>;
     /**
      * The ID of the route's hub
      */
@@ -172,11 +172,11 @@ export interface IOTRouteArgs {
     /**
      * Rest Route parameters
      */
-    rest?: pulumi.Input<inputs.IOTRouteRest>;
+    rest?: pulumi.Input<inputs.IotRouteRest>;
     /**
      * S3 Route parameters
      */
-    s3?: pulumi.Input<inputs.IOTRouteS3>;
+    s3?: pulumi.Input<inputs.IotRouteS3>;
     /**
      * The Topic the route subscribes to (wildcards allowed)
      */

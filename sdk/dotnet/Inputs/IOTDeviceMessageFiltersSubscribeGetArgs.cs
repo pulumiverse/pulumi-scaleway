@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway.Inputs
 {
 
-    public sealed class IOTDeviceMessageFiltersSubscribeGetArgs : Pulumi.ResourceArgs
+    public sealed class IotDeviceMessageFiltersSubscribeGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Same as publish rules.
@@ -30,7 +30,7 @@ namespace Pulumi.Scaleway.Inputs
             set => _topics = value;
         }
 
-        public IOTDeviceMessageFiltersSubscribeGetArgs()
+        public IotDeviceMessageFiltersSubscribeGetArgs()
         {
         }
     }

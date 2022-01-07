@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const publicIp = new scaleway.InstanceIP("publicIp", {});
+ * const publicIp = new scaleway.InstanceIp("publicIp", {});
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
  *     image: "ubuntu_focal",
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const ip = new scaleway.InstanceIP("ip", {});
+ * const ip = new scaleway.InstanceIp("ip", {});
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
  *     image: "f974feac-abae-4365-b988-8ec7d1cec10d",

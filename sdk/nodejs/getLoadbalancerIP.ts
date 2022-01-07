@@ -14,12 +14,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by IP ID
- * const myIp = pulumi.output(scaleway.getLoadbalancerIP({
+ * const myIp = pulumi.output(scaleway.getLoadbalancerIp({
  *     ipId: "11111111-1111-1111-1111-111111111111",
  * }));
  * ```
  */
-export function getLoadbalancerIP(args?: GetLoadbalancerIPArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIPResult> {
+export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIpResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -28,16 +28,16 @@ export function getLoadbalancerIP(args?: GetLoadbalancerIPArgs, opts?: pulumi.In
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIP:getLoadbalancerIP", {
+    return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getLoadbalancerIP.
+ * A collection of arguments for invoking getLoadbalancerIp.
  */
-export interface GetLoadbalancerIPArgs {
+export interface GetLoadbalancerIpArgs {
     /**
      * The IP address.
      * Only one of `ipAddress` and `lbId` should be specified.
@@ -51,9 +51,9 @@ export interface GetLoadbalancerIPArgs {
 }
 
 /**
- * A collection of values returned by getLoadbalancerIP.
+ * A collection of values returned by getLoadbalancerIp.
  */
-export interface GetLoadbalancerIPResult {
+export interface GetLoadbalancerIpResult {
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -77,14 +77,14 @@ export interface GetLoadbalancerIPResult {
     readonly zone: string;
 }
 
-export function getLoadbalancerIPOutput(args?: GetLoadbalancerIPOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerIPResult> {
-    return pulumi.output(args).apply(a => getLoadbalancerIP(a, opts))
+export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerIpResult> {
+    return pulumi.output(args).apply(a => getLoadbalancerIp(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getLoadbalancerIP.
+ * A collection of arguments for invoking getLoadbalancerIp.
  */
-export interface GetLoadbalancerIPOutputArgs {
+export interface GetLoadbalancerIpOutputArgs {
     /**
      * The IP address.
      * Only one of `ipAddress` and `lbId` should be specified.

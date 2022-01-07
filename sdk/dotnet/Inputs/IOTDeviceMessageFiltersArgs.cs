@@ -10,21 +10,21 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway.Inputs
 {
 
-    public sealed class IOTDeviceMessageFiltersArgs : Pulumi.ResourceArgs
+    public sealed class IotDeviceMessageFiltersArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Rules used to restrict topics the device can publish to.
         /// </summary>
         [Input("publish")]
-        public Input<Inputs.IOTDeviceMessageFiltersPublishArgs>? Publish { get; set; }
+        public Input<Inputs.IotDeviceMessageFiltersPublishArgs>? Publish { get; set; }
 
         /// <summary>
         /// Rules used to restrict topics the device can subscribe to.
         /// </summary>
         [Input("subscribe")]
-        public Input<Inputs.IOTDeviceMessageFiltersSubscribeArgs>? Subscribe { get; set; }
+        public Input<Inputs.IotDeviceMessageFiltersSubscribeArgs>? Subscribe { get; set; }
 
-        public IOTDeviceMessageFiltersArgs()
+        public IotDeviceMessageFiltersArgs()
         {
         }
     }

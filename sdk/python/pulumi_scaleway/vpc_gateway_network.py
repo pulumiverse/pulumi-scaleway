@@ -354,8 +354,8 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
 
         pn01 = scaleway.VpcPrivateNetwork("pn01")
-        gw01 = scaleway.VpcPublicGatewayIP("gw01")
-        dhcp01 = scaleway.VpcPublicGatewayDHCP("dhcp01", subnet="192.168.1.0/24")
+        gw01 = scaleway.VpcPublicGatewayIp("gw01")
+        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
         pg01 = scaleway.VpcPublicGateway("pg01",
             type="VPC-GW-S",
             ip_id=gw01.id)
@@ -402,8 +402,8 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
 
         pn01 = scaleway.VpcPrivateNetwork("pn01")
-        gw01 = scaleway.VpcPublicGatewayIP("gw01")
-        dhcp01 = scaleway.VpcPublicGatewayDHCP("dhcp01", subnet="192.168.1.0/24")
+        gw01 = scaleway.VpcPublicGatewayIp("gw01")
+        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
         pg01 = scaleway.VpcPublicGateway("pg01",
             type="VPC-GW-S",
             ip_id=gw01.id)

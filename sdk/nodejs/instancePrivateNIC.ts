@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const pnic01 = new scaleway.InstancePrivateNIC("pnic01", {
+ * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
  *     privateNetworkId: "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
  *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
  * });
@@ -25,12 +25,12 @@ import * as utilities from "./utilities";
  * Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instancePrivateNIC:InstancePrivateNIC server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+ *  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
  * ```
  */
-export class InstancePrivateNIC extends pulumi.CustomResource {
+export class InstancePrivateNic extends pulumi.CustomResource {
     /**
-     * Get an existing InstancePrivateNIC resource's state with the given name, ID, and optional extra
+     * Get an existing InstancePrivateNic resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -38,22 +38,22 @@ export class InstancePrivateNIC extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstancePrivateNICState, opts?: pulumi.CustomResourceOptions): InstancePrivateNIC {
-        return new InstancePrivateNIC(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstancePrivateNicState, opts?: pulumi.CustomResourceOptions): InstancePrivateNic {
+        return new InstancePrivateNic(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/instancePrivateNIC:InstancePrivateNIC';
+    public static readonly __pulumiType = 'scaleway:index/instancePrivateNic:InstancePrivateNic';
 
     /**
-     * Returns true if the given object is an instance of InstancePrivateNIC.  This is designed to work even
+     * Returns true if the given object is an instance of InstancePrivateNic.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is InstancePrivateNIC {
+    public static isInstance(obj: any): obj is InstancePrivateNic {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === InstancePrivateNIC.__pulumiType;
+        return obj['__pulumiType'] === InstancePrivateNic.__pulumiType;
     }
 
     /**
@@ -74,24 +74,24 @@ export class InstancePrivateNIC extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a InstancePrivateNIC resource with the given unique name, arguments, and options.
+     * Create a InstancePrivateNic resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: InstancePrivateNICArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: InstancePrivateNICArgs | InstancePrivateNICState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: InstancePrivateNicArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: InstancePrivateNicArgs | InstancePrivateNicState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as InstancePrivateNICState | undefined;
+            const state = argsOrState as InstancePrivateNicState | undefined;
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as InstancePrivateNICArgs | undefined;
+            const args = argsOrState as InstancePrivateNicArgs | undefined;
             if ((!args || args.privateNetworkId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'privateNetworkId'");
             }
@@ -106,14 +106,14 @@ export class InstancePrivateNIC extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstancePrivateNIC.__pulumiType, name, resourceInputs, opts);
+        super(InstancePrivateNic.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering InstancePrivateNIC resources.
+ * Input properties used for looking up and filtering InstancePrivateNic resources.
  */
-export interface InstancePrivateNICState {
+export interface InstancePrivateNicState {
     /**
      * MAC address of the NIC
      */
@@ -133,9 +133,9 @@ export interface InstancePrivateNICState {
 }
 
 /**
- * The set of arguments for constructing a InstancePrivateNIC resource.
+ * The set of arguments for constructing a InstancePrivateNic resource.
  */
-export interface InstancePrivateNICArgs {
+export interface InstancePrivateNicArgs {
     /**
      * The ID of the private network attached to.
      */

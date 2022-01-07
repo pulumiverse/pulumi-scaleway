@@ -10,17 +10,17 @@ from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['DatabaseACLArgs', 'DatabaseACL']
+__all__ = ['DatabaseAclArgs', 'DatabaseAcl']
 
 @pulumi.input_type
-class DatabaseACLArgs:
+class DatabaseAclArgs:
     def __init__(__self__, *,
-                 acl_rules: pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]],
+                 acl_rules: pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]],
                  instance_id: pulumi.Input[str],
                  region: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a DatabaseACL resource.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
+        The set of arguments for constructing a DatabaseAcl resource.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -31,14 +31,14 @@ class DatabaseACLArgs:
 
     @property
     @pulumi.getter(name="aclRules")
-    def acl_rules(self) -> pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]]:
+    def acl_rules(self) -> pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]]:
         """
         A list of ACLs (structure is described below)
         """
         return pulumi.get(self, "acl_rules")
 
     @acl_rules.setter
-    def acl_rules(self, value: pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]]):
+    def acl_rules(self, value: pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]]):
         pulumi.set(self, "acl_rules", value)
 
     @property
@@ -67,14 +67,14 @@ class DatabaseACLArgs:
 
 
 @pulumi.input_type
-class _DatabaseACLState:
+class _DatabaseAclState:
     def __init__(__self__, *,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering DatabaseACL resources.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
+        Input properties used for looking up and filtering DatabaseAcl resources.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -87,14 +87,14 @@ class _DatabaseACLState:
 
     @property
     @pulumi.getter(name="aclRules")
-    def acl_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]]]:
+    def acl_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]]]:
         """
         A list of ACLs (structure is described below)
         """
         return pulumi.get(self, "acl_rules")
 
     @acl_rules.setter
-    def acl_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseACLAclRuleArgs']]]]):
+    def acl_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]]]):
         pulumi.set(self, "acl_rules", value)
 
     @property
@@ -122,12 +122,12 @@ class _DatabaseACLState:
         pulumi.set(self, "region", value)
 
 
-class DatabaseACL(pulumi.CustomResource):
+class DatabaseAcl(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseACLAclRuleArgs']]]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -143,9 +143,9 @@ class DatabaseACL(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        main = scaleway.DatabaseACL("main",
+        main = scaleway.DatabaseAcl("main",
             instance_id=scaleway_rdb_instance["main"]["id"],
-            acl_rules=[scaleway.DatabaseACLAclRuleArgs(
+            acl_rules=[scaleway.DatabaseAclAclRuleArgs(
                 ip="1.2.3.4/32",
                 description="foo",
             )])
@@ -156,12 +156,12 @@ class DatabaseACL(pulumi.CustomResource):
         Database Instance can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseACL:DatabaseACL acl01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseACLAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -169,7 +169,7 @@ class DatabaseACL(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DatabaseACLArgs,
+                 args: DatabaseAclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database instance autorized IPs.
@@ -183,9 +183,9 @@ class DatabaseACL(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        main = scaleway.DatabaseACL("main",
+        main = scaleway.DatabaseAcl("main",
             instance_id=scaleway_rdb_instance["main"]["id"],
-            acl_rules=[scaleway.DatabaseACLAclRuleArgs(
+            acl_rules=[scaleway.DatabaseAclAclRuleArgs(
                 ip="1.2.3.4/32",
                 description="foo",
             )])
@@ -196,16 +196,16 @@ class DatabaseACL(pulumi.CustomResource):
         Database Instance can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseACL:DatabaseACL acl01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param DatabaseACLArgs args: The arguments to use to populate this resource's properties.
+        :param DatabaseAclArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DatabaseACLArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DatabaseAclArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -214,7 +214,7 @@ class DatabaseACL(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseACLAclRuleArgs']]]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -227,7 +227,7 @@ class DatabaseACL(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DatabaseACLArgs.__new__(DatabaseACLArgs)
+            __props__ = DatabaseAclArgs.__new__(DatabaseAclArgs)
 
             if acl_rules is None and not opts.urn:
                 raise TypeError("Missing required property 'acl_rules'")
@@ -236,8 +236,8 @@ class DatabaseACL(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["region"] = region
-        super(DatabaseACL, __self__).__init__(
-            'scaleway:index/databaseACL:DatabaseACL',
+        super(DatabaseAcl, __self__).__init__(
+            'scaleway:index/databaseAcl:DatabaseAcl',
             resource_name,
             __props__,
             opts)
@@ -246,32 +246,32 @@ class DatabaseACL(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseACLAclRuleArgs']]]]] = None,
+            acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            region: Optional[pulumi.Input[str]] = None) -> 'DatabaseACL':
+            region: Optional[pulumi.Input[str]] = None) -> 'DatabaseAcl':
         """
-        Get an existing DatabaseACL resource's state with the given name, id, and optional extra
+        Get an existing DatabaseAcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseACLAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _DatabaseACLState.__new__(_DatabaseACLState)
+        __props__ = _DatabaseAclState.__new__(_DatabaseAclState)
 
         __props__.__dict__["acl_rules"] = acl_rules
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["region"] = region
-        return DatabaseACL(resource_name, opts=opts, __props__=__props__)
+        return DatabaseAcl(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="aclRules")
-    def acl_rules(self) -> pulumi.Output[Sequence['outputs.DatabaseACLAclRule']]:
+    def acl_rules(self) -> pulumi.Output[Sequence['outputs.DatabaseAclAclRule']]:
         """
         A list of ACLs (structure is described below)
         """

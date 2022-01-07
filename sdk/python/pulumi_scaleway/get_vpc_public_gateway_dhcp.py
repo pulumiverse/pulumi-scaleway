@@ -9,16 +9,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'GetVpcPublicGatewayDHCPResult',
-    'AwaitableGetVpcPublicGatewayDHCPResult',
+    'GetVpcPublicGatewayDhcpResult',
+    'AwaitableGetVpcPublicGatewayDhcpResult',
     'get_vpc_public_gateway_dhcp',
     'get_vpc_public_gateway_dhcp_output',
 ]
 
 @pulumi.output_type
-class GetVpcPublicGatewayDHCPResult:
+class GetVpcPublicGatewayDhcpResult:
     """
-    A collection of values returned by getVpcPublicGatewayDHCP.
+    A collection of values returned by getVpcPublicGatewayDhcp.
     """
     def __init__(__self__, address=None, created_at=None, dhcp_id=None, dns_local_name=None, dns_searches=None, dns_server_overrides=None, enable_dynamic=None, id=None, organization_id=None, pool_high=None, pool_low=None, project_id=None, push_default_route=None, push_dns_server=None, rebind_timer=None, renew_timer=None, subnet=None, updated_at=None, valid_lifetime=None, zone=None):
         if address and not isinstance(address, str):
@@ -186,12 +186,12 @@ class GetVpcPublicGatewayDHCPResult:
         return pulumi.get(self, "zone")
 
 
-class AwaitableGetVpcPublicGatewayDHCPResult(GetVpcPublicGatewayDHCPResult):
+class AwaitableGetVpcPublicGatewayDhcpResult(GetVpcPublicGatewayDhcpResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetVpcPublicGatewayDHCPResult(
+        return GetVpcPublicGatewayDhcpResult(
             address=self.address,
             created_at=self.created_at,
             dhcp_id=self.dhcp_id,
@@ -215,7 +215,7 @@ class AwaitableGetVpcPublicGatewayDHCPResult(GetVpcPublicGatewayDHCPResult):
 
 
 def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDHCPResult:
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpResult:
     """
     Gets information about a public gateway DHCP.
 
@@ -225,7 +225,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayDHCP("main", subnet="192.168.0.0/24")
+    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
     dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """
@@ -235,9 +235,9 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayDHCP:getVpcPublicGatewayDHCP', __args__, opts=opts, typ=GetVpcPublicGatewayDHCPResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpResult).value
 
-    return AwaitableGetVpcPublicGatewayDHCPResult(
+    return AwaitableGetVpcPublicGatewayDhcpResult(
         address=__ret__.address,
         created_at=__ret__.created_at,
         dhcp_id=__ret__.dhcp_id,
@@ -262,7 +262,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_vpc_public_gateway_dhcp)
 def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDHCPResult]:
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
     """
     Gets information about a public gateway DHCP.
 
@@ -272,7 +272,7 @@ def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = No
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayDHCP("main", subnet="192.168.0.0/24")
+    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
     dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """

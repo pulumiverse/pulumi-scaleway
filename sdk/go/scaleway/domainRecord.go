@@ -191,7 +191,7 @@ import (
 // 		cfg := config.New(ctx, "")
 // 		projectId := cfg.Require("projectId")
 // 		dnsZone := cfg.Require("dnsZone")
-// 		publicIp, err := scaleway.NewInstanceIP(ctx, "publicIp", &scaleway.InstanceIPArgs{
+// 		publicIp, err := scaleway.NewInstanceIp(ctx, "publicIp", &scaleway.InstanceIpArgs{
 // 			ProjectId: pulumi.String(projectId),
 // 		})
 // 		if err != nil {

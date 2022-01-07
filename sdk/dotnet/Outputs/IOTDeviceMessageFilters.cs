@@ -11,22 +11,22 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IOTDeviceMessageFilters
+    public sealed class IotDeviceMessageFilters
     {
         /// <summary>
         /// Rules used to restrict topics the device can publish to.
         /// </summary>
-        public readonly Outputs.IOTDeviceMessageFiltersPublish? Publish;
+        public readonly Outputs.IotDeviceMessageFiltersPublish? Publish;
         /// <summary>
         /// Rules used to restrict topics the device can subscribe to.
         /// </summary>
-        public readonly Outputs.IOTDeviceMessageFiltersSubscribe? Subscribe;
+        public readonly Outputs.IotDeviceMessageFiltersSubscribe? Subscribe;
 
         [OutputConstructor]
-        private IOTDeviceMessageFilters(
-            Outputs.IOTDeviceMessageFiltersPublish? publish,
+        private IotDeviceMessageFilters(
+            Outputs.IotDeviceMessageFiltersPublish? publish,
 
-            Outputs.IOTDeviceMessageFiltersSubscribe? subscribe)
+            Outputs.IotDeviceMessageFiltersSubscribe? subscribe)
         {
             Publish = publish;
             Subscribe = subscribe;

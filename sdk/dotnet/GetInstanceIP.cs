@@ -10,7 +10,7 @@ using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
-    public static class GetInstanceIP
+    public static class GetInstanceIp
     {
         /// <summary>
         /// Gets information about an instance IP.
@@ -27,7 +27,7 @@ namespace Pulumi.Scaleway
         /// {
         ///     public MyStack()
         ///     {
-        ///         var myIp = Output.Create(Scaleway.GetInstanceIP.InvokeAsync(new Scaleway.GetInstanceIPArgs
+        ///         var myIp = Output.Create(Scaleway.GetInstanceIp.InvokeAsync(new Scaleway.GetInstanceIpArgs
         ///         {
         ///             Id = "fr-par-1/11111111-1111-1111-1111-111111111111",
         ///         }));
@@ -38,8 +38,8 @@ namespace Pulumi.Scaleway
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetInstanceIPResult> InvokeAsync(GetInstanceIPArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceIPResult>("scaleway:index/getInstanceIP:getInstanceIP", args ?? new GetInstanceIPArgs(), options.WithVersion());
+        public static Task<GetInstanceIpResult> InvokeAsync(GetInstanceIpArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceIpResult>("scaleway:index/getInstanceIp:getInstanceIp", args ?? new GetInstanceIpArgs(), options.WithVersion());
 
         /// <summary>
         /// Gets information about an instance IP.
@@ -56,7 +56,7 @@ namespace Pulumi.Scaleway
         /// {
         ///     public MyStack()
         ///     {
-        ///         var myIp = Output.Create(Scaleway.GetInstanceIP.InvokeAsync(new Scaleway.GetInstanceIPArgs
+        ///         var myIp = Output.Create(Scaleway.GetInstanceIp.InvokeAsync(new Scaleway.GetInstanceIpArgs
         ///         {
         ///             Id = "fr-par-1/11111111-1111-1111-1111-111111111111",
         ///         }));
@@ -67,12 +67,12 @@ namespace Pulumi.Scaleway
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetInstanceIPResult> Invoke(GetInstanceIPInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstanceIPResult>("scaleway:index/getInstanceIP:getInstanceIP", args ?? new GetInstanceIPInvokeArgs(), options.WithVersion());
+        public static Output<GetInstanceIpResult> Invoke(GetInstanceIpInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceIpResult>("scaleway:index/getInstanceIp:getInstanceIp", args ?? new GetInstanceIpInvokeArgs(), options.WithVersion());
     }
 
 
-    public sealed class GetInstanceIPArgs : Pulumi.InvokeArgs
+    public sealed class GetInstanceIpArgs : Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IPv4 address to retrieve
@@ -88,12 +88,12 @@ namespace Pulumi.Scaleway
         [Input("id")]
         public string? Id { get; set; }
 
-        public GetInstanceIPArgs()
+        public GetInstanceIpArgs()
         {
         }
     }
 
-    public sealed class GetInstanceIPInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetInstanceIpInvokeArgs : Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IPv4 address to retrieve
@@ -109,14 +109,14 @@ namespace Pulumi.Scaleway
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        public GetInstanceIPInvokeArgs()
+        public GetInstanceIpInvokeArgs()
         {
         }
     }
 
 
     [OutputType]
-    public sealed class GetInstanceIPResult
+    public sealed class GetInstanceIpResult
     {
         /// <summary>
         /// The IP address.
@@ -139,7 +139,7 @@ namespace Pulumi.Scaleway
         public readonly string Zone;
 
         [OutputConstructor]
-        private GetInstanceIPResult(
+        private GetInstanceIpResult(
             string? address,
 
             string? id,

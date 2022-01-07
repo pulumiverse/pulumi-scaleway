@@ -22,10 +22,10 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var serverIp = new Scaleway.InstanceIP("serverIp", new Scaleway.InstanceIPArgs
+    ///         var serverIp = new Scaleway.InstanceIp("serverIp", new Scaleway.InstanceIpArgs
     ///         {
     ///         });
-    ///         var reverse = new Scaleway.InstanceIPReverseDNS("reverse", new Scaleway.InstanceIPReverseDNSArgs
+    ///         var reverse = new Scaleway.InstanceIpReverseDns("reverse", new Scaleway.InstanceIpReverseDnsArgs
     ///         {
     ///             IpId = serverIp.Id,
     ///             Reverse = "www.scaleway.com",
@@ -40,11 +40,11 @@ namespace Pulumi.Scaleway
     /// IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS")]
-    public partial class InstanceIPReverseDNS : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/instanceIpReverseDns:InstanceIpReverseDns")]
+    public partial class InstanceIpReverseDns : Pulumi.CustomResource
     {
         /// <summary>
         /// The IP ID
@@ -66,19 +66,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a InstanceIPReverseDNS resource with the given unique name, arguments, and options.
+        /// Create a InstanceIpReverseDns resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public InstanceIPReverseDNS(string name, InstanceIPReverseDNSArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS", name, args ?? new InstanceIPReverseDNSArgs(), MakeResourceOptions(options, ""))
+        public InstanceIpReverseDns(string name, InstanceIpReverseDnsArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/instanceIpReverseDns:InstanceIpReverseDns", name, args ?? new InstanceIpReverseDnsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private InstanceIPReverseDNS(string name, Input<string> id, InstanceIPReverseDNSState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS", name, state, MakeResourceOptions(options, id))
+        private InstanceIpReverseDns(string name, Input<string> id, InstanceIpReverseDnsState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/instanceIpReverseDns:InstanceIpReverseDns", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -94,7 +94,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing InstanceIPReverseDNS resource's state with the given name, ID, and optional extra
+        /// Get an existing InstanceIpReverseDns resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -102,13 +102,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static InstanceIPReverseDNS Get(string name, Input<string> id, InstanceIPReverseDNSState? state = null, CustomResourceOptions? options = null)
+        public static InstanceIpReverseDns Get(string name, Input<string> id, InstanceIpReverseDnsState? state = null, CustomResourceOptions? options = null)
         {
-            return new InstanceIPReverseDNS(name, id, state, options);
+            return new InstanceIpReverseDns(name, id, state, options);
         }
     }
 
-    public sealed class InstanceIPReverseDNSArgs : Pulumi.ResourceArgs
+    public sealed class InstanceIpReverseDnsArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The IP ID
@@ -128,12 +128,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public InstanceIPReverseDNSArgs()
+        public InstanceIpReverseDnsArgs()
         {
         }
     }
 
-    public sealed class InstanceIPReverseDNSState : Pulumi.ResourceArgs
+    public sealed class InstanceIpReverseDnsState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The IP ID
@@ -153,7 +153,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public InstanceIPReverseDNSState()
+        public InstanceIpReverseDnsState()
         {
         }
     }

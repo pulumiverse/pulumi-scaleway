@@ -24,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.LookupDatabaseACL(ctx, &GetDatabaseACLArgs{
+// 		_, err := scaleway.LookupDatabaseAcl(ctx, &GetDatabaseAclArgs{
 // 			InstanceId: "fr-par/11111111-1111-1111-1111-111111111111",
 // 		}, nil)
 // 		if err != nil {
@@ -34,83 +34,83 @@ import (
 // 	})
 // }
 // ```
-func LookupDatabaseACL(ctx *pulumi.Context, args *LookupDatabaseACLArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseACLResult, error) {
-	var rv LookupDatabaseACLResult
-	err := ctx.Invoke("scaleway:index/getDatabaseACL:getDatabaseACL", args, &rv, opts...)
+func LookupDatabaseAcl(ctx *pulumi.Context, args *LookupDatabaseAclArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseAclResult, error) {
+	var rv LookupDatabaseAclResult
+	err := ctx.Invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getDatabaseACL.
-type LookupDatabaseACLArgs struct {
+// A collection of arguments for invoking getDatabaseAcl.
+type LookupDatabaseAclArgs struct {
 	// The RDB instance ID.
 	InstanceId string `pulumi:"instanceId"`
 }
 
-// A collection of values returned by getDatabaseACL.
-type LookupDatabaseACLResult struct {
+// A collection of values returned by getDatabaseAcl.
+type LookupDatabaseAclResult struct {
 	// A list of ACLs (structure is described below)
-	AclRules []GetDatabaseACLAclRule `pulumi:"aclRules"`
+	AclRules []GetDatabaseAclAclRule `pulumi:"aclRules"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId string `pulumi:"instanceId"`
 	Region     string `pulumi:"region"`
 }
 
-func LookupDatabaseACLOutput(ctx *pulumi.Context, args LookupDatabaseACLOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseACLResultOutput {
+func LookupDatabaseAclOutput(ctx *pulumi.Context, args LookupDatabaseAclOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseAclResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDatabaseACLResult, error) {
-			args := v.(LookupDatabaseACLArgs)
-			r, err := LookupDatabaseACL(ctx, &args, opts...)
+		ApplyT(func(v interface{}) (LookupDatabaseAclResult, error) {
+			args := v.(LookupDatabaseAclArgs)
+			r, err := LookupDatabaseAcl(ctx, &args, opts...)
 			return *r, err
-		}).(LookupDatabaseACLResultOutput)
+		}).(LookupDatabaseAclResultOutput)
 }
 
-// A collection of arguments for invoking getDatabaseACL.
-type LookupDatabaseACLOutputArgs struct {
+// A collection of arguments for invoking getDatabaseAcl.
+type LookupDatabaseAclOutputArgs struct {
 	// The RDB instance ID.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 }
 
-func (LookupDatabaseACLOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDatabaseACLArgs)(nil)).Elem()
+func (LookupDatabaseAclOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseAclArgs)(nil)).Elem()
 }
 
-// A collection of values returned by getDatabaseACL.
-type LookupDatabaseACLResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getDatabaseAcl.
+type LookupDatabaseAclResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDatabaseACLResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDatabaseACLResult)(nil)).Elem()
+func (LookupDatabaseAclResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseAclResult)(nil)).Elem()
 }
 
-func (o LookupDatabaseACLResultOutput) ToLookupDatabaseACLResultOutput() LookupDatabaseACLResultOutput {
+func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutput() LookupDatabaseAclResultOutput {
 	return o
 }
 
-func (o LookupDatabaseACLResultOutput) ToLookupDatabaseACLResultOutputWithContext(ctx context.Context) LookupDatabaseACLResultOutput {
+func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutputWithContext(ctx context.Context) LookupDatabaseAclResultOutput {
 	return o
 }
 
 // A list of ACLs (structure is described below)
-func (o LookupDatabaseACLResultOutput) AclRules() GetDatabaseACLAclRuleArrayOutput {
-	return o.ApplyT(func(v LookupDatabaseACLResult) []GetDatabaseACLAclRule { return v.AclRules }).(GetDatabaseACLAclRuleArrayOutput)
+func (o LookupDatabaseAclResultOutput) AclRules() GetDatabaseAclAclRuleArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseAclResult) []GetDatabaseAclAclRule { return v.AclRules }).(GetDatabaseAclAclRuleArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o LookupDatabaseACLResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseACLResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupDatabaseAclResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseAclResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupDatabaseACLResultOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseACLResult) string { return v.InstanceId }).(pulumi.StringOutput)
+func (o LookupDatabaseAclResultOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseAclResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-func (o LookupDatabaseACLResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseACLResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupDatabaseAclResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseAclResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDatabaseACLResultOutput{})
+	pulumi.RegisterOutputType(LookupDatabaseAclResultOutput{})
 }

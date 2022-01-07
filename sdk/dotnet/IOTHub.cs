@@ -15,11 +15,11 @@ namespace Pulumi.Scaleway
     /// IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iOTHub:IOTHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/iOTHub:IOTHub")]
-    public partial class IOTHub : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/iotHub:IotHub")]
+    public partial class IotHub : Pulumi.CustomResource
     {
         /// <summary>
         /// The current number of connected devices in the Hub.
@@ -125,19 +125,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a IOTHub resource with the given unique name, arguments, and options.
+        /// Create a IotHub resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public IOTHub(string name, IOTHubArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTHub:IOTHub", name, args ?? new IOTHubArgs(), MakeResourceOptions(options, ""))
+        public IotHub(string name, IotHubArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotHub:IotHub", name, args ?? new IotHubArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private IOTHub(string name, Input<string> id, IOTHubState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTHub:IOTHub", name, state, MakeResourceOptions(options, id))
+        private IotHub(string name, Input<string> id, IotHubState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotHub:IotHub", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -153,7 +153,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing IOTHub resource's state with the given name, ID, and optional extra
+        /// Get an existing IotHub resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -161,13 +161,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static IOTHub Get(string name, Input<string> id, IOTHubState? state = null, CustomResourceOptions? options = null)
+        public static IotHub Get(string name, Input<string> id, IotHubState? state = null, CustomResourceOptions? options = null)
         {
-            return new IOTHub(name, id, state, options);
+            return new IotHub(name, id, state, options);
         }
     }
 
-    public sealed class IOTHubArgs : Pulumi.ResourceArgs
+    public sealed class IotHubArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Wether to enable the device auto provisioning or not
@@ -229,12 +229,12 @@ namespace Pulumi.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public IOTHubArgs()
+        public IotHubArgs()
         {
         }
     }
 
-    public sealed class IOTHubState : Pulumi.ResourceArgs
+    public sealed class IotHubState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The current number of connected devices in the Hub.
@@ -338,7 +338,7 @@ namespace Pulumi.Scaleway
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
-        public IOTHubState()
+        public IotHubState()
         {
         }
     }

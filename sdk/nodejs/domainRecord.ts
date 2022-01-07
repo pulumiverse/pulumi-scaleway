@@ -129,7 +129,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const projectId = config.require("projectId");
  * const dnsZone = config.require("dnsZone");
- * const publicIp = new scaleway.InstanceIP("publicIp", {projectId: projectId});
+ * const publicIp = new scaleway.InstanceIp("publicIp", {projectId: projectId});
  * const web = new scaleway.InstanceServer("web", {
  *     projectId: projectId,
  *     type: "DEV1-S",

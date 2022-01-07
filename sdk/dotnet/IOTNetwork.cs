@@ -15,11 +15,11 @@ namespace Pulumi.Scaleway
     /// IoT Networks can be imported using the `{region}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iOTNetwork:IOTNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/iOTNetwork:IOTNetwork")]
-    public partial class IOTNetwork : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/iotNetwork:IotNetwork")]
+    public partial class IotNetwork : Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time the Network was created.
@@ -65,19 +65,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a IOTNetwork resource with the given unique name, arguments, and options.
+        /// Create a IotNetwork resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public IOTNetwork(string name, IOTNetworkArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTNetwork:IOTNetwork", name, args ?? new IOTNetworkArgs(), MakeResourceOptions(options, ""))
+        public IotNetwork(string name, IotNetworkArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotNetwork:IotNetwork", name, args ?? new IotNetworkArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private IOTNetwork(string name, Input<string> id, IOTNetworkState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTNetwork:IOTNetwork", name, state, MakeResourceOptions(options, id))
+        private IotNetwork(string name, Input<string> id, IotNetworkState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotNetwork:IotNetwork", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -93,7 +93,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing IOTNetwork resource's state with the given name, ID, and optional extra
+        /// Get an existing IotNetwork resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -101,13 +101,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static IOTNetwork Get(string name, Input<string> id, IOTNetworkState? state = null, CustomResourceOptions? options = null)
+        public static IotNetwork Get(string name, Input<string> id, IotNetworkState? state = null, CustomResourceOptions? options = null)
         {
-            return new IOTNetwork(name, id, state, options);
+            return new IotNetwork(name, id, state, options);
         }
     }
 
-    public sealed class IOTNetworkArgs : Pulumi.ResourceArgs
+    public sealed class IotNetworkArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The hub ID to which the Network will be attached to.
@@ -133,12 +133,12 @@ namespace Pulumi.Scaleway
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        public IOTNetworkArgs()
+        public IotNetworkArgs()
         {
         }
     }
 
-    public sealed class IOTNetworkState : Pulumi.ResourceArgs
+    public sealed class IotNetworkState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time the Network was created.
@@ -182,7 +182,7 @@ namespace Pulumi.Scaleway
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        public IOTNetworkState()
+        public IotNetworkState()
         {
         }
     }

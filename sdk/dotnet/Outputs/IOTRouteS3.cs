@@ -11,7 +11,7 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IOTRouteS3
+    public sealed class IotRouteS3
     {
         public readonly string BucketName;
         public readonly string BucketRegion;
@@ -19,7 +19,7 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string Strategy;
 
         [OutputConstructor]
-        private IOTRouteS3(
+        private IotRouteS3(
             string bucketName,
 
             string bucketRegion,

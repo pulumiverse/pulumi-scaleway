@@ -8,17 +8,17 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['VpcPublicGatewayIPArgs', 'VpcPublicGatewayIP']
+__all__ = ['VpcPublicGatewayIpArgs', 'VpcPublicGatewayIp']
 
 @pulumi.input_type
-class VpcPublicGatewayIPArgs:
+class VpcPublicGatewayIpArgs:
     def __init__(__self__, *,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a VpcPublicGatewayIP resource.
+        The set of arguments for constructing a VpcPublicGatewayIp resource.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway ip is associated with.
         :param pulumi.Input[str] reverse: The reverse domain name for the IP address
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway IP.
@@ -83,7 +83,7 @@ class VpcPublicGatewayIPArgs:
 
 
 @pulumi.input_type
-class _VpcPublicGatewayIPState:
+class _VpcPublicGatewayIpState:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
@@ -94,7 +94,7 @@ class _VpcPublicGatewayIPState:
                  updated_at: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering VpcPublicGatewayIP resources.
+        Input properties used for looking up and filtering VpcPublicGatewayIp resources.
         :param pulumi.Input[str] address: The IP address itself.
         :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway ip.
         :param pulumi.Input[str] organization_id: The organization ID the public gateway ip is associated with.
@@ -218,7 +218,7 @@ class _VpcPublicGatewayIPState:
         pulumi.set(self, "zone", value)
 
 
-class VpcPublicGatewayIP(pulumi.CustomResource):
+class VpcPublicGatewayIp(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -238,7 +238,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        main = scaleway.VpcPublicGatewayIP("main",
+        main = scaleway.VpcPublicGatewayIp("main",
             reverse="example.com",
             tags=[
                 "demo",
@@ -251,7 +251,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         Public gateway can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP main fr-par-1/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -265,7 +265,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[VpcPublicGatewayIPArgs] = None,
+                 args: Optional[VpcPublicGatewayIpArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway VPC Public Gateway IP.
@@ -277,7 +277,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        main = scaleway.VpcPublicGatewayIP("main",
+        main = scaleway.VpcPublicGatewayIp("main",
             reverse="example.com",
             tags=[
                 "demo",
@@ -290,16 +290,16 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         Public gateway can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP main fr-par-1/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param VpcPublicGatewayIPArgs args: The arguments to use to populate this resource's properties.
+        :param VpcPublicGatewayIpArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(VpcPublicGatewayIPArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(VpcPublicGatewayIpArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -322,7 +322,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = VpcPublicGatewayIPArgs.__new__(VpcPublicGatewayIPArgs)
+            __props__ = VpcPublicGatewayIpArgs.__new__(VpcPublicGatewayIpArgs)
 
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["reverse"] = reverse
@@ -332,8 +332,8 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["updated_at"] = None
-        super(VpcPublicGatewayIP, __self__).__init__(
-            'scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP',
+        super(VpcPublicGatewayIp, __self__).__init__(
+            'scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp',
             resource_name,
             __props__,
             opts)
@@ -349,9 +349,9 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
             reverse: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            zone: Optional[pulumi.Input[str]] = None) -> 'VpcPublicGatewayIP':
+            zone: Optional[pulumi.Input[str]] = None) -> 'VpcPublicGatewayIp':
         """
-        Get an existing VpcPublicGatewayIP resource's state with the given name, id, and optional extra
+        Get an existing VpcPublicGatewayIp resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -368,7 +368,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _VpcPublicGatewayIPState.__new__(_VpcPublicGatewayIPState)
+        __props__ = _VpcPublicGatewayIpState.__new__(_VpcPublicGatewayIpState)
 
         __props__.__dict__["address"] = address
         __props__.__dict__["created_at"] = created_at
@@ -378,7 +378,7 @@ class VpcPublicGatewayIP(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
-        return VpcPublicGatewayIP(resource_name, opts=opts, __props__=__props__)
+        return VpcPublicGatewayIp(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

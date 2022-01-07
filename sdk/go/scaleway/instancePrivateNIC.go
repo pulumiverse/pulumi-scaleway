@@ -26,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewInstancePrivateNIC(ctx, "pnic01", &scaleway.InstancePrivateNICArgs{
+// 		_, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
 // 			PrivateNetworkId: pulumi.String("fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
 // 			ServerId:         pulumi.String("fr-par-1/11111111-1111-1111-1111-111111111111"),
 // 		})
@@ -43,9 +43,9 @@ import (
 // Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/instancePrivateNIC:InstancePrivateNIC server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+//  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
 // ```
-type InstancePrivateNIC struct {
+type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 
 	// MAC address of the NIC
@@ -58,9 +58,9 @@ type InstancePrivateNIC struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewInstancePrivateNIC registers a new resource with the given unique name, arguments, and options.
-func NewInstancePrivateNIC(ctx *pulumi.Context,
-	name string, args *InstancePrivateNICArgs, opts ...pulumi.ResourceOption) (*InstancePrivateNIC, error) {
+// NewInstancePrivateNic registers a new resource with the given unique name, arguments, and options.
+func NewInstancePrivateNic(ctx *pulumi.Context,
+	name string, args *InstancePrivateNicArgs, opts ...pulumi.ResourceOption) (*InstancePrivateNic, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -71,28 +71,28 @@ func NewInstancePrivateNIC(ctx *pulumi.Context,
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
-	var resource InstancePrivateNIC
-	err := ctx.RegisterResource("scaleway:index/instancePrivateNIC:InstancePrivateNIC", name, args, &resource, opts...)
+	var resource InstancePrivateNic
+	err := ctx.RegisterResource("scaleway:index/instancePrivateNic:InstancePrivateNic", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetInstancePrivateNIC gets an existing InstancePrivateNIC resource's state with the given name, ID, and optional
+// GetInstancePrivateNic gets an existing InstancePrivateNic resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetInstancePrivateNIC(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *InstancePrivateNICState, opts ...pulumi.ResourceOption) (*InstancePrivateNIC, error) {
-	var resource InstancePrivateNIC
-	err := ctx.ReadResource("scaleway:index/instancePrivateNIC:InstancePrivateNIC", name, id, state, &resource, opts...)
+func GetInstancePrivateNic(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *InstancePrivateNicState, opts ...pulumi.ResourceOption) (*InstancePrivateNic, error) {
+	var resource InstancePrivateNic
+	err := ctx.ReadResource("scaleway:index/instancePrivateNic:InstancePrivateNic", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering InstancePrivateNIC resources.
-type instancePrivateNICState struct {
+// Input properties used for looking up and filtering InstancePrivateNic resources.
+type instancePrivateNicState struct {
 	// MAC address of the NIC
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -103,7 +103,7 @@ type instancePrivateNICState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type InstancePrivateNICState struct {
+type InstancePrivateNicState struct {
 	// MAC address of the NIC
 	MacAddress pulumi.StringPtrInput
 	// The ID of the private network attached to.
@@ -114,11 +114,11 @@ type InstancePrivateNICState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (InstancePrivateNICState) ElementType() reflect.Type {
-	return reflect.TypeOf((*instancePrivateNICState)(nil)).Elem()
+func (InstancePrivateNicState) ElementType() reflect.Type {
+	return reflect.TypeOf((*instancePrivateNicState)(nil)).Elem()
 }
 
-type instancePrivateNICArgs struct {
+type instancePrivateNicArgs struct {
 	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -127,8 +127,8 @@ type instancePrivateNICArgs struct {
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a InstancePrivateNIC resource.
-type InstancePrivateNICArgs struct {
+// The set of arguments for constructing a InstancePrivateNic resource.
+type InstancePrivateNicArgs struct {
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
 	// The ID of the server associated with.
@@ -137,44 +137,44 @@ type InstancePrivateNICArgs struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (InstancePrivateNICArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*instancePrivateNICArgs)(nil)).Elem()
+func (InstancePrivateNicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*instancePrivateNicArgs)(nil)).Elem()
 }
 
-type InstancePrivateNICInput interface {
+type InstancePrivateNicInput interface {
 	pulumi.Input
 
-	ToInstancePrivateNICOutput() InstancePrivateNICOutput
-	ToInstancePrivateNICOutputWithContext(ctx context.Context) InstancePrivateNICOutput
+	ToInstancePrivateNicOutput() InstancePrivateNicOutput
+	ToInstancePrivateNicOutputWithContext(ctx context.Context) InstancePrivateNicOutput
 }
 
-func (*InstancePrivateNIC) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstancePrivateNIC)(nil)).Elem()
+func (*InstancePrivateNic) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstancePrivateNic)(nil)).Elem()
 }
 
-func (i *InstancePrivateNIC) ToInstancePrivateNICOutput() InstancePrivateNICOutput {
-	return i.ToInstancePrivateNICOutputWithContext(context.Background())
+func (i *InstancePrivateNic) ToInstancePrivateNicOutput() InstancePrivateNicOutput {
+	return i.ToInstancePrivateNicOutputWithContext(context.Background())
 }
 
-func (i *InstancePrivateNIC) ToInstancePrivateNICOutputWithContext(ctx context.Context) InstancePrivateNICOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNICOutput)
+func (i *InstancePrivateNic) ToInstancePrivateNicOutputWithContext(ctx context.Context) InstancePrivateNicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicOutput)
 }
 
-type InstancePrivateNICOutput struct{ *pulumi.OutputState }
+type InstancePrivateNicOutput struct{ *pulumi.OutputState }
 
-func (InstancePrivateNICOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstancePrivateNIC)(nil)).Elem()
+func (InstancePrivateNicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstancePrivateNic)(nil)).Elem()
 }
 
-func (o InstancePrivateNICOutput) ToInstancePrivateNICOutput() InstancePrivateNICOutput {
+func (o InstancePrivateNicOutput) ToInstancePrivateNicOutput() InstancePrivateNicOutput {
 	return o
 }
 
-func (o InstancePrivateNICOutput) ToInstancePrivateNICOutputWithContext(ctx context.Context) InstancePrivateNICOutput {
+func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx context.Context) InstancePrivateNicOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNICInput)(nil)).Elem(), &InstancePrivateNIC{})
-	pulumi.RegisterOutputType(InstancePrivateNICOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicInput)(nil)).Elem(), &InstancePrivateNic{})
+	pulumi.RegisterOutputType(InstancePrivateNicOutput{})
 }

@@ -32,7 +32,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		dhcp01, err := scaleway.NewVpcPublicGatewayDHCP(ctx, "dhcp01", &scaleway.VpcPublicGatewayDHCPArgs{
+// 		dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
 // 			Subnet: pulumi.String("192.168.1.0/24"),
 // 		})
 // 		if err != nil {
@@ -51,7 +51,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = scaleway.NewVpcPublicGatewayPATRule(ctx, "main", &scaleway.VpcPublicGatewayPATRuleArgs{
+// 		_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "main", &scaleway.VpcPublicGatewayPatRuleArgs{
 // 			GatewayId:   pg01.ID(),
 // 			PrivateIp:   dhcp01.Address,
 // 			PrivatePort: pulumi.Int(42),
@@ -74,9 +74,9 @@ import (
 // Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule main fr-par-1/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
-type VpcPublicGatewayPATRule struct {
+type VpcPublicGatewayPatRule struct {
 	pulumi.CustomResourceState
 
 	// The date and time of the creation of the pat rule config.
@@ -99,9 +99,9 @@ type VpcPublicGatewayPATRule struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewVpcPublicGatewayPATRule registers a new resource with the given unique name, arguments, and options.
-func NewVpcPublicGatewayPATRule(ctx *pulumi.Context,
-	name string, args *VpcPublicGatewayPATRuleArgs, opts ...pulumi.ResourceOption) (*VpcPublicGatewayPATRule, error) {
+// NewVpcPublicGatewayPatRule registers a new resource with the given unique name, arguments, and options.
+func NewVpcPublicGatewayPatRule(ctx *pulumi.Context,
+	name string, args *VpcPublicGatewayPatRuleArgs, opts ...pulumi.ResourceOption) (*VpcPublicGatewayPatRule, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -118,28 +118,28 @@ func NewVpcPublicGatewayPATRule(ctx *pulumi.Context,
 	if args.PublicPort == nil {
 		return nil, errors.New("invalid value for required argument 'PublicPort'")
 	}
-	var resource VpcPublicGatewayPATRule
-	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule", name, args, &resource, opts...)
+	var resource VpcPublicGatewayPatRule
+	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetVpcPublicGatewayPATRule gets an existing VpcPublicGatewayPATRule resource's state with the given name, ID, and optional
+// GetVpcPublicGatewayPatRule gets an existing VpcPublicGatewayPatRule resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetVpcPublicGatewayPATRule(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *VpcPublicGatewayPATRuleState, opts ...pulumi.ResourceOption) (*VpcPublicGatewayPATRule, error) {
-	var resource VpcPublicGatewayPATRule
-	err := ctx.ReadResource("scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule", name, id, state, &resource, opts...)
+func GetVpcPublicGatewayPatRule(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *VpcPublicGatewayPatRuleState, opts ...pulumi.ResourceOption) (*VpcPublicGatewayPatRule, error) {
+	var resource VpcPublicGatewayPatRule
+	err := ctx.ReadResource("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering VpcPublicGatewayPATRule resources.
-type vpcPublicGatewayPATRuleState struct {
+// Input properties used for looking up and filtering VpcPublicGatewayPatRule resources.
+type vpcPublicGatewayPatRuleState struct {
 	// The date and time of the creation of the pat rule config.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the public gateway.
@@ -160,7 +160,7 @@ type vpcPublicGatewayPATRuleState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type VpcPublicGatewayPATRuleState struct {
+type VpcPublicGatewayPatRuleState struct {
 	// The date and time of the creation of the pat rule config.
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the public gateway.
@@ -181,11 +181,11 @@ type VpcPublicGatewayPATRuleState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (VpcPublicGatewayPATRuleState) ElementType() reflect.Type {
-	return reflect.TypeOf((*vpcPublicGatewayPATRuleState)(nil)).Elem()
+func (VpcPublicGatewayPatRuleState) ElementType() reflect.Type {
+	return reflect.TypeOf((*vpcPublicGatewayPatRuleState)(nil)).Elem()
 }
 
-type vpcPublicGatewayPATRuleArgs struct {
+type vpcPublicGatewayPatRuleArgs struct {
 	// The ID of the public gateway.
 	GatewayId string `pulumi:"gatewayId"`
 	// The Private IP to forward data to (IP address).
@@ -200,8 +200,8 @@ type vpcPublicGatewayPATRuleArgs struct {
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a VpcPublicGatewayPATRule resource.
-type VpcPublicGatewayPATRuleArgs struct {
+// The set of arguments for constructing a VpcPublicGatewayPatRule resource.
+type VpcPublicGatewayPatRuleArgs struct {
 	// The ID of the public gateway.
 	GatewayId pulumi.StringInput
 	// The Private IP to forward data to (IP address).
@@ -216,44 +216,44 @@ type VpcPublicGatewayPATRuleArgs struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (VpcPublicGatewayPATRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*vpcPublicGatewayPATRuleArgs)(nil)).Elem()
+func (VpcPublicGatewayPatRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*vpcPublicGatewayPatRuleArgs)(nil)).Elem()
 }
 
-type VpcPublicGatewayPATRuleInput interface {
+type VpcPublicGatewayPatRuleInput interface {
 	pulumi.Input
 
-	ToVpcPublicGatewayPATRuleOutput() VpcPublicGatewayPATRuleOutput
-	ToVpcPublicGatewayPATRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPATRuleOutput
+	ToVpcPublicGatewayPatRuleOutput() VpcPublicGatewayPatRuleOutput
+	ToVpcPublicGatewayPatRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleOutput
 }
 
-func (*VpcPublicGatewayPATRule) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayPATRule)(nil)).Elem()
+func (*VpcPublicGatewayPatRule) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPublicGatewayPatRule)(nil)).Elem()
 }
 
-func (i *VpcPublicGatewayPATRule) ToVpcPublicGatewayPATRuleOutput() VpcPublicGatewayPATRuleOutput {
-	return i.ToVpcPublicGatewayPATRuleOutputWithContext(context.Background())
+func (i *VpcPublicGatewayPatRule) ToVpcPublicGatewayPatRuleOutput() VpcPublicGatewayPatRuleOutput {
+	return i.ToVpcPublicGatewayPatRuleOutputWithContext(context.Background())
 }
 
-func (i *VpcPublicGatewayPATRule) ToVpcPublicGatewayPATRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPATRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPATRuleOutput)
+func (i *VpcPublicGatewayPatRule) ToVpcPublicGatewayPatRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleOutput)
 }
 
-type VpcPublicGatewayPATRuleOutput struct{ *pulumi.OutputState }
+type VpcPublicGatewayPatRuleOutput struct{ *pulumi.OutputState }
 
-func (VpcPublicGatewayPATRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayPATRule)(nil)).Elem()
+func (VpcPublicGatewayPatRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPublicGatewayPatRule)(nil)).Elem()
 }
 
-func (o VpcPublicGatewayPATRuleOutput) ToVpcPublicGatewayPATRuleOutput() VpcPublicGatewayPATRuleOutput {
+func (o VpcPublicGatewayPatRuleOutput) ToVpcPublicGatewayPatRuleOutput() VpcPublicGatewayPatRuleOutput {
 	return o
 }
 
-func (o VpcPublicGatewayPATRuleOutput) ToVpcPublicGatewayPATRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPATRuleOutput {
+func (o VpcPublicGatewayPatRuleOutput) ToVpcPublicGatewayPatRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayPATRuleInput)(nil)).Elem(), &VpcPublicGatewayPATRule{})
-	pulumi.RegisterOutputType(VpcPublicGatewayPATRuleOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayPatRuleInput)(nil)).Elem(), &VpcPublicGatewayPatRule{})
+	pulumi.RegisterOutputType(VpcPublicGatewayPatRuleOutput{})
 }

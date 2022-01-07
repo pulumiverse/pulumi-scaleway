@@ -25,7 +25,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var ip = new Scaleway.LoadbalancerIP("ip", new Scaleway.LoadbalancerIPArgs
+    ///         var ip = new Scaleway.LoadbalancerIp("ip", new Scaleway.LoadbalancerIpArgs
     ///         {
     ///             Reverse = "my-reverse.com",
     ///         });
@@ -39,11 +39,11 @@ namespace Pulumi.Scaleway
     /// IPs can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/loadbalancerIP:LoadbalancerIP ip01 fr-par-1/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/loadbalancerIP:LoadbalancerIP")]
-    public partial class LoadbalancerIP : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/loadbalancerIp:LoadbalancerIp")]
+    public partial class LoadbalancerIp : Pulumi.CustomResource
     {
         /// <summary>
         /// The IP Address
@@ -89,19 +89,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a LoadbalancerIP resource with the given unique name, arguments, and options.
+        /// Create a LoadbalancerIp resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public LoadbalancerIP(string name, LoadbalancerIPArgs? args = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/loadbalancerIP:LoadbalancerIP", name, args ?? new LoadbalancerIPArgs(), MakeResourceOptions(options, ""))
+        public LoadbalancerIp(string name, LoadbalancerIpArgs? args = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/loadbalancerIp:LoadbalancerIp", name, args ?? new LoadbalancerIpArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private LoadbalancerIP(string name, Input<string> id, LoadbalancerIPState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/loadbalancerIP:LoadbalancerIP", name, state, MakeResourceOptions(options, id))
+        private LoadbalancerIp(string name, Input<string> id, LoadbalancerIpState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/loadbalancerIp:LoadbalancerIp", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -117,7 +117,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing LoadbalancerIP resource's state with the given name, ID, and optional extra
+        /// Get an existing LoadbalancerIp resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -125,13 +125,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static LoadbalancerIP Get(string name, Input<string> id, LoadbalancerIPState? state = null, CustomResourceOptions? options = null)
+        public static LoadbalancerIp Get(string name, Input<string> id, LoadbalancerIpState? state = null, CustomResourceOptions? options = null)
         {
-            return new LoadbalancerIP(name, id, state, options);
+            return new LoadbalancerIp(name, id, state, options);
         }
     }
 
-    public sealed class LoadbalancerIPArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerIpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The project_id you want to attach the resource to
@@ -151,12 +151,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public LoadbalancerIPArgs()
+        public LoadbalancerIpArgs()
         {
         }
     }
 
-    public sealed class LoadbalancerIPState : Pulumi.ResourceArgs
+    public sealed class LoadbalancerIpState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The IP Address
@@ -200,7 +200,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public LoadbalancerIPState()
+        public LoadbalancerIpState()
         {
         }
     }

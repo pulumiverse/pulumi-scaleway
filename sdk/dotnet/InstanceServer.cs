@@ -24,7 +24,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var publicIp = new Scaleway.InstanceIP("publicIp", new Scaleway.InstanceIPArgs
+    ///         var publicIp = new Scaleway.InstanceIp("publicIp", new Scaleway.InstanceIpArgs
     ///         {
     ///         });
     ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
@@ -86,7 +86,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var ip = new Scaleway.InstanceIP("ip", new Scaleway.InstanceIPArgs
+    ///         var ip = new Scaleway.InstanceIp("ip", new Scaleway.InstanceIpArgs
     ///         {
     ///         });
     ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway.Inputs
 {
 
-    public sealed class IOTRouteS3GetArgs : Pulumi.ResourceArgs
+    public sealed class IotRouteS3GetArgs : Pulumi.ResourceArgs
     {
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
@@ -24,7 +24,7 @@ namespace Pulumi.Scaleway.Inputs
         [Input("strategy", required: true)]
         public Input<string> Strategy { get; set; } = null!;
 
-        public IOTRouteS3GetArgs()
+        public IotRouteS3GetArgs()
         {
         }
     }

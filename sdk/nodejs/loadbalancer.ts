@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const ip = new scaleway.LoadbalancerIP("ip", {});
+ * const ip = new scaleway.LoadbalancerIp("ip", {});
  * const base = new scaleway.Loadbalancer("base", {
  *     ipId: ip.id,
  *     zone: "fr-par-1",
@@ -28,9 +28,9 @@ import * as utilities from "./utilities";
  *
  * ## IP ID
  *
- * Since v1.15.0, `ipId` is a required field. This means that now a separate `scaleway.LoadbalancerIP` is required.
+ * Since v1.15.0, `ipId` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
  * When importing, the IP needs to be imported as well as the LB.
- * When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIP` resource and import it.
+ * When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
  *
  * For instance, if you had the following:
  *
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const ip = new scaleway.LoadbalancerIP("ip", {});
+ * const ip = new scaleway.LoadbalancerIp("ip", {});
  * const base = new scaleway.Loadbalancer("base", {
  *     ipId: ip.id,
  *     zone: "fr-par-1",
@@ -65,7 +65,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIP("ip01", {});
+ * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
  * const pnLB01 = new scaleway.VpcPrivateNetwork("pnLB01", {});
  * const lb01 = new scaleway.Loadbalancer("lb01", {
  *     ipId: ip01.id,

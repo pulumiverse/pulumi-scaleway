@@ -13,15 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayDHCP("main", {
+ * const main = new scaleway.VpcPublicGatewayDhcp("main", {
  *     subnet: "192.168.0.0/24",
  * });
- * const dhcpById = main.id.apply(id => scaleway.getVpcPublicGatewayDHCP({
+ * const dhcpById = main.id.apply(id => scaleway.getVpcPublicGatewayDhcp({
  *     dhcpId: id,
  * }));
  * ```
  */
-export function getVpcPublicGatewayDHCP(args: GetVpcPublicGatewayDHCPArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDHCPResult> {
+export function getVpcPublicGatewayDhcp(args: GetVpcPublicGatewayDhcpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpResult> {
     if (!opts) {
         opts = {}
     }
@@ -29,22 +29,22 @@ export function getVpcPublicGatewayDHCP(args: GetVpcPublicGatewayDHCPArgs, opts?
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDHCP:getVpcPublicGatewayDHCP", {
+    return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getVpcPublicGatewayDHCP.
+ * A collection of arguments for invoking getVpcPublicGatewayDhcp.
  */
-export interface GetVpcPublicGatewayDHCPArgs {
+export interface GetVpcPublicGatewayDhcpArgs {
     dhcpId: string;
 }
 
 /**
- * A collection of values returned by getVpcPublicGatewayDHCP.
+ * A collection of values returned by getVpcPublicGatewayDhcp.
  */
-export interface GetVpcPublicGatewayDHCPResult {
+export interface GetVpcPublicGatewayDhcpResult {
     readonly address: string;
     readonly createdAt: string;
     readonly dhcpId: string;
@@ -70,13 +70,13 @@ export interface GetVpcPublicGatewayDHCPResult {
     readonly zone: string;
 }
 
-export function getVpcPublicGatewayDHCPOutput(args: GetVpcPublicGatewayDHCPOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDHCPResult> {
-    return pulumi.output(args).apply(a => getVpcPublicGatewayDHCP(a, opts))
+export function getVpcPublicGatewayDhcpOutput(args: GetVpcPublicGatewayDhcpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpResult> {
+    return pulumi.output(args).apply(a => getVpcPublicGatewayDhcp(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getVpcPublicGatewayDHCP.
+ * A collection of arguments for invoking getVpcPublicGatewayDhcp.
  */
-export interface GetVpcPublicGatewayDHCPOutputArgs {
+export interface GetVpcPublicGatewayDhcpOutputArgs {
     dhcpId: pulumi.Input<string>;
 }

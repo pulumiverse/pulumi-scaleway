@@ -10,7 +10,7 @@ using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
-    public static class GetLoadbalancerIP
+    public static class GetLoadbalancerIp
     {
         /// <summary>
         /// Gets information about a Load Balancer IP.
@@ -27,7 +27,7 @@ namespace Pulumi.Scaleway
         /// {
         ///     public MyStack()
         ///     {
-        ///         var myIp = Output.Create(Scaleway.GetLoadbalancerIP.InvokeAsync(new Scaleway.GetLoadbalancerIPArgs
+        ///         var myIp = Output.Create(Scaleway.GetLoadbalancerIp.InvokeAsync(new Scaleway.GetLoadbalancerIpArgs
         ///         {
         ///             IpId = "11111111-1111-1111-1111-111111111111",
         ///         }));
@@ -38,8 +38,8 @@ namespace Pulumi.Scaleway
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetLoadbalancerIPResult> InvokeAsync(GetLoadbalancerIPArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerIPResult>("scaleway:index/getLoadbalancerIP:getLoadbalancerIP", args ?? new GetLoadbalancerIPArgs(), options.WithVersion());
+        public static Task<GetLoadbalancerIpResult> InvokeAsync(GetLoadbalancerIpArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpArgs(), options.WithVersion());
 
         /// <summary>
         /// Gets information about a Load Balancer IP.
@@ -56,7 +56,7 @@ namespace Pulumi.Scaleway
         /// {
         ///     public MyStack()
         ///     {
-        ///         var myIp = Output.Create(Scaleway.GetLoadbalancerIP.InvokeAsync(new Scaleway.GetLoadbalancerIPArgs
+        ///         var myIp = Output.Create(Scaleway.GetLoadbalancerIp.InvokeAsync(new Scaleway.GetLoadbalancerIpArgs
         ///         {
         ///             IpId = "11111111-1111-1111-1111-111111111111",
         ///         }));
@@ -67,12 +67,12 @@ namespace Pulumi.Scaleway
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetLoadbalancerIPResult> Invoke(GetLoadbalancerIPInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLoadbalancerIPResult>("scaleway:index/getLoadbalancerIP:getLoadbalancerIP", args ?? new GetLoadbalancerIPInvokeArgs(), options.WithVersion());
+        public static Output<GetLoadbalancerIpResult> Invoke(GetLoadbalancerIpInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpInvokeArgs(), options.WithVersion());
     }
 
 
-    public sealed class GetLoadbalancerIPArgs : Pulumi.InvokeArgs
+    public sealed class GetLoadbalancerIpArgs : Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IP address.
@@ -88,12 +88,12 @@ namespace Pulumi.Scaleway
         [Input("ipId")]
         public string? IpId { get; set; }
 
-        public GetLoadbalancerIPArgs()
+        public GetLoadbalancerIpArgs()
         {
         }
     }
 
-    public sealed class GetLoadbalancerIPInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetLoadbalancerIpInvokeArgs : Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IP address.
@@ -109,14 +109,14 @@ namespace Pulumi.Scaleway
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
-        public GetLoadbalancerIPInvokeArgs()
+        public GetLoadbalancerIpInvokeArgs()
         {
         }
     }
 
 
     [OutputType]
-    public sealed class GetLoadbalancerIPResult
+    public sealed class GetLoadbalancerIpResult
     {
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -141,7 +141,7 @@ namespace Pulumi.Scaleway
         public readonly string Zone;
 
         [OutputConstructor]
-        private GetLoadbalancerIPResult(
+        private GetLoadbalancerIpResult(
             string id,
 
             string? ipAddress,

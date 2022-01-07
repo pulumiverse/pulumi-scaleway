@@ -51,37 +51,37 @@ namespace Pulumi.Scaleway
     ///         var pn02 = new Scaleway.VpcPrivateNetwork("pn02", new Scaleway.VpcPrivateNetworkArgs
     ///         {
     ///         });
-    ///         var mainVpcPublicGatewayDHCP = new Scaleway.VpcPublicGatewayDHCP("mainVpcPublicGatewayDHCP", new Scaleway.VpcPublicGatewayDHCPArgs
+    ///         var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new Scaleway.VpcPublicGatewayDhcpArgs
     ///         {
     ///             Subnet = "192.168.1.0/24",
     ///         });
-    ///         var mainVpcPublicGatewayIP = new Scaleway.VpcPublicGatewayIP("mainVpcPublicGatewayIP", new Scaleway.VpcPublicGatewayIPArgs
+    ///         var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", new Scaleway.VpcPublicGatewayIpArgs
     ///         {
     ///         });
     ///         var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new Scaleway.VpcPublicGatewayArgs
     ///         {
     ///             Type = "VPC-GW-S",
-    ///             IpId = mainVpcPublicGatewayIP.Id,
+    ///             IpId = mainVpcPublicGatewayIp.Id,
     ///         });
     ///         var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new Scaleway.VpcGatewayNetworkArgs
     ///         {
     ///             GatewayId = mainVpcPublicGateway.Id,
     ///             PrivateNetworkId = pn02.Id,
-    ///             DhcpId = mainVpcPublicGatewayDHCP.Id,
+    ///             DhcpId = mainVpcPublicGatewayDhcp.Id,
     ///             CleanupDhcp = true,
     ///             EnableMasquerade = true,
     ///         }, new CustomResourceOptions
     ///         {
     ///             DependsOn = 
     ///             {
-    ///                 mainVpcPublicGatewayIP,
+    ///                 mainVpcPublicGatewayIp,
     ///                 pn02,
     ///             },
     ///         });
-    ///         var mainVpcPublicGatewayPATRule = new Scaleway.VpcPublicGatewayPATRule("mainVpcPublicGatewayPATRule", new Scaleway.VpcPublicGatewayPATRuleArgs
+    ///         var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new Scaleway.VpcPublicGatewayPatRuleArgs
     ///         {
     ///             GatewayId = mainVpcPublicGateway.Id,
-    ///             PrivateIp = mainVpcPublicGatewayDHCP.Address,
+    ///             PrivateIp = mainVpcPublicGatewayDhcp.Address,
     ///             PrivatePort = mainDatabaseInstance.PrivateNetwork.Apply(privateNetwork =&gt; privateNetwork?.Port),
     ///             PublicPort = 42,
     ///             Protocol = "both",

@@ -10,7 +10,7 @@ using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
-    public static class GetVpcPublicGatewayIP
+    public static class GetVpcPublicGatewayIp
     {
         /// <summary>
         /// Gets information about a public gateway IP.
@@ -27,10 +27,10 @@ namespace Pulumi.Scaleway
         /// {
         ///     public MyStack()
         ///     {
-        ///         var main = new Scaleway.VpcPublicGatewayIP("main", new Scaleway.VpcPublicGatewayIPArgs
+        ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
         ///         {
         ///         });
-        ///         var ipById = Scaleway.GetVpcPublicGatewayIP.Invoke(new Scaleway.GetVpcPublicGatewayIPInvokeArgs
+        ///         var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new Scaleway.GetVpcPublicGatewayIpInvokeArgs
         ///         {
         ///             IpId = main.Id,
         ///         });
@@ -41,8 +41,8 @@ namespace Pulumi.Scaleway
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetVpcPublicGatewayIPResult> InvokeAsync(GetVpcPublicGatewayIPArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayIPResult>("scaleway:index/getVpcPublicGatewayIP:getVpcPublicGatewayIP", args ?? new GetVpcPublicGatewayIPArgs(), options.WithVersion());
+        public static Task<GetVpcPublicGatewayIpResult> InvokeAsync(GetVpcPublicGatewayIpArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpArgs(), options.WithVersion());
 
         /// <summary>
         /// Gets information about a public gateway IP.
@@ -59,10 +59,10 @@ namespace Pulumi.Scaleway
         /// {
         ///     public MyStack()
         ///     {
-        ///         var main = new Scaleway.VpcPublicGatewayIP("main", new Scaleway.VpcPublicGatewayIPArgs
+        ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
         ///         {
         ///         });
-        ///         var ipById = Scaleway.GetVpcPublicGatewayIP.Invoke(new Scaleway.GetVpcPublicGatewayIPInvokeArgs
+        ///         var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new Scaleway.GetVpcPublicGatewayIpInvokeArgs
         ///         {
         ///             IpId = main.Id,
         ///         });
@@ -73,34 +73,34 @@ namespace Pulumi.Scaleway
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetVpcPublicGatewayIPResult> Invoke(GetVpcPublicGatewayIPInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIPResult>("scaleway:index/getVpcPublicGatewayIP:getVpcPublicGatewayIP", args ?? new GetVpcPublicGatewayIPInvokeArgs(), options.WithVersion());
+        public static Output<GetVpcPublicGatewayIpResult> Invoke(GetVpcPublicGatewayIpInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpInvokeArgs(), options.WithVersion());
     }
 
 
-    public sealed class GetVpcPublicGatewayIPArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPublicGatewayIpArgs : Pulumi.InvokeArgs
     {
         [Input("ipId")]
         public string? IpId { get; set; }
 
-        public GetVpcPublicGatewayIPArgs()
+        public GetVpcPublicGatewayIpArgs()
         {
         }
     }
 
-    public sealed class GetVpcPublicGatewayIPInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPublicGatewayIpInvokeArgs : Pulumi.InvokeArgs
     {
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
-        public GetVpcPublicGatewayIPInvokeArgs()
+        public GetVpcPublicGatewayIpInvokeArgs()
         {
         }
     }
 
 
     [OutputType]
-    public sealed class GetVpcPublicGatewayIPResult
+    public sealed class GetVpcPublicGatewayIpResult
     {
         public readonly string Address;
         public readonly string CreatedAt;
@@ -117,7 +117,7 @@ namespace Pulumi.Scaleway
         public readonly string Zone;
 
         [OutputConstructor]
-        private GetVpcPublicGatewayIPResult(
+        private GetVpcPublicGatewayIpResult(
             string address,
 
             string createdAt,

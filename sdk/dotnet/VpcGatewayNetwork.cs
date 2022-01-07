@@ -27,10 +27,10 @@ namespace Pulumi.Scaleway
     ///         var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new Scaleway.VpcPrivateNetworkArgs
     ///         {
     ///         });
-    ///         var gw01 = new Scaleway.VpcPublicGatewayIP("gw01", new Scaleway.VpcPublicGatewayIPArgs
+    ///         var gw01 = new Scaleway.VpcPublicGatewayIp("gw01", new Scaleway.VpcPublicGatewayIpArgs
     ///         {
     ///         });
-    ///         var dhcp01 = new Scaleway.VpcPublicGatewayDHCP("dhcp01", new Scaleway.VpcPublicGatewayDHCPArgs
+    ///         var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new Scaleway.VpcPublicGatewayDhcpArgs
     ///         {
     ///             Subnet = "192.168.1.0/24",
     ///         });

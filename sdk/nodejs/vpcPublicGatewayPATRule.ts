@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
- * const dhcp01 = new scaleway.VpcPublicGatewayDHCP("dhcp01", {subnet: "192.168.1.0/24"});
+ * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.1.0/24"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const gn01 = new scaleway.VpcGatewayNetwork("gn01", {
  *     gatewayId: pg01.id,
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  * });
- * const main = new scaleway.VpcPublicGatewayPATRule("main", {
+ * const main = new scaleway.VpcPublicGatewayPatRule("main", {
  *     gatewayId: pg01.id,
  *     privateIp: dhcp01.address,
  *     privatePort: 42,
@@ -42,12 +42,12 @@ import * as utilities from "./utilities";
  * Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule main fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class VpcPublicGatewayPATRule extends pulumi.CustomResource {
+export class VpcPublicGatewayPatRule extends pulumi.CustomResource {
     /**
-     * Get an existing VpcPublicGatewayPATRule resource's state with the given name, ID, and optional extra
+     * Get an existing VpcPublicGatewayPatRule resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -55,22 +55,22 @@ export class VpcPublicGatewayPATRule extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayPATRuleState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayPATRule {
-        return new VpcPublicGatewayPATRule(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayPatRuleState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayPatRule {
+        return new VpcPublicGatewayPatRule(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/vpcPublicGatewayPATRule:VpcPublicGatewayPATRule';
+    public static readonly __pulumiType = 'scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule';
 
     /**
-     * Returns true if the given object is an instance of VpcPublicGatewayPATRule.  This is designed to work even
+     * Returns true if the given object is an instance of VpcPublicGatewayPatRule.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is VpcPublicGatewayPATRule {
+    public static isInstance(obj: any): obj is VpcPublicGatewayPatRule {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === VpcPublicGatewayPATRule.__pulumiType;
+        return obj['__pulumiType'] === VpcPublicGatewayPatRule.__pulumiType;
     }
 
     /**
@@ -111,18 +111,18 @@ export class VpcPublicGatewayPATRule extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a VpcPublicGatewayPATRule resource with the given unique name, arguments, and options.
+     * Create a VpcPublicGatewayPatRule resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: VpcPublicGatewayPATRuleArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: VpcPublicGatewayPATRuleArgs | VpcPublicGatewayPATRuleState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: VpcPublicGatewayPatRuleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: VpcPublicGatewayPatRuleArgs | VpcPublicGatewayPatRuleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as VpcPublicGatewayPATRuleState | undefined;
+            const state = argsOrState as VpcPublicGatewayPatRuleState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -133,7 +133,7 @@ export class VpcPublicGatewayPATRule extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as VpcPublicGatewayPATRuleArgs | undefined;
+            const args = argsOrState as VpcPublicGatewayPatRuleArgs | undefined;
             if ((!args || args.gatewayId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'gatewayId'");
             }
@@ -159,14 +159,14 @@ export class VpcPublicGatewayPATRule extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(VpcPublicGatewayPATRule.__pulumiType, name, resourceInputs, opts);
+        super(VpcPublicGatewayPatRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering VpcPublicGatewayPATRule resources.
+ * Input properties used for looking up and filtering VpcPublicGatewayPatRule resources.
  */
-export interface VpcPublicGatewayPATRuleState {
+export interface VpcPublicGatewayPatRuleState {
     /**
      * The date and time of the creation of the pat rule config.
      */
@@ -206,9 +206,9 @@ export interface VpcPublicGatewayPATRuleState {
 }
 
 /**
- * The set of arguments for constructing a VpcPublicGatewayPATRule resource.
+ * The set of arguments for constructing a VpcPublicGatewayPatRule resource.
  */
-export interface VpcPublicGatewayPATRuleArgs {
+export interface VpcPublicGatewayPatRuleArgs {
     /**
      * The ID of the public gateway.
      */

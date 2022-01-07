@@ -11,7 +11,7 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class GetDatabaseACLAclRuleResult
+    public sealed class GetDatabaseAclAclRuleResult
     {
         /// <summary>
         /// A simple text describing this rule
@@ -23,7 +23,7 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string Ip;
 
         [OutputConstructor]
-        private GetDatabaseACLAclRuleResult(
+        private GetDatabaseAclAclRuleResult(
             string description,
 
             string ip)

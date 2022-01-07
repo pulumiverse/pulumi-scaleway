@@ -14,12 +14,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by ID
- * const myIp = pulumi.output(scaleway.getInstanceIP({
+ * const myIp = pulumi.output(scaleway.getInstanceIp({
  *     id: "fr-par-1/11111111-1111-1111-1111-111111111111",
  * }));
  * ```
  */
-export function getInstanceIP(args?: GetInstanceIPArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceIPResult> {
+export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceIpResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -28,16 +28,16 @@ export function getInstanceIP(args?: GetInstanceIPArgs, opts?: pulumi.InvokeOpti
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    return pulumi.runtime.invoke("scaleway:index/getInstanceIP:getInstanceIP", {
+    return pulumi.runtime.invoke("scaleway:index/getInstanceIp:getInstanceIp", {
         "address": args.address,
         "id": args.id,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getInstanceIP.
+ * A collection of arguments for invoking getInstanceIp.
  */
-export interface GetInstanceIPArgs {
+export interface GetInstanceIpArgs {
     /**
      * The IPv4 address to retrieve
      * Only one of `address` and `id` should be specified.
@@ -51,9 +51,9 @@ export interface GetInstanceIPArgs {
 }
 
 /**
- * A collection of values returned by getInstanceIP.
+ * A collection of values returned by getInstanceIp.
  */
-export interface GetInstanceIPResult {
+export interface GetInstanceIpResult {
     /**
      * The IP address.
      */
@@ -75,14 +75,14 @@ export interface GetInstanceIPResult {
     readonly zone: string;
 }
 
-export function getInstanceIPOutput(args?: GetInstanceIPOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceIPResult> {
-    return pulumi.output(args).apply(a => getInstanceIP(a, opts))
+export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceIpResult> {
+    return pulumi.output(args).apply(a => getInstanceIp(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getInstanceIP.
+ * A collection of arguments for invoking getInstanceIp.
  */
-export interface GetInstanceIPOutputArgs {
+export interface GetInstanceIpOutputArgs {
     /**
      * The IPv4 address to retrieve
      * Only one of `address` and `id` should be specified.

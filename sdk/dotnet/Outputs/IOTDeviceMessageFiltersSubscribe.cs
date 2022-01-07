@@ -11,7 +11,7 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IOTDeviceMessageFiltersSubscribe
+    public sealed class IotDeviceMessageFiltersSubscribe
     {
         /// <summary>
         /// Same as publish rules.
@@ -23,7 +23,7 @@ namespace Pulumi.Scaleway.Outputs
         public readonly ImmutableArray<string> Topics;
 
         [OutputConstructor]
-        private IOTDeviceMessageFiltersSubscribe(
+        private IotDeviceMessageFiltersSubscribe(
             string? policy,
 
             ImmutableArray<string> topics)

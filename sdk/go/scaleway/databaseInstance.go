@@ -56,19 +56,19 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		mainVpcPublicGatewayDHCP, err := scaleway.NewVpcPublicGatewayDHCP(ctx, "mainVpcPublicGatewayDHCP", &scaleway.VpcPublicGatewayDHCPArgs{
+// 		mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
 // 			Subnet: pulumi.String("192.168.1.0/24"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		mainVpcPublicGatewayIP, err := scaleway.NewVpcPublicGatewayIP(ctx, "mainVpcPublicGatewayIP", nil)
+// 		mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
 // 		if err != nil {
 // 			return err
 // 		}
 // 		mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
 // 			Type: pulumi.String("VPC-GW-S"),
-// 			IpId: mainVpcPublicGatewayIP.ID(),
+// 			IpId: mainVpcPublicGatewayIp.ID(),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -76,19 +76,19 @@ import (
 // 		mainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
 // 			GatewayId:        mainVpcPublicGateway.ID(),
 // 			PrivateNetworkId: pn02.ID(),
-// 			DhcpId:           mainVpcPublicGatewayDHCP.ID(),
+// 			DhcpId:           mainVpcPublicGatewayDhcp.ID(),
 // 			CleanupDhcp:      pulumi.Bool(true),
 // 			EnableMasquerade: pulumi.Bool(true),
 // 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			mainVpcPublicGatewayIP,
+// 			mainVpcPublicGatewayIp,
 // 			pn02,
 // 		}))
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = scaleway.NewVpcPublicGatewayPATRule(ctx, "mainVpcPublicGatewayPATRule", &scaleway.VpcPublicGatewayPATRuleArgs{
+// 		_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
 // 			GatewayId: mainVpcPublicGateway.ID(),
-// 			PrivateIp: mainVpcPublicGatewayDHCP.Address,
+// 			PrivateIp: mainVpcPublicGatewayDhcp.Address,
 // 			PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork DatabaseInstancePrivateNetwork) (int, error) {
 // 				return privateNetwork.Port, nil
 // 			}).(pulumi.IntOutput),

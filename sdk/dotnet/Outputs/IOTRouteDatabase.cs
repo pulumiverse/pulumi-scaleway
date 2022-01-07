@@ -11,7 +11,7 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IOTRouteDatabase
+    public sealed class IotRouteDatabase
     {
         public readonly string Dbname;
         public readonly string Host;
@@ -21,7 +21,7 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string Username;
 
         [OutputConstructor]
-        private IOTRouteDatabase(
+        private IotRouteDatabase(
             string dbname,
 
             string host,

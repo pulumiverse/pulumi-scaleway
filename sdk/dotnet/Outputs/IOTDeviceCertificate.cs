@@ -11,7 +11,7 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IOTDeviceCertificate
+    public sealed class IotDeviceCertificate
     {
         public readonly string? Crt;
         /// <summary>
@@ -20,7 +20,7 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string? Key;
 
         [OutputConstructor]
-        private IOTDeviceCertificate(
+        private IotDeviceCertificate(
             string? crt,
 
             string? key)

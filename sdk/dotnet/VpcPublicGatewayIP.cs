@@ -23,7 +23,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var main = new Scaleway.VpcPublicGatewayIP("main", new Scaleway.VpcPublicGatewayIPArgs
+    ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
     ///         {
     ///             Reverse = "example.com",
     ///             Tags = 
@@ -42,11 +42,11 @@ namespace Pulumi.Scaleway
     /// Public gateway can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP main fr-par-1/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP")]
-    public partial class VpcPublicGatewayIP : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp")]
+    public partial class VpcPublicGatewayIp : Pulumi.CustomResource
     {
         /// <summary>
         /// The IP address itself.
@@ -98,19 +98,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a VpcPublicGatewayIP resource with the given unique name, arguments, and options.
+        /// Create a VpcPublicGatewayIp resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public VpcPublicGatewayIP(string name, VpcPublicGatewayIPArgs? args = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP", name, args ?? new VpcPublicGatewayIPArgs(), MakeResourceOptions(options, ""))
+        public VpcPublicGatewayIp(string name, VpcPublicGatewayIpArgs? args = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp", name, args ?? new VpcPublicGatewayIpArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private VpcPublicGatewayIP(string name, Input<string> id, VpcPublicGatewayIPState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP", name, state, MakeResourceOptions(options, id))
+        private VpcPublicGatewayIp(string name, Input<string> id, VpcPublicGatewayIpState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -126,7 +126,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing VpcPublicGatewayIP resource's state with the given name, ID, and optional extra
+        /// Get an existing VpcPublicGatewayIp resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -134,13 +134,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static VpcPublicGatewayIP Get(string name, Input<string> id, VpcPublicGatewayIPState? state = null, CustomResourceOptions? options = null)
+        public static VpcPublicGatewayIp Get(string name, Input<string> id, VpcPublicGatewayIpState? state = null, CustomResourceOptions? options = null)
         {
-            return new VpcPublicGatewayIP(name, id, state, options);
+            return new VpcPublicGatewayIp(name, id, state, options);
         }
     }
 
-    public sealed class VpcPublicGatewayIPArgs : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayIpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// `project_id`) The ID of the project the public gateway ip is associated with.
@@ -172,12 +172,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public VpcPublicGatewayIPArgs()
+        public VpcPublicGatewayIpArgs()
         {
         }
     }
 
-    public sealed class VpcPublicGatewayIPState : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayIpState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The IP address itself.
@@ -233,7 +233,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public VpcPublicGatewayIPState()
+        public VpcPublicGatewayIpState()
         {
         }
     }

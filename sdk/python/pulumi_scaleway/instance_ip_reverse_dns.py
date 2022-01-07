@@ -8,16 +8,16 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['InstanceIPReverseDNSArgs', 'InstanceIPReverseDNS']
+__all__ = ['InstanceIpReverseDnsArgs', 'InstanceIpReverseDns']
 
 @pulumi.input_type
-class InstanceIPReverseDNSArgs:
+class InstanceIpReverseDnsArgs:
     def __init__(__self__, *,
                  ip_id: pulumi.Input[str],
                  reverse: pulumi.Input[str],
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a InstanceIPReverseDNS resource.
+        The set of arguments for constructing a InstanceIpReverseDns resource.
         :param pulumi.Input[str] ip_id: The IP ID
         :param pulumi.Input[str] reverse: The reverse DNS for this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
@@ -65,13 +65,13 @@ class InstanceIPReverseDNSArgs:
 
 
 @pulumi.input_type
-class _InstanceIPReverseDNSState:
+class _InstanceIpReverseDnsState:
     def __init__(__self__, *,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering InstanceIPReverseDNS resources.
+        Input properties used for looking up and filtering InstanceIpReverseDns resources.
         :param pulumi.Input[str] ip_id: The IP ID
         :param pulumi.Input[str] reverse: The reverse DNS for this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
@@ -120,7 +120,7 @@ class _InstanceIPReverseDNSState:
         pulumi.set(self, "zone", value)
 
 
-class InstanceIPReverseDNS(pulumi.CustomResource):
+class InstanceIpReverseDns(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -138,8 +138,8 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIP("serverIp")
-        reverse = scaleway.InstanceIPReverseDNS("reverse",
+        server_ip = scaleway.InstanceIp("serverIp")
+        reverse = scaleway.InstanceIpReverseDns("reverse",
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
@@ -149,7 +149,7 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
         IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -162,7 +162,7 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: InstanceIPReverseDNSArgs,
+                 args: InstanceIpReverseDnsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Scaleway Compute Instance IPs Reverse DNS.
@@ -173,8 +173,8 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIP("serverIp")
-        reverse = scaleway.InstanceIPReverseDNS("reverse",
+        server_ip = scaleway.InstanceIp("serverIp")
+        reverse = scaleway.InstanceIpReverseDns("reverse",
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
@@ -184,16 +184,16 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
         IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS reverse fr-par-1/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param InstanceIPReverseDNSArgs args: The arguments to use to populate this resource's properties.
+        :param InstanceIpReverseDnsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(InstanceIPReverseDNSArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(InstanceIpReverseDnsArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -215,7 +215,7 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = InstanceIPReverseDNSArgs.__new__(InstanceIPReverseDNSArgs)
+            __props__ = InstanceIpReverseDnsArgs.__new__(InstanceIpReverseDnsArgs)
 
             if ip_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ip_id'")
@@ -224,8 +224,8 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
                 raise TypeError("Missing required property 'reverse'")
             __props__.__dict__["reverse"] = reverse
             __props__.__dict__["zone"] = zone
-        super(InstanceIPReverseDNS, __self__).__init__(
-            'scaleway:index/instanceIPReverseDNS:InstanceIPReverseDNS',
+        super(InstanceIpReverseDns, __self__).__init__(
+            'scaleway:index/instanceIpReverseDns:InstanceIpReverseDns',
             resource_name,
             __props__,
             opts)
@@ -236,9 +236,9 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             ip_id: Optional[pulumi.Input[str]] = None,
             reverse: Optional[pulumi.Input[str]] = None,
-            zone: Optional[pulumi.Input[str]] = None) -> 'InstanceIPReverseDNS':
+            zone: Optional[pulumi.Input[str]] = None) -> 'InstanceIpReverseDns':
         """
-        Get an existing InstanceIPReverseDNS resource's state with the given name, id, and optional extra
+        Get an existing InstanceIpReverseDns resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -250,12 +250,12 @@ class InstanceIPReverseDNS(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _InstanceIPReverseDNSState.__new__(_InstanceIPReverseDNSState)
+        __props__ = _InstanceIpReverseDnsState.__new__(_InstanceIpReverseDnsState)
 
         __props__.__dict__["ip_id"] = ip_id
         __props__.__dict__["reverse"] = reverse
         __props__.__dict__["zone"] = zone
-        return InstanceIPReverseDNS(resource_name, opts=opts, __props__=__props__)
+        return InstanceIpReverseDns(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="ipId")

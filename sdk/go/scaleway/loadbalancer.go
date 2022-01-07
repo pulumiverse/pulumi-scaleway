@@ -28,7 +28,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		ip, err := scaleway.NewLoadbalancerIP(ctx, "ip", nil)
+// 		ip, err := scaleway.NewLoadbalancerIp(ctx, "ip", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -48,9 +48,9 @@ import (
 //
 // ## IP ID
 //
-// Since v1.15.0, `ipId` is a required field. This means that now a separate `LoadbalancerIP` is required.
+// Since v1.15.0, `ipId` is a required field. This means that now a separate `LoadbalancerIp` is required.
 // When importing, the IP needs to be imported as well as the LB.
-// When upgrading to v1.15.0, you will need to create a new `LoadbalancerIP` resource and import it.
+// When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
 //
 // For instance, if you had the following:
 //
@@ -88,7 +88,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		ip, err := scaleway.NewLoadbalancerIP(ctx, "ip", nil)
+// 		ip, err := scaleway.NewLoadbalancerIp(ctx, "ip", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -118,7 +118,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		ip01, err := scaleway.NewLoadbalancerIP(ctx, "ip01", nil)
+// 		ip01, err := scaleway.NewLoadbalancerIp(ctx, "ip01", nil)
 // 		if err != nil {
 // 			return err
 // 		}

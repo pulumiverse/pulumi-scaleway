@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayIP("main", {
+ * const main = new scaleway.VpcPublicGatewayIp("main", {
  *     reverse: "example.com",
  *     tags: [
  *         "demo",
@@ -28,12 +28,12 @@ import * as utilities from "./utilities";
  * Public gateway can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP main fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class VpcPublicGatewayIP extends pulumi.CustomResource {
+export class VpcPublicGatewayIp extends pulumi.CustomResource {
     /**
-     * Get an existing VpcPublicGatewayIP resource's state with the given name, ID, and optional extra
+     * Get an existing VpcPublicGatewayIp resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -41,22 +41,22 @@ export class VpcPublicGatewayIP extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayIPState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayIP {
-        return new VpcPublicGatewayIP(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayIpState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayIp {
+        return new VpcPublicGatewayIp(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/vpcPublicGatewayIP:VpcPublicGatewayIP';
+    public static readonly __pulumiType = 'scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp';
 
     /**
-     * Returns true if the given object is an instance of VpcPublicGatewayIP.  This is designed to work even
+     * Returns true if the given object is an instance of VpcPublicGatewayIp.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is VpcPublicGatewayIP {
+    public static isInstance(obj: any): obj is VpcPublicGatewayIp {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === VpcPublicGatewayIP.__pulumiType;
+        return obj['__pulumiType'] === VpcPublicGatewayIp.__pulumiType;
     }
 
     /**
@@ -93,18 +93,18 @@ export class VpcPublicGatewayIP extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a VpcPublicGatewayIP resource with the given unique name, arguments, and options.
+     * Create a VpcPublicGatewayIp resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: VpcPublicGatewayIPArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: VpcPublicGatewayIPArgs | VpcPublicGatewayIPState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: VpcPublicGatewayIpArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: VpcPublicGatewayIpArgs | VpcPublicGatewayIpState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as VpcPublicGatewayIPState | undefined;
+            const state = argsOrState as VpcPublicGatewayIpState | undefined;
             resourceInputs["address"] = state ? state.address : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -114,7 +114,7 @@ export class VpcPublicGatewayIP extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as VpcPublicGatewayIPArgs | undefined;
+            const args = argsOrState as VpcPublicGatewayIpArgs | undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reverse"] = args ? args.reverse : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -127,14 +127,14 @@ export class VpcPublicGatewayIP extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(VpcPublicGatewayIP.__pulumiType, name, resourceInputs, opts);
+        super(VpcPublicGatewayIp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering VpcPublicGatewayIP resources.
+ * Input properties used for looking up and filtering VpcPublicGatewayIp resources.
  */
-export interface VpcPublicGatewayIPState {
+export interface VpcPublicGatewayIpState {
     /**
      * The IP address itself.
      */
@@ -170,9 +170,9 @@ export interface VpcPublicGatewayIPState {
 }
 
 /**
- * The set of arguments for constructing a VpcPublicGatewayIP resource.
+ * The set of arguments for constructing a VpcPublicGatewayIp resource.
  */
-export interface VpcPublicGatewayIPArgs {
+export interface VpcPublicGatewayIpArgs {
     /**
      * `projectId`) The ID of the project the public gateway ip is associated with.
      */

@@ -8,16 +8,16 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['RouteArgs', 'Route']
+__all__ = ['LoadbalancerRouteArgs', 'LoadbalancerRoute']
 
 @pulumi.input_type
-class RouteArgs:
+class LoadbalancerRouteArgs:
     def __init__(__self__, *,
                  backend_id: pulumi.Input[str],
                  frontend_id: pulumi.Input[str],
                  match_sni: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Route resource.
+        The set of arguments for constructing a LoadbalancerRoute resource.
         :param pulumi.Input[str] backend_id: The backend ID destination of redirection
         :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
         :param pulumi.Input[str] match_sni: The domain to match against
@@ -65,13 +65,13 @@ class RouteArgs:
 
 
 @pulumi.input_type
-class _RouteState:
+class _LoadbalancerRouteState:
     def __init__(__self__, *,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering Route resources.
+        Input properties used for looking up and filtering LoadbalancerRoute resources.
         :param pulumi.Input[str] backend_id: The backend ID destination of redirection
         :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
         :param pulumi.Input[str] match_sni: The domain to match against
@@ -120,7 +120,7 @@ class _RouteState:
         pulumi.set(self, "match_sni", value)
 
 
-class Route(pulumi.CustomResource):
+class LoadbalancerRoute(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -130,7 +130,7 @@ class Route(pulumi.CustomResource):
                  match_sni: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Route resource with the given unique name, props, and options.
+        Create a LoadbalancerRoute resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend_id: The backend ID destination of redirection
@@ -141,17 +141,17 @@ class Route(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RouteArgs,
+                 args: LoadbalancerRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Route resource with the given unique name, props, and options.
+        Create a LoadbalancerRoute resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param RouteArgs args: The arguments to use to populate this resource's properties.
+        :param LoadbalancerRouteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RouteArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(LoadbalancerRouteArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -173,7 +173,7 @@ class Route(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RouteArgs.__new__(RouteArgs)
+            __props__ = LoadbalancerRouteArgs.__new__(LoadbalancerRouteArgs)
 
             if backend_id is None and not opts.urn:
                 raise TypeError("Missing required property 'backend_id'")
@@ -182,8 +182,8 @@ class Route(pulumi.CustomResource):
                 raise TypeError("Missing required property 'frontend_id'")
             __props__.__dict__["frontend_id"] = frontend_id
             __props__.__dict__["match_sni"] = match_sni
-        super(Route, __self__).__init__(
-            'scaleway:index/route:Route',
+        super(LoadbalancerRoute, __self__).__init__(
+            'scaleway:index/loadbalancerRoute:LoadbalancerRoute',
             resource_name,
             __props__,
             opts)
@@ -194,9 +194,9 @@ class Route(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend_id: Optional[pulumi.Input[str]] = None,
             frontend_id: Optional[pulumi.Input[str]] = None,
-            match_sni: Optional[pulumi.Input[str]] = None) -> 'Route':
+            match_sni: Optional[pulumi.Input[str]] = None) -> 'LoadbalancerRoute':
         """
-        Get an existing Route resource's state with the given name, id, and optional extra
+        Get an existing LoadbalancerRoute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -208,12 +208,12 @@ class Route(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _RouteState.__new__(_RouteState)
+        __props__ = _LoadbalancerRouteState.__new__(_LoadbalancerRouteState)
 
         __props__.__dict__["backend_id"] = backend_id
         __props__.__dict__["frontend_id"] = frontend_id
         __props__.__dict__["match_sni"] = match_sni
-        return Route(resource_name, opts=opts, __props__=__props__)
+        return LoadbalancerRoute(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="backendId")

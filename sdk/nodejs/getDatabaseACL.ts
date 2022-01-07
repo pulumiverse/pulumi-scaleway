@@ -15,12 +15,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database ACL for the instanceid 11111111-1111-1111-1111-111111111111 located in fr-par
- * const myAcl = pulumi.output(scaleway.getDatabaseACL({
+ * const myAcl = pulumi.output(scaleway.getDatabaseAcl({
  *     instanceId: "fr-par/11111111-1111-1111-1111-111111111111",
  * }));
  * ```
  */
-export function getDatabaseACL(args: GetDatabaseACLArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseACLResult> {
+export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseAclResult> {
     if (!opts) {
         opts = {}
     }
@@ -28,15 +28,15 @@ export function getDatabaseACL(args: GetDatabaseACLArgs, opts?: pulumi.InvokeOpt
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    return pulumi.runtime.invoke("scaleway:index/getDatabaseACL:getDatabaseACL", {
+    return pulumi.runtime.invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getDatabaseACL.
+ * A collection of arguments for invoking getDatabaseAcl.
  */
-export interface GetDatabaseACLArgs {
+export interface GetDatabaseAclArgs {
     /**
      * The RDB instance ID.
      */
@@ -44,13 +44,13 @@ export interface GetDatabaseACLArgs {
 }
 
 /**
- * A collection of values returned by getDatabaseACL.
+ * A collection of values returned by getDatabaseAcl.
  */
-export interface GetDatabaseACLResult {
+export interface GetDatabaseAclResult {
     /**
      * A list of ACLs (structure is described below)
      */
-    readonly aclRules: outputs.GetDatabaseACLAclRule[];
+    readonly aclRules: outputs.GetDatabaseAclAclRule[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -59,14 +59,14 @@ export interface GetDatabaseACLResult {
     readonly region: string;
 }
 
-export function getDatabaseACLOutput(args: GetDatabaseACLOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseACLResult> {
-    return pulumi.output(args).apply(a => getDatabaseACL(a, opts))
+export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseAclResult> {
+    return pulumi.output(args).apply(a => getDatabaseAcl(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getDatabaseACL.
+ * A collection of arguments for invoking getDatabaseAcl.
  */
-export interface GetDatabaseACLOutputArgs {
+export interface GetDatabaseAclOutputArgs {
     /**
      * The RDB instance ID.
      */

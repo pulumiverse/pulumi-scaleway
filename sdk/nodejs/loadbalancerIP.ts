@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const ip = new scaleway.LoadbalancerIP("ip", {
+ * const ip = new scaleway.LoadbalancerIp("ip", {
  *     reverse: "my-reverse.com",
  * });
  * ```
@@ -26,12 +26,12 @@ import * as utilities from "./utilities";
  * IPs can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/loadbalancerIP:LoadbalancerIP ip01 fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class LoadbalancerIP extends pulumi.CustomResource {
+export class LoadbalancerIp extends pulumi.CustomResource {
     /**
-     * Get an existing LoadbalancerIP resource's state with the given name, ID, and optional extra
+     * Get an existing LoadbalancerIp resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -39,22 +39,22 @@ export class LoadbalancerIP extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerIPState, opts?: pulumi.CustomResourceOptions): LoadbalancerIP {
-        return new LoadbalancerIP(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerIpState, opts?: pulumi.CustomResourceOptions): LoadbalancerIp {
+        return new LoadbalancerIp(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/loadbalancerIP:LoadbalancerIP';
+    public static readonly __pulumiType = 'scaleway:index/loadbalancerIp:LoadbalancerIp';
 
     /**
-     * Returns true if the given object is an instance of LoadbalancerIP.  This is designed to work even
+     * Returns true if the given object is an instance of LoadbalancerIp.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is LoadbalancerIP {
+    public static isInstance(obj: any): obj is LoadbalancerIp {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === LoadbalancerIP.__pulumiType;
+        return obj['__pulumiType'] === LoadbalancerIp.__pulumiType;
     }
 
     /**
@@ -87,18 +87,18 @@ export class LoadbalancerIP extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a LoadbalancerIP resource with the given unique name, arguments, and options.
+     * Create a LoadbalancerIp resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: LoadbalancerIPArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: LoadbalancerIPArgs | LoadbalancerIPState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: LoadbalancerIpArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: LoadbalancerIpArgs | LoadbalancerIpState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as LoadbalancerIPState | undefined;
+            const state = argsOrState as LoadbalancerIpState | undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -107,7 +107,7 @@ export class LoadbalancerIP extends pulumi.CustomResource {
             resourceInputs["reverse"] = state ? state.reverse : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as LoadbalancerIPArgs | undefined;
+            const args = argsOrState as LoadbalancerIpArgs | undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reverse"] = args ? args.reverse : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
@@ -119,14 +119,14 @@ export class LoadbalancerIP extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(LoadbalancerIP.__pulumiType, name, resourceInputs, opts);
+        super(LoadbalancerIp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering LoadbalancerIP resources.
+ * Input properties used for looking up and filtering LoadbalancerIp resources.
  */
-export interface LoadbalancerIPState {
+export interface LoadbalancerIpState {
     /**
      * The IP Address
      */
@@ -158,9 +158,9 @@ export interface LoadbalancerIPState {
 }
 
 /**
- * The set of arguments for constructing a LoadbalancerIP resource.
+ * The set of arguments for constructing a LoadbalancerIp resource.
  */
-export interface LoadbalancerIPArgs {
+export interface LoadbalancerIpArgs {
     /**
      * The project_id you want to attach the resource to
      */

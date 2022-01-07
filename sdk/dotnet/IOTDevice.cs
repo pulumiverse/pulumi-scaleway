@@ -15,11 +15,11 @@ namespace Pulumi.Scaleway
     /// IoT devices can be imported using the `{region}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iOTDevice:IOTDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/iOTDevice:IOTDevice")]
-    public partial class IOTDevice : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/iotDevice:IotDevice")]
+    public partial class IotDevice : Pulumi.CustomResource
     {
         /// <summary>
         /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
@@ -37,7 +37,7 @@ namespace Pulumi.Scaleway
         /// The certificate bundle of the device.
         /// </summary>
         [Output("certificate")]
-        public Output<Outputs.IOTDeviceCertificate> Certificate { get; private set; } = null!;
+        public Output<Outputs.IotDeviceCertificate> Certificate { get; private set; } = null!;
 
         /// <summary>
         /// The date and time the device was created.
@@ -73,7 +73,7 @@ namespace Pulumi.Scaleway
         /// Rules that define which messages are authorized or denied based on their topic.
         /// </summary>
         [Output("messageFilters")]
-        public Output<Outputs.IOTDeviceMessageFilters?> MessageFilters { get; private set; } = null!;
+        public Output<Outputs.IotDeviceMessageFilters?> MessageFilters { get; private set; } = null!;
 
         /// <summary>
         /// The name of the IoT device you want to create (e.g. `my-device`).
@@ -101,19 +101,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a IOTDevice resource with the given unique name, arguments, and options.
+        /// Create a IotDevice resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public IOTDevice(string name, IOTDeviceArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTDevice:IOTDevice", name, args ?? new IOTDeviceArgs(), MakeResourceOptions(options, ""))
+        public IotDevice(string name, IotDeviceArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotDevice:IotDevice", name, args ?? new IotDeviceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private IOTDevice(string name, Input<string> id, IOTDeviceState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/iOTDevice:IOTDevice", name, state, MakeResourceOptions(options, id))
+        private IotDevice(string name, Input<string> id, IotDeviceState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/iotDevice:IotDevice", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -129,7 +129,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing IOTDevice resource's state with the given name, ID, and optional extra
+        /// Get an existing IotDevice resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -137,13 +137,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static IOTDevice Get(string name, Input<string> id, IOTDeviceState? state = null, CustomResourceOptions? options = null)
+        public static IotDevice Get(string name, Input<string> id, IotDeviceState? state = null, CustomResourceOptions? options = null)
         {
-            return new IOTDevice(name, id, state, options);
+            return new IotDevice(name, id, state, options);
         }
     }
 
-    public sealed class IOTDeviceArgs : Pulumi.ResourceArgs
+    public sealed class IotDeviceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
@@ -161,7 +161,7 @@ namespace Pulumi.Scaleway
         /// The certificate bundle of the device.
         /// </summary>
         [Input("certificate")]
-        public Input<Inputs.IOTDeviceCertificateArgs>? Certificate { get; set; }
+        public Input<Inputs.IotDeviceCertificateArgs>? Certificate { get; set; }
 
         /// <summary>
         /// The description of the IoT device (e.g. `living room`).
@@ -179,7 +179,7 @@ namespace Pulumi.Scaleway
         /// Rules that define which messages are authorized or denied based on their topic.
         /// </summary>
         [Input("messageFilters")]
-        public Input<Inputs.IOTDeviceMessageFiltersArgs>? MessageFilters { get; set; }
+        public Input<Inputs.IotDeviceMessageFiltersArgs>? MessageFilters { get; set; }
 
         /// <summary>
         /// The name of the IoT device you want to create (e.g. `my-device`).
@@ -193,12 +193,12 @@ namespace Pulumi.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public IOTDeviceArgs()
+        public IotDeviceArgs()
         {
         }
     }
 
-    public sealed class IOTDeviceState : Pulumi.ResourceArgs
+    public sealed class IotDeviceState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
@@ -216,7 +216,7 @@ namespace Pulumi.Scaleway
         /// The certificate bundle of the device.
         /// </summary>
         [Input("certificate")]
-        public Input<Inputs.IOTDeviceCertificateGetArgs>? Certificate { get; set; }
+        public Input<Inputs.IotDeviceCertificateGetArgs>? Certificate { get; set; }
 
         /// <summary>
         /// The date and time the device was created.
@@ -252,7 +252,7 @@ namespace Pulumi.Scaleway
         /// Rules that define which messages are authorized or denied based on their topic.
         /// </summary>
         [Input("messageFilters")]
-        public Input<Inputs.IOTDeviceMessageFiltersGetArgs>? MessageFilters { get; set; }
+        public Input<Inputs.IotDeviceMessageFiltersGetArgs>? MessageFilters { get; set; }
 
         /// <summary>
         /// The name of the IoT device you want to create (e.g. `my-device`).
@@ -278,7 +278,7 @@ namespace Pulumi.Scaleway
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
-        public IOTDeviceState()
+        public IotDeviceState()
         {
         }
     }

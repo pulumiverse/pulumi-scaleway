@@ -16,8 +16,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
- * const gw01 = new scaleway.VpcPublicGatewayIP("gw01", {});
- * const dhcp01 = new scaleway.VpcPublicGatewayDHCP("dhcp01", {subnet: "192.168.1.0/24"});
+ * const gw01 = new scaleway.VpcPublicGatewayIp("gw01", {});
+ * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.1.0/24"});
  * const pg01 = new scaleway.VpcPublicGateway("pg01", {
  *     type: "VPC-GW-S",
  *     ipId: gw01.id,

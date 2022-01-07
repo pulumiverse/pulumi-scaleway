@@ -24,33 +24,33 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		main, err := scaleway.NewVpcPublicGatewayIP(ctx, "main", nil)
+// 		main, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_ = scaleway.LookupVpcPublicGatewayIPOutput(ctx, GetVpcPublicGatewayIPOutputArgs{
+// 		_ = scaleway.LookupVpcPublicGatewayIpOutput(ctx, GetVpcPublicGatewayIpOutputArgs{
 // 			IpId: main.ID(),
 // 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
-func LookupVpcPublicGatewayIP(ctx *pulumi.Context, args *LookupVpcPublicGatewayIPArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayIPResult, error) {
-	var rv LookupVpcPublicGatewayIPResult
-	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayIP:getVpcPublicGatewayIP", args, &rv, opts...)
+func LookupVpcPublicGatewayIp(ctx *pulumi.Context, args *LookupVpcPublicGatewayIpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayIpResult, error) {
+	var rv LookupVpcPublicGatewayIpResult
+	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getVpcPublicGatewayIP.
-type LookupVpcPublicGatewayIPArgs struct {
+// A collection of arguments for invoking getVpcPublicGatewayIp.
+type LookupVpcPublicGatewayIpArgs struct {
 	IpId *string `pulumi:"ipId"`
 }
 
-// A collection of values returned by getVpcPublicGatewayIP.
-type LookupVpcPublicGatewayIPResult struct {
+// A collection of values returned by getVpcPublicGatewayIp.
+type LookupVpcPublicGatewayIpResult struct {
 	Address   string `pulumi:"address"`
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
@@ -64,80 +64,80 @@ type LookupVpcPublicGatewayIPResult struct {
 	Zone           string   `pulumi:"zone"`
 }
 
-func LookupVpcPublicGatewayIPOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayIPOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayIPResultOutput {
+func LookupVpcPublicGatewayIpOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayIpOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayIpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpcPublicGatewayIPResult, error) {
-			args := v.(LookupVpcPublicGatewayIPArgs)
-			r, err := LookupVpcPublicGatewayIP(ctx, &args, opts...)
+		ApplyT(func(v interface{}) (LookupVpcPublicGatewayIpResult, error) {
+			args := v.(LookupVpcPublicGatewayIpArgs)
+			r, err := LookupVpcPublicGatewayIp(ctx, &args, opts...)
 			return *r, err
-		}).(LookupVpcPublicGatewayIPResultOutput)
+		}).(LookupVpcPublicGatewayIpResultOutput)
 }
 
-// A collection of arguments for invoking getVpcPublicGatewayIP.
-type LookupVpcPublicGatewayIPOutputArgs struct {
+// A collection of arguments for invoking getVpcPublicGatewayIp.
+type LookupVpcPublicGatewayIpOutputArgs struct {
 	IpId pulumi.StringPtrInput `pulumi:"ipId"`
 }
 
-func (LookupVpcPublicGatewayIPOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVpcPublicGatewayIPArgs)(nil)).Elem()
+func (LookupVpcPublicGatewayIpOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVpcPublicGatewayIpArgs)(nil)).Elem()
 }
 
-// A collection of values returned by getVpcPublicGatewayIP.
-type LookupVpcPublicGatewayIPResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getVpcPublicGatewayIp.
+type LookupVpcPublicGatewayIpResultOutput struct{ *pulumi.OutputState }
 
-func (LookupVpcPublicGatewayIPResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVpcPublicGatewayIPResult)(nil)).Elem()
+func (LookupVpcPublicGatewayIpResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVpcPublicGatewayIpResult)(nil)).Elem()
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) ToLookupVpcPublicGatewayIPResultOutput() LookupVpcPublicGatewayIPResultOutput {
+func (o LookupVpcPublicGatewayIpResultOutput) ToLookupVpcPublicGatewayIpResultOutput() LookupVpcPublicGatewayIpResultOutput {
 	return o
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) ToLookupVpcPublicGatewayIPResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayIPResultOutput {
+func (o LookupVpcPublicGatewayIpResultOutput) ToLookupVpcPublicGatewayIpResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayIpResultOutput {
 	return o
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.Address }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.Address }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o LookupVpcPublicGatewayIPResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) IpId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) *string { return v.IpId }).(pulumi.StringPtrOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) IpId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) *string { return v.IpId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) Reverse() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.Reverse }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.Reverse }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayIPResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayIPResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayIpResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayIpResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupVpcPublicGatewayIPResultOutput{})
+	pulumi.RegisterOutputType(LookupVpcPublicGatewayIpResultOutput{})
 }

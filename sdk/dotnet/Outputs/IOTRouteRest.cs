@@ -11,14 +11,14 @@ namespace Pulumi.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IOTRouteRest
+    public sealed class IotRouteRest
     {
         public readonly ImmutableDictionary<string, string> Headers;
         public readonly string Uri;
         public readonly string Verb;
 
         [OutputConstructor]
-        private IOTRouteRest(
+        private IotRouteRest(
             ImmutableDictionary<string, string> headers,
 
             string uri,

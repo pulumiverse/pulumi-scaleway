@@ -16,9 +16,9 @@ import (
 // IoT Networks can be imported using the `{region}/{id}`, e.g. bash
 //
 // ```sh
-//  $ pulumi import scaleway:index/iOTNetwork:IOTNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+//  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type IOTNetwork struct {
+type IotNetwork struct {
 	pulumi.CustomResourceState
 
 	// The date and time the Network was created.
@@ -37,9 +37,9 @@ type IOTNetwork struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
-// NewIOTNetwork registers a new resource with the given unique name, arguments, and options.
-func NewIOTNetwork(ctx *pulumi.Context,
-	name string, args *IOTNetworkArgs, opts ...pulumi.ResourceOption) (*IOTNetwork, error) {
+// NewIotNetwork registers a new resource with the given unique name, arguments, and options.
+func NewIotNetwork(ctx *pulumi.Context,
+	name string, args *IotNetworkArgs, opts ...pulumi.ResourceOption) (*IotNetwork, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -50,28 +50,28 @@ func NewIOTNetwork(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	var resource IOTNetwork
-	err := ctx.RegisterResource("scaleway:index/iOTNetwork:IOTNetwork", name, args, &resource, opts...)
+	var resource IotNetwork
+	err := ctx.RegisterResource("scaleway:index/iotNetwork:IotNetwork", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetIOTNetwork gets an existing IOTNetwork resource's state with the given name, ID, and optional
+// GetIotNetwork gets an existing IotNetwork resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetIOTNetwork(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *IOTNetworkState, opts ...pulumi.ResourceOption) (*IOTNetwork, error) {
-	var resource IOTNetwork
-	err := ctx.ReadResource("scaleway:index/iOTNetwork:IOTNetwork", name, id, state, &resource, opts...)
+func GetIotNetwork(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *IotNetworkState, opts ...pulumi.ResourceOption) (*IotNetwork, error) {
+	var resource IotNetwork
+	err := ctx.ReadResource("scaleway:index/iotNetwork:IotNetwork", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering IOTNetwork resources.
-type iotnetworkState struct {
+// Input properties used for looking up and filtering IotNetwork resources.
+type iotNetworkState struct {
 	// The date and time the Network was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The endpoint to use when interacting with the network.
@@ -88,7 +88,7 @@ type iotnetworkState struct {
 	Type *string `pulumi:"type"`
 }
 
-type IOTNetworkState struct {
+type IotNetworkState struct {
 	// The date and time the Network was created.
 	CreatedAt pulumi.StringPtrInput
 	// The endpoint to use when interacting with the network.
@@ -105,11 +105,11 @@ type IOTNetworkState struct {
 	Type pulumi.StringPtrInput
 }
 
-func (IOTNetworkState) ElementType() reflect.Type {
-	return reflect.TypeOf((*iotnetworkState)(nil)).Elem()
+func (IotNetworkState) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotNetworkState)(nil)).Elem()
 }
 
-type iotnetworkArgs struct {
+type iotNetworkArgs struct {
 	// The hub ID to which the Network will be attached to.
 	HubId string `pulumi:"hubId"`
 	// The name of the IoT Network you want to create (e.g. `my-net`).
@@ -120,8 +120,8 @@ type iotnetworkArgs struct {
 	Type string `pulumi:"type"`
 }
 
-// The set of arguments for constructing a IOTNetwork resource.
-type IOTNetworkArgs struct {
+// The set of arguments for constructing a IotNetwork resource.
+type IotNetworkArgs struct {
 	// The hub ID to which the Network will be attached to.
 	HubId pulumi.StringInput
 	// The name of the IoT Network you want to create (e.g. `my-net`).
@@ -132,44 +132,44 @@ type IOTNetworkArgs struct {
 	Type pulumi.StringInput
 }
 
-func (IOTNetworkArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*iotnetworkArgs)(nil)).Elem()
+func (IotNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*iotNetworkArgs)(nil)).Elem()
 }
 
-type IOTNetworkInput interface {
+type IotNetworkInput interface {
 	pulumi.Input
 
-	ToIOTNetworkOutput() IOTNetworkOutput
-	ToIOTNetworkOutputWithContext(ctx context.Context) IOTNetworkOutput
+	ToIotNetworkOutput() IotNetworkOutput
+	ToIotNetworkOutputWithContext(ctx context.Context) IotNetworkOutput
 }
 
-func (*IOTNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTNetwork)(nil)).Elem()
+func (*IotNetwork) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotNetwork)(nil)).Elem()
 }
 
-func (i *IOTNetwork) ToIOTNetworkOutput() IOTNetworkOutput {
-	return i.ToIOTNetworkOutputWithContext(context.Background())
+func (i *IotNetwork) ToIotNetworkOutput() IotNetworkOutput {
+	return i.ToIotNetworkOutputWithContext(context.Background())
 }
 
-func (i *IOTNetwork) ToIOTNetworkOutputWithContext(ctx context.Context) IOTNetworkOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTNetworkOutput)
+func (i *IotNetwork) ToIotNetworkOutputWithContext(ctx context.Context) IotNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkOutput)
 }
 
-type IOTNetworkOutput struct{ *pulumi.OutputState }
+type IotNetworkOutput struct{ *pulumi.OutputState }
 
-func (IOTNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTNetwork)(nil)).Elem()
+func (IotNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotNetwork)(nil)).Elem()
 }
 
-func (o IOTNetworkOutput) ToIOTNetworkOutput() IOTNetworkOutput {
+func (o IotNetworkOutput) ToIotNetworkOutput() IotNetworkOutput {
 	return o
 }
 
-func (o IOTNetworkOutput) ToIOTNetworkOutputWithContext(ctx context.Context) IOTNetworkOutput {
+func (o IotNetworkOutput) ToIotNetworkOutputWithContext(ctx context.Context) IotNetworkOutput {
 	return o
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTNetworkInput)(nil)).Elem(), &IOTNetwork{})
-	pulumi.RegisterOutputType(IOTNetworkOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotNetworkInput)(nil)).Elem(), &IotNetwork{})
+	pulumi.RegisterOutputType(IotNetworkOutput{})
 }

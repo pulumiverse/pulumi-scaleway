@@ -73,110 +73,110 @@ func (o BaremetalServerIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerIp
 	}).(BaremetalServerIpOutput)
 }
 
-type DatabaseACLAclRule struct {
+type DatabaseAclAclRule struct {
 	// A simple text describing this rule
 	Description *string `pulumi:"description"`
 	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip string `pulumi:"ip"`
 }
 
-// DatabaseACLAclRuleInput is an input type that accepts DatabaseACLAclRuleArgs and DatabaseACLAclRuleOutput values.
-// You can construct a concrete instance of `DatabaseACLAclRuleInput` via:
+// DatabaseAclAclRuleInput is an input type that accepts DatabaseAclAclRuleArgs and DatabaseAclAclRuleOutput values.
+// You can construct a concrete instance of `DatabaseAclAclRuleInput` via:
 //
-//          DatabaseACLAclRuleArgs{...}
-type DatabaseACLAclRuleInput interface {
+//          DatabaseAclAclRuleArgs{...}
+type DatabaseAclAclRuleInput interface {
 	pulumi.Input
 
-	ToDatabaseACLAclRuleOutput() DatabaseACLAclRuleOutput
-	ToDatabaseACLAclRuleOutputWithContext(context.Context) DatabaseACLAclRuleOutput
+	ToDatabaseAclAclRuleOutput() DatabaseAclAclRuleOutput
+	ToDatabaseAclAclRuleOutputWithContext(context.Context) DatabaseAclAclRuleOutput
 }
 
-type DatabaseACLAclRuleArgs struct {
+type DatabaseAclAclRuleArgs struct {
 	// A simple text describing this rule
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
-func (DatabaseACLAclRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseACLAclRule)(nil)).Elem()
+func (DatabaseAclAclRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseAclAclRule)(nil)).Elem()
 }
 
-func (i DatabaseACLAclRuleArgs) ToDatabaseACLAclRuleOutput() DatabaseACLAclRuleOutput {
-	return i.ToDatabaseACLAclRuleOutputWithContext(context.Background())
+func (i DatabaseAclAclRuleArgs) ToDatabaseAclAclRuleOutput() DatabaseAclAclRuleOutput {
+	return i.ToDatabaseAclAclRuleOutputWithContext(context.Background())
 }
 
-func (i DatabaseACLAclRuleArgs) ToDatabaseACLAclRuleOutputWithContext(ctx context.Context) DatabaseACLAclRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseACLAclRuleOutput)
+func (i DatabaseAclAclRuleArgs) ToDatabaseAclAclRuleOutputWithContext(ctx context.Context) DatabaseAclAclRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclAclRuleOutput)
 }
 
-// DatabaseACLAclRuleArrayInput is an input type that accepts DatabaseACLAclRuleArray and DatabaseACLAclRuleArrayOutput values.
-// You can construct a concrete instance of `DatabaseACLAclRuleArrayInput` via:
+// DatabaseAclAclRuleArrayInput is an input type that accepts DatabaseAclAclRuleArray and DatabaseAclAclRuleArrayOutput values.
+// You can construct a concrete instance of `DatabaseAclAclRuleArrayInput` via:
 //
-//          DatabaseACLAclRuleArray{ DatabaseACLAclRuleArgs{...} }
-type DatabaseACLAclRuleArrayInput interface {
+//          DatabaseAclAclRuleArray{ DatabaseAclAclRuleArgs{...} }
+type DatabaseAclAclRuleArrayInput interface {
 	pulumi.Input
 
-	ToDatabaseACLAclRuleArrayOutput() DatabaseACLAclRuleArrayOutput
-	ToDatabaseACLAclRuleArrayOutputWithContext(context.Context) DatabaseACLAclRuleArrayOutput
+	ToDatabaseAclAclRuleArrayOutput() DatabaseAclAclRuleArrayOutput
+	ToDatabaseAclAclRuleArrayOutputWithContext(context.Context) DatabaseAclAclRuleArrayOutput
 }
 
-type DatabaseACLAclRuleArray []DatabaseACLAclRuleInput
+type DatabaseAclAclRuleArray []DatabaseAclAclRuleInput
 
-func (DatabaseACLAclRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DatabaseACLAclRule)(nil)).Elem()
+func (DatabaseAclAclRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseAclAclRule)(nil)).Elem()
 }
 
-func (i DatabaseACLAclRuleArray) ToDatabaseACLAclRuleArrayOutput() DatabaseACLAclRuleArrayOutput {
-	return i.ToDatabaseACLAclRuleArrayOutputWithContext(context.Background())
+func (i DatabaseAclAclRuleArray) ToDatabaseAclAclRuleArrayOutput() DatabaseAclAclRuleArrayOutput {
+	return i.ToDatabaseAclAclRuleArrayOutputWithContext(context.Background())
 }
 
-func (i DatabaseACLAclRuleArray) ToDatabaseACLAclRuleArrayOutputWithContext(ctx context.Context) DatabaseACLAclRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseACLAclRuleArrayOutput)
+func (i DatabaseAclAclRuleArray) ToDatabaseAclAclRuleArrayOutputWithContext(ctx context.Context) DatabaseAclAclRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclAclRuleArrayOutput)
 }
 
-type DatabaseACLAclRuleOutput struct{ *pulumi.OutputState }
+type DatabaseAclAclRuleOutput struct{ *pulumi.OutputState }
 
-func (DatabaseACLAclRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseACLAclRule)(nil)).Elem()
+func (DatabaseAclAclRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseAclAclRule)(nil)).Elem()
 }
 
-func (o DatabaseACLAclRuleOutput) ToDatabaseACLAclRuleOutput() DatabaseACLAclRuleOutput {
+func (o DatabaseAclAclRuleOutput) ToDatabaseAclAclRuleOutput() DatabaseAclAclRuleOutput {
 	return o
 }
 
-func (o DatabaseACLAclRuleOutput) ToDatabaseACLAclRuleOutputWithContext(ctx context.Context) DatabaseACLAclRuleOutput {
+func (o DatabaseAclAclRuleOutput) ToDatabaseAclAclRuleOutputWithContext(ctx context.Context) DatabaseAclAclRuleOutput {
 	return o
 }
 
 // A simple text describing this rule
-func (o DatabaseACLAclRuleOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DatabaseACLAclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o DatabaseAclAclRuleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseAclAclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
-func (o DatabaseACLAclRuleOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v DatabaseACLAclRule) string { return v.Ip }).(pulumi.StringOutput)
+func (o DatabaseAclAclRuleOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v DatabaseAclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-type DatabaseACLAclRuleArrayOutput struct{ *pulumi.OutputState }
+type DatabaseAclAclRuleArrayOutput struct{ *pulumi.OutputState }
 
-func (DatabaseACLAclRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DatabaseACLAclRule)(nil)).Elem()
+func (DatabaseAclAclRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseAclAclRule)(nil)).Elem()
 }
 
-func (o DatabaseACLAclRuleArrayOutput) ToDatabaseACLAclRuleArrayOutput() DatabaseACLAclRuleArrayOutput {
+func (o DatabaseAclAclRuleArrayOutput) ToDatabaseAclAclRuleArrayOutput() DatabaseAclAclRuleArrayOutput {
 	return o
 }
 
-func (o DatabaseACLAclRuleArrayOutput) ToDatabaseACLAclRuleArrayOutputWithContext(ctx context.Context) DatabaseACLAclRuleArrayOutput {
+func (o DatabaseAclAclRuleArrayOutput) ToDatabaseAclAclRuleArrayOutputWithContext(ctx context.Context) DatabaseAclAclRuleArrayOutput {
 	return o
 }
 
-func (o DatabaseACLAclRuleArrayOutput) Index(i pulumi.IntInput) DatabaseACLAclRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseACLAclRule {
-		return vs[0].([]DatabaseACLAclRule)[vs[1].(int)]
-	}).(DatabaseACLAclRuleOutput)
+func (o DatabaseAclAclRuleArrayOutput) Index(i pulumi.IntInput) DatabaseAclAclRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseAclAclRule {
+		return vs[0].([]DatabaseAclAclRule)[vs[1].(int)]
+	}).(DatabaseAclAclRuleOutput)
 }
 
 type DatabaseInstanceLoadBalancer struct {
@@ -1244,1175 +1244,6 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 	}).(DomainRecordWeightedOutput)
 }
 
-type IOTDeviceCertificate struct {
-	Crt *string `pulumi:"crt"`
-	// The private key of the device, in case it is generated by Scaleway.
-	Key *string `pulumi:"key"`
-}
-
-// IOTDeviceCertificateInput is an input type that accepts IOTDeviceCertificateArgs and IOTDeviceCertificateOutput values.
-// You can construct a concrete instance of `IOTDeviceCertificateInput` via:
-//
-//          IOTDeviceCertificateArgs{...}
-type IOTDeviceCertificateInput interface {
-	pulumi.Input
-
-	ToIOTDeviceCertificateOutput() IOTDeviceCertificateOutput
-	ToIOTDeviceCertificateOutputWithContext(context.Context) IOTDeviceCertificateOutput
-}
-
-type IOTDeviceCertificateArgs struct {
-	Crt pulumi.StringPtrInput `pulumi:"crt"`
-	// The private key of the device, in case it is generated by Scaleway.
-	Key pulumi.StringPtrInput `pulumi:"key"`
-}
-
-func (IOTDeviceCertificateArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceCertificate)(nil)).Elem()
-}
-
-func (i IOTDeviceCertificateArgs) ToIOTDeviceCertificateOutput() IOTDeviceCertificateOutput {
-	return i.ToIOTDeviceCertificateOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceCertificateArgs) ToIOTDeviceCertificateOutputWithContext(ctx context.Context) IOTDeviceCertificateOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceCertificateOutput)
-}
-
-func (i IOTDeviceCertificateArgs) ToIOTDeviceCertificatePtrOutput() IOTDeviceCertificatePtrOutput {
-	return i.ToIOTDeviceCertificatePtrOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceCertificateArgs) ToIOTDeviceCertificatePtrOutputWithContext(ctx context.Context) IOTDeviceCertificatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceCertificateOutput).ToIOTDeviceCertificatePtrOutputWithContext(ctx)
-}
-
-// IOTDeviceCertificatePtrInput is an input type that accepts IOTDeviceCertificateArgs, IOTDeviceCertificatePtr and IOTDeviceCertificatePtrOutput values.
-// You can construct a concrete instance of `IOTDeviceCertificatePtrInput` via:
-//
-//          IOTDeviceCertificateArgs{...}
-//
-//  or:
-//
-//          nil
-type IOTDeviceCertificatePtrInput interface {
-	pulumi.Input
-
-	ToIOTDeviceCertificatePtrOutput() IOTDeviceCertificatePtrOutput
-	ToIOTDeviceCertificatePtrOutputWithContext(context.Context) IOTDeviceCertificatePtrOutput
-}
-
-type iotdeviceCertificatePtrType IOTDeviceCertificateArgs
-
-func IOTDeviceCertificatePtr(v *IOTDeviceCertificateArgs) IOTDeviceCertificatePtrInput {
-	return (*iotdeviceCertificatePtrType)(v)
-}
-
-func (*iotdeviceCertificatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceCertificate)(nil)).Elem()
-}
-
-func (i *iotdeviceCertificatePtrType) ToIOTDeviceCertificatePtrOutput() IOTDeviceCertificatePtrOutput {
-	return i.ToIOTDeviceCertificatePtrOutputWithContext(context.Background())
-}
-
-func (i *iotdeviceCertificatePtrType) ToIOTDeviceCertificatePtrOutputWithContext(ctx context.Context) IOTDeviceCertificatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceCertificatePtrOutput)
-}
-
-type IOTDeviceCertificateOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceCertificateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceCertificate)(nil)).Elem()
-}
-
-func (o IOTDeviceCertificateOutput) ToIOTDeviceCertificateOutput() IOTDeviceCertificateOutput {
-	return o
-}
-
-func (o IOTDeviceCertificateOutput) ToIOTDeviceCertificateOutputWithContext(ctx context.Context) IOTDeviceCertificateOutput {
-	return o
-}
-
-func (o IOTDeviceCertificateOutput) ToIOTDeviceCertificatePtrOutput() IOTDeviceCertificatePtrOutput {
-	return o.ToIOTDeviceCertificatePtrOutputWithContext(context.Background())
-}
-
-func (o IOTDeviceCertificateOutput) ToIOTDeviceCertificatePtrOutputWithContext(ctx context.Context) IOTDeviceCertificatePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTDeviceCertificate) *IOTDeviceCertificate {
-		return &v
-	}).(IOTDeviceCertificatePtrOutput)
-}
-
-func (o IOTDeviceCertificateOutput) Crt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v IOTDeviceCertificate) *string { return v.Crt }).(pulumi.StringPtrOutput)
-}
-
-// The private key of the device, in case it is generated by Scaleway.
-func (o IOTDeviceCertificateOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v IOTDeviceCertificate) *string { return v.Key }).(pulumi.StringPtrOutput)
-}
-
-type IOTDeviceCertificatePtrOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceCertificatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceCertificate)(nil)).Elem()
-}
-
-func (o IOTDeviceCertificatePtrOutput) ToIOTDeviceCertificatePtrOutput() IOTDeviceCertificatePtrOutput {
-	return o
-}
-
-func (o IOTDeviceCertificatePtrOutput) ToIOTDeviceCertificatePtrOutputWithContext(ctx context.Context) IOTDeviceCertificatePtrOutput {
-	return o
-}
-
-func (o IOTDeviceCertificatePtrOutput) Elem() IOTDeviceCertificateOutput {
-	return o.ApplyT(func(v *IOTDeviceCertificate) IOTDeviceCertificate {
-		if v != nil {
-			return *v
-		}
-		var ret IOTDeviceCertificate
-		return ret
-	}).(IOTDeviceCertificateOutput)
-}
-
-func (o IOTDeviceCertificatePtrOutput) Crt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTDeviceCertificate) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Crt
-	}).(pulumi.StringPtrOutput)
-}
-
-// The private key of the device, in case it is generated by Scaleway.
-func (o IOTDeviceCertificatePtrOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTDeviceCertificate) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Key
-	}).(pulumi.StringPtrOutput)
-}
-
-type IOTDeviceMessageFilters struct {
-	// Rules used to restrict topics the device can publish to.
-	Publish *IOTDeviceMessageFiltersPublish `pulumi:"publish"`
-	// Rules used to restrict topics the device can subscribe to.
-	Subscribe *IOTDeviceMessageFiltersSubscribe `pulumi:"subscribe"`
-}
-
-// IOTDeviceMessageFiltersInput is an input type that accepts IOTDeviceMessageFiltersArgs and IOTDeviceMessageFiltersOutput values.
-// You can construct a concrete instance of `IOTDeviceMessageFiltersInput` via:
-//
-//          IOTDeviceMessageFiltersArgs{...}
-type IOTDeviceMessageFiltersInput interface {
-	pulumi.Input
-
-	ToIOTDeviceMessageFiltersOutput() IOTDeviceMessageFiltersOutput
-	ToIOTDeviceMessageFiltersOutputWithContext(context.Context) IOTDeviceMessageFiltersOutput
-}
-
-type IOTDeviceMessageFiltersArgs struct {
-	// Rules used to restrict topics the device can publish to.
-	Publish IOTDeviceMessageFiltersPublishPtrInput `pulumi:"publish"`
-	// Rules used to restrict topics the device can subscribe to.
-	Subscribe IOTDeviceMessageFiltersSubscribePtrInput `pulumi:"subscribe"`
-}
-
-func (IOTDeviceMessageFiltersArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceMessageFilters)(nil)).Elem()
-}
-
-func (i IOTDeviceMessageFiltersArgs) ToIOTDeviceMessageFiltersOutput() IOTDeviceMessageFiltersOutput {
-	return i.ToIOTDeviceMessageFiltersOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceMessageFiltersArgs) ToIOTDeviceMessageFiltersOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersOutput)
-}
-
-func (i IOTDeviceMessageFiltersArgs) ToIOTDeviceMessageFiltersPtrOutput() IOTDeviceMessageFiltersPtrOutput {
-	return i.ToIOTDeviceMessageFiltersPtrOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceMessageFiltersArgs) ToIOTDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersOutput).ToIOTDeviceMessageFiltersPtrOutputWithContext(ctx)
-}
-
-// IOTDeviceMessageFiltersPtrInput is an input type that accepts IOTDeviceMessageFiltersArgs, IOTDeviceMessageFiltersPtr and IOTDeviceMessageFiltersPtrOutput values.
-// You can construct a concrete instance of `IOTDeviceMessageFiltersPtrInput` via:
-//
-//          IOTDeviceMessageFiltersArgs{...}
-//
-//  or:
-//
-//          nil
-type IOTDeviceMessageFiltersPtrInput interface {
-	pulumi.Input
-
-	ToIOTDeviceMessageFiltersPtrOutput() IOTDeviceMessageFiltersPtrOutput
-	ToIOTDeviceMessageFiltersPtrOutputWithContext(context.Context) IOTDeviceMessageFiltersPtrOutput
-}
-
-type iotdeviceMessageFiltersPtrType IOTDeviceMessageFiltersArgs
-
-func IOTDeviceMessageFiltersPtr(v *IOTDeviceMessageFiltersArgs) IOTDeviceMessageFiltersPtrInput {
-	return (*iotdeviceMessageFiltersPtrType)(v)
-}
-
-func (*iotdeviceMessageFiltersPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceMessageFilters)(nil)).Elem()
-}
-
-func (i *iotdeviceMessageFiltersPtrType) ToIOTDeviceMessageFiltersPtrOutput() IOTDeviceMessageFiltersPtrOutput {
-	return i.ToIOTDeviceMessageFiltersPtrOutputWithContext(context.Background())
-}
-
-func (i *iotdeviceMessageFiltersPtrType) ToIOTDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersPtrOutput)
-}
-
-type IOTDeviceMessageFiltersOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceMessageFiltersOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceMessageFilters)(nil)).Elem()
-}
-
-func (o IOTDeviceMessageFiltersOutput) ToIOTDeviceMessageFiltersOutput() IOTDeviceMessageFiltersOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersOutput) ToIOTDeviceMessageFiltersOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersOutput) ToIOTDeviceMessageFiltersPtrOutput() IOTDeviceMessageFiltersPtrOutput {
-	return o.ToIOTDeviceMessageFiltersPtrOutputWithContext(context.Background())
-}
-
-func (o IOTDeviceMessageFiltersOutput) ToIOTDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTDeviceMessageFilters) *IOTDeviceMessageFilters {
-		return &v
-	}).(IOTDeviceMessageFiltersPtrOutput)
-}
-
-// Rules used to restrict topics the device can publish to.
-func (o IOTDeviceMessageFiltersOutput) Publish() IOTDeviceMessageFiltersPublishPtrOutput {
-	return o.ApplyT(func(v IOTDeviceMessageFilters) *IOTDeviceMessageFiltersPublish { return v.Publish }).(IOTDeviceMessageFiltersPublishPtrOutput)
-}
-
-// Rules used to restrict topics the device can subscribe to.
-func (o IOTDeviceMessageFiltersOutput) Subscribe() IOTDeviceMessageFiltersSubscribePtrOutput {
-	return o.ApplyT(func(v IOTDeviceMessageFilters) *IOTDeviceMessageFiltersSubscribe { return v.Subscribe }).(IOTDeviceMessageFiltersSubscribePtrOutput)
-}
-
-type IOTDeviceMessageFiltersPtrOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceMessageFiltersPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceMessageFilters)(nil)).Elem()
-}
-
-func (o IOTDeviceMessageFiltersPtrOutput) ToIOTDeviceMessageFiltersPtrOutput() IOTDeviceMessageFiltersPtrOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersPtrOutput) ToIOTDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPtrOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersPtrOutput) Elem() IOTDeviceMessageFiltersOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFilters) IOTDeviceMessageFilters {
-		if v != nil {
-			return *v
-		}
-		var ret IOTDeviceMessageFilters
-		return ret
-	}).(IOTDeviceMessageFiltersOutput)
-}
-
-// Rules used to restrict topics the device can publish to.
-func (o IOTDeviceMessageFiltersPtrOutput) Publish() IOTDeviceMessageFiltersPublishPtrOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFilters) *IOTDeviceMessageFiltersPublish {
-		if v == nil {
-			return nil
-		}
-		return v.Publish
-	}).(IOTDeviceMessageFiltersPublishPtrOutput)
-}
-
-// Rules used to restrict topics the device can subscribe to.
-func (o IOTDeviceMessageFiltersPtrOutput) Subscribe() IOTDeviceMessageFiltersSubscribePtrOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFilters) *IOTDeviceMessageFiltersSubscribe {
-		if v == nil {
-			return nil
-		}
-		return v.Subscribe
-	}).(IOTDeviceMessageFiltersSubscribePtrOutput)
-}
-
-type IOTDeviceMessageFiltersPublish struct {
-	// Same as publish rules.
-	Policy *string `pulumi:"policy"`
-	// Same as publish rules.
-	Topics []string `pulumi:"topics"`
-}
-
-// IOTDeviceMessageFiltersPublishInput is an input type that accepts IOTDeviceMessageFiltersPublishArgs and IOTDeviceMessageFiltersPublishOutput values.
-// You can construct a concrete instance of `IOTDeviceMessageFiltersPublishInput` via:
-//
-//          IOTDeviceMessageFiltersPublishArgs{...}
-type IOTDeviceMessageFiltersPublishInput interface {
-	pulumi.Input
-
-	ToIOTDeviceMessageFiltersPublishOutput() IOTDeviceMessageFiltersPublishOutput
-	ToIOTDeviceMessageFiltersPublishOutputWithContext(context.Context) IOTDeviceMessageFiltersPublishOutput
-}
-
-type IOTDeviceMessageFiltersPublishArgs struct {
-	// Same as publish rules.
-	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// Same as publish rules.
-	Topics pulumi.StringArrayInput `pulumi:"topics"`
-}
-
-func (IOTDeviceMessageFiltersPublishArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceMessageFiltersPublish)(nil)).Elem()
-}
-
-func (i IOTDeviceMessageFiltersPublishArgs) ToIOTDeviceMessageFiltersPublishOutput() IOTDeviceMessageFiltersPublishOutput {
-	return i.ToIOTDeviceMessageFiltersPublishOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceMessageFiltersPublishArgs) ToIOTDeviceMessageFiltersPublishOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPublishOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersPublishOutput)
-}
-
-func (i IOTDeviceMessageFiltersPublishArgs) ToIOTDeviceMessageFiltersPublishPtrOutput() IOTDeviceMessageFiltersPublishPtrOutput {
-	return i.ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceMessageFiltersPublishArgs) ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPublishPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersPublishOutput).ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(ctx)
-}
-
-// IOTDeviceMessageFiltersPublishPtrInput is an input type that accepts IOTDeviceMessageFiltersPublishArgs, IOTDeviceMessageFiltersPublishPtr and IOTDeviceMessageFiltersPublishPtrOutput values.
-// You can construct a concrete instance of `IOTDeviceMessageFiltersPublishPtrInput` via:
-//
-//          IOTDeviceMessageFiltersPublishArgs{...}
-//
-//  or:
-//
-//          nil
-type IOTDeviceMessageFiltersPublishPtrInput interface {
-	pulumi.Input
-
-	ToIOTDeviceMessageFiltersPublishPtrOutput() IOTDeviceMessageFiltersPublishPtrOutput
-	ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(context.Context) IOTDeviceMessageFiltersPublishPtrOutput
-}
-
-type iotdeviceMessageFiltersPublishPtrType IOTDeviceMessageFiltersPublishArgs
-
-func IOTDeviceMessageFiltersPublishPtr(v *IOTDeviceMessageFiltersPublishArgs) IOTDeviceMessageFiltersPublishPtrInput {
-	return (*iotdeviceMessageFiltersPublishPtrType)(v)
-}
-
-func (*iotdeviceMessageFiltersPublishPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceMessageFiltersPublish)(nil)).Elem()
-}
-
-func (i *iotdeviceMessageFiltersPublishPtrType) ToIOTDeviceMessageFiltersPublishPtrOutput() IOTDeviceMessageFiltersPublishPtrOutput {
-	return i.ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(context.Background())
-}
-
-func (i *iotdeviceMessageFiltersPublishPtrType) ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPublishPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersPublishPtrOutput)
-}
-
-type IOTDeviceMessageFiltersPublishOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceMessageFiltersPublishOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceMessageFiltersPublish)(nil)).Elem()
-}
-
-func (o IOTDeviceMessageFiltersPublishOutput) ToIOTDeviceMessageFiltersPublishOutput() IOTDeviceMessageFiltersPublishOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersPublishOutput) ToIOTDeviceMessageFiltersPublishOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPublishOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersPublishOutput) ToIOTDeviceMessageFiltersPublishPtrOutput() IOTDeviceMessageFiltersPublishPtrOutput {
-	return o.ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(context.Background())
-}
-
-func (o IOTDeviceMessageFiltersPublishOutput) ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPublishPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTDeviceMessageFiltersPublish) *IOTDeviceMessageFiltersPublish {
-		return &v
-	}).(IOTDeviceMessageFiltersPublishPtrOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersPublishOutput) Policy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v IOTDeviceMessageFiltersPublish) *string { return v.Policy }).(pulumi.StringPtrOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersPublishOutput) Topics() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v IOTDeviceMessageFiltersPublish) []string { return v.Topics }).(pulumi.StringArrayOutput)
-}
-
-type IOTDeviceMessageFiltersPublishPtrOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceMessageFiltersPublishPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceMessageFiltersPublish)(nil)).Elem()
-}
-
-func (o IOTDeviceMessageFiltersPublishPtrOutput) ToIOTDeviceMessageFiltersPublishPtrOutput() IOTDeviceMessageFiltersPublishPtrOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersPublishPtrOutput) ToIOTDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersPublishPtrOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersPublishPtrOutput) Elem() IOTDeviceMessageFiltersPublishOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFiltersPublish) IOTDeviceMessageFiltersPublish {
-		if v != nil {
-			return *v
-		}
-		var ret IOTDeviceMessageFiltersPublish
-		return ret
-	}).(IOTDeviceMessageFiltersPublishOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersPublishPtrOutput) Policy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFiltersPublish) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Policy
-	}).(pulumi.StringPtrOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersPublishPtrOutput) Topics() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFiltersPublish) []string {
-		if v == nil {
-			return nil
-		}
-		return v.Topics
-	}).(pulumi.StringArrayOutput)
-}
-
-type IOTDeviceMessageFiltersSubscribe struct {
-	// Same as publish rules.
-	Policy *string `pulumi:"policy"`
-	// Same as publish rules.
-	Topics []string `pulumi:"topics"`
-}
-
-// IOTDeviceMessageFiltersSubscribeInput is an input type that accepts IOTDeviceMessageFiltersSubscribeArgs and IOTDeviceMessageFiltersSubscribeOutput values.
-// You can construct a concrete instance of `IOTDeviceMessageFiltersSubscribeInput` via:
-//
-//          IOTDeviceMessageFiltersSubscribeArgs{...}
-type IOTDeviceMessageFiltersSubscribeInput interface {
-	pulumi.Input
-
-	ToIOTDeviceMessageFiltersSubscribeOutput() IOTDeviceMessageFiltersSubscribeOutput
-	ToIOTDeviceMessageFiltersSubscribeOutputWithContext(context.Context) IOTDeviceMessageFiltersSubscribeOutput
-}
-
-type IOTDeviceMessageFiltersSubscribeArgs struct {
-	// Same as publish rules.
-	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// Same as publish rules.
-	Topics pulumi.StringArrayInput `pulumi:"topics"`
-}
-
-func (IOTDeviceMessageFiltersSubscribeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceMessageFiltersSubscribe)(nil)).Elem()
-}
-
-func (i IOTDeviceMessageFiltersSubscribeArgs) ToIOTDeviceMessageFiltersSubscribeOutput() IOTDeviceMessageFiltersSubscribeOutput {
-	return i.ToIOTDeviceMessageFiltersSubscribeOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceMessageFiltersSubscribeArgs) ToIOTDeviceMessageFiltersSubscribeOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersSubscribeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersSubscribeOutput)
-}
-
-func (i IOTDeviceMessageFiltersSubscribeArgs) ToIOTDeviceMessageFiltersSubscribePtrOutput() IOTDeviceMessageFiltersSubscribePtrOutput {
-	return i.ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(context.Background())
-}
-
-func (i IOTDeviceMessageFiltersSubscribeArgs) ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersSubscribePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersSubscribeOutput).ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(ctx)
-}
-
-// IOTDeviceMessageFiltersSubscribePtrInput is an input type that accepts IOTDeviceMessageFiltersSubscribeArgs, IOTDeviceMessageFiltersSubscribePtr and IOTDeviceMessageFiltersSubscribePtrOutput values.
-// You can construct a concrete instance of `IOTDeviceMessageFiltersSubscribePtrInput` via:
-//
-//          IOTDeviceMessageFiltersSubscribeArgs{...}
-//
-//  or:
-//
-//          nil
-type IOTDeviceMessageFiltersSubscribePtrInput interface {
-	pulumi.Input
-
-	ToIOTDeviceMessageFiltersSubscribePtrOutput() IOTDeviceMessageFiltersSubscribePtrOutput
-	ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(context.Context) IOTDeviceMessageFiltersSubscribePtrOutput
-}
-
-type iotdeviceMessageFiltersSubscribePtrType IOTDeviceMessageFiltersSubscribeArgs
-
-func IOTDeviceMessageFiltersSubscribePtr(v *IOTDeviceMessageFiltersSubscribeArgs) IOTDeviceMessageFiltersSubscribePtrInput {
-	return (*iotdeviceMessageFiltersSubscribePtrType)(v)
-}
-
-func (*iotdeviceMessageFiltersSubscribePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceMessageFiltersSubscribe)(nil)).Elem()
-}
-
-func (i *iotdeviceMessageFiltersSubscribePtrType) ToIOTDeviceMessageFiltersSubscribePtrOutput() IOTDeviceMessageFiltersSubscribePtrOutput {
-	return i.ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(context.Background())
-}
-
-func (i *iotdeviceMessageFiltersSubscribePtrType) ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersSubscribePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTDeviceMessageFiltersSubscribePtrOutput)
-}
-
-type IOTDeviceMessageFiltersSubscribeOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceMessageFiltersSubscribeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTDeviceMessageFiltersSubscribe)(nil)).Elem()
-}
-
-func (o IOTDeviceMessageFiltersSubscribeOutput) ToIOTDeviceMessageFiltersSubscribeOutput() IOTDeviceMessageFiltersSubscribeOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersSubscribeOutput) ToIOTDeviceMessageFiltersSubscribeOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersSubscribeOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersSubscribeOutput) ToIOTDeviceMessageFiltersSubscribePtrOutput() IOTDeviceMessageFiltersSubscribePtrOutput {
-	return o.ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(context.Background())
-}
-
-func (o IOTDeviceMessageFiltersSubscribeOutput) ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersSubscribePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTDeviceMessageFiltersSubscribe) *IOTDeviceMessageFiltersSubscribe {
-		return &v
-	}).(IOTDeviceMessageFiltersSubscribePtrOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersSubscribeOutput) Policy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v IOTDeviceMessageFiltersSubscribe) *string { return v.Policy }).(pulumi.StringPtrOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersSubscribeOutput) Topics() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v IOTDeviceMessageFiltersSubscribe) []string { return v.Topics }).(pulumi.StringArrayOutput)
-}
-
-type IOTDeviceMessageFiltersSubscribePtrOutput struct{ *pulumi.OutputState }
-
-func (IOTDeviceMessageFiltersSubscribePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTDeviceMessageFiltersSubscribe)(nil)).Elem()
-}
-
-func (o IOTDeviceMessageFiltersSubscribePtrOutput) ToIOTDeviceMessageFiltersSubscribePtrOutput() IOTDeviceMessageFiltersSubscribePtrOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersSubscribePtrOutput) ToIOTDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IOTDeviceMessageFiltersSubscribePtrOutput {
-	return o
-}
-
-func (o IOTDeviceMessageFiltersSubscribePtrOutput) Elem() IOTDeviceMessageFiltersSubscribeOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFiltersSubscribe) IOTDeviceMessageFiltersSubscribe {
-		if v != nil {
-			return *v
-		}
-		var ret IOTDeviceMessageFiltersSubscribe
-		return ret
-	}).(IOTDeviceMessageFiltersSubscribeOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersSubscribePtrOutput) Policy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFiltersSubscribe) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Policy
-	}).(pulumi.StringPtrOutput)
-}
-
-// Same as publish rules.
-func (o IOTDeviceMessageFiltersSubscribePtrOutput) Topics() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *IOTDeviceMessageFiltersSubscribe) []string {
-		if v == nil {
-			return nil
-		}
-		return v.Topics
-	}).(pulumi.StringArrayOutput)
-}
-
-type IOTRouteDatabase struct {
-	Dbname   string `pulumi:"dbname"`
-	Host     string `pulumi:"host"`
-	Password string `pulumi:"password"`
-	Port     int    `pulumi:"port"`
-	Query    string `pulumi:"query"`
-	Username string `pulumi:"username"`
-}
-
-// IOTRouteDatabaseInput is an input type that accepts IOTRouteDatabaseArgs and IOTRouteDatabaseOutput values.
-// You can construct a concrete instance of `IOTRouteDatabaseInput` via:
-//
-//          IOTRouteDatabaseArgs{...}
-type IOTRouteDatabaseInput interface {
-	pulumi.Input
-
-	ToIOTRouteDatabaseOutput() IOTRouteDatabaseOutput
-	ToIOTRouteDatabaseOutputWithContext(context.Context) IOTRouteDatabaseOutput
-}
-
-type IOTRouteDatabaseArgs struct {
-	Dbname   pulumi.StringInput `pulumi:"dbname"`
-	Host     pulumi.StringInput `pulumi:"host"`
-	Password pulumi.StringInput `pulumi:"password"`
-	Port     pulumi.IntInput    `pulumi:"port"`
-	Query    pulumi.StringInput `pulumi:"query"`
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (IOTRouteDatabaseArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTRouteDatabase)(nil)).Elem()
-}
-
-func (i IOTRouteDatabaseArgs) ToIOTRouteDatabaseOutput() IOTRouteDatabaseOutput {
-	return i.ToIOTRouteDatabaseOutputWithContext(context.Background())
-}
-
-func (i IOTRouteDatabaseArgs) ToIOTRouteDatabaseOutputWithContext(ctx context.Context) IOTRouteDatabaseOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteDatabaseOutput)
-}
-
-func (i IOTRouteDatabaseArgs) ToIOTRouteDatabasePtrOutput() IOTRouteDatabasePtrOutput {
-	return i.ToIOTRouteDatabasePtrOutputWithContext(context.Background())
-}
-
-func (i IOTRouteDatabaseArgs) ToIOTRouteDatabasePtrOutputWithContext(ctx context.Context) IOTRouteDatabasePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteDatabaseOutput).ToIOTRouteDatabasePtrOutputWithContext(ctx)
-}
-
-// IOTRouteDatabasePtrInput is an input type that accepts IOTRouteDatabaseArgs, IOTRouteDatabasePtr and IOTRouteDatabasePtrOutput values.
-// You can construct a concrete instance of `IOTRouteDatabasePtrInput` via:
-//
-//          IOTRouteDatabaseArgs{...}
-//
-//  or:
-//
-//          nil
-type IOTRouteDatabasePtrInput interface {
-	pulumi.Input
-
-	ToIOTRouteDatabasePtrOutput() IOTRouteDatabasePtrOutput
-	ToIOTRouteDatabasePtrOutputWithContext(context.Context) IOTRouteDatabasePtrOutput
-}
-
-type iotrouteDatabasePtrType IOTRouteDatabaseArgs
-
-func IOTRouteDatabasePtr(v *IOTRouteDatabaseArgs) IOTRouteDatabasePtrInput {
-	return (*iotrouteDatabasePtrType)(v)
-}
-
-func (*iotrouteDatabasePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRouteDatabase)(nil)).Elem()
-}
-
-func (i *iotrouteDatabasePtrType) ToIOTRouteDatabasePtrOutput() IOTRouteDatabasePtrOutput {
-	return i.ToIOTRouteDatabasePtrOutputWithContext(context.Background())
-}
-
-func (i *iotrouteDatabasePtrType) ToIOTRouteDatabasePtrOutputWithContext(ctx context.Context) IOTRouteDatabasePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteDatabasePtrOutput)
-}
-
-type IOTRouteDatabaseOutput struct{ *pulumi.OutputState }
-
-func (IOTRouteDatabaseOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTRouteDatabase)(nil)).Elem()
-}
-
-func (o IOTRouteDatabaseOutput) ToIOTRouteDatabaseOutput() IOTRouteDatabaseOutput {
-	return o
-}
-
-func (o IOTRouteDatabaseOutput) ToIOTRouteDatabaseOutputWithContext(ctx context.Context) IOTRouteDatabaseOutput {
-	return o
-}
-
-func (o IOTRouteDatabaseOutput) ToIOTRouteDatabasePtrOutput() IOTRouteDatabasePtrOutput {
-	return o.ToIOTRouteDatabasePtrOutputWithContext(context.Background())
-}
-
-func (o IOTRouteDatabaseOutput) ToIOTRouteDatabasePtrOutputWithContext(ctx context.Context) IOTRouteDatabasePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTRouteDatabase) *IOTRouteDatabase {
-		return &v
-	}).(IOTRouteDatabasePtrOutput)
-}
-
-func (o IOTRouteDatabaseOutput) Dbname() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteDatabase) string { return v.Dbname }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteDatabaseOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteDatabase) string { return v.Host }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteDatabaseOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteDatabase) string { return v.Password }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteDatabaseOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func(v IOTRouteDatabase) int { return v.Port }).(pulumi.IntOutput)
-}
-
-func (o IOTRouteDatabaseOutput) Query() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteDatabase) string { return v.Query }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteDatabaseOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteDatabase) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type IOTRouteDatabasePtrOutput struct{ *pulumi.OutputState }
-
-func (IOTRouteDatabasePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRouteDatabase)(nil)).Elem()
-}
-
-func (o IOTRouteDatabasePtrOutput) ToIOTRouteDatabasePtrOutput() IOTRouteDatabasePtrOutput {
-	return o
-}
-
-func (o IOTRouteDatabasePtrOutput) ToIOTRouteDatabasePtrOutputWithContext(ctx context.Context) IOTRouteDatabasePtrOutput {
-	return o
-}
-
-func (o IOTRouteDatabasePtrOutput) Elem() IOTRouteDatabaseOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) IOTRouteDatabase {
-		if v != nil {
-			return *v
-		}
-		var ret IOTRouteDatabase
-		return ret
-	}).(IOTRouteDatabaseOutput)
-}
-
-func (o IOTRouteDatabasePtrOutput) Dbname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Dbname
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteDatabasePtrOutput) Host() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Host
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteDatabasePtrOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Password
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteDatabasePtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Port
-	}).(pulumi.IntPtrOutput)
-}
-
-func (o IOTRouteDatabasePtrOutput) Query() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Query
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteDatabasePtrOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteDatabase) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Username
-	}).(pulumi.StringPtrOutput)
-}
-
-type IOTRouteRest struct {
-	Headers map[string]string `pulumi:"headers"`
-	Uri     string            `pulumi:"uri"`
-	Verb    string            `pulumi:"verb"`
-}
-
-// IOTRouteRestInput is an input type that accepts IOTRouteRestArgs and IOTRouteRestOutput values.
-// You can construct a concrete instance of `IOTRouteRestInput` via:
-//
-//          IOTRouteRestArgs{...}
-type IOTRouteRestInput interface {
-	pulumi.Input
-
-	ToIOTRouteRestOutput() IOTRouteRestOutput
-	ToIOTRouteRestOutputWithContext(context.Context) IOTRouteRestOutput
-}
-
-type IOTRouteRestArgs struct {
-	Headers pulumi.StringMapInput `pulumi:"headers"`
-	Uri     pulumi.StringInput    `pulumi:"uri"`
-	Verb    pulumi.StringInput    `pulumi:"verb"`
-}
-
-func (IOTRouteRestArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTRouteRest)(nil)).Elem()
-}
-
-func (i IOTRouteRestArgs) ToIOTRouteRestOutput() IOTRouteRestOutput {
-	return i.ToIOTRouteRestOutputWithContext(context.Background())
-}
-
-func (i IOTRouteRestArgs) ToIOTRouteRestOutputWithContext(ctx context.Context) IOTRouteRestOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteRestOutput)
-}
-
-func (i IOTRouteRestArgs) ToIOTRouteRestPtrOutput() IOTRouteRestPtrOutput {
-	return i.ToIOTRouteRestPtrOutputWithContext(context.Background())
-}
-
-func (i IOTRouteRestArgs) ToIOTRouteRestPtrOutputWithContext(ctx context.Context) IOTRouteRestPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteRestOutput).ToIOTRouteRestPtrOutputWithContext(ctx)
-}
-
-// IOTRouteRestPtrInput is an input type that accepts IOTRouteRestArgs, IOTRouteRestPtr and IOTRouteRestPtrOutput values.
-// You can construct a concrete instance of `IOTRouteRestPtrInput` via:
-//
-//          IOTRouteRestArgs{...}
-//
-//  or:
-//
-//          nil
-type IOTRouteRestPtrInput interface {
-	pulumi.Input
-
-	ToIOTRouteRestPtrOutput() IOTRouteRestPtrOutput
-	ToIOTRouteRestPtrOutputWithContext(context.Context) IOTRouteRestPtrOutput
-}
-
-type iotrouteRestPtrType IOTRouteRestArgs
-
-func IOTRouteRestPtr(v *IOTRouteRestArgs) IOTRouteRestPtrInput {
-	return (*iotrouteRestPtrType)(v)
-}
-
-func (*iotrouteRestPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRouteRest)(nil)).Elem()
-}
-
-func (i *iotrouteRestPtrType) ToIOTRouteRestPtrOutput() IOTRouteRestPtrOutput {
-	return i.ToIOTRouteRestPtrOutputWithContext(context.Background())
-}
-
-func (i *iotrouteRestPtrType) ToIOTRouteRestPtrOutputWithContext(ctx context.Context) IOTRouteRestPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteRestPtrOutput)
-}
-
-type IOTRouteRestOutput struct{ *pulumi.OutputState }
-
-func (IOTRouteRestOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTRouteRest)(nil)).Elem()
-}
-
-func (o IOTRouteRestOutput) ToIOTRouteRestOutput() IOTRouteRestOutput {
-	return o
-}
-
-func (o IOTRouteRestOutput) ToIOTRouteRestOutputWithContext(ctx context.Context) IOTRouteRestOutput {
-	return o
-}
-
-func (o IOTRouteRestOutput) ToIOTRouteRestPtrOutput() IOTRouteRestPtrOutput {
-	return o.ToIOTRouteRestPtrOutputWithContext(context.Background())
-}
-
-func (o IOTRouteRestOutput) ToIOTRouteRestPtrOutputWithContext(ctx context.Context) IOTRouteRestPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTRouteRest) *IOTRouteRest {
-		return &v
-	}).(IOTRouteRestPtrOutput)
-}
-
-func (o IOTRouteRestOutput) Headers() pulumi.StringMapOutput {
-	return o.ApplyT(func(v IOTRouteRest) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
-}
-
-func (o IOTRouteRestOutput) Uri() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteRest) string { return v.Uri }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteRestOutput) Verb() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteRest) string { return v.Verb }).(pulumi.StringOutput)
-}
-
-type IOTRouteRestPtrOutput struct{ *pulumi.OutputState }
-
-func (IOTRouteRestPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRouteRest)(nil)).Elem()
-}
-
-func (o IOTRouteRestPtrOutput) ToIOTRouteRestPtrOutput() IOTRouteRestPtrOutput {
-	return o
-}
-
-func (o IOTRouteRestPtrOutput) ToIOTRouteRestPtrOutputWithContext(ctx context.Context) IOTRouteRestPtrOutput {
-	return o
-}
-
-func (o IOTRouteRestPtrOutput) Elem() IOTRouteRestOutput {
-	return o.ApplyT(func(v *IOTRouteRest) IOTRouteRest {
-		if v != nil {
-			return *v
-		}
-		var ret IOTRouteRest
-		return ret
-	}).(IOTRouteRestOutput)
-}
-
-func (o IOTRouteRestPtrOutput) Headers() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *IOTRouteRest) map[string]string {
-		if v == nil {
-			return nil
-		}
-		return v.Headers
-	}).(pulumi.StringMapOutput)
-}
-
-func (o IOTRouteRestPtrOutput) Uri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteRest) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Uri
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteRestPtrOutput) Verb() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteRest) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Verb
-	}).(pulumi.StringPtrOutput)
-}
-
-type IOTRouteS3 struct {
-	BucketName   string  `pulumi:"bucketName"`
-	BucketRegion string  `pulumi:"bucketRegion"`
-	ObjectPrefix *string `pulumi:"objectPrefix"`
-	Strategy     string  `pulumi:"strategy"`
-}
-
-// IOTRouteS3Input is an input type that accepts IOTRouteS3Args and IOTRouteS3Output values.
-// You can construct a concrete instance of `IOTRouteS3Input` via:
-//
-//          IOTRouteS3Args{...}
-type IOTRouteS3Input interface {
-	pulumi.Input
-
-	ToIOTRouteS3Output() IOTRouteS3Output
-	ToIOTRouteS3OutputWithContext(context.Context) IOTRouteS3Output
-}
-
-type IOTRouteS3Args struct {
-	BucketName   pulumi.StringInput    `pulumi:"bucketName"`
-	BucketRegion pulumi.StringInput    `pulumi:"bucketRegion"`
-	ObjectPrefix pulumi.StringPtrInput `pulumi:"objectPrefix"`
-	Strategy     pulumi.StringInput    `pulumi:"strategy"`
-}
-
-func (IOTRouteS3Args) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTRouteS3)(nil)).Elem()
-}
-
-func (i IOTRouteS3Args) ToIOTRouteS3Output() IOTRouteS3Output {
-	return i.ToIOTRouteS3OutputWithContext(context.Background())
-}
-
-func (i IOTRouteS3Args) ToIOTRouteS3OutputWithContext(ctx context.Context) IOTRouteS3Output {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteS3Output)
-}
-
-func (i IOTRouteS3Args) ToIOTRouteS3PtrOutput() IOTRouteS3PtrOutput {
-	return i.ToIOTRouteS3PtrOutputWithContext(context.Background())
-}
-
-func (i IOTRouteS3Args) ToIOTRouteS3PtrOutputWithContext(ctx context.Context) IOTRouteS3PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteS3Output).ToIOTRouteS3PtrOutputWithContext(ctx)
-}
-
-// IOTRouteS3PtrInput is an input type that accepts IOTRouteS3Args, IOTRouteS3Ptr and IOTRouteS3PtrOutput values.
-// You can construct a concrete instance of `IOTRouteS3PtrInput` via:
-//
-//          IOTRouteS3Args{...}
-//
-//  or:
-//
-//          nil
-type IOTRouteS3PtrInput interface {
-	pulumi.Input
-
-	ToIOTRouteS3PtrOutput() IOTRouteS3PtrOutput
-	ToIOTRouteS3PtrOutputWithContext(context.Context) IOTRouteS3PtrOutput
-}
-
-type iotrouteS3PtrType IOTRouteS3Args
-
-func IOTRouteS3Ptr(v *IOTRouteS3Args) IOTRouteS3PtrInput {
-	return (*iotrouteS3PtrType)(v)
-}
-
-func (*iotrouteS3PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRouteS3)(nil)).Elem()
-}
-
-func (i *iotrouteS3PtrType) ToIOTRouteS3PtrOutput() IOTRouteS3PtrOutput {
-	return i.ToIOTRouteS3PtrOutputWithContext(context.Background())
-}
-
-func (i *iotrouteS3PtrType) ToIOTRouteS3PtrOutputWithContext(ctx context.Context) IOTRouteS3PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IOTRouteS3PtrOutput)
-}
-
-type IOTRouteS3Output struct{ *pulumi.OutputState }
-
-func (IOTRouteS3Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*IOTRouteS3)(nil)).Elem()
-}
-
-func (o IOTRouteS3Output) ToIOTRouteS3Output() IOTRouteS3Output {
-	return o
-}
-
-func (o IOTRouteS3Output) ToIOTRouteS3OutputWithContext(ctx context.Context) IOTRouteS3Output {
-	return o
-}
-
-func (o IOTRouteS3Output) ToIOTRouteS3PtrOutput() IOTRouteS3PtrOutput {
-	return o.ToIOTRouteS3PtrOutputWithContext(context.Background())
-}
-
-func (o IOTRouteS3Output) ToIOTRouteS3PtrOutputWithContext(ctx context.Context) IOTRouteS3PtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IOTRouteS3) *IOTRouteS3 {
-		return &v
-	}).(IOTRouteS3PtrOutput)
-}
-
-func (o IOTRouteS3Output) BucketName() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteS3) string { return v.BucketName }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteS3Output) BucketRegion() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteS3) string { return v.BucketRegion }).(pulumi.StringOutput)
-}
-
-func (o IOTRouteS3Output) ObjectPrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v IOTRouteS3) *string { return v.ObjectPrefix }).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteS3Output) Strategy() pulumi.StringOutput {
-	return o.ApplyT(func(v IOTRouteS3) string { return v.Strategy }).(pulumi.StringOutput)
-}
-
-type IOTRouteS3PtrOutput struct{ *pulumi.OutputState }
-
-func (IOTRouteS3PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IOTRouteS3)(nil)).Elem()
-}
-
-func (o IOTRouteS3PtrOutput) ToIOTRouteS3PtrOutput() IOTRouteS3PtrOutput {
-	return o
-}
-
-func (o IOTRouteS3PtrOutput) ToIOTRouteS3PtrOutputWithContext(ctx context.Context) IOTRouteS3PtrOutput {
-	return o
-}
-
-func (o IOTRouteS3PtrOutput) Elem() IOTRouteS3Output {
-	return o.ApplyT(func(v *IOTRouteS3) IOTRouteS3 {
-		if v != nil {
-			return *v
-		}
-		var ret IOTRouteS3
-		return ret
-	}).(IOTRouteS3Output)
-}
-
-func (o IOTRouteS3PtrOutput) BucketName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteS3) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.BucketName
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteS3PtrOutput) BucketRegion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteS3) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.BucketRegion
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteS3PtrOutput) ObjectPrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteS3) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ObjectPrefix
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o IOTRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IOTRouteS3) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Strategy
-	}).(pulumi.StringPtrOutput)
-}
-
 type InstanceSecurityGroupInboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
@@ -3283,6 +2114,1175 @@ func (o InstanceServerRootVolumePtrOutput) VolumeId() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.VolumeId
+	}).(pulumi.StringPtrOutput)
+}
+
+type IotDeviceCertificate struct {
+	Crt *string `pulumi:"crt"`
+	// The private key of the device, in case it is generated by Scaleway.
+	Key *string `pulumi:"key"`
+}
+
+// IotDeviceCertificateInput is an input type that accepts IotDeviceCertificateArgs and IotDeviceCertificateOutput values.
+// You can construct a concrete instance of `IotDeviceCertificateInput` via:
+//
+//          IotDeviceCertificateArgs{...}
+type IotDeviceCertificateInput interface {
+	pulumi.Input
+
+	ToIotDeviceCertificateOutput() IotDeviceCertificateOutput
+	ToIotDeviceCertificateOutputWithContext(context.Context) IotDeviceCertificateOutput
+}
+
+type IotDeviceCertificateArgs struct {
+	Crt pulumi.StringPtrInput `pulumi:"crt"`
+	// The private key of the device, in case it is generated by Scaleway.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+}
+
+func (IotDeviceCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceCertificate)(nil)).Elem()
+}
+
+func (i IotDeviceCertificateArgs) ToIotDeviceCertificateOutput() IotDeviceCertificateOutput {
+	return i.ToIotDeviceCertificateOutputWithContext(context.Background())
+}
+
+func (i IotDeviceCertificateArgs) ToIotDeviceCertificateOutputWithContext(ctx context.Context) IotDeviceCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceCertificateOutput)
+}
+
+func (i IotDeviceCertificateArgs) ToIotDeviceCertificatePtrOutput() IotDeviceCertificatePtrOutput {
+	return i.ToIotDeviceCertificatePtrOutputWithContext(context.Background())
+}
+
+func (i IotDeviceCertificateArgs) ToIotDeviceCertificatePtrOutputWithContext(ctx context.Context) IotDeviceCertificatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceCertificateOutput).ToIotDeviceCertificatePtrOutputWithContext(ctx)
+}
+
+// IotDeviceCertificatePtrInput is an input type that accepts IotDeviceCertificateArgs, IotDeviceCertificatePtr and IotDeviceCertificatePtrOutput values.
+// You can construct a concrete instance of `IotDeviceCertificatePtrInput` via:
+//
+//          IotDeviceCertificateArgs{...}
+//
+//  or:
+//
+//          nil
+type IotDeviceCertificatePtrInput interface {
+	pulumi.Input
+
+	ToIotDeviceCertificatePtrOutput() IotDeviceCertificatePtrOutput
+	ToIotDeviceCertificatePtrOutputWithContext(context.Context) IotDeviceCertificatePtrOutput
+}
+
+type iotDeviceCertificatePtrType IotDeviceCertificateArgs
+
+func IotDeviceCertificatePtr(v *IotDeviceCertificateArgs) IotDeviceCertificatePtrInput {
+	return (*iotDeviceCertificatePtrType)(v)
+}
+
+func (*iotDeviceCertificatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceCertificate)(nil)).Elem()
+}
+
+func (i *iotDeviceCertificatePtrType) ToIotDeviceCertificatePtrOutput() IotDeviceCertificatePtrOutput {
+	return i.ToIotDeviceCertificatePtrOutputWithContext(context.Background())
+}
+
+func (i *iotDeviceCertificatePtrType) ToIotDeviceCertificatePtrOutputWithContext(ctx context.Context) IotDeviceCertificatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceCertificatePtrOutput)
+}
+
+type IotDeviceCertificateOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceCertificate)(nil)).Elem()
+}
+
+func (o IotDeviceCertificateOutput) ToIotDeviceCertificateOutput() IotDeviceCertificateOutput {
+	return o
+}
+
+func (o IotDeviceCertificateOutput) ToIotDeviceCertificateOutputWithContext(ctx context.Context) IotDeviceCertificateOutput {
+	return o
+}
+
+func (o IotDeviceCertificateOutput) ToIotDeviceCertificatePtrOutput() IotDeviceCertificatePtrOutput {
+	return o.ToIotDeviceCertificatePtrOutputWithContext(context.Background())
+}
+
+func (o IotDeviceCertificateOutput) ToIotDeviceCertificatePtrOutputWithContext(ctx context.Context) IotDeviceCertificatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotDeviceCertificate) *IotDeviceCertificate {
+		return &v
+	}).(IotDeviceCertificatePtrOutput)
+}
+
+func (o IotDeviceCertificateOutput) Crt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IotDeviceCertificate) *string { return v.Crt }).(pulumi.StringPtrOutput)
+}
+
+// The private key of the device, in case it is generated by Scaleway.
+func (o IotDeviceCertificateOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IotDeviceCertificate) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+type IotDeviceCertificatePtrOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceCertificatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceCertificate)(nil)).Elem()
+}
+
+func (o IotDeviceCertificatePtrOutput) ToIotDeviceCertificatePtrOutput() IotDeviceCertificatePtrOutput {
+	return o
+}
+
+func (o IotDeviceCertificatePtrOutput) ToIotDeviceCertificatePtrOutputWithContext(ctx context.Context) IotDeviceCertificatePtrOutput {
+	return o
+}
+
+func (o IotDeviceCertificatePtrOutput) Elem() IotDeviceCertificateOutput {
+	return o.ApplyT(func(v *IotDeviceCertificate) IotDeviceCertificate {
+		if v != nil {
+			return *v
+		}
+		var ret IotDeviceCertificate
+		return ret
+	}).(IotDeviceCertificateOutput)
+}
+
+func (o IotDeviceCertificatePtrOutput) Crt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotDeviceCertificate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Crt
+	}).(pulumi.StringPtrOutput)
+}
+
+// The private key of the device, in case it is generated by Scaleway.
+func (o IotDeviceCertificatePtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotDeviceCertificate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+type IotDeviceMessageFilters struct {
+	// Rules used to restrict topics the device can publish to.
+	Publish *IotDeviceMessageFiltersPublish `pulumi:"publish"`
+	// Rules used to restrict topics the device can subscribe to.
+	Subscribe *IotDeviceMessageFiltersSubscribe `pulumi:"subscribe"`
+}
+
+// IotDeviceMessageFiltersInput is an input type that accepts IotDeviceMessageFiltersArgs and IotDeviceMessageFiltersOutput values.
+// You can construct a concrete instance of `IotDeviceMessageFiltersInput` via:
+//
+//          IotDeviceMessageFiltersArgs{...}
+type IotDeviceMessageFiltersInput interface {
+	pulumi.Input
+
+	ToIotDeviceMessageFiltersOutput() IotDeviceMessageFiltersOutput
+	ToIotDeviceMessageFiltersOutputWithContext(context.Context) IotDeviceMessageFiltersOutput
+}
+
+type IotDeviceMessageFiltersArgs struct {
+	// Rules used to restrict topics the device can publish to.
+	Publish IotDeviceMessageFiltersPublishPtrInput `pulumi:"publish"`
+	// Rules used to restrict topics the device can subscribe to.
+	Subscribe IotDeviceMessageFiltersSubscribePtrInput `pulumi:"subscribe"`
+}
+
+func (IotDeviceMessageFiltersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceMessageFilters)(nil)).Elem()
+}
+
+func (i IotDeviceMessageFiltersArgs) ToIotDeviceMessageFiltersOutput() IotDeviceMessageFiltersOutput {
+	return i.ToIotDeviceMessageFiltersOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMessageFiltersArgs) ToIotDeviceMessageFiltersOutputWithContext(ctx context.Context) IotDeviceMessageFiltersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersOutput)
+}
+
+func (i IotDeviceMessageFiltersArgs) ToIotDeviceMessageFiltersPtrOutput() IotDeviceMessageFiltersPtrOutput {
+	return i.ToIotDeviceMessageFiltersPtrOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMessageFiltersArgs) ToIotDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersOutput).ToIotDeviceMessageFiltersPtrOutputWithContext(ctx)
+}
+
+// IotDeviceMessageFiltersPtrInput is an input type that accepts IotDeviceMessageFiltersArgs, IotDeviceMessageFiltersPtr and IotDeviceMessageFiltersPtrOutput values.
+// You can construct a concrete instance of `IotDeviceMessageFiltersPtrInput` via:
+//
+//          IotDeviceMessageFiltersArgs{...}
+//
+//  or:
+//
+//          nil
+type IotDeviceMessageFiltersPtrInput interface {
+	pulumi.Input
+
+	ToIotDeviceMessageFiltersPtrOutput() IotDeviceMessageFiltersPtrOutput
+	ToIotDeviceMessageFiltersPtrOutputWithContext(context.Context) IotDeviceMessageFiltersPtrOutput
+}
+
+type iotDeviceMessageFiltersPtrType IotDeviceMessageFiltersArgs
+
+func IotDeviceMessageFiltersPtr(v *IotDeviceMessageFiltersArgs) IotDeviceMessageFiltersPtrInput {
+	return (*iotDeviceMessageFiltersPtrType)(v)
+}
+
+func (*iotDeviceMessageFiltersPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceMessageFilters)(nil)).Elem()
+}
+
+func (i *iotDeviceMessageFiltersPtrType) ToIotDeviceMessageFiltersPtrOutput() IotDeviceMessageFiltersPtrOutput {
+	return i.ToIotDeviceMessageFiltersPtrOutputWithContext(context.Background())
+}
+
+func (i *iotDeviceMessageFiltersPtrType) ToIotDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersPtrOutput)
+}
+
+type IotDeviceMessageFiltersOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMessageFiltersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceMessageFilters)(nil)).Elem()
+}
+
+func (o IotDeviceMessageFiltersOutput) ToIotDeviceMessageFiltersOutput() IotDeviceMessageFiltersOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersOutput) ToIotDeviceMessageFiltersOutputWithContext(ctx context.Context) IotDeviceMessageFiltersOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersOutput) ToIotDeviceMessageFiltersPtrOutput() IotDeviceMessageFiltersPtrOutput {
+	return o.ToIotDeviceMessageFiltersPtrOutputWithContext(context.Background())
+}
+
+func (o IotDeviceMessageFiltersOutput) ToIotDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotDeviceMessageFilters) *IotDeviceMessageFilters {
+		return &v
+	}).(IotDeviceMessageFiltersPtrOutput)
+}
+
+// Rules used to restrict topics the device can publish to.
+func (o IotDeviceMessageFiltersOutput) Publish() IotDeviceMessageFiltersPublishPtrOutput {
+	return o.ApplyT(func(v IotDeviceMessageFilters) *IotDeviceMessageFiltersPublish { return v.Publish }).(IotDeviceMessageFiltersPublishPtrOutput)
+}
+
+// Rules used to restrict topics the device can subscribe to.
+func (o IotDeviceMessageFiltersOutput) Subscribe() IotDeviceMessageFiltersSubscribePtrOutput {
+	return o.ApplyT(func(v IotDeviceMessageFilters) *IotDeviceMessageFiltersSubscribe { return v.Subscribe }).(IotDeviceMessageFiltersSubscribePtrOutput)
+}
+
+type IotDeviceMessageFiltersPtrOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMessageFiltersPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceMessageFilters)(nil)).Elem()
+}
+
+func (o IotDeviceMessageFiltersPtrOutput) ToIotDeviceMessageFiltersPtrOutput() IotDeviceMessageFiltersPtrOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersPtrOutput) ToIotDeviceMessageFiltersPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPtrOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersPtrOutput) Elem() IotDeviceMessageFiltersOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFilters) IotDeviceMessageFilters {
+		if v != nil {
+			return *v
+		}
+		var ret IotDeviceMessageFilters
+		return ret
+	}).(IotDeviceMessageFiltersOutput)
+}
+
+// Rules used to restrict topics the device can publish to.
+func (o IotDeviceMessageFiltersPtrOutput) Publish() IotDeviceMessageFiltersPublishPtrOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFilters) *IotDeviceMessageFiltersPublish {
+		if v == nil {
+			return nil
+		}
+		return v.Publish
+	}).(IotDeviceMessageFiltersPublishPtrOutput)
+}
+
+// Rules used to restrict topics the device can subscribe to.
+func (o IotDeviceMessageFiltersPtrOutput) Subscribe() IotDeviceMessageFiltersSubscribePtrOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFilters) *IotDeviceMessageFiltersSubscribe {
+		if v == nil {
+			return nil
+		}
+		return v.Subscribe
+	}).(IotDeviceMessageFiltersSubscribePtrOutput)
+}
+
+type IotDeviceMessageFiltersPublish struct {
+	// Same as publish rules.
+	Policy *string `pulumi:"policy"`
+	// Same as publish rules.
+	Topics []string `pulumi:"topics"`
+}
+
+// IotDeviceMessageFiltersPublishInput is an input type that accepts IotDeviceMessageFiltersPublishArgs and IotDeviceMessageFiltersPublishOutput values.
+// You can construct a concrete instance of `IotDeviceMessageFiltersPublishInput` via:
+//
+//          IotDeviceMessageFiltersPublishArgs{...}
+type IotDeviceMessageFiltersPublishInput interface {
+	pulumi.Input
+
+	ToIotDeviceMessageFiltersPublishOutput() IotDeviceMessageFiltersPublishOutput
+	ToIotDeviceMessageFiltersPublishOutputWithContext(context.Context) IotDeviceMessageFiltersPublishOutput
+}
+
+type IotDeviceMessageFiltersPublishArgs struct {
+	// Same as publish rules.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
+	// Same as publish rules.
+	Topics pulumi.StringArrayInput `pulumi:"topics"`
+}
+
+func (IotDeviceMessageFiltersPublishArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceMessageFiltersPublish)(nil)).Elem()
+}
+
+func (i IotDeviceMessageFiltersPublishArgs) ToIotDeviceMessageFiltersPublishOutput() IotDeviceMessageFiltersPublishOutput {
+	return i.ToIotDeviceMessageFiltersPublishOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMessageFiltersPublishArgs) ToIotDeviceMessageFiltersPublishOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPublishOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersPublishOutput)
+}
+
+func (i IotDeviceMessageFiltersPublishArgs) ToIotDeviceMessageFiltersPublishPtrOutput() IotDeviceMessageFiltersPublishPtrOutput {
+	return i.ToIotDeviceMessageFiltersPublishPtrOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMessageFiltersPublishArgs) ToIotDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPublishPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersPublishOutput).ToIotDeviceMessageFiltersPublishPtrOutputWithContext(ctx)
+}
+
+// IotDeviceMessageFiltersPublishPtrInput is an input type that accepts IotDeviceMessageFiltersPublishArgs, IotDeviceMessageFiltersPublishPtr and IotDeviceMessageFiltersPublishPtrOutput values.
+// You can construct a concrete instance of `IotDeviceMessageFiltersPublishPtrInput` via:
+//
+//          IotDeviceMessageFiltersPublishArgs{...}
+//
+//  or:
+//
+//          nil
+type IotDeviceMessageFiltersPublishPtrInput interface {
+	pulumi.Input
+
+	ToIotDeviceMessageFiltersPublishPtrOutput() IotDeviceMessageFiltersPublishPtrOutput
+	ToIotDeviceMessageFiltersPublishPtrOutputWithContext(context.Context) IotDeviceMessageFiltersPublishPtrOutput
+}
+
+type iotDeviceMessageFiltersPublishPtrType IotDeviceMessageFiltersPublishArgs
+
+func IotDeviceMessageFiltersPublishPtr(v *IotDeviceMessageFiltersPublishArgs) IotDeviceMessageFiltersPublishPtrInput {
+	return (*iotDeviceMessageFiltersPublishPtrType)(v)
+}
+
+func (*iotDeviceMessageFiltersPublishPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceMessageFiltersPublish)(nil)).Elem()
+}
+
+func (i *iotDeviceMessageFiltersPublishPtrType) ToIotDeviceMessageFiltersPublishPtrOutput() IotDeviceMessageFiltersPublishPtrOutput {
+	return i.ToIotDeviceMessageFiltersPublishPtrOutputWithContext(context.Background())
+}
+
+func (i *iotDeviceMessageFiltersPublishPtrType) ToIotDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPublishPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersPublishPtrOutput)
+}
+
+type IotDeviceMessageFiltersPublishOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMessageFiltersPublishOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceMessageFiltersPublish)(nil)).Elem()
+}
+
+func (o IotDeviceMessageFiltersPublishOutput) ToIotDeviceMessageFiltersPublishOutput() IotDeviceMessageFiltersPublishOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersPublishOutput) ToIotDeviceMessageFiltersPublishOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPublishOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersPublishOutput) ToIotDeviceMessageFiltersPublishPtrOutput() IotDeviceMessageFiltersPublishPtrOutput {
+	return o.ToIotDeviceMessageFiltersPublishPtrOutputWithContext(context.Background())
+}
+
+func (o IotDeviceMessageFiltersPublishOutput) ToIotDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPublishPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotDeviceMessageFiltersPublish) *IotDeviceMessageFiltersPublish {
+		return &v
+	}).(IotDeviceMessageFiltersPublishPtrOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersPublishOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IotDeviceMessageFiltersPublish) *string { return v.Policy }).(pulumi.StringPtrOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersPublishOutput) Topics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v IotDeviceMessageFiltersPublish) []string { return v.Topics }).(pulumi.StringArrayOutput)
+}
+
+type IotDeviceMessageFiltersPublishPtrOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMessageFiltersPublishPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceMessageFiltersPublish)(nil)).Elem()
+}
+
+func (o IotDeviceMessageFiltersPublishPtrOutput) ToIotDeviceMessageFiltersPublishPtrOutput() IotDeviceMessageFiltersPublishPtrOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersPublishPtrOutput) ToIotDeviceMessageFiltersPublishPtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersPublishPtrOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersPublishPtrOutput) Elem() IotDeviceMessageFiltersPublishOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) IotDeviceMessageFiltersPublish {
+		if v != nil {
+			return *v
+		}
+		var ret IotDeviceMessageFiltersPublish
+		return ret
+	}).(IotDeviceMessageFiltersPublishOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersPublishPtrOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Policy
+	}).(pulumi.StringPtrOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersPublishPtrOutput) Topics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Topics
+	}).(pulumi.StringArrayOutput)
+}
+
+type IotDeviceMessageFiltersSubscribe struct {
+	// Same as publish rules.
+	Policy *string `pulumi:"policy"`
+	// Same as publish rules.
+	Topics []string `pulumi:"topics"`
+}
+
+// IotDeviceMessageFiltersSubscribeInput is an input type that accepts IotDeviceMessageFiltersSubscribeArgs and IotDeviceMessageFiltersSubscribeOutput values.
+// You can construct a concrete instance of `IotDeviceMessageFiltersSubscribeInput` via:
+//
+//          IotDeviceMessageFiltersSubscribeArgs{...}
+type IotDeviceMessageFiltersSubscribeInput interface {
+	pulumi.Input
+
+	ToIotDeviceMessageFiltersSubscribeOutput() IotDeviceMessageFiltersSubscribeOutput
+	ToIotDeviceMessageFiltersSubscribeOutputWithContext(context.Context) IotDeviceMessageFiltersSubscribeOutput
+}
+
+type IotDeviceMessageFiltersSubscribeArgs struct {
+	// Same as publish rules.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
+	// Same as publish rules.
+	Topics pulumi.StringArrayInput `pulumi:"topics"`
+}
+
+func (IotDeviceMessageFiltersSubscribeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceMessageFiltersSubscribe)(nil)).Elem()
+}
+
+func (i IotDeviceMessageFiltersSubscribeArgs) ToIotDeviceMessageFiltersSubscribeOutput() IotDeviceMessageFiltersSubscribeOutput {
+	return i.ToIotDeviceMessageFiltersSubscribeOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMessageFiltersSubscribeArgs) ToIotDeviceMessageFiltersSubscribeOutputWithContext(ctx context.Context) IotDeviceMessageFiltersSubscribeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersSubscribeOutput)
+}
+
+func (i IotDeviceMessageFiltersSubscribeArgs) ToIotDeviceMessageFiltersSubscribePtrOutput() IotDeviceMessageFiltersSubscribePtrOutput {
+	return i.ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMessageFiltersSubscribeArgs) ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersSubscribePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersSubscribeOutput).ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(ctx)
+}
+
+// IotDeviceMessageFiltersSubscribePtrInput is an input type that accepts IotDeviceMessageFiltersSubscribeArgs, IotDeviceMessageFiltersSubscribePtr and IotDeviceMessageFiltersSubscribePtrOutput values.
+// You can construct a concrete instance of `IotDeviceMessageFiltersSubscribePtrInput` via:
+//
+//          IotDeviceMessageFiltersSubscribeArgs{...}
+//
+//  or:
+//
+//          nil
+type IotDeviceMessageFiltersSubscribePtrInput interface {
+	pulumi.Input
+
+	ToIotDeviceMessageFiltersSubscribePtrOutput() IotDeviceMessageFiltersSubscribePtrOutput
+	ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(context.Context) IotDeviceMessageFiltersSubscribePtrOutput
+}
+
+type iotDeviceMessageFiltersSubscribePtrType IotDeviceMessageFiltersSubscribeArgs
+
+func IotDeviceMessageFiltersSubscribePtr(v *IotDeviceMessageFiltersSubscribeArgs) IotDeviceMessageFiltersSubscribePtrInput {
+	return (*iotDeviceMessageFiltersSubscribePtrType)(v)
+}
+
+func (*iotDeviceMessageFiltersSubscribePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceMessageFiltersSubscribe)(nil)).Elem()
+}
+
+func (i *iotDeviceMessageFiltersSubscribePtrType) ToIotDeviceMessageFiltersSubscribePtrOutput() IotDeviceMessageFiltersSubscribePtrOutput {
+	return i.ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(context.Background())
+}
+
+func (i *iotDeviceMessageFiltersSubscribePtrType) ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersSubscribePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMessageFiltersSubscribePtrOutput)
+}
+
+type IotDeviceMessageFiltersSubscribeOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMessageFiltersSubscribeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotDeviceMessageFiltersSubscribe)(nil)).Elem()
+}
+
+func (o IotDeviceMessageFiltersSubscribeOutput) ToIotDeviceMessageFiltersSubscribeOutput() IotDeviceMessageFiltersSubscribeOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersSubscribeOutput) ToIotDeviceMessageFiltersSubscribeOutputWithContext(ctx context.Context) IotDeviceMessageFiltersSubscribeOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersSubscribeOutput) ToIotDeviceMessageFiltersSubscribePtrOutput() IotDeviceMessageFiltersSubscribePtrOutput {
+	return o.ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(context.Background())
+}
+
+func (o IotDeviceMessageFiltersSubscribeOutput) ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersSubscribePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotDeviceMessageFiltersSubscribe) *IotDeviceMessageFiltersSubscribe {
+		return &v
+	}).(IotDeviceMessageFiltersSubscribePtrOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersSubscribeOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IotDeviceMessageFiltersSubscribe) *string { return v.Policy }).(pulumi.StringPtrOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersSubscribeOutput) Topics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v IotDeviceMessageFiltersSubscribe) []string { return v.Topics }).(pulumi.StringArrayOutput)
+}
+
+type IotDeviceMessageFiltersSubscribePtrOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMessageFiltersSubscribePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotDeviceMessageFiltersSubscribe)(nil)).Elem()
+}
+
+func (o IotDeviceMessageFiltersSubscribePtrOutput) ToIotDeviceMessageFiltersSubscribePtrOutput() IotDeviceMessageFiltersSubscribePtrOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersSubscribePtrOutput) ToIotDeviceMessageFiltersSubscribePtrOutputWithContext(ctx context.Context) IotDeviceMessageFiltersSubscribePtrOutput {
+	return o
+}
+
+func (o IotDeviceMessageFiltersSubscribePtrOutput) Elem() IotDeviceMessageFiltersSubscribeOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) IotDeviceMessageFiltersSubscribe {
+		if v != nil {
+			return *v
+		}
+		var ret IotDeviceMessageFiltersSubscribe
+		return ret
+	}).(IotDeviceMessageFiltersSubscribeOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersSubscribePtrOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Policy
+	}).(pulumi.StringPtrOutput)
+}
+
+// Same as publish rules.
+func (o IotDeviceMessageFiltersSubscribePtrOutput) Topics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Topics
+	}).(pulumi.StringArrayOutput)
+}
+
+type IotRouteDatabase struct {
+	Dbname   string `pulumi:"dbname"`
+	Host     string `pulumi:"host"`
+	Password string `pulumi:"password"`
+	Port     int    `pulumi:"port"`
+	Query    string `pulumi:"query"`
+	Username string `pulumi:"username"`
+}
+
+// IotRouteDatabaseInput is an input type that accepts IotRouteDatabaseArgs and IotRouteDatabaseOutput values.
+// You can construct a concrete instance of `IotRouteDatabaseInput` via:
+//
+//          IotRouteDatabaseArgs{...}
+type IotRouteDatabaseInput interface {
+	pulumi.Input
+
+	ToIotRouteDatabaseOutput() IotRouteDatabaseOutput
+	ToIotRouteDatabaseOutputWithContext(context.Context) IotRouteDatabaseOutput
+}
+
+type IotRouteDatabaseArgs struct {
+	Dbname   pulumi.StringInput `pulumi:"dbname"`
+	Host     pulumi.StringInput `pulumi:"host"`
+	Password pulumi.StringInput `pulumi:"password"`
+	Port     pulumi.IntInput    `pulumi:"port"`
+	Query    pulumi.StringInput `pulumi:"query"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (IotRouteDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteDatabase)(nil)).Elem()
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabaseOutput() IotRouteDatabaseOutput {
+	return i.ToIotRouteDatabaseOutputWithContext(context.Background())
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabaseOutputWithContext(ctx context.Context) IotRouteDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteDatabaseOutput)
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return i.ToIotRouteDatabasePtrOutputWithContext(context.Background())
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteDatabaseOutput).ToIotRouteDatabasePtrOutputWithContext(ctx)
+}
+
+// IotRouteDatabasePtrInput is an input type that accepts IotRouteDatabaseArgs, IotRouteDatabasePtr and IotRouteDatabasePtrOutput values.
+// You can construct a concrete instance of `IotRouteDatabasePtrInput` via:
+//
+//          IotRouteDatabaseArgs{...}
+//
+//  or:
+//
+//          nil
+type IotRouteDatabasePtrInput interface {
+	pulumi.Input
+
+	ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput
+	ToIotRouteDatabasePtrOutputWithContext(context.Context) IotRouteDatabasePtrOutput
+}
+
+type iotRouteDatabasePtrType IotRouteDatabaseArgs
+
+func IotRouteDatabasePtr(v *IotRouteDatabaseArgs) IotRouteDatabasePtrInput {
+	return (*iotRouteDatabasePtrType)(v)
+}
+
+func (*iotRouteDatabasePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteDatabase)(nil)).Elem()
+}
+
+func (i *iotRouteDatabasePtrType) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return i.ToIotRouteDatabasePtrOutputWithContext(context.Background())
+}
+
+func (i *iotRouteDatabasePtrType) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteDatabasePtrOutput)
+}
+
+type IotRouteDatabaseOutput struct{ *pulumi.OutputState }
+
+func (IotRouteDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteDatabase)(nil)).Elem()
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabaseOutput() IotRouteDatabaseOutput {
+	return o
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabaseOutputWithContext(ctx context.Context) IotRouteDatabaseOutput {
+	return o
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return o.ToIotRouteDatabasePtrOutputWithContext(context.Background())
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotRouteDatabase) *IotRouteDatabase {
+		return &v
+	}).(IotRouteDatabasePtrOutput)
+}
+
+func (o IotRouteDatabaseOutput) Dbname() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Dbname }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v IotRouteDatabase) int { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o IotRouteDatabaseOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Query }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type IotRouteDatabasePtrOutput struct{ *pulumi.OutputState }
+
+func (IotRouteDatabasePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteDatabase)(nil)).Elem()
+}
+
+func (o IotRouteDatabasePtrOutput) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return o
+}
+
+func (o IotRouteDatabasePtrOutput) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return o
+}
+
+func (o IotRouteDatabasePtrOutput) Elem() IotRouteDatabaseOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) IotRouteDatabase {
+		if v != nil {
+			return *v
+		}
+		var ret IotRouteDatabase
+		return ret
+	}).(IotRouteDatabaseOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Dbname
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type IotRouteRest struct {
+	Headers map[string]string `pulumi:"headers"`
+	Uri     string            `pulumi:"uri"`
+	Verb    string            `pulumi:"verb"`
+}
+
+// IotRouteRestInput is an input type that accepts IotRouteRestArgs and IotRouteRestOutput values.
+// You can construct a concrete instance of `IotRouteRestInput` via:
+//
+//          IotRouteRestArgs{...}
+type IotRouteRestInput interface {
+	pulumi.Input
+
+	ToIotRouteRestOutput() IotRouteRestOutput
+	ToIotRouteRestOutputWithContext(context.Context) IotRouteRestOutput
+}
+
+type IotRouteRestArgs struct {
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	Uri     pulumi.StringInput    `pulumi:"uri"`
+	Verb    pulumi.StringInput    `pulumi:"verb"`
+}
+
+func (IotRouteRestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteRest)(nil)).Elem()
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestOutput() IotRouteRestOutput {
+	return i.ToIotRouteRestOutputWithContext(context.Background())
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestOutputWithContext(ctx context.Context) IotRouteRestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteRestOutput)
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return i.ToIotRouteRestPtrOutputWithContext(context.Background())
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteRestOutput).ToIotRouteRestPtrOutputWithContext(ctx)
+}
+
+// IotRouteRestPtrInput is an input type that accepts IotRouteRestArgs, IotRouteRestPtr and IotRouteRestPtrOutput values.
+// You can construct a concrete instance of `IotRouteRestPtrInput` via:
+//
+//          IotRouteRestArgs{...}
+//
+//  or:
+//
+//          nil
+type IotRouteRestPtrInput interface {
+	pulumi.Input
+
+	ToIotRouteRestPtrOutput() IotRouteRestPtrOutput
+	ToIotRouteRestPtrOutputWithContext(context.Context) IotRouteRestPtrOutput
+}
+
+type iotRouteRestPtrType IotRouteRestArgs
+
+func IotRouteRestPtr(v *IotRouteRestArgs) IotRouteRestPtrInput {
+	return (*iotRouteRestPtrType)(v)
+}
+
+func (*iotRouteRestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteRest)(nil)).Elem()
+}
+
+func (i *iotRouteRestPtrType) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return i.ToIotRouteRestPtrOutputWithContext(context.Background())
+}
+
+func (i *iotRouteRestPtrType) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteRestPtrOutput)
+}
+
+type IotRouteRestOutput struct{ *pulumi.OutputState }
+
+func (IotRouteRestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteRest)(nil)).Elem()
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestOutput() IotRouteRestOutput {
+	return o
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestOutputWithContext(ctx context.Context) IotRouteRestOutput {
+	return o
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return o.ToIotRouteRestPtrOutputWithContext(context.Background())
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotRouteRest) *IotRouteRest {
+		return &v
+	}).(IotRouteRestPtrOutput)
+}
+
+func (o IotRouteRestOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v IotRouteRest) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+func (o IotRouteRestOutput) Uri() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteRest) string { return v.Uri }).(pulumi.StringOutput)
+}
+
+func (o IotRouteRestOutput) Verb() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteRest) string { return v.Verb }).(pulumi.StringOutput)
+}
+
+type IotRouteRestPtrOutput struct{ *pulumi.OutputState }
+
+func (IotRouteRestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteRest)(nil)).Elem()
+}
+
+func (o IotRouteRestPtrOutput) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return o
+}
+
+func (o IotRouteRestPtrOutput) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return o
+}
+
+func (o IotRouteRestPtrOutput) Elem() IotRouteRestOutput {
+	return o.ApplyT(func(v *IotRouteRest) IotRouteRest {
+		if v != nil {
+			return *v
+		}
+		var ret IotRouteRest
+		return ret
+	}).(IotRouteRestOutput)
+}
+
+func (o IotRouteRestPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *IotRouteRest) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
+func (o IotRouteRestPtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteRest) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uri
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteRestPtrOutput) Verb() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteRest) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Verb
+	}).(pulumi.StringPtrOutput)
+}
+
+type IotRouteS3 struct {
+	BucketName   string  `pulumi:"bucketName"`
+	BucketRegion string  `pulumi:"bucketRegion"`
+	ObjectPrefix *string `pulumi:"objectPrefix"`
+	Strategy     string  `pulumi:"strategy"`
+}
+
+// IotRouteS3Input is an input type that accepts IotRouteS3Args and IotRouteS3Output values.
+// You can construct a concrete instance of `IotRouteS3Input` via:
+//
+//          IotRouteS3Args{...}
+type IotRouteS3Input interface {
+	pulumi.Input
+
+	ToIotRouteS3Output() IotRouteS3Output
+	ToIotRouteS3OutputWithContext(context.Context) IotRouteS3Output
+}
+
+type IotRouteS3Args struct {
+	BucketName   pulumi.StringInput    `pulumi:"bucketName"`
+	BucketRegion pulumi.StringInput    `pulumi:"bucketRegion"`
+	ObjectPrefix pulumi.StringPtrInput `pulumi:"objectPrefix"`
+	Strategy     pulumi.StringInput    `pulumi:"strategy"`
+}
+
+func (IotRouteS3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteS3)(nil)).Elem()
+}
+
+func (i IotRouteS3Args) ToIotRouteS3Output() IotRouteS3Output {
+	return i.ToIotRouteS3OutputWithContext(context.Background())
+}
+
+func (i IotRouteS3Args) ToIotRouteS3OutputWithContext(ctx context.Context) IotRouteS3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteS3Output)
+}
+
+func (i IotRouteS3Args) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return i.ToIotRouteS3PtrOutputWithContext(context.Background())
+}
+
+func (i IotRouteS3Args) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteS3Output).ToIotRouteS3PtrOutputWithContext(ctx)
+}
+
+// IotRouteS3PtrInput is an input type that accepts IotRouteS3Args, IotRouteS3Ptr and IotRouteS3PtrOutput values.
+// You can construct a concrete instance of `IotRouteS3PtrInput` via:
+//
+//          IotRouteS3Args{...}
+//
+//  or:
+//
+//          nil
+type IotRouteS3PtrInput interface {
+	pulumi.Input
+
+	ToIotRouteS3PtrOutput() IotRouteS3PtrOutput
+	ToIotRouteS3PtrOutputWithContext(context.Context) IotRouteS3PtrOutput
+}
+
+type iotRouteS3PtrType IotRouteS3Args
+
+func IotRouteS3Ptr(v *IotRouteS3Args) IotRouteS3PtrInput {
+	return (*iotRouteS3PtrType)(v)
+}
+
+func (*iotRouteS3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteS3)(nil)).Elem()
+}
+
+func (i *iotRouteS3PtrType) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return i.ToIotRouteS3PtrOutputWithContext(context.Background())
+}
+
+func (i *iotRouteS3PtrType) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteS3PtrOutput)
+}
+
+type IotRouteS3Output struct{ *pulumi.OutputState }
+
+func (IotRouteS3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteS3)(nil)).Elem()
+}
+
+func (o IotRouteS3Output) ToIotRouteS3Output() IotRouteS3Output {
+	return o
+}
+
+func (o IotRouteS3Output) ToIotRouteS3OutputWithContext(ctx context.Context) IotRouteS3Output {
+	return o
+}
+
+func (o IotRouteS3Output) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return o.ToIotRouteS3PtrOutputWithContext(context.Background())
+}
+
+func (o IotRouteS3Output) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotRouteS3) *IotRouteS3 {
+		return &v
+	}).(IotRouteS3PtrOutput)
+}
+
+func (o IotRouteS3Output) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteS3) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+func (o IotRouteS3Output) BucketRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteS3) string { return v.BucketRegion }).(pulumi.StringOutput)
+}
+
+func (o IotRouteS3Output) ObjectPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IotRouteS3) *string { return v.ObjectPrefix }).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3Output) Strategy() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteS3) string { return v.Strategy }).(pulumi.StringOutput)
+}
+
+type IotRouteS3PtrOutput struct{ *pulumi.OutputState }
+
+func (IotRouteS3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteS3)(nil)).Elem()
+}
+
+func (o IotRouteS3PtrOutput) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return o
+}
+
+func (o IotRouteS3PtrOutput) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return o
+}
+
+func (o IotRouteS3PtrOutput) Elem() IotRouteS3Output {
+	return o.ApplyT(func(v *IotRouteS3) IotRouteS3 {
+		if v != nil {
+			return *v
+		}
+		var ret IotRouteS3
+		return ret
+	}).(IotRouteS3Output)
+}
+
+func (o IotRouteS3PtrOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BucketName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3PtrOutput) BucketRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BucketRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3PtrOutput) ObjectPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ObjectPrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Strategy
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5870,55 +5870,55 @@ func (o GetBaremetalOfferMemoryArrayOutput) Index(i pulumi.IntInput) GetBaremeta
 	}).(GetBaremetalOfferMemoryOutput)
 }
 
-type GetDatabaseACLAclRule struct {
+type GetDatabaseAclAclRule struct {
 	// A simple text describing this rule
 	Description string `pulumi:"description"`
 	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip string `pulumi:"ip"`
 }
 
-type GetDatabaseACLAclRuleOutput struct{ *pulumi.OutputState }
+type GetDatabaseAclAclRuleOutput struct{ *pulumi.OutputState }
 
-func (GetDatabaseACLAclRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDatabaseACLAclRule)(nil)).Elem()
+func (GetDatabaseAclAclRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseAclAclRule)(nil)).Elem()
 }
 
-func (o GetDatabaseACLAclRuleOutput) ToGetDatabaseACLAclRuleOutput() GetDatabaseACLAclRuleOutput {
+func (o GetDatabaseAclAclRuleOutput) ToGetDatabaseAclAclRuleOutput() GetDatabaseAclAclRuleOutput {
 	return o
 }
 
-func (o GetDatabaseACLAclRuleOutput) ToGetDatabaseACLAclRuleOutputWithContext(ctx context.Context) GetDatabaseACLAclRuleOutput {
+func (o GetDatabaseAclAclRuleOutput) ToGetDatabaseAclAclRuleOutputWithContext(ctx context.Context) GetDatabaseAclAclRuleOutput {
 	return o
 }
 
 // A simple text describing this rule
-func (o GetDatabaseACLAclRuleOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatabaseACLAclRule) string { return v.Description }).(pulumi.StringOutput)
+func (o GetDatabaseAclAclRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseAclAclRule) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
-func (o GetDatabaseACLAclRuleOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatabaseACLAclRule) string { return v.Ip }).(pulumi.StringOutput)
+func (o GetDatabaseAclAclRuleOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseAclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-type GetDatabaseACLAclRuleArrayOutput struct{ *pulumi.OutputState }
+type GetDatabaseAclAclRuleArrayOutput struct{ *pulumi.OutputState }
 
-func (GetDatabaseACLAclRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDatabaseACLAclRule)(nil)).Elem()
+func (GetDatabaseAclAclRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseAclAclRule)(nil)).Elem()
 }
 
-func (o GetDatabaseACLAclRuleArrayOutput) ToGetDatabaseACLAclRuleArrayOutput() GetDatabaseACLAclRuleArrayOutput {
+func (o GetDatabaseAclAclRuleArrayOutput) ToGetDatabaseAclAclRuleArrayOutput() GetDatabaseAclAclRuleArrayOutput {
 	return o
 }
 
-func (o GetDatabaseACLAclRuleArrayOutput) ToGetDatabaseACLAclRuleArrayOutputWithContext(ctx context.Context) GetDatabaseACLAclRuleArrayOutput {
+func (o GetDatabaseAclAclRuleArrayOutput) ToGetDatabaseAclAclRuleArrayOutputWithContext(ctx context.Context) GetDatabaseAclAclRuleArrayOutput {
 	return o
 }
 
-func (o GetDatabaseACLAclRuleArrayOutput) Index(i pulumi.IntInput) GetDatabaseACLAclRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseACLAclRule {
-		return vs[0].([]GetDatabaseACLAclRule)[vs[1].(int)]
-	}).(GetDatabaseACLAclRuleOutput)
+func (o GetDatabaseAclAclRuleArrayOutput) Index(i pulumi.IntInput) GetDatabaseAclAclRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseAclAclRule {
+		return vs[0].([]GetDatabaseAclAclRule)[vs[1].(int)]
+	}).(GetDatabaseAclAclRuleOutput)
 }
 
 type GetDatabaseInstanceLoadBalancer struct {
@@ -7117,8 +7117,8 @@ func (o GetLoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetLo
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseACLAclRuleInput)(nil)).Elem(), DatabaseACLAclRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseACLAclRuleArrayInput)(nil)).Elem(), DatabaseACLAclRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleInput)(nil)).Elem(), DatabaseAclAclRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleArrayInput)(nil)).Elem(), DatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkPtrInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
@@ -7131,20 +7131,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordViewArrayInput)(nil)).Elem(), DomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedInput)(nil)).Elem(), DomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedArrayInput)(nil)).Elem(), DomainRecordWeightedArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceCertificateInput)(nil)).Elem(), IOTDeviceCertificateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceCertificatePtrInput)(nil)).Elem(), IOTDeviceCertificateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceMessageFiltersInput)(nil)).Elem(), IOTDeviceMessageFiltersArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceMessageFiltersPtrInput)(nil)).Elem(), IOTDeviceMessageFiltersArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceMessageFiltersPublishInput)(nil)).Elem(), IOTDeviceMessageFiltersPublishArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceMessageFiltersPublishPtrInput)(nil)).Elem(), IOTDeviceMessageFiltersPublishArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceMessageFiltersSubscribeInput)(nil)).Elem(), IOTDeviceMessageFiltersSubscribeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTDeviceMessageFiltersSubscribePtrInput)(nil)).Elem(), IOTDeviceMessageFiltersSubscribeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteDatabaseInput)(nil)).Elem(), IOTRouteDatabaseArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteDatabasePtrInput)(nil)).Elem(), IOTRouteDatabaseArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteRestInput)(nil)).Elem(), IOTRouteRestArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteRestPtrInput)(nil)).Elem(), IOTRouteRestArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteS3Input)(nil)).Elem(), IOTRouteS3Args{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IOTRouteS3PtrInput)(nil)).Elem(), IOTRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleArrayInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupOutboundRuleInput)(nil)).Elem(), InstanceSecurityGroupOutboundRuleArgs{})
@@ -7157,6 +7143,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateNetworkArrayInput)(nil)).Elem(), InstanceServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerRootVolumeInput)(nil)).Elem(), InstanceServerRootVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerRootVolumePtrInput)(nil)).Elem(), InstanceServerRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceCertificateInput)(nil)).Elem(), IotDeviceCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceCertificatePtrInput)(nil)).Elem(), IotDeviceCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersInput)(nil)).Elem(), IotDeviceMessageFiltersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersPtrInput)(nil)).Elem(), IotDeviceMessageFiltersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersPublishInput)(nil)).Elem(), IotDeviceMessageFiltersPublishArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersPublishPtrInput)(nil)).Elem(), IotDeviceMessageFiltersPublishArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersSubscribeInput)(nil)).Elem(), IotDeviceMessageFiltersSubscribeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersSubscribePtrInput)(nil)).Elem(), IotDeviceMessageFiltersSubscribeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteDatabaseInput)(nil)).Elem(), IotRouteDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteDatabasePtrInput)(nil)).Elem(), IotRouteDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestInput)(nil)).Elem(), IotRouteRestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestPtrInput)(nil)).Elem(), IotRouteRestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3Input)(nil)).Elem(), IotRouteS3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3PtrInput)(nil)).Elem(), IotRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradeInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradePtrInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoscalerConfigInput)(nil)).Elem(), KubernetesClusterAutoscalerConfigArgs{})
@@ -7187,8 +7187,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketVersioningPtrInput)(nil)).Elem(), ObjectBucketVersioningArgs{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
-	pulumi.RegisterOutputType(DatabaseACLAclRuleOutput{})
-	pulumi.RegisterOutputType(DatabaseACLAclRuleArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseAclAclRuleOutput{})
+	pulumi.RegisterOutputType(DatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkOutput{})
@@ -7205,20 +7205,6 @@ func init() {
 	pulumi.RegisterOutputType(DomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedArrayOutput{})
-	pulumi.RegisterOutputType(IOTDeviceCertificateOutput{})
-	pulumi.RegisterOutputType(IOTDeviceCertificatePtrOutput{})
-	pulumi.RegisterOutputType(IOTDeviceMessageFiltersOutput{})
-	pulumi.RegisterOutputType(IOTDeviceMessageFiltersPtrOutput{})
-	pulumi.RegisterOutputType(IOTDeviceMessageFiltersPublishOutput{})
-	pulumi.RegisterOutputType(IOTDeviceMessageFiltersPublishPtrOutput{})
-	pulumi.RegisterOutputType(IOTDeviceMessageFiltersSubscribeOutput{})
-	pulumi.RegisterOutputType(IOTDeviceMessageFiltersSubscribePtrOutput{})
-	pulumi.RegisterOutputType(IOTRouteDatabaseOutput{})
-	pulumi.RegisterOutputType(IOTRouteDatabasePtrOutput{})
-	pulumi.RegisterOutputType(IOTRouteRestOutput{})
-	pulumi.RegisterOutputType(IOTRouteRestPtrOutput{})
-	pulumi.RegisterOutputType(IOTRouteS3Output{})
-	pulumi.RegisterOutputType(IOTRouteS3PtrOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupOutboundRuleOutput{})
@@ -7231,6 +7217,20 @@ func init() {
 	pulumi.RegisterOutputType(InstanceServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(InstanceServerRootVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceServerRootVolumePtrOutput{})
+	pulumi.RegisterOutputType(IotDeviceCertificateOutput{})
+	pulumi.RegisterOutputType(IotDeviceCertificatePtrOutput{})
+	pulumi.RegisterOutputType(IotDeviceMessageFiltersOutput{})
+	pulumi.RegisterOutputType(IotDeviceMessageFiltersPtrOutput{})
+	pulumi.RegisterOutputType(IotDeviceMessageFiltersPublishOutput{})
+	pulumi.RegisterOutputType(IotDeviceMessageFiltersPublishPtrOutput{})
+	pulumi.RegisterOutputType(IotDeviceMessageFiltersSubscribeOutput{})
+	pulumi.RegisterOutputType(IotDeviceMessageFiltersSubscribePtrOutput{})
+	pulumi.RegisterOutputType(IotRouteDatabaseOutput{})
+	pulumi.RegisterOutputType(IotRouteDatabasePtrOutput{})
+	pulumi.RegisterOutputType(IotRouteRestOutput{})
+	pulumi.RegisterOutputType(IotRouteRestPtrOutput{})
+	pulumi.RegisterOutputType(IotRouteS3Output{})
+	pulumi.RegisterOutputType(IotRouteS3PtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradePtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoscalerConfigOutput{})
@@ -7268,8 +7268,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBaremetalOfferDiskArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferMemoryOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferMemoryArrayOutput{})
-	pulumi.RegisterOutputType(GetDatabaseACLAclRuleOutput{})
-	pulumi.RegisterOutputType(GetDatabaseACLAclRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseAclAclRuleOutput{})
+	pulumi.RegisterOutputType(GetDatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkOutput{})

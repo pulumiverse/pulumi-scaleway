@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway.Inputs
 {
 
-    public sealed class DatabaseACLAclRuleGetArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseAclAclRuleGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// A simple text describing this rule
@@ -24,7 +24,7 @@ namespace Pulumi.Scaleway.Inputs
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
-        public DatabaseACLAclRuleGetArgs()
+        public DatabaseAclAclRuleGetArgs()
         {
         }
     }

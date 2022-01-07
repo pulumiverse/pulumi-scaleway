@@ -23,7 +23,7 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var main = new Scaleway.VpcPublicGatewayDHCP("main", new Scaleway.VpcPublicGatewayDHCPArgs
+    ///         var main = new Scaleway.VpcPublicGatewayDhcp("main", new Scaleway.VpcPublicGatewayDhcpArgs
     ///         {
     ///             Subnet = "192.168.1.0/24",
     ///         });
@@ -37,11 +37,11 @@ namespace Pulumi.Scaleway
     /// Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP main fr-par-1/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP")]
-    public partial class VpcPublicGatewayDHCP : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp")]
+    public partial class VpcPublicGatewayDhcp : Pulumi.CustomResource
     {
         /// <summary>
         /// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
@@ -158,19 +158,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a VpcPublicGatewayDHCP resource with the given unique name, arguments, and options.
+        /// Create a VpcPublicGatewayDhcp resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public VpcPublicGatewayDHCP(string name, VpcPublicGatewayDHCPArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP", name, args ?? new VpcPublicGatewayDHCPArgs(), MakeResourceOptions(options, ""))
+        public VpcPublicGatewayDhcp(string name, VpcPublicGatewayDhcpArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", name, args ?? new VpcPublicGatewayDhcpArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private VpcPublicGatewayDHCP(string name, Input<string> id, VpcPublicGatewayDHCPState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/vpcPublicGatewayDHCP:VpcPublicGatewayDHCP", name, state, MakeResourceOptions(options, id))
+        private VpcPublicGatewayDhcp(string name, Input<string> id, VpcPublicGatewayDhcpState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -186,7 +186,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing VpcPublicGatewayDHCP resource's state with the given name, ID, and optional extra
+        /// Get an existing VpcPublicGatewayDhcp resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -194,13 +194,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static VpcPublicGatewayDHCP Get(string name, Input<string> id, VpcPublicGatewayDHCPState? state = null, CustomResourceOptions? options = null)
+        public static VpcPublicGatewayDhcp Get(string name, Input<string> id, VpcPublicGatewayDhcpState? state = null, CustomResourceOptions? options = null)
         {
-            return new VpcPublicGatewayDHCP(name, id, state, options);
+            return new VpcPublicGatewayDhcp(name, id, state, options);
         }
     }
 
-    public sealed class VpcPublicGatewayDHCPArgs : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayDhcpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
@@ -309,12 +309,12 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public VpcPublicGatewayDHCPArgs()
+        public VpcPublicGatewayDhcpArgs()
         {
         }
     }
 
-    public sealed class VpcPublicGatewayDHCPState : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayDhcpState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
@@ -441,7 +441,7 @@ namespace Pulumi.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public VpcPublicGatewayDHCPState()
+        public VpcPublicGatewayDhcpState()
         {
         }
     }

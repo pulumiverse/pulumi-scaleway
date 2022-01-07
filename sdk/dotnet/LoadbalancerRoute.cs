@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    [ScalewayResourceType("scaleway:index/route:Route")]
-    public partial class Route : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/loadbalancerRoute:LoadbalancerRoute")]
+    public partial class LoadbalancerRoute : Pulumi.CustomResource
     {
         /// <summary>
         /// The backend ID destination of redirection
@@ -32,19 +32,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a Route resource with the given unique name, arguments, and options.
+        /// Create a LoadbalancerRoute resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Route(string name, RouteArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/route:Route", name, args ?? new RouteArgs(), MakeResourceOptions(options, ""))
+        public LoadbalancerRoute(string name, LoadbalancerRouteArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/loadbalancerRoute:LoadbalancerRoute", name, args ?? new LoadbalancerRouteArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Route(string name, Input<string> id, RouteState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/route:Route", name, state, MakeResourceOptions(options, id))
+        private LoadbalancerRoute(string name, Input<string> id, LoadbalancerRouteState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/loadbalancerRoute:LoadbalancerRoute", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -60,7 +60,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing Route resource's state with the given name, ID, and optional extra
+        /// Get an existing LoadbalancerRoute resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -68,13 +68,13 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Route Get(string name, Input<string> id, RouteState? state = null, CustomResourceOptions? options = null)
+        public static LoadbalancerRoute Get(string name, Input<string> id, LoadbalancerRouteState? state = null, CustomResourceOptions? options = null)
         {
-            return new Route(name, id, state, options);
+            return new LoadbalancerRoute(name, id, state, options);
         }
     }
 
-    public sealed class RouteArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerRouteArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The backend ID destination of redirection
@@ -94,12 +94,12 @@ namespace Pulumi.Scaleway
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
 
-        public RouteArgs()
+        public LoadbalancerRouteArgs()
         {
         }
     }
 
-    public sealed class RouteState : Pulumi.ResourceArgs
+    public sealed class LoadbalancerRouteState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// The backend ID destination of redirection
@@ -119,7 +119,7 @@ namespace Pulumi.Scaleway
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
 
-        public RouteState()
+        public LoadbalancerRouteState()
         {
         }
     }

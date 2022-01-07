@@ -25,12 +25,12 @@ namespace Pulumi.Scaleway
     /// {
     ///     public MyStack()
     ///     {
-    ///         var main = new Scaleway.DatabaseACL("main", new Scaleway.DatabaseACLArgs
+    ///         var main = new Scaleway.DatabaseAcl("main", new Scaleway.DatabaseAclArgs
     ///         {
     ///             InstanceId = scaleway_rdb_instance.Main.Id,
     ///             AclRules = 
     ///             {
-    ///                 new Scaleway.Inputs.DatabaseACLAclRuleArgs
+    ///                 new Scaleway.Inputs.DatabaseAclAclRuleArgs
     ///                 {
     ///                     Ip = "1.2.3.4/32",
     ///                     Description = "foo",
@@ -47,17 +47,17 @@ namespace Pulumi.Scaleway
     /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/databaseACL:DatabaseACL acl01 fr-par/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/databaseACL:DatabaseACL")]
-    public partial class DatabaseACL : Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/databaseAcl:DatabaseAcl")]
+    public partial class DatabaseAcl : Pulumi.CustomResource
     {
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// </summary>
         [Output("aclRules")]
-        public Output<ImmutableArray<Outputs.DatabaseACLAclRule>> AclRules { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.DatabaseAclAclRule>> AclRules { get; private set; } = null!;
 
         /// <summary>
         /// The instance on which to create the ACL.
@@ -73,19 +73,19 @@ namespace Pulumi.Scaleway
 
 
         /// <summary>
-        /// Create a DatabaseACL resource with the given unique name, arguments, and options.
+        /// Create a DatabaseAcl resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DatabaseACL(string name, DatabaseACLArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/databaseACL:DatabaseACL", name, args ?? new DatabaseACLArgs(), MakeResourceOptions(options, ""))
+        public DatabaseAcl(string name, DatabaseAclArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/databaseAcl:DatabaseAcl", name, args ?? new DatabaseAclArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DatabaseACL(string name, Input<string> id, DatabaseACLState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/databaseACL:DatabaseACL", name, state, MakeResourceOptions(options, id))
+        private DatabaseAcl(string name, Input<string> id, DatabaseAclState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/databaseAcl:DatabaseAcl", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -101,7 +101,7 @@ namespace Pulumi.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing DatabaseACL resource's state with the given name, ID, and optional extra
+        /// Get an existing DatabaseAcl resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -109,23 +109,23 @@ namespace Pulumi.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DatabaseACL Get(string name, Input<string> id, DatabaseACLState? state = null, CustomResourceOptions? options = null)
+        public static DatabaseAcl Get(string name, Input<string> id, DatabaseAclState? state = null, CustomResourceOptions? options = null)
         {
-            return new DatabaseACL(name, id, state, options);
+            return new DatabaseAcl(name, id, state, options);
         }
     }
 
-    public sealed class DatabaseACLArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseAclArgs : Pulumi.ResourceArgs
     {
         [Input("aclRules", required: true)]
-        private InputList<Inputs.DatabaseACLAclRuleArgs>? _aclRules;
+        private InputList<Inputs.DatabaseAclAclRuleArgs>? _aclRules;
 
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// </summary>
-        public InputList<Inputs.DatabaseACLAclRuleArgs> AclRules
+        public InputList<Inputs.DatabaseAclAclRuleArgs> AclRules
         {
-            get => _aclRules ?? (_aclRules = new InputList<Inputs.DatabaseACLAclRuleArgs>());
+            get => _aclRules ?? (_aclRules = new InputList<Inputs.DatabaseAclAclRuleArgs>());
             set => _aclRules = value;
         }
 
@@ -141,22 +141,22 @@ namespace Pulumi.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public DatabaseACLArgs()
+        public DatabaseAclArgs()
         {
         }
     }
 
-    public sealed class DatabaseACLState : Pulumi.ResourceArgs
+    public sealed class DatabaseAclState : Pulumi.ResourceArgs
     {
         [Input("aclRules")]
-        private InputList<Inputs.DatabaseACLAclRuleGetArgs>? _aclRules;
+        private InputList<Inputs.DatabaseAclAclRuleGetArgs>? _aclRules;
 
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// </summary>
-        public InputList<Inputs.DatabaseACLAclRuleGetArgs> AclRules
+        public InputList<Inputs.DatabaseAclAclRuleGetArgs> AclRules
         {
-            get => _aclRules ?? (_aclRules = new InputList<Inputs.DatabaseACLAclRuleGetArgs>());
+            get => _aclRules ?? (_aclRules = new InputList<Inputs.DatabaseAclAclRuleGetArgs>());
             set => _aclRules = value;
         }
 
@@ -172,7 +172,7 @@ namespace Pulumi.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public DatabaseACLState()
+        public DatabaseAclState()
         {
         }
     }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway.Inputs
 {
 
-    public sealed class IOTRouteDatabaseGetArgs : Pulumi.ResourceArgs
+    public sealed class IotRouteDatabaseGetArgs : Pulumi.ResourceArgs
     {
         [Input("dbname", required: true)]
         public Input<string> Dbname { get; set; } = null!;
@@ -30,7 +30,7 @@ namespace Pulumi.Scaleway.Inputs
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
-        public IOTRouteDatabaseGetArgs()
+        public IotRouteDatabaseGetArgs()
         {
         }
     }

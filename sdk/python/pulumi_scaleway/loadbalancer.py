@@ -356,7 +356,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip = scaleway.LoadbalancerIP("ip")
+        ip = scaleway.LoadbalancerIp("ip")
         base = scaleway.Loadbalancer("base",
             ip_id=ip.id,
             zone="fr-par-1",
@@ -366,9 +366,9 @@ class Loadbalancer(pulumi.CustomResource):
 
         ## IP ID
 
-        Since v1.15.0, `ip_id` is a required field. This means that now a separate `LoadbalancerIP` is required.
+        Since v1.15.0, `ip_id` is a required field. This means that now a separate `LoadbalancerIp` is required.
         When importing, the IP needs to be imported as well as the LB.
-        When upgrading to v1.15.0, you will need to create a new `LoadbalancerIP` resource and import it.
+        When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
 
         For instance, if you had the following:
 
@@ -387,7 +387,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip = scaleway.LoadbalancerIP("ip")
+        ip = scaleway.LoadbalancerIp("ip")
         base = scaleway.Loadbalancer("base",
             ip_id=ip.id,
             zone="fr-par-1",
@@ -401,7 +401,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip01 = scaleway.LoadbalancerIP("ip01")
+        ip01 = scaleway.LoadbalancerIp("ip01")
         pn_lb01 = scaleway.VpcPrivateNetwork("pnLB01")
         lb01 = scaleway.Loadbalancer("lb01",
             ip_id=ip01.id,
@@ -467,7 +467,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip = scaleway.LoadbalancerIP("ip")
+        ip = scaleway.LoadbalancerIp("ip")
         base = scaleway.Loadbalancer("base",
             ip_id=ip.id,
             zone="fr-par-1",
@@ -477,9 +477,9 @@ class Loadbalancer(pulumi.CustomResource):
 
         ## IP ID
 
-        Since v1.15.0, `ip_id` is a required field. This means that now a separate `LoadbalancerIP` is required.
+        Since v1.15.0, `ip_id` is a required field. This means that now a separate `LoadbalancerIp` is required.
         When importing, the IP needs to be imported as well as the LB.
-        When upgrading to v1.15.0, you will need to create a new `LoadbalancerIP` resource and import it.
+        When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
 
         For instance, if you had the following:
 
@@ -498,7 +498,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip = scaleway.LoadbalancerIP("ip")
+        ip = scaleway.LoadbalancerIp("ip")
         base = scaleway.Loadbalancer("base",
             ip_id=ip.id,
             zone="fr-par-1",
@@ -512,7 +512,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumi_scaleway as scaleway
 
-        ip01 = scaleway.LoadbalancerIP("ip01")
+        ip01 = scaleway.LoadbalancerIp("ip01")
         pn_lb01 = scaleway.VpcPrivateNetwork("pnLB01")
         lb01 = scaleway.Loadbalancer("lb01",
             ip_id=ip01.id,

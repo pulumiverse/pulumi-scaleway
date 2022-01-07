@@ -10,12 +10,12 @@ import * as utilities from "./utilities";
  * IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iOTHub:IOTHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class IOTHub extends pulumi.CustomResource {
+export class IotHub extends pulumi.CustomResource {
     /**
-     * Get an existing IOTHub resource's state with the given name, ID, and optional extra
+     * Get an existing IotHub resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -23,22 +23,22 @@ export class IOTHub extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IOTHubState, opts?: pulumi.CustomResourceOptions): IOTHub {
-        return new IOTHub(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotHubState, opts?: pulumi.CustomResourceOptions): IotHub {
+        return new IotHub(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/iOTHub:IOTHub';
+    public static readonly __pulumiType = 'scaleway:index/iotHub:IotHub';
 
     /**
-     * Returns true if the given object is an instance of IOTHub.  This is designed to work even
+     * Returns true if the given object is an instance of IotHub.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is IOTHub {
+    public static isInstance(obj: any): obj is IotHub {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === IOTHub.__pulumiType;
+        return obj['__pulumiType'] === IotHub.__pulumiType;
     }
 
     /**
@@ -111,18 +111,18 @@ export class IOTHub extends pulumi.CustomResource {
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
-     * Create a IOTHub resource with the given unique name, arguments, and options.
+     * Create a IotHub resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: IOTHubArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: IOTHubArgs | IOTHubState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: IotHubArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: IotHubArgs | IotHubState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as IOTHubState | undefined;
+            const state = argsOrState as IotHubState | undefined;
             resourceInputs["connectedDeviceCount"] = state ? state.connectedDeviceCount : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deviceAutoProvisioning"] = state ? state.deviceAutoProvisioning : undefined;
@@ -141,7 +141,7 @@ export class IOTHub extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
-            const args = argsOrState as IOTHubArgs | undefined;
+            const args = argsOrState as IotHubArgs | undefined;
             if ((!args || args.productPlan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'productPlan'");
             }
@@ -166,14 +166,14 @@ export class IOTHub extends pulumi.CustomResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(IOTHub.__pulumiType, name, resourceInputs, opts);
+        super(IotHub.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering IOTHub resources.
+ * Input properties used for looking up and filtering IotHub resources.
  */
-export interface IOTHubState {
+export interface IotHubState {
     /**
      * The current number of connected devices in the Hub.
      */
@@ -245,9 +245,9 @@ export interface IOTHubState {
 }
 
 /**
- * The set of arguments for constructing a IOTHub resource.
+ * The set of arguments for constructing a IotHub resource.
  */
-export interface IOTHubArgs {
+export interface IotHubArgs {
     /**
      * Wether to enable the device auto provisioning or not
      */

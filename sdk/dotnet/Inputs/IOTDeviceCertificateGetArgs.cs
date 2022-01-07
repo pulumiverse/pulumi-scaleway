@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Scaleway.Inputs
 {
 
-    public sealed class IOTDeviceCertificateGetArgs : Pulumi.ResourceArgs
+    public sealed class IotDeviceCertificateGetArgs : Pulumi.ResourceArgs
     {
         [Input("crt")]
         public Input<string>? Crt { get; set; }
@@ -21,7 +21,7 @@ namespace Pulumi.Scaleway.Inputs
         [Input("key")]
         public Input<string>? Key { get; set; }
 
-        public IOTDeviceCertificateGetArgs()
+        public IotDeviceCertificateGetArgs()
         {
         }
     }
