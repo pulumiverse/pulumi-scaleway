@@ -69,7 +69,8 @@ func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProvider
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(scaleway.Provider(nil)())
+	providerConfig := scaleway.ProviderConfig{}
+	p := shimv2.NewProvider(scaleway.Provider(&providerConfig)())
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:                 p,

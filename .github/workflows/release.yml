@@ -7,11 +7,15 @@ env:
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   PROVIDER: scaleway
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-  PULUMI_API: https://api.pulumi-staging.io
+  PULUMI_API: https://api.pulumi.com
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
+  PULUMI_TEST_OWNER: "lbrlabs"
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   PYPI_USERNAME: "__token__"
+  SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+  SCW_DEFAULT_PROJECT_ID: ${{ secrets.SCW_DEFAULT_PROJECT_ID }}
+  SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
   TRAVIS_OS_NAME: linux
 jobs:
   build_sdk:
@@ -335,8 +339,8 @@ jobs:
         pip3 install pipenv
     - name: Install dependencies
       run: make install_${{ matrix.language}}_sdk
-    # - name: Run tests
-    #   run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language}} -parallel 4 .
+    - name: Run tests
+      run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language}} -parallel 4 .
     strategy:
       fail-fast: true
       matrix:
