@@ -1,7 +1,7 @@
 # Scaleway Resource Provider
 
-The Scaleway resource provider for Pulumi lets you create a Kubernetes cluster using RKE in your cloud programs. To use
-this package, please [install the Pulumi CLI first](https://pulumi.io/).
+The Scaleway resource provider for Pulumi lets you creating resources in [Scaleway](https://www.scaleway.com). To use
+this package, please [install the Pulumi CLI first](https://pulumi.com/).
 
 ## Installing
 
@@ -26,7 +26,7 @@ $ yarn add @jaxxstorm/pulumi-scaleway
 To use from Python, install using `pip`:
 
 ```
-$ pip install pulumi_scaleway
+$ pip install pulumi-scaleway
 ```
 
 ### Go
