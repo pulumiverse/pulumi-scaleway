@@ -26,7 +26,7 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	baseJS := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Config: map[string]string{
-			"default_organization_id": org_id,
+			"project_id": project_id,
 		},
 		Dependencies: []string{
 			"@jaxxstorm/pulumi-scaleway",
