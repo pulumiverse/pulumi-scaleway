@@ -11,14 +11,14 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func TestAccWebserverGo(t *testing.T) {
-	test := getGoBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			Dir: filepath.Join(getCwd(t), "go/server"),
-		})
+// func TestAccWebserverGo(t *testing.T) {
+// 	test := getGoBaseOptions(t).
+// 		With(integration.ProgramTestOptions{
+// 			Dir: filepath.Join(getCwd(t), "go/server"),
+// 		})
 
-	integration.ProgramTest(t, &test)
-}
+// 	integration.ProgramTest(t, &test)
+// }
 
 func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
