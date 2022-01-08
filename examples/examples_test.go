@@ -27,6 +27,11 @@ func getCwd(t *testing.T) string {
 	return cwd
 }
 
-func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{}
+func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	project_id := getProjectId(t)
+	return integration.ProgramTestOptions{
+		Config: map[string]string{
+			"project_id": project_id,
+		},
+	}
 }

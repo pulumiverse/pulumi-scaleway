@@ -20,12 +20,8 @@ func TestAccWebserver(t *testing.T) {
 }
 
 func getCsharpBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	project_id := getProjectId(t)
 	base := getBaseOptions()
 	baseCsharp := base.With(integration.ProgramTestOptions{
-		Config: map[string]string{
-			"project_id": project_id,
-		},
 		Dependencies: []string{
 			"Pulumi.Scaleway",
 		},

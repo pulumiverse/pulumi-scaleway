@@ -22,12 +22,8 @@ func TestAccWebserver(t *testing.T) {
 }
 
 func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	project_id := getProjectId(t)
 	base := getBaseOptions()
 	basePython := base.With(integration.ProgramTestOptions{
-		Config: map[string]string{
-			"project_id": project_id,
-		},
 		Dependencies: []string{
 			filepath.Join("..", "sdk", "python", "bin"),
 		},

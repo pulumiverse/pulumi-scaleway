@@ -21,13 +21,9 @@ func TestAccWebserver(t *testing.T) {
 }
 
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	project_id := getProjectId(t)
 	base := getBaseOptions()
 	baseJS := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
-		Config: map[string]string{
-			"project_id": project_id,
-		},
 		Dependencies: []string{
 			"@jaxxstorm/pulumi-scaleway",
 		},
