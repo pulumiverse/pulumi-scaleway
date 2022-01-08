@@ -1,4 +1,5 @@
 // Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
+//go:build nodejs || all
 // +build nodejs all
 
 package examples
@@ -18,7 +19,6 @@ func TestAccWebserver(t *testing.T) {
 
 	integration.ProgramTest(t, &test)
 }
-
 
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	project_id := getProjectId(t)

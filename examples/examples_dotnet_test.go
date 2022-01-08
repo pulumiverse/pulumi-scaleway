@@ -1,8 +1,10 @@
+//go:build dotnet || all
 // +build dotnet all
 
 package examples
 
 import (
+	"path"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
