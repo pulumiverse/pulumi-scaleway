@@ -21,7 +21,7 @@ func TestAccWebserverGo(t *testing.T) {
 }
 
 func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	base := getBaseOptions()
+	base := getBaseOptions(t)
 	baseGo := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"github.com/jaxxstorm/pulumi-scaleway/sdk",
