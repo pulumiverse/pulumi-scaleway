@@ -7,7 +7,7 @@ public_ip = scaleway.InstanceIp("example")
 
 server = scaleway.InstanceServer("example", 
     image="ubuntu_focal",
-    type="type",
+    type="DEV1-S",
     ip_id=public_ip.id,
 )
 
