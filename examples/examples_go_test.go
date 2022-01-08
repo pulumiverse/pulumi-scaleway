@@ -18,7 +18,7 @@ func TestAccWebserverGo(t *testing.T) {
 			"project_id": project_id,
 		},
 		Dependencies: []string{
-			"github.com/jaxxstorm/pulumi-scaleway/sdk",
+			"github.com/jaxxstorm/pulumi-scaleway/sdk/go/scaleway",
 		},
 	}
 
