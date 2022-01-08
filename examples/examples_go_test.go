@@ -13,15 +13,21 @@ import (
 
 func TestAccWebserverGo(t *testing.T) {
 	project_id := getProjectId(t)
-	test := integration.ProgramTestOptions{
-		Dir: filepath.Join(getCwd(t), "go/server"),
-		Config: map[string]string{
-			"project_id": project_id,
-		},
+	test := getGoBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: filepath.Join(getCwd(t), "go/server"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	base := getBaseOptions(t)
+	baseGo := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"github.com/jaxxstorm/pulumi-scaleway/sdk",
 		},
-	}
+	})
 
-	integration.ProgramTest(t, &test)
+	return baseGo
 }
