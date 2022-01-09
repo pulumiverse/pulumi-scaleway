@@ -1,33 +1,34 @@
 // Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
-//go:build nodejs || all
-// +build nodejs all
+//go:build python || all
+// +build python all
 
 package examples
 
 import (
 	"path"
+	"path/filepath"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
 func TestAccWebserver(t *testing.T) {
-	test := getJSBaseOptions(t).
+	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "ts/server"),
+			Dir: path.Join(getCwd(t), "python/server"),
 		})
 
 	integration.ProgramTest(t, &test)
 }
 
-func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
+func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
-	baseJS := base.With(integration.ProgramTestOptions{
+	basePython := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
-			"@jaxxstorm/pulumi-scaleway",
+			filepath.Join("..", "sdk", "python", "bin"),
 		},
 	})
 
-	return baseJS
+	return basePython
 }
