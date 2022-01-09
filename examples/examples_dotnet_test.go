@@ -22,6 +22,7 @@ func TestAccWebserver(t *testing.T) {
 func getCsharpBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseCsharp := base.With(integration.ProgramTestOptions{
+		ExpectRefreshChanges: true,
 		Dependencies: []string{
 			"Pulumi.Scaleway",
 		},

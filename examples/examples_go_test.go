@@ -22,7 +22,9 @@ import (
 
 func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
+	
 	baseGo := base.With(integration.ProgramTestOptions{
+		ExpectRefreshChanges: true,
 		Dependencies: []string{
 			"github.com/jaxxstorm/pulumi-scaleway/sdk",
 		},
