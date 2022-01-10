@@ -9,12 +9,12 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 
-		publicIp, err := scaleway.NewInstanceIP(ctx, "example", &scaleway.InstanceIpArgs{})
+		publicIp, err := scaleway.NewInstanceIp(ctx, "example", &scaleway.InstanceIpArgs{})
 		if err != nil {
 			return fmt.Errorf("error creating public IP: %v", err)
 		}
 
-		_, err = scaleway.NewInstanceServer(ctx, "example", &scaleway.InstanceServerArgs{
+		server, err := scaleway.NewInstanceServer(ctx, "example", &scaleway.InstanceServerArgs{
 			Image: pulumi.String("ubuntu_focal"),
 			IpId:  publicIp.ID(),
 			Type:  pulumi.String("DEV1-S"),
@@ -25,6 +25,8 @@ func main() {
 		if err != nil {
 			return fmt.Errorf("error creating instance server: %v", err)
 		}
+
+		ctx.Export("server", server.Name)
 
 		return nil
 	})
