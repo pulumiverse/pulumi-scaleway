@@ -136,7 +136,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayIp("main")
-    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
+    ip_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway_ip(ip_id=id))
     ```
     """
     __args__ = dict()
@@ -173,7 +173,7 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayIp("main")
-    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
+    ip_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway_ip(ip_id=id))
     ```
     """
     ...

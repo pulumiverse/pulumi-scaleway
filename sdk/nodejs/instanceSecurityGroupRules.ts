@@ -64,26 +64,26 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceSecurityGroupRulesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceSecurityGroupRulesArgs | InstanceSecurityGroupRulesState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceSecurityGroupRulesState | undefined;
-            resourceInputs["inboundRules"] = state ? state.inboundRules : undefined;
-            resourceInputs["outboundRules"] = state ? state.outboundRules : undefined;
-            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
+            inputs["inboundRules"] = state ? state.inboundRules : undefined;
+            inputs["outboundRules"] = state ? state.outboundRules : undefined;
+            inputs["securityGroupId"] = state ? state.securityGroupId : undefined;
         } else {
             const args = argsOrState as InstanceSecurityGroupRulesArgs | undefined;
             if ((!args || args.securityGroupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'securityGroupId'");
             }
-            resourceInputs["inboundRules"] = args ? args.inboundRules : undefined;
-            resourceInputs["outboundRules"] = args ? args.outboundRules : undefined;
-            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
+            inputs["inboundRules"] = args ? args.inboundRules : undefined;
+            inputs["outboundRules"] = args ? args.outboundRules : undefined;
+            inputs["securityGroupId"] = args ? args.securityGroupId : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceSecurityGroupRules.__pulumiType, name, resourceInputs, opts);
+        super(InstanceSecurityGroupRules.__pulumiType, name, inputs, opts);
     }
 }
 

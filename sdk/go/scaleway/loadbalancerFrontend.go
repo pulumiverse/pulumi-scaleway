@@ -268,7 +268,7 @@ type LoadbalancerFrontendInput interface {
 }
 
 func (*LoadbalancerFrontend) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerFrontend)(nil)).Elem()
+	return reflect.TypeOf((*LoadbalancerFrontend)(nil))
 }
 
 func (i *LoadbalancerFrontend) ToLoadbalancerFrontendOutput() LoadbalancerFrontendOutput {
@@ -282,7 +282,7 @@ func (i *LoadbalancerFrontend) ToLoadbalancerFrontendOutputWithContext(ctx conte
 type LoadbalancerFrontendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerFrontendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerFrontend)(nil)).Elem()
+	return reflect.TypeOf((*LoadbalancerFrontend)(nil))
 }
 
 func (o LoadbalancerFrontendOutput) ToLoadbalancerFrontendOutput() LoadbalancerFrontendOutput {

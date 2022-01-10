@@ -150,7 +150,7 @@ type DatabaseAclInput interface {
 }
 
 func (*DatabaseAcl) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseAcl)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseAcl)(nil))
 }
 
 func (i *DatabaseAcl) ToDatabaseAclOutput() DatabaseAclOutput {
@@ -164,7 +164,7 @@ func (i *DatabaseAcl) ToDatabaseAclOutputWithContext(ctx context.Context) Databa
 type DatabaseAclOutput struct{ *pulumi.OutputState }
 
 func (DatabaseAclOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseAcl)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseAcl)(nil))
 }
 
 func (o DatabaseAclOutput) ToDatabaseAclOutput() DatabaseAclOutput {

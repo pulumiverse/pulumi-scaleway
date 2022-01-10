@@ -164,7 +164,7 @@ type InstancePlacementGroupInput interface {
 }
 
 func (*InstancePlacementGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstancePlacementGroup)(nil)).Elem()
+	return reflect.TypeOf((*InstancePlacementGroup)(nil))
 }
 
 func (i *InstancePlacementGroup) ToInstancePlacementGroupOutput() InstancePlacementGroupOutput {
@@ -178,7 +178,7 @@ func (i *InstancePlacementGroup) ToInstancePlacementGroupOutputWithContext(ctx c
 type InstancePlacementGroupOutput struct{ *pulumi.OutputState }
 
 func (InstancePlacementGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstancePlacementGroup)(nil)).Elem()
+	return reflect.TypeOf((*InstancePlacementGroup)(nil))
 }
 
 func (o InstancePlacementGroupOutput) ToInstancePlacementGroupOutput() InstancePlacementGroupOutput {

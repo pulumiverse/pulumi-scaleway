@@ -192,7 +192,7 @@ type InstanceVolumeInput interface {
 }
 
 func (*InstanceVolume) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceVolume)(nil)).Elem()
+	return reflect.TypeOf((*InstanceVolume)(nil))
 }
 
 func (i *InstanceVolume) ToInstanceVolumeOutput() InstanceVolumeOutput {
@@ -206,7 +206,7 @@ func (i *InstanceVolume) ToInstanceVolumeOutputWithContext(ctx context.Context) 
 type InstanceVolumeOutput struct{ *pulumi.OutputState }
 
 func (InstanceVolumeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceVolume)(nil)).Elem()
+	return reflect.TypeOf((*InstanceVolume)(nil))
 }
 
 func (o InstanceVolumeOutput) ToInstanceVolumeOutput() InstanceVolumeOutput {

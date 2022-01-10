@@ -152,7 +152,7 @@ type AppleSliconValleyServerInput interface {
 }
 
 func (*AppleSliconValleyServer) ElementType() reflect.Type {
-	return reflect.TypeOf((**AppleSliconValleyServer)(nil)).Elem()
+	return reflect.TypeOf((*AppleSliconValleyServer)(nil))
 }
 
 func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutput() AppleSliconValleyServerOutput {
@@ -166,7 +166,7 @@ func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutputWithContext(ctx
 type AppleSliconValleyServerOutput struct{ *pulumi.OutputState }
 
 func (AppleSliconValleyServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AppleSliconValleyServer)(nil)).Elem()
+	return reflect.TypeOf((*AppleSliconValleyServer)(nil))
 }
 
 func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutput() AppleSliconValleyServerOutput {

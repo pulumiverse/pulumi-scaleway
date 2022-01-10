@@ -372,7 +372,7 @@ type LoadbalancerBackendInput interface {
 }
 
 func (*LoadbalancerBackend) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerBackend)(nil)).Elem()
+	return reflect.TypeOf((*LoadbalancerBackend)(nil))
 }
 
 func (i *LoadbalancerBackend) ToLoadbalancerBackendOutput() LoadbalancerBackendOutput {
@@ -386,7 +386,7 @@ func (i *LoadbalancerBackend) ToLoadbalancerBackendOutputWithContext(ctx context
 type LoadbalancerBackendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerBackendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerBackend)(nil)).Elem()
+	return reflect.TypeOf((*LoadbalancerBackend)(nil))
 }
 
 func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutput() LoadbalancerBackendOutput {

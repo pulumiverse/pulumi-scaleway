@@ -302,7 +302,7 @@ type VpcPublicGatewayDhcpInput interface {
 }
 
 func (*VpcPublicGatewayDhcp) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayDhcp)(nil)).Elem()
+	return reflect.TypeOf((*VpcPublicGatewayDhcp)(nil))
 }
 
 func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput {
@@ -316,7 +316,7 @@ func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutputWithContext(ctx conte
 type VpcPublicGatewayDhcpOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayDhcpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGatewayDhcp)(nil)).Elem()
+	return reflect.TypeOf((*VpcPublicGatewayDhcp)(nil))
 }
 
 func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput {

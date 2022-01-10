@@ -84,13 +84,13 @@ export class DatabaseAcl extends pulumi.CustomResource {
      */
     constructor(name: string, args: DatabaseAclArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabaseAclArgs | DatabaseAclState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseAclState | undefined;
-            resourceInputs["aclRules"] = state ? state.aclRules : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            inputs["aclRules"] = state ? state.aclRules : undefined;
+            inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as DatabaseAclArgs | undefined;
             if ((!args || args.aclRules === undefined) && !opts.urn) {
@@ -99,14 +99,14 @@ export class DatabaseAcl extends pulumi.CustomResource {
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["aclRules"] = args ? args.aclRules : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            inputs["aclRules"] = args ? args.aclRules : undefined;
+            inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["region"] = args ? args.region : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DatabaseAcl.__pulumiType, name, resourceInputs, opts);
+        super(DatabaseAcl.__pulumiType, name, inputs, opts);
     }
 }
 

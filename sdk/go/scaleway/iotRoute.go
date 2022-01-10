@@ -155,7 +155,7 @@ type IotRouteInput interface {
 }
 
 func (*IotRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((**IotRoute)(nil)).Elem()
+	return reflect.TypeOf((*IotRoute)(nil))
 }
 
 func (i *IotRoute) ToIotRouteOutput() IotRouteOutput {
@@ -169,7 +169,7 @@ func (i *IotRoute) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutp
 type IotRouteOutput struct{ *pulumi.OutputState }
 
 func (IotRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IotRoute)(nil)).Elem()
+	return reflect.TypeOf((*IotRoute)(nil))
 }
 
 func (o IotRouteOutput) ToIotRouteOutput() IotRouteOutput {

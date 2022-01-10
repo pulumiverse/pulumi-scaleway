@@ -96,31 +96,31 @@ export class RegistryNamespace extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RegistryNamespaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RegistryNamespaceArgs | RegistryNamespaceState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RegistryNamespaceState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["isPublic"] = state ? state.isPublic : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            inputs["description"] = state ? state.description : undefined;
+            inputs["endpoint"] = state ? state.endpoint : undefined;
+            inputs["isPublic"] = state ? state.isPublic : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as RegistryNamespaceArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["isPublic"] = args ? args.isPublic : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["endpoint"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
+            inputs["description"] = args ? args.description : undefined;
+            inputs["isPublic"] = args ? args.isPublic : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["region"] = args ? args.region : undefined;
+            inputs["endpoint"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(RegistryNamespace.__pulumiType, name, resourceInputs, opts);
+        super(RegistryNamespace.__pulumiType, name, inputs, opts);
     }
 }
 

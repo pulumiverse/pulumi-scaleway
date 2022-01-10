@@ -113,7 +113,7 @@ type InstanceSecurityGroupRulesInput interface {
 }
 
 func (*InstanceSecurityGroupRules) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceSecurityGroupRules)(nil)).Elem()
+	return reflect.TypeOf((*InstanceSecurityGroupRules)(nil))
 }
 
 func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput {
@@ -127,7 +127,7 @@ func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutputWithConte
 type InstanceSecurityGroupRulesOutput struct{ *pulumi.OutputState }
 
 func (InstanceSecurityGroupRulesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceSecurityGroupRules)(nil)).Elem()
+	return reflect.TypeOf((*InstanceSecurityGroupRules)(nil))
 }
 
 func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput {

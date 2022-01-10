@@ -119,19 +119,19 @@ export class VpcPublicGatewayPatRule extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpcPublicGatewayPatRuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpcPublicGatewayPatRuleArgs | VpcPublicGatewayPatRuleState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPublicGatewayPatRuleState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["privateIp"] = state ? state.privateIp : undefined;
-            resourceInputs["privatePort"] = state ? state.privatePort : undefined;
-            resourceInputs["protocol"] = state ? state.protocol : undefined;
-            resourceInputs["publicPort"] = state ? state.publicPort : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["createdAt"] = state ? state.createdAt : undefined;
+            inputs["gatewayId"] = state ? state.gatewayId : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["privateIp"] = state ? state.privateIp : undefined;
+            inputs["privatePort"] = state ? state.privatePort : undefined;
+            inputs["protocol"] = state ? state.protocol : undefined;
+            inputs["publicPort"] = state ? state.publicPort : undefined;
+            inputs["updatedAt"] = state ? state.updatedAt : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as VpcPublicGatewayPatRuleArgs | undefined;
             if ((!args || args.gatewayId === undefined) && !opts.urn) {
@@ -146,20 +146,20 @@ export class VpcPublicGatewayPatRule extends pulumi.CustomResource {
             if ((!args || args.publicPort === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicPort'");
             }
-            resourceInputs["gatewayId"] = args ? args.gatewayId : undefined;
-            resourceInputs["privateIp"] = args ? args.privateIp : undefined;
-            resourceInputs["privatePort"] = args ? args.privatePort : undefined;
-            resourceInputs["protocol"] = args ? args.protocol : undefined;
-            resourceInputs["publicPort"] = args ? args.publicPort : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["updatedAt"] = undefined /*out*/;
+            inputs["gatewayId"] = args ? args.gatewayId : undefined;
+            inputs["privateIp"] = args ? args.privateIp : undefined;
+            inputs["privatePort"] = args ? args.privatePort : undefined;
+            inputs["protocol"] = args ? args.protocol : undefined;
+            inputs["publicPort"] = args ? args.publicPort : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["createdAt"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
+            inputs["updatedAt"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(VpcPublicGatewayPatRule.__pulumiType, name, resourceInputs, opts);
+        super(VpcPublicGatewayPatRule.__pulumiType, name, inputs, opts);
     }
 }
 

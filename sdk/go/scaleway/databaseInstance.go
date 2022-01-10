@@ -39,7 +39,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainIndex_databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
 // 			NodeType:                pulumi.String("DB-DEV-S"),
 // 			Engine:                  pulumi.String("PostgreSQL-11"),
 // 			IsHaCluster:             pulumi.Bool(true),
@@ -101,7 +101,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainScalewayIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainScalewayIndex_databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
 // 			NodeType:      pulumi.String("db-dev-s"),
 // 			Engine:        pulumi.String("PostgreSQL-11"),
 // 			IsHaCluster:   pulumi.Bool(false),
@@ -408,7 +408,7 @@ type DatabaseInstanceInput interface {
 }
 
 func (*DatabaseInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseInstance)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseInstance)(nil))
 }
 
 func (i *DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
@@ -422,7 +422,7 @@ func (i *DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Conte
 type DatabaseInstanceOutput struct{ *pulumi.OutputState }
 
 func (DatabaseInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseInstance)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseInstance)(nil))
 }
 
 func (o DatabaseInstanceOutput) ToDatabaseInstanceOutput() DatabaseInstanceOutput {

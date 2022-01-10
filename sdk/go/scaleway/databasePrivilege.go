@@ -153,7 +153,7 @@ type DatabasePrivilegeInput interface {
 }
 
 func (*DatabasePrivilege) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabasePrivilege)(nil)).Elem()
+	return reflect.TypeOf((*DatabasePrivilege)(nil))
 }
 
 func (i *DatabasePrivilege) ToDatabasePrivilegeOutput() DatabasePrivilegeOutput {
@@ -167,7 +167,7 @@ func (i *DatabasePrivilege) ToDatabasePrivilegeOutputWithContext(ctx context.Con
 type DatabasePrivilegeOutput struct{ *pulumi.OutputState }
 
 func (DatabasePrivilegeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabasePrivilege)(nil)).Elem()
+	return reflect.TypeOf((*DatabasePrivilege)(nil))
 }
 
 func (o DatabasePrivilegeOutput) ToDatabasePrivilegeOutput() DatabasePrivilegeOutput {

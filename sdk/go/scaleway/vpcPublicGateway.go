@@ -201,7 +201,7 @@ type VpcPublicGatewayInput interface {
 }
 
 func (*VpcPublicGateway) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGateway)(nil)).Elem()
+	return reflect.TypeOf((*VpcPublicGateway)(nil))
 }
 
 func (i *VpcPublicGateway) ToVpcPublicGatewayOutput() VpcPublicGatewayOutput {
@@ -215,7 +215,7 @@ func (i *VpcPublicGateway) ToVpcPublicGatewayOutputWithContext(ctx context.Conte
 type VpcPublicGatewayOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPublicGateway)(nil)).Elem()
+	return reflect.TypeOf((*VpcPublicGateway)(nil))
 }
 
 func (o VpcPublicGatewayOutput) ToVpcPublicGatewayOutput() VpcPublicGatewayOutput {

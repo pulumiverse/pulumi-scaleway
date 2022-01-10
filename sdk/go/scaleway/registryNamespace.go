@@ -170,7 +170,7 @@ type RegistryNamespaceInput interface {
 }
 
 func (*RegistryNamespace) ElementType() reflect.Type {
-	return reflect.TypeOf((**RegistryNamespace)(nil)).Elem()
+	return reflect.TypeOf((*RegistryNamespace)(nil))
 }
 
 func (i *RegistryNamespace) ToRegistryNamespaceOutput() RegistryNamespaceOutput {
@@ -184,7 +184,7 @@ func (i *RegistryNamespace) ToRegistryNamespaceOutputWithContext(ctx context.Con
 type RegistryNamespaceOutput struct{ *pulumi.OutputState }
 
 func (RegistryNamespaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RegistryNamespace)(nil)).Elem()
+	return reflect.TypeOf((*RegistryNamespace)(nil))
 }
 
 func (o RegistryNamespaceOutput) ToRegistryNamespaceOutput() RegistryNamespaceOutput {

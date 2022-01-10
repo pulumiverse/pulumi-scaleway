@@ -173,31 +173,31 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args: LoadbalancerBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadbalancerBackendArgs | LoadbalancerBackendState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerBackendState | undefined;
-            resourceInputs["forwardPort"] = state ? state.forwardPort : undefined;
-            resourceInputs["forwardPortAlgorithm"] = state ? state.forwardPortAlgorithm : undefined;
-            resourceInputs["forwardProtocol"] = state ? state.forwardProtocol : undefined;
-            resourceInputs["healthCheckDelay"] = state ? state.healthCheckDelay : undefined;
-            resourceInputs["healthCheckHttp"] = state ? state.healthCheckHttp : undefined;
-            resourceInputs["healthCheckHttps"] = state ? state.healthCheckHttps : undefined;
-            resourceInputs["healthCheckMaxRetries"] = state ? state.healthCheckMaxRetries : undefined;
-            resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
-            resourceInputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
-            resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
-            resourceInputs["lbId"] = state ? state.lbId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["onMarkedDownAction"] = state ? state.onMarkedDownAction : undefined;
-            resourceInputs["proxyProtocol"] = state ? state.proxyProtocol : undefined;
-            resourceInputs["sendProxyV2"] = state ? state.sendProxyV2 : undefined;
-            resourceInputs["serverIps"] = state ? state.serverIps : undefined;
-            resourceInputs["stickySessions"] = state ? state.stickySessions : undefined;
-            resourceInputs["stickySessionsCookieName"] = state ? state.stickySessionsCookieName : undefined;
-            resourceInputs["timeoutConnect"] = state ? state.timeoutConnect : undefined;
-            resourceInputs["timeoutServer"] = state ? state.timeoutServer : undefined;
-            resourceInputs["timeoutTunnel"] = state ? state.timeoutTunnel : undefined;
+            inputs["forwardPort"] = state ? state.forwardPort : undefined;
+            inputs["forwardPortAlgorithm"] = state ? state.forwardPortAlgorithm : undefined;
+            inputs["forwardProtocol"] = state ? state.forwardProtocol : undefined;
+            inputs["healthCheckDelay"] = state ? state.healthCheckDelay : undefined;
+            inputs["healthCheckHttp"] = state ? state.healthCheckHttp : undefined;
+            inputs["healthCheckHttps"] = state ? state.healthCheckHttps : undefined;
+            inputs["healthCheckMaxRetries"] = state ? state.healthCheckMaxRetries : undefined;
+            inputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
+            inputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
+            inputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
+            inputs["lbId"] = state ? state.lbId : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["onMarkedDownAction"] = state ? state.onMarkedDownAction : undefined;
+            inputs["proxyProtocol"] = state ? state.proxyProtocol : undefined;
+            inputs["sendProxyV2"] = state ? state.sendProxyV2 : undefined;
+            inputs["serverIps"] = state ? state.serverIps : undefined;
+            inputs["stickySessions"] = state ? state.stickySessions : undefined;
+            inputs["stickySessionsCookieName"] = state ? state.stickySessionsCookieName : undefined;
+            inputs["timeoutConnect"] = state ? state.timeoutConnect : undefined;
+            inputs["timeoutServer"] = state ? state.timeoutServer : undefined;
+            inputs["timeoutTunnel"] = state ? state.timeoutTunnel : undefined;
         } else {
             const args = argsOrState as LoadbalancerBackendArgs | undefined;
             if ((!args || args.forwardPort === undefined) && !opts.urn) {
@@ -209,32 +209,32 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
             if ((!args || args.lbId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
-            resourceInputs["forwardPort"] = args ? args.forwardPort : undefined;
-            resourceInputs["forwardPortAlgorithm"] = args ? args.forwardPortAlgorithm : undefined;
-            resourceInputs["forwardProtocol"] = args ? args.forwardProtocol : undefined;
-            resourceInputs["healthCheckDelay"] = args ? args.healthCheckDelay : undefined;
-            resourceInputs["healthCheckHttp"] = args ? args.healthCheckHttp : undefined;
-            resourceInputs["healthCheckHttps"] = args ? args.healthCheckHttps : undefined;
-            resourceInputs["healthCheckMaxRetries"] = args ? args.healthCheckMaxRetries : undefined;
-            resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
-            resourceInputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
-            resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
-            resourceInputs["lbId"] = args ? args.lbId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["onMarkedDownAction"] = args ? args.onMarkedDownAction : undefined;
-            resourceInputs["proxyProtocol"] = args ? args.proxyProtocol : undefined;
-            resourceInputs["sendProxyV2"] = args ? args.sendProxyV2 : undefined;
-            resourceInputs["serverIps"] = args ? args.serverIps : undefined;
-            resourceInputs["stickySessions"] = args ? args.stickySessions : undefined;
-            resourceInputs["stickySessionsCookieName"] = args ? args.stickySessionsCookieName : undefined;
-            resourceInputs["timeoutConnect"] = args ? args.timeoutConnect : undefined;
-            resourceInputs["timeoutServer"] = args ? args.timeoutServer : undefined;
-            resourceInputs["timeoutTunnel"] = args ? args.timeoutTunnel : undefined;
+            inputs["forwardPort"] = args ? args.forwardPort : undefined;
+            inputs["forwardPortAlgorithm"] = args ? args.forwardPortAlgorithm : undefined;
+            inputs["forwardProtocol"] = args ? args.forwardProtocol : undefined;
+            inputs["healthCheckDelay"] = args ? args.healthCheckDelay : undefined;
+            inputs["healthCheckHttp"] = args ? args.healthCheckHttp : undefined;
+            inputs["healthCheckHttps"] = args ? args.healthCheckHttps : undefined;
+            inputs["healthCheckMaxRetries"] = args ? args.healthCheckMaxRetries : undefined;
+            inputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
+            inputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
+            inputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
+            inputs["lbId"] = args ? args.lbId : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["onMarkedDownAction"] = args ? args.onMarkedDownAction : undefined;
+            inputs["proxyProtocol"] = args ? args.proxyProtocol : undefined;
+            inputs["sendProxyV2"] = args ? args.sendProxyV2 : undefined;
+            inputs["serverIps"] = args ? args.serverIps : undefined;
+            inputs["stickySessions"] = args ? args.stickySessions : undefined;
+            inputs["stickySessionsCookieName"] = args ? args.stickySessionsCookieName : undefined;
+            inputs["timeoutConnect"] = args ? args.timeoutConnect : undefined;
+            inputs["timeoutServer"] = args ? args.timeoutServer : undefined;
+            inputs["timeoutTunnel"] = args ? args.timeoutTunnel : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(LoadbalancerBackend.__pulumiType, name, resourceInputs, opts);
+        super(LoadbalancerBackend.__pulumiType, name, inputs, opts);
     }
 }
 

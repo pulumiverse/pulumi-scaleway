@@ -268,7 +268,7 @@ type BaremetalServerInput interface {
 }
 
 func (*BaremetalServer) ElementType() reflect.Type {
-	return reflect.TypeOf((**BaremetalServer)(nil)).Elem()
+	return reflect.TypeOf((*BaremetalServer)(nil))
 }
 
 func (i *BaremetalServer) ToBaremetalServerOutput() BaremetalServerOutput {
@@ -282,7 +282,7 @@ func (i *BaremetalServer) ToBaremetalServerOutputWithContext(ctx context.Context
 type BaremetalServerOutput struct{ *pulumi.OutputState }
 
 func (BaremetalServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BaremetalServer)(nil)).Elem()
+	return reflect.TypeOf((*BaremetalServer)(nil))
 }
 
 func (o BaremetalServerOutput) ToBaremetalServerOutput() BaremetalServerOutput {

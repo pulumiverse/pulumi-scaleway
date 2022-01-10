@@ -155,8 +155,8 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
-    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
+    pg_test_by_name = main.name.apply(lambda name: scaleway.get_vpc_public_gateway(name=name))
+    pg_test_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway(public_gateway_id=id))
     ```
 
 
@@ -200,8 +200,8 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
-    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
+    pg_test_by_name = main.name.apply(lambda name: scaleway.get_vpc_public_gateway(name=name))
+    pg_test_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway(public_gateway_id=id))
     ```
 
 

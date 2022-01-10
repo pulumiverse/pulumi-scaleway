@@ -450,7 +450,7 @@ type DomainRecordInput interface {
 }
 
 func (*DomainRecord) ElementType() reflect.Type {
-	return reflect.TypeOf((**DomainRecord)(nil)).Elem()
+	return reflect.TypeOf((*DomainRecord)(nil))
 }
 
 func (i *DomainRecord) ToDomainRecordOutput() DomainRecordOutput {
@@ -464,7 +464,7 @@ func (i *DomainRecord) ToDomainRecordOutputWithContext(ctx context.Context) Doma
 type DomainRecordOutput struct{ *pulumi.OutputState }
 
 func (DomainRecordOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DomainRecord)(nil)).Elem()
+	return reflect.TypeOf((*DomainRecord)(nil))
 }
 
 func (o DomainRecordOutput) ToDomainRecordOutput() DomainRecordOutput {

@@ -30,10 +30,10 @@ namespace Pulumi.Scaleway
         ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
         ///         {
         ///         });
-        ///         var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new Scaleway.GetVpcPublicGatewayIpInvokeArgs
+        ///         var ipById = main.Id.Apply(id =&gt; Scaleway.GetVpcPublicGatewayIp.InvokeAsync(new Scaleway.GetVpcPublicGatewayIpArgs
         ///         {
-        ///             IpId = main.Id,
-        ///         });
+        ///             IpId = id,
+        ///         }));
         ///     }
         /// 
         /// }
@@ -62,10 +62,10 @@ namespace Pulumi.Scaleway
         ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
         ///         {
         ///         });
-        ///         var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new Scaleway.GetVpcPublicGatewayIpInvokeArgs
+        ///         var ipById = main.Id.Apply(id =&gt; Scaleway.GetVpcPublicGatewayIp.InvokeAsync(new Scaleway.GetVpcPublicGatewayIpArgs
         ///         {
-        ///             IpId = main.Id,
-        ///         });
+        ///             IpId = id,
+        ///         }));
         ///     }
         /// 
         /// }

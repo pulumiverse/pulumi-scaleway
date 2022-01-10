@@ -146,7 +146,7 @@ type InstanceIpInput interface {
 }
 
 func (*InstanceIp) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceIp)(nil)).Elem()
+	return reflect.TypeOf((*InstanceIp)(nil))
 }
 
 func (i *InstanceIp) ToInstanceIpOutput() InstanceIpOutput {
@@ -160,7 +160,7 @@ func (i *InstanceIp) ToInstanceIpOutputWithContext(ctx context.Context) Instance
 type InstanceIpOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceIp)(nil)).Elem()
+	return reflect.TypeOf((*InstanceIp)(nil))
 }
 
 func (o InstanceIpOutput) ToInstanceIpOutput() InstanceIpOutput {

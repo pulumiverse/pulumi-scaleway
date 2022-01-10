@@ -146,7 +146,7 @@ type InstanceIpReverseDnsInput interface {
 }
 
 func (*InstanceIpReverseDns) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceIpReverseDns)(nil)).Elem()
+	return reflect.TypeOf((*InstanceIpReverseDns)(nil))
 }
 
 func (i *InstanceIpReverseDns) ToInstanceIpReverseDnsOutput() InstanceIpReverseDnsOutput {
@@ -160,7 +160,7 @@ func (i *InstanceIpReverseDns) ToInstanceIpReverseDnsOutputWithContext(ctx conte
 type InstanceIpReverseDnsOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpReverseDnsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceIpReverseDns)(nil)).Elem()
+	return reflect.TypeOf((*InstanceIpReverseDns)(nil))
 }
 
 func (o InstanceIpReverseDnsOutput) ToInstanceIpReverseDnsOutput() InstanceIpReverseDnsOutput {

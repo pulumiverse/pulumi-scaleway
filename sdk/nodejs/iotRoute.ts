@@ -75,18 +75,18 @@ export class IotRoute extends pulumi.CustomResource {
      */
     constructor(name: string, args: IotRouteArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IotRouteArgs | IotRouteState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IotRouteState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["database"] = state ? state.database : undefined;
-            resourceInputs["hubId"] = state ? state.hubId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rest"] = state ? state.rest : undefined;
-            resourceInputs["s3"] = state ? state.s3 : undefined;
-            resourceInputs["topic"] = state ? state.topic : undefined;
+            inputs["createdAt"] = state ? state.createdAt : undefined;
+            inputs["database"] = state ? state.database : undefined;
+            inputs["hubId"] = state ? state.hubId : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["region"] = state ? state.region : undefined;
+            inputs["rest"] = state ? state.rest : undefined;
+            inputs["s3"] = state ? state.s3 : undefined;
+            inputs["topic"] = state ? state.topic : undefined;
         } else {
             const args = argsOrState as IotRouteArgs | undefined;
             if ((!args || args.hubId === undefined) && !opts.urn) {
@@ -95,19 +95,19 @@ export class IotRoute extends pulumi.CustomResource {
             if ((!args || args.topic === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'topic'");
             }
-            resourceInputs["database"] = args ? args.database : undefined;
-            resourceInputs["hubId"] = args ? args.hubId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rest"] = args ? args.rest : undefined;
-            resourceInputs["s3"] = args ? args.s3 : undefined;
-            resourceInputs["topic"] = args ? args.topic : undefined;
-            resourceInputs["createdAt"] = undefined /*out*/;
+            inputs["database"] = args ? args.database : undefined;
+            inputs["hubId"] = args ? args.hubId : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["region"] = args ? args.region : undefined;
+            inputs["rest"] = args ? args.rest : undefined;
+            inputs["s3"] = args ? args.s3 : undefined;
+            inputs["topic"] = args ? args.topic : undefined;
+            inputs["createdAt"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(IotRoute.__pulumiType, name, resourceInputs, opts);
+        super(IotRoute.__pulumiType, name, inputs, opts);
     }
 }
 

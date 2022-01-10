@@ -97,36 +97,36 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceSnapshotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceSnapshotArgs | InstanceSnapshotState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceSnapshotState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["sizeInGb"] = state ? state.sizeInGb : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["volumeId"] = state ? state.volumeId : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["createdAt"] = state ? state.createdAt : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["sizeInGb"] = state ? state.sizeInGb : undefined;
+            inputs["type"] = state ? state.type : undefined;
+            inputs["volumeId"] = state ? state.volumeId : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceSnapshotArgs | undefined;
             if ((!args || args.volumeId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'volumeId'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["volumeId"] = args ? args.volumeId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["sizeInGb"] = undefined /*out*/;
-            resourceInputs["type"] = undefined /*out*/;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["volumeId"] = args ? args.volumeId : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["createdAt"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
+            inputs["sizeInGb"] = undefined /*out*/;
+            inputs["type"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceSnapshot.__pulumiType, name, resourceInputs, opts);
+        super(InstanceSnapshot.__pulumiType, name, inputs, opts);
     }
 }
 
