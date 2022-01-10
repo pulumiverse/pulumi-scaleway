@@ -17,7 +17,10 @@ func main() {
 		_, err = scaleway.NewInstanceServer(ctx, "example", &scaleway.InstanceServerArgs{
 			Image: pulumi.String("ubuntu_focal"),
 			IpId:  publicIp.ID(),
-			Type:  "DEV1-S",
+			Type:  pulumi.String("DEV1-S"),
+			Tags: pulumi.StringArray{
+				pulumi.String("go"),
+			},
 		})
 		if err != nil {
 			return fmt.Errorf("error creating instance server: %v", err)
