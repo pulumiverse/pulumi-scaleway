@@ -62,21 +62,21 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
-            resourceInputs["apiUrl"] = args ? args.apiUrl : undefined;
-            resourceInputs["profile"] = args ? args.profile : undefined;
-            resourceInputs["projectId"] = (args ? args.projectId : undefined) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
-            resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("SCW_DEFAULT_REGION");
-            resourceInputs["secretKey"] = (args ? args.secretKey : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
-            resourceInputs["zone"] = (args ? args.zone : undefined) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
+            inputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
+            inputs["apiUrl"] = args ? args.apiUrl : undefined;
+            inputs["profile"] = args ? args.profile : undefined;
+            inputs["projectId"] = (args ? args.projectId : undefined) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
+            inputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("SCW_DEFAULT_REGION");
+            inputs["secretKey"] = (args ? args.secretKey : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
+            inputs["zone"] = (args ? args.zone : undefined) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Provider.__pulumiType, name, resourceInputs, opts);
+        super(Provider.__pulumiType, name, inputs, opts);
     }
 }
 

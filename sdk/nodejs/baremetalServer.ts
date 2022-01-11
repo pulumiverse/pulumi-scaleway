@@ -133,24 +133,24 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: BaremetalServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BaremetalServerArgs | BaremetalServerState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BaremetalServerState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["domain"] = state ? state.domain : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["ips"] = state ? state.ips : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["offer"] = state ? state.offer : undefined;
-            resourceInputs["offerId"] = state ? state.offerId : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["os"] = state ? state.os : undefined;
-            resourceInputs["osId"] = state ? state.osId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["description"] = state ? state.description : undefined;
+            inputs["domain"] = state ? state.domain : undefined;
+            inputs["hostname"] = state ? state.hostname : undefined;
+            inputs["ips"] = state ? state.ips : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["offer"] = state ? state.offer : undefined;
+            inputs["offerId"] = state ? state.offerId : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["os"] = state ? state.os : undefined;
+            inputs["osId"] = state ? state.osId : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
+            inputs["tags"] = state ? state.tags : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as BaremetalServerArgs | undefined;
             if ((!args || args.offer === undefined) && !opts.urn) {
@@ -162,25 +162,25 @@ export class BaremetalServer extends pulumi.CustomResource {
             if ((!args || args.sshKeyIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sshKeyIds'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["offer"] = args ? args.offer : undefined;
-            resourceInputs["os"] = args ? args.os : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["sshKeyIds"] = args ? args.sshKeyIds : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["domain"] = undefined /*out*/;
-            resourceInputs["ips"] = undefined /*out*/;
-            resourceInputs["offerId"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["osId"] = undefined /*out*/;
+            inputs["description"] = args ? args.description : undefined;
+            inputs["hostname"] = args ? args.hostname : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["offer"] = args ? args.offer : undefined;
+            inputs["os"] = args ? args.os : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["sshKeyIds"] = args ? args.sshKeyIds : undefined;
+            inputs["tags"] = args ? args.tags : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["domain"] = undefined /*out*/;
+            inputs["ips"] = undefined /*out*/;
+            inputs["offerId"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
+            inputs["osId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(BaremetalServer.__pulumiType, name, resourceInputs, opts);
+        super(BaremetalServer.__pulumiType, name, inputs, opts);
     }
 }
 

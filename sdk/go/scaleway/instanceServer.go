@@ -592,7 +592,7 @@ type InstanceServerInput interface {
 }
 
 func (*InstanceServer) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceServer)(nil)).Elem()
+	return reflect.TypeOf((*InstanceServer)(nil))
 }
 
 func (i *InstanceServer) ToInstanceServerOutput() InstanceServerOutput {
@@ -606,7 +606,7 @@ func (i *InstanceServer) ToInstanceServerOutputWithContext(ctx context.Context) 
 type InstanceServerOutput struct{ *pulumi.OutputState }
 
 func (InstanceServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstanceServer)(nil)).Elem()
+	return reflect.TypeOf((*InstanceServer)(nil))
 }
 
 func (o InstanceServerOutput) ToInstanceServerOutput() InstanceServerOutput {

@@ -55,7 +55,6 @@ setup(name='pulumi_scaleway',
       package_data={
           'pulumi_scaleway': [
               'py.typed',
-              'pulumi-plugin.json',
           ]
       },
       install_requires=[

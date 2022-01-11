@@ -264,22 +264,22 @@ export class DomainRecord extends pulumi.CustomResource {
      */
     constructor(name: string, args: DomainRecordArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DomainRecordArgs | DomainRecordState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainRecordState | undefined;
-            resourceInputs["data"] = state ? state.data : undefined;
-            resourceInputs["dnsZone"] = state ? state.dnsZone : undefined;
-            resourceInputs["geoIp"] = state ? state.geoIp : undefined;
-            resourceInputs["httpService"] = state ? state.httpService : undefined;
-            resourceInputs["keepEmptyZone"] = state ? state.keepEmptyZone : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["views"] = state ? state.views : undefined;
-            resourceInputs["weighteds"] = state ? state.weighteds : undefined;
+            inputs["data"] = state ? state.data : undefined;
+            inputs["dnsZone"] = state ? state.dnsZone : undefined;
+            inputs["geoIp"] = state ? state.geoIp : undefined;
+            inputs["httpService"] = state ? state.httpService : undefined;
+            inputs["keepEmptyZone"] = state ? state.keepEmptyZone : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["priority"] = state ? state.priority : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["ttl"] = state ? state.ttl : undefined;
+            inputs["type"] = state ? state.type : undefined;
+            inputs["views"] = state ? state.views : undefined;
+            inputs["weighteds"] = state ? state.weighteds : undefined;
         } else {
             const args = argsOrState as DomainRecordArgs | undefined;
             if ((!args || args.data === undefined) && !opts.urn) {
@@ -291,23 +291,23 @@ export class DomainRecord extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["data"] = args ? args.data : undefined;
-            resourceInputs["dnsZone"] = args ? args.dnsZone : undefined;
-            resourceInputs["geoIp"] = args ? args.geoIp : undefined;
-            resourceInputs["httpService"] = args ? args.httpService : undefined;
-            resourceInputs["keepEmptyZone"] = args ? args.keepEmptyZone : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["views"] = args ? args.views : undefined;
-            resourceInputs["weighteds"] = args ? args.weighteds : undefined;
+            inputs["data"] = args ? args.data : undefined;
+            inputs["dnsZone"] = args ? args.dnsZone : undefined;
+            inputs["geoIp"] = args ? args.geoIp : undefined;
+            inputs["httpService"] = args ? args.httpService : undefined;
+            inputs["keepEmptyZone"] = args ? args.keepEmptyZone : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["priority"] = args ? args.priority : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["ttl"] = args ? args.ttl : undefined;
+            inputs["type"] = args ? args.type : undefined;
+            inputs["views"] = args ? args.views : undefined;
+            inputs["weighteds"] = args ? args.weighteds : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DomainRecord.__pulumiType, name, resourceInputs, opts);
+        super(DomainRecord.__pulumiType, name, inputs, opts);
     }
 }
 

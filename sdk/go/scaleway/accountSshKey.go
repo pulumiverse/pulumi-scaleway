@@ -144,7 +144,7 @@ type AccountSshKeyInput interface {
 }
 
 func (*AccountSshKey) ElementType() reflect.Type {
-	return reflect.TypeOf((**AccountSshKey)(nil)).Elem()
+	return reflect.TypeOf((*AccountSshKey)(nil))
 }
 
 func (i *AccountSshKey) ToAccountSshKeyOutput() AccountSshKeyOutput {
@@ -158,7 +158,7 @@ func (i *AccountSshKey) ToAccountSshKeyOutputWithContext(ctx context.Context) Ac
 type AccountSshKeyOutput struct{ *pulumi.OutputState }
 
 func (AccountSshKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AccountSshKey)(nil)).Elem()
+	return reflect.TypeOf((*AccountSshKey)(nil))
 }
 
 func (o AccountSshKeyOutput) ToAccountSshKeyOutput() AccountSshKeyOutput {

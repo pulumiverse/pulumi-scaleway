@@ -82,14 +82,14 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstancePrivateNicArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstancePrivateNicArgs | InstancePrivateNicState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstancePrivateNicState | undefined;
-            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
-            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
-            resourceInputs["serverId"] = state ? state.serverId : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["macAddress"] = state ? state.macAddress : undefined;
+            inputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
+            inputs["serverId"] = state ? state.serverId : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstancePrivateNicArgs | undefined;
             if ((!args || args.privateNetworkId === undefined) && !opts.urn) {
@@ -98,15 +98,15 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             if ((!args || args.serverId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serverId'");
             }
-            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
-            resourceInputs["serverId"] = args ? args.serverId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["macAddress"] = undefined /*out*/;
+            inputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
+            inputs["serverId"] = args ? args.serverId : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["macAddress"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstancePrivateNic.__pulumiType, name, resourceInputs, opts);
+        super(InstancePrivateNic.__pulumiType, name, inputs, opts);
     }
 }
 

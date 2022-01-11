@@ -193,7 +193,7 @@ type IotDeviceInput interface {
 }
 
 func (*IotDevice) ElementType() reflect.Type {
-	return reflect.TypeOf((**IotDevice)(nil)).Elem()
+	return reflect.TypeOf((*IotDevice)(nil))
 }
 
 func (i *IotDevice) ToIotDeviceOutput() IotDeviceOutput {
@@ -207,7 +207,7 @@ func (i *IotDevice) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceO
 type IotDeviceOutput struct{ *pulumi.OutputState }
 
 func (IotDeviceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IotDevice)(nil)).Elem()
+	return reflect.TypeOf((*IotDevice)(nil))
 }
 
 func (o IotDeviceOutput) ToIotDeviceOutput() IotDeviceOutput {

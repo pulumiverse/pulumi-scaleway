@@ -149,7 +149,7 @@ type InstancePrivateNicInput interface {
 }
 
 func (*InstancePrivateNic) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstancePrivateNic)(nil)).Elem()
+	return reflect.TypeOf((*InstancePrivateNic)(nil))
 }
 
 func (i *InstancePrivateNic) ToInstancePrivateNicOutput() InstancePrivateNicOutput {
@@ -163,7 +163,7 @@ func (i *InstancePrivateNic) ToInstancePrivateNicOutputWithContext(ctx context.C
 type InstancePrivateNicOutput struct{ *pulumi.OutputState }
 
 func (InstancePrivateNicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**InstancePrivateNic)(nil)).Elem()
+	return reflect.TypeOf((*InstancePrivateNic)(nil))
 }
 
 func (o InstancePrivateNicOutput) ToInstancePrivateNicOutput() InstancePrivateNicOutput {

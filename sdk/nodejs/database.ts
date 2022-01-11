@@ -85,30 +85,30 @@ export class Database extends pulumi.CustomResource {
      */
     constructor(name: string, args: DatabaseArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabaseArgs | DatabaseState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseState | undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["managed"] = state ? state.managed : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["owner"] = state ? state.owner : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
+            inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["managed"] = state ? state.managed : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["owner"] = state ? state.owner : undefined;
+            inputs["size"] = state ? state.size : undefined;
         } else {
             const args = argsOrState as DatabaseArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["managed"] = undefined /*out*/;
-            resourceInputs["owner"] = undefined /*out*/;
-            resourceInputs["size"] = undefined /*out*/;
+            inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["managed"] = undefined /*out*/;
+            inputs["owner"] = undefined /*out*/;
+            inputs["size"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Database.__pulumiType, name, resourceInputs, opts);
+        super(Database.__pulumiType, name, inputs, opts);
     }
 }
 

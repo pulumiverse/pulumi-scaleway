@@ -76,14 +76,14 @@ export class DatabasePrivilege extends pulumi.CustomResource {
      */
     constructor(name: string, args: DatabasePrivilegeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabasePrivilegeArgs | DatabasePrivilegeState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabasePrivilegeState | undefined;
-            resourceInputs["databaseName"] = state ? state.databaseName : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["permission"] = state ? state.permission : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
+            inputs["databaseName"] = state ? state.databaseName : undefined;
+            inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["permission"] = state ? state.permission : undefined;
+            inputs["userName"] = state ? state.userName : undefined;
         } else {
             const args = argsOrState as DatabasePrivilegeArgs | undefined;
             if ((!args || args.databaseName === undefined) && !opts.urn) {
@@ -98,15 +98,15 @@ export class DatabasePrivilege extends pulumi.CustomResource {
             if ((!args || args.userName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userName'");
             }
-            resourceInputs["databaseName"] = args ? args.databaseName : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["permission"] = args ? args.permission : undefined;
-            resourceInputs["userName"] = args ? args.userName : undefined;
+            inputs["databaseName"] = args ? args.databaseName : undefined;
+            inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["permission"] = args ? args.permission : undefined;
+            inputs["userName"] = args ? args.userName : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DatabasePrivilege.__pulumiType, name, resourceInputs, opts);
+        super(DatabasePrivilege.__pulumiType, name, inputs, opts);
     }
 }
 

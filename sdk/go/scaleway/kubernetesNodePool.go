@@ -367,7 +367,7 @@ type KubernetesNodePoolInput interface {
 }
 
 func (*KubernetesNodePool) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesNodePool)(nil)).Elem()
+	return reflect.TypeOf((*KubernetesNodePool)(nil))
 }
 
 func (i *KubernetesNodePool) ToKubernetesNodePoolOutput() KubernetesNodePoolOutput {
@@ -381,7 +381,7 @@ func (i *KubernetesNodePool) ToKubernetesNodePoolOutputWithContext(ctx context.C
 type KubernetesNodePoolOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesNodePool)(nil)).Elem()
+	return reflect.TypeOf((*KubernetesNodePool)(nil))
 }
 
 func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutput() KubernetesNodePoolOutput {

@@ -166,7 +166,7 @@ type VpcPrivateNetworkInput interface {
 }
 
 func (*VpcPrivateNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPrivateNetwork)(nil)).Elem()
+	return reflect.TypeOf((*VpcPrivateNetwork)(nil))
 }
 
 func (i *VpcPrivateNetwork) ToVpcPrivateNetworkOutput() VpcPrivateNetworkOutput {
@@ -180,7 +180,7 @@ func (i *VpcPrivateNetwork) ToVpcPrivateNetworkOutputWithContext(ctx context.Con
 type VpcPrivateNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcPrivateNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpcPrivateNetwork)(nil)).Elem()
+	return reflect.TypeOf((*VpcPrivateNetwork)(nil))
 }
 
 func (o VpcPrivateNetworkOutput) ToVpcPrivateNetworkOutput() VpcPrivateNetworkOutput {

@@ -30,9 +30,6 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_ = scaleway.LookupVpcPublicGatewayDhcpOutput(ctx, GetVpcPublicGatewayDhcpOutputArgs{
-// 			DhcpId: main.ID(),
-// 		}, nil)
 // 		return nil
 // 	})
 // }

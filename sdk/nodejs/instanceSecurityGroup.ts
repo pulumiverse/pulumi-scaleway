@@ -101,41 +101,41 @@ export class InstanceSecurityGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: InstanceSecurityGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceSecurityGroupArgs | InstanceSecurityGroupState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceSecurityGroupState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["enableDefaultSecurity"] = state ? state.enableDefaultSecurity : undefined;
-            resourceInputs["externalRules"] = state ? state.externalRules : undefined;
-            resourceInputs["inboundDefaultPolicy"] = state ? state.inboundDefaultPolicy : undefined;
-            resourceInputs["inboundRules"] = state ? state.inboundRules : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["outboundDefaultPolicy"] = state ? state.outboundDefaultPolicy : undefined;
-            resourceInputs["outboundRules"] = state ? state.outboundRules : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["stateful"] = state ? state.stateful : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["description"] = state ? state.description : undefined;
+            inputs["enableDefaultSecurity"] = state ? state.enableDefaultSecurity : undefined;
+            inputs["externalRules"] = state ? state.externalRules : undefined;
+            inputs["inboundDefaultPolicy"] = state ? state.inboundDefaultPolicy : undefined;
+            inputs["inboundRules"] = state ? state.inboundRules : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["outboundDefaultPolicy"] = state ? state.outboundDefaultPolicy : undefined;
+            inputs["outboundRules"] = state ? state.outboundRules : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["stateful"] = state ? state.stateful : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceSecurityGroupArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["enableDefaultSecurity"] = args ? args.enableDefaultSecurity : undefined;
-            resourceInputs["externalRules"] = args ? args.externalRules : undefined;
-            resourceInputs["inboundDefaultPolicy"] = args ? args.inboundDefaultPolicy : undefined;
-            resourceInputs["inboundRules"] = args ? args.inboundRules : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["outboundDefaultPolicy"] = args ? args.outboundDefaultPolicy : undefined;
-            resourceInputs["outboundRules"] = args ? args.outboundRules : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["stateful"] = args ? args.stateful : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["organizationId"] = undefined /*out*/;
+            inputs["description"] = args ? args.description : undefined;
+            inputs["enableDefaultSecurity"] = args ? args.enableDefaultSecurity : undefined;
+            inputs["externalRules"] = args ? args.externalRules : undefined;
+            inputs["inboundDefaultPolicy"] = args ? args.inboundDefaultPolicy : undefined;
+            inputs["inboundRules"] = args ? args.inboundRules : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["outboundDefaultPolicy"] = args ? args.outboundDefaultPolicy : undefined;
+            inputs["outboundRules"] = args ? args.outboundRules : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["stateful"] = args ? args.stateful : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["organizationId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceSecurityGroup.__pulumiType, name, resourceInputs, opts);
+        super(InstanceSecurityGroup.__pulumiType, name, inputs, opts);
     }
 }
 

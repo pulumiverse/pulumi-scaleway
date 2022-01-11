@@ -9,5 +9,6 @@ server = scaleway.InstanceServer("example",
     image="ubuntu_focal",
     type="DEV1-S",
     ip_id=public_ip.id,
+    tags=["python"]
 )
 

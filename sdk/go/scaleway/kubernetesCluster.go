@@ -292,7 +292,7 @@ type KubernetesClusterInput interface {
 }
 
 func (*KubernetesCluster) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesCluster)(nil)).Elem()
+	return reflect.TypeOf((*KubernetesCluster)(nil))
 }
 
 func (i *KubernetesCluster) ToKubernetesClusterOutput() KubernetesClusterOutput {
@@ -306,7 +306,7 @@ func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Con
 type KubernetesClusterOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesCluster)(nil)).Elem()
+	return reflect.TypeOf((*KubernetesCluster)(nil))
 }
 
 func (o KubernetesClusterOutput) ToKubernetesClusterOutput() KubernetesClusterOutput {

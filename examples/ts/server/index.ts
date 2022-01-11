@@ -6,4 +6,7 @@ const server = new scaleway.InstanceServer("example", {
     type: "DEV1-S",
     image: "ubuntu_focal",
     ipId: publicIp.id,
+    tags: [
+        "typescript"
+    ]
 })

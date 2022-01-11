@@ -28,9 +28,6 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_ = scaleway.LookupVpcPublicGatewayIpOutput(ctx, GetVpcPublicGatewayIpOutputArgs{
-// 			IpId: main.ID(),
-// 		}, nil)
 // 		return nil
 // 	})
 // }

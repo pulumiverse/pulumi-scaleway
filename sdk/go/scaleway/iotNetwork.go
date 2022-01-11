@@ -144,7 +144,7 @@ type IotNetworkInput interface {
 }
 
 func (*IotNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((**IotNetwork)(nil)).Elem()
+	return reflect.TypeOf((*IotNetwork)(nil))
 }
 
 func (i *IotNetwork) ToIotNetworkOutput() IotNetworkOutput {
@@ -158,7 +158,7 @@ func (i *IotNetwork) ToIotNetworkOutputWithContext(ctx context.Context) IotNetwo
 type IotNetworkOutput struct{ *pulumi.OutputState }
 
 func (IotNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IotNetwork)(nil)).Elem()
+	return reflect.TypeOf((*IotNetwork)(nil))
 }
 
 func (o IotNetworkOutput) ToIotNetworkOutput() IotNetworkOutput {

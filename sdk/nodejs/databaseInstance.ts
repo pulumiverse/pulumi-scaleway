@@ -233,32 +233,32 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     constructor(name: string, args: DatabaseInstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabaseInstanceArgs | DatabaseInstanceState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseInstanceState | undefined;
-            resourceInputs["backupScheduleFrequency"] = state ? state.backupScheduleFrequency : undefined;
-            resourceInputs["backupScheduleRetention"] = state ? state.backupScheduleRetention : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["disableBackup"] = state ? state.disableBackup : undefined;
-            resourceInputs["endpointIp"] = state ? state.endpointIp : undefined;
-            resourceInputs["endpointPort"] = state ? state.endpointPort : undefined;
-            resourceInputs["engine"] = state ? state.engine : undefined;
-            resourceInputs["isHaCluster"] = state ? state.isHaCluster : undefined;
-            resourceInputs["loadBalancers"] = state ? state.loadBalancers : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["readReplicas"] = state ? state.readReplicas : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
-            resourceInputs["volumeSizeInGb"] = state ? state.volumeSizeInGb : undefined;
-            resourceInputs["volumeType"] = state ? state.volumeType : undefined;
+            inputs["backupScheduleFrequency"] = state ? state.backupScheduleFrequency : undefined;
+            inputs["backupScheduleRetention"] = state ? state.backupScheduleRetention : undefined;
+            inputs["certificate"] = state ? state.certificate : undefined;
+            inputs["disableBackup"] = state ? state.disableBackup : undefined;
+            inputs["endpointIp"] = state ? state.endpointIp : undefined;
+            inputs["endpointPort"] = state ? state.endpointPort : undefined;
+            inputs["engine"] = state ? state.engine : undefined;
+            inputs["isHaCluster"] = state ? state.isHaCluster : undefined;
+            inputs["loadBalancers"] = state ? state.loadBalancers : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["nodeType"] = state ? state.nodeType : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["password"] = state ? state.password : undefined;
+            inputs["privateNetwork"] = state ? state.privateNetwork : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["readReplicas"] = state ? state.readReplicas : undefined;
+            inputs["region"] = state ? state.region : undefined;
+            inputs["settings"] = state ? state.settings : undefined;
+            inputs["tags"] = state ? state.tags : undefined;
+            inputs["userName"] = state ? state.userName : undefined;
+            inputs["volumeSizeInGb"] = state ? state.volumeSizeInGb : undefined;
+            inputs["volumeType"] = state ? state.volumeType : undefined;
         } else {
             const args = argsOrState as DatabaseInstanceArgs | undefined;
             if ((!args || args.engine === undefined) && !opts.urn) {
@@ -267,33 +267,33 @@ export class DatabaseInstance extends pulumi.CustomResource {
             if ((!args || args.nodeType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            resourceInputs["backupScheduleFrequency"] = args ? args.backupScheduleFrequency : undefined;
-            resourceInputs["backupScheduleRetention"] = args ? args.backupScheduleRetention : undefined;
-            resourceInputs["disableBackup"] = args ? args.disableBackup : undefined;
-            resourceInputs["engine"] = args ? args.engine : undefined;
-            resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userName"] = args ? args.userName : undefined;
-            resourceInputs["volumeSizeInGb"] = args ? args.volumeSizeInGb : undefined;
-            resourceInputs["volumeType"] = args ? args.volumeType : undefined;
-            resourceInputs["certificate"] = undefined /*out*/;
-            resourceInputs["endpointIp"] = undefined /*out*/;
-            resourceInputs["endpointPort"] = undefined /*out*/;
-            resourceInputs["loadBalancers"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["readReplicas"] = undefined /*out*/;
+            inputs["backupScheduleFrequency"] = args ? args.backupScheduleFrequency : undefined;
+            inputs["backupScheduleRetention"] = args ? args.backupScheduleRetention : undefined;
+            inputs["disableBackup"] = args ? args.disableBackup : undefined;
+            inputs["engine"] = args ? args.engine : undefined;
+            inputs["isHaCluster"] = args ? args.isHaCluster : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["nodeType"] = args ? args.nodeType : undefined;
+            inputs["password"] = args ? args.password : undefined;
+            inputs["privateNetwork"] = args ? args.privateNetwork : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["region"] = args ? args.region : undefined;
+            inputs["settings"] = args ? args.settings : undefined;
+            inputs["tags"] = args ? args.tags : undefined;
+            inputs["userName"] = args ? args.userName : undefined;
+            inputs["volumeSizeInGb"] = args ? args.volumeSizeInGb : undefined;
+            inputs["volumeType"] = args ? args.volumeType : undefined;
+            inputs["certificate"] = undefined /*out*/;
+            inputs["endpointIp"] = undefined /*out*/;
+            inputs["endpointPort"] = undefined /*out*/;
+            inputs["loadBalancers"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
+            inputs["readReplicas"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DatabaseInstance.__pulumiType, name, resourceInputs, opts);
+        super(DatabaseInstance.__pulumiType, name, inputs, opts);
     }
 }
 

@@ -30,12 +30,6 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
-// 			Name: main.Name,
-// 		}, nil)
-// 		_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
-// 			PublicGatewayId: main.ID(),
-// 		}, nil)
 // 		return nil
 // 	})
 // }

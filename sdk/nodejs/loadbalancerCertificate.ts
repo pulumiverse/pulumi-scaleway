@@ -83,40 +83,40 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
      */
     constructor(name: string, args: LoadbalancerCertificateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadbalancerCertificateArgs | LoadbalancerCertificateState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerCertificateState | undefined;
-            resourceInputs["commonName"] = state ? state.commonName : undefined;
-            resourceInputs["customCertificate"] = state ? state.customCertificate : undefined;
-            resourceInputs["fingerprint"] = state ? state.fingerprint : undefined;
-            resourceInputs["lbId"] = state ? state.lbId : undefined;
-            resourceInputs["letsencrypt"] = state ? state.letsencrypt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["notValidAfter"] = state ? state.notValidAfter : undefined;
-            resourceInputs["notValidBefore"] = state ? state.notValidBefore : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["subjectAlternativeNames"] = state ? state.subjectAlternativeNames : undefined;
+            inputs["commonName"] = state ? state.commonName : undefined;
+            inputs["customCertificate"] = state ? state.customCertificate : undefined;
+            inputs["fingerprint"] = state ? state.fingerprint : undefined;
+            inputs["lbId"] = state ? state.lbId : undefined;
+            inputs["letsencrypt"] = state ? state.letsencrypt : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["notValidAfter"] = state ? state.notValidAfter : undefined;
+            inputs["notValidBefore"] = state ? state.notValidBefore : undefined;
+            inputs["status"] = state ? state.status : undefined;
+            inputs["subjectAlternativeNames"] = state ? state.subjectAlternativeNames : undefined;
         } else {
             const args = argsOrState as LoadbalancerCertificateArgs | undefined;
             if ((!args || args.lbId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
-            resourceInputs["customCertificate"] = args ? args.customCertificate : undefined;
-            resourceInputs["lbId"] = args ? args.lbId : undefined;
-            resourceInputs["letsencrypt"] = args ? args.letsencrypt : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["commonName"] = undefined /*out*/;
-            resourceInputs["fingerprint"] = undefined /*out*/;
-            resourceInputs["notValidAfter"] = undefined /*out*/;
-            resourceInputs["notValidBefore"] = undefined /*out*/;
-            resourceInputs["status"] = undefined /*out*/;
-            resourceInputs["subjectAlternativeNames"] = undefined /*out*/;
+            inputs["customCertificate"] = args ? args.customCertificate : undefined;
+            inputs["lbId"] = args ? args.lbId : undefined;
+            inputs["letsencrypt"] = args ? args.letsencrypt : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["commonName"] = undefined /*out*/;
+            inputs["fingerprint"] = undefined /*out*/;
+            inputs["notValidAfter"] = undefined /*out*/;
+            inputs["notValidBefore"] = undefined /*out*/;
+            inputs["status"] = undefined /*out*/;
+            inputs["subjectAlternativeNames"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(LoadbalancerCertificate.__pulumiType, name, resourceInputs, opts);
+        super(LoadbalancerCertificate.__pulumiType, name, inputs, opts);
     }
 }
 

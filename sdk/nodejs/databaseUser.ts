@@ -94,15 +94,15 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     constructor(name: string, args: DatabaseUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabaseUserArgs | DatabaseUserState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseUserState | undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["isAdmin"] = state ? state.isAdmin : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["isAdmin"] = state ? state.isAdmin : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["password"] = state ? state.password : undefined;
+            inputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as DatabaseUserArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
@@ -111,16 +111,16 @@ export class DatabaseUser extends pulumi.CustomResource {
             if ((!args || args.password === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["isAdmin"] = args ? args.isAdmin : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["isAdmin"] = args ? args.isAdmin : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["password"] = args ? args.password : undefined;
+            inputs["region"] = args ? args.region : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DatabaseUser.__pulumiType, name, resourceInputs, opts);
+        super(DatabaseUser.__pulumiType, name, inputs, opts);
     }
 }
 

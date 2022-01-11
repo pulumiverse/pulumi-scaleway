@@ -174,7 +174,7 @@ type DatabaseUserInput interface {
 }
 
 func (*DatabaseUser) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseUser)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseUser)(nil))
 }
 
 func (i *DatabaseUser) ToDatabaseUserOutput() DatabaseUserOutput {
@@ -188,7 +188,7 @@ func (i *DatabaseUser) ToDatabaseUserOutputWithContext(ctx context.Context) Data
 type DatabaseUserOutput struct{ *pulumi.OutputState }
 
 func (DatabaseUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DatabaseUser)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseUser)(nil))
 }
 
 func (o DatabaseUserOutput) ToDatabaseUserOutput() DatabaseUserOutput {

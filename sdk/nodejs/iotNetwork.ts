@@ -79,17 +79,17 @@ export class IotNetwork extends pulumi.CustomResource {
      */
     constructor(name: string, args: IotNetworkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IotNetworkArgs | IotNetworkState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IotNetworkState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["hubId"] = state ? state.hubId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["secret"] = state ? state.secret : undefined;
-            resourceInputs["topicPrefix"] = state ? state.topicPrefix : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            inputs["createdAt"] = state ? state.createdAt : undefined;
+            inputs["endpoint"] = state ? state.endpoint : undefined;
+            inputs["hubId"] = state ? state.hubId : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["secret"] = state ? state.secret : undefined;
+            inputs["topicPrefix"] = state ? state.topicPrefix : undefined;
+            inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as IotNetworkArgs | undefined;
             if ((!args || args.hubId === undefined) && !opts.urn) {
@@ -98,18 +98,18 @@ export class IotNetwork extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["hubId"] = args ? args.hubId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["topicPrefix"] = args ? args.topicPrefix : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["endpoint"] = undefined /*out*/;
-            resourceInputs["secret"] = undefined /*out*/;
+            inputs["hubId"] = args ? args.hubId : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["topicPrefix"] = args ? args.topicPrefix : undefined;
+            inputs["type"] = args ? args.type : undefined;
+            inputs["createdAt"] = undefined /*out*/;
+            inputs["endpoint"] = undefined /*out*/;
+            inputs["secret"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(IotNetwork.__pulumiType, name, resourceInputs, opts);
+        super(IotNetwork.__pulumiType, name, inputs, opts);
     }
 }
 

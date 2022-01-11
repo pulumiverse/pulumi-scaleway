@@ -86,29 +86,29 @@ export class InstanceIp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: InstanceIpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceIpArgs | InstanceIpState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceIpState | undefined;
-            resourceInputs["address"] = state ? state.address : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["reverse"] = state ? state.reverse : undefined;
-            resourceInputs["serverId"] = state ? state.serverId : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["address"] = state ? state.address : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["reverse"] = state ? state.reverse : undefined;
+            inputs["serverId"] = state ? state.serverId : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceIpArgs | undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["address"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["reverse"] = undefined /*out*/;
-            resourceInputs["serverId"] = undefined /*out*/;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["address"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
+            inputs["reverse"] = undefined /*out*/;
+            inputs["serverId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceIp.__pulumiType, name, resourceInputs, opts);
+        super(InstanceIp.__pulumiType, name, inputs, opts);
     }
 }
 

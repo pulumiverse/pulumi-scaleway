@@ -305,36 +305,36 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceServerArgs | InstanceServerState, opts?: pulumi.CustomResourceOptions) {
-        let resourceInputs: pulumi.Inputs = {};
+        let inputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceServerState | undefined;
-            resourceInputs["additionalVolumeIds"] = state ? state.additionalVolumeIds : undefined;
-            resourceInputs["bootType"] = state ? state.bootType : undefined;
-            resourceInputs["bootscriptId"] = state ? state.bootscriptId : undefined;
-            resourceInputs["cloudInit"] = state ? state.cloudInit : undefined;
-            resourceInputs["enableDynamicIp"] = state ? state.enableDynamicIp : undefined;
-            resourceInputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
-            resourceInputs["image"] = state ? state.image : undefined;
-            resourceInputs["ipId"] = state ? state.ipId : undefined;
-            resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
-            resourceInputs["ipv6Gateway"] = state ? state.ipv6Gateway : undefined;
-            resourceInputs["ipv6PrefixLength"] = state ? state.ipv6PrefixLength : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
-            resourceInputs["placementGroupPolicyRespected"] = state ? state.placementGroupPolicyRespected : undefined;
-            resourceInputs["privateIp"] = state ? state.privateIp : undefined;
-            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["publicIp"] = state ? state.publicIp : undefined;
-            resourceInputs["rootVolume"] = state ? state.rootVolume : undefined;
-            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["userData"] = state ? state.userData : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            inputs["additionalVolumeIds"] = state ? state.additionalVolumeIds : undefined;
+            inputs["bootType"] = state ? state.bootType : undefined;
+            inputs["bootscriptId"] = state ? state.bootscriptId : undefined;
+            inputs["cloudInit"] = state ? state.cloudInit : undefined;
+            inputs["enableDynamicIp"] = state ? state.enableDynamicIp : undefined;
+            inputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
+            inputs["image"] = state ? state.image : undefined;
+            inputs["ipId"] = state ? state.ipId : undefined;
+            inputs["ipv6Address"] = state ? state.ipv6Address : undefined;
+            inputs["ipv6Gateway"] = state ? state.ipv6Gateway : undefined;
+            inputs["ipv6PrefixLength"] = state ? state.ipv6PrefixLength : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["organizationId"] = state ? state.organizationId : undefined;
+            inputs["placementGroupId"] = state ? state.placementGroupId : undefined;
+            inputs["placementGroupPolicyRespected"] = state ? state.placementGroupPolicyRespected : undefined;
+            inputs["privateIp"] = state ? state.privateIp : undefined;
+            inputs["privateNetworks"] = state ? state.privateNetworks : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["publicIp"] = state ? state.publicIp : undefined;
+            inputs["rootVolume"] = state ? state.rootVolume : undefined;
+            inputs["securityGroupId"] = state ? state.securityGroupId : undefined;
+            inputs["state"] = state ? state.state : undefined;
+            inputs["tags"] = state ? state.tags : undefined;
+            inputs["type"] = state ? state.type : undefined;
+            inputs["userData"] = state ? state.userData : undefined;
+            inputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceServerArgs | undefined;
             if ((!args || args.image === undefined) && !opts.urn) {
@@ -343,37 +343,37 @@ export class InstanceServer extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["additionalVolumeIds"] = args ? args.additionalVolumeIds : undefined;
-            resourceInputs["bootType"] = args ? args.bootType : undefined;
-            resourceInputs["bootscriptId"] = args ? args.bootscriptId : undefined;
-            resourceInputs["cloudInit"] = args ? args.cloudInit : undefined;
-            resourceInputs["enableDynamicIp"] = args ? args.enableDynamicIp : undefined;
-            resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
-            resourceInputs["image"] = args ? args.image : undefined;
-            resourceInputs["ipId"] = args ? args.ipId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
-            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
-            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["userData"] = args ? args.userData : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["ipv6Address"] = undefined /*out*/;
-            resourceInputs["ipv6Gateway"] = undefined /*out*/;
-            resourceInputs["ipv6PrefixLength"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["placementGroupPolicyRespected"] = undefined /*out*/;
-            resourceInputs["privateIp"] = undefined /*out*/;
-            resourceInputs["publicIp"] = undefined /*out*/;
+            inputs["additionalVolumeIds"] = args ? args.additionalVolumeIds : undefined;
+            inputs["bootType"] = args ? args.bootType : undefined;
+            inputs["bootscriptId"] = args ? args.bootscriptId : undefined;
+            inputs["cloudInit"] = args ? args.cloudInit : undefined;
+            inputs["enableDynamicIp"] = args ? args.enableDynamicIp : undefined;
+            inputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
+            inputs["image"] = args ? args.image : undefined;
+            inputs["ipId"] = args ? args.ipId : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["placementGroupId"] = args ? args.placementGroupId : undefined;
+            inputs["privateNetworks"] = args ? args.privateNetworks : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["rootVolume"] = args ? args.rootVolume : undefined;
+            inputs["securityGroupId"] = args ? args.securityGroupId : undefined;
+            inputs["state"] = args ? args.state : undefined;
+            inputs["tags"] = args ? args.tags : undefined;
+            inputs["type"] = args ? args.type : undefined;
+            inputs["userData"] = args ? args.userData : undefined;
+            inputs["zone"] = args ? args.zone : undefined;
+            inputs["ipv6Address"] = undefined /*out*/;
+            inputs["ipv6Gateway"] = undefined /*out*/;
+            inputs["ipv6PrefixLength"] = undefined /*out*/;
+            inputs["organizationId"] = undefined /*out*/;
+            inputs["placementGroupPolicyRespected"] = undefined /*out*/;
+            inputs["privateIp"] = undefined /*out*/;
+            inputs["publicIp"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(InstanceServer.__pulumiType, name, resourceInputs, opts);
+        super(InstanceServer.__pulumiType, name, inputs, opts);
     }
 }
 

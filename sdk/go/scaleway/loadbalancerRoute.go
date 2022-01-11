@@ -109,7 +109,7 @@ type LoadbalancerRouteInput interface {
 }
 
 func (*LoadbalancerRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerRoute)(nil)).Elem()
+	return reflect.TypeOf((*LoadbalancerRoute)(nil))
 }
 
 func (i *LoadbalancerRoute) ToLoadbalancerRouteOutput() LoadbalancerRouteOutput {
@@ -123,7 +123,7 @@ func (i *LoadbalancerRoute) ToLoadbalancerRouteOutputWithContext(ctx context.Con
 type LoadbalancerRouteOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LoadbalancerRoute)(nil)).Elem()
+	return reflect.TypeOf((*LoadbalancerRoute)(nil))
 }
 
 func (o LoadbalancerRouteOutput) ToLoadbalancerRouteOutput() LoadbalancerRouteOutput {
