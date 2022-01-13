@@ -79,6 +79,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:          []string{"pulumi", "scaleway"},
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		License:           "Apache-2.0",
+		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
 		PluginDownloadURL: "https://dl.briggs.work/pulumi/releases/plugins",

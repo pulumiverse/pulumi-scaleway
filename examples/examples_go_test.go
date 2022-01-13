@@ -22,7 +22,7 @@ func TestAccWebserverGo(t *testing.T) {
 
 func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
-	
+
 	baseGo := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
