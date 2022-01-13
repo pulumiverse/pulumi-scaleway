@@ -175,32 +175,32 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     constructor(name: string, args: KubernetesNodePoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: KubernetesNodePoolArgs | KubernetesNodePoolState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KubernetesNodePoolState | undefined;
-            inputs["autohealing"] = state ? state.autohealing : undefined;
-            inputs["autoscaling"] = state ? state.autoscaling : undefined;
-            inputs["clusterId"] = state ? state.clusterId : undefined;
-            inputs["containerRuntime"] = state ? state.containerRuntime : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["currentSize"] = state ? state.currentSize : undefined;
-            inputs["kubeletArgs"] = state ? state.kubeletArgs : undefined;
-            inputs["maxSize"] = state ? state.maxSize : undefined;
-            inputs["minSize"] = state ? state.minSize : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nodeType"] = state ? state.nodeType : undefined;
-            inputs["nodes"] = state ? state.nodes : undefined;
-            inputs["placementGroupId"] = state ? state.placementGroupId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["size"] = state ? state.size : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
-            inputs["upgradePolicy"] = state ? state.upgradePolicy : undefined;
-            inputs["version"] = state ? state.version : undefined;
-            inputs["waitForPoolReady"] = state ? state.waitForPoolReady : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["autohealing"] = state ? state.autohealing : undefined;
+            resourceInputs["autoscaling"] = state ? state.autoscaling : undefined;
+            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["containerRuntime"] = state ? state.containerRuntime : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["currentSize"] = state ? state.currentSize : undefined;
+            resourceInputs["kubeletArgs"] = state ? state.kubeletArgs : undefined;
+            resourceInputs["maxSize"] = state ? state.maxSize : undefined;
+            resourceInputs["minSize"] = state ? state.minSize : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
+            resourceInputs["nodes"] = state ? state.nodes : undefined;
+            resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["upgradePolicy"] = state ? state.upgradePolicy : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["waitForPoolReady"] = state ? state.waitForPoolReady : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as KubernetesNodePoolArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
@@ -212,33 +212,31 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             if ((!args || args.size === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
-            inputs["autohealing"] = args ? args.autohealing : undefined;
-            inputs["autoscaling"] = args ? args.autoscaling : undefined;
-            inputs["clusterId"] = args ? args.clusterId : undefined;
-            inputs["containerRuntime"] = args ? args.containerRuntime : undefined;
-            inputs["kubeletArgs"] = args ? args.kubeletArgs : undefined;
-            inputs["maxSize"] = args ? args.maxSize : undefined;
-            inputs["minSize"] = args ? args.minSize : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nodeType"] = args ? args.nodeType : undefined;
-            inputs["placementGroupId"] = args ? args.placementGroupId : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["size"] = args ? args.size : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["upgradePolicy"] = args ? args.upgradePolicy : undefined;
-            inputs["waitForPoolReady"] = args ? args.waitForPoolReady : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["currentSize"] = undefined /*out*/;
-            inputs["nodes"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["autohealing"] = args ? args.autohealing : undefined;
+            resourceInputs["autoscaling"] = args ? args.autoscaling : undefined;
+            resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["containerRuntime"] = args ? args.containerRuntime : undefined;
+            resourceInputs["kubeletArgs"] = args ? args.kubeletArgs : undefined;
+            resourceInputs["maxSize"] = args ? args.maxSize : undefined;
+            resourceInputs["minSize"] = args ? args.minSize : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
+            resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["upgradePolicy"] = args ? args.upgradePolicy : undefined;
+            resourceInputs["waitForPoolReady"] = args ? args.waitForPoolReady : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["currentSize"] = undefined /*out*/;
+            resourceInputs["nodes"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(KubernetesNodePool.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(KubernetesNodePool.__pulumiType, name, resourceInputs, opts);
     }
 }
 

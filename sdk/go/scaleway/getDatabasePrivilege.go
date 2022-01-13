@@ -37,6 +37,7 @@ import (
 // }
 // ```
 func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeArgs, opts ...pulumi.InvokeOption) (*LookupDatabasePrivilegeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabasePrivilegeResult
 	err := ctx.Invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args, &rv, opts...)
 	if err != nil {

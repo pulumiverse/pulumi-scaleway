@@ -83,6 +83,7 @@ func NewVpcPublicGateway(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcPublicGateway
 	err := ctx.RegisterResource("scaleway:index/vpcPublicGateway:VpcPublicGateway", name, args, &resource, opts...)
 	if err != nil {
@@ -201,7 +202,7 @@ type VpcPublicGatewayInput interface {
 }
 
 func (*VpcPublicGateway) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPublicGateway)(nil))
+	return reflect.TypeOf((**VpcPublicGateway)(nil)).Elem()
 }
 
 func (i *VpcPublicGateway) ToVpcPublicGatewayOutput() VpcPublicGatewayOutput {
@@ -215,7 +216,7 @@ func (i *VpcPublicGateway) ToVpcPublicGatewayOutputWithContext(ctx context.Conte
 type VpcPublicGatewayOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPublicGateway)(nil))
+	return reflect.TypeOf((**VpcPublicGateway)(nil)).Elem()
 }
 
 func (o VpcPublicGatewayOutput) ToVpcPublicGatewayOutput() VpcPublicGatewayOutput {

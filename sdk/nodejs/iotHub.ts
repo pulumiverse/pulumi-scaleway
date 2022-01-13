@@ -119,54 +119,52 @@ export class IotHub extends pulumi.CustomResource {
      */
     constructor(name: string, args: IotHubArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IotHubArgs | IotHubState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IotHubState | undefined;
-            inputs["connectedDeviceCount"] = state ? state.connectedDeviceCount : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["deviceAutoProvisioning"] = state ? state.deviceAutoProvisioning : undefined;
-            inputs["deviceCount"] = state ? state.deviceCount : undefined;
-            inputs["disableEvents"] = state ? state.disableEvents : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["endpoint"] = state ? state.endpoint : undefined;
-            inputs["eventsTopicPrefix"] = state ? state.eventsTopicPrefix : undefined;
-            inputs["hubCa"] = state ? state.hubCa : undefined;
-            inputs["hubCaChallenge"] = state ? state.hubCaChallenge : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["productPlan"] = state ? state.productPlan : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["connectedDeviceCount"] = state ? state.connectedDeviceCount : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["deviceAutoProvisioning"] = state ? state.deviceAutoProvisioning : undefined;
+            resourceInputs["deviceCount"] = state ? state.deviceCount : undefined;
+            resourceInputs["disableEvents"] = state ? state.disableEvents : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
+            resourceInputs["eventsTopicPrefix"] = state ? state.eventsTopicPrefix : undefined;
+            resourceInputs["hubCa"] = state ? state.hubCa : undefined;
+            resourceInputs["hubCaChallenge"] = state ? state.hubCaChallenge : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["productPlan"] = state ? state.productPlan : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as IotHubArgs | undefined;
             if ((!args || args.productPlan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'productPlan'");
             }
-            inputs["deviceAutoProvisioning"] = args ? args.deviceAutoProvisioning : undefined;
-            inputs["disableEvents"] = args ? args.disableEvents : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["eventsTopicPrefix"] = args ? args.eventsTopicPrefix : undefined;
-            inputs["hubCa"] = args ? args.hubCa : undefined;
-            inputs["hubCaChallenge"] = args ? args.hubCaChallenge : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["productPlan"] = args ? args.productPlan : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["connectedDeviceCount"] = undefined /*out*/;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["deviceCount"] = undefined /*out*/;
-            inputs["endpoint"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["deviceAutoProvisioning"] = args ? args.deviceAutoProvisioning : undefined;
+            resourceInputs["disableEvents"] = args ? args.disableEvents : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["eventsTopicPrefix"] = args ? args.eventsTopicPrefix : undefined;
+            resourceInputs["hubCa"] = args ? args.hubCa : undefined;
+            resourceInputs["hubCaChallenge"] = args ? args.hubCaChallenge : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["productPlan"] = args ? args.productPlan : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["connectedDeviceCount"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["deviceCount"] = undefined /*out*/;
+            resourceInputs["endpoint"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IotHub.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IotHub.__pulumiType, name, resourceInputs, opts);
     }
 }
 

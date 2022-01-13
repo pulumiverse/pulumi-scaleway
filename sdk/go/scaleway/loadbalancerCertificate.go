@@ -46,6 +46,7 @@ func NewLoadbalancerCertificate(ctx *pulumi.Context,
 	if args.LbId == nil {
 		return nil, errors.New("invalid value for required argument 'LbId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LoadbalancerCertificate
 	err := ctx.RegisterResource("scaleway:index/loadbalancerCertificate:LoadbalancerCertificate", name, args, &resource, opts...)
 	if err != nil {
@@ -152,7 +153,7 @@ type LoadbalancerCertificateInput interface {
 }
 
 func (*LoadbalancerCertificate) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerCertificate)(nil))
+	return reflect.TypeOf((**LoadbalancerCertificate)(nil)).Elem()
 }
 
 func (i *LoadbalancerCertificate) ToLoadbalancerCertificateOutput() LoadbalancerCertificateOutput {
@@ -166,7 +167,7 @@ func (i *LoadbalancerCertificate) ToLoadbalancerCertificateOutputWithContext(ctx
 type LoadbalancerCertificateOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerCertificateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerCertificate)(nil))
+	return reflect.TypeOf((**LoadbalancerCertificate)(nil)).Elem()
 }
 
 func (o LoadbalancerCertificateOutput) ToLoadbalancerCertificateOutput() LoadbalancerCertificateOutput {

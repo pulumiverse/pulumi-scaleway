@@ -136,7 +136,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayIp("main")
-    ip_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway_ip(ip_id=id))
+    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
     """
     __args__ = dict()
@@ -145,6 +145,8 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp', __args__, opts=opts, typ=GetVpcPublicGatewayIpResult).value
 
     return AwaitableGetVpcPublicGatewayIpResult(
@@ -173,7 +175,7 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayIp("main")
-    ip_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway_ip(ip_id=id))
+    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
     """
     ...

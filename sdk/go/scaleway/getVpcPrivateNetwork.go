@@ -16,6 +16,7 @@ import (
 //
 // N/A, the usage will be meaningful in the next releases of VPC.
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult
 	err := ctx.Invoke("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args, &rv, opts...)
 	if err != nil {

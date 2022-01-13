@@ -71,6 +71,7 @@ func NewDatabasePrivilege(ctx *pulumi.Context,
 	if args.UserName == nil {
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DatabasePrivilege
 	err := ctx.RegisterResource("scaleway:index/databasePrivilege:DatabasePrivilege", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type DatabasePrivilegeInput interface {
 }
 
 func (*DatabasePrivilege) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabasePrivilege)(nil))
+	return reflect.TypeOf((**DatabasePrivilege)(nil)).Elem()
 }
 
 func (i *DatabasePrivilege) ToDatabasePrivilegeOutput() DatabasePrivilegeOutput {
@@ -167,7 +168,7 @@ func (i *DatabasePrivilege) ToDatabasePrivilegeOutputWithContext(ctx context.Con
 type DatabasePrivilegeOutput struct{ *pulumi.OutputState }
 
 func (DatabasePrivilegeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabasePrivilege)(nil))
+	return reflect.TypeOf((**DatabasePrivilege)(nil)).Elem()
 }
 
 func (o DatabasePrivilegeOutput) ToDatabasePrivilegeOutput() DatabasePrivilegeOutput {

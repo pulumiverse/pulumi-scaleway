@@ -30,11 +30,18 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
+// 			Name: main.Name,
+// 		}, nil)
+// 		_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
+// 			PublicGatewayId: main.ID(),
+// 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
 func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args, &rv, opts...)
 	if err != nil {

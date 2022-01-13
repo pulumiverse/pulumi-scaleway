@@ -35,6 +35,7 @@ func NewLoadbalancerRoute(ctx *pulumi.Context,
 	if args.FrontendId == nil {
 		return nil, errors.New("invalid value for required argument 'FrontendId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LoadbalancerRoute
 	err := ctx.RegisterResource("scaleway:index/loadbalancerRoute:LoadbalancerRoute", name, args, &resource, opts...)
 	if err != nil {
@@ -109,7 +110,7 @@ type LoadbalancerRouteInput interface {
 }
 
 func (*LoadbalancerRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerRoute)(nil))
+	return reflect.TypeOf((**LoadbalancerRoute)(nil)).Elem()
 }
 
 func (i *LoadbalancerRoute) ToLoadbalancerRouteOutput() LoadbalancerRouteOutput {
@@ -123,7 +124,7 @@ func (i *LoadbalancerRoute) ToLoadbalancerRouteOutputWithContext(ctx context.Con
 type LoadbalancerRouteOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerRoute)(nil))
+	return reflect.TypeOf((**LoadbalancerRoute)(nil)).Elem()
 }
 
 func (o LoadbalancerRouteOutput) ToLoadbalancerRouteOutput() LoadbalancerRouteOutput {

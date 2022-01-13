@@ -185,21 +185,21 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     constructor(name: string, args: LoadbalancerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadbalancerArgs | LoadbalancerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerState | undefined;
-            inputs["ipAddress"] = state ? state.ipAddress : undefined;
-            inputs["ipId"] = state ? state.ipId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["releaseIp"] = state ? state.releaseIp : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["releaseIp"] = state ? state.releaseIp : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as LoadbalancerArgs | undefined;
             if ((!args || args.ipId === undefined) && !opts.urn) {
@@ -208,22 +208,20 @@ export class Loadbalancer extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["ipId"] = args ? args.ipId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["releaseIp"] = args ? args.releaseIp : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["ipAddress"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["region"] = undefined /*out*/;
+            resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["releaseIp"] = args ? args.releaseIp : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipAddress"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["region"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Loadbalancer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Loadbalancer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -72,6 +72,7 @@ func NewRegistryNamespace(ctx *pulumi.Context,
 		args = &RegistryNamespaceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RegistryNamespace
 	err := ctx.RegisterResource("scaleway:index/registryNamespace:RegistryNamespace", name, args, &resource, opts...)
 	if err != nil {
@@ -170,7 +171,7 @@ type RegistryNamespaceInput interface {
 }
 
 func (*RegistryNamespace) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegistryNamespace)(nil))
+	return reflect.TypeOf((**RegistryNamespace)(nil)).Elem()
 }
 
 func (i *RegistryNamespace) ToRegistryNamespaceOutput() RegistryNamespaceOutput {
@@ -184,7 +185,7 @@ func (i *RegistryNamespace) ToRegistryNamespaceOutputWithContext(ctx context.Con
 type RegistryNamespaceOutput struct{ *pulumi.OutputState }
 
 func (RegistryNamespaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegistryNamespace)(nil))
+	return reflect.TypeOf((**RegistryNamespace)(nil)).Elem()
 }
 
 func (o RegistryNamespaceOutput) ToRegistryNamespaceOutput() RegistryNamespaceOutput {

@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupKubernetesNodePool(ctx *pulumi.Context, args *LookupKubernetesNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesNodePoolResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesNodePoolResult
 	err := ctx.Invoke("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args, &rv, opts...)
 	if err != nil {

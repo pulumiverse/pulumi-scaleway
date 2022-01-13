@@ -39,6 +39,7 @@ func NewInstanceSecurityGroupRules(ctx *pulumi.Context,
 	if args.SecurityGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'SecurityGroupId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceSecurityGroupRules
 	err := ctx.RegisterResource("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type InstanceSecurityGroupRulesInput interface {
 }
 
 func (*InstanceSecurityGroupRules) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceSecurityGroupRules)(nil))
+	return reflect.TypeOf((**InstanceSecurityGroupRules)(nil)).Elem()
 }
 
 func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput {
@@ -127,7 +128,7 @@ func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutputWithConte
 type InstanceSecurityGroupRulesOutput struct{ *pulumi.OutputState }
 
 func (InstanceSecurityGroupRulesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceSecurityGroupRules)(nil))
+	return reflect.TypeOf((**InstanceSecurityGroupRules)(nil)).Elem()
 }
 
 func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutput() InstanceSecurityGroupRulesOutput {

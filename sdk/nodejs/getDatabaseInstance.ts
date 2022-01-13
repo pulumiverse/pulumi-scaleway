@@ -26,9 +26,7 @@ export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulum
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", {
         "instanceId": args.instanceId,
         "name": args.name,

@@ -110,6 +110,7 @@ func NewBaremetalServer(ctx *pulumi.Context,
 	if args.SshKeyIds == nil {
 		return nil, errors.New("invalid value for required argument 'SshKeyIds'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource BaremetalServer
 	err := ctx.RegisterResource("scaleway:index/baremetalServer:BaremetalServer", name, args, &resource, opts...)
 	if err != nil {
@@ -268,7 +269,7 @@ type BaremetalServerInput interface {
 }
 
 func (*BaremetalServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*BaremetalServer)(nil))
+	return reflect.TypeOf((**BaremetalServer)(nil)).Elem()
 }
 
 func (i *BaremetalServer) ToBaremetalServerOutput() BaremetalServerOutput {
@@ -282,7 +283,7 @@ func (i *BaremetalServer) ToBaremetalServerOutputWithContext(ctx context.Context
 type BaremetalServerOutput struct{ *pulumi.OutputState }
 
 func (BaremetalServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BaremetalServer)(nil))
+	return reflect.TypeOf((**BaremetalServer)(nil)).Elem()
 }
 
 func (o BaremetalServerOutput) ToBaremetalServerOutput() BaremetalServerOutput {

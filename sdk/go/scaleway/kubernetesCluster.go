@@ -84,6 +84,7 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("scaleway:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
 	if err != nil {
@@ -292,7 +293,7 @@ type KubernetesClusterInput interface {
 }
 
 func (*KubernetesCluster) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesCluster)(nil))
+	return reflect.TypeOf((**KubernetesCluster)(nil)).Elem()
 }
 
 func (i *KubernetesCluster) ToKubernetesClusterOutput() KubernetesClusterOutput {
@@ -306,7 +307,7 @@ func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Con
 type KubernetesClusterOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesCluster)(nil))
+	return reflect.TypeOf((**KubernetesCluster)(nil)).Elem()
 }
 
 func (o KubernetesClusterOutput) ToKubernetesClusterOutput() KubernetesClusterOutput {

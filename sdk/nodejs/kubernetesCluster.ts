@@ -146,33 +146,33 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     constructor(name: string, args: KubernetesClusterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: KubernetesClusterArgs | KubernetesClusterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KubernetesClusterState | undefined;
-            inputs["admissionPlugins"] = state ? state.admissionPlugins : undefined;
-            inputs["apiserverCertSans"] = state ? state.apiserverCertSans : undefined;
-            inputs["apiserverUrl"] = state ? state.apiserverUrl : undefined;
-            inputs["autoUpgrade"] = state ? state.autoUpgrade : undefined;
-            inputs["autoscalerConfig"] = state ? state.autoscalerConfig : undefined;
-            inputs["cni"] = state ? state.cni : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["deleteAdditionalResources"] = state ? state.deleteAdditionalResources : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["featureGates"] = state ? state.featureGates : undefined;
-            inputs["kubeconfigs"] = state ? state.kubeconfigs : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["openIdConnectConfig"] = state ? state.openIdConnectConfig : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
-            inputs["upgradeAvailable"] = state ? state.upgradeAvailable : undefined;
-            inputs["version"] = state ? state.version : undefined;
-            inputs["wildcardDns"] = state ? state.wildcardDns : undefined;
+            resourceInputs["admissionPlugins"] = state ? state.admissionPlugins : undefined;
+            resourceInputs["apiserverCertSans"] = state ? state.apiserverCertSans : undefined;
+            resourceInputs["apiserverUrl"] = state ? state.apiserverUrl : undefined;
+            resourceInputs["autoUpgrade"] = state ? state.autoUpgrade : undefined;
+            resourceInputs["autoscalerConfig"] = state ? state.autoscalerConfig : undefined;
+            resourceInputs["cni"] = state ? state.cni : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["deleteAdditionalResources"] = state ? state.deleteAdditionalResources : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["featureGates"] = state ? state.featureGates : undefined;
+            resourceInputs["kubeconfigs"] = state ? state.kubeconfigs : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["openIdConnectConfig"] = state ? state.openIdConnectConfig : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["upgradeAvailable"] = state ? state.upgradeAvailable : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["wildcardDns"] = state ? state.wildcardDns : undefined;
         } else {
             const args = argsOrState as KubernetesClusterArgs | undefined;
             if ((!args || args.cni === undefined) && !opts.urn) {
@@ -181,34 +181,32 @@ export class KubernetesCluster extends pulumi.CustomResource {
             if ((!args || args.version === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            inputs["admissionPlugins"] = args ? args.admissionPlugins : undefined;
-            inputs["apiserverCertSans"] = args ? args.apiserverCertSans : undefined;
-            inputs["autoUpgrade"] = args ? args.autoUpgrade : undefined;
-            inputs["autoscalerConfig"] = args ? args.autoscalerConfig : undefined;
-            inputs["cni"] = args ? args.cni : undefined;
-            inputs["deleteAdditionalResources"] = args ? args.deleteAdditionalResources : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["featureGates"] = args ? args.featureGates : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["openIdConnectConfig"] = args ? args.openIdConnectConfig : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["version"] = args ? args.version : undefined;
-            inputs["apiserverUrl"] = undefined /*out*/;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["kubeconfigs"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
-            inputs["upgradeAvailable"] = undefined /*out*/;
-            inputs["wildcardDns"] = undefined /*out*/;
+            resourceInputs["admissionPlugins"] = args ? args.admissionPlugins : undefined;
+            resourceInputs["apiserverCertSans"] = args ? args.apiserverCertSans : undefined;
+            resourceInputs["autoUpgrade"] = args ? args.autoUpgrade : undefined;
+            resourceInputs["autoscalerConfig"] = args ? args.autoscalerConfig : undefined;
+            resourceInputs["cni"] = args ? args.cni : undefined;
+            resourceInputs["deleteAdditionalResources"] = args ? args.deleteAdditionalResources : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["featureGates"] = args ? args.featureGates : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["openIdConnectConfig"] = args ? args.openIdConnectConfig : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["apiserverUrl"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["kubeconfigs"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["upgradeAvailable"] = undefined /*out*/;
+            resourceInputs["wildcardDns"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(KubernetesCluster.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(KubernetesCluster.__pulumiType, name, resourceInputs, opts);
     }
 }
 

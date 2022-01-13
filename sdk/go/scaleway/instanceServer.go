@@ -340,6 +340,7 @@ func NewInstanceServer(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceServer
 	err := ctx.RegisterResource("scaleway:index/instanceServer:InstanceServer", name, args, &resource, opts...)
 	if err != nil {
@@ -592,7 +593,7 @@ type InstanceServerInput interface {
 }
 
 func (*InstanceServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceServer)(nil))
+	return reflect.TypeOf((**InstanceServer)(nil)).Elem()
 }
 
 func (i *InstanceServer) ToInstanceServerOutput() InstanceServerOutput {
@@ -606,7 +607,7 @@ func (i *InstanceServer) ToInstanceServerOutputWithContext(ctx context.Context) 
 type InstanceServerOutput struct{ *pulumi.OutputState }
 
 func (InstanceServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceServer)(nil))
+	return reflect.TypeOf((**InstanceServer)(nil)).Elem()
 }
 
 func (o InstanceServerOutput) ToInstanceServerOutput() InstanceServerOutput {

@@ -100,6 +100,7 @@ func NewVpcPublicGatewayDhcp(ctx *pulumi.Context,
 	if args.Subnet == nil {
 		return nil, errors.New("invalid value for required argument 'Subnet'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcPublicGatewayDhcp
 	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", name, args, &resource, opts...)
 	if err != nil {
@@ -302,7 +303,7 @@ type VpcPublicGatewayDhcpInput interface {
 }
 
 func (*VpcPublicGatewayDhcp) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPublicGatewayDhcp)(nil))
+	return reflect.TypeOf((**VpcPublicGatewayDhcp)(nil)).Elem()
 }
 
 func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput {
@@ -316,7 +317,7 @@ func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutputWithContext(ctx conte
 type VpcPublicGatewayDhcpOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayDhcpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPublicGatewayDhcp)(nil))
+	return reflect.TypeOf((**VpcPublicGatewayDhcp)(nil)).Elem()
 }
 
 func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutput() VpcPublicGatewayDhcpOutput {

@@ -31,14 +31,14 @@ namespace Pulumi.Scaleway
         ///         {
         ///             Type = "VPC-GW-S",
         ///         });
-        ///         var pgTestByName = main.Name.Apply(name =&gt; Scaleway.GetVpcPublicGateway.InvokeAsync(new Scaleway.GetVpcPublicGatewayArgs
+        ///         var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
         ///         {
-        ///             Name = name,
-        ///         }));
-        ///         var pgTestById = main.Id.Apply(id =&gt; Scaleway.GetVpcPublicGateway.InvokeAsync(new Scaleway.GetVpcPublicGatewayArgs
+        ///             Name = main.Name,
+        ///         });
+        ///         var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
         ///         {
-        ///             PublicGatewayId = id,
-        ///         }));
+        ///             PublicGatewayId = main.Id,
+        ///         });
         ///     }
         /// 
         /// }
@@ -68,14 +68,14 @@ namespace Pulumi.Scaleway
         ///         {
         ///             Type = "VPC-GW-S",
         ///         });
-        ///         var pgTestByName = main.Name.Apply(name =&gt; Scaleway.GetVpcPublicGateway.InvokeAsync(new Scaleway.GetVpcPublicGatewayArgs
+        ///         var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
         ///         {
-        ///             Name = name,
-        ///         }));
-        ///         var pgTestById = main.Id.Apply(id =&gt; Scaleway.GetVpcPublicGateway.InvokeAsync(new Scaleway.GetVpcPublicGatewayArgs
+        ///             Name = main.Name,
+        ///         });
+        ///         var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
         ///         {
-        ///             PublicGatewayId = id,
-        ///         }));
+        ///             PublicGatewayId = main.Id,
+        ///         });
         ///     }
         /// 
         /// }

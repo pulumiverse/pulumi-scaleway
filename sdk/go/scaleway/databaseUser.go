@@ -84,6 +84,7 @@ func NewDatabaseUser(ctx *pulumi.Context,
 	if args.Password == nil {
 		return nil, errors.New("invalid value for required argument 'Password'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DatabaseUser
 	err := ctx.RegisterResource("scaleway:index/databaseUser:DatabaseUser", name, args, &resource, opts...)
 	if err != nil {
@@ -174,7 +175,7 @@ type DatabaseUserInput interface {
 }
 
 func (*DatabaseUser) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseUser)(nil))
+	return reflect.TypeOf((**DatabaseUser)(nil)).Elem()
 }
 
 func (i *DatabaseUser) ToDatabaseUserOutput() DatabaseUserOutput {
@@ -188,7 +189,7 @@ func (i *DatabaseUser) ToDatabaseUserOutputWithContext(ctx context.Context) Data
 type DatabaseUserOutput struct{ *pulumi.OutputState }
 
 func (DatabaseUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseUser)(nil))
+	return reflect.TypeOf((**DatabaseUser)(nil)).Elem()
 }
 
 func (o DatabaseUserOutput) ToDatabaseUserOutput() DatabaseUserOutput {

@@ -54,13 +54,13 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      */
     constructor(name: string, args: LoadbalancerRouteArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadbalancerRouteArgs | LoadbalancerRouteState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerRouteState | undefined;
-            inputs["backendId"] = state ? state.backendId : undefined;
-            inputs["frontendId"] = state ? state.frontendId : undefined;
-            inputs["matchSni"] = state ? state.matchSni : undefined;
+            resourceInputs["backendId"] = state ? state.backendId : undefined;
+            resourceInputs["frontendId"] = state ? state.frontendId : undefined;
+            resourceInputs["matchSni"] = state ? state.matchSni : undefined;
         } else {
             const args = argsOrState as LoadbalancerRouteArgs | undefined;
             if ((!args || args.backendId === undefined) && !opts.urn) {
@@ -69,14 +69,12 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
             if ((!args || args.frontendId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'frontendId'");
             }
-            inputs["backendId"] = args ? args.backendId : undefined;
-            inputs["frontendId"] = args ? args.frontendId : undefined;
-            inputs["matchSni"] = args ? args.matchSni : undefined;
+            resourceInputs["backendId"] = args ? args.backendId : undefined;
+            resourceInputs["frontendId"] = args ? args.frontendId : undefined;
+            resourceInputs["matchSni"] = args ? args.matchSni : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LoadbalancerRoute.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LoadbalancerRoute.__pulumiType, name, resourceInputs, opts);
     }
 }
 

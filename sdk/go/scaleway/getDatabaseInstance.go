@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseInstanceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseInstanceResult
 	err := ctx.Invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", args, &rv, opts...)
 	if err != nil {

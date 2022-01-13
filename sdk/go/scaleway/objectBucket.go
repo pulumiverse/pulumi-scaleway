@@ -72,6 +72,7 @@ func NewObjectBucket(ctx *pulumi.Context,
 		args = &ObjectBucketArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ObjectBucket
 	err := ctx.RegisterResource("scaleway:index/objectBucket:ObjectBucket", name, args, &resource, opts...)
 	if err != nil {
@@ -174,7 +175,7 @@ type ObjectBucketInput interface {
 }
 
 func (*ObjectBucket) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectBucket)(nil))
+	return reflect.TypeOf((**ObjectBucket)(nil)).Elem()
 }
 
 func (i *ObjectBucket) ToObjectBucketOutput() ObjectBucketOutput {
@@ -188,7 +189,7 @@ func (i *ObjectBucket) ToObjectBucketOutputWithContext(ctx context.Context) Obje
 type ObjectBucketOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectBucket)(nil))
+	return reflect.TypeOf((**ObjectBucket)(nil)).Elem()
 }
 
 func (o ObjectBucketOutput) ToObjectBucketOutput() ObjectBucketOutput {

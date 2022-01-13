@@ -157,17 +157,17 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      */
     constructor(name: string, args: LoadbalancerFrontendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadbalancerFrontendArgs | LoadbalancerFrontendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerFrontendState | undefined;
-            inputs["acls"] = state ? state.acls : undefined;
-            inputs["backendId"] = state ? state.backendId : undefined;
-            inputs["certificateId"] = state ? state.certificateId : undefined;
-            inputs["inboundPort"] = state ? state.inboundPort : undefined;
-            inputs["lbId"] = state ? state.lbId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["timeoutClient"] = state ? state.timeoutClient : undefined;
+            resourceInputs["acls"] = state ? state.acls : undefined;
+            resourceInputs["backendId"] = state ? state.backendId : undefined;
+            resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["inboundPort"] = state ? state.inboundPort : undefined;
+            resourceInputs["lbId"] = state ? state.lbId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["timeoutClient"] = state ? state.timeoutClient : undefined;
         } else {
             const args = argsOrState as LoadbalancerFrontendArgs | undefined;
             if ((!args || args.backendId === undefined) && !opts.urn) {
@@ -179,18 +179,16 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
             if ((!args || args.lbId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
-            inputs["acls"] = args ? args.acls : undefined;
-            inputs["backendId"] = args ? args.backendId : undefined;
-            inputs["certificateId"] = args ? args.certificateId : undefined;
-            inputs["inboundPort"] = args ? args.inboundPort : undefined;
-            inputs["lbId"] = args ? args.lbId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["timeoutClient"] = args ? args.timeoutClient : undefined;
+            resourceInputs["acls"] = args ? args.acls : undefined;
+            resourceInputs["backendId"] = args ? args.backendId : undefined;
+            resourceInputs["certificateId"] = args ? args.certificateId : undefined;
+            resourceInputs["inboundPort"] = args ? args.inboundPort : undefined;
+            resourceInputs["lbId"] = args ? args.lbId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["timeoutClient"] = args ? args.timeoutClient : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LoadbalancerFrontend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LoadbalancerFrontend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

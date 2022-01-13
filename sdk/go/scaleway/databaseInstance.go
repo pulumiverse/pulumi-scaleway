@@ -39,7 +39,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainIndex_databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
 // 			NodeType:                pulumi.String("DB-DEV-S"),
 // 			Engine:                  pulumi.String("PostgreSQL-11"),
 // 			IsHaCluster:             pulumi.Bool(true),
@@ -101,7 +101,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainScalewayIndex_databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+// 		_, err = scaleway.NewDatabaseInstance(ctx, "mainScalewayIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
 // 			NodeType:      pulumi.String("db-dev-s"),
 // 			Engine:        pulumi.String("PostgreSQL-11"),
 // 			IsHaCluster:   pulumi.Bool(false),
@@ -206,6 +206,7 @@ func NewDatabaseInstance(ctx *pulumi.Context,
 	if args.NodeType == nil {
 		return nil, errors.New("invalid value for required argument 'NodeType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DatabaseInstance
 	err := ctx.RegisterResource("scaleway:index/databaseInstance:DatabaseInstance", name, args, &resource, opts...)
 	if err != nil {
@@ -408,7 +409,7 @@ type DatabaseInstanceInput interface {
 }
 
 func (*DatabaseInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseInstance)(nil))
+	return reflect.TypeOf((**DatabaseInstance)(nil)).Elem()
 }
 
 func (i *DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
@@ -422,7 +423,7 @@ func (i *DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Conte
 type DatabaseInstanceOutput struct{ *pulumi.OutputState }
 
 func (DatabaseInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseInstance)(nil))
+	return reflect.TypeOf((**DatabaseInstance)(nil)).Elem()
 }
 
 func (o DatabaseInstanceOutput) ToDatabaseInstanceOutput() DatabaseInstanceOutput {

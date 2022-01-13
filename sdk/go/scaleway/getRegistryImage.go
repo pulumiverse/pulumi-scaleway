@@ -38,6 +38,7 @@ import (
 // }
 // ```
 func GetRegistryImage(ctx *pulumi.Context, args *GetRegistryImageArgs, opts ...pulumi.InvokeOption) (*GetRegistryImageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRegistryImageResult
 	err := ctx.Invoke("scaleway:index/getRegistryImage:getRegistryImage", args, &rv, opts...)
 	if err != nil {

@@ -35,6 +35,7 @@ import (
 // }
 // ```
 func LookupDatabaseAcl(ctx *pulumi.Context, args *LookupDatabaseAclArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseAclResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseAclResult
 	err := ctx.Invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", args, &rv, opts...)
 	if err != nil {

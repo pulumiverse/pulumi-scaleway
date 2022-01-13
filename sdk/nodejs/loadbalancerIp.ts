@@ -95,31 +95,29 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LoadbalancerIpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadbalancerIpArgs | LoadbalancerIpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerIpState | undefined;
-            inputs["ipAddress"] = state ? state.ipAddress : undefined;
-            inputs["lbId"] = state ? state.lbId : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["reverse"] = state ? state.reverse : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["lbId"] = state ? state.lbId : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["reverse"] = state ? state.reverse : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as LoadbalancerIpArgs | undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["reverse"] = args ? args.reverse : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["ipAddress"] = undefined /*out*/;
-            inputs["lbId"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["region"] = undefined /*out*/;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["reverse"] = args ? args.reverse : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipAddress"] = undefined /*out*/;
+            resourceInputs["lbId"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["region"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LoadbalancerIp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LoadbalancerIp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

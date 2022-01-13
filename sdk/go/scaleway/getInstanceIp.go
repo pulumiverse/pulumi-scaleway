@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupInstanceIp(ctx *pulumi.Context, args *LookupInstanceIpArgs, opts ...pulumi.InvokeOption) (*LookupInstanceIpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceIpResult
 	err := ctx.Invoke("scaleway:index/getInstanceIp:getInstanceIp", args, &rv, opts...)
 	if err != nil {

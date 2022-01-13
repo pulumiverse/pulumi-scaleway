@@ -78,13 +78,13 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceIpReverseDnsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceIpReverseDnsArgs | InstanceIpReverseDnsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceIpReverseDnsState | undefined;
-            inputs["ipId"] = state ? state.ipId : undefined;
-            inputs["reverse"] = state ? state.reverse : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["reverse"] = state ? state.reverse : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceIpReverseDnsArgs | undefined;
             if ((!args || args.ipId === undefined) && !opts.urn) {
@@ -93,14 +93,12 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
             if ((!args || args.reverse === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'reverse'");
             }
-            inputs["ipId"] = args ? args.ipId : undefined;
-            inputs["reverse"] = args ? args.reverse : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["reverse"] = args ? args.reverse : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(InstanceIpReverseDns.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(InstanceIpReverseDns.__pulumiType, name, resourceInputs, opts);
     }
 }
 

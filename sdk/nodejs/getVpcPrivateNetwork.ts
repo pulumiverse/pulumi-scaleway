@@ -17,9 +17,7 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {
         "name": args.name,
         "privateNetworkId": args.privateNetworkId,

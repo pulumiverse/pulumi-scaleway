@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupLoadbalancerIp(ctx *pulumi.Context, args *LookupLoadbalancerIpArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerIpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerIpResult
 	err := ctx.Invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args, &rv, opts...)
 	if err != nil {

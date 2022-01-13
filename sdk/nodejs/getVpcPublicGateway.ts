@@ -30,9 +30,7 @@ export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulum
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", {
         "name": args.name,
         "publicGatewayId": args.publicGatewayId,

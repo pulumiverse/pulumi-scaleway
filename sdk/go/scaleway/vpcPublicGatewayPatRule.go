@@ -118,6 +118,7 @@ func NewVpcPublicGatewayPatRule(ctx *pulumi.Context,
 	if args.PublicPort == nil {
 		return nil, errors.New("invalid value for required argument 'PublicPort'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcPublicGatewayPatRule
 	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule", name, args, &resource, opts...)
 	if err != nil {
@@ -228,7 +229,7 @@ type VpcPublicGatewayPatRuleInput interface {
 }
 
 func (*VpcPublicGatewayPatRule) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPublicGatewayPatRule)(nil))
+	return reflect.TypeOf((**VpcPublicGatewayPatRule)(nil)).Elem()
 }
 
 func (i *VpcPublicGatewayPatRule) ToVpcPublicGatewayPatRuleOutput() VpcPublicGatewayPatRuleOutput {
@@ -242,7 +243,7 @@ func (i *VpcPublicGatewayPatRule) ToVpcPublicGatewayPatRuleOutputWithContext(ctx
 type VpcPublicGatewayPatRuleOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayPatRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPublicGatewayPatRule)(nil))
+	return reflect.TypeOf((**VpcPublicGatewayPatRule)(nil)).Elem()
 }
 
 func (o VpcPublicGatewayPatRuleOutput) ToVpcPublicGatewayPatRuleOutput() VpcPublicGatewayPatRuleOutput {

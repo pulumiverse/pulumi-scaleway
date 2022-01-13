@@ -30,9 +30,7 @@ export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.Invoke
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancer:getLoadbalancer", {
         "lbId": args.lbId,
         "name": args.name,

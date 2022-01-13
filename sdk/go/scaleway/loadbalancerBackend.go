@@ -142,6 +142,7 @@ func NewLoadbalancerBackend(ctx *pulumi.Context,
 	if args.LbId == nil {
 		return nil, errors.New("invalid value for required argument 'LbId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LoadbalancerBackend
 	err := ctx.RegisterResource("scaleway:index/loadbalancerBackend:LoadbalancerBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -372,7 +373,7 @@ type LoadbalancerBackendInput interface {
 }
 
 func (*LoadbalancerBackend) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerBackend)(nil))
+	return reflect.TypeOf((**LoadbalancerBackend)(nil)).Elem()
 }
 
 func (i *LoadbalancerBackend) ToLoadbalancerBackendOutput() LoadbalancerBackendOutput {
@@ -386,7 +387,7 @@ func (i *LoadbalancerBackend) ToLoadbalancerBackendOutputWithContext(ctx context
 type LoadbalancerBackendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerBackendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerBackend)(nil))
+	return reflect.TypeOf((**LoadbalancerBackend)(nil)).Elem()
 }
 
 func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutput() LoadbalancerBackendOutput {

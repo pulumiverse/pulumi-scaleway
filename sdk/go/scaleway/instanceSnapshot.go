@@ -75,6 +75,7 @@ func NewInstanceSnapshot(ctx *pulumi.Context,
 	if args.VolumeId == nil {
 		return nil, errors.New("invalid value for required argument 'VolumeId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceSnapshot
 	err := ctx.RegisterResource("scaleway:index/instanceSnapshot:InstanceSnapshot", name, args, &resource, opts...)
 	if err != nil {
@@ -173,7 +174,7 @@ type InstanceSnapshotInput interface {
 }
 
 func (*InstanceSnapshot) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceSnapshot)(nil))
+	return reflect.TypeOf((**InstanceSnapshot)(nil)).Elem()
 }
 
 func (i *InstanceSnapshot) ToInstanceSnapshotOutput() InstanceSnapshotOutput {
@@ -187,7 +188,7 @@ func (i *InstanceSnapshot) ToInstanceSnapshotOutputWithContext(ctx context.Conte
 type InstanceSnapshotOutput struct{ *pulumi.OutputState }
 
 func (InstanceSnapshotOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceSnapshot)(nil))
+	return reflect.TypeOf((**InstanceSnapshot)(nil)).Elem()
 }
 
 func (o InstanceSnapshotOutput) ToInstanceSnapshotOutput() InstanceSnapshotOutput {

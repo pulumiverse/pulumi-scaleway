@@ -142,56 +142,54 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpcPublicGatewayDhcpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpcPublicGatewayDhcpArgs | VpcPublicGatewayDhcpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPublicGatewayDhcpState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["dnsLocalName"] = state ? state.dnsLocalName : undefined;
-            inputs["dnsSearches"] = state ? state.dnsSearches : undefined;
-            inputs["dnsServerOverrides"] = state ? state.dnsServerOverrides : undefined;
-            inputs["enableDynamic"] = state ? state.enableDynamic : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["poolHigh"] = state ? state.poolHigh : undefined;
-            inputs["poolLow"] = state ? state.poolLow : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["pushDefaultRoute"] = state ? state.pushDefaultRoute : undefined;
-            inputs["pushDnsServer"] = state ? state.pushDnsServer : undefined;
-            inputs["rebindTimer"] = state ? state.rebindTimer : undefined;
-            inputs["renewTimer"] = state ? state.renewTimer : undefined;
-            inputs["subnet"] = state ? state.subnet : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
-            inputs["validLifetime"] = state ? state.validLifetime : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["dnsLocalName"] = state ? state.dnsLocalName : undefined;
+            resourceInputs["dnsSearches"] = state ? state.dnsSearches : undefined;
+            resourceInputs["dnsServerOverrides"] = state ? state.dnsServerOverrides : undefined;
+            resourceInputs["enableDynamic"] = state ? state.enableDynamic : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["poolHigh"] = state ? state.poolHigh : undefined;
+            resourceInputs["poolLow"] = state ? state.poolLow : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["pushDefaultRoute"] = state ? state.pushDefaultRoute : undefined;
+            resourceInputs["pushDnsServer"] = state ? state.pushDnsServer : undefined;
+            resourceInputs["rebindTimer"] = state ? state.rebindTimer : undefined;
+            resourceInputs["renewTimer"] = state ? state.renewTimer : undefined;
+            resourceInputs["subnet"] = state ? state.subnet : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["validLifetime"] = state ? state.validLifetime : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as VpcPublicGatewayDhcpArgs | undefined;
             if ((!args || args.subnet === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnet'");
             }
-            inputs["address"] = args ? args.address : undefined;
-            inputs["dnsLocalName"] = args ? args.dnsLocalName : undefined;
-            inputs["dnsSearches"] = args ? args.dnsSearches : undefined;
-            inputs["dnsServerOverrides"] = args ? args.dnsServerOverrides : undefined;
-            inputs["enableDynamic"] = args ? args.enableDynamic : undefined;
-            inputs["poolHigh"] = args ? args.poolHigh : undefined;
-            inputs["poolLow"] = args ? args.poolLow : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["pushDefaultRoute"] = args ? args.pushDefaultRoute : undefined;
-            inputs["pushDnsServer"] = args ? args.pushDnsServer : undefined;
-            inputs["rebindTimer"] = args ? args.rebindTimer : undefined;
-            inputs["renewTimer"] = args ? args.renewTimer : undefined;
-            inputs["subnet"] = args ? args.subnet : undefined;
-            inputs["validLifetime"] = args ? args.validLifetime : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["dnsLocalName"] = args ? args.dnsLocalName : undefined;
+            resourceInputs["dnsSearches"] = args ? args.dnsSearches : undefined;
+            resourceInputs["dnsServerOverrides"] = args ? args.dnsServerOverrides : undefined;
+            resourceInputs["enableDynamic"] = args ? args.enableDynamic : undefined;
+            resourceInputs["poolHigh"] = args ? args.poolHigh : undefined;
+            resourceInputs["poolLow"] = args ? args.poolLow : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["pushDefaultRoute"] = args ? args.pushDefaultRoute : undefined;
+            resourceInputs["pushDnsServer"] = args ? args.pushDnsServer : undefined;
+            resourceInputs["rebindTimer"] = args ? args.rebindTimer : undefined;
+            resourceInputs["renewTimer"] = args ? args.renewTimer : undefined;
+            resourceInputs["subnet"] = args ? args.subnet : undefined;
+            resourceInputs["validLifetime"] = args ? args.validLifetime : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpcPublicGatewayDhcp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpcPublicGatewayDhcp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -67,6 +67,7 @@ func NewIotHub(ctx *pulumi.Context,
 	if args.ProductPlan == nil {
 		return nil, errors.New("invalid value for required argument 'ProductPlan'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IotHub
 	err := ctx.RegisterResource("scaleway:index/iotHub:IotHub", name, args, &resource, opts...)
 	if err != nil {
@@ -225,7 +226,7 @@ type IotHubInput interface {
 }
 
 func (*IotHub) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotHub)(nil))
+	return reflect.TypeOf((**IotHub)(nil)).Elem()
 }
 
 func (i *IotHub) ToIotHubOutput() IotHubOutput {
@@ -239,7 +240,7 @@ func (i *IotHub) ToIotHubOutputWithContext(ctx context.Context) IotHubOutput {
 type IotHubOutput struct{ *pulumi.OutputState }
 
 func (IotHubOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotHub)(nil))
+	return reflect.TypeOf((**IotHub)(nil)).Elem()
 }
 
 func (o IotHubOutput) ToIotHubOutput() IotHubOutput {

@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, opts ...pulumi.InvokeOption) (*LookupInstanceVolumeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceVolumeResult
 	err := ctx.Invoke("scaleway:index/getInstanceVolume:getInstanceVolume", args, &rv, opts...)
 	if err != nil {

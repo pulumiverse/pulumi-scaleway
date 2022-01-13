@@ -104,46 +104,44 @@ export class IotDevice extends pulumi.CustomResource {
      */
     constructor(name: string, args: IotDeviceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IotDeviceArgs | IotDeviceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IotDeviceState | undefined;
-            inputs["allowInsecure"] = state ? state.allowInsecure : undefined;
-            inputs["allowMultipleConnections"] = state ? state.allowMultipleConnections : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["hubId"] = state ? state.hubId : undefined;
-            inputs["isConnected"] = state ? state.isConnected : undefined;
-            inputs["lastActivityAt"] = state ? state.lastActivityAt : undefined;
-            inputs["messageFilters"] = state ? state.messageFilters : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["allowInsecure"] = state ? state.allowInsecure : undefined;
+            resourceInputs["allowMultipleConnections"] = state ? state.allowMultipleConnections : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["hubId"] = state ? state.hubId : undefined;
+            resourceInputs["isConnected"] = state ? state.isConnected : undefined;
+            resourceInputs["lastActivityAt"] = state ? state.lastActivityAt : undefined;
+            resourceInputs["messageFilters"] = state ? state.messageFilters : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as IotDeviceArgs | undefined;
             if ((!args || args.hubId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
-            inputs["allowInsecure"] = args ? args.allowInsecure : undefined;
-            inputs["allowMultipleConnections"] = args ? args.allowMultipleConnections : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["hubId"] = args ? args.hubId : undefined;
-            inputs["messageFilters"] = args ? args.messageFilters : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["isConnected"] = undefined /*out*/;
-            inputs["lastActivityAt"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["allowInsecure"] = args ? args.allowInsecure : undefined;
+            resourceInputs["allowMultipleConnections"] = args ? args.allowMultipleConnections : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["hubId"] = args ? args.hubId : undefined;
+            resourceInputs["messageFilters"] = args ? args.messageFilters : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["isConnected"] = undefined /*out*/;
+            resourceInputs["lastActivityAt"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IotDevice.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IotDevice.__pulumiType, name, resourceInputs, opts);
     }
 }
 

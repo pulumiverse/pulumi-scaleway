@@ -78,6 +78,7 @@ func NewInstanceVolume(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceVolume
 	err := ctx.RegisterResource("scaleway:index/instanceVolume:InstanceVolume", name, args, &resource, opts...)
 	if err != nil {
@@ -192,7 +193,7 @@ type InstanceVolumeInput interface {
 }
 
 func (*InstanceVolume) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceVolume)(nil))
+	return reflect.TypeOf((**InstanceVolume)(nil)).Elem()
 }
 
 func (i *InstanceVolume) ToInstanceVolumeOutput() InstanceVolumeOutput {
@@ -206,7 +207,7 @@ func (i *InstanceVolume) ToInstanceVolumeOutputWithContext(ctx context.Context) 
 type InstanceVolumeOutput struct{ *pulumi.OutputState }
 
 func (InstanceVolumeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceVolume)(nil))
+	return reflect.TypeOf((**InstanceVolume)(nil)).Elem()
 }
 
 func (o InstanceVolumeOutput) ToInstanceVolumeOutput() InstanceVolumeOutput {

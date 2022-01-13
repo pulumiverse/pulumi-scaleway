@@ -25,9 +25,7 @@ export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getInstanceImage:getInstanceImage", {
         "architecture": args.architecture,
         "imageId": args.imageId,

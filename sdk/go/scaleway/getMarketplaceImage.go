@@ -35,6 +35,7 @@ import (
 // }
 // ```
 func GetMarketplaceImage(ctx *pulumi.Context, args *GetMarketplaceImageArgs, opts ...pulumi.InvokeOption) (*GetMarketplaceImageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetMarketplaceImageResult
 	err := ctx.Invoke("scaleway:index/getMarketplaceImage:getMarketplaceImage", args, &rv, opts...)
 	if err != nil {

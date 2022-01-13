@@ -30,11 +30,15 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = scaleway.LookupVpcPublicGatewayDhcpOutput(ctx, GetVpcPublicGatewayDhcpOutputArgs{
+// 			DhcpId: main.ID(),
+// 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
 func LookupVpcPublicGatewayDhcp(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args, &rv, opts...)
 	if err != nil {

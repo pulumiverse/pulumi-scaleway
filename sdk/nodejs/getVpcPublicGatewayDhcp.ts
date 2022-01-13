@@ -26,9 +26,7 @@ export function getVpcPublicGatewayDhcp(args: GetVpcPublicGatewayDhcpArgs, opts?
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,
     }, opts);

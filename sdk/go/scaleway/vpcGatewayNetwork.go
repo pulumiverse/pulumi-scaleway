@@ -108,6 +108,7 @@ func NewVpcGatewayNetwork(ctx *pulumi.Context,
 	if args.PrivateNetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateNetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcGatewayNetwork
 	err := ctx.RegisterResource("scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork", name, args, &resource, opts...)
 	if err != nil {
@@ -234,7 +235,7 @@ type VpcGatewayNetworkInput interface {
 }
 
 func (*VpcGatewayNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcGatewayNetwork)(nil))
+	return reflect.TypeOf((**VpcGatewayNetwork)(nil)).Elem()
 }
 
 func (i *VpcGatewayNetwork) ToVpcGatewayNetworkOutput() VpcGatewayNetworkOutput {
@@ -248,7 +249,7 @@ func (i *VpcGatewayNetwork) ToVpcGatewayNetworkOutputWithContext(ctx context.Con
 type VpcGatewayNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcGatewayNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcGatewayNetwork)(nil))
+	return reflect.TypeOf((**VpcGatewayNetwork)(nil)).Elem()
 }
 
 func (o VpcGatewayNetworkOutput) ToVpcGatewayNetworkOutput() VpcGatewayNetworkOutput {

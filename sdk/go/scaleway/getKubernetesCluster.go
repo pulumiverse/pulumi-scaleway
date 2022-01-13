@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesClusterResult
 	err := ctx.Invoke("scaleway:index/getKubernetesCluster:getKubernetesCluster", args, &rv, opts...)
 	if err != nil {

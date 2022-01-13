@@ -72,6 +72,7 @@ func NewInstanceIpReverseDns(ctx *pulumi.Context,
 	if args.Reverse == nil {
 		return nil, errors.New("invalid value for required argument 'Reverse'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceIpReverseDns
 	err := ctx.RegisterResource("scaleway:index/instanceIpReverseDns:InstanceIpReverseDns", name, args, &resource, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ type InstanceIpReverseDnsInput interface {
 }
 
 func (*InstanceIpReverseDns) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIpReverseDns)(nil))
+	return reflect.TypeOf((**InstanceIpReverseDns)(nil)).Elem()
 }
 
 func (i *InstanceIpReverseDns) ToInstanceIpReverseDnsOutput() InstanceIpReverseDnsOutput {
@@ -160,7 +161,7 @@ func (i *InstanceIpReverseDns) ToInstanceIpReverseDnsOutputWithContext(ctx conte
 type InstanceIpReverseDnsOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpReverseDnsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIpReverseDns)(nil))
+	return reflect.TypeOf((**InstanceIpReverseDns)(nil)).Elem()
 }
 
 func (o InstanceIpReverseDnsOutput) ToInstanceIpReverseDnsOutput() InstanceIpReverseDnsOutput {

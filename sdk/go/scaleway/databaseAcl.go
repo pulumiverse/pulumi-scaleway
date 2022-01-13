@@ -76,6 +76,7 @@ func NewDatabaseAcl(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DatabaseAcl
 	err := ctx.RegisterResource("scaleway:index/databaseAcl:DatabaseAcl", name, args, &resource, opts...)
 	if err != nil {
@@ -150,7 +151,7 @@ type DatabaseAclInput interface {
 }
 
 func (*DatabaseAcl) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseAcl)(nil))
+	return reflect.TypeOf((**DatabaseAcl)(nil)).Elem()
 }
 
 func (i *DatabaseAcl) ToDatabaseAclOutput() DatabaseAclOutput {
@@ -164,7 +165,7 @@ func (i *DatabaseAcl) ToDatabaseAclOutputWithContext(ctx context.Context) Databa
 type DatabaseAclOutput struct{ *pulumi.OutputState }
 
 func (DatabaseAclOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseAcl)(nil))
+	return reflect.TypeOf((**DatabaseAcl)(nil)).Elem()
 }
 
 func (o DatabaseAclOutput) ToDatabaseAclOutput() DatabaseAclOutput {

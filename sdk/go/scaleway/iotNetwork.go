@@ -50,6 +50,7 @@ func NewIotNetwork(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IotNetwork
 	err := ctx.RegisterResource("scaleway:index/iotNetwork:IotNetwork", name, args, &resource, opts...)
 	if err != nil {
@@ -144,7 +145,7 @@ type IotNetworkInput interface {
 }
 
 func (*IotNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotNetwork)(nil))
+	return reflect.TypeOf((**IotNetwork)(nil)).Elem()
 }
 
 func (i *IotNetwork) ToIotNetworkOutput() IotNetworkOutput {
@@ -158,7 +159,7 @@ func (i *IotNetwork) ToIotNetworkOutputWithContext(ctx context.Context) IotNetwo
 type IotNetworkOutput struct{ *pulumi.OutputState }
 
 func (IotNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotNetwork)(nil))
+	return reflect.TypeOf((**IotNetwork)(nil)).Elem()
 }
 
 func (o IotNetworkOutput) ToIotNetworkOutput() IotNetworkOutput {

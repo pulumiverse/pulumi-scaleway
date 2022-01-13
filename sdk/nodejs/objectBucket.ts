@@ -97,31 +97,29 @@ export class ObjectBucket extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ObjectBucketArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ObjectBucketArgs | ObjectBucketState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ObjectBucketState | undefined;
-            inputs["acl"] = state ? state.acl : undefined;
-            inputs["corsRules"] = state ? state.corsRules : undefined;
-            inputs["endpoint"] = state ? state.endpoint : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["versioning"] = state ? state.versioning : undefined;
+            resourceInputs["acl"] = state ? state.acl : undefined;
+            resourceInputs["corsRules"] = state ? state.corsRules : undefined;
+            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["versioning"] = state ? state.versioning : undefined;
         } else {
             const args = argsOrState as ObjectBucketArgs | undefined;
-            inputs["acl"] = args ? args.acl : undefined;
-            inputs["corsRules"] = args ? args.corsRules : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["versioning"] = args ? args.versioning : undefined;
-            inputs["endpoint"] = undefined /*out*/;
+            resourceInputs["acl"] = args ? args.acl : undefined;
+            resourceInputs["corsRules"] = args ? args.corsRules : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["versioning"] = args ? args.versioning : undefined;
+            resourceInputs["endpoint"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ObjectBucket.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ObjectBucket.__pulumiType, name, resourceInputs, opts);
     }
 }
 

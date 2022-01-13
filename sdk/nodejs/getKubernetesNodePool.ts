@@ -26,9 +26,7 @@ export function getKubernetesNodePool(args?: GetKubernetesNodePoolArgs, opts?: p
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {
         "clusterId": args.clusterId,
         "name": args.name,

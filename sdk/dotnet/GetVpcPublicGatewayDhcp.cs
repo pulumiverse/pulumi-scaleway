@@ -31,10 +31,10 @@ namespace Pulumi.Scaleway
         ///         {
         ///             Subnet = "192.168.0.0/24",
         ///         });
-        ///         var dhcpById = main.Id.Apply(id =&gt; Scaleway.GetVpcPublicGatewayDhcp.InvokeAsync(new Scaleway.GetVpcPublicGatewayDhcpArgs
+        ///         var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new Scaleway.GetVpcPublicGatewayDhcpInvokeArgs
         ///         {
-        ///             DhcpId = id,
-        ///         }));
+        ///             DhcpId = main.Id,
+        ///         });
         ///     }
         /// 
         /// }
@@ -64,10 +64,10 @@ namespace Pulumi.Scaleway
         ///         {
         ///             Subnet = "192.168.0.0/24",
         ///         });
-        ///         var dhcpById = main.Id.Apply(id =&gt; Scaleway.GetVpcPublicGatewayDhcp.InvokeAsync(new Scaleway.GetVpcPublicGatewayDhcpArgs
+        ///         var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new Scaleway.GetVpcPublicGatewayDhcpInvokeArgs
         ///         {
-        ///             DhcpId = id,
-        ///         }));
+        ///             DhcpId = main.Id,
+        ///         });
         ///     }
         /// 
         /// }
