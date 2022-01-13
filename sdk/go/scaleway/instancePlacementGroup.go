@@ -66,6 +66,7 @@ func NewInstancePlacementGroup(ctx *pulumi.Context,
 		args = &InstancePlacementGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstancePlacementGroup
 	err := ctx.RegisterResource("scaleway:index/instancePlacementGroup:InstancePlacementGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -164,7 +165,7 @@ type InstancePlacementGroupInput interface {
 }
 
 func (*InstancePlacementGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstancePlacementGroup)(nil))
+	return reflect.TypeOf((**InstancePlacementGroup)(nil)).Elem()
 }
 
 func (i *InstancePlacementGroup) ToInstancePlacementGroupOutput() InstancePlacementGroupOutput {
@@ -178,7 +179,7 @@ func (i *InstancePlacementGroup) ToInstancePlacementGroupOutputWithContext(ctx c
 type InstancePlacementGroupOutput struct{ *pulumi.OutputState }
 
 func (InstancePlacementGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstancePlacementGroup)(nil))
+	return reflect.TypeOf((**InstancePlacementGroup)(nil)).Elem()
 }
 
 func (o InstancePlacementGroupOutput) ToInstancePlacementGroupOutput() InstancePlacementGroupOutput {

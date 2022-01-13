@@ -71,6 +71,7 @@ func NewInstancePrivateNic(ctx *pulumi.Context,
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstancePrivateNic
 	err := ctx.RegisterResource("scaleway:index/instancePrivateNic:InstancePrivateNic", name, args, &resource, opts...)
 	if err != nil {
@@ -149,7 +150,7 @@ type InstancePrivateNicInput interface {
 }
 
 func (*InstancePrivateNic) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstancePrivateNic)(nil))
+	return reflect.TypeOf((**InstancePrivateNic)(nil)).Elem()
 }
 
 func (i *InstancePrivateNic) ToInstancePrivateNicOutput() InstancePrivateNicOutput {
@@ -163,7 +164,7 @@ func (i *InstancePrivateNic) ToInstancePrivateNicOutputWithContext(ctx context.C
 type InstancePrivateNicOutput struct{ *pulumi.OutputState }
 
 func (InstancePrivateNicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstancePrivateNic)(nil))
+	return reflect.TypeOf((**InstancePrivateNic)(nil)).Elem()
 }
 
 func (o InstancePrivateNicOutput) ToInstancePrivateNicOutput() InstancePrivateNicOutput {

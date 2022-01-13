@@ -54,6 +54,7 @@ func NewInstanceSecurityGroup(ctx *pulumi.Context,
 		args = &InstanceSecurityGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceSecurityGroup
 	err := ctx.RegisterResource("scaleway:index/instanceSecurityGroup:InstanceSecurityGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -200,7 +201,7 @@ type InstanceSecurityGroupInput interface {
 }
 
 func (*InstanceSecurityGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceSecurityGroup)(nil))
+	return reflect.TypeOf((**InstanceSecurityGroup)(nil)).Elem()
 }
 
 func (i *InstanceSecurityGroup) ToInstanceSecurityGroupOutput() InstanceSecurityGroupOutput {
@@ -214,7 +215,7 @@ func (i *InstanceSecurityGroup) ToInstanceSecurityGroupOutputWithContext(ctx con
 type InstanceSecurityGroupOutput struct{ *pulumi.OutputState }
 
 func (InstanceSecurityGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceSecurityGroup)(nil))
+	return reflect.TypeOf((**InstanceSecurityGroup)(nil)).Elem()
 }
 
 func (o InstanceSecurityGroupOutput) ToInstanceSecurityGroupOutput() InstanceSecurityGroupOutput {

@@ -25,9 +25,7 @@ export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.In
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,

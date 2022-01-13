@@ -40,21 +40,22 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if args.AccessKey == nil {
+	if isZero(args.AccessKey) {
 		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string))
 	}
-	if args.ProjectId == nil {
+	if isZero(args.ProjectId) {
 		args.ProjectId = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_PROJECT_ID").(string))
 	}
-	if args.Region == nil {
+	if isZero(args.Region) {
 		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string))
 	}
-	if args.SecretKey == nil {
+	if isZero(args.SecretKey) {
 		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string))
 	}
-	if args.Zone == nil {
+	if isZero(args.Zone) {
 		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string))
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:scaleway", name, args, &resource, opts...)
 	if err != nil {
@@ -110,7 +111,7 @@ type ProviderInput interface {
 }
 
 func (*Provider) ElementType() reflect.Type {
-	return reflect.TypeOf((*Provider)(nil))
+	return reflect.TypeOf((**Provider)(nil)).Elem()
 }
 
 func (i *Provider) ToProviderOutput() ProviderOutput {
@@ -124,7 +125,7 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Provider)(nil))
+	return reflect.TypeOf((**Provider)(nil)).Elem()
 }
 
 func (o ProviderOutput) ToProviderOutput() ProviderOutput {

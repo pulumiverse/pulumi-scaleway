@@ -80,28 +80,26 @@ export class AccountSshKey extends pulumi.CustomResource {
      */
     constructor(name: string, args: AccountSshKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AccountSshKeyArgs | AccountSshKeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccountSshKeyState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as AccountSshKeyArgs | undefined;
             if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["publicKey"] = args ? args.publicKey : undefined;
-            inputs["organizationId"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["organizationId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AccountSshKey.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AccountSshKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 

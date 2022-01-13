@@ -26,9 +26,7 @@ export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pul
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getKubernetesCluster:getKubernetesCluster", {
         "clusterId": args.clusterId,
         "name": args.name,

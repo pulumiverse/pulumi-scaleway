@@ -209,6 +209,7 @@ func NewLoadbalancer(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Loadbalancer
 	err := ctx.RegisterResource("scaleway:index/loadbalancer:Loadbalancer", name, args, &resource, opts...)
 	if err != nil {
@@ -335,7 +336,7 @@ type LoadbalancerInput interface {
 }
 
 func (*Loadbalancer) ElementType() reflect.Type {
-	return reflect.TypeOf((*Loadbalancer)(nil))
+	return reflect.TypeOf((**Loadbalancer)(nil)).Elem()
 }
 
 func (i *Loadbalancer) ToLoadbalancerOutput() LoadbalancerOutput {
@@ -349,7 +350,7 @@ func (i *Loadbalancer) ToLoadbalancerOutputWithContext(ctx context.Context) Load
 type LoadbalancerOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Loadbalancer)(nil))
+	return reflect.TypeOf((**Loadbalancer)(nil)).Elem()
 }
 
 func (o LoadbalancerOutput) ToLoadbalancerOutput() LoadbalancerOutput {

@@ -71,6 +71,7 @@ func NewLoadbalancerIp(ctx *pulumi.Context,
 		args = &LoadbalancerIpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LoadbalancerIp
 	err := ctx.RegisterResource("scaleway:index/loadbalancerIp:LoadbalancerIp", name, args, &resource, opts...)
 	if err != nil {
@@ -161,7 +162,7 @@ type LoadbalancerIpInput interface {
 }
 
 func (*LoadbalancerIp) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerIp)(nil))
+	return reflect.TypeOf((**LoadbalancerIp)(nil)).Elem()
 }
 
 func (i *LoadbalancerIp) ToLoadbalancerIpOutput() LoadbalancerIpOutput {
@@ -175,7 +176,7 @@ func (i *LoadbalancerIp) ToLoadbalancerIpOutputWithContext(ctx context.Context) 
 type LoadbalancerIpOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerIpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LoadbalancerIp)(nil))
+	return reflect.TypeOf((**LoadbalancerIp)(nil)).Elem()
 }
 
 func (o LoadbalancerIpOutput) ToLoadbalancerIpOutput() LoadbalancerIpOutput {

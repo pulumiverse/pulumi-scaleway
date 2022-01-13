@@ -72,6 +72,7 @@ func NewVpcPrivateNetwork(ctx *pulumi.Context,
 		args = &VpcPrivateNetworkArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcPrivateNetwork
 	err := ctx.RegisterResource("scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork", name, args, &resource, opts...)
 	if err != nil {
@@ -166,7 +167,7 @@ type VpcPrivateNetworkInput interface {
 }
 
 func (*VpcPrivateNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPrivateNetwork)(nil))
+	return reflect.TypeOf((**VpcPrivateNetwork)(nil)).Elem()
 }
 
 func (i *VpcPrivateNetwork) ToVpcPrivateNetworkOutput() VpcPrivateNetworkOutput {
@@ -180,7 +181,7 @@ func (i *VpcPrivateNetwork) ToVpcPrivateNetworkOutputWithContext(ctx context.Con
 type VpcPrivateNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcPrivateNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpcPrivateNetwork)(nil))
+	return reflect.TypeOf((**VpcPrivateNetwork)(nil)).Elem()
 }
 
 func (o VpcPrivateNetworkOutput) ToVpcPrivateNetworkOutput() VpcPrivateNetworkOutput {

@@ -25,9 +25,7 @@ export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOpti
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getInstanceIp:getInstanceIp", {
         "address": args.address,
         "id": args.id,

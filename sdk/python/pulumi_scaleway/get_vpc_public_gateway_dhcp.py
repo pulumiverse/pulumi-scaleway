@@ -226,7 +226,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
-    dhcp_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway_dhcp(dhcp_id=id))
+    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """
     __args__ = dict()
@@ -235,6 +235,8 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpResult).value
 
     return AwaitableGetVpcPublicGatewayDhcpResult(
@@ -273,7 +275,7 @@ def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = No
     import pulumi_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
-    dhcp_by_id = main.id.apply(lambda id: scaleway.get_vpc_public_gateway_dhcp(dhcp_id=id))
+    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """
     ...

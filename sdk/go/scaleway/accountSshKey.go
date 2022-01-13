@@ -66,6 +66,7 @@ func NewAccountSshKey(ctx *pulumi.Context,
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AccountSshKey
 	err := ctx.RegisterResource("scaleway:index/accountSshKey:AccountSshKey", name, args, &resource, opts...)
 	if err != nil {
@@ -144,7 +145,7 @@ type AccountSshKeyInput interface {
 }
 
 func (*AccountSshKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccountSshKey)(nil))
+	return reflect.TypeOf((**AccountSshKey)(nil)).Elem()
 }
 
 func (i *AccountSshKey) ToAccountSshKeyOutput() AccountSshKeyOutput {
@@ -158,7 +159,7 @@ func (i *AccountSshKey) ToAccountSshKeyOutputWithContext(ctx context.Context) Ac
 type AccountSshKeyOutput struct{ *pulumi.OutputState }
 
 func (AccountSshKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccountSshKey)(nil))
+	return reflect.TypeOf((**AccountSshKey)(nil)).Elem()
 }
 
 func (o AccountSshKeyOutput) ToAccountSshKeyOutput() AccountSshKeyOutput {

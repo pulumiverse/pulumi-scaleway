@@ -90,31 +90,29 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: InstancePlacementGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstancePlacementGroupArgs | InstancePlacementGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstancePlacementGroupState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["policyMode"] = state ? state.policyMode : undefined;
-            inputs["policyRespected"] = state ? state.policyRespected : undefined;
-            inputs["policyType"] = state ? state.policyType : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["policyMode"] = state ? state.policyMode : undefined;
+            resourceInputs["policyRespected"] = state ? state.policyRespected : undefined;
+            resourceInputs["policyType"] = state ? state.policyType : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstancePlacementGroupArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policyMode"] = args ? args.policyMode : undefined;
-            inputs["policyType"] = args ? args.policyType : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["policyRespected"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policyMode"] = args ? args.policyMode : undefined;
+            resourceInputs["policyType"] = args ? args.policyType : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["policyRespected"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(InstancePlacementGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(InstancePlacementGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

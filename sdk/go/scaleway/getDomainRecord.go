@@ -51,6 +51,7 @@ import (
 // }
 // ```
 func LookupDomainRecord(ctx *pulumi.Context, args *LookupDomainRecordArgs, opts ...pulumi.InvokeOption) (*LookupDomainRecordResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDomainRecordResult
 	err := ctx.Invoke("scaleway:index/getDomainRecord:getDomainRecord", args, &rv, opts...)
 	if err != nil {

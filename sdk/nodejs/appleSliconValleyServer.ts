@@ -82,40 +82,38 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: AppleSliconValleyServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AppleSliconValleyServerArgs | AppleSliconValleyServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AppleSliconValleyServerState | undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["deletableAt"] = state ? state.deletableAt : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
-            inputs["vncUrl"] = state ? state.vncUrl : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["deletableAt"] = state ? state.deletableAt : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["vncUrl"] = state ? state.vncUrl : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as AppleSliconValleyServerArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["deletableAt"] = undefined /*out*/;
-            inputs["ip"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
-            inputs["vncUrl"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["deletableAt"] = undefined /*out*/;
+            resourceInputs["ip"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["vncUrl"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AppleSliconValleyServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AppleSliconValleyServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

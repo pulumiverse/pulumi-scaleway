@@ -133,6 +133,7 @@ func NewKubernetesNodePool(ctx *pulumi.Context,
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KubernetesNodePool
 	err := ctx.RegisterResource("scaleway:index/kubernetesNodePool:KubernetesNodePool", name, args, &resource, opts...)
 	if err != nil {
@@ -367,7 +368,7 @@ type KubernetesNodePoolInput interface {
 }
 
 func (*KubernetesNodePool) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesNodePool)(nil))
+	return reflect.TypeOf((**KubernetesNodePool)(nil)).Elem()
 }
 
 func (i *KubernetesNodePool) ToKubernetesNodePoolOutput() KubernetesNodePoolOutput {
@@ -381,7 +382,7 @@ func (i *KubernetesNodePool) ToKubernetesNodePoolOutputWithContext(ctx context.C
 type KubernetesNodePoolOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesNodePool)(nil))
+	return reflect.TypeOf((**KubernetesNodePool)(nil)).Elem()
 }
 
 func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutput() KubernetesNodePoolOutput {

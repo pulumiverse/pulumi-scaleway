@@ -64,6 +64,7 @@ func NewInstanceIp(ctx *pulumi.Context,
 		args = &InstanceIpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceIp
 	err := ctx.RegisterResource("scaleway:index/instanceIp:InstanceIp", name, args, &resource, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ type InstanceIpInput interface {
 }
 
 func (*InstanceIp) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIp)(nil))
+	return reflect.TypeOf((**InstanceIp)(nil)).Elem()
 }
 
 func (i *InstanceIp) ToInstanceIpOutput() InstanceIpOutput {
@@ -160,7 +161,7 @@ func (i *InstanceIp) ToInstanceIpOutputWithContext(ctx context.Context) Instance
 type InstanceIpOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIp)(nil))
+	return reflect.TypeOf((**InstanceIp)(nil)).Elem()
 }
 
 func (o InstanceIpOutput) ToInstanceIpOutput() InstanceIpOutput {

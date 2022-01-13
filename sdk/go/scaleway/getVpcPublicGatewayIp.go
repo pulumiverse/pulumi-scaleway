@@ -28,11 +28,15 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = scaleway.LookupVpcPublicGatewayIpOutput(ctx, GetVpcPublicGatewayIpOutputArgs{
+// 			IpId: main.ID(),
+// 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
 func LookupVpcPublicGatewayIp(ctx *pulumi.Context, args *LookupVpcPublicGatewayIpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayIpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayIpResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args, &rv, opts...)
 	if err != nil {

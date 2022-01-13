@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, opts ...pulumi.InvokeOption) (*LookupInstanceServerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceServerResult
 	err := ctx.Invoke("scaleway:index/getInstanceServer:getInstanceServer", args, &rv, opts...)
 	if err != nil {

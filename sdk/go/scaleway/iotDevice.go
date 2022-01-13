@@ -59,6 +59,7 @@ func NewIotDevice(ctx *pulumi.Context,
 	if args.HubId == nil {
 		return nil, errors.New("invalid value for required argument 'HubId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IotDevice
 	err := ctx.RegisterResource("scaleway:index/iotDevice:IotDevice", name, args, &resource, opts...)
 	if err != nil {
@@ -193,7 +194,7 @@ type IotDeviceInput interface {
 }
 
 func (*IotDevice) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotDevice)(nil))
+	return reflect.TypeOf((**IotDevice)(nil)).Elem()
 }
 
 func (i *IotDevice) ToIotDeviceOutput() IotDeviceOutput {
@@ -207,7 +208,7 @@ func (i *IotDevice) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceO
 type IotDeviceOutput struct{ *pulumi.OutputState }
 
 func (IotDeviceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotDevice)(nil))
+	return reflect.TypeOf((**IotDevice)(nil)).Elem()
 }
 
 func (o IotDeviceOutput) ToIotDeviceOutput() IotDeviceOutput {

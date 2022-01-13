@@ -34,9 +34,7 @@ export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.Invoke
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getDomainRecord:getDomainRecord", {
         "data": args.data,
         "dnsZone": args.dnsZone,

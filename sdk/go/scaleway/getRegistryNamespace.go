@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupRegistryNamespaceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryNamespaceResult
 	err := ctx.Invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", args, &rv, opts...)
 	if err != nil {

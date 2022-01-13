@@ -101,33 +101,31 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpcPublicGatewayIpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpcPublicGatewayIpArgs | VpcPublicGatewayIpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPublicGatewayIpState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["organizationId"] = state ? state.organizationId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["reverse"] = state ? state.reverse : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["reverse"] = state ? state.reverse : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as VpcPublicGatewayIpArgs | undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["reverse"] = args ? args.reverse : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["address"] = undefined /*out*/;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["organizationId"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["reverse"] = args ? args.reverse : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["address"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpcPublicGatewayIp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpcPublicGatewayIp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

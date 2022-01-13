@@ -38,6 +38,7 @@ import (
 // }
 // ```
 func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOfferResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOfferResult
 	err := ctx.Invoke("scaleway:index/getBaremetalOffer:getBaremetalOffer", args, &rv, opts...)
 	if err != nil {

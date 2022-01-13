@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func GetInstanceImage(ctx *pulumi.Context, args *GetInstanceImageArgs, opts ...pulumi.InvokeOption) (*GetInstanceImageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetInstanceImageResult
 	err := ctx.Invoke("scaleway:index/getInstanceImage:getInstanceImage", args, &rv, opts...)
 	if err != nil {

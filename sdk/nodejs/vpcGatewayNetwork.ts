@@ -119,21 +119,21 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpcGatewayNetworkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpcGatewayNetworkArgs | VpcGatewayNetworkState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcGatewayNetworkState | undefined;
-            inputs["cleanupDhcp"] = state ? state.cleanupDhcp : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["dhcpId"] = state ? state.dhcpId : undefined;
-            inputs["enableDhcp"] = state ? state.enableDhcp : undefined;
-            inputs["enableMasquerade"] = state ? state.enableMasquerade : undefined;
-            inputs["gatewayId"] = state ? state.gatewayId : undefined;
-            inputs["macAddress"] = state ? state.macAddress : undefined;
-            inputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
-            inputs["staticAddress"] = state ? state.staticAddress : undefined;
-            inputs["updatedAt"] = state ? state.updatedAt : undefined;
-            inputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["cleanupDhcp"] = state ? state.cleanupDhcp : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["dhcpId"] = state ? state.dhcpId : undefined;
+            resourceInputs["enableDhcp"] = state ? state.enableDhcp : undefined;
+            resourceInputs["enableMasquerade"] = state ? state.enableMasquerade : undefined;
+            resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
+            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
+            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
+            resourceInputs["staticAddress"] = state ? state.staticAddress : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as VpcGatewayNetworkArgs | undefined;
             if ((!args || args.gatewayId === undefined) && !opts.urn) {
@@ -142,22 +142,20 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
             if ((!args || args.privateNetworkId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'privateNetworkId'");
             }
-            inputs["cleanupDhcp"] = args ? args.cleanupDhcp : undefined;
-            inputs["dhcpId"] = args ? args.dhcpId : undefined;
-            inputs["enableDhcp"] = args ? args.enableDhcp : undefined;
-            inputs["enableMasquerade"] = args ? args.enableMasquerade : undefined;
-            inputs["gatewayId"] = args ? args.gatewayId : undefined;
-            inputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
-            inputs["staticAddress"] = args ? args.staticAddress : undefined;
-            inputs["zone"] = args ? args.zone : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["macAddress"] = undefined /*out*/;
-            inputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["cleanupDhcp"] = args ? args.cleanupDhcp : undefined;
+            resourceInputs["dhcpId"] = args ? args.dhcpId : undefined;
+            resourceInputs["enableDhcp"] = args ? args.enableDhcp : undefined;
+            resourceInputs["enableMasquerade"] = args ? args.enableMasquerade : undefined;
+            resourceInputs["gatewayId"] = args ? args.gatewayId : undefined;
+            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
+            resourceInputs["staticAddress"] = args ? args.staticAddress : undefined;
+            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["macAddress"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpcGatewayNetwork.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpcGatewayNetwork.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -304,6 +304,7 @@ func NewDomainRecord(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DomainRecord
 	err := ctx.RegisterResource("scaleway:index/domainRecord:DomainRecord", name, args, &resource, opts...)
 	if err != nil {
@@ -450,7 +451,7 @@ type DomainRecordInput interface {
 }
 
 func (*DomainRecord) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainRecord)(nil))
+	return reflect.TypeOf((**DomainRecord)(nil)).Elem()
 }
 
 func (i *DomainRecord) ToDomainRecordOutput() DomainRecordOutput {
@@ -464,7 +465,7 @@ func (i *DomainRecord) ToDomainRecordOutputWithContext(ctx context.Context) Doma
 type DomainRecordOutput struct{ *pulumi.OutputState }
 
 func (DomainRecordOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainRecord)(nil))
+	return reflect.TypeOf((**DomainRecord)(nil)).Elem()
 }
 
 func (o DomainRecordOutput) ToDomainRecordOutput() DomainRecordOutput {

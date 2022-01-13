@@ -46,6 +46,7 @@ func NewAppleSliconValleyServer(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AppleSliconValleyServer
 	err := ctx.RegisterResource("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer", name, args, &resource, opts...)
 	if err != nil {
@@ -152,7 +153,7 @@ type AppleSliconValleyServerInput interface {
 }
 
 func (*AppleSliconValleyServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppleSliconValleyServer)(nil))
+	return reflect.TypeOf((**AppleSliconValleyServer)(nil)).Elem()
 }
 
 func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutput() AppleSliconValleyServerOutput {
@@ -166,7 +167,7 @@ func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutputWithContext(ctx
 type AppleSliconValleyServerOutput struct{ *pulumi.OutputState }
 
 func (AppleSliconValleyServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppleSliconValleyServer)(nil))
+	return reflect.TypeOf((**AppleSliconValleyServer)(nil)).Elem()
 }
 
 func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutput() AppleSliconValleyServerOutput {

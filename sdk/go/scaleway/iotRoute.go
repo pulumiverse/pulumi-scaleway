@@ -45,6 +45,7 @@ func NewIotRoute(ctx *pulumi.Context,
 	if args.Topic == nil {
 		return nil, errors.New("invalid value for required argument 'Topic'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IotRoute
 	err := ctx.RegisterResource("scaleway:index/iotRoute:IotRoute", name, args, &resource, opts...)
 	if err != nil {
@@ -155,7 +156,7 @@ type IotRouteInput interface {
 }
 
 func (*IotRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotRoute)(nil))
+	return reflect.TypeOf((**IotRoute)(nil)).Elem()
 }
 
 func (i *IotRoute) ToIotRouteOutput() IotRouteOutput {
@@ -169,7 +170,7 @@ func (i *IotRoute) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutp
 type IotRouteOutput struct{ *pulumi.OutputState }
 
 func (IotRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IotRoute)(nil))
+	return reflect.TypeOf((**IotRoute)(nil)).Elem()
 }
 
 func (o IotRouteOutput) ToIotRouteOutput() IotRouteOutput {

@@ -27,9 +27,7 @@ export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.In
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOffer:getBaremetalOffer", {
         "includeDisabled": args.includeDisabled,
         "name": args.name,

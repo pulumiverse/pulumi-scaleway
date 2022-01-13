@@ -26,9 +26,7 @@ export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.In
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getInstanceServer:getInstanceServer", {
         "name": args.name,
         "serverId": args.serverId,

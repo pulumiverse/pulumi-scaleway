@@ -25,9 +25,7 @@ export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOpt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,
     }, opts);
