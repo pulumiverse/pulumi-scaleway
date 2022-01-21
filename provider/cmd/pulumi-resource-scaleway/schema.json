@@ -1,15 +1,18 @@
 {
     "name": "scaleway",
+    "displayName": "Scaleway",
     "description": "A Pulumi package for creating and managing scaleway cloud resources.",
     "keywords": [
         "pulumi",
-        "scaleway"
+        "scaleway",
+        "category/Cloud"
     ],
     "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`scaleway` Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway).",
     "repository": "https://github.com/jaxxstorm/pulumi-scaleway",
     "pluginDownloadURL": "https://dl.briggs.work/pulumi/releases/plugins",
+    "publisher": "Lee Briggs",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

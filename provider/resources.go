@@ -84,6 +84,8 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
 		PluginDownloadURL: "https://dl.briggs.work/pulumi/releases/plugins",
 		GitHubOrg:         "scaleway", // not in the terraform-providers repo
+		Publisher:         "Lee Briggs",
+		DisplayName:       "Scaleway",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{
