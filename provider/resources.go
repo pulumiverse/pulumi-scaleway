@@ -76,7 +76,7 @@ func Provider() tfbridge.ProviderInfo {
 		P:                 p,
 		Name:              "scaleway",
 		Description:       "A Pulumi package for creating and managing scaleway cloud resources.",
-		Keywords:          []string{"pulumi", "scaleway"},
+		Keywords:          []string{"pulumi", "scaleway", "category/Cloud"},
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		License:           "Apache-2.0",
 		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
