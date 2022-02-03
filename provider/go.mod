@@ -3,8 +3,8 @@ module github.com/jaxxstorm/pulumi-scaleway/provider
 go 1.17
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.16.1
-	github.com/pulumi/pulumi/sdk/v3 v3.22.1
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.18.0
+	github.com/pulumi/pulumi/sdk/v3 v3.23.2
 	github.com/scaleway/terraform-provider-scaleway v1.17.1-0.20211230161835-24df682dbb8e
 )
 
@@ -94,7 +94,7 @@ require (
 	github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/posener/complete v1.2.1 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.22.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.23.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.1 // indirect
