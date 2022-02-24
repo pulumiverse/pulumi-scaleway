@@ -445,8 +445,9 @@ github.com/hashicorp/go-uuid v1.0.2 h1:cfejS+Tpcp13yd5nYHWDI6qVCny6wyX2Mt5SGur2I
 github.com/hashicorp/go-uuid v1.0.2/go.mod h1:6SBZvOh/SIDV7/2o3Jml5SYk/TvGqwFJ/bN7x4byOro=
 github.com/hashicorp/go-version v1.1.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
 github.com/hashicorp/go-version v1.2.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
-github.com/hashicorp/go-version v1.3.0 h1:McDWVJIU/y+u1BRV06dPaLfLCaT7fUTJLp5r04x7iNw=
 github.com/hashicorp/go-version v1.3.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
+github.com/hashicorp/go-version v1.4.0 h1:aAQzgqIrRKRa7w75CKpbBxYsmUoPjzVm1W59ca1L0J4=
+github.com/hashicorp/go-version v1.4.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
 github.com/hashicorp/golang-lru v0.5.0/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
 github.com/hashicorp/golang-lru v0.5.1/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
 github.com/hashicorp/golang-lru v0.5.3/go.mod h1:iADmTwqILo4mZ8BN3D2Q6+9jd8WM5uGBxy+E8yxSoD4=
@@ -698,8 +699,8 @@ github.com/pulumi/pulumi-terraform-bridge/v3 v3.16.1/go.mod h1:6XmD2LSnYLnzS4jiE
 github.com/pulumi/pulumi/pkg/v3 v3.22.0 h1:WdxiTbXsm+puD9D514VVo2dSJWG6MnHi9ep3NgXo4PA=
 github.com/pulumi/pulumi/pkg/v3 v3.22.0/go.mod h1:qvt0qEDtNTtJxy6IVGNfx8x/xEFeiPtDdfGNhfFh3jk=
 github.com/pulumi/pulumi/sdk/v3 v3.22.0/go.mod h1:WHOQB00iuHZyXhwrymxpKXhpOahSguJIpRjVokmM11w=
-github.com/pulumi/pulumi/sdk/v3 v3.22.1 h1:xmoxh08lhgQKgFkp8HcQ4NdFuetA5WgvwmY2yBW5wpM=
-github.com/pulumi/pulumi/sdk/v3 v3.22.1/go.mod h1:WHOQB00iuHZyXhwrymxpKXhpOahSguJIpRjVokmM11w=
+github.com/pulumi/pulumi/sdk/v3 v3.25.0 h1:ZLO5sXjtEcPJKveX8cL7YzNIvGM+/lxQ6uhgLGkNl2w=
+github.com/pulumi/pulumi/sdk/v3 v3.25.0/go.mod h1:VsxW+TGv2VBLe/MeqsAr9r0zKzK/gbAhFT9QxYr24cY=
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Dik4Qe/+xguB8JagPyXNlbOnRiXGmq/PSPQTGunYnTk=
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211230170131-3a7c83bfab87 h1:Reqyb/CbcDwThvBRzA62H7cvuCqgTJuGNt+F6mnmXJ4=

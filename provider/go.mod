@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.16.1
-	github.com/pulumi/pulumi/sdk/v3 v3.22.1
+	github.com/pulumi/pulumi/sdk/v3 v3.25.0
 	github.com/scaleway/terraform-provider-scaleway v1.17.1-0.20211230161835-24df682dbb8e
 )
 
@@ -51,7 +51,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.0 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
 	github.com/hashicorp/go-uuid v1.0.2 // indirect
-	github.com/hashicorp/go-version v1.3.0 // indirect
+	github.com/hashicorp/go-version v1.4.0 // indirect
 	github.com/hashicorp/hc-install v0.3.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.3.0 // indirect
