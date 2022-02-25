@@ -82,10 +82,11 @@ func Provider() tfbridge.ProviderInfo {
 		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
-		PluginDownloadURL: "https://dl.briggs.work/pulumi/releases/plugins",
+		PluginDownloadURL: "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}",
 		GitHubOrg:         "scaleway", // not in the terraform-providers repo
-		Publisher:         "Lee Briggs",
-		DisplayName:       "Scaleway",
+
+		Publisher:   "Lee Briggs",
+		DisplayName: "Scaleway",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{
@@ -127,31 +128,32 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_instance_server":               {Tok: scalewayResource(scalewayMod, "InstanceServer")},
 			"scaleway_instance_snapshot":             {Tok: scalewayResource(scalewayMod, "InstanceSnapshot")},
 			"scaleway_instance_volume":               {Tok: scalewayResource(scalewayMod, "InstanceVolume")},
-			"scaleway_iot_device":                    {Tok: scalewayResource(scalewayMod, "IotDevice")},
-			"scaleway_iot_hub":                       {Tok: scalewayResource(scalewayMod, "IotHub")},
-			"scaleway_iot_network":                   {Tok: scalewayResource(scalewayMod, "IotNetwork")},
-			"scaleway_iot_route":                     {Tok: scalewayResource(scalewayMod, "IotRoute")},
-			"scaleway_k8s_cluster":                   {Tok: scalewayResource(scalewayMod, "KubernetesCluster")},
-			"scaleway_k8s_pool":                      {Tok: scalewayResource(scalewayMod, "KubernetesNodePool")},
-			"scaleway_lb":                            {Tok: scalewayResource(scalewayMod, "Loadbalancer")},
-			"scaleway_lb_backend":                    {Tok: scalewayResource(scalewayMod, "LoadbalancerBackend")},
-			"scaleway_lb_certificate":                {Tok: scalewayResource(scalewayMod, "LoadbalancerCertificate")},
-			"scaleway_lb_frontend":                   {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontend")},
-			"scaleway_lb_ip":                         {Tok: scalewayResource(scalewayMod, "LoadbalancerIp")},
-			"scaleway_lb_route":                      {Tok: scalewayResource(scalewayMod, "LoadbalancerRoute")},
-			"scaleway_object_bucket":                 {Tok: scalewayResource(scalewayMod, "ObjectBucket")},
-			"scaleway_rdb_acl":                       {Tok: scalewayResource(scalewayMod, "DatabaseAcl")},
-			"scaleway_rdb_database":                  {Tok: scalewayResource(scalewayMod, "Database")},
-			"scaleway_rdb_instance":                  {Tok: scalewayResource(scalewayMod, "DatabaseInstance")},
-			"scaleway_rdb_privilege":                 {Tok: scalewayResource(scalewayMod, "DatabasePrivilege")},
-			"scaleway_rdb_user":                      {Tok: scalewayResource(scalewayMod, "DatabaseUser")},
-			"scaleway_registry_namespace":            {Tok: scalewayResource(scalewayMod, "RegistryNamespace")},
-			"scaleway_vpc_gateway_network":           {Tok: scalewayResource(scalewayMod, "VpcGatewayNetwork")},
-			"scaleway_vpc_private_network":           {Tok: scalewayResource(scalewayMod, "VpcPrivateNetwork")},
-			"scaleway_vpc_public_gateway":            {Tok: scalewayResource(scalewayMod, "VpcPublicGateway")},
-			"scaleway_vpc_public_gateway_dhcp":       {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcp")},
-			"scaleway_vpc_public_gateway_ip":         {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIp")},
-			"scaleway_vpc_public_gateway_pat_rule":   {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayPatRule")},
+
+			"scaleway_iot_device":                  {Tok: scalewayResource(scalewayMod, "IotDevice")},
+			"scaleway_iot_hub":                     {Tok: scalewayResource(scalewayMod, "IotHub")},
+			"scaleway_iot_network":                 {Tok: scalewayResource(scalewayMod, "IotNetwork")},
+			"scaleway_iot_route":                   {Tok: scalewayResource(scalewayMod, "IotRoute")},
+			"scaleway_k8s_cluster":                 {Tok: scalewayResource(scalewayMod, "KubernetesCluster")},
+			"scaleway_k8s_pool":                    {Tok: scalewayResource(scalewayMod, "KubernetesNodePool")},
+			"scaleway_lb":                          {Tok: scalewayResource(scalewayMod, "Loadbalancer")},
+			"scaleway_lb_backend":                  {Tok: scalewayResource(scalewayMod, "LoadbalancerBackend")},
+			"scaleway_lb_certificate":              {Tok: scalewayResource(scalewayMod, "LoadbalancerCertificate")},
+			"scaleway_lb_frontend":                 {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontend")},
+			"scaleway_lb_ip":                       {Tok: scalewayResource(scalewayMod, "LoadbalancerIp")},
+			"scaleway_lb_route":                    {Tok: scalewayResource(scalewayMod, "LoadbalancerRoute")},
+			"scaleway_object_bucket":               {Tok: scalewayResource(scalewayMod, "ObjectBucket")},
+			"scaleway_rdb_acl":                     {Tok: scalewayResource(scalewayMod, "DatabaseAcl")},
+			"scaleway_rdb_database":                {Tok: scalewayResource(scalewayMod, "Database")},
+			"scaleway_rdb_instance":                {Tok: scalewayResource(scalewayMod, "DatabaseInstance")},
+			"scaleway_rdb_privilege":               {Tok: scalewayResource(scalewayMod, "DatabasePrivilege")},
+			"scaleway_rdb_user":                    {Tok: scalewayResource(scalewayMod, "DatabaseUser")},
+			"scaleway_registry_namespace":          {Tok: scalewayResource(scalewayMod, "RegistryNamespace")},
+			"scaleway_vpc_gateway_network":         {Tok: scalewayResource(scalewayMod, "VpcGatewayNetwork")},
+			"scaleway_vpc_private_network":         {Tok: scalewayResource(scalewayMod, "VpcPrivateNetwork")},
+			"scaleway_vpc_public_gateway":          {Tok: scalewayResource(scalewayMod, "VpcPublicGateway")},
+			"scaleway_vpc_public_gateway_dhcp":     {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcp")},
+			"scaleway_vpc_public_gateway_ip":       {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIp")},
+			"scaleway_vpc_public_gateway_pat_rule": {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayPatRule")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
@@ -170,6 +172,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_instance_server":         {Tok: scalewayDataSource(scalewayMod, "getInstanceServer")},
 			"scaleway_instance_volume":         {Tok: scalewayDataSource(scalewayMod, "getInstanceVolume")},
 			"scaleway_k8s_cluster":             {Tok: scalewayDataSource(scalewayMod, "getKubernetesCluster")},
+
 			"scaleway_k8s_pool":                {Tok: scalewayDataSource(scalewayMod, "getKubernetesNodePool")},
 			"scaleway_lb":                      {Tok: scalewayDataSource(scalewayMod, "getLoadbalancer")},
 			"scaleway_lb_ip":                   {Tok: scalewayDataSource(scalewayMod, "getLoadbalancerIp")},
@@ -198,7 +201,7 @@ func Provider() tfbridge.ProviderInfo {
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
+			// Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges

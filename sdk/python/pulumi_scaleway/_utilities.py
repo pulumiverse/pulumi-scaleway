@@ -236,4 +236,4 @@ def lift_output_func(func: typing.Any) -> typing.Callable[[_F], _F]:
     return (lambda _: lifted_func)
 
 def get_plugin_download_url():
-	return "https://dl.briggs.work/pulumi/releases/plugins"
+	return "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}"

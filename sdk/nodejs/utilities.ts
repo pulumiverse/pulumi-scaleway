@@ -50,5 +50,5 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "https://dl.briggs.work/pulumi/releases/plugins" };
+    return { version: getVersion(), pluginDownloadURL: "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}" };
 }
