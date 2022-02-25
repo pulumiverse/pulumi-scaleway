@@ -30,7 +30,7 @@ func main() {
 	}
 	err = ioutil.WriteFile("./schema.go", []byte(fmt.Sprintf(`package main
 var pulumiSchema = %#v
-`, contents)), 0600)
+`, contents)), 0o600)
 	if err != nil {
 		log.Fatal(err)
 	}
