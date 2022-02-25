@@ -9,6 +9,11 @@ require (
 )
 
 require (
+	github.com/Sirupsen/logrus v0.0.0-00010101000000-000000000000 // indirect
+	github.com/docker/docker v1.6.1 // indirect
+)
+
+require (
 	cloud.google.com/go v0.81.0 // indirect
 	cloud.google.com/go/storage v1.15.0 // indirect
 	github.com/Masterminds/goutils v1.1.0 // indirect
@@ -147,6 +152,8 @@ require (
 )
 
 replace (
+	github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.8.1
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211230170131-3a7c83bfab87
+
 )
