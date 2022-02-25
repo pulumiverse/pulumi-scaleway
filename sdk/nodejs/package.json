@@ -23,6 +23,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://dl.briggs.work/pulumi/releases/plugins"
+        "pluginDownloadURL": "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}"
     }
 }

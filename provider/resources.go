@@ -82,10 +82,11 @@ func Provider() tfbridge.ProviderInfo {
 		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
-		PluginDownloadURL: "github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}",
+		PluginDownloadURL: "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}",
 		GitHubOrg:         "scaleway", // not in the terraform-providers repo
-		Publisher:         "Lee Briggs",
-		DisplayName:       "Scaleway",
+
+		Publisher:   "Lee Briggs",
+		DisplayName: "Scaleway",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{
