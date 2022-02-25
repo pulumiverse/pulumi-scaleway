@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetKubernetesNodePoolResult> InvokeAsync(GetKubernetesNodePoolArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Kubernetes Cluster's Pool.
@@ -68,7 +67,7 @@ namespace Pulumi.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetKubernetesNodePoolResult> Invoke(GetKubernetesNodePoolInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolInvokeArgs(), options.WithDefaults());
     }
 
 

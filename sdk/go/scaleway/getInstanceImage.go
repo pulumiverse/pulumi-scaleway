@@ -24,9 +24,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "11111111-1111-1111-1111-111111111111"
 // 		_, err := scaleway.GetInstanceImage(ctx, &GetInstanceImageArgs{
-// 			ImageId: &opt0,
+// 			ImageId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

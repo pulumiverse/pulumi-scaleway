@@ -11,7 +11,8 @@
     "repository": "https://github.com/jaxxstorm/pulumi-scaleway",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "install": "node scripts/install-pulumi-plugin.js resource scaleway ${VERSION}"
     },
     "dependencies": {
         "@pulumi/pulumi": "^3.0.0"

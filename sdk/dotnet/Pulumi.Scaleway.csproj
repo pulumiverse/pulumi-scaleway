@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Pulumi Corp.</Authors>
-    <Company>Pulumi Corp.</Company>
+    <Authors>Lee Briggs</Authors>
+    <Company>Lee Briggs</Company>
     <Description>A Pulumi package for creating and managing scaleway cloud resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://leebriggs.co.uk/projects#pulumi-scaleway</PackageProjectUrl>

@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  *
  * const jack = new scaleway.KubernetesCluster("jack", {
  *     version: "1.19.4",

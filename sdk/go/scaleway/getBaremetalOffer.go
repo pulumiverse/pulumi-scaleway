@@ -24,11 +24,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "3ab0dc29-2fd4-486e-88bf-d08fbf49214b"
-// 		opt1 := "fr-par-2"
 // 		_, err := scaleway.GetBaremetalOffer(ctx, &GetBaremetalOfferArgs{
-// 			OfferId: &opt0,
-// 			Zone:    &opt1,
+// 			OfferId: pulumi.StringRef("3ab0dc29-2fd4-486e-88bf-d08fbf49214b"),
+// 			Zone:    pulumi.StringRef("fr-par-2"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

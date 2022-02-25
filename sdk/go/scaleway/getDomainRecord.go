@@ -24,24 +24,18 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "1.2.3.4"
-// 		opt1 := "domain.tld"
-// 		opt2 := "www"
-// 		opt3 := "A"
 // 		_, err := scaleway.LookupDomainRecord(ctx, &GetDomainRecordArgs{
-// 			Data:    &opt0,
-// 			DnsZone: &opt1,
-// 			Name:    &opt2,
-// 			Type:    &opt3,
+// 			Data:    pulumi.StringRef("1.2.3.4"),
+// 			DnsZone: pulumi.StringRef("domain.tld"),
+// 			Name:    pulumi.StringRef("www"),
+// 			Type:    pulumi.StringRef("A"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		opt4 := "domain.tld"
-// 		opt5 := "11111111-1111-1111-1111-111111111111"
 // 		_, err = scaleway.LookupDomainRecord(ctx, &GetDomainRecordArgs{
-// 			DnsZone:  &opt4,
-// 			RecordId: &opt5,
+// 			DnsZone:  pulumi.StringRef("domain.tld"),
+// 			RecordId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

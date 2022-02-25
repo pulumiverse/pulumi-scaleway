@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const main = scaleway.getAccountSshKey({

@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  *
  * const publicIp = new scaleway.InstanceIp("publicIp", {});
  * const web = new scaleway.InstanceServer("web", {
@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  *
  * const data = new scaleway.InstanceVolume("data", {
  *     sizeInGb: 100,
@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  *
  * const ip = new scaleway.InstanceIp("ip", {});
  * const web = new scaleway.InstanceServer("web", {
@@ -70,7 +70,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  *
  * const www = new scaleway.InstanceSecurityGroup("www", {
  *     inboundDefaultPolicy: "drop",
@@ -106,7 +106,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  * import * from "fs";
  *
  * const web = new scaleway.InstanceServer("web", {
@@ -123,7 +123,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const base = new scaleway.InstanceServer("base", {

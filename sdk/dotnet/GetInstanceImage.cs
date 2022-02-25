@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Scaleway
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceImageResult> InvokeAsync(GetInstanceImageArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceImageResult>("scaleway:index/getInstanceImage:getInstanceImage", args ?? new GetInstanceImageArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceImageResult>("scaleway:index/getInstanceImage:getInstanceImage", args ?? new GetInstanceImageArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an instance image.
@@ -68,7 +67,7 @@ namespace Pulumi.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstanceImageResult> Invoke(GetInstanceImageInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstanceImageResult>("scaleway:index/getInstanceImage:getInstanceImage", args ?? new GetInstanceImageInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceImageResult>("scaleway:index/getInstanceImage:getInstanceImage", args ?? new GetInstanceImageInvokeArgs(), options.WithDefaults());
     }
 
 
