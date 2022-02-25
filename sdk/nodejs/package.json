@@ -4,8 +4,7 @@
     "description": "A Pulumi package for creating and managing scaleway cloud resources.",
     "keywords": [
         "pulumi",
-        "scaleway",
-        "cloud/Cloud"
+        "scaleway"
     ],
     "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
     "repository": "https://github.com/jaxxstorm/pulumi-scaleway",

@@ -45,7 +45,7 @@ setup(name='pulumi_scaleway',
       cmdclass={
           'install': InstallPluginCommand,
       },
-      keywords='pulumi scaleway cloud/Cloud',
+      keywords='pulumi scaleway',
       url='https://leebriggs.co.uk/projects#pulumi-scaleway',
       project_urls={
           'Repository': 'https://github.com/jaxxstorm/pulumi-scaleway'
