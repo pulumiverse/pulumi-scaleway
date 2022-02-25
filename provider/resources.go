@@ -1,6 +1,7 @@
 // Copyright 2016-2018, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
+
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
@@ -76,7 +77,7 @@ func Provider() tfbridge.ProviderInfo {
 		P:                 p,
 		Name:              "scaleway",
 		Description:       "A Pulumi package for creating and managing scaleway cloud resources.",
-		Keywords:          []string{"pulumi", "scaleway", "category/Cloud"},
+		Keywords:          []string{"pulumi", "scaleway", "cloud/Cloud"},
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		License:           "Apache-2.0",
 		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll

@@ -5,7 +5,7 @@
     "keywords": [
         "pulumi",
         "scaleway",
-        "category/Cloud"
+        "cloud/Cloud"
     ],
     "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
     "license": "Apache-2.0",
