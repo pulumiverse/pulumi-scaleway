@@ -1,3 +1,4 @@
+
 # Scaleway Resource Provider
 
 The Scaleway resource provider for Pulumi lets you creating resources in [Scaleway](https://www.scaleway.com). To use
@@ -41,10 +42,13 @@ $ go get github.com/jaxxstorm/pulumi-scaleway/sdk/go/...
 
 To use from Dotnet, use `dotnet add package` to install into your project. You must specify the version if it is a pre-release version.
 
+
 ```
 $ dotnet add package Pulumi.Scaleway
 ```
 
 ## Reference
 
-Coming Soon
+See the Pulumi registry for API docs:
+
+https://www.pulumi.com/registry/packages/scaleway/api-docs/
