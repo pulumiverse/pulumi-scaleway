@@ -3,7 +3,7 @@ module github.com/jaxxstorm/pulumi-scaleway/provider
 go 1.17
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.19.1
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.20.0
 	github.com/pulumi/pulumi/sdk/v3 v3.26.1
 	github.com/scaleway/terraform-provider-scaleway v1.17.1-0.20211230161835-24df682dbb8e
 )
