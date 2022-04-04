@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.19.1
-	github.com/pulumi/pulumi/sdk/v3 v3.26.1
+	github.com/pulumi/pulumi/sdk/v3 v3.28.0
 	github.com/scaleway/terraform-provider-scaleway v1.17.1-0.20211230161835-24df682dbb8e
 )
 
@@ -110,8 +110,8 @@ require (
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.7.0.20211228142246-d7e9096b97a8 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/afero v1.2.2 // indirect
-	github.com/spf13/cobra v1.0.0 // indirect
-	github.com/spf13/pflag v1.0.3 // indirect
+	github.com/spf13/cobra v1.4.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/terraform-providers/terraform-provider-archive v1.3.0 // indirect
 	github.com/terraform-providers/terraform-provider-http v1.2.0 // indirect
