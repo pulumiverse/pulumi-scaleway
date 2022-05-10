@@ -9,58 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var serverIp = new Scaleway.InstanceIp("serverIp", new Scaleway.InstanceIpArgs
-    ///         {
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// IPs can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/instanceIp:InstanceIp")]
     public partial class InstanceIp : Pulumi.CustomResource
     {
         /// <summary>
-        /// The IP address.
+        /// The IP address
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the IP is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The reverse dns attached to this IP
+        /// The reverse DNS for this IP
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
@@ -72,7 +43,13 @@ namespace Pulumi.Scaleway
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// The tags associated with the ip
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The zone you want to attach the resource to
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -125,13 +102,25 @@ namespace Pulumi.Scaleway
     public sealed class InstanceIpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// The tags associated with the ip
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -144,25 +133,25 @@ namespace Pulumi.Scaleway
     public sealed class InstanceIpState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP address.
+        /// The IP address
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The organization ID the IP is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The reverse dns attached to this IP
+        /// The reverse DNS for this IP
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
@@ -173,8 +162,20 @@ namespace Pulumi.Scaleway
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// The tags associated with the ip
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

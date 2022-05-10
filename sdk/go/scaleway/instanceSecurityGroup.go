@@ -10,40 +10,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
-//
-// Instance security group can be imported using the `{zone}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
-// ```
 type InstanceSecurityGroup struct {
 	pulumi.CustomResourceState
 
-	// The description of the security group.
+	// The description of the security group
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+	// Enable blocking of SMTP on IPv4 and IPv6
 	EnableDefaultSecurity pulumi.BoolPtrOutput `pulumi:"enableDefaultSecurity"`
-	// A boolean to specify whether to use instance_security_group_rules.
-	// If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
-	ExternalRules pulumi.BoolPtrOutput `pulumi:"externalRules"`
-	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+	ExternalRules         pulumi.BoolPtrOutput `pulumi:"externalRules"`
+	// Default inbound traffic policy for this security group
 	InboundDefaultPolicy pulumi.StringPtrOutput `pulumi:"inboundDefaultPolicy"`
-	// A list of inbound rule to add to the security group. (Structure is documented below.)
+	// Inbound rules for this security group
 	InboundRules InstanceSecurityGroupInboundRuleArrayOutput `pulumi:"inboundRules"`
-	// The name of the security group.
+	// The name of the security group
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the security group is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+	// Default outbound traffic policy for this security group
 	OutboundDefaultPolicy pulumi.StringPtrOutput `pulumi:"outboundDefaultPolicy"`
-	// A list of outbound rule to add to the security group. (Structure is documented below.)
+	// Outbound rules for this security group
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayOutput `pulumi:"outboundRules"`
-	// `projectId`) The ID of the project the security group is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// A boolean to specify whether the security group should be stateful or not.
+	// The stateful value of the security group
 	Stateful pulumi.BoolPtrOutput `pulumi:"stateful"`
-	// `zone`) The zone in which the security group should be created.
+	// The tags associated with the security group
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The zone you want to attach the resource to
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -77,58 +70,58 @@ func GetInstanceSecurityGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceSecurityGroup resources.
 type instanceSecurityGroupState struct {
-	// The description of the security group.
+	// The description of the security group
 	Description *string `pulumi:"description"`
-	// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+	// Enable blocking of SMTP on IPv4 and IPv6
 	EnableDefaultSecurity *bool `pulumi:"enableDefaultSecurity"`
-	// A boolean to specify whether to use instance_security_group_rules.
-	// If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
-	ExternalRules *bool `pulumi:"externalRules"`
-	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+	ExternalRules         *bool `pulumi:"externalRules"`
+	// Default inbound traffic policy for this security group
 	InboundDefaultPolicy *string `pulumi:"inboundDefaultPolicy"`
-	// A list of inbound rule to add to the security group. (Structure is documented below.)
+	// Inbound rules for this security group
 	InboundRules []InstanceSecurityGroupInboundRule `pulumi:"inboundRules"`
-	// The name of the security group.
+	// The name of the security group
 	Name *string `pulumi:"name"`
-	// The organization ID the security group is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+	// Default outbound traffic policy for this security group
 	OutboundDefaultPolicy *string `pulumi:"outboundDefaultPolicy"`
-	// A list of outbound rule to add to the security group. (Structure is documented below.)
+	// Outbound rules for this security group
 	OutboundRules []InstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
-	// `projectId`) The ID of the project the security group is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// A boolean to specify whether the security group should be stateful or not.
+	// The stateful value of the security group
 	Stateful *bool `pulumi:"stateful"`
-	// `zone`) The zone in which the security group should be created.
+	// The tags associated with the security group
+	Tags []string `pulumi:"tags"`
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceSecurityGroupState struct {
-	// The description of the security group.
+	// The description of the security group
 	Description pulumi.StringPtrInput
-	// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+	// Enable blocking of SMTP on IPv4 and IPv6
 	EnableDefaultSecurity pulumi.BoolPtrInput
-	// A boolean to specify whether to use instance_security_group_rules.
-	// If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
-	ExternalRules pulumi.BoolPtrInput
-	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+	ExternalRules         pulumi.BoolPtrInput
+	// Default inbound traffic policy for this security group
 	InboundDefaultPolicy pulumi.StringPtrInput
-	// A list of inbound rule to add to the security group. (Structure is documented below.)
+	// Inbound rules for this security group
 	InboundRules InstanceSecurityGroupInboundRuleArrayInput
-	// The name of the security group.
+	// The name of the security group
 	Name pulumi.StringPtrInput
-	// The organization ID the security group is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+	// Default outbound traffic policy for this security group
 	OutboundDefaultPolicy pulumi.StringPtrInput
-	// A list of outbound rule to add to the security group. (Structure is documented below.)
+	// Outbound rules for this security group
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayInput
-	// `projectId`) The ID of the project the security group is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// A boolean to specify whether the security group should be stateful or not.
+	// The stateful value of the security group
 	Stateful pulumi.BoolPtrInput
-	// `zone`) The zone in which the security group should be created.
+	// The tags associated with the security group
+	Tags pulumi.StringArrayInput
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 
@@ -137,55 +130,55 @@ func (InstanceSecurityGroupState) ElementType() reflect.Type {
 }
 
 type instanceSecurityGroupArgs struct {
-	// The description of the security group.
+	// The description of the security group
 	Description *string `pulumi:"description"`
-	// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+	// Enable blocking of SMTP on IPv4 and IPv6
 	EnableDefaultSecurity *bool `pulumi:"enableDefaultSecurity"`
-	// A boolean to specify whether to use instance_security_group_rules.
-	// If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
-	ExternalRules *bool `pulumi:"externalRules"`
-	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+	ExternalRules         *bool `pulumi:"externalRules"`
+	// Default inbound traffic policy for this security group
 	InboundDefaultPolicy *string `pulumi:"inboundDefaultPolicy"`
-	// A list of inbound rule to add to the security group. (Structure is documented below.)
+	// Inbound rules for this security group
 	InboundRules []InstanceSecurityGroupInboundRule `pulumi:"inboundRules"`
-	// The name of the security group.
+	// The name of the security group
 	Name *string `pulumi:"name"`
-	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+	// Default outbound traffic policy for this security group
 	OutboundDefaultPolicy *string `pulumi:"outboundDefaultPolicy"`
-	// A list of outbound rule to add to the security group. (Structure is documented below.)
+	// Outbound rules for this security group
 	OutboundRules []InstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
-	// `projectId`) The ID of the project the security group is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// A boolean to specify whether the security group should be stateful or not.
+	// The stateful value of the security group
 	Stateful *bool `pulumi:"stateful"`
-	// `zone`) The zone in which the security group should be created.
+	// The tags associated with the security group
+	Tags []string `pulumi:"tags"`
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceSecurityGroup resource.
 type InstanceSecurityGroupArgs struct {
-	// The description of the security group.
+	// The description of the security group
 	Description pulumi.StringPtrInput
-	// Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+	// Enable blocking of SMTP on IPv4 and IPv6
 	EnableDefaultSecurity pulumi.BoolPtrInput
-	// A boolean to specify whether to use instance_security_group_rules.
-	// If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
-	ExternalRules pulumi.BoolPtrInput
-	// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+	ExternalRules         pulumi.BoolPtrInput
+	// Default inbound traffic policy for this security group
 	InboundDefaultPolicy pulumi.StringPtrInput
-	// A list of inbound rule to add to the security group. (Structure is documented below.)
+	// Inbound rules for this security group
 	InboundRules InstanceSecurityGroupInboundRuleArrayInput
-	// The name of the security group.
+	// The name of the security group
 	Name pulumi.StringPtrInput
-	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+	// Default outbound traffic policy for this security group
 	OutboundDefaultPolicy pulumi.StringPtrInput
-	// A list of outbound rule to add to the security group. (Structure is documented below.)
+	// Outbound rules for this security group
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayInput
-	// `projectId`) The ID of the project the security group is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// A boolean to specify whether the security group should be stateful or not.
+	// The stateful value of the security group
 	Stateful pulumi.BoolPtrInput
-	// `zone`) The zone in which the security group should be created.
+	// The tags associated with the security group
+	Tags pulumi.StringArrayInput
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 

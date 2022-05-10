@@ -17,10 +17,6 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string Hostname;
         public readonly string Ip;
         public readonly string IpNet;
-        /// <summary>
-        /// The name of the RDB instance.
-        /// Only one of `name` and `instance_id` should be specified.
-        /// </summary>
         public readonly string Name;
         public readonly string PnId;
         public readonly int Port;

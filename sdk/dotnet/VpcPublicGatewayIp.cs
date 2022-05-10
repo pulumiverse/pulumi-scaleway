@@ -9,89 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway VPC Public Gateway IP.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
-    /// 
-    /// ## Example
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
-    ///         {
-    ///             Reverse = "example.com",
-    ///             Tags = 
-    ///             {
-    ///                 "demo",
-    ///                 "terraform",
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Public gateway can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp")]
     public partial class VpcPublicGatewayIp : Pulumi.CustomResource
     {
         /// <summary>
-        /// The IP address itself.
+        /// the IP itself
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the public gateway ip.
+        /// The date and time of the creation of the public gateway IP
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the public gateway ip is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway ip is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The reverse domain name for the IP address
+        /// reverse domain name for the IP address
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the public gateway IP.
+        /// The tags associated with public gateway IP
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway ip.
+        /// The date and time of the last update of the public gateway IP
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway ip should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -144,13 +108,13 @@ namespace Pulumi.Scaleway
     public sealed class VpcPublicGatewayIpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway ip is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The reverse domain name for the IP address
+        /// reverse domain name for the IP address
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
@@ -159,7 +123,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the public gateway IP.
+        /// The tags associated with public gateway IP
         /// </summary>
         public InputList<string> Tags
         {
@@ -168,7 +132,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway ip should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -181,31 +145,31 @@ namespace Pulumi.Scaleway
     public sealed class VpcPublicGatewayIpState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP address itself.
+        /// the IP itself
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the public gateway ip.
+        /// The date and time of the creation of the public gateway IP
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The organization ID the public gateway ip is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway ip is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The reverse domain name for the IP address
+        /// reverse domain name for the IP address
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
@@ -214,7 +178,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the public gateway IP.
+        /// The tags associated with public gateway IP
         /// </summary>
         public InputList<string> Tags
         {
@@ -223,13 +187,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway ip.
+        /// The date and time of the last update of the public gateway IP
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway ip should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

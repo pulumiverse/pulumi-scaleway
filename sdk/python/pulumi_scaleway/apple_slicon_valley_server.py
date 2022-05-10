@@ -90,6 +90,7 @@ class _AppleSliconValleyServerState:
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  vnc_url: Optional[pulumi.Input[str]] = None,
@@ -102,6 +103,7 @@ class _AppleSliconValleyServerState:
         :param pulumi.Input[str] name: Name of the server
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] state: The state of the server
         :param pulumi.Input[str] type: Type of the server
         :param pulumi.Input[str] updated_at: The date and time of the last update of the server
         :param pulumi.Input[str] vnc_url: VNC url use to connect remotely to the desktop GUI
@@ -119,6 +121,8 @@ class _AppleSliconValleyServerState:
             pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
@@ -199,6 +203,18 @@ class _AppleSliconValleyServerState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state of the server
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
 
     @property
     @pulumi.getter
@@ -319,6 +335,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
             __props__.__dict__["deletable_at"] = None
             __props__.__dict__["ip"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["vnc_url"] = None
         super(AppleSliconValleyServer, __self__).__init__(
@@ -337,6 +354,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             vnc_url: Optional[pulumi.Input[str]] = None,
@@ -354,6 +372,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the server
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] state: The state of the server
         :param pulumi.Input[str] type: Type of the server
         :param pulumi.Input[str] updated_at: The date and time of the last update of the server
         :param pulumi.Input[str] vnc_url: VNC url use to connect remotely to the desktop GUI
@@ -369,6 +388,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vnc_url"] = vnc_url
@@ -422,6 +442,14 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> pulumi.Output[str]:
+        """
+        The state of the server
+        """
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter

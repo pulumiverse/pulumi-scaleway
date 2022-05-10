@@ -4,30 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Manages Scaleway Compute Instance IPs Reverse DNS.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
- *
- * const serverIp = new scaleway.InstanceIp("serverIp", {});
- * const reverse = new scaleway.InstanceIpReverseDns("reverse", {
- *     ipId: serverIp.id,
- *     reverse: "www.scaleway.com",
- * });
- * ```
- *
- * ## Import
- *
- * IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class InstanceIpReverseDns extends pulumi.CustomResource {
     /**
      * Get an existing InstanceIpReverseDns resource's state with the given name, ID, and optional extra
@@ -57,15 +33,15 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
     }
 
     /**
-     * The IP ID
+     * The IP ID or IP address
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
-     * The reverse DNS for this IP.
+     * The reverse DNS for this IP
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * The zone you want to attach the resource to
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -107,15 +83,15 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
  */
 export interface InstanceIpReverseDnsState {
     /**
-     * The IP ID
+     * The IP ID or IP address
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP.
+     * The reverse DNS for this IP
      */
     reverse?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }
@@ -125,15 +101,15 @@ export interface InstanceIpReverseDnsState {
  */
 export interface InstanceIpReverseDnsArgs {
     /**
-     * The IP ID
+     * The IP ID or IP address
      */
     ipId: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP.
+     * The reverse DNS for this IP
      */
     reverse: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }

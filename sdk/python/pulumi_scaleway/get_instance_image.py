@@ -73,9 +73,6 @@ class GetInstanceImageResult:
     @property
     @pulumi.getter(name="additionalVolumeIds")
     def additional_volume_ids(self) -> Sequence[str]:
-        """
-        IDs of the additional volumes in this image.
-        """
         return pulumi.get(self, "additional_volume_ids")
 
     @property
@@ -86,25 +83,16 @@ class GetInstanceImageResult:
     @property
     @pulumi.getter(name="creationDate")
     def creation_date(self) -> str:
-        """
-        Date of the image creation.
-        """
         return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter(name="defaultBootscriptId")
     def default_bootscript_id(self) -> str:
-        """
-        ID of the default bootscript for this image.
-        """
         return pulumi.get(self, "default_bootscript_id")
 
     @property
     @pulumi.getter(name="fromServerId")
     def from_server_id(self) -> str:
-        """
-        ID of the server the image if based from.
-        """
         return pulumi.get(self, "from_server_id")
 
     @property
@@ -128,9 +116,6 @@ class GetInstanceImageResult:
     @property
     @pulumi.getter(name="modificationDate")
     def modification_date(self) -> str:
-        """
-        Date of image latest update.
-        """
         return pulumi.get(self, "modification_date")
 
     @property
@@ -141,41 +126,26 @@ class GetInstanceImageResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the image is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the project the image is associated with.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def public(self) -> bool:
-        """
-        Set to `true` if the image is public.
-        """
         return pulumi.get(self, "public")
 
     @property
     @pulumi.getter(name="rootVolumeId")
     def root_volume_id(self) -> str:
-        """
-        ID of the root volume in this image.
-        """
         return pulumi.get(self, "root_volume_id")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        State of the image. Possible values are: `available`, `creating` or `error`.
-        """
         return pulumi.get(self, "state")
 
     @property
@@ -216,24 +186,7 @@ def get_instance_image(architecture: Optional[str] = None,
                        zone: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceImageResult:
     """
-    Gets information about an instance image.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_instance_image(image_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
-    :param str image_id: The image id. Only one of `name` and `image_id` should be specified.
-    :param bool latest: Use the latest image ID.
-    :param str name: The image name. Only one of `name` and `image_id` should be specified.
-    :param str project_id: The ID of the project the image is associated with.
-    :param str zone: `zone`) The zone in which the image exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['architecture'] = architecture
@@ -278,23 +231,6 @@ def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]
                               zone: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceImageResult]:
     """
-    Gets information about an instance image.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_instance_image(image_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
-    :param str image_id: The image id. Only one of `name` and `image_id` should be specified.
-    :param bool latest: Use the latest image ID.
-    :param str name: The image name. Only one of `name` and `image_id` should be specified.
-    :param str project_id: The ID of the project the image is associated with.
-    :param str zone: `zone`) The zone in which the image exists.
+    Use this data source to access information about an existing resource.
     """
     ...

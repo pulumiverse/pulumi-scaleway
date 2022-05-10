@@ -9,235 +9,113 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Database Instances.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new Scaleway.DatabaseInstanceArgs
-    ///         {
-    ///             NodeType = "DB-DEV-S",
-    ///             Engine = "PostgreSQL-11",
-    ///             IsHaCluster = true,
-    ///             DisableBackup = true,
-    ///             UserName = "my_initial_user",
-    ///             Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         });
-    ///         // with backup schedule
-    ///         var mainIndex_databaseInstanceDatabaseInstance = new Scaleway.DatabaseInstance("mainIndex/databaseInstanceDatabaseInstance", new Scaleway.DatabaseInstanceArgs
-    ///         {
-    ///             NodeType = "DB-DEV-S",
-    ///             Engine = "PostgreSQL-11",
-    ///             IsHaCluster = true,
-    ///             UserName = "my_initial_user",
-    ///             Password = "thiZ_is_v&amp;ry_s3cret",
-    ///             DisableBackup = true,
-    ///             BackupScheduleFrequency = 24,
-    ///             BackupScheduleRetention = 7,
-    ///         });
-    ///         // keep it one week
-    ///         // with private network and dhcp configuration
-    ///         var pn02 = new Scaleway.VpcPrivateNetwork("pn02", new Scaleway.VpcPrivateNetworkArgs
-    ///         {
-    ///         });
-    ///         var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new Scaleway.VpcPublicGatewayDhcpArgs
-    ///         {
-    ///             Subnet = "192.168.1.0/24",
-    ///         });
-    ///         var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", new Scaleway.VpcPublicGatewayIpArgs
-    ///         {
-    ///         });
-    ///         var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new Scaleway.VpcPublicGatewayArgs
-    ///         {
-    ///             Type = "VPC-GW-S",
-    ///             IpId = mainVpcPublicGatewayIp.Id,
-    ///         });
-    ///         var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new Scaleway.VpcGatewayNetworkArgs
-    ///         {
-    ///             GatewayId = mainVpcPublicGateway.Id,
-    ///             PrivateNetworkId = pn02.Id,
-    ///             DhcpId = mainVpcPublicGatewayDhcp.Id,
-    ///             CleanupDhcp = true,
-    ///             EnableMasquerade = true,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 mainVpcPublicGatewayIp,
-    ///                 pn02,
-    ///             },
-    ///         });
-    ///         var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new Scaleway.VpcPublicGatewayPatRuleArgs
-    ///         {
-    ///             GatewayId = mainVpcPublicGateway.Id,
-    ///             PrivateIp = mainVpcPublicGatewayDhcp.Address,
-    ///             PrivatePort = mainDatabaseInstance.PrivateNetwork.Apply(privateNetwork =&gt; privateNetwork?.Port),
-    ///             PublicPort = 42,
-    ///             Protocol = "both",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 mainVpcGatewayNetwork,
-    ///                 pn02,
-    ///             },
-    ///         });
-    ///         var mainScalewayIndex_databaseInstanceDatabaseInstance = new Scaleway.DatabaseInstance("mainScalewayIndex/databaseInstanceDatabaseInstance", new Scaleway.DatabaseInstanceArgs
-    ///         {
-    ///             NodeType = "db-dev-s",
-    ///             Engine = "PostgreSQL-11",
-    ///             IsHaCluster = false,
-    ///             DisableBackup = true,
-    ///             UserName = "my_initial_user",
-    ///             Password = "thiZ_is_v&amp;ry_s3cret",
-    ///             Region = "fr-par",
-    ///             Tags = 
-    ///             {
-    ///                 "terraform-test",
-    ///                 "scaleway_rdb_instance",
-    ///                 "volume",
-    ///                 "rdb_pn",
-    ///             },
-    ///             VolumeType = "bssd",
-    ///             VolumeSizeInGb = 10,
-    ///             PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
-    ///             {
-    ///                 IpNet = "192.168.1.254/24",
-    ///                 PnId = pn02.Id,
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Private Network
-    /// 
-    /// &gt; **Important:** Updates to `private_network` will recreate the attachment Instance.
-    /// 
-    /// - `ip_net` - (Required) The IP network where to con.
-    /// - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
-    /// 
-    /// ## Import
-    /// 
-    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/databaseInstance:DatabaseInstance")]
     public partial class DatabaseInstance : Pulumi.CustomResource
     {
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Boolean to store logical backups in the same region as the database instance
+        /// </summary>
+        [Output("backupSameRegion")]
+        public Output<bool> BackupSameRegion { get; private set; } = null!;
+
+        /// <summary>
+        /// Backup schedule frequency in hours
         /// </summary>
         [Output("backupScheduleFrequency")]
         public Output<int> BackupScheduleFrequency { get; private set; } = null!;
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Output("backupScheduleRetention")]
         public Output<int> BackupScheduleRetention { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate of the database instance.
+        /// Certificate of the database instance
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Output("disableBackup")]
         public Output<bool?> DisableBackup { get; private set; } = null!;
 
         /// <summary>
-        /// The IP of the Database Instance.
+        /// Endpoint IP of the database instance
         /// </summary>
         [Output("endpointIp")]
         public Output<string> EndpointIp { get; private set; } = null!;
 
         /// <summary>
-        /// The port of the Database Instance.
+        /// Endpoint port of the database instance
         /// </summary>
         [Output("endpointPort")]
         public Output<int> EndpointPort { get; private set; } = null!;
 
         /// <summary>
-        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// Database's engine version id
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance.
+        /// Enable or disable high availability for the database instance
         /// </summary>
         [Output("isHaCluster")]
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// Load balancer of the database instance
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the Database Instance.
+        /// Name of the database instance
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// The type of database instance you want to create
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the Database Instance is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the database instance.
+        /// Password for the first user of the database instance
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// List of private networks endpoints of the database instance.
+        /// List of private network to expose your database instance
         /// </summary>
         [Output("privateNetwork")]
         public Output<Outputs.DatabaseInstancePrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the Database Instance is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// List of read replicas of the database instance.
+        /// Read replicas of the database instance
         /// </summary>
         [Output("readReplicas")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceReadReplica>> ReadReplicas { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The region you want to attach the resource to
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -249,25 +127,25 @@ namespace Pulumi.Scaleway
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the Database Instance.
+        /// List of tags ["tag1", "tag2", ...] attached to a database instance
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Identifier for the first user of the database instance.
+        /// Identifier for the first user of the database instance
         /// </summary>
         [Output("userName")]
         public Output<string?> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        /// Volume size (in GB) when volume_type is not lssd
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored
         /// </summary>
         [Output("volumeType")]
         public Output<string?> VolumeType { get; private set; } = null!;
@@ -320,67 +198,73 @@ namespace Pulumi.Scaleway
     public sealed class DatabaseInstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Boolean to store logical backups in the same region as the database instance
+        /// </summary>
+        [Input("backupSameRegion")]
+        public Input<bool>? BackupSameRegion { get; set; }
+
+        /// <summary>
+        /// Backup schedule frequency in hours
         /// </summary>
         [Input("backupScheduleFrequency")]
         public Input<int>? BackupScheduleFrequency { get; set; }
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// Database's engine version id
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance.
+        /// Enable or disable high availability for the database instance
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
         /// <summary>
-        /// The name of the Database Instance.
+        /// Name of the database instance
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// The type of database instance you want to create
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the database instance.
+        /// Password for the first user of the database instance
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
         /// <summary>
-        /// List of private networks endpoints of the database instance.
+        /// List of private network to expose your database instance
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DatabaseInstancePrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Database Instance is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -401,7 +285,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the Database Instance.
+        /// List of tags ["tag1", "tag2", ...] attached to a database instance
         /// </summary>
         public InputList<string> Tags
         {
@@ -410,19 +294,19 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// Identifier for the first user of the database instance.
+        /// Identifier for the first user of the database instance
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        /// Volume size (in GB) when volume_type is not lssd
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
@@ -435,49 +319,55 @@ namespace Pulumi.Scaleway
     public sealed class DatabaseInstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Boolean to store logical backups in the same region as the database instance
+        /// </summary>
+        [Input("backupSameRegion")]
+        public Input<bool>? BackupSameRegion { get; set; }
+
+        /// <summary>
+        /// Backup schedule frequency in hours
         /// </summary>
         [Input("backupScheduleFrequency")]
         public Input<int>? BackupScheduleFrequency { get; set; }
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
 
         /// <summary>
-        /// Certificate of the database instance.
+        /// Certificate of the database instance
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// The IP of the Database Instance.
+        /// Endpoint IP of the database instance
         /// </summary>
         [Input("endpointIp")]
         public Input<string>? EndpointIp { get; set; }
 
         /// <summary>
-        /// The port of the Database Instance.
+        /// Endpoint port of the database instance
         /// </summary>
         [Input("endpointPort")]
         public Input<int>? EndpointPort { get; set; }
 
         /// <summary>
-        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// Database's engine version id
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
 
         /// <summary>
-        /// Enable or disable high availability for the database instance.
+        /// Enable or disable high availability for the database instance
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -486,7 +376,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// Load balancer of the database instance
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs> LoadBalancers
         {
@@ -495,37 +385,37 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The name of the Database Instance.
+        /// Name of the database instance
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// The type of database instance you want to create
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
 
         /// <summary>
-        /// The organization ID the Database Instance is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Password for the first user of the database instance.
+        /// Password for the first user of the database instance
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
         /// <summary>
-        /// List of private networks endpoints of the database instance.
+        /// List of private network to expose your database instance
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DatabaseInstancePrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Database Instance is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -534,7 +424,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DatabaseInstanceReadReplicaGetArgs>? _readReplicas;
 
         /// <summary>
-        /// List of read replicas of the database instance.
+        /// Read replicas of the database instance
         /// </summary>
         public InputList<Inputs.DatabaseInstanceReadReplicaGetArgs> ReadReplicas
         {
@@ -543,7 +433,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -564,7 +454,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the Database Instance.
+        /// List of tags ["tag1", "tag2", ...] attached to a database instance
         /// </summary>
         public InputList<string> Tags
         {
@@ -573,19 +463,19 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// Identifier for the first user of the database instance.
+        /// Identifier for the first user of the database instance
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        /// Volume size (in GB) when volume_type is not lssd
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

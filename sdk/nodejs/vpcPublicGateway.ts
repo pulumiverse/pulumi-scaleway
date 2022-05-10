@@ -4,33 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway VPC Public Gateway.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
- *
- * ## Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = new scaleway.VpcPublicGateway("main", {
- *     tags: [
- *         "demo",
- *         "terraform",
- *     ],
- *     type: "VPC-GW-S",
- * });
- * ```
- *
- * ## Import
- *
- * Public gateway can be imported using the `{zone}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class VpcPublicGateway extends pulumi.CustomResource {
     /**
      * Get an existing VpcPublicGateway resource's state with the given name, ID, and optional extra
@@ -60,43 +33,43 @@ export class VpcPublicGateway extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the public gateway.
+     * The date and time of the creation of the public gateway
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * attach an existing flexible IP to the gateway
+     * attach an existing IP to the gateway
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
-     * The name of the public gateway. If not provided it will be randomly generated.
+     * name of the gateway
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the public gateway is associated with.
+     * The organization_id you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the public gateway is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The tags associated with the public gateway.
+     * The tags associated with public gateway
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The gateway type.
+     * gateway type
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the public gateway.
+     * The date and time of the last update of the public gateway
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * override the gateway's default recursive DNS servers, if DNS features are enabled.
+     * override the gateway's default recursive DNS servers, if DNS features are enabled
      */
     public readonly upstreamDnsServers!: pulumi.Output<string[] | undefined>;
     /**
-     * `zone`) The zone in which the public gateway should be created.
+     * The zone you want to attach the resource to
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -149,43 +122,43 @@ export class VpcPublicGateway extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayState {
     /**
-     * The date and time of the creation of the public gateway.
+     * The date and time of the creation of the public gateway
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * attach an existing flexible IP to the gateway
+     * attach an existing IP to the gateway
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The name of the public gateway. If not provided it will be randomly generated.
+     * name of the gateway
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the public gateway is associated with.
+     * The organization_id you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway.
+     * The tags associated with public gateway
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The gateway type.
+     * gateway type
      */
     type?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the public gateway.
+     * The date and time of the last update of the public gateway
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * override the gateway's default recursive DNS servers, if DNS features are enabled.
+     * override the gateway's default recursive DNS servers, if DNS features are enabled
      */
     upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the public gateway should be created.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }
@@ -195,31 +168,31 @@ export interface VpcPublicGatewayState {
  */
 export interface VpcPublicGatewayArgs {
     /**
-     * attach an existing flexible IP to the gateway
+     * attach an existing IP to the gateway
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The name of the public gateway. If not provided it will be randomly generated.
+     * name of the gateway
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway.
+     * The tags associated with public gateway
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The gateway type.
+     * gateway type
      */
     type: pulumi.Input<string>;
     /**
-     * override the gateway's default recursive DNS servers, if DNS features are enabled.
+     * override the gateway's default recursive DNS servers, if DNS features are enabled
      */
     upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the public gateway should be created.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }

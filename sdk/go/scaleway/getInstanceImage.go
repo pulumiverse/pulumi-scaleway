@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an instance image.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.GetInstanceImage(ctx, &GetInstanceImageArgs{
-// 			ImageId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func GetInstanceImage(ctx *pulumi.Context, args *GetInstanceImageArgs, opts ...pulumi.InvokeOption) (*GetInstanceImageResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetInstanceImageResult
@@ -46,49 +22,33 @@ func GetInstanceImage(ctx *pulumi.Context, args *GetInstanceImageArgs, opts ...p
 
 // A collection of arguments for invoking getInstanceImage.
 type GetInstanceImageArgs struct {
-	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture *string `pulumi:"architecture"`
-	// The image id. Only one of `name` and `imageId` should be specified.
-	ImageId *string `pulumi:"imageId"`
-	// Use the latest image ID.
-	Latest *bool `pulumi:"latest"`
-	// The image name. Only one of `name` and `imageId` should be specified.
-	Name *string `pulumi:"name"`
-	// The ID of the project the image is associated with.
-	ProjectId *string `pulumi:"projectId"`
-	// `zone`) The zone in which the image exists.
-	Zone *string `pulumi:"zone"`
+	ImageId      *string `pulumi:"imageId"`
+	Latest       *bool   `pulumi:"latest"`
+	Name         *string `pulumi:"name"`
+	ProjectId    *string `pulumi:"projectId"`
+	Zone         *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getInstanceImage.
 type GetInstanceImageResult struct {
-	// IDs of the additional volumes in this image.
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	Architecture        *string  `pulumi:"architecture"`
-	// Date of the image creation.
-	CreationDate string `pulumi:"creationDate"`
-	// ID of the default bootscript for this image.
-	DefaultBootscriptId string `pulumi:"defaultBootscriptId"`
-	// ID of the server the image if based from.
-	FromServerId string `pulumi:"fromServerId"`
+	CreationDate        string   `pulumi:"creationDate"`
+	DefaultBootscriptId string   `pulumi:"defaultBootscriptId"`
+	FromServerId        string   `pulumi:"fromServerId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string  `pulumi:"id"`
-	ImageId *string `pulumi:"imageId"`
-	Latest  *bool   `pulumi:"latest"`
-	// Date of image latest update.
+	Id               string  `pulumi:"id"`
+	ImageId          *string `pulumi:"imageId"`
+	Latest           *bool   `pulumi:"latest"`
 	ModificationDate string  `pulumi:"modificationDate"`
 	Name             *string `pulumi:"name"`
-	// The ID of the organization the image is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the image is associated with.
-	ProjectId string `pulumi:"projectId"`
-	// Set to `true` if the image is public.
-	Public bool `pulumi:"public"`
-	// ID of the root volume in this image.
-	RootVolumeId string `pulumi:"rootVolumeId"`
-	// State of the image. Possible values are: `available`, `creating` or `error`.
-	State string `pulumi:"state"`
-	Zone  string `pulumi:"zone"`
+	OrganizationId   string  `pulumi:"organizationId"`
+	ProjectId        string  `pulumi:"projectId"`
+	Public           bool    `pulumi:"public"`
+	RootVolumeId     string  `pulumi:"rootVolumeId"`
+	State            string  `pulumi:"state"`
+	Zone             string  `pulumi:"zone"`
 }
 
 func GetInstanceImageOutput(ctx *pulumi.Context, args GetInstanceImageOutputArgs, opts ...pulumi.InvokeOption) GetInstanceImageResultOutput {
@@ -102,18 +62,12 @@ func GetInstanceImageOutput(ctx *pulumi.Context, args GetInstanceImageOutputArgs
 
 // A collection of arguments for invoking getInstanceImage.
 type GetInstanceImageOutputArgs struct {
-	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture pulumi.StringPtrInput `pulumi:"architecture"`
-	// The image id. Only one of `name` and `imageId` should be specified.
-	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
-	// Use the latest image ID.
-	Latest pulumi.BoolPtrInput `pulumi:"latest"`
-	// The image name. Only one of `name` and `imageId` should be specified.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the image is associated with.
-	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `zone`) The zone in which the image exists.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
+	ImageId      pulumi.StringPtrInput `pulumi:"imageId"`
+	Latest       pulumi.BoolPtrInput   `pulumi:"latest"`
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	ProjectId    pulumi.StringPtrInput `pulumi:"projectId"`
+	Zone         pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetInstanceImageOutputArgs) ElementType() reflect.Type {
@@ -135,7 +89,6 @@ func (o GetInstanceImageResultOutput) ToGetInstanceImageResultOutputWithContext(
 	return o
 }
 
-// IDs of the additional volumes in this image.
 func (o GetInstanceImageResultOutput) AdditionalVolumeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) []string { return v.AdditionalVolumeIds }).(pulumi.StringArrayOutput)
 }
@@ -144,17 +97,14 @@ func (o GetInstanceImageResultOutput) Architecture() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) *string { return v.Architecture }).(pulumi.StringPtrOutput)
 }
 
-// Date of the image creation.
 func (o GetInstanceImageResultOutput) CreationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.CreationDate }).(pulumi.StringOutput)
 }
 
-// ID of the default bootscript for this image.
 func (o GetInstanceImageResultOutput) DefaultBootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.DefaultBootscriptId }).(pulumi.StringOutput)
 }
 
-// ID of the server the image if based from.
 func (o GetInstanceImageResultOutput) FromServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.FromServerId }).(pulumi.StringOutput)
 }
@@ -172,7 +122,6 @@ func (o GetInstanceImageResultOutput) Latest() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) *bool { return v.Latest }).(pulumi.BoolPtrOutput)
 }
 
-// Date of image latest update.
 func (o GetInstanceImageResultOutput) ModificationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.ModificationDate }).(pulumi.StringOutput)
 }
@@ -181,27 +130,22 @@ func (o GetInstanceImageResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the organization the image is associated with.
 func (o GetInstanceImageResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the image is associated with.
 func (o GetInstanceImageResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Set to `true` if the image is public.
 func (o GetInstanceImageResultOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
-// ID of the root volume in this image.
 func (o GetInstanceImageResultOutput) RootVolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.RootVolumeId }).(pulumi.StringOutput)
 }
 
-// State of the image. Possible values are: `available`, `creating` or `error`.
 func (o GetInstanceImageResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceImageResult) string { return v.State }).(pulumi.StringOutput)
 }

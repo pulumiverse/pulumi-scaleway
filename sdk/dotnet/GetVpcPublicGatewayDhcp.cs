@@ -11,69 +11,9 @@ namespace Pulumi.Scaleway
 {
     public static class GetVpcPublicGatewayDhcp
     {
-        /// <summary>
-        /// Gets information about a public gateway DHCP.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var main = new Scaleway.VpcPublicGatewayDhcp("main", new Scaleway.VpcPublicGatewayDhcpArgs
-        ///         {
-        ///             Subnet = "192.168.0.0/24",
-        ///         });
-        ///         var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new Scaleway.GetVpcPublicGatewayDhcpInvokeArgs
-        ///         {
-        ///             DhcpId = main.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetVpcPublicGatewayDhcpResult> InvokeAsync(GetVpcPublicGatewayDhcpArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about a public gateway DHCP.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var main = new Scaleway.VpcPublicGatewayDhcp("main", new Scaleway.VpcPublicGatewayDhcpArgs
-        ///         {
-        ///             Subnet = "192.168.0.0/24",
-        ///         });
-        ///         var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new Scaleway.GetVpcPublicGatewayDhcpInvokeArgs
-        ///         {
-        ///             DhcpId = main.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetVpcPublicGatewayDhcpResult> Invoke(GetVpcPublicGatewayDhcpInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpInvokeArgs(), options.WithDefaults());
     }
@@ -108,7 +48,7 @@ namespace Pulumi.Scaleway
         public readonly string DhcpId;
         public readonly string DnsLocalName;
         public readonly ImmutableArray<string> DnsSearches;
-        public readonly ImmutableArray<string> DnsServerOverrides;
+        public readonly ImmutableArray<string> DnsServersOverrides;
         public readonly bool EnableDynamic;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -139,7 +79,7 @@ namespace Pulumi.Scaleway
 
             ImmutableArray<string> dnsSearches,
 
-            ImmutableArray<string> dnsServerOverrides,
+            ImmutableArray<string> dnsServersOverrides,
 
             bool enableDynamic,
 
@@ -174,7 +114,7 @@ namespace Pulumi.Scaleway
             DhcpId = dhcpId;
             DnsLocalName = dnsLocalName;
             DnsSearches = dnsSearches;
-            DnsServerOverrides = dnsServerOverrides;
+            DnsServersOverrides = dnsServersOverrides;
             EnableDynamic = enableDynamic;
             Id = id;
             OrganizationId = organizationId;

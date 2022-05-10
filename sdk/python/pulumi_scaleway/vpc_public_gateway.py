@@ -22,13 +22,13 @@ class VpcPublicGatewayArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGateway resource.
-        :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] type: gateway type
+        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
+        :param pulumi.Input[str] name: name of the gateway
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "type", type)
         if ip_id is not None:
@@ -48,7 +48,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The gateway type.
+        gateway type
         """
         return pulumi.get(self, "type")
 
@@ -60,7 +60,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing flexible IP to the gateway
+        attach an existing IP to the gateway
         """
         return pulumi.get(self, "ip_id")
 
@@ -72,7 +72,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the public gateway. If not provided it will be randomly generated.
+        name of the gateway
         """
         return pulumi.get(self, "name")
 
@@ -84,7 +84,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the public gateway is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -96,7 +96,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the public gateway.
+        The tags associated with public gateway
         """
         return pulumi.get(self, "tags")
 
@@ -108,7 +108,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled.
+        override the gateway's default recursive DNS servers, if DNS features are enabled
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -120,7 +120,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -144,16 +144,16 @@ class _VpcPublicGatewayState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGateway resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
-        :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway
+        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
+        :param pulumi.Input[str] name: name of the gateway
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
+        :param pulumi.Input[str] type: gateway type
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -180,7 +180,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the public gateway.
+        The date and time of the creation of the public gateway
         """
         return pulumi.get(self, "created_at")
 
@@ -192,7 +192,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing flexible IP to the gateway
+        attach an existing IP to the gateway
         """
         return pulumi.get(self, "ip_id")
 
@@ -204,7 +204,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the public gateway. If not provided it will be randomly generated.
+        name of the gateway
         """
         return pulumi.get(self, "name")
 
@@ -216,7 +216,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the public gateway is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -228,7 +228,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the public gateway is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -240,7 +240,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the public gateway.
+        The tags associated with public gateway
         """
         return pulumi.get(self, "tags")
 
@@ -252,7 +252,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The gateway type.
+        gateway type
         """
         return pulumi.get(self, "type")
 
@@ -264,7 +264,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the public gateway.
+        The date and time of the last update of the public gateway
         """
         return pulumi.get(self, "updated_at")
 
@@ -276,7 +276,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled.
+        override the gateway's default recursive DNS servers, if DNS features are enabled
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -288,7 +288,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -311,40 +311,16 @@ class VpcPublicGateway(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway VPC Public Gateway.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.VpcPublicGateway("main",
-            tags=[
-                "demo",
-                "terraform",
-            ],
-            type="VPC-GW-S")
-        ```
-
-        ## Import
-
-        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPublicGateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
-        :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
+        :param pulumi.Input[str] name: name of the gateway
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
+        :param pulumi.Input[str] type: gateway type
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
     @overload
@@ -353,31 +329,7 @@ class VpcPublicGateway(pulumi.CustomResource):
                  args: VpcPublicGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway VPC Public Gateway.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.VpcPublicGateway("main",
-            tags=[
-                "demo",
-                "terraform",
-            ],
-            type="VPC-GW-S")
-        ```
-
-        ## Import
-
-        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPublicGateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -453,16 +405,16 @@ class VpcPublicGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
-        :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway
+        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
+        :param pulumi.Input[str] name: name of the gateway
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
+        :param pulumi.Input[str] type: gateway type
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -484,7 +436,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the public gateway.
+        The date and time of the creation of the public gateway
         """
         return pulumi.get(self, "created_at")
 
@@ -492,7 +444,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[str]:
         """
-        attach an existing flexible IP to the gateway
+        attach an existing IP to the gateway
         """
         return pulumi.get(self, "ip_id")
 
@@ -500,7 +452,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the public gateway. If not provided it will be randomly generated.
+        name of the gateway
         """
         return pulumi.get(self, "name")
 
@@ -508,7 +460,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the public gateway is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -516,7 +468,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the public gateway is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -524,7 +476,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the public gateway.
+        The tags associated with public gateway
         """
         return pulumi.get(self, "tags")
 
@@ -532,7 +484,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The gateway type.
+        gateway type
         """
         return pulumi.get(self, "type")
 
@@ -540,7 +492,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the public gateway.
+        The date and time of the last update of the public gateway
         """
         return pulumi.get(self, "updated_at")
 
@@ -548,7 +500,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled.
+        override the gateway's default recursive DNS servers, if DNS features are enabled
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -556,7 +508,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the public gateway should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 

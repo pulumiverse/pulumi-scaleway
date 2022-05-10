@@ -16,9 +16,6 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string MacAddress;
         public readonly string PnId;
         public readonly string Status;
-        /// <summary>
-        /// `zone`) The zone in which the server exists.
-        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

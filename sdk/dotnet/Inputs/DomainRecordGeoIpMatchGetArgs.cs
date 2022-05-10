@@ -14,10 +14,6 @@ namespace Pulumi.Scaleway.Inputs
     {
         [Input("continents")]
         private InputList<string>? _continents;
-
-        /// <summary>
-        /// List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
-        /// </summary>
         public InputList<string> Continents
         {
             get => _continents ?? (_continents = new InputList<string>());
@@ -26,19 +22,12 @@ namespace Pulumi.Scaleway.Inputs
 
         [Input("countries")]
         private InputList<string>? _countries;
-
-        /// <summary>
-        /// List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
-        /// </summary>
         public InputList<string> Countries
         {
             get => _countries ?? (_countries = new InputList<string>());
             set => _countries = value;
         }
 
-        /// <summary>
-        /// The data of the view record
-        /// </summary>
         [Input("data", required: true)]
         public Input<string> Data { get; set; } = null!;
 

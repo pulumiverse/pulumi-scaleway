@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets local image ID of an image from its label name.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.GetMarketplaceImage(ctx, &GetMarketplaceImageArgs{
-// 			Label: "ubuntu_focal",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func GetMarketplaceImage(ctx *pulumi.Context, args *GetMarketplaceImageArgs, opts ...pulumi.InvokeOption) (*GetMarketplaceImageResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetMarketplaceImageResult
@@ -46,14 +22,9 @@ func GetMarketplaceImage(ctx *pulumi.Context, args *GetMarketplaceImageArgs, opt
 
 // A collection of arguments for invoking getMarketplaceImage.
 type GetMarketplaceImageArgs struct {
-	// The instance type the image is compatible with.
-	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType *string `pulumi:"instanceType"`
-	// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
-	// to find the right `label`.
-	Label string `pulumi:"label"`
-	// `zone`) The zone in which the image exists.
-	Zone *string `pulumi:"zone"`
+	Label        string  `pulumi:"label"`
+	Zone         *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getMarketplaceImage.
@@ -76,14 +47,9 @@ func GetMarketplaceImageOutput(ctx *pulumi.Context, args GetMarketplaceImageOutp
 
 // A collection of arguments for invoking getMarketplaceImage.
 type GetMarketplaceImageOutputArgs struct {
-	// The instance type the image is compatible with.
-	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType pulumi.StringPtrInput `pulumi:"instanceType"`
-	// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
-	// to find the right `label`.
-	Label pulumi.StringInput `pulumi:"label"`
-	// `zone`) The zone in which the image exists.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
+	Label        pulumi.StringInput    `pulumi:"label"`
+	Zone         pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetMarketplaceImageOutputArgs) ElementType() reflect.Type {

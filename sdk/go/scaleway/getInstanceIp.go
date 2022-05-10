@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an instance IP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.LookupInstanceIp(ctx, &GetInstanceIpArgs{
-// 			Id: pulumi.StringRef("fr-par-1/11111111-1111-1111-1111-111111111111"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupInstanceIp(ctx *pulumi.Context, args *LookupInstanceIpArgs, opts ...pulumi.InvokeOption) (*LookupInstanceIpResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceIpResult
@@ -46,27 +22,20 @@ func LookupInstanceIp(ctx *pulumi.Context, args *LookupInstanceIpArgs, opts ...p
 
 // A collection of arguments for invoking getInstanceIp.
 type LookupInstanceIpArgs struct {
-	// The IPv4 address to retrieve
-	// Only one of `address` and `id` should be specified.
 	Address *string `pulumi:"address"`
-	// The ID of the IP address to retrieve
-	// Only one of `address` and `id` should be specified.
-	Id *string `pulumi:"id"`
+	Id      *string `pulumi:"id"`
 }
 
 // A collection of values returned by getInstanceIp.
 type LookupInstanceIpResult struct {
-	// The IP address.
-	Address *string `pulumi:"address"`
-	// The ID of the IP.
-	Id *string `pulumi:"id"`
-	// The organization ID the IP is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
-	// The reverse dns attached to this IP
-	Reverse  string `pulumi:"reverse"`
-	ServerId string `pulumi:"serverId"`
-	Zone     string `pulumi:"zone"`
+	Address        *string  `pulumi:"address"`
+	Id             *string  `pulumi:"id"`
+	OrganizationId string   `pulumi:"organizationId"`
+	ProjectId      string   `pulumi:"projectId"`
+	Reverse        string   `pulumi:"reverse"`
+	ServerId       string   `pulumi:"serverId"`
+	Tags           []string `pulumi:"tags"`
+	Zone           string   `pulumi:"zone"`
 }
 
 func LookupInstanceIpOutput(ctx *pulumi.Context, args LookupInstanceIpOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceIpResultOutput {
@@ -80,12 +49,8 @@ func LookupInstanceIpOutput(ctx *pulumi.Context, args LookupInstanceIpOutputArgs
 
 // A collection of arguments for invoking getInstanceIp.
 type LookupInstanceIpOutputArgs struct {
-	// The IPv4 address to retrieve
-	// Only one of `address` and `id` should be specified.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The ID of the IP address to retrieve
-	// Only one of `address` and `id` should be specified.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id      pulumi.StringPtrInput `pulumi:"id"`
 }
 
 func (LookupInstanceIpOutputArgs) ElementType() reflect.Type {
@@ -107,17 +72,14 @@ func (o LookupInstanceIpResultOutput) ToLookupInstanceIpResultOutputWithContext(
 	return o
 }
 
-// The IP address.
 func (o LookupInstanceIpResultOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceIpResult) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IP.
 func (o LookupInstanceIpResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceIpResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The organization ID the IP is associated with.
 func (o LookupInstanceIpResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -126,13 +88,16 @@ func (o LookupInstanceIpResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The reverse dns attached to this IP
 func (o LookupInstanceIpResultOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.Reverse }).(pulumi.StringOutput)
 }
 
 func (o LookupInstanceIpResultOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceIpResult) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceIpResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstanceIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupInstanceIpResultOutput) Zone() pulumi.StringOutput {

@@ -10,36 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a Load Balancer.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.LookupLoadbalancer(ctx, &GetLoadbalancerArgs{
-// 			Name: pulumi.StringRef("foobar"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = scaleway.LookupLoadbalancer(ctx, &GetLoadbalancerArgs{
-// 			LbId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupLoadbalancer(ctx *pulumi.Context, args *LookupLoadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerResult
@@ -52,37 +22,28 @@ func LookupLoadbalancer(ctx *pulumi.Context, args *LookupLoadbalancerArgs, opts 
 
 // A collection of arguments for invoking getLoadbalancer.
 type LookupLoadbalancerArgs struct {
-	// The ID.
-	// Only one of `ipAddress` and `lbId` should be specified.
-	LbId *string `pulumi:"lbId"`
-	// The IP address.
-	// Only one of `name` and `lbId` should be specified.
+	LbId      *string `pulumi:"lbId"`
 	Name      *string `pulumi:"name"`
 	ReleaseIp *bool   `pulumi:"releaseIp"`
-	// `region`) The region in which the LB exists.
-	Zone *string `pulumi:"zone"`
+	Zone      *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getLoadbalancer.
 type LookupLoadbalancerResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The load-balancer public IP Address
-	IpAddress string  `pulumi:"ipAddress"`
-	IpId      string  `pulumi:"ipId"`
-	LbId      *string `pulumi:"lbId"`
-	Name      *string `pulumi:"name"`
-	// The organization ID the load-balancer is associated with.
+	Id              string                          `pulumi:"id"`
+	IpAddress       string                          `pulumi:"ipAddress"`
+	IpId            string                          `pulumi:"ipId"`
+	LbId            *string                         `pulumi:"lbId"`
+	Name            *string                         `pulumi:"name"`
 	OrganizationId  string                          `pulumi:"organizationId"`
 	PrivateNetworks []GetLoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       string                          `pulumi:"projectId"`
 	Region          string                          `pulumi:"region"`
 	ReleaseIp       *bool                           `pulumi:"releaseIp"`
-	// (Optional) The tags associated with the load-balancers.
-	Tags []string `pulumi:"tags"`
-	// (Required) The type of the load-balancer.
-	Type string  `pulumi:"type"`
-	Zone *string `pulumi:"zone"`
+	Tags            []string                        `pulumi:"tags"`
+	Type            string                          `pulumi:"type"`
+	Zone            *string                         `pulumi:"zone"`
 }
 
 func LookupLoadbalancerOutput(ctx *pulumi.Context, args LookupLoadbalancerOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerResultOutput {
@@ -96,15 +57,10 @@ func LookupLoadbalancerOutput(ctx *pulumi.Context, args LookupLoadbalancerOutput
 
 // A collection of arguments for invoking getLoadbalancer.
 type LookupLoadbalancerOutputArgs struct {
-	// The ID.
-	// Only one of `ipAddress` and `lbId` should be specified.
-	LbId pulumi.StringPtrInput `pulumi:"lbId"`
-	// The IP address.
-	// Only one of `name` and `lbId` should be specified.
+	LbId      pulumi.StringPtrInput `pulumi:"lbId"`
 	Name      pulumi.StringPtrInput `pulumi:"name"`
 	ReleaseIp pulumi.BoolPtrInput   `pulumi:"releaseIp"`
-	// `region`) The region in which the LB exists.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
+	Zone      pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupLoadbalancerOutputArgs) ElementType() reflect.Type {
@@ -131,7 +87,6 @@ func (o LookupLoadbalancerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The load-balancer public IP Address
 func (o LookupLoadbalancerResultOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -148,7 +103,6 @@ func (o LookupLoadbalancerResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The organization ID the load-balancer is associated with.
 func (o LookupLoadbalancerResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -169,12 +123,10 @@ func (o LookupLoadbalancerResultOutput) ReleaseIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) *bool { return v.ReleaseIp }).(pulumi.BoolPtrOutput)
 }
 
-// (Optional) The tags associated with the load-balancers.
 func (o LookupLoadbalancerResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// (Required) The type of the load-balancer.
 func (o LookupLoadbalancerResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Type }).(pulumi.StringOutput)
 }

@@ -11,48 +11,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Instance Private NICs. For more information, see
-// [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
-//
-// ## Example
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
-// 			PrivateNetworkId: pulumi.String("fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-// 			ServerId:         pulumi.String("fr-par-1/11111111-1111-1111-1111-111111111111"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
-// ```
 type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 
 	// MAC address of the NIC
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
-	// The ID of the private network attached to.
+	// The private network ID
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
-	// The ID of the server associated with.
+	// The server ID
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The zone you want to attach the resource to
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -96,9 +62,9 @@ func GetInstancePrivateNic(ctx *pulumi.Context,
 type instancePrivateNicState struct {
 	// MAC address of the NIC
 	MacAddress *string `pulumi:"macAddress"`
-	// The ID of the private network attached to.
+	// The private network ID
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// The ID of the server associated with.
+	// The server ID
 	ServerId *string `pulumi:"serverId"`
 	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
@@ -107,9 +73,9 @@ type instancePrivateNicState struct {
 type InstancePrivateNicState struct {
 	// MAC address of the NIC
 	MacAddress pulumi.StringPtrInput
-	// The ID of the private network attached to.
+	// The private network ID
 	PrivateNetworkId pulumi.StringPtrInput
-	// The ID of the server associated with.
+	// The server ID
 	ServerId pulumi.StringPtrInput
 	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
@@ -120,9 +86,9 @@ func (InstancePrivateNicState) ElementType() reflect.Type {
 }
 
 type instancePrivateNicArgs struct {
-	// The ID of the private network attached to.
+	// The private network ID
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The ID of the server associated with.
+	// The server ID
 	ServerId string `pulumi:"serverId"`
 	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
@@ -130,9 +96,9 @@ type instancePrivateNicArgs struct {
 
 // The set of arguments for constructing a InstancePrivateNic resource.
 type InstancePrivateNicArgs struct {
-	// The ID of the private network attached to.
+	// The private network ID
 	PrivateNetworkId pulumi.StringInput
-	// The ID of the server associated with.
+	// The server ID
 	ServerId pulumi.StringInput
 	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput

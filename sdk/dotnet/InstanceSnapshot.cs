@@ -9,84 +9,59 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Compute Snapshots.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
-    /// 
-    /// ## Example
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var main = new Scaleway.InstanceSnapshot("main", new Scaleway.InstanceSnapshotArgs
-    ///         {
-    ///             VolumeId = "11111111-1111-1111-1111-111111111111",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Snapshots can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/instanceSnapshot:InstanceSnapshot")]
     public partial class InstanceSnapshot : Pulumi.CustomResource
     {
         /// <summary>
-        /// The snapshot creation time.
+        /// The date and time of the creation of the snapshot
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the snapshot. If not provided it will be randomly generated.
+        /// The name of the snapshot
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the snapshot is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional) The size of the snapshot.
+        /// The size of the snapshot in gigabyte
         /// </summary>
         [Output("sizeInGb")]
         public Output<int> SizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the snapshot. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        /// The tags associated with the snapshot
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The volume type of the snapshot
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the volume to take a snapshot from.
+        /// ID of the volume to take a snapshot from
         /// </summary>
         [Output("volumeId")]
         public Output<string> VolumeId { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -139,25 +114,37 @@ namespace Pulumi.Scaleway
     public sealed class InstanceSnapshotArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the snapshot. If not provided it will be randomly generated.
+        /// The name of the snapshot
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
         /// <summary>
-        /// The ID of the volume to take a snapshot from.
+        /// The tags associated with the snapshot
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// ID of the volume to take a snapshot from
         /// </summary>
         [Input("volumeId", required: true)]
         public Input<string> VolumeId { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -170,49 +157,61 @@ namespace Pulumi.Scaleway
     public sealed class InstanceSnapshotState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The snapshot creation time.
+        /// The date and time of the creation of the snapshot
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The name of the snapshot. If not provided it will be randomly generated.
+        /// The name of the snapshot
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the snapshot is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (Optional) The size of the snapshot.
+        /// The size of the snapshot in gigabyte
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
         /// <summary>
-        /// The type of the snapshot. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        /// The tags associated with the snapshot
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The volume type of the snapshot
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The ID of the volume to take a snapshot from.
+        /// ID of the volume to take a snapshot from
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -16,13 +16,7 @@ namespace Pulumi.Scaleway.Outputs
         public readonly bool? DhcpConfig;
         public readonly string PrivateNetworkId;
         public readonly ImmutableArray<string> StaticConfigs;
-        /// <summary>
-        /// The Private Network attachment status
-        /// </summary>
         public readonly string? Status;
-        /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
-        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]

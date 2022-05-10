@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a RDB instance.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.LookupDatabaseInstance(ctx, &GetDatabaseInstanceArgs{
-// 			InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseInstanceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseInstanceResult
@@ -46,16 +22,13 @@ func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArg
 
 // A collection of arguments for invoking getDatabaseInstance.
 type LookupDatabaseInstanceArgs struct {
-	// The RDB instance ID.
-	// Only one of `name` and `instanceId` should be specified.
 	InstanceId *string `pulumi:"instanceId"`
-	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
-	Name *string `pulumi:"name"`
+	Name       *string `pulumi:"name"`
 }
 
 // A collection of values returned by getDatabaseInstance.
 type LookupDatabaseInstanceResult struct {
+	BackupSameRegion        bool   `pulumi:"backupSameRegion"`
 	BackupScheduleFrequency int    `pulumi:"backupScheduleFrequency"`
 	BackupScheduleRetention int    `pulumi:"backupScheduleRetention"`
 	Certificate             string `pulumi:"certificate"`
@@ -94,12 +67,8 @@ func LookupDatabaseInstanceOutput(ctx *pulumi.Context, args LookupDatabaseInstan
 
 // A collection of arguments for invoking getDatabaseInstance.
 type LookupDatabaseInstanceOutputArgs struct {
-	// The RDB instance ID.
-	// Only one of `name` and `instanceId` should be specified.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
-	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	Name       pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupDatabaseInstanceOutputArgs) ElementType() reflect.Type {
@@ -119,6 +88,10 @@ func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutput
 
 func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutputWithContext(ctx context.Context) LookupDatabaseInstanceResultOutput {
 	return o
+}
+
+func (o LookupDatabaseInstanceResultOutput) BackupSameRegion() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) bool { return v.BackupSameRegion }).(pulumi.BoolOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) BackupScheduleFrequency() pulumi.IntOutput {

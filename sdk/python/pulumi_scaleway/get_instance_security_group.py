@@ -21,7 +21,7 @@ class GetInstanceSecurityGroupResult:
     """
     A collection of values returned by getInstanceSecurityGroup.
     """
-    def __init__(__self__, description=None, enable_default_security=None, external_rules=None, id=None, inbound_default_policy=None, inbound_rules=None, name=None, organization_id=None, outbound_default_policy=None, outbound_rules=None, project_id=None, security_group_id=None, stateful=None, zone=None):
+    def __init__(__self__, description=None, enable_default_security=None, external_rules=None, id=None, inbound_default_policy=None, inbound_rules=None, name=None, organization_id=None, outbound_default_policy=None, outbound_rules=None, project_id=None, security_group_id=None, stateful=None, tags=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -61,6 +61,9 @@ class GetInstanceSecurityGroupResult:
         if stateful and not isinstance(stateful, bool):
             raise TypeError("Expected argument 'stateful' to be a bool")
         pulumi.set(__self__, "stateful", stateful)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -91,17 +94,11 @@ class GetInstanceSecurityGroupResult:
     @property
     @pulumi.getter(name="inboundDefaultPolicy")
     def inbound_default_policy(self) -> str:
-        """
-        The default policy on incoming traffic. Possible values are: `accept` or `drop`.
-        """
         return pulumi.get(self, "inbound_default_policy")
 
     @property
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> Sequence['outputs.GetInstanceSecurityGroupInboundRuleResult']:
-        """
-        A list of inbound rule to add to the security group. (Structure is documented below.)
-        """
         return pulumi.get(self, "inbound_rules")
 
     @property
@@ -112,33 +109,21 @@ class GetInstanceSecurityGroupResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the security group is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="outboundDefaultPolicy")
     def outbound_default_policy(self) -> str:
-        """
-        The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
-        """
         return pulumi.get(self, "outbound_default_policy")
 
     @property
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> Sequence['outputs.GetInstanceSecurityGroupOutboundRuleResult']:
-        """
-        A list of outbound rule to add to the security group. (Structure is documented below.)
-        """
         return pulumi.get(self, "outbound_rules")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the project the security group is associated with.
-        """
         return pulumi.get(self, "project_id")
 
     @property
@@ -150,6 +135,11 @@ class GetInstanceSecurityGroupResult:
     @pulumi.getter
     def stateful(self) -> bool:
         return pulumi.get(self, "stateful")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -176,6 +166,7 @@ class AwaitableGetInstanceSecurityGroupResult(GetInstanceSecurityGroupResult):
             project_id=self.project_id,
             security_group_id=self.security_group_id,
             stateful=self.stateful,
+            tags=self.tags,
             zone=self.zone)
 
 
@@ -184,21 +175,7 @@ def get_instance_security_group(name: Optional[str] = None,
                                 zone: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceSecurityGroupResult:
     """
-    Gets information about a Security Group.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_instance_security_group(security_group_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The security group name. Only one of `name` and `security_group_id` should be specified.
-    :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
-    :param str zone: `zone`) The zone in which the security group exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -226,6 +203,7 @@ def get_instance_security_group(name: Optional[str] = None,
         project_id=__ret__.project_id,
         security_group_id=__ret__.security_group_id,
         stateful=__ret__.stateful,
+        tags=__ret__.tags,
         zone=__ret__.zone)
 
 
@@ -235,20 +213,6 @@ def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]
                                        zone: Optional[pulumi.Input[Optional[str]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceSecurityGroupResult]:
     """
-    Gets information about a Security Group.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_instance_security_group(security_group_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The security group name. Only one of `name` and `security_group_id` should be specified.
-    :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
-    :param str zone: `zone`) The zone in which the security group exists.
+    Use this data source to access information about an existing resource.
     """
     ...

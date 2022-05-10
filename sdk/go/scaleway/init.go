@@ -26,6 +26,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AppleSliconValleyServer{}
 	case "scaleway:index/baremetalServer:BaremetalServer":
 		r = &BaremetalServer{}
+	case "scaleway:index/container:Container":
+		r = &Container{}
+	case "scaleway:index/containerNamespace:ContainerNamespace":
+		r = &ContainerNamespace{}
 	case "scaleway:index/database:Database":
 		r = &Database{}
 	case "scaleway:index/databaseAcl:DatabaseAcl":
@@ -38,6 +42,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DatabaseUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
+	case "scaleway:index/domainZone:DomainZone":
+		r = &DomainZone{}
+	case "scaleway:index/functionNamespace:FunctionNamespace":
+		r = &FunctionNamespace{}
 	case "scaleway:index/instanceIp:InstanceIp":
 		r = &InstanceIp{}
 	case "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns":
@@ -82,6 +90,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerRoute{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
+	case "scaleway:index/redisCluster:RedisCluster":
+		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -92,6 +102,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcPublicGateway{}
 	case "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp":
 		r = &VpcPublicGatewayDhcp{}
+	case "scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation":
+		r = &VpcPublicGatewayDhcpReservation{}
 	case "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp":
 		r = &VpcPublicGatewayIp{}
 	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
@@ -144,6 +156,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/container",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/containerNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/database",
 		&module{version},
 	)
@@ -170,6 +192,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/domainRecord",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/domainZone",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/functionNamespace",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -284,6 +316,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/redisCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/registryNamespace",
 		&module{version},
 	)
@@ -305,6 +342,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/vpcPublicGatewayDhcp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/vpcPublicGatewayDhcpReservation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

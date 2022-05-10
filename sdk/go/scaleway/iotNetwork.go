@@ -11,29 +11,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
-//
-// IoT Networks can be imported using the `{region}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
-// ```
 type IotNetwork struct {
 	pulumi.CustomResourceState
 
-	// The date and time the Network was created.
+	// The date and time of the creation of the network
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The endpoint to use when interacting with the network.
+	// The endpoint to use when interacting with the network
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// The hub ID to which the Network will be attached to.
+	// The ID of the hub on which this network will be created
 	HubId pulumi.StringOutput `pulumi:"hubId"`
-	// The name of the IoT Network you want to create (e.g. `my-net`).
+	// The name of the network
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The endpoint key to keep secret.
+	// The endpoint key to keep secret
 	Secret pulumi.StringOutput `pulumi:"secret"`
-	// The prefix that will be prepended to all topics for this Network.
+	// The prefix that will be prepended to all topics for this Network
 	TopicPrefix pulumi.StringPtrOutput `pulumi:"topicPrefix"`
-	// The network type to create (e.g. `sigfox`).
+	// The type of the network
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -73,36 +66,36 @@ func GetIotNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IotNetwork resources.
 type iotNetworkState struct {
-	// The date and time the Network was created.
+	// The date and time of the creation of the network
 	CreatedAt *string `pulumi:"createdAt"`
-	// The endpoint to use when interacting with the network.
+	// The endpoint to use when interacting with the network
 	Endpoint *string `pulumi:"endpoint"`
-	// The hub ID to which the Network will be attached to.
+	// The ID of the hub on which this network will be created
 	HubId *string `pulumi:"hubId"`
-	// The name of the IoT Network you want to create (e.g. `my-net`).
+	// The name of the network
 	Name *string `pulumi:"name"`
-	// The endpoint key to keep secret.
+	// The endpoint key to keep secret
 	Secret *string `pulumi:"secret"`
-	// The prefix that will be prepended to all topics for this Network.
+	// The prefix that will be prepended to all topics for this Network
 	TopicPrefix *string `pulumi:"topicPrefix"`
-	// The network type to create (e.g. `sigfox`).
+	// The type of the network
 	Type *string `pulumi:"type"`
 }
 
 type IotNetworkState struct {
-	// The date and time the Network was created.
+	// The date and time of the creation of the network
 	CreatedAt pulumi.StringPtrInput
-	// The endpoint to use when interacting with the network.
+	// The endpoint to use when interacting with the network
 	Endpoint pulumi.StringPtrInput
-	// The hub ID to which the Network will be attached to.
+	// The ID of the hub on which this network will be created
 	HubId pulumi.StringPtrInput
-	// The name of the IoT Network you want to create (e.g. `my-net`).
+	// The name of the network
 	Name pulumi.StringPtrInput
-	// The endpoint key to keep secret.
+	// The endpoint key to keep secret
 	Secret pulumi.StringPtrInput
-	// The prefix that will be prepended to all topics for this Network.
+	// The prefix that will be prepended to all topics for this Network
 	TopicPrefix pulumi.StringPtrInput
-	// The network type to create (e.g. `sigfox`).
+	// The type of the network
 	Type pulumi.StringPtrInput
 }
 
@@ -111,25 +104,25 @@ func (IotNetworkState) ElementType() reflect.Type {
 }
 
 type iotNetworkArgs struct {
-	// The hub ID to which the Network will be attached to.
+	// The ID of the hub on which this network will be created
 	HubId string `pulumi:"hubId"`
-	// The name of the IoT Network you want to create (e.g. `my-net`).
+	// The name of the network
 	Name *string `pulumi:"name"`
-	// The prefix that will be prepended to all topics for this Network.
+	// The prefix that will be prepended to all topics for this Network
 	TopicPrefix *string `pulumi:"topicPrefix"`
-	// The network type to create (e.g. `sigfox`).
+	// The type of the network
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a IotNetwork resource.
 type IotNetworkArgs struct {
-	// The hub ID to which the Network will be attached to.
+	// The ID of the hub on which this network will be created
 	HubId pulumi.StringInput
-	// The name of the IoT Network you want to create (e.g. `my-net`).
+	// The name of the network
 	Name pulumi.StringPtrInput
-	// The prefix that will be prepended to all topics for this Network.
+	// The prefix that will be prepended to all topics for this Network
 	TopicPrefix pulumi.StringPtrInput
-	// The network type to create (e.g. `sigfox`).
+	// The type of the network
 	Type pulumi.StringInput
 }
 

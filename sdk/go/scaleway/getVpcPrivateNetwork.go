@@ -10,11 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a private network.
-//
-// ## Example Usage
-//
-// N/A, the usage will be meaningful in the next releases of VPC.
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult
@@ -27,7 +22,6 @@ func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkA
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkArgs struct {
-	// Exact name of the private network.
 	Name             *string `pulumi:"name"`
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 }
@@ -57,7 +51,6 @@ func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNet
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkOutputArgs struct {
-	// Exact name of the private network.
 	Name             pulumi.StringPtrInput `pulumi:"name"`
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
 }

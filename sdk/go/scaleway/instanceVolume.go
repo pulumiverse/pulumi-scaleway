@@ -11,60 +11,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Compute Instance Volumes.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
-//
-// ## Example
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewInstanceVolume(ctx, "serverVolume", &scaleway.InstanceVolumeArgs{
-// 			SizeInGb: pulumi.Int(20),
-// 			Type:     pulumi.String("l_ssd"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// volumes can be imported using the `{zone}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
-// ```
 type InstanceVolume struct {
 	pulumi.CustomResourceState
 
 	// Create a volume based on a image
 	FromSnapshotId pulumi.StringPtrOutput `pulumi:"fromSnapshotId"`
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+	// Create a copy of an existing volume
 	FromVolumeId pulumi.StringPtrOutput `pulumi:"fromVolumeId"`
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the volume is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the volume is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The id of the associated server.
+	// The server associated with this volume
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume in gigabyte
 	SizeInGb pulumi.IntPtrOutput `pulumi:"sizeInGb"`
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The tags associated with the volume
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The volume type
 	Type pulumi.StringOutput `pulumi:"type"`
-	// `zone`) The zone in which the volume should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -103,42 +71,46 @@ func GetInstanceVolume(ctx *pulumi.Context,
 type instanceVolumeState struct {
 	// Create a volume based on a image
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+	// Create a copy of an existing volume
 	FromVolumeId *string `pulumi:"fromVolumeId"`
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume
 	Name *string `pulumi:"name"`
-	// The organization ID the volume is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the volume is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The id of the associated server.
+	// The server associated with this volume
 	ServerId *string `pulumi:"serverId"`
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume in gigabyte
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The tags associated with the volume
+	Tags []string `pulumi:"tags"`
+	// The volume type
 	Type *string `pulumi:"type"`
-	// `zone`) The zone in which the volume should be created.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceVolumeState struct {
 	// Create a volume based on a image
 	FromSnapshotId pulumi.StringPtrInput
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+	// Create a copy of an existing volume
 	FromVolumeId pulumi.StringPtrInput
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume
 	Name pulumi.StringPtrInput
-	// The organization ID the volume is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the volume is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The id of the associated server.
+	// The server associated with this volume
 	ServerId pulumi.StringPtrInput
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume in gigabyte
 	SizeInGb pulumi.IntPtrInput
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The tags associated with the volume
+	Tags pulumi.StringArrayInput
+	// The volume type
 	Type pulumi.StringPtrInput
-	// `zone`) The zone in which the volume should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 
@@ -149,17 +121,19 @@ func (InstanceVolumeState) ElementType() reflect.Type {
 type instanceVolumeArgs struct {
 	// Create a volume based on a image
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+	// Create a copy of an existing volume
 	FromVolumeId *string `pulumi:"fromVolumeId"`
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the volume is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume in gigabyte
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The tags associated with the volume
+	Tags []string `pulumi:"tags"`
+	// The volume type
 	Type string `pulumi:"type"`
-	// `zone`) The zone in which the volume should be created.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
@@ -167,17 +141,19 @@ type instanceVolumeArgs struct {
 type InstanceVolumeArgs struct {
 	// Create a volume based on a image
 	FromSnapshotId pulumi.StringPtrInput
-	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+	// Create a copy of an existing volume
 	FromVolumeId pulumi.StringPtrInput
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the volume is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume in gigabyte
 	SizeInGb pulumi.IntPtrInput
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The tags associated with the volume
+	Tags pulumi.StringArrayInput
+	// The volume type
 	Type pulumi.StringInput
-	// `zone`) The zone in which the volume should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 

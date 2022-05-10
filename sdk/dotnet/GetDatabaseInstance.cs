@@ -11,61 +11,9 @@ namespace Pulumi.Scaleway
 {
     public static class GetDatabaseInstance
     {
-        /// <summary>
-        /// Gets information about a RDB instance.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var myInstance = Output.Create(Scaleway.GetDatabaseInstance.InvokeAsync(new Scaleway.GetDatabaseInstanceArgs
-        ///         {
-        ///             InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetDatabaseInstanceResult> InvokeAsync(GetDatabaseInstanceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about a RDB instance.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var myInstance = Output.Create(Scaleway.GetDatabaseInstance.InvokeAsync(new Scaleway.GetDatabaseInstanceArgs
-        ///         {
-        ///             InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetDatabaseInstanceResult> Invoke(GetDatabaseInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceInvokeArgs(), options.WithDefaults());
     }
@@ -73,17 +21,9 @@ namespace Pulumi.Scaleway
 
     public sealed class GetDatabaseInstanceArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The RDB instance ID.
-        /// Only one of `name` and `instance_id` should be specified.
-        /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
 
-        /// <summary>
-        /// The name of the RDB instance.
-        /// Only one of `name` and `instance_id` should be specified.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -94,17 +34,9 @@ namespace Pulumi.Scaleway
 
     public sealed class GetDatabaseInstanceInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The RDB instance ID.
-        /// Only one of `name` and `instance_id` should be specified.
-        /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
-        /// <summary>
-        /// The name of the RDB instance.
-        /// Only one of `name` and `instance_id` should be specified.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -117,6 +49,7 @@ namespace Pulumi.Scaleway
     [OutputType]
     public sealed class GetDatabaseInstanceResult
     {
+        public readonly bool BackupSameRegion;
         public readonly int BackupScheduleFrequency;
         public readonly int BackupScheduleRetention;
         public readonly string Certificate;
@@ -147,6 +80,8 @@ namespace Pulumi.Scaleway
 
         [OutputConstructor]
         private GetDatabaseInstanceResult(
+            bool backupSameRegion,
+
             int backupScheduleFrequency,
 
             int backupScheduleRetention,
@@ -195,6 +130,7 @@ namespace Pulumi.Scaleway
 
             string volumeType)
         {
+            BackupSameRegion = backupSameRegion;
             BackupScheduleFrequency = backupScheduleFrequency;
             BackupScheduleRetention = backupScheduleRetention;
             Certificate = certificate;

@@ -10,58 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Container Registry.
-// For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
-//
-// ## Examples
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewRegistryNamespace(ctx, "main", &scaleway.RegistryNamespaceArgs{
-// 			Description: pulumi.String("Main container registry"),
-// 			IsPublic:    pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Namespaces can be imported using the `{region}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
-// ```
 type RegistryNamespace struct {
 	pulumi.CustomResourceState
 
-	// The description of the namespace.
+	// The description of the container registry namespace
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Endpoint reachable by Docker.
+	// The endpoint reachable by docker
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
+	// Define the default visibity policy
 	IsPublic pulumi.BoolPtrOutput `pulumi:"isPublic"`
-	// The unique name of the namespace.
+	// The name of the container registry namespace
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -95,36 +59,36 @@ func GetRegistryNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RegistryNamespace resources.
 type registryNamespaceState struct {
-	// The description of the namespace.
+	// The description of the container registry namespace
 	Description *string `pulumi:"description"`
-	// Endpoint reachable by Docker.
+	// The endpoint reachable by docker
 	Endpoint *string `pulumi:"endpoint"`
-	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
+	// Define the default visibity policy
 	IsPublic *bool `pulumi:"isPublic"`
-	// The unique name of the namespace.
+	// The name of the container registry namespace
 	Name *string `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
 type RegistryNamespaceState struct {
-	// The description of the namespace.
+	// The description of the container registry namespace
 	Description pulumi.StringPtrInput
-	// Endpoint reachable by Docker.
+	// The endpoint reachable by docker
 	Endpoint pulumi.StringPtrInput
-	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
+	// Define the default visibity policy
 	IsPublic pulumi.BoolPtrInput
-	// The unique name of the namespace.
+	// The name of the container registry namespace
 	Name pulumi.StringPtrInput
-	// The organization ID the namespace is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the namespace is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 }
 
@@ -133,29 +97,29 @@ func (RegistryNamespaceState) ElementType() reflect.Type {
 }
 
 type registryNamespaceArgs struct {
-	// The description of the namespace.
+	// The description of the container registry namespace
 	Description *string `pulumi:"description"`
-	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
+	// Define the default visibity policy
 	IsPublic *bool `pulumi:"isPublic"`
-	// The unique name of the namespace.
+	// The name of the container registry namespace
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a RegistryNamespace resource.
 type RegistryNamespaceArgs struct {
-	// The description of the namespace.
+	// The description of the container registry namespace
 	Description pulumi.StringPtrInput
-	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
+	// Define the default visibity policy
 	IsPublic pulumi.BoolPtrInput
-	// The unique name of the namespace.
+	// The name of the container registry namespace
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the namespace is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 }
 

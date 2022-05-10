@@ -1,0 +1,582 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
+
+
+# Make data base, printed on Tue May 10 14:39:57 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+RUBY_VERSION = ruby-2.5.2
+# automatic
+?F = $(notdir $?)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+PROVIDE_FULLSTACK_ACTION = true
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+NVM_INC = /Users/lbriggs/.nvm/versions/node/v12.18.4/include/node
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+rvm_path = /Users/lbriggs/.rvm
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/lbriggs/src/git/jaxxstorm/pulumi-scaleway
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# environment
+VSCODE_PID = 2450
+# makefile (from `Makefile', line 6)
+PROVIDER_PATH := provider
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from `Makefile', line 13)
+TESTPARALLELISM := 10
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+rvm_ruby_mode = 
+# environment
+rvm_ruby_make = 
+# makefile (from `Makefile', line 11)
+VERSION := 0.2.2-alpha.1647476894+c5f054b6.dirty
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+rvm_proxy = 
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/1y/s9gz0_l10hb2y8mtknj45stc0000gn/T/vscode-ipc-747fa3dd-cde1-4a55-a0d5-7085440d8e1b.sock
+# environment
+VSCODE_CWD = /Users/lbriggs/src/git/jaxxstorm/pulumi-scaleway
+# environment
+GOPROXY = https://proxy.golang.org,direct
+# environment
+rvm_pretty_print_flag = 
+# environment
+PATH = /Users/lbriggs/.go/bin:/Users/lbriggs/.rvm/gems/ruby-2.5.2/bin:/Users/lbriggs/.rvm/gems/ruby-2.5.2@global/bin:/Users/lbriggs/.rvm/rubies/ruby-2.5.2/bin:/Users/lbriggs/.sdkman/candidates/java/current/bin:/Users/lbriggs/src/go/bin:/Users/lbriggs/.nvm/versions/node/v12.18.4/bin:/Users/lbriggs/.poetry/bin:/Users/lbriggs/.cargo/bin:/Users/lbriggs/.pyenv/shims:/Users/lbriggs/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/puppetlabs/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lbriggs/src/go/bin:/Users/lbriggs/.rvm/bin
+# environment
+GOROOT = /Users/lbriggs/.go
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+GOLANG_EXECUTABLE = go
+# environment
+rvm_niceness = 
+# makefile (from `Makefile', line 3)
+PROJECT := github.com/jaxxstorm/pulumi-scaleway
+# makefile (from `Makefile', line 9)
+TFGEN := pulumi-tfgen-scaleway
+# environment
+THREE_SCALE_USER_TOKEN = 207c527cfc2a6b8dcf4fa43ad7a976da
+# environment
+SDKMAN_CANDIDATES_API = https://api.sdkman.io/2
+# environment
+GOPATH = /Users/lbriggs/src/go
+# environment
+NVM_BIN = /Users/lbriggs/.nvm/versions/node/v12.18.4/bin
+# environment
+rvm_only_path_flag = 
+# environment
+SDKMAN_PLATFORM = darwinx64
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+PYENV_ROOT = /Users/lbriggs/.pyenv
+# environment
+KUBECONFIG = /Users/lbriggs/.kube/config:/Users/lbriggs/.kube/config.d/aks.yaml:/Users/lbriggs/.kube/config.d/aws.json:/Users/lbriggs/.kube/config.d/azure.yaml:/Users/lbriggs/.kube/config.d/homelab.yaml:/Users/lbriggs/.kube/config.d/micro.yaml
+# environment
+rvm_alias_expanded = 
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+UUID = 2f73ec38-fb4a-4c1b-98f3-906b342310a1
+# environment
+SSH_AUTH_SOCK = /var/folders/1y/s9gz0_l10hb2y8mtknj45stc0000gn/T//ssh-ltcuYbHCAqxD/agent.5470
+# automatic
+%F = $(notdir $%)
+# environment
+GOBIN = /Users/lbriggs/src/go/bin
+# makefile (from `Makefile', line 15)
+ 
+WORKING_DIR := /Users/lbriggs/src/git/jaxxstorm/pulumi-scaleway
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+SDKMAN_DIR = /Users/lbriggs/.sdkman
+# environment
+rvm_bin_path = /Users/lbriggs/.rvm/bin
+# environment
+PWD = /Users/lbriggs/src/git/jaxxstorm/pulumi-scaleway
+# makefile (from `Makefile', line 7)
+VERSION_PATH := provider/pkg/version.Version
+# environment
+GEM_HOME = /Users/lbriggs/.rvm/gems/ruby-2.5.2
+# environment
+SSH_AGENT_PID = 5472
+# environment
+rvm_docs_type = 
+# environment
+rvm_script_name = 
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+GOMODCACHE = /Users/lbriggs/src/go/pkg/mod
+# environment
+PYENV_SHELL = zsh
+# environment
+HOME = /Users/lbriggs
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/lbriggs/Library/Application Support/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+# environment
+LOGNAME = lbriggs
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+NVM_CD_FLAGS = -q
+# environment
+TELEMETRY_ID = 9e236b54-2284-4bad-bb29-cde9fa5fbb04
+# environment
+ZSH = /Users/lbriggs/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+rvm_ruby_bits = 
+# environment
+GEM_PATH = /Users/lbriggs/.rvm/gems/ruby-2.5.2:/Users/lbriggs/.rvm/gems/ruby-2.5.2@global
+# environment
+rvm_gemstone_package_file = 
+# environment
+XPC_FLAGS = 0x0
+# environment
+SDKMAN_VERSION = 5.15.0
+# environment
+COLORTERM = truecolor
+# environment
+rvm_ruby_make_install = 
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+LC_TERMINAL = iTerm2
+# environment
+IRBRC = /Users/lbriggs/.rvm/rubies/ruby-2.5.2/.irbrc
+# environment
+SHLVL = 3
+# environment
+rvm_quiet_flag = 
+# environment
+JAVA_HOME = /Users/lbriggs/.sdkman/candidates/java/current
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = lbriggs
+# makefile
+.DEFAULT_GOAL := development
+# default
+MAKECMDGOALS := all
+# environment
+TERM_SESSION_ID = w0t1p0:916A09A7-DD4D-4C20-9DFC-89F27262CEAB
+# makefile (from `Makefile', line 2)
+ORG := jaxxstorm
+# environment
+rvm_version = 1.29.10 (latest)
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# environment
+UTM_SOURCE = vscode
+# environment
+TERM_PROGRAM = iTerm.app
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/1y/s9gz0_l10hb2y8mtknj45stc0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/lbriggs/Library/Application Support/Code/1.67.1-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# makefile (from `Makefile', line 4)
+NODE_MODULE_NAME := @jaxxstorm/scaleway
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+TERM_PROGRAM_VERSION = 3.4.15
+# environment
+NVM_DIR = /Users/lbriggs/.nvm
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.110834731.110834737.321EC66F-59A6-48BD-B9AF-7A472EF69EB0
+# environment
+LC_TERMINAL_VERSION = 3.4.15
+# makefile (from `Makefile', line 1)
+PACK := scaleway
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+RECOMMENDER_API_URL = https://gw.api.openshift.io//api/v2
+# automatic
++F = $(notdir $+)
+# environment
+ITERM_SESSION_ID = w0t1p0:916A09A7-DD4D-4C20-9DFC-89F27262CEAB
+# environment
+rvm_sdk = 
+# environment
+COLORFGBG = 15;0
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0:2
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ITERM_PROFILE = Default
+# environment
+rvm_silent_flag = 
+# environment
+rvm_gemstone_url = 
+# environment
+SDKMAN_CANDIDATES_DIR = /Users/lbriggs/.sdkman/candidates
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+VIRTUAL_ENV_DISABLE_PROMPT = 1
+# makefile (from `Makefile', line 10)
+PROVIDER := pulumi-resource-scaleway
+# environment
+rvm_bin_flag = 
+# makefile (from `Makefile', line 5)
+TF_NAME := scaleway
+# automatic
+^F = $(notdir $^)
+# environment
+rvm_prefix = /Users/lbriggs
+# default
+SUFFIXES := 
+# environment
+rvm_ruby_file = 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+rvm_use_flag = 
+# environment
+rvm_hook = 
+# environment
+MY_RUBY_HOME = /Users/lbriggs/.rvm/rubies/ruby-2.5.2
+# environment
+STARSHIP_SHELL = zsh
+# environment
+rvm_nightly_flag = 
+# variable set hash-table stats:
+# Load=148/1024=14%, Rehash=0, Collisions=16/192=8%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777221, inode 87353372): 27 files, no impossibilities.
+
+# 27 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+build_nodejs:: install_plugins tfgen
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+# makefile (from `Makefile', line 35)
+# VERSION := v0.2.2-alpha.1647476894+c5f054b6.dirty
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/3=0%
+#  commands to execute (from `Makefile', line 37):
+	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
+	cd sdk/nodejs/ && \
+	yarn install && \
+	yarn run tsc && \
+	cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
+	sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+	
+
+cleanup::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 73):
+	rm -r $(WORKING_DIR)/bin
+	rm -f provider/cmd/${PROVIDER}/schema.go
+	
+
+# Not a target:
+all:
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+.PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+install_nodejs_sdk::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 97):
+	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
+	
+
+build_go:: install_plugins tfgen
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 56):
+	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
+	
+
+build_go:: install_plugins tfgen
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 67):
+	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-07 10:08:58
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+test::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 102):
+	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
+	
+
+tfgen:: install_plugins
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 26):
+	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
+	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
+	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
+	
+
+build_python:: install_plugins tfgen
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+ 
+#  File does not exist.
+#  File has not been updated.
+# makefile (from `Makefile', line 44)
+# PYPI_VERSION := 0.2.2a1647476894+dirty
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/3=0%
+#  commands to execute (from `Makefile', line 46):
+	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
+	cd sdk/python/ && \
+	cp ../../README.md . && \
+	python3 setup.py clean --all 2>/dev/null && \
+	rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
+	sed -i.bak -e 's/^VERSION = .*/VERSION = "$(PYPI_VERSION)"/g' -e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(VERSION)"/g' ./bin/setup.py && \
+	rm ./bin/setup.py.bak && \
+	cd ./bin && python3 setup.py build sdist
+	
+
+build:: install_plugins provider build_sdks install_sdks
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+install_go_sdk::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+install_plugins::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 85):
+	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
+	pulumi plugin install resource random 4.3.1
+	
+
+lint_provider:: provider
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 70):
+	cd provider && golangci-lint run -c ../.golangci.yml
+	
+
+help::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 77):
+	@grep '^[^.#]\+:\s\+.*#' Makefile | \
+	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
+	expand -t20
+	
+
+development:: install_plugins provider lint_provider build_sdks install_sdks
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+install_python_sdk::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build_dotnet:: install_plugins tfgen
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+# makefile (from `Makefile', line 58)
+# DOTNET_VERSION := 0.2.2-alpha.1647476894+c5f054b6.dirty
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/3=0%
+#  commands to execute (from `Makefile', line 60):
+	pulumictl get version --language dotnet
+	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
+	cd sdk/dotnet/ && \
+	echo "${DOTNET_VERSION}" >version.txt && \
+	dotnet build /p:Version=${DOTNET_VERSION}
+	
+
+provider:: tfgen install_plugins
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 31):
+	(cd provider && go build -a -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	
+
+clean::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 82):
+	rm -rf sdk/{dotnet,nodejs,go,python}
+	
+
+only_build:: build
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+install_dotnet_sdk::
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 89):
+	mkdir -p $(WORKING_DIR)/nuget
+	find . -name '*.nupkg' -print -exec cp -p {} ${WORKING_DIR}/nuget \;
+	
+
+# files hash-table stats:
+# Load=26/1024=3%, Rehash=0, Collisions=2/107=2%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Tue May 10 14:39:57 2022
+
+ 

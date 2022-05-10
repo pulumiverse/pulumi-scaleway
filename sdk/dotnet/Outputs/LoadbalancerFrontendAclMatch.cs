@@ -13,28 +13,17 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class LoadbalancerFrontendAclMatch
     {
-        /// <summary>
-        /// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
-        /// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        /// Possible values are: `acl_http_filter_none`, `path_begin`, `path_end` or `regex`.
-        /// </summary>
         public readonly string? HttpFilter;
-        /// <summary>
-        /// A list of possible values to match for the given HTTP filter.
-        /// </summary>
+        public readonly string? HttpFilterOption;
         public readonly ImmutableArray<string> HttpFilterValues;
-        /// <summary>
-        /// If set to `true`, the condition will be of type "unless".
-        /// </summary>
         public readonly bool? Invert;
-        /// <summary>
-        /// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
-        /// </summary>
         public readonly ImmutableArray<string> IpSubnets;
 
         [OutputConstructor]
         private LoadbalancerFrontendAclMatch(
             string? httpFilter,
+
+            string? httpFilterOption,
 
             ImmutableArray<string> httpFilterValues,
 
@@ -43,6 +32,7 @@ namespace Pulumi.Scaleway.Outputs
             ImmutableArray<string> ipSubnets)
         {
             HttpFilter = httpFilter;
+            HttpFilterOption = httpFilterOption;
             HttpFilterValues = httpFilterValues;
             Invert = invert;
             IpSubnets = ipSubnets;

@@ -20,7 +20,7 @@ class GetInstanceVolumeResult:
     """
     A collection of values returned by getInstanceVolume.
     """
-    def __init__(__self__, from_snapshot_id=None, from_volume_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, type=None, volume_id=None, zone=None):
+    def __init__(__self__, from_snapshot_id=None, from_volume_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
         if from_snapshot_id and not isinstance(from_snapshot_id, str):
             raise TypeError("Expected argument 'from_snapshot_id' to be a str")
         pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
@@ -45,6 +45,9 @@ class GetInstanceVolumeResult:
         if size_in_gb and not isinstance(size_in_gb, int):
             raise TypeError("Expected argument 'size_in_gb' to be a int")
         pulumi.set(__self__, "size_in_gb", size_in_gb)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -81,9 +84,6 @@ class GetInstanceVolumeResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the volume is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -100,6 +100,11 @@ class GetInstanceVolumeResult:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> int:
         return pulumi.get(self, "size_in_gb")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -131,6 +136,7 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
             project_id=self.project_id,
             server_id=self.server_id,
             size_in_gb=self.size_in_gb,
+            tags=self.tags,
             type=self.type,
             volume_id=self.volume_id,
             zone=self.zone)
@@ -141,23 +147,7 @@ def get_instance_volume(name: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceVolumeResult:
     """
-    Gets information about an instance volume.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The volume name.
-           Only one of `name` and `volume_id` should be specified.
-    :param str volume_id: The volume id.
-           Only one of `name` and `volume_id` should be specified.
-    :param str zone: `zone`) The zone in which the volume exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -180,6 +170,7 @@ def get_instance_volume(name: Optional[str] = None,
         project_id=__ret__.project_id,
         server_id=__ret__.server_id,
         size_in_gb=__ret__.size_in_gb,
+        tags=__ret__.tags,
         type=__ret__.type,
         volume_id=__ret__.volume_id,
         zone=__ret__.zone)
@@ -191,22 +182,6 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceVolumeResult]:
     """
-    Gets information about an instance volume.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The volume name.
-           Only one of `name` and `volume_id` should be specified.
-    :param str volume_id: The volume id.
-           Only one of `name` and `volume_id` should be specified.
-    :param str zone: `zone`) The zone in which the volume exists.
+    Use this data source to access information about an existing resource.
     """
     ...

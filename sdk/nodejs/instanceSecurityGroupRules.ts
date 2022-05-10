@@ -5,15 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class InstanceSecurityGroupRules extends pulumi.CustomResource {
     /**
      * Get an existing InstanceSecurityGroupRules resource's state with the given name, ID, and optional extra
@@ -43,15 +34,15 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
     }
 
     /**
-     * A list of inbound rule to add to the security group. (Structure is documented below.)
+     * Inbound rules for this set of security group rules
      */
     public readonly inboundRules!: pulumi.Output<outputs.InstanceSecurityGroupRulesInboundRule[] | undefined>;
     /**
-     * A list of outbound rule to add to the security group. (Structure is documented below.)
+     * Outbound rules for this set of security group rules
      */
     public readonly outboundRules!: pulumi.Output<outputs.InstanceSecurityGroupRulesOutboundRule[] | undefined>;
     /**
-     * The ID of the security group.
+     * The security group associated with this volume
      */
     public readonly securityGroupId!: pulumi.Output<string>;
 
@@ -90,15 +81,15 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
  */
 export interface InstanceSecurityGroupRulesState {
     /**
-     * A list of inbound rule to add to the security group. (Structure is documented below.)
+     * Inbound rules for this set of security group rules
      */
     inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
     /**
-     * A list of outbound rule to add to the security group. (Structure is documented below.)
+     * Outbound rules for this set of security group rules
      */
     outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
     /**
-     * The ID of the security group.
+     * The security group associated with this volume
      */
     securityGroupId?: pulumi.Input<string>;
 }
@@ -108,15 +99,15 @@ export interface InstanceSecurityGroupRulesState {
  */
 export interface InstanceSecurityGroupRulesArgs {
     /**
-     * A list of inbound rule to add to the security group. (Structure is documented below.)
+     * Inbound rules for this set of security group rules
      */
     inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
     /**
-     * A list of outbound rule to add to the security group. (Structure is documented below.)
+     * Outbound rules for this set of security group rules
      */
     outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
     /**
-     * The ID of the security group.
+     * The security group associated with this volume
      */
     securityGroupId: pulumi.Input<string>;
 }

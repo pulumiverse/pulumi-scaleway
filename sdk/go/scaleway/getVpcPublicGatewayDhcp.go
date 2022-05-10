@@ -10,33 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a public gateway DHCP.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		main, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "main", &scaleway.VpcPublicGatewayDhcpArgs{
-// 			Subnet: pulumi.String("192.168.0.0/24"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = scaleway.LookupVpcPublicGatewayDhcpOutput(ctx, GetVpcPublicGatewayDhcpOutputArgs{
-// 			DhcpId: main.ID(),
-// 		}, nil)
-// 		return nil
-// 	})
-// }
-// ```
 func LookupVpcPublicGatewayDhcp(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpResult
@@ -54,13 +27,13 @@ type LookupVpcPublicGatewayDhcpArgs struct {
 
 // A collection of values returned by getVpcPublicGatewayDhcp.
 type LookupVpcPublicGatewayDhcpResult struct {
-	Address            string   `pulumi:"address"`
-	CreatedAt          string   `pulumi:"createdAt"`
-	DhcpId             string   `pulumi:"dhcpId"`
-	DnsLocalName       string   `pulumi:"dnsLocalName"`
-	DnsSearches        []string `pulumi:"dnsSearches"`
-	DnsServerOverrides []string `pulumi:"dnsServerOverrides"`
-	EnableDynamic      bool     `pulumi:"enableDynamic"`
+	Address             string   `pulumi:"address"`
+	CreatedAt           string   `pulumi:"createdAt"`
+	DhcpId              string   `pulumi:"dhcpId"`
+	DnsLocalName        string   `pulumi:"dnsLocalName"`
+	DnsSearches         []string `pulumi:"dnsSearches"`
+	DnsServersOverrides []string `pulumi:"dnsServersOverrides"`
+	EnableDynamic       bool     `pulumi:"enableDynamic"`
 	// The provider-assigned unique ID for this managed resource.
 	Id               string `pulumi:"id"`
 	OrganizationId   string `pulumi:"organizationId"`
@@ -130,8 +103,8 @@ func (o LookupVpcPublicGatewayDhcpResultOutput) DnsSearches() pulumi.StringArray
 	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpResult) []string { return v.DnsSearches }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupVpcPublicGatewayDhcpResultOutput) DnsServerOverrides() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpResult) []string { return v.DnsServerOverrides }).(pulumi.StringArrayOutput)
+func (o LookupVpcPublicGatewayDhcpResultOutput) DnsServersOverrides() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpResult) []string { return v.DnsServersOverrides }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupVpcPublicGatewayDhcpResultOutput) EnableDynamic() pulumi.BoolOutput {

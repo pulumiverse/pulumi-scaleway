@@ -5,15 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * IoT devices can be imported using the `{region}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class IotDevice extends pulumi.CustomResource {
     /**
      * Get an existing IotDevice resource's state with the given name, ID, and optional extra
@@ -43,43 +34,43 @@ export class IotDevice extends pulumi.CustomResource {
     }
 
     /**
-     * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     * Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
      */
     public readonly allowInsecure!: pulumi.Output<boolean | undefined>;
     /**
-     * Allow more than one simultaneous connection using the same device credentials.
+     * Allow multiple connections
      */
     public readonly allowMultipleConnections!: pulumi.Output<boolean | undefined>;
     /**
-     * The certificate bundle of the device.
+     * Certificate section of the device
      */
     public readonly certificate!: pulumi.Output<outputs.IotDeviceCertificate>;
     /**
-     * The date and time the device was created.
+     * The date and time of the creation of the device
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The description of the IoT device (e.g. `living room`).
+     * The description of the device
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the hub on which this device will be created.
+     * The ID of the hub on which this device will be created
      */
     public readonly hubId!: pulumi.Output<string>;
     /**
-     * The current connection status of the device.
+     * The MQTT connection status of the device
      */
     public /*out*/ readonly isConnected!: pulumi.Output<boolean>;
     /**
-     * The last MQTT activity of the device.
+     * The date and time of last MQTT activity of the device
      */
     public /*out*/ readonly lastActivityAt!: pulumi.Output<string>;
     /**
-     * Rules that define which messages are authorized or denied based on their topic.
+     * Rules to authorize or deny the device to publish/subscribe to specific topics
      */
     public readonly messageFilters!: pulumi.Output<outputs.IotDeviceMessageFilters | undefined>;
     /**
-     * The name of the IoT device you want to create (e.g. `my-device`).
+     * The name of the device
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -87,11 +78,11 @@ export class IotDevice extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The current status of the device.
+     * The status of the device
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The date and time the device resource was updated.
+     * The date and time of the last update of the device
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -150,43 +141,43 @@ export class IotDevice extends pulumi.CustomResource {
  */
 export interface IotDeviceState {
     /**
-     * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     * Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
      */
     allowInsecure?: pulumi.Input<boolean>;
     /**
-     * Allow more than one simultaneous connection using the same device credentials.
+     * Allow multiple connections
      */
     allowMultipleConnections?: pulumi.Input<boolean>;
     /**
-     * The certificate bundle of the device.
+     * Certificate section of the device
      */
     certificate?: pulumi.Input<inputs.IotDeviceCertificate>;
     /**
-     * The date and time the device was created.
+     * The date and time of the creation of the device
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The description of the IoT device (e.g. `living room`).
+     * The description of the device
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of the hub on which this device will be created.
+     * The ID of the hub on which this device will be created
      */
     hubId?: pulumi.Input<string>;
     /**
-     * The current connection status of the device.
+     * The MQTT connection status of the device
      */
     isConnected?: pulumi.Input<boolean>;
     /**
-     * The last MQTT activity of the device.
+     * The date and time of last MQTT activity of the device
      */
     lastActivityAt?: pulumi.Input<string>;
     /**
-     * Rules that define which messages are authorized or denied based on their topic.
+     * Rules to authorize or deny the device to publish/subscribe to specific topics
      */
     messageFilters?: pulumi.Input<inputs.IotDeviceMessageFilters>;
     /**
-     * The name of the IoT device you want to create (e.g. `my-device`).
+     * The name of the device
      */
     name?: pulumi.Input<string>;
     /**
@@ -194,11 +185,11 @@ export interface IotDeviceState {
      */
     region?: pulumi.Input<string>;
     /**
-     * The current status of the device.
+     * The status of the device
      */
     status?: pulumi.Input<string>;
     /**
-     * The date and time the device resource was updated.
+     * The date and time of the last update of the device
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -208,31 +199,31 @@ export interface IotDeviceState {
  */
 export interface IotDeviceArgs {
     /**
-     * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     * Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
      */
     allowInsecure?: pulumi.Input<boolean>;
     /**
-     * Allow more than one simultaneous connection using the same device credentials.
+     * Allow multiple connections
      */
     allowMultipleConnections?: pulumi.Input<boolean>;
     /**
-     * The certificate bundle of the device.
+     * Certificate section of the device
      */
     certificate?: pulumi.Input<inputs.IotDeviceCertificate>;
     /**
-     * The description of the IoT device (e.g. `living room`).
+     * The description of the device
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of the hub on which this device will be created.
+     * The ID of the hub on which this device will be created
      */
     hubId: pulumi.Input<string>;
     /**
-     * Rules that define which messages are authorized or denied based on their topic.
+     * Rules to authorize or deny the device to publish/subscribe to specific topics
      */
     messageFilters?: pulumi.Input<inputs.IotDeviceMessageFilters>;
     /**
-     * The name of the IoT device you want to create (e.g. `my-device`).
+     * The name of the device
      */
     name?: pulumi.Input<string>;
     /**

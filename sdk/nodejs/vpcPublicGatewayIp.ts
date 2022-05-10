@@ -4,33 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway VPC Public Gateway IP.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
- *
- * ## Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = new scaleway.VpcPublicGatewayIp("main", {
- *     reverse: "example.com",
- *     tags: [
- *         "demo",
- *         "terraform",
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * Public gateway can be imported using the `{zone}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class VpcPublicGatewayIp extends pulumi.CustomResource {
     /**
      * Get an existing VpcPublicGatewayIp resource's state with the given name, ID, and optional extra
@@ -60,35 +33,35 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
     }
 
     /**
-     * The IP address itself.
+     * the IP itself
      */
     public /*out*/ readonly address!: pulumi.Output<string>;
     /**
-     * The date and time of the creation of the public gateway ip.
+     * The date and time of the creation of the public gateway IP
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The organization ID the public gateway ip is associated with.
+     * The organization_id you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the public gateway ip is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The reverse domain name for the IP address
+     * reverse domain name for the IP address
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
-     * The tags associated with the public gateway IP.
+     * The tags associated with public gateway IP
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the public gateway ip.
+     * The date and time of the last update of the public gateway IP
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the public gateway ip should be created.
+     * The zone you want to attach the resource to
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -134,35 +107,35 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayIpState {
     /**
-     * The IP address itself.
+     * the IP itself
      */
     address?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the public gateway ip.
+     * The date and time of the creation of the public gateway IP
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The organization ID the public gateway ip is associated with.
+     * The organization_id you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway ip is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The reverse domain name for the IP address
+     * reverse domain name for the IP address
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway IP.
+     * The tags associated with public gateway IP
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The date and time of the last update of the public gateway ip.
+     * The date and time of the last update of the public gateway IP
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the public gateway ip should be created.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }
@@ -172,19 +145,19 @@ export interface VpcPublicGatewayIpState {
  */
 export interface VpcPublicGatewayIpArgs {
     /**
-     * `projectId`) The ID of the project the public gateway ip is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The reverse domain name for the IP address
+     * reverse domain name for the IP address
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway IP.
+     * The tags associated with public gateway IP
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the public gateway ip should be created.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }

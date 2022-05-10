@@ -21,12 +21,12 @@ class VpcPublicGatewayPatRuleArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayPatRule resource.
-        :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[str] private_ip: The Private IP to forward data to (IP address).
-        :param pulumi.Input[int] private_port: The Private port to translate to.
-        :param pulumi.Input[int] public_port: The Public port to listen on.
-        :param pulumi.Input[str] protocol: The Protocol the rule should apply to. Possible values are both, tcp and udp.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] gateway_id: The ID of the gateway this PAT rule is applied to
+        :param pulumi.Input[str] private_ip: The private IP used in the PAT rule
+        :param pulumi.Input[int] private_port: The private port used in the PAT rule
+        :param pulumi.Input[int] public_port: The public port used in the PAT rule
+        :param pulumi.Input[str] protocol: The protocol used in the PAT rule
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "private_ip", private_ip)
@@ -41,7 +41,7 @@ class VpcPublicGatewayPatRuleArgs:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Input[str]:
         """
-        The ID of the public gateway.
+        The ID of the gateway this PAT rule is applied to
         """
         return pulumi.get(self, "gateway_id")
 
@@ -53,7 +53,7 @@ class VpcPublicGatewayPatRuleArgs:
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> pulumi.Input[str]:
         """
-        The Private IP to forward data to (IP address).
+        The private IP used in the PAT rule
         """
         return pulumi.get(self, "private_ip")
 
@@ -65,7 +65,7 @@ class VpcPublicGatewayPatRuleArgs:
     @pulumi.getter(name="privatePort")
     def private_port(self) -> pulumi.Input[int]:
         """
-        The Private port to translate to.
+        The private port used in the PAT rule
         """
         return pulumi.get(self, "private_port")
 
@@ -77,7 +77,7 @@ class VpcPublicGatewayPatRuleArgs:
     @pulumi.getter(name="publicPort")
     def public_port(self) -> pulumi.Input[int]:
         """
-        The Public port to listen on.
+        The public port used in the PAT rule
         """
         return pulumi.get(self, "public_port")
 
@@ -89,7 +89,7 @@ class VpcPublicGatewayPatRuleArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        The protocol used in the PAT rule
         """
         return pulumi.get(self, "protocol")
 
@@ -101,7 +101,7 @@ class VpcPublicGatewayPatRuleArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway DHCP config should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -124,15 +124,15 @@ class _VpcPublicGatewayPatRuleState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayPatRule resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the pat rule config.
-        :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[str] organization_id: The organization ID the pat rule config is associated with.
-        :param pulumi.Input[str] private_ip: The Private IP to forward data to (IP address).
-        :param pulumi.Input[int] private_port: The Private port to translate to.
-        :param pulumi.Input[str] protocol: The Protocol the rule should apply to. Possible values are both, tcp and udp.
-        :param pulumi.Input[int] public_port: The Public port to listen on.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the pat rule config.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the PAT rule
+        :param pulumi.Input[str] gateway_id: The ID of the gateway this PAT rule is applied to
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] private_ip: The private IP used in the PAT rule
+        :param pulumi.Input[int] private_port: The private port used in the PAT rule
+        :param pulumi.Input[str] protocol: The protocol used in the PAT rule
+        :param pulumi.Input[int] public_port: The public port used in the PAT rule
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the PAT rule
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -157,7 +157,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the pat rule config.
+        The date and time of the creation of the PAT rule
         """
         return pulumi.get(self, "created_at")
 
@@ -169,7 +169,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the public gateway.
+        The ID of the gateway this PAT rule is applied to
         """
         return pulumi.get(self, "gateway_id")
 
@@ -181,7 +181,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the pat rule config is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -193,7 +193,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The Private IP to forward data to (IP address).
+        The private IP used in the PAT rule
         """
         return pulumi.get(self, "private_ip")
 
@@ -205,7 +205,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="privatePort")
     def private_port(self) -> Optional[pulumi.Input[int]]:
         """
-        The Private port to translate to.
+        The private port used in the PAT rule
         """
         return pulumi.get(self, "private_port")
 
@@ -217,7 +217,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        The protocol used in the PAT rule
         """
         return pulumi.get(self, "protocol")
 
@@ -229,7 +229,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="publicPort")
     def public_port(self) -> Optional[pulumi.Input[int]]:
         """
-        The Public port to listen on.
+        The public port used in the PAT rule
         """
         return pulumi.get(self, "public_port")
 
@@ -241,7 +241,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the pat rule config.
+        The date and time of the last update of the PAT rule
         """
         return pulumi.get(self, "updated_at")
 
@@ -253,7 +253,7 @@ class _VpcPublicGatewayPatRuleState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway DHCP config should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -275,51 +275,15 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1#pat-rules-e75d10).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        gn01 = scaleway.VpcGatewayNetwork("gn01",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            dhcp_id=dhcp01.id,
-            cleanup_dhcp=True)
-        main = scaleway.VpcPublicGatewayPatRule("main",
-            gateway_id=pg01.id,
-            private_ip=dhcp01.address,
-            private_port=42,
-            public_port=42,
-            protocol="both",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    gn01,
-                    pn01,
-                ]))
-        ```
-
-        ## Import
-
-        Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPublicGatewayPatRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[str] private_ip: The Private IP to forward data to (IP address).
-        :param pulumi.Input[int] private_port: The Private port to translate to.
-        :param pulumi.Input[str] protocol: The Protocol the rule should apply to. Possible values are both, tcp and udp.
-        :param pulumi.Input[int] public_port: The Public port to listen on.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] gateway_id: The ID of the gateway this PAT rule is applied to
+        :param pulumi.Input[str] private_ip: The private IP used in the PAT rule
+        :param pulumi.Input[int] private_port: The private port used in the PAT rule
+        :param pulumi.Input[str] protocol: The protocol used in the PAT rule
+        :param pulumi.Input[int] public_port: The public port used in the PAT rule
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
     @overload
@@ -328,43 +292,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                  args: VpcPublicGatewayPatRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1#pat-rules-e75d10).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        gn01 = scaleway.VpcGatewayNetwork("gn01",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            dhcp_id=dhcp01.id,
-            cleanup_dhcp=True)
-        main = scaleway.VpcPublicGatewayPatRule("main",
-            gateway_id=pg01.id,
-            private_ip=dhcp01.address,
-            private_port=42,
-            public_port=42,
-            protocol="both",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    gn01,
-                    pn01,
-                ]))
-        ```
-
-        ## Import
-
-        Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPublicGatewayPatRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayPatRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -443,15 +371,15 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the pat rule config.
-        :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[str] organization_id: The organization ID the pat rule config is associated with.
-        :param pulumi.Input[str] private_ip: The Private IP to forward data to (IP address).
-        :param pulumi.Input[int] private_port: The Private port to translate to.
-        :param pulumi.Input[str] protocol: The Protocol the rule should apply to. Possible values are both, tcp and udp.
-        :param pulumi.Input[int] public_port: The Public port to listen on.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the pat rule config.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the PAT rule
+        :param pulumi.Input[str] gateway_id: The ID of the gateway this PAT rule is applied to
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] private_ip: The private IP used in the PAT rule
+        :param pulumi.Input[int] private_port: The private port used in the PAT rule
+        :param pulumi.Input[str] protocol: The protocol used in the PAT rule
+        :param pulumi.Input[int] public_port: The public port used in the PAT rule
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the PAT rule
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -472,7 +400,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the pat rule config.
+        The date and time of the creation of the PAT rule
         """
         return pulumi.get(self, "created_at")
 
@@ -480,7 +408,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Output[str]:
         """
-        The ID of the public gateway.
+        The ID of the gateway this PAT rule is applied to
         """
         return pulumi.get(self, "gateway_id")
 
@@ -488,7 +416,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the pat rule config is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -496,7 +424,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> pulumi.Output[str]:
         """
-        The Private IP to forward data to (IP address).
+        The private IP used in the PAT rule
         """
         return pulumi.get(self, "private_ip")
 
@@ -504,7 +432,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="privatePort")
     def private_port(self) -> pulumi.Output[int]:
         """
-        The Private port to translate to.
+        The private port used in the PAT rule
         """
         return pulumi.get(self, "private_port")
 
@@ -512,7 +440,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[Optional[str]]:
         """
-        The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        The protocol used in the PAT rule
         """
         return pulumi.get(self, "protocol")
 
@@ -520,7 +448,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="publicPort")
     def public_port(self) -> pulumi.Output[int]:
         """
-        The Public port to listen on.
+        The public port used in the PAT rule
         """
         return pulumi.get(self, "public_port")
 
@@ -528,7 +456,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the pat rule config.
+        The date and time of the last update of the PAT rule
         """
         return pulumi.get(self, "updated_at")
 
@@ -536,7 +464,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the public gateway DHCP config should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 

@@ -4,26 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a public gateway.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = new scaleway.VpcPublicGateway("main", {
- *     type: "VPC-GW-S",
- * });
- * const pgTestByName = main.name.apply(name => scaleway.getVpcPublicGateway({
- *     name: name,
- * }));
- * const pgTestById = main.id.apply(id => scaleway.getVpcPublicGateway({
- *     publicGatewayId: id,
- * }));
- * ```
- */
 export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayResult> {
     args = args || {};
     if (!opts) {
@@ -41,9 +21,6 @@ export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulum
  * A collection of arguments for invoking getVpcPublicGateway.
  */
 export interface GetVpcPublicGatewayArgs {
-    /**
-     * Exact name of the public gateway.
-     */
     name?: string;
     publicGatewayId?: string;
 }
@@ -77,9 +54,6 @@ export function getVpcPublicGatewayOutput(args?: GetVpcPublicGatewayOutputArgs, 
  * A collection of arguments for invoking getVpcPublicGateway.
  */
 export interface GetVpcPublicGatewayOutputArgs {
-    /**
-     * Exact name of the public gateway.
-     */
     name?: pulumi.Input<string>;
     publicGatewayId?: pulumi.Input<string>;
 }

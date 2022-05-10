@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an instance volume.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.LookupInstanceVolume(ctx, &GetInstanceVolumeArgs{
-// 			VolumeId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, opts ...pulumi.InvokeOption) (*LookupInstanceVolumeResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceVolumeResult
@@ -46,14 +22,9 @@ func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, o
 
 // A collection of arguments for invoking getInstanceVolume.
 type LookupInstanceVolumeArgs struct {
-	// The volume name.
-	// Only one of `name` and `volumeId` should be specified.
-	Name *string `pulumi:"name"`
-	// The volume id.
-	// Only one of `name` and `volumeId` should be specified.
+	Name     *string `pulumi:"name"`
 	VolumeId *string `pulumi:"volumeId"`
-	// `zone`) The zone in which the volume exists.
-	Zone *string `pulumi:"zone"`
+	Zone     *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getInstanceVolume.
@@ -61,16 +32,16 @@ type LookupInstanceVolumeResult struct {
 	FromSnapshotId string `pulumi:"fromSnapshotId"`
 	FromVolumeId   string `pulumi:"fromVolumeId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string  `pulumi:"id"`
-	Name *string `pulumi:"name"`
-	// The ID of the organization the volume is associated with.
-	OrganizationId string  `pulumi:"organizationId"`
-	ProjectId      string  `pulumi:"projectId"`
-	ServerId       string  `pulumi:"serverId"`
-	SizeInGb       int     `pulumi:"sizeInGb"`
-	Type           string  `pulumi:"type"`
-	VolumeId       *string `pulumi:"volumeId"`
-	Zone           *string `pulumi:"zone"`
+	Id             string   `pulumi:"id"`
+	Name           *string  `pulumi:"name"`
+	OrganizationId string   `pulumi:"organizationId"`
+	ProjectId      string   `pulumi:"projectId"`
+	ServerId       string   `pulumi:"serverId"`
+	SizeInGb       int      `pulumi:"sizeInGb"`
+	Tags           []string `pulumi:"tags"`
+	Type           string   `pulumi:"type"`
+	VolumeId       *string  `pulumi:"volumeId"`
+	Zone           *string  `pulumi:"zone"`
 }
 
 func LookupInstanceVolumeOutput(ctx *pulumi.Context, args LookupInstanceVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceVolumeResultOutput {
@@ -84,14 +55,9 @@ func LookupInstanceVolumeOutput(ctx *pulumi.Context, args LookupInstanceVolumeOu
 
 // A collection of arguments for invoking getInstanceVolume.
 type LookupInstanceVolumeOutputArgs struct {
-	// The volume name.
-	// Only one of `name` and `volumeId` should be specified.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The volume id.
-	// Only one of `name` and `volumeId` should be specified.
+	Name     pulumi.StringPtrInput `pulumi:"name"`
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	// `zone`) The zone in which the volume exists.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
+	Zone     pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupInstanceVolumeOutputArgs) ElementType() reflect.Type {
@@ -130,7 +96,6 @@ func (o LookupInstanceVolumeResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the organization the volume is associated with.
 func (o LookupInstanceVolumeResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -145,6 +110,10 @@ func (o LookupInstanceVolumeResultOutput) ServerId() pulumi.StringOutput {
 
 func (o LookupInstanceVolumeResultOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+func (o LookupInstanceVolumeResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstanceVolumeResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupInstanceVolumeResultOutput) Type() pulumi.StringOutput {

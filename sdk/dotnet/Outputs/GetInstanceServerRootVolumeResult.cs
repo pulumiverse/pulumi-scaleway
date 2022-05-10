@@ -14,18 +14,10 @@ namespace Pulumi.Scaleway.Outputs
     public sealed class GetInstanceServerRootVolumeResult
     {
         public readonly bool Boot;
-        /// <summary>
-        /// Forces deletion of the root volume on instance termination.
-        /// </summary>
         public readonly bool DeleteOnTermination;
-        /// <summary>
-        /// Size of the root volume in gigabytes.
-        /// </summary>
         public readonly int SizeInGb;
-        /// <summary>
-        /// The volume ID of the root volume of the server.
-        /// </summary>
         public readonly string VolumeId;
+        public readonly string VolumeType;
 
         [OutputConstructor]
         private GetInstanceServerRootVolumeResult(
@@ -35,12 +27,15 @@ namespace Pulumi.Scaleway.Outputs
 
             int sizeInGb,
 
-            string volumeId)
+            string volumeId,
+
+            string volumeType)
         {
             Boot = boot;
             DeleteOnTermination = deleteOnTermination;
             SizeInGb = sizeInGb;
             VolumeId = volumeId;
+            VolumeType = volumeType;
         }
     }
 }

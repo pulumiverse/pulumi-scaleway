@@ -11,53 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Database instance autorized IPs.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-//
-// ## Examples
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewDatabaseAcl(ctx, "main", &scaleway.DatabaseAclArgs{
-// 			InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
-// 			AclRules: DatabaseAclAclRuleArray{
-// 				&DatabaseAclAclRuleArgs{
-// 					Ip:          pulumi.String("1.2.3.4/32"),
-// 					Description: pulumi.String("foo"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Database Instance can be imported using the `{region}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
-// ```
 type DatabaseAcl struct {
 	pulumi.CustomResourceState
 
-	// A list of ACLs (structure is described below)
+	// List of ACL rules to apply
 	AclRules DatabaseAclAclRuleArrayOutput `pulumi:"aclRules"`
-	// The instance on which to create the ACL.
+	// Instance on which the ACL is applied
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -99,18 +58,18 @@ func GetDatabaseAcl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseAcl resources.
 type databaseAclState struct {
-	// A list of ACLs (structure is described below)
+	// List of ACL rules to apply
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
-	// The instance on which to create the ACL.
+	// Instance on which the ACL is applied
 	InstanceId *string `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
 type DatabaseAclState struct {
-	// A list of ACLs (structure is described below)
+	// List of ACL rules to apply
 	AclRules DatabaseAclAclRuleArrayInput
-	// The instance on which to create the ACL.
+	// Instance on which the ACL is applied
 	InstanceId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -121,9 +80,9 @@ func (DatabaseAclState) ElementType() reflect.Type {
 }
 
 type databaseAclArgs struct {
-	// A list of ACLs (structure is described below)
+	// List of ACL rules to apply
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
-	// The instance on which to create the ACL.
+	// Instance on which the ACL is applied
 	InstanceId string `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -131,9 +90,9 @@ type databaseAclArgs struct {
 
 // The set of arguments for constructing a DatabaseAcl resource.
 type DatabaseAclArgs struct {
-	// A list of ACLs (structure is described below)
+	// List of ACL rules to apply
 	AclRules DatabaseAclAclRuleArrayInput
-	// The instance on which to create the ACL.
+	// Instance on which the ACL is applied
 	InstanceId pulumi.StringInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput

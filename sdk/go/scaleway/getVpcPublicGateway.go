@@ -10,36 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a public gateway.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		main, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
-// 			Type: pulumi.String("VPC-GW-S"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
-// 			Name: main.Name,
-// 		}, nil)
-// 		_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
-// 			PublicGatewayId: main.ID(),
-// 		}, nil)
-// 		return nil
-// 	})
-// }
-// ```
 func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayResult
@@ -52,7 +22,6 @@ func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArg
 
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayArgs struct {
-	// Exact name of the public gateway.
 	Name            *string `pulumi:"name"`
 	PublicGatewayId *string `pulumi:"publicGatewayId"`
 }
@@ -85,7 +54,6 @@ func LookupVpcPublicGatewayOutput(ctx *pulumi.Context, args LookupVpcPublicGatew
 
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayOutputArgs struct {
-	// Exact name of the public gateway.
 	Name            pulumi.StringPtrInput `pulumi:"name"`
 	PublicGatewayId pulumi.StringPtrInput `pulumi:"publicGatewayId"`
 }

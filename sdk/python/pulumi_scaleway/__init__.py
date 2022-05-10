@@ -8,35 +8,51 @@ import typing
 from .account_ssh_key import *
 from .apple_slicon_valley_server import *
 from .baremetal_server import *
+from .container import *
+from .container_namespace import *
 from .database import *
 from .database_acl import *
 from .database_instance import *
 from .database_privilege import *
 from .database_user import *
 from .domain_record import *
+from .domain_zone import *
+from .function_namespace import *
 from .get_account_ssh_key import *
 from .get_baremetal_offer import *
+from .get_baremetal_os import *
+from .get_baremetal_server import *
+from .get_container import *
+from .get_container_namespace import *
 from .get_database import *
 from .get_database_acl import *
 from .get_database_instance import *
 from .get_database_privilege import *
 from .get_domain_record import *
+from .get_domain_zone import *
+from .get_function_namespace import *
 from .get_instance_image import *
 from .get_instance_ip import *
 from .get_instance_security_group import *
 from .get_instance_server import *
 from .get_instance_volume import *
+from .get_iot_device import *
+from .get_iot_hub import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
 from .get_loadbalancer import *
+from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
 from .get_marketplace_image import *
+from .get_object_bucket import *
+from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_namespace import *
 from .get_vpc_private_network import *
 from .get_vpc_public_gateway import *
 from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_ip import *
+from .get_vpc_public_pat_rule import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
 from .instance_placement_group import *
@@ -60,11 +76,13 @@ from .loadbalancer_ip import *
 from .loadbalancer_route import *
 from .object_bucket import *
 from .provider import *
+from .redis_cluster import *
 from .registry_namespace import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
 from .vpc_public_gateway import *
 from .vpc_public_gateway_dhcp import *
+from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
 from .vpc_public_gateway_pat_rule import *
 from ._inputs import *
@@ -102,6 +120,22 @@ _utilities.register(
   "fqn": "pulumi_scaleway",
   "classes": {
    "scaleway:index/baremetalServer:BaremetalServer": "BaremetalServer"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/container",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/container:Container": "Container"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/containerNamespace",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/containerNamespace:ContainerNamespace": "ContainerNamespace"
   }
  },
  {
@@ -150,6 +184,22 @@ _utilities.register(
   "fqn": "pulumi_scaleway",
   "classes": {
    "scaleway:index/domainRecord:DomainRecord": "DomainRecord"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/domainZone",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/domainZone:DomainZone": "DomainZone"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/functionNamespace",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/functionNamespace:FunctionNamespace": "FunctionNamespace"
   }
  },
  {
@@ -330,6 +380,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/redisCluster",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/redisCluster:RedisCluster": "RedisCluster"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/registryNamespace",
   "fqn": "pulumi_scaleway",
   "classes": {
@@ -366,6 +424,14 @@ _utilities.register(
   "fqn": "pulumi_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp": "VpcPublicGatewayDhcp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/vpcPublicGatewayDhcpReservation",
+  "fqn": "pulumi_scaleway",
+  "classes": {
+   "scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation": "VpcPublicGatewayDhcpReservation"
   }
  },
  {

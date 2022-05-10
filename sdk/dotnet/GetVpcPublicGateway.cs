@@ -11,77 +11,9 @@ namespace Pulumi.Scaleway
 {
     public static class GetVpcPublicGateway
     {
-        /// <summary>
-        /// Gets information about a public gateway.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var main = new Scaleway.VpcPublicGateway("main", new Scaleway.VpcPublicGatewayArgs
-        ///         {
-        ///             Type = "VPC-GW-S",
-        ///         });
-        ///         var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
-        ///         {
-        ///             Name = main.Name,
-        ///         });
-        ///         var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
-        ///         {
-        ///             PublicGatewayId = main.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetVpcPublicGatewayResult> InvokeAsync(GetVpcPublicGatewayArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about a public gateway.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var main = new Scaleway.VpcPublicGateway("main", new Scaleway.VpcPublicGatewayArgs
-        ///         {
-        ///             Type = "VPC-GW-S",
-        ///         });
-        ///         var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
-        ///         {
-        ///             Name = main.Name,
-        ///         });
-        ///         var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new Scaleway.GetVpcPublicGatewayInvokeArgs
-        ///         {
-        ///             PublicGatewayId = main.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetVpcPublicGatewayResult> Invoke(GetVpcPublicGatewayInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayInvokeArgs(), options.WithDefaults());
     }
@@ -89,9 +21,6 @@ namespace Pulumi.Scaleway
 
     public sealed class GetVpcPublicGatewayArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Exact name of the public gateway.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -105,9 +34,6 @@ namespace Pulumi.Scaleway
 
     public sealed class GetVpcPublicGatewayInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Exact name of the public gateway.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

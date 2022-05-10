@@ -26,6 +26,8 @@ type AppleSliconValleyServer struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The state of the server
+	State pulumi.StringOutput `pulumi:"state"`
 	// Type of the server
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date and time of the last update of the server
@@ -81,6 +83,8 @@ type appleSliconValleyServerState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
+	// The state of the server
+	State *string `pulumi:"state"`
 	// Type of the server
 	Type *string `pulumi:"type"`
 	// The date and time of the last update of the server
@@ -104,6 +108,8 @@ type AppleSliconValleyServerState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
+	// The state of the server
+	State pulumi.StringPtrInput
 	// Type of the server
 	Type pulumi.StringPtrInput
 	// The date and time of the last update of the server

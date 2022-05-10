@@ -11,61 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Database Users.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-//
-// ## Examples
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		dbPassword, err := random.NewRandomPassword(ctx, "dbPassword", &random.RandomPasswordArgs{
-// 			Length:  pulumi.Int(16),
-// 			Special: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = scaleway.NewDatabaseUser(ctx, "dbAdmin", &scaleway.DatabaseUserArgs{
-// 			InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
-// 			Password:   dbPassword.Result,
-// 			IsAdmin:    pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
-// ```
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 
-	// The instance on which to create the user.
+	// Instance on which the user is created
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to database user
 	IsAdmin pulumi.BoolPtrOutput `pulumi:"isAdmin"`
-	// Database User name.
+	// Database user name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Database User password.
+	// Database user password
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -107,26 +62,26 @@ func GetDatabaseUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseUser resources.
 type databaseUserState struct {
-	// The instance on which to create the user.
+	// Instance on which the user is created
 	InstanceId *string `pulumi:"instanceId"`
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to database user
 	IsAdmin *bool `pulumi:"isAdmin"`
-	// Database User name.
+	// Database user name
 	Name *string `pulumi:"name"`
-	// Database User password.
+	// Database user password
 	Password *string `pulumi:"password"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
 type DatabaseUserState struct {
-	// The instance on which to create the user.
+	// Instance on which the user is created
 	InstanceId pulumi.StringPtrInput
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to database user
 	IsAdmin pulumi.BoolPtrInput
-	// Database User name.
+	// Database user name
 	Name pulumi.StringPtrInput
-	// Database User password.
+	// Database user password
 	Password pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -137,13 +92,13 @@ func (DatabaseUserState) ElementType() reflect.Type {
 }
 
 type databaseUserArgs struct {
-	// The instance on which to create the user.
+	// Instance on which the user is created
 	InstanceId string `pulumi:"instanceId"`
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to database user
 	IsAdmin *bool `pulumi:"isAdmin"`
-	// Database User name.
+	// Database user name
 	Name *string `pulumi:"name"`
-	// Database User password.
+	// Database user password
 	Password string `pulumi:"password"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -151,13 +106,13 @@ type databaseUserArgs struct {
 
 // The set of arguments for constructing a DatabaseUser resource.
 type DatabaseUserArgs struct {
-	// The instance on which to create the user.
+	// Instance on which the user is created
 	InstanceId pulumi.StringInput
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to database user
 	IsAdmin pulumi.BoolPtrInput
-	// Database User name.
+	// Database user name
 	Name pulumi.StringPtrInput
-	// Database User password.
+	// Database user password
 	Password pulumi.StringInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput

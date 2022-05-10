@@ -14,14 +14,8 @@ namespace Pulumi.Scaleway.Outputs
     public sealed class GetBaremetalOfferMemoryResult
     {
         public readonly int Capacity;
-        /// <summary>
-        /// Frequency of the memory in MHz.
-        /// </summary>
         public readonly int Frequency;
         public readonly bool IsEcc;
-        /// <summary>
-        /// Type of memory.
-        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

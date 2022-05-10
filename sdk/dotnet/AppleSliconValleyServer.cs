@@ -49,6 +49,12 @@ namespace Pulumi.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The state of the server
+        /// </summary>
+        [Output("state")]
+        public Output<string> State { get; private set; } = null!;
+
+        /// <summary>
         /// Type of the server
         /// </summary>
         [Output("type")]
@@ -185,6 +191,12 @@ namespace Pulumi.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The state of the server
+        /// </summary>
+        [Input("state")]
+        public Input<string>? State { get; set; }
 
         /// <summary>
         /// Type of the server

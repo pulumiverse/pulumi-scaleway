@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a public gateway DHCP.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = new scaleway.VpcPublicGatewayDhcp("main", {
- *     subnet: "192.168.0.0/24",
- * });
- * const dhcpById = main.id.apply(id => scaleway.getVpcPublicGatewayDhcp({
- *     dhcpId: id,
- * }));
- * ```
- */
 export function getVpcPublicGatewayDhcp(args: GetVpcPublicGatewayDhcpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpResult> {
     if (!opts) {
         opts = {}
@@ -48,7 +31,7 @@ export interface GetVpcPublicGatewayDhcpResult {
     readonly dhcpId: string;
     readonly dnsLocalName: string;
     readonly dnsSearches: string[];
-    readonly dnsServerOverrides: string[];
+    readonly dnsServersOverrides: string[];
     readonly enableDynamic: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.

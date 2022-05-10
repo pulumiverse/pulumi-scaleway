@@ -78,9 +78,6 @@ class GetRegistryImageResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The organization ID the image is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -96,25 +93,16 @@ class GetRegistryImageResult:
     @property
     @pulumi.getter
     def size(self) -> int:
-        """
-        The size of the registry image.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tags associated with the registry image
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def visibility(self) -> str:
-        """
-        The privacy policy of the registry image.
-        """
         return pulumi.get(self, "visibility")
 
 
@@ -144,27 +132,7 @@ def get_registry_image(image_id: Optional[str] = None,
                        tags: Optional[Sequence[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryImageResult:
     """
-    Gets information about a registry image.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_registry_image(image_id="11111111-1111-1111-1111-111111111111",
-        namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str image_id: The image ID.
-           Only one of `name` and `image_id` should be specified.
-    :param str name: The image name.
-           Only one of `name` and `image_id` should be specified.
-    :param str namespace_id: The namespace ID in which the image is.
-    :param str project_id: `project_id`) The ID of the project the image is associated with.
-    :param str region: `region`) The region in which the image exists.
-    :param Sequence[str] tags: The tags associated with the registry image
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['imageId'] = image_id
@@ -203,26 +171,6 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
                               tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryImageResult]:
     """
-    Gets information about a registry image.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_registry_image(image_id="11111111-1111-1111-1111-111111111111",
-        namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str image_id: The image ID.
-           Only one of `name` and `image_id` should be specified.
-    :param str name: The image name.
-           Only one of `name` and `image_id` should be specified.
-    :param str namespace_id: The namespace ID in which the image is.
-    :param str project_id: `project_id`) The ID of the project the image is associated with.
-    :param str region: `region`) The region in which the image exists.
-    :param Sequence[str] tags: The tags associated with the registry image
+    Use this data source to access information about an existing resource.
     """
     ...

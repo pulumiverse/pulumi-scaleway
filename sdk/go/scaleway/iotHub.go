@@ -11,29 +11,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
-//
-// IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
-// ```
 type IotHub struct {
 	pulumi.CustomResourceState
 
-	// The current number of connected devices in the Hub.
+	// The current number of connected devices in the Hub
 	ConnectedDeviceCount pulumi.IntOutput `pulumi:"connectedDeviceCount"`
-	// The date and time the Hub was created.
+	// The date and time of the creation of the IoT Hub
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Wether to enable the device auto provisioning or not
 	DeviceAutoProvisioning pulumi.BoolPtrOutput `pulumi:"deviceAutoProvisioning"`
-	// The number of registered devices in the Hub.
+	// The number of registered devices in the Hub
 	DeviceCount pulumi.IntOutput `pulumi:"deviceCount"`
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrOutput `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether to enable the hub or not
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// The MQTT network endpoint to connect MQTT devices to.
+	// The endpoint to connect the devices to
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// Topic prefix for the hub events
 	EventsTopicPrefix pulumi.StringPtrOutput `pulumi:"eventsTopicPrefix"`
@@ -41,19 +34,19 @@ type IotHub struct {
 	HubCa pulumi.StringPtrOutput `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrOutput `pulumi:"hubCaChallenge"`
-	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+	// The name of the hub
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	// The product plan of the hub
 	ProductPlan pulumi.StringOutput `pulumi:"productPlan"`
-	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`) The region in which the Database Instance should be created.
+	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The current status of the Hub.
+	// The status of the hub
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The date and time the Hub resource was updated.
+	// The date and time of the last update of the IoT Hub
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -90,19 +83,19 @@ func GetIotHub(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IotHub resources.
 type iotHubState struct {
-	// The current number of connected devices in the Hub.
+	// The current number of connected devices in the Hub
 	ConnectedDeviceCount *int `pulumi:"connectedDeviceCount"`
-	// The date and time the Hub was created.
+	// The date and time of the creation of the IoT Hub
 	CreatedAt *string `pulumi:"createdAt"`
 	// Wether to enable the device auto provisioning or not
 	DeviceAutoProvisioning *bool `pulumi:"deviceAutoProvisioning"`
-	// The number of registered devices in the Hub.
+	// The number of registered devices in the Hub
 	DeviceCount *int `pulumi:"deviceCount"`
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether to enable the hub or not
 	Enabled *bool `pulumi:"enabled"`
-	// The MQTT network endpoint to connect MQTT devices to.
+	// The endpoint to connect the devices to
 	Endpoint *string `pulumi:"endpoint"`
 	// Topic prefix for the hub events
 	EventsTopicPrefix *string `pulumi:"eventsTopicPrefix"`
@@ -110,36 +103,36 @@ type iotHubState struct {
 	HubCa *string `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge *string `pulumi:"hubCaChallenge"`
-	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+	// The name of the hub
 	Name *string `pulumi:"name"`
 	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	// The product plan of the hub
 	ProductPlan *string `pulumi:"productPlan"`
-	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the Database Instance should be created.
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
-	// The current status of the Hub.
+	// The status of the hub
 	Status *string `pulumi:"status"`
-	// The date and time the Hub resource was updated.
+	// The date and time of the last update of the IoT Hub
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type IotHubState struct {
-	// The current number of connected devices in the Hub.
+	// The current number of connected devices in the Hub
 	ConnectedDeviceCount pulumi.IntPtrInput
-	// The date and time the Hub was created.
+	// The date and time of the creation of the IoT Hub
 	CreatedAt pulumi.StringPtrInput
 	// Wether to enable the device auto provisioning or not
 	DeviceAutoProvisioning pulumi.BoolPtrInput
-	// The number of registered devices in the Hub.
+	// The number of registered devices in the Hub
 	DeviceCount pulumi.IntPtrInput
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether to enable the hub or not
 	Enabled pulumi.BoolPtrInput
-	// The MQTT network endpoint to connect MQTT devices to.
+	// The endpoint to connect the devices to
 	Endpoint pulumi.StringPtrInput
 	// Topic prefix for the hub events
 	EventsTopicPrefix pulumi.StringPtrInput
@@ -147,19 +140,19 @@ type IotHubState struct {
 	HubCa pulumi.StringPtrInput
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrInput
-	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+	// The name of the hub
 	Name pulumi.StringPtrInput
 	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	// The product plan of the hub
 	ProductPlan pulumi.StringPtrInput
-	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region in which the Database Instance should be created.
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
-	// The current status of the Hub.
+	// The status of the hub
 	Status pulumi.StringPtrInput
-	// The date and time the Hub resource was updated.
+	// The date and time of the last update of the IoT Hub
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -172,7 +165,7 @@ type iotHubArgs struct {
 	DeviceAutoProvisioning *bool `pulumi:"deviceAutoProvisioning"`
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether to enable the hub or not
 	Enabled *bool `pulumi:"enabled"`
 	// Topic prefix for the hub events
 	EventsTopicPrefix *string `pulumi:"eventsTopicPrefix"`
@@ -180,13 +173,13 @@ type iotHubArgs struct {
 	HubCa *string `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge *string `pulumi:"hubCaChallenge"`
-	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+	// The name of the hub
 	Name *string `pulumi:"name"`
-	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	// The product plan of the hub
 	ProductPlan string `pulumi:"productPlan"`
-	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the Database Instance should be created.
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
@@ -196,7 +189,7 @@ type IotHubArgs struct {
 	DeviceAutoProvisioning pulumi.BoolPtrInput
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether to enable the hub or not
 	Enabled pulumi.BoolPtrInput
 	// Topic prefix for the hub events
 	EventsTopicPrefix pulumi.StringPtrInput
@@ -204,13 +197,13 @@ type IotHubArgs struct {
 	HubCa pulumi.StringPtrInput
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrInput
-	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+	// The name of the hub
 	Name pulumi.StringPtrInput
-	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	// The product plan of the hub
 	ProductPlan pulumi.StringInput
-	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region in which the Database Instance should be created.
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
 }
 

@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about an instance IP.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * // Get info by ID
- * const myIp = pulumi.output(scaleway.getInstanceIp({
- *     id: "fr-par-1/11111111-1111-1111-1111-111111111111",
- * }));
- * ```
- */
 export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceIpResult> {
     args = args || {};
     if (!opts) {
@@ -36,15 +21,7 @@ export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getInstanceIp.
  */
 export interface GetInstanceIpArgs {
-    /**
-     * The IPv4 address to retrieve
-     * Only one of `address` and `id` should be specified.
-     */
     address?: string;
-    /**
-     * The ID of the IP address to retrieve
-     * Only one of `address` and `id` should be specified.
-     */
     id?: string;
 }
 
@@ -52,24 +29,13 @@ export interface GetInstanceIpArgs {
  * A collection of values returned by getInstanceIp.
  */
 export interface GetInstanceIpResult {
-    /**
-     * The IP address.
-     */
     readonly address?: string;
-    /**
-     * The ID of the IP.
-     */
     readonly id?: string;
-    /**
-     * The organization ID the IP is associated with.
-     */
     readonly organizationId: string;
     readonly projectId: string;
-    /**
-     * The reverse dns attached to this IP
-     */
     readonly reverse: string;
     readonly serverId: string;
+    readonly tags: string[];
     readonly zone: string;
 }
 
@@ -81,14 +47,6 @@ export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulum
  * A collection of arguments for invoking getInstanceIp.
  */
 export interface GetInstanceIpOutputArgs {
-    /**
-     * The IPv4 address to retrieve
-     * Only one of `address` and `id` should be specified.
-     */
     address?: pulumi.Input<string>;
-    /**
-     * The ID of the IP address to retrieve
-     * Only one of `address` and `id` should be specified.
-     */
     id?: pulumi.Input<string>;
 }

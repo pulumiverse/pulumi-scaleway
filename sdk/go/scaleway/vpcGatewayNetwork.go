@@ -11,87 +11,30 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway VPC Public Gateway Network.
-// It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
-//
-// ## Example
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		gw01, err := scaleway.NewVpcPublicGatewayIp(ctx, "gw01", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
-// 			Subnet: pulumi.String("192.168.1.0/24"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
-// 			Type: pulumi.String("VPC-GW-S"),
-// 			IpId: gw01.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
-// 			GatewayId:        pg01.ID(),
-// 			PrivateNetworkId: pn01.ID(),
-// 			DhcpId:           dhcp01.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
-// ```
 type VpcGatewayNetwork struct {
 	pulumi.CustomResourceState
 
-	// Remove DHCP config on this network on destroy. It requires DHCP id.
+	// Remove DHCP config on this network on destroy
 	CleanupDhcp pulumi.BoolPtrOutput `pulumi:"cleanupDhcp"`
-	// The date and time of the creation of the gateway network.
+	// The date and time of the creation of the gateway network
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config
 	DhcpId pulumi.StringPtrOutput `pulumi:"dhcpId"`
-	// Enable DHCP config on this network. It requires DHCP id.
+	// Enable DHCP config on this network
 	EnableDhcp pulumi.BoolPtrOutput `pulumi:"enableDhcp"`
 	// Enable masquerade on this network
 	EnableMasquerade pulumi.BoolPtrOutput `pulumi:"enableMasquerade"`
-	// The ID of the public gateway.
+	// The ID of the public gateway where connect to
 	GatewayId pulumi.StringOutput `pulumi:"gatewayId"`
-	// The mac address of the creation of the gateway network.
+	// The mac address on this network
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
-	// The ID of the private network.
+	// The ID of the private network where connect to
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
-	// Enable DHCP config on this network
+	// The static IP address in CIDR on this network
 	StaticAddress pulumi.StringPtrOutput `pulumi:"staticAddress"`
-	// The date and time of the last update of the gateway network.
+	// The date and time of the last update of the gateway network
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// `zone`) The zone in which the gateway network should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -131,52 +74,52 @@ func GetVpcGatewayNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcGatewayNetwork resources.
 type vpcGatewayNetworkState struct {
-	// Remove DHCP config on this network on destroy. It requires DHCP id.
+	// Remove DHCP config on this network on destroy
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
-	// The date and time of the creation of the gateway network.
+	// The date and time of the creation of the gateway network
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config
 	DhcpId *string `pulumi:"dhcpId"`
-	// Enable DHCP config on this network. It requires DHCP id.
+	// Enable DHCP config on this network
 	EnableDhcp *bool `pulumi:"enableDhcp"`
 	// Enable masquerade on this network
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
-	// The ID of the public gateway.
+	// The ID of the public gateway where connect to
 	GatewayId *string `pulumi:"gatewayId"`
-	// The mac address of the creation of the gateway network.
+	// The mac address on this network
 	MacAddress *string `pulumi:"macAddress"`
-	// The ID of the private network.
+	// The ID of the private network where connect to
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// Enable DHCP config on this network
+	// The static IP address in CIDR on this network
 	StaticAddress *string `pulumi:"staticAddress"`
-	// The date and time of the last update of the gateway network.
+	// The date and time of the last update of the gateway network
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// `zone`) The zone in which the gateway network should be created.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcGatewayNetworkState struct {
-	// Remove DHCP config on this network on destroy. It requires DHCP id.
+	// Remove DHCP config on this network on destroy
 	CleanupDhcp pulumi.BoolPtrInput
-	// The date and time of the creation of the gateway network.
+	// The date and time of the creation of the gateway network
 	CreatedAt pulumi.StringPtrInput
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config
 	DhcpId pulumi.StringPtrInput
-	// Enable DHCP config on this network. It requires DHCP id.
+	// Enable DHCP config on this network
 	EnableDhcp pulumi.BoolPtrInput
 	// Enable masquerade on this network
 	EnableMasquerade pulumi.BoolPtrInput
-	// The ID of the public gateway.
+	// The ID of the public gateway where connect to
 	GatewayId pulumi.StringPtrInput
-	// The mac address of the creation of the gateway network.
+	// The mac address on this network
 	MacAddress pulumi.StringPtrInput
-	// The ID of the private network.
+	// The ID of the private network where connect to
 	PrivateNetworkId pulumi.StringPtrInput
-	// Enable DHCP config on this network
+	// The static IP address in CIDR on this network
 	StaticAddress pulumi.StringPtrInput
-	// The date and time of the last update of the gateway network.
+	// The date and time of the last update of the gateway network
 	UpdatedAt pulumi.StringPtrInput
-	// `zone`) The zone in which the gateway network should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 
@@ -185,41 +128,41 @@ func (VpcGatewayNetworkState) ElementType() reflect.Type {
 }
 
 type vpcGatewayNetworkArgs struct {
-	// Remove DHCP config on this network on destroy. It requires DHCP id.
+	// Remove DHCP config on this network on destroy
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config
 	DhcpId *string `pulumi:"dhcpId"`
-	// Enable DHCP config on this network. It requires DHCP id.
+	// Enable DHCP config on this network
 	EnableDhcp *bool `pulumi:"enableDhcp"`
 	// Enable masquerade on this network
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
-	// The ID of the public gateway.
+	// The ID of the public gateway where connect to
 	GatewayId string `pulumi:"gatewayId"`
-	// The ID of the private network.
+	// The ID of the private network where connect to
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Enable DHCP config on this network
+	// The static IP address in CIDR on this network
 	StaticAddress *string `pulumi:"staticAddress"`
-	// `zone`) The zone in which the gateway network should be created.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcGatewayNetwork resource.
 type VpcGatewayNetworkArgs struct {
-	// Remove DHCP config on this network on destroy. It requires DHCP id.
+	// Remove DHCP config on this network on destroy
 	CleanupDhcp pulumi.BoolPtrInput
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config
 	DhcpId pulumi.StringPtrInput
-	// Enable DHCP config on this network. It requires DHCP id.
+	// Enable DHCP config on this network
 	EnableDhcp pulumi.BoolPtrInput
 	// Enable masquerade on this network
 	EnableMasquerade pulumi.BoolPtrInput
-	// The ID of the public gateway.
+	// The ID of the public gateway where connect to
 	GatewayId pulumi.StringInput
-	// The ID of the private network.
+	// The ID of the private network where connect to
 	PrivateNetworkId pulumi.StringInput
-	// Enable DHCP config on this network
+	// The static IP address in CIDR on this network
 	StaticAddress pulumi.StringPtrInput
-	// `zone`) The zone in which the gateway network should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 

@@ -38,9 +38,6 @@ class GetDatabaseAclResult:
     @property
     @pulumi.getter(name="aclRules")
     def acl_rules(self) -> Sequence['outputs.GetDatabaseAclAclRuleResult']:
-        """
-        A list of ACLs (structure is described below)
-        """
         return pulumi.get(self, "acl_rules")
 
     @property
@@ -77,19 +74,7 @@ class AwaitableGetDatabaseAclResult(GetDatabaseAclResult):
 def get_database_acl(instance_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseAclResult:
     """
-    Gets information about the RDB instance network Access Control List.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_acl = scaleway.get_database_acl(instance_id="fr-par/11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str instance_id: The RDB instance ID.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -112,18 +97,6 @@ def get_database_acl(instance_id: Optional[str] = None,
 def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseAclResult]:
     """
-    Gets information about the RDB instance network Access Control List.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_acl = scaleway.get_database_acl(instance_id="fr-par/11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str instance_id: The RDB instance ID.
+    Use this data source to access information about an existing resource.
     """
     ...

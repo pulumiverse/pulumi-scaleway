@@ -98,9 +98,6 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="admissionPlugins")
     def admission_plugins(self) -> Sequence[str]:
-        """
-        The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) enabled on the cluster.
-        """
         return pulumi.get(self, "admission_plugins")
 
     @property
@@ -111,25 +108,16 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="apiserverUrl")
     def apiserver_url(self) -> str:
-        """
-        The URL of the Kubernetes API server.
-        """
         return pulumi.get(self, "apiserver_url")
 
     @property
     @pulumi.getter(name="autoUpgrades")
     def auto_upgrades(self) -> Sequence['outputs.GetKubernetesClusterAutoUpgradeResult']:
-        """
-        The auto upgrade configuration.
-        """
         return pulumi.get(self, "auto_upgrades")
 
     @property
     @pulumi.getter(name="autoscalerConfigs")
     def autoscaler_configs(self) -> Sequence['outputs.GetKubernetesClusterAutoscalerConfigResult']:
-        """
-        The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        """
         return pulumi.get(self, "autoscaler_configs")
 
     @property
@@ -140,33 +128,21 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter
     def cni(self) -> str:
-        """
-        The Container Network Interface (CNI) for the Kubernetes cluster.
-        """
         return pulumi.get(self, "cni")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The creation date of the cluster.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
-        """
-        A description for the Kubernetes cluster.
-        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="featureGates")
     def feature_gates(self) -> Sequence[str]:
-        """
-        The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) enabled on the cluster.
-        """
         return pulumi.get(self, "feature_gates")
 
     @property
@@ -195,41 +171,26 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the cluster is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the project the cluster is associated with.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
-        """
-        The region in which the cluster is.
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of the Kubernetes cluster.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tags associated with the Kubernetes cluster.
-        """
         return pulumi.get(self, "tags")
 
     @property
@@ -240,33 +201,21 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
-        """
-        The last update date of the cluster.
-        """
         return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="upgradeAvailable")
     def upgrade_available(self) -> bool:
-        """
-        True if a newer Kubernetes version is available.
-        """
         return pulumi.get(self, "upgrade_available")
 
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        The version of the Kubernetes cluster.
-        """
         return pulumi.get(self, "version")
 
     @property
     @pulumi.getter(name="wildcardDns")
     def wildcard_dns(self) -> str:
-        """
-        The DNS wildcard that points to all ready nodes.
-        """
         return pulumi.get(self, "wildcard_dns")
 
 
@@ -307,21 +256,7 @@ def get_kubernetes_cluster(cluster_id: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
-    Gets information about a Kubernetes Cluster.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_kubernetes_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str cluster_id: The cluster ID. Only one of `name` and `cluster_id` should be specified.
-    :param str name: The cluster name. Only one of `name` and `cluster_id` should be specified.
-    :param str region: `region`) The region in which the cluster exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -368,20 +303,6 @@ def get_kubernetes_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesClusterResult]:
     """
-    Gets information about a Kubernetes Cluster.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_kubernetes_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str cluster_id: The cluster ID. Only one of `name` and `cluster_id` should be specified.
-    :param str name: The cluster name. Only one of `name` and `cluster_id` should be specified.
-    :param str region: `region`) The region in which the cluster exists.
+    Use this data source to access information about an existing resource.
     """
     ...

@@ -9,55 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Create and manage Scaleway RDB database privilege.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var priv = new Scaleway.DatabasePrivilege("priv", new Scaleway.DatabasePrivilegeArgs
-    ///         {
-    ///             InstanceId = scaleway_rdb_instance.Rdb.Id,
-    ///             UserName = "my-db-user",
-    ///             DatabaseName = "my-db-name",
-    ///             Permission = "all",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/databasePrivilege:DatabasePrivilege")]
     public partial class DatabasePrivilege : Pulumi.CustomResource
     {
         /// <summary>
-        /// Name of the database (e.g. `my-db-name`).
+        /// Database name
         /// </summary>
         [Output("databaseName")]
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// Instance on which the database is created
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// Privilege
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the user (e.g. `my-db-user`).
+        /// User name
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
@@ -110,25 +84,25 @@ namespace Pulumi.Scaleway
     public sealed class DatabasePrivilegeArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the database (e.g. `my-db-name`).
+        /// Database name
         /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// Instance on which the database is created
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// Privilege
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// Name of the user (e.g. `my-db-user`).
+        /// User name
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
@@ -141,25 +115,25 @@ namespace Pulumi.Scaleway
     public sealed class DatabasePrivilegeState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the database (e.g. `my-db-name`).
+        /// Database name
         /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// Instance on which the database is created
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// Privilege
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }
 
         /// <summary>
-        /// Name of the user (e.g. `my-db-user`).
+        /// User name
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }

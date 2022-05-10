@@ -9,50 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Load-Balancers IPs.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var ip = new Scaleway.LoadbalancerIp("ip", new Scaleway.LoadbalancerIpArgs
-    ///         {
-    ///             Reverse = "my-reverse.com",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// IPs can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/loadbalancerIp:LoadbalancerIp")]
     public partial class LoadbalancerIp : Pulumi.CustomResource
     {
         /// <summary>
-        /// The IP Address
+        /// The load-balancer public IP address
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The associated load-balance ID if any
+        /// The ID of the load balancer attached to this IP, if any
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
@@ -76,7 +43,7 @@ namespace Pulumi.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The reverse domain associated with this IP.
+        /// The reverse domain name for this IP
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
@@ -141,7 +108,7 @@ namespace Pulumi.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The reverse domain associated with this IP.
+        /// The reverse domain name for this IP
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
@@ -160,13 +127,13 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerIpState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP Address
+        /// The load-balancer public IP address
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The associated load-balance ID if any
+        /// The ID of the load balancer attached to this IP, if any
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
@@ -190,7 +157,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The reverse domain associated with this IP.
+        /// The reverse domain name for this IP
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }

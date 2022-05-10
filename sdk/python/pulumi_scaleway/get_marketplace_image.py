@@ -75,23 +75,7 @@ def get_marketplace_image(instance_type: Optional[str] = None,
                           zone: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMarketplaceImageResult:
     """
-    Gets local image ID of an image from its label name.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_marketplace_image(label="ubuntu_focal")
-    ```
-
-
-    :param str instance_type: The instance type the image is compatible with.
-           You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-    :param str label: Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
-           to find the right `label`.
-    :param str zone: `zone`) The zone in which the image exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['instanceType'] = instance_type
@@ -118,22 +102,6 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMarketplaceImageResult]:
     """
-    Gets local image ID of an image from its label name.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_marketplace_image(label="ubuntu_focal")
-    ```
-
-
-    :param str instance_type: The instance type the image is compatible with.
-           You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-    :param str label: Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
-           to find the right `label`.
-    :param str zone: `zone`) The zone in which the image exists.
+    Use this data source to access information about an existing resource.
     """
     ...

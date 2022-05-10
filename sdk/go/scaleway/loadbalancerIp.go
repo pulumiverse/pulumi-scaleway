@@ -10,47 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Load-Balancers IPs.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
-//
-// ## Examples
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewLoadbalancerIp(ctx, "ip", &scaleway.LoadbalancerIpArgs{
-// 			Reverse: pulumi.String("my-reverse.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// IPs can be imported using the `{zone}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
-// ```
 type LoadbalancerIp struct {
 	pulumi.CustomResourceState
 
-	// The IP Address
+	// The load-balancer public IP address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// The associated load-balance ID if any
+	// The ID of the load balancer attached to this IP, if any
 	LbId pulumi.StringOutput `pulumi:"lbId"`
 	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -58,7 +23,7 @@ type LoadbalancerIp struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region of the resource
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The reverse domain associated with this IP.
+	// The reverse domain name for this IP
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// The zone you want to attach the resource to
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -94,9 +59,9 @@ func GetLoadbalancerIp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerIp resources.
 type loadbalancerIpState struct {
-	// The IP Address
+	// The load-balancer public IP address
 	IpAddress *string `pulumi:"ipAddress"`
-	// The associated load-balance ID if any
+	// The ID of the load balancer attached to this IP, if any
 	LbId *string `pulumi:"lbId"`
 	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
@@ -104,16 +69,16 @@ type loadbalancerIpState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The region of the resource
 	Region *string `pulumi:"region"`
-	// The reverse domain associated with this IP.
+	// The reverse domain name for this IP
 	Reverse *string `pulumi:"reverse"`
 	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 type LoadbalancerIpState struct {
-	// The IP Address
+	// The load-balancer public IP address
 	IpAddress pulumi.StringPtrInput
-	// The associated load-balance ID if any
+	// The ID of the load balancer attached to this IP, if any
 	LbId pulumi.StringPtrInput
 	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
@@ -121,7 +86,7 @@ type LoadbalancerIpState struct {
 	ProjectId pulumi.StringPtrInput
 	// The region of the resource
 	Region pulumi.StringPtrInput
-	// The reverse domain associated with this IP.
+	// The reverse domain name for this IP
 	Reverse pulumi.StringPtrInput
 	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
@@ -134,7 +99,7 @@ func (LoadbalancerIpState) ElementType() reflect.Type {
 type loadbalancerIpArgs struct {
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The reverse domain associated with this IP.
+	// The reverse domain name for this IP
 	Reverse *string `pulumi:"reverse"`
 	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
@@ -144,7 +109,7 @@ type loadbalancerIpArgs struct {
 type LoadbalancerIpArgs struct {
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The reverse domain associated with this IP.
+	// The reverse domain name for this IP
 	Reverse pulumi.StringPtrInput
 	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput

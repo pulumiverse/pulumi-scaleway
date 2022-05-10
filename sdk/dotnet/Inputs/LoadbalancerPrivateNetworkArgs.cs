@@ -26,15 +26,9 @@ namespace Pulumi.Scaleway.Inputs
             set => _staticConfigs = value;
         }
 
-        /// <summary>
-        /// The Private Network attachment status
-        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
-        /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
-        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

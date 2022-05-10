@@ -20,7 +20,7 @@ class GetVpcPublicGatewayDhcpResult:
     """
     A collection of values returned by getVpcPublicGatewayDhcp.
     """
-    def __init__(__self__, address=None, created_at=None, dhcp_id=None, dns_local_name=None, dns_searches=None, dns_server_overrides=None, enable_dynamic=None, id=None, organization_id=None, pool_high=None, pool_low=None, project_id=None, push_default_route=None, push_dns_server=None, rebind_timer=None, renew_timer=None, subnet=None, updated_at=None, valid_lifetime=None, zone=None):
+    def __init__(__self__, address=None, created_at=None, dhcp_id=None, dns_local_name=None, dns_searches=None, dns_servers_overrides=None, enable_dynamic=None, id=None, organization_id=None, pool_high=None, pool_low=None, project_id=None, push_default_route=None, push_dns_server=None, rebind_timer=None, renew_timer=None, subnet=None, updated_at=None, valid_lifetime=None, zone=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -36,9 +36,9 @@ class GetVpcPublicGatewayDhcpResult:
         if dns_searches and not isinstance(dns_searches, list):
             raise TypeError("Expected argument 'dns_searches' to be a list")
         pulumi.set(__self__, "dns_searches", dns_searches)
-        if dns_server_overrides and not isinstance(dns_server_overrides, list):
-            raise TypeError("Expected argument 'dns_server_overrides' to be a list")
-        pulumi.set(__self__, "dns_server_overrides", dns_server_overrides)
+        if dns_servers_overrides and not isinstance(dns_servers_overrides, list):
+            raise TypeError("Expected argument 'dns_servers_overrides' to be a list")
+        pulumi.set(__self__, "dns_servers_overrides", dns_servers_overrides)
         if enable_dynamic and not isinstance(enable_dynamic, bool):
             raise TypeError("Expected argument 'enable_dynamic' to be a bool")
         pulumi.set(__self__, "enable_dynamic", enable_dynamic)
@@ -108,9 +108,9 @@ class GetVpcPublicGatewayDhcpResult:
         return pulumi.get(self, "dns_searches")
 
     @property
-    @pulumi.getter(name="dnsServerOverrides")
-    def dns_server_overrides(self) -> Sequence[str]:
-        return pulumi.get(self, "dns_server_overrides")
+    @pulumi.getter(name="dnsServersOverrides")
+    def dns_servers_overrides(self) -> Sequence[str]:
+        return pulumi.get(self, "dns_servers_overrides")
 
     @property
     @pulumi.getter(name="enableDynamic")
@@ -197,7 +197,7 @@ class AwaitableGetVpcPublicGatewayDhcpResult(GetVpcPublicGatewayDhcpResult):
             dhcp_id=self.dhcp_id,
             dns_local_name=self.dns_local_name,
             dns_searches=self.dns_searches,
-            dns_server_overrides=self.dns_server_overrides,
+            dns_servers_overrides=self.dns_servers_overrides,
             enable_dynamic=self.enable_dynamic,
             id=self.id,
             organization_id=self.organization_id,
@@ -217,17 +217,7 @@ class AwaitableGetVpcPublicGatewayDhcpResult(GetVpcPublicGatewayDhcpResult):
 def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpResult:
     """
-    Gets information about a public gateway DHCP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
-    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
-    ```
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
@@ -245,7 +235,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
         dhcp_id=__ret__.dhcp_id,
         dns_local_name=__ret__.dns_local_name,
         dns_searches=__ret__.dns_searches,
-        dns_server_overrides=__ret__.dns_server_overrides,
+        dns_servers_overrides=__ret__.dns_servers_overrides,
         enable_dynamic=__ret__.enable_dynamic,
         id=__ret__.id,
         organization_id=__ret__.organization_id,
@@ -266,16 +256,6 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
 def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
     """
-    Gets information about a public gateway DHCP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
-    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
-    ```
+    Use this data source to access information about an existing resource.
     """
     ...

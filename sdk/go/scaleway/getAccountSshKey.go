@@ -10,30 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get SSH key information based on its ID or name.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.LookupAccountSshKey(ctx, &GetAccountSshKeyArgs{
-// 			SshKeyId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupAccountSshKey(ctx *pulumi.Context, args *LookupAccountSshKeyArgs, opts ...pulumi.InvokeOption) (*LookupAccountSshKeyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAccountSshKeyResult
@@ -46,23 +22,19 @@ func LookupAccountSshKey(ctx *pulumi.Context, args *LookupAccountSshKeyArgs, opt
 
 // A collection of arguments for invoking getAccountSshKey.
 type LookupAccountSshKeyArgs struct {
-	// The SSH key name. Only one of `name` and `sshKeyId` should be specified.
-	Name *string `pulumi:"name"`
-	// The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+	Name     *string `pulumi:"name"`
 	SshKeyId *string `pulumi:"sshKeyId"`
 }
 
 // A collection of values returned by getAccountSshKey.
 type LookupAccountSshKeyResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id   string  `pulumi:"id"`
-	Name *string `pulumi:"name"`
-	// The ID of the organization the SSH key is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
-	// The SSH public key string
-	PublicKey string  `pulumi:"publicKey"`
-	SshKeyId  *string `pulumi:"sshKeyId"`
+	Id             string  `pulumi:"id"`
+	Name           *string `pulumi:"name"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      string  `pulumi:"projectId"`
+	PublicKey      string  `pulumi:"publicKey"`
+	SshKeyId       *string `pulumi:"sshKeyId"`
 }
 
 func LookupAccountSshKeyOutput(ctx *pulumi.Context, args LookupAccountSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupAccountSshKeyResultOutput {
@@ -76,9 +48,7 @@ func LookupAccountSshKeyOutput(ctx *pulumi.Context, args LookupAccountSshKeyOutp
 
 // A collection of arguments for invoking getAccountSshKey.
 type LookupAccountSshKeyOutputArgs struct {
-	// The SSH key name. Only one of `name` and `sshKeyId` should be specified.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+	Name     pulumi.StringPtrInput `pulumi:"name"`
 	SshKeyId pulumi.StringPtrInput `pulumi:"sshKeyId"`
 }
 
@@ -110,7 +80,6 @@ func (o LookupAccountSshKeyResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the organization the SSH key is associated with.
 func (o LookupAccountSshKeyResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -119,7 +88,6 @@ func (o LookupAccountSshKeyResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The SSH public key string
 func (o LookupAccountSshKeyResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }

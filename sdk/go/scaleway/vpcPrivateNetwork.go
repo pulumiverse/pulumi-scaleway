@@ -10,58 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway VPC Private Networks.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
-//
-// ## Example
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := scaleway.NewVpcPrivateNetwork(ctx, "pnPriv", &scaleway.VpcPrivateNetworkArgs{
-// 			Tags: pulumi.StringArray{
-// 				pulumi.String("demo"),
-// 				pulumi.String("terraform"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Private networks can be imported using the `{zone}/{id}`, e.g. bash
-//
-// ```sh
-//  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
-// ```
 type VpcPrivateNetwork struct {
 	pulumi.CustomResourceState
 
 	// The date and time of the creation of the private network
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the private network
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the private network is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the private network is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The tags associated with the private network.
+	// The tags associated with private network
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the private network
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// `zone`) The zone in which the private network should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -97,34 +61,34 @@ func GetVpcPrivateNetwork(ctx *pulumi.Context,
 type vpcPrivateNetworkState struct {
 	// The date and time of the creation of the private network
 	CreatedAt *string `pulumi:"createdAt"`
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the private network
 	Name *string `pulumi:"name"`
-	// The organization ID the private network is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the private network is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The tags associated with the private network.
+	// The tags associated with private network
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the private network
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// `zone`) The zone in which the private network should be created.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPrivateNetworkState struct {
 	// The date and time of the creation of the private network
 	CreatedAt pulumi.StringPtrInput
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the private network
 	Name pulumi.StringPtrInput
-	// The organization ID the private network is associated with.
+	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the private network is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The tags associated with the private network.
+	// The tags associated with private network
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the private network
 	UpdatedAt pulumi.StringPtrInput
-	// `zone`) The zone in which the private network should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 
@@ -133,25 +97,25 @@ func (VpcPrivateNetworkState) ElementType() reflect.Type {
 }
 
 type vpcPrivateNetworkArgs struct {
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the private network
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the private network is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The tags associated with the private network.
+	// The tags associated with private network
 	Tags []string `pulumi:"tags"`
-	// `zone`) The zone in which the private network should be created.
+	// The zone you want to attach the resource to
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcPrivateNetwork resource.
 type VpcPrivateNetworkArgs struct {
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the private network
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the private network is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The tags associated with the private network.
+	// The tags associated with private network
 	Tags pulumi.StringArrayInput
-	// `zone`) The zone in which the private network should be created.
+	// The zone you want to attach the resource to
 	Zone pulumi.StringPtrInput
 }
 

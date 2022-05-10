@@ -21,9 +21,6 @@ namespace Pulumi.Scaleway.Inputs
         [Input("status")]
         public Input<string>? Status { get; set; }
 
-        /// <summary>
-        /// `zone`) The zone in which the server should be created.
-        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

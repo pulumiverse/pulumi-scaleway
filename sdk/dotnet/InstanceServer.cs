@@ -9,251 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var publicIp = new Scaleway.InstanceIp("publicIp", new Scaleway.InstanceIpArgs
-    ///         {
-    ///         });
-    ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             Type = "DEV1-S",
-    ///             Image = "ubuntu_focal",
-    ///             IpId = publicIp.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### With additional volumes and tags
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var data = new Scaleway.InstanceVolume("data", new Scaleway.InstanceVolumeArgs
-    ///         {
-    ///             SizeInGb = 100,
-    ///             Type = "b_ssd",
-    ///         });
-    ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             Type = "DEV1-S",
-    ///             Image = "ubuntu_focal",
-    ///             Tags = 
-    ///             {
-    ///                 "hello",
-    ///                 "public",
-    ///             },
-    ///             RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
-    ///             {
-    ///                 DeleteOnTermination = false,
-    ///             },
-    ///             AdditionalVolumeIds = 
-    ///             {
-    ///                 data.Id,
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### With a reserved IP
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var ip = new Scaleway.InstanceIp("ip", new Scaleway.InstanceIpArgs
-    ///         {
-    ///         });
-    ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             Type = "DEV1-S",
-    ///             Image = "f974feac-abae-4365-b988-8ec7d1cec10d",
-    ///             Tags = 
-    ///             {
-    ///                 "hello",
-    ///                 "public",
-    ///             },
-    ///             IpId = ip.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### With security group
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var www = new Scaleway.InstanceSecurityGroup("www", new Scaleway.InstanceSecurityGroupArgs
-    ///         {
-    ///             InboundDefaultPolicy = "drop",
-    ///             OutboundDefaultPolicy = "accept",
-    ///             InboundRules = 
-    ///             {
-    ///                 new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
-    ///                 {
-    ///                     Action = "accept",
-    ///                     Port = 22,
-    ///                     Ip = "212.47.225.64",
-    ///                 },
-    ///                 new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
-    ///                 {
-    ///                     Action = "accept",
-    ///                     Port = 80,
-    ///                 },
-    ///                 new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
-    ///                 {
-    ///                     Action = "accept",
-    ///                     Port = 443,
-    ///                 },
-    ///             },
-    ///             OutboundRules = 
-    ///             {
-    ///                 new Scaleway.Inputs.InstanceSecurityGroupOutboundRuleArgs
-    ///                 {
-    ///                     Action = "drop",
-    ///                     IpRange = "10.20.0.0/24",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             Type = "DEV1-S",
-    ///             Image = "ubuntu_focal",
-    ///             SecurityGroupId = www.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### With user data and cloud-init
-    /// 
-    /// ```csharp
-    /// using System.IO;
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             Type = "DEV1-S",
-    ///             Image = "ubuntu_focal",
-    ///             UserData = 
-    ///             {
-    ///                 { "foo", "bar" },
-    ///                 { "cloud-init", File.ReadAllText($"{path.Module}/cloud-init.yml") },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### With private network
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new Scaleway.VpcPrivateNetworkArgs
-    ///         {
-    ///         });
-    ///         var @base = new Scaleway.InstanceServer("base", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             Image = "ubuntu_focal",
-    ///             Type = "DEV1-S",
-    ///             PrivateNetworks = 
-    ///             {
-    ///                 new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
-    ///                 {
-    ///                     PnId = pn01.Id,
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Private Network
-    /// 
-    /// &gt; **Important:** Updates to `private_network` will recreate a new private network interface.
-    /// 
-    /// - `pn_id` - (Required) The private network ID where to connect.
-    /// - `mac_address` The private NIC MAC address.
-    /// - `status` The private NIC state.
-    /// - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
-    /// 
-    /// &gt; **Important:**
-    /// 
-    /// - You can only attach an instance in the same zone as a private network.
-    /// - Instance supports maximum 8 different private networks.
-    /// 
-    /// ## Import
-    /// 
-    /// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/instanceServer:InstanceServer")]
     public partial class InstanceServer : Pulumi.CustomResource
     {
         /// <summary>
-        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
-        /// attached to the server. Updates to this field will trigger a stop/start of the server.
+        /// The additional volumes attached to the server
         /// </summary>
         [Output("additionalVolumeIds")]
         public Output<ImmutableArray<string>> AdditionalVolumeIds { get; private set; } = null!;
 
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot type of the server
         /// </summary>
         [Output("bootType")]
         public Output<string?> BootType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Output("bootscriptId")]
         public Output<string> BootscriptId { get; private set; } = null!;
@@ -265,126 +37,121 @@ namespace Pulumi.Scaleway
         public Output<string?> CloudInit { get; private set; } = null!;
 
         /// <summary>
-        /// If true a dynamic IP will be attached to the server.
+        /// Enable dynamic IP on the server
         /// </summary>
         [Output("enableDynamicIp")]
         public Output<bool?> EnableDynamicIp { get; private set; } = null!;
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server
         /// </summary>
         [Output("enableIpv6")]
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
-        /// to find either the right `label` or the right local image `ID` for a given `type`.
+        /// The UUID or the label of the base image used by the server
         /// </summary>
         [Output("image")]
         public Output<string> Image { get; private set; } = null!;
 
         /// <summary>
-        /// = (Optional) The ID of the reserved IP that is attached to the server.
+        /// The ID of the reserved IP for the server
         /// </summary>
         [Output("ipId")]
         public Output<string?> IpId { get; private set; } = null!;
 
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The default public IPv6 address routed to the server.
         /// </summary>
         [Output("ipv6Address")]
         public Output<string> Ipv6Address { get; private set; } = null!;
 
         /// <summary>
-        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// The IPv6 gateway address
         /// </summary>
         [Output("ipv6Gateway")]
         public Output<string> Ipv6Gateway { get; private set; } = null!;
 
         /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The IPv6 prefix length routed to the server.
         /// </summary>
         [Output("ipv6PrefixLength")]
         public Output<int> Ipv6PrefixLength { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the server.
+        /// The name of the server
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the server is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// The placement group the server is attached to
         /// </summary>
         [Output("placementGroupId")]
         public Output<string?> PlacementGroupId { get; private set; } = null!;
 
         /// <summary>
-        /// True when the placement group policy is respected.
-        /// - `root_volume`
+        /// True when the placement group policy is respected
         /// </summary>
         [Output("placementGroupPolicyRespected")]
         public Output<bool> PlacementGroupPolicyRespected { get; private set; } = null!;
 
         /// <summary>
-        /// The Scaleway internal IP address of the server.
+        /// The Scaleway internal IP address of the server
         /// </summary>
         [Output("privateIp")]
         public Output<string> PrivateIp { get; private set; } = null!;
 
         /// <summary>
-        /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// List of private network to connect with your instance
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.InstanceServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The public IPv4 address of the server.
+        /// The public IPv4 address of the server
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// Root volume attached to the server on creation
         /// </summary>
         [Output("rootVolume")]
         public Output<Outputs.InstanceServerRootVolume> RootVolume { get; private set; } = null!;
 
         /// <summary>
-        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// The security group the server is attached to
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server should be: started, stopped, standby
         /// </summary>
         [Output("state")]
         public Output<string?> State { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the server.
+        /// The tags associated with the server
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The commercial type of the server.
-        /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        /// Updates to this field will recreate a new resource.
+        /// The instance type of the server
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -396,7 +163,7 @@ namespace Pulumi.Scaleway
         public Output<ImmutableDictionary<string, string>?> UserData { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -452,8 +219,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _additionalVolumeIds;
 
         /// <summary>
-        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
-        /// attached to the server. Updates to this field will trigger a stop/start of the server.
+        /// The additional volumes attached to the server
         /// </summary>
         public InputList<string> AdditionalVolumeIds
         {
@@ -462,13 +228,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot type of the server
         /// </summary>
         [Input("bootType")]
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -480,38 +246,37 @@ namespace Pulumi.Scaleway
         public Input<string>? CloudInit { get; set; }
 
         /// <summary>
-        /// If true a dynamic IP will be attached to the server.
+        /// Enable dynamic IP on the server
         /// </summary>
         [Input("enableDynamicIp")]
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
 
         /// <summary>
-        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
-        /// to find either the right `label` or the right local image `ID` for a given `type`.
+        /// The UUID or the label of the base image used by the server
         /// </summary>
         [Input("image", required: true)]
         public Input<string> Image { get; set; } = null!;
 
         /// <summary>
-        /// = (Optional) The ID of the reserved IP that is attached to the server.
+        /// The ID of the reserved IP for the server
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The name of the server.
+        /// The name of the server
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// The placement group the server is attached to
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
@@ -520,8 +285,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceServerPrivateNetworkArgs>? _privateNetworks;
 
         /// <summary>
-        /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// List of private network to connect with your instance
         /// </summary>
         public InputList<Inputs.InstanceServerPrivateNetworkArgs> PrivateNetworks
         {
@@ -530,25 +294,25 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// Root volume attached to the server on creation
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeArgs>? RootVolume { get; set; }
 
         /// <summary>
-        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// The security group the server is attached to
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server should be: started, stopped, standby
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -557,7 +321,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the server.
+        /// The tags associated with the server
         /// </summary>
         public InputList<string> Tags
         {
@@ -566,9 +330,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The commercial type of the server.
-        /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        /// Updates to this field will recreate a new resource.
+        /// The instance type of the server
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -586,7 +348,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -602,8 +364,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _additionalVolumeIds;
 
         /// <summary>
-        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
-        /// attached to the server. Updates to this field will trigger a stop/start of the server.
+        /// The additional volumes attached to the server
         /// </summary>
         public InputList<string> AdditionalVolumeIds
         {
@@ -612,13 +373,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot type of the server
         /// </summary>
         [Input("bootType")]
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -630,75 +391,73 @@ namespace Pulumi.Scaleway
         public Input<string>? CloudInit { get; set; }
 
         /// <summary>
-        /// If true a dynamic IP will be attached to the server.
+        /// Enable dynamic IP on the server
         /// </summary>
         [Input("enableDynamicIp")]
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
 
         /// <summary>
-        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
-        /// to find either the right `label` or the right local image `ID` for a given `type`.
+        /// The UUID or the label of the base image used by the server
         /// </summary>
         [Input("image")]
         public Input<string>? Image { get; set; }
 
         /// <summary>
-        /// = (Optional) The ID of the reserved IP that is attached to the server.
+        /// The ID of the reserved IP for the server
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The default public IPv6 address routed to the server.
         /// </summary>
         [Input("ipv6Address")]
         public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
-        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// The IPv6 gateway address
         /// </summary>
         [Input("ipv6Gateway")]
         public Input<string>? Ipv6Gateway { get; set; }
 
         /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The IPv6 prefix length routed to the server.
         /// </summary>
         [Input("ipv6PrefixLength")]
         public Input<int>? Ipv6PrefixLength { get; set; }
 
         /// <summary>
-        /// The name of the server.
+        /// The name of the server
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the server is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// The placement group the server is attached to
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
-        /// True when the placement group policy is respected.
-        /// - `root_volume`
+        /// True when the placement group policy is respected
         /// </summary>
         [Input("placementGroupPolicyRespected")]
         public Input<bool>? PlacementGroupPolicyRespected { get; set; }
 
         /// <summary>
-        /// The Scaleway internal IP address of the server.
+        /// The Scaleway internal IP address of the server
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
@@ -707,8 +466,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceServerPrivateNetworkGetArgs>? _privateNetworks;
 
         /// <summary>
-        /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// List of private network to connect with your instance
         /// </summary>
         public InputList<Inputs.InstanceServerPrivateNetworkGetArgs> PrivateNetworks
         {
@@ -717,31 +475,31 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The public IPv4 address of the server.
+        /// The public IPv4 address of the server
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// Root volume attached to the server on creation
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeGetArgs>? RootVolume { get; set; }
 
         /// <summary>
-        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// The security group the server is attached to
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server should be: started, stopped, standby
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -750,7 +508,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the server.
+        /// The tags associated with the server
         /// </summary>
         public InputList<string> Tags
         {
@@ -759,9 +517,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The commercial type of the server.
-        /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        /// Updates to this field will recreate a new resource.
+        /// The instance type of the server
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -779,7 +535,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -18,8 +18,8 @@ class InstancePrivateNicArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstancePrivateNic resource.
-        :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
-        :param pulumi.Input[str] server_id: The ID of the server associated with.
+        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] server_id: The server ID
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -31,7 +31,7 @@ class InstancePrivateNicArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Input[str]:
         """
-        The ID of the private network attached to.
+        The private network ID
         """
         return pulumi.get(self, "private_network_id")
 
@@ -43,7 +43,7 @@ class InstancePrivateNicArgs:
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Input[str]:
         """
-        The ID of the server associated with.
+        The server ID
         """
         return pulumi.get(self, "server_id")
 
@@ -74,8 +74,8 @@ class _InstancePrivateNicState:
         """
         Input properties used for looking up and filtering InstancePrivateNic resources.
         :param pulumi.Input[str] mac_address: MAC address of the NIC
-        :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
-        :param pulumi.Input[str] server_id: The ID of the server associated with.
+        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] server_id: The server ID
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if mac_address is not None:
@@ -103,7 +103,7 @@ class _InstancePrivateNicState:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the private network attached to.
+        The private network ID
         """
         return pulumi.get(self, "private_network_id")
 
@@ -115,7 +115,7 @@ class _InstancePrivateNicState:
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the server associated with.
+        The server ID
         """
         return pulumi.get(self, "server_id")
 
@@ -146,32 +146,11 @@ class InstancePrivateNic(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Instance Private NICs. For more information, see
-        [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
-            private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-            server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
-        ```
-
-        ## Import
-
-        Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
-        ```
-
+        Create a InstancePrivateNic resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
-        :param pulumi.Input[str] server_id: The ID of the server associated with.
+        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] server_id: The server ID
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
@@ -181,28 +160,7 @@ class InstancePrivateNic(pulumi.CustomResource):
                  args: InstancePrivateNicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Instance Private NICs. For more information, see
-        [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
-            private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-            server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
-        ```
-
-        ## Import
-
-        Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
-        ```
-
+        Create a InstancePrivateNic resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param InstancePrivateNicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -265,8 +223,8 @@ class InstancePrivateNic(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] mac_address: MAC address of the NIC
-        :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
-        :param pulumi.Input[str] server_id: The ID of the server associated with.
+        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] server_id: The server ID
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -291,7 +249,7 @@ class InstancePrivateNic(pulumi.CustomResource):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Output[str]:
         """
-        The ID of the private network attached to.
+        The private network ID
         """
         return pulumi.get(self, "private_network_id")
 
@@ -299,7 +257,7 @@ class InstancePrivateNic(pulumi.CustomResource):
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[str]:
         """
-        The ID of the server associated with.
+        The server ID
         """
         return pulumi.get(self, "server_id")
 
