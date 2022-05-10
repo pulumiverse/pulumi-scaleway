@@ -22,3 +22,4 @@ yarn.lock
 
 dist/**
 **/.DS_store
+.vscode

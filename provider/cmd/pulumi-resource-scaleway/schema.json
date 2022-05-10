@@ -10,6 +10,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`scaleway` Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway).",
     "repository": "https://github.com/jaxxstorm/pulumi-scaleway",
+    "logoUrl": "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg",
     "pluginDownloadURL": "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}",
     "publisher": "Lee Briggs",
     "meta": {
