@@ -4,30 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway Instance Private NICs. For more information, see
- * [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
- *
- * ## Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
- *     privateNetworkId: "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
- *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
- * });
- * ```
- *
- * ## Import
- *
- * Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
- * ```
- */
 export class InstancePrivateNic extends pulumi.CustomResource {
     /**
      * Get an existing InstancePrivateNic resource's state with the given name, ID, and optional extra
@@ -61,11 +37,11 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
     /**
-     * The ID of the private network attached to.
+     * The private network ID
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
     /**
-     * The ID of the server associated with.
+     * The server ID
      */
     public readonly serverId!: pulumi.Output<string>;
     /**
@@ -117,11 +93,11 @@ export interface InstancePrivateNicState {
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The ID of the private network attached to.
+     * The private network ID
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * The ID of the server associated with.
+     * The server ID
      */
     serverId?: pulumi.Input<string>;
     /**
@@ -135,11 +111,11 @@ export interface InstancePrivateNicState {
  */
 export interface InstancePrivateNicArgs {
     /**
-     * The ID of the private network attached to.
+     * The private network ID
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * The ID of the server associated with.
+     * The server ID
      */
     serverId: pulumi.Input<string>;
     /**

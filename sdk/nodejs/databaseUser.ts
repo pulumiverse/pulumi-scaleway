@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway Database Users.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
- *
- * ## Examples
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
- * import * as random from "@pulumi/random";
- *
- * const dbPassword = new random.RandomPassword("dbPassword", {
- *     length: 16,
- *     special: true,
- * });
- * const dbAdmin = new scaleway.DatabaseUser("dbAdmin", {
- *     instanceId: scaleway_rdb_instance.main.id,
- *     password: dbPassword.result,
- *     isAdmin: true,
- * });
- * ```
- *
- * ## Import
- *
- * Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
- * ```
- */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
      * Get an existing DatabaseUser resource's state with the given name, ID, and optional extra
@@ -65,19 +33,19 @@ export class DatabaseUser extends pulumi.CustomResource {
     }
 
     /**
-     * The instance on which to create the user.
+     * Instance on which the user is created
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Grant admin permissions to the Database User.
+     * Grant admin permissions to database user
      */
     public readonly isAdmin!: pulumi.Output<boolean | undefined>;
     /**
-     * Database User name.
+     * Database user name
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Database User password.
+     * Database user password
      */
     public readonly password!: pulumi.Output<string>;
     /**
@@ -127,19 +95,19 @@ export class DatabaseUser extends pulumi.CustomResource {
  */
 export interface DatabaseUserState {
     /**
-     * The instance on which to create the user.
+     * Instance on which the user is created
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Grant admin permissions to the Database User.
+     * Grant admin permissions to database user
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
-     * Database User name.
+     * Database user name
      */
     name?: pulumi.Input<string>;
     /**
-     * Database User password.
+     * Database user password
      */
     password?: pulumi.Input<string>;
     /**
@@ -153,19 +121,19 @@ export interface DatabaseUserState {
  */
 export interface DatabaseUserArgs {
     /**
-     * The instance on which to create the user.
+     * Instance on which the user is created
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Grant admin permissions to the Database User.
+     * Grant admin permissions to database user
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
-     * Database User name.
+     * Database user name
      */
     name?: pulumi.Input<string>;
     /**
-     * Database User password.
+     * Database user password
      */
     password: pulumi.Input<string>;
     /**

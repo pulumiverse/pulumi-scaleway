@@ -5,21 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a Kubernetes Cluster's Pool.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * // Get info by pool id
- * const myKey = pulumi.output(scaleway.getKubernetesNodePool({
- *     poolId: "11111111-1111-1111-1111-111111111111",
- * }));
- * ```
- */
 export function getKubernetesNodePool(args?: GetKubernetesNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesNodePoolResult> {
     args = args || {};
     if (!opts) {
@@ -40,25 +25,10 @@ export function getKubernetesNodePool(args?: GetKubernetesNodePoolArgs, opts?: p
  * A collection of arguments for invoking getKubernetesNodePool.
  */
 export interface GetKubernetesNodePoolArgs {
-    /**
-     * The cluster ID. Required when `name` is set.
-     */
     clusterId?: string;
-    /**
-     * The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
-     */
     name?: string;
-    /**
-     * The pool's ID. Only one of `name` and `poolId` should be specified.
-     */
     poolId?: string;
-    /**
-     * `region`) The region in which the pool exists.
-     */
     region?: string;
-    /**
-     * The size of the pool.
-     */
     size?: number;
 }
 
@@ -66,22 +36,10 @@ export interface GetKubernetesNodePoolArgs {
  * A collection of values returned by getKubernetesNodePool.
  */
 export interface GetKubernetesNodePoolResult {
-    /**
-     * True if the autohealing feature is enabled for this pool.
-     */
     readonly autohealing: boolean;
-    /**
-     * True if the autoscaling feature is enabled for this pool.
-     */
     readonly autoscaling: boolean;
     readonly clusterId?: string;
-    /**
-     * The container runtime of the pool.
-     */
     readonly containerRuntime: string;
-    /**
-     * The creation date of the pool.
-     */
     readonly createdAt: string;
     readonly currentSize: number;
     /**
@@ -89,52 +47,19 @@ export interface GetKubernetesNodePoolResult {
      */
     readonly id: string;
     readonly kubeletArgs: {[key: string]: string};
-    /**
-     * The maximum size of the pool, used by the autoscaling feature.
-     */
     readonly maxSize: number;
-    /**
-     * The minimum size of the pool, used by the autoscaling feature.
-     */
     readonly minSize: number;
-    /**
-     * The name of the node.
-     */
     readonly name?: string;
-    /**
-     * The commercial type of the pool instances.
-     */
     readonly nodeType: string;
-    /**
-     * (List of) The nodes in the default pool.
-     */
     readonly nodes: outputs.GetKubernetesNodePoolNode[];
-    /**
-     * [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
-     */
     readonly placementGroupId: string;
     readonly poolId?: string;
     readonly region?: string;
-    /**
-     * The size of the pool.
-     */
     readonly size?: number;
-    /**
-     * The status of the node.
-     */
     readonly status: string;
-    /**
-     * The tags associated with the pool.
-     */
     readonly tags: string[];
-    /**
-     * The last update date of the pool.
-     */
     readonly updatedAt: string;
     readonly upgradePolicies: outputs.GetKubernetesNodePoolUpgradePolicy[];
-    /**
-     * The version of the pool.
-     */
     readonly version: string;
     readonly waitForPoolReady: boolean;
     readonly zone: string;
@@ -148,24 +73,9 @@ export function getKubernetesNodePoolOutput(args?: GetKubernetesNodePoolOutputAr
  * A collection of arguments for invoking getKubernetesNodePool.
  */
 export interface GetKubernetesNodePoolOutputArgs {
-    /**
-     * The cluster ID. Required when `name` is set.
-     */
     clusterId?: pulumi.Input<string>;
-    /**
-     * The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The pool's ID. Only one of `name` and `poolId` should be specified.
-     */
     poolId?: pulumi.Input<string>;
-    /**
-     * `region`) The region in which the pool exists.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * The size of the pool.
-     */
     size?: pulumi.Input<number>;
 }

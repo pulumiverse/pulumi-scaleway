@@ -11,67 +11,9 @@ namespace Pulumi.Scaleway
 {
     public static class GetVpcPublicGatewayIp
     {
-        /// <summary>
-        /// Gets information about a public gateway IP.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
-        ///         {
-        ///         });
-        ///         var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new Scaleway.GetVpcPublicGatewayIpInvokeArgs
-        ///         {
-        ///             IpId = main.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetVpcPublicGatewayIpResult> InvokeAsync(GetVpcPublicGatewayIpArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about a public gateway IP.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var main = new Scaleway.VpcPublicGatewayIp("main", new Scaleway.VpcPublicGatewayIpArgs
-        ///         {
-        ///         });
-        ///         var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new Scaleway.GetVpcPublicGatewayIpInvokeArgs
-        ///         {
-        ///             IpId = main.Id,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetVpcPublicGatewayIpResult> Invoke(GetVpcPublicGatewayIpInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpInvokeArgs(), options.WithDefaults());
     }

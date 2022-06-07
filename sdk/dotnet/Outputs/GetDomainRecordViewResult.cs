@@ -13,10 +13,6 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class GetDomainRecordViewResult
     {
-        /// <summary>
-        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-        /// Cannot be used with `record_id`.
-        /// </summary>
         public readonly string Data;
         public readonly string Subnet;
 

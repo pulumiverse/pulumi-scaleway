@@ -17,7 +17,7 @@ class VpcPublicGatewayDhcpArgs:
                  address: Optional[pulumi.Input[str]] = None,
                  dns_local_name: Optional[pulumi.Input[str]] = None,
                  dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 dns_server_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_dynamic: Optional[pulumi.Input[bool]] = None,
                  pool_high: Optional[pulumi.Input[str]] = None,
                  pool_low: Optional[pulumi.Input[str]] = None,
@@ -31,25 +31,25 @@ class VpcPublicGatewayDhcpArgs:
         """
         The set of arguments for constructing a VpcPublicGatewayDhcp resource.
         :param pulumi.Input[str] subnet: Subnet for the DHCP server
-        :param pulumi.Input[str] address: Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-               address of the subnet
+        :param pulumi.Input[str] address: The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+               of the subnet
         :param pulumi.Input[str] dns_local_name: TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
                Network name if created along a GatewayNetwork, or else to `priv`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_server_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         :param pulumi.Input[bool] enable_dynamic: Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
                handed out. Defaults to true.
         :param pulumi.Input[str] pool_high: High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway DHCP config is associated with.
-        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -> IP resolution.
                Defaults to true.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
                `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         :param pulumi.Input[int] valid_lifetime: For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "subnet", subnet)
         if address is not None:
@@ -58,8 +58,8 @@ class VpcPublicGatewayDhcpArgs:
             pulumi.set(__self__, "dns_local_name", dns_local_name)
         if dns_searches is not None:
             pulumi.set(__self__, "dns_searches", dns_searches)
-        if dns_server_overrides is not None:
-            pulumi.set(__self__, "dns_server_overrides", dns_server_overrides)
+        if dns_servers_overrides is not None:
+            pulumi.set(__self__, "dns_servers_overrides", dns_servers_overrides)
         if enable_dynamic is not None:
             pulumi.set(__self__, "enable_dynamic", enable_dynamic)
         if pool_high is not None:
@@ -97,8 +97,8 @@ class VpcPublicGatewayDhcpArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-        address of the subnet
+        The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+        of the subnet
         """
         return pulumi.get(self, "address")
 
@@ -123,7 +123,7 @@ class VpcPublicGatewayDhcpArgs:
     @pulumi.getter(name="dnsSearches")
     def dns_searches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Additional DNS search paths
+        Additional DNS search paths.
         """
         return pulumi.get(self, "dns_searches")
 
@@ -132,16 +132,16 @@ class VpcPublicGatewayDhcpArgs:
         pulumi.set(self, "dns_searches", value)
 
     @property
-    @pulumi.getter(name="dnsServerOverrides")
-    def dns_server_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter(name="dnsServersOverrides")
+    def dns_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         """
-        return pulumi.get(self, "dns_server_overrides")
+        return pulumi.get(self, "dns_servers_overrides")
 
-    @dns_server_overrides.setter
-    def dns_server_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "dns_server_overrides", value)
+    @dns_servers_overrides.setter
+    def dns_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "dns_servers_overrides", value)
 
     @property
     @pulumi.getter(name="enableDynamic")
@@ -184,7 +184,7 @@ class VpcPublicGatewayDhcpArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -196,7 +196,7 @@ class VpcPublicGatewayDhcpArgs:
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -258,7 +258,7 @@ class VpcPublicGatewayDhcpArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway DHCP config should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -274,7 +274,7 @@ class _VpcPublicGatewayDhcpState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  dns_local_name: Optional[pulumi.Input[str]] = None,
                  dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 dns_server_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_dynamic: Optional[pulumi.Input[bool]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  pool_high: Optional[pulumi.Input[str]] = None,
@@ -290,29 +290,29 @@ class _VpcPublicGatewayDhcpState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayDhcp resources.
-        :param pulumi.Input[str] address: Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-               address of the subnet
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway DHCP config.
+        :param pulumi.Input[str] address: The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+               of the subnet
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
         :param pulumi.Input[str] dns_local_name: TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
                Network name if created along a GatewayNetwork, or else to `priv`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_server_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         :param pulumi.Input[bool] enable_dynamic: Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
                handed out. Defaults to true.
-        :param pulumi.Input[str] organization_id: The organization ID the public gateway DHCP config is associated with.
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] pool_high: High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway DHCP config is associated with.
-        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -> IP resolution.
                Defaults to true.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
                `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         :param pulumi.Input[str] subnet: Subnet for the DHCP server
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway DHCP config.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
         :param pulumi.Input[int] valid_lifetime: For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -322,8 +322,8 @@ class _VpcPublicGatewayDhcpState:
             pulumi.set(__self__, "dns_local_name", dns_local_name)
         if dns_searches is not None:
             pulumi.set(__self__, "dns_searches", dns_searches)
-        if dns_server_overrides is not None:
-            pulumi.set(__self__, "dns_server_overrides", dns_server_overrides)
+        if dns_servers_overrides is not None:
+            pulumi.set(__self__, "dns_servers_overrides", dns_servers_overrides)
         if enable_dynamic is not None:
             pulumi.set(__self__, "enable_dynamic", enable_dynamic)
         if organization_id is not None:
@@ -355,8 +355,8 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-        address of the subnet
+        The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+        of the subnet
         """
         return pulumi.get(self, "address")
 
@@ -368,7 +368,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the public gateway DHCP config.
+        The date and time of the creation of the public gateway.
         """
         return pulumi.get(self, "created_at")
 
@@ -393,7 +393,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter(name="dnsSearches")
     def dns_searches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Additional DNS search paths
+        Additional DNS search paths.
         """
         return pulumi.get(self, "dns_searches")
 
@@ -402,16 +402,16 @@ class _VpcPublicGatewayDhcpState:
         pulumi.set(self, "dns_searches", value)
 
     @property
-    @pulumi.getter(name="dnsServerOverrides")
-    def dns_server_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter(name="dnsServersOverrides")
+    def dns_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         """
-        return pulumi.get(self, "dns_server_overrides")
+        return pulumi.get(self, "dns_servers_overrides")
 
-    @dns_server_overrides.setter
-    def dns_server_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "dns_server_overrides", value)
+    @dns_servers_overrides.setter
+    def dns_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "dns_servers_overrides", value)
 
     @property
     @pulumi.getter(name="enableDynamic")
@@ -430,7 +430,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the public gateway DHCP config is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -466,7 +466,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -478,7 +478,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -540,7 +540,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the public gateway DHCP config.
+        The date and time of the last update of the public gateway.
         """
         return pulumi.get(self, "updated_at")
 
@@ -564,7 +564,7 @@ class _VpcPublicGatewayDhcpState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway DHCP config should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -581,7 +581,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
                  address: Optional[pulumi.Input[str]] = None,
                  dns_local_name: Optional[pulumi.Input[str]] = None,
                  dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 dns_server_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_dynamic: Optional[pulumi.Input[bool]] = None,
                  pool_high: Optional[pulumi.Input[str]] = None,
                  pool_low: Optional[pulumi.Input[str]] = None,
@@ -595,40 +595,21 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway VPC Public Gateway DHCP.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
-        ```
-
-        ## Import
-
-        Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPublicGatewayDhcp resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-               address of the subnet
+        :param pulumi.Input[str] address: The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+               of the subnet
         :param pulumi.Input[str] dns_local_name: TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
                Network name if created along a GatewayNetwork, or else to `priv`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_server_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         :param pulumi.Input[bool] enable_dynamic: Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
                handed out. Defaults to true.
         :param pulumi.Input[str] pool_high: High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway DHCP config is associated with.
-        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -> IP resolution.
                Defaults to true.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
@@ -636,7 +617,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         :param pulumi.Input[str] subnet: Subnet for the DHCP server
         :param pulumi.Input[int] valid_lifetime: For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
     @overload
@@ -645,26 +626,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
                  args: VpcPublicGatewayDhcpArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway VPC Public Gateway DHCP.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
-        ```
-
-        ## Import
-
-        Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPublicGatewayDhcp resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayDhcpArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -683,7 +645,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
                  address: Optional[pulumi.Input[str]] = None,
                  dns_local_name: Optional[pulumi.Input[str]] = None,
                  dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 dns_server_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_dynamic: Optional[pulumi.Input[bool]] = None,
                  pool_high: Optional[pulumi.Input[str]] = None,
                  pool_low: Optional[pulumi.Input[str]] = None,
@@ -712,7 +674,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
             __props__.__dict__["address"] = address
             __props__.__dict__["dns_local_name"] = dns_local_name
             __props__.__dict__["dns_searches"] = dns_searches
-            __props__.__dict__["dns_server_overrides"] = dns_server_overrides
+            __props__.__dict__["dns_servers_overrides"] = dns_servers_overrides
             __props__.__dict__["enable_dynamic"] = enable_dynamic
             __props__.__dict__["pool_high"] = pool_high
             __props__.__dict__["pool_low"] = pool_low
@@ -743,7 +705,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             dns_local_name: Optional[pulumi.Input[str]] = None,
             dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            dns_server_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             enable_dynamic: Optional[pulumi.Input[bool]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             pool_high: Optional[pulumi.Input[str]] = None,
@@ -764,29 +726,29 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-               address of the subnet
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway DHCP config.
+        :param pulumi.Input[str] address: The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+               of the subnet
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
         :param pulumi.Input[str] dns_local_name: TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
                Network name if created along a GatewayNetwork, or else to `priv`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_server_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_searches: Additional DNS search paths.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers_overrides: Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         :param pulumi.Input[bool] enable_dynamic: Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
                handed out. Defaults to true.
-        :param pulumi.Input[str] organization_id: The organization ID the public gateway DHCP config is associated with.
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] pool_high: High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway DHCP config is associated with.
-        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -> IP resolution.
                Defaults to true.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
                `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         :param pulumi.Input[str] subnet: Subnet for the DHCP server
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway DHCP config.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
         :param pulumi.Input[int] valid_lifetime: For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -796,7 +758,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dns_local_name"] = dns_local_name
         __props__.__dict__["dns_searches"] = dns_searches
-        __props__.__dict__["dns_server_overrides"] = dns_server_overrides
+        __props__.__dict__["dns_servers_overrides"] = dns_servers_overrides
         __props__.__dict__["enable_dynamic"] = enable_dynamic
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["pool_high"] = pool_high
@@ -816,8 +778,8 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter
     def address(self) -> pulumi.Output[str]:
         """
-        Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-        address of the subnet
+        The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+        of the subnet
         """
         return pulumi.get(self, "address")
 
@@ -825,7 +787,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the public gateway DHCP config.
+        The date and time of the creation of the public gateway.
         """
         return pulumi.get(self, "created_at")
 
@@ -842,17 +804,17 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter(name="dnsSearches")
     def dns_searches(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Additional DNS search paths
+        Additional DNS search paths.
         """
         return pulumi.get(self, "dns_searches")
 
     @property
-    @pulumi.getter(name="dnsServerOverrides")
-    def dns_server_overrides(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    @pulumi.getter(name="dnsServersOverrides")
+    def dns_servers_overrides(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         """
-        return pulumi.get(self, "dns_server_overrides")
+        return pulumi.get(self, "dns_servers_overrides")
 
     @property
     @pulumi.getter(name="enableDynamic")
@@ -867,7 +829,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the public gateway DHCP config is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -891,7 +853,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -899,7 +861,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> pulumi.Output[bool]:
         """
-        Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -941,7 +903,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the public gateway DHCP config.
+        The date and time of the last update of the public gateway.
         """
         return pulumi.get(self, "updated_at")
 
@@ -957,7 +919,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the public gateway DHCP config should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 

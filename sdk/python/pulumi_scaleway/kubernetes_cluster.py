@@ -32,22 +32,21 @@ class KubernetesClusterArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KubernetesCluster resource.
-        :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
-               > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[str] version: The version of the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        :param pulumi.Input[str] cni: The CNI plugin of the cluster
+        :param pulumi.Input[str] version: The version of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of admission plugins to enable on the cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
-        :param pulumi.Input['KubernetesClusterAutoUpgradeArgs'] auto_upgrade: The auto upgrade configuration.
-        :param pulumi.Input['KubernetesClusterAutoscalerConfigArgs'] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-        :param pulumi.Input[str] description: A description for the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
-        :param pulumi.Input[str] name: The name for the Kubernetes cluster.
+        :param pulumi.Input['KubernetesClusterAutoUpgradeArgs'] auto_upgrade: The auto upgrade configuration for the cluster
+        :param pulumi.Input['KubernetesClusterAutoscalerConfigArgs'] autoscaler_config: The autoscaler configuration for the cluster
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers on cluster deletion
+        :param pulumi.Input[str] description: The description of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of feature gates to enable on the cluster
+        :param pulumi.Input[str] name: The name of the cluster
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the cluster
+        :param pulumi.Input[str] type: The type of cluster
         """
         pulumi.set(__self__, "cni", cni)
         pulumi.set(__self__, "version", version)
@@ -82,8 +81,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def cni(self) -> pulumi.Input[str]:
         """
-        The Container Network Interface (CNI) for the Kubernetes cluster.
-        > **Important:** Updates to this field will recreate a new resource.
+        The CNI plugin of the cluster
         """
         return pulumi.get(self, "cni")
 
@@ -95,7 +93,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        The version of the Kubernetes cluster.
+        The version of the cluster
         """
         return pulumi.get(self, "version")
 
@@ -107,7 +105,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="admissionPlugins")
     def admission_plugins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        The list of admission plugins to enable on the cluster
         """
         return pulumi.get(self, "admission_plugins")
 
@@ -131,7 +129,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="autoUpgrade")
     def auto_upgrade(self) -> Optional[pulumi.Input['KubernetesClusterAutoUpgradeArgs']]:
         """
-        The auto upgrade configuration.
+        The auto upgrade configuration for the cluster
         """
         return pulumi.get(self, "auto_upgrade")
 
@@ -143,7 +141,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="autoscalerConfig")
     def autoscaler_config(self) -> Optional[pulumi.Input['KubernetesClusterAutoscalerConfigArgs']]:
         """
-        The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        The autoscaler configuration for the cluster
         """
         return pulumi.get(self, "autoscaler_config")
 
@@ -155,7 +153,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes and loadbalancers on cluster deletion
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -167,7 +165,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description for the Kubernetes cluster.
+        The description of the cluster
         """
         return pulumi.get(self, "description")
 
@@ -179,7 +177,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="featureGates")
     def feature_gates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        The list of feature gates to enable on the cluster
         """
         return pulumi.get(self, "feature_gates")
 
@@ -191,7 +189,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name for the Kubernetes cluster.
+        The name of the cluster
         """
         return pulumi.get(self, "name")
 
@@ -215,7 +213,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cluster is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -227,7 +225,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the cluster should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -239,7 +237,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the Kubernetes cluster.
+        The tags associated with the cluster
         """
         return pulumi.get(self, "tags")
 
@@ -251,7 +249,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of Kubernetes cluster.
+        The type of cluster
         """
         return pulumi.get(self, "type")
 
@@ -288,31 +286,29 @@ class _KubernetesClusterState:
                  wildcard_dns: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KubernetesCluster resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of admission plugins to enable on the cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
-        :param pulumi.Input[str] apiserver_url: The URL of the Kubernetes API server.
-        :param pulumi.Input['KubernetesClusterAutoUpgradeArgs'] auto_upgrade: The auto upgrade configuration.
-        :param pulumi.Input['KubernetesClusterAutoscalerConfigArgs'] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
-               > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-        :param pulumi.Input[str] description: A description for the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        :param pulumi.Input[str] apiserver_url: Kubernetes API server URL
+        :param pulumi.Input['KubernetesClusterAutoUpgradeArgs'] auto_upgrade: The auto upgrade configuration for the cluster
+        :param pulumi.Input['KubernetesClusterAutoscalerConfigArgs'] autoscaler_config: The autoscaler configuration for the cluster
+        :param pulumi.Input[str] cni: The CNI plugin of the cluster
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Kubernetes cluster
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers on cluster deletion
+        :param pulumi.Input[str] description: The description of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of feature gates to enable on the cluster
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterKubeconfigArgs']]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
-        :param pulumi.Input[str] name: The name for the Kubernetes cluster.
+        :param pulumi.Input[str] name: The name of the cluster
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
-        :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
-        :param pulumi.Input[str] status: The status of the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster.
-        :param pulumi.Input[str] updated_at: The last update date of the cluster.
-        :param pulumi.Input[bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
-        :param pulumi.Input[str] version: The version of the Kubernetes cluster.
-        :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
-               - `kubeconfig`
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] status: The status of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the cluster
+        :param pulumi.Input[str] type: The type of cluster
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Kubernetes cluster
+        :param pulumi.Input[bool] upgrade_available: True if an upgrade is available
+        :param pulumi.Input[str] version: The version of the cluster
+        :param pulumi.Input[str] wildcard_dns: Wildcard DNS pointing to all the ready nodes
         """
         if admission_plugins is not None:
             pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -365,7 +361,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="admissionPlugins")
     def admission_plugins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        The list of admission plugins to enable on the cluster
         """
         return pulumi.get(self, "admission_plugins")
 
@@ -389,7 +385,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="apiserverUrl")
     def apiserver_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL of the Kubernetes API server.
+        Kubernetes API server URL
         """
         return pulumi.get(self, "apiserver_url")
 
@@ -401,7 +397,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="autoUpgrade")
     def auto_upgrade(self) -> Optional[pulumi.Input['KubernetesClusterAutoUpgradeArgs']]:
         """
-        The auto upgrade configuration.
+        The auto upgrade configuration for the cluster
         """
         return pulumi.get(self, "auto_upgrade")
 
@@ -413,7 +409,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="autoscalerConfig")
     def autoscaler_config(self) -> Optional[pulumi.Input['KubernetesClusterAutoscalerConfigArgs']]:
         """
-        The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        The autoscaler configuration for the cluster
         """
         return pulumi.get(self, "autoscaler_config")
 
@@ -425,8 +421,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def cni(self) -> Optional[pulumi.Input[str]]:
         """
-        The Container Network Interface (CNI) for the Kubernetes cluster.
-        > **Important:** Updates to this field will recreate a new resource.
+        The CNI plugin of the cluster
         """
         return pulumi.get(self, "cni")
 
@@ -438,7 +433,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The creation date of the cluster.
+        The date and time of the creation of the Kubernetes cluster
         """
         return pulumi.get(self, "created_at")
 
@@ -450,7 +445,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes and loadbalancers on cluster deletion
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -462,7 +457,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description for the Kubernetes cluster.
+        The description of the cluster
         """
         return pulumi.get(self, "description")
 
@@ -474,7 +469,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="featureGates")
     def feature_gates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        The list of feature gates to enable on the cluster
         """
         return pulumi.get(self, "feature_gates")
 
@@ -498,7 +493,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name for the Kubernetes cluster.
+        The name of the cluster
         """
         return pulumi.get(self, "name")
 
@@ -522,7 +517,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the cluster is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -534,7 +529,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cluster is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -546,7 +541,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the cluster should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -558,7 +553,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the Kubernetes cluster.
+        The status of the cluster
         """
         return pulumi.get(self, "status")
 
@@ -570,7 +565,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the Kubernetes cluster.
+        The tags associated with the cluster
         """
         return pulumi.get(self, "tags")
 
@@ -582,7 +577,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of Kubernetes cluster.
+        The type of cluster
         """
         return pulumi.get(self, "type")
 
@@ -594,7 +589,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The last update date of the cluster.
+        The date and time of the last update of the Kubernetes cluster
         """
         return pulumi.get(self, "updated_at")
 
@@ -606,7 +601,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="upgradeAvailable")
     def upgrade_available(self) -> Optional[pulumi.Input[bool]]:
         """
-        Set to `true` if a newer Kubernetes version is available.
+        True if an upgrade is available
         """
         return pulumi.get(self, "upgrade_available")
 
@@ -618,7 +613,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of the Kubernetes cluster.
+        The version of the cluster
         """
         return pulumi.get(self, "version")
 
@@ -630,8 +625,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="wildcardDns")
     def wildcard_dns(self) -> Optional[pulumi.Input[str]]:
         """
-        The DNS wildcard that points to all ready nodes.
-        - `kubeconfig`
+        Wildcard DNS pointing to all the ready nodes
         """
         return pulumi.get(self, "wildcard_dns")
 
@@ -662,32 +656,24 @@ class KubernetesCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Import
-
-        Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a KubernetesCluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of admission plugins to enable on the cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']] auto_upgrade: The auto upgrade configuration.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
-               > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-        :param pulumi.Input[str] description: A description for the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
-        :param pulumi.Input[str] name: The name for the Kubernetes cluster.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']] auto_upgrade: The auto upgrade configuration for the cluster
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The autoscaler configuration for the cluster
+        :param pulumi.Input[str] cni: The CNI plugin of the cluster
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers on cluster deletion
+        :param pulumi.Input[str] description: The description of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of feature gates to enable on the cluster
+        :param pulumi.Input[str] name: The name of the cluster
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster.
-        :param pulumi.Input[str] version: The version of the Kubernetes cluster.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the cluster
+        :param pulumi.Input[str] type: The type of cluster
+        :param pulumi.Input[str] version: The version of the cluster
         """
         ...
     @overload
@@ -696,14 +682,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  args: KubernetesClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
-
-        Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a KubernetesCluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param KubernetesClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -815,31 +794,29 @@ class KubernetesCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of admission plugins to enable on the cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
-        :param pulumi.Input[str] apiserver_url: The URL of the Kubernetes API server.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']] auto_upgrade: The auto upgrade configuration.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
-               > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-        :param pulumi.Input[str] description: A description for the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        :param pulumi.Input[str] apiserver_url: Kubernetes API server URL
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']] auto_upgrade: The auto upgrade configuration for the cluster
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The autoscaler configuration for the cluster
+        :param pulumi.Input[str] cni: The CNI plugin of the cluster
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Kubernetes cluster
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers on cluster deletion
+        :param pulumi.Input[str] description: The description of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of feature gates to enable on the cluster
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterKubeconfigArgs']]]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
-        :param pulumi.Input[str] name: The name for the Kubernetes cluster.
+        :param pulumi.Input[str] name: The name of the cluster
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
-        :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
-        :param pulumi.Input[str] status: The status of the Kubernetes cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster.
-        :param pulumi.Input[str] updated_at: The last update date of the cluster.
-        :param pulumi.Input[bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
-        :param pulumi.Input[str] version: The version of the Kubernetes cluster.
-        :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
-               - `kubeconfig`
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] status: The status of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the cluster
+        :param pulumi.Input[str] type: The type of cluster
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Kubernetes cluster
+        :param pulumi.Input[bool] upgrade_available: True if an upgrade is available
+        :param pulumi.Input[str] version: The version of the cluster
+        :param pulumi.Input[str] wildcard_dns: Wildcard DNS pointing to all the ready nodes
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -874,7 +851,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="admissionPlugins")
     def admission_plugins(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        The list of admission plugins to enable on the cluster
         """
         return pulumi.get(self, "admission_plugins")
 
@@ -890,7 +867,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="apiserverUrl")
     def apiserver_url(self) -> pulumi.Output[str]:
         """
-        The URL of the Kubernetes API server.
+        Kubernetes API server URL
         """
         return pulumi.get(self, "apiserver_url")
 
@@ -898,7 +875,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="autoUpgrade")
     def auto_upgrade(self) -> pulumi.Output['outputs.KubernetesClusterAutoUpgrade']:
         """
-        The auto upgrade configuration.
+        The auto upgrade configuration for the cluster
         """
         return pulumi.get(self, "auto_upgrade")
 
@@ -906,7 +883,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="autoscalerConfig")
     def autoscaler_config(self) -> pulumi.Output['outputs.KubernetesClusterAutoscalerConfig']:
         """
-        The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        The autoscaler configuration for the cluster
         """
         return pulumi.get(self, "autoscaler_config")
 
@@ -914,8 +891,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def cni(self) -> pulumi.Output[str]:
         """
-        The Container Network Interface (CNI) for the Kubernetes cluster.
-        > **Important:** Updates to this field will recreate a new resource.
+        The CNI plugin of the cluster
         """
         return pulumi.get(self, "cni")
 
@@ -923,7 +899,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The creation date of the cluster.
+        The date and time of the creation of the Kubernetes cluster
         """
         return pulumi.get(self, "created_at")
 
@@ -931,7 +907,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> pulumi.Output[Optional[bool]]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes and loadbalancers on cluster deletion
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -939,7 +915,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        A description for the Kubernetes cluster.
+        The description of the cluster
         """
         return pulumi.get(self, "description")
 
@@ -947,7 +923,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="featureGates")
     def feature_gates(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        The list of feature gates to enable on the cluster
         """
         return pulumi.get(self, "feature_gates")
 
@@ -963,7 +939,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name for the Kubernetes cluster.
+        The name of the cluster
         """
         return pulumi.get(self, "name")
 
@@ -979,7 +955,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the cluster is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -987,7 +963,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the cluster is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -995,7 +971,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the cluster should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -1003,7 +979,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the Kubernetes cluster.
+        The status of the cluster
         """
         return pulumi.get(self, "status")
 
@@ -1011,7 +987,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the Kubernetes cluster.
+        The tags associated with the cluster
         """
         return pulumi.get(self, "tags")
 
@@ -1019,7 +995,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of Kubernetes cluster.
+        The type of cluster
         """
         return pulumi.get(self, "type")
 
@@ -1027,7 +1003,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The last update date of the cluster.
+        The date and time of the last update of the Kubernetes cluster
         """
         return pulumi.get(self, "updated_at")
 
@@ -1035,7 +1011,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="upgradeAvailable")
     def upgrade_available(self) -> pulumi.Output[bool]:
         """
-        Set to `true` if a newer Kubernetes version is available.
+        True if an upgrade is available
         """
         return pulumi.get(self, "upgrade_available")
 
@@ -1043,7 +1019,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        The version of the Kubernetes cluster.
+        The version of the cluster
         """
         return pulumi.get(self, "version")
 
@@ -1051,8 +1027,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="wildcardDns")
     def wildcard_dns(self) -> pulumi.Output[str]:
         """
-        The DNS wildcard that points to all ready nodes.
-        - `kubeconfig`
+        Wildcard DNS pointing to all the ready nodes
         """
         return pulumi.get(self, "wildcard_dns")
 

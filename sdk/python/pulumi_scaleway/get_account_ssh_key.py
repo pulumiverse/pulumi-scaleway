@@ -56,9 +56,6 @@ class GetAccountSshKeyResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the SSH key is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -69,9 +66,6 @@ class GetAccountSshKeyResult:
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> str:
-        """
-        The SSH public key string
-        """
         return pulumi.get(self, "public_key")
 
     @property
@@ -98,20 +92,7 @@ def get_account_ssh_key(name: Optional[str] = None,
                         ssh_key_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountSshKeyResult:
     """
-    Use this data source to get SSH key information based on its ID or name.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_account_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
-    :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -138,19 +119,6 @@ def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                ssh_key_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountSshKeyResult]:
     """
-    Use this data source to get SSH key information based on its ID or name.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_account_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
-    :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     ...

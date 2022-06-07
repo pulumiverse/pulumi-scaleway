@@ -12,9 +12,6 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class LoadbalancerCertificateCustomCertificateGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Full PEM-formatted certificate chain.
-        /// </summary>
         [Input("certificateChain", required: true)]
         public Input<string> CertificateChain { get; set; } = null!;
 

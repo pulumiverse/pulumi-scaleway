@@ -110,10 +110,6 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter(name="additionalVolumeIds")
     def additional_volume_ids(self) -> Sequence[str]:
-        """
-        The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
-        attached to the server.
-        """
         return pulumi.get(self, "additional_volume_ids")
 
     @property
@@ -129,25 +125,16 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter(name="cloudInit")
     def cloud_init(self) -> str:
-        """
-        The cloud init script associated with this server.
-        """
         return pulumi.get(self, "cloud_init")
 
     @property
     @pulumi.getter(name="enableDynamicIp")
     def enable_dynamic_ip(self) -> bool:
-        """
-        True is dynamic IP in enable on the server.
-        """
         return pulumi.get(self, "enable_dynamic_ip")
 
     @property
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> bool:
-        """
-        Determines if IPv6 is enabled for the server.
-        """
         return pulumi.get(self, "enable_ipv6")
 
     @property
@@ -161,9 +148,6 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter
     def image(self) -> str:
-        """
-        The UUID and the label of the base image used by the server.
-        """
         return pulumi.get(self, "image")
 
     @property
@@ -174,25 +158,16 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> str:
-        """
-        The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        """
         return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="ipv6Gateway")
     def ipv6_gateway(self) -> str:
-        """
-        The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        """
         return pulumi.get(self, "ipv6_gateway")
 
     @property
     @pulumi.getter(name="ipv6PrefixLength")
     def ipv6_prefix_length(self) -> int:
-        """
-        The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        """
         return pulumi.get(self, "ipv6_prefix_length")
 
     @property
@@ -203,33 +178,21 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the server is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> str:
-        """
-        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
-        """
         return pulumi.get(self, "placement_group_id")
 
     @property
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> bool:
-        """
-        True when the placement group policy is respected.
-        """
         return pulumi.get(self, "placement_group_policy_respected")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
-        """
-        The Scaleway internal IP address of the server.
-        """
         return pulumi.get(self, "private_ip")
 
     @property
@@ -240,33 +203,21 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the project the server is associated with.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
-        """
-        The public IPv4 address of the server.
-        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="rootVolumes")
     def root_volumes(self) -> Sequence['outputs.GetInstanceServerRootVolumeResult']:
-        """
-        Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
-        """
         return pulumi.get(self, "root_volumes")
 
     @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> str:
-        """
-        The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
-        """
         return pulumi.get(self, "security_group_id")
 
     @property
@@ -277,34 +228,21 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        The state of the server. Possible values are: `started`, `stopped` or `standby`.
-        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tags associated with the server.
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        The commercial type of the server.
-        You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="userData")
     def user_data(self) -> Mapping[str, str]:
-        """
-        The user data associated with the server.
-        """
         return pulumi.get(self, "user_data")
 
     @property
@@ -354,21 +292,7 @@ def get_instance_server(name: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceServerResult:
     """
-    Gets information about an instance server.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_instance_server(server_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The server name. Only one of `name` and `server_id` should be specified.
-    :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
-    :param str zone: `zone`) The zone in which the server exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -419,20 +343,6 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceServerResult]:
     """
-    Gets information about an instance server.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_instance_server(server_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The server name. Only one of `name` and `server_id` should be specified.
-    :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
-    :param str zone: `zone`) The zone in which the server exists.
+    Use this data source to access information about an existing resource.
     """
     ...

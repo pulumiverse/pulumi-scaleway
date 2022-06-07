@@ -26,19 +26,15 @@ class BaremetalServerArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BaremetalServer resource.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
-        :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-               > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
-        :param pulumi.Input[str] description: A description for the server.
-        :param pulumi.Input[str] hostname: The hostname of the server.
-        :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+        :param pulumi.Input[str] offer: ID or name of the server offer
+        :param pulumi.Input[str] os: The base image of the server
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: Array of SSH key IDs allowed to SSH to the server
+        :param pulumi.Input[str] description: Some description to associate to the server, max 255 characters
+        :param pulumi.Input[str] hostname: Hostname of the server
+        :param pulumi.Input[str] name: Name of the server
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the server
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "offer", offer)
         pulumi.set(__self__, "os", os)
@@ -60,8 +56,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def offer(self) -> pulumi.Input[str]:
         """
-        The offer name or UUID of the baremetal server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+        ID or name of the server offer
         """
         return pulumi.get(self, "offer")
 
@@ -73,9 +68,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def os(self) -> pulumi.Input[str]:
         """
-        The UUID of the os to install on the server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-        > **Important:** Updates to `os` will reinstall the server.
+        The base image of the server
         """
         return pulumi.get(self, "os")
 
@@ -87,8 +80,7 @@ class BaremetalServerArgs:
     @pulumi.getter(name="sshKeyIds")
     def ssh_key_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of SSH keys allowed to connect to the server.
-        > **Important:** Updates to `ssh_key_ids` will reinstall the server.
+        Array of SSH key IDs allowed to SSH to the server
         """
         return pulumi.get(self, "ssh_key_ids")
 
@@ -100,7 +92,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description for the server.
+        Some description to associate to the server, max 255 characters
         """
         return pulumi.get(self, "description")
 
@@ -112,7 +104,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname of the server.
+        Hostname of the server
         """
         return pulumi.get(self, "hostname")
 
@@ -124,7 +116,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the server.
+        Name of the server
         """
         return pulumi.get(self, "name")
 
@@ -136,7 +128,7 @@ class BaremetalServerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the server is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -148,7 +140,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the server.
+        Array of tags to associate with the server
         """
         return pulumi.get(self, "tags")
 
@@ -160,7 +152,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the server should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -188,24 +180,18 @@ class _BaremetalServerState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BaremetalServer resources.
-        :param pulumi.Input[str] description: A description for the server.
-        :param pulumi.Input[str] domain: The domain of the server.
-        :param pulumi.Input[str] hostname: The hostname of the server.
-        :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]] ips: (List of) The IPs of the server.
-        :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
-        :param pulumi.Input[str] offer_id: The ID of the offer.
-        :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
-        :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-               > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] os_id: The ID of the os.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+        :param pulumi.Input[str] description: Some description to associate to the server, max 255 characters
+        :param pulumi.Input[str] hostname: Hostname of the server
+        :param pulumi.Input[str] name: Name of the server
+        :param pulumi.Input[str] offer: ID or name of the server offer
+        :param pulumi.Input[str] offer_id: ID of the server offer
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] os: The base image of the server
+        :param pulumi.Input[str] os_id: The base image ID of the server
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: Array of SSH key IDs allowed to SSH to the server
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the server
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -240,7 +226,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description for the server.
+        Some description to associate to the server, max 255 characters
         """
         return pulumi.get(self, "description")
 
@@ -251,9 +237,6 @@ class _BaremetalServerState:
     @property
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
-        """
-        The domain of the server.
-        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -264,7 +247,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname of the server.
+        Hostname of the server
         """
         return pulumi.get(self, "hostname")
 
@@ -275,9 +258,6 @@ class _BaremetalServerState:
     @property
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]]:
-        """
-        (List of) The IPs of the server.
-        """
         return pulumi.get(self, "ips")
 
     @ips.setter
@@ -288,7 +268,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the server.
+        Name of the server
         """
         return pulumi.get(self, "name")
 
@@ -300,8 +280,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def offer(self) -> Optional[pulumi.Input[str]]:
         """
-        The offer name or UUID of the baremetal server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+        ID or name of the server offer
         """
         return pulumi.get(self, "offer")
 
@@ -313,7 +292,7 @@ class _BaremetalServerState:
     @pulumi.getter(name="offerId")
     def offer_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the offer.
+        ID of the server offer
         """
         return pulumi.get(self, "offer_id")
 
@@ -325,7 +304,7 @@ class _BaremetalServerState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the server is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -337,9 +316,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def os(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of the os to install on the server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-        > **Important:** Updates to `os` will reinstall the server.
+        The base image of the server
         """
         return pulumi.get(self, "os")
 
@@ -351,7 +328,7 @@ class _BaremetalServerState:
     @pulumi.getter(name="osId")
     def os_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the os.
+        The base image ID of the server
         """
         return pulumi.get(self, "os_id")
 
@@ -363,7 +340,7 @@ class _BaremetalServerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the server is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -375,8 +352,7 @@ class _BaremetalServerState:
     @pulumi.getter(name="sshKeyIds")
     def ssh_key_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of SSH keys allowed to connect to the server.
-        > **Important:** Updates to `ssh_key_ids` will reinstall the server.
+        Array of SSH key IDs allowed to SSH to the server
         """
         return pulumi.get(self, "ssh_key_ids")
 
@@ -388,7 +364,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the server.
+        Array of tags to associate with the server
         """
         return pulumi.get(self, "tags")
 
@@ -400,7 +376,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the server should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -425,47 +401,18 @@ class BaremetalServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
-
-        ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.get_account_ssh_key(name="main")
-        base = scaleway.BaremetalServer("base",
-            zone="fr-par-2",
-            offer="GP-BM1-S",
-            os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main])
-        ```
-
-        ## Import
-
-        Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a BaremetalServer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description for the server.
-        :param pulumi.Input[str] hostname: The hostname of the server.
-        :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
-        :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-               > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+        :param pulumi.Input[str] description: Some description to associate to the server, max 255 characters
+        :param pulumi.Input[str] hostname: Hostname of the server
+        :param pulumi.Input[str] name: Name of the server
+        :param pulumi.Input[str] offer: ID or name of the server offer
+        :param pulumi.Input[str] os: The base image of the server
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: Array of SSH key IDs allowed to SSH to the server
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the server
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
     @overload
@@ -474,32 +421,7 @@ class BaremetalServer(pulumi.CustomResource):
                  args: BaremetalServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
-
-        ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.get_account_ssh_key(name="main")
-        base = scaleway.BaremetalServer("base",
-            zone="fr-par-2",
-            offer="GP-BM1-S",
-            os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main])
-        ```
-
-        ## Import
-
-        Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a BaremetalServer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param BaremetalServerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -589,24 +511,18 @@ class BaremetalServer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description for the server.
-        :param pulumi.Input[str] domain: The domain of the server.
-        :param pulumi.Input[str] hostname: The hostname of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]] ips: (List of) The IPs of the server.
-        :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
-        :param pulumi.Input[str] offer_id: The ID of the offer.
-        :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
-        :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-               > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] os_id: The ID of the os.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+        :param pulumi.Input[str] description: Some description to associate to the server, max 255 characters
+        :param pulumi.Input[str] hostname: Hostname of the server
+        :param pulumi.Input[str] name: Name of the server
+        :param pulumi.Input[str] offer: ID or name of the server offer
+        :param pulumi.Input[str] offer_id: ID of the server offer
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] os: The base image of the server
+        :param pulumi.Input[str] os_id: The base image ID of the server
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: Array of SSH key IDs allowed to SSH to the server
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the server
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -632,39 +548,33 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        A description for the server.
+        Some description to associate to the server, max 255 characters
         """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def domain(self) -> pulumi.Output[str]:
-        """
-        The domain of the server.
-        """
         return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter
     def hostname(self) -> pulumi.Output[Optional[str]]:
         """
-        The hostname of the server.
+        Hostname of the server
         """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def ips(self) -> pulumi.Output[Sequence['outputs.BaremetalServerIp']]:
-        """
-        (List of) The IPs of the server.
-        """
         return pulumi.get(self, "ips")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the server.
+        Name of the server
         """
         return pulumi.get(self, "name")
 
@@ -672,8 +582,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def offer(self) -> pulumi.Output[str]:
         """
-        The offer name or UUID of the baremetal server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+        ID or name of the server offer
         """
         return pulumi.get(self, "offer")
 
@@ -681,7 +590,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter(name="offerId")
     def offer_id(self) -> pulumi.Output[str]:
         """
-        The ID of the offer.
+        ID of the server offer
         """
         return pulumi.get(self, "offer_id")
 
@@ -689,7 +598,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the server is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -697,9 +606,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def os(self) -> pulumi.Output[str]:
         """
-        The UUID of the os to install on the server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-        > **Important:** Updates to `os` will reinstall the server.
+        The base image of the server
         """
         return pulumi.get(self, "os")
 
@@ -707,7 +614,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter(name="osId")
     def os_id(self) -> pulumi.Output[str]:
         """
-        The ID of the os.
+        The base image ID of the server
         """
         return pulumi.get(self, "os_id")
 
@@ -715,7 +622,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the server is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -723,8 +630,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter(name="sshKeyIds")
     def ssh_key_ids(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of SSH keys allowed to connect to the server.
-        > **Important:** Updates to `ssh_key_ids` will reinstall the server.
+        Array of SSH key IDs allowed to SSH to the server
         """
         return pulumi.get(self, "ssh_key_ids")
 
@@ -732,7 +638,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the server.
+        Array of tags to associate with the server
         """
         return pulumi.get(self, "tags")
 
@@ -740,7 +646,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the server should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 

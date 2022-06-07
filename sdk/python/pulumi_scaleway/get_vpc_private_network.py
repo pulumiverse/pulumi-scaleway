@@ -119,14 +119,7 @@ def get_vpc_private_network(name: Optional[str] = None,
                             private_network_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPrivateNetworkResult:
     """
-    Gets information about a private network.
-
-    ## Example Usage
-
-    N/A, the usage will be meaningful in the next releases of VPC.
-
-
-    :param str name: Exact name of the private network.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -156,13 +149,6 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
     """
-    Gets information about a private network.
-
-    ## Example Usage
-
-    N/A, the usage will be meaningful in the next releases of VPC.
-
-
-    :param str name: Exact name of the private network.
+    Use this data source to access information about an existing resource.
     """
     ...

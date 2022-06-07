@@ -13,9 +13,6 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class LoadbalancerFrontendAclAction
     {
-        /// <summary>
-        /// The action type. Possible values are: `allow` or `deny`.
-        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

@@ -12,15 +12,9 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class IotDeviceMessageFiltersGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Rules used to restrict topics the device can publish to.
-        /// </summary>
         [Input("publish")]
         public Input<Inputs.IotDeviceMessageFiltersPublishGetArgs>? Publish { get; set; }
 
-        /// <summary>
-        /// Rules used to restrict topics the device can subscribe to.
-        /// </summary>
         [Input("subscribe")]
         public Input<Inputs.IotDeviceMessageFiltersSubscribeGetArgs>? Subscribe { get; set; }
 

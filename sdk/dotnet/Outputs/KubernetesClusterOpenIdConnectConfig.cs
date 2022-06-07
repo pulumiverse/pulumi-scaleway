@@ -13,33 +13,12 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class KubernetesClusterOpenIdConnectConfig
     {
-        /// <summary>
-        /// A client id that all tokens must be issued for
-        /// </summary>
         public readonly string ClientId;
-        /// <summary>
-        /// JWT claim to use as the user's group
-        /// </summary>
         public readonly ImmutableArray<string> GroupsClaims;
-        /// <summary>
-        /// Prefix prepended to group claims
-        /// </summary>
         public readonly string? GroupsPrefix;
-        /// <summary>
-        /// URL of the provider which allows the API server to discover public signing keys
-        /// </summary>
         public readonly string IssuerUrl;
-        /// <summary>
-        /// Multiple key=value pairs that describes a required claim in the ID Token
-        /// </summary>
         public readonly ImmutableArray<string> RequiredClaims;
-        /// <summary>
-        /// JWT claim to use as the user name
-        /// </summary>
         public readonly string? UsernameClaim;
-        /// <summary>
-        /// Prefix prepended to username
-        /// </summary>
         public readonly string? UsernamePrefix;
 
         [OutputConstructor]

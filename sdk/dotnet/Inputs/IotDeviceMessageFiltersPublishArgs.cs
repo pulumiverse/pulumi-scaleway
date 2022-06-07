@@ -12,18 +12,11 @@ namespace Pulumi.Scaleway.Inputs
 
     public sealed class IotDeviceMessageFiltersPublishArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Same as publish rules.
-        /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 
         [Input("topics")]
         private InputList<string>? _topics;
-
-        /// <summary>
-        /// Same as publish rules.
-        /// </summary>
         public InputList<string> Topics
         {
             get => _topics ?? (_topics = new InputList<string>());

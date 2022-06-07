@@ -11,61 +11,9 @@ namespace Pulumi.Scaleway
 {
     public static class GetKubernetesNodePool
     {
-        /// <summary>
-        /// Gets information about a Kubernetes Cluster's Pool.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var myKey = Output.Create(Scaleway.GetKubernetesNodePool.InvokeAsync(new Scaleway.GetKubernetesNodePoolArgs
-        ///         {
-        ///             PoolId = "11111111-1111-1111-1111-111111111111",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetKubernetesNodePoolResult> InvokeAsync(GetKubernetesNodePoolArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about a Kubernetes Cluster's Pool.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var myKey = Output.Create(Scaleway.GetKubernetesNodePool.InvokeAsync(new Scaleway.GetKubernetesNodePoolArgs
-        ///         {
-        ///             PoolId = "11111111-1111-1111-1111-111111111111",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetKubernetesNodePoolResult> Invoke(GetKubernetesNodePoolInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolInvokeArgs(), options.WithDefaults());
     }
@@ -73,33 +21,18 @@ namespace Pulumi.Scaleway
 
     public sealed class GetKubernetesNodePoolArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The cluster ID. Required when `name` is set.
-        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
-        /// <summary>
-        /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The pool's ID. Only one of `name` and `pool_id` should be specified.
-        /// </summary>
         [Input("poolId")]
         public string? PoolId { get; set; }
 
-        /// <summary>
-        /// `region`) The region in which the pool exists.
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
-        /// <summary>
-        /// The size of the pool.
-        /// </summary>
         [Input("size")]
         public int? Size { get; set; }
 
@@ -110,33 +43,18 @@ namespace Pulumi.Scaleway
 
     public sealed class GetKubernetesNodePoolInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The cluster ID. Required when `name` is set.
-        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
-        /// <summary>
-        /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The pool's ID. Only one of `name` and `pool_id` should be specified.
-        /// </summary>
         [Input("poolId")]
         public Input<string>? PoolId { get; set; }
 
-        /// <summary>
-        /// `region`) The region in which the pool exists.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        /// <summary>
-        /// The size of the pool.
-        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
@@ -149,22 +67,10 @@ namespace Pulumi.Scaleway
     [OutputType]
     public sealed class GetKubernetesNodePoolResult
     {
-        /// <summary>
-        /// True if the autohealing feature is enabled for this pool.
-        /// </summary>
         public readonly bool Autohealing;
-        /// <summary>
-        /// True if the autoscaling feature is enabled for this pool.
-        /// </summary>
         public readonly bool Autoscaling;
         public readonly string? ClusterId;
-        /// <summary>
-        /// The container runtime of the pool.
-        /// </summary>
         public readonly string ContainerRuntime;
-        /// <summary>
-        /// The creation date of the pool.
-        /// </summary>
         public readonly string CreatedAt;
         public readonly int CurrentSize;
         /// <summary>
@@ -172,52 +78,19 @@ namespace Pulumi.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly ImmutableDictionary<string, string> KubeletArgs;
-        /// <summary>
-        /// The maximum size of the pool, used by the autoscaling feature.
-        /// </summary>
         public readonly int MaxSize;
-        /// <summary>
-        /// The minimum size of the pool, used by the autoscaling feature.
-        /// </summary>
         public readonly int MinSize;
-        /// <summary>
-        /// The name of the node.
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The commercial type of the pool instances.
-        /// </summary>
         public readonly string NodeType;
-        /// <summary>
-        /// (List of) The nodes in the default pool.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodePoolNodeResult> Nodes;
-        /// <summary>
-        /// [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
-        /// </summary>
         public readonly string PlacementGroupId;
         public readonly string? PoolId;
         public readonly string? Region;
-        /// <summary>
-        /// The size of the pool.
-        /// </summary>
         public readonly int? Size;
-        /// <summary>
-        /// The status of the node.
-        /// </summary>
         public readonly string Status;
-        /// <summary>
-        /// The tags associated with the pool.
-        /// </summary>
         public readonly ImmutableArray<string> Tags;
-        /// <summary>
-        /// The last update date of the pool.
-        /// </summary>
         public readonly string UpdatedAt;
         public readonly ImmutableArray<Outputs.GetKubernetesNodePoolUpgradePolicyResult> UpgradePolicies;
-        /// <summary>
-        /// The version of the pool.
-        /// </summary>
         public readonly string Version;
         public readonly bool WaitForPoolReady;
         public readonly string Zone;

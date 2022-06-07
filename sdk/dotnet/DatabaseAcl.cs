@@ -9,58 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Database instance autorized IPs.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var main = new Scaleway.DatabaseAcl("main", new Scaleway.DatabaseAclArgs
-    ///         {
-    ///             InstanceId = scaleway_rdb_instance.Main.Id,
-    ///             AclRules = 
-    ///             {
-    ///                 new Scaleway.Inputs.DatabaseAclAclRuleArgs
-    ///                 {
-    ///                     Ip = "1.2.3.4/32",
-    ///                     Description = "foo",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/databaseAcl:DatabaseAcl")]
     public partial class DatabaseAcl : Pulumi.CustomResource
     {
         /// <summary>
-        /// A list of ACLs (structure is described below)
+        /// List of ACL rules to apply
         /// </summary>
         [Output("aclRules")]
         public Output<ImmutableArray<Outputs.DatabaseAclAclRule>> AclRules { get; private set; } = null!;
 
         /// <summary>
-        /// The instance on which to create the ACL.
+        /// Instance on which the ACL is applied
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -122,7 +81,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DatabaseAclAclRuleArgs>? _aclRules;
 
         /// <summary>
-        /// A list of ACLs (structure is described below)
+        /// List of ACL rules to apply
         /// </summary>
         public InputList<Inputs.DatabaseAclAclRuleArgs> AclRules
         {
@@ -131,7 +90,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The instance on which to create the ACL.
+        /// Instance on which the ACL is applied
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -153,7 +112,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DatabaseAclAclRuleGetArgs>? _aclRules;
 
         /// <summary>
-        /// A list of ACLs (structure is described below)
+        /// List of ACL rules to apply
         /// </summary>
         public InputList<Inputs.DatabaseAclAclRuleGetArgs> AclRules
         {
@@ -162,7 +121,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The instance on which to create the ACL.
+        /// Instance on which the ACL is applied
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

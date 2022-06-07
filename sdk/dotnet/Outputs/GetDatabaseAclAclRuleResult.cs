@@ -13,13 +13,7 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class GetDatabaseAclAclRuleResult
     {
-        /// <summary>
-        /// A simple text describing this rule
-        /// </summary>
         public readonly string Description;
-        /// <summary>
-        /// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
-        /// </summary>
         public readonly string Ip;
 
         [OutputConstructor]

@@ -4,29 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway VPC Public Gateway DHCP.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
- *
- * ## Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = new scaleway.VpcPublicGatewayDhcp("main", {
- *     subnet: "192.168.1.0/24",
- * });
- * ```
- *
- * ## Import
- *
- * Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     /**
      * Get an existing VpcPublicGatewayDhcp resource's state with the given name, ID, and optional extra
@@ -56,12 +33,12 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     }
 
     /**
-     * Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-     * address of the subnet
+     * The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+     * of the subnet
      */
     public readonly address!: pulumi.Output<string>;
     /**
-     * The date and time of the creation of the public gateway DHCP config.
+     * The date and time of the creation of the public gateway.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -70,20 +47,20 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly dnsLocalName!: pulumi.Output<string>;
     /**
-     * Additional DNS search paths
+     * Additional DNS search paths.
      */
     public readonly dnsSearches!: pulumi.Output<string[] | undefined>;
     /**
-     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
-    public readonly dnsServerOverrides!: pulumi.Output<string[] | undefined>;
+    public readonly dnsServersOverrides!: pulumi.Output<string[] | undefined>;
     /**
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
      * handed out. Defaults to true.
      */
     public readonly enableDynamic!: pulumi.Output<boolean>;
     /**
-     * The organization ID the public gateway DHCP config is associated with.
+     * The organization_id you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -95,11 +72,11 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly poolLow!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the public gateway DHCP config is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+     * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
      */
     public readonly pushDefaultRoute!: pulumi.Output<boolean>;
     /**
@@ -121,7 +98,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly subnet!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the public gateway DHCP config.
+     * The date and time of the last update of the public gateway.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -129,7 +106,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly validLifetime!: pulumi.Output<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * The zone you want to attach the resource to
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -150,7 +127,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dnsLocalName"] = state ? state.dnsLocalName : undefined;
             resourceInputs["dnsSearches"] = state ? state.dnsSearches : undefined;
-            resourceInputs["dnsServerOverrides"] = state ? state.dnsServerOverrides : undefined;
+            resourceInputs["dnsServersOverrides"] = state ? state.dnsServersOverrides : undefined;
             resourceInputs["enableDynamic"] = state ? state.enableDynamic : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["poolHigh"] = state ? state.poolHigh : undefined;
@@ -172,7 +149,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
             resourceInputs["address"] = args ? args.address : undefined;
             resourceInputs["dnsLocalName"] = args ? args.dnsLocalName : undefined;
             resourceInputs["dnsSearches"] = args ? args.dnsSearches : undefined;
-            resourceInputs["dnsServerOverrides"] = args ? args.dnsServerOverrides : undefined;
+            resourceInputs["dnsServersOverrides"] = args ? args.dnsServersOverrides : undefined;
             resourceInputs["enableDynamic"] = args ? args.enableDynamic : undefined;
             resourceInputs["poolHigh"] = args ? args.poolHigh : undefined;
             resourceInputs["poolLow"] = args ? args.poolLow : undefined;
@@ -198,12 +175,12 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayDhcpState {
     /**
-     * Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-     * address of the subnet
+     * The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+     * of the subnet
      */
     address?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the public gateway DHCP config.
+     * The date and time of the creation of the public gateway.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -212,20 +189,20 @@ export interface VpcPublicGatewayDhcpState {
      */
     dnsLocalName?: pulumi.Input<string>;
     /**
-     * Additional DNS search paths
+     * Additional DNS search paths.
      */
     dnsSearches?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
-    dnsServerOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
      * handed out. Defaults to true.
      */
     enableDynamic?: pulumi.Input<boolean>;
     /**
-     * The organization ID the public gateway DHCP config is associated with.
+     * The organization_id you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -237,11 +214,11 @@ export interface VpcPublicGatewayDhcpState {
      */
     poolLow?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway DHCP config is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+     * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
     /**
@@ -263,7 +240,7 @@ export interface VpcPublicGatewayDhcpState {
      */
     subnet?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the public gateway DHCP config.
+     * The date and time of the last update of the public gateway.
      */
     updatedAt?: pulumi.Input<string>;
     /**
@@ -271,7 +248,7 @@ export interface VpcPublicGatewayDhcpState {
      */
     validLifetime?: pulumi.Input<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }
@@ -281,8 +258,8 @@ export interface VpcPublicGatewayDhcpState {
  */
 export interface VpcPublicGatewayDhcpArgs {
     /**
-     * Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-     * address of the subnet
+     * The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+     * of the subnet
      */
     address?: pulumi.Input<string>;
     /**
@@ -291,13 +268,13 @@ export interface VpcPublicGatewayDhcpArgs {
      */
     dnsLocalName?: pulumi.Input<string>;
     /**
-     * Additional DNS search paths
+     * Additional DNS search paths.
      */
     dnsSearches?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
-    dnsServerOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
      * handed out. Defaults to true.
@@ -312,11 +289,11 @@ export interface VpcPublicGatewayDhcpArgs {
      */
     poolLow?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway DHCP config is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+     * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
     /**
@@ -342,7 +319,7 @@ export interface VpcPublicGatewayDhcpArgs {
      */
     validLifetime?: pulumi.Input<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }

@@ -14,21 +14,10 @@ namespace Pulumi.Scaleway.Outputs
     public sealed class InstanceServerRootVolume
     {
         public readonly bool? Boot;
-        /// <summary>
-        /// Forces deletion of the root volume on instance termination.
-        /// </summary>
         public readonly bool? DeleteOnTermination;
-        /// <summary>
-        /// Size of the root volume in gigabytes.
-        /// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
-        /// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
-        /// Updates to this field will recreate a new resource.
-        /// </summary>
         public readonly int? SizeInGb;
-        /// <summary>
-        /// The volume ID of the root volume of the server.
-        /// </summary>
         public readonly string? VolumeId;
+        public readonly string? VolumeType;
 
         [OutputConstructor]
         private InstanceServerRootVolume(
@@ -38,12 +27,15 @@ namespace Pulumi.Scaleway.Outputs
 
             int? sizeInGb,
 
-            string? volumeId)
+            string? volumeId,
+
+            string? volumeType)
         {
             Boot = boot;
             DeleteOnTermination = deleteOnTermination;
             SizeInGb = sizeInGb;
             VolumeId = volumeId;
+            VolumeType = volumeType;
         }
     }
 }

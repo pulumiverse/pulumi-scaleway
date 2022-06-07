@@ -13,9 +13,6 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class DomainRecordGeoIp
     {
-        /// <summary>
-        /// The list of matches. *(Can be more than 1)*
-        /// </summary>
         public readonly ImmutableArray<Outputs.DomainRecordGeoIpMatch> Matches;
 
         [OutputConstructor]

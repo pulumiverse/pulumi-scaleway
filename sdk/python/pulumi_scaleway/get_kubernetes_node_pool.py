@@ -98,17 +98,11 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter
     def autohealing(self) -> bool:
-        """
-        True if the autohealing feature is enabled for this pool.
-        """
         return pulumi.get(self, "autohealing")
 
     @property
     @pulumi.getter
     def autoscaling(self) -> bool:
-        """
-        True if the autoscaling feature is enabled for this pool.
-        """
         return pulumi.get(self, "autoscaling")
 
     @property
@@ -119,17 +113,11 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> str:
-        """
-        The container runtime of the pool.
-        """
         return pulumi.get(self, "container_runtime")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The creation date of the pool.
-        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -153,49 +141,31 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> int:
-        """
-        The maximum size of the pool, used by the autoscaling feature.
-        """
         return pulumi.get(self, "max_size")
 
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> int:
-        """
-        The minimum size of the pool, used by the autoscaling feature.
-        """
         return pulumi.get(self, "min_size")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the node.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodeType")
     def node_type(self) -> str:
-        """
-        The commercial type of the pool instances.
-        """
         return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter
     def nodes(self) -> Sequence['outputs.GetKubernetesNodePoolNodeResult']:
-        """
-        (List of) The nodes in the default pool.
-        """
         return pulumi.get(self, "nodes")
 
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> str:
-        """
-        [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
-        """
         return pulumi.get(self, "placement_group_id")
 
     @property
@@ -211,33 +181,21 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter
     def size(self) -> Optional[int]:
-        """
-        The size of the pool.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of the node.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tags associated with the pool.
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
-        """
-        The last update date of the pool.
-        """
         return pulumi.get(self, "updated_at")
 
     @property
@@ -248,9 +206,6 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        The version of the pool.
-        """
         return pulumi.get(self, "version")
 
     @property
@@ -303,23 +258,7 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
                              size: Optional[int] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesNodePoolResult:
     """
-    Gets information about a Kubernetes Cluster's Pool.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str cluster_id: The cluster ID. Required when `name` is set.
-    :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
-    :param str pool_id: The pool's ID. Only one of `name` and `pool_id` should be specified.
-    :param str region: `region`) The region in which the pool exists.
-    :param int size: The size of the pool.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -370,22 +309,6 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
                                     size: Optional[pulumi.Input[Optional[int]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesNodePoolResult]:
     """
-    Gets information about a Kubernetes Cluster's Pool.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str cluster_id: The cluster ID. Required when `name` is set.
-    :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
-    :param str pool_id: The pool's ID. Only one of `name` and `pool_id` should be specified.
-    :param str region: `region`) The region in which the pool exists.
-    :param int size: The size of the pool.
+    Use this data source to access information about an existing resource.
     """
     ...

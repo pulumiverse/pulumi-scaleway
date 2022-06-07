@@ -14,13 +14,7 @@ namespace Pulumi.Scaleway.Outputs
     public sealed class GetBaremetalOfferCpuResult
     {
         public readonly int CoreCount;
-        /// <summary>
-        /// Frequency of the memory in MHz.
-        /// </summary>
         public readonly int Frequency;
-        /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
-        /// </summary>
         public readonly string Name;
         public readonly int ThreadCount;
 

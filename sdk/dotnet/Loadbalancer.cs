@@ -9,172 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Load-Balancers.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var ip = new Scaleway.LoadbalancerIp("ip", new Scaleway.LoadbalancerIpArgs
-    ///         {
-    ///         });
-    ///         var @base = new Scaleway.Loadbalancer("base", new Scaleway.LoadbalancerArgs
-    ///         {
-    ///             IpId = ip.Id,
-    ///             Zone = "fr-par-1",
-    ///             Type = "LB-S",
-    ///             ReleaseIp = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## IP ID
-    /// 
-    /// Since v1.15.0, `ip_id` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
-    /// When importing, the IP needs to be imported as well as the LB.
-    /// When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
-    /// 
-    /// For instance, if you had the following:
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @base = new Scaleway.Loadbalancer("base", new Scaleway.LoadbalancerArgs
-    ///         {
-    ///             Type = "LB-S",
-    ///             Zone = "fr-par-1",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// You will need to update it to:
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var ip = new Scaleway.LoadbalancerIp("ip", new Scaleway.LoadbalancerIpArgs
-    ///         {
-    ///         });
-    ///         var @base = new Scaleway.Loadbalancer("base", new Scaleway.LoadbalancerArgs
-    ///         {
-    ///             IpId = ip.Id,
-    ///             Zone = "fr-par-1",
-    ///             Type = "LB-S",
-    ///             ReleaseIp = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Private Network
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var ip01 = new Scaleway.LoadbalancerIp("ip01", new Scaleway.LoadbalancerIpArgs
-    ///         {
-    ///         });
-    ///         var pnLB01 = new Scaleway.VpcPrivateNetwork("pnLB01", new Scaleway.VpcPrivateNetworkArgs
-    ///         {
-    ///         });
-    ///         var lb01 = new Scaleway.Loadbalancer("lb01", new Scaleway.LoadbalancerArgs
-    ///         {
-    ///             IpId = ip01.Id,
-    ///             Type = "LB-S",
-    ///             ReleaseIp = false,
-    ///             PrivateNetworks = 
-    ///             {
-    ///                 new Scaleway.Inputs.LoadbalancerPrivateNetworkArgs
-    ///                 {
-    ///                     PrivateNetworkId = pnLB01.Id,
-    ///                     StaticConfigs = 
-    ///                     {
-    ///                         "172.16.0.100",
-    ///                         "172.16.0.101",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// &gt; **Important:** Updates to `private_network` will recreate the attachment.
-    /// 
-    /// - `private_network_id` - (Required) The ID of the Private Network to associate.
-    /// 
-    /// - `static_config` - (Optional) Define two local ip address of your choice for each load balancer instance. See below.
-    /// 
-    /// - `dhcp_config` - (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
-    /// 
-    /// &gt; **Important:**  Only one of static_config and dhcp_config may be set.
-    /// 
-    /// - `zone` - (Defaults to provider `zone`) The zone in which the private network was created.
-    /// 
-    /// ## Import
-    /// 
-    /// Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/loadbalancer:Loadbalancer lb01 fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// 
-    ///  Be aware that you will also need to import the `scaleway_lb_ip` resource.
-    /// </summary>
     [ScalewayResourceType("scaleway:index/loadbalancer:Loadbalancer")]
     public partial class Loadbalancer : Pulumi.CustomResource
     {
         /// <summary>
-        /// The load-balance public IP Address
+        /// The load-balance public IP address
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the associated IP. See below.
+        /// The load-balance public IP ID
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the load-balancer.
+        /// Name of the lb
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -186,7 +43,7 @@ namespace Pulumi.Scaleway
         public Output<ImmutableArray<Outputs.LoadbalancerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the load-balancer is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -198,25 +55,25 @@ namespace Pulumi.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The release_ip allow release the ip address associated with the load-balancers.
+        /// Release the IPs related to this load-balancer
         /// </summary>
         [Output("releaseIp")]
         public Output<bool?> ReleaseIp { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// Array of tags to associate with the load-balancer
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the load-balancer.
+        /// The type of load-balancer you want to create
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -269,13 +126,13 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the associated IP. See below.
+        /// The load-balance public IP ID
         /// </summary>
         [Input("ipId", required: true)]
         public Input<string> IpId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the load-balancer.
+        /// Name of the lb
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -293,13 +150,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the load-balancer is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The release_ip allow release the ip address associated with the load-balancers.
+        /// Release the IPs related to this load-balancer
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -308,7 +165,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// Array of tags to associate with the load-balancer
         /// </summary>
         public InputList<string> Tags
         {
@@ -317,13 +174,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The type of the load-balancer.
+        /// The type of load-balancer you want to create
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -336,25 +193,25 @@ namespace Pulumi.Scaleway
     public sealed class LoadbalancerState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The load-balance public IP Address
+        /// The load-balance public IP address
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The ID of the associated IP. See below.
+        /// The load-balance public IP ID
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The name of the load-balancer.
+        /// Name of the lb
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -372,7 +229,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the load-balancer is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -384,7 +241,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The release_ip allow release the ip address associated with the load-balancers.
+        /// Release the IPs related to this load-balancer
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -393,7 +250,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// Array of tags to associate with the load-balancer
         /// </summary>
         public InputList<string> Tags
         {
@@ -402,13 +259,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The type of the load-balancer.
+        /// The type of load-balancer you want to create
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

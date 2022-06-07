@@ -17,9 +17,6 @@ namespace Pulumi.Scaleway.Outputs
         public readonly string PrivateNetworkId;
         public readonly ImmutableArray<string> StaticConfigs;
         public readonly string Status;
-        /// <summary>
-        /// `region`) The region in which the LB exists.
-        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

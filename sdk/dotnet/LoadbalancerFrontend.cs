@@ -9,173 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var frontend01 = new Scaleway.LoadbalancerFrontend("frontend01", new Scaleway.LoadbalancerFrontendArgs
-    ///         {
-    ///             LbId = scaleway_lb.Lb01.Id,
-    ///             BackendId = scaleway_lb_backend.Backend01.Id,
-    ///             InboundPort = 80,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## With ACLs
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var frontend01 = new Scaleway.LoadbalancerFrontend("frontend01", new Scaleway.LoadbalancerFrontendArgs
-    ///         {
-    ///             LbId = scaleway_lb.Lb01.Id,
-    ///             BackendId = scaleway_lb_backend.Backend01.Id,
-    ///             InboundPort = 80,
-    ///             Acls = 
-    ///             {
-    ///                 new Scaleway.Inputs.LoadbalancerFrontendAclArgs
-    ///                 {
-    ///                     Name = "blacklist wellknwon IPs",
-    ///                     Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
-    ///                     {
-    ///                         Type = "allow",
-    ///                     },
-    ///                     Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
-    ///                     {
-    ///                         IpSubnets = 
-    ///                         {
-    ///                             "192.168.0.1",
-    ///                             "192.168.0.2",
-    ///                             "192.168.10.0/24",
-    ///                         },
-    ///                     },
-    ///                 },
-    ///                 new Scaleway.Inputs.LoadbalancerFrontendAclArgs
-    ///                 {
-    ///                     Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
-    ///                     {
-    ///                         Type = "deny",
-    ///                     },
-    ///                     Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
-    ///                     {
-    ///                         IpSubnets = 
-    ///                         {
-    ///                             "51.51.51.51",
-    ///                         },
-    ///                         HttpFilter = "regex",
-    ///                         HttpFilterValues = 
-    ///                         {
-    ///                             "^foo*bar$",
-    ///                         },
-    ///                     },
-    ///                 },
-    ///                 new Scaleway.Inputs.LoadbalancerFrontendAclArgs
-    ///                 {
-    ///                     Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
-    ///                     {
-    ///                         Type = "allow",
-    ///                     },
-    ///                     Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
-    ///                     {
-    ///                         HttpFilter = "path_begin",
-    ///                         HttpFilterValues = 
-    ///                         {
-    ///                             "foo",
-    ///                             "bar",
-    ///                         },
-    ///                     },
-    ///                 },
-    ///                 new Scaleway.Inputs.LoadbalancerFrontendAclArgs
-    ///                 {
-    ///                     Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
-    ///                     {
-    ///                         Type = "allow",
-    ///                     },
-    ///                     Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
-    ///                     {
-    ///                         HttpFilter = "path_begin",
-    ///                         HttpFilterValues = 
-    ///                         {
-    ///                             "hi",
-    ///                         },
-    ///                         Invert = true,
-    ///                     },
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/loadbalancerFrontend:LoadbalancerFrontend")]
     public partial class LoadbalancerFrontend : Pulumi.CustomResource
     {
         /// <summary>
-        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        /// ACL rules
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.LoadbalancerFrontendAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
+        /// The load-balancer backend ID
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate ID that should be used by the frontend.
+        /// Certificate ID
         /// </summary>
         [Output("certificateId")]
-        public Output<string?> CertificateId { get; private set; } = null!;
+        public Output<string> CertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// TCP port to listen on the front side.
+        /// Collection of Certificate IDs related to the load balancer and domain
+        /// </summary>
+        [Output("certificateIds")]
+        public Output<ImmutableArray<string>> CertificateIds { get; private set; } = null!;
+
+        /// <summary>
+        /// TCP port to listen on the front side
         /// </summary>
         [Output("inboundPort")]
         public Output<int> InboundPort { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The load-balancer ID
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
-        /// The ACL name. If not provided it will be randomly generated.
+        /// The name of the frontend
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum inactivity time on the client side. (e.g.: `1s`)
+        /// Set the maximum inactivity time on the client side
         /// </summary>
         [Output("timeoutClient")]
         public Output<string?> TimeoutClient { get; private set; } = null!;
@@ -231,7 +111,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.LoadbalancerFrontendAclArgs>? _acls;
 
         /// <summary>
-        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        /// ACL rules
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendAclArgs> Acls
         {
@@ -240,37 +120,43 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
+        /// The load-balancer backend ID
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
 
-        /// <summary>
-        /// Certificate ID that should be used by the frontend.
-        /// </summary>
-        [Input("certificateId")]
-        public Input<string>? CertificateId { get; set; }
+        [Input("certificateIds")]
+        private InputList<string>? _certificateIds;
 
         /// <summary>
-        /// TCP port to listen on the front side.
+        /// Collection of Certificate IDs related to the load balancer and domain
+        /// </summary>
+        public InputList<string> CertificateIds
+        {
+            get => _certificateIds ?? (_certificateIds = new InputList<string>());
+            set => _certificateIds = value;
+        }
+
+        /// <summary>
+        /// TCP port to listen on the front side
         /// </summary>
         [Input("inboundPort", required: true)]
         public Input<int> InboundPort { get; set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The load-balancer ID
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
-        /// The ACL name. If not provided it will be randomly generated.
+        /// The name of the frontend
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Maximum inactivity time on the client side. (e.g.: `1s`)
+        /// Set the maximum inactivity time on the client side
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }
@@ -286,7 +172,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.LoadbalancerFrontendAclGetArgs>? _acls;
 
         /// <summary>
-        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        /// ACL rules
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendAclGetArgs> Acls
         {
@@ -295,37 +181,49 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
+        /// The load-balancer backend ID
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// Certificate ID that should be used by the frontend.
+        /// Certificate ID
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
+        [Input("certificateIds")]
+        private InputList<string>? _certificateIds;
+
         /// <summary>
-        /// TCP port to listen on the front side.
+        /// Collection of Certificate IDs related to the load balancer and domain
+        /// </summary>
+        public InputList<string> CertificateIds
+        {
+            get => _certificateIds ?? (_certificateIds = new InputList<string>());
+            set => _certificateIds = value;
+        }
+
+        /// <summary>
+        /// TCP port to listen on the front side
         /// </summary>
         [Input("inboundPort")]
         public Input<int>? InboundPort { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The load-balancer ID
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The ACL name. If not provided it will be randomly generated.
+        /// The name of the frontend
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Maximum inactivity time on the client side. (e.g.: `1s`)
+        /// Set the maximum inactivity time on the client side
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }

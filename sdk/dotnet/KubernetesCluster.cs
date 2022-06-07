@@ -9,20 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/kubernetesCluster:KubernetesCluster")]
     public partial class KubernetesCluster : Pulumi.CustomResource
     {
         /// <summary>
-        /// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        /// The list of admission plugins to enable on the cluster
         /// </summary>
         [Output("admissionPlugins")]
         public Output<ImmutableArray<string>> AdmissionPlugins { get; private set; } = null!;
@@ -34,50 +25,49 @@ namespace Pulumi.Scaleway
         public Output<ImmutableArray<string>> ApiserverCertSans { get; private set; } = null!;
 
         /// <summary>
-        /// The URL of the Kubernetes API server.
+        /// Kubernetes API server URL
         /// </summary>
         [Output("apiserverUrl")]
         public Output<string> ApiserverUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The auto upgrade configuration.
+        /// The auto upgrade configuration for the cluster
         /// </summary>
         [Output("autoUpgrade")]
         public Output<Outputs.KubernetesClusterAutoUpgrade> AutoUpgrade { get; private set; } = null!;
 
         /// <summary>
-        /// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        /// The autoscaler configuration for the cluster
         /// </summary>
         [Output("autoscalerConfig")]
         public Output<Outputs.KubernetesClusterAutoscalerConfig> AutoscalerConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The Container Network Interface (CNI) for the Kubernetes cluster.
-        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// The CNI plugin of the cluster
         /// </summary>
         [Output("cni")]
         public Output<string> Cni { get; private set; } = null!;
 
         /// <summary>
-        /// The creation date of the cluster.
+        /// The date and time of the creation of the Kubernetes cluster
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes and loadbalancers on cluster deletion
         /// </summary>
         [Output("deleteAdditionalResources")]
         public Output<bool?> DeleteAdditionalResources { get; private set; } = null!;
 
         /// <summary>
-        /// A description for the Kubernetes cluster.
+        /// The description of the cluster
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        /// The list of feature gates to enable on the cluster
         /// </summary>
         [Output("featureGates")]
         public Output<ImmutableArray<string>> FeatureGates { get; private set; } = null!;
@@ -89,7 +79,7 @@ namespace Pulumi.Scaleway
         public Output<ImmutableArray<Outputs.KubernetesClusterKubeconfig>> Kubeconfigs { get; private set; } = null!;
 
         /// <summary>
-        /// The name for the Kubernetes cluster.
+        /// The name of the cluster
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -101,62 +91,61 @@ namespace Pulumi.Scaleway
         public Output<Outputs.KubernetesClusterOpenIdConnectConfig> OpenIdConnectConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the cluster is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cluster is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the cluster should be created.
+        /// The region you want to attach the resource to
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the Kubernetes cluster.
+        /// The status of the cluster
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the Kubernetes cluster.
+        /// The tags associated with the cluster
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of Kubernetes cluster.
+        /// The type of cluster
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The last update date of the cluster.
+        /// The date and time of the last update of the Kubernetes cluster
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` if a newer Kubernetes version is available.
+        /// True if an upgrade is available
         /// </summary>
         [Output("upgradeAvailable")]
         public Output<bool> UpgradeAvailable { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the Kubernetes cluster.
+        /// The version of the cluster
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS wildcard that points to all ready nodes.
-        /// - `kubeconfig`
+        /// Wildcard DNS pointing to all the ready nodes
         /// </summary>
         [Output("wildcardDns")]
         public Output<string> WildcardDns { get; private set; } = null!;
@@ -212,7 +201,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _admissionPlugins;
 
         /// <summary>
-        /// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        /// The list of admission plugins to enable on the cluster
         /// </summary>
         public InputList<string> AdmissionPlugins
         {
@@ -233,32 +222,31 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The auto upgrade configuration.
+        /// The auto upgrade configuration for the cluster
         /// </summary>
         [Input("autoUpgrade")]
         public Input<Inputs.KubernetesClusterAutoUpgradeArgs>? AutoUpgrade { get; set; }
 
         /// <summary>
-        /// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        /// The autoscaler configuration for the cluster
         /// </summary>
         [Input("autoscalerConfig")]
         public Input<Inputs.KubernetesClusterAutoscalerConfigArgs>? AutoscalerConfig { get; set; }
 
         /// <summary>
-        /// The Container Network Interface (CNI) for the Kubernetes cluster.
-        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// The CNI plugin of the cluster
         /// </summary>
         [Input("cni", required: true)]
         public Input<string> Cni { get; set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes and loadbalancers on cluster deletion
         /// </summary>
         [Input("deleteAdditionalResources")]
         public Input<bool>? DeleteAdditionalResources { get; set; }
 
         /// <summary>
-        /// A description for the Kubernetes cluster.
+        /// The description of the cluster
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -267,7 +255,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _featureGates;
 
         /// <summary>
-        /// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        /// The list of feature gates to enable on the cluster
         /// </summary>
         public InputList<string> FeatureGates
         {
@@ -276,7 +264,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The name for the Kubernetes cluster.
+        /// The name of the cluster
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -288,13 +276,13 @@ namespace Pulumi.Scaleway
         public Input<Inputs.KubernetesClusterOpenIdConnectConfigArgs>? OpenIdConnectConfig { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cluster is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the cluster should be created.
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -303,7 +291,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the Kubernetes cluster.
+        /// The tags associated with the cluster
         /// </summary>
         public InputList<string> Tags
         {
@@ -312,13 +300,13 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The type of Kubernetes cluster.
+        /// The type of cluster
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The version of the Kubernetes cluster.
+        /// The version of the cluster
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -334,7 +322,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _admissionPlugins;
 
         /// <summary>
-        /// The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+        /// The list of admission plugins to enable on the cluster
         /// </summary>
         public InputList<string> AdmissionPlugins
         {
@@ -355,44 +343,43 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The URL of the Kubernetes API server.
+        /// Kubernetes API server URL
         /// </summary>
         [Input("apiserverUrl")]
         public Input<string>? ApiserverUrl { get; set; }
 
         /// <summary>
-        /// The auto upgrade configuration.
+        /// The auto upgrade configuration for the cluster
         /// </summary>
         [Input("autoUpgrade")]
         public Input<Inputs.KubernetesClusterAutoUpgradeGetArgs>? AutoUpgrade { get; set; }
 
         /// <summary>
-        /// The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        /// The autoscaler configuration for the cluster
         /// </summary>
         [Input("autoscalerConfig")]
         public Input<Inputs.KubernetesClusterAutoscalerConfigGetArgs>? AutoscalerConfig { get; set; }
 
         /// <summary>
-        /// The Container Network Interface (CNI) for the Kubernetes cluster.
-        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// The CNI plugin of the cluster
         /// </summary>
         [Input("cni")]
         public Input<string>? Cni { get; set; }
 
         /// <summary>
-        /// The creation date of the cluster.
+        /// The date and time of the creation of the Kubernetes cluster
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes and loadbalancers on cluster deletion
         /// </summary>
         [Input("deleteAdditionalResources")]
         public Input<bool>? DeleteAdditionalResources { get; set; }
 
         /// <summary>
-        /// A description for the Kubernetes cluster.
+        /// The description of the cluster
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -401,7 +388,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _featureGates;
 
         /// <summary>
-        /// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+        /// The list of feature gates to enable on the cluster
         /// </summary>
         public InputList<string> FeatureGates
         {
@@ -422,7 +409,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The name for the Kubernetes cluster.
+        /// The name of the cluster
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -434,25 +421,25 @@ namespace Pulumi.Scaleway
         public Input<Inputs.KubernetesClusterOpenIdConnectConfigGetArgs>? OpenIdConnectConfig { get; set; }
 
         /// <summary>
-        /// The organization ID the cluster is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cluster is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the cluster should be created.
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The status of the Kubernetes cluster.
+        /// The status of the cluster
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -461,7 +448,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the Kubernetes cluster.
+        /// The tags associated with the cluster
         /// </summary>
         public InputList<string> Tags
         {
@@ -470,32 +457,31 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The type of Kubernetes cluster.
+        /// The type of cluster
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The last update date of the cluster.
+        /// The date and time of the last update of the Kubernetes cluster
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Set to `true` if a newer Kubernetes version is available.
+        /// True if an upgrade is available
         /// </summary>
         [Input("upgradeAvailable")]
         public Input<bool>? UpgradeAvailable { get; set; }
 
         /// <summary>
-        /// The version of the Kubernetes cluster.
+        /// The version of the cluster
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
         /// <summary>
-        /// The DNS wildcard that points to all ready nodes.
-        /// - `kubeconfig`
+        /// Wildcard DNS pointing to all the ready nodes
         /// </summary>
         [Input("wildcardDns")]
         public Input<string>? WildcardDns { get; set; }

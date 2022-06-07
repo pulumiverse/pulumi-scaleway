@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class IotHub extends pulumi.CustomResource {
     /**
      * Get an existing IotHub resource's state with the given name, ID, and optional extra
@@ -42,11 +33,11 @@ export class IotHub extends pulumi.CustomResource {
     }
 
     /**
-     * The current number of connected devices in the Hub.
+     * The current number of connected devices in the Hub
      */
     public /*out*/ readonly connectedDeviceCount!: pulumi.Output<number>;
     /**
-     * The date and time the Hub was created.
+     * The date and time of the creation of the IoT Hub
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -54,7 +45,7 @@ export class IotHub extends pulumi.CustomResource {
      */
     public readonly deviceAutoProvisioning!: pulumi.Output<boolean | undefined>;
     /**
-     * The number of registered devices in the Hub.
+     * The number of registered devices in the Hub
      */
     public /*out*/ readonly deviceCount!: pulumi.Output<number>;
     /**
@@ -62,11 +53,11 @@ export class IotHub extends pulumi.CustomResource {
      */
     public readonly disableEvents!: pulumi.Output<boolean | undefined>;
     /**
-     * Wether the IoT Hub instance should be enabled or not.
+     * Whether to enable the hub or not
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * The MQTT network endpoint to connect MQTT devices to.
+     * The endpoint to connect the devices to
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
@@ -82,7 +73,7 @@ export class IotHub extends pulumi.CustomResource {
      */
     public readonly hubCaChallenge!: pulumi.Output<string | undefined>;
     /**
-     * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+     * The name of the hub
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -90,23 +81,23 @@ export class IotHub extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+     * The product plan of the hub
      */
     public readonly productPlan!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the IoT Hub Instance is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The region you want to attach the resource to
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The current status of the Hub.
+     * The status of the hub
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The date and time the Hub resource was updated.
+     * The date and time of the last update of the IoT Hub
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -173,11 +164,11 @@ export class IotHub extends pulumi.CustomResource {
  */
 export interface IotHubState {
     /**
-     * The current number of connected devices in the Hub.
+     * The current number of connected devices in the Hub
      */
     connectedDeviceCount?: pulumi.Input<number>;
     /**
-     * The date and time the Hub was created.
+     * The date and time of the creation of the IoT Hub
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -185,7 +176,7 @@ export interface IotHubState {
      */
     deviceAutoProvisioning?: pulumi.Input<boolean>;
     /**
-     * The number of registered devices in the Hub.
+     * The number of registered devices in the Hub
      */
     deviceCount?: pulumi.Input<number>;
     /**
@@ -193,11 +184,11 @@ export interface IotHubState {
      */
     disableEvents?: pulumi.Input<boolean>;
     /**
-     * Wether the IoT Hub instance should be enabled or not.
+     * Whether to enable the hub or not
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The MQTT network endpoint to connect MQTT devices to.
+     * The endpoint to connect the devices to
      */
     endpoint?: pulumi.Input<string>;
     /**
@@ -213,7 +204,7 @@ export interface IotHubState {
      */
     hubCaChallenge?: pulumi.Input<string>;
     /**
-     * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+     * The name of the hub
      */
     name?: pulumi.Input<string>;
     /**
@@ -221,23 +212,23 @@ export interface IotHubState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+     * The product plan of the hub
      */
     productPlan?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the IoT Hub Instance is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The current status of the Hub.
+     * The status of the hub
      */
     status?: pulumi.Input<string>;
     /**
-     * The date and time the Hub resource was updated.
+     * The date and time of the last update of the IoT Hub
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -255,7 +246,7 @@ export interface IotHubArgs {
      */
     disableEvents?: pulumi.Input<boolean>;
     /**
-     * Wether the IoT Hub instance should be enabled or not.
+     * Whether to enable the hub or not
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -271,19 +262,19 @@ export interface IotHubArgs {
      */
     hubCaChallenge?: pulumi.Input<string>;
     /**
-     * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+     * The name of the hub
      */
     name?: pulumi.Input<string>;
     /**
-     * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+     * The product plan of the hub
      */
     productPlan: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the IoT Hub Instance is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
 }

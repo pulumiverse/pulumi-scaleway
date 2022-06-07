@@ -14,9 +14,6 @@ namespace Pulumi.Scaleway.Outputs
     public sealed class GetBaremetalOfferDiskResult
     {
         public readonly int Capacity;
-        /// <summary>
-        /// Type of memory.
-        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

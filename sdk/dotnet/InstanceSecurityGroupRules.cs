@@ -9,32 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules")]
     public partial class InstanceSecurityGroupRules : Pulumi.CustomResource
     {
         /// <summary>
-        /// A list of inbound rule to add to the security group. (Structure is documented below.)
+        /// Inbound rules for this set of security group rules
         /// </summary>
         [Output("inboundRules")]
         public Output<ImmutableArray<Outputs.InstanceSecurityGroupRulesInboundRule>> InboundRules { get; private set; } = null!;
 
         /// <summary>
-        /// A list of outbound rule to add to the security group. (Structure is documented below.)
+        /// Outbound rules for this set of security group rules
         /// </summary>
         [Output("outboundRules")]
         public Output<ImmutableArray<Outputs.InstanceSecurityGroupRulesOutboundRule>> OutboundRules { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the security group.
+        /// The security group associated with this volume
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
@@ -90,7 +81,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupRulesInboundRuleArgs>? _inboundRules;
 
         /// <summary>
-        /// A list of inbound rule to add to the security group. (Structure is documented below.)
+        /// Inbound rules for this set of security group rules
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupRulesInboundRuleArgs> InboundRules
         {
@@ -102,7 +93,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupRulesOutboundRuleArgs>? _outboundRules;
 
         /// <summary>
-        /// A list of outbound rule to add to the security group. (Structure is documented below.)
+        /// Outbound rules for this set of security group rules
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupRulesOutboundRuleArgs> OutboundRules
         {
@@ -111,7 +102,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The ID of the security group.
+        /// The security group associated with this volume
         /// </summary>
         [Input("securityGroupId", required: true)]
         public Input<string> SecurityGroupId { get; set; } = null!;
@@ -127,7 +118,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupRulesInboundRuleGetArgs>? _inboundRules;
 
         /// <summary>
-        /// A list of inbound rule to add to the security group. (Structure is documented below.)
+        /// Inbound rules for this set of security group rules
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupRulesInboundRuleGetArgs> InboundRules
         {
@@ -139,7 +130,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.InstanceSecurityGroupRulesOutboundRuleGetArgs>? _outboundRules;
 
         /// <summary>
-        /// A list of outbound rule to add to the security group. (Structure is documented below.)
+        /// Outbound rules for this set of security group rules
         /// </summary>
         public InputList<Inputs.InstanceSecurityGroupRulesOutboundRuleGetArgs> OutboundRules
         {
@@ -148,7 +139,7 @@ namespace Pulumi.Scaleway
         }
 
         /// <summary>
-        /// The ID of the security group.
+        /// The security group associated with this volume
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }

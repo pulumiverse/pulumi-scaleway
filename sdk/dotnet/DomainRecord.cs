@@ -9,282 +9,50 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Domain record.\
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var www = new Scaleway.DomainRecord("www", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "1.2.3.4",
-    ///             DnsZone = "domain.tld",
-    ///             Ttl = 3600,
-    ///             Type = "A",
-    ///         });
-    ///         var www2 = new Scaleway.DomainRecord("www2", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "1.2.3.5",
-    ///             DnsZone = "domain.tld",
-    ///             Ttl = 3600,
-    ///             Type = "A",
-    ///         });
-    ///         var mx = new Scaleway.DomainRecord("mx", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "mx.online.net.",
-    ///             DnsZone = "domain.tld",
-    ///             Priority = 10,
-    ///             Ttl = 3600,
-    ///             Type = "MX",
-    ///         });
-    ///         var mx2 = new Scaleway.DomainRecord("mx2", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "mx-cache.online.net.",
-    ///             DnsZone = "domain.tld",
-    ///             Priority = 20,
-    ///             Ttl = 3600,
-    ///             Type = "MX",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### With dynamic records
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var geoIp = new Scaleway.DomainRecord("geoIp", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "1.2.3.4",
-    ///             DnsZone = "domain.tld",
-    ///             GeoIp = new Scaleway.Inputs.DomainRecordGeoIpArgs
-    ///             {
-    ///                 Matches = 
-    ///                 {
-    ///                     new Scaleway.Inputs.DomainRecordGeoIpMatchArgs
-    ///                     {
-    ///                         Continents = 
-    ///                         {
-    ///                             "EU",
-    ///                         },
-    ///                         Countries = 
-    ///                         {
-    ///                             "FR",
-    ///                         },
-    ///                         Data = "1.2.3.5",
-    ///                     },
-    ///                     new Scaleway.Inputs.DomainRecordGeoIpMatchArgs
-    ///                     {
-    ///                         Continents = 
-    ///                         {
-    ///                             "NA",
-    ///                         },
-    ///                         Data = "4.3.2.1",
-    ///                     },
-    ///                 },
-    ///             },
-    ///             Ttl = 3600,
-    ///             Type = "A",
-    ///         });
-    ///         var httpService = new Scaleway.DomainRecord("httpService", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "1.2.3.4",
-    ///             DnsZone = "domain.tld",
-    ///             HttpService = new Scaleway.Inputs.DomainRecordHttpServiceArgs
-    ///             {
-    ///                 Ips = 
-    ///                 {
-    ///                     "1.2.3.5",
-    ///                     "1.2.3.6",
-    ///                 },
-    ///                 MustContain = "up",
-    ///                 Strategy = "hashed",
-    ///                 Url = "http://mywebsite.com/health",
-    ///                 UserAgent = "scw_service_up",
-    ///             },
-    ///             Ttl = 3600,
-    ///             Type = "A",
-    ///         });
-    ///         var view = new Scaleway.DomainRecord("view", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "1.2.3.4",
-    ///             DnsZone = "domain.tld",
-    ///             Ttl = 3600,
-    ///             Type = "A",
-    ///             Views = 
-    ///             {
-    ///                 new Scaleway.Inputs.DomainRecordViewArgs
-    ///                 {
-    ///                     Data = "1.2.3.5",
-    ///                     Subnet = "100.0.0.0/16",
-    ///                 },
-    ///                 new Scaleway.Inputs.DomainRecordViewArgs
-    ///                 {
-    ///                     Data = "1.2.3.6",
-    ///                     Subnet = "100.1.0.0/16",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var weighted = new Scaleway.DomainRecord("weighted", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             Data = "1.2.3.4",
-    ///             DnsZone = "domain.tld",
-    ///             Ttl = 3600,
-    ///             Type = "A",
-    ///             Weighteds = 
-    ///             {
-    ///                 new Scaleway.Inputs.DomainRecordWeightedArgs
-    ///                 {
-    ///                     Ip = "1.2.3.5",
-    ///                     Weight = 1,
-    ///                 },
-    ///                 new Scaleway.Inputs.DomainRecordWeightedArgs
-    ///                 {
-    ///                     Ip = "1.2.3.6",
-    ///                     Weight = 2,
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ### Create an instance and add records with the new instance IP
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var config = new Config();
-    ///         var projectId = config.Require("projectId");
-    ///         var dnsZone = config.Require("dnsZone");
-    ///         var publicIp = new Scaleway.InstanceIp("publicIp", new Scaleway.InstanceIpArgs
-    ///         {
-    ///             ProjectId = projectId,
-    ///         });
-    ///         var web = new Scaleway.InstanceServer("web", new Scaleway.InstanceServerArgs
-    ///         {
-    ///             ProjectId = projectId,
-    ///             Type = "DEV1-S",
-    ///             Image = "ubuntu_focal",
-    ///             Tags = 
-    ///             {
-    ///                 "front",
-    ///                 "web",
-    ///             },
-    ///             IpId = publicIp.Id,
-    ///             RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
-    ///             {
-    ///                 SizeInGb = 20,
-    ///             },
-    ///         });
-    ///         var webA = new Scaleway.DomainRecord("webA", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             DnsZone = dnsZone,
-    ///             Type = "A",
-    ///             Data = web.PublicIp,
-    ///             Ttl = 3600,
-    ///         });
-    ///         var webCname = new Scaleway.DomainRecord("webCname", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             DnsZone = dnsZone,
-    ///             Type = "CNAME",
-    ///             Data = $"web.{dnsZone}.",
-    ///             Ttl = 3600,
-    ///         });
-    ///         var webAlias = new Scaleway.DomainRecord("webAlias", new Scaleway.DomainRecordArgs
-    ///         {
-    ///             DnsZone = dnsZone,
-    ///             Type = "ALIAS",
-    ///             Data = $"web.{dnsZone}.",
-    ///             Ttl = 3600,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Multiple records
-    /// 
-    /// Some record types can have multiple `data` with the same `name` (eg: `A`, `AAAA`, `MX`, `NS`...).\
-    /// You can duplicate a resource `scaleway.DomainRecord` with the same `name`, the records will be added.
-    /// 
-    /// Please note, some record (eg: `CNAME`, Multiple dynamic records of different types...) has to be unique.
-    /// 
-    /// ## Import
-    /// 
-    /// Record can be imported using the `{dns_zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/domainRecord:DomainRecord")]
     public partial class DomainRecord : Pulumi.CustomResource
     {
         /// <summary>
-        /// The data of the view record
+        /// The data of the record
         /// </summary>
         [Output("data")]
         public Output<string> Data { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        /// The zone you want to add the record in
         /// </summary>
         [Output("dnsZone")]
         public Output<string> DnsZone { get; private set; } = null!;
 
         /// <summary>
-        /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+        /// Return record based on client localisation
         /// </summary>
         [Output("geoIp")]
         public Output<Outputs.DomainRecordGeoIp?> GeoIp { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+        /// Return record based on client localisation
         /// </summary>
         [Output("httpService")]
         public Output<Outputs.DomainRecordHttpService?> HttpService { get; private set; } = null!;
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        /// When destroy a resource record, if a zone have only NS, delete the zone
         /// </summary>
         [Output("keepEmptyZone")]
         public Output<bool?> KeepEmptyZone { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the record (can be an empty string for a root record).
+        /// The name of the record
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The priority of the record (mostly used with an `MX` record)
+        /// The priority of the record
         /// </summary>
         [Output("priority")]
-        public Output<int?> Priority { get; private set; } = null!;
+        public Output<int> Priority { get; private set; } = null!;
 
         /// <summary>
         /// The project_id you want to attach the resource to
@@ -293,25 +61,31 @@ namespace Pulumi.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Time To Tive of the record in seconds.
+        /// Does the DNS zone is the root zone or not
+        /// </summary>
+        [Output("rootZone")]
+        public Output<bool> RootZone { get; private set; } = null!;
+
+        /// <summary>
+        /// The ttl of the record
         /// </summary>
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
+        /// The type of the record
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+        /// Return record based on client subnet
         /// </summary>
         [Output("views")]
         public Output<ImmutableArray<Outputs.DomainRecordView>> Views { get; private set; } = null!;
 
         /// <summary>
-        /// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+        /// Return record based on weight
         /// </summary>
         [Output("weighteds")]
         public Output<ImmutableArray<Outputs.DomainRecordWeighted>> Weighteds { get; private set; } = null!;
@@ -364,43 +138,43 @@ namespace Pulumi.Scaleway
     public sealed class DomainRecordArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The data of the view record
+        /// The data of the record
         /// </summary>
         [Input("data", required: true)]
         public Input<string> Data { get; set; } = null!;
 
         /// <summary>
-        /// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        /// The zone you want to add the record in
         /// </summary>
         [Input("dnsZone", required: true)]
         public Input<string> DnsZone { get; set; } = null!;
 
         /// <summary>
-        /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("geoIp")]
         public Input<Inputs.DomainRecordGeoIpArgs>? GeoIp { get; set; }
 
         /// <summary>
-        /// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("httpService")]
         public Input<Inputs.DomainRecordHttpServiceArgs>? HttpService { get; set; }
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        /// When destroy a resource record, if a zone have only NS, delete the zone
         /// </summary>
         [Input("keepEmptyZone")]
         public Input<bool>? KeepEmptyZone { get; set; }
 
         /// <summary>
-        /// The name of the record (can be an empty string for a root record).
+        /// The name of the record
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The priority of the record (mostly used with an `MX` record)
+        /// The priority of the record
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -412,13 +186,13 @@ namespace Pulumi.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Time To Tive of the record in seconds.
+        /// The ttl of the record
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
+        /// The type of the record
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -427,7 +201,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DomainRecordViewArgs>? _views;
 
         /// <summary>
-        /// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+        /// Return record based on client subnet
         /// </summary>
         public InputList<Inputs.DomainRecordViewArgs> Views
         {
@@ -439,7 +213,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DomainRecordWeightedArgs>? _weighteds;
 
         /// <summary>
-        /// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+        /// Return record based on weight
         /// </summary>
         public InputList<Inputs.DomainRecordWeightedArgs> Weighteds
         {
@@ -455,43 +229,43 @@ namespace Pulumi.Scaleway
     public sealed class DomainRecordState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The data of the view record
+        /// The data of the record
         /// </summary>
         [Input("data")]
         public Input<string>? Data { get; set; }
 
         /// <summary>
-        /// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        /// The zone you want to add the record in
         /// </summary>
         [Input("dnsZone")]
         public Input<string>? DnsZone { get; set; }
 
         /// <summary>
-        /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("geoIp")]
         public Input<Inputs.DomainRecordGeoIpGetArgs>? GeoIp { get; set; }
 
         /// <summary>
-        /// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("httpService")]
         public Input<Inputs.DomainRecordHttpServiceGetArgs>? HttpService { get; set; }
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        /// When destroy a resource record, if a zone have only NS, delete the zone
         /// </summary>
         [Input("keepEmptyZone")]
         public Input<bool>? KeepEmptyZone { get; set; }
 
         /// <summary>
-        /// The name of the record (can be an empty string for a root record).
+        /// The name of the record
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The priority of the record (mostly used with an `MX` record)
+        /// The priority of the record
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -503,13 +277,19 @@ namespace Pulumi.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Time To Tive of the record in seconds.
+        /// Does the DNS zone is the root zone or not
+        /// </summary>
+        [Input("rootZone")]
+        public Input<bool>? RootZone { get; set; }
+
+        /// <summary>
+        /// The ttl of the record
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
+        /// The type of the record
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -518,7 +298,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DomainRecordViewGetArgs>? _views;
 
         /// <summary>
-        /// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+        /// Return record based on client subnet
         /// </summary>
         public InputList<Inputs.DomainRecordViewGetArgs> Views
         {
@@ -530,7 +310,7 @@ namespace Pulumi.Scaleway
         private InputList<Inputs.DomainRecordWeightedGetArgs>? _weighteds;
 
         /// <summary>
-        /// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+        /// Return record based on weight
         /// </summary>
         public InputList<Inputs.DomainRecordWeightedGetArgs> Weighteds
         {

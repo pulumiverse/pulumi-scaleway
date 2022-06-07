@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a RDB database.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
- * const myDb = pulumi.output(scaleway.getDatabase({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- *     name: "foobar",
- * }));
- * ```
- */
 export function getDatabase(args: GetDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseResult> {
     if (!opts) {
         opts = {}
@@ -36,13 +20,7 @@ export function getDatabase(args: GetDatabaseArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getDatabase.
  */
 export interface GetDatabaseArgs {
-    /**
-     * The RDB instance ID.
-     */
     instanceId: string;
-    /**
-     * The name of the RDB instance.
-     */
     name: string;
 }
 
@@ -55,18 +33,9 @@ export interface GetDatabaseResult {
      */
     readonly id: string;
     readonly instanceId: string;
-    /**
-     * Whether or not the database is managed or not.
-     */
     readonly managed: boolean;
     readonly name: string;
-    /**
-     * The name of the owner of the database.
-     */
     readonly owner: string;
-    /**
-     * Size of the database (in bytes).
-     */
     readonly size: string;
 }
 
@@ -78,12 +47,6 @@ export function getDatabaseOutput(args: GetDatabaseOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getDatabase.
  */
 export interface GetDatabaseOutputArgs {
-    /**
-     * The RDB instance ID.
-     */
     instanceId: pulumi.Input<string>;
-    /**
-     * The name of the RDB instance.
-     */
     name: pulumi.Input<string>;
 }

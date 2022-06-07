@@ -20,7 +20,7 @@ class GetInstanceIpResult:
     """
     A collection of values returned by getInstanceIp.
     """
-    def __init__(__self__, address=None, id=None, organization_id=None, project_id=None, reverse=None, server_id=None, zone=None):
+    def __init__(__self__, address=None, id=None, organization_id=None, project_id=None, reverse=None, server_id=None, tags=None, zone=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -39,6 +39,9 @@ class GetInstanceIpResult:
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -46,25 +49,16 @@ class GetInstanceIpResult:
     @property
     @pulumi.getter
     def address(self) -> Optional[str]:
-        """
-        The IP address.
-        """
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of the IP.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The organization ID the IP is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -75,15 +69,17 @@ class GetInstanceIpResult:
     @property
     @pulumi.getter
     def reverse(self) -> str:
-        """
-        The reverse dns attached to this IP
-        """
         return pulumi.get(self, "reverse")
 
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> str:
         return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -103,6 +99,7 @@ class AwaitableGetInstanceIpResult(GetInstanceIpResult):
             project_id=self.project_id,
             reverse=self.reverse,
             server_id=self.server_id,
+            tags=self.tags,
             zone=self.zone)
 
 
@@ -110,22 +107,7 @@ def get_instance_ip(address: Optional[str] = None,
                     id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceIpResult:
     """
-    Gets information about an instance IP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str address: The IPv4 address to retrieve
-           Only one of `address` and `id` should be specified.
-    :param str id: The ID of the IP address to retrieve
-           Only one of `address` and `id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['address'] = address
@@ -145,6 +127,7 @@ def get_instance_ip(address: Optional[str] = None,
         project_id=__ret__.project_id,
         reverse=__ret__.reverse,
         server_id=__ret__.server_id,
+        tags=__ret__.tags,
         zone=__ret__.zone)
 
 
@@ -153,21 +136,6 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
                            id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIpResult]:
     """
-    Gets information about an instance IP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str address: The IPv4 address to retrieve
-           Only one of `address` and `id` should be specified.
-    :param str id: The ID of the IP address to retrieve
-           Only one of `address` and `id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     ...

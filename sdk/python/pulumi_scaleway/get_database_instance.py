@@ -21,7 +21,10 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+        if backup_same_region and not isinstance(backup_same_region, bool):
+            raise TypeError("Expected argument 'backup_same_region' to be a bool")
+        pulumi.set(__self__, "backup_same_region", backup_same_region)
         if backup_schedule_frequency and not isinstance(backup_schedule_frequency, int):
             raise TypeError("Expected argument 'backup_schedule_frequency' to be a int")
         pulumi.set(__self__, "backup_schedule_frequency", backup_schedule_frequency)
@@ -94,6 +97,11 @@ class GetDatabaseInstanceResult:
         if volume_type and not isinstance(volume_type, str):
             raise TypeError("Expected argument 'volume_type' to be a str")
         pulumi.set(__self__, "volume_type", volume_type)
+
+    @property
+    @pulumi.getter(name="backupSameRegion")
+    def backup_same_region(self) -> bool:
+        return pulumi.get(self, "backup_same_region")
 
     @property
     @pulumi.getter(name="backupScheduleFrequency")
@@ -225,6 +233,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
         if False:
             yield self
         return GetDatabaseInstanceResult(
+            backup_same_region=self.backup_same_region,
             backup_schedule_frequency=self.backup_schedule_frequency,
             backup_schedule_retention=self.backup_schedule_retention,
             certificate=self.certificate,
@@ -255,22 +264,7 @@ def get_database_instance(instance_id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
-    Gets information about a RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str instance_id: The RDB instance ID.
-           Only one of `name` and `instance_id` should be specified.
-    :param str name: The name of the RDB instance.
-           Only one of `name` and `instance_id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -284,6 +278,7 @@ def get_database_instance(instance_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult).value
 
     return AwaitableGetDatabaseInstanceResult(
+        backup_same_region=__ret__.backup_same_region,
         backup_schedule_frequency=__ret__.backup_schedule_frequency,
         backup_schedule_retention=__ret__.backup_schedule_retention,
         certificate=__ret__.certificate,
@@ -315,21 +310,6 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
-    Gets information about a RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str instance_id: The RDB instance ID.
-           Only one of `name` and `instance_id` should be specified.
-    :param str name: The name of the RDB instance.
-           Only one of `name` and `instance_id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     ...

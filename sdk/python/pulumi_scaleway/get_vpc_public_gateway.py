@@ -146,21 +146,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
                            public_gateway_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayResult:
     """
-    Gets information about a public gateway.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
-    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
-    ```
-
-
-    :param str name: Exact name of the public gateway.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -193,20 +179,6 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
-    Gets information about a public gateway.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
-    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
-    ```
-
-
-    :param str name: Exact name of the public gateway.
+    Use this data source to access information about an existing resource.
     """
     ...

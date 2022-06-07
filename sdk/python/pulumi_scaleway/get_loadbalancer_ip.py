@@ -70,17 +70,11 @@ class GetLoadbalancerIpResult:
     @property
     @pulumi.getter(name="lbId")
     def lb_id(self) -> str:
-        """
-        The associated load-balance ID if any
-        """
         return pulumi.get(self, "lb_id")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        (Defaults to provider `organization_id`) The ID of the organization the LB IP is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -96,9 +90,6 @@ class GetLoadbalancerIpResult:
     @property
     @pulumi.getter
     def reverse(self) -> str:
-        """
-        The reverse domain associated with this IP.
-        """
         return pulumi.get(self, "reverse")
 
     @property
@@ -128,22 +119,7 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
                         ip_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerIpResult:
     """
-    Gets information about a Load Balancer IP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_loadbalancer_ip(ip_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str ip_address: The IP address.
-           Only one of `ip_address` and `lb_id` should be specified.
-    :param str ip_id: The IP ID.
-           Only one of `ip_address` and `ip_id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['ipAddress'] = ip_address
@@ -173,21 +149,6 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
                                ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
     """
-    Gets information about a Load Balancer IP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_loadbalancer_ip(ip_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str ip_address: The IP address.
-           Only one of `ip_address` and `lb_id` should be specified.
-    :param str ip_id: The IP ID.
-           Only one of `ip_address` and `ip_id` should be specified.
+    Use this data source to access information about an existing resource.
     """
     ...

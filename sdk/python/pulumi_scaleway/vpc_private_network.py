@@ -19,10 +19,10 @@ class VpcPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPrivateNetwork resource.
-        :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
+        :param pulumi.Input[str] name: The name of the private network
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with private network
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -37,7 +37,7 @@ class VpcPrivateNetworkArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the private network. If not provided it will be randomly generated.
+        The name of the private network
         """
         return pulumi.get(self, "name")
 
@@ -49,7 +49,7 @@ class VpcPrivateNetworkArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the private network is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -61,7 +61,7 @@ class VpcPrivateNetworkArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the private network.
+        The tags associated with private network
         """
         return pulumi.get(self, "tags")
 
@@ -73,7 +73,7 @@ class VpcPrivateNetworkArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the private network should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -95,12 +95,12 @@ class _VpcPrivateNetworkState:
         """
         Input properties used for looking up and filtering VpcPrivateNetwork resources.
         :param pulumi.Input[str] created_at: The date and time of the creation of the private network
-        :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the private network is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
+        :param pulumi.Input[str] name: The name of the private network
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with private network
         :param pulumi.Input[str] updated_at: The date and time of the last update of the private network
-        :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -133,7 +133,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the private network. If not provided it will be randomly generated.
+        The name of the private network
         """
         return pulumi.get(self, "name")
 
@@ -145,7 +145,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the private network is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -157,7 +157,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the private network is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -169,7 +169,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the private network.
+        The tags associated with private network
         """
         return pulumi.get(self, "tags")
 
@@ -193,7 +193,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the private network should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -213,35 +213,13 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway VPC Private Networks.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        pn_priv = scaleway.VpcPrivateNetwork("pnPriv", tags=[
-            "demo",
-            "terraform",
-        ])
-        ```
-
-        ## Import
-
-        Private networks can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPrivateNetwork resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
+        :param pulumi.Input[str] name: The name of the private network
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with private network
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
     @overload
@@ -250,29 +228,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                  args: Optional[VpcPrivateNetworkArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway VPC Private Networks.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
-
-        ## Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        pn_priv = scaleway.VpcPrivateNetwork("pnPriv", tags=[
-            "demo",
-            "terraform",
-        ])
-        ```
-
-        ## Import
-
-        Private networks can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a VpcPrivateNetwork resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param VpcPrivateNetworkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -338,12 +294,12 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The date and time of the creation of the private network
-        :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the private network is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
+        :param pulumi.Input[str] name: The name of the private network
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with private network
         :param pulumi.Input[str] updated_at: The date and time of the last update of the private network
-        :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -370,7 +326,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the private network. If not provided it will be randomly generated.
+        The name of the private network
         """
         return pulumi.get(self, "name")
 
@@ -378,7 +334,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the private network is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -386,7 +342,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the private network is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -394,7 +350,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the private network.
+        The tags associated with private network
         """
         return pulumi.get(self, "tags")
 
@@ -410,7 +366,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the private network should be created.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 

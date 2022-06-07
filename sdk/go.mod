@@ -1,6 +1,6 @@
 module github.com/jaxxstorm/pulumi-scaleway/sdk
 
-go 1.17
+go 1.18
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
@@ -54,4 +54,9 @@ require (
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 	sourcegraph.com/sourcegraph/appdash v0.0.0-20190731080439-ebfcffb1b5c0 // indirect
+)
+
+replace (
+	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211230170131-3a7c83bfab87
+
 )

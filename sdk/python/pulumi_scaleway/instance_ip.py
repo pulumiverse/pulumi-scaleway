@@ -14,14 +14,18 @@ __all__ = ['InstanceIpArgs', 'InstanceIp']
 class InstanceIpArgs:
     def __init__(__self__, *,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceIp resource.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the ip
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -29,7 +33,7 @@ class InstanceIpArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -39,9 +43,21 @@ class InstanceIpArgs:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the ip
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the IP should be reserved.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -58,15 +74,17 @@ class _InstanceIpState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceIp resources.
-        :param pulumi.Input[str] address: The IP address.
-        :param pulumi.Input[str] organization_id: The organization ID the IP is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
-        :param pulumi.Input[str] reverse: The reverse dns attached to this IP
+        :param pulumi.Input[str] address: The IP address
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] reverse: The reverse DNS for this IP
         :param pulumi.Input[str] server_id: The server associated with this IP
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the ip
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -78,6 +96,8 @@ class _InstanceIpState:
             pulumi.set(__self__, "reverse", reverse)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -85,7 +105,7 @@ class _InstanceIpState:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP address.
+        The IP address
         """
         return pulumi.get(self, "address")
 
@@ -97,7 +117,7 @@ class _InstanceIpState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the IP is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -109,7 +129,7 @@ class _InstanceIpState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -121,7 +141,7 @@ class _InstanceIpState:
     @pulumi.getter
     def reverse(self) -> Optional[pulumi.Input[str]]:
         """
-        The reverse dns attached to this IP
+        The reverse DNS for this IP
         """
         return pulumi.get(self, "reverse")
 
@@ -143,9 +163,21 @@ class _InstanceIpState:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the ip
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the IP should be reserved.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
@@ -160,32 +192,16 @@ class InstanceIp(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        server_ip = scaleway.InstanceIp("serverIp")
-        ```
-
-        ## Import
-
-        IPs can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a InstanceIp resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the ip
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         ...
     @overload
@@ -194,25 +210,7 @@ class InstanceIp(pulumi.CustomResource):
                  args: Optional[InstanceIpArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        server_ip = scaleway.InstanceIp("serverIp")
-        ```
-
-        ## Import
-
-        IPs can be imported using the `{zone}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a InstanceIp resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param InstanceIpArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -229,6 +227,7 @@ class InstanceIp(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -245,6 +244,7 @@ class InstanceIp(pulumi.CustomResource):
             __props__ = InstanceIpArgs.__new__(InstanceIpArgs)
 
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["address"] = None
             __props__.__dict__["organization_id"] = None
@@ -265,6 +265,7 @@ class InstanceIp(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             reverse: Optional[pulumi.Input[str]] = None,
             server_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'InstanceIp':
         """
         Get an existing InstanceIp resource's state with the given name, id, and optional extra
@@ -273,12 +274,13 @@ class InstanceIp(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: The IP address.
-        :param pulumi.Input[str] organization_id: The organization ID the IP is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
-        :param pulumi.Input[str] reverse: The reverse dns attached to this IP
+        :param pulumi.Input[str] address: The IP address
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] reverse: The reverse DNS for this IP
         :param pulumi.Input[str] server_id: The server associated with this IP
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the ip
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -289,6 +291,7 @@ class InstanceIp(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reverse"] = reverse
         __props__.__dict__["server_id"] = server_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
         return InstanceIp(resource_name, opts=opts, __props__=__props__)
 
@@ -296,7 +299,7 @@ class InstanceIp(pulumi.CustomResource):
     @pulumi.getter
     def address(self) -> pulumi.Output[str]:
         """
-        The IP address.
+        The IP address
         """
         return pulumi.get(self, "address")
 
@@ -304,7 +307,7 @@ class InstanceIp(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the IP is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -312,7 +315,7 @@ class InstanceIp(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -320,7 +323,7 @@ class InstanceIp(pulumi.CustomResource):
     @pulumi.getter
     def reverse(self) -> pulumi.Output[str]:
         """
-        The reverse dns attached to this IP
+        The reverse DNS for this IP
         """
         return pulumi.get(self, "reverse")
 
@@ -334,9 +337,17 @@ class InstanceIp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The tags associated with the ip
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the IP should be reserved.
+        The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 

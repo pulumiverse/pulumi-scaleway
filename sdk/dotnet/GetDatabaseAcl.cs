@@ -11,61 +11,9 @@ namespace Pulumi.Scaleway
 {
     public static class GetDatabaseAcl
     {
-        /// <summary>
-        /// Gets information about the RDB instance network Access Control List.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var myAcl = Output.Create(Scaleway.GetDatabaseAcl.InvokeAsync(new Scaleway.GetDatabaseAclArgs
-        ///         {
-        ///             InstanceId = "fr-par/11111111-1111-1111-1111-111111111111",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetDatabaseAclResult> InvokeAsync(GetDatabaseAclArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about the RDB instance network Access Control List.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var myAcl = Output.Create(Scaleway.GetDatabaseAcl.InvokeAsync(new Scaleway.GetDatabaseAclArgs
-        ///         {
-        ///             InstanceId = "fr-par/11111111-1111-1111-1111-111111111111",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetDatabaseAclResult> Invoke(GetDatabaseAclInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclInvokeArgs(), options.WithDefaults());
     }
@@ -73,9 +21,6 @@ namespace Pulumi.Scaleway
 
     public sealed class GetDatabaseAclArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The RDB instance ID.
-        /// </summary>
         [Input("instanceId", required: true)]
         public string InstanceId { get; set; } = null!;
 
@@ -86,9 +31,6 @@ namespace Pulumi.Scaleway
 
     public sealed class GetDatabaseAclInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The RDB instance ID.
-        /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
@@ -101,9 +43,6 @@ namespace Pulumi.Scaleway
     [OutputType]
     public sealed class GetDatabaseAclResult
     {
-        /// <summary>
-        /// A list of ACLs (structure is described below)
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseAclAclRuleResult> AclRules;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

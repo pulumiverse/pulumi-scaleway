@@ -57,6 +57,10 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * The state of the server
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
+    /**
      * Type of the server
      */
     public readonly type!: pulumi.Output<string>;
@@ -92,6 +96,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["vncUrl"] = state ? state.vncUrl : undefined;
@@ -109,6 +114,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
             resourceInputs["deletableAt"] = undefined /*out*/;
             resourceInputs["ip"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["vncUrl"] = undefined /*out*/;
         }
@@ -145,6 +151,10 @@ export interface AppleSliconValleyServerState {
      * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * The state of the server
+     */
+    state?: pulumi.Input<string>;
     /**
      * Type of the server
      */

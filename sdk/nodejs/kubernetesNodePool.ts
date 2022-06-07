@@ -5,42 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway Kubernetes cluster pools. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
- *
- * ## Examples
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
- *
- * const jack = new scaleway.KubernetesCluster("jack", {
- *     version: "1.19.4",
- *     cni: "cilium",
- * });
- * const bill = new scaleway.KubernetesNodePool("bill", {
- *     clusterId: jack.id,
- *     nodeType: "DEV1-M",
- *     size: 3,
- *     minSize: 0,
- *     maxSize: 10,
- *     autoscaling: true,
- *     autohealing: true,
- *     containerRuntime: "containerd",
- *     placementGroupId: "1267e3fd-a51c-49ed-ad12-857092ee3a3d",
- * });
- * ```
- *
- * ## Import
- *
- * Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class KubernetesNodePool extends pulumi.CustomResource {
     /**
      * Get an existing KubernetesNodePool resource's state with the given name, ID, and optional extra
@@ -70,25 +34,23 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     }
 
     /**
-     * Enables the autohealing feature for this pool.
+     * Enable the autohealing on the pool
      */
     public readonly autohealing!: pulumi.Output<boolean | undefined>;
     /**
-     * Enables the autoscaling feature for this pool.
-     * > **Important:** When enabled, an update of the `size` will not be taken into account.
+     * Enable the autoscaling on the pool
      */
     public readonly autoscaling!: pulumi.Output<boolean | undefined>;
     /**
-     * The ID of the Kubernetes cluster on which this pool will be created.
+     * The ID of the cluster on which this pool will be created
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * The container runtime of the pool.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * Container runtime for the pool
      */
     public readonly containerRuntime!: pulumi.Output<string | undefined>;
     /**
-     * The creation date of the pool.
+     * The date and time of the creation of the pool
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -100,52 +62,44 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly kubeletArgs!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The maximum size of the pool, used by the autoscaling feature.
+     * Maximum size of the pool
      */
     public readonly maxSize!: pulumi.Output<number>;
     /**
-     * The minimum size of the pool, used by the autoscaling feature.
+     * Minimun size of the pool
      */
     public readonly minSize!: pulumi.Output<number | undefined>;
     /**
-     * The name for the pool.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The name of the cluster
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The commercial type of the pool instances.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * Server type of the pool servers
      */
     public readonly nodeType!: pulumi.Output<string>;
-    /**
-     * (List of) The nodes in the default pool.
-     */
     public /*out*/ readonly nodes!: pulumi.Output<outputs.KubernetesNodePoolNode[]>;
     /**
-     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * ID of the placement group
      */
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
     /**
-     * `region`) The region in which the pool should be created.
+     * The region you want to attach the resource to
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The size of the pool.
-     * > **Important:** This field will only be used at creation if autoscaling is enabled.
+     * Size of the pool
      */
     public readonly size!: pulumi.Output<number>;
     /**
-     * The status of the node.
+     * The status of the pool
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The tags associated with the pool.
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+     * The tags associated with the pool
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The last update date of the pool.
+     * The date and time of the last update of the pool
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -153,16 +107,15 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly upgradePolicy!: pulumi.Output<outputs.KubernetesNodePoolUpgradePolicy>;
     /**
-     * The version of the pool.
+     * The Kubernetes version of the pool
      */
     public /*out*/ readonly version!: pulumi.Output<string>;
     /**
-     * Whether to wait for the pool to be ready.
+     * Whether to wait for the pool to be ready
      */
     public readonly waitForPoolReady!: pulumi.Output<boolean | undefined>;
     /**
-     * `zone`) The zone in which the pool should be created.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The zone you want to attach the resource to
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -245,25 +198,23 @@ export class KubernetesNodePool extends pulumi.CustomResource {
  */
 export interface KubernetesNodePoolState {
     /**
-     * Enables the autohealing feature for this pool.
+     * Enable the autohealing on the pool
      */
     autohealing?: pulumi.Input<boolean>;
     /**
-     * Enables the autoscaling feature for this pool.
-     * > **Important:** When enabled, an update of the `size` will not be taken into account.
+     * Enable the autoscaling on the pool
      */
     autoscaling?: pulumi.Input<boolean>;
     /**
-     * The ID of the Kubernetes cluster on which this pool will be created.
+     * The ID of the cluster on which this pool will be created
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * The container runtime of the pool.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * Container runtime for the pool
      */
     containerRuntime?: pulumi.Input<string>;
     /**
-     * The creation date of the pool.
+     * The date and time of the creation of the pool
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -275,52 +226,44 @@ export interface KubernetesNodePoolState {
      */
     kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The maximum size of the pool, used by the autoscaling feature.
+     * Maximum size of the pool
      */
     maxSize?: pulumi.Input<number>;
     /**
-     * The minimum size of the pool, used by the autoscaling feature.
+     * Minimun size of the pool
      */
     minSize?: pulumi.Input<number>;
     /**
-     * The name for the pool.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The name of the cluster
      */
     name?: pulumi.Input<string>;
     /**
-     * The commercial type of the pool instances.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * Server type of the pool servers
      */
     nodeType?: pulumi.Input<string>;
-    /**
-     * (List of) The nodes in the default pool.
-     */
     nodes?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolNode>[]>;
     /**
-     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * ID of the placement group
      */
     placementGroupId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the pool should be created.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The size of the pool.
-     * > **Important:** This field will only be used at creation if autoscaling is enabled.
+     * Size of the pool
      */
     size?: pulumi.Input<number>;
     /**
-     * The status of the node.
+     * The status of the pool
      */
     status?: pulumi.Input<string>;
     /**
-     * The tags associated with the pool.
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+     * The tags associated with the pool
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The last update date of the pool.
+     * The date and time of the last update of the pool
      */
     updatedAt?: pulumi.Input<string>;
     /**
@@ -328,16 +271,15 @@ export interface KubernetesNodePoolState {
      */
     upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy>;
     /**
-     * The version of the pool.
+     * The Kubernetes version of the pool
      */
     version?: pulumi.Input<string>;
     /**
-     * Whether to wait for the pool to be ready.
+     * Whether to wait for the pool to be ready
      */
     waitForPoolReady?: pulumi.Input<boolean>;
     /**
-     * `zone`) The zone in which the pool should be created.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }
@@ -347,21 +289,19 @@ export interface KubernetesNodePoolState {
  */
 export interface KubernetesNodePoolArgs {
     /**
-     * Enables the autohealing feature for this pool.
+     * Enable the autohealing on the pool
      */
     autohealing?: pulumi.Input<boolean>;
     /**
-     * Enables the autoscaling feature for this pool.
-     * > **Important:** When enabled, an update of the `size` will not be taken into account.
+     * Enable the autoscaling on the pool
      */
     autoscaling?: pulumi.Input<boolean>;
     /**
-     * The ID of the Kubernetes cluster on which this pool will be created.
+     * The ID of the cluster on which this pool will be created
      */
     clusterId: pulumi.Input<string>;
     /**
-     * The container runtime of the pool.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * Container runtime for the pool
      */
     containerRuntime?: pulumi.Input<string>;
     /**
@@ -369,40 +309,35 @@ export interface KubernetesNodePoolArgs {
      */
     kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The maximum size of the pool, used by the autoscaling feature.
+     * Maximum size of the pool
      */
     maxSize?: pulumi.Input<number>;
     /**
-     * The minimum size of the pool, used by the autoscaling feature.
+     * Minimun size of the pool
      */
     minSize?: pulumi.Input<number>;
     /**
-     * The name for the pool.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The name of the cluster
      */
     name?: pulumi.Input<string>;
     /**
-     * The commercial type of the pool instances.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * Server type of the pool servers
      */
     nodeType: pulumi.Input<string>;
     /**
-     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * ID of the placement group
      */
     placementGroupId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the pool should be created.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The size of the pool.
-     * > **Important:** This field will only be used at creation if autoscaling is enabled.
+     * Size of the pool
      */
     size: pulumi.Input<number>;
     /**
-     * The tags associated with the pool.
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+     * The tags associated with the pool
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -410,12 +345,11 @@ export interface KubernetesNodePoolArgs {
      */
     upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy>;
     /**
-     * Whether to wait for the pool to be ready.
+     * Whether to wait for the pool to be ready
      */
     waitForPoolReady?: pulumi.Input<boolean>;
     /**
-     * `zone`) The zone in which the pool should be created.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The zone you want to attach the resource to
      */
     zone?: pulumi.Input<string>;
 }

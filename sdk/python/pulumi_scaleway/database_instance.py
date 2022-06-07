@@ -17,6 +17,7 @@ class DatabaseInstanceArgs:
     def __init__(__self__, *,
                  engine: pulumi.Input[str],
                  node_type: pulumi.Input[str],
+                 backup_same_region: Optional[pulumi.Input[bool]] = None,
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
@@ -33,25 +34,28 @@ class DatabaseInstanceArgs:
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DatabaseInstance resource.
-        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
-        :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] engine: Database's engine version id
+        :param pulumi.Input[str] node_type: The type of database instance you want to create
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
+        :param pulumi.Input[str] name: Name of the database instance
+        :param pulumi.Input[str] password: Password for the first user of the database instance
+        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private network to expose your database instance
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored
         """
         pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "node_type", node_type)
+        if backup_same_region is not None:
+            pulumi.set(__self__, "backup_same_region", backup_same_region)
         if backup_schedule_frequency is not None:
             pulumi.set(__self__, "backup_schedule_frequency", backup_schedule_frequency)
         if backup_schedule_retention is not None:
@@ -85,7 +89,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def engine(self) -> pulumi.Input[str]:
         """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
+        Database's engine version id
         """
         return pulumi.get(self, "engine")
 
@@ -97,7 +101,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Input[str]:
         """
-        The type of database instance you want to create (e.g. `db-dev-s`).
+        The type of database instance you want to create
         """
         return pulumi.get(self, "node_type")
 
@@ -106,10 +110,22 @@ class DatabaseInstanceArgs:
         pulumi.set(self, "node_type", value)
 
     @property
+    @pulumi.getter(name="backupSameRegion")
+    def backup_same_region(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean to store logical backups in the same region as the database instance
+        """
+        return pulumi.get(self, "backup_same_region")
+
+    @backup_same_region.setter
+    def backup_same_region(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backup_same_region", value)
+
+    @property
     @pulumi.getter(name="backupScheduleFrequency")
     def backup_schedule_frequency(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule frequency in hours.
+        Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
@@ -121,7 +137,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="backupScheduleRetention")
     def backup_schedule_retention(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule retention in days.
+        Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
@@ -133,7 +149,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable automated backup for the database instance.
+        Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
@@ -145,7 +161,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable high availability for the database instance.
+        Enable or disable high availability for the database instance
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -157,7 +173,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the Database Instance.
+        Name of the database instance
         """
         return pulumi.get(self, "name")
 
@@ -169,7 +185,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the first user of the database instance.
+        Password for the first user of the database instance
         """
         return pulumi.get(self, "password")
 
@@ -181,7 +197,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['DatabaseInstancePrivateNetworkArgs']]:
         """
-        List of private networks endpoints of the database instance.
+        List of private network to expose your database instance
         """
         return pulumi.get(self, "private_network")
 
@@ -193,7 +209,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the Database Instance is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -205,7 +221,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database Instance should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -229,7 +245,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the Database Instance.
+        List of tags ["tag1", "tag2", ...] attached to a database instance
         """
         return pulumi.get(self, "tags")
 
@@ -241,7 +257,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Identifier for the first user of the database instance.
+        Identifier for the first user of the database instance
         """
         return pulumi.get(self, "user_name")
 
@@ -253,7 +269,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        Volume size (in GB) when volume_type is not lssd
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -265,7 +281,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd` or `lssd`).
+        Type of volume where data are stored
         """
         return pulumi.get(self, "volume_type")
 
@@ -277,6 +293,7 @@ class DatabaseInstanceArgs:
 @pulumi.input_type
 class _DatabaseInstanceState:
     def __init__(__self__, *,
+                 backup_same_region: Optional[pulumi.Input[bool]] = None,
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
@@ -301,29 +318,32 @@ class _DatabaseInstanceState:
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DatabaseInstance resources.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
-        :param pulumi.Input[str] certificate: Certificate of the database instance.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
-        :param pulumi.Input[str] endpoint_ip: The IP of the Database Instance.
-        :param pulumi.Input[int] endpoint_port: The port of the Database Instance.
-        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
-        :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
-        :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]] read_replicas: List of read replicas of the database instance.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[str] certificate: Certificate of the database instance
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[str] endpoint_ip: Endpoint IP of the database instance
+        :param pulumi.Input[int] endpoint_port: Endpoint port of the database instance
+        :param pulumi.Input[str] engine: Database's engine version id
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: Load balancer of the database instance
+        :param pulumi.Input[str] name: Name of the database instance
+        :param pulumi.Input[str] node_type: The type of database instance you want to create
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] password: Password for the first user of the database instance
+        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private network to expose your database instance
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]] read_replicas: Read replicas of the database instance
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored
         """
+        if backup_same_region is not None:
+            pulumi.set(__self__, "backup_same_region", backup_same_region)
         if backup_schedule_frequency is not None:
             pulumi.set(__self__, "backup_schedule_frequency", backup_schedule_frequency)
         if backup_schedule_retention is not None:
@@ -332,6 +352,9 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "certificate", certificate)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if endpoint_ip is not None:
+            warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
+            pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
         if endpoint_ip is not None:
             pulumi.set(__self__, "endpoint_ip", endpoint_ip)
         if endpoint_port is not None:
@@ -370,10 +393,22 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "volume_type", volume_type)
 
     @property
+    @pulumi.getter(name="backupSameRegion")
+    def backup_same_region(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean to store logical backups in the same region as the database instance
+        """
+        return pulumi.get(self, "backup_same_region")
+
+    @backup_same_region.setter
+    def backup_same_region(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backup_same_region", value)
+
+    @property
     @pulumi.getter(name="backupScheduleFrequency")
     def backup_schedule_frequency(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule frequency in hours.
+        Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
@@ -385,7 +420,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="backupScheduleRetention")
     def backup_schedule_retention(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule retention in days.
+        Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
@@ -397,7 +432,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        Certificate of the database instance.
+        Certificate of the database instance
         """
         return pulumi.get(self, "certificate")
 
@@ -409,7 +444,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable automated backup for the database instance.
+        Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
@@ -421,7 +456,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="endpointIp")
     def endpoint_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP of the Database Instance.
+        Endpoint IP of the database instance
         """
         return pulumi.get(self, "endpoint_ip")
 
@@ -433,7 +468,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="endpointPort")
     def endpoint_port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port of the Database Instance.
+        Endpoint port of the database instance
         """
         return pulumi.get(self, "endpoint_port")
 
@@ -445,7 +480,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[str]]:
         """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
+        Database's engine version id
         """
         return pulumi.get(self, "engine")
 
@@ -457,7 +492,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable high availability for the database instance.
+        Enable or disable high availability for the database instance
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -469,7 +504,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]:
         """
-        List of load balancer endpoints of the database instance.
+        Load balancer of the database instance
         """
         return pulumi.get(self, "load_balancers")
 
@@ -481,7 +516,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the Database Instance.
+        Name of the database instance
         """
         return pulumi.get(self, "name")
 
@@ -493,7 +528,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of database instance you want to create (e.g. `db-dev-s`).
+        The type of database instance you want to create
         """
         return pulumi.get(self, "node_type")
 
@@ -505,7 +540,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the Database Instance is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -517,7 +552,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the first user of the database instance.
+        Password for the first user of the database instance
         """
         return pulumi.get(self, "password")
 
@@ -529,7 +564,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['DatabaseInstancePrivateNetworkArgs']]:
         """
-        List of private networks endpoints of the database instance.
+        List of private network to expose your database instance
         """
         return pulumi.get(self, "private_network")
 
@@ -541,7 +576,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the Database Instance is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -553,7 +588,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="readReplicas")
     def read_replicas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]]]:
         """
-        List of read replicas of the database instance.
+        Read replicas of the database instance
         """
         return pulumi.get(self, "read_replicas")
 
@@ -565,7 +600,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database Instance should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -589,7 +624,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the Database Instance.
+        List of tags ["tag1", "tag2", ...] attached to a database instance
         """
         return pulumi.get(self, "tags")
 
@@ -601,7 +636,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Identifier for the first user of the database instance.
+        Identifier for the first user of the database instance
         """
         return pulumi.get(self, "user_name")
 
@@ -613,7 +648,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        Volume size (in GB) when volume_type is not lssd
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -625,7 +660,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd` or `lssd`).
+        Type of volume where data are stored
         """
         return pulumi.get(self, "volume_type")
 
@@ -639,6 +674,7 @@ class DatabaseInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup_same_region: Optional[pulumi.Input[bool]] = None,
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
@@ -657,117 +693,26 @@ class DatabaseInstance(pulumi.CustomResource):
                  volume_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-
-        ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-11",
-            is_ha_cluster=True,
-            disable_backup=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret")
-        # with backup schedule
-        main_index_database_instance_database_instance = scaleway.DatabaseInstance("mainIndex/databaseInstanceDatabaseInstance",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-11",
-            is_ha_cluster=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            disable_backup=True,
-            backup_schedule_frequency=24,
-            backup_schedule_retention=7)
-        # keep it one week
-        # with private network and dhcp configuration
-        pn02 = scaleway.VpcPrivateNetwork("pn02")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
-            type="VPC-GW-S",
-            ip_id=main_vpc_public_gateway_ip.id)
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
-            gateway_id=main_vpc_public_gateway.id,
-            private_network_id=pn02.id,
-            dhcp_id=main_vpc_public_gateway_dhcp.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_vpc_public_gateway_ip,
-                    pn02,
-                ]))
-        main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule",
-            gateway_id=main_vpc_public_gateway.id,
-            private_ip=main_vpc_public_gateway_dhcp.address,
-            private_port=main_database_instance.private_network.port,
-            public_port=42,
-            protocol="both",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_vpc_gateway_network,
-                    pn02,
-                ]))
-        main_scaleway_index_database_instance_database_instance = scaleway.DatabaseInstance("mainScalewayIndex/databaseInstanceDatabaseInstance",
-            node_type="db-dev-s",
-            engine="PostgreSQL-11",
-            is_ha_cluster=False,
-            disable_backup=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            region="fr-par",
-            tags=[
-                "terraform-test",
-                "scaleway_rdb_instance",
-                "volume",
-                "rdb_pn",
-            ],
-            volume_type="bssd",
-            volume_size_in_gb=10,
-            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-                ip_net="192.168.1.254/24",
-                pn_id=pn02.id,
-            ))
-        ```
-
-        ## Private Network
-
-        > **Important:** Updates to `private_network` will recreate the attachment Instance.
-
-        - `ip_net` - (Required) The IP network where to con.
-        - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
-
-        ## Import
-
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a DatabaseInstance resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
-        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
-        :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[str] engine: Database's engine version id
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
+        :param pulumi.Input[str] name: Name of the database instance
+        :param pulumi.Input[str] node_type: The type of database instance you want to create
+        :param pulumi.Input[str] password: Password for the first user of the database instance
+        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of private network to expose your database instance
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored
         """
         ...
     @overload
@@ -776,99 +721,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  args: DatabaseInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-
-        ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-11",
-            is_ha_cluster=True,
-            disable_backup=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret")
-        # with backup schedule
-        main_index_database_instance_database_instance = scaleway.DatabaseInstance("mainIndex/databaseInstanceDatabaseInstance",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-11",
-            is_ha_cluster=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            disable_backup=True,
-            backup_schedule_frequency=24,
-            backup_schedule_retention=7)
-        # keep it one week
-        # with private network and dhcp configuration
-        pn02 = scaleway.VpcPrivateNetwork("pn02")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
-            type="VPC-GW-S",
-            ip_id=main_vpc_public_gateway_ip.id)
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
-            gateway_id=main_vpc_public_gateway.id,
-            private_network_id=pn02.id,
-            dhcp_id=main_vpc_public_gateway_dhcp.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_vpc_public_gateway_ip,
-                    pn02,
-                ]))
-        main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule",
-            gateway_id=main_vpc_public_gateway.id,
-            private_ip=main_vpc_public_gateway_dhcp.address,
-            private_port=main_database_instance.private_network.port,
-            public_port=42,
-            protocol="both",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_vpc_gateway_network,
-                    pn02,
-                ]))
-        main_scaleway_index_database_instance_database_instance = scaleway.DatabaseInstance("mainScalewayIndex/databaseInstanceDatabaseInstance",
-            node_type="db-dev-s",
-            engine="PostgreSQL-11",
-            is_ha_cluster=False,
-            disable_backup=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            region="fr-par",
-            tags=[
-                "terraform-test",
-                "scaleway_rdb_instance",
-                "volume",
-                "rdb_pn",
-            ],
-            volume_type="bssd",
-            volume_size_in_gb=10,
-            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-                ip_net="192.168.1.254/24",
-                pn_id=pn02.id,
-            ))
-        ```
-
-        ## Private Network
-
-        > **Important:** Updates to `private_network` will recreate the attachment Instance.
-
-        - `ip_net` - (Required) The IP network where to con.
-        - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
-
-        ## Import
-
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a DatabaseInstance resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DatabaseInstanceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -884,6 +737,7 @@ class DatabaseInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup_same_region: Optional[pulumi.Input[bool]] = None,
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
@@ -914,6 +768,7 @@ class DatabaseInstance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DatabaseInstanceArgs.__new__(DatabaseInstanceArgs)
 
+            __props__.__dict__["backup_same_region"] = backup_same_region
             __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
             __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
             __props__.__dict__["disable_backup"] = disable_backup
@@ -950,6 +805,7 @@ class DatabaseInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            backup_same_region: Optional[pulumi.Input[bool]] = None,
             backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
             backup_schedule_retention: Optional[pulumi.Input[int]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
@@ -979,33 +835,35 @@ class DatabaseInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
-        :param pulumi.Input[str] certificate: Certificate of the database instance.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
-        :param pulumi.Input[str] endpoint_ip: The IP of the Database Instance.
-        :param pulumi.Input[int] endpoint_port: The port of the Database Instance.
-        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
-        :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
-        :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the database instance.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[str] certificate: Certificate of the database instance
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[str] endpoint_ip: Endpoint IP of the database instance
+        :param pulumi.Input[int] endpoint_port: Endpoint port of the database instance
+        :param pulumi.Input[str] engine: Database's engine version id
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: Load balancer of the database instance
+        :param pulumi.Input[str] name: Name of the database instance
+        :param pulumi.Input[str] node_type: The type of database instance you want to create
+        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] password: Password for the first user of the database instance
+        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of private network to expose your database instance
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceReadReplicaArgs']]]] read_replicas: Read replicas of the database instance
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _DatabaseInstanceState.__new__(_DatabaseInstanceState)
 
+        __props__.__dict__["backup_same_region"] = backup_same_region
         __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
         __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
         __props__.__dict__["certificate"] = certificate
@@ -1031,10 +889,18 @@ class DatabaseInstance(pulumi.CustomResource):
         return DatabaseInstance(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="backupSameRegion")
+    def backup_same_region(self) -> pulumi.Output[bool]:
+        """
+        Boolean to store logical backups in the same region as the database instance
+        """
+        return pulumi.get(self, "backup_same_region")
+
+    @property
     @pulumi.getter(name="backupScheduleFrequency")
     def backup_schedule_frequency(self) -> pulumi.Output[int]:
         """
-        Backup schedule frequency in hours.
+        Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
@@ -1042,7 +908,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="backupScheduleRetention")
     def backup_schedule_retention(self) -> pulumi.Output[int]:
         """
-        Backup schedule retention in days.
+        Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
@@ -1050,7 +916,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        Certificate of the database instance.
+        Certificate of the database instance
         """
         return pulumi.get(self, "certificate")
 
@@ -1058,7 +924,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disable automated backup for the database instance.
+        Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
@@ -1066,7 +932,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="endpointIp")
     def endpoint_ip(self) -> pulumi.Output[str]:
         """
-        The IP of the Database Instance.
+        Endpoint IP of the database instance
         """
         return pulumi.get(self, "endpoint_ip")
 
@@ -1074,7 +940,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="endpointPort")
     def endpoint_port(self) -> pulumi.Output[int]:
         """
-        The port of the Database Instance.
+        Endpoint port of the database instance
         """
         return pulumi.get(self, "endpoint_port")
 
@@ -1082,7 +948,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def engine(self) -> pulumi.Output[str]:
         """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
+        Database's engine version id
         """
         return pulumi.get(self, "engine")
 
@@ -1090,7 +956,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable or disable high availability for the database instance.
+        Enable or disable high availability for the database instance
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -1098,7 +964,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> pulumi.Output[Sequence['outputs.DatabaseInstanceLoadBalancer']]:
         """
-        List of load balancer endpoints of the database instance.
+        Load balancer of the database instance
         """
         return pulumi.get(self, "load_balancers")
 
@@ -1106,7 +972,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the Database Instance.
+        Name of the database instance
         """
         return pulumi.get(self, "name")
 
@@ -1114,7 +980,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Output[str]:
         """
-        The type of database instance you want to create (e.g. `db-dev-s`).
+        The type of database instance you want to create
         """
         return pulumi.get(self, "node_type")
 
@@ -1122,7 +988,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the Database Instance is associated with.
+        The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
@@ -1130,7 +996,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[str]]:
         """
-        Password for the first user of the database instance.
+        Password for the first user of the database instance
         """
         return pulumi.get(self, "password")
 
@@ -1138,7 +1004,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Output[Optional['outputs.DatabaseInstancePrivateNetwork']]:
         """
-        List of private networks endpoints of the database instance.
+        List of private network to expose your database instance
         """
         return pulumi.get(self, "private_network")
 
@@ -1146,7 +1012,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the Database Instance is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -1154,7 +1020,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="readReplicas")
     def read_replicas(self) -> pulumi.Output[Sequence['outputs.DatabaseInstanceReadReplica']]:
         """
-        List of read replicas of the database instance.
+        Read replicas of the database instance
         """
         return pulumi.get(self, "read_replicas")
 
@@ -1162,7 +1028,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the Database Instance should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -1178,7 +1044,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the Database Instance.
+        List of tags ["tag1", "tag2", ...] attached to a database instance
         """
         return pulumi.get(self, "tags")
 
@@ -1186,7 +1052,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Identifier for the first user of the database instance.
+        Identifier for the first user of the database instance
         """
         return pulumi.get(self, "user_name")
 
@@ -1194,7 +1060,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> pulumi.Output[int]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        Volume size (in GB) when volume_type is not lssd
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -1202,7 +1068,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Type of volume where data are stored (`bssd` or `lssd`).
+        Type of volume where data are stored
         """
         return pulumi.get(self, "volume_type")
 

@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a registry image.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * // Get info by image ID
- * const myImage = pulumi.output(scaleway.getRegistryImage({
- *     imageId: "11111111-1111-1111-1111-111111111111",
- *     namespaceId: "11111111-1111-1111-1111-111111111111", // Optional
- * }));
- * ```
- */
 export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
     args = args || {};
     if (!opts) {
@@ -41,31 +25,11 @@ export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getRegistryImage.
  */
 export interface GetRegistryImageArgs {
-    /**
-     * The image ID.
-     * Only one of `name` and `imageId` should be specified.
-     */
     imageId?: string;
-    /**
-     * The image name.
-     * Only one of `name` and `imageId` should be specified.
-     */
     name?: string;
-    /**
-     * The namespace ID in which the image is.
-     */
     namespaceId?: string;
-    /**
-     * `projectId`) The ID of the project the image is associated with.
-     */
     projectId?: string;
-    /**
-     * `region`) The region in which the image exists.
-     */
     region?: string;
-    /**
-     * The tags associated with the registry image
-     */
     tags?: string[];
 }
 
@@ -80,23 +44,11 @@ export interface GetRegistryImageResult {
     readonly imageId?: string;
     readonly name?: string;
     readonly namespaceId: string;
-    /**
-     * The organization ID the image is associated with.
-     */
     readonly organizationId: string;
     readonly projectId: string;
     readonly region: string;
-    /**
-     * The size of the registry image.
-     */
     readonly size: number;
-    /**
-     * The tags associated with the registry image
-     */
     readonly tags: string[];
-    /**
-     * The privacy policy of the registry image.
-     */
     readonly visibility: string;
 }
 
@@ -108,30 +60,10 @@ export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?:
  * A collection of arguments for invoking getRegistryImage.
  */
 export interface GetRegistryImageOutputArgs {
-    /**
-     * The image ID.
-     * Only one of `name` and `imageId` should be specified.
-     */
     imageId?: pulumi.Input<string>;
-    /**
-     * The image name.
-     * Only one of `name` and `imageId` should be specified.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The namespace ID in which the image is.
-     */
     namespaceId?: pulumi.Input<string>;
-    /**
-     * `projectId`) The ID of the project the image is associated with.
-     */
     projectId?: pulumi.Input<string>;
-    /**
-     * `region`) The region in which the image exists.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * The tags associated with the registry image
-     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

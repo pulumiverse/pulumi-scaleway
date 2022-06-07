@@ -14,10 +14,6 @@ namespace Pulumi.Scaleway.Inputs
     {
         [Input("matches", required: true)]
         private InputList<Inputs.DomainRecordGeoIpMatchArgs>? _matches;
-
-        /// <summary>
-        /// The list of matches. *(Can be more than 1)*
-        /// </summary>
         public InputList<Inputs.DomainRecordGeoIpMatchArgs> Matches
         {
             get => _matches ?? (_matches = new InputList<Inputs.DomainRecordGeoIpMatchArgs>());

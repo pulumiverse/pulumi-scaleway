@@ -9,38 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Instance Private NICs. For more information, see
-    /// [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
-    /// 
-    /// ## Example
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new Scaleway.InstancePrivateNicArgs
-    ///         {
-    ///             PrivateNetworkId = "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-    ///             ServerId = "fr-par-1/11111111-1111-1111-1111-111111111111",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic server_volume fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/instancePrivateNic:InstancePrivateNic")]
     public partial class InstancePrivateNic : Pulumi.CustomResource
     {
@@ -51,13 +19,13 @@ namespace Pulumi.Scaleway
         public Output<string> MacAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the private network attached to.
+        /// The private network ID
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the server associated with.
+        /// The server ID
         /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
@@ -116,13 +84,13 @@ namespace Pulumi.Scaleway
     public sealed class InstancePrivateNicArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the private network attached to.
+        /// The private network ID
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the server associated with.
+        /// The server ID
         /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
@@ -147,13 +115,13 @@ namespace Pulumi.Scaleway
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the private network attached to.
+        /// The private network ID
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The ID of the server associated with.
+        /// The server ID
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }

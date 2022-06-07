@@ -9,70 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway Database Users.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-    /// 
-    /// ## Examples
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Random = Pulumi.Random;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var dbPassword = new Random.RandomPassword("dbPassword", new Random.RandomPasswordArgs
-    ///         {
-    ///             Length = 16,
-    ///             Special = true,
-    ///         });
-    ///         var dbAdmin = new Scaleway.DatabaseUser("dbAdmin", new Scaleway.DatabaseUserArgs
-    ///         {
-    ///             InstanceId = scaleway_rdb_instance.Main.Id,
-    ///             Password = dbPassword.Result,
-    ///             IsAdmin = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/databaseUser:DatabaseUser")]
     public partial class DatabaseUser : Pulumi.CustomResource
     {
         /// <summary>
-        /// The instance on which to create the user.
+        /// Instance on which the user is created
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to the Database User.
+        /// Grant admin permissions to database user
         /// </summary>
         [Output("isAdmin")]
         public Output<bool?> IsAdmin { get; private set; } = null!;
 
         /// <summary>
-        /// Database User name.
+        /// Database user name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Database User password.
+        /// Database user password
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -131,25 +90,25 @@ namespace Pulumi.Scaleway
     public sealed class DatabaseUserArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance on which to create the user.
+        /// Instance on which the user is created
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to the Database User.
+        /// Grant admin permissions to database user
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database User name.
+        /// Database user name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Database User password.
+        /// Database user password
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
@@ -168,25 +127,25 @@ namespace Pulumi.Scaleway
     public sealed class DatabaseUserState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance on which to create the user.
+        /// Instance on which the user is created
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Grant admin permissions to the Database User.
+        /// Grant admin permissions to database user
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database User name.
+        /// Database user name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Database User password.
+        /// Database user password
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }

@@ -13,27 +13,12 @@ namespace Pulumi.Scaleway.Outputs
     [OutputType]
     public sealed class DatabaseInstancePrivateNetwork
     {
-        /// <summary>
-        /// The ID of the endpoint of the private network.
-        /// </summary>
         public readonly string? EndpointId;
-        /// <summary>
-        /// Name of the endpoint.
-        /// </summary>
         public readonly string? Hostname;
-        /// <summary>
-        /// IP of the endpoint.
-        /// </summary>
         public readonly string? Ip;
         public readonly string IpNet;
-        /// <summary>
-        /// The name of the Database Instance.
-        /// </summary>
         public readonly string? Name;
         public readonly string PnId;
-        /// <summary>
-        /// Port of the endpoint.
-        /// </summary>
         public readonly int? Port;
         public readonly string? Zone;
 

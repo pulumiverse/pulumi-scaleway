@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets local image ID of an image from its label name.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myImage = pulumi.output(scaleway.getMarketplaceImage({
- *     label: "ubuntu_focal",
- * }));
- * ```
- */
 export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetMarketplaceImageResult> {
     if (!opts) {
         opts = {}
@@ -35,19 +21,8 @@ export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi
  * A collection of arguments for invoking getMarketplaceImage.
  */
 export interface GetMarketplaceImageArgs {
-    /**
-     * The instance type the image is compatible with.
-     * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     */
     instanceType?: string;
-    /**
-     * Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
-     * to find the right `label`.
-     */
     label: string;
-    /**
-     * `zone`) The zone in which the image exists.
-     */
     zone?: string;
 }
 
@@ -72,18 +47,7 @@ export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, o
  * A collection of arguments for invoking getMarketplaceImage.
  */
 export interface GetMarketplaceImageOutputArgs {
-    /**
-     * The instance type the image is compatible with.
-     * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     */
     instanceType?: pulumi.Input<string>;
-    /**
-     * Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
-     * to find the right `label`.
-     */
     label: pulumi.Input<string>;
-    /**
-     * `zone`) The zone in which the image exists.
-     */
     zone?: pulumi.Input<string>;
 }

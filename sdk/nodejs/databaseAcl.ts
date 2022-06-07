@@ -5,35 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * Creates and manages Scaleway Database instance autorized IPs.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
- *
- * ## Examples
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@jaxxstorm/pulumi-scaleway";
- *
- * const main = new scaleway.DatabaseAcl("main", {
- *     instanceId: scaleway_rdb_instance.main.id,
- *     aclRules: [{
- *         ip: "1.2.3.4/32",
- *         description: "foo",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * Database Instance can be imported using the `{region}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class DatabaseAcl extends pulumi.CustomResource {
     /**
      * Get an existing DatabaseAcl resource's state with the given name, ID, and optional extra
@@ -63,11 +34,11 @@ export class DatabaseAcl extends pulumi.CustomResource {
     }
 
     /**
-     * A list of ACLs (structure is described below)
+     * List of ACL rules to apply
      */
     public readonly aclRules!: pulumi.Output<outputs.DatabaseAclAclRule[]>;
     /**
-     * The instance on which to create the ACL.
+     * Instance on which the ACL is applied
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -113,11 +84,11 @@ export class DatabaseAcl extends pulumi.CustomResource {
  */
 export interface DatabaseAclState {
     /**
-     * A list of ACLs (structure is described below)
+     * List of ACL rules to apply
      */
     aclRules?: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
-     * The instance on which to create the ACL.
+     * Instance on which the ACL is applied
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -131,11 +102,11 @@ export interface DatabaseAclState {
  */
 export interface DatabaseAclArgs {
     /**
-     * A list of ACLs (structure is described below)
+     * List of ACL rules to apply
      */
     aclRules: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
-     * The instance on which to create the ACL.
+     * Instance on which the ACL is applied
      */
     instanceId: pulumi.Input<string>;
     /**

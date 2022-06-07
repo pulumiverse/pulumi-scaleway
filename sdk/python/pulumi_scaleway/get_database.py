@@ -56,9 +56,6 @@ class GetDatabaseResult:
     @property
     @pulumi.getter
     def managed(self) -> bool:
-        """
-        Whether or not the database is managed or not.
-        """
         return pulumi.get(self, "managed")
 
     @property
@@ -69,17 +66,11 @@ class GetDatabaseResult:
     @property
     @pulumi.getter
     def owner(self) -> str:
-        """
-        The name of the owner of the database.
-        """
         return pulumi.get(self, "owner")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        Size of the database (in bytes).
-        """
         return pulumi.get(self, "size")
 
 
@@ -101,21 +92,7 @@ def get_database(instance_id: Optional[str] = None,
                  name: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseResult:
     """
-    Gets information about a RDB database.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_db = scaleway.get_database(instance_id="11111111-1111-1111-1111-111111111111",
-        name="foobar")
-    ```
-
-
-    :param str instance_id: The RDB instance ID.
-    :param str name: The name of the RDB instance.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -142,20 +119,6 @@ def get_database_output(instance_id: Optional[pulumi.Input[str]] = None,
                         name: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseResult]:
     """
-    Gets information about a RDB database.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_db = scaleway.get_database(instance_id="11111111-1111-1111-1111-111111111111",
-        name="foobar")
-    ```
-
-
-    :param str instance_id: The RDB instance ID.
-    :param str name: The name of the RDB instance.
+    Use this data source to access information about an existing resource.
     """
     ...

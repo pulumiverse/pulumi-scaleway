@@ -5,22 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * // Get info by offer id
- * const myOffer = pulumi.output(scaleway.getBaremetalOffer({
- *     offerId: "3ab0dc29-2fd4-486e-88bf-d08fbf49214b",
- *     zone: "fr-par-2",
- * }));
- * ```
- */
 export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOfferResult> {
     args = args || {};
     if (!opts) {
@@ -41,17 +25,8 @@ export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.In
  */
 export interface GetBaremetalOfferArgs {
     includeDisabled?: boolean;
-    /**
-     * The offer name. Only one of `name` and `offerId` should be specified.
-     */
     name?: string;
-    /**
-     * The offer id. Only one of `name` and `offerId` should be specified.
-     */
     offerId?: string;
-    /**
-     * `zone`) The zone in which the offer should be created.
-     */
     zone?: string;
 }
 
@@ -59,39 +34,18 @@ export interface GetBaremetalOfferArgs {
  * A collection of values returned by getBaremetalOffer.
  */
 export interface GetBaremetalOfferResult {
-    /**
-     * Available Bandwidth with the offer.
-     */
     readonly bandwidth: number;
-    /**
-     * Commercial range of the offer.
-     */
     readonly commercialRange: string;
-    /**
-     * A list of cpu specifications. (Structure is documented below.)
-     */
     readonly cpu: outputs.GetBaremetalOfferCpu;
-    /**
-     * A list of disk specifications. (Structure is documented below.)
-     */
     readonly disks: outputs.GetBaremetalOfferDisk[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly includeDisabled?: boolean;
-    /**
-     * A list of memory specifications. (Structure is documented below.)
-     */
     readonly memories: outputs.GetBaremetalOfferMemory[];
-    /**
-     * Name of the CPU.
-     */
     readonly name?: string;
     readonly offerId?: string;
-    /**
-     * Stock status for this offer. Possible values are: `empty`, `low` or `available`.
-     */
     readonly stock: string;
     readonly zone: string;
 }
@@ -105,16 +59,7 @@ export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts
  */
 export interface GetBaremetalOfferOutputArgs {
     includeDisabled?: pulumi.Input<boolean>;
-    /**
-     * The offer name. Only one of `name` and `offerId` should be specified.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The offer id. Only one of `name` and `offerId` should be specified.
-     */
     offerId?: pulumi.Input<string>;
-    /**
-     * `zone`) The zone in which the offer should be created.
-     */
     zone?: pulumi.Input<string>;
 }

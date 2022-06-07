@@ -17,8 +17,8 @@ class DatabaseArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Database resource.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] instance_id: Instance on which the database is created
+        :param pulumi.Input[str] name: Database name
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
@@ -28,7 +28,7 @@ class DatabaseArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        UUID of the instance where to create the database.
+        Instance on which the database is created
         """
         return pulumi.get(self, "instance_id")
 
@@ -40,7 +40,7 @@ class DatabaseArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the database (e.g. `my-new-database`).
+        Database name
         """
         return pulumi.get(self, "name")
 
@@ -59,11 +59,11 @@ class _DatabaseState:
                  size: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
-        :param pulumi.Input[bool] managed: Whether or not the database is managed or not.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
-        :param pulumi.Input[str] owner: The name of the owner of the database.
-        :param pulumi.Input[str] size: Size of the database (in bytes).
+        :param pulumi.Input[str] instance_id: Instance on which the database is created
+        :param pulumi.Input[bool] managed: Whether or not the database is managed
+        :param pulumi.Input[str] name: Database name
+        :param pulumi.Input[str] owner: User that own the database
+        :param pulumi.Input[str] size: Size of the database
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
@@ -80,7 +80,7 @@ class _DatabaseState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID of the instance where to create the database.
+        Instance on which the database is created
         """
         return pulumi.get(self, "instance_id")
 
@@ -92,7 +92,7 @@ class _DatabaseState:
     @pulumi.getter
     def managed(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the database is managed or not.
+        Whether or not the database is managed
         """
         return pulumi.get(self, "managed")
 
@@ -104,7 +104,7 @@ class _DatabaseState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the database (e.g. `my-new-database`).
+        Database name
         """
         return pulumi.get(self, "name")
 
@@ -116,7 +116,7 @@ class _DatabaseState:
     @pulumi.getter
     def owner(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the owner of the database.
+        User that own the database
         """
         return pulumi.get(self, "owner")
 
@@ -128,7 +128,7 @@ class _DatabaseState:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Size of the database (in bytes).
+        Size of the database
         """
         return pulumi.get(self, "size")
 
@@ -146,32 +146,11 @@ class Database(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway RDB database.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-
-        ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.Database("main", instance_id=scaleway_rdb_instance["main"]["id"])
-        ```
-
-        ## Import
-
-        RDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
-        ```
-
+        Create a Database resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] instance_id: Instance on which the database is created
+        :param pulumi.Input[str] name: Database name
         """
         ...
     @overload
@@ -180,28 +159,7 @@ class Database(pulumi.CustomResource):
                  args: DatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway RDB database.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-
-        ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-
-        main = scaleway.Database("main", instance_id=scaleway_rdb_instance["main"]["id"])
-        ```
-
-        ## Import
-
-        RDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
-        ```
-
+        Create a Database resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -262,11 +220,11 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
-        :param pulumi.Input[bool] managed: Whether or not the database is managed or not.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
-        :param pulumi.Input[str] owner: The name of the owner of the database.
-        :param pulumi.Input[str] size: Size of the database (in bytes).
+        :param pulumi.Input[str] instance_id: Instance on which the database is created
+        :param pulumi.Input[bool] managed: Whether or not the database is managed
+        :param pulumi.Input[str] name: Database name
+        :param pulumi.Input[str] owner: User that own the database
+        :param pulumi.Input[str] size: Size of the database
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -283,7 +241,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        UUID of the instance where to create the database.
+        Instance on which the database is created
         """
         return pulumi.get(self, "instance_id")
 
@@ -291,7 +249,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter
     def managed(self) -> pulumi.Output[bool]:
         """
-        Whether or not the database is managed or not.
+        Whether or not the database is managed
         """
         return pulumi.get(self, "managed")
 
@@ -299,7 +257,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the database (e.g. `my-new-database`).
+        Database name
         """
         return pulumi.get(self, "name")
 
@@ -307,7 +265,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter
     def owner(self) -> pulumi.Output[str]:
         """
-        The name of the owner of the database.
+        User that own the database
         """
         return pulumi.get(self, "owner")
 
@@ -315,7 +273,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[str]:
         """
-        Size of the database (in bytes).
+        Size of the database
         """
         return pulumi.get(self, "size")
 

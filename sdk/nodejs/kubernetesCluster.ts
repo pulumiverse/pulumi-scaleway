@@ -5,15 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
- * ```
- */
 export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * Get an existing KubernetesCluster resource's state with the given name, ID, and optional extra
@@ -43,7 +34,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
     }
 
     /**
-     * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+     * The list of admission plugins to enable on the cluster
      */
     public readonly admissionPlugins!: pulumi.Output<string[] | undefined>;
     /**
@@ -51,36 +42,35 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly apiserverCertSans!: pulumi.Output<string[] | undefined>;
     /**
-     * The URL of the Kubernetes API server.
+     * Kubernetes API server URL
      */
     public /*out*/ readonly apiserverUrl!: pulumi.Output<string>;
     /**
-     * The auto upgrade configuration.
+     * The auto upgrade configuration for the cluster
      */
     public readonly autoUpgrade!: pulumi.Output<outputs.KubernetesClusterAutoUpgrade>;
     /**
-     * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+     * The autoscaler configuration for the cluster
      */
     public readonly autoscalerConfig!: pulumi.Output<outputs.KubernetesClusterAutoscalerConfig>;
     /**
-     * The Container Network Interface (CNI) for the Kubernetes cluster.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The CNI plugin of the cluster
      */
     public readonly cni!: pulumi.Output<string>;
     /**
-     * The creation date of the cluster.
+     * The date and time of the creation of the Kubernetes cluster
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes and loadbalancers on cluster deletion
      */
     public readonly deleteAdditionalResources!: pulumi.Output<boolean | undefined>;
     /**
-     * A description for the Kubernetes cluster.
+     * The description of the cluster
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+     * The list of feature gates to enable on the cluster
      */
     public readonly featureGates!: pulumi.Output<string[] | undefined>;
     /**
@@ -88,7 +78,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly kubeconfigs!: pulumi.Output<outputs.KubernetesClusterKubeconfig[]>;
     /**
-     * The name for the Kubernetes cluster.
+     * The name of the cluster
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -96,44 +86,43 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly openIdConnectConfig!: pulumi.Output<outputs.KubernetesClusterOpenIdConnectConfig>;
     /**
-     * The organization ID the cluster is associated with.
+     * The organization_id you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the cluster is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`) The region in which the cluster should be created.
+     * The region you want to attach the resource to
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The status of the Kubernetes cluster.
+     * The status of the cluster
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The tags associated with the Kubernetes cluster.
+     * The tags associated with the cluster
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of Kubernetes cluster.
+     * The type of cluster
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The last update date of the cluster.
+     * The date and time of the last update of the Kubernetes cluster
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * Set to `true` if a newer Kubernetes version is available.
+     * True if an upgrade is available
      */
     public /*out*/ readonly upgradeAvailable!: pulumi.Output<boolean>;
     /**
-     * The version of the Kubernetes cluster.
+     * The version of the cluster
      */
     public readonly version!: pulumi.Output<string>;
     /**
-     * The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
+     * Wildcard DNS pointing to all the ready nodes
      */
     public /*out*/ readonly wildcardDns!: pulumi.Output<string>;
 
@@ -215,7 +204,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
  */
 export interface KubernetesClusterState {
     /**
-     * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+     * The list of admission plugins to enable on the cluster
      */
     admissionPlugins?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -223,36 +212,35 @@ export interface KubernetesClusterState {
      */
     apiserverCertSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The URL of the Kubernetes API server.
+     * Kubernetes API server URL
      */
     apiserverUrl?: pulumi.Input<string>;
     /**
-     * The auto upgrade configuration.
+     * The auto upgrade configuration for the cluster
      */
     autoUpgrade?: pulumi.Input<inputs.KubernetesClusterAutoUpgrade>;
     /**
-     * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+     * The autoscaler configuration for the cluster
      */
     autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterAutoscalerConfig>;
     /**
-     * The Container Network Interface (CNI) for the Kubernetes cluster.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The CNI plugin of the cluster
      */
     cni?: pulumi.Input<string>;
     /**
-     * The creation date of the cluster.
+     * The date and time of the creation of the Kubernetes cluster
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes and loadbalancers on cluster deletion
      */
     deleteAdditionalResources?: pulumi.Input<boolean>;
     /**
-     * A description for the Kubernetes cluster.
+     * The description of the cluster
      */
     description?: pulumi.Input<string>;
     /**
-     * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+     * The list of feature gates to enable on the cluster
      */
     featureGates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -260,7 +248,7 @@ export interface KubernetesClusterState {
      */
     kubeconfigs?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterKubeconfig>[]>;
     /**
-     * The name for the Kubernetes cluster.
+     * The name of the cluster
      */
     name?: pulumi.Input<string>;
     /**
@@ -268,44 +256,43 @@ export interface KubernetesClusterState {
      */
     openIdConnectConfig?: pulumi.Input<inputs.KubernetesClusterOpenIdConnectConfig>;
     /**
-     * The organization ID the cluster is associated with.
+     * The organization_id you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cluster is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the cluster should be created.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The status of the Kubernetes cluster.
+     * The status of the cluster
      */
     status?: pulumi.Input<string>;
     /**
-     * The tags associated with the Kubernetes cluster.
+     * The tags associated with the cluster
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of Kubernetes cluster.
+     * The type of cluster
      */
     type?: pulumi.Input<string>;
     /**
-     * The last update date of the cluster.
+     * The date and time of the last update of the Kubernetes cluster
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * Set to `true` if a newer Kubernetes version is available.
+     * True if an upgrade is available
      */
     upgradeAvailable?: pulumi.Input<boolean>;
     /**
-     * The version of the Kubernetes cluster.
+     * The version of the cluster
      */
     version?: pulumi.Input<string>;
     /**
-     * The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
+     * Wildcard DNS pointing to all the ready nodes
      */
     wildcardDns?: pulumi.Input<string>;
 }
@@ -315,7 +302,7 @@ export interface KubernetesClusterState {
  */
 export interface KubernetesClusterArgs {
     /**
-     * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
+     * The list of admission plugins to enable on the cluster
      */
     admissionPlugins?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -323,32 +310,31 @@ export interface KubernetesClusterArgs {
      */
     apiserverCertSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The auto upgrade configuration.
+     * The auto upgrade configuration for the cluster
      */
     autoUpgrade?: pulumi.Input<inputs.KubernetesClusterAutoUpgrade>;
     /**
-     * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+     * The autoscaler configuration for the cluster
      */
     autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterAutoscalerConfig>;
     /**
-     * The Container Network Interface (CNI) for the Kubernetes cluster.
-     * > **Important:** Updates to this field will recreate a new resource.
+     * The CNI plugin of the cluster
      */
     cni: pulumi.Input<string>;
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes and loadbalancers on cluster deletion
      */
     deleteAdditionalResources?: pulumi.Input<boolean>;
     /**
-     * A description for the Kubernetes cluster.
+     * The description of the cluster
      */
     description?: pulumi.Input<string>;
     /**
-     * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
+     * The list of feature gates to enable on the cluster
      */
     featureGates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The name for the Kubernetes cluster.
+     * The name of the cluster
      */
     name?: pulumi.Input<string>;
     /**
@@ -356,23 +342,23 @@ export interface KubernetesClusterArgs {
      */
     openIdConnectConfig?: pulumi.Input<inputs.KubernetesClusterOpenIdConnectConfig>;
     /**
-     * `projectId`) The ID of the project the cluster is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the cluster should be created.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The tags associated with the Kubernetes cluster.
+     * The tags associated with the cluster
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of Kubernetes cluster.
+     * The type of cluster
      */
     type?: pulumi.Input<string>;
     /**
-     * The version of the Kubernetes cluster.
+     * The version of the cluster
      */
     version: pulumi.Input<string>;
 }

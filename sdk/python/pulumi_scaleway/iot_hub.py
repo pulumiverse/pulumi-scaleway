@@ -25,16 +25,16 @@ class IotHubArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IotHub resource.
-        :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        :param pulumi.Input[str] product_plan: The product plan of the hub
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
+        :param pulumi.Input[bool] enabled: Whether to enable the hub or not
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
-        :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] name: The name of the hub
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         pulumi.set(__self__, "product_plan", product_plan)
         if device_auto_provisioning is not None:
@@ -60,7 +60,7 @@ class IotHubArgs:
     @pulumi.getter(name="productPlan")
     def product_plan(self) -> pulumi.Input[str]:
         """
-        Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        The product plan of the hub
         """
         return pulumi.get(self, "product_plan")
 
@@ -96,7 +96,7 @@ class IotHubArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Wether the IoT Hub instance should be enabled or not.
+        Whether to enable the hub or not
         """
         return pulumi.get(self, "enabled")
 
@@ -144,7 +144,7 @@ class IotHubArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+        The name of the hub
         """
         return pulumi.get(self, "name")
 
@@ -156,7 +156,7 @@ class IotHubArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IoT Hub Instance is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -168,7 +168,7 @@ class IotHubArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database Instance should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -199,23 +199,23 @@ class _IotHubState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IotHub resources.
-        :param pulumi.Input[int] connected_device_count: The current number of connected devices in the Hub.
-        :param pulumi.Input[str] created_at: The date and time the Hub was created.
+        :param pulumi.Input[int] connected_device_count: The current number of connected devices in the Hub
+        :param pulumi.Input[str] created_at: The date and time of the creation of the IoT Hub
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
-        :param pulumi.Input[int] device_count: The number of registered devices in the Hub.
+        :param pulumi.Input[int] device_count: The number of registered devices in the Hub
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
-        :param pulumi.Input[str] endpoint: The MQTT network endpoint to connect MQTT devices to.
+        :param pulumi.Input[bool] enabled: Whether to enable the hub or not
+        :param pulumi.Input[str] endpoint: The endpoint to connect the devices to
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
-        :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+        :param pulumi.Input[str] name: The name of the hub
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
-        :param pulumi.Input[str] status: The current status of the Hub.
-        :param pulumi.Input[str] updated_at: The date and time the Hub resource was updated.
+        :param pulumi.Input[str] product_plan: The product plan of the hub
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] status: The status of the hub
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the IoT Hub
         """
         if connected_device_count is not None:
             pulumi.set(__self__, "connected_device_count", connected_device_count)
@@ -256,7 +256,7 @@ class _IotHubState:
     @pulumi.getter(name="connectedDeviceCount")
     def connected_device_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The current number of connected devices in the Hub.
+        The current number of connected devices in the Hub
         """
         return pulumi.get(self, "connected_device_count")
 
@@ -268,7 +268,7 @@ class _IotHubState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time the Hub was created.
+        The date and time of the creation of the IoT Hub
         """
         return pulumi.get(self, "created_at")
 
@@ -292,7 +292,7 @@ class _IotHubState:
     @pulumi.getter(name="deviceCount")
     def device_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of registered devices in the Hub.
+        The number of registered devices in the Hub
         """
         return pulumi.get(self, "device_count")
 
@@ -316,7 +316,7 @@ class _IotHubState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Wether the IoT Hub instance should be enabled or not.
+        Whether to enable the hub or not
         """
         return pulumi.get(self, "enabled")
 
@@ -328,7 +328,7 @@ class _IotHubState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        The MQTT network endpoint to connect MQTT devices to.
+        The endpoint to connect the devices to
         """
         return pulumi.get(self, "endpoint")
 
@@ -376,7 +376,7 @@ class _IotHubState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+        The name of the hub
         """
         return pulumi.get(self, "name")
 
@@ -400,7 +400,7 @@ class _IotHubState:
     @pulumi.getter(name="productPlan")
     def product_plan(self) -> Optional[pulumi.Input[str]]:
         """
-        Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        The product plan of the hub
         """
         return pulumi.get(self, "product_plan")
 
@@ -412,7 +412,7 @@ class _IotHubState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IoT Hub Instance is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -424,7 +424,7 @@ class _IotHubState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database Instance should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -436,7 +436,7 @@ class _IotHubState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The current status of the Hub.
+        The status of the hub
         """
         return pulumi.get(self, "status")
 
@@ -448,7 +448,7 @@ class _IotHubState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time the Hub resource was updated.
+        The date and time of the last update of the IoT Hub
         """
         return pulumi.get(self, "updated_at")
 
@@ -474,26 +474,19 @@ class IotHub(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Import
-
-        IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a IotHub resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
+        :param pulumi.Input[bool] enabled: Whether to enable the hub or not
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
-        :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
-        :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] name: The name of the hub
+        :param pulumi.Input[str] product_plan: The product plan of the hub
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         ...
     @overload
@@ -502,14 +495,7 @@ class IotHub(pulumi.CustomResource):
                  args: IotHubArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
-
-        IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
-
-        ```sh
-         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
-        ```
-
+        Create a IotHub resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param IotHubArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -602,23 +588,23 @@ class IotHub(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] connected_device_count: The current number of connected devices in the Hub.
-        :param pulumi.Input[str] created_at: The date and time the Hub was created.
+        :param pulumi.Input[int] connected_device_count: The current number of connected devices in the Hub
+        :param pulumi.Input[str] created_at: The date and time of the creation of the IoT Hub
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
-        :param pulumi.Input[int] device_count: The number of registered devices in the Hub.
+        :param pulumi.Input[int] device_count: The number of registered devices in the Hub
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
-        :param pulumi.Input[str] endpoint: The MQTT network endpoint to connect MQTT devices to.
+        :param pulumi.Input[bool] enabled: Whether to enable the hub or not
+        :param pulumi.Input[str] endpoint: The endpoint to connect the devices to
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
-        :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+        :param pulumi.Input[str] name: The name of the hub
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
-        :param pulumi.Input[str] status: The current status of the Hub.
-        :param pulumi.Input[str] updated_at: The date and time the Hub resource was updated.
+        :param pulumi.Input[str] product_plan: The product plan of the hub
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] status: The status of the hub
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the IoT Hub
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -647,7 +633,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="connectedDeviceCount")
     def connected_device_count(self) -> pulumi.Output[int]:
         """
-        The current number of connected devices in the Hub.
+        The current number of connected devices in the Hub
         """
         return pulumi.get(self, "connected_device_count")
 
@@ -655,7 +641,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time the Hub was created.
+        The date and time of the creation of the IoT Hub
         """
         return pulumi.get(self, "created_at")
 
@@ -671,7 +657,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="deviceCount")
     def device_count(self) -> pulumi.Output[int]:
         """
-        The number of registered devices in the Hub.
+        The number of registered devices in the Hub
         """
         return pulumi.get(self, "device_count")
 
@@ -687,7 +673,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Wether the IoT Hub instance should be enabled or not.
+        Whether to enable the hub or not
         """
         return pulumi.get(self, "enabled")
 
@@ -695,7 +681,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[str]:
         """
-        The MQTT network endpoint to connect MQTT devices to.
+        The endpoint to connect the devices to
         """
         return pulumi.get(self, "endpoint")
 
@@ -727,7 +713,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the IoT Hub instance you want to create (e.g. `my-hub`).
+        The name of the hub
         """
         return pulumi.get(self, "name")
 
@@ -743,7 +729,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="productPlan")
     def product_plan(self) -> pulumi.Output[str]:
         """
-        Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        The product plan of the hub
         """
         return pulumi.get(self, "product_plan")
 
@@ -751,7 +737,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the IoT Hub Instance is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -759,7 +745,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the Database Instance should be created.
+        The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
@@ -767,7 +753,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The current status of the Hub.
+        The status of the hub
         """
         return pulumi.get(self, "status")
 
@@ -775,7 +761,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time the Hub resource was updated.
+        The date and time of the last update of the IoT Hub
         """
         return pulumi.get(self, "updated_at")
 

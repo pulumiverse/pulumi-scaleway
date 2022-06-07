@@ -9,49 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Scaleway
 {
-    /// <summary>
-    /// Creates and manages Scaleway VPC Public Gateway DHCP.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
-    /// 
-    /// ## Example
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var main = new Scaleway.VpcPublicGatewayDhcp("main", new Scaleway.VpcPublicGatewayDhcpArgs
-    ///         {
-    ///             Subnet = "192.168.1.0/24",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp")]
     public partial class VpcPublicGatewayDhcp : Pulumi.CustomResource
     {
         /// <summary>
-        /// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-        /// address of the subnet
+        /// The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+        /// of the subnet
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the public gateway DHCP config.
+        /// The date and time of the creation of the public gateway.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -64,16 +33,16 @@ namespace Pulumi.Scaleway
         public Output<string> DnsLocalName { get; private set; } = null!;
 
         /// <summary>
-        /// Additional DNS search paths
+        /// Additional DNS search paths.
         /// </summary>
         [Output("dnsSearches")]
         public Output<ImmutableArray<string>> DnsSearches { get; private set; } = null!;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         /// </summary>
-        [Output("dnsServerOverrides")]
-        public Output<ImmutableArray<string>> DnsServerOverrides { get; private set; } = null!;
+        [Output("dnsServersOverrides")]
+        public Output<ImmutableArray<string>> DnsServersOverrides { get; private set; } = null!;
 
         /// <summary>
         /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
@@ -83,7 +52,7 @@ namespace Pulumi.Scaleway
         public Output<bool> EnableDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the public gateway DHCP config is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -101,13 +70,13 @@ namespace Pulumi.Scaleway
         public Output<string> PoolLow { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         /// </summary>
         [Output("pushDefaultRoute")]
         public Output<bool> PushDefaultRoute { get; private set; } = null!;
@@ -139,7 +108,7 @@ namespace Pulumi.Scaleway
         public Output<string> Subnet { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway DHCP config.
+        /// The date and time of the last update of the public gateway.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -151,7 +120,7 @@ namespace Pulumi.Scaleway
         public Output<int> ValidLifetime { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -204,8 +173,8 @@ namespace Pulumi.Scaleway
     public sealed class VpcPublicGatewayDhcpArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-        /// address of the subnet
+        /// The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+        /// of the subnet
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -221,7 +190,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _dnsSearches;
 
         /// <summary>
-        /// Additional DNS search paths
+        /// Additional DNS search paths.
         /// </summary>
         public InputList<string> DnsSearches
         {
@@ -229,16 +198,16 @@ namespace Pulumi.Scaleway
             set => _dnsSearches = value;
         }
 
-        [Input("dnsServerOverrides")]
-        private InputList<string>? _dnsServerOverrides;
+        [Input("dnsServersOverrides")]
+        private InputList<string>? _dnsServersOverrides;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         /// </summary>
-        public InputList<string> DnsServerOverrides
+        public InputList<string> DnsServersOverrides
         {
-            get => _dnsServerOverrides ?? (_dnsServerOverrides = new InputList<string>());
-            set => _dnsServerOverrides = value;
+            get => _dnsServersOverrides ?? (_dnsServersOverrides = new InputList<string>());
+            set => _dnsServersOverrides = value;
         }
 
         /// <summary>
@@ -261,13 +230,13 @@ namespace Pulumi.Scaleway
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }
@@ -305,7 +274,7 @@ namespace Pulumi.Scaleway
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -318,14 +287,14 @@ namespace Pulumi.Scaleway
     public sealed class VpcPublicGatewayDhcpState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Address: address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first
-        /// address of the subnet
+        /// The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
+        /// of the subnet
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the public gateway DHCP config.
+        /// The date and time of the creation of the public gateway.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -341,7 +310,7 @@ namespace Pulumi.Scaleway
         private InputList<string>? _dnsSearches;
 
         /// <summary>
-        /// Additional DNS search paths
+        /// Additional DNS search paths.
         /// </summary>
         public InputList<string> DnsSearches
         {
@@ -349,16 +318,16 @@ namespace Pulumi.Scaleway
             set => _dnsSearches = value;
         }
 
-        [Input("dnsServerOverrides")]
-        private InputList<string>? _dnsServerOverrides;
+        [Input("dnsServersOverrides")]
+        private InputList<string>? _dnsServersOverrides;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         /// </summary>
-        public InputList<string> DnsServerOverrides
+        public InputList<string> DnsServersOverrides
         {
-            get => _dnsServerOverrides ?? (_dnsServerOverrides = new InputList<string>());
-            set => _dnsServerOverrides = value;
+            get => _dnsServersOverrides ?? (_dnsServersOverrides = new InputList<string>());
+            set => _dnsServersOverrides = value;
         }
 
         /// <summary>
@@ -369,7 +338,7 @@ namespace Pulumi.Scaleway
         public Input<bool>? EnableDynamic { get; set; }
 
         /// <summary>
-        /// The organization ID the public gateway DHCP config is associated with.
+        /// The organization_id you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -387,13 +356,13 @@ namespace Pulumi.Scaleway
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }
@@ -425,7 +394,7 @@ namespace Pulumi.Scaleway
         public Input<string>? Subnet { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway DHCP config.
+        /// The date and time of the last update of the public gateway.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
@@ -437,7 +406,7 @@ namespace Pulumi.Scaleway
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// The zone you want to attach the resource to
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

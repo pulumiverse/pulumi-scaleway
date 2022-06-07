@@ -57,9 +57,6 @@ class GetRegistryNamespaceResult:
     @property
     @pulumi.getter
     def endpoint(self) -> str:
-        """
-        The endpoint of the Registry Namespace.
-        """
         return pulumi.get(self, "endpoint")
 
     @property
@@ -73,9 +70,6 @@ class GetRegistryNamespaceResult:
     @property
     @pulumi.getter(name="isPublic")
     def is_public(self) -> bool:
-        """
-        The Namespace Privacy Policy: whether or not the images are public.
-        """
         return pulumi.get(self, "is_public")
 
     @property
@@ -91,9 +85,6 @@ class GetRegistryNamespaceResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The organization ID the namespace is associated with.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -129,23 +120,7 @@ def get_registry_namespace(name: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryNamespaceResult:
     """
-    Gets information about a registry namespace.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_namespace = scaleway.get_registry_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str region: `region`) The region in which the namespace exists.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -177,22 +152,6 @@ def get_registry_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryNamespaceResult]:
     """
-    Gets information about a registry namespace.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_namespace = scaleway.get_registry_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
-
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str region: `region`) The region in which the namespace exists.
+    Use this data source to access information about an existing resource.
     """
     ...

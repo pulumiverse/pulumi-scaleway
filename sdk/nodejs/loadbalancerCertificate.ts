@@ -34,11 +34,11 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * Main domain of the certificate.
+     * The main domain name of the certificate
      */
     public /*out*/ readonly commonName!: pulumi.Output<string>;
     /**
-     * Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
+     * The custom type certificate type configuration
      */
     public readonly customCertificate!: pulumi.Output<outputs.LoadbalancerCertificateCustomCertificate | undefined>;
     /**
@@ -46,15 +46,15 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
-     * The load-balancer ID this certificate is attached to.
+     * The load-balancer ID
      */
     public readonly lbId!: pulumi.Output<string>;
     /**
-     * Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
+     * The Let's Encrypt type certificate configuration
      */
     public readonly letsencrypt!: pulumi.Output<outputs.LoadbalancerCertificateLetsencrypt | undefined>;
     /**
-     * The name of the certificate backend.
+     * The name of the load-balancer certificate
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -66,11 +66,11 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
      */
     public /*out*/ readonly notValidBefore!: pulumi.Output<string>;
     /**
-     * Certificate status
+     * The status of certificate
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Array of alternative domain names.
+     * The alternative domain names of the certificate
      */
     public /*out*/ readonly subjectAlternativeNames!: pulumi.Output<string[]>;
 
@@ -123,11 +123,11 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
  */
 export interface LoadbalancerCertificateState {
     /**
-     * Main domain of the certificate.
+     * The main domain name of the certificate
      */
     commonName?: pulumi.Input<string>;
     /**
-     * Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
+     * The custom type certificate type configuration
      */
     customCertificate?: pulumi.Input<inputs.LoadbalancerCertificateCustomCertificate>;
     /**
@@ -135,15 +135,15 @@ export interface LoadbalancerCertificateState {
      */
     fingerprint?: pulumi.Input<string>;
     /**
-     * The load-balancer ID this certificate is attached to.
+     * The load-balancer ID
      */
     lbId?: pulumi.Input<string>;
     /**
-     * Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
+     * The Let's Encrypt type certificate configuration
      */
     letsencrypt?: pulumi.Input<inputs.LoadbalancerCertificateLetsencrypt>;
     /**
-     * The name of the certificate backend.
+     * The name of the load-balancer certificate
      */
     name?: pulumi.Input<string>;
     /**
@@ -155,11 +155,11 @@ export interface LoadbalancerCertificateState {
      */
     notValidBefore?: pulumi.Input<string>;
     /**
-     * Certificate status
+     * The status of certificate
      */
     status?: pulumi.Input<string>;
     /**
-     * Array of alternative domain names.
+     * The alternative domain names of the certificate
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -169,19 +169,19 @@ export interface LoadbalancerCertificateState {
  */
 export interface LoadbalancerCertificateArgs {
     /**
-     * Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
+     * The custom type certificate type configuration
      */
     customCertificate?: pulumi.Input<inputs.LoadbalancerCertificateCustomCertificate>;
     /**
-     * The load-balancer ID this certificate is attached to.
+     * The load-balancer ID
      */
     lbId: pulumi.Input<string>;
     /**
-     * Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
+     * The Let's Encrypt type certificate configuration
      */
     letsencrypt?: pulumi.Input<inputs.LoadbalancerCertificateLetsencrypt>;
     /**
-     * The name of the certificate backend.
+     * The name of the load-balancer certificate
      */
     name?: pulumi.Input<string>;
 }
