@@ -281,6 +281,56 @@ func (i *Container) ToContainerOutputWithContext(ctx context.Context) ContainerO
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerOutput)
 }
 
+// ContainerArrayInput is an input type that accepts ContainerArray and ContainerArrayOutput values.
+// You can construct a concrete instance of `ContainerArrayInput` via:
+//
+//          ContainerArray{ ContainerArgs{...} }
+type ContainerArrayInput interface {
+	pulumi.Input
+
+	ToContainerArrayOutput() ContainerArrayOutput
+	ToContainerArrayOutputWithContext(context.Context) ContainerArrayOutput
+}
+
+type ContainerArray []ContainerInput
+
+func (ContainerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Container)(nil)).Elem()
+}
+
+func (i ContainerArray) ToContainerArrayOutput() ContainerArrayOutput {
+	return i.ToContainerArrayOutputWithContext(context.Background())
+}
+
+func (i ContainerArray) ToContainerArrayOutputWithContext(ctx context.Context) ContainerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerArrayOutput)
+}
+
+// ContainerMapInput is an input type that accepts ContainerMap and ContainerMapOutput values.
+// You can construct a concrete instance of `ContainerMapInput` via:
+//
+//          ContainerMap{ "key": ContainerArgs{...} }
+type ContainerMapInput interface {
+	pulumi.Input
+
+	ToContainerMapOutput() ContainerMapOutput
+	ToContainerMapOutputWithContext(context.Context) ContainerMapOutput
+}
+
+type ContainerMap map[string]ContainerInput
+
+func (ContainerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Container)(nil)).Elem()
+}
+
+func (i ContainerMap) ToContainerMapOutput() ContainerMapOutput {
+	return i.ToContainerMapOutputWithContext(context.Background())
+}
+
+func (i ContainerMap) ToContainerMapOutputWithContext(ctx context.Context) ContainerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerMapOutput)
+}
+
 type ContainerOutput struct{ *pulumi.OutputState }
 
 func (ContainerOutput) ElementType() reflect.Type {
@@ -396,7 +446,51 @@ func (o ContainerOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
+type ContainerArrayOutput struct{ *pulumi.OutputState }
+
+func (ContainerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Container)(nil)).Elem()
+}
+
+func (o ContainerArrayOutput) ToContainerArrayOutput() ContainerArrayOutput {
+	return o
+}
+
+func (o ContainerArrayOutput) ToContainerArrayOutputWithContext(ctx context.Context) ContainerArrayOutput {
+	return o
+}
+
+func (o ContainerArrayOutput) Index(i pulumi.IntInput) ContainerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Container {
+		return vs[0].([]*Container)[vs[1].(int)]
+	}).(ContainerOutput)
+}
+
+type ContainerMapOutput struct{ *pulumi.OutputState }
+
+func (ContainerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Container)(nil)).Elem()
+}
+
+func (o ContainerMapOutput) ToContainerMapOutput() ContainerMapOutput {
+	return o
+}
+
+func (o ContainerMapOutput) ToContainerMapOutputWithContext(ctx context.Context) ContainerMapOutput {
+	return o
+}
+
+func (o ContainerMapOutput) MapIndex(k pulumi.StringInput) ContainerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Container {
+		return vs[0].(map[string]*Container)[vs[1].(string)]
+	}).(ContainerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerInput)(nil)).Elem(), &Container{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerArrayInput)(nil)).Elem(), ContainerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerMapInput)(nil)).Elem(), ContainerMap{})
 	pulumi.RegisterOutputType(ContainerOutput{})
+	pulumi.RegisterOutputType(ContainerArrayOutput{})
+	pulumi.RegisterOutputType(ContainerMapOutput{})
 }

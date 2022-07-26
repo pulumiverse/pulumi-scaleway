@@ -142,6 +142,56 @@ func (i *VpcPrivateNetwork) ToVpcPrivateNetworkOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkOutput)
 }
 
+// VpcPrivateNetworkArrayInput is an input type that accepts VpcPrivateNetworkArray and VpcPrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `VpcPrivateNetworkArrayInput` via:
+//
+//          VpcPrivateNetworkArray{ VpcPrivateNetworkArgs{...} }
+type VpcPrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToVpcPrivateNetworkArrayOutput() VpcPrivateNetworkArrayOutput
+	ToVpcPrivateNetworkArrayOutputWithContext(context.Context) VpcPrivateNetworkArrayOutput
+}
+
+type VpcPrivateNetworkArray []VpcPrivateNetworkInput
+
+func (VpcPrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPrivateNetwork)(nil)).Elem()
+}
+
+func (i VpcPrivateNetworkArray) ToVpcPrivateNetworkArrayOutput() VpcPrivateNetworkArrayOutput {
+	return i.ToVpcPrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i VpcPrivateNetworkArray) ToVpcPrivateNetworkArrayOutputWithContext(ctx context.Context) VpcPrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkArrayOutput)
+}
+
+// VpcPrivateNetworkMapInput is an input type that accepts VpcPrivateNetworkMap and VpcPrivateNetworkMapOutput values.
+// You can construct a concrete instance of `VpcPrivateNetworkMapInput` via:
+//
+//          VpcPrivateNetworkMap{ "key": VpcPrivateNetworkArgs{...} }
+type VpcPrivateNetworkMapInput interface {
+	pulumi.Input
+
+	ToVpcPrivateNetworkMapOutput() VpcPrivateNetworkMapOutput
+	ToVpcPrivateNetworkMapOutputWithContext(context.Context) VpcPrivateNetworkMapOutput
+}
+
+type VpcPrivateNetworkMap map[string]VpcPrivateNetworkInput
+
+func (VpcPrivateNetworkMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPrivateNetwork)(nil)).Elem()
+}
+
+func (i VpcPrivateNetworkMap) ToVpcPrivateNetworkMapOutput() VpcPrivateNetworkMapOutput {
+	return i.ToVpcPrivateNetworkMapOutputWithContext(context.Background())
+}
+
+func (i VpcPrivateNetworkMap) ToVpcPrivateNetworkMapOutputWithContext(ctx context.Context) VpcPrivateNetworkMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkMapOutput)
+}
+
 type VpcPrivateNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcPrivateNetworkOutput) ElementType() reflect.Type {
@@ -191,7 +241,51 @@ func (o VpcPrivateNetworkOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type VpcPrivateNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcPrivateNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPrivateNetwork)(nil)).Elem()
+}
+
+func (o VpcPrivateNetworkArrayOutput) ToVpcPrivateNetworkArrayOutput() VpcPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkArrayOutput) ToVpcPrivateNetworkArrayOutputWithContext(ctx context.Context) VpcPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkArrayOutput) Index(i pulumi.IntInput) VpcPrivateNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPrivateNetwork {
+		return vs[0].([]*VpcPrivateNetwork)[vs[1].(int)]
+	}).(VpcPrivateNetworkOutput)
+}
+
+type VpcPrivateNetworkMapOutput struct{ *pulumi.OutputState }
+
+func (VpcPrivateNetworkMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPrivateNetwork)(nil)).Elem()
+}
+
+func (o VpcPrivateNetworkMapOutput) ToVpcPrivateNetworkMapOutput() VpcPrivateNetworkMapOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkMapOutput) ToVpcPrivateNetworkMapOutputWithContext(ctx context.Context) VpcPrivateNetworkMapOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkMapOutput) MapIndex(k pulumi.StringInput) VpcPrivateNetworkOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpcPrivateNetwork {
+		return vs[0].(map[string]*VpcPrivateNetwork)[vs[1].(string)]
+	}).(VpcPrivateNetworkOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkInput)(nil)).Elem(), &VpcPrivateNetwork{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkArrayInput)(nil)).Elem(), VpcPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkMapInput)(nil)).Elem(), VpcPrivateNetworkMap{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(VpcPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(VpcPrivateNetworkMapOutput{})
 }

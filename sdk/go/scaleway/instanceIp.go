@@ -138,6 +138,56 @@ func (i *InstanceIp) ToInstanceIpOutputWithContext(ctx context.Context) Instance
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpOutput)
 }
 
+// InstanceIpArrayInput is an input type that accepts InstanceIpArray and InstanceIpArrayOutput values.
+// You can construct a concrete instance of `InstanceIpArrayInput` via:
+//
+//          InstanceIpArray{ InstanceIpArgs{...} }
+type InstanceIpArrayInput interface {
+	pulumi.Input
+
+	ToInstanceIpArrayOutput() InstanceIpArrayOutput
+	ToInstanceIpArrayOutputWithContext(context.Context) InstanceIpArrayOutput
+}
+
+type InstanceIpArray []InstanceIpInput
+
+func (InstanceIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceIp)(nil)).Elem()
+}
+
+func (i InstanceIpArray) ToInstanceIpArrayOutput() InstanceIpArrayOutput {
+	return i.ToInstanceIpArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceIpArray) ToInstanceIpArrayOutputWithContext(ctx context.Context) InstanceIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpArrayOutput)
+}
+
+// InstanceIpMapInput is an input type that accepts InstanceIpMap and InstanceIpMapOutput values.
+// You can construct a concrete instance of `InstanceIpMapInput` via:
+//
+//          InstanceIpMap{ "key": InstanceIpArgs{...} }
+type InstanceIpMapInput interface {
+	pulumi.Input
+
+	ToInstanceIpMapOutput() InstanceIpMapOutput
+	ToInstanceIpMapOutputWithContext(context.Context) InstanceIpMapOutput
+}
+
+type InstanceIpMap map[string]InstanceIpInput
+
+func (InstanceIpMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceIp)(nil)).Elem()
+}
+
+func (i InstanceIpMap) ToInstanceIpMapOutput() InstanceIpMapOutput {
+	return i.ToInstanceIpMapOutputWithContext(context.Background())
+}
+
+func (i InstanceIpMap) ToInstanceIpMapOutputWithContext(ctx context.Context) InstanceIpMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpMapOutput)
+}
+
 type InstanceIpOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpOutput) ElementType() reflect.Type {
@@ -187,7 +237,51 @@ func (o InstanceIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstanceIpArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceIp)(nil)).Elem()
+}
+
+func (o InstanceIpArrayOutput) ToInstanceIpArrayOutput() InstanceIpArrayOutput {
+	return o
+}
+
+func (o InstanceIpArrayOutput) ToInstanceIpArrayOutputWithContext(ctx context.Context) InstanceIpArrayOutput {
+	return o
+}
+
+func (o InstanceIpArrayOutput) Index(i pulumi.IntInput) InstanceIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceIp {
+		return vs[0].([]*InstanceIp)[vs[1].(int)]
+	}).(InstanceIpOutput)
+}
+
+type InstanceIpMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceIpMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceIp)(nil)).Elem()
+}
+
+func (o InstanceIpMapOutput) ToInstanceIpMapOutput() InstanceIpMapOutput {
+	return o
+}
+
+func (o InstanceIpMapOutput) ToInstanceIpMapOutputWithContext(ctx context.Context) InstanceIpMapOutput {
+	return o
+}
+
+func (o InstanceIpMapOutput) MapIndex(k pulumi.StringInput) InstanceIpOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstanceIp {
+		return vs[0].(map[string]*InstanceIp)[vs[1].(string)]
+	}).(InstanceIpOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpInput)(nil)).Elem(), &InstanceIp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpArrayInput)(nil)).Elem(), InstanceIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpMapInput)(nil)).Elem(), InstanceIpMap{})
 	pulumi.RegisterOutputType(InstanceIpOutput{})
+	pulumi.RegisterOutputType(InstanceIpArrayOutput{})
+	pulumi.RegisterOutputType(InstanceIpMapOutput{})
 }

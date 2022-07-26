@@ -208,6 +208,56 @@ func (i *BaremetalServer) ToBaremetalServerOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerOutput)
 }
 
+// BaremetalServerArrayInput is an input type that accepts BaremetalServerArray and BaremetalServerArrayOutput values.
+// You can construct a concrete instance of `BaremetalServerArrayInput` via:
+//
+//          BaremetalServerArray{ BaremetalServerArgs{...} }
+type BaremetalServerArrayInput interface {
+	pulumi.Input
+
+	ToBaremetalServerArrayOutput() BaremetalServerArrayOutput
+	ToBaremetalServerArrayOutputWithContext(context.Context) BaremetalServerArrayOutput
+}
+
+type BaremetalServerArray []BaremetalServerInput
+
+func (BaremetalServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*BaremetalServer)(nil)).Elem()
+}
+
+func (i BaremetalServerArray) ToBaremetalServerArrayOutput() BaremetalServerArrayOutput {
+	return i.ToBaremetalServerArrayOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerArray) ToBaremetalServerArrayOutputWithContext(ctx context.Context) BaremetalServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerArrayOutput)
+}
+
+// BaremetalServerMapInput is an input type that accepts BaremetalServerMap and BaremetalServerMapOutput values.
+// You can construct a concrete instance of `BaremetalServerMapInput` via:
+//
+//          BaremetalServerMap{ "key": BaremetalServerArgs{...} }
+type BaremetalServerMapInput interface {
+	pulumi.Input
+
+	ToBaremetalServerMapOutput() BaremetalServerMapOutput
+	ToBaremetalServerMapOutputWithContext(context.Context) BaremetalServerMapOutput
+}
+
+type BaremetalServerMap map[string]BaremetalServerInput
+
+func (BaremetalServerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*BaremetalServer)(nil)).Elem()
+}
+
+func (i BaremetalServerMap) ToBaremetalServerMapOutput() BaremetalServerMapOutput {
+	return i.ToBaremetalServerMapOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerMap) ToBaremetalServerMapOutputWithContext(ctx context.Context) BaremetalServerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerMapOutput)
+}
+
 type BaremetalServerOutput struct{ *pulumi.OutputState }
 
 func (BaremetalServerOutput) ElementType() reflect.Type {
@@ -290,7 +340,51 @@ func (o BaremetalServerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type BaremetalServerArrayOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*BaremetalServer)(nil)).Elem()
+}
+
+func (o BaremetalServerArrayOutput) ToBaremetalServerArrayOutput() BaremetalServerArrayOutput {
+	return o
+}
+
+func (o BaremetalServerArrayOutput) ToBaremetalServerArrayOutputWithContext(ctx context.Context) BaremetalServerArrayOutput {
+	return o
+}
+
+func (o BaremetalServerArrayOutput) Index(i pulumi.IntInput) BaremetalServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *BaremetalServer {
+		return vs[0].([]*BaremetalServer)[vs[1].(int)]
+	}).(BaremetalServerOutput)
+}
+
+type BaremetalServerMapOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*BaremetalServer)(nil)).Elem()
+}
+
+func (o BaremetalServerMapOutput) ToBaremetalServerMapOutput() BaremetalServerMapOutput {
+	return o
+}
+
+func (o BaremetalServerMapOutput) ToBaremetalServerMapOutputWithContext(ctx context.Context) BaremetalServerMapOutput {
+	return o
+}
+
+func (o BaremetalServerMapOutput) MapIndex(k pulumi.StringInput) BaremetalServerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *BaremetalServer {
+		return vs[0].(map[string]*BaremetalServer)[vs[1].(string)]
+	}).(BaremetalServerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerInput)(nil)).Elem(), &BaremetalServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerArrayInput)(nil)).Elem(), BaremetalServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerMapInput)(nil)).Elem(), BaremetalServerMap{})
 	pulumi.RegisterOutputType(BaremetalServerOutput{})
+	pulumi.RegisterOutputType(BaremetalServerArrayOutput{})
+	pulumi.RegisterOutputType(BaremetalServerMapOutput{})
 }

@@ -152,6 +152,56 @@ func (i *FunctionNamespace) ToFunctionNamespaceOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionNamespaceOutput)
 }
 
+// FunctionNamespaceArrayInput is an input type that accepts FunctionNamespaceArray and FunctionNamespaceArrayOutput values.
+// You can construct a concrete instance of `FunctionNamespaceArrayInput` via:
+//
+//          FunctionNamespaceArray{ FunctionNamespaceArgs{...} }
+type FunctionNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToFunctionNamespaceArrayOutput() FunctionNamespaceArrayOutput
+	ToFunctionNamespaceArrayOutputWithContext(context.Context) FunctionNamespaceArrayOutput
+}
+
+type FunctionNamespaceArray []FunctionNamespaceInput
+
+func (FunctionNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*FunctionNamespace)(nil)).Elem()
+}
+
+func (i FunctionNamespaceArray) ToFunctionNamespaceArrayOutput() FunctionNamespaceArrayOutput {
+	return i.ToFunctionNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i FunctionNamespaceArray) ToFunctionNamespaceArrayOutputWithContext(ctx context.Context) FunctionNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionNamespaceArrayOutput)
+}
+
+// FunctionNamespaceMapInput is an input type that accepts FunctionNamespaceMap and FunctionNamespaceMapOutput values.
+// You can construct a concrete instance of `FunctionNamespaceMapInput` via:
+//
+//          FunctionNamespaceMap{ "key": FunctionNamespaceArgs{...} }
+type FunctionNamespaceMapInput interface {
+	pulumi.Input
+
+	ToFunctionNamespaceMapOutput() FunctionNamespaceMapOutput
+	ToFunctionNamespaceMapOutputWithContext(context.Context) FunctionNamespaceMapOutput
+}
+
+type FunctionNamespaceMap map[string]FunctionNamespaceInput
+
+func (FunctionNamespaceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*FunctionNamespace)(nil)).Elem()
+}
+
+func (i FunctionNamespaceMap) ToFunctionNamespaceMapOutput() FunctionNamespaceMapOutput {
+	return i.ToFunctionNamespaceMapOutputWithContext(context.Background())
+}
+
+func (i FunctionNamespaceMap) ToFunctionNamespaceMapOutputWithContext(ctx context.Context) FunctionNamespaceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionNamespaceMapOutput)
+}
+
 type FunctionNamespaceOutput struct{ *pulumi.OutputState }
 
 func (FunctionNamespaceOutput) ElementType() reflect.Type {
@@ -206,7 +256,51 @@ func (o FunctionNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }
 
+type FunctionNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (FunctionNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*FunctionNamespace)(nil)).Elem()
+}
+
+func (o FunctionNamespaceArrayOutput) ToFunctionNamespaceArrayOutput() FunctionNamespaceArrayOutput {
+	return o
+}
+
+func (o FunctionNamespaceArrayOutput) ToFunctionNamespaceArrayOutputWithContext(ctx context.Context) FunctionNamespaceArrayOutput {
+	return o
+}
+
+func (o FunctionNamespaceArrayOutput) Index(i pulumi.IntInput) FunctionNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FunctionNamespace {
+		return vs[0].([]*FunctionNamespace)[vs[1].(int)]
+	}).(FunctionNamespaceOutput)
+}
+
+type FunctionNamespaceMapOutput struct{ *pulumi.OutputState }
+
+func (FunctionNamespaceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*FunctionNamespace)(nil)).Elem()
+}
+
+func (o FunctionNamespaceMapOutput) ToFunctionNamespaceMapOutput() FunctionNamespaceMapOutput {
+	return o
+}
+
+func (o FunctionNamespaceMapOutput) ToFunctionNamespaceMapOutputWithContext(ctx context.Context) FunctionNamespaceMapOutput {
+	return o
+}
+
+func (o FunctionNamespaceMapOutput) MapIndex(k pulumi.StringInput) FunctionNamespaceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FunctionNamespace {
+		return vs[0].(map[string]*FunctionNamespace)[vs[1].(string)]
+	}).(FunctionNamespaceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionNamespaceInput)(nil)).Elem(), &FunctionNamespace{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FunctionNamespaceArrayInput)(nil)).Elem(), FunctionNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FunctionNamespaceMapInput)(nil)).Elem(), FunctionNamespaceMap{})
 	pulumi.RegisterOutputType(FunctionNamespaceOutput{})
+	pulumi.RegisterOutputType(FunctionNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(FunctionNamespaceMapOutput{})
 }

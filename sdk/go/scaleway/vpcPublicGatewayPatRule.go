@@ -175,6 +175,56 @@ func (i *VpcPublicGatewayPatRule) ToVpcPublicGatewayPatRuleOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleOutput)
 }
 
+// VpcPublicGatewayPatRuleArrayInput is an input type that accepts VpcPublicGatewayPatRuleArray and VpcPublicGatewayPatRuleArrayOutput values.
+// You can construct a concrete instance of `VpcPublicGatewayPatRuleArrayInput` via:
+//
+//          VpcPublicGatewayPatRuleArray{ VpcPublicGatewayPatRuleArgs{...} }
+type VpcPublicGatewayPatRuleArrayInput interface {
+	pulumi.Input
+
+	ToVpcPublicGatewayPatRuleArrayOutput() VpcPublicGatewayPatRuleArrayOutput
+	ToVpcPublicGatewayPatRuleArrayOutputWithContext(context.Context) VpcPublicGatewayPatRuleArrayOutput
+}
+
+type VpcPublicGatewayPatRuleArray []VpcPublicGatewayPatRuleInput
+
+func (VpcPublicGatewayPatRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPublicGatewayPatRule)(nil)).Elem()
+}
+
+func (i VpcPublicGatewayPatRuleArray) ToVpcPublicGatewayPatRuleArrayOutput() VpcPublicGatewayPatRuleArrayOutput {
+	return i.ToVpcPublicGatewayPatRuleArrayOutputWithContext(context.Background())
+}
+
+func (i VpcPublicGatewayPatRuleArray) ToVpcPublicGatewayPatRuleArrayOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleArrayOutput)
+}
+
+// VpcPublicGatewayPatRuleMapInput is an input type that accepts VpcPublicGatewayPatRuleMap and VpcPublicGatewayPatRuleMapOutput values.
+// You can construct a concrete instance of `VpcPublicGatewayPatRuleMapInput` via:
+//
+//          VpcPublicGatewayPatRuleMap{ "key": VpcPublicGatewayPatRuleArgs{...} }
+type VpcPublicGatewayPatRuleMapInput interface {
+	pulumi.Input
+
+	ToVpcPublicGatewayPatRuleMapOutput() VpcPublicGatewayPatRuleMapOutput
+	ToVpcPublicGatewayPatRuleMapOutputWithContext(context.Context) VpcPublicGatewayPatRuleMapOutput
+}
+
+type VpcPublicGatewayPatRuleMap map[string]VpcPublicGatewayPatRuleInput
+
+func (VpcPublicGatewayPatRuleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPublicGatewayPatRule)(nil)).Elem()
+}
+
+func (i VpcPublicGatewayPatRuleMap) ToVpcPublicGatewayPatRuleMapOutput() VpcPublicGatewayPatRuleMapOutput {
+	return i.ToVpcPublicGatewayPatRuleMapOutputWithContext(context.Background())
+}
+
+func (i VpcPublicGatewayPatRuleMap) ToVpcPublicGatewayPatRuleMapOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleMapOutput)
+}
+
 type VpcPublicGatewayPatRuleOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayPatRuleOutput) ElementType() reflect.Type {
@@ -234,7 +284,51 @@ func (o VpcPublicGatewayPatRuleOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type VpcPublicGatewayPatRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcPublicGatewayPatRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPublicGatewayPatRule)(nil)).Elem()
+}
+
+func (o VpcPublicGatewayPatRuleArrayOutput) ToVpcPublicGatewayPatRuleArrayOutput() VpcPublicGatewayPatRuleArrayOutput {
+	return o
+}
+
+func (o VpcPublicGatewayPatRuleArrayOutput) ToVpcPublicGatewayPatRuleArrayOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleArrayOutput {
+	return o
+}
+
+func (o VpcPublicGatewayPatRuleArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayPatRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayPatRule {
+		return vs[0].([]*VpcPublicGatewayPatRule)[vs[1].(int)]
+	}).(VpcPublicGatewayPatRuleOutput)
+}
+
+type VpcPublicGatewayPatRuleMapOutput struct{ *pulumi.OutputState }
+
+func (VpcPublicGatewayPatRuleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPublicGatewayPatRule)(nil)).Elem()
+}
+
+func (o VpcPublicGatewayPatRuleMapOutput) ToVpcPublicGatewayPatRuleMapOutput() VpcPublicGatewayPatRuleMapOutput {
+	return o
+}
+
+func (o VpcPublicGatewayPatRuleMapOutput) ToVpcPublicGatewayPatRuleMapOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleMapOutput {
+	return o
+}
+
+func (o VpcPublicGatewayPatRuleMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayPatRuleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpcPublicGatewayPatRule {
+		return vs[0].(map[string]*VpcPublicGatewayPatRule)[vs[1].(string)]
+	}).(VpcPublicGatewayPatRuleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayPatRuleInput)(nil)).Elem(), &VpcPublicGatewayPatRule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayPatRuleArrayInput)(nil)).Elem(), VpcPublicGatewayPatRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayPatRuleMapInput)(nil)).Elem(), VpcPublicGatewayPatRuleMap{})
 	pulumi.RegisterOutputType(VpcPublicGatewayPatRuleOutput{})
+	pulumi.RegisterOutputType(VpcPublicGatewayPatRuleArrayOutput{})
+	pulumi.RegisterOutputType(VpcPublicGatewayPatRuleMapOutput{})
 }

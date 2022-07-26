@@ -157,6 +157,56 @@ func (i *DomainZone) ToDomainZoneOutputWithContext(ctx context.Context) DomainZo
 	return pulumi.ToOutputWithContext(ctx, i).(DomainZoneOutput)
 }
 
+// DomainZoneArrayInput is an input type that accepts DomainZoneArray and DomainZoneArrayOutput values.
+// You can construct a concrete instance of `DomainZoneArrayInput` via:
+//
+//          DomainZoneArray{ DomainZoneArgs{...} }
+type DomainZoneArrayInput interface {
+	pulumi.Input
+
+	ToDomainZoneArrayOutput() DomainZoneArrayOutput
+	ToDomainZoneArrayOutputWithContext(context.Context) DomainZoneArrayOutput
+}
+
+type DomainZoneArray []DomainZoneInput
+
+func (DomainZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DomainZone)(nil)).Elem()
+}
+
+func (i DomainZoneArray) ToDomainZoneArrayOutput() DomainZoneArrayOutput {
+	return i.ToDomainZoneArrayOutputWithContext(context.Background())
+}
+
+func (i DomainZoneArray) ToDomainZoneArrayOutputWithContext(ctx context.Context) DomainZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainZoneArrayOutput)
+}
+
+// DomainZoneMapInput is an input type that accepts DomainZoneMap and DomainZoneMapOutput values.
+// You can construct a concrete instance of `DomainZoneMapInput` via:
+//
+//          DomainZoneMap{ "key": DomainZoneArgs{...} }
+type DomainZoneMapInput interface {
+	pulumi.Input
+
+	ToDomainZoneMapOutput() DomainZoneMapOutput
+	ToDomainZoneMapOutputWithContext(context.Context) DomainZoneMapOutput
+}
+
+type DomainZoneMap map[string]DomainZoneInput
+
+func (DomainZoneMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DomainZone)(nil)).Elem()
+}
+
+func (i DomainZoneMap) ToDomainZoneMapOutput() DomainZoneMapOutput {
+	return i.ToDomainZoneMapOutputWithContext(context.Background())
+}
+
+func (i DomainZoneMap) ToDomainZoneMapOutputWithContext(ctx context.Context) DomainZoneMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainZoneMapOutput)
+}
+
 type DomainZoneOutput struct{ *pulumi.OutputState }
 
 func (DomainZoneOutput) ElementType() reflect.Type {
@@ -216,7 +266,51 @@ func (o DomainZoneOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainZone) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+type DomainZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (DomainZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DomainZone)(nil)).Elem()
+}
+
+func (o DomainZoneArrayOutput) ToDomainZoneArrayOutput() DomainZoneArrayOutput {
+	return o
+}
+
+func (o DomainZoneArrayOutput) ToDomainZoneArrayOutputWithContext(ctx context.Context) DomainZoneArrayOutput {
+	return o
+}
+
+func (o DomainZoneArrayOutput) Index(i pulumi.IntInput) DomainZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DomainZone {
+		return vs[0].([]*DomainZone)[vs[1].(int)]
+	}).(DomainZoneOutput)
+}
+
+type DomainZoneMapOutput struct{ *pulumi.OutputState }
+
+func (DomainZoneMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DomainZone)(nil)).Elem()
+}
+
+func (o DomainZoneMapOutput) ToDomainZoneMapOutput() DomainZoneMapOutput {
+	return o
+}
+
+func (o DomainZoneMapOutput) ToDomainZoneMapOutputWithContext(ctx context.Context) DomainZoneMapOutput {
+	return o
+}
+
+func (o DomainZoneMapOutput) MapIndex(k pulumi.StringInput) DomainZoneOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DomainZone {
+		return vs[0].(map[string]*DomainZone)[vs[1].(string)]
+	}).(DomainZoneOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainZoneInput)(nil)).Elem(), &DomainZone{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainZoneArrayInput)(nil)).Elem(), DomainZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainZoneMapInput)(nil)).Elem(), DomainZoneMap{})
 	pulumi.RegisterOutputType(DomainZoneOutput{})
+	pulumi.RegisterOutputType(DomainZoneArrayOutput{})
+	pulumi.RegisterOutputType(DomainZoneMapOutput{})
 }

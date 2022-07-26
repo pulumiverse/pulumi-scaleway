@@ -287,6 +287,56 @@ func (i *KubernetesNodePool) ToKubernetesNodePoolOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolOutput)
 }
 
+// KubernetesNodePoolArrayInput is an input type that accepts KubernetesNodePoolArray and KubernetesNodePoolArrayOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolArrayInput` via:
+//
+//          KubernetesNodePoolArray{ KubernetesNodePoolArgs{...} }
+type KubernetesNodePoolArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolArrayOutput() KubernetesNodePoolArrayOutput
+	ToKubernetesNodePoolArrayOutputWithContext(context.Context) KubernetesNodePoolArrayOutput
+}
+
+type KubernetesNodePoolArray []KubernetesNodePoolInput
+
+func (KubernetesNodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*KubernetesNodePool)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolArray) ToKubernetesNodePoolArrayOutput() KubernetesNodePoolArrayOutput {
+	return i.ToKubernetesNodePoolArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolArray) ToKubernetesNodePoolArrayOutputWithContext(ctx context.Context) KubernetesNodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolArrayOutput)
+}
+
+// KubernetesNodePoolMapInput is an input type that accepts KubernetesNodePoolMap and KubernetesNodePoolMapOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolMapInput` via:
+//
+//          KubernetesNodePoolMap{ "key": KubernetesNodePoolArgs{...} }
+type KubernetesNodePoolMapInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolMapOutput() KubernetesNodePoolMapOutput
+	ToKubernetesNodePoolMapOutputWithContext(context.Context) KubernetesNodePoolMapOutput
+}
+
+type KubernetesNodePoolMap map[string]KubernetesNodePoolInput
+
+func (KubernetesNodePoolMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*KubernetesNodePool)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolMap) ToKubernetesNodePoolMapOutput() KubernetesNodePoolMapOutput {
+	return i.ToKubernetesNodePoolMapOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolMap) ToKubernetesNodePoolMapOutputWithContext(ctx context.Context) KubernetesNodePoolMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolMapOutput)
+}
+
 type KubernetesNodePoolOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolOutput) ElementType() reflect.Type {
@@ -410,7 +460,51 @@ func (o KubernetesNodePoolOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type KubernetesNodePoolArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*KubernetesNodePool)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolArrayOutput) ToKubernetesNodePoolArrayOutput() KubernetesNodePoolArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolArrayOutput) ToKubernetesNodePoolArrayOutputWithContext(ctx context.Context) KubernetesNodePoolArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *KubernetesNodePool {
+		return vs[0].([]*KubernetesNodePool)[vs[1].(int)]
+	}).(KubernetesNodePoolOutput)
+}
+
+type KubernetesNodePoolMapOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*KubernetesNodePool)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolMapOutput) ToKubernetesNodePoolMapOutput() KubernetesNodePoolMapOutput {
+	return o
+}
+
+func (o KubernetesNodePoolMapOutput) ToKubernetesNodePoolMapOutputWithContext(ctx context.Context) KubernetesNodePoolMapOutput {
+	return o
+}
+
+func (o KubernetesNodePoolMapOutput) MapIndex(k pulumi.StringInput) KubernetesNodePoolOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *KubernetesNodePool {
+		return vs[0].(map[string]*KubernetesNodePool)[vs[1].(string)]
+	}).(KubernetesNodePoolOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolInput)(nil)).Elem(), &KubernetesNodePool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolArrayInput)(nil)).Elem(), KubernetesNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolMapInput)(nil)).Elem(), KubernetesNodePoolMap{})
 	pulumi.RegisterOutputType(KubernetesNodePoolOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolMapOutput{})
 }

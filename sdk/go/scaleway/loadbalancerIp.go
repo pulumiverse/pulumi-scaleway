@@ -138,6 +138,56 @@ func (i *LoadbalancerIp) ToLoadbalancerIpOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpOutput)
 }
 
+// LoadbalancerIpArrayInput is an input type that accepts LoadbalancerIpArray and LoadbalancerIpArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerIpArrayInput` via:
+//
+//          LoadbalancerIpArray{ LoadbalancerIpArgs{...} }
+type LoadbalancerIpArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerIpArrayOutput() LoadbalancerIpArrayOutput
+	ToLoadbalancerIpArrayOutputWithContext(context.Context) LoadbalancerIpArrayOutput
+}
+
+type LoadbalancerIpArray []LoadbalancerIpInput
+
+func (LoadbalancerIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerIp)(nil)).Elem()
+}
+
+func (i LoadbalancerIpArray) ToLoadbalancerIpArrayOutput() LoadbalancerIpArrayOutput {
+	return i.ToLoadbalancerIpArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerIpArray) ToLoadbalancerIpArrayOutputWithContext(ctx context.Context) LoadbalancerIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpArrayOutput)
+}
+
+// LoadbalancerIpMapInput is an input type that accepts LoadbalancerIpMap and LoadbalancerIpMapOutput values.
+// You can construct a concrete instance of `LoadbalancerIpMapInput` via:
+//
+//          LoadbalancerIpMap{ "key": LoadbalancerIpArgs{...} }
+type LoadbalancerIpMapInput interface {
+	pulumi.Input
+
+	ToLoadbalancerIpMapOutput() LoadbalancerIpMapOutput
+	ToLoadbalancerIpMapOutputWithContext(context.Context) LoadbalancerIpMapOutput
+}
+
+type LoadbalancerIpMap map[string]LoadbalancerIpInput
+
+func (LoadbalancerIpMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerIp)(nil)).Elem()
+}
+
+func (i LoadbalancerIpMap) ToLoadbalancerIpMapOutput() LoadbalancerIpMapOutput {
+	return i.ToLoadbalancerIpMapOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerIpMap) ToLoadbalancerIpMapOutputWithContext(ctx context.Context) LoadbalancerIpMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpMapOutput)
+}
+
 type LoadbalancerIpOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerIpOutput) ElementType() reflect.Type {
@@ -187,7 +237,51 @@ func (o LoadbalancerIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type LoadbalancerIpArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerIp)(nil)).Elem()
+}
+
+func (o LoadbalancerIpArrayOutput) ToLoadbalancerIpArrayOutput() LoadbalancerIpArrayOutput {
+	return o
+}
+
+func (o LoadbalancerIpArrayOutput) ToLoadbalancerIpArrayOutputWithContext(ctx context.Context) LoadbalancerIpArrayOutput {
+	return o
+}
+
+func (o LoadbalancerIpArrayOutput) Index(i pulumi.IntInput) LoadbalancerIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerIp {
+		return vs[0].([]*LoadbalancerIp)[vs[1].(int)]
+	}).(LoadbalancerIpOutput)
+}
+
+type LoadbalancerIpMapOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerIpMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerIp)(nil)).Elem()
+}
+
+func (o LoadbalancerIpMapOutput) ToLoadbalancerIpMapOutput() LoadbalancerIpMapOutput {
+	return o
+}
+
+func (o LoadbalancerIpMapOutput) ToLoadbalancerIpMapOutputWithContext(ctx context.Context) LoadbalancerIpMapOutput {
+	return o
+}
+
+func (o LoadbalancerIpMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerIpOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LoadbalancerIp {
+		return vs[0].(map[string]*LoadbalancerIp)[vs[1].(string)]
+	}).(LoadbalancerIpOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIpInput)(nil)).Elem(), &LoadbalancerIp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIpArrayInput)(nil)).Elem(), LoadbalancerIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerIpMapInput)(nil)).Elem(), LoadbalancerIpMap{})
 	pulumi.RegisterOutputType(LoadbalancerIpOutput{})
+	pulumi.RegisterOutputType(LoadbalancerIpArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerIpMapOutput{})
 }

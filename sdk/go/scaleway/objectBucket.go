@@ -165,6 +165,56 @@ func (i *ObjectBucket) ToObjectBucketOutputWithContext(ctx context.Context) Obje
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketOutput)
 }
 
+// ObjectBucketArrayInput is an input type that accepts ObjectBucketArray and ObjectBucketArrayOutput values.
+// You can construct a concrete instance of `ObjectBucketArrayInput` via:
+//
+//          ObjectBucketArray{ ObjectBucketArgs{...} }
+type ObjectBucketArrayInput interface {
+	pulumi.Input
+
+	ToObjectBucketArrayOutput() ObjectBucketArrayOutput
+	ToObjectBucketArrayOutputWithContext(context.Context) ObjectBucketArrayOutput
+}
+
+type ObjectBucketArray []ObjectBucketInput
+
+func (ObjectBucketArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ObjectBucket)(nil)).Elem()
+}
+
+func (i ObjectBucketArray) ToObjectBucketArrayOutput() ObjectBucketArrayOutput {
+	return i.ToObjectBucketArrayOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketArray) ToObjectBucketArrayOutputWithContext(ctx context.Context) ObjectBucketArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketArrayOutput)
+}
+
+// ObjectBucketMapInput is an input type that accepts ObjectBucketMap and ObjectBucketMapOutput values.
+// You can construct a concrete instance of `ObjectBucketMapInput` via:
+//
+//          ObjectBucketMap{ "key": ObjectBucketArgs{...} }
+type ObjectBucketMapInput interface {
+	pulumi.Input
+
+	ToObjectBucketMapOutput() ObjectBucketMapOutput
+	ToObjectBucketMapOutputWithContext(context.Context) ObjectBucketMapOutput
+}
+
+type ObjectBucketMap map[string]ObjectBucketInput
+
+func (ObjectBucketMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ObjectBucket)(nil)).Elem()
+}
+
+func (i ObjectBucketMap) ToObjectBucketMapOutput() ObjectBucketMapOutput {
+	return i.ToObjectBucketMapOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketMap) ToObjectBucketMapOutputWithContext(ctx context.Context) ObjectBucketMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketMapOutput)
+}
+
 type ObjectBucketOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketOutput) ElementType() reflect.Type {
@@ -223,7 +273,51 @@ func (o ObjectBucketOutput) Versioning() ObjectBucketVersioningOutput {
 	return o.ApplyT(func(v *ObjectBucket) ObjectBucketVersioningOutput { return v.Versioning }).(ObjectBucketVersioningOutput)
 }
 
+type ObjectBucketArrayOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ObjectBucket)(nil)).Elem()
+}
+
+func (o ObjectBucketArrayOutput) ToObjectBucketArrayOutput() ObjectBucketArrayOutput {
+	return o
+}
+
+func (o ObjectBucketArrayOutput) ToObjectBucketArrayOutputWithContext(ctx context.Context) ObjectBucketArrayOutput {
+	return o
+}
+
+func (o ObjectBucketArrayOutput) Index(i pulumi.IntInput) ObjectBucketOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucket {
+		return vs[0].([]*ObjectBucket)[vs[1].(int)]
+	}).(ObjectBucketOutput)
+}
+
+type ObjectBucketMapOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ObjectBucket)(nil)).Elem()
+}
+
+func (o ObjectBucketMapOutput) ToObjectBucketMapOutput() ObjectBucketMapOutput {
+	return o
+}
+
+func (o ObjectBucketMapOutput) ToObjectBucketMapOutputWithContext(ctx context.Context) ObjectBucketMapOutput {
+	return o
+}
+
+func (o ObjectBucketMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ObjectBucket {
+		return vs[0].(map[string]*ObjectBucket)[vs[1].(string)]
+	}).(ObjectBucketOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketInput)(nil)).Elem(), &ObjectBucket{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketArrayInput)(nil)).Elem(), ObjectBucketArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketMapInput)(nil)).Elem(), ObjectBucketMap{})
 	pulumi.RegisterOutputType(ObjectBucketOutput{})
+	pulumi.RegisterOutputType(ObjectBucketArrayOutput{})
+	pulumi.RegisterOutputType(ObjectBucketMapOutput{})
 }

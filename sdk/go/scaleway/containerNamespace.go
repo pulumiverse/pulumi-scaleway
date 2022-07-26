@@ -152,6 +152,56 @@ func (i *ContainerNamespace) ToContainerNamespaceOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerNamespaceOutput)
 }
 
+// ContainerNamespaceArrayInput is an input type that accepts ContainerNamespaceArray and ContainerNamespaceArrayOutput values.
+// You can construct a concrete instance of `ContainerNamespaceArrayInput` via:
+//
+//          ContainerNamespaceArray{ ContainerNamespaceArgs{...} }
+type ContainerNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToContainerNamespaceArrayOutput() ContainerNamespaceArrayOutput
+	ToContainerNamespaceArrayOutputWithContext(context.Context) ContainerNamespaceArrayOutput
+}
+
+type ContainerNamespaceArray []ContainerNamespaceInput
+
+func (ContainerNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ContainerNamespace)(nil)).Elem()
+}
+
+func (i ContainerNamespaceArray) ToContainerNamespaceArrayOutput() ContainerNamespaceArrayOutput {
+	return i.ToContainerNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i ContainerNamespaceArray) ToContainerNamespaceArrayOutputWithContext(ctx context.Context) ContainerNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerNamespaceArrayOutput)
+}
+
+// ContainerNamespaceMapInput is an input type that accepts ContainerNamespaceMap and ContainerNamespaceMapOutput values.
+// You can construct a concrete instance of `ContainerNamespaceMapInput` via:
+//
+//          ContainerNamespaceMap{ "key": ContainerNamespaceArgs{...} }
+type ContainerNamespaceMapInput interface {
+	pulumi.Input
+
+	ToContainerNamespaceMapOutput() ContainerNamespaceMapOutput
+	ToContainerNamespaceMapOutputWithContext(context.Context) ContainerNamespaceMapOutput
+}
+
+type ContainerNamespaceMap map[string]ContainerNamespaceInput
+
+func (ContainerNamespaceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ContainerNamespace)(nil)).Elem()
+}
+
+func (i ContainerNamespaceMap) ToContainerNamespaceMapOutput() ContainerNamespaceMapOutput {
+	return i.ToContainerNamespaceMapOutputWithContext(context.Background())
+}
+
+func (i ContainerNamespaceMap) ToContainerNamespaceMapOutputWithContext(ctx context.Context) ContainerNamespaceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerNamespaceMapOutput)
+}
+
 type ContainerNamespaceOutput struct{ *pulumi.OutputState }
 
 func (ContainerNamespaceOutput) ElementType() reflect.Type {
@@ -206,7 +256,51 @@ func (o ContainerNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }
 
+type ContainerNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (ContainerNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ContainerNamespace)(nil)).Elem()
+}
+
+func (o ContainerNamespaceArrayOutput) ToContainerNamespaceArrayOutput() ContainerNamespaceArrayOutput {
+	return o
+}
+
+func (o ContainerNamespaceArrayOutput) ToContainerNamespaceArrayOutputWithContext(ctx context.Context) ContainerNamespaceArrayOutput {
+	return o
+}
+
+func (o ContainerNamespaceArrayOutput) Index(i pulumi.IntInput) ContainerNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContainerNamespace {
+		return vs[0].([]*ContainerNamespace)[vs[1].(int)]
+	}).(ContainerNamespaceOutput)
+}
+
+type ContainerNamespaceMapOutput struct{ *pulumi.OutputState }
+
+func (ContainerNamespaceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ContainerNamespace)(nil)).Elem()
+}
+
+func (o ContainerNamespaceMapOutput) ToContainerNamespaceMapOutput() ContainerNamespaceMapOutput {
+	return o
+}
+
+func (o ContainerNamespaceMapOutput) ToContainerNamespaceMapOutputWithContext(ctx context.Context) ContainerNamespaceMapOutput {
+	return o
+}
+
+func (o ContainerNamespaceMapOutput) MapIndex(k pulumi.StringInput) ContainerNamespaceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ContainerNamespace {
+		return vs[0].(map[string]*ContainerNamespace)[vs[1].(string)]
+	}).(ContainerNamespaceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerNamespaceInput)(nil)).Elem(), &ContainerNamespace{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerNamespaceArrayInput)(nil)).Elem(), ContainerNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerNamespaceMapInput)(nil)).Elem(), ContainerNamespaceMap{})
 	pulumi.RegisterOutputType(ContainerNamespaceOutput{})
+	pulumi.RegisterOutputType(ContainerNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(ContainerNamespaceMapOutput{})
 }

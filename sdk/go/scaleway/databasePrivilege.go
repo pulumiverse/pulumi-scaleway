@@ -137,6 +137,56 @@ func (i *DatabasePrivilege) ToDatabasePrivilegeOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(DatabasePrivilegeOutput)
 }
 
+// DatabasePrivilegeArrayInput is an input type that accepts DatabasePrivilegeArray and DatabasePrivilegeArrayOutput values.
+// You can construct a concrete instance of `DatabasePrivilegeArrayInput` via:
+//
+//          DatabasePrivilegeArray{ DatabasePrivilegeArgs{...} }
+type DatabasePrivilegeArrayInput interface {
+	pulumi.Input
+
+	ToDatabasePrivilegeArrayOutput() DatabasePrivilegeArrayOutput
+	ToDatabasePrivilegeArrayOutputWithContext(context.Context) DatabasePrivilegeArrayOutput
+}
+
+type DatabasePrivilegeArray []DatabasePrivilegeInput
+
+func (DatabasePrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DatabasePrivilege)(nil)).Elem()
+}
+
+func (i DatabasePrivilegeArray) ToDatabasePrivilegeArrayOutput() DatabasePrivilegeArrayOutput {
+	return i.ToDatabasePrivilegeArrayOutputWithContext(context.Background())
+}
+
+func (i DatabasePrivilegeArray) ToDatabasePrivilegeArrayOutputWithContext(ctx context.Context) DatabasePrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabasePrivilegeArrayOutput)
+}
+
+// DatabasePrivilegeMapInput is an input type that accepts DatabasePrivilegeMap and DatabasePrivilegeMapOutput values.
+// You can construct a concrete instance of `DatabasePrivilegeMapInput` via:
+//
+//          DatabasePrivilegeMap{ "key": DatabasePrivilegeArgs{...} }
+type DatabasePrivilegeMapInput interface {
+	pulumi.Input
+
+	ToDatabasePrivilegeMapOutput() DatabasePrivilegeMapOutput
+	ToDatabasePrivilegeMapOutputWithContext(context.Context) DatabasePrivilegeMapOutput
+}
+
+type DatabasePrivilegeMap map[string]DatabasePrivilegeInput
+
+func (DatabasePrivilegeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DatabasePrivilege)(nil)).Elem()
+}
+
+func (i DatabasePrivilegeMap) ToDatabasePrivilegeMapOutput() DatabasePrivilegeMapOutput {
+	return i.ToDatabasePrivilegeMapOutputWithContext(context.Background())
+}
+
+func (i DatabasePrivilegeMap) ToDatabasePrivilegeMapOutputWithContext(ctx context.Context) DatabasePrivilegeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabasePrivilegeMapOutput)
+}
+
 type DatabasePrivilegeOutput struct{ *pulumi.OutputState }
 
 func (DatabasePrivilegeOutput) ElementType() reflect.Type {
@@ -171,7 +221,51 @@ func (o DatabasePrivilegeOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
+type DatabasePrivilegeArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabasePrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DatabasePrivilege)(nil)).Elem()
+}
+
+func (o DatabasePrivilegeArrayOutput) ToDatabasePrivilegeArrayOutput() DatabasePrivilegeArrayOutput {
+	return o
+}
+
+func (o DatabasePrivilegeArrayOutput) ToDatabasePrivilegeArrayOutputWithContext(ctx context.Context) DatabasePrivilegeArrayOutput {
+	return o
+}
+
+func (o DatabasePrivilegeArrayOutput) Index(i pulumi.IntInput) DatabasePrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabasePrivilege {
+		return vs[0].([]*DatabasePrivilege)[vs[1].(int)]
+	}).(DatabasePrivilegeOutput)
+}
+
+type DatabasePrivilegeMapOutput struct{ *pulumi.OutputState }
+
+func (DatabasePrivilegeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DatabasePrivilege)(nil)).Elem()
+}
+
+func (o DatabasePrivilegeMapOutput) ToDatabasePrivilegeMapOutput() DatabasePrivilegeMapOutput {
+	return o
+}
+
+func (o DatabasePrivilegeMapOutput) ToDatabasePrivilegeMapOutputWithContext(ctx context.Context) DatabasePrivilegeMapOutput {
+	return o
+}
+
+func (o DatabasePrivilegeMapOutput) MapIndex(k pulumi.StringInput) DatabasePrivilegeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DatabasePrivilege {
+		return vs[0].(map[string]*DatabasePrivilege)[vs[1].(string)]
+	}).(DatabasePrivilegeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabasePrivilegeInput)(nil)).Elem(), &DatabasePrivilege{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabasePrivilegeArrayInput)(nil)).Elem(), DatabasePrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabasePrivilegeMapInput)(nil)).Elem(), DatabasePrivilegeMap{})
 	pulumi.RegisterOutputType(DatabasePrivilegeOutput{})
+	pulumi.RegisterOutputType(DatabasePrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(DatabasePrivilegeMapOutput{})
 }

@@ -124,6 +124,56 @@ func (i *AccountSshKey) ToAccountSshKeyOutputWithContext(ctx context.Context) Ac
 	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyOutput)
 }
 
+// AccountSshKeyArrayInput is an input type that accepts AccountSshKeyArray and AccountSshKeyArrayOutput values.
+// You can construct a concrete instance of `AccountSshKeyArrayInput` via:
+//
+//          AccountSshKeyArray{ AccountSshKeyArgs{...} }
+type AccountSshKeyArrayInput interface {
+	pulumi.Input
+
+	ToAccountSshKeyArrayOutput() AccountSshKeyArrayOutput
+	ToAccountSshKeyArrayOutputWithContext(context.Context) AccountSshKeyArrayOutput
+}
+
+type AccountSshKeyArray []AccountSshKeyInput
+
+func (AccountSshKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AccountSshKey)(nil)).Elem()
+}
+
+func (i AccountSshKeyArray) ToAccountSshKeyArrayOutput() AccountSshKeyArrayOutput {
+	return i.ToAccountSshKeyArrayOutputWithContext(context.Background())
+}
+
+func (i AccountSshKeyArray) ToAccountSshKeyArrayOutputWithContext(ctx context.Context) AccountSshKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyArrayOutput)
+}
+
+// AccountSshKeyMapInput is an input type that accepts AccountSshKeyMap and AccountSshKeyMapOutput values.
+// You can construct a concrete instance of `AccountSshKeyMapInput` via:
+//
+//          AccountSshKeyMap{ "key": AccountSshKeyArgs{...} }
+type AccountSshKeyMapInput interface {
+	pulumi.Input
+
+	ToAccountSshKeyMapOutput() AccountSshKeyMapOutput
+	ToAccountSshKeyMapOutputWithContext(context.Context) AccountSshKeyMapOutput
+}
+
+type AccountSshKeyMap map[string]AccountSshKeyInput
+
+func (AccountSshKeyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AccountSshKey)(nil)).Elem()
+}
+
+func (i AccountSshKeyMap) ToAccountSshKeyMapOutput() AccountSshKeyMapOutput {
+	return i.ToAccountSshKeyMapOutputWithContext(context.Background())
+}
+
+func (i AccountSshKeyMap) ToAccountSshKeyMapOutputWithContext(ctx context.Context) AccountSshKeyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyMapOutput)
+}
+
 type AccountSshKeyOutput struct{ *pulumi.OutputState }
 
 func (AccountSshKeyOutput) ElementType() reflect.Type {
@@ -158,7 +208,51 @@ func (o AccountSshKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+type AccountSshKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (AccountSshKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AccountSshKey)(nil)).Elem()
+}
+
+func (o AccountSshKeyArrayOutput) ToAccountSshKeyArrayOutput() AccountSshKeyArrayOutput {
+	return o
+}
+
+func (o AccountSshKeyArrayOutput) ToAccountSshKeyArrayOutputWithContext(ctx context.Context) AccountSshKeyArrayOutput {
+	return o
+}
+
+func (o AccountSshKeyArrayOutput) Index(i pulumi.IntInput) AccountSshKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AccountSshKey {
+		return vs[0].([]*AccountSshKey)[vs[1].(int)]
+	}).(AccountSshKeyOutput)
+}
+
+type AccountSshKeyMapOutput struct{ *pulumi.OutputState }
+
+func (AccountSshKeyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AccountSshKey)(nil)).Elem()
+}
+
+func (o AccountSshKeyMapOutput) ToAccountSshKeyMapOutput() AccountSshKeyMapOutput {
+	return o
+}
+
+func (o AccountSshKeyMapOutput) ToAccountSshKeyMapOutputWithContext(ctx context.Context) AccountSshKeyMapOutput {
+	return o
+}
+
+func (o AccountSshKeyMapOutput) MapIndex(k pulumi.StringInput) AccountSshKeyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AccountSshKey {
+		return vs[0].(map[string]*AccountSshKey)[vs[1].(string)]
+	}).(AccountSshKeyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountSshKeyInput)(nil)).Elem(), &AccountSshKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountSshKeyArrayInput)(nil)).Elem(), AccountSshKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccountSshKeyMapInput)(nil)).Elem(), AccountSshKeyMap{})
 	pulumi.RegisterOutputType(AccountSshKeyOutput{})
+	pulumi.RegisterOutputType(AccountSshKeyArrayOutput{})
+	pulumi.RegisterOutputType(AccountSshKeyMapOutput{})
 }

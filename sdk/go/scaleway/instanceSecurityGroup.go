@@ -205,6 +205,56 @@ func (i *InstanceSecurityGroup) ToInstanceSecurityGroupOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupOutput)
 }
 
+// InstanceSecurityGroupArrayInput is an input type that accepts InstanceSecurityGroupArray and InstanceSecurityGroupArrayOutput values.
+// You can construct a concrete instance of `InstanceSecurityGroupArrayInput` via:
+//
+//          InstanceSecurityGroupArray{ InstanceSecurityGroupArgs{...} }
+type InstanceSecurityGroupArrayInput interface {
+	pulumi.Input
+
+	ToInstanceSecurityGroupArrayOutput() InstanceSecurityGroupArrayOutput
+	ToInstanceSecurityGroupArrayOutputWithContext(context.Context) InstanceSecurityGroupArrayOutput
+}
+
+type InstanceSecurityGroupArray []InstanceSecurityGroupInput
+
+func (InstanceSecurityGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceSecurityGroup)(nil)).Elem()
+}
+
+func (i InstanceSecurityGroupArray) ToInstanceSecurityGroupArrayOutput() InstanceSecurityGroupArrayOutput {
+	return i.ToInstanceSecurityGroupArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceSecurityGroupArray) ToInstanceSecurityGroupArrayOutputWithContext(ctx context.Context) InstanceSecurityGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupArrayOutput)
+}
+
+// InstanceSecurityGroupMapInput is an input type that accepts InstanceSecurityGroupMap and InstanceSecurityGroupMapOutput values.
+// You can construct a concrete instance of `InstanceSecurityGroupMapInput` via:
+//
+//          InstanceSecurityGroupMap{ "key": InstanceSecurityGroupArgs{...} }
+type InstanceSecurityGroupMapInput interface {
+	pulumi.Input
+
+	ToInstanceSecurityGroupMapOutput() InstanceSecurityGroupMapOutput
+	ToInstanceSecurityGroupMapOutputWithContext(context.Context) InstanceSecurityGroupMapOutput
+}
+
+type InstanceSecurityGroupMap map[string]InstanceSecurityGroupInput
+
+func (InstanceSecurityGroupMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceSecurityGroup)(nil)).Elem()
+}
+
+func (i InstanceSecurityGroupMap) ToInstanceSecurityGroupMapOutput() InstanceSecurityGroupMapOutput {
+	return i.ToInstanceSecurityGroupMapOutputWithContext(context.Background())
+}
+
+func (i InstanceSecurityGroupMap) ToInstanceSecurityGroupMapOutputWithContext(ctx context.Context) InstanceSecurityGroupMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupMapOutput)
+}
+
 type InstanceSecurityGroupOutput struct{ *pulumi.OutputState }
 
 func (InstanceSecurityGroupOutput) ElementType() reflect.Type {
@@ -283,7 +333,51 @@ func (o InstanceSecurityGroupOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstanceSecurityGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceSecurityGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceSecurityGroup)(nil)).Elem()
+}
+
+func (o InstanceSecurityGroupArrayOutput) ToInstanceSecurityGroupArrayOutput() InstanceSecurityGroupArrayOutput {
+	return o
+}
+
+func (o InstanceSecurityGroupArrayOutput) ToInstanceSecurityGroupArrayOutputWithContext(ctx context.Context) InstanceSecurityGroupArrayOutput {
+	return o
+}
+
+func (o InstanceSecurityGroupArrayOutput) Index(i pulumi.IntInput) InstanceSecurityGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceSecurityGroup {
+		return vs[0].([]*InstanceSecurityGroup)[vs[1].(int)]
+	}).(InstanceSecurityGroupOutput)
+}
+
+type InstanceSecurityGroupMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceSecurityGroupMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceSecurityGroup)(nil)).Elem()
+}
+
+func (o InstanceSecurityGroupMapOutput) ToInstanceSecurityGroupMapOutput() InstanceSecurityGroupMapOutput {
+	return o
+}
+
+func (o InstanceSecurityGroupMapOutput) ToInstanceSecurityGroupMapOutputWithContext(ctx context.Context) InstanceSecurityGroupMapOutput {
+	return o
+}
+
+func (o InstanceSecurityGroupMapOutput) MapIndex(k pulumi.StringInput) InstanceSecurityGroupOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstanceSecurityGroup {
+		return vs[0].(map[string]*InstanceSecurityGroup)[vs[1].(string)]
+	}).(InstanceSecurityGroupOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInput)(nil)).Elem(), &InstanceSecurityGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupArrayInput)(nil)).Elem(), InstanceSecurityGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupMapInput)(nil)).Elem(), InstanceSecurityGroupMap{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupOutput{})
+	pulumi.RegisterOutputType(InstanceSecurityGroupArrayOutput{})
+	pulumi.RegisterOutputType(InstanceSecurityGroupMapOutput{})
 }

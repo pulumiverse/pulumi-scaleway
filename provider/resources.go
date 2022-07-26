@@ -16,11 +16,14 @@
 package scaleway
 
 import (
+	"fmt"
+	"path/filepath"
 	"unicode"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumiverse/pulumi-scaleway/provider/pkg/version"
 	"github.com/scaleway/terraform-provider-scaleway/v2/scaleway"
 )
 
@@ -83,11 +86,11 @@ func Provider() tfbridge.ProviderInfo {
 		LogoURL:           "https://raw.githubusercontent.com/pulumiverse/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:        "https://github.com/pulumiverse/pulumi-scaleway",
-		PluginDownloadURL: "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}",
+		PluginDownloadURL: "github://api.github.com/pulumiverse",
 
 		GitHubOrg: "scaleway", // not in the terraform-providers repo
 
-		Publisher:   "Lee Briggs",
+		Publisher:   "Pulumiverse",
 		DisplayName: "Scaleway",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
@@ -216,19 +219,30 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@pulumiverse/pulumi-scaleway",
+			PackageName: "@pulumiverse/scaleway",
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
+			PackageName: "pulumiverse_scaleway",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
+		Golang: &tfbridge.GolangInfo{
+			ImportBasePath: filepath.Join(
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", scalewayPkg),
+				tfbridge.GetModuleMajorVersion(version.Version),
+				"go",
+				scalewayPkg,
+			),
+			GenerateResourceContainerTypes: true,
+		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Pulumiverse",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

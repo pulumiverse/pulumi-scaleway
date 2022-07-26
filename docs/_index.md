@@ -13,7 +13,7 @@ The Scaleway provider must be configured with credentials to deploy and update r
 {{% choosable language typescript %}}
 
 ```typescript
-import * as scaleway from "@pulumiverse/pulumi-scaleway";
+import * as scaleway from "@pulumiverse/scaleway";
 const publicIp = new scaleway.InstanceIp("example")
 const server = new scaleway.InstanceServer("example", {
     type: "DEV1-S",
@@ -29,7 +29,7 @@ const server = new scaleway.InstanceServer("example", {
 {{% choosable language python %}}
 
 ```python
-import pulumi_scaleway as scaleway
+import pulumiverse_scaleway as scaleway
 
 public_ip = scaleway.InstanceIp("example")
 
@@ -83,7 +83,7 @@ func main() {
 
 ```csharp
 using Pulumi;
-using Pulumi.Scaleway;
+using Pulumiverse.Scaleway;
 
 class ScalewayServer : Stack
 {
