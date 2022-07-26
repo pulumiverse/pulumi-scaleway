@@ -13,13 +13,13 @@ This package is available in many languages in the standard packaging formats.
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @pulumiverse/pulumi-scaleway
+$ npm install @pulumiverse/scaleway
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @pulumiverse/pulumi-scaleway
+$ yarn add @pulumiverse/scaleway
 ```
 
 ### Python
@@ -27,7 +27,7 @@ $ yarn add @pulumiverse/pulumi-scaleway
 To use from Python, install using `pip`:
 
 ```
-$ pip install pulumi-scaleway
+$ pip install pulumiverse_scaleway
 ```
 
 ### Go
@@ -44,7 +44,7 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package Pulumi.Scaleway
+$ dotnet add package Pulumiverse.Scaleway
 ```
 
 ## Reference
