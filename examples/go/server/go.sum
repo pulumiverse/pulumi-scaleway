@@ -101,8 +101,8 @@ github.com/hashicorp/go-multierror v1.0.0/go.mod h1:dHtQlpGsu+cZNNAkkCN/P3hoUDHh
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
-github.com/jaxxstorm/pulumi-scaleway/sdk v0.0.0-20220107151835-dedeaaa3fbbb h1:4UOGHN7/c0N1LVDRN5FJiLjwSqwfCVzsi/DSaNEPrv8=
-github.com/jaxxstorm/pulumi-scaleway/sdk v0.0.0-20220107151835-dedeaaa3fbbb/go.mod h1:9HC/sRectyOJA+Y/JpgC1QUM8AZF43eqZz3wP8UB9Cw=
+github.com/pulumiverse/pulumi-scaleway/sdk v0.0.0-20220107151835-dedeaaa3fbbb h1:4UOGHN7/c0N1LVDRN5FJiLjwSqwfCVzsi/DSaNEPrv8=
+github.com/pulumiverse/pulumi-scaleway/sdk v0.0.0-20220107151835-dedeaaa3fbbb/go.mod h1:9HC/sRectyOJA+Y/JpgC1QUM8AZF43eqZz3wP8UB9Cw=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 h1:BQSFePA1RWJOlocH6Fxy8MmwDt+yVQYULKfN0RoTN8A=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i6rXxKeerYnT8Nvf0QmHCRC1n8sfWVwXF2Frvo=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=

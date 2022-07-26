@@ -13,13 +13,13 @@ This package is available in many languages in the standard packaging formats.
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @jaxxstorm/pulumi-scaleway
+$ npm install @pulumiverse/pulumi-scaleway
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @jaxxstorm/pulumi-scaleway
+$ yarn add @pulumiverse/pulumi-scaleway
 ```
 
 ### Python
@@ -35,7 +35,7 @@ $ pip install pulumi-scaleway
 To use from Go, use `go get` to grab the latest version of the library
 
 ```
-$ go get github.com/jaxxstorm/pulumi-scaleway/sdk/go/...
+$ go get github.com/pulumiverse/pulumi-scaleway/sdk/go/...
 ```
 
 ### .NET

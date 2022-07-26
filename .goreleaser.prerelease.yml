@@ -28,7 +28,7 @@ builds:
   ldflags:
   - -s
   - -w
-  - -X github.com/jaxxstorm/pulumi-scaleway/provider/pkg/version.Version={{.Tag}}
+  - -X github.com/pulumiverse/pulumi-scaleway/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-scaleway/
 changelog:
   skip: true

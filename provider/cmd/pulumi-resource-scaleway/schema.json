@@ -9,9 +9,9 @@
     "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`scaleway` Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway).",
-    "repository": "https://github.com/jaxxstorm/pulumi-scaleway",
-    "logoUrl": "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg",
-    "pluginDownloadURL": "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}",
+    "repository": "https://github.com/pulumiverse/pulumi-scaleway",
+    "logoUrl": "https://raw.githubusercontent.com/pulumiverse/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg",
+    "pluginDownloadURL": "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}",
     "publisher": "Lee Briggs",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
@@ -35,7 +35,7 @@
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing scaleway cloud resources.",
-            "packageName": "@jaxxstorm/pulumi-scaleway",
+            "packageName": "@pulumiverse/pulumi-scaleway",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-scaleway` repo](https://github.com/pulumi/pulumi-scaleway/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`scaleway/terraform-provider-scaleway` repo](https://github.com/scaleway/terraform-provider-scaleway/issues).",
             "typescriptVersion": ""
         },

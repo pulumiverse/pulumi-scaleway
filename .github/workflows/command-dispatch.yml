@@ -30,7 +30,7 @@ jobs:
         issue-type: pull-request
         permission: write
         reaction-token: ${{ secrets.GITHUB_TOKEN }}
-        repository: jaxxstorm/pulumi-scaleway
+        repository: pulumiverse/pulumi-scaleway
         token: ${{ secrets.PULUMI_BOT_TOKEN }}
     strategy: {}
 "on":

@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "scaleway",
-  "server": "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}"
+  "server": "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}"
 }

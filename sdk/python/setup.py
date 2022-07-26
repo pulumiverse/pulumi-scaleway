@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -48,7 +48,7 @@ setup(name='pulumi_scaleway',
       keywords='pulumi scaleway',
       url='https://leebriggs.co.uk/projects#pulumi-scaleway',
       project_urls={
-          'Repository': 'https://github.com/jaxxstorm/pulumi-scaleway'
+          'Repository': 'https://github.com/pulumiverse/pulumi-scaleway'
       },
       license='Apache-2.0',
       packages=find_packages(),

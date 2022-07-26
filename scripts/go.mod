@@ -1,4 +1,4 @@
-module github.com/jaxxstorm/pulumi-scaleway/scripts/
+module github.com/pulumiverse/pulumi-scaleway/scripts/
 
 go 1.13
 
