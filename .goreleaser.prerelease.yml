@@ -4,14 +4,6 @@ archives:
 before:
   hooks:
   - make tfgen
-blobs:
-- bucket: dl.briggs.work
-  endpoint: https://s3.nl-ams.scw.cloud
-  folder: pulumi/releases/plugins/
-  region: nl-ams
-  ids:
-  - archive
-  provider: s3
 builds:
 - binary: pulumi-resource-scaleway
   dir: provider
