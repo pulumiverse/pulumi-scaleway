@@ -1,13 +1,14 @@
 {
-    "name": "@jaxxstorm/pulumi-scaleway",
+    "name": "@pulumiverse/pulumi-scaleway",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing scaleway cloud resources.",
     "keywords": [
         "pulumi",
-        "scaleway"
+        "scaleway",
+        "pulumiverse"
     ],
     "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
-    "repository": "https://github.com/jaxxstorm/pulumi-scaleway",
+    "repository": "https://github.com/pulumiverse/pulumi-scaleway",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
@@ -24,6 +25,6 @@
     "pulumi": {
         "resource": true,
         "name": "scaleway",
-        "server": "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}"
+        "server": "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}"
     }
 }

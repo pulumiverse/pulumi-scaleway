@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Lee Briggs</Authors>
-    <Company>Lee Briggs</Company>
+    <Authors>Pulumiverse</Authors>
+    <Company>Pulumiverse</Company>
     <Description>A Pulumi package for creating and managing scaleway cloud resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://leebriggs.co.uk/projects#pulumi-scaleway</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/jaxxstorm/pulumi-scaleway</RepositoryUrl>
+    <RepositoryUrl>https://github.com/pulumiverse/pulumi-scaleway</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 
     <TargetFramework>netcoreapp3.1</TargetFramework>

@@ -77,18 +77,16 @@ func Provider() tfbridge.ProviderInfo {
 		P:                 p,
 		Name:              "scaleway",
 		Description:       "A Pulumi package for creating and managing scaleway cloud resources.",
-		Keywords:          []string{"pulumi", "scaleway"},
+		Keywords:          []string{"pulumi", "scaleway", "pulumiverse"},
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		License:           "Apache-2.0",
 		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
-		Repository:        "https://github.com/jaxxstorm/pulumi-scaleway",
-		PluginDownloadURL: "https://github.com/jaxxstorm/pulumi-scaleway/releases/download/${VERSION}",
-
-		GitHubOrg: "scaleway", // not in the terraform-providers repo
-
-		Publisher:   "Lee Briggs",
-		DisplayName: "Scaleway",
+		Repository:        "https://github.com/pulumiverse/pulumi-scaleway",
+		PluginDownloadURL: "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}",
+		GitHubOrg:         "scaleway", // not in the terraform-providers repo
+		Publisher:         "Pulumiverse",
+		DisplayName:       "Scaleway",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{
@@ -216,7 +214,7 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@jaxxstorm/pulumi-scaleway",
+			PackageName: "@pulumiverse/pulumi-scaleway",
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
