@@ -25,6 +25,6 @@
     "pulumi": {
         "resource": true,
         "name": "scaleway",
-        "server": "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}"
+        "server": "github://api.github.com/pulumiverse"
     }
 }

@@ -80,10 +80,10 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:          []string{"pulumi", "scaleway", "pulumiverse"},
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		License:           "Apache-2.0",
-		LogoURL:           "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
+		LogoURL:           "https://raw.githubusercontent.com/pulumiverse/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:          "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:        "https://github.com/pulumiverse/pulumi-scaleway",
-		PluginDownloadURL: "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}",
+		PluginDownloadURL: "github://api.github.com/pulumiverse",
 		GitHubOrg:         "scaleway", // not in the terraform-providers repo
 		Publisher:         "Pulumiverse",
 		DisplayName:       "Scaleway",

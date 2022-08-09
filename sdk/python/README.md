@@ -13,13 +13,13 @@ This package is available in many languages in the standard packaging formats.
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @pulumiverse/pulumi-scaleway
+$ npm install @pulumiverse/scaleway
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @pulumiverse/pulumi-scaleway
+$ yarn add @pulumiverse/scaleway
 ```
 
 ### Python

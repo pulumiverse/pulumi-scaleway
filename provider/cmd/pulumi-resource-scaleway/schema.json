@@ -11,8 +11,8 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`scaleway` Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway).",
     "repository": "https://github.com/pulumiverse/pulumi-scaleway",
-    "logoUrl": "https://raw.githubusercontent.com/jaxxstorm/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg",
-    "pluginDownloadURL": "https://github.com/pulumiverse/pulumi-scaleway/releases/download/${VERSION}",
+    "logoUrl": "https://raw.githubusercontent.com/pulumiverse/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg",
+    "pluginDownloadURL": "github://api.github.com/pulumiverse",
     "publisher": "Pulumiverse",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
