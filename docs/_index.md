@@ -47,7 +47,7 @@ server = scaleway.InstanceServer("example",
 ```go
 import (
 	"fmt"
-	scaleway "github.com/jaxxstorm/pulumi-scaleway/sdk/go/scaleway"
+	scaleway "github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
