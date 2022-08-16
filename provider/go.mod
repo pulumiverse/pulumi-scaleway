@@ -1,4 +1,4 @@
-module github.com/jaxxstorm/pulumi-scaleway/provider
+module github.com/pulumiverse/pulumi-scaleway/provider
 
 go 1.18
 

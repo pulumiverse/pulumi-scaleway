@@ -1,6 +1,6 @@
-module github.com/jaxxstorm/pulumi-scaleway/examples
+module github.com/pulumiverse/pulumi-scaleway/examples
 
-go 1.17
+go 1.18
 
 require github.com/pulumi/pulumi/pkg/v3 v3.17.0
 

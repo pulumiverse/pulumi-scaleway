@@ -1,7 +1,7 @@
 PACK             := scaleway
-ORG              := jaxxstorm
+ORG              := pulumiverse
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
-NODE_MODULE_NAME := @jaxxstorm/${PACK}
+NODE_MODULE_NAME := @pulumiverse/${PACK}
 TF_NAME          := ${PACK}
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
