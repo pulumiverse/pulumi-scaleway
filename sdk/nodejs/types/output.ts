@@ -535,4 +535,3 @@ export interface RedisClusterAcl {
     id: string;
     ip: string;
 }
-

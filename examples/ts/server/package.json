@@ -4,7 +4,7 @@
         "@types/node": "^14"
     },
     "dependencies": {
-        "@pulumiverse/pulumi-scaleway": "^0.1.5",
+        "@pulumiverse/scaleway": "^0.1.5",
         "@pulumi/pulumi": "^3.0.0"
     }
 }
