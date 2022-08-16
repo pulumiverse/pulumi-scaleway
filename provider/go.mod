@@ -1,6 +1,6 @@
 module github.com/pulumiverse/pulumi-scaleway/provider
 
-go 1.18
+go 1.19
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.23.0
