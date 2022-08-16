@@ -4,10 +4,7 @@ go 1.19
 
 require github.com/pulumi/pulumi/pkg/v3 v3.17.0
 
-require (
-	github.com/Sirupsen/logrus v0.0.0-00010101000000-000000000000 // indirect
-	github.com/docker/docker v1.6.1 // indirect
-)
+require github.com/docker/docker v1.6.1 // indirect
 
 require (
 	cloud.google.com/go v0.81.0 // indirect
