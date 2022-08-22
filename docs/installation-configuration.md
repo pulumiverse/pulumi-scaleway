@@ -70,4 +70,4 @@ Use `pulumi config set scaleway:<option>` or pass options to the [constructor of
 | `secret_key`| Required | [Scaleway secret key](https://console.scaleway.com/project/credentials) |
 | `project_id` | Required | The [project ID](https://console.scaleway.com/project/settings) that will be used as default value for all resources. |
 | `region` | Optional | The [project ID](https://console.scaleway.com/project/settings) The [region](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#regions) that will be used as default value for all resources. (fr-par if none specified) |
-| `zome` | Optional | The [project ID](https://console.scaleway.com/project/settings) The [zone](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#zones) that will be used as default value for all resources. (fr-par-1 if none specified)
+| `zone` | Optional | The [project ID](https://console.scaleway.com/project/settings) The [zone](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#zones) that will be used as default value for all resources. (fr-par-1 if none specified)
