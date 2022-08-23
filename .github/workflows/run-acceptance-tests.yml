@@ -12,7 +12,7 @@ env:
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   PULUMI_TEST_OWNER: "lbrlabs"
-  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   PYPI_USERNAME: "__token__"
   SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
   SCW_DEFAULT_PROJECT_ID: ${{ secrets.SCW_DEFAULT_PROJECT_ID }}
