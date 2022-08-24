@@ -44,7 +44,7 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package Pulumi.Scaleway
+$ dotnet add package Pulumiverse.Scaleway
 ```
 
 ## Reference
