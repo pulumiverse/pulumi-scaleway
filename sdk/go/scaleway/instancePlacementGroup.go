@@ -156,6 +156,56 @@ func (i *InstancePlacementGroup) ToInstancePlacementGroupOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePlacementGroupOutput)
 }
 
+// InstancePlacementGroupArrayInput is an input type that accepts InstancePlacementGroupArray and InstancePlacementGroupArrayOutput values.
+// You can construct a concrete instance of `InstancePlacementGroupArrayInput` via:
+//
+//	InstancePlacementGroupArray{ InstancePlacementGroupArgs{...} }
+type InstancePlacementGroupArrayInput interface {
+	pulumi.Input
+
+	ToInstancePlacementGroupArrayOutput() InstancePlacementGroupArrayOutput
+	ToInstancePlacementGroupArrayOutputWithContext(context.Context) InstancePlacementGroupArrayOutput
+}
+
+type InstancePlacementGroupArray []InstancePlacementGroupInput
+
+func (InstancePlacementGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstancePlacementGroup)(nil)).Elem()
+}
+
+func (i InstancePlacementGroupArray) ToInstancePlacementGroupArrayOutput() InstancePlacementGroupArrayOutput {
+	return i.ToInstancePlacementGroupArrayOutputWithContext(context.Background())
+}
+
+func (i InstancePlacementGroupArray) ToInstancePlacementGroupArrayOutputWithContext(ctx context.Context) InstancePlacementGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePlacementGroupArrayOutput)
+}
+
+// InstancePlacementGroupMapInput is an input type that accepts InstancePlacementGroupMap and InstancePlacementGroupMapOutput values.
+// You can construct a concrete instance of `InstancePlacementGroupMapInput` via:
+//
+//	InstancePlacementGroupMap{ "key": InstancePlacementGroupArgs{...} }
+type InstancePlacementGroupMapInput interface {
+	pulumi.Input
+
+	ToInstancePlacementGroupMapOutput() InstancePlacementGroupMapOutput
+	ToInstancePlacementGroupMapOutputWithContext(context.Context) InstancePlacementGroupMapOutput
+}
+
+type InstancePlacementGroupMap map[string]InstancePlacementGroupInput
+
+func (InstancePlacementGroupMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstancePlacementGroup)(nil)).Elem()
+}
+
+func (i InstancePlacementGroupMap) ToInstancePlacementGroupMapOutput() InstancePlacementGroupMapOutput {
+	return i.ToInstancePlacementGroupMapOutputWithContext(context.Background())
+}
+
+func (i InstancePlacementGroupMap) ToInstancePlacementGroupMapOutputWithContext(ctx context.Context) InstancePlacementGroupMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePlacementGroupMapOutput)
+}
+
 type InstancePlacementGroupOutput struct{ *pulumi.OutputState }
 
 func (InstancePlacementGroupOutput) ElementType() reflect.Type {
@@ -210,7 +260,51 @@ func (o InstancePlacementGroupOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstancePlacementGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancePlacementGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstancePlacementGroup)(nil)).Elem()
+}
+
+func (o InstancePlacementGroupArrayOutput) ToInstancePlacementGroupArrayOutput() InstancePlacementGroupArrayOutput {
+	return o
+}
+
+func (o InstancePlacementGroupArrayOutput) ToInstancePlacementGroupArrayOutputWithContext(ctx context.Context) InstancePlacementGroupArrayOutput {
+	return o
+}
+
+func (o InstancePlacementGroupArrayOutput) Index(i pulumi.IntInput) InstancePlacementGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstancePlacementGroup {
+		return vs[0].([]*InstancePlacementGroup)[vs[1].(int)]
+	}).(InstancePlacementGroupOutput)
+}
+
+type InstancePlacementGroupMapOutput struct{ *pulumi.OutputState }
+
+func (InstancePlacementGroupMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstancePlacementGroup)(nil)).Elem()
+}
+
+func (o InstancePlacementGroupMapOutput) ToInstancePlacementGroupMapOutput() InstancePlacementGroupMapOutput {
+	return o
+}
+
+func (o InstancePlacementGroupMapOutput) ToInstancePlacementGroupMapOutputWithContext(ctx context.Context) InstancePlacementGroupMapOutput {
+	return o
+}
+
+func (o InstancePlacementGroupMapOutput) MapIndex(k pulumi.StringInput) InstancePlacementGroupOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstancePlacementGroup {
+		return vs[0].(map[string]*InstancePlacementGroup)[vs[1].(string)]
+	}).(InstancePlacementGroupOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePlacementGroupInput)(nil)).Elem(), &InstancePlacementGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePlacementGroupArrayInput)(nil)).Elem(), InstancePlacementGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePlacementGroupMapInput)(nil)).Elem(), InstancePlacementGroupMap{})
 	pulumi.RegisterOutputType(InstancePlacementGroupOutput{})
+	pulumi.RegisterOutputType(InstancePlacementGroupArrayOutput{})
+	pulumi.RegisterOutputType(InstancePlacementGroupMapOutput{})
 }

@@ -29,7 +29,7 @@ const server = new scaleway.InstanceServer("example", {
 {{% choosable language python %}}
 
 ```python
-import pulumi_scaleway as scaleway
+import pulumiverse_scaleway as scaleway
 
 public_ip = scaleway.InstanceIp("example")
 
@@ -83,7 +83,7 @@ func main() {
 
 ```csharp
 using Pulumi;
-using Pulumi.Scaleway;
+using Pulumiverse.Scaleway;
 
 class ScalewayServer : Stack
 {

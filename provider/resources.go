@@ -16,11 +16,14 @@
 package scaleway
 
 import (
+	"fmt"
+	"path/filepath"
 	"unicode"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumiverse/pulumi-scaleway/provider/pkg/version"
 	"github.com/scaleway/terraform-provider-scaleway/v2/scaleway"
 )
 
@@ -221,15 +224,26 @@ func Provider() tfbridge.ProviderInfo {
 			// Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
+			PackageName: "pulumiverse_scaleway",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Pulumiverse",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+		},
+		Golang: &tfbridge.GolangInfo{
+			ImportBasePath: filepath.Join(
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", scalewayPkg),
+				tfbridge.GetModuleMajorVersion(version.Version),
+				"go",
+				scalewayPkg,
+			),
+			GenerateResourceContainerTypes: true,
 		},
 	}
 

@@ -299,6 +299,56 @@ func (i *LoadbalancerBackend) ToLoadbalancerBackendOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendOutput)
 }
 
+// LoadbalancerBackendArrayInput is an input type that accepts LoadbalancerBackendArray and LoadbalancerBackendArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerBackendArrayInput` via:
+//
+//	LoadbalancerBackendArray{ LoadbalancerBackendArgs{...} }
+type LoadbalancerBackendArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerBackendArrayOutput() LoadbalancerBackendArrayOutput
+	ToLoadbalancerBackendArrayOutputWithContext(context.Context) LoadbalancerBackendArrayOutput
+}
+
+type LoadbalancerBackendArray []LoadbalancerBackendInput
+
+func (LoadbalancerBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerBackend)(nil)).Elem()
+}
+
+func (i LoadbalancerBackendArray) ToLoadbalancerBackendArrayOutput() LoadbalancerBackendArrayOutput {
+	return i.ToLoadbalancerBackendArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerBackendArray) ToLoadbalancerBackendArrayOutputWithContext(ctx context.Context) LoadbalancerBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendArrayOutput)
+}
+
+// LoadbalancerBackendMapInput is an input type that accepts LoadbalancerBackendMap and LoadbalancerBackendMapOutput values.
+// You can construct a concrete instance of `LoadbalancerBackendMapInput` via:
+//
+//	LoadbalancerBackendMap{ "key": LoadbalancerBackendArgs{...} }
+type LoadbalancerBackendMapInput interface {
+	pulumi.Input
+
+	ToLoadbalancerBackendMapOutput() LoadbalancerBackendMapOutput
+	ToLoadbalancerBackendMapOutputWithContext(context.Context) LoadbalancerBackendMapOutput
+}
+
+type LoadbalancerBackendMap map[string]LoadbalancerBackendInput
+
+func (LoadbalancerBackendMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerBackend)(nil)).Elem()
+}
+
+func (i LoadbalancerBackendMap) ToLoadbalancerBackendMapOutput() LoadbalancerBackendMapOutput {
+	return i.ToLoadbalancerBackendMapOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerBackendMap) ToLoadbalancerBackendMapOutputWithContext(ctx context.Context) LoadbalancerBackendMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendMapOutput)
+}
+
 type LoadbalancerBackendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerBackendOutput) ElementType() reflect.Type {
@@ -417,7 +467,51 @@ func (o LoadbalancerBackendOutput) TimeoutTunnel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.TimeoutTunnel }).(pulumi.StringPtrOutput)
 }
 
+type LoadbalancerBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerBackend)(nil)).Elem()
+}
+
+func (o LoadbalancerBackendArrayOutput) ToLoadbalancerBackendArrayOutput() LoadbalancerBackendArrayOutput {
+	return o
+}
+
+func (o LoadbalancerBackendArrayOutput) ToLoadbalancerBackendArrayOutputWithContext(ctx context.Context) LoadbalancerBackendArrayOutput {
+	return o
+}
+
+func (o LoadbalancerBackendArrayOutput) Index(i pulumi.IntInput) LoadbalancerBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerBackend {
+		return vs[0].([]*LoadbalancerBackend)[vs[1].(int)]
+	}).(LoadbalancerBackendOutput)
+}
+
+type LoadbalancerBackendMapOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerBackendMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerBackend)(nil)).Elem()
+}
+
+func (o LoadbalancerBackendMapOutput) ToLoadbalancerBackendMapOutput() LoadbalancerBackendMapOutput {
+	return o
+}
+
+func (o LoadbalancerBackendMapOutput) ToLoadbalancerBackendMapOutputWithContext(ctx context.Context) LoadbalancerBackendMapOutput {
+	return o
+}
+
+func (o LoadbalancerBackendMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerBackendOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LoadbalancerBackend {
+		return vs[0].(map[string]*LoadbalancerBackend)[vs[1].(string)]
+	}).(LoadbalancerBackendOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerBackendInput)(nil)).Elem(), &LoadbalancerBackend{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerBackendArrayInput)(nil)).Elem(), LoadbalancerBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerBackendMapInput)(nil)).Elem(), LoadbalancerBackendMap{})
 	pulumi.RegisterOutputType(LoadbalancerBackendOutput{})
+	pulumi.RegisterOutputType(LoadbalancerBackendArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerBackendMapOutput{})
 }

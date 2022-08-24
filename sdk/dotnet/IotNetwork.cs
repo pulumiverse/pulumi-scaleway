@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Scaleway
+namespace Pulumiverse.Scaleway
 {
     [ScalewayResourceType("scaleway:index/iotNetwork:IotNetwork")]
     public partial class IotNetwork : Pulumi.CustomResource

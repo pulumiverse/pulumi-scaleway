@@ -149,6 +149,56 @@ func (i *IotNetwork) ToIotNetworkOutputWithContext(ctx context.Context) IotNetwo
 	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkOutput)
 }
 
+// IotNetworkArrayInput is an input type that accepts IotNetworkArray and IotNetworkArrayOutput values.
+// You can construct a concrete instance of `IotNetworkArrayInput` via:
+//
+//	IotNetworkArray{ IotNetworkArgs{...} }
+type IotNetworkArrayInput interface {
+	pulumi.Input
+
+	ToIotNetworkArrayOutput() IotNetworkArrayOutput
+	ToIotNetworkArrayOutputWithContext(context.Context) IotNetworkArrayOutput
+}
+
+type IotNetworkArray []IotNetworkInput
+
+func (IotNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotNetwork)(nil)).Elem()
+}
+
+func (i IotNetworkArray) ToIotNetworkArrayOutput() IotNetworkArrayOutput {
+	return i.ToIotNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i IotNetworkArray) ToIotNetworkArrayOutputWithContext(ctx context.Context) IotNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkArrayOutput)
+}
+
+// IotNetworkMapInput is an input type that accepts IotNetworkMap and IotNetworkMapOutput values.
+// You can construct a concrete instance of `IotNetworkMapInput` via:
+//
+//	IotNetworkMap{ "key": IotNetworkArgs{...} }
+type IotNetworkMapInput interface {
+	pulumi.Input
+
+	ToIotNetworkMapOutput() IotNetworkMapOutput
+	ToIotNetworkMapOutputWithContext(context.Context) IotNetworkMapOutput
+}
+
+type IotNetworkMap map[string]IotNetworkInput
+
+func (IotNetworkMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotNetwork)(nil)).Elem()
+}
+
+func (i IotNetworkMap) ToIotNetworkMapOutput() IotNetworkMapOutput {
+	return i.ToIotNetworkMapOutputWithContext(context.Background())
+}
+
+func (i IotNetworkMap) ToIotNetworkMapOutputWithContext(ctx context.Context) IotNetworkMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkMapOutput)
+}
+
 type IotNetworkOutput struct{ *pulumi.OutputState }
 
 func (IotNetworkOutput) ElementType() reflect.Type {
@@ -198,7 +248,51 @@ func (o IotNetworkOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotNetwork) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
+type IotNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (IotNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotNetwork)(nil)).Elem()
+}
+
+func (o IotNetworkArrayOutput) ToIotNetworkArrayOutput() IotNetworkArrayOutput {
+	return o
+}
+
+func (o IotNetworkArrayOutput) ToIotNetworkArrayOutputWithContext(ctx context.Context) IotNetworkArrayOutput {
+	return o
+}
+
+func (o IotNetworkArrayOutput) Index(i pulumi.IntInput) IotNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotNetwork {
+		return vs[0].([]*IotNetwork)[vs[1].(int)]
+	}).(IotNetworkOutput)
+}
+
+type IotNetworkMapOutput struct{ *pulumi.OutputState }
+
+func (IotNetworkMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotNetwork)(nil)).Elem()
+}
+
+func (o IotNetworkMapOutput) ToIotNetworkMapOutput() IotNetworkMapOutput {
+	return o
+}
+
+func (o IotNetworkMapOutput) ToIotNetworkMapOutputWithContext(ctx context.Context) IotNetworkMapOutput {
+	return o
+}
+
+func (o IotNetworkMapOutput) MapIndex(k pulumi.StringInput) IotNetworkOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IotNetwork {
+		return vs[0].(map[string]*IotNetwork)[vs[1].(string)]
+	}).(IotNetworkOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotNetworkInput)(nil)).Elem(), &IotNetwork{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotNetworkArrayInput)(nil)).Elem(), IotNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotNetworkMapInput)(nil)).Elem(), IotNetworkMap{})
 	pulumi.RegisterOutputType(IotNetworkOutput{})
+	pulumi.RegisterOutputType(IotNetworkArrayOutput{})
+	pulumi.RegisterOutputType(IotNetworkMapOutput{})
 }

@@ -37,7 +37,7 @@ def readme():
         return "scaleway Pulumi Package - Development Version"
 
 
-setup(name='pulumi_scaleway',
+setup(name='pulumiverse_scaleway',
       version=VERSION,
       description="A Pulumi package for creating and managing scaleway cloud resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='pulumi_scaleway',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_scaleway': [
+          'pulumiverse_scaleway': [
               'py.typed',
               'pulumi-plugin.json',
           ]

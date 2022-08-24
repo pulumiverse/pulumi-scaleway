@@ -180,6 +180,56 @@ func (i *InstanceVolume) ToInstanceVolumeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeOutput)
 }
 
+// InstanceVolumeArrayInput is an input type that accepts InstanceVolumeArray and InstanceVolumeArrayOutput values.
+// You can construct a concrete instance of `InstanceVolumeArrayInput` via:
+//
+//	InstanceVolumeArray{ InstanceVolumeArgs{...} }
+type InstanceVolumeArrayInput interface {
+	pulumi.Input
+
+	ToInstanceVolumeArrayOutput() InstanceVolumeArrayOutput
+	ToInstanceVolumeArrayOutputWithContext(context.Context) InstanceVolumeArrayOutput
+}
+
+type InstanceVolumeArray []InstanceVolumeInput
+
+func (InstanceVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceVolume)(nil)).Elem()
+}
+
+func (i InstanceVolumeArray) ToInstanceVolumeArrayOutput() InstanceVolumeArrayOutput {
+	return i.ToInstanceVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceVolumeArray) ToInstanceVolumeArrayOutputWithContext(ctx context.Context) InstanceVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeArrayOutput)
+}
+
+// InstanceVolumeMapInput is an input type that accepts InstanceVolumeMap and InstanceVolumeMapOutput values.
+// You can construct a concrete instance of `InstanceVolumeMapInput` via:
+//
+//	InstanceVolumeMap{ "key": InstanceVolumeArgs{...} }
+type InstanceVolumeMapInput interface {
+	pulumi.Input
+
+	ToInstanceVolumeMapOutput() InstanceVolumeMapOutput
+	ToInstanceVolumeMapOutputWithContext(context.Context) InstanceVolumeMapOutput
+}
+
+type InstanceVolumeMap map[string]InstanceVolumeInput
+
+func (InstanceVolumeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceVolume)(nil)).Elem()
+}
+
+func (i InstanceVolumeMap) ToInstanceVolumeMapOutput() InstanceVolumeMapOutput {
+	return i.ToInstanceVolumeMapOutputWithContext(context.Background())
+}
+
+func (i InstanceVolumeMap) ToInstanceVolumeMapOutputWithContext(ctx context.Context) InstanceVolumeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeMapOutput)
+}
+
 type InstanceVolumeOutput struct{ *pulumi.OutputState }
 
 func (InstanceVolumeOutput) ElementType() reflect.Type {
@@ -244,7 +294,51 @@ func (o InstanceVolumeOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstanceVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceVolume)(nil)).Elem()
+}
+
+func (o InstanceVolumeArrayOutput) ToInstanceVolumeArrayOutput() InstanceVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceVolumeArrayOutput) ToInstanceVolumeArrayOutputWithContext(ctx context.Context) InstanceVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceVolumeArrayOutput) Index(i pulumi.IntInput) InstanceVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceVolume {
+		return vs[0].([]*InstanceVolume)[vs[1].(int)]
+	}).(InstanceVolumeOutput)
+}
+
+type InstanceVolumeMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceVolumeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceVolume)(nil)).Elem()
+}
+
+func (o InstanceVolumeMapOutput) ToInstanceVolumeMapOutput() InstanceVolumeMapOutput {
+	return o
+}
+
+func (o InstanceVolumeMapOutput) ToInstanceVolumeMapOutputWithContext(ctx context.Context) InstanceVolumeMapOutput {
+	return o
+}
+
+func (o InstanceVolumeMapOutput) MapIndex(k pulumi.StringInput) InstanceVolumeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstanceVolume {
+		return vs[0].(map[string]*InstanceVolume)[vs[1].(string)]
+	}).(InstanceVolumeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceVolumeInput)(nil)).Elem(), &InstanceVolume{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceVolumeArrayInput)(nil)).Elem(), InstanceVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceVolumeMapInput)(nil)).Elem(), InstanceVolumeMap{})
 	pulumi.RegisterOutputType(InstanceVolumeOutput{})
+	pulumi.RegisterOutputType(InstanceVolumeArrayOutput{})
+	pulumi.RegisterOutputType(InstanceVolumeMapOutput{})
 }

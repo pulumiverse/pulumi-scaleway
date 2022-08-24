@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Scaleway
+namespace Pulumiverse.Scaleway
 {
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp")]
     public partial class VpcPublicGatewayIp : Pulumi.CustomResource

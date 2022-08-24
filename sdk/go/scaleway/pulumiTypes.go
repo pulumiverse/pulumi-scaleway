@@ -6082,6 +6082,36 @@ type GetBaremetalOfferCpu struct {
 	ThreadCount int    `pulumi:"threadCount"`
 }
 
+// GetBaremetalOfferCpuInput is an input type that accepts GetBaremetalOfferCpuArgs and GetBaremetalOfferCpuOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferCpuInput` via:
+//
+//	GetBaremetalOfferCpuArgs{...}
+type GetBaremetalOfferCpuInput interface {
+	pulumi.Input
+
+	ToGetBaremetalOfferCpuOutput() GetBaremetalOfferCpuOutput
+	ToGetBaremetalOfferCpuOutputWithContext(context.Context) GetBaremetalOfferCpuOutput
+}
+
+type GetBaremetalOfferCpuArgs struct {
+	CoreCount   pulumi.IntInput    `pulumi:"coreCount"`
+	Frequency   pulumi.IntInput    `pulumi:"frequency"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	ThreadCount pulumi.IntInput    `pulumi:"threadCount"`
+}
+
+func (GetBaremetalOfferCpuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferCpu)(nil)).Elem()
+}
+
+func (i GetBaremetalOfferCpuArgs) ToGetBaremetalOfferCpuOutput() GetBaremetalOfferCpuOutput {
+	return i.ToGetBaremetalOfferCpuOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalOfferCpuArgs) ToGetBaremetalOfferCpuOutputWithContext(ctx context.Context) GetBaremetalOfferCpuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferCpuOutput)
+}
+
 type GetBaremetalOfferCpuOutput struct{ *pulumi.OutputState }
 
 func (GetBaremetalOfferCpuOutput) ElementType() reflect.Type {
@@ -6115,6 +6145,59 @@ func (o GetBaremetalOfferCpuOutput) ThreadCount() pulumi.IntOutput {
 type GetBaremetalOfferDisk struct {
 	Capacity int    `pulumi:"capacity"`
 	Type     string `pulumi:"type"`
+}
+
+// GetBaremetalOfferDiskInput is an input type that accepts GetBaremetalOfferDiskArgs and GetBaremetalOfferDiskOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferDiskInput` via:
+//
+//	GetBaremetalOfferDiskArgs{...}
+type GetBaremetalOfferDiskInput interface {
+	pulumi.Input
+
+	ToGetBaremetalOfferDiskOutput() GetBaremetalOfferDiskOutput
+	ToGetBaremetalOfferDiskOutputWithContext(context.Context) GetBaremetalOfferDiskOutput
+}
+
+type GetBaremetalOfferDiskArgs struct {
+	Capacity pulumi.IntInput    `pulumi:"capacity"`
+	Type     pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetBaremetalOfferDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferDisk)(nil)).Elem()
+}
+
+func (i GetBaremetalOfferDiskArgs) ToGetBaremetalOfferDiskOutput() GetBaremetalOfferDiskOutput {
+	return i.ToGetBaremetalOfferDiskOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalOfferDiskArgs) ToGetBaremetalOfferDiskOutputWithContext(ctx context.Context) GetBaremetalOfferDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferDiskOutput)
+}
+
+// GetBaremetalOfferDiskArrayInput is an input type that accepts GetBaremetalOfferDiskArray and GetBaremetalOfferDiskArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferDiskArrayInput` via:
+//
+//	GetBaremetalOfferDiskArray{ GetBaremetalOfferDiskArgs{...} }
+type GetBaremetalOfferDiskArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalOfferDiskArrayOutput() GetBaremetalOfferDiskArrayOutput
+	ToGetBaremetalOfferDiskArrayOutputWithContext(context.Context) GetBaremetalOfferDiskArrayOutput
+}
+
+type GetBaremetalOfferDiskArray []GetBaremetalOfferDiskInput
+
+func (GetBaremetalOfferDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalOfferDisk)(nil)).Elem()
+}
+
+func (i GetBaremetalOfferDiskArray) ToGetBaremetalOfferDiskArrayOutput() GetBaremetalOfferDiskArrayOutput {
+	return i.ToGetBaremetalOfferDiskArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalOfferDiskArray) ToGetBaremetalOfferDiskArrayOutputWithContext(ctx context.Context) GetBaremetalOfferDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferDiskArrayOutput)
 }
 
 type GetBaremetalOfferDiskOutput struct{ *pulumi.OutputState }
@@ -6164,6 +6247,61 @@ type GetBaremetalOfferMemory struct {
 	Frequency int    `pulumi:"frequency"`
 	IsEcc     bool   `pulumi:"isEcc"`
 	Type      string `pulumi:"type"`
+}
+
+// GetBaremetalOfferMemoryInput is an input type that accepts GetBaremetalOfferMemoryArgs and GetBaremetalOfferMemoryOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferMemoryInput` via:
+//
+//	GetBaremetalOfferMemoryArgs{...}
+type GetBaremetalOfferMemoryInput interface {
+	pulumi.Input
+
+	ToGetBaremetalOfferMemoryOutput() GetBaremetalOfferMemoryOutput
+	ToGetBaremetalOfferMemoryOutputWithContext(context.Context) GetBaremetalOfferMemoryOutput
+}
+
+type GetBaremetalOfferMemoryArgs struct {
+	Capacity  pulumi.IntInput    `pulumi:"capacity"`
+	Frequency pulumi.IntInput    `pulumi:"frequency"`
+	IsEcc     pulumi.BoolInput   `pulumi:"isEcc"`
+	Type      pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetBaremetalOfferMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalOfferMemory)(nil)).Elem()
+}
+
+func (i GetBaremetalOfferMemoryArgs) ToGetBaremetalOfferMemoryOutput() GetBaremetalOfferMemoryOutput {
+	return i.ToGetBaremetalOfferMemoryOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalOfferMemoryArgs) ToGetBaremetalOfferMemoryOutputWithContext(ctx context.Context) GetBaremetalOfferMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferMemoryOutput)
+}
+
+// GetBaremetalOfferMemoryArrayInput is an input type that accepts GetBaremetalOfferMemoryArray and GetBaremetalOfferMemoryArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalOfferMemoryArrayInput` via:
+//
+//	GetBaremetalOfferMemoryArray{ GetBaremetalOfferMemoryArgs{...} }
+type GetBaremetalOfferMemoryArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalOfferMemoryArrayOutput() GetBaremetalOfferMemoryArrayOutput
+	ToGetBaremetalOfferMemoryArrayOutputWithContext(context.Context) GetBaremetalOfferMemoryArrayOutput
+}
+
+type GetBaremetalOfferMemoryArray []GetBaremetalOfferMemoryInput
+
+func (GetBaremetalOfferMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalOfferMemory)(nil)).Elem()
+}
+
+func (i GetBaremetalOfferMemoryArray) ToGetBaremetalOfferMemoryArrayOutput() GetBaremetalOfferMemoryArrayOutput {
+	return i.ToGetBaremetalOfferMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalOfferMemoryArray) ToGetBaremetalOfferMemoryArrayOutputWithContext(ctx context.Context) GetBaremetalOfferMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalOfferMemoryArrayOutput)
 }
 
 type GetBaremetalOfferMemoryOutput struct{ *pulumi.OutputState }
@@ -6223,6 +6361,61 @@ type GetBaremetalServerIp struct {
 	Version string `pulumi:"version"`
 }
 
+// GetBaremetalServerIpInput is an input type that accepts GetBaremetalServerIpArgs and GetBaremetalServerIpOutput values.
+// You can construct a concrete instance of `GetBaremetalServerIpInput` via:
+//
+//	GetBaremetalServerIpArgs{...}
+type GetBaremetalServerIpInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerIpOutput() GetBaremetalServerIpOutput
+	ToGetBaremetalServerIpOutputWithContext(context.Context) GetBaremetalServerIpOutput
+}
+
+type GetBaremetalServerIpArgs struct {
+	Address pulumi.StringInput `pulumi:"address"`
+	Id      pulumi.StringInput `pulumi:"id"`
+	Reverse pulumi.StringInput `pulumi:"reverse"`
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetBaremetalServerIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerIp)(nil)).Elem()
+}
+
+func (i GetBaremetalServerIpArgs) ToGetBaremetalServerIpOutput() GetBaremetalServerIpOutput {
+	return i.ToGetBaremetalServerIpOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerIpArgs) ToGetBaremetalServerIpOutputWithContext(ctx context.Context) GetBaremetalServerIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerIpOutput)
+}
+
+// GetBaremetalServerIpArrayInput is an input type that accepts GetBaremetalServerIpArray and GetBaremetalServerIpArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalServerIpArrayInput` via:
+//
+//	GetBaremetalServerIpArray{ GetBaremetalServerIpArgs{...} }
+type GetBaremetalServerIpArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerIpArrayOutput() GetBaremetalServerIpArrayOutput
+	ToGetBaremetalServerIpArrayOutputWithContext(context.Context) GetBaremetalServerIpArrayOutput
+}
+
+type GetBaremetalServerIpArray []GetBaremetalServerIpInput
+
+func (GetBaremetalServerIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerIp)(nil)).Elem()
+}
+
+func (i GetBaremetalServerIpArray) ToGetBaremetalServerIpArrayOutput() GetBaremetalServerIpArrayOutput {
+	return i.ToGetBaremetalServerIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerIpArray) ToGetBaremetalServerIpArrayOutputWithContext(ctx context.Context) GetBaremetalServerIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerIpArrayOutput)
+}
+
 type GetBaremetalServerIpOutput struct{ *pulumi.OutputState }
 
 func (GetBaremetalServerIpOutput) ElementType() reflect.Type {
@@ -6278,6 +6471,59 @@ type GetDatabaseAclAclRule struct {
 	Ip          string `pulumi:"ip"`
 }
 
+// GetDatabaseAclAclRuleInput is an input type that accepts GetDatabaseAclAclRuleArgs and GetDatabaseAclAclRuleOutput values.
+// You can construct a concrete instance of `GetDatabaseAclAclRuleInput` via:
+//
+//	GetDatabaseAclAclRuleArgs{...}
+type GetDatabaseAclAclRuleInput interface {
+	pulumi.Input
+
+	ToGetDatabaseAclAclRuleOutput() GetDatabaseAclAclRuleOutput
+	ToGetDatabaseAclAclRuleOutputWithContext(context.Context) GetDatabaseAclAclRuleOutput
+}
+
+type GetDatabaseAclAclRuleArgs struct {
+	Description pulumi.StringInput `pulumi:"description"`
+	Ip          pulumi.StringInput `pulumi:"ip"`
+}
+
+func (GetDatabaseAclAclRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseAclAclRule)(nil)).Elem()
+}
+
+func (i GetDatabaseAclAclRuleArgs) ToGetDatabaseAclAclRuleOutput() GetDatabaseAclAclRuleOutput {
+	return i.ToGetDatabaseAclAclRuleOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseAclAclRuleArgs) ToGetDatabaseAclAclRuleOutputWithContext(ctx context.Context) GetDatabaseAclAclRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseAclAclRuleOutput)
+}
+
+// GetDatabaseAclAclRuleArrayInput is an input type that accepts GetDatabaseAclAclRuleArray and GetDatabaseAclAclRuleArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseAclAclRuleArrayInput` via:
+//
+//	GetDatabaseAclAclRuleArray{ GetDatabaseAclAclRuleArgs{...} }
+type GetDatabaseAclAclRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseAclAclRuleArrayOutput() GetDatabaseAclAclRuleArrayOutput
+	ToGetDatabaseAclAclRuleArrayOutputWithContext(context.Context) GetDatabaseAclAclRuleArrayOutput
+}
+
+type GetDatabaseAclAclRuleArray []GetDatabaseAclAclRuleInput
+
+func (GetDatabaseAclAclRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseAclAclRule)(nil)).Elem()
+}
+
+func (i GetDatabaseAclAclRuleArray) ToGetDatabaseAclAclRuleArrayOutput() GetDatabaseAclAclRuleArrayOutput {
+	return i.ToGetDatabaseAclAclRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseAclAclRuleArray) ToGetDatabaseAclAclRuleArrayOutputWithContext(ctx context.Context) GetDatabaseAclAclRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseAclAclRuleArrayOutput)
+}
+
 type GetDatabaseAclAclRuleOutput struct{ *pulumi.OutputState }
 
 func (GetDatabaseAclAclRuleOutput) ElementType() reflect.Type {
@@ -6326,6 +6572,62 @@ type GetDatabaseInstanceLoadBalancer struct {
 	Ip         string `pulumi:"ip"`
 	Name       string `pulumi:"name"`
 	Port       int    `pulumi:"port"`
+}
+
+// GetDatabaseInstanceLoadBalancerInput is an input type that accepts GetDatabaseInstanceLoadBalancerArgs and GetDatabaseInstanceLoadBalancerOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceLoadBalancerInput` via:
+//
+//	GetDatabaseInstanceLoadBalancerArgs{...}
+type GetDatabaseInstanceLoadBalancerInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceLoadBalancerOutput() GetDatabaseInstanceLoadBalancerOutput
+	ToGetDatabaseInstanceLoadBalancerOutputWithContext(context.Context) GetDatabaseInstanceLoadBalancerOutput
+}
+
+type GetDatabaseInstanceLoadBalancerArgs struct {
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	Hostname   pulumi.StringInput `pulumi:"hostname"`
+	Ip         pulumi.StringInput `pulumi:"ip"`
+	Name       pulumi.StringInput `pulumi:"name"`
+	Port       pulumi.IntInput    `pulumi:"port"`
+}
+
+func (GetDatabaseInstanceLoadBalancerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceLoadBalancer)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceLoadBalancerArgs) ToGetDatabaseInstanceLoadBalancerOutput() GetDatabaseInstanceLoadBalancerOutput {
+	return i.ToGetDatabaseInstanceLoadBalancerOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceLoadBalancerArgs) ToGetDatabaseInstanceLoadBalancerOutputWithContext(ctx context.Context) GetDatabaseInstanceLoadBalancerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceLoadBalancerOutput)
+}
+
+// GetDatabaseInstanceLoadBalancerArrayInput is an input type that accepts GetDatabaseInstanceLoadBalancerArray and GetDatabaseInstanceLoadBalancerArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceLoadBalancerArrayInput` via:
+//
+//	GetDatabaseInstanceLoadBalancerArray{ GetDatabaseInstanceLoadBalancerArgs{...} }
+type GetDatabaseInstanceLoadBalancerArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceLoadBalancerArrayOutput() GetDatabaseInstanceLoadBalancerArrayOutput
+	ToGetDatabaseInstanceLoadBalancerArrayOutputWithContext(context.Context) GetDatabaseInstanceLoadBalancerArrayOutput
+}
+
+type GetDatabaseInstanceLoadBalancerArray []GetDatabaseInstanceLoadBalancerInput
+
+func (GetDatabaseInstanceLoadBalancerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceLoadBalancer)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceLoadBalancerArray) ToGetDatabaseInstanceLoadBalancerArrayOutput() GetDatabaseInstanceLoadBalancerArrayOutput {
+	return i.ToGetDatabaseInstanceLoadBalancerArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceLoadBalancerArray) ToGetDatabaseInstanceLoadBalancerArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceLoadBalancerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceLoadBalancerArrayOutput)
 }
 
 type GetDatabaseInstanceLoadBalancerOutput struct{ *pulumi.OutputState }
@@ -6391,6 +6693,65 @@ type GetDatabaseInstancePrivateNetwork struct {
 	PnId       string `pulumi:"pnId"`
 	Port       int    `pulumi:"port"`
 	Zone       string `pulumi:"zone"`
+}
+
+// GetDatabaseInstancePrivateNetworkInput is an input type that accepts GetDatabaseInstancePrivateNetworkArgs and GetDatabaseInstancePrivateNetworkOutput values.
+// You can construct a concrete instance of `GetDatabaseInstancePrivateNetworkInput` via:
+//
+//	GetDatabaseInstancePrivateNetworkArgs{...}
+type GetDatabaseInstancePrivateNetworkInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstancePrivateNetworkOutput() GetDatabaseInstancePrivateNetworkOutput
+	ToGetDatabaseInstancePrivateNetworkOutputWithContext(context.Context) GetDatabaseInstancePrivateNetworkOutput
+}
+
+type GetDatabaseInstancePrivateNetworkArgs struct {
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	Hostname   pulumi.StringInput `pulumi:"hostname"`
+	Ip         pulumi.StringInput `pulumi:"ip"`
+	IpNet      pulumi.StringInput `pulumi:"ipNet"`
+	Name       pulumi.StringInput `pulumi:"name"`
+	PnId       pulumi.StringInput `pulumi:"pnId"`
+	Port       pulumi.IntInput    `pulumi:"port"`
+	Zone       pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetDatabaseInstancePrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (i GetDatabaseInstancePrivateNetworkArgs) ToGetDatabaseInstancePrivateNetworkOutput() GetDatabaseInstancePrivateNetworkOutput {
+	return i.ToGetDatabaseInstancePrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstancePrivateNetworkArgs) ToGetDatabaseInstancePrivateNetworkOutputWithContext(ctx context.Context) GetDatabaseInstancePrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstancePrivateNetworkOutput)
+}
+
+// GetDatabaseInstancePrivateNetworkArrayInput is an input type that accepts GetDatabaseInstancePrivateNetworkArray and GetDatabaseInstancePrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstancePrivateNetworkArrayInput` via:
+//
+//	GetDatabaseInstancePrivateNetworkArray{ GetDatabaseInstancePrivateNetworkArgs{...} }
+type GetDatabaseInstancePrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstancePrivateNetworkArrayOutput() GetDatabaseInstancePrivateNetworkArrayOutput
+	ToGetDatabaseInstancePrivateNetworkArrayOutputWithContext(context.Context) GetDatabaseInstancePrivateNetworkArrayOutput
+}
+
+type GetDatabaseInstancePrivateNetworkArray []GetDatabaseInstancePrivateNetworkInput
+
+func (GetDatabaseInstancePrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (i GetDatabaseInstancePrivateNetworkArray) ToGetDatabaseInstancePrivateNetworkArrayOutput() GetDatabaseInstancePrivateNetworkArrayOutput {
+	return i.ToGetDatabaseInstancePrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstancePrivateNetworkArray) ToGetDatabaseInstancePrivateNetworkArrayOutputWithContext(ctx context.Context) GetDatabaseInstancePrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstancePrivateNetworkArrayOutput)
 }
 
 type GetDatabaseInstancePrivateNetworkOutput struct{ *pulumi.OutputState }
@@ -6465,6 +6826,60 @@ type GetDatabaseInstanceReadReplica struct {
 	Port int    `pulumi:"port"`
 }
 
+// GetDatabaseInstanceReadReplicaInput is an input type that accepts GetDatabaseInstanceReadReplicaArgs and GetDatabaseInstanceReadReplicaOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceReadReplicaInput` via:
+//
+//	GetDatabaseInstanceReadReplicaArgs{...}
+type GetDatabaseInstanceReadReplicaInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceReadReplicaOutput() GetDatabaseInstanceReadReplicaOutput
+	ToGetDatabaseInstanceReadReplicaOutputWithContext(context.Context) GetDatabaseInstanceReadReplicaOutput
+}
+
+type GetDatabaseInstanceReadReplicaArgs struct {
+	Ip   pulumi.StringInput `pulumi:"ip"`
+	Name pulumi.StringInput `pulumi:"name"`
+	Port pulumi.IntInput    `pulumi:"port"`
+}
+
+func (GetDatabaseInstanceReadReplicaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceReadReplica)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceReadReplicaArgs) ToGetDatabaseInstanceReadReplicaOutput() GetDatabaseInstanceReadReplicaOutput {
+	return i.ToGetDatabaseInstanceReadReplicaOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceReadReplicaArgs) ToGetDatabaseInstanceReadReplicaOutputWithContext(ctx context.Context) GetDatabaseInstanceReadReplicaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceReadReplicaOutput)
+}
+
+// GetDatabaseInstanceReadReplicaArrayInput is an input type that accepts GetDatabaseInstanceReadReplicaArray and GetDatabaseInstanceReadReplicaArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceReadReplicaArrayInput` via:
+//
+//	GetDatabaseInstanceReadReplicaArray{ GetDatabaseInstanceReadReplicaArgs{...} }
+type GetDatabaseInstanceReadReplicaArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceReadReplicaArrayOutput() GetDatabaseInstanceReadReplicaArrayOutput
+	ToGetDatabaseInstanceReadReplicaArrayOutputWithContext(context.Context) GetDatabaseInstanceReadReplicaArrayOutput
+}
+
+type GetDatabaseInstanceReadReplicaArray []GetDatabaseInstanceReadReplicaInput
+
+func (GetDatabaseInstanceReadReplicaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceReadReplica)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceReadReplicaArray) ToGetDatabaseInstanceReadReplicaArrayOutput() GetDatabaseInstanceReadReplicaArrayOutput {
+	return i.ToGetDatabaseInstanceReadReplicaArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceReadReplicaArray) ToGetDatabaseInstanceReadReplicaArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceReadReplicaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceReadReplicaArrayOutput)
+}
+
 type GetDatabaseInstanceReadReplicaOutput struct{ *pulumi.OutputState }
 
 func (GetDatabaseInstanceReadReplicaOutput) ElementType() reflect.Type {
@@ -6515,6 +6930,58 @@ type GetDomainRecordGeoIp struct {
 	Matches []GetDomainRecordGeoIpMatch `pulumi:"matches"`
 }
 
+// GetDomainRecordGeoIpInput is an input type that accepts GetDomainRecordGeoIpArgs and GetDomainRecordGeoIpOutput values.
+// You can construct a concrete instance of `GetDomainRecordGeoIpInput` via:
+//
+//	GetDomainRecordGeoIpArgs{...}
+type GetDomainRecordGeoIpInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordGeoIpOutput() GetDomainRecordGeoIpOutput
+	ToGetDomainRecordGeoIpOutputWithContext(context.Context) GetDomainRecordGeoIpOutput
+}
+
+type GetDomainRecordGeoIpArgs struct {
+	Matches GetDomainRecordGeoIpMatchArrayInput `pulumi:"matches"`
+}
+
+func (GetDomainRecordGeoIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainRecordGeoIp)(nil)).Elem()
+}
+
+func (i GetDomainRecordGeoIpArgs) ToGetDomainRecordGeoIpOutput() GetDomainRecordGeoIpOutput {
+	return i.ToGetDomainRecordGeoIpOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordGeoIpArgs) ToGetDomainRecordGeoIpOutputWithContext(ctx context.Context) GetDomainRecordGeoIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordGeoIpOutput)
+}
+
+// GetDomainRecordGeoIpArrayInput is an input type that accepts GetDomainRecordGeoIpArray and GetDomainRecordGeoIpArrayOutput values.
+// You can construct a concrete instance of `GetDomainRecordGeoIpArrayInput` via:
+//
+//	GetDomainRecordGeoIpArray{ GetDomainRecordGeoIpArgs{...} }
+type GetDomainRecordGeoIpArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordGeoIpArrayOutput() GetDomainRecordGeoIpArrayOutput
+	ToGetDomainRecordGeoIpArrayOutputWithContext(context.Context) GetDomainRecordGeoIpArrayOutput
+}
+
+type GetDomainRecordGeoIpArray []GetDomainRecordGeoIpInput
+
+func (GetDomainRecordGeoIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainRecordGeoIp)(nil)).Elem()
+}
+
+func (i GetDomainRecordGeoIpArray) ToGetDomainRecordGeoIpArrayOutput() GetDomainRecordGeoIpArrayOutput {
+	return i.ToGetDomainRecordGeoIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordGeoIpArray) ToGetDomainRecordGeoIpArrayOutputWithContext(ctx context.Context) GetDomainRecordGeoIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordGeoIpArrayOutput)
+}
+
 type GetDomainRecordGeoIpOutput struct{ *pulumi.OutputState }
 
 func (GetDomainRecordGeoIpOutput) ElementType() reflect.Type {
@@ -6557,6 +7024,60 @@ type GetDomainRecordGeoIpMatch struct {
 	Continents []string `pulumi:"continents"`
 	Countries  []string `pulumi:"countries"`
 	Data       string   `pulumi:"data"`
+}
+
+// GetDomainRecordGeoIpMatchInput is an input type that accepts GetDomainRecordGeoIpMatchArgs and GetDomainRecordGeoIpMatchOutput values.
+// You can construct a concrete instance of `GetDomainRecordGeoIpMatchInput` via:
+//
+//	GetDomainRecordGeoIpMatchArgs{...}
+type GetDomainRecordGeoIpMatchInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordGeoIpMatchOutput() GetDomainRecordGeoIpMatchOutput
+	ToGetDomainRecordGeoIpMatchOutputWithContext(context.Context) GetDomainRecordGeoIpMatchOutput
+}
+
+type GetDomainRecordGeoIpMatchArgs struct {
+	Continents pulumi.StringArrayInput `pulumi:"continents"`
+	Countries  pulumi.StringArrayInput `pulumi:"countries"`
+	Data       pulumi.StringInput      `pulumi:"data"`
+}
+
+func (GetDomainRecordGeoIpMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainRecordGeoIpMatch)(nil)).Elem()
+}
+
+func (i GetDomainRecordGeoIpMatchArgs) ToGetDomainRecordGeoIpMatchOutput() GetDomainRecordGeoIpMatchOutput {
+	return i.ToGetDomainRecordGeoIpMatchOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordGeoIpMatchArgs) ToGetDomainRecordGeoIpMatchOutputWithContext(ctx context.Context) GetDomainRecordGeoIpMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordGeoIpMatchOutput)
+}
+
+// GetDomainRecordGeoIpMatchArrayInput is an input type that accepts GetDomainRecordGeoIpMatchArray and GetDomainRecordGeoIpMatchArrayOutput values.
+// You can construct a concrete instance of `GetDomainRecordGeoIpMatchArrayInput` via:
+//
+//	GetDomainRecordGeoIpMatchArray{ GetDomainRecordGeoIpMatchArgs{...} }
+type GetDomainRecordGeoIpMatchArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordGeoIpMatchArrayOutput() GetDomainRecordGeoIpMatchArrayOutput
+	ToGetDomainRecordGeoIpMatchArrayOutputWithContext(context.Context) GetDomainRecordGeoIpMatchArrayOutput
+}
+
+type GetDomainRecordGeoIpMatchArray []GetDomainRecordGeoIpMatchInput
+
+func (GetDomainRecordGeoIpMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainRecordGeoIpMatch)(nil)).Elem()
+}
+
+func (i GetDomainRecordGeoIpMatchArray) ToGetDomainRecordGeoIpMatchArrayOutput() GetDomainRecordGeoIpMatchArrayOutput {
+	return i.ToGetDomainRecordGeoIpMatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordGeoIpMatchArray) ToGetDomainRecordGeoIpMatchArrayOutputWithContext(ctx context.Context) GetDomainRecordGeoIpMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordGeoIpMatchArrayOutput)
 }
 
 type GetDomainRecordGeoIpMatchOutput struct{ *pulumi.OutputState }
@@ -6611,6 +7132,62 @@ type GetDomainRecordHttpService struct {
 	Strategy    string   `pulumi:"strategy"`
 	Url         string   `pulumi:"url"`
 	UserAgent   string   `pulumi:"userAgent"`
+}
+
+// GetDomainRecordHttpServiceInput is an input type that accepts GetDomainRecordHttpServiceArgs and GetDomainRecordHttpServiceOutput values.
+// You can construct a concrete instance of `GetDomainRecordHttpServiceInput` via:
+//
+//	GetDomainRecordHttpServiceArgs{...}
+type GetDomainRecordHttpServiceInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordHttpServiceOutput() GetDomainRecordHttpServiceOutput
+	ToGetDomainRecordHttpServiceOutputWithContext(context.Context) GetDomainRecordHttpServiceOutput
+}
+
+type GetDomainRecordHttpServiceArgs struct {
+	Ips         pulumi.StringArrayInput `pulumi:"ips"`
+	MustContain pulumi.StringInput      `pulumi:"mustContain"`
+	Strategy    pulumi.StringInput      `pulumi:"strategy"`
+	Url         pulumi.StringInput      `pulumi:"url"`
+	UserAgent   pulumi.StringInput      `pulumi:"userAgent"`
+}
+
+func (GetDomainRecordHttpServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainRecordHttpService)(nil)).Elem()
+}
+
+func (i GetDomainRecordHttpServiceArgs) ToGetDomainRecordHttpServiceOutput() GetDomainRecordHttpServiceOutput {
+	return i.ToGetDomainRecordHttpServiceOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordHttpServiceArgs) ToGetDomainRecordHttpServiceOutputWithContext(ctx context.Context) GetDomainRecordHttpServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordHttpServiceOutput)
+}
+
+// GetDomainRecordHttpServiceArrayInput is an input type that accepts GetDomainRecordHttpServiceArray and GetDomainRecordHttpServiceArrayOutput values.
+// You can construct a concrete instance of `GetDomainRecordHttpServiceArrayInput` via:
+//
+//	GetDomainRecordHttpServiceArray{ GetDomainRecordHttpServiceArgs{...} }
+type GetDomainRecordHttpServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordHttpServiceArrayOutput() GetDomainRecordHttpServiceArrayOutput
+	ToGetDomainRecordHttpServiceArrayOutputWithContext(context.Context) GetDomainRecordHttpServiceArrayOutput
+}
+
+type GetDomainRecordHttpServiceArray []GetDomainRecordHttpServiceInput
+
+func (GetDomainRecordHttpServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainRecordHttpService)(nil)).Elem()
+}
+
+func (i GetDomainRecordHttpServiceArray) ToGetDomainRecordHttpServiceArrayOutput() GetDomainRecordHttpServiceArrayOutput {
+	return i.ToGetDomainRecordHttpServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordHttpServiceArray) ToGetDomainRecordHttpServiceArrayOutputWithContext(ctx context.Context) GetDomainRecordHttpServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordHttpServiceArrayOutput)
 }
 
 type GetDomainRecordHttpServiceOutput struct{ *pulumi.OutputState }
@@ -6672,6 +7249,59 @@ type GetDomainRecordView struct {
 	Subnet string `pulumi:"subnet"`
 }
 
+// GetDomainRecordViewInput is an input type that accepts GetDomainRecordViewArgs and GetDomainRecordViewOutput values.
+// You can construct a concrete instance of `GetDomainRecordViewInput` via:
+//
+//	GetDomainRecordViewArgs{...}
+type GetDomainRecordViewInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordViewOutput() GetDomainRecordViewOutput
+	ToGetDomainRecordViewOutputWithContext(context.Context) GetDomainRecordViewOutput
+}
+
+type GetDomainRecordViewArgs struct {
+	Data   pulumi.StringInput `pulumi:"data"`
+	Subnet pulumi.StringInput `pulumi:"subnet"`
+}
+
+func (GetDomainRecordViewArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainRecordView)(nil)).Elem()
+}
+
+func (i GetDomainRecordViewArgs) ToGetDomainRecordViewOutput() GetDomainRecordViewOutput {
+	return i.ToGetDomainRecordViewOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordViewArgs) ToGetDomainRecordViewOutputWithContext(ctx context.Context) GetDomainRecordViewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordViewOutput)
+}
+
+// GetDomainRecordViewArrayInput is an input type that accepts GetDomainRecordViewArray and GetDomainRecordViewArrayOutput values.
+// You can construct a concrete instance of `GetDomainRecordViewArrayInput` via:
+//
+//	GetDomainRecordViewArray{ GetDomainRecordViewArgs{...} }
+type GetDomainRecordViewArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordViewArrayOutput() GetDomainRecordViewArrayOutput
+	ToGetDomainRecordViewArrayOutputWithContext(context.Context) GetDomainRecordViewArrayOutput
+}
+
+type GetDomainRecordViewArray []GetDomainRecordViewInput
+
+func (GetDomainRecordViewArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainRecordView)(nil)).Elem()
+}
+
+func (i GetDomainRecordViewArray) ToGetDomainRecordViewArrayOutput() GetDomainRecordViewArrayOutput {
+	return i.ToGetDomainRecordViewArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordViewArray) ToGetDomainRecordViewArrayOutputWithContext(ctx context.Context) GetDomainRecordViewArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordViewArrayOutput)
+}
+
 type GetDomainRecordViewOutput struct{ *pulumi.OutputState }
 
 func (GetDomainRecordViewOutput) ElementType() reflect.Type {
@@ -6717,6 +7347,59 @@ func (o GetDomainRecordViewArrayOutput) Index(i pulumi.IntInput) GetDomainRecord
 type GetDomainRecordWeighted struct {
 	Ip     string `pulumi:"ip"`
 	Weight int    `pulumi:"weight"`
+}
+
+// GetDomainRecordWeightedInput is an input type that accepts GetDomainRecordWeightedArgs and GetDomainRecordWeightedOutput values.
+// You can construct a concrete instance of `GetDomainRecordWeightedInput` via:
+//
+//	GetDomainRecordWeightedArgs{...}
+type GetDomainRecordWeightedInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordWeightedOutput() GetDomainRecordWeightedOutput
+	ToGetDomainRecordWeightedOutputWithContext(context.Context) GetDomainRecordWeightedOutput
+}
+
+type GetDomainRecordWeightedArgs struct {
+	Ip     pulumi.StringInput `pulumi:"ip"`
+	Weight pulumi.IntInput    `pulumi:"weight"`
+}
+
+func (GetDomainRecordWeightedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainRecordWeighted)(nil)).Elem()
+}
+
+func (i GetDomainRecordWeightedArgs) ToGetDomainRecordWeightedOutput() GetDomainRecordWeightedOutput {
+	return i.ToGetDomainRecordWeightedOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordWeightedArgs) ToGetDomainRecordWeightedOutputWithContext(ctx context.Context) GetDomainRecordWeightedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordWeightedOutput)
+}
+
+// GetDomainRecordWeightedArrayInput is an input type that accepts GetDomainRecordWeightedArray and GetDomainRecordWeightedArrayOutput values.
+// You can construct a concrete instance of `GetDomainRecordWeightedArrayInput` via:
+//
+//	GetDomainRecordWeightedArray{ GetDomainRecordWeightedArgs{...} }
+type GetDomainRecordWeightedArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainRecordWeightedArrayOutput() GetDomainRecordWeightedArrayOutput
+	ToGetDomainRecordWeightedArrayOutputWithContext(context.Context) GetDomainRecordWeightedArrayOutput
+}
+
+type GetDomainRecordWeightedArray []GetDomainRecordWeightedInput
+
+func (GetDomainRecordWeightedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainRecordWeighted)(nil)).Elem()
+}
+
+func (i GetDomainRecordWeightedArray) ToGetDomainRecordWeightedArrayOutput() GetDomainRecordWeightedArrayOutput {
+	return i.ToGetDomainRecordWeightedArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainRecordWeightedArray) ToGetDomainRecordWeightedArrayOutputWithContext(ctx context.Context) GetDomainRecordWeightedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainRecordWeightedArrayOutput)
 }
 
 type GetDomainRecordWeightedOutput struct{ *pulumi.OutputState }
@@ -6768,6 +7451,63 @@ type GetInstanceSecurityGroupInboundRule struct {
 	Port      int    `pulumi:"port"`
 	PortRange string `pulumi:"portRange"`
 	Protocol  string `pulumi:"protocol"`
+}
+
+// GetInstanceSecurityGroupInboundRuleInput is an input type that accepts GetInstanceSecurityGroupInboundRuleArgs and GetInstanceSecurityGroupInboundRuleOutput values.
+// You can construct a concrete instance of `GetInstanceSecurityGroupInboundRuleInput` via:
+//
+//	GetInstanceSecurityGroupInboundRuleArgs{...}
+type GetInstanceSecurityGroupInboundRuleInput interface {
+	pulumi.Input
+
+	ToGetInstanceSecurityGroupInboundRuleOutput() GetInstanceSecurityGroupInboundRuleOutput
+	ToGetInstanceSecurityGroupInboundRuleOutputWithContext(context.Context) GetInstanceSecurityGroupInboundRuleOutput
+}
+
+type GetInstanceSecurityGroupInboundRuleArgs struct {
+	Action    pulumi.StringInput `pulumi:"action"`
+	Ip        pulumi.StringInput `pulumi:"ip"`
+	IpRange   pulumi.StringInput `pulumi:"ipRange"`
+	Port      pulumi.IntInput    `pulumi:"port"`
+	PortRange pulumi.StringInput `pulumi:"portRange"`
+	Protocol  pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetInstanceSecurityGroupInboundRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceSecurityGroupInboundRule)(nil)).Elem()
+}
+
+func (i GetInstanceSecurityGroupInboundRuleArgs) ToGetInstanceSecurityGroupInboundRuleOutput() GetInstanceSecurityGroupInboundRuleOutput {
+	return i.ToGetInstanceSecurityGroupInboundRuleOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSecurityGroupInboundRuleArgs) ToGetInstanceSecurityGroupInboundRuleOutputWithContext(ctx context.Context) GetInstanceSecurityGroupInboundRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSecurityGroupInboundRuleOutput)
+}
+
+// GetInstanceSecurityGroupInboundRuleArrayInput is an input type that accepts GetInstanceSecurityGroupInboundRuleArray and GetInstanceSecurityGroupInboundRuleArrayOutput values.
+// You can construct a concrete instance of `GetInstanceSecurityGroupInboundRuleArrayInput` via:
+//
+//	GetInstanceSecurityGroupInboundRuleArray{ GetInstanceSecurityGroupInboundRuleArgs{...} }
+type GetInstanceSecurityGroupInboundRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceSecurityGroupInboundRuleArrayOutput() GetInstanceSecurityGroupInboundRuleArrayOutput
+	ToGetInstanceSecurityGroupInboundRuleArrayOutputWithContext(context.Context) GetInstanceSecurityGroupInboundRuleArrayOutput
+}
+
+type GetInstanceSecurityGroupInboundRuleArray []GetInstanceSecurityGroupInboundRuleInput
+
+func (GetInstanceSecurityGroupInboundRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceSecurityGroupInboundRule)(nil)).Elem()
+}
+
+func (i GetInstanceSecurityGroupInboundRuleArray) ToGetInstanceSecurityGroupInboundRuleArrayOutput() GetInstanceSecurityGroupInboundRuleArrayOutput {
+	return i.ToGetInstanceSecurityGroupInboundRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSecurityGroupInboundRuleArray) ToGetInstanceSecurityGroupInboundRuleArrayOutputWithContext(ctx context.Context) GetInstanceSecurityGroupInboundRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSecurityGroupInboundRuleArrayOutput)
 }
 
 type GetInstanceSecurityGroupInboundRuleOutput struct{ *pulumi.OutputState }
@@ -6837,6 +7577,63 @@ type GetInstanceSecurityGroupOutboundRule struct {
 	Protocol  string `pulumi:"protocol"`
 }
 
+// GetInstanceSecurityGroupOutboundRuleInput is an input type that accepts GetInstanceSecurityGroupOutboundRuleArgs and GetInstanceSecurityGroupOutboundRuleOutput values.
+// You can construct a concrete instance of `GetInstanceSecurityGroupOutboundRuleInput` via:
+//
+//	GetInstanceSecurityGroupOutboundRuleArgs{...}
+type GetInstanceSecurityGroupOutboundRuleInput interface {
+	pulumi.Input
+
+	ToGetInstanceSecurityGroupOutboundRuleOutput() GetInstanceSecurityGroupOutboundRuleOutput
+	ToGetInstanceSecurityGroupOutboundRuleOutputWithContext(context.Context) GetInstanceSecurityGroupOutboundRuleOutput
+}
+
+type GetInstanceSecurityGroupOutboundRuleArgs struct {
+	Action    pulumi.StringInput `pulumi:"action"`
+	Ip        pulumi.StringInput `pulumi:"ip"`
+	IpRange   pulumi.StringInput `pulumi:"ipRange"`
+	Port      pulumi.IntInput    `pulumi:"port"`
+	PortRange pulumi.StringInput `pulumi:"portRange"`
+	Protocol  pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetInstanceSecurityGroupOutboundRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceSecurityGroupOutboundRule)(nil)).Elem()
+}
+
+func (i GetInstanceSecurityGroupOutboundRuleArgs) ToGetInstanceSecurityGroupOutboundRuleOutput() GetInstanceSecurityGroupOutboundRuleOutput {
+	return i.ToGetInstanceSecurityGroupOutboundRuleOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSecurityGroupOutboundRuleArgs) ToGetInstanceSecurityGroupOutboundRuleOutputWithContext(ctx context.Context) GetInstanceSecurityGroupOutboundRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSecurityGroupOutboundRuleOutput)
+}
+
+// GetInstanceSecurityGroupOutboundRuleArrayInput is an input type that accepts GetInstanceSecurityGroupOutboundRuleArray and GetInstanceSecurityGroupOutboundRuleArrayOutput values.
+// You can construct a concrete instance of `GetInstanceSecurityGroupOutboundRuleArrayInput` via:
+//
+//	GetInstanceSecurityGroupOutboundRuleArray{ GetInstanceSecurityGroupOutboundRuleArgs{...} }
+type GetInstanceSecurityGroupOutboundRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceSecurityGroupOutboundRuleArrayOutput() GetInstanceSecurityGroupOutboundRuleArrayOutput
+	ToGetInstanceSecurityGroupOutboundRuleArrayOutputWithContext(context.Context) GetInstanceSecurityGroupOutboundRuleArrayOutput
+}
+
+type GetInstanceSecurityGroupOutboundRuleArray []GetInstanceSecurityGroupOutboundRuleInput
+
+func (GetInstanceSecurityGroupOutboundRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceSecurityGroupOutboundRule)(nil)).Elem()
+}
+
+func (i GetInstanceSecurityGroupOutboundRuleArray) ToGetInstanceSecurityGroupOutboundRuleArrayOutput() GetInstanceSecurityGroupOutboundRuleArrayOutput {
+	return i.ToGetInstanceSecurityGroupOutboundRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSecurityGroupOutboundRuleArray) ToGetInstanceSecurityGroupOutboundRuleArrayOutputWithContext(ctx context.Context) GetInstanceSecurityGroupOutboundRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSecurityGroupOutboundRuleArrayOutput)
+}
+
 type GetInstanceSecurityGroupOutboundRuleOutput struct{ *pulumi.OutputState }
 
 func (GetInstanceSecurityGroupOutboundRuleOutput) ElementType() reflect.Type {
@@ -6902,6 +7699,61 @@ type GetInstanceServerPrivateNetwork struct {
 	Zone       string `pulumi:"zone"`
 }
 
+// GetInstanceServerPrivateNetworkInput is an input type that accepts GetInstanceServerPrivateNetworkArgs and GetInstanceServerPrivateNetworkOutput values.
+// You can construct a concrete instance of `GetInstanceServerPrivateNetworkInput` via:
+//
+//	GetInstanceServerPrivateNetworkArgs{...}
+type GetInstanceServerPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerPrivateNetworkOutput() GetInstanceServerPrivateNetworkOutput
+	ToGetInstanceServerPrivateNetworkOutputWithContext(context.Context) GetInstanceServerPrivateNetworkOutput
+}
+
+type GetInstanceServerPrivateNetworkArgs struct {
+	MacAddress pulumi.StringInput `pulumi:"macAddress"`
+	PnId       pulumi.StringInput `pulumi:"pnId"`
+	Status     pulumi.StringInput `pulumi:"status"`
+	Zone       pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetInstanceServerPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServerPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetInstanceServerPrivateNetworkArgs) ToGetInstanceServerPrivateNetworkOutput() GetInstanceServerPrivateNetworkOutput {
+	return i.ToGetInstanceServerPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerPrivateNetworkArgs) ToGetInstanceServerPrivateNetworkOutputWithContext(ctx context.Context) GetInstanceServerPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerPrivateNetworkOutput)
+}
+
+// GetInstanceServerPrivateNetworkArrayInput is an input type that accepts GetInstanceServerPrivateNetworkArray and GetInstanceServerPrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `GetInstanceServerPrivateNetworkArrayInput` via:
+//
+//	GetInstanceServerPrivateNetworkArray{ GetInstanceServerPrivateNetworkArgs{...} }
+type GetInstanceServerPrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerPrivateNetworkArrayOutput() GetInstanceServerPrivateNetworkArrayOutput
+	ToGetInstanceServerPrivateNetworkArrayOutputWithContext(context.Context) GetInstanceServerPrivateNetworkArrayOutput
+}
+
+type GetInstanceServerPrivateNetworkArray []GetInstanceServerPrivateNetworkInput
+
+func (GetInstanceServerPrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServerPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetInstanceServerPrivateNetworkArray) ToGetInstanceServerPrivateNetworkArrayOutput() GetInstanceServerPrivateNetworkArrayOutput {
+	return i.ToGetInstanceServerPrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerPrivateNetworkArray) ToGetInstanceServerPrivateNetworkArrayOutputWithContext(ctx context.Context) GetInstanceServerPrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerPrivateNetworkArrayOutput)
+}
+
 type GetInstanceServerPrivateNetworkOutput struct{ *pulumi.OutputState }
 
 func (GetInstanceServerPrivateNetworkOutput) ElementType() reflect.Type {
@@ -6958,6 +7810,62 @@ type GetInstanceServerRootVolume struct {
 	SizeInGb            int    `pulumi:"sizeInGb"`
 	VolumeId            string `pulumi:"volumeId"`
 	VolumeType          string `pulumi:"volumeType"`
+}
+
+// GetInstanceServerRootVolumeInput is an input type that accepts GetInstanceServerRootVolumeArgs and GetInstanceServerRootVolumeOutput values.
+// You can construct a concrete instance of `GetInstanceServerRootVolumeInput` via:
+//
+//	GetInstanceServerRootVolumeArgs{...}
+type GetInstanceServerRootVolumeInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerRootVolumeOutput() GetInstanceServerRootVolumeOutput
+	ToGetInstanceServerRootVolumeOutputWithContext(context.Context) GetInstanceServerRootVolumeOutput
+}
+
+type GetInstanceServerRootVolumeArgs struct {
+	Boot                pulumi.BoolInput   `pulumi:"boot"`
+	DeleteOnTermination pulumi.BoolInput   `pulumi:"deleteOnTermination"`
+	SizeInGb            pulumi.IntInput    `pulumi:"sizeInGb"`
+	VolumeId            pulumi.StringInput `pulumi:"volumeId"`
+	VolumeType          pulumi.StringInput `pulumi:"volumeType"`
+}
+
+func (GetInstanceServerRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServerRootVolume)(nil)).Elem()
+}
+
+func (i GetInstanceServerRootVolumeArgs) ToGetInstanceServerRootVolumeOutput() GetInstanceServerRootVolumeOutput {
+	return i.ToGetInstanceServerRootVolumeOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerRootVolumeArgs) ToGetInstanceServerRootVolumeOutputWithContext(ctx context.Context) GetInstanceServerRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerRootVolumeOutput)
+}
+
+// GetInstanceServerRootVolumeArrayInput is an input type that accepts GetInstanceServerRootVolumeArray and GetInstanceServerRootVolumeArrayOutput values.
+// You can construct a concrete instance of `GetInstanceServerRootVolumeArrayInput` via:
+//
+//	GetInstanceServerRootVolumeArray{ GetInstanceServerRootVolumeArgs{...} }
+type GetInstanceServerRootVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerRootVolumeArrayOutput() GetInstanceServerRootVolumeArrayOutput
+	ToGetInstanceServerRootVolumeArrayOutputWithContext(context.Context) GetInstanceServerRootVolumeArrayOutput
+}
+
+type GetInstanceServerRootVolumeArray []GetInstanceServerRootVolumeInput
+
+func (GetInstanceServerRootVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServerRootVolume)(nil)).Elem()
+}
+
+func (i GetInstanceServerRootVolumeArray) ToGetInstanceServerRootVolumeArrayOutput() GetInstanceServerRootVolumeArrayOutput {
+	return i.ToGetInstanceServerRootVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerRootVolumeArray) ToGetInstanceServerRootVolumeArrayOutputWithContext(ctx context.Context) GetInstanceServerRootVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerRootVolumeArrayOutput)
 }
 
 type GetInstanceServerRootVolumeOutput struct{ *pulumi.OutputState }
@@ -7019,6 +7927,59 @@ type GetIotDeviceCertificate struct {
 	Key string `pulumi:"key"`
 }
 
+// GetIotDeviceCertificateInput is an input type that accepts GetIotDeviceCertificateArgs and GetIotDeviceCertificateOutput values.
+// You can construct a concrete instance of `GetIotDeviceCertificateInput` via:
+//
+//	GetIotDeviceCertificateArgs{...}
+type GetIotDeviceCertificateInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceCertificateOutput() GetIotDeviceCertificateOutput
+	ToGetIotDeviceCertificateOutputWithContext(context.Context) GetIotDeviceCertificateOutput
+}
+
+type GetIotDeviceCertificateArgs struct {
+	Crt pulumi.StringInput `pulumi:"crt"`
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetIotDeviceCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIotDeviceCertificate)(nil)).Elem()
+}
+
+func (i GetIotDeviceCertificateArgs) ToGetIotDeviceCertificateOutput() GetIotDeviceCertificateOutput {
+	return i.ToGetIotDeviceCertificateOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceCertificateArgs) ToGetIotDeviceCertificateOutputWithContext(ctx context.Context) GetIotDeviceCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceCertificateOutput)
+}
+
+// GetIotDeviceCertificateArrayInput is an input type that accepts GetIotDeviceCertificateArray and GetIotDeviceCertificateArrayOutput values.
+// You can construct a concrete instance of `GetIotDeviceCertificateArrayInput` via:
+//
+//	GetIotDeviceCertificateArray{ GetIotDeviceCertificateArgs{...} }
+type GetIotDeviceCertificateArrayInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceCertificateArrayOutput() GetIotDeviceCertificateArrayOutput
+	ToGetIotDeviceCertificateArrayOutputWithContext(context.Context) GetIotDeviceCertificateArrayOutput
+}
+
+type GetIotDeviceCertificateArray []GetIotDeviceCertificateInput
+
+func (GetIotDeviceCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIotDeviceCertificate)(nil)).Elem()
+}
+
+func (i GetIotDeviceCertificateArray) ToGetIotDeviceCertificateArrayOutput() GetIotDeviceCertificateArrayOutput {
+	return i.ToGetIotDeviceCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceCertificateArray) ToGetIotDeviceCertificateArrayOutputWithContext(ctx context.Context) GetIotDeviceCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceCertificateArrayOutput)
+}
+
 type GetIotDeviceCertificateOutput struct{ *pulumi.OutputState }
 
 func (GetIotDeviceCertificateOutput) ElementType() reflect.Type {
@@ -7064,6 +8025,59 @@ func (o GetIotDeviceCertificateArrayOutput) Index(i pulumi.IntInput) GetIotDevic
 type GetIotDeviceMessageFilter struct {
 	Publishes  []GetIotDeviceMessageFilterPublish   `pulumi:"publishes"`
 	Subscribes []GetIotDeviceMessageFilterSubscribe `pulumi:"subscribes"`
+}
+
+// GetIotDeviceMessageFilterInput is an input type that accepts GetIotDeviceMessageFilterArgs and GetIotDeviceMessageFilterOutput values.
+// You can construct a concrete instance of `GetIotDeviceMessageFilterInput` via:
+//
+//	GetIotDeviceMessageFilterArgs{...}
+type GetIotDeviceMessageFilterInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceMessageFilterOutput() GetIotDeviceMessageFilterOutput
+	ToGetIotDeviceMessageFilterOutputWithContext(context.Context) GetIotDeviceMessageFilterOutput
+}
+
+type GetIotDeviceMessageFilterArgs struct {
+	Publishes  GetIotDeviceMessageFilterPublishArrayInput   `pulumi:"publishes"`
+	Subscribes GetIotDeviceMessageFilterSubscribeArrayInput `pulumi:"subscribes"`
+}
+
+func (GetIotDeviceMessageFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIotDeviceMessageFilter)(nil)).Elem()
+}
+
+func (i GetIotDeviceMessageFilterArgs) ToGetIotDeviceMessageFilterOutput() GetIotDeviceMessageFilterOutput {
+	return i.ToGetIotDeviceMessageFilterOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceMessageFilterArgs) ToGetIotDeviceMessageFilterOutputWithContext(ctx context.Context) GetIotDeviceMessageFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceMessageFilterOutput)
+}
+
+// GetIotDeviceMessageFilterArrayInput is an input type that accepts GetIotDeviceMessageFilterArray and GetIotDeviceMessageFilterArrayOutput values.
+// You can construct a concrete instance of `GetIotDeviceMessageFilterArrayInput` via:
+//
+//	GetIotDeviceMessageFilterArray{ GetIotDeviceMessageFilterArgs{...} }
+type GetIotDeviceMessageFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceMessageFilterArrayOutput() GetIotDeviceMessageFilterArrayOutput
+	ToGetIotDeviceMessageFilterArrayOutputWithContext(context.Context) GetIotDeviceMessageFilterArrayOutput
+}
+
+type GetIotDeviceMessageFilterArray []GetIotDeviceMessageFilterInput
+
+func (GetIotDeviceMessageFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIotDeviceMessageFilter)(nil)).Elem()
+}
+
+func (i GetIotDeviceMessageFilterArray) ToGetIotDeviceMessageFilterArrayOutput() GetIotDeviceMessageFilterArrayOutput {
+	return i.ToGetIotDeviceMessageFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceMessageFilterArray) ToGetIotDeviceMessageFilterArrayOutputWithContext(ctx context.Context) GetIotDeviceMessageFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceMessageFilterArrayOutput)
 }
 
 type GetIotDeviceMessageFilterOutput struct{ *pulumi.OutputState }
@@ -7113,6 +8127,59 @@ type GetIotDeviceMessageFilterPublish struct {
 	Topics []string `pulumi:"topics"`
 }
 
+// GetIotDeviceMessageFilterPublishInput is an input type that accepts GetIotDeviceMessageFilterPublishArgs and GetIotDeviceMessageFilterPublishOutput values.
+// You can construct a concrete instance of `GetIotDeviceMessageFilterPublishInput` via:
+//
+//	GetIotDeviceMessageFilterPublishArgs{...}
+type GetIotDeviceMessageFilterPublishInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceMessageFilterPublishOutput() GetIotDeviceMessageFilterPublishOutput
+	ToGetIotDeviceMessageFilterPublishOutputWithContext(context.Context) GetIotDeviceMessageFilterPublishOutput
+}
+
+type GetIotDeviceMessageFilterPublishArgs struct {
+	Policy pulumi.StringInput      `pulumi:"policy"`
+	Topics pulumi.StringArrayInput `pulumi:"topics"`
+}
+
+func (GetIotDeviceMessageFilterPublishArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIotDeviceMessageFilterPublish)(nil)).Elem()
+}
+
+func (i GetIotDeviceMessageFilterPublishArgs) ToGetIotDeviceMessageFilterPublishOutput() GetIotDeviceMessageFilterPublishOutput {
+	return i.ToGetIotDeviceMessageFilterPublishOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceMessageFilterPublishArgs) ToGetIotDeviceMessageFilterPublishOutputWithContext(ctx context.Context) GetIotDeviceMessageFilterPublishOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceMessageFilterPublishOutput)
+}
+
+// GetIotDeviceMessageFilterPublishArrayInput is an input type that accepts GetIotDeviceMessageFilterPublishArray and GetIotDeviceMessageFilterPublishArrayOutput values.
+// You can construct a concrete instance of `GetIotDeviceMessageFilterPublishArrayInput` via:
+//
+//	GetIotDeviceMessageFilterPublishArray{ GetIotDeviceMessageFilterPublishArgs{...} }
+type GetIotDeviceMessageFilterPublishArrayInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceMessageFilterPublishArrayOutput() GetIotDeviceMessageFilterPublishArrayOutput
+	ToGetIotDeviceMessageFilterPublishArrayOutputWithContext(context.Context) GetIotDeviceMessageFilterPublishArrayOutput
+}
+
+type GetIotDeviceMessageFilterPublishArray []GetIotDeviceMessageFilterPublishInput
+
+func (GetIotDeviceMessageFilterPublishArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIotDeviceMessageFilterPublish)(nil)).Elem()
+}
+
+func (i GetIotDeviceMessageFilterPublishArray) ToGetIotDeviceMessageFilterPublishArrayOutput() GetIotDeviceMessageFilterPublishArrayOutput {
+	return i.ToGetIotDeviceMessageFilterPublishArrayOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceMessageFilterPublishArray) ToGetIotDeviceMessageFilterPublishArrayOutputWithContext(ctx context.Context) GetIotDeviceMessageFilterPublishArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceMessageFilterPublishArrayOutput)
+}
+
 type GetIotDeviceMessageFilterPublishOutput struct{ *pulumi.OutputState }
 
 func (GetIotDeviceMessageFilterPublishOutput) ElementType() reflect.Type {
@@ -7158,6 +8225,59 @@ func (o GetIotDeviceMessageFilterPublishArrayOutput) Index(i pulumi.IntInput) Ge
 type GetIotDeviceMessageFilterSubscribe struct {
 	Policy string   `pulumi:"policy"`
 	Topics []string `pulumi:"topics"`
+}
+
+// GetIotDeviceMessageFilterSubscribeInput is an input type that accepts GetIotDeviceMessageFilterSubscribeArgs and GetIotDeviceMessageFilterSubscribeOutput values.
+// You can construct a concrete instance of `GetIotDeviceMessageFilterSubscribeInput` via:
+//
+//	GetIotDeviceMessageFilterSubscribeArgs{...}
+type GetIotDeviceMessageFilterSubscribeInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceMessageFilterSubscribeOutput() GetIotDeviceMessageFilterSubscribeOutput
+	ToGetIotDeviceMessageFilterSubscribeOutputWithContext(context.Context) GetIotDeviceMessageFilterSubscribeOutput
+}
+
+type GetIotDeviceMessageFilterSubscribeArgs struct {
+	Policy pulumi.StringInput      `pulumi:"policy"`
+	Topics pulumi.StringArrayInput `pulumi:"topics"`
+}
+
+func (GetIotDeviceMessageFilterSubscribeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIotDeviceMessageFilterSubscribe)(nil)).Elem()
+}
+
+func (i GetIotDeviceMessageFilterSubscribeArgs) ToGetIotDeviceMessageFilterSubscribeOutput() GetIotDeviceMessageFilterSubscribeOutput {
+	return i.ToGetIotDeviceMessageFilterSubscribeOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceMessageFilterSubscribeArgs) ToGetIotDeviceMessageFilterSubscribeOutputWithContext(ctx context.Context) GetIotDeviceMessageFilterSubscribeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceMessageFilterSubscribeOutput)
+}
+
+// GetIotDeviceMessageFilterSubscribeArrayInput is an input type that accepts GetIotDeviceMessageFilterSubscribeArray and GetIotDeviceMessageFilterSubscribeArrayOutput values.
+// You can construct a concrete instance of `GetIotDeviceMessageFilterSubscribeArrayInput` via:
+//
+//	GetIotDeviceMessageFilterSubscribeArray{ GetIotDeviceMessageFilterSubscribeArgs{...} }
+type GetIotDeviceMessageFilterSubscribeArrayInput interface {
+	pulumi.Input
+
+	ToGetIotDeviceMessageFilterSubscribeArrayOutput() GetIotDeviceMessageFilterSubscribeArrayOutput
+	ToGetIotDeviceMessageFilterSubscribeArrayOutputWithContext(context.Context) GetIotDeviceMessageFilterSubscribeArrayOutput
+}
+
+type GetIotDeviceMessageFilterSubscribeArray []GetIotDeviceMessageFilterSubscribeInput
+
+func (GetIotDeviceMessageFilterSubscribeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIotDeviceMessageFilterSubscribe)(nil)).Elem()
+}
+
+func (i GetIotDeviceMessageFilterSubscribeArray) ToGetIotDeviceMessageFilterSubscribeArrayOutput() GetIotDeviceMessageFilterSubscribeArrayOutput {
+	return i.ToGetIotDeviceMessageFilterSubscribeArrayOutputWithContext(context.Background())
+}
+
+func (i GetIotDeviceMessageFilterSubscribeArray) ToGetIotDeviceMessageFilterSubscribeArrayOutputWithContext(ctx context.Context) GetIotDeviceMessageFilterSubscribeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIotDeviceMessageFilterSubscribeArrayOutput)
 }
 
 type GetIotDeviceMessageFilterSubscribeOutput struct{ *pulumi.OutputState }
@@ -7206,6 +8326,60 @@ type GetKubernetesClusterAutoUpgrade struct {
 	Enable                     bool   `pulumi:"enable"`
 	MaintenanceWindowDay       string `pulumi:"maintenanceWindowDay"`
 	MaintenanceWindowStartHour int    `pulumi:"maintenanceWindowStartHour"`
+}
+
+// GetKubernetesClusterAutoUpgradeInput is an input type that accepts GetKubernetesClusterAutoUpgradeArgs and GetKubernetesClusterAutoUpgradeOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterAutoUpgradeInput` via:
+//
+//	GetKubernetesClusterAutoUpgradeArgs{...}
+type GetKubernetesClusterAutoUpgradeInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterAutoUpgradeOutput() GetKubernetesClusterAutoUpgradeOutput
+	ToGetKubernetesClusterAutoUpgradeOutputWithContext(context.Context) GetKubernetesClusterAutoUpgradeOutput
+}
+
+type GetKubernetesClusterAutoUpgradeArgs struct {
+	Enable                     pulumi.BoolInput   `pulumi:"enable"`
+	MaintenanceWindowDay       pulumi.StringInput `pulumi:"maintenanceWindowDay"`
+	MaintenanceWindowStartHour pulumi.IntInput    `pulumi:"maintenanceWindowStartHour"`
+}
+
+func (GetKubernetesClusterAutoUpgradeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterAutoUpgrade)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterAutoUpgradeArgs) ToGetKubernetesClusterAutoUpgradeOutput() GetKubernetesClusterAutoUpgradeOutput {
+	return i.ToGetKubernetesClusterAutoUpgradeOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterAutoUpgradeArgs) ToGetKubernetesClusterAutoUpgradeOutputWithContext(ctx context.Context) GetKubernetesClusterAutoUpgradeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterAutoUpgradeOutput)
+}
+
+// GetKubernetesClusterAutoUpgradeArrayInput is an input type that accepts GetKubernetesClusterAutoUpgradeArray and GetKubernetesClusterAutoUpgradeArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterAutoUpgradeArrayInput` via:
+//
+//	GetKubernetesClusterAutoUpgradeArray{ GetKubernetesClusterAutoUpgradeArgs{...} }
+type GetKubernetesClusterAutoUpgradeArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterAutoUpgradeArrayOutput() GetKubernetesClusterAutoUpgradeArrayOutput
+	ToGetKubernetesClusterAutoUpgradeArrayOutputWithContext(context.Context) GetKubernetesClusterAutoUpgradeArrayOutput
+}
+
+type GetKubernetesClusterAutoUpgradeArray []GetKubernetesClusterAutoUpgradeInput
+
+func (GetKubernetesClusterAutoUpgradeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterAutoUpgrade)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterAutoUpgradeArray) ToGetKubernetesClusterAutoUpgradeArrayOutput() GetKubernetesClusterAutoUpgradeArrayOutput {
+	return i.ToGetKubernetesClusterAutoUpgradeArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterAutoUpgradeArray) ToGetKubernetesClusterAutoUpgradeArrayOutputWithContext(ctx context.Context) GetKubernetesClusterAutoUpgradeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterAutoUpgradeArrayOutput)
 }
 
 type GetKubernetesClusterAutoUpgradeOutput struct{ *pulumi.OutputState }
@@ -7265,6 +8439,67 @@ type GetKubernetesClusterAutoscalerConfig struct {
 	ScaleDownDelayAfterAdd        string  `pulumi:"scaleDownDelayAfterAdd"`
 	ScaleDownUnneededTime         string  `pulumi:"scaleDownUnneededTime"`
 	ScaleDownUtilizationThreshold float64 `pulumi:"scaleDownUtilizationThreshold"`
+}
+
+// GetKubernetesClusterAutoscalerConfigInput is an input type that accepts GetKubernetesClusterAutoscalerConfigArgs and GetKubernetesClusterAutoscalerConfigOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterAutoscalerConfigInput` via:
+//
+//	GetKubernetesClusterAutoscalerConfigArgs{...}
+type GetKubernetesClusterAutoscalerConfigInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterAutoscalerConfigOutput() GetKubernetesClusterAutoscalerConfigOutput
+	ToGetKubernetesClusterAutoscalerConfigOutputWithContext(context.Context) GetKubernetesClusterAutoscalerConfigOutput
+}
+
+type GetKubernetesClusterAutoscalerConfigArgs struct {
+	BalanceSimilarNodeGroups      pulumi.BoolInput    `pulumi:"balanceSimilarNodeGroups"`
+	DisableScaleDown              pulumi.BoolInput    `pulumi:"disableScaleDown"`
+	Estimator                     pulumi.StringInput  `pulumi:"estimator"`
+	Expander                      pulumi.StringInput  `pulumi:"expander"`
+	ExpendablePodsPriorityCutoff  pulumi.IntInput     `pulumi:"expendablePodsPriorityCutoff"`
+	IgnoreDaemonsetsUtilization   pulumi.BoolInput    `pulumi:"ignoreDaemonsetsUtilization"`
+	MaxGracefulTerminationSec     pulumi.IntInput     `pulumi:"maxGracefulTerminationSec"`
+	ScaleDownDelayAfterAdd        pulumi.StringInput  `pulumi:"scaleDownDelayAfterAdd"`
+	ScaleDownUnneededTime         pulumi.StringInput  `pulumi:"scaleDownUnneededTime"`
+	ScaleDownUtilizationThreshold pulumi.Float64Input `pulumi:"scaleDownUtilizationThreshold"`
+}
+
+func (GetKubernetesClusterAutoscalerConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterAutoscalerConfig)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterAutoscalerConfigArgs) ToGetKubernetesClusterAutoscalerConfigOutput() GetKubernetesClusterAutoscalerConfigOutput {
+	return i.ToGetKubernetesClusterAutoscalerConfigOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterAutoscalerConfigArgs) ToGetKubernetesClusterAutoscalerConfigOutputWithContext(ctx context.Context) GetKubernetesClusterAutoscalerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterAutoscalerConfigOutput)
+}
+
+// GetKubernetesClusterAutoscalerConfigArrayInput is an input type that accepts GetKubernetesClusterAutoscalerConfigArray and GetKubernetesClusterAutoscalerConfigArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterAutoscalerConfigArrayInput` via:
+//
+//	GetKubernetesClusterAutoscalerConfigArray{ GetKubernetesClusterAutoscalerConfigArgs{...} }
+type GetKubernetesClusterAutoscalerConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterAutoscalerConfigArrayOutput() GetKubernetesClusterAutoscalerConfigArrayOutput
+	ToGetKubernetesClusterAutoscalerConfigArrayOutputWithContext(context.Context) GetKubernetesClusterAutoscalerConfigArrayOutput
+}
+
+type GetKubernetesClusterAutoscalerConfigArray []GetKubernetesClusterAutoscalerConfigInput
+
+func (GetKubernetesClusterAutoscalerConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterAutoscalerConfig)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterAutoscalerConfigArray) ToGetKubernetesClusterAutoscalerConfigArrayOutput() GetKubernetesClusterAutoscalerConfigArrayOutput {
+	return i.ToGetKubernetesClusterAutoscalerConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterAutoscalerConfigArray) ToGetKubernetesClusterAutoscalerConfigArrayOutputWithContext(ctx context.Context) GetKubernetesClusterAutoscalerConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterAutoscalerConfigArrayOutput)
 }
 
 type GetKubernetesClusterAutoscalerConfigOutput struct{ *pulumi.OutputState }
@@ -7348,6 +8583,61 @@ type GetKubernetesClusterKubeconfig struct {
 	Token                string `pulumi:"token"`
 }
 
+// GetKubernetesClusterKubeconfigInput is an input type that accepts GetKubernetesClusterKubeconfigArgs and GetKubernetesClusterKubeconfigOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterKubeconfigInput` via:
+//
+//	GetKubernetesClusterKubeconfigArgs{...}
+type GetKubernetesClusterKubeconfigInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterKubeconfigOutput() GetKubernetesClusterKubeconfigOutput
+	ToGetKubernetesClusterKubeconfigOutputWithContext(context.Context) GetKubernetesClusterKubeconfigOutput
+}
+
+type GetKubernetesClusterKubeconfigArgs struct {
+	ClusterCaCertificate pulumi.StringInput `pulumi:"clusterCaCertificate"`
+	ConfigFile           pulumi.StringInput `pulumi:"configFile"`
+	Host                 pulumi.StringInput `pulumi:"host"`
+	Token                pulumi.StringInput `pulumi:"token"`
+}
+
+func (GetKubernetesClusterKubeconfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterKubeconfig)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterKubeconfigArgs) ToGetKubernetesClusterKubeconfigOutput() GetKubernetesClusterKubeconfigOutput {
+	return i.ToGetKubernetesClusterKubeconfigOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterKubeconfigArgs) ToGetKubernetesClusterKubeconfigOutputWithContext(ctx context.Context) GetKubernetesClusterKubeconfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterKubeconfigOutput)
+}
+
+// GetKubernetesClusterKubeconfigArrayInput is an input type that accepts GetKubernetesClusterKubeconfigArray and GetKubernetesClusterKubeconfigArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterKubeconfigArrayInput` via:
+//
+//	GetKubernetesClusterKubeconfigArray{ GetKubernetesClusterKubeconfigArgs{...} }
+type GetKubernetesClusterKubeconfigArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterKubeconfigArrayOutput() GetKubernetesClusterKubeconfigArrayOutput
+	ToGetKubernetesClusterKubeconfigArrayOutputWithContext(context.Context) GetKubernetesClusterKubeconfigArrayOutput
+}
+
+type GetKubernetesClusterKubeconfigArray []GetKubernetesClusterKubeconfigInput
+
+func (GetKubernetesClusterKubeconfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterKubeconfig)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterKubeconfigArray) ToGetKubernetesClusterKubeconfigArrayOutput() GetKubernetesClusterKubeconfigArrayOutput {
+	return i.ToGetKubernetesClusterKubeconfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterKubeconfigArray) ToGetKubernetesClusterKubeconfigArrayOutputWithContext(ctx context.Context) GetKubernetesClusterKubeconfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterKubeconfigArrayOutput)
+}
+
 type GetKubernetesClusterKubeconfigOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesClusterKubeconfigOutput) ElementType() reflect.Type {
@@ -7406,6 +8696,64 @@ type GetKubernetesClusterOpenIdConnectConfig struct {
 	RequiredClaims []string `pulumi:"requiredClaims"`
 	UsernameClaim  string   `pulumi:"usernameClaim"`
 	UsernamePrefix string   `pulumi:"usernamePrefix"`
+}
+
+// GetKubernetesClusterOpenIdConnectConfigInput is an input type that accepts GetKubernetesClusterOpenIdConnectConfigArgs and GetKubernetesClusterOpenIdConnectConfigOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterOpenIdConnectConfigInput` via:
+//
+//	GetKubernetesClusterOpenIdConnectConfigArgs{...}
+type GetKubernetesClusterOpenIdConnectConfigInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterOpenIdConnectConfigOutput() GetKubernetesClusterOpenIdConnectConfigOutput
+	ToGetKubernetesClusterOpenIdConnectConfigOutputWithContext(context.Context) GetKubernetesClusterOpenIdConnectConfigOutput
+}
+
+type GetKubernetesClusterOpenIdConnectConfigArgs struct {
+	ClientId       pulumi.StringInput      `pulumi:"clientId"`
+	GroupsClaims   pulumi.StringArrayInput `pulumi:"groupsClaims"`
+	GroupsPrefix   pulumi.StringInput      `pulumi:"groupsPrefix"`
+	IssuerUrl      pulumi.StringInput      `pulumi:"issuerUrl"`
+	RequiredClaims pulumi.StringArrayInput `pulumi:"requiredClaims"`
+	UsernameClaim  pulumi.StringInput      `pulumi:"usernameClaim"`
+	UsernamePrefix pulumi.StringInput      `pulumi:"usernamePrefix"`
+}
+
+func (GetKubernetesClusterOpenIdConnectConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterOpenIdConnectConfig)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterOpenIdConnectConfigArgs) ToGetKubernetesClusterOpenIdConnectConfigOutput() GetKubernetesClusterOpenIdConnectConfigOutput {
+	return i.ToGetKubernetesClusterOpenIdConnectConfigOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterOpenIdConnectConfigArgs) ToGetKubernetesClusterOpenIdConnectConfigOutputWithContext(ctx context.Context) GetKubernetesClusterOpenIdConnectConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterOpenIdConnectConfigOutput)
+}
+
+// GetKubernetesClusterOpenIdConnectConfigArrayInput is an input type that accepts GetKubernetesClusterOpenIdConnectConfigArray and GetKubernetesClusterOpenIdConnectConfigArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterOpenIdConnectConfigArrayInput` via:
+//
+//	GetKubernetesClusterOpenIdConnectConfigArray{ GetKubernetesClusterOpenIdConnectConfigArgs{...} }
+type GetKubernetesClusterOpenIdConnectConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterOpenIdConnectConfigArrayOutput() GetKubernetesClusterOpenIdConnectConfigArrayOutput
+	ToGetKubernetesClusterOpenIdConnectConfigArrayOutputWithContext(context.Context) GetKubernetesClusterOpenIdConnectConfigArrayOutput
+}
+
+type GetKubernetesClusterOpenIdConnectConfigArray []GetKubernetesClusterOpenIdConnectConfigInput
+
+func (GetKubernetesClusterOpenIdConnectConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterOpenIdConnectConfig)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterOpenIdConnectConfigArray) ToGetKubernetesClusterOpenIdConnectConfigArrayOutput() GetKubernetesClusterOpenIdConnectConfigArrayOutput {
+	return i.ToGetKubernetesClusterOpenIdConnectConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterOpenIdConnectConfigArray) ToGetKubernetesClusterOpenIdConnectConfigArrayOutputWithContext(ctx context.Context) GetKubernetesClusterOpenIdConnectConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterOpenIdConnectConfigArrayOutput)
 }
 
 type GetKubernetesClusterOpenIdConnectConfigOutput struct{ *pulumi.OutputState }
@@ -7477,6 +8825,61 @@ type GetKubernetesNodePoolNode struct {
 	Status     string `pulumi:"status"`
 }
 
+// GetKubernetesNodePoolNodeInput is an input type that accepts GetKubernetesNodePoolNodeArgs and GetKubernetesNodePoolNodeOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolNodeInput` via:
+//
+//	GetKubernetesNodePoolNodeArgs{...}
+type GetKubernetesNodePoolNodeInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolNodeOutput() GetKubernetesNodePoolNodeOutput
+	ToGetKubernetesNodePoolNodeOutputWithContext(context.Context) GetKubernetesNodePoolNodeOutput
+}
+
+type GetKubernetesNodePoolNodeArgs struct {
+	Name       pulumi.StringInput `pulumi:"name"`
+	PublicIp   pulumi.StringInput `pulumi:"publicIp"`
+	PublicIpV6 pulumi.StringInput `pulumi:"publicIpV6"`
+	Status     pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetKubernetesNodePoolNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolNode)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolNodeArgs) ToGetKubernetesNodePoolNodeOutput() GetKubernetesNodePoolNodeOutput {
+	return i.ToGetKubernetesNodePoolNodeOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolNodeArgs) ToGetKubernetesNodePoolNodeOutputWithContext(ctx context.Context) GetKubernetesNodePoolNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolNodeOutput)
+}
+
+// GetKubernetesNodePoolNodeArrayInput is an input type that accepts GetKubernetesNodePoolNodeArray and GetKubernetesNodePoolNodeArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolNodeArrayInput` via:
+//
+//	GetKubernetesNodePoolNodeArray{ GetKubernetesNodePoolNodeArgs{...} }
+type GetKubernetesNodePoolNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolNodeArrayOutput() GetKubernetesNodePoolNodeArrayOutput
+	ToGetKubernetesNodePoolNodeArrayOutputWithContext(context.Context) GetKubernetesNodePoolNodeArrayOutput
+}
+
+type GetKubernetesNodePoolNodeArray []GetKubernetesNodePoolNodeInput
+
+func (GetKubernetesNodePoolNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolNode)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolNodeArray) ToGetKubernetesNodePoolNodeArrayOutput() GetKubernetesNodePoolNodeArrayOutput {
+	return i.ToGetKubernetesNodePoolNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolNodeArray) ToGetKubernetesNodePoolNodeArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolNodeArrayOutput)
+}
+
 type GetKubernetesNodePoolNodeOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesNodePoolNodeOutput) ElementType() reflect.Type {
@@ -7532,6 +8935,59 @@ type GetKubernetesNodePoolUpgradePolicy struct {
 	MaxUnavailable int `pulumi:"maxUnavailable"`
 }
 
+// GetKubernetesNodePoolUpgradePolicyInput is an input type that accepts GetKubernetesNodePoolUpgradePolicyArgs and GetKubernetesNodePoolUpgradePolicyOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolUpgradePolicyInput` via:
+//
+//	GetKubernetesNodePoolUpgradePolicyArgs{...}
+type GetKubernetesNodePoolUpgradePolicyInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolUpgradePolicyOutput() GetKubernetesNodePoolUpgradePolicyOutput
+	ToGetKubernetesNodePoolUpgradePolicyOutputWithContext(context.Context) GetKubernetesNodePoolUpgradePolicyOutput
+}
+
+type GetKubernetesNodePoolUpgradePolicyArgs struct {
+	MaxSurge       pulumi.IntInput `pulumi:"maxSurge"`
+	MaxUnavailable pulumi.IntInput `pulumi:"maxUnavailable"`
+}
+
+func (GetKubernetesNodePoolUpgradePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicy)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolUpgradePolicyArgs) ToGetKubernetesNodePoolUpgradePolicyOutput() GetKubernetesNodePoolUpgradePolicyOutput {
+	return i.ToGetKubernetesNodePoolUpgradePolicyOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolUpgradePolicyArgs) ToGetKubernetesNodePoolUpgradePolicyOutputWithContext(ctx context.Context) GetKubernetesNodePoolUpgradePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolUpgradePolicyOutput)
+}
+
+// GetKubernetesNodePoolUpgradePolicyArrayInput is an input type that accepts GetKubernetesNodePoolUpgradePolicyArray and GetKubernetesNodePoolUpgradePolicyArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolUpgradePolicyArrayInput` via:
+//
+//	GetKubernetesNodePoolUpgradePolicyArray{ GetKubernetesNodePoolUpgradePolicyArgs{...} }
+type GetKubernetesNodePoolUpgradePolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolUpgradePolicyArrayOutput() GetKubernetesNodePoolUpgradePolicyArrayOutput
+	ToGetKubernetesNodePoolUpgradePolicyArrayOutputWithContext(context.Context) GetKubernetesNodePoolUpgradePolicyArrayOutput
+}
+
+type GetKubernetesNodePoolUpgradePolicyArray []GetKubernetesNodePoolUpgradePolicyInput
+
+func (GetKubernetesNodePoolUpgradePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolUpgradePolicy)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolUpgradePolicyArray) ToGetKubernetesNodePoolUpgradePolicyArrayOutput() GetKubernetesNodePoolUpgradePolicyArrayOutput {
+	return i.ToGetKubernetesNodePoolUpgradePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolUpgradePolicyArray) ToGetKubernetesNodePoolUpgradePolicyArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolUpgradePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolUpgradePolicyArrayOutput)
+}
+
 type GetKubernetesNodePoolUpgradePolicyOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesNodePoolUpgradePolicyOutput) ElementType() reflect.Type {
@@ -7578,6 +9034,58 @@ type GetLoadbalancerCertificateCustomCertificate struct {
 	CertificateChain string `pulumi:"certificateChain"`
 }
 
+// GetLoadbalancerCertificateCustomCertificateInput is an input type that accepts GetLoadbalancerCertificateCustomCertificateArgs and GetLoadbalancerCertificateCustomCertificateOutput values.
+// You can construct a concrete instance of `GetLoadbalancerCertificateCustomCertificateInput` via:
+//
+//	GetLoadbalancerCertificateCustomCertificateArgs{...}
+type GetLoadbalancerCertificateCustomCertificateInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerCertificateCustomCertificateOutput() GetLoadbalancerCertificateCustomCertificateOutput
+	ToGetLoadbalancerCertificateCustomCertificateOutputWithContext(context.Context) GetLoadbalancerCertificateCustomCertificateOutput
+}
+
+type GetLoadbalancerCertificateCustomCertificateArgs struct {
+	CertificateChain pulumi.StringInput `pulumi:"certificateChain"`
+}
+
+func (GetLoadbalancerCertificateCustomCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancerCertificateCustomCertificate)(nil)).Elem()
+}
+
+func (i GetLoadbalancerCertificateCustomCertificateArgs) ToGetLoadbalancerCertificateCustomCertificateOutput() GetLoadbalancerCertificateCustomCertificateOutput {
+	return i.ToGetLoadbalancerCertificateCustomCertificateOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerCertificateCustomCertificateArgs) ToGetLoadbalancerCertificateCustomCertificateOutputWithContext(ctx context.Context) GetLoadbalancerCertificateCustomCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerCertificateCustomCertificateOutput)
+}
+
+// GetLoadbalancerCertificateCustomCertificateArrayInput is an input type that accepts GetLoadbalancerCertificateCustomCertificateArray and GetLoadbalancerCertificateCustomCertificateArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancerCertificateCustomCertificateArrayInput` via:
+//
+//	GetLoadbalancerCertificateCustomCertificateArray{ GetLoadbalancerCertificateCustomCertificateArgs{...} }
+type GetLoadbalancerCertificateCustomCertificateArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerCertificateCustomCertificateArrayOutput() GetLoadbalancerCertificateCustomCertificateArrayOutput
+	ToGetLoadbalancerCertificateCustomCertificateArrayOutputWithContext(context.Context) GetLoadbalancerCertificateCustomCertificateArrayOutput
+}
+
+type GetLoadbalancerCertificateCustomCertificateArray []GetLoadbalancerCertificateCustomCertificateInput
+
+func (GetLoadbalancerCertificateCustomCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancerCertificateCustomCertificate)(nil)).Elem()
+}
+
+func (i GetLoadbalancerCertificateCustomCertificateArray) ToGetLoadbalancerCertificateCustomCertificateArrayOutput() GetLoadbalancerCertificateCustomCertificateArrayOutput {
+	return i.ToGetLoadbalancerCertificateCustomCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerCertificateCustomCertificateArray) ToGetLoadbalancerCertificateCustomCertificateArrayOutputWithContext(ctx context.Context) GetLoadbalancerCertificateCustomCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerCertificateCustomCertificateArrayOutput)
+}
+
 type GetLoadbalancerCertificateCustomCertificateOutput struct{ *pulumi.OutputState }
 
 func (GetLoadbalancerCertificateCustomCertificateOutput) ElementType() reflect.Type {
@@ -7619,6 +9127,59 @@ func (o GetLoadbalancerCertificateCustomCertificateArrayOutput) Index(i pulumi.I
 type GetLoadbalancerCertificateLetsencrypt struct {
 	CommonName              string   `pulumi:"commonName"`
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
+}
+
+// GetLoadbalancerCertificateLetsencryptInput is an input type that accepts GetLoadbalancerCertificateLetsencryptArgs and GetLoadbalancerCertificateLetsencryptOutput values.
+// You can construct a concrete instance of `GetLoadbalancerCertificateLetsencryptInput` via:
+//
+//	GetLoadbalancerCertificateLetsencryptArgs{...}
+type GetLoadbalancerCertificateLetsencryptInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerCertificateLetsencryptOutput() GetLoadbalancerCertificateLetsencryptOutput
+	ToGetLoadbalancerCertificateLetsencryptOutputWithContext(context.Context) GetLoadbalancerCertificateLetsencryptOutput
+}
+
+type GetLoadbalancerCertificateLetsencryptArgs struct {
+	CommonName              pulumi.StringInput      `pulumi:"commonName"`
+	SubjectAlternativeNames pulumi.StringArrayInput `pulumi:"subjectAlternativeNames"`
+}
+
+func (GetLoadbalancerCertificateLetsencryptArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancerCertificateLetsencrypt)(nil)).Elem()
+}
+
+func (i GetLoadbalancerCertificateLetsencryptArgs) ToGetLoadbalancerCertificateLetsencryptOutput() GetLoadbalancerCertificateLetsencryptOutput {
+	return i.ToGetLoadbalancerCertificateLetsencryptOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerCertificateLetsencryptArgs) ToGetLoadbalancerCertificateLetsencryptOutputWithContext(ctx context.Context) GetLoadbalancerCertificateLetsencryptOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerCertificateLetsencryptOutput)
+}
+
+// GetLoadbalancerCertificateLetsencryptArrayInput is an input type that accepts GetLoadbalancerCertificateLetsencryptArray and GetLoadbalancerCertificateLetsencryptArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancerCertificateLetsencryptArrayInput` via:
+//
+//	GetLoadbalancerCertificateLetsencryptArray{ GetLoadbalancerCertificateLetsencryptArgs{...} }
+type GetLoadbalancerCertificateLetsencryptArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerCertificateLetsencryptArrayOutput() GetLoadbalancerCertificateLetsencryptArrayOutput
+	ToGetLoadbalancerCertificateLetsencryptArrayOutputWithContext(context.Context) GetLoadbalancerCertificateLetsencryptArrayOutput
+}
+
+type GetLoadbalancerCertificateLetsencryptArray []GetLoadbalancerCertificateLetsencryptInput
+
+func (GetLoadbalancerCertificateLetsencryptArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancerCertificateLetsencrypt)(nil)).Elem()
+}
+
+func (i GetLoadbalancerCertificateLetsencryptArray) ToGetLoadbalancerCertificateLetsencryptArrayOutput() GetLoadbalancerCertificateLetsencryptArrayOutput {
+	return i.ToGetLoadbalancerCertificateLetsencryptArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerCertificateLetsencryptArray) ToGetLoadbalancerCertificateLetsencryptArrayOutputWithContext(ctx context.Context) GetLoadbalancerCertificateLetsencryptArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerCertificateLetsencryptArrayOutput)
 }
 
 type GetLoadbalancerCertificateLetsencryptOutput struct{ *pulumi.OutputState }
@@ -7669,6 +9230,62 @@ type GetLoadbalancerPrivateNetwork struct {
 	StaticConfigs    []string `pulumi:"staticConfigs"`
 	Status           string   `pulumi:"status"`
 	Zone             string   `pulumi:"zone"`
+}
+
+// GetLoadbalancerPrivateNetworkInput is an input type that accepts GetLoadbalancerPrivateNetworkArgs and GetLoadbalancerPrivateNetworkOutput values.
+// You can construct a concrete instance of `GetLoadbalancerPrivateNetworkInput` via:
+//
+//	GetLoadbalancerPrivateNetworkArgs{...}
+type GetLoadbalancerPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerPrivateNetworkOutput() GetLoadbalancerPrivateNetworkOutput
+	ToGetLoadbalancerPrivateNetworkOutputWithContext(context.Context) GetLoadbalancerPrivateNetworkOutput
+}
+
+type GetLoadbalancerPrivateNetworkArgs struct {
+	DhcpConfig       pulumi.BoolInput        `pulumi:"dhcpConfig"`
+	PrivateNetworkId pulumi.StringInput      `pulumi:"privateNetworkId"`
+	StaticConfigs    pulumi.StringArrayInput `pulumi:"staticConfigs"`
+	Status           pulumi.StringInput      `pulumi:"status"`
+	Zone             pulumi.StringInput      `pulumi:"zone"`
+}
+
+func (GetLoadbalancerPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancerPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetLoadbalancerPrivateNetworkArgs) ToGetLoadbalancerPrivateNetworkOutput() GetLoadbalancerPrivateNetworkOutput {
+	return i.ToGetLoadbalancerPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerPrivateNetworkArgs) ToGetLoadbalancerPrivateNetworkOutputWithContext(ctx context.Context) GetLoadbalancerPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerPrivateNetworkOutput)
+}
+
+// GetLoadbalancerPrivateNetworkArrayInput is an input type that accepts GetLoadbalancerPrivateNetworkArray and GetLoadbalancerPrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancerPrivateNetworkArrayInput` via:
+//
+//	GetLoadbalancerPrivateNetworkArray{ GetLoadbalancerPrivateNetworkArgs{...} }
+type GetLoadbalancerPrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerPrivateNetworkArrayOutput() GetLoadbalancerPrivateNetworkArrayOutput
+	ToGetLoadbalancerPrivateNetworkArrayOutputWithContext(context.Context) GetLoadbalancerPrivateNetworkArrayOutput
+}
+
+type GetLoadbalancerPrivateNetworkArray []GetLoadbalancerPrivateNetworkInput
+
+func (GetLoadbalancerPrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancerPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetLoadbalancerPrivateNetworkArray) ToGetLoadbalancerPrivateNetworkArrayOutput() GetLoadbalancerPrivateNetworkArrayOutput {
+	return i.ToGetLoadbalancerPrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerPrivateNetworkArray) ToGetLoadbalancerPrivateNetworkArrayOutputWithContext(ctx context.Context) GetLoadbalancerPrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerPrivateNetworkArrayOutput)
 }
 
 type GetLoadbalancerPrivateNetworkOutput struct{ *pulumi.OutputState }
@@ -7733,6 +9350,62 @@ type GetObjectBucketCorsRule struct {
 	MaxAgeSeconds  int      `pulumi:"maxAgeSeconds"`
 }
 
+// GetObjectBucketCorsRuleInput is an input type that accepts GetObjectBucketCorsRuleArgs and GetObjectBucketCorsRuleOutput values.
+// You can construct a concrete instance of `GetObjectBucketCorsRuleInput` via:
+//
+//	GetObjectBucketCorsRuleArgs{...}
+type GetObjectBucketCorsRuleInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketCorsRuleOutput() GetObjectBucketCorsRuleOutput
+	ToGetObjectBucketCorsRuleOutputWithContext(context.Context) GetObjectBucketCorsRuleOutput
+}
+
+type GetObjectBucketCorsRuleArgs struct {
+	AllowedHeaders pulumi.StringArrayInput `pulumi:"allowedHeaders"`
+	AllowedMethods pulumi.StringArrayInput `pulumi:"allowedMethods"`
+	AllowedOrigins pulumi.StringArrayInput `pulumi:"allowedOrigins"`
+	ExposeHeaders  pulumi.StringArrayInput `pulumi:"exposeHeaders"`
+	MaxAgeSeconds  pulumi.IntInput         `pulumi:"maxAgeSeconds"`
+}
+
+func (GetObjectBucketCorsRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketCorsRule)(nil)).Elem()
+}
+
+func (i GetObjectBucketCorsRuleArgs) ToGetObjectBucketCorsRuleOutput() GetObjectBucketCorsRuleOutput {
+	return i.ToGetObjectBucketCorsRuleOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketCorsRuleArgs) ToGetObjectBucketCorsRuleOutputWithContext(ctx context.Context) GetObjectBucketCorsRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketCorsRuleOutput)
+}
+
+// GetObjectBucketCorsRuleArrayInput is an input type that accepts GetObjectBucketCorsRuleArray and GetObjectBucketCorsRuleArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketCorsRuleArrayInput` via:
+//
+//	GetObjectBucketCorsRuleArray{ GetObjectBucketCorsRuleArgs{...} }
+type GetObjectBucketCorsRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketCorsRuleArrayOutput() GetObjectBucketCorsRuleArrayOutput
+	ToGetObjectBucketCorsRuleArrayOutputWithContext(context.Context) GetObjectBucketCorsRuleArrayOutput
+}
+
+type GetObjectBucketCorsRuleArray []GetObjectBucketCorsRuleInput
+
+func (GetObjectBucketCorsRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketCorsRule)(nil)).Elem()
+}
+
+func (i GetObjectBucketCorsRuleArray) ToGetObjectBucketCorsRuleArrayOutput() GetObjectBucketCorsRuleArrayOutput {
+	return i.ToGetObjectBucketCorsRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketCorsRuleArray) ToGetObjectBucketCorsRuleArrayOutputWithContext(ctx context.Context) GetObjectBucketCorsRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketCorsRuleArrayOutput)
+}
+
 type GetObjectBucketCorsRuleOutput struct{ *pulumi.OutputState }
 
 func (GetObjectBucketCorsRuleOutput) ElementType() reflect.Type {
@@ -7795,6 +9468,64 @@ type GetObjectBucketLifecycleRule struct {
 	Prefix                             string                                   `pulumi:"prefix"`
 	Tags                               map[string]string                        `pulumi:"tags"`
 	Transitions                        []GetObjectBucketLifecycleRuleTransition `pulumi:"transitions"`
+}
+
+// GetObjectBucketLifecycleRuleInput is an input type that accepts GetObjectBucketLifecycleRuleArgs and GetObjectBucketLifecycleRuleOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleInput` via:
+//
+//	GetObjectBucketLifecycleRuleArgs{...}
+type GetObjectBucketLifecycleRuleInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleOutput() GetObjectBucketLifecycleRuleOutput
+	ToGetObjectBucketLifecycleRuleOutputWithContext(context.Context) GetObjectBucketLifecycleRuleOutput
+}
+
+type GetObjectBucketLifecycleRuleArgs struct {
+	AbortIncompleteMultipartUploadDays pulumi.IntInput                                  `pulumi:"abortIncompleteMultipartUploadDays"`
+	Enabled                            pulumi.BoolInput                                 `pulumi:"enabled"`
+	Expirations                        GetObjectBucketLifecycleRuleExpirationArrayInput `pulumi:"expirations"`
+	Id                                 pulumi.StringInput                               `pulumi:"id"`
+	Prefix                             pulumi.StringInput                               `pulumi:"prefix"`
+	Tags                               pulumi.StringMapInput                            `pulumi:"tags"`
+	Transitions                        GetObjectBucketLifecycleRuleTransitionArrayInput `pulumi:"transitions"`
+}
+
+func (GetObjectBucketLifecycleRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRule)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleArgs) ToGetObjectBucketLifecycleRuleOutput() GetObjectBucketLifecycleRuleOutput {
+	return i.ToGetObjectBucketLifecycleRuleOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleArgs) ToGetObjectBucketLifecycleRuleOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleOutput)
+}
+
+// GetObjectBucketLifecycleRuleArrayInput is an input type that accepts GetObjectBucketLifecycleRuleArray and GetObjectBucketLifecycleRuleArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleArrayInput` via:
+//
+//	GetObjectBucketLifecycleRuleArray{ GetObjectBucketLifecycleRuleArgs{...} }
+type GetObjectBucketLifecycleRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleArrayOutput() GetObjectBucketLifecycleRuleArrayOutput
+	ToGetObjectBucketLifecycleRuleArrayOutputWithContext(context.Context) GetObjectBucketLifecycleRuleArrayOutput
+}
+
+type GetObjectBucketLifecycleRuleArray []GetObjectBucketLifecycleRuleInput
+
+func (GetObjectBucketLifecycleRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRule)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleArray) ToGetObjectBucketLifecycleRuleArrayOutput() GetObjectBucketLifecycleRuleArrayOutput {
+	return i.ToGetObjectBucketLifecycleRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleArray) ToGetObjectBucketLifecycleRuleArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleArrayOutput)
 }
 
 type GetObjectBucketLifecycleRuleOutput struct{ *pulumi.OutputState }
@@ -7863,6 +9594,58 @@ type GetObjectBucketLifecycleRuleExpiration struct {
 	Days int `pulumi:"days"`
 }
 
+// GetObjectBucketLifecycleRuleExpirationInput is an input type that accepts GetObjectBucketLifecycleRuleExpirationArgs and GetObjectBucketLifecycleRuleExpirationOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleExpirationInput` via:
+//
+//	GetObjectBucketLifecycleRuleExpirationArgs{...}
+type GetObjectBucketLifecycleRuleExpirationInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleExpirationOutput() GetObjectBucketLifecycleRuleExpirationOutput
+	ToGetObjectBucketLifecycleRuleExpirationOutputWithContext(context.Context) GetObjectBucketLifecycleRuleExpirationOutput
+}
+
+type GetObjectBucketLifecycleRuleExpirationArgs struct {
+	Days pulumi.IntInput `pulumi:"days"`
+}
+
+func (GetObjectBucketLifecycleRuleExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRuleExpiration)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleExpirationArgs) ToGetObjectBucketLifecycleRuleExpirationOutput() GetObjectBucketLifecycleRuleExpirationOutput {
+	return i.ToGetObjectBucketLifecycleRuleExpirationOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleExpirationArgs) ToGetObjectBucketLifecycleRuleExpirationOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleExpirationOutput)
+}
+
+// GetObjectBucketLifecycleRuleExpirationArrayInput is an input type that accepts GetObjectBucketLifecycleRuleExpirationArray and GetObjectBucketLifecycleRuleExpirationArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleExpirationArrayInput` via:
+//
+//	GetObjectBucketLifecycleRuleExpirationArray{ GetObjectBucketLifecycleRuleExpirationArgs{...} }
+type GetObjectBucketLifecycleRuleExpirationArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleExpirationArrayOutput() GetObjectBucketLifecycleRuleExpirationArrayOutput
+	ToGetObjectBucketLifecycleRuleExpirationArrayOutputWithContext(context.Context) GetObjectBucketLifecycleRuleExpirationArrayOutput
+}
+
+type GetObjectBucketLifecycleRuleExpirationArray []GetObjectBucketLifecycleRuleExpirationInput
+
+func (GetObjectBucketLifecycleRuleExpirationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRuleExpiration)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleExpirationArray) ToGetObjectBucketLifecycleRuleExpirationArrayOutput() GetObjectBucketLifecycleRuleExpirationArrayOutput {
+	return i.ToGetObjectBucketLifecycleRuleExpirationArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleExpirationArray) ToGetObjectBucketLifecycleRuleExpirationArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleExpirationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleExpirationArrayOutput)
+}
+
 type GetObjectBucketLifecycleRuleExpirationOutput struct{ *pulumi.OutputState }
 
 func (GetObjectBucketLifecycleRuleExpirationOutput) ElementType() reflect.Type {
@@ -7904,6 +9687,59 @@ func (o GetObjectBucketLifecycleRuleExpirationArrayOutput) Index(i pulumi.IntInp
 type GetObjectBucketLifecycleRuleTransition struct {
 	Days         int    `pulumi:"days"`
 	StorageClass string `pulumi:"storageClass"`
+}
+
+// GetObjectBucketLifecycleRuleTransitionInput is an input type that accepts GetObjectBucketLifecycleRuleTransitionArgs and GetObjectBucketLifecycleRuleTransitionOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleTransitionInput` via:
+//
+//	GetObjectBucketLifecycleRuleTransitionArgs{...}
+type GetObjectBucketLifecycleRuleTransitionInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleTransitionOutput() GetObjectBucketLifecycleRuleTransitionOutput
+	ToGetObjectBucketLifecycleRuleTransitionOutputWithContext(context.Context) GetObjectBucketLifecycleRuleTransitionOutput
+}
+
+type GetObjectBucketLifecycleRuleTransitionArgs struct {
+	Days         pulumi.IntInput    `pulumi:"days"`
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (GetObjectBucketLifecycleRuleTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRuleTransition)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleTransitionArgs) ToGetObjectBucketLifecycleRuleTransitionOutput() GetObjectBucketLifecycleRuleTransitionOutput {
+	return i.ToGetObjectBucketLifecycleRuleTransitionOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleTransitionArgs) ToGetObjectBucketLifecycleRuleTransitionOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleTransitionOutput)
+}
+
+// GetObjectBucketLifecycleRuleTransitionArrayInput is an input type that accepts GetObjectBucketLifecycleRuleTransitionArray and GetObjectBucketLifecycleRuleTransitionArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleTransitionArrayInput` via:
+//
+//	GetObjectBucketLifecycleRuleTransitionArray{ GetObjectBucketLifecycleRuleTransitionArgs{...} }
+type GetObjectBucketLifecycleRuleTransitionArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleTransitionArrayOutput() GetObjectBucketLifecycleRuleTransitionArrayOutput
+	ToGetObjectBucketLifecycleRuleTransitionArrayOutputWithContext(context.Context) GetObjectBucketLifecycleRuleTransitionArrayOutput
+}
+
+type GetObjectBucketLifecycleRuleTransitionArray []GetObjectBucketLifecycleRuleTransitionInput
+
+func (GetObjectBucketLifecycleRuleTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRuleTransition)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleTransitionArray) ToGetObjectBucketLifecycleRuleTransitionArrayOutput() GetObjectBucketLifecycleRuleTransitionArrayOutput {
+	return i.ToGetObjectBucketLifecycleRuleTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleTransitionArray) ToGetObjectBucketLifecycleRuleTransitionArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleTransitionArrayOutput)
 }
 
 type GetObjectBucketLifecycleRuleTransitionOutput struct{ *pulumi.OutputState }
@@ -7952,6 +9788,58 @@ type GetObjectBucketVersioning struct {
 	Enabled bool `pulumi:"enabled"`
 }
 
+// GetObjectBucketVersioningInput is an input type that accepts GetObjectBucketVersioningArgs and GetObjectBucketVersioningOutput values.
+// You can construct a concrete instance of `GetObjectBucketVersioningInput` via:
+//
+//	GetObjectBucketVersioningArgs{...}
+type GetObjectBucketVersioningInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketVersioningOutput() GetObjectBucketVersioningOutput
+	ToGetObjectBucketVersioningOutputWithContext(context.Context) GetObjectBucketVersioningOutput
+}
+
+type GetObjectBucketVersioningArgs struct {
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (GetObjectBucketVersioningArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketVersioning)(nil)).Elem()
+}
+
+func (i GetObjectBucketVersioningArgs) ToGetObjectBucketVersioningOutput() GetObjectBucketVersioningOutput {
+	return i.ToGetObjectBucketVersioningOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketVersioningArgs) ToGetObjectBucketVersioningOutputWithContext(ctx context.Context) GetObjectBucketVersioningOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketVersioningOutput)
+}
+
+// GetObjectBucketVersioningArrayInput is an input type that accepts GetObjectBucketVersioningArray and GetObjectBucketVersioningArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketVersioningArrayInput` via:
+//
+//	GetObjectBucketVersioningArray{ GetObjectBucketVersioningArgs{...} }
+type GetObjectBucketVersioningArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketVersioningArrayOutput() GetObjectBucketVersioningArrayOutput
+	ToGetObjectBucketVersioningArrayOutputWithContext(context.Context) GetObjectBucketVersioningArrayOutput
+}
+
+type GetObjectBucketVersioningArray []GetObjectBucketVersioningInput
+
+func (GetObjectBucketVersioningArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketVersioning)(nil)).Elem()
+}
+
+func (i GetObjectBucketVersioningArray) ToGetObjectBucketVersioningArrayOutput() GetObjectBucketVersioningArrayOutput {
+	return i.ToGetObjectBucketVersioningArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketVersioningArray) ToGetObjectBucketVersioningArrayOutputWithContext(ctx context.Context) GetObjectBucketVersioningArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketVersioningArrayOutput)
+}
+
 type GetObjectBucketVersioningOutput struct{ *pulumi.OutputState }
 
 func (GetObjectBucketVersioningOutput) ElementType() reflect.Type {
@@ -7994,6 +9882,60 @@ type GetRedisClusterAcl struct {
 	Description string `pulumi:"description"`
 	Id          string `pulumi:"id"`
 	Ip          string `pulumi:"ip"`
+}
+
+// GetRedisClusterAclInput is an input type that accepts GetRedisClusterAclArgs and GetRedisClusterAclOutput values.
+// You can construct a concrete instance of `GetRedisClusterAclInput` via:
+//
+//	GetRedisClusterAclArgs{...}
+type GetRedisClusterAclInput interface {
+	pulumi.Input
+
+	ToGetRedisClusterAclOutput() GetRedisClusterAclOutput
+	ToGetRedisClusterAclOutputWithContext(context.Context) GetRedisClusterAclOutput
+}
+
+type GetRedisClusterAclArgs struct {
+	Description pulumi.StringInput `pulumi:"description"`
+	Id          pulumi.StringInput `pulumi:"id"`
+	Ip          pulumi.StringInput `pulumi:"ip"`
+}
+
+func (GetRedisClusterAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisClusterAcl)(nil)).Elem()
+}
+
+func (i GetRedisClusterAclArgs) ToGetRedisClusterAclOutput() GetRedisClusterAclOutput {
+	return i.ToGetRedisClusterAclOutputWithContext(context.Background())
+}
+
+func (i GetRedisClusterAclArgs) ToGetRedisClusterAclOutputWithContext(ctx context.Context) GetRedisClusterAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisClusterAclOutput)
+}
+
+// GetRedisClusterAclArrayInput is an input type that accepts GetRedisClusterAclArray and GetRedisClusterAclArrayOutput values.
+// You can construct a concrete instance of `GetRedisClusterAclArrayInput` via:
+//
+//	GetRedisClusterAclArray{ GetRedisClusterAclArgs{...} }
+type GetRedisClusterAclArrayInput interface {
+	pulumi.Input
+
+	ToGetRedisClusterAclArrayOutput() GetRedisClusterAclArrayOutput
+	ToGetRedisClusterAclArrayOutputWithContext(context.Context) GetRedisClusterAclArrayOutput
+}
+
+type GetRedisClusterAclArray []GetRedisClusterAclInput
+
+func (GetRedisClusterAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRedisClusterAcl)(nil)).Elem()
+}
+
+func (i GetRedisClusterAclArray) ToGetRedisClusterAclArrayOutput() GetRedisClusterAclArrayOutput {
+	return i.ToGetRedisClusterAclArrayOutputWithContext(context.Background())
+}
+
+func (i GetRedisClusterAclArray) ToGetRedisClusterAclArrayOutputWithContext(ctx context.Context) GetRedisClusterAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisClusterAclArrayOutput)
 }
 
 type GetRedisClusterAclOutput struct{ *pulumi.OutputState }
@@ -8129,6 +10071,77 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketVersioningPtrInput)(nil)).Elem(), ObjectBucketVersioningArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclInput)(nil)).Elem(), RedisClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclArrayInput)(nil)).Elem(), RedisClusterAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferCpuInput)(nil)).Elem(), GetBaremetalOfferCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferDiskInput)(nil)).Elem(), GetBaremetalOfferDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferDiskArrayInput)(nil)).Elem(), GetBaremetalOfferDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferMemoryInput)(nil)).Elem(), GetBaremetalOfferMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferMemoryArrayInput)(nil)).Elem(), GetBaremetalOfferMemoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpInput)(nil)).Elem(), GetBaremetalServerIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpArrayInput)(nil)).Elem(), GetBaremetalServerIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleInput)(nil)).Elem(), GetDatabaseAclAclRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleArrayInput)(nil)).Elem(), GetDatabaseAclAclRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkArrayInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaArrayInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpInput)(nil)).Elem(), GetDomainRecordGeoIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpArrayInput)(nil)).Elem(), GetDomainRecordGeoIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpMatchInput)(nil)).Elem(), GetDomainRecordGeoIpMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpMatchArrayInput)(nil)).Elem(), GetDomainRecordGeoIpMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordHttpServiceInput)(nil)).Elem(), GetDomainRecordHttpServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordHttpServiceArrayInput)(nil)).Elem(), GetDomainRecordHttpServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordViewInput)(nil)).Elem(), GetDomainRecordViewArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordViewArrayInput)(nil)).Elem(), GetDomainRecordViewArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordWeightedInput)(nil)).Elem(), GetDomainRecordWeightedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordWeightedArrayInput)(nil)).Elem(), GetDomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateNetworkInput)(nil)).Elem(), GetInstanceServerPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateNetworkArrayInput)(nil)).Elem(), GetInstanceServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerRootVolumeInput)(nil)).Elem(), GetInstanceServerRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerRootVolumeArrayInput)(nil)).Elem(), GetInstanceServerRootVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateInput)(nil)).Elem(), GetIotDeviceCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateArrayInput)(nil)).Elem(), GetIotDeviceCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterInput)(nil)).Elem(), GetIotDeviceMessageFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterArrayInput)(nil)).Elem(), GetIotDeviceMessageFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterPublishInput)(nil)).Elem(), GetIotDeviceMessageFilterPublishArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterPublishArrayInput)(nil)).Elem(), GetIotDeviceMessageFilterPublishArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterSubscribeInput)(nil)).Elem(), GetIotDeviceMessageFilterSubscribeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterSubscribeArrayInput)(nil)).Elem(), GetIotDeviceMessageFilterSubscribeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeArrayInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoscalerConfigInput)(nil)).Elem(), GetKubernetesClusterAutoscalerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoscalerConfigArrayInput)(nil)).Elem(), GetKubernetesClusterAutoscalerConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterKubeconfigInput)(nil)).Elem(), GetKubernetesClusterKubeconfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterKubeconfigArrayInput)(nil)).Elem(), GetKubernetesClusterKubeconfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterOpenIdConnectConfigInput)(nil)).Elem(), GetKubernetesClusterOpenIdConnectConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterOpenIdConnectConfigArrayInput)(nil)).Elem(), GetKubernetesClusterOpenIdConnectConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodeInput)(nil)).Elem(), GetKubernetesNodePoolNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodeArrayInput)(nil)).Elem(), GetKubernetesNodePoolNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyArrayInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateCustomCertificateInput)(nil)).Elem(), GetLoadbalancerCertificateCustomCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateCustomCertificateArrayInput)(nil)).Elem(), GetLoadbalancerCertificateCustomCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptArrayInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleInput)(nil)).Elem(), GetObjectBucketCorsRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleArrayInput)(nil)).Elem(), GetObjectBucketCorsRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleInput)(nil)).Elem(), GetObjectBucketLifecycleRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleExpirationInput)(nil)).Elem(), GetObjectBucketLifecycleRuleExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleExpirationArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleExpirationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleTransitionInput)(nil)).Elem(), GetObjectBucketLifecycleRuleTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleTransitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketVersioningInput)(nil)).Elem(), GetObjectBucketVersioningArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketVersioningArrayInput)(nil)).Elem(), GetObjectBucketVersioningArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterAclInput)(nil)).Elem(), GetRedisClusterAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterAclArrayInput)(nil)).Elem(), GetRedisClusterAclArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseAclAclRuleOutput{})

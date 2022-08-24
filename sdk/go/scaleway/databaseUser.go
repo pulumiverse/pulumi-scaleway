@@ -141,6 +141,56 @@ func (i *DatabaseUser) ToDatabaseUserOutputWithContext(ctx context.Context) Data
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserOutput)
 }
 
+// DatabaseUserArrayInput is an input type that accepts DatabaseUserArray and DatabaseUserArrayOutput values.
+// You can construct a concrete instance of `DatabaseUserArrayInput` via:
+//
+//	DatabaseUserArray{ DatabaseUserArgs{...} }
+type DatabaseUserArrayInput interface {
+	pulumi.Input
+
+	ToDatabaseUserArrayOutput() DatabaseUserArrayOutput
+	ToDatabaseUserArrayOutputWithContext(context.Context) DatabaseUserArrayOutput
+}
+
+type DatabaseUserArray []DatabaseUserInput
+
+func (DatabaseUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DatabaseUser)(nil)).Elem()
+}
+
+func (i DatabaseUserArray) ToDatabaseUserArrayOutput() DatabaseUserArrayOutput {
+	return i.ToDatabaseUserArrayOutputWithContext(context.Background())
+}
+
+func (i DatabaseUserArray) ToDatabaseUserArrayOutputWithContext(ctx context.Context) DatabaseUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserArrayOutput)
+}
+
+// DatabaseUserMapInput is an input type that accepts DatabaseUserMap and DatabaseUserMapOutput values.
+// You can construct a concrete instance of `DatabaseUserMapInput` via:
+//
+//	DatabaseUserMap{ "key": DatabaseUserArgs{...} }
+type DatabaseUserMapInput interface {
+	pulumi.Input
+
+	ToDatabaseUserMapOutput() DatabaseUserMapOutput
+	ToDatabaseUserMapOutputWithContext(context.Context) DatabaseUserMapOutput
+}
+
+type DatabaseUserMap map[string]DatabaseUserInput
+
+func (DatabaseUserMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DatabaseUser)(nil)).Elem()
+}
+
+func (i DatabaseUserMap) ToDatabaseUserMapOutput() DatabaseUserMapOutput {
+	return i.ToDatabaseUserMapOutputWithContext(context.Background())
+}
+
+func (i DatabaseUserMap) ToDatabaseUserMapOutputWithContext(ctx context.Context) DatabaseUserMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserMapOutput)
+}
+
 type DatabaseUserOutput struct{ *pulumi.OutputState }
 
 func (DatabaseUserOutput) ElementType() reflect.Type {
@@ -180,7 +230,51 @@ func (o DatabaseUserOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+type DatabaseUserArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabaseUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DatabaseUser)(nil)).Elem()
+}
+
+func (o DatabaseUserArrayOutput) ToDatabaseUserArrayOutput() DatabaseUserArrayOutput {
+	return o
+}
+
+func (o DatabaseUserArrayOutput) ToDatabaseUserArrayOutputWithContext(ctx context.Context) DatabaseUserArrayOutput {
+	return o
+}
+
+func (o DatabaseUserArrayOutput) Index(i pulumi.IntInput) DatabaseUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseUser {
+		return vs[0].([]*DatabaseUser)[vs[1].(int)]
+	}).(DatabaseUserOutput)
+}
+
+type DatabaseUserMapOutput struct{ *pulumi.OutputState }
+
+func (DatabaseUserMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DatabaseUser)(nil)).Elem()
+}
+
+func (o DatabaseUserMapOutput) ToDatabaseUserMapOutput() DatabaseUserMapOutput {
+	return o
+}
+
+func (o DatabaseUserMapOutput) ToDatabaseUserMapOutputWithContext(ctx context.Context) DatabaseUserMapOutput {
+	return o
+}
+
+func (o DatabaseUserMapOutput) MapIndex(k pulumi.StringInput) DatabaseUserOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DatabaseUser {
+		return vs[0].(map[string]*DatabaseUser)[vs[1].(string)]
+	}).(DatabaseUserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseUserInput)(nil)).Elem(), &DatabaseUser{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseUserArrayInput)(nil)).Elem(), DatabaseUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseUserMapInput)(nil)).Elem(), DatabaseUserMap{})
 	pulumi.RegisterOutputType(DatabaseUserOutput{})
+	pulumi.RegisterOutputType(DatabaseUserArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseUserMapOutput{})
 }

@@ -198,6 +198,56 @@ func (i *IotDevice) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceO
 	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceOutput)
 }
 
+// IotDeviceArrayInput is an input type that accepts IotDeviceArray and IotDeviceArrayOutput values.
+// You can construct a concrete instance of `IotDeviceArrayInput` via:
+//
+//	IotDeviceArray{ IotDeviceArgs{...} }
+type IotDeviceArrayInput interface {
+	pulumi.Input
+
+	ToIotDeviceArrayOutput() IotDeviceArrayOutput
+	ToIotDeviceArrayOutputWithContext(context.Context) IotDeviceArrayOutput
+}
+
+type IotDeviceArray []IotDeviceInput
+
+func (IotDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotDevice)(nil)).Elem()
+}
+
+func (i IotDeviceArray) ToIotDeviceArrayOutput() IotDeviceArrayOutput {
+	return i.ToIotDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i IotDeviceArray) ToIotDeviceArrayOutputWithContext(ctx context.Context) IotDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceArrayOutput)
+}
+
+// IotDeviceMapInput is an input type that accepts IotDeviceMap and IotDeviceMapOutput values.
+// You can construct a concrete instance of `IotDeviceMapInput` via:
+//
+//	IotDeviceMap{ "key": IotDeviceArgs{...} }
+type IotDeviceMapInput interface {
+	pulumi.Input
+
+	ToIotDeviceMapOutput() IotDeviceMapOutput
+	ToIotDeviceMapOutputWithContext(context.Context) IotDeviceMapOutput
+}
+
+type IotDeviceMap map[string]IotDeviceInput
+
+func (IotDeviceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotDevice)(nil)).Elem()
+}
+
+func (i IotDeviceMap) ToIotDeviceMapOutput() IotDeviceMapOutput {
+	return i.ToIotDeviceMapOutputWithContext(context.Background())
+}
+
+func (i IotDeviceMap) ToIotDeviceMapOutputWithContext(ctx context.Context) IotDeviceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMapOutput)
+}
+
 type IotDeviceOutput struct{ *pulumi.OutputState }
 
 func (IotDeviceOutput) ElementType() reflect.Type {
@@ -277,7 +327,51 @@ func (o IotDeviceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+type IotDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotDevice)(nil)).Elem()
+}
+
+func (o IotDeviceArrayOutput) ToIotDeviceArrayOutput() IotDeviceArrayOutput {
+	return o
+}
+
+func (o IotDeviceArrayOutput) ToIotDeviceArrayOutputWithContext(ctx context.Context) IotDeviceArrayOutput {
+	return o
+}
+
+func (o IotDeviceArrayOutput) Index(i pulumi.IntInput) IotDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotDevice {
+		return vs[0].([]*IotDevice)[vs[1].(int)]
+	}).(IotDeviceOutput)
+}
+
+type IotDeviceMapOutput struct{ *pulumi.OutputState }
+
+func (IotDeviceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotDevice)(nil)).Elem()
+}
+
+func (o IotDeviceMapOutput) ToIotDeviceMapOutput() IotDeviceMapOutput {
+	return o
+}
+
+func (o IotDeviceMapOutput) ToIotDeviceMapOutputWithContext(ctx context.Context) IotDeviceMapOutput {
+	return o
+}
+
+func (o IotDeviceMapOutput) MapIndex(k pulumi.StringInput) IotDeviceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IotDevice {
+		return vs[0].(map[string]*IotDevice)[vs[1].(string)]
+	}).(IotDeviceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceInput)(nil)).Elem(), &IotDevice{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceArrayInput)(nil)).Elem(), IotDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMapInput)(nil)).Elem(), IotDeviceMap{})
 	pulumi.RegisterOutputType(IotDeviceOutput{})
+	pulumi.RegisterOutputType(IotDeviceArrayOutput{})
+	pulumi.RegisterOutputType(IotDeviceMapOutput{})
 }

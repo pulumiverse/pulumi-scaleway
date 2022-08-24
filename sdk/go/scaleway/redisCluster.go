@@ -229,6 +229,56 @@ func (i *RedisCluster) ToRedisClusterOutputWithContext(ctx context.Context) Redi
 	return pulumi.ToOutputWithContext(ctx, i).(RedisClusterOutput)
 }
 
+// RedisClusterArrayInput is an input type that accepts RedisClusterArray and RedisClusterArrayOutput values.
+// You can construct a concrete instance of `RedisClusterArrayInput` via:
+//
+//	RedisClusterArray{ RedisClusterArgs{...} }
+type RedisClusterArrayInput interface {
+	pulumi.Input
+
+	ToRedisClusterArrayOutput() RedisClusterArrayOutput
+	ToRedisClusterArrayOutputWithContext(context.Context) RedisClusterArrayOutput
+}
+
+type RedisClusterArray []RedisClusterInput
+
+func (RedisClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*RedisCluster)(nil)).Elem()
+}
+
+func (i RedisClusterArray) ToRedisClusterArrayOutput() RedisClusterArrayOutput {
+	return i.ToRedisClusterArrayOutputWithContext(context.Background())
+}
+
+func (i RedisClusterArray) ToRedisClusterArrayOutputWithContext(ctx context.Context) RedisClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisClusterArrayOutput)
+}
+
+// RedisClusterMapInput is an input type that accepts RedisClusterMap and RedisClusterMapOutput values.
+// You can construct a concrete instance of `RedisClusterMapInput` via:
+//
+//	RedisClusterMap{ "key": RedisClusterArgs{...} }
+type RedisClusterMapInput interface {
+	pulumi.Input
+
+	ToRedisClusterMapOutput() RedisClusterMapOutput
+	ToRedisClusterMapOutputWithContext(context.Context) RedisClusterMapOutput
+}
+
+type RedisClusterMap map[string]RedisClusterInput
+
+func (RedisClusterMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*RedisCluster)(nil)).Elem()
+}
+
+func (i RedisClusterMap) ToRedisClusterMapOutput() RedisClusterMapOutput {
+	return i.ToRedisClusterMapOutputWithContext(context.Background())
+}
+
+func (i RedisClusterMap) ToRedisClusterMapOutputWithContext(ctx context.Context) RedisClusterMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisClusterMapOutput)
+}
+
 type RedisClusterOutput struct{ *pulumi.OutputState }
 
 func (RedisClusterOutput) ElementType() reflect.Type {
@@ -313,7 +363,51 @@ func (o RedisClusterOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type RedisClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (RedisClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*RedisCluster)(nil)).Elem()
+}
+
+func (o RedisClusterArrayOutput) ToRedisClusterArrayOutput() RedisClusterArrayOutput {
+	return o
+}
+
+func (o RedisClusterArrayOutput) ToRedisClusterArrayOutputWithContext(ctx context.Context) RedisClusterArrayOutput {
+	return o
+}
+
+func (o RedisClusterArrayOutput) Index(i pulumi.IntInput) RedisClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RedisCluster {
+		return vs[0].([]*RedisCluster)[vs[1].(int)]
+	}).(RedisClusterOutput)
+}
+
+type RedisClusterMapOutput struct{ *pulumi.OutputState }
+
+func (RedisClusterMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*RedisCluster)(nil)).Elem()
+}
+
+func (o RedisClusterMapOutput) ToRedisClusterMapOutput() RedisClusterMapOutput {
+	return o
+}
+
+func (o RedisClusterMapOutput) ToRedisClusterMapOutputWithContext(ctx context.Context) RedisClusterMapOutput {
+	return o
+}
+
+func (o RedisClusterMapOutput) MapIndex(k pulumi.StringInput) RedisClusterOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RedisCluster {
+		return vs[0].(map[string]*RedisCluster)[vs[1].(string)]
+	}).(RedisClusterOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterInput)(nil)).Elem(), &RedisCluster{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterArrayInput)(nil)).Elem(), RedisClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterMapInput)(nil)).Elem(), RedisClusterMap{})
 	pulumi.RegisterOutputType(RedisClusterOutput{})
+	pulumi.RegisterOutputType(RedisClusterArrayOutput{})
+	pulumi.RegisterOutputType(RedisClusterMapOutput{})
 }

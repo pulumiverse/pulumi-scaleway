@@ -189,6 +189,56 @@ func (i *VpcGatewayNetwork) ToVpcGatewayNetworkOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkOutput)
 }
 
+// VpcGatewayNetworkArrayInput is an input type that accepts VpcGatewayNetworkArray and VpcGatewayNetworkArrayOutput values.
+// You can construct a concrete instance of `VpcGatewayNetworkArrayInput` via:
+//
+//	VpcGatewayNetworkArray{ VpcGatewayNetworkArgs{...} }
+type VpcGatewayNetworkArrayInput interface {
+	pulumi.Input
+
+	ToVpcGatewayNetworkArrayOutput() VpcGatewayNetworkArrayOutput
+	ToVpcGatewayNetworkArrayOutputWithContext(context.Context) VpcGatewayNetworkArrayOutput
+}
+
+type VpcGatewayNetworkArray []VpcGatewayNetworkInput
+
+func (VpcGatewayNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcGatewayNetwork)(nil)).Elem()
+}
+
+func (i VpcGatewayNetworkArray) ToVpcGatewayNetworkArrayOutput() VpcGatewayNetworkArrayOutput {
+	return i.ToVpcGatewayNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i VpcGatewayNetworkArray) ToVpcGatewayNetworkArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkArrayOutput)
+}
+
+// VpcGatewayNetworkMapInput is an input type that accepts VpcGatewayNetworkMap and VpcGatewayNetworkMapOutput values.
+// You can construct a concrete instance of `VpcGatewayNetworkMapInput` via:
+//
+//	VpcGatewayNetworkMap{ "key": VpcGatewayNetworkArgs{...} }
+type VpcGatewayNetworkMapInput interface {
+	pulumi.Input
+
+	ToVpcGatewayNetworkMapOutput() VpcGatewayNetworkMapOutput
+	ToVpcGatewayNetworkMapOutputWithContext(context.Context) VpcGatewayNetworkMapOutput
+}
+
+type VpcGatewayNetworkMap map[string]VpcGatewayNetworkInput
+
+func (VpcGatewayNetworkMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcGatewayNetwork)(nil)).Elem()
+}
+
+func (i VpcGatewayNetworkMap) ToVpcGatewayNetworkMapOutput() VpcGatewayNetworkMapOutput {
+	return i.ToVpcGatewayNetworkMapOutputWithContext(context.Background())
+}
+
+func (i VpcGatewayNetworkMap) ToVpcGatewayNetworkMapOutputWithContext(ctx context.Context) VpcGatewayNetworkMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkMapOutput)
+}
+
 type VpcGatewayNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcGatewayNetworkOutput) ElementType() reflect.Type {
@@ -258,7 +308,51 @@ func (o VpcGatewayNetworkOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type VpcGatewayNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcGatewayNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcGatewayNetwork)(nil)).Elem()
+}
+
+func (o VpcGatewayNetworkArrayOutput) ToVpcGatewayNetworkArrayOutput() VpcGatewayNetworkArrayOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkArrayOutput) ToVpcGatewayNetworkArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkArrayOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkArrayOutput) Index(i pulumi.IntInput) VpcGatewayNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcGatewayNetwork {
+		return vs[0].([]*VpcGatewayNetwork)[vs[1].(int)]
+	}).(VpcGatewayNetworkOutput)
+}
+
+type VpcGatewayNetworkMapOutput struct{ *pulumi.OutputState }
+
+func (VpcGatewayNetworkMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcGatewayNetwork)(nil)).Elem()
+}
+
+func (o VpcGatewayNetworkMapOutput) ToVpcGatewayNetworkMapOutput() VpcGatewayNetworkMapOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkMapOutput) ToVpcGatewayNetworkMapOutputWithContext(ctx context.Context) VpcGatewayNetworkMapOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkMapOutput) MapIndex(k pulumi.StringInput) VpcGatewayNetworkOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpcGatewayNetwork {
+		return vs[0].(map[string]*VpcGatewayNetwork)[vs[1].(string)]
+	}).(VpcGatewayNetworkOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkInput)(nil)).Elem(), &VpcGatewayNetwork{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkArrayInput)(nil)).Elem(), VpcGatewayNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkMapInput)(nil)).Elem(), VpcGatewayNetworkMap{})
 	pulumi.RegisterOutputType(VpcGatewayNetworkOutput{})
+	pulumi.RegisterOutputType(VpcGatewayNetworkArrayOutput{})
+	pulumi.RegisterOutputType(VpcGatewayNetworkMapOutput{})
 }
