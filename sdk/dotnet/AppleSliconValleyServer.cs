@@ -10,11 +10,42 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Apple silicon M1. For more information,
+    /// see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var server = new Scaleway.AppleSliconValleyServer("server", new()
+    ///     {
+    ///         Type = "M1-M",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer")]
     public partial class AppleSliconValleyServer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the server
+        /// The date and time of the creation of the Apple Silicon server.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -26,55 +57,60 @@ namespace Pulumiverse.Scaleway
         public Output<string> DeletableAt { get; private set; } = null!;
 
         /// <summary>
-        /// IPv4 address of the server
+        /// IPv4 address of the server (IPv4 address).
         /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the server
+        /// The name of the server.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the server is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the server is
+        /// associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The state of the server
+        /// The state of the server. Check the possible values on
+        /// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the server
+        /// The commercial type of the server. You find all the available types on
+        /// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        /// resource.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the server
+        /// The date and time of the last update of the Apple Silicon server.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// VNC url use to connect remotely to the desktop GUI
+        /// URL of the VNC.
         /// </summary>
         [Output("vncUrl")]
         public Output<string> VncUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which
+        /// the server should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -127,25 +163,29 @@ namespace Pulumiverse.Scaleway
     public sealed class AppleSliconValleyServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the server
+        /// The name of the server.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the server is
+        /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Type of the server
+        /// The commercial type of the server. You find all the available types on
+        /// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        /// resource.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which
+        /// the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -159,7 +199,7 @@ namespace Pulumiverse.Scaleway
     public sealed class AppleSliconValleyServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the server
+        /// The date and time of the creation of the Apple Silicon server.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -171,55 +211,60 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DeletableAt { get; set; }
 
         /// <summary>
-        /// IPv4 address of the server
+        /// IPv4 address of the server (IPv4 address).
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// Name of the server
+        /// The name of the server.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the server is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the server is
+        /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The state of the server
+        /// The state of the server. Check the possible values on
+        /// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// Type of the server
+        /// The commercial type of the server. You find all the available types on
+        /// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        /// resource.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the server
+        /// The date and time of the last update of the Apple Silicon server.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// VNC url use to connect remotely to the desktop GUI
+        /// URL of the VNC.
         /// </summary>
         [Input("vncUrl")]
         public Input<string>? VncUrl { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which
+        /// the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

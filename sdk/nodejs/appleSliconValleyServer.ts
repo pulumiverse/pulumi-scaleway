@@ -4,6 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Apple silicon M1. For more information,
+ * see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const server = new scaleway.AppleSliconValleyServer("server", {
+ *     type: "M1-M",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class AppleSliconValleyServer extends pulumi.CustomResource {
     /**
      * Get an existing AppleSliconValleyServer resource's state with the given name, ID, and optional extra
@@ -33,7 +58,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the server
+     * The date and time of the creation of the Apple Silicon server.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -41,39 +66,44 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly deletableAt!: pulumi.Output<string>;
     /**
-     * IPv4 address of the server
+     * IPv4 address of the server (IPv4 address).
      */
     public /*out*/ readonly ip!: pulumi.Output<string>;
     /**
-     * Name of the server
+     * The name of the server.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the server is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the server is
+     * associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The state of the server
+     * The state of the server. Check the possible values on
+     * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
-     * Type of the server
+     * The commercial type of the server. You find all the available types on
+     * the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+     * resource.
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the server
+     * The date and time of the last update of the Apple Silicon server.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * VNC url use to connect remotely to the desktop GUI
+     * URL of the VNC.
      */
     public /*out*/ readonly vncUrl!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which
+     * the server should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -128,7 +158,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
  */
 export interface AppleSliconValleyServerState {
     /**
-     * The date and time of the creation of the server
+     * The date and time of the creation of the Apple Silicon server.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -136,39 +166,44 @@ export interface AppleSliconValleyServerState {
      */
     deletableAt?: pulumi.Input<string>;
     /**
-     * IPv4 address of the server
+     * IPv4 address of the server (IPv4 address).
      */
     ip?: pulumi.Input<string>;
     /**
-     * Name of the server
+     * The name of the server.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the server is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the server is
+     * associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The state of the server
+     * The state of the server. Check the possible values on
+     * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
      */
     state?: pulumi.Input<string>;
     /**
-     * Type of the server
+     * The commercial type of the server. You find all the available types on
+     * the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+     * resource.
      */
     type?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the server
+     * The date and time of the last update of the Apple Silicon server.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * VNC url use to connect remotely to the desktop GUI
+     * URL of the VNC.
      */
     vncUrl?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which
+     * the server should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -178,19 +213,23 @@ export interface AppleSliconValleyServerState {
  */
 export interface AppleSliconValleyServerArgs {
     /**
-     * Name of the server
+     * The name of the server.
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the server is
+     * associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Type of the server
+     * The commercial type of the server. You find all the available types on
+     * the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+     * resource.
      */
     type: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which
+     * the server should be created.
      */
     zone?: pulumi.Input<string>;
 }

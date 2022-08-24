@@ -84,8 +84,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IotHub{}
 	case "scaleway:index/iotNetwork:IotNetwork":
 		r = &IotNetwork{}
-	case "scaleway:index/iotRoute:IotRoute":
-		r = &IotRoute{}
 	case "scaleway:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
 	case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -312,11 +310,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/iotNetwork",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/iotRoute",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

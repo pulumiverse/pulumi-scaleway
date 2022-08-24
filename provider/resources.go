@@ -119,11 +119,13 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"scaleway_account_ssh_key": {
-				Tok:  scalewayResource(scalewayMod, "AccountSshKey"),
-				Docs: &tfbridge.DocInfo{Source: "account_ssh_key.md"},
+			"scaleway_account_ssh_key": {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
+			"scaleway_apple_silicon_server": {
+				Tok: scalewayResource(scalewayMod, "AppleSliconValleyServer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "apple_silicon.md",
+				},
 			},
-			"scaleway_apple_silicon_server":                {Tok: scalewayResource(scalewayMod, "AppleSliconValleyServer")},
 			"scaleway_baremetal_server":                    {Tok: scalewayResource(scalewayMod, "BaremetalServer")},
 			"scaleway_container":                           {Tok: scalewayResource(scalewayMod, "Container")},
 			"scaleway_container_namespace":                 {Tok: scalewayResource(scalewayMod, "ContainerNamespace")},
@@ -147,7 +149,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_iot_device":                          {Tok: scalewayResource(scalewayMod, "IotDevice")},
 			"scaleway_iot_hub":                             {Tok: scalewayResource(scalewayMod, "IotHub")},
 			"scaleway_iot_network":                         {Tok: scalewayResource(scalewayMod, "IotNetwork")},
-			"scaleway_iot_route":                           {Tok: scalewayResource(scalewayMod, "IotRoute")},
+			"scaleway_iot_routes":                          {Tok: scalewayResource(scalewayMod, "IotRoutes")},
 			"scaleway_k8s_cluster":                         {Tok: scalewayResource(scalewayMod, "KubernetesCluster")},
 			"scaleway_k8s_pool":                            {Tok: scalewayResource(scalewayMod, "KubernetesNodePool")},
 			"scaleway_lb":                                  {Tok: scalewayResource(scalewayMod, "Loadbalancer")},

@@ -11,30 +11,75 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Apple silicon M1. For more information,
+// see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewAppleSliconValleyServer(ctx, "server", &scaleway.AppleSliconValleyServerArgs{
+//				Type: pulumi.String("M1-M"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type AppleSliconValleyServer struct {
 	pulumi.CustomResourceState
 
-	// The date and time of the creation of the server
+	// The date and time of the creation of the Apple Silicon server.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt pulumi.StringOutput `pulumi:"deletableAt"`
-	// IPv4 address of the server
+	// IPv4 address of the server (IPv4 address).
 	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Name of the server
+	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is
+	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The state of the server
+	// The state of the server. Check the possible values on
+	// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
 	State pulumi.StringOutput `pulumi:"state"`
-	// Type of the server
+	// The commercial type of the server. You find all the available types on
+	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// resource.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The date and time of the last update of the server
+	// The date and time of the last update of the Apple Silicon server.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// VNC url use to connect remotely to the desktop GUI
+	// URL of the VNC.
 	VncUrl pulumi.StringOutput `pulumi:"vncUrl"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the server should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -71,52 +116,62 @@ func GetAppleSliconValleyServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AppleSliconValleyServer resources.
 type appleSliconValleyServerState struct {
-	// The date and time of the creation of the server
+	// The date and time of the creation of the Apple Silicon server.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt *string `pulumi:"deletableAt"`
-	// IPv4 address of the server
+	// IPv4 address of the server (IPv4 address).
 	Ip *string `pulumi:"ip"`
-	// Name of the server
+	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is
+	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The state of the server
+	// The state of the server. Check the possible values on
+	// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
 	State *string `pulumi:"state"`
-	// Type of the server
+	// The commercial type of the server. You find all the available types on
+	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// resource.
 	Type *string `pulumi:"type"`
-	// The date and time of the last update of the server
+	// The date and time of the last update of the Apple Silicon server.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// VNC url use to connect remotely to the desktop GUI
+	// URL of the VNC.
 	VncUrl *string `pulumi:"vncUrl"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the server should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type AppleSliconValleyServerState struct {
-	// The date and time of the creation of the server
+	// The date and time of the creation of the Apple Silicon server.
 	CreatedAt pulumi.StringPtrInput
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt pulumi.StringPtrInput
-	// IPv4 address of the server
+	// IPv4 address of the server (IPv4 address).
 	Ip pulumi.StringPtrInput
-	// Name of the server
+	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is
+	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// The state of the server
+	// The state of the server. Check the possible values on
+	// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
 	State pulumi.StringPtrInput
-	// Type of the server
+	// The commercial type of the server. You find all the available types on
+	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// resource.
 	Type pulumi.StringPtrInput
-	// The date and time of the last update of the server
+	// The date and time of the last update of the Apple Silicon server.
 	UpdatedAt pulumi.StringPtrInput
-	// VNC url use to connect remotely to the desktop GUI
+	// URL of the VNC.
 	VncUrl pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the server should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -125,25 +180,33 @@ func (AppleSliconValleyServerState) ElementType() reflect.Type {
 }
 
 type appleSliconValleyServerArgs struct {
-	// Name of the server
+	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is
+	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Type of the server
+	// The commercial type of the server. You find all the available types on
+	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// resource.
 	Type string `pulumi:"type"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the server should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a AppleSliconValleyServer resource.
 type AppleSliconValleyServerArgs struct {
-	// Name of the server
+	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is
+	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// Type of the server
+	// The commercial type of the server. You find all the available types on
+	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// resource.
 	Type pulumi.StringInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the server should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -234,7 +297,7 @@ func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutputWithContex
 	return o
 }
 
-// The date and time of the creation of the server
+// The date and time of the creation of the Apple Silicon server.
 func (o AppleSliconValleyServerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -244,47 +307,52 @@ func (o AppleSliconValleyServerOutput) DeletableAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.DeletableAt }).(pulumi.StringOutput)
 }
 
-// IPv4 address of the server
+// IPv4 address of the server (IPv4 address).
 func (o AppleSliconValleyServerOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
-// Name of the server
+// The name of the server.
 func (o AppleSliconValleyServerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the server is associated with.
 func (o AppleSliconValleyServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the server is
+// associated with.
 func (o AppleSliconValleyServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The state of the server
+// The state of the server. Check the possible values on
+// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
 func (o AppleSliconValleyServerOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-// Type of the server
+// The commercial type of the server. You find all the available types on
+// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+// resource.
 func (o AppleSliconValleyServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the server
+// The date and time of the last update of the Apple Silicon server.
 func (o AppleSliconValleyServerOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// VNC url use to connect remotely to the desktop GUI
+// URL of the VNC.
 func (o AppleSliconValleyServerOutput) VncUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.VncUrl }).(pulumi.StringOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which
+// the server should be created.
 func (o AppleSliconValleyServerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

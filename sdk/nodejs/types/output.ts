@@ -911,28 +911,6 @@ export interface IotDeviceMessageFiltersSubscribe {
     topics?: string[];
 }
 
-export interface IotRouteDatabase {
-    dbname: string;
-    host: string;
-    password: string;
-    port: number;
-    query: string;
-    username: string;
-}
-
-export interface IotRouteRest {
-    headers: {[key: string]: string};
-    uri: string;
-    verb: string;
-}
-
-export interface IotRouteS3 {
-    bucketName: string;
-    bucketRegion: string;
-    objectPrefix?: string;
-    strategy: string;
-}
-
 export interface KubernetesClusterAutoUpgrade {
     /**
      * Set to `true` to enable Kubernetes patch version auto upgrades.

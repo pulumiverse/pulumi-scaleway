@@ -89,7 +89,6 @@
         "iotDevice.ts",
         "iotHub.ts",
         "iotNetwork.ts",
-        "iotRoute.ts",
         "kubernetesCluster.ts",
         "kubernetesNodePool.ts",
         "loadbalancer.ts",

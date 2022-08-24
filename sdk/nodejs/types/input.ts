@@ -446,28 +446,6 @@ export interface IotDeviceMessageFiltersSubscribe {
     topics?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface IotRouteDatabase {
-    dbname: pulumi.Input<string>;
-    host: pulumi.Input<string>;
-    password: pulumi.Input<string>;
-    port: pulumi.Input<number>;
-    query: pulumi.Input<string>;
-    username: pulumi.Input<string>;
-}
-
-export interface IotRouteRest {
-    headers: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    uri: pulumi.Input<string>;
-    verb: pulumi.Input<string>;
-}
-
-export interface IotRouteS3 {
-    bucketName: pulumi.Input<string>;
-    bucketRegion: pulumi.Input<string>;
-    objectPrefix?: pulumi.Input<string>;
-    strategy: pulumi.Input<string>;
-}
-
 export interface KubernetesClusterAutoUpgrade {
     /**
      * Set to `true` to enable Kubernetes patch version auto upgrades.

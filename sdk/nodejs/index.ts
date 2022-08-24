@@ -78,7 +78,6 @@ export * from "./instanceVolume";
 export * from "./iotDevice";
 export * from "./iotHub";
 export * from "./iotNetwork";
-export * from "./iotRoute";
 export * from "./kubernetesCluster";
 export * from "./kubernetesNodePool";
 export * from "./loadbalancer";
@@ -143,7 +142,6 @@ import { InstanceVolume } from "./instanceVolume";
 import { IotDevice } from "./iotDevice";
 import { IotHub } from "./iotHub";
 import { IotNetwork } from "./iotNetwork";
-import { IotRoute } from "./iotRoute";
 import { KubernetesCluster } from "./kubernetesCluster";
 import { KubernetesNodePool } from "./kubernetesNodePool";
 import { Loadbalancer } from "./loadbalancer";
@@ -233,8 +231,6 @@ const _module = {
                 return new IotHub(name, <any>undefined, { urn })
             case "scaleway:index/iotNetwork:IotNetwork":
                 return new IotNetwork(name, <any>undefined, { urn })
-            case "scaleway:index/iotRoute:IotRoute":
-                return new IotRoute(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesCluster:KubernetesCluster":
                 return new KubernetesCluster(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -312,7 +308,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/instanceVolume", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/iotDevice", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotNetwork", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancer", _module)

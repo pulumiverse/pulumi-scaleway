@@ -20,10 +20,14 @@ class AppleSliconValleyServerArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AppleSliconValleyServer resource.
-        :param pulumi.Input[str] type: Type of the server
-        :param pulumi.Input[str] name: Name of the server
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
+               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               resource.
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
+               associated with.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the server should be created.
         """
         pulumi.set(__self__, "type", type)
         if name is not None:
@@ -37,7 +41,9 @@ class AppleSliconValleyServerArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of the server
+        The commercial type of the server. You find all the available types on
+        the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        resource.
         """
         return pulumi.get(self, "type")
 
@@ -49,7 +55,7 @@ class AppleSliconValleyServerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the server
+        The name of the server.
         """
         return pulumi.get(self, "name")
 
@@ -61,7 +67,8 @@ class AppleSliconValleyServerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the server is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -73,7 +80,8 @@ class AppleSliconValleyServerArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which
+        the server should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -98,17 +106,22 @@ class _AppleSliconValleyServerState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AppleSliconValleyServer resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the server
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
         :param pulumi.Input[str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
-        :param pulumi.Input[str] ip: IPv4 address of the server
-        :param pulumi.Input[str] name: Name of the server
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] state: The state of the server
-        :param pulumi.Input[str] type: Type of the server
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the server
-        :param pulumi.Input[str] vnc_url: VNC url use to connect remotely to the desktop GUI
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] ip: IPv4 address of the server (IPv4 address).
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
+               associated with.
+        :param pulumi.Input[str] state: The state of the server. Check the possible values on
+               our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+        :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
+               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               resource.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[str] vnc_url: URL of the VNC.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the server should be created.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -137,7 +150,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the server
+        The date and time of the creation of the Apple Silicon server.
         """
         return pulumi.get(self, "created_at")
 
@@ -161,7 +174,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
-        IPv4 address of the server
+        IPv4 address of the server (IPv4 address).
         """
         return pulumi.get(self, "ip")
 
@@ -173,7 +186,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the server
+        The name of the server.
         """
         return pulumi.get(self, "name")
 
@@ -185,7 +198,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -197,7 +210,8 @@ class _AppleSliconValleyServerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the server is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -209,7 +223,8 @@ class _AppleSliconValleyServerState:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[str]]:
         """
-        The state of the server
+        The state of the server. Check the possible values on
+        our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
         """
         return pulumi.get(self, "state")
 
@@ -221,7 +236,9 @@ class _AppleSliconValleyServerState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of the server
+        The commercial type of the server. You find all the available types on
+        the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        resource.
         """
         return pulumi.get(self, "type")
 
@@ -233,7 +250,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the server
+        The date and time of the last update of the Apple Silicon server.
         """
         return pulumi.get(self, "updated_at")
 
@@ -245,7 +262,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter(name="vncUrl")
     def vnc_url(self) -> Optional[pulumi.Input[str]]:
         """
-        VNC url use to connect remotely to the desktop GUI
+        URL of the VNC.
         """
         return pulumi.get(self, "vnc_url")
 
@@ -257,7 +274,8 @@ class _AppleSliconValleyServerState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which
+        the server should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -277,13 +295,38 @@ class AppleSliconValleyServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AppleSliconValleyServer resource with the given unique name, props, and options.
+        Creates and manages Scaleway Apple silicon M1. For more information,
+        see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        server = scaleway.AppleSliconValleyServer("server", type="M1-M")
+        ```
+
+        ## Import
+
+        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: Name of the server
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] type: Type of the server
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
+               associated with.
+        :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
+               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               resource.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the server should be created.
         """
         ...
     @overload
@@ -292,7 +335,28 @@ class AppleSliconValleyServer(pulumi.CustomResource):
                  args: AppleSliconValleyServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AppleSliconValleyServer resource with the given unique name, props, and options.
+        Creates and manages Scaleway Apple silicon M1. For more information,
+        see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        server = scaleway.AppleSliconValleyServer("server", type="M1-M")
+        ```
+
+        ## Import
+
+        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param AppleSliconValleyServerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -362,17 +426,22 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the server
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
         :param pulumi.Input[str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
-        :param pulumi.Input[str] ip: IPv4 address of the server
-        :param pulumi.Input[str] name: Name of the server
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] state: The state of the server
-        :param pulumi.Input[str] type: Type of the server
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the server
-        :param pulumi.Input[str] vnc_url: VNC url use to connect remotely to the desktop GUI
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] ip: IPv4 address of the server (IPv4 address).
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
+               associated with.
+        :param pulumi.Input[str] state: The state of the server. Check the possible values on
+               our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+        :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
+               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               resource.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[str] vnc_url: URL of the VNC.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the server should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -395,7 +464,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the server
+        The date and time of the creation of the Apple Silicon server.
         """
         return pulumi.get(self, "created_at")
 
@@ -411,7 +480,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter
     def ip(self) -> pulumi.Output[str]:
         """
-        IPv4 address of the server
+        IPv4 address of the server (IPv4 address).
         """
         return pulumi.get(self, "ip")
 
@@ -419,7 +488,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the server
+        The name of the server.
         """
         return pulumi.get(self, "name")
 
@@ -427,7 +496,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -435,7 +504,8 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the server is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -443,7 +513,8 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[str]:
         """
-        The state of the server
+        The state of the server. Check the possible values on
+        our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
         """
         return pulumi.get(self, "state")
 
@@ -451,7 +522,9 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of the server
+        The commercial type of the server. You find all the available types on
+        the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        resource.
         """
         return pulumi.get(self, "type")
 
@@ -459,7 +532,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the server
+        The date and time of the last update of the Apple Silicon server.
         """
         return pulumi.get(self, "updated_at")
 
@@ -467,7 +540,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter(name="vncUrl")
     def vnc_url(self) -> pulumi.Output[str]:
         """
-        VNC url use to connect remotely to the desktop GUI
+        URL of the VNC.
         """
         return pulumi.get(self, "vnc_url")
 
@@ -475,7 +548,8 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which
+        the server should be created.
         """
         return pulumi.get(self, "zone")
 

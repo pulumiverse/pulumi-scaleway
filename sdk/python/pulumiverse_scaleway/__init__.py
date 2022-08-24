@@ -78,7 +78,6 @@ from .instance_volume import *
 from .iot_device import *
 from .iot_hub import *
 from .iot_network import *
-from .iot_route import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .loadbalancer import *
@@ -367,14 +366,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/iotNetwork:IotNetwork": "IotNetwork"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/iotRoute",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/iotRoute:IotRoute": "IotRoute"
   }
  },
  {
