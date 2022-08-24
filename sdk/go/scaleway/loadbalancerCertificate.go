@@ -164,6 +164,56 @@ func (i *LoadbalancerCertificate) ToLoadbalancerCertificateOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerCertificateOutput)
 }
 
+// LoadbalancerCertificateArrayInput is an input type that accepts LoadbalancerCertificateArray and LoadbalancerCertificateArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerCertificateArrayInput` via:
+//
+//	LoadbalancerCertificateArray{ LoadbalancerCertificateArgs{...} }
+type LoadbalancerCertificateArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerCertificateArrayOutput() LoadbalancerCertificateArrayOutput
+	ToLoadbalancerCertificateArrayOutputWithContext(context.Context) LoadbalancerCertificateArrayOutput
+}
+
+type LoadbalancerCertificateArray []LoadbalancerCertificateInput
+
+func (LoadbalancerCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerCertificate)(nil)).Elem()
+}
+
+func (i LoadbalancerCertificateArray) ToLoadbalancerCertificateArrayOutput() LoadbalancerCertificateArrayOutput {
+	return i.ToLoadbalancerCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerCertificateArray) ToLoadbalancerCertificateArrayOutputWithContext(ctx context.Context) LoadbalancerCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerCertificateArrayOutput)
+}
+
+// LoadbalancerCertificateMapInput is an input type that accepts LoadbalancerCertificateMap and LoadbalancerCertificateMapOutput values.
+// You can construct a concrete instance of `LoadbalancerCertificateMapInput` via:
+//
+//	LoadbalancerCertificateMap{ "key": LoadbalancerCertificateArgs{...} }
+type LoadbalancerCertificateMapInput interface {
+	pulumi.Input
+
+	ToLoadbalancerCertificateMapOutput() LoadbalancerCertificateMapOutput
+	ToLoadbalancerCertificateMapOutputWithContext(context.Context) LoadbalancerCertificateMapOutput
+}
+
+type LoadbalancerCertificateMap map[string]LoadbalancerCertificateInput
+
+func (LoadbalancerCertificateMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerCertificate)(nil)).Elem()
+}
+
+func (i LoadbalancerCertificateMap) ToLoadbalancerCertificateMapOutput() LoadbalancerCertificateMapOutput {
+	return i.ToLoadbalancerCertificateMapOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerCertificateMap) ToLoadbalancerCertificateMapOutputWithContext(ctx context.Context) LoadbalancerCertificateMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerCertificateMapOutput)
+}
+
 type LoadbalancerCertificateOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerCertificateOutput) ElementType() reflect.Type {
@@ -230,7 +280,51 @@ func (o LoadbalancerCertificateOutput) SubjectAlternativeNames() pulumi.StringAr
 	return o.ApplyT(func(v *LoadbalancerCertificate) pulumi.StringArrayOutput { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
 }
 
+type LoadbalancerCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerCertificate)(nil)).Elem()
+}
+
+func (o LoadbalancerCertificateArrayOutput) ToLoadbalancerCertificateArrayOutput() LoadbalancerCertificateArrayOutput {
+	return o
+}
+
+func (o LoadbalancerCertificateArrayOutput) ToLoadbalancerCertificateArrayOutputWithContext(ctx context.Context) LoadbalancerCertificateArrayOutput {
+	return o
+}
+
+func (o LoadbalancerCertificateArrayOutput) Index(i pulumi.IntInput) LoadbalancerCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerCertificate {
+		return vs[0].([]*LoadbalancerCertificate)[vs[1].(int)]
+	}).(LoadbalancerCertificateOutput)
+}
+
+type LoadbalancerCertificateMapOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerCertificateMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerCertificate)(nil)).Elem()
+}
+
+func (o LoadbalancerCertificateMapOutput) ToLoadbalancerCertificateMapOutput() LoadbalancerCertificateMapOutput {
+	return o
+}
+
+func (o LoadbalancerCertificateMapOutput) ToLoadbalancerCertificateMapOutputWithContext(ctx context.Context) LoadbalancerCertificateMapOutput {
+	return o
+}
+
+func (o LoadbalancerCertificateMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerCertificateOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LoadbalancerCertificate {
+		return vs[0].(map[string]*LoadbalancerCertificate)[vs[1].(string)]
+	}).(LoadbalancerCertificateOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerCertificateInput)(nil)).Elem(), &LoadbalancerCertificate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerCertificateArrayInput)(nil)).Elem(), LoadbalancerCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerCertificateMapInput)(nil)).Elem(), LoadbalancerCertificateMap{})
 	pulumi.RegisterOutputType(LoadbalancerCertificateOutput{})
+	pulumi.RegisterOutputType(LoadbalancerCertificateArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerCertificateMapOutput{})
 }

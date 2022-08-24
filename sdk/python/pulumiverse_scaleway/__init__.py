@@ -90,10 +90,10 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumi_scaleway.config as __config
+    import pulumiverse_scaleway.config as __config
     config = __config
 else:
-    config = _utilities.lazy_import('pulumi_scaleway.config')
+    config = _utilities.lazy_import('pulumiverse_scaleway.config')
 
 _utilities.register(
     resource_modules="""
@@ -101,7 +101,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/accountSshKey",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/accountSshKey:AccountSshKey": "AccountSshKey"
   }
@@ -109,7 +109,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/appleSliconValleyServer",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/appleSliconValleyServer:AppleSliconValleyServer": "AppleSliconValleyServer"
   }
@@ -117,7 +117,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/baremetalServer",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/baremetalServer:BaremetalServer": "BaremetalServer"
   }
@@ -125,7 +125,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/container",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/container:Container": "Container"
   }
@@ -133,7 +133,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/containerNamespace",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/containerNamespace:ContainerNamespace": "ContainerNamespace"
   }
@@ -141,7 +141,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/database",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/database:Database": "Database"
   }
@@ -149,7 +149,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/databaseAcl",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseAcl:DatabaseAcl": "DatabaseAcl"
   }
@@ -157,7 +157,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/databaseInstance",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseInstance:DatabaseInstance": "DatabaseInstance"
   }
@@ -165,7 +165,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/databasePrivilege",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databasePrivilege:DatabasePrivilege": "DatabasePrivilege"
   }
@@ -173,7 +173,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/databaseUser",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseUser:DatabaseUser": "DatabaseUser"
   }
@@ -181,7 +181,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/domainRecord",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/domainRecord:DomainRecord": "DomainRecord"
   }
@@ -189,7 +189,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/domainZone",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/domainZone:DomainZone": "DomainZone"
   }
@@ -197,7 +197,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/functionNamespace",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/functionNamespace:FunctionNamespace": "FunctionNamespace"
   }
@@ -205,7 +205,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceIp",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceIp:InstanceIp": "InstanceIp"
   }
@@ -213,7 +213,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceIpReverseDns",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns": "InstanceIpReverseDns"
   }
@@ -221,7 +221,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instancePlacementGroup",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instancePlacementGroup:InstancePlacementGroup": "InstancePlacementGroup"
   }
@@ -229,7 +229,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instancePrivateNic",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instancePrivateNic:InstancePrivateNic": "InstancePrivateNic"
   }
@@ -237,7 +237,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceSecurityGroup",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceSecurityGroup:InstanceSecurityGroup": "InstanceSecurityGroup"
   }
@@ -245,7 +245,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceSecurityGroupRules",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules": "InstanceSecurityGroupRules"
   }
@@ -253,7 +253,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceServer",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceServer:InstanceServer": "InstanceServer"
   }
@@ -261,7 +261,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceSnapshot",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceSnapshot:InstanceSnapshot": "InstanceSnapshot"
   }
@@ -269,7 +269,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/instanceVolume",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/instanceVolume:InstanceVolume": "InstanceVolume"
   }
@@ -277,7 +277,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/iotDevice",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/iotDevice:IotDevice": "IotDevice"
   }
@@ -285,7 +285,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/iotHub",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/iotHub:IotHub": "IotHub"
   }
@@ -293,7 +293,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/iotNetwork",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/iotNetwork:IotNetwork": "IotNetwork"
   }
@@ -301,7 +301,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/iotRoute",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/iotRoute:IotRoute": "IotRoute"
   }
@@ -309,7 +309,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/kubernetesCluster",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/kubernetesCluster:KubernetesCluster": "KubernetesCluster"
   }
@@ -317,7 +317,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/kubernetesNodePool",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/kubernetesNodePool:KubernetesNodePool": "KubernetesNodePool"
   }
@@ -325,7 +325,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/loadbalancer",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/loadbalancer:Loadbalancer": "Loadbalancer"
   }
@@ -333,7 +333,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/loadbalancerBackend",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/loadbalancerBackend:LoadbalancerBackend": "LoadbalancerBackend"
   }
@@ -341,7 +341,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/loadbalancerCertificate",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/loadbalancerCertificate:LoadbalancerCertificate": "LoadbalancerCertificate"
   }
@@ -349,7 +349,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/loadbalancerFrontend",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/loadbalancerFrontend:LoadbalancerFrontend": "LoadbalancerFrontend"
   }
@@ -357,7 +357,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/loadbalancerIp",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/loadbalancerIp:LoadbalancerIp": "LoadbalancerIp"
   }
@@ -365,7 +365,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/loadbalancerRoute",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/loadbalancerRoute:LoadbalancerRoute": "LoadbalancerRoute"
   }
@@ -373,7 +373,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/objectBucket",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/objectBucket:ObjectBucket": "ObjectBucket"
   }
@@ -381,7 +381,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/redisCluster",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/redisCluster:RedisCluster": "RedisCluster"
   }
@@ -389,7 +389,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/registryNamespace",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/registryNamespace:RegistryNamespace": "RegistryNamespace"
   }
@@ -397,7 +397,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcGatewayNetwork",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork": "VpcGatewayNetwork"
   }
@@ -405,7 +405,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcPrivateNetwork",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork": "VpcPrivateNetwork"
   }
@@ -413,7 +413,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcPublicGateway",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGateway:VpcPublicGateway": "VpcPublicGateway"
   }
@@ -421,7 +421,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcPublicGatewayDhcp",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp": "VpcPublicGatewayDhcp"
   }
@@ -429,7 +429,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcPublicGatewayDhcpReservation",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation": "VpcPublicGatewayDhcpReservation"
   }
@@ -437,7 +437,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcPublicGatewayIp",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp": "VpcPublicGatewayIp"
   }
@@ -445,7 +445,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "mod": "index/vpcPublicGatewayPatRule",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule": "VpcPublicGatewayPatRule"
   }
@@ -457,7 +457,7 @@ _utilities.register(
  {
   "pkg": "scaleway",
   "token": "pulumi:providers:scaleway",
-  "fqn": "pulumi_scaleway",
+  "fqn": "pulumiverse_scaleway",
   "class": "Provider"
  }
 ]

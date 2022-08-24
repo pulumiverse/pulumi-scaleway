@@ -220,6 +220,56 @@ func (i *DomainRecord) ToDomainRecordOutputWithContext(ctx context.Context) Doma
 	return pulumi.ToOutputWithContext(ctx, i).(DomainRecordOutput)
 }
 
+// DomainRecordArrayInput is an input type that accepts DomainRecordArray and DomainRecordArrayOutput values.
+// You can construct a concrete instance of `DomainRecordArrayInput` via:
+//
+//	DomainRecordArray{ DomainRecordArgs{...} }
+type DomainRecordArrayInput interface {
+	pulumi.Input
+
+	ToDomainRecordArrayOutput() DomainRecordArrayOutput
+	ToDomainRecordArrayOutputWithContext(context.Context) DomainRecordArrayOutput
+}
+
+type DomainRecordArray []DomainRecordInput
+
+func (DomainRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DomainRecord)(nil)).Elem()
+}
+
+func (i DomainRecordArray) ToDomainRecordArrayOutput() DomainRecordArrayOutput {
+	return i.ToDomainRecordArrayOutputWithContext(context.Background())
+}
+
+func (i DomainRecordArray) ToDomainRecordArrayOutputWithContext(ctx context.Context) DomainRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainRecordArrayOutput)
+}
+
+// DomainRecordMapInput is an input type that accepts DomainRecordMap and DomainRecordMapOutput values.
+// You can construct a concrete instance of `DomainRecordMapInput` via:
+//
+//	DomainRecordMap{ "key": DomainRecordArgs{...} }
+type DomainRecordMapInput interface {
+	pulumi.Input
+
+	ToDomainRecordMapOutput() DomainRecordMapOutput
+	ToDomainRecordMapOutputWithContext(context.Context) DomainRecordMapOutput
+}
+
+type DomainRecordMap map[string]DomainRecordInput
+
+func (DomainRecordMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DomainRecord)(nil)).Elem()
+}
+
+func (i DomainRecordMap) ToDomainRecordMapOutput() DomainRecordMapOutput {
+	return i.ToDomainRecordMapOutputWithContext(context.Background())
+}
+
+func (i DomainRecordMap) ToDomainRecordMapOutputWithContext(ctx context.Context) DomainRecordMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainRecordMapOutput)
+}
+
 type DomainRecordOutput struct{ *pulumi.OutputState }
 
 func (DomainRecordOutput) ElementType() reflect.Type {
@@ -299,7 +349,51 @@ func (o DomainRecordOutput) Weighteds() DomainRecordWeightedArrayOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordWeightedArrayOutput { return v.Weighteds }).(DomainRecordWeightedArrayOutput)
 }
 
+type DomainRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (DomainRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DomainRecord)(nil)).Elem()
+}
+
+func (o DomainRecordArrayOutput) ToDomainRecordArrayOutput() DomainRecordArrayOutput {
+	return o
+}
+
+func (o DomainRecordArrayOutput) ToDomainRecordArrayOutputWithContext(ctx context.Context) DomainRecordArrayOutput {
+	return o
+}
+
+func (o DomainRecordArrayOutput) Index(i pulumi.IntInput) DomainRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DomainRecord {
+		return vs[0].([]*DomainRecord)[vs[1].(int)]
+	}).(DomainRecordOutput)
+}
+
+type DomainRecordMapOutput struct{ *pulumi.OutputState }
+
+func (DomainRecordMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DomainRecord)(nil)).Elem()
+}
+
+func (o DomainRecordMapOutput) ToDomainRecordMapOutput() DomainRecordMapOutput {
+	return o
+}
+
+func (o DomainRecordMapOutput) ToDomainRecordMapOutputWithContext(ctx context.Context) DomainRecordMapOutput {
+	return o
+}
+
+func (o DomainRecordMapOutput) MapIndex(k pulumi.StringInput) DomainRecordOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DomainRecord {
+		return vs[0].(map[string]*DomainRecord)[vs[1].(string)]
+	}).(DomainRecordOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordInput)(nil)).Elem(), &DomainRecord{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordArrayInput)(nil)).Elem(), DomainRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordMapInput)(nil)).Elem(), DomainRecordMap{})
 	pulumi.RegisterOutputType(DomainRecordOutput{})
+	pulumi.RegisterOutputType(DomainRecordArrayOutput{})
+	pulumi.RegisterOutputType(DomainRecordMapOutput{})
 }

@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Scaleway
+namespace Pulumiverse.Scaleway
 {
     [ScalewayResourceType("scaleway:index/loadbalancerRoute:LoadbalancerRoute")]
     public partial class LoadbalancerRoute : Pulumi.CustomResource

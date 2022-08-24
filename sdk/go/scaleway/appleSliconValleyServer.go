@@ -170,6 +170,56 @@ func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerOutput)
 }
 
+// AppleSliconValleyServerArrayInput is an input type that accepts AppleSliconValleyServerArray and AppleSliconValleyServerArrayOutput values.
+// You can construct a concrete instance of `AppleSliconValleyServerArrayInput` via:
+//
+//	AppleSliconValleyServerArray{ AppleSliconValleyServerArgs{...} }
+type AppleSliconValleyServerArrayInput interface {
+	pulumi.Input
+
+	ToAppleSliconValleyServerArrayOutput() AppleSliconValleyServerArrayOutput
+	ToAppleSliconValleyServerArrayOutputWithContext(context.Context) AppleSliconValleyServerArrayOutput
+}
+
+type AppleSliconValleyServerArray []AppleSliconValleyServerInput
+
+func (AppleSliconValleyServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AppleSliconValleyServer)(nil)).Elem()
+}
+
+func (i AppleSliconValleyServerArray) ToAppleSliconValleyServerArrayOutput() AppleSliconValleyServerArrayOutput {
+	return i.ToAppleSliconValleyServerArrayOutputWithContext(context.Background())
+}
+
+func (i AppleSliconValleyServerArray) ToAppleSliconValleyServerArrayOutputWithContext(ctx context.Context) AppleSliconValleyServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerArrayOutput)
+}
+
+// AppleSliconValleyServerMapInput is an input type that accepts AppleSliconValleyServerMap and AppleSliconValleyServerMapOutput values.
+// You can construct a concrete instance of `AppleSliconValleyServerMapInput` via:
+//
+//	AppleSliconValleyServerMap{ "key": AppleSliconValleyServerArgs{...} }
+type AppleSliconValleyServerMapInput interface {
+	pulumi.Input
+
+	ToAppleSliconValleyServerMapOutput() AppleSliconValleyServerMapOutput
+	ToAppleSliconValleyServerMapOutputWithContext(context.Context) AppleSliconValleyServerMapOutput
+}
+
+type AppleSliconValleyServerMap map[string]AppleSliconValleyServerInput
+
+func (AppleSliconValleyServerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AppleSliconValleyServer)(nil)).Elem()
+}
+
+func (i AppleSliconValleyServerMap) ToAppleSliconValleyServerMapOutput() AppleSliconValleyServerMapOutput {
+	return i.ToAppleSliconValleyServerMapOutputWithContext(context.Background())
+}
+
+func (i AppleSliconValleyServerMap) ToAppleSliconValleyServerMapOutputWithContext(ctx context.Context) AppleSliconValleyServerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerMapOutput)
+}
+
 type AppleSliconValleyServerOutput struct{ *pulumi.OutputState }
 
 func (AppleSliconValleyServerOutput) ElementType() reflect.Type {
@@ -239,7 +289,51 @@ func (o AppleSliconValleyServerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type AppleSliconValleyServerArrayOutput struct{ *pulumi.OutputState }
+
+func (AppleSliconValleyServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AppleSliconValleyServer)(nil)).Elem()
+}
+
+func (o AppleSliconValleyServerArrayOutput) ToAppleSliconValleyServerArrayOutput() AppleSliconValleyServerArrayOutput {
+	return o
+}
+
+func (o AppleSliconValleyServerArrayOutput) ToAppleSliconValleyServerArrayOutputWithContext(ctx context.Context) AppleSliconValleyServerArrayOutput {
+	return o
+}
+
+func (o AppleSliconValleyServerArrayOutput) Index(i pulumi.IntInput) AppleSliconValleyServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AppleSliconValleyServer {
+		return vs[0].([]*AppleSliconValleyServer)[vs[1].(int)]
+	}).(AppleSliconValleyServerOutput)
+}
+
+type AppleSliconValleyServerMapOutput struct{ *pulumi.OutputState }
+
+func (AppleSliconValleyServerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AppleSliconValleyServer)(nil)).Elem()
+}
+
+func (o AppleSliconValleyServerMapOutput) ToAppleSliconValleyServerMapOutput() AppleSliconValleyServerMapOutput {
+	return o
+}
+
+func (o AppleSliconValleyServerMapOutput) ToAppleSliconValleyServerMapOutputWithContext(ctx context.Context) AppleSliconValleyServerMapOutput {
+	return o
+}
+
+func (o AppleSliconValleyServerMapOutput) MapIndex(k pulumi.StringInput) AppleSliconValleyServerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AppleSliconValleyServer {
+		return vs[0].(map[string]*AppleSliconValleyServer)[vs[1].(string)]
+	}).(AppleSliconValleyServerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AppleSliconValleyServerInput)(nil)).Elem(), &AppleSliconValleyServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AppleSliconValleyServerArrayInput)(nil)).Elem(), AppleSliconValleyServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AppleSliconValleyServerMapInput)(nil)).Elem(), AppleSliconValleyServerMap{})
 	pulumi.RegisterOutputType(AppleSliconValleyServerOutput{})
+	pulumi.RegisterOutputType(AppleSliconValleyServerArrayOutput{})
+	pulumi.RegisterOutputType(AppleSliconValleyServerMapOutput{})
 }

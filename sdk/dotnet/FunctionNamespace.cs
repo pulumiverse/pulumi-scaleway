@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Scaleway
+namespace Pulumiverse.Scaleway
 {
     [ScalewayResourceType("scaleway:index/functionNamespace:FunctionNamespace")]
     public partial class FunctionNamespace : Pulumi.CustomResource

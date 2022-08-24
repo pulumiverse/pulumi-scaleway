@@ -161,6 +161,56 @@ func (i *VpcPublicGatewayDhcpReservation) ToVpcPublicGatewayDhcpReservationOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpReservationOutput)
 }
 
+// VpcPublicGatewayDhcpReservationArrayInput is an input type that accepts VpcPublicGatewayDhcpReservationArray and VpcPublicGatewayDhcpReservationArrayOutput values.
+// You can construct a concrete instance of `VpcPublicGatewayDhcpReservationArrayInput` via:
+//
+//	VpcPublicGatewayDhcpReservationArray{ VpcPublicGatewayDhcpReservationArgs{...} }
+type VpcPublicGatewayDhcpReservationArrayInput interface {
+	pulumi.Input
+
+	ToVpcPublicGatewayDhcpReservationArrayOutput() VpcPublicGatewayDhcpReservationArrayOutput
+	ToVpcPublicGatewayDhcpReservationArrayOutputWithContext(context.Context) VpcPublicGatewayDhcpReservationArrayOutput
+}
+
+type VpcPublicGatewayDhcpReservationArray []VpcPublicGatewayDhcpReservationInput
+
+func (VpcPublicGatewayDhcpReservationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPublicGatewayDhcpReservation)(nil)).Elem()
+}
+
+func (i VpcPublicGatewayDhcpReservationArray) ToVpcPublicGatewayDhcpReservationArrayOutput() VpcPublicGatewayDhcpReservationArrayOutput {
+	return i.ToVpcPublicGatewayDhcpReservationArrayOutputWithContext(context.Background())
+}
+
+func (i VpcPublicGatewayDhcpReservationArray) ToVpcPublicGatewayDhcpReservationArrayOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpReservationArrayOutput)
+}
+
+// VpcPublicGatewayDhcpReservationMapInput is an input type that accepts VpcPublicGatewayDhcpReservationMap and VpcPublicGatewayDhcpReservationMapOutput values.
+// You can construct a concrete instance of `VpcPublicGatewayDhcpReservationMapInput` via:
+//
+//	VpcPublicGatewayDhcpReservationMap{ "key": VpcPublicGatewayDhcpReservationArgs{...} }
+type VpcPublicGatewayDhcpReservationMapInput interface {
+	pulumi.Input
+
+	ToVpcPublicGatewayDhcpReservationMapOutput() VpcPublicGatewayDhcpReservationMapOutput
+	ToVpcPublicGatewayDhcpReservationMapOutputWithContext(context.Context) VpcPublicGatewayDhcpReservationMapOutput
+}
+
+type VpcPublicGatewayDhcpReservationMap map[string]VpcPublicGatewayDhcpReservationInput
+
+func (VpcPublicGatewayDhcpReservationMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPublicGatewayDhcpReservation)(nil)).Elem()
+}
+
+func (i VpcPublicGatewayDhcpReservationMap) ToVpcPublicGatewayDhcpReservationMapOutput() VpcPublicGatewayDhcpReservationMapOutput {
+	return i.ToVpcPublicGatewayDhcpReservationMapOutputWithContext(context.Background())
+}
+
+func (i VpcPublicGatewayDhcpReservationMap) ToVpcPublicGatewayDhcpReservationMapOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpReservationMapOutput)
+}
+
 type VpcPublicGatewayDhcpReservationOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayDhcpReservationOutput) ElementType() reflect.Type {
@@ -216,7 +266,51 @@ func (o VpcPublicGatewayDhcpReservationOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type VpcPublicGatewayDhcpReservationArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcPublicGatewayDhcpReservationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPublicGatewayDhcpReservation)(nil)).Elem()
+}
+
+func (o VpcPublicGatewayDhcpReservationArrayOutput) ToVpcPublicGatewayDhcpReservationArrayOutput() VpcPublicGatewayDhcpReservationArrayOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpReservationArrayOutput) ToVpcPublicGatewayDhcpReservationArrayOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationArrayOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpReservationArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayDhcpReservationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayDhcpReservation {
+		return vs[0].([]*VpcPublicGatewayDhcpReservation)[vs[1].(int)]
+	}).(VpcPublicGatewayDhcpReservationOutput)
+}
+
+type VpcPublicGatewayDhcpReservationMapOutput struct{ *pulumi.OutputState }
+
+func (VpcPublicGatewayDhcpReservationMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPublicGatewayDhcpReservation)(nil)).Elem()
+}
+
+func (o VpcPublicGatewayDhcpReservationMapOutput) ToVpcPublicGatewayDhcpReservationMapOutput() VpcPublicGatewayDhcpReservationMapOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpReservationMapOutput) ToVpcPublicGatewayDhcpReservationMapOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationMapOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpReservationMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayDhcpReservationOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpcPublicGatewayDhcpReservation {
+		return vs[0].(map[string]*VpcPublicGatewayDhcpReservation)[vs[1].(string)]
+	}).(VpcPublicGatewayDhcpReservationOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpReservationInput)(nil)).Elem(), &VpcPublicGatewayDhcpReservation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpReservationArrayInput)(nil)).Elem(), VpcPublicGatewayDhcpReservationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpReservationMapInput)(nil)).Elem(), VpcPublicGatewayDhcpReservationMap{})
 	pulumi.RegisterOutputType(VpcPublicGatewayDhcpReservationOutput{})
+	pulumi.RegisterOutputType(VpcPublicGatewayDhcpReservationArrayOutput{})
+	pulumi.RegisterOutputType(VpcPublicGatewayDhcpReservationMapOutput{})
 }

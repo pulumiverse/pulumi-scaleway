@@ -121,6 +121,56 @@ func (i *LoadbalancerRoute) ToLoadbalancerRouteOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerRouteOutput)
 }
 
+// LoadbalancerRouteArrayInput is an input type that accepts LoadbalancerRouteArray and LoadbalancerRouteArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerRouteArrayInput` via:
+//
+//	LoadbalancerRouteArray{ LoadbalancerRouteArgs{...} }
+type LoadbalancerRouteArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerRouteArrayOutput() LoadbalancerRouteArrayOutput
+	ToLoadbalancerRouteArrayOutputWithContext(context.Context) LoadbalancerRouteArrayOutput
+}
+
+type LoadbalancerRouteArray []LoadbalancerRouteInput
+
+func (LoadbalancerRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerRoute)(nil)).Elem()
+}
+
+func (i LoadbalancerRouteArray) ToLoadbalancerRouteArrayOutput() LoadbalancerRouteArrayOutput {
+	return i.ToLoadbalancerRouteArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerRouteArray) ToLoadbalancerRouteArrayOutputWithContext(ctx context.Context) LoadbalancerRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerRouteArrayOutput)
+}
+
+// LoadbalancerRouteMapInput is an input type that accepts LoadbalancerRouteMap and LoadbalancerRouteMapOutput values.
+// You can construct a concrete instance of `LoadbalancerRouteMapInput` via:
+//
+//	LoadbalancerRouteMap{ "key": LoadbalancerRouteArgs{...} }
+type LoadbalancerRouteMapInput interface {
+	pulumi.Input
+
+	ToLoadbalancerRouteMapOutput() LoadbalancerRouteMapOutput
+	ToLoadbalancerRouteMapOutputWithContext(context.Context) LoadbalancerRouteMapOutput
+}
+
+type LoadbalancerRouteMap map[string]LoadbalancerRouteInput
+
+func (LoadbalancerRouteMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerRoute)(nil)).Elem()
+}
+
+func (i LoadbalancerRouteMap) ToLoadbalancerRouteMapOutput() LoadbalancerRouteMapOutput {
+	return i.ToLoadbalancerRouteMapOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerRouteMap) ToLoadbalancerRouteMapOutputWithContext(ctx context.Context) LoadbalancerRouteMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerRouteMapOutput)
+}
+
 type LoadbalancerRouteOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerRouteOutput) ElementType() reflect.Type {
@@ -150,7 +200,51 @@ func (o LoadbalancerRouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
 }
 
+type LoadbalancerRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LoadbalancerRoute)(nil)).Elem()
+}
+
+func (o LoadbalancerRouteArrayOutput) ToLoadbalancerRouteArrayOutput() LoadbalancerRouteArrayOutput {
+	return o
+}
+
+func (o LoadbalancerRouteArrayOutput) ToLoadbalancerRouteArrayOutputWithContext(ctx context.Context) LoadbalancerRouteArrayOutput {
+	return o
+}
+
+func (o LoadbalancerRouteArrayOutput) Index(i pulumi.IntInput) LoadbalancerRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerRoute {
+		return vs[0].([]*LoadbalancerRoute)[vs[1].(int)]
+	}).(LoadbalancerRouteOutput)
+}
+
+type LoadbalancerRouteMapOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerRouteMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LoadbalancerRoute)(nil)).Elem()
+}
+
+func (o LoadbalancerRouteMapOutput) ToLoadbalancerRouteMapOutput() LoadbalancerRouteMapOutput {
+	return o
+}
+
+func (o LoadbalancerRouteMapOutput) ToLoadbalancerRouteMapOutputWithContext(ctx context.Context) LoadbalancerRouteMapOutput {
+	return o
+}
+
+func (o LoadbalancerRouteMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerRouteOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LoadbalancerRoute {
+		return vs[0].(map[string]*LoadbalancerRoute)[vs[1].(string)]
+	}).(LoadbalancerRouteOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerRouteInput)(nil)).Elem(), &LoadbalancerRoute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerRouteArrayInput)(nil)).Elem(), LoadbalancerRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerRouteMapInput)(nil)).Elem(), LoadbalancerRouteMap{})
 	pulumi.RegisterOutputType(LoadbalancerRouteOutput{})
+	pulumi.RegisterOutputType(LoadbalancerRouteArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerRouteMapOutput{})
 }

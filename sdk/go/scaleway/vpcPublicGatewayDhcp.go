@@ -281,6 +281,56 @@ func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpOutput)
 }
 
+// VpcPublicGatewayDhcpArrayInput is an input type that accepts VpcPublicGatewayDhcpArray and VpcPublicGatewayDhcpArrayOutput values.
+// You can construct a concrete instance of `VpcPublicGatewayDhcpArrayInput` via:
+//
+//	VpcPublicGatewayDhcpArray{ VpcPublicGatewayDhcpArgs{...} }
+type VpcPublicGatewayDhcpArrayInput interface {
+	pulumi.Input
+
+	ToVpcPublicGatewayDhcpArrayOutput() VpcPublicGatewayDhcpArrayOutput
+	ToVpcPublicGatewayDhcpArrayOutputWithContext(context.Context) VpcPublicGatewayDhcpArrayOutput
+}
+
+type VpcPublicGatewayDhcpArray []VpcPublicGatewayDhcpInput
+
+func (VpcPublicGatewayDhcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPublicGatewayDhcp)(nil)).Elem()
+}
+
+func (i VpcPublicGatewayDhcpArray) ToVpcPublicGatewayDhcpArrayOutput() VpcPublicGatewayDhcpArrayOutput {
+	return i.ToVpcPublicGatewayDhcpArrayOutputWithContext(context.Background())
+}
+
+func (i VpcPublicGatewayDhcpArray) ToVpcPublicGatewayDhcpArrayOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpArrayOutput)
+}
+
+// VpcPublicGatewayDhcpMapInput is an input type that accepts VpcPublicGatewayDhcpMap and VpcPublicGatewayDhcpMapOutput values.
+// You can construct a concrete instance of `VpcPublicGatewayDhcpMapInput` via:
+//
+//	VpcPublicGatewayDhcpMap{ "key": VpcPublicGatewayDhcpArgs{...} }
+type VpcPublicGatewayDhcpMapInput interface {
+	pulumi.Input
+
+	ToVpcPublicGatewayDhcpMapOutput() VpcPublicGatewayDhcpMapOutput
+	ToVpcPublicGatewayDhcpMapOutputWithContext(context.Context) VpcPublicGatewayDhcpMapOutput
+}
+
+type VpcPublicGatewayDhcpMap map[string]VpcPublicGatewayDhcpInput
+
+func (VpcPublicGatewayDhcpMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPublicGatewayDhcp)(nil)).Elem()
+}
+
+func (i VpcPublicGatewayDhcpMap) ToVpcPublicGatewayDhcpMapOutput() VpcPublicGatewayDhcpMapOutput {
+	return i.ToVpcPublicGatewayDhcpMapOutputWithContext(context.Background())
+}
+
+func (i VpcPublicGatewayDhcpMap) ToVpcPublicGatewayDhcpMapOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpMapOutput)
+}
+
 type VpcPublicGatewayDhcpOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayDhcpOutput) ElementType() reflect.Type {
@@ -390,7 +440,51 @@ func (o VpcPublicGatewayDhcpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type VpcPublicGatewayDhcpArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcPublicGatewayDhcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VpcPublicGatewayDhcp)(nil)).Elem()
+}
+
+func (o VpcPublicGatewayDhcpArrayOutput) ToVpcPublicGatewayDhcpArrayOutput() VpcPublicGatewayDhcpArrayOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpArrayOutput) ToVpcPublicGatewayDhcpArrayOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpArrayOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayDhcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayDhcp {
+		return vs[0].([]*VpcPublicGatewayDhcp)[vs[1].(int)]
+	}).(VpcPublicGatewayDhcpOutput)
+}
+
+type VpcPublicGatewayDhcpMapOutput struct{ *pulumi.OutputState }
+
+func (VpcPublicGatewayDhcpMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VpcPublicGatewayDhcp)(nil)).Elem()
+}
+
+func (o VpcPublicGatewayDhcpMapOutput) ToVpcPublicGatewayDhcpMapOutput() VpcPublicGatewayDhcpMapOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpMapOutput) ToVpcPublicGatewayDhcpMapOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpMapOutput {
+	return o
+}
+
+func (o VpcPublicGatewayDhcpMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayDhcpOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpcPublicGatewayDhcp {
+		return vs[0].(map[string]*VpcPublicGatewayDhcp)[vs[1].(string)]
+	}).(VpcPublicGatewayDhcpOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpInput)(nil)).Elem(), &VpcPublicGatewayDhcp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpArrayInput)(nil)).Elem(), VpcPublicGatewayDhcpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPublicGatewayDhcpMapInput)(nil)).Elem(), VpcPublicGatewayDhcpMap{})
 	pulumi.RegisterOutputType(VpcPublicGatewayDhcpOutput{})
+	pulumi.RegisterOutputType(VpcPublicGatewayDhcpArrayOutput{})
+	pulumi.RegisterOutputType(VpcPublicGatewayDhcpMapOutput{})
 }

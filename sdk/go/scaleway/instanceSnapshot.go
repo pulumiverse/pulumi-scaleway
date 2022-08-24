@@ -162,6 +162,56 @@ func (i *InstanceSnapshot) ToInstanceSnapshotOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotOutput)
 }
 
+// InstanceSnapshotArrayInput is an input type that accepts InstanceSnapshotArray and InstanceSnapshotArrayOutput values.
+// You can construct a concrete instance of `InstanceSnapshotArrayInput` via:
+//
+//	InstanceSnapshotArray{ InstanceSnapshotArgs{...} }
+type InstanceSnapshotArrayInput interface {
+	pulumi.Input
+
+	ToInstanceSnapshotArrayOutput() InstanceSnapshotArrayOutput
+	ToInstanceSnapshotArrayOutputWithContext(context.Context) InstanceSnapshotArrayOutput
+}
+
+type InstanceSnapshotArray []InstanceSnapshotInput
+
+func (InstanceSnapshotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceSnapshot)(nil)).Elem()
+}
+
+func (i InstanceSnapshotArray) ToInstanceSnapshotArrayOutput() InstanceSnapshotArrayOutput {
+	return i.ToInstanceSnapshotArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceSnapshotArray) ToInstanceSnapshotArrayOutputWithContext(ctx context.Context) InstanceSnapshotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotArrayOutput)
+}
+
+// InstanceSnapshotMapInput is an input type that accepts InstanceSnapshotMap and InstanceSnapshotMapOutput values.
+// You can construct a concrete instance of `InstanceSnapshotMapInput` via:
+//
+//	InstanceSnapshotMap{ "key": InstanceSnapshotArgs{...} }
+type InstanceSnapshotMapInput interface {
+	pulumi.Input
+
+	ToInstanceSnapshotMapOutput() InstanceSnapshotMapOutput
+	ToInstanceSnapshotMapOutputWithContext(context.Context) InstanceSnapshotMapOutput
+}
+
+type InstanceSnapshotMap map[string]InstanceSnapshotInput
+
+func (InstanceSnapshotMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceSnapshot)(nil)).Elem()
+}
+
+func (i InstanceSnapshotMap) ToInstanceSnapshotMapOutput() InstanceSnapshotMapOutput {
+	return i.ToInstanceSnapshotMapOutputWithContext(context.Background())
+}
+
+func (i InstanceSnapshotMap) ToInstanceSnapshotMapOutputWithContext(ctx context.Context) InstanceSnapshotMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotMapOutput)
+}
+
 type InstanceSnapshotOutput struct{ *pulumi.OutputState }
 
 func (InstanceSnapshotOutput) ElementType() reflect.Type {
@@ -221,7 +271,51 @@ func (o InstanceSnapshotOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstanceSnapshotArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceSnapshotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceSnapshot)(nil)).Elem()
+}
+
+func (o InstanceSnapshotArrayOutput) ToInstanceSnapshotArrayOutput() InstanceSnapshotArrayOutput {
+	return o
+}
+
+func (o InstanceSnapshotArrayOutput) ToInstanceSnapshotArrayOutputWithContext(ctx context.Context) InstanceSnapshotArrayOutput {
+	return o
+}
+
+func (o InstanceSnapshotArrayOutput) Index(i pulumi.IntInput) InstanceSnapshotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceSnapshot {
+		return vs[0].([]*InstanceSnapshot)[vs[1].(int)]
+	}).(InstanceSnapshotOutput)
+}
+
+type InstanceSnapshotMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceSnapshotMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceSnapshot)(nil)).Elem()
+}
+
+func (o InstanceSnapshotMapOutput) ToInstanceSnapshotMapOutput() InstanceSnapshotMapOutput {
+	return o
+}
+
+func (o InstanceSnapshotMapOutput) ToInstanceSnapshotMapOutputWithContext(ctx context.Context) InstanceSnapshotMapOutput {
+	return o
+}
+
+func (o InstanceSnapshotMapOutput) MapIndex(k pulumi.StringInput) InstanceSnapshotOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstanceSnapshot {
+		return vs[0].(map[string]*InstanceSnapshot)[vs[1].(string)]
+	}).(InstanceSnapshotOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSnapshotInput)(nil)).Elem(), &InstanceSnapshot{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSnapshotArrayInput)(nil)).Elem(), InstanceSnapshotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSnapshotMapInput)(nil)).Elem(), InstanceSnapshotMap{})
 	pulumi.RegisterOutputType(InstanceSnapshotOutput{})
+	pulumi.RegisterOutputType(InstanceSnapshotArrayOutput{})
+	pulumi.RegisterOutputType(InstanceSnapshotMapOutput{})
 }

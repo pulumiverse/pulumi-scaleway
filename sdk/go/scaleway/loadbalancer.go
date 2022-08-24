@@ -199,6 +199,56 @@ func (i *Loadbalancer) ToLoadbalancerOutputWithContext(ctx context.Context) Load
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerOutput)
 }
 
+// LoadbalancerArrayInput is an input type that accepts LoadbalancerArray and LoadbalancerArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerArrayInput` via:
+//
+//	LoadbalancerArray{ LoadbalancerArgs{...} }
+type LoadbalancerArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerArrayOutput() LoadbalancerArrayOutput
+	ToLoadbalancerArrayOutputWithContext(context.Context) LoadbalancerArrayOutput
+}
+
+type LoadbalancerArray []LoadbalancerInput
+
+func (LoadbalancerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Loadbalancer)(nil)).Elem()
+}
+
+func (i LoadbalancerArray) ToLoadbalancerArrayOutput() LoadbalancerArrayOutput {
+	return i.ToLoadbalancerArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerArray) ToLoadbalancerArrayOutputWithContext(ctx context.Context) LoadbalancerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerArrayOutput)
+}
+
+// LoadbalancerMapInput is an input type that accepts LoadbalancerMap and LoadbalancerMapOutput values.
+// You can construct a concrete instance of `LoadbalancerMapInput` via:
+//
+//	LoadbalancerMap{ "key": LoadbalancerArgs{...} }
+type LoadbalancerMapInput interface {
+	pulumi.Input
+
+	ToLoadbalancerMapOutput() LoadbalancerMapOutput
+	ToLoadbalancerMapOutputWithContext(context.Context) LoadbalancerMapOutput
+}
+
+type LoadbalancerMap map[string]LoadbalancerInput
+
+func (LoadbalancerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Loadbalancer)(nil)).Elem()
+}
+
+func (i LoadbalancerMap) ToLoadbalancerMapOutput() LoadbalancerMapOutput {
+	return i.ToLoadbalancerMapOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerMap) ToLoadbalancerMapOutputWithContext(ctx context.Context) LoadbalancerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerMapOutput)
+}
+
 type LoadbalancerOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerOutput) ElementType() reflect.Type {
@@ -270,7 +320,51 @@ func (o LoadbalancerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type LoadbalancerArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Loadbalancer)(nil)).Elem()
+}
+
+func (o LoadbalancerArrayOutput) ToLoadbalancerArrayOutput() LoadbalancerArrayOutput {
+	return o
+}
+
+func (o LoadbalancerArrayOutput) ToLoadbalancerArrayOutputWithContext(ctx context.Context) LoadbalancerArrayOutput {
+	return o
+}
+
+func (o LoadbalancerArrayOutput) Index(i pulumi.IntInput) LoadbalancerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Loadbalancer {
+		return vs[0].([]*Loadbalancer)[vs[1].(int)]
+	}).(LoadbalancerOutput)
+}
+
+type LoadbalancerMapOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Loadbalancer)(nil)).Elem()
+}
+
+func (o LoadbalancerMapOutput) ToLoadbalancerMapOutput() LoadbalancerMapOutput {
+	return o
+}
+
+func (o LoadbalancerMapOutput) ToLoadbalancerMapOutputWithContext(ctx context.Context) LoadbalancerMapOutput {
+	return o
+}
+
+func (o LoadbalancerMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Loadbalancer {
+		return vs[0].(map[string]*Loadbalancer)[vs[1].(string)]
+	}).(LoadbalancerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerInput)(nil)).Elem(), &Loadbalancer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerArrayInput)(nil)).Elem(), LoadbalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerMapInput)(nil)).Elem(), LoadbalancerMap{})
 	pulumi.RegisterOutputType(LoadbalancerOutput{})
+	pulumi.RegisterOutputType(LoadbalancerArrayOutput{})
+	pulumi.RegisterOutputType(LoadbalancerMapOutput{})
 }

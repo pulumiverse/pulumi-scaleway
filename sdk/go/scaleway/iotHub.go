@@ -230,6 +230,56 @@ func (i *IotHub) ToIotHubOutputWithContext(ctx context.Context) IotHubOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IotHubOutput)
 }
 
+// IotHubArrayInput is an input type that accepts IotHubArray and IotHubArrayOutput values.
+// You can construct a concrete instance of `IotHubArrayInput` via:
+//
+//	IotHubArray{ IotHubArgs{...} }
+type IotHubArrayInput interface {
+	pulumi.Input
+
+	ToIotHubArrayOutput() IotHubArrayOutput
+	ToIotHubArrayOutputWithContext(context.Context) IotHubArrayOutput
+}
+
+type IotHubArray []IotHubInput
+
+func (IotHubArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotHub)(nil)).Elem()
+}
+
+func (i IotHubArray) ToIotHubArrayOutput() IotHubArrayOutput {
+	return i.ToIotHubArrayOutputWithContext(context.Background())
+}
+
+func (i IotHubArray) ToIotHubArrayOutputWithContext(ctx context.Context) IotHubArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotHubArrayOutput)
+}
+
+// IotHubMapInput is an input type that accepts IotHubMap and IotHubMapOutput values.
+// You can construct a concrete instance of `IotHubMapInput` via:
+//
+//	IotHubMap{ "key": IotHubArgs{...} }
+type IotHubMapInput interface {
+	pulumi.Input
+
+	ToIotHubMapOutput() IotHubMapOutput
+	ToIotHubMapOutputWithContext(context.Context) IotHubMapOutput
+}
+
+type IotHubMap map[string]IotHubInput
+
+func (IotHubMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotHub)(nil)).Elem()
+}
+
+func (i IotHubMap) ToIotHubMapOutput() IotHubMapOutput {
+	return i.ToIotHubMapOutputWithContext(context.Background())
+}
+
+func (i IotHubMap) ToIotHubMapOutputWithContext(ctx context.Context) IotHubMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotHubMapOutput)
+}
+
 type IotHubOutput struct{ *pulumi.OutputState }
 
 func (IotHubOutput) ElementType() reflect.Type {
@@ -329,7 +379,51 @@ func (o IotHubOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+type IotHubArrayOutput struct{ *pulumi.OutputState }
+
+func (IotHubArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotHub)(nil)).Elem()
+}
+
+func (o IotHubArrayOutput) ToIotHubArrayOutput() IotHubArrayOutput {
+	return o
+}
+
+func (o IotHubArrayOutput) ToIotHubArrayOutputWithContext(ctx context.Context) IotHubArrayOutput {
+	return o
+}
+
+func (o IotHubArrayOutput) Index(i pulumi.IntInput) IotHubOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotHub {
+		return vs[0].([]*IotHub)[vs[1].(int)]
+	}).(IotHubOutput)
+}
+
+type IotHubMapOutput struct{ *pulumi.OutputState }
+
+func (IotHubMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotHub)(nil)).Elem()
+}
+
+func (o IotHubMapOutput) ToIotHubMapOutput() IotHubMapOutput {
+	return o
+}
+
+func (o IotHubMapOutput) ToIotHubMapOutputWithContext(ctx context.Context) IotHubMapOutput {
+	return o
+}
+
+func (o IotHubMapOutput) MapIndex(k pulumi.StringInput) IotHubOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IotHub {
+		return vs[0].(map[string]*IotHub)[vs[1].(string)]
+	}).(IotHubOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotHubInput)(nil)).Elem(), &IotHub{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotHubArrayInput)(nil)).Elem(), IotHubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotHubMapInput)(nil)).Elem(), IotHubMap{})
 	pulumi.RegisterOutputType(IotHubOutput{})
+	pulumi.RegisterOutputType(IotHubArrayOutput{})
+	pulumi.RegisterOutputType(IotHubMapOutput{})
 }

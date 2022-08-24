@@ -146,6 +146,56 @@ func (i *RegistryNamespace) ToRegistryNamespaceOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(RegistryNamespaceOutput)
 }
 
+// RegistryNamespaceArrayInput is an input type that accepts RegistryNamespaceArray and RegistryNamespaceArrayOutput values.
+// You can construct a concrete instance of `RegistryNamespaceArrayInput` via:
+//
+//	RegistryNamespaceArray{ RegistryNamespaceArgs{...} }
+type RegistryNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToRegistryNamespaceArrayOutput() RegistryNamespaceArrayOutput
+	ToRegistryNamespaceArrayOutputWithContext(context.Context) RegistryNamespaceArrayOutput
+}
+
+type RegistryNamespaceArray []RegistryNamespaceInput
+
+func (RegistryNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*RegistryNamespace)(nil)).Elem()
+}
+
+func (i RegistryNamespaceArray) ToRegistryNamespaceArrayOutput() RegistryNamespaceArrayOutput {
+	return i.ToRegistryNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i RegistryNamespaceArray) ToRegistryNamespaceArrayOutputWithContext(ctx context.Context) RegistryNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryNamespaceArrayOutput)
+}
+
+// RegistryNamespaceMapInput is an input type that accepts RegistryNamespaceMap and RegistryNamespaceMapOutput values.
+// You can construct a concrete instance of `RegistryNamespaceMapInput` via:
+//
+//	RegistryNamespaceMap{ "key": RegistryNamespaceArgs{...} }
+type RegistryNamespaceMapInput interface {
+	pulumi.Input
+
+	ToRegistryNamespaceMapOutput() RegistryNamespaceMapOutput
+	ToRegistryNamespaceMapOutputWithContext(context.Context) RegistryNamespaceMapOutput
+}
+
+type RegistryNamespaceMap map[string]RegistryNamespaceInput
+
+func (RegistryNamespaceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*RegistryNamespace)(nil)).Elem()
+}
+
+func (i RegistryNamespaceMap) ToRegistryNamespaceMapOutput() RegistryNamespaceMapOutput {
+	return i.ToRegistryNamespaceMapOutputWithContext(context.Background())
+}
+
+func (i RegistryNamespaceMap) ToRegistryNamespaceMapOutputWithContext(ctx context.Context) RegistryNamespaceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryNamespaceMapOutput)
+}
+
 type RegistryNamespaceOutput struct{ *pulumi.OutputState }
 
 func (RegistryNamespaceOutput) ElementType() reflect.Type {
@@ -195,7 +245,51 @@ func (o RegistryNamespaceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryNamespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+type RegistryNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistryNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*RegistryNamespace)(nil)).Elem()
+}
+
+func (o RegistryNamespaceArrayOutput) ToRegistryNamespaceArrayOutput() RegistryNamespaceArrayOutput {
+	return o
+}
+
+func (o RegistryNamespaceArrayOutput) ToRegistryNamespaceArrayOutputWithContext(ctx context.Context) RegistryNamespaceArrayOutput {
+	return o
+}
+
+func (o RegistryNamespaceArrayOutput) Index(i pulumi.IntInput) RegistryNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RegistryNamespace {
+		return vs[0].([]*RegistryNamespace)[vs[1].(int)]
+	}).(RegistryNamespaceOutput)
+}
+
+type RegistryNamespaceMapOutput struct{ *pulumi.OutputState }
+
+func (RegistryNamespaceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*RegistryNamespace)(nil)).Elem()
+}
+
+func (o RegistryNamespaceMapOutput) ToRegistryNamespaceMapOutput() RegistryNamespaceMapOutput {
+	return o
+}
+
+func (o RegistryNamespaceMapOutput) ToRegistryNamespaceMapOutputWithContext(ctx context.Context) RegistryNamespaceMapOutput {
+	return o
+}
+
+func (o RegistryNamespaceMapOutput) MapIndex(k pulumi.StringInput) RegistryNamespaceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RegistryNamespace {
+		return vs[0].(map[string]*RegistryNamespace)[vs[1].(string)]
+	}).(RegistryNamespaceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryNamespaceInput)(nil)).Elem(), &RegistryNamespace{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryNamespaceArrayInput)(nil)).Elem(), RegistryNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryNamespaceMapInput)(nil)).Elem(), RegistryNamespaceMap{})
 	pulumi.RegisterOutputType(RegistryNamespaceOutput{})
+	pulumi.RegisterOutputType(RegistryNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(RegistryNamespaceMapOutput{})
 }

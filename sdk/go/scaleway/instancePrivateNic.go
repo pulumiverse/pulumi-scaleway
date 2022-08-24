@@ -127,6 +127,56 @@ func (i *InstancePrivateNic) ToInstancePrivateNicOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicOutput)
 }
 
+// InstancePrivateNicArrayInput is an input type that accepts InstancePrivateNicArray and InstancePrivateNicArrayOutput values.
+// You can construct a concrete instance of `InstancePrivateNicArrayInput` via:
+//
+//	InstancePrivateNicArray{ InstancePrivateNicArgs{...} }
+type InstancePrivateNicArrayInput interface {
+	pulumi.Input
+
+	ToInstancePrivateNicArrayOutput() InstancePrivateNicArrayOutput
+	ToInstancePrivateNicArrayOutputWithContext(context.Context) InstancePrivateNicArrayOutput
+}
+
+type InstancePrivateNicArray []InstancePrivateNicInput
+
+func (InstancePrivateNicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstancePrivateNic)(nil)).Elem()
+}
+
+func (i InstancePrivateNicArray) ToInstancePrivateNicArrayOutput() InstancePrivateNicArrayOutput {
+	return i.ToInstancePrivateNicArrayOutputWithContext(context.Background())
+}
+
+func (i InstancePrivateNicArray) ToInstancePrivateNicArrayOutputWithContext(ctx context.Context) InstancePrivateNicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicArrayOutput)
+}
+
+// InstancePrivateNicMapInput is an input type that accepts InstancePrivateNicMap and InstancePrivateNicMapOutput values.
+// You can construct a concrete instance of `InstancePrivateNicMapInput` via:
+//
+//	InstancePrivateNicMap{ "key": InstancePrivateNicArgs{...} }
+type InstancePrivateNicMapInput interface {
+	pulumi.Input
+
+	ToInstancePrivateNicMapOutput() InstancePrivateNicMapOutput
+	ToInstancePrivateNicMapOutputWithContext(context.Context) InstancePrivateNicMapOutput
+}
+
+type InstancePrivateNicMap map[string]InstancePrivateNicInput
+
+func (InstancePrivateNicMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstancePrivateNic)(nil)).Elem()
+}
+
+func (i InstancePrivateNicMap) ToInstancePrivateNicMapOutput() InstancePrivateNicMapOutput {
+	return i.ToInstancePrivateNicMapOutputWithContext(context.Background())
+}
+
+func (i InstancePrivateNicMap) ToInstancePrivateNicMapOutputWithContext(ctx context.Context) InstancePrivateNicMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicMapOutput)
+}
+
 type InstancePrivateNicOutput struct{ *pulumi.OutputState }
 
 func (InstancePrivateNicOutput) ElementType() reflect.Type {
@@ -161,7 +211,51 @@ func (o InstancePrivateNicOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstancePrivateNicArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancePrivateNicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstancePrivateNic)(nil)).Elem()
+}
+
+func (o InstancePrivateNicArrayOutput) ToInstancePrivateNicArrayOutput() InstancePrivateNicArrayOutput {
+	return o
+}
+
+func (o InstancePrivateNicArrayOutput) ToInstancePrivateNicArrayOutputWithContext(ctx context.Context) InstancePrivateNicArrayOutput {
+	return o
+}
+
+func (o InstancePrivateNicArrayOutput) Index(i pulumi.IntInput) InstancePrivateNicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstancePrivateNic {
+		return vs[0].([]*InstancePrivateNic)[vs[1].(int)]
+	}).(InstancePrivateNicOutput)
+}
+
+type InstancePrivateNicMapOutput struct{ *pulumi.OutputState }
+
+func (InstancePrivateNicMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstancePrivateNic)(nil)).Elem()
+}
+
+func (o InstancePrivateNicMapOutput) ToInstancePrivateNicMapOutput() InstancePrivateNicMapOutput {
+	return o
+}
+
+func (o InstancePrivateNicMapOutput) ToInstancePrivateNicMapOutputWithContext(ctx context.Context) InstancePrivateNicMapOutput {
+	return o
+}
+
+func (o InstancePrivateNicMapOutput) MapIndex(k pulumi.StringInput) InstancePrivateNicOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstancePrivateNic {
+		return vs[0].(map[string]*InstancePrivateNic)[vs[1].(string)]
+	}).(InstancePrivateNicOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicInput)(nil)).Elem(), &InstancePrivateNic{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicArrayInput)(nil)).Elem(), InstancePrivateNicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicMapInput)(nil)).Elem(), InstancePrivateNicMap{})
 	pulumi.RegisterOutputType(InstancePrivateNicOutput{})
+	pulumi.RegisterOutputType(InstancePrivateNicArrayOutput{})
+	pulumi.RegisterOutputType(InstancePrivateNicMapOutput{})
 }

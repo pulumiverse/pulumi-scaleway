@@ -323,6 +323,56 @@ func (i *InstanceServer) ToInstanceServerOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerOutput)
 }
 
+// InstanceServerArrayInput is an input type that accepts InstanceServerArray and InstanceServerArrayOutput values.
+// You can construct a concrete instance of `InstanceServerArrayInput` via:
+//
+//	InstanceServerArray{ InstanceServerArgs{...} }
+type InstanceServerArrayInput interface {
+	pulumi.Input
+
+	ToInstanceServerArrayOutput() InstanceServerArrayOutput
+	ToInstanceServerArrayOutputWithContext(context.Context) InstanceServerArrayOutput
+}
+
+type InstanceServerArray []InstanceServerInput
+
+func (InstanceServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceServer)(nil)).Elem()
+}
+
+func (i InstanceServerArray) ToInstanceServerArrayOutput() InstanceServerArrayOutput {
+	return i.ToInstanceServerArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceServerArray) ToInstanceServerArrayOutputWithContext(ctx context.Context) InstanceServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerArrayOutput)
+}
+
+// InstanceServerMapInput is an input type that accepts InstanceServerMap and InstanceServerMapOutput values.
+// You can construct a concrete instance of `InstanceServerMapInput` via:
+//
+//	InstanceServerMap{ "key": InstanceServerArgs{...} }
+type InstanceServerMapInput interface {
+	pulumi.Input
+
+	ToInstanceServerMapOutput() InstanceServerMapOutput
+	ToInstanceServerMapOutputWithContext(context.Context) InstanceServerMapOutput
+}
+
+type InstanceServerMap map[string]InstanceServerInput
+
+func (InstanceServerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceServer)(nil)).Elem()
+}
+
+func (i InstanceServerMap) ToInstanceServerMapOutput() InstanceServerMapOutput {
+	return i.ToInstanceServerMapOutputWithContext(context.Background())
+}
+
+func (i InstanceServerMap) ToInstanceServerMapOutputWithContext(ctx context.Context) InstanceServerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerMapOutput)
+}
+
 type InstanceServerOutput struct{ *pulumi.OutputState }
 
 func (InstanceServerOutput) ElementType() reflect.Type {
@@ -467,7 +517,51 @@ func (o InstanceServerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstanceServerArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceServer)(nil)).Elem()
+}
+
+func (o InstanceServerArrayOutput) ToInstanceServerArrayOutput() InstanceServerArrayOutput {
+	return o
+}
+
+func (o InstanceServerArrayOutput) ToInstanceServerArrayOutputWithContext(ctx context.Context) InstanceServerArrayOutput {
+	return o
+}
+
+func (o InstanceServerArrayOutput) Index(i pulumi.IntInput) InstanceServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceServer {
+		return vs[0].([]*InstanceServer)[vs[1].(int)]
+	}).(InstanceServerOutput)
+}
+
+type InstanceServerMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceServerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceServer)(nil)).Elem()
+}
+
+func (o InstanceServerMapOutput) ToInstanceServerMapOutput() InstanceServerMapOutput {
+	return o
+}
+
+func (o InstanceServerMapOutput) ToInstanceServerMapOutputWithContext(ctx context.Context) InstanceServerMapOutput {
+	return o
+}
+
+func (o InstanceServerMapOutput) MapIndex(k pulumi.StringInput) InstanceServerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstanceServer {
+		return vs[0].(map[string]*InstanceServer)[vs[1].(string)]
+	}).(InstanceServerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerInput)(nil)).Elem(), &InstanceServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerArrayInput)(nil)).Elem(), InstanceServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerMapInput)(nil)).Elem(), InstanceServerMap{})
 	pulumi.RegisterOutputType(InstanceServerOutput{})
+	pulumi.RegisterOutputType(InstanceServerArrayOutput{})
+	pulumi.RegisterOutputType(InstanceServerMapOutput{})
 }

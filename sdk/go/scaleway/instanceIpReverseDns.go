@@ -121,6 +121,56 @@ func (i *InstanceIpReverseDns) ToInstanceIpReverseDnsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpReverseDnsOutput)
 }
 
+// InstanceIpReverseDnsArrayInput is an input type that accepts InstanceIpReverseDnsArray and InstanceIpReverseDnsArrayOutput values.
+// You can construct a concrete instance of `InstanceIpReverseDnsArrayInput` via:
+//
+//	InstanceIpReverseDnsArray{ InstanceIpReverseDnsArgs{...} }
+type InstanceIpReverseDnsArrayInput interface {
+	pulumi.Input
+
+	ToInstanceIpReverseDnsArrayOutput() InstanceIpReverseDnsArrayOutput
+	ToInstanceIpReverseDnsArrayOutputWithContext(context.Context) InstanceIpReverseDnsArrayOutput
+}
+
+type InstanceIpReverseDnsArray []InstanceIpReverseDnsInput
+
+func (InstanceIpReverseDnsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceIpReverseDns)(nil)).Elem()
+}
+
+func (i InstanceIpReverseDnsArray) ToInstanceIpReverseDnsArrayOutput() InstanceIpReverseDnsArrayOutput {
+	return i.ToInstanceIpReverseDnsArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceIpReverseDnsArray) ToInstanceIpReverseDnsArrayOutputWithContext(ctx context.Context) InstanceIpReverseDnsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpReverseDnsArrayOutput)
+}
+
+// InstanceIpReverseDnsMapInput is an input type that accepts InstanceIpReverseDnsMap and InstanceIpReverseDnsMapOutput values.
+// You can construct a concrete instance of `InstanceIpReverseDnsMapInput` via:
+//
+//	InstanceIpReverseDnsMap{ "key": InstanceIpReverseDnsArgs{...} }
+type InstanceIpReverseDnsMapInput interface {
+	pulumi.Input
+
+	ToInstanceIpReverseDnsMapOutput() InstanceIpReverseDnsMapOutput
+	ToInstanceIpReverseDnsMapOutputWithContext(context.Context) InstanceIpReverseDnsMapOutput
+}
+
+type InstanceIpReverseDnsMap map[string]InstanceIpReverseDnsInput
+
+func (InstanceIpReverseDnsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceIpReverseDns)(nil)).Elem()
+}
+
+func (i InstanceIpReverseDnsMap) ToInstanceIpReverseDnsMapOutput() InstanceIpReverseDnsMapOutput {
+	return i.ToInstanceIpReverseDnsMapOutputWithContext(context.Background())
+}
+
+func (i InstanceIpReverseDnsMap) ToInstanceIpReverseDnsMapOutputWithContext(ctx context.Context) InstanceIpReverseDnsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpReverseDnsMapOutput)
+}
+
 type InstanceIpReverseDnsOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpReverseDnsOutput) ElementType() reflect.Type {
@@ -150,7 +200,51 @@ func (o InstanceIpReverseDnsOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceIpReverseDns) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
+type InstanceIpReverseDnsArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceIpReverseDnsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*InstanceIpReverseDns)(nil)).Elem()
+}
+
+func (o InstanceIpReverseDnsArrayOutput) ToInstanceIpReverseDnsArrayOutput() InstanceIpReverseDnsArrayOutput {
+	return o
+}
+
+func (o InstanceIpReverseDnsArrayOutput) ToInstanceIpReverseDnsArrayOutputWithContext(ctx context.Context) InstanceIpReverseDnsArrayOutput {
+	return o
+}
+
+func (o InstanceIpReverseDnsArrayOutput) Index(i pulumi.IntInput) InstanceIpReverseDnsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceIpReverseDns {
+		return vs[0].([]*InstanceIpReverseDns)[vs[1].(int)]
+	}).(InstanceIpReverseDnsOutput)
+}
+
+type InstanceIpReverseDnsMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceIpReverseDnsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*InstanceIpReverseDns)(nil)).Elem()
+}
+
+func (o InstanceIpReverseDnsMapOutput) ToInstanceIpReverseDnsMapOutput() InstanceIpReverseDnsMapOutput {
+	return o
+}
+
+func (o InstanceIpReverseDnsMapOutput) ToInstanceIpReverseDnsMapOutputWithContext(ctx context.Context) InstanceIpReverseDnsMapOutput {
+	return o
+}
+
+func (o InstanceIpReverseDnsMapOutput) MapIndex(k pulumi.StringInput) InstanceIpReverseDnsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *InstanceIpReverseDns {
+		return vs[0].(map[string]*InstanceIpReverseDns)[vs[1].(string)]
+	}).(InstanceIpReverseDnsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpReverseDnsInput)(nil)).Elem(), &InstanceIpReverseDns{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpReverseDnsArrayInput)(nil)).Elem(), InstanceIpReverseDnsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceIpReverseDnsMapInput)(nil)).Elem(), InstanceIpReverseDnsMap{})
 	pulumi.RegisterOutputType(InstanceIpReverseDnsOutput{})
+	pulumi.RegisterOutputType(InstanceIpReverseDnsArrayOutput{})
+	pulumi.RegisterOutputType(InstanceIpReverseDnsMapOutput{})
 }

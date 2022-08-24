@@ -167,6 +167,56 @@ func (i *IotRoute) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutp
 	return pulumi.ToOutputWithContext(ctx, i).(IotRouteOutput)
 }
 
+// IotRouteArrayInput is an input type that accepts IotRouteArray and IotRouteArrayOutput values.
+// You can construct a concrete instance of `IotRouteArrayInput` via:
+//
+//	IotRouteArray{ IotRouteArgs{...} }
+type IotRouteArrayInput interface {
+	pulumi.Input
+
+	ToIotRouteArrayOutput() IotRouteArrayOutput
+	ToIotRouteArrayOutputWithContext(context.Context) IotRouteArrayOutput
+}
+
+type IotRouteArray []IotRouteInput
+
+func (IotRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotRoute)(nil)).Elem()
+}
+
+func (i IotRouteArray) ToIotRouteArrayOutput() IotRouteArrayOutput {
+	return i.ToIotRouteArrayOutputWithContext(context.Background())
+}
+
+func (i IotRouteArray) ToIotRouteArrayOutputWithContext(ctx context.Context) IotRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteArrayOutput)
+}
+
+// IotRouteMapInput is an input type that accepts IotRouteMap and IotRouteMapOutput values.
+// You can construct a concrete instance of `IotRouteMapInput` via:
+//
+//	IotRouteMap{ "key": IotRouteArgs{...} }
+type IotRouteMapInput interface {
+	pulumi.Input
+
+	ToIotRouteMapOutput() IotRouteMapOutput
+	ToIotRouteMapOutputWithContext(context.Context) IotRouteMapOutput
+}
+
+type IotRouteMap map[string]IotRouteInput
+
+func (IotRouteMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotRoute)(nil)).Elem()
+}
+
+func (i IotRouteMap) ToIotRouteMapOutput() IotRouteMapOutput {
+	return i.ToIotRouteMapOutputWithContext(context.Background())
+}
+
+func (i IotRouteMap) ToIotRouteMapOutputWithContext(ctx context.Context) IotRouteMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteMapOutput)
+}
+
 type IotRouteOutput struct{ *pulumi.OutputState }
 
 func (IotRouteOutput) ElementType() reflect.Type {
@@ -221,7 +271,51 @@ func (o IotRouteOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotRoute) pulumi.StringOutput { return v.Topic }).(pulumi.StringOutput)
 }
 
+type IotRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (IotRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IotRoute)(nil)).Elem()
+}
+
+func (o IotRouteArrayOutput) ToIotRouteArrayOutput() IotRouteArrayOutput {
+	return o
+}
+
+func (o IotRouteArrayOutput) ToIotRouteArrayOutputWithContext(ctx context.Context) IotRouteArrayOutput {
+	return o
+}
+
+func (o IotRouteArrayOutput) Index(i pulumi.IntInput) IotRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotRoute {
+		return vs[0].([]*IotRoute)[vs[1].(int)]
+	}).(IotRouteOutput)
+}
+
+type IotRouteMapOutput struct{ *pulumi.OutputState }
+
+func (IotRouteMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IotRoute)(nil)).Elem()
+}
+
+func (o IotRouteMapOutput) ToIotRouteMapOutput() IotRouteMapOutput {
+	return o
+}
+
+func (o IotRouteMapOutput) ToIotRouteMapOutputWithContext(ctx context.Context) IotRouteMapOutput {
+	return o
+}
+
+func (o IotRouteMapOutput) MapIndex(k pulumi.StringInput) IotRouteOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IotRoute {
+		return vs[0].(map[string]*IotRoute)[vs[1].(string)]
+	}).(IotRouteOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteInput)(nil)).Elem(), &IotRoute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteArrayInput)(nil)).Elem(), IotRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteMapInput)(nil)).Elem(), IotRouteMap{})
 	pulumi.RegisterOutputType(IotRouteOutput{})
+	pulumi.RegisterOutputType(IotRouteArrayOutput{})
+	pulumi.RegisterOutputType(IotRouteMapOutput{})
 }

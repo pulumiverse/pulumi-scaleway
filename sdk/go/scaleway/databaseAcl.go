@@ -121,6 +121,56 @@ func (i *DatabaseAcl) ToDatabaseAclOutputWithContext(ctx context.Context) Databa
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclOutput)
 }
 
+// DatabaseAclArrayInput is an input type that accepts DatabaseAclArray and DatabaseAclArrayOutput values.
+// You can construct a concrete instance of `DatabaseAclArrayInput` via:
+//
+//	DatabaseAclArray{ DatabaseAclArgs{...} }
+type DatabaseAclArrayInput interface {
+	pulumi.Input
+
+	ToDatabaseAclArrayOutput() DatabaseAclArrayOutput
+	ToDatabaseAclArrayOutputWithContext(context.Context) DatabaseAclArrayOutput
+}
+
+type DatabaseAclArray []DatabaseAclInput
+
+func (DatabaseAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DatabaseAcl)(nil)).Elem()
+}
+
+func (i DatabaseAclArray) ToDatabaseAclArrayOutput() DatabaseAclArrayOutput {
+	return i.ToDatabaseAclArrayOutputWithContext(context.Background())
+}
+
+func (i DatabaseAclArray) ToDatabaseAclArrayOutputWithContext(ctx context.Context) DatabaseAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclArrayOutput)
+}
+
+// DatabaseAclMapInput is an input type that accepts DatabaseAclMap and DatabaseAclMapOutput values.
+// You can construct a concrete instance of `DatabaseAclMapInput` via:
+//
+//	DatabaseAclMap{ "key": DatabaseAclArgs{...} }
+type DatabaseAclMapInput interface {
+	pulumi.Input
+
+	ToDatabaseAclMapOutput() DatabaseAclMapOutput
+	ToDatabaseAclMapOutputWithContext(context.Context) DatabaseAclMapOutput
+}
+
+type DatabaseAclMap map[string]DatabaseAclInput
+
+func (DatabaseAclMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DatabaseAcl)(nil)).Elem()
+}
+
+func (i DatabaseAclMap) ToDatabaseAclMapOutput() DatabaseAclMapOutput {
+	return i.ToDatabaseAclMapOutputWithContext(context.Background())
+}
+
+func (i DatabaseAclMap) ToDatabaseAclMapOutputWithContext(ctx context.Context) DatabaseAclMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclMapOutput)
+}
+
 type DatabaseAclOutput struct{ *pulumi.OutputState }
 
 func (DatabaseAclOutput) ElementType() reflect.Type {
@@ -150,7 +200,51 @@ func (o DatabaseAclOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+type DatabaseAclArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabaseAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DatabaseAcl)(nil)).Elem()
+}
+
+func (o DatabaseAclArrayOutput) ToDatabaseAclArrayOutput() DatabaseAclArrayOutput {
+	return o
+}
+
+func (o DatabaseAclArrayOutput) ToDatabaseAclArrayOutputWithContext(ctx context.Context) DatabaseAclArrayOutput {
+	return o
+}
+
+func (o DatabaseAclArrayOutput) Index(i pulumi.IntInput) DatabaseAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseAcl {
+		return vs[0].([]*DatabaseAcl)[vs[1].(int)]
+	}).(DatabaseAclOutput)
+}
+
+type DatabaseAclMapOutput struct{ *pulumi.OutputState }
+
+func (DatabaseAclMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DatabaseAcl)(nil)).Elem()
+}
+
+func (o DatabaseAclMapOutput) ToDatabaseAclMapOutput() DatabaseAclMapOutput {
+	return o
+}
+
+func (o DatabaseAclMapOutput) ToDatabaseAclMapOutputWithContext(ctx context.Context) DatabaseAclMapOutput {
+	return o
+}
+
+func (o DatabaseAclMapOutput) MapIndex(k pulumi.StringInput) DatabaseAclOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DatabaseAcl {
+		return vs[0].(map[string]*DatabaseAcl)[vs[1].(string)]
+	}).(DatabaseAclOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclInput)(nil)).Elem(), &DatabaseAcl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclArrayInput)(nil)).Elem(), DatabaseAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclMapInput)(nil)).Elem(), DatabaseAclMap{})
 	pulumi.RegisterOutputType(DatabaseAclOutput{})
+	pulumi.RegisterOutputType(DatabaseAclArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseAclMapOutput{})
 }
