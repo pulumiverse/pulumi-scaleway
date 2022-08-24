@@ -26,13 +26,13 @@ class IotDeviceArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IotDevice resource.
-        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created
-        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
-        :param pulumi.Input[bool] allow_multiple_connections: Allow multiple connections
-        :param pulumi.Input['IotDeviceCertificateArgs'] certificate: Certificate section of the device
-        :param pulumi.Input[str] description: The description of the device
-        :param pulumi.Input['IotDeviceMessageFiltersArgs'] message_filters: Rules to authorize or deny the device to publish/subscribe to specific topics
-        :param pulumi.Input[str] name: The name of the device
+        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
+        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+        :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+        :param pulumi.Input['IotDeviceCertificateArgs'] certificate: The certificate bundle of the device.
+        :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
+        :param pulumi.Input['IotDeviceMessageFiltersArgs'] message_filters: Rules that define which messages are authorized or denied based on their topic.
+        :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         pulumi.set(__self__, "hub_id", hub_id)
@@ -55,7 +55,7 @@ class IotDeviceArgs:
     @pulumi.getter(name="hubId")
     def hub_id(self) -> pulumi.Input[str]:
         """
-        The ID of the hub on which this device will be created
+        The ID of the hub on which this device will be created.
         """
         return pulumi.get(self, "hub_id")
 
@@ -67,7 +67,7 @@ class IotDeviceArgs:
     @pulumi.getter(name="allowInsecure")
     def allow_insecure(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+        Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         """
         return pulumi.get(self, "allow_insecure")
 
@@ -79,7 +79,7 @@ class IotDeviceArgs:
     @pulumi.getter(name="allowMultipleConnections")
     def allow_multiple_connections(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow multiple connections
+        Allow more than one simultaneous connection using the same device credentials.
         """
         return pulumi.get(self, "allow_multiple_connections")
 
@@ -91,7 +91,7 @@ class IotDeviceArgs:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input['IotDeviceCertificateArgs']]:
         """
-        Certificate section of the device
+        The certificate bundle of the device.
         """
         return pulumi.get(self, "certificate")
 
@@ -103,7 +103,7 @@ class IotDeviceArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the device
+        The description of the IoT device (e.g. `living room`).
         """
         return pulumi.get(self, "description")
 
@@ -115,7 +115,7 @@ class IotDeviceArgs:
     @pulumi.getter(name="messageFilters")
     def message_filters(self) -> Optional[pulumi.Input['IotDeviceMessageFiltersArgs']]:
         """
-        Rules to authorize or deny the device to publish/subscribe to specific topics
+        Rules that define which messages are authorized or denied based on their topic.
         """
         return pulumi.get(self, "message_filters")
 
@@ -127,7 +127,7 @@ class IotDeviceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the device
+        The name of the IoT device you want to create (e.g. `my-device`).
         """
         return pulumi.get(self, "name")
 
@@ -166,19 +166,19 @@ class _IotDeviceState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IotDevice resources.
-        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
-        :param pulumi.Input[bool] allow_multiple_connections: Allow multiple connections
-        :param pulumi.Input['IotDeviceCertificateArgs'] certificate: Certificate section of the device
-        :param pulumi.Input[str] created_at: The date and time of the creation of the device
-        :param pulumi.Input[str] description: The description of the device
-        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created
-        :param pulumi.Input[bool] is_connected: The MQTT connection status of the device
-        :param pulumi.Input[str] last_activity_at: The date and time of last MQTT activity of the device
-        :param pulumi.Input['IotDeviceMessageFiltersArgs'] message_filters: Rules to authorize or deny the device to publish/subscribe to specific topics
-        :param pulumi.Input[str] name: The name of the device
+        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+        :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+        :param pulumi.Input['IotDeviceCertificateArgs'] certificate: The certificate bundle of the device.
+        :param pulumi.Input[str] created_at: The date and time the device was created.
+        :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
+        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
+        :param pulumi.Input[bool] is_connected: The current connection status of the device.
+        :param pulumi.Input[str] last_activity_at: The last MQTT activity of the device.
+        :param pulumi.Input['IotDeviceMessageFiltersArgs'] message_filters: Rules that define which messages are authorized or denied based on their topic.
+        :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] status: The status of the device
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the device
+        :param pulumi.Input[str] status: The current status of the device.
+        :param pulumi.Input[str] updated_at: The date and time the device resource was updated.
         """
         if allow_insecure is not None:
             pulumi.set(__self__, "allow_insecure", allow_insecure)
@@ -211,7 +211,7 @@ class _IotDeviceState:
     @pulumi.getter(name="allowInsecure")
     def allow_insecure(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+        Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         """
         return pulumi.get(self, "allow_insecure")
 
@@ -223,7 +223,7 @@ class _IotDeviceState:
     @pulumi.getter(name="allowMultipleConnections")
     def allow_multiple_connections(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow multiple connections
+        Allow more than one simultaneous connection using the same device credentials.
         """
         return pulumi.get(self, "allow_multiple_connections")
 
@@ -235,7 +235,7 @@ class _IotDeviceState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input['IotDeviceCertificateArgs']]:
         """
-        Certificate section of the device
+        The certificate bundle of the device.
         """
         return pulumi.get(self, "certificate")
 
@@ -247,7 +247,7 @@ class _IotDeviceState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the device
+        The date and time the device was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -259,7 +259,7 @@ class _IotDeviceState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the device
+        The description of the IoT device (e.g. `living room`).
         """
         return pulumi.get(self, "description")
 
@@ -271,7 +271,7 @@ class _IotDeviceState:
     @pulumi.getter(name="hubId")
     def hub_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the hub on which this device will be created
+        The ID of the hub on which this device will be created.
         """
         return pulumi.get(self, "hub_id")
 
@@ -283,7 +283,7 @@ class _IotDeviceState:
     @pulumi.getter(name="isConnected")
     def is_connected(self) -> Optional[pulumi.Input[bool]]:
         """
-        The MQTT connection status of the device
+        The current connection status of the device.
         """
         return pulumi.get(self, "is_connected")
 
@@ -295,7 +295,7 @@ class _IotDeviceState:
     @pulumi.getter(name="lastActivityAt")
     def last_activity_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of last MQTT activity of the device
+        The last MQTT activity of the device.
         """
         return pulumi.get(self, "last_activity_at")
 
@@ -307,7 +307,7 @@ class _IotDeviceState:
     @pulumi.getter(name="messageFilters")
     def message_filters(self) -> Optional[pulumi.Input['IotDeviceMessageFiltersArgs']]:
         """
-        Rules to authorize or deny the device to publish/subscribe to specific topics
+        Rules that define which messages are authorized or denied based on their topic.
         """
         return pulumi.get(self, "message_filters")
 
@@ -319,7 +319,7 @@ class _IotDeviceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the device
+        The name of the IoT device you want to create (e.g. `my-device`).
         """
         return pulumi.get(self, "name")
 
@@ -343,7 +343,7 @@ class _IotDeviceState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the device
+        The current status of the device.
         """
         return pulumi.get(self, "status")
 
@@ -355,7 +355,7 @@ class _IotDeviceState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the device
+        The date and time the device resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -379,16 +379,23 @@ class IotDevice(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IotDevice resource with the given unique name, props, and options.
+        ## Import
+
+        IoT devices can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
-        :param pulumi.Input[bool] allow_multiple_connections: Allow multiple connections
-        :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: Certificate section of the device
-        :param pulumi.Input[str] description: The description of the device
-        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created
-        :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules to authorize or deny the device to publish/subscribe to specific topics
-        :param pulumi.Input[str] name: The name of the device
+        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+        :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+        :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: The certificate bundle of the device.
+        :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
+        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
+        :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules that define which messages are authorized or denied based on their topic.
+        :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         ...
@@ -398,7 +405,14 @@ class IotDevice(pulumi.CustomResource):
                  args: IotDeviceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IotDevice resource with the given unique name, props, and options.
+        ## Import
+
+        IoT devices can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param IotDeviceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -476,19 +490,19 @@ class IotDevice(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
-        :param pulumi.Input[bool] allow_multiple_connections: Allow multiple connections
-        :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: Certificate section of the device
-        :param pulumi.Input[str] created_at: The date and time of the creation of the device
-        :param pulumi.Input[str] description: The description of the device
-        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created
-        :param pulumi.Input[bool] is_connected: The MQTT connection status of the device
-        :param pulumi.Input[str] last_activity_at: The date and time of last MQTT activity of the device
-        :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules to authorize or deny the device to publish/subscribe to specific topics
-        :param pulumi.Input[str] name: The name of the device
+        :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+        :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+        :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: The certificate bundle of the device.
+        :param pulumi.Input[str] created_at: The date and time the device was created.
+        :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
+        :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
+        :param pulumi.Input[bool] is_connected: The current connection status of the device.
+        :param pulumi.Input[str] last_activity_at: The last MQTT activity of the device.
+        :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules that define which messages are authorized or denied based on their topic.
+        :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] status: The status of the device
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the device
+        :param pulumi.Input[str] status: The current status of the device.
+        :param pulumi.Input[str] updated_at: The date and time the device resource was updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -513,7 +527,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="allowInsecure")
     def allow_insecure(self) -> pulumi.Output[Optional[bool]]:
         """
-        Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+        Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         """
         return pulumi.get(self, "allow_insecure")
 
@@ -521,7 +535,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="allowMultipleConnections")
     def allow_multiple_connections(self) -> pulumi.Output[Optional[bool]]:
         """
-        Allow multiple connections
+        Allow more than one simultaneous connection using the same device credentials.
         """
         return pulumi.get(self, "allow_multiple_connections")
 
@@ -529,7 +543,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output['outputs.IotDeviceCertificate']:
         """
-        Certificate section of the device
+        The certificate bundle of the device.
         """
         return pulumi.get(self, "certificate")
 
@@ -537,7 +551,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the device
+        The date and time the device was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -545,7 +559,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the device
+        The description of the IoT device (e.g. `living room`).
         """
         return pulumi.get(self, "description")
 
@@ -553,7 +567,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="hubId")
     def hub_id(self) -> pulumi.Output[str]:
         """
-        The ID of the hub on which this device will be created
+        The ID of the hub on which this device will be created.
         """
         return pulumi.get(self, "hub_id")
 
@@ -561,7 +575,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="isConnected")
     def is_connected(self) -> pulumi.Output[bool]:
         """
-        The MQTT connection status of the device
+        The current connection status of the device.
         """
         return pulumi.get(self, "is_connected")
 
@@ -569,7 +583,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="lastActivityAt")
     def last_activity_at(self) -> pulumi.Output[str]:
         """
-        The date and time of last MQTT activity of the device
+        The last MQTT activity of the device.
         """
         return pulumi.get(self, "last_activity_at")
 
@@ -577,7 +591,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="messageFilters")
     def message_filters(self) -> pulumi.Output[Optional['outputs.IotDeviceMessageFilters']]:
         """
-        Rules to authorize or deny the device to publish/subscribe to specific topics
+        Rules that define which messages are authorized or denied based on their topic.
         """
         return pulumi.get(self, "message_filters")
 
@@ -585,7 +599,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the device
+        The name of the IoT device you want to create (e.g. `my-device`).
         """
         return pulumi.get(self, "name")
 
@@ -601,7 +615,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the device
+        The current status of the device.
         """
         return pulumi.get(self, "status")
 
@@ -609,7 +623,7 @@ class IotDevice(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the device
+        The date and time the device resource was updated.
         """
         return pulumi.get(self, "updated_at")
 

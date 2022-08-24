@@ -21,10 +21,13 @@ class GetContainerNamespaceResult:
     """
     A collection of values returned by getContainerNamespace.
     """
-    def __init__(__self__, description=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None):
+    def __init__(__self__, description=None, destroy_registry=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if destroy_registry and not isinstance(destroy_registry, bool):
+            raise TypeError("Expected argument 'destroy_registry' to be a bool")
+        pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables and not isinstance(environment_variables, dict):
             raise TypeError("Expected argument 'environment_variables' to be a dict")
         pulumi.set(__self__, "environment_variables", environment_variables)
@@ -56,11 +59,22 @@ class GetContainerNamespaceResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the namespace.
+        """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destroyRegistry")
+    def destroy_registry(self) -> bool:
+        return pulumi.get(self, "destroy_registry")
 
     @property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Mapping[str, str]:
+        """
+        The environment variables of the namespace.
+        """
         return pulumi.get(self, "environment_variables")
 
     @property
@@ -84,6 +98,9 @@ class GetContainerNamespaceResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The organization ID the namespace is associated with.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -99,11 +116,17 @@ class GetContainerNamespaceResult:
     @property
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> str:
+        """
+        The registry endpoint of the namespace.
+        """
         return pulumi.get(self, "registry_endpoint")
 
     @property
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> str:
+        """
+        The registry namespace ID of the namespace.
+        """
         return pulumi.get(self, "registry_namespace_id")
 
 
@@ -114,6 +137,7 @@ class AwaitableGetContainerNamespaceResult(GetContainerNamespaceResult):
             yield self
         return GetContainerNamespaceResult(
             description=self.description,
+            destroy_registry=self.destroy_registry,
             environment_variables=self.environment_variables,
             id=self.id,
             name=self.name,
@@ -130,7 +154,24 @@ def get_container_namespace(name: Optional[str] = None,
                             region: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerNamespaceResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a container namespace.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_container_namespace(name="my-namespace-name")
+    by_id = scaleway.get_container_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The namespace name.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace id.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -141,6 +182,7 @@ def get_container_namespace(name: Optional[str] = None,
 
     return AwaitableGetContainerNamespaceResult(
         description=__ret__.description,
+        destroy_registry=__ret__.destroy_registry,
         environment_variables=__ret__.environment_variables,
         id=__ret__.id,
         name=__ret__.name,
@@ -158,6 +200,23 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerNamespaceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a container namespace.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_container_namespace(name="my-namespace-name")
+    by_id = scaleway.get_container_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The namespace name.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace id.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str region: `region`) The region in which the namespace exists.
     """
     ...

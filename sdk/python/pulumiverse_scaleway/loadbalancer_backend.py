@@ -39,24 +39,28 @@ class LoadbalancerBackendArgs:
                  timeout_tunnel: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerBackend resource.
-        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers
-        :param pulumi.Input[str] forward_protocol: Backend protocol
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm
-        :param pulumi.Input[str] health_check_delay: Interval between two HC requests
-        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
-        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
-        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed
-        :param pulumi.Input[str] name: The name of the backend
-        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down
-        :param pulumi.Input[str] proxy_protocol: Type of PROXY protocol to enable
-        :param pulumi.Input[bool] send_proxy_v2: Enables PROXY protocol version 2
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
-        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
-        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
-        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time
+        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
+        :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
+               > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
+        :param pulumi.Input[str] health_check_delay: Interval between two HC requests.
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs'] health_check_http: This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs'] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
+        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] name: The name of the load-balancer backend.
+        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
+        :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         pulumi.set(__self__, "forward_port", forward_port)
         pulumi.set(__self__, "forward_protocol", forward_protocol)
@@ -105,7 +109,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="forwardPort")
     def forward_port(self) -> pulumi.Input[int]:
         """
-        User sessions will be forwarded to this port of backend servers
+        User sessions will be forwarded to this port of backend servers.
         """
         return pulumi.get(self, "forward_port")
 
@@ -117,7 +121,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="forwardProtocol")
     def forward_protocol(self) -> pulumi.Input[str]:
         """
-        Backend protocol
+        Backend protocol. Possible values are: `tcp` or `http`.
         """
         return pulumi.get(self, "forward_protocol")
 
@@ -129,7 +133,8 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Input[str]:
         """
-        The load-balancer ID
+        The load-balancer ID this backend is attached to.
+        > **Important:** Updates to `lb_id` will recreate the backend.
         """
         return pulumi.get(self, "lb_id")
 
@@ -141,7 +146,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="forwardPortAlgorithm")
     def forward_port_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Load balancing algorithm
+        Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         """
         return pulumi.get(self, "forward_port_algorithm")
 
@@ -153,7 +158,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="healthCheckDelay")
     def health_check_delay(self) -> Optional[pulumi.Input[str]]:
         """
-        Interval between two HC requests
+        Interval between two HC requests.
         """
         return pulumi.get(self, "health_check_delay")
 
@@ -164,6 +169,9 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs']]:
+        """
+        This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_http")
 
     @health_check_http.setter
@@ -173,6 +181,9 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs']]:
+        """
+        This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_https")
 
     @health_check_https.setter
@@ -183,7 +194,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="healthCheckMaxRetries")
     def health_check_max_retries(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of allowed failed HC requests before the backend server is marked down
+        Number of allowed failed HC requests before the backend server is marked down.
         """
         return pulumi.get(self, "health_check_max_retries")
 
@@ -195,7 +206,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="healthCheckPort")
     def health_check_port(self) -> Optional[pulumi.Input[int]]:
         """
-        Port the HC requests will be send to. Default to `forward_port`
+        Port the HC requests will be send to.
         """
         return pulumi.get(self, "health_check_port")
 
@@ -206,6 +217,9 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter(name="healthCheckTcp")
     def health_check_tcp(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs']]:
+        """
+        This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_tcp")
 
     @health_check_tcp.setter
@@ -216,7 +230,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="healthCheckTimeout")
     def health_check_timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        Timeout before we consider a HC request failed
+        Timeout before we consider a HC request failed.
         """
         return pulumi.get(self, "health_check_timeout")
 
@@ -228,7 +242,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the backend
+        The name of the load-balancer backend.
         """
         return pulumi.get(self, "name")
 
@@ -240,7 +254,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="onMarkedDownAction")
     def on_marked_down_action(self) -> Optional[pulumi.Input[str]]:
         """
-        Modify what occurs when a backend server is marked down
+        Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         """
         return pulumi.get(self, "on_marked_down_action")
 
@@ -252,7 +266,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of PROXY protocol to enable
+        Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         """
         return pulumi.get(self, "proxy_protocol")
 
@@ -264,7 +278,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="sendProxyV2")
     def send_proxy_v2(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enables PROXY protocol version 2
+        DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         """
         return pulumi.get(self, "send_proxy_v2")
 
@@ -276,7 +290,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="serverIps")
     def server_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Backend server IP addresses list (IPv4 or IPv6)
+        List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         """
         return pulumi.get(self, "server_ips")
 
@@ -288,7 +302,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="stickySessions")
     def sticky_sessions(self) -> Optional[pulumi.Input[str]]:
         """
-        Load balancing algorithm
+        Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         """
         return pulumi.get(self, "sticky_sessions")
 
@@ -300,7 +314,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cookie name for for sticky sessions
+        Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -312,7 +326,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="timeoutConnect")
     def timeout_connect(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum initial server connection establishment time
+        Maximum initial server connection establishment time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_connect")
 
@@ -324,7 +338,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="timeoutServer")
     def timeout_server(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum server connection inactivity time
+        Maximum server connection inactivity time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_server")
 
@@ -336,7 +350,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="timeoutTunnel")
     def timeout_tunnel(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum tunnel inactivity time
+        Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_tunnel")
 
@@ -371,24 +385,28 @@ class _LoadbalancerBackendState:
                  timeout_tunnel: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerBackend resources.
-        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers
-        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm
-        :param pulumi.Input[str] forward_protocol: Backend protocol
-        :param pulumi.Input[str] health_check_delay: Interval between two HC requests
-        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
-        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
-        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] name: The name of the backend
-        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down
-        :param pulumi.Input[str] proxy_protocol: Type of PROXY protocol to enable
-        :param pulumi.Input[bool] send_proxy_v2: Enables PROXY protocol version 2
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
-        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
-        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
-        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time
+        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
+        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
+        :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
+        :param pulumi.Input[str] health_check_delay: Interval between two HC requests.
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs'] health_check_http: This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs'] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
+        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
+               > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[str] name: The name of the load-balancer backend.
+        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
+        :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         if forward_port is not None:
             pulumi.set(__self__, "forward_port", forward_port)
@@ -440,7 +458,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="forwardPort")
     def forward_port(self) -> Optional[pulumi.Input[int]]:
         """
-        User sessions will be forwarded to this port of backend servers
+        User sessions will be forwarded to this port of backend servers.
         """
         return pulumi.get(self, "forward_port")
 
@@ -452,7 +470,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="forwardPortAlgorithm")
     def forward_port_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Load balancing algorithm
+        Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         """
         return pulumi.get(self, "forward_port_algorithm")
 
@@ -464,7 +482,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="forwardProtocol")
     def forward_protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Backend protocol
+        Backend protocol. Possible values are: `tcp` or `http`.
         """
         return pulumi.get(self, "forward_protocol")
 
@@ -476,7 +494,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="healthCheckDelay")
     def health_check_delay(self) -> Optional[pulumi.Input[str]]:
         """
-        Interval between two HC requests
+        Interval between two HC requests.
         """
         return pulumi.get(self, "health_check_delay")
 
@@ -487,6 +505,9 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs']]:
+        """
+        This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_http")
 
     @health_check_http.setter
@@ -496,6 +517,9 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs']]:
+        """
+        This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_https")
 
     @health_check_https.setter
@@ -506,7 +530,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="healthCheckMaxRetries")
     def health_check_max_retries(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of allowed failed HC requests before the backend server is marked down
+        Number of allowed failed HC requests before the backend server is marked down.
         """
         return pulumi.get(self, "health_check_max_retries")
 
@@ -518,7 +542,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="healthCheckPort")
     def health_check_port(self) -> Optional[pulumi.Input[int]]:
         """
-        Port the HC requests will be send to. Default to `forward_port`
+        Port the HC requests will be send to.
         """
         return pulumi.get(self, "health_check_port")
 
@@ -529,6 +553,9 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter(name="healthCheckTcp")
     def health_check_tcp(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs']]:
+        """
+        This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_tcp")
 
     @health_check_tcp.setter
@@ -539,7 +566,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="healthCheckTimeout")
     def health_check_timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        Timeout before we consider a HC request failed
+        Timeout before we consider a HC request failed.
         """
         return pulumi.get(self, "health_check_timeout")
 
@@ -551,7 +578,8 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balancer ID
+        The load-balancer ID this backend is attached to.
+        > **Important:** Updates to `lb_id` will recreate the backend.
         """
         return pulumi.get(self, "lb_id")
 
@@ -563,7 +591,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the backend
+        The name of the load-balancer backend.
         """
         return pulumi.get(self, "name")
 
@@ -575,7 +603,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="onMarkedDownAction")
     def on_marked_down_action(self) -> Optional[pulumi.Input[str]]:
         """
-        Modify what occurs when a backend server is marked down
+        Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         """
         return pulumi.get(self, "on_marked_down_action")
 
@@ -587,7 +615,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of PROXY protocol to enable
+        Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         """
         return pulumi.get(self, "proxy_protocol")
 
@@ -599,7 +627,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="sendProxyV2")
     def send_proxy_v2(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enables PROXY protocol version 2
+        DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         """
         return pulumi.get(self, "send_proxy_v2")
 
@@ -611,7 +639,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="serverIps")
     def server_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Backend server IP addresses list (IPv4 or IPv6)
+        List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         """
         return pulumi.get(self, "server_ips")
 
@@ -623,7 +651,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="stickySessions")
     def sticky_sessions(self) -> Optional[pulumi.Input[str]]:
         """
-        Load balancing algorithm
+        Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         """
         return pulumi.get(self, "sticky_sessions")
 
@@ -635,7 +663,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cookie name for for sticky sessions
+        Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -647,7 +675,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="timeoutConnect")
     def timeout_connect(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum initial server connection establishment time
+        Maximum initial server connection establishment time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_connect")
 
@@ -659,7 +687,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="timeoutServer")
     def timeout_server(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum server connection inactivity time
+        Maximum server connection inactivity time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_server")
 
@@ -671,7 +699,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="timeoutTunnel")
     def timeout_tunnel(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum tunnel inactivity time
+        Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_tunnel")
 
@@ -708,27 +736,70 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  timeout_tunnel: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LoadbalancerBackend resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancer Backends.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        backend01 = scaleway.LoadbalancerBackend("backend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            forward_protocol="http",
+            forward_port=80)
+        ```
+
+        ### With HTTP Health Check
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        backend01 = scaleway.LoadbalancerBackend("backend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            forward_protocol="http",
+            forward_port=80,
+            health_check_http=scaleway.LoadbalancerBackendHealthCheckHttpArgs(
+                uri="www.test.com/health",
+            ))
+        ```
+
+        ## Import
+
+        Load-Balancer backend can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers
-        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm
-        :param pulumi.Input[str] forward_protocol: Backend protocol
-        :param pulumi.Input[str] health_check_delay: Interval between two HC requests
-        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
-        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
-        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] name: The name of the backend
-        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down
-        :param pulumi.Input[str] proxy_protocol: Type of PROXY protocol to enable
-        :param pulumi.Input[bool] send_proxy_v2: Enables PROXY protocol version 2
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
-        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
-        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
-        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time
+        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
+        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
+        :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
+        :param pulumi.Input[str] health_check_delay: Interval between two HC requests.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpArgs']] health_check_http: This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpsArgs']] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
+        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
+               > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[str] name: The name of the load-balancer backend.
+        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
+        :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         ...
     @overload
@@ -737,7 +808,46 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  args: LoadbalancerBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LoadbalancerBackend resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancer Backends.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        backend01 = scaleway.LoadbalancerBackend("backend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            forward_protocol="http",
+            forward_port=80)
+        ```
+
+        ### With HTTP Health Check
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        backend01 = scaleway.LoadbalancerBackend("backend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            forward_protocol="http",
+            forward_port=80,
+            health_check_http=scaleway.LoadbalancerBackendHealthCheckHttpArgs(
+                uri="www.test.com/health",
+            ))
+        ```
+
+        ## Import
+
+        Load-Balancer backend can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerBackendArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -851,24 +961,28 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers
-        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm
-        :param pulumi.Input[str] forward_protocol: Backend protocol
-        :param pulumi.Input[str] health_check_delay: Interval between two HC requests
-        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
-        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
-        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] name: The name of the backend
-        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down
-        :param pulumi.Input[str] proxy_protocol: Type of PROXY protocol to enable
-        :param pulumi.Input[bool] send_proxy_v2: Enables PROXY protocol version 2
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
-        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
-        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
-        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time
+        :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
+        :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
+        :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
+        :param pulumi.Input[str] health_check_delay: Interval between two HC requests.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpArgs']] health_check_http: This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpsArgs']] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
+        :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
+               > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[str] name: The name of the load-balancer backend.
+        :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
+        :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -901,7 +1015,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="forwardPort")
     def forward_port(self) -> pulumi.Output[int]:
         """
-        User sessions will be forwarded to this port of backend servers
+        User sessions will be forwarded to this port of backend servers.
         """
         return pulumi.get(self, "forward_port")
 
@@ -909,7 +1023,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="forwardPortAlgorithm")
     def forward_port_algorithm(self) -> pulumi.Output[Optional[str]]:
         """
-        Load balancing algorithm
+        Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         """
         return pulumi.get(self, "forward_port_algorithm")
 
@@ -917,7 +1031,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="forwardProtocol")
     def forward_protocol(self) -> pulumi.Output[str]:
         """
-        Backend protocol
+        Backend protocol. Possible values are: `tcp` or `http`.
         """
         return pulumi.get(self, "forward_protocol")
 
@@ -925,25 +1039,31 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="healthCheckDelay")
     def health_check_delay(self) -> pulumi.Output[Optional[str]]:
         """
-        Interval between two HC requests
+        Interval between two HC requests.
         """
         return pulumi.get(self, "health_check_delay")
 
     @property
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> pulumi.Output[Optional['outputs.LoadbalancerBackendHealthCheckHttp']]:
+        """
+        This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_http")
 
     @property
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> pulumi.Output[Optional['outputs.LoadbalancerBackendHealthCheckHttps']]:
+        """
+        This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_https")
 
     @property
     @pulumi.getter(name="healthCheckMaxRetries")
     def health_check_max_retries(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of allowed failed HC requests before the backend server is marked down
+        Number of allowed failed HC requests before the backend server is marked down.
         """
         return pulumi.get(self, "health_check_max_retries")
 
@@ -951,20 +1071,23 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="healthCheckPort")
     def health_check_port(self) -> pulumi.Output[int]:
         """
-        Port the HC requests will be send to. Default to `forward_port`
+        Port the HC requests will be send to.
         """
         return pulumi.get(self, "health_check_port")
 
     @property
     @pulumi.getter(name="healthCheckTcp")
     def health_check_tcp(self) -> pulumi.Output['outputs.LoadbalancerBackendHealthCheckTcp']:
+        """
+        This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
+        """
         return pulumi.get(self, "health_check_tcp")
 
     @property
     @pulumi.getter(name="healthCheckTimeout")
     def health_check_timeout(self) -> pulumi.Output[Optional[str]]:
         """
-        Timeout before we consider a HC request failed
+        Timeout before we consider a HC request failed.
         """
         return pulumi.get(self, "health_check_timeout")
 
@@ -972,7 +1095,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Output[str]:
         """
-        The load-balancer ID
+        The load-balancer ID this backend is attached to.
+        > **Important:** Updates to `lb_id` will recreate the backend.
         """
         return pulumi.get(self, "lb_id")
 
@@ -980,7 +1104,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the backend
+        The name of the load-balancer backend.
         """
         return pulumi.get(self, "name")
 
@@ -988,7 +1112,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="onMarkedDownAction")
     def on_marked_down_action(self) -> pulumi.Output[Optional[str]]:
         """
-        Modify what occurs when a backend server is marked down
+        Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         """
         return pulumi.get(self, "on_marked_down_action")
 
@@ -996,7 +1120,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> pulumi.Output[Optional[str]]:
         """
-        Type of PROXY protocol to enable
+        Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         """
         return pulumi.get(self, "proxy_protocol")
 
@@ -1004,7 +1128,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="sendProxyV2")
     def send_proxy_v2(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enables PROXY protocol version 2
+        DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         """
         return pulumi.get(self, "send_proxy_v2")
 
@@ -1012,7 +1136,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="serverIps")
     def server_ips(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Backend server IP addresses list (IPv4 or IPv6)
+        List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         """
         return pulumi.get(self, "server_ips")
 
@@ -1020,7 +1144,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="stickySessions")
     def sticky_sessions(self) -> pulumi.Output[Optional[str]]:
         """
-        Load balancing algorithm
+        Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         """
         return pulumi.get(self, "sticky_sessions")
 
@@ -1028,7 +1152,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Cookie name for for sticky sessions
+        Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -1036,7 +1160,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="timeoutConnect")
     def timeout_connect(self) -> pulumi.Output[Optional[str]]:
         """
-        Maximum initial server connection establishment time
+        Maximum initial server connection establishment time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_connect")
 
@@ -1044,7 +1168,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="timeoutServer")
     def timeout_server(self) -> pulumi.Output[Optional[str]]:
         """
-        Maximum server connection inactivity time
+        Maximum server connection inactivity time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_server")
 
@@ -1052,7 +1176,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="timeoutTunnel")
     def timeout_tunnel(self) -> pulumi.Output[Optional[str]]:
         """
-        Maximum tunnel inactivity time
+        Maximum tunnel inactivity time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_tunnel")
 

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class ObjectBucketVersioningGetArgs : Pulumi.ResourceArgs
+    public sealed class ObjectBucketVersioningGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -19,5 +19,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public ObjectBucketVersioningGetArgs()
         {
         }
+        public static new ObjectBucketVersioningGetArgs Empty => new ObjectBucketVersioningGetArgs();
     }
 }

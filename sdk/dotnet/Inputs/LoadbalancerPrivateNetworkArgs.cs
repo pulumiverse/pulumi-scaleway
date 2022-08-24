@@ -11,16 +11,26 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class LoadbalancerPrivateNetworkArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+        /// </summary>
         [Input("dhcpConfig")]
         public Input<bool>? DhcpConfig { get; set; }
 
+        /// <summary>
+        /// (Required) The ID of the Private Network to associate.
+        /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         [Input("staticConfigs")]
         private InputList<string>? _staticConfigs;
+
+        /// <summary>
+        /// (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        /// </summary>
         public InputList<string> StaticConfigs
         {
             get => _staticConfigs ?? (_staticConfigs = new InputList<string>());
@@ -30,11 +40,15 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the IP should be reserved.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
         public LoadbalancerPrivateNetworkArgs()
         {
         }
+        public static new LoadbalancerPrivateNetworkArgs Empty => new LoadbalancerPrivateNetworkArgs();
     }
 }

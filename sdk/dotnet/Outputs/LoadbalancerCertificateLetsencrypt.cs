@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class LoadbalancerCertificateLetsencrypt
     {
+        /// <summary>
+        /// Main domain of the certificate. A new certificate will be created if this field is changed.
+        /// </summary>
         public readonly string CommonName;
+        /// <summary>
+        /// Array of alternative domain names.  A new certificate will be created if this field is changed.
+        /// </summary>
         public readonly ImmutableArray<string> SubjectAlternativeNames;
 
         [OutputConstructor]

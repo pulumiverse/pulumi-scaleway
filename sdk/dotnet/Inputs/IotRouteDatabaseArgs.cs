@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class IotRouteDatabaseArgs : Pulumi.ResourceArgs
+    public sealed class IotRouteDatabaseArgs : global::Pulumi.ResourceArgs
     {
         [Input("dbname", required: true)]
         public Input<string> Dbname { get; set; } = null!;
@@ -34,5 +34,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public IotRouteDatabaseArgs()
         {
         }
+        public static new IotRouteDatabaseArgs Empty => new IotRouteDatabaseArgs();
     }
 }

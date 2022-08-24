@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a domain zone.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get zone
+ * const main = pulumi.output(scaleway.getDomainZone({
+ *     domain: "scaleway-terraform.com",
+ *     subdomain: "test",
+ * }));
+ * ```
+ */
 export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainZoneResult> {
     args = args || {};
     if (!opts) {
@@ -21,7 +37,13 @@ export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getDomainZone.
  */
 export interface GetDomainZoneArgs {
+    /**
+     * The domain where the DNS zone will be created.
+     */
     domain?: string;
+    /**
+     * The subdomain(zone name) to create in the domain.
+     */
     subdomain?: string;
 }
 
@@ -34,13 +56,31 @@ export interface GetDomainZoneResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Message
+     */
     readonly message: string;
+    /**
+     * NameServer list for zone.
+     */
     readonly ns: string[];
+    /**
+     * NameServer default list for zone.
+     */
     readonly nsDefaults: string[];
+    /**
+     * NameServer master list for zone.
+     */
     readonly nsMasters: string[];
     readonly projectId: string;
+    /**
+     * The domain zone status.
+     */
     readonly status: string;
     readonly subdomain?: string;
+    /**
+     * The date and time of the last update of the DNS zone.
+     */
     readonly updatedAt: string;
 }
 
@@ -52,6 +92,12 @@ export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulum
  * A collection of arguments for invoking getDomainZone.
  */
 export interface GetDomainZoneOutputArgs {
+    /**
+     * The domain where the DNS zone will be created.
+     */
     domain?: pulumi.Input<string>;
+    /**
+     * The subdomain(zone name) to create in the domain.
+     */
     subdomain?: pulumi.Input<string>;
 }

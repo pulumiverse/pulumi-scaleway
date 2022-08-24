@@ -11,16 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class DatabaseAclAclRuleGetArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseAclAclRuleGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A text describing this rule. Default description: `IP allowed`
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
         public DatabaseAclAclRuleGetArgs()
         {
         }
+        public static new DatabaseAclAclRuleGetArgs Empty => new DatabaseAclAclRuleGetArgs();
     }
 }

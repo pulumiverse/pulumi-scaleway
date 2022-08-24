@@ -11,16 +11,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Create and manage Scaleway RDB database privilege.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainDatabaseUser, err := scaleway.NewDatabaseUser(ctx, "mainDatabaseUser", &scaleway.DatabaseUserArgs{
+//				InstanceId: pulumi.Any(scaleway_rdb_instance.Pgsql.Id),
+//				Password:   pulumi.String("thiZ_is_v&ry_s3cret"),
+//				IsAdmin:    pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainDatabase, err := scaleway.NewDatabase(ctx, "mainDatabase", &scaleway.DatabaseArgs{
+//				InstanceId: pulumi.Any(scaleway_rdb_instance.Pgsql.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDatabasePrivilege(ctx, "priv", &scaleway.DatabasePrivilegeArgs{
+//				InstanceId:   pulumi.Any(scaleway_rdb_instance.Rdb.Id),
+//				UserName:     pulumi.String("my-db-user"),
+//				DatabaseName: pulumi.String("my-db-name"),
+//				Permission:   pulumi.String("all"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				mainDatabaseUser,
+//				mainDatabase,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type DatabasePrivilege struct {
 	pulumi.CustomResourceState
 
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringOutput `pulumi:"permission"`
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
 
@@ -66,24 +114,24 @@ func GetDatabasePrivilege(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabasePrivilege resources.
 type databasePrivilegeState struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName *string `pulumi:"databaseName"`
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId *string `pulumi:"instanceId"`
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission *string `pulumi:"permission"`
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName *string `pulumi:"userName"`
 }
 
 type DatabasePrivilegeState struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringPtrInput
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId pulumi.StringPtrInput
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringPtrInput
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringPtrInput
 }
 
@@ -92,25 +140,25 @@ func (DatabasePrivilegeState) ElementType() reflect.Type {
 }
 
 type databasePrivilegeArgs struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName string `pulumi:"databaseName"`
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId string `pulumi:"instanceId"`
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission string `pulumi:"permission"`
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName string `pulumi:"userName"`
 }
 
 // The set of arguments for constructing a DatabasePrivilege resource.
 type DatabasePrivilegeArgs struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringInput
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId pulumi.StringInput
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringInput
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringInput
 }
 
@@ -201,22 +249,22 @@ func (o DatabasePrivilegeOutput) ToDatabasePrivilegeOutputWithContext(ctx contex
 	return o
 }
 
-// Database name
+// Name of the database (e.g. `my-db-name`).
 func (o DatabasePrivilegeOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
-// Instance on which the database is created
+// UUID of the instance where to create the database.
 func (o DatabasePrivilegeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Privilege
+// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 func (o DatabasePrivilegeOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
 }
 
-// User name
+// Name of the user (e.g. `my-db-user`).
 func (o DatabasePrivilegeOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }

@@ -21,10 +21,19 @@ class GetVpcPublicGatewayResult:
     """
     A collection of values returned by getVpcPublicGateway.
     """
-    def __init__(__self__, created_at=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
+    def __init__(__self__, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
+        if bastion_enabled and not isinstance(bastion_enabled, bool):
+            raise TypeError("Expected argument 'bastion_enabled' to be a bool")
+        pulumi.set(__self__, "bastion_enabled", bastion_enabled)
+        if bastion_port and not isinstance(bastion_port, int):
+            raise TypeError("Expected argument 'bastion_port' to be a int")
+        pulumi.set(__self__, "bastion_port", bastion_port)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if enable_smtp and not isinstance(enable_smtp, bool):
+            raise TypeError("Expected argument 'enable_smtp' to be a bool")
+        pulumi.set(__self__, "enable_smtp", enable_smtp)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -60,9 +69,24 @@ class GetVpcPublicGatewayResult:
         pulumi.set(__self__, "zone", zone)
 
     @property
+    @pulumi.getter(name="bastionEnabled")
+    def bastion_enabled(self) -> bool:
+        return pulumi.get(self, "bastion_enabled")
+
+    @property
+    @pulumi.getter(name="bastionPort")
+    def bastion_port(self) -> int:
+        return pulumi.get(self, "bastion_port")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableSmtp")
+    def enable_smtp(self) -> bool:
+        return pulumi.get(self, "enable_smtp")
 
     @property
     @pulumi.getter
@@ -129,7 +153,10 @@ class AwaitableGetVpcPublicGatewayResult(GetVpcPublicGatewayResult):
         if False:
             yield self
         return GetVpcPublicGatewayResult(
+            bastion_enabled=self.bastion_enabled,
+            bastion_port=self.bastion_port,
             created_at=self.created_at,
+            enable_smtp=self.enable_smtp,
             id=self.id,
             ip_id=self.ip_id,
             name=self.name,
@@ -147,7 +174,22 @@ def get_vpc_public_gateway(name: Optional[str] = None,
                            public_gateway_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
+    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
+    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
+    ```
+
+
+    :param str name: Exact name of the public gateway.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -156,7 +198,10 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGateway:getVpcPublicGateway', __args__, opts=opts, typ=GetVpcPublicGatewayResult).value
 
     return AwaitableGetVpcPublicGatewayResult(
+        bastion_enabled=__ret__.bastion_enabled,
+        bastion_port=__ret__.bastion_port,
         created_at=__ret__.created_at,
+        enable_smtp=__ret__.enable_smtp,
         id=__ret__.id,
         ip_id=__ret__.ip_id,
         name=__ret__.name,
@@ -175,6 +220,21 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
+    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
+    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
+    ```
+
+
+    :param str name: Exact name of the public gateway.
     """
     ...

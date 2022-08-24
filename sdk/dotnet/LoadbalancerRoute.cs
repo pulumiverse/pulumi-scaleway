@@ -10,11 +10,68 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+    /// It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+    /// 
+    ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+    ///     {
+    ///         IpId = ip01.Id,
+    ///         Type = "lb-s",
+    ///     });
+    /// 
+    ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+    ///     {
+    ///         LbId = lb01.Id,
+    ///         ForwardProtocol = "tcp",
+    ///         ForwardPort = 80,
+    ///         ProxyProtocol = "none",
+    ///     });
+    /// 
+    ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+    ///     {
+    ///         LbId = lb01.Id,
+    ///         BackendId = bkd01.Id,
+    ///         InboundPort = 80,
+    ///     });
+    /// 
+    ///     var rt01 = new Scaleway.LoadbalancerRoute("rt01", new()
+    ///     {
+    ///         FrontendId = frt01.Id,
+    ///         BackendId = bkd01.Id,
+    ///         MatchSni = "scaleway.com",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/loadbalancerRoute:LoadbalancerRoute")]
-    public partial class LoadbalancerRoute : Pulumi.CustomResource
+    public partial class LoadbalancerRoute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The backend ID destination of redirection
+        /// The ID of the backend to which the route is associated.
+        /// - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
@@ -26,7 +83,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> FrontendId { get; private set; } = null!;
 
         /// <summary>
-        /// The domain to match against
+        /// The SNI to match.
         /// </summary>
         [Output("matchSni")]
         public Output<string?> MatchSni { get; private set; } = null!;
@@ -76,10 +133,11 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class LoadbalancerRouteArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend ID destination of redirection
+        /// The ID of the backend to which the route is associated.
+        /// - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
@@ -91,7 +149,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> FrontendId { get; set; } = null!;
 
         /// <summary>
-        /// The domain to match against
+        /// The SNI to match.
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
@@ -99,12 +157,14 @@ namespace Pulumiverse.Scaleway
         public LoadbalancerRouteArgs()
         {
         }
+        public static new LoadbalancerRouteArgs Empty => new LoadbalancerRouteArgs();
     }
 
-    public sealed class LoadbalancerRouteState : Pulumi.ResourceArgs
+    public sealed class LoadbalancerRouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend ID destination of redirection
+        /// The ID of the backend to which the route is associated.
+        /// - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
@@ -116,7 +176,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? FrontendId { get; set; }
 
         /// <summary>
-        /// The domain to match against
+        /// The SNI to match.
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
@@ -124,5 +184,6 @@ namespace Pulumiverse.Scaleway
         public LoadbalancerRouteState()
         {
         }
+        public static new LoadbalancerRouteState Empty => new LoadbalancerRouteState();
     }
 }

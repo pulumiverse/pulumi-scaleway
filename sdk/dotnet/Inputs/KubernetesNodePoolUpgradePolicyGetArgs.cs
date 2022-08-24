@@ -11,16 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class KubernetesNodePoolUpgradePolicyGetArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesNodePoolUpgradePolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The maximum number of nodes to be created during the upgrade
+        /// </summary>
         [Input("maxSurge")]
         public Input<int>? MaxSurge { get; set; }
 
+        /// <summary>
+        /// The maximum number of nodes that can be not ready at the same time
+        /// </summary>
         [Input("maxUnavailable")]
         public Input<int>? MaxUnavailable { get; set; }
 
         public KubernetesNodePoolUpgradePolicyGetArgs()
         {
         }
+        public static new KubernetesNodePoolUpgradePolicyGetArgs Empty => new KubernetesNodePoolUpgradePolicyGetArgs();
     }
 }

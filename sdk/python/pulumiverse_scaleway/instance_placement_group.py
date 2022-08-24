@@ -22,12 +22,12 @@ class InstancePlacementGroupArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstancePlacementGroup resource.
-        :param pulumi.Input[str] name: The name of the placement group
-        :param pulumi.Input[str] policy_mode: One of the two policy_mode may be selected: enforced or optional.
-        :param pulumi.Input[str] policy_type: The operating mode is selected by a policy_type
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the placement group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] name: The name of the placement group.
+        :param pulumi.Input[str] policy_mode: The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+        :param pulumi.Input[str] policy_type: The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the placement group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the placement group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the placement group should be created.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -46,7 +46,7 @@ class InstancePlacementGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the placement group
+        The name of the placement group.
         """
         return pulumi.get(self, "name")
 
@@ -58,7 +58,7 @@ class InstancePlacementGroupArgs:
     @pulumi.getter(name="policyMode")
     def policy_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        One of the two policy_mode may be selected: enforced or optional.
+        The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
         """
         return pulumi.get(self, "policy_mode")
 
@@ -70,7 +70,7 @@ class InstancePlacementGroupArgs:
     @pulumi.getter(name="policyType")
     def policy_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The operating mode is selected by a policy_type
+        The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
         """
         return pulumi.get(self, "policy_type")
 
@@ -82,7 +82,7 @@ class InstancePlacementGroupArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the placement group is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -94,7 +94,7 @@ class InstancePlacementGroupArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the placement group
+        A list of tags to apply to the placement group.
         """
         return pulumi.get(self, "tags")
 
@@ -106,7 +106,7 @@ class InstancePlacementGroupArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the placement group should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -128,14 +128,14 @@ class _InstancePlacementGroupState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstancePlacementGroup resources.
-        :param pulumi.Input[str] name: The name of the placement group
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] policy_mode: One of the two policy_mode may be selected: enforced or optional.
+        :param pulumi.Input[str] name: The name of the placement group.
+        :param pulumi.Input[str] organization_id: The organization ID the placement group is associated with.
+        :param pulumi.Input[str] policy_mode: The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
         :param pulumi.Input[bool] policy_respected: Is true when the policy is respected.
-        :param pulumi.Input[str] policy_type: The operating mode is selected by a policy_type
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the placement group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] policy_type: The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the placement group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the placement group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the placement group should be created.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -158,7 +158,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the placement group
+        The name of the placement group.
         """
         return pulumi.get(self, "name")
 
@@ -170,7 +170,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the placement group is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -182,7 +182,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter(name="policyMode")
     def policy_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        One of the two policy_mode may be selected: enforced or optional.
+        The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
         """
         return pulumi.get(self, "policy_mode")
 
@@ -206,7 +206,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter(name="policyType")
     def policy_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The operating mode is selected by a policy_type
+        The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
         """
         return pulumi.get(self, "policy_type")
 
@@ -218,7 +218,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the placement group is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -230,7 +230,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the placement group
+        A list of tags to apply to the placement group.
         """
         return pulumi.get(self, "tags")
 
@@ -242,7 +242,7 @@ class _InstancePlacementGroupState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the placement group should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -264,15 +264,33 @@ class InstancePlacementGroup(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InstancePlacementGroup resource with the given unique name, props, and options.
+        Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        availability_group = scaleway.InstancePlacementGroup("availabilityGroup")
+        ```
+
+        ## Import
+
+        Placement groups can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the placement group
-        :param pulumi.Input[str] policy_mode: One of the two policy_mode may be selected: enforced or optional.
-        :param pulumi.Input[str] policy_type: The operating mode is selected by a policy_type
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the placement group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] name: The name of the placement group.
+        :param pulumi.Input[str] policy_mode: The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+        :param pulumi.Input[str] policy_type: The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the placement group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the placement group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the placement group should be created.
         """
         ...
     @overload
@@ -281,7 +299,25 @@ class InstancePlacementGroup(pulumi.CustomResource):
                  args: Optional[InstancePlacementGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InstancePlacementGroup resource with the given unique name, props, and options.
+        Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        availability_group = scaleway.InstancePlacementGroup("availabilityGroup")
+        ```
+
+        ## Import
+
+        Placement groups can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param InstancePlacementGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,14 +381,14 @@ class InstancePlacementGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the placement group
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] policy_mode: One of the two policy_mode may be selected: enforced or optional.
+        :param pulumi.Input[str] name: The name of the placement group.
+        :param pulumi.Input[str] organization_id: The organization ID the placement group is associated with.
+        :param pulumi.Input[str] policy_mode: The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
         :param pulumi.Input[bool] policy_respected: Is true when the policy is respected.
-        :param pulumi.Input[str] policy_type: The operating mode is selected by a policy_type
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the placement group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] policy_type: The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the placement group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the placement group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the placement group should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -372,7 +408,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the placement group
+        The name of the placement group.
         """
         return pulumi.get(self, "name")
 
@@ -380,7 +416,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the placement group is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -388,7 +424,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter(name="policyMode")
     def policy_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        One of the two policy_mode may be selected: enforced or optional.
+        The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
         """
         return pulumi.get(self, "policy_mode")
 
@@ -404,7 +440,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter(name="policyType")
     def policy_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The operating mode is selected by a policy_type
+        The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
         """
         return pulumi.get(self, "policy_type")
 
@@ -412,7 +448,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the placement group is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -420,7 +456,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the placement group
+        A list of tags to apply to the placement group.
         """
         return pulumi.get(self, "tags")
 
@@ -428,7 +464,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the placement group should be created.
         """
         return pulumi.get(self, "zone")
 

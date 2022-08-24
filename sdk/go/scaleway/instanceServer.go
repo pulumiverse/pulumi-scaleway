@@ -11,60 +11,344 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
+//
+// Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			publicIp, err := scaleway.NewInstanceIp(ctx, "publicIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//				Type:  pulumi.String("DEV1-S"),
+//				Image: pulumi.String("ubuntu_focal"),
+//				IpId:  publicIp.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With additional volumes and tags
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			data, err := scaleway.NewInstanceVolume(ctx, "data", &scaleway.InstanceVolumeArgs{
+//				SizeInGb: pulumi.Int(100),
+//				Type:     pulumi.String("b_ssd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//				Type:  pulumi.String("DEV1-S"),
+//				Image: pulumi.String("ubuntu_focal"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("hello"),
+//					pulumi.String("public"),
+//				},
+//				RootVolume: &InstanceServerRootVolumeArgs{
+//					DeleteOnTermination: pulumi.Bool(false),
+//				},
+//				AdditionalVolumeIds: pulumi.StringArray{
+//					data.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With a reserved IP
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ip, err := scaleway.NewInstanceIp(ctx, "ip", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//				Type:  pulumi.String("DEV1-S"),
+//				Image: pulumi.String("f974feac-abae-4365-b988-8ec7d1cec10d"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("hello"),
+//					pulumi.String("public"),
+//				},
+//				IpId: ip.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With security group
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			www, err := scaleway.NewInstanceSecurityGroup(ctx, "www", &scaleway.InstanceSecurityGroupArgs{
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("accept"),
+//				InboundRules: InstanceSecurityGroupInboundRuleArray{
+//					&InstanceSecurityGroupInboundRuleArgs{
+//						Action: pulumi.String("accept"),
+//						Port:   pulumi.Int(22),
+//						Ip:     pulumi.String("212.47.225.64"),
+//					},
+//					&InstanceSecurityGroupInboundRuleArgs{
+//						Action: pulumi.String("accept"),
+//						Port:   pulumi.Int(80),
+//					},
+//					&InstanceSecurityGroupInboundRuleArgs{
+//						Action: pulumi.String("accept"),
+//						Port:   pulumi.Int(443),
+//					},
+//				},
+//				OutboundRules: InstanceSecurityGroupOutboundRuleArray{
+//					&InstanceSecurityGroupOutboundRuleArgs{
+//						Action:  pulumi.String("drop"),
+//						IpRange: pulumi.String("10.20.0.0/24"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//				Type:            pulumi.String("DEV1-S"),
+//				Image:           pulumi.String("ubuntu_focal"),
+//				SecurityGroupId: www.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With user data and cloud-init
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//				Type:  pulumi.String("DEV1-S"),
+//				Image: pulumi.String("ubuntu_focal"),
+//				UserData: pulumi.StringMap{
+//					"foo":        pulumi.String("bar"),
+//					"cloud-init": readFileOrPanic(fmt.Sprintf("%v/cloud-init.yml", path.Module)),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With private network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
+//				Image: pulumi.String("ubuntu_focal"),
+//				Type:  pulumi.String("DEV1-S"),
+//				PrivateNetworks: InstanceServerPrivateNetworkArray{
+//					&InstanceServerPrivateNetworkArgs{
+//						PnId: pn01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Private Network
+//
+// > **Important:** Updates to `privateNetwork` will recreate a new private network interface.
+//
+// - `pnId` - (Required) The private network ID where to connect.
+// - `macAddress` The private NIC MAC address.
+// - `status` The private NIC state.
+// - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+//
+// > **Important:**
+//
+// - You can only attach an instance in the same zone as a private network.
+// - Instance supports maximum 8 different private networks.
+//
+// ## Import
+//
+// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type InstanceServer struct {
 	pulumi.CustomResourceState
 
-	// The additional volumes attached to the server
+	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	AdditionalVolumeIds pulumi.StringArrayOutput `pulumi:"additionalVolumeIds"`
-	// The boot type of the server
+	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrOutput `pulumi:"bootType"`
-	// ID of the target bootscript (set boot_type to bootscript)
+	// The ID of the bootscript to use  (set bootType to `bootscript`).
 	BootscriptId pulumi.StringOutput `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
 	CloudInit pulumi.StringPtrOutput `pulumi:"cloudInit"`
-	// Enable dynamic IP on the server
+	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrOutput `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server
+	// Determines if IPv6 is enabled for the server.
 	EnableIpv6 pulumi.BoolPtrOutput `pulumi:"enableIpv6"`
-	// The UUID or the label of the base image used by the server
-	Image pulumi.StringOutput `pulumi:"image"`
-	// The ID of the reserved IP for the server
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	Image pulumi.StringPtrOutput `pulumi:"image"`
+	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
-	// The default public IPv6 address routed to the server.
+	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
-	// The IPv6 gateway address
+	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
 	Ipv6Gateway pulumi.StringOutput `pulumi:"ipv6Gateway"`
-	// The IPv6 prefix length routed to the server.
+	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6PrefixLength pulumi.IntOutput `pulumi:"ipv6PrefixLength"`
-	// The name of the server
+	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The placement group the server is attached to
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
-	// True when the placement group policy is respected
+	// True when the placement group policy is respected.
+	// - `rootVolume`
 	PlacementGroupPolicyRespected pulumi.BoolOutput `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server
+	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
-	// List of private network to connect with your instance
+	// The private network associated with the server.
+	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The public IPv4 address of the server
+	// The public IPv4 address of the server.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
-	// Root volume attached to the server on creation
+	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumeOutput `pulumi:"rootVolume"`
-	// The security group the server is attached to
+	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
-	// The state of the server should be: started, stopped, standby
+	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrOutput `pulumi:"state"`
-	// The tags associated with the server
+	// The tags associated with the server.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The instance type of the server
+	// The commercial type of the server.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+	// Updates to this field will recreate a new resource.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The user data associated with the server
 	UserData pulumi.StringMapOutput `pulumi:"userData"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -75,9 +359,6 @@ func NewInstanceServer(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Image == nil {
-		return nil, errors.New("invalid value for required argument 'Image'")
-	}
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
@@ -104,112 +385,124 @@ func GetInstanceServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceServer resources.
 type instanceServerState struct {
-	// The additional volumes attached to the server
+	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
-	// The boot type of the server
+	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
-	// ID of the target bootscript (set boot_type to bootscript)
+	// The ID of the bootscript to use  (set bootType to `bootscript`).
 	BootscriptId *string `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
 	CloudInit *string `pulumi:"cloudInit"`
-	// Enable dynamic IP on the server
+	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server
+	// Determines if IPv6 is enabled for the server.
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
-	// The UUID or the label of the base image used by the server
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	Image *string `pulumi:"image"`
-	// The ID of the reserved IP for the server
+	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
-	// The default public IPv6 address routed to the server.
+	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address *string `pulumi:"ipv6Address"`
-	// The IPv6 gateway address
+	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
 	Ipv6Gateway *string `pulumi:"ipv6Gateway"`
-	// The IPv6 prefix length routed to the server.
+	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6PrefixLength *int `pulumi:"ipv6PrefixLength"`
-	// The name of the server
+	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The placement group the server is attached to
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
-	// True when the placement group policy is respected
+	// True when the placement group policy is respected.
+	// - `rootVolume`
 	PlacementGroupPolicyRespected *bool `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server
+	// The Scaleway internal IP address of the server.
 	PrivateIp *string `pulumi:"privateIp"`
-	// List of private network to connect with your instance
+	// The private network associated with the server.
+	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The public IPv4 address of the server
+	// The public IPv4 address of the server.
 	PublicIp *string `pulumi:"publicIp"`
-	// Root volume attached to the server on creation
+	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
-	// The security group the server is attached to
+	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
-	// The state of the server should be: started, stopped, standby
+	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
-	// The tags associated with the server
+	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
-	// The instance type of the server
+	// The commercial type of the server.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+	// Updates to this field will recreate a new resource.
 	Type *string `pulumi:"type"`
 	// The user data associated with the server
 	UserData map[string]string `pulumi:"userData"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceServerState struct {
-	// The additional volumes attached to the server
+	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	AdditionalVolumeIds pulumi.StringArrayInput
-	// The boot type of the server
+	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
-	// ID of the target bootscript (set boot_type to bootscript)
+	// The ID of the bootscript to use  (set bootType to `bootscript`).
 	BootscriptId pulumi.StringPtrInput
 	// The cloud init script associated with this server
 	CloudInit pulumi.StringPtrInput
-	// Enable dynamic IP on the server
+	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
-	// Determines if IPv6 is enabled for the server
+	// Determines if IPv6 is enabled for the server.
 	EnableIpv6 pulumi.BoolPtrInput
-	// The UUID or the label of the base image used by the server
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	Image pulumi.StringPtrInput
-	// The ID of the reserved IP for the server
+	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
-	// The default public IPv6 address routed to the server.
+	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address pulumi.StringPtrInput
-	// The IPv6 gateway address
+	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
 	Ipv6Gateway pulumi.StringPtrInput
-	// The IPv6 prefix length routed to the server.
+	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6PrefixLength pulumi.IntPtrInput
-	// The name of the server
+	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The placement group the server is attached to
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId pulumi.StringPtrInput
-	// True when the placement group policy is respected
+	// True when the placement group policy is respected.
+	// - `rootVolume`
 	PlacementGroupPolicyRespected pulumi.BoolPtrInput
-	// The Scaleway internal IP address of the server
+	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringPtrInput
-	// List of private network to connect with your instance
+	// The private network associated with the server.
+	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The public IPv4 address of the server
+	// The public IPv4 address of the server.
 	PublicIp pulumi.StringPtrInput
-	// Root volume attached to the server on creation
+	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
-	// The security group the server is attached to
+	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
-	// The state of the server should be: started, stopped, standby
+	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
-	// The tags associated with the server
+	// The tags associated with the server.
 	Tags pulumi.StringArrayInput
-	// The instance type of the server
+	// The commercial type of the server.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+	// Updates to this field will recreate a new resource.
 	Type pulumi.StringPtrInput
 	// The user data associated with the server
 	UserData pulumi.StringMapInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -218,85 +511,95 @@ func (InstanceServerState) ElementType() reflect.Type {
 }
 
 type instanceServerArgs struct {
-	// The additional volumes attached to the server
+	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
-	// The boot type of the server
+	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
-	// ID of the target bootscript (set boot_type to bootscript)
+	// The ID of the bootscript to use  (set bootType to `bootscript`).
 	BootscriptId *string `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
 	CloudInit *string `pulumi:"cloudInit"`
-	// Enable dynamic IP on the server
+	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server
+	// Determines if IPv6 is enabled for the server.
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
-	// The UUID or the label of the base image used by the server
-	Image string `pulumi:"image"`
-	// The ID of the reserved IP for the server
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	Image *string `pulumi:"image"`
+	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
-	// The name of the server
+	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The placement group the server is attached to
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
-	// List of private network to connect with your instance
+	// The private network associated with the server.
+	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Root volume attached to the server on creation
+	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
-	// The security group the server is attached to
+	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
-	// The state of the server should be: started, stopped, standby
+	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
-	// The tags associated with the server
+	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
-	// The instance type of the server
+	// The commercial type of the server.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+	// Updates to this field will recreate a new resource.
 	Type string `pulumi:"type"`
 	// The user data associated with the server
 	UserData map[string]string `pulumi:"userData"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceServer resource.
 type InstanceServerArgs struct {
-	// The additional volumes attached to the server
+	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	AdditionalVolumeIds pulumi.StringArrayInput
-	// The boot type of the server
+	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
-	// ID of the target bootscript (set boot_type to bootscript)
+	// The ID of the bootscript to use  (set bootType to `bootscript`).
 	BootscriptId pulumi.StringPtrInput
 	// The cloud init script associated with this server
 	CloudInit pulumi.StringPtrInput
-	// Enable dynamic IP on the server
+	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
-	// Determines if IPv6 is enabled for the server
+	// Determines if IPv6 is enabled for the server.
 	EnableIpv6 pulumi.BoolPtrInput
-	// The UUID or the label of the base image used by the server
-	Image pulumi.StringInput
-	// The ID of the reserved IP for the server
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	Image pulumi.StringPtrInput
+	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
-	// The name of the server
+	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The placement group the server is attached to
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId pulumi.StringPtrInput
-	// List of private network to connect with your instance
+	// The private network associated with the server.
+	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Root volume attached to the server on creation
+	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
-	// The security group the server is attached to
+	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
-	// The state of the server should be: started, stopped, standby
+	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
-	// The tags associated with the server
+	// The tags associated with the server.
 	Tags pulumi.StringArrayInput
-	// The instance type of the server
+	// The commercial type of the server.
+	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+	// Updates to this field will recreate a new resource.
 	Type pulumi.StringInput
 	// The user data associated with the server
 	UserData pulumi.StringMapInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -387,17 +690,18 @@ func (o InstanceServerOutput) ToInstanceServerOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The additional volumes attached to the server
+// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+// attached to the server. Updates to this field will trigger a stop/start of the server.
 func (o InstanceServerOutput) AdditionalVolumeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringArrayOutput { return v.AdditionalVolumeIds }).(pulumi.StringArrayOutput)
 }
 
-// The boot type of the server
+// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 func (o InstanceServerOutput) BootType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.BootType }).(pulumi.StringPtrOutput)
 }
 
-// ID of the target bootscript (set boot_type to bootscript)
+// The ID of the bootscript to use  (set bootType to `bootscript`).
 func (o InstanceServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.BootscriptId }).(pulumi.StringOutput)
 }
@@ -407,102 +711,107 @@ func (o InstanceServerOutput) CloudInit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.CloudInit }).(pulumi.StringPtrOutput)
 }
 
-// Enable dynamic IP on the server
+// If true a dynamic IP will be attached to the server.
 func (o InstanceServerOutput) EnableDynamicIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.EnableDynamicIp }).(pulumi.BoolPtrOutput)
 }
 
-// Determines if IPv6 is enabled for the server
+// Determines if IPv6 is enabled for the server.
 func (o InstanceServerOutput) EnableIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.EnableIpv6 }).(pulumi.BoolPtrOutput)
 }
 
-// The UUID or the label of the base image used by the server
-func (o InstanceServerOutput) Image() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Image }).(pulumi.StringOutput)
+// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+func (o InstanceServerOutput) Image() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.Image }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the reserved IP for the server
+// = (Optional) The ID of the reserved IP that is attached to the server.
 func (o InstanceServerOutput) IpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.IpId }).(pulumi.StringPtrOutput)
 }
 
-// The default public IPv6 address routed to the server.
+// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 func (o InstanceServerOutput) Ipv6Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
-// The IPv6 gateway address
+// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
 func (o InstanceServerOutput) Ipv6Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Ipv6Gateway }).(pulumi.StringOutput)
 }
 
-// The IPv6 prefix length routed to the server.
+// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 func (o InstanceServerOutput) Ipv6PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.IntOutput { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }
 
-// The name of the server
+// The name of the server.
 func (o InstanceServerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the server is associated with.
 func (o InstanceServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The placement group the server is attached to
+// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 func (o InstanceServerOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
 }
 
-// True when the placement group policy is respected
+// True when the placement group policy is respected.
+// - `rootVolume`
 func (o InstanceServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
 
-// The Scaleway internal IP address of the server
+// The Scaleway internal IP address of the server.
 func (o InstanceServerOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
-// List of private network to connect with your instance
+// The private network associated with the server.
+// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
 func (o InstanceServerOutput) PrivateNetworks() InstanceServerPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(InstanceServerPrivateNetworkArrayOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the server is associated with.
 func (o InstanceServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The public IPv4 address of the server
+// The public IPv4 address of the server.
 func (o InstanceServerOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PublicIp }).(pulumi.StringOutput)
 }
 
-// Root volume attached to the server on creation
+// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerRootVolumeOutput { return v.RootVolume }).(InstanceServerRootVolumeOutput)
 }
 
-// The security group the server is attached to
+// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 func (o InstanceServerOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }
 
-// The state of the server should be: started, stopped, standby
+// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 func (o InstanceServerOutput) State() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.State }).(pulumi.StringPtrOutput)
 }
 
-// The tags associated with the server
+// The tags associated with the server.
 func (o InstanceServerOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The instance type of the server
+// The commercial type of the server.
+// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+// Updates to this field will recreate a new resource.
 func (o InstanceServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -512,7 +821,7 @@ func (o InstanceServerOutput) UserData() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringMapOutput { return v.UserData }).(pulumi.StringMapOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which the server should be created.
 func (o InstanceServerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

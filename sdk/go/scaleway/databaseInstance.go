@@ -11,56 +11,200 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Database Instances.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainDatabaseInstance, err := scaleway.NewDatabaseInstance(ctx, "mainDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDatabaseInstance(ctx, "mainIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+//				NodeType:                pulumi.String("DB-DEV-S"),
+//				Engine:                  pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:             pulumi.Bool(true),
+//				UserName:                pulumi.String("my_initial_user"),
+//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
+//				DisableBackup:           pulumi.Bool(true),
+//				BackupScheduleFrequency: pulumi.Int(24),
+//				BackupScheduleRetention: pulumi.Int(7),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn02, err := scaleway.NewVpcPrivateNetwork(ctx, "pn02", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet: pulumi.String("192.168.1.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//				IpId: mainVpcPublicGatewayIp.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        mainVpcPublicGateway.ID(),
+//				PrivateNetworkId: pn02.ID(),
+//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				mainVpcPublicGatewayIp,
+//				pn02,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
+//				GatewayId: mainVpcPublicGateway.ID(),
+//				PrivateIp: mainVpcPublicGatewayDhcp.Address,
+//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork DatabaseInstancePrivateNetwork) (int, error) {
+//					return privateNetwork.Port, nil
+//				}).(pulumi.IntOutput),
+//				PublicPort: pulumi.Int(42),
+//				Protocol:   pulumi.String("both"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				mainVpcGatewayNetwork,
+//				pn02,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDatabaseInstance(ctx, "mainScalewayIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+//				NodeType:      pulumi.String("db-dev-s"),
+//				Engine:        pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:   pulumi.Bool(false),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				Region:        pulumi.String("fr-par"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform-test"),
+//					pulumi.String("scaleway_rdb_instance"),
+//					pulumi.String("volume"),
+//					pulumi.String("rdb_pn"),
+//				},
+//				VolumeType:     pulumi.String("bssd"),
+//				VolumeSizeInGb: pulumi.Int(10),
+//				PrivateNetwork: &DatabaseInstancePrivateNetworkArgs{
+//					IpNet: pulumi.String("192.168.1.254/24"),
+//					PnId:  pn02.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Private Network
+//
+// > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
+//
+// - `ipNet` - (Required) The IP network where to con.
+// - `pnId` - (Required) The ID of the private network. If not provided it will be randomly generated.
+//
+// ## Limitations
+//
+// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+//
+// ## Import
+//
+// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type DatabaseInstance struct {
 	pulumi.CustomResourceState
 
-	// Boolean to store logical backups in the same region as the database instance
+	// Boolean to store logical backups in the same region as the database instance.
 	BackupSameRegion pulumi.BoolOutput `pulumi:"backupSameRegion"`
-	// Backup schedule frequency in hours
+	// Backup schedule frequency in hours.
 	BackupScheduleFrequency pulumi.IntOutput `pulumi:"backupScheduleFrequency"`
-	// Backup schedule retention in days
+	// Backup schedule retention in days.
 	BackupScheduleRetention pulumi.IntOutput `pulumi:"backupScheduleRetention"`
-	// Certificate of the database instance
+	// Certificate of the database instance.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
-	// Endpoint IP of the database instance
+	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
 	EndpointIp pulumi.StringOutput `pulumi:"endpointIp"`
-	// Endpoint port of the database instance
+	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringOutput `pulumi:"engine"`
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
-	// Load balancer of the database instance
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// List of private network to expose your database instance
+	// List of private networks endpoints of the database instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the Database Instance is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Read replicas of the database instance
+	// List of read replicas of the database instance.
 	ReadReplicas DatabaseInstanceReadReplicaArrayOutput `pulumi:"readReplicas"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Map of engine settings to be set.
+	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
-	// Volume size (in GB) when volume_type is not lssd
+	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored
+	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
@@ -100,104 +244,104 @@ func GetDatabaseInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseInstance resources.
 type databaseInstanceState struct {
-	// Boolean to store logical backups in the same region as the database instance
+	// Boolean to store logical backups in the same region as the database instance.
 	BackupSameRegion *bool `pulumi:"backupSameRegion"`
-	// Backup schedule frequency in hours
+	// Backup schedule frequency in hours.
 	BackupScheduleFrequency *int `pulumi:"backupScheduleFrequency"`
-	// Backup schedule retention in days
+	// Backup schedule retention in days.
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
-	// Certificate of the database instance
+	// Certificate of the database instance.
 	Certificate *string `pulumi:"certificate"`
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// Endpoint IP of the database instance
+	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
 	EndpointIp *string `pulumi:"endpointIp"`
-	// Endpoint port of the database instance
+	// (Deprecated) The port of the Database Instance.
 	EndpointPort *int `pulumi:"endpointPort"`
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine *string `pulumi:"engine"`
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// Load balancer of the database instance
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers []DatabaseInstanceLoadBalancer `pulumi:"loadBalancers"`
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType *string `pulumi:"nodeType"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
-	// List of private network to expose your database instance
+	// List of private networks endpoints of the database instance.
 	PrivateNetwork *DatabaseInstancePrivateNetwork `pulumi:"privateNetwork"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the Database Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Read replicas of the database instance
+	// List of read replicas of the database instance.
 	ReadReplicas []DatabaseInstanceReadReplica `pulumi:"readReplicas"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of engine settings to be set.
+	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
 	Settings map[string]string `pulumi:"settings"`
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when volume_type is not lssd
+	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored
+	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
 type DatabaseInstanceState struct {
-	// Boolean to store logical backups in the same region as the database instance
+	// Boolean to store logical backups in the same region as the database instance.
 	BackupSameRegion pulumi.BoolPtrInput
-	// Backup schedule frequency in hours
+	// Backup schedule frequency in hours.
 	BackupScheduleFrequency pulumi.IntPtrInput
-	// Backup schedule retention in days
+	// Backup schedule retention in days.
 	BackupScheduleRetention pulumi.IntPtrInput
-	// Certificate of the database instance
+	// Certificate of the database instance.
 	Certificate pulumi.StringPtrInput
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
-	// Endpoint IP of the database instance
+	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
 	EndpointIp pulumi.StringPtrInput
-	// Endpoint port of the database instance
+	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntPtrInput
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringPtrInput
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// Load balancer of the database instance
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayInput
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
-	// List of private network to expose your database instance
+	// List of private networks endpoints of the database instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the Database Instance is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Read replicas of the database instance
+	// List of read replicas of the database instance.
 	ReadReplicas DatabaseInstanceReadReplicaArrayInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of engine settings to be set.
+	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
 	Settings pulumi.StringMapInput
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when volume_type is not lssd
+	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored
+	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -206,77 +350,77 @@ func (DatabaseInstanceState) ElementType() reflect.Type {
 }
 
 type databaseInstanceArgs struct {
-	// Boolean to store logical backups in the same region as the database instance
+	// Boolean to store logical backups in the same region as the database instance.
 	BackupSameRegion *bool `pulumi:"backupSameRegion"`
-	// Backup schedule frequency in hours
+	// Backup schedule frequency in hours.
 	BackupScheduleFrequency *int `pulumi:"backupScheduleFrequency"`
-	// Backup schedule retention in days
+	// Backup schedule retention in days.
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine string `pulumi:"engine"`
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType string `pulumi:"nodeType"`
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
-	// List of private network to expose your database instance
+	// List of private networks endpoints of the database instance.
 	PrivateNetwork *DatabaseInstancePrivateNetwork `pulumi:"privateNetwork"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the Database Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of engine settings to be set.
+	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
 	Settings map[string]string `pulumi:"settings"`
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when volume_type is not lssd
+	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored
+	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
 // The set of arguments for constructing a DatabaseInstance resource.
 type DatabaseInstanceArgs struct {
-	// Boolean to store logical backups in the same region as the database instance
+	// Boolean to store logical backups in the same region as the database instance.
 	BackupSameRegion pulumi.BoolPtrInput
-	// Backup schedule frequency in hours
+	// Backup schedule frequency in hours.
 	BackupScheduleFrequency pulumi.IntPtrInput
-	// Backup schedule retention in days
+	// Backup schedule retention in days.
 	BackupScheduleRetention pulumi.IntPtrInput
-	// Disable automated backup for the database instance
+	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
-	// Database's engine version id
+	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringInput
-	// Enable or disable high availability for the database instance
+	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// Name of the database instance
+	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
-	// The type of database instance you want to create
+	// The type of database instance you want to create (e.g. `db-dev-s`).
 	NodeType pulumi.StringInput
-	// Password for the first user of the database instance
+	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
-	// List of private network to expose your database instance
+	// List of private networks endpoints of the database instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the Database Instance is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of engine settings to be set.
+	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
 	Settings pulumi.StringMapInput
-	// List of tags ["tag1", "tag2", ...] attached to a database instance
+	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
-	// Identifier for the first user of the database instance
+	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when volume_type is not lssd
+	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored
+	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -367,119 +511,119 @@ func (o DatabaseInstanceOutput) ToDatabaseInstanceOutputWithContext(ctx context.
 	return o
 }
 
-// Boolean to store logical backups in the same region as the database instance
+// Boolean to store logical backups in the same region as the database instance.
 func (o DatabaseInstanceOutput) BackupSameRegion() pulumi.BoolOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolOutput { return v.BackupSameRegion }).(pulumi.BoolOutput)
 }
 
-// Backup schedule frequency in hours
+// Backup schedule frequency in hours.
 func (o DatabaseInstanceOutput) BackupScheduleFrequency() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.BackupScheduleFrequency }).(pulumi.IntOutput)
 }
 
-// Backup schedule retention in days
+// Backup schedule retention in days.
 func (o DatabaseInstanceOutput) BackupScheduleRetention() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.BackupScheduleRetention }).(pulumi.IntOutput)
 }
 
-// Certificate of the database instance
+// Certificate of the database instance.
 func (o DatabaseInstanceOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
-// Disable automated backup for the database instance
+// Disable automated backup for the database instance.
 func (o DatabaseInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
 }
 
-// Endpoint IP of the database instance
+// (Deprecated) The IP of the Database Instance.
 //
 // Deprecated: Please use the private_network or the load_balancer attribute
 func (o DatabaseInstanceOutput) EndpointIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.EndpointIp }).(pulumi.StringOutput)
 }
 
-// Endpoint port of the database instance
+// (Deprecated) The port of the Database Instance.
 func (o DatabaseInstanceOutput) EndpointPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.EndpointPort }).(pulumi.IntOutput)
 }
 
-// Database's engine version id
+// Database Instance's engine version (e.g. `PostgreSQL-11`).
 func (o DatabaseInstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
 
-// Enable or disable high availability for the database instance
+// Enable or disable high availability for the database instance.
 func (o DatabaseInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
 
-// Load balancer of the database instance
+// List of load balancer endpoints of the database instance.
 func (o DatabaseInstanceOutput) LoadBalancers() DatabaseInstanceLoadBalancerArrayOutput {
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(DatabaseInstanceLoadBalancerArrayOutput)
 }
 
-// Name of the database instance
+// The name of the Database Instance.
 func (o DatabaseInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The type of database instance you want to create
+// The type of database instance you want to create (e.g. `db-dev-s`).
 func (o DatabaseInstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the Database Instance is associated with.
 func (o DatabaseInstanceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// Password for the first user of the database instance
+// Password for the first user of the database instance.
 func (o DatabaseInstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// List of private network to expose your database instance
+// List of private networks endpoints of the database instance.
 func (o DatabaseInstanceOutput) PrivateNetwork() DatabaseInstancePrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(DatabaseInstancePrivateNetworkPtrOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the Database Instance is associated with.
 func (o DatabaseInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Read replicas of the database instance
+// List of read replicas of the database instance.
 func (o DatabaseInstanceOutput) ReadReplicas() DatabaseInstanceReadReplicaArrayOutput {
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceReadReplicaArrayOutput { return v.ReadReplicas }).(DatabaseInstanceReadReplicaArrayOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the Database Instance should be created.
 func (o DatabaseInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Map of engine settings to be set.
+// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
 func (o DatabaseInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }
 
-// List of tags ["tag1", "tag2", ...] attached to a database instance
+// The tags associated with the Database Instance.
 func (o DatabaseInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// Identifier for the first user of the database instance
+// Identifier for the first user of the database instance.
 func (o DatabaseInstanceOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
-// Volume size (in GB) when volume_type is not lssd
+// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
 func (o DatabaseInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
-// Type of volume where data are stored
+// Type of volume where data are stored (`bssd` or `lssd`).
 func (o DatabaseInstanceOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }

@@ -18,14 +18,19 @@ class InstanceSnapshotArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceSnapshot resource.
-        :param pulumi.Input[str] volume_id: ID of the volume to take a snapshot from
-        :param pulumi.Input[str] name: The name of the snapshot
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the snapshot
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
+               associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+               Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the snapshot should be created.
         """
         pulumi.set(__self__, "volume_id", volume_id)
         if name is not None:
@@ -34,6 +39,8 @@ class InstanceSnapshotArgs:
             pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -41,7 +48,7 @@ class InstanceSnapshotArgs:
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Input[str]:
         """
-        ID of the volume to take a snapshot from
+        The ID of the volume to take a snapshot from.
         """
         return pulumi.get(self, "volume_id")
 
@@ -53,7 +60,7 @@ class InstanceSnapshotArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the snapshot
+        The name of the snapshot. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -65,7 +72,8 @@ class InstanceSnapshotArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the snapshot is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -77,7 +85,7 @@ class InstanceSnapshotArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the snapshot
+        A list of tags to apply to the snapshot.
         """
         return pulumi.get(self, "tags")
 
@@ -87,9 +95,23 @@ class InstanceSnapshotArgs:
 
     @property
     @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which
+        the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -112,15 +134,18 @@ class _InstanceSnapshotState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceSnapshot resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the snapshot
-        :param pulumi.Input[str] name: The name of the snapshot
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[int] size_in_gb: The size of the snapshot in gigabyte
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the snapshot
-        :param pulumi.Input[str] type: The volume type of the snapshot
-        :param pulumi.Input[str] volume_id: ID of the volume to take a snapshot from
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] created_at: The snapshot creation time.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The organization ID the snapshot is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
+               associated with.
+        :param pulumi.Input[int] size_in_gb: (Optional) The size of the snapshot.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+               Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the snapshot should be created.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -145,7 +170,7 @@ class _InstanceSnapshotState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the snapshot
+        The snapshot creation time.
         """
         return pulumi.get(self, "created_at")
 
@@ -157,7 +182,7 @@ class _InstanceSnapshotState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the snapshot
+        The name of the snapshot. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -169,7 +194,7 @@ class _InstanceSnapshotState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the snapshot is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -181,7 +206,8 @@ class _InstanceSnapshotState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the snapshot is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -193,7 +219,7 @@ class _InstanceSnapshotState:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the snapshot in gigabyte
+        (Optional) The size of the snapshot.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -205,7 +231,7 @@ class _InstanceSnapshotState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the snapshot
+        A list of tags to apply to the snapshot.
         """
         return pulumi.get(self, "tags")
 
@@ -217,7 +243,8 @@ class _InstanceSnapshotState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The volume type of the snapshot
+        The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
 
@@ -229,7 +256,7 @@ class _InstanceSnapshotState:
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the volume to take a snapshot from
+        The ID of the volume to take a snapshot from.
         """
         return pulumi.get(self, "volume_id")
 
@@ -241,7 +268,8 @@ class _InstanceSnapshotState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which
+        the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -258,18 +286,66 @@ class InstanceSnapshot(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InstanceSnapshot resource with the given unique name, props, and options.
+        Creates and manages Scaleway Compute Snapshots.
+        For more information,
+        see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
+
+        ## Example
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.InstanceSnapshot("main", volume_id="11111111-1111-1111-1111-111111111111")
+        ```
+
+        ## Example with Unified type
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_instance_volume = scaleway.InstanceVolume("mainInstanceVolume",
+            type="l_ssd",
+            size_in_gb=10)
+        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+            image="ubuntu_jammy",
+            type="DEV1-S",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                size_in_gb=10,
+                volume_type="l_ssd",
+            ),
+            additional_volume_ids=[main_instance_volume.id])
+        main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
+            volume_id=main_instance_volume.id,
+            type="unified",
+            opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
+        ```
+
+        ## Import
+
+        Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the snapshot
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the snapshot
-        :param pulumi.Input[str] volume_id: ID of the volume to take a snapshot from
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
+               associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+               Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the snapshot should be created.
         """
         ...
     @overload
@@ -278,7 +354,50 @@ class InstanceSnapshot(pulumi.CustomResource):
                  args: InstanceSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InstanceSnapshot resource with the given unique name, props, and options.
+        Creates and manages Scaleway Compute Snapshots.
+        For more information,
+        see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
+
+        ## Example
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.InstanceSnapshot("main", volume_id="11111111-1111-1111-1111-111111111111")
+        ```
+
+        ## Example with Unified type
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_instance_volume = scaleway.InstanceVolume("mainInstanceVolume",
+            type="l_ssd",
+            size_in_gb=10)
+        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+            image="ubuntu_jammy",
+            type="DEV1-S",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                size_in_gb=10,
+                volume_type="l_ssd",
+            ),
+            additional_volume_ids=[main_instance_volume.id])
+        main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
+            volume_id=main_instance_volume.id,
+            type="unified",
+            opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
+        ```
+
+        ## Import
+
+        Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param InstanceSnapshotArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,6 +416,7 @@ class InstanceSnapshot(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -311,6 +431,7 @@ class InstanceSnapshot(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["type"] = type
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")
             __props__.__dict__["volume_id"] = volume_id
@@ -318,7 +439,6 @@ class InstanceSnapshot(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["size_in_gb"] = None
-            __props__.__dict__["type"] = None
         super(InstanceSnapshot, __self__).__init__(
             'scaleway:index/instanceSnapshot:InstanceSnapshot',
             resource_name,
@@ -345,15 +465,18 @@ class InstanceSnapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the snapshot
-        :param pulumi.Input[str] name: The name of the snapshot
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[int] size_in_gb: The size of the snapshot in gigabyte
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the snapshot
-        :param pulumi.Input[str] type: The volume type of the snapshot
-        :param pulumi.Input[str] volume_id: ID of the volume to take a snapshot from
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] created_at: The snapshot creation time.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The organization ID the snapshot is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
+               associated with.
+        :param pulumi.Input[int] size_in_gb: (Optional) The size of the snapshot.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+               Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
+        :param pulumi.Input[str] zone: `zone`) The zone in which
+               the snapshot should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -374,7 +497,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the snapshot
+        The snapshot creation time.
         """
         return pulumi.get(self, "created_at")
 
@@ -382,7 +505,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the snapshot
+        The name of the snapshot. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -390,7 +513,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the snapshot is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -398,7 +521,8 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the snapshot is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -406,7 +530,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Output[int]:
         """
-        The size of the snapshot in gigabyte
+        (Optional) The size of the snapshot.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -414,7 +538,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the snapshot
+        A list of tags to apply to the snapshot.
         """
         return pulumi.get(self, "tags")
 
@@ -422,7 +546,8 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The volume type of the snapshot
+        The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
 
@@ -430,7 +555,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Output[str]:
         """
-        ID of the volume to take a snapshot from
+        The ID of the volume to take a snapshot from.
         """
         return pulumi.get(self, "volume_id")
 
@@ -438,7 +563,8 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which
+        the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 

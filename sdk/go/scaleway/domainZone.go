@@ -11,6 +11,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Domain zone.\
+// For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
+//
+// ## Examples
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDomainZone(ctx, "test", &scaleway.DomainZoneArgs{
+//				Domain:    pulumi.String("scaleway-terraform.com"),
+//				Subdomain: pulumi.String("test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
+//
+// ```
 type DomainZone struct {
 	pulumi.CustomResourceState
 
@@ -24,11 +63,11 @@ type DomainZone struct {
 	NsDefaults pulumi.StringArrayOutput `pulumi:"nsDefaults"`
 	// NameServer master list for zone.
 	NsMasters pulumi.StringArrayOutput `pulumi:"nsMasters"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The domain zone status.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The subdomain of the DNS zone to create.
+	// The subdomain(zone name) to create in the domain.
 	Subdomain pulumi.StringOutput `pulumi:"subdomain"`
 	// The date and time of the last update of the DNS zone.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -80,11 +119,11 @@ type domainZoneState struct {
 	NsDefaults []string `pulumi:"nsDefaults"`
 	// NameServer master list for zone.
 	NsMasters []string `pulumi:"nsMasters"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The domain zone status.
 	Status *string `pulumi:"status"`
-	// The subdomain of the DNS zone to create.
+	// The subdomain(zone name) to create in the domain.
 	Subdomain *string `pulumi:"subdomain"`
 	// The date and time of the last update of the DNS zone.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -101,11 +140,11 @@ type DomainZoneState struct {
 	NsDefaults pulumi.StringArrayInput
 	// NameServer master list for zone.
 	NsMasters pulumi.StringArrayInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The domain zone status.
 	Status pulumi.StringPtrInput
-	// The subdomain of the DNS zone to create.
+	// The subdomain(zone name) to create in the domain.
 	Subdomain pulumi.StringPtrInput
 	// The date and time of the last update of the DNS zone.
 	UpdatedAt pulumi.StringPtrInput
@@ -118,9 +157,9 @@ func (DomainZoneState) ElementType() reflect.Type {
 type domainZoneArgs struct {
 	// The domain where the DNS zone will be created.
 	Domain string `pulumi:"domain"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The subdomain of the DNS zone to create.
+	// The subdomain(zone name) to create in the domain.
 	Subdomain string `pulumi:"subdomain"`
 }
 
@@ -128,9 +167,9 @@ type domainZoneArgs struct {
 type DomainZoneArgs struct {
 	// The domain where the DNS zone will be created.
 	Domain pulumi.StringInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The subdomain of the DNS zone to create.
+	// The subdomain(zone name) to create in the domain.
 	Subdomain pulumi.StringInput
 }
 
@@ -246,7 +285,7 @@ func (o DomainZoneOutput) NsMasters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DomainZone) pulumi.StringArrayOutput { return v.NsMasters }).(pulumi.StringArrayOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the domain is associated with.
 func (o DomainZoneOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainZone) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -256,7 +295,7 @@ func (o DomainZoneOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainZone) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The subdomain of the DNS zone to create.
+// The subdomain(zone name) to create in the domain.
 func (o DomainZoneOutput) Subdomain() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainZone) pulumi.StringOutput { return v.Subdomain }).(pulumi.StringOutput)
 }

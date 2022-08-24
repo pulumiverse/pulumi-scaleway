@@ -10,24 +10,66 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Container Namespace.
+// For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//				Description: pulumi.String("Main container namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type ContainerNamespace struct {
 	pulumi.CustomResourceState
 
-	// The description of the container namespace
+	// The description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The environment variables of the container namespace
+	// . Destroy linked container registry on deletion.
+	DestroyRegistry pulumi.BoolPtrOutput `pulumi:"destroyRegistry"`
+	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
-	// The name of the container namespace
+	// The unique name of the container namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The endpoint reachable by docker
+	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
-	// The ID of the registry namespace
+	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
 }
 
@@ -61,40 +103,44 @@ func GetContainerNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerNamespace resources.
 type containerNamespaceState struct {
-	// The description of the container namespace
+	// The description of the namespace.
 	Description *string `pulumi:"description"`
-	// The environment variables of the container namespace
+	// . Destroy linked container registry on deletion.
+	DestroyRegistry *bool `pulumi:"destroyRegistry"`
+	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The name of the container namespace
+	// The unique name of the container namespace.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the namespace is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
-	// The endpoint reachable by docker
+	// The registry endpoint of the namespace.
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
-	// The ID of the registry namespace
+	// The registry namespace ID of the namespace.
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
 }
 
 type ContainerNamespaceState struct {
-	// The description of the container namespace
+	// The description of the namespace.
 	Description pulumi.StringPtrInput
-	// The environment variables of the container namespace
+	// . Destroy linked container registry on deletion.
+	DestroyRegistry pulumi.BoolPtrInput
+	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The name of the container namespace
+	// The unique name of the container namespace.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
-	// The endpoint reachable by docker
+	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringPtrInput
-	// The ID of the registry namespace
+	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringPtrInput
 }
 
@@ -103,29 +149,33 @@ func (ContainerNamespaceState) ElementType() reflect.Type {
 }
 
 type containerNamespaceArgs struct {
-	// The description of the container namespace
+	// The description of the namespace.
 	Description *string `pulumi:"description"`
-	// The environment variables of the container namespace
+	// . Destroy linked container registry on deletion.
+	DestroyRegistry *bool `pulumi:"destroyRegistry"`
+	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The name of the container namespace
+	// The unique name of the container namespace.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a ContainerNamespace resource.
 type ContainerNamespaceArgs struct {
-	// The description of the container namespace
+	// The description of the namespace.
 	Description pulumi.StringPtrInput
-	// The environment variables of the container namespace
+	// . Destroy linked container registry on deletion.
+	DestroyRegistry pulumi.BoolPtrInput
+	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The name of the container namespace
+	// The unique name of the container namespace.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -216,42 +266,47 @@ func (o ContainerNamespaceOutput) ToContainerNamespaceOutputWithContext(ctx cont
 	return o
 }
 
-// The description of the container namespace
+// The description of the namespace.
 func (o ContainerNamespaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The environment variables of the container namespace
+// . Destroy linked container registry on deletion.
+func (o ContainerNamespaceOutput) DestroyRegistry() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ContainerNamespace) pulumi.BoolPtrOutput { return v.DestroyRegistry }).(pulumi.BoolPtrOutput)
+}
+
+// The environment variables of the namespace.
 func (o ContainerNamespaceOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
-// The name of the container namespace
+// The unique name of the container namespace.
 func (o ContainerNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the namespace is associated with.
 func (o ContainerNamespaceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the namespace is associated with.
 func (o ContainerNamespaceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// `region`). The region in which the namespace should be created.
 func (o ContainerNamespaceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The endpoint reachable by docker
+// The registry endpoint of the namespace.
 func (o ContainerNamespaceOutput) RegistryEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.RegistryEndpoint }).(pulumi.StringOutput)
 }
 
-// The ID of the registry namespace
+// The registry namespace ID of the namespace.
 func (o ContainerNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }

@@ -5,6 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about the Bucket.
+ * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.ObjectBucket("main", {
+ *     tags: {
+ *         foo: "bar",
+ *     },
+ * });
+ * const selected = pulumi.output(scaleway.getObjectBucket({
+ *     name: "bucket.test.com",
+ * }));
+ * ```
+ */
 export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketResult> {
     args = args || {};
     if (!opts) {
@@ -22,7 +42,13 @@ export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getObjectBucket.
  */
 export interface GetObjectBucketArgs {
+    /**
+     * The bucket name.
+     */
     name?: string;
+    /**
+     * `region`) The region in which the Object Storage exists.
+     */
     region?: string;
 }
 
@@ -32,6 +58,9 @@ export interface GetObjectBucketArgs {
 export interface GetObjectBucketResult {
     readonly acl: string;
     readonly corsRules: outputs.GetObjectBucketCorsRule[];
+    /**
+     * The endpoint URL of the bucket
+     */
     readonly endpoint: string;
     readonly forceDestroy: boolean;
     /**
@@ -53,6 +82,12 @@ export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: p
  * A collection of arguments for invoking getObjectBucket.
  */
 export interface GetObjectBucketOutputArgs {
+    /**
+     * The bucket name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the Object Storage exists.
+     */
     region?: pulumi.Input<string>;
 }

@@ -5,6 +5,25 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a Load Balancer.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by name
+ * const byName = pulumi.output(scaleway.getLoadbalancer({
+ *     name: "foobar",
+ * }));
+ * // Get info by ID
+ * const byId = pulumi.output(scaleway.getLoadbalancer({
+ *     lbId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerResult> {
     args = args || {};
     if (!opts) {
@@ -25,8 +44,14 @@ export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.Invoke
  */
 export interface GetLoadbalancerArgs {
     lbId?: string;
+    /**
+     * The IP address.
+     */
     name?: string;
     releaseIp?: boolean;
+    /**
+     * (Defaults to provider `region`) The region in which the LB exists.
+     */
     zone?: string;
 }
 
@@ -38,17 +63,32 @@ export interface GetLoadbalancerResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The load-balancer public IP Address.
+     */
     readonly ipAddress: string;
     readonly ipId: string;
     readonly lbId?: string;
     readonly name?: string;
     readonly organizationId: string;
     readonly privateNetworks: outputs.GetLoadbalancerPrivateNetwork[];
+    /**
+     * (Defaults to provider `projectId`) The ID of the project the LB is associated with.
+     */
     readonly projectId: string;
     readonly region: string;
     readonly releaseIp?: boolean;
+    /**
+     * The tags associated with the load-balancers.
+     */
     readonly tags: string[];
+    /**
+     * The type of the load-balancer.
+     */
     readonly type: string;
+    /**
+     * (Defaults to provider `region`) The region in which the LB exists.
+     */
     readonly zone?: string;
 }
 
@@ -61,7 +101,13 @@ export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: p
  */
 export interface GetLoadbalancerOutputArgs {
     lbId?: pulumi.Input<string>;
+    /**
+     * The IP address.
+     */
     name?: pulumi.Input<string>;
     releaseIp?: pulumi.Input<boolean>;
+    /**
+     * (Defaults to provider `region`) The region in which the LB exists.
+     */
     zone?: pulumi.Input<string>;
 }

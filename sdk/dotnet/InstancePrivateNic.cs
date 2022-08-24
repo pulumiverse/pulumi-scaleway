@@ -10,29 +10,92 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Instance Private NICs. For more information, see
+    /// [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     {
+    ///         PrivateNetworkId = "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    ///         ServerId = "fr-par-1/11111111-1111-1111-1111-111111111111",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With zone
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.InstanceServer("base", new()
+    ///     {
+    ///         Image = "ubuntu_focal",
+    ///         Type = "DEV1-S",
+    ///         Zone = pn01.Zone,
+    ///     });
+    /// 
+    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     {
+    ///         ServerId = @base.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         Zone = pn01.Zone,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/instancePrivateNic:InstancePrivateNic")]
-    public partial class InstancePrivateNic : Pulumi.CustomResource
+    public partial class InstancePrivateNic : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// MAC address of the NIC
+        /// The MAC address of the private NIC.
         /// </summary>
         [Output("macAddress")]
         public Output<string> MacAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network attached to.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// The server ID
+        /// The ID of the server associated with.
         /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the server must be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -82,22 +145,22 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class InstancePrivateNicArgs : Pulumi.ResourceArgs
+    public sealed class InstancePrivateNicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network attached to.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// The server ID
+        /// The ID of the server associated with.
         /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the server must be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -105,30 +168,31 @@ namespace Pulumiverse.Scaleway
         public InstancePrivateNicArgs()
         {
         }
+        public static new InstancePrivateNicArgs Empty => new InstancePrivateNicArgs();
     }
 
-    public sealed class InstancePrivateNicState : Pulumi.ResourceArgs
+    public sealed class InstancePrivateNicState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// MAC address of the NIC
+        /// The MAC address of the private NIC.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network attached to.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The server ID
+        /// The ID of the server associated with.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the server must be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -136,5 +200,6 @@ namespace Pulumiverse.Scaleway
         public InstancePrivateNicState()
         {
         }
+        public static new InstancePrivateNicState Empty => new InstancePrivateNicState();
     }
 }

@@ -10,35 +10,66 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway RDB database.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Database("main", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// RDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/database:Database")]
-    public partial class Database : Pulumi.CustomResource
+    public partial class Database : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the instance where to create the database.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not the database is managed
+        /// Whether or not the database is managed or not.
         /// </summary>
         [Output("managed")]
         public Output<bool> Managed { get; private set; } = null!;
 
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-new-database`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// User that own the database
+        /// The name of the owner of the database.
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
 
         /// <summary>
-        /// Size of the database
+        /// Size of the database (in bytes).
         /// </summary>
         [Output("size")]
         public Output<string> Size { get; private set; } = null!;
@@ -88,16 +119,16 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class DatabaseArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the instance where to create the database.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-new-database`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -105,36 +136,37 @@ namespace Pulumiverse.Scaleway
         public DatabaseArgs()
         {
         }
+        public static new DatabaseArgs Empty => new DatabaseArgs();
     }
 
-    public sealed class DatabaseState : Pulumi.ResourceArgs
+    public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the instance where to create the database.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Whether or not the database is managed
+        /// Whether or not the database is managed or not.
         /// </summary>
         [Input("managed")]
         public Input<bool>? Managed { get; set; }
 
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-new-database`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// User that own the database
+        /// The name of the owner of the database.
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
 
         /// <summary>
-        /// Size of the database
+        /// Size of the database (in bytes).
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
@@ -142,5 +174,6 @@ namespace Pulumiverse.Scaleway
         public DatabaseState()
         {
         }
+        public static new DatabaseState Empty => new DatabaseState();
     }
 }

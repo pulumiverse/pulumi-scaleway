@@ -149,7 +149,20 @@ def get_loadbalancer_certificate(certificate_id: Optional[str] = None,
                                  name: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerCertificateResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about Scaleway Load-Balancer Certificates.
+
+    This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+
+    For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+
+    ## Examples
+
+
+    :param str certificate_id: The certificate id.
+           - Only one of `name` and `certificate_id` should be specified.
+    :param str lb_id: The load-balancer ID this certificate is attached to.
+    :param str name: The name of the certificate backend.
+           - When using a certificate `name` you should specify the `lb-id`
     """
     __args__ = dict()
     __args__['certificateId'] = certificate_id
@@ -179,6 +192,19 @@ def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Op
                                         name: Optional[pulumi.Input[Optional[str]]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerCertificateResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about Scaleway Load-Balancer Certificates.
+
+    This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+
+    For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+
+    ## Examples
+
+
+    :param str certificate_id: The certificate id.
+           - Only one of `name` and `certificate_id` should be specified.
+    :param str lb_id: The load-balancer ID this certificate is attached to.
+    :param str name: The name of the certificate backend.
+           - When using a certificate `name` you should specify the `lb-id`
     """
     ...

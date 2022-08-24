@@ -4,6 +4,32 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway VPC Private Networks.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
+ *
+ * ## Example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const pnPriv = new scaleway.VpcPrivateNetwork("pn_priv", {
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Private networks can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class VpcPrivateNetwork extends pulumi.CustomResource {
     /**
      * Get an existing VpcPrivateNetwork resource's state with the given name, ID, and optional extra
@@ -37,19 +63,19 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The name of the private network
+     * The name of the private network. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the private network is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the private network is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The tags associated with private network
+     * The tags associated with the private network.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -57,7 +83,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the private network should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -105,19 +131,19 @@ export interface VpcPrivateNetworkState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The name of the private network
+     * The name of the private network. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the private network is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the private network is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with private network
+     * The tags associated with the private network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -125,7 +151,7 @@ export interface VpcPrivateNetworkState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the private network should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -135,19 +161,19 @@ export interface VpcPrivateNetworkState {
  */
 export interface VpcPrivateNetworkArgs {
     /**
-     * The name of the private network
+     * The name of the private network. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the private network is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with private network
+     * The tags associated with the private network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the private network should be created.
      */
     zone?: pulumi.Input<string>;
 }

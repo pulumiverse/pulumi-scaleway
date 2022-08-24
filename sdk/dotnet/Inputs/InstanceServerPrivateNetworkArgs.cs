@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class InstanceServerPrivateNetworkArgs : Pulumi.ResourceArgs
+    public sealed class InstanceServerPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
@@ -22,11 +22,15 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the server should be created.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
         public InstanceServerPrivateNetworkArgs()
         {
         }
+        public static new InstanceServerPrivateNetworkArgs Empty => new InstanceServerPrivateNetworkArgs();
     }
 }

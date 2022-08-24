@@ -5,6 +5,37 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.getAccountSshKey({
+ *     name: "main",
+ * });
+ * const base = new scaleway.BaremetalServer("base", {
+ *     zone: "fr-par-2",
+ *     offer: "GP-BM1-S",
+ *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
+ *     sshKeyIds: [main.then(main => main.id)],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class BaremetalServer extends pulumi.CustomResource {
     /**
      * Get an existing BaremetalServer resource's state with the given name, ID, and optional extra
@@ -34,53 +65,63 @@ export class BaremetalServer extends pulumi.CustomResource {
     }
 
     /**
-     * Some description to associate to the server, max 255 characters
+     * A description for the server.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The domain of the server.
+     */
     public /*out*/ readonly domain!: pulumi.Output<string>;
     /**
-     * Hostname of the server
+     * The hostname of the server.
      */
     public readonly hostname!: pulumi.Output<string | undefined>;
+    /**
+     * (List of) The IPs of the server.
+     */
     public /*out*/ readonly ips!: pulumi.Output<outputs.BaremetalServerIp[]>;
     /**
-     * Name of the server
+     * The name of the server.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * ID or name of the server offer
+     * The offer name or UUID of the baremetal server.
+     * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      */
     public readonly offer!: pulumi.Output<string>;
     /**
-     * ID of the server offer
+     * The ID of the offer.
      */
     public /*out*/ readonly offerId!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the server is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The base image of the server
+     * The UUID of the os to install on the server.
+     * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+     * > **Important:** Updates to `os` will reinstall the server.
      */
     public readonly os!: pulumi.Output<string>;
     /**
-     * The base image ID of the server
+     * The ID of the os.
      */
     public /*out*/ readonly osId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the server is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Array of SSH key IDs allowed to SSH to the server
+     * List of SSH keys allowed to connect to the server.
+     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     public readonly sshKeyIds!: pulumi.Output<string[]>;
     /**
-     * Array of tags to associate with the server
+     * The tags associated with the server.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -147,53 +188,63 @@ export class BaremetalServer extends pulumi.CustomResource {
  */
 export interface BaremetalServerState {
     /**
-     * Some description to associate to the server, max 255 characters
+     * A description for the server.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The domain of the server.
+     */
     domain?: pulumi.Input<string>;
     /**
-     * Hostname of the server
+     * The hostname of the server.
      */
     hostname?: pulumi.Input<string>;
+    /**
+     * (List of) The IPs of the server.
+     */
     ips?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIp>[]>;
     /**
-     * Name of the server
+     * The name of the server.
      */
     name?: pulumi.Input<string>;
     /**
-     * ID or name of the server offer
+     * The offer name or UUID of the baremetal server.
+     * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      */
     offer?: pulumi.Input<string>;
     /**
-     * ID of the server offer
+     * The ID of the offer.
      */
     offerId?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the server is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The base image of the server
+     * The UUID of the os to install on the server.
+     * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+     * > **Important:** Updates to `os` will reinstall the server.
      */
     os?: pulumi.Input<string>;
     /**
-     * The base image ID of the server
+     * The ID of the os.
      */
     osId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Array of SSH key IDs allowed to SSH to the server
+     * List of SSH keys allowed to connect to the server.
+     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Array of tags to associate with the server
+     * The tags associated with the server.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -203,39 +254,43 @@ export interface BaremetalServerState {
  */
 export interface BaremetalServerArgs {
     /**
-     * Some description to associate to the server, max 255 characters
+     * A description for the server.
      */
     description?: pulumi.Input<string>;
     /**
-     * Hostname of the server
+     * The hostname of the server.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * Name of the server
+     * The name of the server.
      */
     name?: pulumi.Input<string>;
     /**
-     * ID or name of the server offer
+     * The offer name or UUID of the baremetal server.
+     * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      */
     offer: pulumi.Input<string>;
     /**
-     * The base image of the server
+     * The UUID of the os to install on the server.
+     * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+     * > **Important:** Updates to `os` will reinstall the server.
      */
     os: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Array of SSH key IDs allowed to SSH to the server
+     * List of SSH keys allowed to connect to the server.
+     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     sshKeyIds: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Array of tags to associate with the server
+     * The tags associated with the server.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server should be created.
      */
     zone?: pulumi.Input<string>;
 }

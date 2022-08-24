@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about the RDB instance network Access Control List.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get the database ACL for the instanceid 11111111-1111-1111-1111-111111111111 located in fr-par
+ * const myAcl = pulumi.output(scaleway.getDatabaseAcl({
+ *     instanceId: "fr-par/11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseAclResult> {
     if (!opts) {
         opts = {}
@@ -20,6 +35,9 @@ export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getDatabaseAcl.
  */
 export interface GetDatabaseAclArgs {
+    /**
+     * The RDB instance ID.
+     */
     instanceId: string;
 }
 
@@ -27,6 +45,9 @@ export interface GetDatabaseAclArgs {
  * A collection of values returned by getDatabaseAcl.
  */
 export interface GetDatabaseAclResult {
+    /**
+     * A list of ACLs (structure is described below)
+     */
     readonly aclRules: outputs.GetDatabaseAclAclRule[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -44,5 +65,8 @@ export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulu
  * A collection of arguments for invoking getDatabaseAcl.
  */
 export interface GetDatabaseAclOutputArgs {
+    /**
+     * The RDB instance ID.
+     */
     instanceId: pulumi.Input<string>;
 }

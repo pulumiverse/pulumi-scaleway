@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class ObjectBucketLifecycleRuleTransitionArgs : Pulumi.ResourceArgs
+    public sealed class ObjectBucketLifecycleRuleTransitionArgs : global::Pulumi.ResourceArgs
     {
         [Input("days")]
         public Input<int>? Days { get; set; }
@@ -22,5 +22,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public ObjectBucketLifecycleRuleTransitionArgs()
         {
         }
+        public static new ObjectBucketLifecycleRuleTransitionArgs Empty => new ObjectBucketLifecycleRuleTransitionArgs();
     }
 }

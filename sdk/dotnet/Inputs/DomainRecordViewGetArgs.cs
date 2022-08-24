@@ -11,16 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class DomainRecordViewGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainRecordViewGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The data of the view record
+        /// </summary>
         [Input("data", required: true)]
         public Input<string> Data { get; set; } = null!;
 
+        /// <summary>
+        /// The subnet of the view
+        /// </summary>
         [Input("subnet", required: true)]
         public Input<string> Subnet { get; set; } = null!;
 
         public DomainRecordViewGetArgs()
         {
         }
+        public static new DomainRecordViewGetArgs Empty => new DomainRecordViewGetArgs();
     }
 }

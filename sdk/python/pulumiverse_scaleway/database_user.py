@@ -21,10 +21,10 @@ class DatabaseUserArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DatabaseUser resource.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[str] password: Database user password
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
+        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[str] password: Database User password.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database User name.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -40,7 +40,7 @@ class DatabaseUserArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Instance on which the user is created
+        The instance on which to create the user.
         """
         return pulumi.get(self, "instance_id")
 
@@ -52,7 +52,7 @@ class DatabaseUserArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        Database user password
+        Database User password.
         """
         return pulumi.get(self, "password")
 
@@ -64,7 +64,7 @@ class DatabaseUserArgs:
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> Optional[pulumi.Input[bool]]:
         """
-        Grant admin permissions to database user
+        Grant admin permissions to the Database User.
         """
         return pulumi.get(self, "is_admin")
 
@@ -76,7 +76,7 @@ class DatabaseUserArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database user name
+        Database User name.
         """
         return pulumi.get(self, "name")
 
@@ -107,10 +107,10 @@ class _DatabaseUserState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DatabaseUser resources.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] password: Database user password
+        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database User name.
+        :param pulumi.Input[str] password: Database User password.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         if instance_id is not None:
@@ -128,7 +128,7 @@ class _DatabaseUserState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance on which the user is created
+        The instance on which to create the user.
         """
         return pulumi.get(self, "instance_id")
 
@@ -140,7 +140,7 @@ class _DatabaseUserState:
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> Optional[pulumi.Input[bool]]:
         """
-        Grant admin permissions to database user
+        Grant admin permissions to the Database User.
         """
         return pulumi.get(self, "is_admin")
 
@@ -152,7 +152,7 @@ class _DatabaseUserState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database user name
+        Database User name.
         """
         return pulumi.get(self, "name")
 
@@ -164,7 +164,7 @@ class _DatabaseUserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Database user password
+        Database User password.
         """
         return pulumi.get(self, "password")
 
@@ -197,13 +197,41 @@ class DatabaseUser(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DatabaseUser resource with the given unique name, props, and options.
+        Creates and manages Scaleway Database Users.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_random as random
+        import pulumiverse_scaleway as scaleway
+
+        db_password = random.RandomPassword("dbPassword",
+            length=16,
+            special=True)
+        db_admin = scaleway.DatabaseUser("dbAdmin",
+            instance_id=scaleway_rdb_instance["main"]["id"],
+            password=db_password.result,
+            is_admin=True)
+        ```
+
+        ## Import
+
+        Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] password: Database user password
+        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database User name.
+        :param pulumi.Input[str] password: Database User password.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         ...
@@ -213,7 +241,35 @@ class DatabaseUser(pulumi.CustomResource):
                  args: DatabaseUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DatabaseUser resource with the given unique name, props, and options.
+        Creates and manages Scaleway Database Users.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_random as random
+        import pulumiverse_scaleway as scaleway
+
+        db_password = random.RandomPassword("dbPassword",
+            length=16,
+            special=True)
+        db_admin = scaleway.DatabaseUser("dbAdmin",
+            instance_id=scaleway_rdb_instance["main"]["id"],
+            password=db_password.result,
+            is_admin=True)
+        ```
+
+        ## Import
+
+        Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+        ```
+
         :param str resource_name: The name of the resource.
         :param DatabaseUserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,10 +330,10 @@ class DatabaseUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] password: Database user password
+        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database User name.
+        :param pulumi.Input[str] password: Database User password.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -295,7 +351,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Instance on which the user is created
+        The instance on which to create the user.
         """
         return pulumi.get(self, "instance_id")
 
@@ -303,7 +359,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> pulumi.Output[Optional[bool]]:
         """
-        Grant admin permissions to database user
+        Grant admin permissions to the Database User.
         """
         return pulumi.get(self, "is_admin")
 
@@ -311,7 +367,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Database user name
+        Database User name.
         """
         return pulumi.get(self, "name")
 
@@ -319,7 +375,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
         """
-        Database user password
+        Database User password.
         """
         return pulumi.get(self, "password")
 

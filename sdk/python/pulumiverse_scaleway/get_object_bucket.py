@@ -67,6 +67,9 @@ class GetObjectBucketResult:
     @property
     @pulumi.getter
     def endpoint(self) -> str:
+        """
+        The endpoint URL of the bucket
+        """
         return pulumi.get(self, "endpoint")
 
     @property
@@ -130,7 +133,25 @@ def get_object_bucket(name: Optional[str] = None,
                       region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about the Bucket.
+    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.ObjectBucket("main", tags={
+        "foo": "bar",
+    })
+    selected = scaleway.get_object_bucket(name="bucket.test.com")
+    ```
+
+
+    :param str name: The bucket name.
+    :param str region: `region`) The region in which the Object Storage exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -156,6 +177,24 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about the Bucket.
+    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.ObjectBucket("main", tags={
+        "foo": "bar",
+    })
+    selected = scaleway.get_object_bucket(name="bucket.test.com")
+    ```
+
+
+    :param str name: The bucket name.
+    :param str region: `region`) The region in which the Object Storage exists.
     """
     ...

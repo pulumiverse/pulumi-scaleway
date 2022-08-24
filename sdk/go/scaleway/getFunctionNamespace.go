@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a function namespace.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupFunctionNamespace(ctx, &GetFunctionNamespaceArgs{
+//				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFunctionNamespace(ctx *pulumi.Context, args *LookupFunctionNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupFunctionNamespaceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionNamespaceResult
@@ -22,24 +50,34 @@ func LookupFunctionNamespace(ctx *pulumi.Context, args *LookupFunctionNamespaceA
 
 // A collection of arguments for invoking getFunctionNamespace.
 type LookupFunctionNamespaceArgs struct {
-	Name        *string `pulumi:"name"`
+	// The namespace name.
+	// Only one of `name` and `namespaceId` should be specified.
+	Name *string `pulumi:"name"`
+	// The namespace id.
+	// Only one of `name` and `namespaceId` should be specified.
 	NamespaceId *string `pulumi:"namespaceId"`
-	Region      *string `pulumi:"region"`
+	// `region`) The region in which the namespace exists.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getFunctionNamespace.
 type LookupFunctionNamespaceResult struct {
-	Description          string            `pulumi:"description"`
+	// The description of the namespace.
+	Description string `pulumi:"description"`
+	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                  string  `pulumi:"id"`
-	Name                *string `pulumi:"name"`
-	NamespaceId         *string `pulumi:"namespaceId"`
-	OrganizationId      string  `pulumi:"organizationId"`
-	ProjectId           string  `pulumi:"projectId"`
-	Region              *string `pulumi:"region"`
-	RegistryEndpoint    string  `pulumi:"registryEndpoint"`
-	RegistryNamespaceId string  `pulumi:"registryNamespaceId"`
+	Id          string  `pulumi:"id"`
+	Name        *string `pulumi:"name"`
+	NamespaceId *string `pulumi:"namespaceId"`
+	// The organization ID the namespace is associated with.
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      string  `pulumi:"projectId"`
+	Region         *string `pulumi:"region"`
+	// The registry endpoint of the namespace.
+	RegistryEndpoint string `pulumi:"registryEndpoint"`
+	// The registry namespace ID of the namespace.
+	RegistryNamespaceId string `pulumi:"registryNamespaceId"`
 }
 
 func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionNamespaceResultOutput {
@@ -57,9 +95,14 @@ func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNames
 
 // A collection of arguments for invoking getFunctionNamespace.
 type LookupFunctionNamespaceOutputArgs struct {
-	Name        pulumi.StringPtrInput `pulumi:"name"`
+	// The namespace name.
+	// Only one of `name` and `namespaceId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The namespace id.
+	// Only one of `name` and `namespaceId` should be specified.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	Region      pulumi.StringPtrInput `pulumi:"region"`
+	// `region`) The region in which the namespace exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupFunctionNamespaceOutputArgs) ElementType() reflect.Type {
@@ -81,10 +124,12 @@ func (o LookupFunctionNamespaceResultOutput) ToLookupFunctionNamespaceResultOutp
 	return o
 }
 
+// The description of the namespace.
 func (o LookupFunctionNamespaceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// The environment variables of the namespace.
 func (o LookupFunctionNamespaceResultOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) map[string]string { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
@@ -102,6 +147,7 @@ func (o LookupFunctionNamespaceResultOutput) NamespaceId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
+// The organization ID the namespace is associated with.
 func (o LookupFunctionNamespaceResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -114,10 +160,12 @@ func (o LookupFunctionNamespaceResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// The registry endpoint of the namespace.
 func (o LookupFunctionNamespaceResultOutput) RegistryEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.RegistryEndpoint }).(pulumi.StringOutput)
 }
 
+// The registry namespace ID of the namespace.
 func (o LookupFunctionNamespaceResultOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }

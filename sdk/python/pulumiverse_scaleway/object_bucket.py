@@ -26,13 +26,14 @@ class ObjectBucketArgs:
                  versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None):
         """
         The set of arguments for constructing a ObjectBucket resource.
-        :param pulumi.Input[str] acl: ACL of the bucket: either 'public-read' or 'private'.
-        :param pulumi.Input[bool] force_destroy: Delete objects in bucket
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
-        :param pulumi.Input[str] name: The name of the bucket
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The tags associated with this bucket
-        :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: Allow multiple versions of an object in the same bucket
+        :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+        :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
@@ -55,7 +56,7 @@ class ObjectBucketArgs:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        ACL of the bucket: either 'public-read' or 'private'.
+        The canned ACL you want to apply to the bucket.
         """
         return pulumi.get(self, "acl")
 
@@ -66,6 +67,9 @@ class ObjectBucketArgs:
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
@@ -76,7 +80,7 @@ class ObjectBucketArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete objects in bucket
+        Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         """
         return pulumi.get(self, "force_destroy")
 
@@ -100,7 +104,7 @@ class ObjectBucketArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bucket
+        The name of the bucket.
         """
         return pulumi.get(self, "name")
 
@@ -112,7 +116,7 @@ class ObjectBucketArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -124,7 +128,7 @@ class ObjectBucketArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The tags associated with this bucket
+        A list of tags (key / value) for the bucket.
         """
         return pulumi.get(self, "tags")
 
@@ -136,7 +140,7 @@ class ObjectBucketArgs:
     @pulumi.getter
     def versioning(self) -> Optional[pulumi.Input['ObjectBucketVersioningArgs']]:
         """
-        Allow multiple versions of an object in the same bucket
+        A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         return pulumi.get(self, "versioning")
 
@@ -159,14 +163,15 @@ class _ObjectBucketState:
                  versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None):
         """
         Input properties used for looking up and filtering ObjectBucket resources.
-        :param pulumi.Input[str] acl: ACL of the bucket: either 'public-read' or 'private'.
-        :param pulumi.Input[str] endpoint: Endpoint of the bucket
-        :param pulumi.Input[bool] force_destroy: Delete objects in bucket
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
+        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
-        :param pulumi.Input[str] name: The name of the bucket
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The tags associated with this bucket
-        :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: Allow multiple versions of an object in the same bucket
+        :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+        :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
@@ -191,7 +196,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        ACL of the bucket: either 'public-read' or 'private'.
+        The canned ACL you want to apply to the bucket.
         """
         return pulumi.get(self, "acl")
 
@@ -202,6 +207,9 @@ class _ObjectBucketState:
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
@@ -212,7 +220,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        Endpoint of the bucket
+        The endpoint URL of the bucket
         """
         return pulumi.get(self, "endpoint")
 
@@ -224,7 +232,7 @@ class _ObjectBucketState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete objects in bucket
+        Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         """
         return pulumi.get(self, "force_destroy")
 
@@ -248,7 +256,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bucket
+        The name of the bucket.
         """
         return pulumi.get(self, "name")
 
@@ -260,7 +268,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -272,7 +280,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The tags associated with this bucket
+        A list of tags (key / value) for the bucket.
         """
         return pulumi.get(self, "tags")
 
@@ -284,7 +292,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def versioning(self) -> Optional[pulumi.Input['ObjectBucketVersioningArgs']]:
         """
-        Allow multiple versions of an object in the same bucket
+        A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         return pulumi.get(self, "versioning")
 
@@ -308,16 +316,143 @@ class ObjectBucket(pulumi.CustomResource):
                  versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None,
                  __props__=None):
         """
-        Create a ObjectBucket resource with the given unique name, props, and options.
+        Creates and manages Scaleway object storage buckets.
+        For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        some_bucket = scaleway.ObjectBucket("someBucket",
+            acl="private",
+            tags={
+                "key": "value",
+            })
+        ```
+        ### Using object lifecycle
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.ObjectBucket("main",
+            acl="private",
+            lifecycle_rules=[
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
+                        days=365,
+                    ),
+                    id="id1",
+                    prefix="path1/",
+                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
+                        days=120,
+                        storage_class="GLACIER",
+                    )],
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
+                        days=50,
+                    ),
+                    id="id2",
+                    prefix="path2/",
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=False,
+                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
+                        days=1,
+                    ),
+                    id="id3",
+                    prefix="path3/",
+                    tags={
+                        "tagKey": "tagValue",
+                        "terraform": "hashicorp",
+                    },
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=True,
+                    id="id4",
+                    tags={
+                        "tag1": "value1",
+                    },
+                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
+                        days=0,
+                        storage_class="GLACIER",
+                    )],
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    abort_incomplete_multipart_upload_days=30,
+                    enabled=True,
+                ),
+            ],
+            region="fr-par")
+        ```
+        ## The ACL
+
+        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+
+        The `CORS` object supports the following:
+
+        * `allowed_headers` (Optional) Specifies which headers are allowed.
+        * `allowed_methods` (Required) Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        * `allowed_origins` (Required) Specifies which origins are allowed.
+        * `expose_headers` (Optional) Specifies expose header in the response.
+        * `max_age_seconds` (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
+
+        The `lifecycle_rule` (Optional) object supports the following:
+
+        * `id` - (Optional) Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        * `prefix` - (Optional) Object key prefix identifying one or more objects to which the rule applies.
+        * `tags` - (Optional) Specifies object tags key and value.
+        * `enabled` - (Required) The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+
+        * `abort_incomplete_multipart_upload_days` (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+          
+            * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+
+        * `expiration` - (Optional) Specifies a period in the object's expire (documented below).
+        * `transition` - (Optional) Specifies a period in the object's transitions (documented below).
+
+        At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+
+        The `expiration` object supports the following
+
+        * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
+
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+
+        The `transition` object supports the following
+
+        * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
+        * `storage_class` (Required) Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+
+        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+
+        The `versioning` object supports the following:
+
+        * `enabled` - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+
+        ## Import
+
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] acl: ACL of the bucket: either 'public-read' or 'private'.
-        :param pulumi.Input[bool] force_destroy: Delete objects in bucket
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
-        :param pulumi.Input[str] name: The name of the bucket
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The tags associated with this bucket
-        :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: Allow multiple versions of an object in the same bucket
+        :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+        :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         ...
     @overload
@@ -326,7 +461,133 @@ class ObjectBucket(pulumi.CustomResource):
                  args: Optional[ObjectBucketArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ObjectBucket resource with the given unique name, props, and options.
+        Creates and manages Scaleway object storage buckets.
+        For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        some_bucket = scaleway.ObjectBucket("someBucket",
+            acl="private",
+            tags={
+                "key": "value",
+            })
+        ```
+        ### Using object lifecycle
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.ObjectBucket("main",
+            acl="private",
+            lifecycle_rules=[
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
+                        days=365,
+                    ),
+                    id="id1",
+                    prefix="path1/",
+                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
+                        days=120,
+                        storage_class="GLACIER",
+                    )],
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
+                        days=50,
+                    ),
+                    id="id2",
+                    prefix="path2/",
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=False,
+                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
+                        days=1,
+                    ),
+                    id="id3",
+                    prefix="path3/",
+                    tags={
+                        "tagKey": "tagValue",
+                        "terraform": "hashicorp",
+                    },
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    enabled=True,
+                    id="id4",
+                    tags={
+                        "tag1": "value1",
+                    },
+                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
+                        days=0,
+                        storage_class="GLACIER",
+                    )],
+                ),
+                scaleway.ObjectBucketLifecycleRuleArgs(
+                    abort_incomplete_multipart_upload_days=30,
+                    enabled=True,
+                ),
+            ],
+            region="fr-par")
+        ```
+        ## The ACL
+
+        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+
+        The `CORS` object supports the following:
+
+        * `allowed_headers` (Optional) Specifies which headers are allowed.
+        * `allowed_methods` (Required) Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        * `allowed_origins` (Required) Specifies which origins are allowed.
+        * `expose_headers` (Optional) Specifies expose header in the response.
+        * `max_age_seconds` (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
+
+        The `lifecycle_rule` (Optional) object supports the following:
+
+        * `id` - (Optional) Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        * `prefix` - (Optional) Object key prefix identifying one or more objects to which the rule applies.
+        * `tags` - (Optional) Specifies object tags key and value.
+        * `enabled` - (Required) The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+
+        * `abort_incomplete_multipart_upload_days` (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+          
+            * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+
+        * `expiration` - (Optional) Specifies a period in the object's expire (documented below).
+        * `transition` - (Optional) Specifies a period in the object's transitions (documented below).
+
+        At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+
+        The `expiration` object supports the following
+
+        * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
+
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+
+        The `transition` object supports the following
+
+        * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
+        * `storage_class` (Required) Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+
+        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+
+        The `versioning` object supports the following:
+
+        * `enabled` - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+
+        ## Import
+
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        ```
+
         :param str resource_name: The name of the resource.
         :param ObjectBucketArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -394,14 +655,15 @@ class ObjectBucket(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] acl: ACL of the bucket: either 'public-read' or 'private'.
-        :param pulumi.Input[str] endpoint: Endpoint of the bucket
-        :param pulumi.Input[bool] force_destroy: Delete objects in bucket
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
+        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
-        :param pulumi.Input[str] name: The name of the bucket
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: The tags associated with this bucket
-        :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: Allow multiple versions of an object in the same bucket
+        :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+        :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -422,20 +684,23 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter
     def acl(self) -> pulumi.Output[Optional[str]]:
         """
-        ACL of the bucket: either 'public-read' or 'private'.
+        The canned ACL you want to apply to the bucket.
         """
         return pulumi.get(self, "acl")
 
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> pulumi.Output[Optional[Sequence['outputs.ObjectBucketCorsRule']]]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        """
         return pulumi.get(self, "cors_rules")
 
     @property
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[str]:
         """
-        Endpoint of the bucket
+        The endpoint URL of the bucket
         """
         return pulumi.get(self, "endpoint")
 
@@ -443,7 +708,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Delete objects in bucket
+        Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         """
         return pulumi.get(self, "force_destroy")
 
@@ -459,7 +724,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the bucket
+        The name of the bucket.
         """
         return pulumi.get(self, "name")
 
@@ -467,7 +732,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -475,7 +740,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The tags associated with this bucket
+        A list of tags (key / value) for the bucket.
         """
         return pulumi.get(self, "tags")
 
@@ -483,7 +748,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter
     def versioning(self) -> pulumi.Output['outputs.ObjectBucketVersioning']:
         """
-        Allow multiple versions of an object in the same bucket
+        A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         return pulumi.get(self, "versioning")
 

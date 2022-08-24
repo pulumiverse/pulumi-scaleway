@@ -56,11 +56,17 @@ class GetFunctionNamespaceResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the namespace.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Mapping[str, str]:
+        """
+        The environment variables of the namespace.
+        """
         return pulumi.get(self, "environment_variables")
 
     @property
@@ -84,6 +90,9 @@ class GetFunctionNamespaceResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The organization ID the namespace is associated with.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -99,11 +108,17 @@ class GetFunctionNamespaceResult:
     @property
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> str:
+        """
+        The registry endpoint of the namespace.
+        """
         return pulumi.get(self, "registry_endpoint")
 
     @property
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> str:
+        """
+        The registry namespace ID of the namespace.
+        """
         return pulumi.get(self, "registry_namespace_id")
 
 
@@ -130,7 +145,23 @@ def get_function_namespace(name: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionNamespaceResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a function namespace.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_namespace = scaleway.get_function_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The namespace name.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace id.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -158,6 +189,22 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a function namespace.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_namespace = scaleway.get_function_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The namespace name.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace id.
+           Only one of `name` and `namespace_id` should be specified.
+    :param str region: `region`) The region in which the namespace exists.
     """
     ...

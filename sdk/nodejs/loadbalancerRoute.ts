@@ -4,6 +4,49 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+ * It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
+ * const lb01 = new scaleway.Loadbalancer("lb01", {
+ *     ipId: ip01.id,
+ *     type: "lb-s",
+ * });
+ * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ *     lbId: lb01.id,
+ *     forwardProtocol: "tcp",
+ *     forwardPort: 80,
+ *     proxyProtocol: "none",
+ * });
+ * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ *     lbId: lb01.id,
+ *     backendId: bkd01.id,
+ *     inboundPort: 80,
+ * });
+ * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
+ *     frontendId: frt01.id,
+ *     backendId: bkd01.id,
+ *     matchSni: "scaleway.com",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class LoadbalancerRoute extends pulumi.CustomResource {
     /**
      * Get an existing LoadbalancerRoute resource's state with the given name, ID, and optional extra
@@ -33,7 +76,8 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
     }
 
     /**
-     * The backend ID destination of redirection
+     * The ID of the backend to which the route is associated.
+     * - `frontendId`: (Required) The ID of the frontend to which the route is associated.
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
@@ -41,7 +85,7 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      */
     public readonly frontendId!: pulumi.Output<string>;
     /**
-     * The domain to match against
+     * The SNI to match.
      */
     public readonly matchSni!: pulumi.Output<string | undefined>;
 
@@ -83,7 +127,8 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
  */
 export interface LoadbalancerRouteState {
     /**
-     * The backend ID destination of redirection
+     * The ID of the backend to which the route is associated.
+     * - `frontendId`: (Required) The ID of the frontend to which the route is associated.
      */
     backendId?: pulumi.Input<string>;
     /**
@@ -91,7 +136,7 @@ export interface LoadbalancerRouteState {
      */
     frontendId?: pulumi.Input<string>;
     /**
-     * The domain to match against
+     * The SNI to match.
      */
     matchSni?: pulumi.Input<string>;
 }
@@ -101,7 +146,8 @@ export interface LoadbalancerRouteState {
  */
 export interface LoadbalancerRouteArgs {
     /**
-     * The backend ID destination of redirection
+     * The ID of the backend to which the route is associated.
+     * - `frontendId`: (Required) The ID of the frontend to which the route is associated.
      */
     backendId: pulumi.Input<string>;
     /**
@@ -109,7 +155,7 @@ export interface LoadbalancerRouteArgs {
      */
     frontendId: pulumi.Input<string>;
     /**
-     * The domain to match against
+     * The SNI to match.
      */
     matchSni?: pulumi.Input<string>;
 }

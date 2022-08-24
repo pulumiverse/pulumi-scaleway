@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    internal sealed class ScalewayResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class ScalewayResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public ScalewayResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

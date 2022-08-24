@@ -69,21 +69,33 @@ class GetDomainZoneResult:
     @property
     @pulumi.getter
     def message(self) -> str:
+        """
+        Message
+        """
         return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
     def ns(self) -> Sequence[str]:
+        """
+        NameServer list for zone.
+        """
         return pulumi.get(self, "ns")
 
     @property
     @pulumi.getter(name="nsDefaults")
     def ns_defaults(self) -> Sequence[str]:
+        """
+        NameServer default list for zone.
+        """
         return pulumi.get(self, "ns_defaults")
 
     @property
     @pulumi.getter(name="nsMasters")
     def ns_masters(self) -> Sequence[str]:
+        """
+        NameServer master list for zone.
+        """
         return pulumi.get(self, "ns_masters")
 
     @property
@@ -94,6 +106,9 @@ class GetDomainZoneResult:
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The domain zone status.
+        """
         return pulumi.get(self, "status")
 
     @property
@@ -104,6 +119,9 @@ class GetDomainZoneResult:
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
+        """
+        The date and time of the last update of the DNS zone.
+        """
         return pulumi.get(self, "updated_at")
 
 
@@ -129,7 +147,21 @@ def get_domain_zone(domain: Optional[str] = None,
                     subdomain: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainZoneResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a domain zone.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
+        subdomain="test")
+    ```
+
+
+    :param str domain: The domain where the DNS zone will be created.
+    :param str subdomain: The subdomain(zone name) to create in the domain.
     """
     __args__ = dict()
     __args__['domain'] = domain
@@ -155,6 +187,20 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                            subdomain: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainZoneResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a domain zone.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
+        subdomain="test")
+    ```
+
+
+    :param str domain: The domain where the DNS zone will be created.
+    :param str subdomain: The subdomain(zone name) to create in the domain.
     """
     ...

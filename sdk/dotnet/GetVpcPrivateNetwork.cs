@@ -12,16 +12,37 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetVpcPrivateNetwork
     {
+        /// <summary>
+        /// Gets information about a private network.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// N/A, the usage will be meaningful in the next releases of VPC.
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetVpcPrivateNetworkResult> InvokeAsync(GetVpcPrivateNetworkArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a private network.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// N/A, the usage will be meaningful in the next releases of VPC.
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetVpcPrivateNetworkResult> Invoke(GetVpcPrivateNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetVpcPrivateNetworkArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPrivateNetworkArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Exact name of the private network.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -31,10 +52,14 @@ namespace Pulumiverse.Scaleway
         public GetVpcPrivateNetworkArgs()
         {
         }
+        public static new GetVpcPrivateNetworkArgs Empty => new GetVpcPrivateNetworkArgs();
     }
 
-    public sealed class GetVpcPrivateNetworkInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPrivateNetworkInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Exact name of the private network.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -44,6 +69,7 @@ namespace Pulumiverse.Scaleway
         public GetVpcPrivateNetworkInvokeArgs()
         {
         }
+        public static new GetVpcPrivateNetworkInvokeArgs Empty => new GetVpcPrivateNetworkInvokeArgs();
     }
 
 

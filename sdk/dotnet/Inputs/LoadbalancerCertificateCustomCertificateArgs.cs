@@ -11,13 +11,17 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class LoadbalancerCertificateCustomCertificateArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerCertificateCustomCertificateArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Full PEM-formatted certificate chain.
+        /// </summary>
         [Input("certificateChain", required: true)]
         public Input<string> CertificateChain { get; set; } = null!;
 
         public LoadbalancerCertificateCustomCertificateArgs()
         {
         }
+        public static new LoadbalancerCertificateCustomCertificateArgs Empty => new LoadbalancerCertificateCustomCertificateArgs();
     }
 }

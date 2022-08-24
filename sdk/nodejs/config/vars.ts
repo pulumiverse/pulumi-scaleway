@@ -30,6 +30,17 @@ Object.defineProperty(exports, "apiUrl", {
 });
 
 /**
+ * The Scaleway organization ID.
+ */
+export declare const organizationId: string | undefined;
+Object.defineProperty(exports, "organizationId", {
+    get() {
+        return __config.get("organizationId");
+    },
+    enumerable: true,
+});
+
+/**
  * The Scaleway profile to use.
  */
 export declare const profile: string | undefined;

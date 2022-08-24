@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     [ScalewayResourceType("scaleway:index/iotRoute:IotRoute")]
-    public partial class IotRoute : Pulumi.CustomResource
+    public partial class IotRoute : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time of the creation of the IoT Route
@@ -106,7 +106,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class IotRouteArgs : Pulumi.ResourceArgs
+    public sealed class IotRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database Route parameters
@@ -153,9 +153,10 @@ namespace Pulumiverse.Scaleway
         public IotRouteArgs()
         {
         }
+        public static new IotRouteArgs Empty => new IotRouteArgs();
     }
 
-    public sealed class IotRouteState : Pulumi.ResourceArgs
+    public sealed class IotRouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time of the creation of the IoT Route
@@ -208,5 +209,6 @@ namespace Pulumiverse.Scaleway
         public IotRouteState()
         {
         }
+        public static new IotRouteState Empty => new IotRouteState();
     }
 }

@@ -28,24 +28,38 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BaremetalServer{}
 	case "scaleway:index/container:Container":
 		r = &Container{}
+	case "scaleway:index/containerCron:ContainerCron":
+		r = &ContainerCron{}
 	case "scaleway:index/containerNamespace:ContainerNamespace":
 		r = &ContainerNamespace{}
 	case "scaleway:index/database:Database":
 		r = &Database{}
 	case "scaleway:index/databaseAcl:DatabaseAcl":
 		r = &DatabaseAcl{}
+	case "scaleway:index/databaseBackup:DatabaseBackup":
+		r = &DatabaseBackup{}
 	case "scaleway:index/databaseInstance:DatabaseInstance":
 		r = &DatabaseInstance{}
 	case "scaleway:index/databasePrivilege:DatabasePrivilege":
 		r = &DatabasePrivilege{}
+	case "scaleway:index/databaseReadReplica:DatabaseReadReplica":
+		r = &DatabaseReadReplica{}
 	case "scaleway:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
 		r = &DomainZone{}
+	case "scaleway:index/flexibleIp:FlexibleIp":
+		r = &FlexibleIp{}
+	case "scaleway:index/function:Function":
+		r = &Function{}
+	case "scaleway:index/functionCron:FunctionCron":
+		r = &FunctionCron{}
 	case "scaleway:index/functionNamespace:FunctionNamespace":
 		r = &FunctionNamespace{}
+	case "scaleway:index/instanceImage:InstanceImage":
+		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
 		r = &InstanceIp{}
 	case "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns":
@@ -90,6 +104,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerRoute{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
+	case "scaleway:index/objectBucketPolicy:ObjectBucketPolicy":
+		r = &ObjectBucketPolicy{}
+	case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
+		r = &ObjectBucketWebsiteConfiguration{}
 	case "scaleway:index/redisCluster:RedisCluster":
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
@@ -158,6 +176,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/containerCron",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/containerNamespace",
 		&module{version},
 	)
@@ -173,12 +196,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/databaseBackup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/databaseInstance",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/databasePrivilege",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/databaseReadReplica",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -198,7 +231,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/flexibleIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/function",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/functionCron",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/functionNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/instanceImage",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -309,6 +362,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/objectBucket",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/objectBucketPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/objectBucketWebsiteConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

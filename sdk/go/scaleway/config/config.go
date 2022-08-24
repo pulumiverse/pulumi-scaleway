@@ -22,6 +22,11 @@ func GetApiUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:apiUrl")
 }
 
+// The Scaleway organization ID.
+func GetOrganizationId(ctx *pulumi.Context) string {
+	return config.Get(ctx, "scaleway:organizationId")
+}
+
 // The Scaleway profile to use.
 func GetProfile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:profile")

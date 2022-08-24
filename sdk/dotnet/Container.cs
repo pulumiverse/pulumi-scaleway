@@ -10,8 +10,98 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Container.
+    /// 
+    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+    /// 
+    /// For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+    /// 
+    /// You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainContainerNamespace = new Scaleway.ContainerNamespace("mainContainerNamespace", new()
+    ///     {
+    ///         Description = "test container",
+    ///     });
+    /// 
+    ///     var mainContainer = new Scaleway.Container("mainContainer", new()
+    ///     {
+    ///         Description = "environment variables test",
+    ///         NamespaceId = mainContainerNamespace.Id,
+    ///         RegistryImage = mainContainerNamespace.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/alpine:test"),
+    ///         Port = 9997,
+    ///         CpuLimit = 140,
+    ///         MemoryLimit = 256,
+    ///         MinScale = 3,
+    ///         MaxScale = 5,
+    ///         Timeout = 600,
+    ///         MaxConcurrency = 80,
+    ///         Privacy = "private",
+    ///         Protocol = "h2c",
+    ///         Deploy = true,
+    ///         EnvironmentVariables = 
+    ///         {
+    ///             { "foo", "var" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ## Protocols
+    /// 
+    /// The supported protocols are:
+    /// 
+    /// * `h2c`: HTTP/2 over TCP.
+    /// * `http1`: Hypertext Transfer Protocol.
+    /// 
+    /// **Important:** For details about the protocols check [this](https://httpd.apache.org/docs/2.4/howto/http2.html)
+    /// 
+    /// ## Privacy
+    /// 
+    /// By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
+    /// A container can be made `private` with the privacy parameter.
+    /// 
+    /// Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+    /// 
+    /// ## Memory and vCPUs configuration
+    /// 
+    /// The vCPU represents a portion or share of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
+    /// 
+    /// You may decide how much computing resources to allocate to each container.
+    /// The `memory_limit` (in MB) must correspond with the right amount of vCPU.
+    /// 
+    /// **Important:** The right choice for your container's resources is very important, as you will be billed based on compute usage over time and the number of Containers executions.
+    /// 
+    /// Please check our [price](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) section for more details.
+    /// 
+    /// | Memory (in MB) | vCPU |
+    /// |----------------|------|
+    /// | 128            | 70m  |
+    /// | 256            | 140m |
+    /// | 512            | 280m |
+    /// | 1024           | 560m |
+    /// 
+    /// **Note:** 560mCPU accounts roughly for half of one CPU power of a Scaleway General Purpose instance
+    /// 
+    /// ## Import
+    /// 
+    /// Container can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/container:Container")]
-    public partial class Container : Pulumi.CustomResource
+    public partial class Container : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
@@ -20,19 +110,19 @@ namespace Pulumiverse.Scaleway
         public Output<int> CpuLimit { get; private set; } = null!;
 
         /// <summary>
-        /// The cron status
+        /// The cron status of the container.
         /// </summary>
         [Output("cronStatus")]
         public Output<string> CronStatus { get; private set; } = null!;
 
         /// <summary>
-        /// This allows you to control your production environment
+        /// Boolean controlling whether the container is on a production environment.
         /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
 
         /// <summary>
-        /// The container description
+        /// The description of the container.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -44,19 +134,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> DomainName { get; private set; } = null!;
 
         /// <summary>
-        /// The environment variables to be injected into your container at runtime.
+        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         /// </summary>
         [Output("environmentVariables")]
         public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// The error description
+        /// The error message of the container.
         /// </summary>
         [Output("errorMessage")]
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         /// </summary>
         [Output("maxConcurrency")]
         public Output<int> MaxConcurrency { get; private set; } = null!;
@@ -80,56 +170,61 @@ namespace Pulumiverse.Scaleway
         public Output<int> MinScale { get; private set; } = null!;
 
         /// <summary>
-        /// The container name
+        /// The unique name of the container name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The container namespace associated
+        /// The container namespace ID of the container.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// The port to expose the container. Defaults to 8080
+        /// The port to expose the container. Defaults to 8080.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container
+        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
         /// </summary>
         [Output("privacy")]
         public Output<string?> Privacy { get; private set; } = null!;
 
         /// <summary>
-        /// The communication protocol http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// The region of the resource
+        /// (Defaults to provider `region`) The region in which the container was created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The scaleway registry image address
+        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         /// </summary>
         [Output("registryImage")]
         public Output<string> RegistryImage { get; private set; } = null!;
 
         /// <summary>
-        /// The container status
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// </summary>
+        [Output("registrySha256")]
+        public Output<string?> RegistrySha256 { get; private set; } = null!;
+
+        /// <summary>
+        /// The container status.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-        /// 300s.
+        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
@@ -179,7 +274,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class ContainerArgs : Pulumi.ResourceArgs
+    public sealed class ContainerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
@@ -188,28 +283,22 @@ namespace Pulumiverse.Scaleway
         public Input<int>? CpuLimit { get; set; }
 
         /// <summary>
-        /// This allows you to control your production environment
+        /// Boolean controlling whether the container is on a production environment.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
         /// <summary>
-        /// The container description
+        /// The description of the container.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
-
-        /// <summary>
-        /// The container domain name.
-        /// </summary>
-        [Input("domainName")]
-        public Input<string>? DomainName { get; set; }
 
         [Input("environmentVariables")]
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The environment variables to be injected into your container at runtime.
+        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -218,7 +307,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         /// </summary>
         [Input("maxConcurrency")]
         public Input<int>? MaxConcurrency { get; set; }
@@ -242,50 +331,55 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MinScale { get; set; }
 
         /// <summary>
-        /// The container name
+        /// The unique name of the container name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The container namespace associated
+        /// The container namespace ID of the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// The port to expose the container. Defaults to 8080
+        /// The port to expose the container. Defaults to 8080.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container
+        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// The communication protocol http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The scaleway registry image address
+        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         /// </summary>
         [Input("registryImage")]
         public Input<string>? RegistryImage { get; set; }
 
         /// <summary>
-        /// The container status
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// </summary>
+        [Input("registrySha256")]
+        public Input<string>? RegistrySha256 { get; set; }
+
+        /// <summary>
+        /// The container status.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-        /// 300s.
+        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -293,9 +387,10 @@ namespace Pulumiverse.Scaleway
         public ContainerArgs()
         {
         }
+        public static new ContainerArgs Empty => new ContainerArgs();
     }
 
-    public sealed class ContainerState : Pulumi.ResourceArgs
+    public sealed class ContainerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
@@ -304,19 +399,19 @@ namespace Pulumiverse.Scaleway
         public Input<int>? CpuLimit { get; set; }
 
         /// <summary>
-        /// The cron status
+        /// The cron status of the container.
         /// </summary>
         [Input("cronStatus")]
         public Input<string>? CronStatus { get; set; }
 
         /// <summary>
-        /// This allows you to control your production environment
+        /// Boolean controlling whether the container is on a production environment.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
         /// <summary>
-        /// The container description
+        /// The description of the container.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -331,7 +426,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The environment variables to be injected into your container at runtime.
+        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -340,13 +435,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The error description
+        /// The error message of the container.
         /// </summary>
         [Input("errorMessage")]
         public Input<string>? ErrorMessage { get; set; }
 
         /// <summary>
-        /// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         /// </summary>
         [Input("maxConcurrency")]
         public Input<int>? MaxConcurrency { get; set; }
@@ -370,56 +465,61 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MinScale { get; set; }
 
         /// <summary>
-        /// The container name
+        /// The unique name of the container name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The container namespace associated
+        /// The container namespace ID of the container.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// The port to expose the container. Defaults to 8080
+        /// The port to expose the container. Defaults to 8080.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container
+        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// The communication protocol http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The region of the resource
+        /// (Defaults to provider `region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The scaleway registry image address
+        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         /// </summary>
         [Input("registryImage")]
         public Input<string>? RegistryImage { get; set; }
 
         /// <summary>
-        /// The container status
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// </summary>
+        [Input("registrySha256")]
+        public Input<string>? RegistrySha256 { get; set; }
+
+        /// <summary>
+        /// The container status.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-        /// 300s.
+        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -427,5 +527,6 @@ namespace Pulumiverse.Scaleway
         public ContainerState()
         {
         }
+        public static new ContainerState Empty => new ContainerState();
     }
 }

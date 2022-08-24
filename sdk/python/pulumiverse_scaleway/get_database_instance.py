@@ -265,7 +265,22 @@ def get_database_instance(instance_id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a RDB instance.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str instance_id: The RDB instance ID.
+           Only one of `name` and `instance_id` should be specified.
+    :param str name: The name of the RDB instance.
+           Only one of `name` and `instance_id` should be specified.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -306,6 +321,21 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a RDB instance.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str instance_id: The RDB instance ID.
+           Only one of `name` and `instance_id` should be specified.
+    :param str name: The name of the RDB instance.
+           Only one of `name` and `instance_id` should be specified.
     """
     ...

@@ -21,6 +21,8 @@ type Provider struct {
 	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
 	// The Scaleway API URL to use.
 	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// The Scaleway organization ID.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The Scaleway profile to use.
 	Profile pulumi.StringPtrOutput `pulumi:"profile"`
 	// The Scaleway project ID.
@@ -69,6 +71,8 @@ type providerArgs struct {
 	AccessKey *string `pulumi:"accessKey"`
 	// The Scaleway API URL to use.
 	ApiUrl *string `pulumi:"apiUrl"`
+	// The Scaleway organization ID.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The Scaleway profile to use.
 	Profile *string `pulumi:"profile"`
 	// The Scaleway project ID.
@@ -87,6 +91,8 @@ type ProviderArgs struct {
 	AccessKey pulumi.StringPtrInput
 	// The Scaleway API URL to use.
 	ApiUrl pulumi.StringPtrInput
+	// The Scaleway organization ID.
+	OrganizationId pulumi.StringPtrInput
 	// The Scaleway profile to use.
 	Profile pulumi.StringPtrInput
 	// The Scaleway project ID.
@@ -144,6 +150,11 @@ func (o ProviderOutput) AccessKey() pulumi.StringPtrOutput {
 // The Scaleway API URL to use.
 func (o ProviderOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ApiUrl }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway organization ID.
+func (o ProviderOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
 // The Scaleway profile to use.

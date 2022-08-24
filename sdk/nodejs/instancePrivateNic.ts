@@ -4,6 +4,51 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Instance Private NICs. For more information, see
+ * [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ *     privateNetworkId: "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+ *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ### With zone
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {zone: "fr-par-2"});
+ * const base = new scaleway.InstanceServer("base", {
+ *     image: "ubuntu_focal",
+ *     type: "DEV1-S",
+ *     zone: pn01.zone,
+ * });
+ * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ *     serverId: base.id,
+ *     privateNetworkId: pn01.id,
+ *     zone: pn01.zone,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+ * ```
+ */
 export class InstancePrivateNic extends pulumi.CustomResource {
     /**
      * Get an existing InstancePrivateNic resource's state with the given name, ID, and optional extra
@@ -33,19 +78,19 @@ export class InstancePrivateNic extends pulumi.CustomResource {
     }
 
     /**
-     * MAC address of the NIC
+     * The MAC address of the private NIC.
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
     /**
-     * The private network ID
+     * The ID of the private network attached to.
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
     /**
-     * The server ID
+     * The ID of the server associated with.
      */
     public readonly serverId!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server must be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -89,19 +134,19 @@ export class InstancePrivateNic extends pulumi.CustomResource {
  */
 export interface InstancePrivateNicState {
     /**
-     * MAC address of the NIC
+     * The MAC address of the private NIC.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The private network ID
+     * The ID of the private network attached to.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * The server ID
+     * The ID of the server associated with.
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server must be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -111,15 +156,15 @@ export interface InstancePrivateNicState {
  */
 export interface InstancePrivateNicArgs {
     /**
-     * The private network ID
+     * The ID of the private network attached to.
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * The server ID
+     * The ID of the server associated with.
      */
     serverId: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the server must be created.
      */
     zone?: pulumi.Input<string>;
 }

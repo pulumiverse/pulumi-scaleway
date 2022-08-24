@@ -23,25 +23,29 @@ class RedisClusterArgs:
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]] = None,
                  cluster_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_network: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RedisCluster resource.
-        :param pulumi.Input[str] node_type: Type of node to use for the cluster
-        :param pulumi.Input[str] password: Password of the user
-        :param pulumi.Input[str] user_name: Name of the user created when the cluster is created
-        :param pulumi.Input[str] version: Redis version of the cluster
-        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules.
-        :param pulumi.Input[int] cluster_size: Number of nodes for the cluster.
-        :param pulumi.Input[str] name: Name of the redis cluster
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings to define for the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a redis cluster
-        :param pulumi.Input[bool] tls_enabled: Whether or not TLS is enabled.
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+        :param pulumi.Input[str] name: The name of the Redis Cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
+        :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: Public network specs details
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
+        :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
         """
         pulumi.set(__self__, "node_type", node_type)
         pulumi.set(__self__, "password", password)
@@ -53,8 +57,12 @@ class RedisClusterArgs:
             pulumi.set(__self__, "cluster_size", cluster_size)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_networks is not None:
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_network is not None:
+            pulumi.set(__self__, "public_network", public_network)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
         if tags is not None:
@@ -68,7 +76,7 @@ class RedisClusterArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Input[str]:
         """
-        Type of node to use for the cluster
+        The type of Redis Cluster you want to create (e.g. `RED1-M`).
         """
         return pulumi.get(self, "node_type")
 
@@ -80,7 +88,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        Password of the user
+        Password for the first user of the Redis Cluster.
         """
         return pulumi.get(self, "password")
 
@@ -92,7 +100,7 @@ class RedisClusterArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Input[str]:
         """
-        Name of the user created when the cluster is created
+        Identifier for the first user of the Redis Cluster.
         """
         return pulumi.get(self, "user_name")
 
@@ -104,7 +112,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        Redis version of the cluster
+        Redis's Cluster version (e.g. `6.2.6`).
         """
         return pulumi.get(self, "version")
 
@@ -116,7 +124,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]]:
         """
-        List of acl rules.
+        List of acl rules, this is cluster's authorized IPs.
         """
         return pulumi.get(self, "acls")
 
@@ -128,7 +136,7 @@ class RedisClusterArgs:
     @pulumi.getter(name="clusterSize")
     def cluster_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes for the cluster.
+        The number of nodes in the Redis Cluster.
         """
         return pulumi.get(self, "cluster_size")
 
@@ -140,7 +148,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the redis cluster
+        The name of the Redis Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -149,10 +157,22 @@ class RedisClusterArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]]:
+        """
+        Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        """
+        return pulumi.get(self, "private_networks")
+
+    @private_networks.setter
+    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]]):
+        pulumi.set(self, "private_networks", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the Redis Cluster is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -161,10 +181,22 @@ class RedisClusterArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="publicNetwork")
+    def public_network(self) -> Optional[pulumi.Input['RedisClusterPublicNetworkArgs']]:
+        """
+        Public network specs details
+        """
+        return pulumi.get(self, "public_network")
+
+    @public_network.setter
+    def public_network(self, value: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']]):
+        pulumi.set(self, "public_network", value)
+
+    @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of settings to define for the cluster.
+        Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
 
@@ -176,7 +208,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of tags ["tag1", "tag2", ...] attached to a redis cluster
+        The tags associated with the Redis Cluster.
         """
         return pulumi.get(self, "tags")
 
@@ -188,7 +220,7 @@ class RedisClusterArgs:
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not TLS is enabled.
+        Whether TLS is enabled or not.
         """
         return pulumi.get(self, "tls_enabled")
 
@@ -200,7 +232,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the Redis Cluster should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -213,12 +245,15 @@ class RedisClusterArgs:
 class _RedisClusterState:
     def __init__(__self__, *,
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
                  cluster_size: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_network: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -228,23 +263,28 @@ class _RedisClusterState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RedisCluster resources.
-        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules.
-        :param pulumi.Input[int] cluster_size: Number of nodes for the cluster.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the Redis cluster
-        :param pulumi.Input[str] name: Name of the redis cluster
-        :param pulumi.Input[str] node_type: Type of node to use for the cluster
-        :param pulumi.Input[str] password: Password of the user
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings to define for the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a redis cluster
-        :param pulumi.Input[bool] tls_enabled: Whether or not TLS is enabled.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis cluster
-        :param pulumi.Input[str] user_name: Name of the user created when the cluster is created
-        :param pulumi.Input[str] version: Redis version of the cluster
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
+        :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+        :param pulumi.Input[str] created_at: The date and time of creation of the Redis Cluster.
+        :param pulumi.Input[str] name: The name of the Redis Cluster.
+        :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
+        :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: Public network specs details
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
+        :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis Cluster.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
         """
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
         if cluster_size is not None:
             pulumi.set(__self__, "cluster_size", cluster_size)
         if created_at is not None:
@@ -255,8 +295,12 @@ class _RedisClusterState:
             pulumi.set(__self__, "node_type", node_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_networks is not None:
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_network is not None:
+            pulumi.set(__self__, "public_network", public_network)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
         if tags is not None:
@@ -276,7 +320,7 @@ class _RedisClusterState:
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]]:
         """
-        List of acl rules.
+        List of acl rules, this is cluster's authorized IPs.
         """
         return pulumi.get(self, "acls")
 
@@ -285,10 +329,22 @@ class _RedisClusterState:
         pulumi.set(self, "acls", value)
 
     @property
+    @pulumi.getter
+    def certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PEM of the certificate used by redis, only when `tls_enabled` is true
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate", value)
+
+    @property
     @pulumi.getter(name="clusterSize")
     def cluster_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes for the cluster.
+        The number of nodes in the Redis Cluster.
         """
         return pulumi.get(self, "cluster_size")
 
@@ -300,7 +356,7 @@ class _RedisClusterState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the Redis cluster
+        The date and time of creation of the Redis Cluster.
         """
         return pulumi.get(self, "created_at")
 
@@ -312,7 +368,7 @@ class _RedisClusterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the redis cluster
+        The name of the Redis Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -324,7 +380,7 @@ class _RedisClusterState:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of node to use for the cluster
+        The type of Redis Cluster you want to create (e.g. `RED1-M`).
         """
         return pulumi.get(self, "node_type")
 
@@ -336,7 +392,7 @@ class _RedisClusterState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password of the user
+        Password for the first user of the Redis Cluster.
         """
         return pulumi.get(self, "password")
 
@@ -345,10 +401,22 @@ class _RedisClusterState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]]:
+        """
+        Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        """
+        return pulumi.get(self, "private_networks")
+
+    @private_networks.setter
+    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]]):
+        pulumi.set(self, "private_networks", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the Redis Cluster is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -357,10 +425,22 @@ class _RedisClusterState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="publicNetwork")
+    def public_network(self) -> Optional[pulumi.Input['RedisClusterPublicNetworkArgs']]:
+        """
+        Public network specs details
+        """
+        return pulumi.get(self, "public_network")
+
+    @public_network.setter
+    def public_network(self, value: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']]):
+        pulumi.set(self, "public_network", value)
+
+    @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of settings to define for the cluster.
+        Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
 
@@ -372,7 +452,7 @@ class _RedisClusterState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of tags ["tag1", "tag2", ...] attached to a redis cluster
+        The tags associated with the Redis Cluster.
         """
         return pulumi.get(self, "tags")
 
@@ -384,7 +464,7 @@ class _RedisClusterState:
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not TLS is enabled.
+        Whether TLS is enabled or not.
         """
         return pulumi.get(self, "tls_enabled")
 
@@ -396,7 +476,7 @@ class _RedisClusterState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the Redis cluster
+        The date and time of the last update of the Redis Cluster.
         """
         return pulumi.get(self, "updated_at")
 
@@ -408,7 +488,7 @@ class _RedisClusterState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the user created when the cluster is created
+        Identifier for the first user of the Redis Cluster.
         """
         return pulumi.get(self, "user_name")
 
@@ -420,7 +500,7 @@ class _RedisClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Redis version of the cluster
+        Redis's Cluster version (e.g. `6.2.6`).
         """
         return pulumi.get(self, "version")
 
@@ -432,7 +512,7 @@ class _RedisClusterState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the Redis Cluster should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -451,7 +531,9 @@ class RedisCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_network: Optional[pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -460,21 +542,95 @@ class RedisCluster(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a RedisCluster resource with the given unique name, props, and options.
+        Creates and manages Scaleway Redis Clusters.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.RedisCluster("main",
+            acls=[scaleway.RedisClusterAclArgs(
+                description="Allow all",
+                ip="0.0.0.0/0",
+            )],
+            cluster_size=1,
+            node_type="RED1-MICRO",
+            password="thiZ_is_v&ry_s3cret",
+            tags=[
+                "test",
+                "redis",
+            ],
+            tls_enabled=True,
+            user_name="my_initial_user",
+            version="6.2.6")
+        ```
+
+        ### With settings
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.RedisCluster("main",
+            node_type="RED1-MICRO",
+            password="thiZ_is_v&ry_s3cret",
+            settings={
+                "maxclients": "1000",
+                "tcp-keepalive": "120",
+            },
+            user_name="my_initial_user",
+            version="6.2.6")
+        ```
+
+        ### With a private network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.RedisCluster("main",
+            version="6.2.6",
+            node_type="RED1-MICRO",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            cluster_size=1,
+            private_networks=[scaleway.RedisClusterPrivateNetworkArgs(
+                id=pn.id,
+                service_ips=["10.12.1.1/20"],
+            )],
+            opts=pulumi.ResourceOptions(depends_on=[pn]))
+        ```
+
+        ## Import
+
+        Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules.
-        :param pulumi.Input[int] cluster_size: Number of nodes for the cluster.
-        :param pulumi.Input[str] name: Name of the redis cluster
-        :param pulumi.Input[str] node_type: Type of node to use for the cluster
-        :param pulumi.Input[str] password: Password of the user
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings to define for the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a redis cluster
-        :param pulumi.Input[bool] tls_enabled: Whether or not TLS is enabled.
-        :param pulumi.Input[str] user_name: Name of the user created when the cluster is created
-        :param pulumi.Input[str] version: Redis version of the cluster
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+        :param pulumi.Input[str] name: The name of the Redis Cluster.
+        :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
+        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: Public network specs details
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
+        :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
         """
         ...
     @overload
@@ -483,7 +639,79 @@ class RedisCluster(pulumi.CustomResource):
                  args: RedisClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RedisCluster resource with the given unique name, props, and options.
+        Creates and manages Scaleway Redis Clusters.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.RedisCluster("main",
+            acls=[scaleway.RedisClusterAclArgs(
+                description="Allow all",
+                ip="0.0.0.0/0",
+            )],
+            cluster_size=1,
+            node_type="RED1-MICRO",
+            password="thiZ_is_v&ry_s3cret",
+            tags=[
+                "test",
+                "redis",
+            ],
+            tls_enabled=True,
+            user_name="my_initial_user",
+            version="6.2.6")
+        ```
+
+        ### With settings
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.RedisCluster("main",
+            node_type="RED1-MICRO",
+            password="thiZ_is_v&ry_s3cret",
+            settings={
+                "maxclients": "1000",
+                "tcp-keepalive": "120",
+            },
+            user_name="my_initial_user",
+            version="6.2.6")
+        ```
+
+        ### With a private network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.RedisCluster("main",
+            version="6.2.6",
+            node_type="RED1-MICRO",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            cluster_size=1,
+            private_networks=[scaleway.RedisClusterPrivateNetworkArgs(
+                id=pn.id,
+                service_ips=["10.12.1.1/20"],
+            )],
+            opts=pulumi.ResourceOptions(depends_on=[pn]))
+        ```
+
+        ## Import
+
+        Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param RedisClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -504,7 +732,9 @@ class RedisCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_network: Optional[pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -529,7 +759,9 @@ class RedisCluster(pulumi.CustomResource):
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = password
+            __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["public_network"] = public_network
             __props__.__dict__["settings"] = settings
             __props__.__dict__["tags"] = tags
             __props__.__dict__["tls_enabled"] = tls_enabled
@@ -540,6 +772,7 @@ class RedisCluster(pulumi.CustomResource):
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
             __props__.__dict__["zone"] = zone
+            __props__.__dict__["certificate"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(RedisCluster, __self__).__init__(
@@ -553,12 +786,15 @@ class RedisCluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]]] = None,
+            certificate: Optional[pulumi.Input[str]] = None,
             cluster_size: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            public_network: Optional[pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']]] = None,
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -573,32 +809,38 @@ class RedisCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules.
-        :param pulumi.Input[int] cluster_size: Number of nodes for the cluster.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the Redis cluster
-        :param pulumi.Input[str] name: Name of the redis cluster
-        :param pulumi.Input[str] node_type: Type of node to use for the cluster
-        :param pulumi.Input[str] password: Password of the user
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings to define for the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a redis cluster
-        :param pulumi.Input[bool] tls_enabled: Whether or not TLS is enabled.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis cluster
-        :param pulumi.Input[str] user_name: Name of the user created when the cluster is created
-        :param pulumi.Input[str] version: Redis version of the cluster
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
+        :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+        :param pulumi.Input[str] created_at: The date and time of creation of the Redis Cluster.
+        :param pulumi.Input[str] name: The name of the Redis Cluster.
+        :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
+        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: Public network specs details
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
+        :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis Cluster.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _RedisClusterState.__new__(_RedisClusterState)
 
         __props__.__dict__["acls"] = acls
+        __props__.__dict__["certificate"] = certificate
         __props__.__dict__["cluster_size"] = cluster_size
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["password"] = password
+        __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["public_network"] = public_network
         __props__.__dict__["settings"] = settings
         __props__.__dict__["tags"] = tags
         __props__.__dict__["tls_enabled"] = tls_enabled
@@ -612,15 +854,23 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def acls(self) -> pulumi.Output[Optional[Sequence['outputs.RedisClusterAcl']]]:
         """
-        List of acl rules.
+        List of acl rules, this is cluster's authorized IPs.
         """
         return pulumi.get(self, "acls")
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Output[str]:
+        """
+        The PEM of the certificate used by redis, only when `tls_enabled` is true
+        """
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="clusterSize")
     def cluster_size(self) -> pulumi.Output[int]:
         """
-        Number of nodes for the cluster.
+        The number of nodes in the Redis Cluster.
         """
         return pulumi.get(self, "cluster_size")
 
@@ -628,7 +878,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the Redis cluster
+        The date and time of creation of the Redis Cluster.
         """
         return pulumi.get(self, "created_at")
 
@@ -636,7 +886,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the redis cluster
+        The name of the Redis Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -644,7 +894,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Output[str]:
         """
-        Type of node to use for the cluster
+        The type of Redis Cluster you want to create (e.g. `RED1-M`).
         """
         return pulumi.get(self, "node_type")
 
@@ -652,23 +902,39 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
         """
-        Password of the user
+        Password for the first user of the Redis Cluster.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.RedisClusterPrivateNetwork']]]:
+        """
+        Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        """
+        return pulumi.get(self, "private_networks")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the Redis Cluster is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="publicNetwork")
+    def public_network(self) -> pulumi.Output['outputs.RedisClusterPublicNetwork']:
+        """
+        Public network specs details
+        """
+        return pulumi.get(self, "public_network")
 
     @property
     @pulumi.getter
     def settings(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Map of settings to define for the cluster.
+        Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
 
@@ -676,7 +942,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of tags ["tag1", "tag2", ...] attached to a redis cluster
+        The tags associated with the Redis Cluster.
         """
         return pulumi.get(self, "tags")
 
@@ -684,7 +950,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether or not TLS is enabled.
+        Whether TLS is enabled or not.
         """
         return pulumi.get(self, "tls_enabled")
 
@@ -692,7 +958,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the Redis cluster
+        The date and time of the last update of the Redis Cluster.
         """
         return pulumi.get(self, "updated_at")
 
@@ -700,7 +966,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
         """
-        Name of the user created when the cluster is created
+        Identifier for the first user of the Redis Cluster.
         """
         return pulumi.get(self, "user_name")
 
@@ -708,7 +974,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        Redis version of the cluster
+        Redis's Cluster version (e.g. `6.2.6`).
         """
         return pulumi.get(self, "version")
 
@@ -716,7 +982,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the Redis Cluster should be created.
         """
         return pulumi.get(self, "zone")
 

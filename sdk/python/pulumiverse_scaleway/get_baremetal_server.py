@@ -185,7 +185,23 @@ def get_baremetal_server(name: Optional[str] = None,
                          zone: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalServerResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a baremetal server.
+    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_baremetal_server(name="foobar",
+        zone="fr-par-2")
+    by_id = scaleway.get_baremetal_server(server_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str zone: `zone`) The zone in which the server exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -219,6 +235,22 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
                                 zone: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalServerResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a baremetal server.
+    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_baremetal_server(name="foobar",
+        zone="fr-par-2")
+    by_id = scaleway.get_baremetal_server(server_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str zone: `zone`) The zone in which the server exists.
     """
     ...

@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class DatabaseAclAclRule
     {
+        /// <summary>
+        /// A text describing this rule. Default description: `IP allowed`
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        /// </summary>
         public readonly string Ip;
 
         [OutputConstructor]

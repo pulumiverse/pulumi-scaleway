@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a registry namespace.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupRegistryNamespace(ctx, &GetRegistryNamespaceArgs{
+//				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupRegistryNamespaceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryNamespaceResult
@@ -22,20 +50,28 @@ func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceA
 
 // A collection of arguments for invoking getRegistryNamespace.
 type LookupRegistryNamespaceArgs struct {
-	Name        *string `pulumi:"name"`
+	// The namespace name.
+	// Only one of `name` and `namespaceId` should be specified.
+	Name *string `pulumi:"name"`
+	// The namespace id.
+	// Only one of `name` and `namespaceId` should be specified.
 	NamespaceId *string `pulumi:"namespaceId"`
-	Region      *string `pulumi:"region"`
+	// `region`) The region in which the namespace exists.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getRegistryNamespace.
 type LookupRegistryNamespaceResult struct {
 	Description string `pulumi:"description"`
-	Endpoint    string `pulumi:"endpoint"`
+	// The endpoint of the Registry Namespace.
+	Endpoint string `pulumi:"endpoint"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	IsPublic       bool    `pulumi:"isPublic"`
-	Name           *string `pulumi:"name"`
-	NamespaceId    *string `pulumi:"namespaceId"`
+	Id string `pulumi:"id"`
+	// The Namespace Privacy Policy: whether or not the images are public.
+	IsPublic    bool    `pulumi:"isPublic"`
+	Name        *string `pulumi:"name"`
+	NamespaceId *string `pulumi:"namespaceId"`
+	// The organization ID the namespace is associated with.
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
@@ -56,9 +92,14 @@ func LookupRegistryNamespaceOutput(ctx *pulumi.Context, args LookupRegistryNames
 
 // A collection of arguments for invoking getRegistryNamespace.
 type LookupRegistryNamespaceOutputArgs struct {
-	Name        pulumi.StringPtrInput `pulumi:"name"`
+	// The namespace name.
+	// Only one of `name` and `namespaceId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The namespace id.
+	// Only one of `name` and `namespaceId` should be specified.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	Region      pulumi.StringPtrInput `pulumi:"region"`
+	// `region`) The region in which the namespace exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupRegistryNamespaceOutputArgs) ElementType() reflect.Type {
@@ -84,6 +125,7 @@ func (o LookupRegistryNamespaceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryNamespaceResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// The endpoint of the Registry Namespace.
 func (o LookupRegistryNamespaceResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryNamespaceResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -93,6 +135,7 @@ func (o LookupRegistryNamespaceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryNamespaceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The Namespace Privacy Policy: whether or not the images are public.
 func (o LookupRegistryNamespaceResultOutput) IsPublic() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRegistryNamespaceResult) bool { return v.IsPublic }).(pulumi.BoolOutput)
 }
@@ -105,6 +148,7 @@ func (o LookupRegistryNamespaceResultOutput) NamespaceId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupRegistryNamespaceResult) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
+// The organization ID the namespace is associated with.
 func (o LookupRegistryNamespaceResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryNamespaceResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }

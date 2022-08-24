@@ -14,15 +14,45 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class KubernetesClusterAutoscalerConfig
     {
+        /// <summary>
+        /// Detect similar node groups and balance the number of nodes between them.
+        /// </summary>
         public readonly bool? BalanceSimilarNodeGroups;
+        /// <summary>
+        /// Disables the scale down feature of the autoscaler.
+        /// </summary>
         public readonly bool? DisableScaleDown;
+        /// <summary>
+        /// Type of resource estimator to be used in scale up.
+        /// </summary>
         public readonly string? Estimator;
+        /// <summary>
+        /// Type of node group expander to be used in scale up.
+        /// </summary>
         public readonly string? Expander;
+        /// <summary>
+        /// Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+        /// </summary>
         public readonly int? ExpendablePodsPriorityCutoff;
+        /// <summary>
+        /// Ignore DaemonSet pods when calculating resource utilization for scaling down.
+        /// </summary>
         public readonly bool? IgnoreDaemonsetsUtilization;
+        /// <summary>
+        /// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
+        /// </summary>
         public readonly int? MaxGracefulTerminationSec;
+        /// <summary>
+        /// How long after scale up that scale down evaluation resumes.
+        /// </summary>
         public readonly string? ScaleDownDelayAfterAdd;
+        /// <summary>
+        /// How long a node should be unneeded before it is eligible for scale down.
+        /// </summary>
         public readonly string? ScaleDownUnneededTime;
+        /// <summary>
+        /// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+        /// </summary>
         public readonly double? ScaleDownUtilizationThreshold;
 
         [OutputConstructor]

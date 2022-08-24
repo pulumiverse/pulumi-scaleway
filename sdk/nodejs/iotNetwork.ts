@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * IoT Networks can be imported using the `{region}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class IotNetwork extends pulumi.CustomResource {
     /**
      * Get an existing IotNetwork resource's state with the given name, ID, and optional extra
@@ -33,31 +42,31 @@ export class IotNetwork extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the network
+     * The date and time the Network was created.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The endpoint to use when interacting with the network
+     * The endpoint to use when interacting with the network.
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * The ID of the hub on which this network will be created
+     * The hub ID to which the Network will be attached to.
      */
     public readonly hubId!: pulumi.Output<string>;
     /**
-     * The name of the network
+     * The name of the IoT Network you want to create (e.g. `my-net`).
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The endpoint key to keep secret
+     * The endpoint key to keep secret.
      */
     public /*out*/ readonly secret!: pulumi.Output<string>;
     /**
-     * The prefix that will be prepended to all topics for this Network
+     * The prefix that will be prepended to all topics for this Network.
      */
     public readonly topicPrefix!: pulumi.Output<string | undefined>;
     /**
-     * The type of the network
+     * The network type to create (e.g. `sigfox`).
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -107,31 +116,31 @@ export class IotNetwork extends pulumi.CustomResource {
  */
 export interface IotNetworkState {
     /**
-     * The date and time of the creation of the network
+     * The date and time the Network was created.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The endpoint to use when interacting with the network
+     * The endpoint to use when interacting with the network.
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * The ID of the hub on which this network will be created
+     * The hub ID to which the Network will be attached to.
      */
     hubId?: pulumi.Input<string>;
     /**
-     * The name of the network
+     * The name of the IoT Network you want to create (e.g. `my-net`).
      */
     name?: pulumi.Input<string>;
     /**
-     * The endpoint key to keep secret
+     * The endpoint key to keep secret.
      */
     secret?: pulumi.Input<string>;
     /**
-     * The prefix that will be prepended to all topics for this Network
+     * The prefix that will be prepended to all topics for this Network.
      */
     topicPrefix?: pulumi.Input<string>;
     /**
-     * The type of the network
+     * The network type to create (e.g. `sigfox`).
      */
     type?: pulumi.Input<string>;
 }
@@ -141,19 +150,19 @@ export interface IotNetworkState {
  */
 export interface IotNetworkArgs {
     /**
-     * The ID of the hub on which this network will be created
+     * The hub ID to which the Network will be attached to.
      */
     hubId: pulumi.Input<string>;
     /**
-     * The name of the network
+     * The name of the IoT Network you want to create (e.g. `my-net`).
      */
     name?: pulumi.Input<string>;
     /**
-     * The prefix that will be prepended to all topics for this Network
+     * The prefix that will be prepended to all topics for this Network.
      */
     topicPrefix?: pulumi.Input<string>;
     /**
-     * The type of the network
+     * The network type to create (e.g. `sigfox`).
      */
     type: pulumi.Input<string>;
 }

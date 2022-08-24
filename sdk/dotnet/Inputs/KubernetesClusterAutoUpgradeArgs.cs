@@ -11,19 +11,30 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class KubernetesClusterAutoUpgradeArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterAutoUpgradeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Set to `true` to enable Kubernetes patch version auto upgrades.
+        /// &gt; **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+        /// </summary>
         [Input("enable", required: true)]
         public Input<bool> Enable { get; set; } = null!;
 
+        /// <summary>
+        /// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        /// </summary>
         [Input("maintenanceWindowDay", required: true)]
         public Input<string> MaintenanceWindowDay { get; set; } = null!;
 
+        /// <summary>
+        /// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+        /// </summary>
         [Input("maintenanceWindowStartHour", required: true)]
         public Input<int> MaintenanceWindowStartHour { get; set; } = null!;
 
         public KubernetesClusterAutoUpgradeArgs()
         {
         }
+        public static new KubernetesClusterAutoUpgradeArgs Empty => new KubernetesClusterAutoUpgradeArgs();
     }
 }

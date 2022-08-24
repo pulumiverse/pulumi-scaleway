@@ -128,7 +128,20 @@ class AwaitableGetVpcPublicGatewayIpResult(GetVpcPublicGatewayIpResult):
 def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayIpResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway IP.
+
+    For further information please check the API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-66f0c0)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.VpcPublicGatewayIp("main")
+    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
+    ```
     """
     __args__ = dict()
     __args__['ipId'] = ip_id
@@ -152,6 +165,19 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
 def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayIpResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway IP.
+
+    For further information please check the API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-66f0c0)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.VpcPublicGatewayIp("main")
+    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
+    ```
     """
     ...

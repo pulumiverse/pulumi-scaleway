@@ -22,10 +22,13 @@ class GetRedisClusterResult:
     """
     A collection of values returned by getRedisCluster.
     """
-    def __init__(__self__, acls=None, cluster_id=None, cluster_size=None, created_at=None, id=None, name=None, node_type=None, password=None, project_id=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
+    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, created_at=None, id=None, name=None, node_type=None, password=None, private_networks=None, project_id=None, public_networks=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
         if acls and not isinstance(acls, list):
             raise TypeError("Expected argument 'acls' to be a list")
         pulumi.set(__self__, "acls", acls)
+        if certificate and not isinstance(certificate, str):
+            raise TypeError("Expected argument 'certificate' to be a str")
+        pulumi.set(__self__, "certificate", certificate)
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -47,9 +50,15 @@ class GetRedisClusterResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if private_networks and not isinstance(private_networks, list):
+            raise TypeError("Expected argument 'private_networks' to be a list")
+        pulumi.set(__self__, "private_networks", private_networks)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if public_networks and not isinstance(public_networks, list):
+            raise TypeError("Expected argument 'public_networks' to be a list")
+        pulumi.set(__self__, "public_networks", public_networks)
         if settings and not isinstance(settings, dict):
             raise TypeError("Expected argument 'settings' to be a dict")
         pulumi.set(__self__, "settings", settings)
@@ -76,6 +85,11 @@ class GetRedisClusterResult:
     @pulumi.getter
     def acls(self) -> Sequence['outputs.GetRedisClusterAclResult']:
         return pulumi.get(self, "acls")
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> str:
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -116,9 +130,19 @@ class GetRedisClusterResult:
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Sequence['outputs.GetRedisClusterPrivateNetworkResult']:
+        return pulumi.get(self, "private_networks")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="publicNetworks")
+    def public_networks(self) -> Sequence['outputs.GetRedisClusterPublicNetworkResult']:
+        return pulumi.get(self, "public_networks")
 
     @property
     @pulumi.getter
@@ -163,6 +187,7 @@ class AwaitableGetRedisClusterResult(GetRedisClusterResult):
             yield self
         return GetRedisClusterResult(
             acls=self.acls,
+            certificate=self.certificate,
             cluster_id=self.cluster_id,
             cluster_size=self.cluster_size,
             created_at=self.created_at,
@@ -170,7 +195,9 @@ class AwaitableGetRedisClusterResult(GetRedisClusterResult):
             name=self.name,
             node_type=self.node_type,
             password=self.password,
+            private_networks=self.private_networks,
             project_id=self.project_id,
+            public_networks=self.public_networks,
             settings=self.settings,
             tags=self.tags,
             tls_enabled=self.tls_enabled,
@@ -185,7 +212,23 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
                       zone: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Redis cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_cluster = scaleway.get_redis_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str cluster_id: The Redis cluster ID.
+           Only one of the `name` and `cluster_id` should be specified.
+    :param str name: The name of the Redis cluster.
+           Only one of the `name` and `cluster_id` should be specified.
+    :param str zone: `region`) The zone in which the server exists.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -196,6 +239,7 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
 
     return AwaitableGetRedisClusterResult(
         acls=__ret__.acls,
+        certificate=__ret__.certificate,
         cluster_id=__ret__.cluster_id,
         cluster_size=__ret__.cluster_size,
         created_at=__ret__.created_at,
@@ -203,7 +247,9 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
         name=__ret__.name,
         node_type=__ret__.node_type,
         password=__ret__.password,
+        private_networks=__ret__.private_networks,
         project_id=__ret__.project_id,
+        public_networks=__ret__.public_networks,
         settings=__ret__.settings,
         tags=__ret__.tags,
         tls_enabled=__ret__.tls_enabled,
@@ -219,6 +265,22 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
                              zone: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRedisClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Redis cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_cluster = scaleway.get_redis_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str cluster_id: The Redis cluster ID.
+           Only one of the `name` and `cluster_id` should be specified.
+    :param str name: The name of the Redis cluster.
+           Only one of the `name` and `cluster_id` should be specified.
+    :param str zone: `region`) The zone in which the server exists.
     """
     ...

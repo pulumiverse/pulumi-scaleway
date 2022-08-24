@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about an IOT Hub.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupIotHub(ctx, &GetIotHubArgs{
+//				HubId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupIotHub(ctx *pulumi.Context, args *LookupIotHubArgs, opts ...pulumi.InvokeOption) (*LookupIotHubResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIotHubResult
@@ -22,8 +50,13 @@ func LookupIotHub(ctx *pulumi.Context, args *LookupIotHubArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getIotHub.
 type LookupIotHubArgs struct {
-	HubId  *string `pulumi:"hubId"`
-	Name   *string `pulumi:"name"`
+	// The Hub ID.
+	// Only one of the `name` and `hubId` should be specified.
+	HubId *string `pulumi:"hubId"`
+	// The name of the Hub.
+	// Only one of the `name` and `hubId` should be specified.
+	Name *string `pulumi:"name"`
+	// `region`) The region in which the hub exists.
 	Region *string `pulumi:"region"`
 }
 
@@ -66,8 +99,13 @@ func LookupIotHubOutput(ctx *pulumi.Context, args LookupIotHubOutputArgs, opts .
 
 // A collection of arguments for invoking getIotHub.
 type LookupIotHubOutputArgs struct {
-	HubId  pulumi.StringPtrInput `pulumi:"hubId"`
-	Name   pulumi.StringPtrInput `pulumi:"name"`
+	// The Hub ID.
+	// Only one of the `name` and `hubId` should be specified.
+	HubId pulumi.StringPtrInput `pulumi:"hubId"`
+	// The name of the Hub.
+	// Only one of the `name` and `hubId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `region`) The region in which the hub exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 

@@ -10,17 +10,48 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Load-Balancers IPs.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ip = new Scaleway.LoadbalancerIp("ip", new()
+    ///     {
+    ///         Reverse = "my-reverse.com",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IPs can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/loadbalancerIp:LoadbalancerIp")]
-    public partial class LoadbalancerIp : Pulumi.CustomResource
+    public partial class LoadbalancerIp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The load-balancer public IP address
+        /// The IP Address
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the load balancer attached to this IP, if any
+        /// The associated load-balance ID if any
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
@@ -32,7 +63,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -44,13 +75,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The reverse domain name for this IP
+        /// The reverse domain associated with this IP.
         /// </summary>
         [Output("reverse")]
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -100,22 +131,22 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class LoadbalancerIpArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The reverse domain name for this IP
+        /// The reverse domain associated with this IP.
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -123,18 +154,19 @@ namespace Pulumiverse.Scaleway
         public LoadbalancerIpArgs()
         {
         }
+        public static new LoadbalancerIpArgs Empty => new LoadbalancerIpArgs();
     }
 
-    public sealed class LoadbalancerIpState : Pulumi.ResourceArgs
+    public sealed class LoadbalancerIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The load-balancer public IP address
+        /// The IP Address
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The ID of the load balancer attached to this IP, if any
+        /// The associated load-balance ID if any
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
@@ -146,7 +178,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -158,13 +190,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The reverse domain name for this IP
+        /// The reverse domain associated with this IP.
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -172,5 +204,6 @@ namespace Pulumiverse.Scaleway
         public LoadbalancerIpState()
         {
         }
+        public static new LoadbalancerIpState Empty => new LoadbalancerIpState();
     }
 }

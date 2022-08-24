@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [ScalewayResourceType("pulumi:providers:scaleway")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// The Scaleway access key.
@@ -30,6 +30,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("apiUrl")]
         public Output<string?> ApiUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway organization ID.
+        /// </summary>
+        [Output("organizationId")]
+        public Output<string?> OrganizationId { get; private set; } = null!;
 
         /// <summary>
         /// The Scaleway profile to use.
@@ -88,7 +94,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Scaleway access key.
@@ -101,6 +107,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
+
+        /// <summary>
+        /// The Scaleway organization ID.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The Scaleway profile to use.
@@ -140,5 +152,6 @@ namespace Pulumiverse.Scaleway
             SecretKey = Utilities.GetEnv("SCW_SECRET_KEY");
             Zone = Utilities.GetEnv("SCW_DEFAULT_ZONE");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

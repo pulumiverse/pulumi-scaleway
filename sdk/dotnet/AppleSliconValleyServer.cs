@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     [ScalewayResourceType("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer")]
-    public partial class AppleSliconValleyServer : Pulumi.CustomResource
+    public partial class AppleSliconValleyServer : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time of the creation of the server
@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class AppleSliconValleyServerArgs : Pulumi.ResourceArgs
+    public sealed class AppleSliconValleyServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the server
@@ -153,9 +153,10 @@ namespace Pulumiverse.Scaleway
         public AppleSliconValleyServerArgs()
         {
         }
+        public static new AppleSliconValleyServerArgs Empty => new AppleSliconValleyServerArgs();
     }
 
-    public sealed class AppleSliconValleyServerState : Pulumi.ResourceArgs
+    public sealed class AppleSliconValleyServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time of the creation of the server
@@ -226,5 +227,6 @@ namespace Pulumiverse.Scaleway
         public AppleSliconValleyServerState()
         {
         }
+        public static new AppleSliconValleyServerState Empty => new AppleSliconValleyServerState();
     }
 }

@@ -11,10 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class LoadbalancerBackendHealthCheckTcpGetArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerBackendHealthCheckTcpGetArgs : global::Pulumi.ResourceArgs
     {
         public LoadbalancerBackendHealthCheckTcpGetArgs()
         {
         }
+        public static new LoadbalancerBackendHealthCheckTcpGetArgs Empty => new LoadbalancerBackendHealthCheckTcpGetArgs();
     }
 }

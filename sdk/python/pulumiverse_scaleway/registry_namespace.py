@@ -21,11 +21,11 @@ class RegistryNamespaceArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RegistryNamespace resource.
-        :param pulumi.Input[str] description: The description of the container registry namespace
-        :param pulumi.Input[bool] is_public: Define the default visibity policy
-        :param pulumi.Input[str] name: The name of the container registry namespace
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
+        :param pulumi.Input[str] name: The unique name of the namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -42,7 +42,7 @@ class RegistryNamespaceArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the container registry namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -54,7 +54,7 @@ class RegistryNamespaceArgs:
     @pulumi.getter(name="isPublic")
     def is_public(self) -> Optional[pulumi.Input[bool]]:
         """
-        Define the default visibity policy
+        Whether the images stored in the namespace should be downloadable publicly (docker pull).
         """
         return pulumi.get(self, "is_public")
 
@@ -66,7 +66,7 @@ class RegistryNamespaceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the container registry namespace
+        The unique name of the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -78,7 +78,7 @@ class RegistryNamespaceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -90,7 +90,7 @@ class RegistryNamespaceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -111,13 +111,13 @@ class _RegistryNamespaceState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RegistryNamespace resources.
-        :param pulumi.Input[str] description: The description of the container registry namespace
-        :param pulumi.Input[str] endpoint: The endpoint reachable by docker
-        :param pulumi.Input[bool] is_public: Define the default visibity policy
-        :param pulumi.Input[str] name: The name of the container registry namespace
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[str] endpoint: Endpoint reachable by Docker.
+        :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
+        :param pulumi.Input[str] name: The unique name of the namespace.
+        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -138,7 +138,7 @@ class _RegistryNamespaceState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the container registry namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -150,7 +150,7 @@ class _RegistryNamespaceState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        The endpoint reachable by docker
+        Endpoint reachable by Docker.
         """
         return pulumi.get(self, "endpoint")
 
@@ -162,7 +162,7 @@ class _RegistryNamespaceState:
     @pulumi.getter(name="isPublic")
     def is_public(self) -> Optional[pulumi.Input[bool]]:
         """
-        Define the default visibity policy
+        Whether the images stored in the namespace should be downloadable publicly (docker pull).
         """
         return pulumi.get(self, "is_public")
 
@@ -174,7 +174,7 @@ class _RegistryNamespaceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the container registry namespace
+        The unique name of the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -186,7 +186,7 @@ class _RegistryNamespaceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -198,7 +198,7 @@ class _RegistryNamespaceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -210,7 +210,7 @@ class _RegistryNamespaceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -231,14 +231,37 @@ class RegistryNamespace(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a RegistryNamespace resource with the given unique name, props, and options.
+        Creates and manages Scaleway Container Registry.
+        For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.RegistryNamespace("main",
+            description="Main container registry",
+            is_public=False)
+        ```
+
+        ## Import
+
+        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the container registry namespace
-        :param pulumi.Input[bool] is_public: Define the default visibity policy
-        :param pulumi.Input[str] name: The name of the container registry namespace
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
+        :param pulumi.Input[str] name: The unique name of the namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         ...
     @overload
@@ -247,7 +270,30 @@ class RegistryNamespace(pulumi.CustomResource):
                  args: Optional[RegistryNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RegistryNamespace resource with the given unique name, props, and options.
+        Creates and manages Scaleway Container Registry.
+        For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.RegistryNamespace("main",
+            description="Main container registry",
+            is_public=False)
+        ```
+
+        ## Import
+
+        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param RegistryNamespaceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -308,13 +354,13 @@ class RegistryNamespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the container registry namespace
-        :param pulumi.Input[str] endpoint: The endpoint reachable by docker
-        :param pulumi.Input[bool] is_public: Define the default visibity policy
-        :param pulumi.Input[str] name: The name of the container registry namespace
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[str] endpoint: Endpoint reachable by Docker.
+        :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
+        :param pulumi.Input[str] name: The unique name of the namespace.
+        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -333,7 +379,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the container registry namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -341,7 +387,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[str]:
         """
-        The endpoint reachable by docker
+        Endpoint reachable by Docker.
         """
         return pulumi.get(self, "endpoint")
 
@@ -349,7 +395,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter(name="isPublic")
     def is_public(self) -> pulumi.Output[Optional[bool]]:
         """
-        Define the default visibity policy
+        Whether the images stored in the namespace should be downloadable publicly (docker pull).
         """
         return pulumi.get(self, "is_public")
 
@@ -357,7 +403,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the container registry namespace
+        The unique name of the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -365,7 +411,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -373,7 +419,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -381,7 +427,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 

@@ -11,16 +11,99 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Instance Private NICs. For more information, see
+// [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//				PrivateNetworkId: pulumi.String("fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+//				ServerId:         pulumi.String("fr-par-1/11111111-1111-1111-1111-111111111111"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With zone
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Zone: pulumi.String("fr-par-2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			base, err := scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
+//				Image: pulumi.String("ubuntu_focal"),
+//				Type:  pulumi.String("DEV1-S"),
+//				Zone:  pn01.Zone,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//				ServerId:         base.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				Zone:             pn01.Zone,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+//
+// ```
 type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 
-	// MAC address of the NIC
+	// The MAC address of the private NIC.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
-	// The private network ID
+	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
-	// The server ID
+	// The ID of the server associated with.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server must be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -60,24 +143,24 @@ func GetInstancePrivateNic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstancePrivateNic resources.
 type instancePrivateNicState struct {
-	// MAC address of the NIC
+	// The MAC address of the private NIC.
 	MacAddress *string `pulumi:"macAddress"`
-	// The private network ID
+	// The ID of the private network attached to.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// The server ID
+	// The ID of the server associated with.
 	ServerId *string `pulumi:"serverId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server must be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstancePrivateNicState struct {
-	// MAC address of the NIC
+	// The MAC address of the private NIC.
 	MacAddress pulumi.StringPtrInput
-	// The private network ID
+	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringPtrInput
-	// The server ID
+	// The ID of the server associated with.
 	ServerId pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server must be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -86,21 +169,21 @@ func (InstancePrivateNicState) ElementType() reflect.Type {
 }
 
 type instancePrivateNicArgs struct {
-	// The private network ID
+	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The server ID
+	// The ID of the server associated with.
 	ServerId string `pulumi:"serverId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server must be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstancePrivateNic resource.
 type InstancePrivateNicArgs struct {
-	// The private network ID
+	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
-	// The server ID
+	// The ID of the server associated with.
 	ServerId pulumi.StringInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the server must be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -191,22 +274,22 @@ func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx cont
 	return o
 }
 
-// MAC address of the NIC
+// The MAC address of the private NIC.
 func (o InstancePrivateNicOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
 }
 
-// The private network ID
+// The ID of the private network attached to.
 func (o InstancePrivateNicOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// The server ID
+// The ID of the server associated with.
 func (o InstancePrivateNicOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which the server must be created.
 func (o InstancePrivateNicOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

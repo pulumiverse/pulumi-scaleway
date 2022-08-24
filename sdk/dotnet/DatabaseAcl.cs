@@ -10,17 +10,56 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Database instance authorized IPs.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#acl-rules-allowed-ips).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseAcl("main", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///         AclRules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.DatabaseAclAclRuleArgs
+    ///             {
+    ///                 Ip = "1.2.3.4/32",
+    ///                 Description = "foo",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/databaseAcl:DatabaseAcl")]
-    public partial class DatabaseAcl : Pulumi.CustomResource
+    public partial class DatabaseAcl : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// List of ACL rules to apply
+        /// A list of ACLs (structure is described below)
         /// </summary>
         [Output("aclRules")]
         public Output<ImmutableArray<Outputs.DatabaseAclAclRule>> AclRules { get; private set; } = null!;
 
         /// <summary>
-        /// Instance on which the ACL is applied
+        /// The instance on which to create the ACL.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -76,13 +115,13 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class DatabaseAclArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseAclArgs : global::Pulumi.ResourceArgs
     {
         [Input("aclRules", required: true)]
         private InputList<Inputs.DatabaseAclAclRuleArgs>? _aclRules;
 
         /// <summary>
-        /// List of ACL rules to apply
+        /// A list of ACLs (structure is described below)
         /// </summary>
         public InputList<Inputs.DatabaseAclAclRuleArgs> AclRules
         {
@@ -91,7 +130,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Instance on which the ACL is applied
+        /// The instance on which to create the ACL.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -105,15 +144,16 @@ namespace Pulumiverse.Scaleway
         public DatabaseAclArgs()
         {
         }
+        public static new DatabaseAclArgs Empty => new DatabaseAclArgs();
     }
 
-    public sealed class DatabaseAclState : Pulumi.ResourceArgs
+    public sealed class DatabaseAclState : global::Pulumi.ResourceArgs
     {
         [Input("aclRules")]
         private InputList<Inputs.DatabaseAclAclRuleGetArgs>? _aclRules;
 
         /// <summary>
-        /// List of ACL rules to apply
+        /// A list of ACLs (structure is described below)
         /// </summary>
         public InputList<Inputs.DatabaseAclAclRuleGetArgs> AclRules
         {
@@ -122,7 +162,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Instance on which the ACL is applied
+        /// The instance on which to create the ACL.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -136,5 +176,6 @@ namespace Pulumiverse.Scaleway
         public DatabaseAclState()
         {
         }
+        public static new DatabaseAclState Empty => new DatabaseAclState();
     }
 }

@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about an IOT Device.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by device ID
+ * const myDevice = pulumi.output(scaleway.getIotDevice({
+ *     deviceId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getIotDevice(args?: GetIotDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetIotDeviceResult> {
     args = args || {};
     if (!opts) {
@@ -24,9 +39,23 @@ export function getIotDevice(args?: GetIotDeviceArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getIotDevice.
  */
 export interface GetIotDeviceArgs {
+    /**
+     * The device ID.
+     * Only one of the `name` and `deviceId` should be specified.
+     */
     deviceId?: string;
+    /**
+     * The hub ID.
+     */
     hubId?: string;
+    /**
+     * The name of the Hub.
+     * Only one of the `name` and `deviceId` should be specified.
+     */
     name?: string;
+    /**
+     * `region`) The region in which the hub exists.
+     */
     region?: string;
 }
 
@@ -62,8 +91,22 @@ export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getIotDevice.
  */
 export interface GetIotDeviceOutputArgs {
+    /**
+     * The device ID.
+     * Only one of the `name` and `deviceId` should be specified.
+     */
     deviceId?: pulumi.Input<string>;
+    /**
+     * The hub ID.
+     */
     hubId?: pulumi.Input<string>;
+    /**
+     * The name of the Hub.
+     * Only one of the `name` and `deviceId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the hub exists.
+     */
     region?: pulumi.Input<string>;
 }

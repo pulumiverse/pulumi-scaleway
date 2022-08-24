@@ -10,6 +10,43 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about the Bucket.
+// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Tags: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupObjectBucket(ctx, &GetObjectBucketArgs{
+//				Name: pulumi.StringRef("bucket.test.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts ...pulumi.InvokeOption) (*LookupObjectBucketResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupObjectBucketResult
@@ -22,16 +59,19 @@ func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts 
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketArgs struct {
-	Name   *string `pulumi:"name"`
+	// The bucket name.
+	Name *string `pulumi:"name"`
+	// `region`) The region in which the Object Storage exists.
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getObjectBucket.
 type LookupObjectBucketResult struct {
-	Acl          string                    `pulumi:"acl"`
-	CorsRules    []GetObjectBucketCorsRule `pulumi:"corsRules"`
-	Endpoint     string                    `pulumi:"endpoint"`
-	ForceDestroy bool                      `pulumi:"forceDestroy"`
+	Acl       string                    `pulumi:"acl"`
+	CorsRules []GetObjectBucketCorsRule `pulumi:"corsRules"`
+	// The endpoint URL of the bucket
+	Endpoint     string `pulumi:"endpoint"`
+	ForceDestroy bool   `pulumi:"forceDestroy"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string                         `pulumi:"id"`
 	LifecycleRules []GetObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
@@ -56,7 +96,9 @@ func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutput
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketOutputArgs struct {
-	Name   pulumi.StringPtrInput `pulumi:"name"`
+	// The bucket name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `region`) The region in which the Object Storage exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -87,6 +129,7 @@ func (o LookupObjectBucketResultOutput) CorsRules() GetObjectBucketCorsRuleArray
 	return o.ApplyT(func(v LookupObjectBucketResult) []GetObjectBucketCorsRule { return v.CorsRules }).(GetObjectBucketCorsRuleArrayOutput)
 }
 
+// The endpoint URL of the bucket
 func (o LookupObjectBucketResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectBucketResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }

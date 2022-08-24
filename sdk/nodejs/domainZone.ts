@@ -4,6 +4,30 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Domain zone.\
+ * For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
+ *
+ * ## Examples
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const test = new scaleway.DomainZone("test", {
+ *     domain: "scaleway-terraform.com",
+ *     subdomain: "test",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
+ * ```
+ */
 export class DomainZone extends pulumi.CustomResource {
     /**
      * Get an existing DomainZone resource's state with the given name, ID, and optional extra
@@ -53,7 +77,7 @@ export class DomainZone extends pulumi.CustomResource {
      */
     public /*out*/ readonly nsMasters!: pulumi.Output<string[]>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the domain is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -61,7 +85,7 @@ export class DomainZone extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The subdomain of the DNS zone to create.
+     * The subdomain(zone name) to create in the domain.
      */
     public readonly subdomain!: pulumi.Output<string>;
     /**
@@ -139,7 +163,7 @@ export interface DomainZoneState {
      */
     nsMasters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the domain is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -147,7 +171,7 @@ export interface DomainZoneState {
      */
     status?: pulumi.Input<string>;
     /**
-     * The subdomain of the DNS zone to create.
+     * The subdomain(zone name) to create in the domain.
      */
     subdomain?: pulumi.Input<string>;
     /**
@@ -165,11 +189,11 @@ export interface DomainZoneArgs {
      */
     domain: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the domain is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The subdomain of the DNS zone to create.
+     * The subdomain(zone name) to create in the domain.
      */
     subdomain: pulumi.Input<string>;
 }

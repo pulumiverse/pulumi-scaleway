@@ -50,16 +50,25 @@ class GetInstanceIpResult:
     @property
     @pulumi.getter
     def address(self) -> Optional[str]:
+        """
+        The IP address.
+        """
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of the IP.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The organization ID the IP is associated with.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -70,6 +79,9 @@ class GetInstanceIpResult:
     @property
     @pulumi.getter
     def reverse(self) -> str:
+        """
+        The reverse dns attached to this IP
+        """
         return pulumi.get(self, "reverse")
 
     @property
@@ -108,7 +120,22 @@ def get_instance_ip(address: Optional[str] = None,
                     id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceIpResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an instance IP.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str address: The IPv4 address to retrieve
+           Only one of `address` and `id` should be specified.
+    :param str id: The ID of the IP address to retrieve
+           Only one of `address` and `id` should be specified.
     """
     __args__ = dict()
     __args__['address'] = address
@@ -132,6 +159,21 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
                            id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIpResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an instance IP.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str address: The IPv4 address to retrieve
+           Only one of `address` and `id` should be specified.
+    :param str id: The ID of the IP address to retrieve
+           Only one of `address` and `id` should be specified.
     """
     ...

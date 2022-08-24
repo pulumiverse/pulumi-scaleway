@@ -25,13 +25,13 @@ class LoadbalancerFrontendArgs:
                  timeout_client: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerFrontend resource.
-        :param pulumi.Input[str] backend_id: The load-balancer backend ID
-        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: ACL rules
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: Collection of Certificate IDs related to the load balancer and domain
-        :param pulumi.Input[str] name: The name of the frontend
-        :param pulumi.Input[str] timeout_client: Set the maximum inactivity time on the client side
+        :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
+        :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "inbound_port", inbound_port)
@@ -49,7 +49,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter(name="backendId")
     def backend_id(self) -> pulumi.Input[str]:
         """
-        The load-balancer backend ID
+        The load-balancer backend ID this frontend is attached to.
         """
         return pulumi.get(self, "backend_id")
 
@@ -61,7 +61,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter(name="inboundPort")
     def inbound_port(self) -> pulumi.Input[int]:
         """
-        TCP port to listen on the front side
+        TCP port to listen on the front side.
         """
         return pulumi.get(self, "inbound_port")
 
@@ -73,7 +73,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Input[str]:
         """
-        The load-balancer ID
+        The load-balancer ID this frontend is attached to.
         """
         return pulumi.get(self, "lb_id")
 
@@ -85,7 +85,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]]]:
         """
-        ACL rules
+        A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         """
         return pulumi.get(self, "acls")
 
@@ -97,7 +97,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter(name="certificateIds")
     def certificate_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Collection of Certificate IDs related to the load balancer and domain
+        List of Certificate IDs that should be used by the frontend.
         """
         return pulumi.get(self, "certificate_ids")
 
@@ -109,7 +109,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the frontend
+        The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -121,7 +121,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter(name="timeoutClient")
     def timeout_client(self) -> Optional[pulumi.Input[str]]:
         """
-        Set the maximum inactivity time on the client side
+        Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_client")
 
@@ -143,14 +143,14 @@ class _LoadbalancerFrontendState:
                  timeout_client: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerFrontend resources.
-        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: ACL rules
-        :param pulumi.Input[str] backend_id: The load-balancer backend ID
-        :param pulumi.Input[str] certificate_id: Certificate ID
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: Collection of Certificate IDs related to the load balancer and domain
-        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] name: The name of the frontend
-        :param pulumi.Input[str] timeout_client: Set the maximum inactivity time on the client side
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+        :param pulumi.Input[str] certificate_id: (Deprecated) first certificate ID used by the frontend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
+        :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
+        :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
@@ -176,7 +176,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]]]:
         """
-        ACL rules
+        A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         """
         return pulumi.get(self, "acls")
 
@@ -188,7 +188,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="backendId")
     def backend_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balancer backend ID
+        The load-balancer backend ID this frontend is attached to.
         """
         return pulumi.get(self, "backend_id")
 
@@ -200,7 +200,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Certificate ID
+        (Deprecated) first certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -212,7 +212,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="certificateIds")
     def certificate_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Collection of Certificate IDs related to the load balancer and domain
+        List of Certificate IDs that should be used by the frontend.
         """
         return pulumi.get(self, "certificate_ids")
 
@@ -224,7 +224,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="inboundPort")
     def inbound_port(self) -> Optional[pulumi.Input[int]]:
         """
-        TCP port to listen on the front side
+        TCP port to listen on the front side.
         """
         return pulumi.get(self, "inbound_port")
 
@@ -236,7 +236,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balancer ID
+        The load-balancer ID this frontend is attached to.
         """
         return pulumi.get(self, "lb_id")
 
@@ -248,7 +248,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the frontend
+        The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -260,7 +260,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter(name="timeoutClient")
     def timeout_client(self) -> Optional[pulumi.Input[str]]:
         """
-        Set the maximum inactivity time on the client side
+        Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_client")
 
@@ -283,16 +283,39 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  timeout_client: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LoadbalancerFrontend resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+
+        ## Examples Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            backend_id=scaleway_lb_backend["backend01"]["id"],
+            inbound_port=80)
+        ```
+
+        ## Import
+
+        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]] acls: ACL rules
-        :param pulumi.Input[str] backend_id: The load-balancer backend ID
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: Collection of Certificate IDs related to the load balancer and domain
-        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] name: The name of the frontend
-        :param pulumi.Input[str] timeout_client: Set the maximum inactivity time on the client side
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
+        :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
+        :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         ...
     @overload
@@ -301,7 +324,30 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  args: LoadbalancerFrontendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LoadbalancerFrontend resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+
+        ## Examples Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            backend_id=scaleway_lb_backend["backend01"]["id"],
+            inbound_port=80)
+        ```
+
+        ## Import
+
+        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerFrontendArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -372,14 +418,14 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]] acls: ACL rules
-        :param pulumi.Input[str] backend_id: The load-balancer backend ID
-        :param pulumi.Input[str] certificate_id: Certificate ID
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: Collection of Certificate IDs related to the load balancer and domain
-        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side
-        :param pulumi.Input[str] lb_id: The load-balancer ID
-        :param pulumi.Input[str] name: The name of the frontend
-        :param pulumi.Input[str] timeout_client: Set the maximum inactivity time on the client side
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+        :param pulumi.Input[str] certificate_id: (Deprecated) first certificate ID used by the frontend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
+        :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
+        :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
+        :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -399,7 +445,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def acls(self) -> pulumi.Output[Optional[Sequence['outputs.LoadbalancerFrontendAcl']]]:
         """
-        ACL rules
+        A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         """
         return pulumi.get(self, "acls")
 
@@ -407,7 +453,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="backendId")
     def backend_id(self) -> pulumi.Output[str]:
         """
-        The load-balancer backend ID
+        The load-balancer backend ID this frontend is attached to.
         """
         return pulumi.get(self, "backend_id")
 
@@ -415,7 +461,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Output[str]:
         """
-        Certificate ID
+        (Deprecated) first certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -423,7 +469,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="certificateIds")
     def certificate_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Collection of Certificate IDs related to the load balancer and domain
+        List of Certificate IDs that should be used by the frontend.
         """
         return pulumi.get(self, "certificate_ids")
 
@@ -431,7 +477,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="inboundPort")
     def inbound_port(self) -> pulumi.Output[int]:
         """
-        TCP port to listen on the front side
+        TCP port to listen on the front side.
         """
         return pulumi.get(self, "inbound_port")
 
@@ -439,7 +485,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Output[str]:
         """
-        The load-balancer ID
+        The load-balancer ID this frontend is attached to.
         """
         return pulumi.get(self, "lb_id")
 
@@ -447,7 +493,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the frontend
+        The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -455,7 +501,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter(name="timeoutClient")
     def timeout_client(self) -> pulumi.Output[Optional[str]]:
         """
-        Set the maximum inactivity time on the client side
+        Maximum inactivity time on the client side. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_client")
 

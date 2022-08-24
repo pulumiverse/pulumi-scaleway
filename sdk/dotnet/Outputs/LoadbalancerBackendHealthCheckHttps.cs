@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class LoadbalancerBackendHealthCheckHttps
     {
+        /// <summary>
+        /// The expected HTTP status code.
+        /// </summary>
         public readonly int? Code;
+        /// <summary>
+        /// The HTTP method to use for HC requests.
+        /// </summary>
         public readonly string? Method;
+        /// <summary>
+        /// The HTTPS endpoint URL to call for HC requests.
+        /// </summary>
         public readonly string Uri;
 
         [OutputConstructor]

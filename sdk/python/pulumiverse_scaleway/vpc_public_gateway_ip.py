@@ -20,10 +20,10 @@ class VpcPublicGatewayIpArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayIp resource.
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] reverse: reverse domain name for the IP address
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway ip is associated with.
+        :param pulumi.Input[str] reverse: The reverse domain name for the IP address
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway IP.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway ip should be created.
         """
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -38,7 +38,7 @@ class VpcPublicGatewayIpArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the public gateway ip is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -50,7 +50,7 @@ class VpcPublicGatewayIpArgs:
     @pulumi.getter
     def reverse(self) -> Optional[pulumi.Input[str]]:
         """
-        reverse domain name for the IP address
+        The reverse domain name for the IP address
         """
         return pulumi.get(self, "reverse")
 
@@ -62,7 +62,7 @@ class VpcPublicGatewayIpArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with public gateway IP
+        The tags associated with the public gateway IP.
         """
         return pulumi.get(self, "tags")
 
@@ -74,7 +74,7 @@ class VpcPublicGatewayIpArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway ip should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -96,14 +96,14 @@ class _VpcPublicGatewayIpState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayIp resources.
-        :param pulumi.Input[str] address: the IP itself
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway IP
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] reverse: reverse domain name for the IP address
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway IP
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] address: The IP address itself.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway ip.
+        :param pulumi.Input[str] organization_id: The organization ID the public gateway ip is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway ip is associated with.
+        :param pulumi.Input[str] reverse: The reverse domain name for the IP address
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway IP.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway ip.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway ip should be created.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -126,7 +126,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        the IP itself
+        The IP address itself.
         """
         return pulumi.get(self, "address")
 
@@ -138,7 +138,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the public gateway IP
+        The date and time of the creation of the public gateway ip.
         """
         return pulumi.get(self, "created_at")
 
@@ -150,7 +150,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the public gateway ip is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -162,7 +162,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the public gateway ip is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -174,7 +174,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter
     def reverse(self) -> Optional[pulumi.Input[str]]:
         """
-        reverse domain name for the IP address
+        The reverse domain name for the IP address
         """
         return pulumi.get(self, "reverse")
 
@@ -186,7 +186,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with public gateway IP
+        The tags associated with the public gateway IP.
         """
         return pulumi.get(self, "tags")
 
@@ -198,7 +198,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the public gateway IP
+        The date and time of the last update of the public gateway ip.
         """
         return pulumi.get(self, "updated_at")
 
@@ -210,7 +210,7 @@ class _VpcPublicGatewayIpState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway ip should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -230,13 +230,38 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcPublicGatewayIp resource with the given unique name, props, and options.
+        Creates and manages Scaleway VPC Public Gateway IP.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
+
+        ## Example
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
+        tf_a = scaleway.DomainRecord("tfA",
+            data=main.address,
+            dns_zone="example.com",
+            priority=1,
+            ttl=3600,
+            type="A")
+        ```
+
+        ## Import
+
+        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] reverse: reverse domain name for the IP address
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway ip is associated with.
+        :param pulumi.Input[str] reverse: The reverse domain name for the IP address
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway IP.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway ip should be created.
         """
         ...
     @overload
@@ -245,7 +270,32 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
                  args: Optional[VpcPublicGatewayIpArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcPublicGatewayIp resource with the given unique name, props, and options.
+        Creates and manages Scaleway VPC Public Gateway IP.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
+
+        ## Example
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
+        tf_a = scaleway.DomainRecord("tfA",
+            data=main.address,
+            dns_zone="example.com",
+            priority=1,
+            ttl=3600,
+            type="A")
+        ```
+
+        ## Import
+
+        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayIpArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -307,14 +357,14 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: the IP itself
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway IP
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] reverse: reverse domain name for the IP address
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway IP
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] address: The IP address itself.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway ip.
+        :param pulumi.Input[str] organization_id: The organization ID the public gateway ip is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway ip is associated with.
+        :param pulumi.Input[str] reverse: The reverse domain name for the IP address
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway IP.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway ip.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway ip should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -334,7 +384,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter
     def address(self) -> pulumi.Output[str]:
         """
-        the IP itself
+        The IP address itself.
         """
         return pulumi.get(self, "address")
 
@@ -342,7 +392,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the public gateway IP
+        The date and time of the creation of the public gateway ip.
         """
         return pulumi.get(self, "created_at")
 
@@ -350,7 +400,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the public gateway ip is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -358,7 +408,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the public gateway ip is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -366,7 +416,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter
     def reverse(self) -> pulumi.Output[str]:
         """
-        reverse domain name for the IP address
+        The reverse domain name for the IP address
         """
         return pulumi.get(self, "reverse")
 
@@ -374,7 +424,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with public gateway IP
+        The tags associated with the public gateway IP.
         """
         return pulumi.get(self, "tags")
 
@@ -382,7 +432,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the public gateway IP
+        The date and time of the last update of the public gateway ip.
         """
         return pulumi.get(self, "updated_at")
 
@@ -390,7 +440,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway ip should be created.
         """
         return pulumi.get(self, "zone")
 

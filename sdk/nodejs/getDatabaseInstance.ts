@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a RDB instance.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by instance ID
+ * const myInstance = pulumi.output(scaleway.getDatabaseInstance({
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstanceResult> {
     args = args || {};
     if (!opts) {
@@ -22,7 +37,15 @@ export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulum
  * A collection of arguments for invoking getDatabaseInstance.
  */
 export interface GetDatabaseInstanceArgs {
+    /**
+     * The RDB instance ID.
+     * Only one of `name` and `instanceId` should be specified.
+     */
     instanceId?: string;
+    /**
+     * The name of the RDB instance.
+     * Only one of `name` and `instanceId` should be specified.
+     */
     name?: string;
 }
 
@@ -68,6 +91,14 @@ export function getDatabaseInstanceOutput(args?: GetDatabaseInstanceOutputArgs, 
  * A collection of arguments for invoking getDatabaseInstance.
  */
 export interface GetDatabaseInstanceOutputArgs {
+    /**
+     * The RDB instance ID.
+     * Only one of `name` and `instanceId` should be specified.
+     */
     instanceId?: pulumi.Input<string>;
+    /**
+     * The name of the RDB instance.
+     * Only one of `name` and `instanceId` should be specified.
+     */
     name?: pulumi.Input<string>;
 }

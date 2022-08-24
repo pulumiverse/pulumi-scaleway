@@ -4,6 +4,32 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Container Registry.
+ * For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.RegistryNamespace("main", {
+ *     description: "Main container registry",
+ *     isPublic: false,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Namespaces can be imported using the `{region}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class RegistryNamespace extends pulumi.CustomResource {
     /**
      * Get an existing RegistryNamespace resource's state with the given name, ID, and optional extra
@@ -33,31 +59,31 @@ export class RegistryNamespace extends pulumi.CustomResource {
     }
 
     /**
-     * The description of the container registry namespace
+     * The description of the namespace.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The endpoint reachable by docker
+     * Endpoint reachable by Docker.
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * Define the default visibity policy
+     * Whether the images stored in the namespace should be downloadable publicly (docker pull).
      */
     public readonly isPublic!: pulumi.Output<boolean | undefined>;
     /**
-     * The name of the container registry namespace
+     * The unique name of the namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the namespace is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the namespace is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the namespace should be created.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -101,31 +127,31 @@ export class RegistryNamespace extends pulumi.CustomResource {
  */
 export interface RegistryNamespaceState {
     /**
-     * The description of the container registry namespace
+     * The description of the namespace.
      */
     description?: pulumi.Input<string>;
     /**
-     * The endpoint reachable by docker
+     * Endpoint reachable by Docker.
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * Define the default visibity policy
+     * Whether the images stored in the namespace should be downloadable publicly (docker pull).
      */
     isPublic?: pulumi.Input<boolean>;
     /**
-     * The name of the container registry namespace
+     * The unique name of the namespace.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the namespace is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the namespace is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
 }
@@ -135,23 +161,23 @@ export interface RegistryNamespaceState {
  */
 export interface RegistryNamespaceArgs {
     /**
-     * The description of the container registry namespace
+     * The description of the namespace.
      */
     description?: pulumi.Input<string>;
     /**
-     * Define the default visibity policy
+     * Whether the images stored in the namespace should be downloadable publicly (docker pull).
      */
     isPublic?: pulumi.Input<boolean>;
     /**
-     * The name of the container registry namespace
+     * The unique name of the namespace.
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the namespace is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
 }

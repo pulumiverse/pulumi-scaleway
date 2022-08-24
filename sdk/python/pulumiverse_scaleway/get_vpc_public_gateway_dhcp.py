@@ -218,7 +218,18 @@ class AwaitableGetVpcPublicGatewayDhcpResult(GetVpcPublicGatewayDhcpResult):
 def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway DHCP.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
+    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
+    ```
     """
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
@@ -252,6 +263,17 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
 def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway DHCP.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
+    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
+    ```
     """
     ...

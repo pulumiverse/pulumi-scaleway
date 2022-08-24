@@ -10,6 +10,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about the privilege on a RDB database.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupDatabasePrivilege(ctx, &GetDatabasePrivilegeArgs{
+//				DatabaseName: "my-database",
+//				InstanceId:   "fr-par/11111111-1111-111111111111",
+//				UserName:     "my-user",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeArgs, opts ...pulumi.InvokeOption) (*LookupDatabasePrivilegeResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabasePrivilegeResult
@@ -22,9 +52,12 @@ func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeA
 
 // A collection of arguments for invoking getDatabasePrivilege.
 type LookupDatabasePrivilegeArgs struct {
+	// The database name.
 	DatabaseName string `pulumi:"databaseName"`
-	InstanceId   string `pulumi:"instanceId"`
-	UserName     string `pulumi:"userName"`
+	// The RDB instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// The user name.
+	UserName string `pulumi:"userName"`
 }
 
 // A collection of values returned by getDatabasePrivilege.
@@ -33,6 +66,7 @@ type LookupDatabasePrivilegeResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId string `pulumi:"instanceId"`
+	// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission string `pulumi:"permission"`
 	UserName   string `pulumi:"userName"`
 }
@@ -52,9 +86,12 @@ func LookupDatabasePrivilegeOutput(ctx *pulumi.Context, args LookupDatabasePrivi
 
 // A collection of arguments for invoking getDatabasePrivilege.
 type LookupDatabasePrivilegeOutputArgs struct {
+	// The database name.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
-	InstanceId   pulumi.StringInput `pulumi:"instanceId"`
-	UserName     pulumi.StringInput `pulumi:"userName"`
+	// The RDB instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The user name.
+	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
 func (LookupDatabasePrivilegeOutputArgs) ElementType() reflect.Type {
@@ -89,6 +126,7 @@ func (o LookupDatabasePrivilegeResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
+// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 func (o LookupDatabasePrivilegeResultOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.Permission }).(pulumi.StringOutput)
 }

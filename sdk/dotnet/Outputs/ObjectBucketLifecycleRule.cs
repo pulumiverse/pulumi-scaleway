@@ -17,8 +17,14 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly int? AbortIncompleteMultipartUploadDays;
         public readonly bool Enabled;
         public readonly Outputs.ObjectBucketLifecycleRuleExpiration? Expiration;
+        /// <summary>
+        /// The unique name of the bucket.
+        /// </summary>
         public readonly string? Id;
         public readonly string? Prefix;
+        /// <summary>
+        /// A list of tags (key / value) for the bucket.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Tags;
         public readonly ImmutableArray<Outputs.ObjectBucketLifecycleRuleTransition> Transitions;
 

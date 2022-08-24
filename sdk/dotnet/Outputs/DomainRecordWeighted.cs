@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class DomainRecordWeighted
     {
+        /// <summary>
+        /// The weighted IP
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// The weight of the IP as an integer UInt32.
+        /// </summary>
         public readonly int Weight;
 
         [OutputConstructor]

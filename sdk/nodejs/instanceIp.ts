@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const serverIp = new scaleway.InstanceIp("server_ip", {});
+ * ```
+ *
+ * ## Import
+ *
+ * IPs can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class InstanceIp extends pulumi.CustomResource {
     /**
      * Get an existing InstanceIp resource's state with the given name, ID, and optional extra
@@ -33,19 +53,19 @@ export class InstanceIp extends pulumi.CustomResource {
     }
 
     /**
-     * The IP address
+     * The IP address.
      */
     public /*out*/ readonly address!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the IP is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the IP is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse dns attached to this IP
      */
     public /*out*/ readonly reverse!: pulumi.Output<string>;
     /**
@@ -53,11 +73,11 @@ export class InstanceIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
-     * The tags associated with the ip
+     * The tags associated with the IP.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -101,19 +121,19 @@ export class InstanceIp extends pulumi.CustomResource {
  */
 export interface InstanceIpState {
     /**
-     * The IP address
+     * The IP address.
      */
     address?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the IP is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse dns attached to this IP
      */
     reverse?: pulumi.Input<string>;
     /**
@@ -121,11 +141,11 @@ export interface InstanceIpState {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The tags associated with the ip
+     * The tags associated with the IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
 }
@@ -135,15 +155,15 @@ export interface InstanceIpState {
  */
 export interface InstanceIpArgs {
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with the ip
+     * The tags associated with the IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
 }

@@ -11,14 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class BaremetalServerIpArgs : Pulumi.ResourceArgs
+    public sealed class BaremetalServerIpArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The address of the IP.
+        /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
+        /// <summary>
+        /// The ID of the IP.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The reverse of the IP.
+        /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
@@ -28,5 +37,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public BaremetalServerIpArgs()
         {
         }
+        public static new BaremetalServerIpArgs Empty => new BaremetalServerIpArgs();
     }
 }

@@ -10,89 +10,221 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Redis Clusters.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RedisCluster("main", new()
+    ///     {
+    ///         Acls = new[]
+    ///         {
+    ///             new Scaleway.Inputs.RedisClusterAclArgs
+    ///             {
+    ///                 Description = "Allow all",
+    ///                 Ip = "0.0.0.0/0",
+    ///             },
+    ///         },
+    ///         ClusterSize = 1,
+    ///         NodeType = "RED1-MICRO",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Tags = new[]
+    ///         {
+    ///             "test",
+    ///             "redis",
+    ///         },
+    ///         TlsEnabled = true,
+    ///         UserName = "my_initial_user",
+    ///         Version = "6.2.6",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With settings
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RedisCluster("main", new()
+    ///     {
+    ///         NodeType = "RED1-MICRO",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Settings = 
+    ///         {
+    ///             { "maxclients", "1000" },
+    ///             { "tcp-keepalive", "120" },
+    ///         },
+    ///         UserName = "my_initial_user",
+    ///         Version = "6.2.6",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With a private network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var main = new Scaleway.RedisCluster("main", new()
+    ///     {
+    ///         Version = "6.2.6",
+    ///         NodeType = "RED1-MICRO",
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         ClusterSize = 1,
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Inputs.RedisClusterPrivateNetworkArgs
+    ///             {
+    ///                 Id = pn.Id,
+    ///                 ServiceIps = new[]
+    ///                 {
+    ///                     "10.12.1.1/20",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             pn,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/redisCluster:RedisCluster")]
-    public partial class RedisCluster : Pulumi.CustomResource
+    public partial class RedisCluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// List of acl rules.
+        /// List of acl rules, this is cluster's authorized IPs.
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.RedisClusterAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes for the cluster.
+        /// The PEM of the certificate used by redis, only when `tls_enabled` is true
+        /// </summary>
+        [Output("certificate")]
+        public Output<string> Certificate { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of nodes in the Redis Cluster.
         /// </summary>
         [Output("clusterSize")]
         public Output<int> ClusterSize { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the Redis cluster
+        /// The date and time of creation of the Redis Cluster.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the redis cluster
+        /// The name of the Redis Cluster.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Type of node to use for the cluster
+        /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// Password of the user
+        /// Password for the first user of the Redis Cluster.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        /// </summary>
+        [Output("privateNetworks")]
+        public Output<ImmutableArray<Outputs.RedisClusterPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the Redis Cluster is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Map of settings to define for the cluster.
+        /// Public network specs details
+        /// </summary>
+        [Output("publicNetwork")]
+        public Output<Outputs.RedisClusterPublicNetwork> PublicNetwork { get; private set; } = null!;
+
+        /// <summary>
+        /// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>?> Settings { get; private set; } = null!;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a redis cluster
+        /// The tags associated with the Redis Cluster.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not TLS is enabled.
+        /// Whether TLS is enabled or not.
         /// </summary>
         [Output("tlsEnabled")]
         public Output<bool?> TlsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the Redis cluster
+        /// The date and time of the last update of the Redis Cluster.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the user created when the cluster is created
+        /// Identifier for the first user of the Redis Cluster.
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Redis version of the cluster
+        /// Redis's Cluster version (e.g. `6.2.6`).
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the Redis Cluster should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -142,13 +274,13 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class RedisClusterArgs : Pulumi.ResourceArgs
+    public sealed class RedisClusterArgs : global::Pulumi.ResourceArgs
     {
         [Input("acls")]
         private InputList<Inputs.RedisClusterAclArgs>? _acls;
 
         /// <summary>
-        /// List of acl rules.
+        /// List of acl rules, this is cluster's authorized IPs.
         /// </summary>
         public InputList<Inputs.RedisClusterAclArgs> Acls
         {
@@ -157,40 +289,58 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Number of nodes for the cluster.
+        /// The number of nodes in the Redis Cluster.
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
 
         /// <summary>
-        /// Name of the redis cluster
+        /// The name of the Redis Cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of node to use for the cluster
+        /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
 
         /// <summary>
-        /// Password of the user
+        /// Password for the first user of the Redis Cluster.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        [Input("privateNetworks")]
+        private InputList<Inputs.RedisClusterPrivateNetworkArgs>? _privateNetworks;
+
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        /// </summary>
+        public InputList<Inputs.RedisClusterPrivateNetworkArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.RedisClusterPrivateNetworkArgs>());
+            set => _privateNetworks = value;
+        }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the Redis Cluster is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Public network specs details
+        /// </summary>
+        [Input("publicNetwork")]
+        public Input<Inputs.RedisClusterPublicNetworkArgs>? PublicNetwork { get; set; }
 
         [Input("settings")]
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings to define for the cluster.
+        /// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
         /// </summary>
         public InputMap<string> Settings
         {
@@ -202,7 +352,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a redis cluster
+        /// The tags associated with the Redis Cluster.
         /// </summary>
         public InputList<string> Tags
         {
@@ -211,25 +361,25 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Whether or not TLS is enabled.
+        /// Whether TLS is enabled or not.
         /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
 
         /// <summary>
-        /// Name of the user created when the cluster is created
+        /// Identifier for the first user of the Redis Cluster.
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
 
         /// <summary>
-        /// Redis version of the cluster
+        /// Redis's Cluster version (e.g. `6.2.6`).
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the Redis Cluster should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -237,15 +387,16 @@ namespace Pulumiverse.Scaleway
         public RedisClusterArgs()
         {
         }
+        public static new RedisClusterArgs Empty => new RedisClusterArgs();
     }
 
-    public sealed class RedisClusterState : Pulumi.ResourceArgs
+    public sealed class RedisClusterState : global::Pulumi.ResourceArgs
     {
         [Input("acls")]
         private InputList<Inputs.RedisClusterAclGetArgs>? _acls;
 
         /// <summary>
-        /// List of acl rules.
+        /// List of acl rules, this is cluster's authorized IPs.
         /// </summary>
         public InputList<Inputs.RedisClusterAclGetArgs> Acls
         {
@@ -254,46 +405,70 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Number of nodes for the cluster.
+        /// The PEM of the certificate used by redis, only when `tls_enabled` is true
+        /// </summary>
+        [Input("certificate")]
+        public Input<string>? Certificate { get; set; }
+
+        /// <summary>
+        /// The number of nodes in the Redis Cluster.
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the Redis cluster
+        /// The date and time of creation of the Redis Cluster.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Name of the redis cluster
+        /// The name of the Redis Cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of node to use for the cluster
+        /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
 
         /// <summary>
-        /// Password of the user
+        /// Password for the first user of the Redis Cluster.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
+        [Input("privateNetworks")]
+        private InputList<Inputs.RedisClusterPrivateNetworkGetArgs>? _privateNetworks;
+
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        /// </summary>
+        public InputList<Inputs.RedisClusterPrivateNetworkGetArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.RedisClusterPrivateNetworkGetArgs>());
+            set => _privateNetworks = value;
+        }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the Redis Cluster is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Public network specs details
+        /// </summary>
+        [Input("publicNetwork")]
+        public Input<Inputs.RedisClusterPublicNetworkGetArgs>? PublicNetwork { get; set; }
 
         [Input("settings")]
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings to define for the cluster.
+        /// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
         /// </summary>
         public InputMap<string> Settings
         {
@@ -305,7 +480,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a redis cluster
+        /// The tags associated with the Redis Cluster.
         /// </summary>
         public InputList<string> Tags
         {
@@ -314,31 +489,31 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Whether or not TLS is enabled.
+        /// Whether TLS is enabled or not.
         /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the Redis cluster
+        /// The date and time of the last update of the Redis Cluster.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Name of the user created when the cluster is created
+        /// Identifier for the first user of the Redis Cluster.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Redis version of the cluster
+        /// Redis's Cluster version (e.g. `6.2.6`).
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the Redis Cluster should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -346,5 +521,6 @@ namespace Pulumiverse.Scaleway
         public RedisClusterState()
         {
         }
+        public static new RedisClusterState Empty => new RedisClusterState();
     }
 }

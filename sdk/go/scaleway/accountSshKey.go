@@ -11,16 +11,53 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages user SSH keys to access servers provisioned on Scaleway.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewAccountSshKey(ctx, "main", &scaleway.AccountSshKeyArgs{
+//				PublicKey: pulumi.String("<YOUR-PUBLIC-SSH-KEY>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// SSH keys can be imported using the `id`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+//
+// ```
 type AccountSshKey struct {
 	pulumi.CustomResourceState
 
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the SSH key is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
 
@@ -57,24 +94,24 @@ func GetAccountSshKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccountSshKey resources.
 type accountSshKeyState struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the SSH key is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey *string `pulumi:"publicKey"`
 }
 
 type AccountSshKeyState struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the SSH key is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey pulumi.StringPtrInput
 }
 
@@ -83,21 +120,21 @@ func (AccountSshKeyState) ElementType() reflect.Type {
 }
 
 type accountSshKeyArgs struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey string `pulumi:"publicKey"`
 }
 
 // The set of arguments for constructing a AccountSshKey resource.
 type AccountSshKeyArgs struct {
-	// The name of the SSH key
+	// The name of the SSH key.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The public SSH key
+	// The public SSH key to be added.
 	PublicKey pulumi.StringInput
 }
 
@@ -188,22 +225,22 @@ func (o AccountSshKeyOutput) ToAccountSshKeyOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The name of the SSH key
+// The name of the SSH key.
 func (o AccountSshKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the SSH key is associated with.
 func (o AccountSshKeyOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the SSH key is associated with.
 func (o AccountSshKeyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The public SSH key
+// The public SSH key to be added.
 func (o AccountSshKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }

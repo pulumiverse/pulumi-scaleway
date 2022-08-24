@@ -20,10 +20,10 @@ class VpcPublicGatewayDhcpReservationArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayDhcpReservation resource.
-        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork (UUID format).
-        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IPv4 address).
+        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork.
+        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IP address).
         :param pulumi.Input[str] mac_address: The MAC address to give a static entry to.
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
         pulumi.set(__self__, "gateway_network_id", gateway_network_id)
         pulumi.set(__self__, "ip_address", ip_address)
@@ -35,7 +35,7 @@ class VpcPublicGatewayDhcpReservationArgs:
     @pulumi.getter(name="gatewayNetworkId")
     def gateway_network_id(self) -> pulumi.Input[str]:
         """
-        The ID of the owning GatewayNetwork (UUID format).
+        The ID of the owning GatewayNetwork.
         """
         return pulumi.get(self, "gateway_network_id")
 
@@ -47,7 +47,7 @@ class VpcPublicGatewayDhcpReservationArgs:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Input[str]:
         """
-        The IP address to give to the machine (IPv4 address).
+        The IP address to give to the machine (IP address).
         """
         return pulumi.get(self, "ip_address")
 
@@ -71,7 +71,7 @@ class VpcPublicGatewayDhcpReservationArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway DHCP config should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -93,15 +93,14 @@ class _VpcPublicGatewayDhcpReservationState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayDhcpReservation resources.
-        :param pulumi.Input[str] created_at: The configuration creation date.
-        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork (UUID format).
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway DHCP config.
+        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork.
         :param pulumi.Input[str] hostname: The Hostname of the client machine.
-        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IPv4 address).
+        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IP address).
         :param pulumi.Input[str] mac_address: The MAC address to give a static entry to.
-        :param pulumi.Input[str] type: The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and
-               lease
-        :param pulumi.Input[str] updated_at: The configuration last modification date.
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] type: The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway DHCP config.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -124,7 +123,7 @@ class _VpcPublicGatewayDhcpReservationState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The configuration creation date.
+        The date and time of the creation of the public gateway DHCP config.
         """
         return pulumi.get(self, "created_at")
 
@@ -136,7 +135,7 @@ class _VpcPublicGatewayDhcpReservationState:
     @pulumi.getter(name="gatewayNetworkId")
     def gateway_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the owning GatewayNetwork (UUID format).
+        The ID of the owning GatewayNetwork.
         """
         return pulumi.get(self, "gateway_network_id")
 
@@ -160,7 +159,7 @@ class _VpcPublicGatewayDhcpReservationState:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP address to give to the machine (IPv4 address).
+        The IP address to give to the machine (IP address).
         """
         return pulumi.get(self, "ip_address")
 
@@ -184,8 +183,7 @@ class _VpcPublicGatewayDhcpReservationState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and
-        lease
+        The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
         """
         return pulumi.get(self, "type")
 
@@ -197,7 +195,7 @@ class _VpcPublicGatewayDhcpReservationState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The configuration last modification date.
+        The date and time of the last update of the public gateway DHCP config.
         """
         return pulumi.get(self, "updated_at")
 
@@ -209,7 +207,7 @@ class _VpcPublicGatewayDhcpReservationState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway DHCP config should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -229,13 +227,65 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcPublicGatewayDhcpReservation resource with the given unique name, props, and options.
+        Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+
+        The static associations are used to assign IP addresses based on the MAC addresses of the Instance.
+
+        Statically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.
+
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).
+
+        [DHCP reservations](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
+        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+            image="ubuntu_focal",
+            type="DEV1-S",
+            zone="fr-par-1",
+            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
+                pn_id=main_vpc_private_network.id,
+            )])
+        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
+        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
+        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
+            type="VPC-GW-S",
+            ip_id=main_vpc_public_gateway_ip.id)
+        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
+            gateway_id=main_vpc_public_gateway.id,
+            private_network_id=main_vpc_private_network.id,
+            dhcp_id=main_vpc_public_gateway_dhcp.id,
+            cleanup_dhcp=True,
+            enable_masquerade=True,
+            opts=pulumi.ResourceOptions(depends_on=[
+                    main_vpc_public_gateway_ip,
+                    main_vpc_private_network,
+                ]))
+        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation",
+            gateway_network_id=main_vpc_gateway_network.id,
+            mac_address=main_instance_server.private_networks[0].mac_address,
+            ip_address="192.168.1.1")
+        ```
+
+        ## Import
+
+        Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork (UUID format).
-        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IPv4 address).
+        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork.
+        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IP address).
         :param pulumi.Input[str] mac_address: The MAC address to give a static entry to.
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
         ...
     @overload
@@ -244,7 +294,59 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
                  args: VpcPublicGatewayDhcpReservationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcPublicGatewayDhcpReservation resource with the given unique name, props, and options.
+        Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+
+        The static associations are used to assign IP addresses based on the MAC addresses of the Instance.
+
+        Statically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.
+
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).
+
+        [DHCP reservations](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
+        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+            image="ubuntu_focal",
+            type="DEV1-S",
+            zone="fr-par-1",
+            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
+                pn_id=main_vpc_private_network.id,
+            )])
+        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
+        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
+        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
+            type="VPC-GW-S",
+            ip_id=main_vpc_public_gateway_ip.id)
+        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
+            gateway_id=main_vpc_public_gateway.id,
+            private_network_id=main_vpc_private_network.id,
+            dhcp_id=main_vpc_public_gateway_dhcp.id,
+            cleanup_dhcp=True,
+            enable_masquerade=True,
+            opts=pulumi.ResourceOptions(depends_on=[
+                    main_vpc_public_gateway_ip,
+                    main_vpc_private_network,
+                ]))
+        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation",
+            gateway_network_id=main_vpc_gateway_network.id,
+            mac_address=main_instance_server.private_networks[0].mac_address,
+            ip_address="192.168.1.1")
+        ```
+
+        ## Import
+
+        Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayDhcpReservationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -312,15 +414,14 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The configuration creation date.
-        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork (UUID format).
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway DHCP config.
+        :param pulumi.Input[str] gateway_network_id: The ID of the owning GatewayNetwork.
         :param pulumi.Input[str] hostname: The Hostname of the client machine.
-        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IPv4 address).
+        :param pulumi.Input[str] ip_address: The IP address to give to the machine (IP address).
         :param pulumi.Input[str] mac_address: The MAC address to give a static entry to.
-        :param pulumi.Input[str] type: The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and
-               lease
-        :param pulumi.Input[str] updated_at: The configuration last modification date.
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] type: The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway DHCP config.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -340,7 +441,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The configuration creation date.
+        The date and time of the creation of the public gateway DHCP config.
         """
         return pulumi.get(self, "created_at")
 
@@ -348,7 +449,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
     @pulumi.getter(name="gatewayNetworkId")
     def gateway_network_id(self) -> pulumi.Output[str]:
         """
-        The ID of the owning GatewayNetwork (UUID format).
+        The ID of the owning GatewayNetwork.
         """
         return pulumi.get(self, "gateway_network_id")
 
@@ -364,7 +465,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Output[str]:
         """
-        The IP address to give to the machine (IPv4 address).
+        The IP address to give to the machine (IP address).
         """
         return pulumi.get(self, "ip_address")
 
@@ -380,8 +481,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and
-        lease
+        The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
         """
         return pulumi.get(self, "type")
 
@@ -389,7 +489,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The configuration last modification date.
+        The date and time of the last update of the public gateway DHCP config.
         """
         return pulumi.get(self, "updated_at")
 
@@ -397,7 +497,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway DHCP config should be created.
         """
         return pulumi.get(self, "zone")
 

@@ -16,7 +16,6 @@ __all__ = ['InstanceServerArgs', 'InstanceServer']
 @pulumi.input_type
 class InstanceServerArgs:
     def __init__(__self__, *,
-                 image: pulumi.Input[str],
                  type: pulumi.Input[str],
                  additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  boot_type: Optional[pulumi.Input[str]] = None,
@@ -24,6 +23,7 @@ class InstanceServerArgs:
                  cloud_init: Optional[pulumi.Input[str]] = None,
                  enable_dynamic_ip: Optional[pulumi.Input[bool]] = None,
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 image: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
@@ -37,27 +37,31 @@ class InstanceServerArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceServer resource.
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server
-        :param pulumi.Input[str] type: The instance type of the server
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The additional volumes attached to the server
-        :param pulumi.Input[str] boot_type: The boot type of the server
-        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
+        :param pulumi.Input[str] type: The commercial type of the server.
+               You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+               Updates to this field will recreate a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+               attached to the server. Updates to this field will trigger a stop/start of the server.
+        :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
-        :param pulumi.Input[bool] enable_dynamic_ip: Enable dynamic IP on the server
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server
-        :param pulumi.Input[str] ip_id: The ID of the reserved IP for the server
-        :param pulumi.Input[str] name: The name of the server
-        :param pulumi.Input[str] placement_group_id: The placement group the server is attached to
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: List of private network to connect with your instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root volume attached to the server on creation
-        :param pulumi.Input[str] security_group_id: The security group the server is attached to
-        :param pulumi.Input[str] state: The state of the server should be: started, stopped, standby
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server
+        :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+               to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
+               Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
-        pulumi.set(__self__, "image", image)
         pulumi.set(__self__, "type", type)
         if additional_volume_ids is not None:
             pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -71,6 +75,8 @@ class InstanceServerArgs:
             pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
         if enable_ipv6 is not None:
             pulumi.set(__self__, "enable_ipv6", enable_ipv6)
+        if image is not None:
+            pulumi.set(__self__, "image", image)
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
         if name is not None:
@@ -96,21 +102,11 @@ class InstanceServerArgs:
 
     @property
     @pulumi.getter
-    def image(self) -> pulumi.Input[str]:
-        """
-        The UUID or the label of the base image used by the server
-        """
-        return pulumi.get(self, "image")
-
-    @image.setter
-    def image(self, value: pulumi.Input[str]):
-        pulumi.set(self, "image", value)
-
-    @property
-    @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The instance type of the server
+        The commercial type of the server.
+        You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+        Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
 
@@ -122,7 +118,8 @@ class InstanceServerArgs:
     @pulumi.getter(name="additionalVolumeIds")
     def additional_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The additional volumes attached to the server
+        The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        attached to the server. Updates to this field will trigger a stop/start of the server.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -134,7 +131,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="bootType")
     def boot_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The boot type of the server
+        The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         """
         return pulumi.get(self, "boot_type")
 
@@ -146,7 +143,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="bootscriptId")
     def bootscript_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the target bootscript (set boot_type to bootscript)
+        The ID of the bootscript to use  (set boot_type to `bootscript`).
         """
         return pulumi.get(self, "bootscript_id")
 
@@ -170,7 +167,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="enableDynamicIp")
     def enable_dynamic_ip(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable dynamic IP on the server
+        If true a dynamic IP will be attached to the server.
         """
         return pulumi.get(self, "enable_dynamic_ip")
 
@@ -182,7 +179,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if IPv6 is enabled for the server
+        Determines if IPv6 is enabled for the server.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -191,10 +188,23 @@ class InstanceServerArgs:
         pulumi.set(self, "enable_ipv6", value)
 
     @property
+    @pulumi.getter
+    def image(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        """
+        return pulumi.get(self, "image")
+
+    @image.setter
+    def image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image", value)
+
+    @property
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the reserved IP for the server
+        = (Optional) The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
@@ -206,7 +216,7 @@ class InstanceServerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the server
+        The name of the server.
         """
         return pulumi.get(self, "name")
 
@@ -218,7 +228,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The placement group the server is attached to
+        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -230,7 +240,8 @@ class InstanceServerArgs:
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]]:
         """
-        List of private network to connect with your instance
+        The private network associated with the server.
+        Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         """
         return pulumi.get(self, "private_networks")
 
@@ -242,7 +253,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -254,7 +265,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> Optional[pulumi.Input['InstanceServerRootVolumeArgs']]:
         """
-        Root volume attached to the server on creation
+        Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
 
@@ -266,7 +277,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The security group the server is attached to
+        The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -278,7 +289,7 @@ class InstanceServerArgs:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[str]]:
         """
-        The state of the server should be: started, stopped, standby
+        The state of the server. Possible values are: `started`, `stopped` or `standby`.
         """
         return pulumi.get(self, "state")
 
@@ -290,7 +301,7 @@ class InstanceServerArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the server
+        The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
@@ -314,7 +325,7 @@ class InstanceServerArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -354,32 +365,38 @@ class _InstanceServerState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceServer resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The additional volumes attached to the server
-        :param pulumi.Input[str] boot_type: The boot type of the server
-        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+               attached to the server. Updates to this field will trigger a stop/start of the server.
+        :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
-        :param pulumi.Input[bool] enable_dynamic_ip: Enable dynamic IP on the server
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server
-        :param pulumi.Input[str] ip_id: The ID of the reserved IP for the server
-        :param pulumi.Input[str] ipv6_address: The default public IPv6 address routed to the server.
-        :param pulumi.Input[str] ipv6_gateway: The IPv6 gateway address
-        :param pulumi.Input[int] ipv6_prefix_length: The IPv6 prefix length routed to the server.
-        :param pulumi.Input[str] name: The name of the server
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] placement_group_id: The placement group the server is attached to
-        :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected
-        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: List of private network to connect with your instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] public_ip: The public IPv4 address of the server
-        :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root volume attached to the server on creation
-        :param pulumi.Input[str] security_group_id: The security group the server is attached to
-        :param pulumi.Input[str] state: The state of the server should be: started, stopped, standby
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server
-        :param pulumi.Input[str] type: The instance type of the server
+        :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+               to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
+               - `root_volume`
+        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
+               Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[str] public_ip: The public IPv4 address of the server.
+        :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] type: The commercial type of the server.
+               You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+               Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         if additional_volume_ids is not None:
             pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -438,7 +455,8 @@ class _InstanceServerState:
     @pulumi.getter(name="additionalVolumeIds")
     def additional_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The additional volumes attached to the server
+        The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        attached to the server. Updates to this field will trigger a stop/start of the server.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -450,7 +468,7 @@ class _InstanceServerState:
     @pulumi.getter(name="bootType")
     def boot_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The boot type of the server
+        The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         """
         return pulumi.get(self, "boot_type")
 
@@ -462,7 +480,7 @@ class _InstanceServerState:
     @pulumi.getter(name="bootscriptId")
     def bootscript_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the target bootscript (set boot_type to bootscript)
+        The ID of the bootscript to use  (set boot_type to `bootscript`).
         """
         return pulumi.get(self, "bootscript_id")
 
@@ -486,7 +504,7 @@ class _InstanceServerState:
     @pulumi.getter(name="enableDynamicIp")
     def enable_dynamic_ip(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable dynamic IP on the server
+        If true a dynamic IP will be attached to the server.
         """
         return pulumi.get(self, "enable_dynamic_ip")
 
@@ -498,7 +516,7 @@ class _InstanceServerState:
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if IPv6 is enabled for the server
+        Determines if IPv6 is enabled for the server.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -510,7 +528,8 @@ class _InstanceServerState:
     @pulumi.getter
     def image(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID or the label of the base image used by the server
+        The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
         """
         return pulumi.get(self, "image")
 
@@ -522,7 +541,7 @@ class _InstanceServerState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the reserved IP for the server
+        = (Optional) The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
@@ -534,7 +553,7 @@ class _InstanceServerState:
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The default public IPv6 address routed to the server.
+        The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         """
         return pulumi.get(self, "ipv6_address")
 
@@ -546,7 +565,7 @@ class _InstanceServerState:
     @pulumi.getter(name="ipv6Gateway")
     def ipv6_gateway(self) -> Optional[pulumi.Input[str]]:
         """
-        The IPv6 gateway address
+        The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         """
         return pulumi.get(self, "ipv6_gateway")
 
@@ -558,7 +577,7 @@ class _InstanceServerState:
     @pulumi.getter(name="ipv6PrefixLength")
     def ipv6_prefix_length(self) -> Optional[pulumi.Input[int]]:
         """
-        The IPv6 prefix length routed to the server.
+        The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
         """
         return pulumi.get(self, "ipv6_prefix_length")
 
@@ -570,7 +589,7 @@ class _InstanceServerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the server
+        The name of the server.
         """
         return pulumi.get(self, "name")
 
@@ -582,7 +601,7 @@ class _InstanceServerState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -594,7 +613,7 @@ class _InstanceServerState:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The placement group the server is attached to
+        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -606,7 +625,8 @@ class _InstanceServerState:
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> Optional[pulumi.Input[bool]]:
         """
-        True when the placement group policy is respected
+        True when the placement group policy is respected.
+        - `root_volume`
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -618,7 +638,7 @@ class _InstanceServerState:
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The Scaleway internal IP address of the server
+        The Scaleway internal IP address of the server.
         """
         return pulumi.get(self, "private_ip")
 
@@ -630,7 +650,8 @@ class _InstanceServerState:
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]]:
         """
-        List of private network to connect with your instance
+        The private network associated with the server.
+        Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         """
         return pulumi.get(self, "private_networks")
 
@@ -642,7 +663,7 @@ class _InstanceServerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -654,7 +675,7 @@ class _InstanceServerState:
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The public IPv4 address of the server
+        The public IPv4 address of the server.
         """
         return pulumi.get(self, "public_ip")
 
@@ -666,7 +687,7 @@ class _InstanceServerState:
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> Optional[pulumi.Input['InstanceServerRootVolumeArgs']]:
         """
-        Root volume attached to the server on creation
+        Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
 
@@ -678,7 +699,7 @@ class _InstanceServerState:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The security group the server is attached to
+        The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -690,7 +711,7 @@ class _InstanceServerState:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[str]]:
         """
-        The state of the server should be: started, stopped, standby
+        The state of the server. Possible values are: `started`, `stopped` or `standby`.
         """
         return pulumi.get(self, "state")
 
@@ -702,7 +723,7 @@ class _InstanceServerState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the server
+        The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
@@ -714,7 +735,9 @@ class _InstanceServerState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The instance type of the server
+        The commercial type of the server.
+        You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+        Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
 
@@ -738,7 +761,7 @@ class _InstanceServerState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -773,28 +796,176 @@ class InstanceServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InstanceServer resource with the given unique name, props, and options.
+        Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
+
+        Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        public_ip = scaleway.InstanceIp("publicIp")
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            ip_id=public_ip.id)
+        ```
+
+        ### With additional volumes and tags
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        data = scaleway.InstanceVolume("data",
+            size_in_gb=100,
+            type="b_ssd")
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            tags=[
+                "hello",
+                "public",
+            ],
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                delete_on_termination=False,
+            ),
+            additional_volume_ids=[data.id])
+        ```
+
+        ### With a reserved IP
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ip = scaleway.InstanceIp("ip")
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="f974feac-abae-4365-b988-8ec7d1cec10d",
+            tags=[
+                "hello",
+                "public",
+            ],
+            ip_id=ip.id)
+        ```
+
+        ### With security group
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        www = scaleway.InstanceSecurityGroup("www",
+            inbound_default_policy="drop",
+            outbound_default_policy="accept",
+            inbound_rules=[
+                scaleway.InstanceSecurityGroupInboundRuleArgs(
+                    action="accept",
+                    port=22,
+                    ip="212.47.225.64",
+                ),
+                scaleway.InstanceSecurityGroupInboundRuleArgs(
+                    action="accept",
+                    port=80,
+                ),
+                scaleway.InstanceSecurityGroupInboundRuleArgs(
+                    action="accept",
+                    port=443,
+                ),
+            ],
+            outbound_rules=[scaleway.InstanceSecurityGroupOutboundRuleArgs(
+                action="drop",
+                ip_range="10.20.0.0/24",
+            )])
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            security_group_id=www.id)
+        ```
+
+        ### With user data and cloud-init
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            user_data={
+                "foo": "bar",
+                "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
+            })
+        ```
+
+        ### With private network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        base = scaleway.InstanceServer("base",
+            image="ubuntu_focal",
+            type="DEV1-S",
+            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
+                pn_id=pn01.id,
+            )])
+        ```
+
+        ## Private Network
+
+        > **Important:** Updates to `private_network` will recreate a new private network interface.
+
+        - `pn_id` - (Required) The private network ID where to connect.
+        - `mac_address` The private NIC MAC address.
+        - `status` The private NIC state.
+        - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+
+        > **Important:**
+
+        - You can only attach an instance in the same zone as a private network.
+        - Instance supports maximum 8 different private networks.
+
+        ## Import
+
+        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The additional volumes attached to the server
-        :param pulumi.Input[str] boot_type: The boot type of the server
-        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+               attached to the server. Updates to this field will trigger a stop/start of the server.
+        :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
-        :param pulumi.Input[bool] enable_dynamic_ip: Enable dynamic IP on the server
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server
-        :param pulumi.Input[str] ip_id: The ID of the reserved IP for the server
-        :param pulumi.Input[str] name: The name of the server
-        :param pulumi.Input[str] placement_group_id: The placement group the server is attached to
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root volume attached to the server on creation
-        :param pulumi.Input[str] security_group_id: The security group the server is attached to
-        :param pulumi.Input[str] state: The state of the server should be: started, stopped, standby
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server
-        :param pulumi.Input[str] type: The instance type of the server
+        :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+               to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
+               Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] type: The commercial type of the server.
+               You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+               Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         ...
     @overload
@@ -803,7 +974,150 @@ class InstanceServer(pulumi.CustomResource):
                  args: InstanceServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InstanceServer resource with the given unique name, props, and options.
+        Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
+
+        Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        public_ip = scaleway.InstanceIp("publicIp")
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            ip_id=public_ip.id)
+        ```
+
+        ### With additional volumes and tags
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        data = scaleway.InstanceVolume("data",
+            size_in_gb=100,
+            type="b_ssd")
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            tags=[
+                "hello",
+                "public",
+            ],
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                delete_on_termination=False,
+            ),
+            additional_volume_ids=[data.id])
+        ```
+
+        ### With a reserved IP
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ip = scaleway.InstanceIp("ip")
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="f974feac-abae-4365-b988-8ec7d1cec10d",
+            tags=[
+                "hello",
+                "public",
+            ],
+            ip_id=ip.id)
+        ```
+
+        ### With security group
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        www = scaleway.InstanceSecurityGroup("www",
+            inbound_default_policy="drop",
+            outbound_default_policy="accept",
+            inbound_rules=[
+                scaleway.InstanceSecurityGroupInboundRuleArgs(
+                    action="accept",
+                    port=22,
+                    ip="212.47.225.64",
+                ),
+                scaleway.InstanceSecurityGroupInboundRuleArgs(
+                    action="accept",
+                    port=80,
+                ),
+                scaleway.InstanceSecurityGroupInboundRuleArgs(
+                    action="accept",
+                    port=443,
+                ),
+            ],
+            outbound_rules=[scaleway.InstanceSecurityGroupOutboundRuleArgs(
+                action="drop",
+                ip_range="10.20.0.0/24",
+            )])
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            security_group_id=www.id)
+        ```
+
+        ### With user data and cloud-init
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        web = scaleway.InstanceServer("web",
+            type="DEV1-S",
+            image="ubuntu_focal",
+            user_data={
+                "foo": "bar",
+                "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
+            })
+        ```
+
+        ### With private network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        base = scaleway.InstanceServer("base",
+            image="ubuntu_focal",
+            type="DEV1-S",
+            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
+                pn_id=pn01.id,
+            )])
+        ```
+
+        ## Private Network
+
+        > **Important:** Updates to `private_network` will recreate a new private network interface.
+
+        - `pn_id` - (Required) The private network ID where to connect.
+        - `mac_address` The private NIC MAC address.
+        - `status` The private NIC state.
+        - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+
+        > **Important:**
+
+        - You can only attach an instance in the same zone as a private network.
+        - Instance supports maximum 8 different private networks.
+
+        ## Import
+
+        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param InstanceServerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -853,8 +1167,6 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["cloud_init"] = cloud_init
             __props__.__dict__["enable_dynamic_ip"] = enable_dynamic_ip
             __props__.__dict__["enable_ipv6"] = enable_ipv6
-            if image is None and not opts.urn:
-                raise TypeError("Missing required property 'image'")
             __props__.__dict__["image"] = image
             __props__.__dict__["ip_id"] = ip_id
             __props__.__dict__["name"] = name
@@ -920,32 +1232,38 @@ class InstanceServer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The additional volumes attached to the server
-        :param pulumi.Input[str] boot_type: The boot type of the server
-        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+               attached to the server. Updates to this field will trigger a stop/start of the server.
+        :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
-        :param pulumi.Input[bool] enable_dynamic_ip: Enable dynamic IP on the server
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server
-        :param pulumi.Input[str] ip_id: The ID of the reserved IP for the server
-        :param pulumi.Input[str] ipv6_address: The default public IPv6 address routed to the server.
-        :param pulumi.Input[str] ipv6_gateway: The IPv6 gateway address
-        :param pulumi.Input[int] ipv6_prefix_length: The IPv6 prefix length routed to the server.
-        :param pulumi.Input[str] name: The name of the server
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] placement_group_id: The placement group the server is attached to
-        :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected
-        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] public_ip: The public IPv4 address of the server
-        :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root volume attached to the server on creation
-        :param pulumi.Input[str] security_group_id: The security group the server is attached to
-        :param pulumi.Input[str] state: The state of the server should be: started, stopped, standby
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server
-        :param pulumi.Input[str] type: The instance type of the server
+        :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+               to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
+               - `root_volume`
+        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
+               Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[str] public_ip: The public IPv4 address of the server.
+        :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] type: The commercial type of the server.
+               You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+               Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -983,7 +1301,8 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="additionalVolumeIds")
     def additional_volume_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The additional volumes attached to the server
+        The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        attached to the server. Updates to this field will trigger a stop/start of the server.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -991,7 +1310,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="bootType")
     def boot_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The boot type of the server
+        The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         """
         return pulumi.get(self, "boot_type")
 
@@ -999,7 +1318,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="bootscriptId")
     def bootscript_id(self) -> pulumi.Output[str]:
         """
-        ID of the target bootscript (set boot_type to bootscript)
+        The ID of the bootscript to use  (set boot_type to `bootscript`).
         """
         return pulumi.get(self, "bootscript_id")
 
@@ -1015,7 +1334,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="enableDynamicIp")
     def enable_dynamic_ip(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable dynamic IP on the server
+        If true a dynamic IP will be attached to the server.
         """
         return pulumi.get(self, "enable_dynamic_ip")
 
@@ -1023,15 +1342,16 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> pulumi.Output[Optional[bool]]:
         """
-        Determines if IPv6 is enabled for the server
+        Determines if IPv6 is enabled for the server.
         """
         return pulumi.get(self, "enable_ipv6")
 
     @property
     @pulumi.getter
-    def image(self) -> pulumi.Output[str]:
+    def image(self) -> pulumi.Output[Optional[str]]:
         """
-        The UUID or the label of the base image used by the server
+        The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
         """
         return pulumi.get(self, "image")
 
@@ -1039,7 +1359,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the reserved IP for the server
+        = (Optional) The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
@@ -1047,7 +1367,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> pulumi.Output[str]:
         """
-        The default public IPv6 address routed to the server.
+        The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         """
         return pulumi.get(self, "ipv6_address")
 
@@ -1055,7 +1375,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="ipv6Gateway")
     def ipv6_gateway(self) -> pulumi.Output[str]:
         """
-        The IPv6 gateway address
+        The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         """
         return pulumi.get(self, "ipv6_gateway")
 
@@ -1063,7 +1383,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="ipv6PrefixLength")
     def ipv6_prefix_length(self) -> pulumi.Output[int]:
         """
-        The IPv6 prefix length routed to the server.
+        The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
         """
         return pulumi.get(self, "ipv6_prefix_length")
 
@@ -1071,7 +1391,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the server
+        The name of the server.
         """
         return pulumi.get(self, "name")
 
@@ -1079,7 +1399,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -1087,7 +1407,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The placement group the server is attached to
+        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -1095,7 +1415,8 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> pulumi.Output[bool]:
         """
-        True when the placement group policy is respected
+        True when the placement group policy is respected.
+        - `root_volume`
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -1103,7 +1424,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> pulumi.Output[str]:
         """
-        The Scaleway internal IP address of the server
+        The Scaleway internal IP address of the server.
         """
         return pulumi.get(self, "private_ip")
 
@@ -1111,7 +1432,8 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceServerPrivateNetwork']]]:
         """
-        List of private network to connect with your instance
+        The private network associated with the server.
+        Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         """
         return pulumi.get(self, "private_networks")
 
@@ -1119,7 +1441,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -1127,7 +1449,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> pulumi.Output[str]:
         """
-        The public IPv4 address of the server
+        The public IPv4 address of the server.
         """
         return pulumi.get(self, "public_ip")
 
@@ -1135,7 +1457,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> pulumi.Output['outputs.InstanceServerRootVolume']:
         """
-        Root volume attached to the server on creation
+        Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
 
@@ -1143,7 +1465,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[str]:
         """
-        The security group the server is attached to
+        The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -1151,7 +1473,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[Optional[str]]:
         """
-        The state of the server should be: started, stopped, standby
+        The state of the server. Possible values are: `started`, `stopped` or `standby`.
         """
         return pulumi.get(self, "state")
 
@@ -1159,7 +1481,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the server
+        The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
@@ -1167,7 +1489,9 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The instance type of the server
+        The commercial type of the server.
+        You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
+        Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
 
@@ -1183,7 +1507,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 

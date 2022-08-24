@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.GetBaremetalOffer(ctx, &GetBaremetalOfferArgs{
+//				OfferId: pulumi.StringRef("25dcf38b-c90c-4b18-97a2-6956e9d1e113"),
+//				Zone:    pulumi.StringRef("fr-par-2"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOfferResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOfferResult
@@ -22,26 +51,36 @@ func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ..
 
 // A collection of arguments for invoking getBaremetalOffer.
 type GetBaremetalOfferArgs struct {
-	IncludeDisabled *bool   `pulumi:"includeDisabled"`
-	Name            *string `pulumi:"name"`
-	OfferId         *string `pulumi:"offerId"`
-	Zone            *string `pulumi:"zone"`
+	IncludeDisabled *bool `pulumi:"includeDisabled"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name *string `pulumi:"name"`
+	// The offer id. Only one of `name` and `offerId` should be specified.
+	OfferId *string `pulumi:"offerId"`
+	// `zone`) The zone in which the offer should be created.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getBaremetalOffer.
 type GetBaremetalOfferResult struct {
-	Bandwidth       int                     `pulumi:"bandwidth"`
-	CommercialRange string                  `pulumi:"commercialRange"`
-	Cpu             GetBaremetalOfferCpu    `pulumi:"cpu"`
-	Disks           []GetBaremetalOfferDisk `pulumi:"disks"`
+	// Available Bandwidth with the offer.
+	Bandwidth int `pulumi:"bandwidth"`
+	// Commercial range of the offer.
+	CommercialRange string `pulumi:"commercialRange"`
+	// A list of cpu specifications. (Structure is documented below.)
+	Cpu GetBaremetalOfferCpu `pulumi:"cpu"`
+	// A list of disk specifications. (Structure is documented below.)
+	Disks []GetBaremetalOfferDisk `pulumi:"disks"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string                    `pulumi:"id"`
-	IncludeDisabled *bool                     `pulumi:"includeDisabled"`
-	Memories        []GetBaremetalOfferMemory `pulumi:"memories"`
-	Name            *string                   `pulumi:"name"`
-	OfferId         *string                   `pulumi:"offerId"`
-	Stock           string                    `pulumi:"stock"`
-	Zone            string                    `pulumi:"zone"`
+	Id              string `pulumi:"id"`
+	IncludeDisabled *bool  `pulumi:"includeDisabled"`
+	// A list of memory specifications. (Structure is documented below.)
+	Memories []GetBaremetalOfferMemory `pulumi:"memories"`
+	// Name of the CPU.
+	Name    *string `pulumi:"name"`
+	OfferId *string `pulumi:"offerId"`
+	// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
+	Stock string `pulumi:"stock"`
+	Zone  string `pulumi:"zone"`
 }
 
 func GetBaremetalOfferOutput(ctx *pulumi.Context, args GetBaremetalOfferOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOfferResultOutput {
@@ -59,10 +98,13 @@ func GetBaremetalOfferOutput(ctx *pulumi.Context, args GetBaremetalOfferOutputAr
 
 // A collection of arguments for invoking getBaremetalOffer.
 type GetBaremetalOfferOutputArgs struct {
-	IncludeDisabled pulumi.BoolPtrInput   `pulumi:"includeDisabled"`
-	Name            pulumi.StringPtrInput `pulumi:"name"`
-	OfferId         pulumi.StringPtrInput `pulumi:"offerId"`
-	Zone            pulumi.StringPtrInput `pulumi:"zone"`
+	IncludeDisabled pulumi.BoolPtrInput `pulumi:"includeDisabled"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The offer id. Only one of `name` and `offerId` should be specified.
+	OfferId pulumi.StringPtrInput `pulumi:"offerId"`
+	// `zone`) The zone in which the offer should be created.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetBaremetalOfferOutputArgs) ElementType() reflect.Type {
@@ -84,18 +126,22 @@ func (o GetBaremetalOfferResultOutput) ToGetBaremetalOfferResultOutputWithContex
 	return o
 }
 
+// Available Bandwidth with the offer.
 func (o GetBaremetalOfferResultOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
+// Commercial range of the offer.
 func (o GetBaremetalOfferResultOutput) CommercialRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) string { return v.CommercialRange }).(pulumi.StringOutput)
 }
 
+// A list of cpu specifications. (Structure is documented below.)
 func (o GetBaremetalOfferResultOutput) Cpu() GetBaremetalOfferCpuOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) GetBaremetalOfferCpu { return v.Cpu }).(GetBaremetalOfferCpuOutput)
 }
 
+// A list of disk specifications. (Structure is documented below.)
 func (o GetBaremetalOfferResultOutput) Disks() GetBaremetalOfferDiskArrayOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) []GetBaremetalOfferDisk { return v.Disks }).(GetBaremetalOfferDiskArrayOutput)
 }
@@ -109,10 +155,12 @@ func (o GetBaremetalOfferResultOutput) IncludeDisabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) *bool { return v.IncludeDisabled }).(pulumi.BoolPtrOutput)
 }
 
+// A list of memory specifications. (Structure is documented below.)
 func (o GetBaremetalOfferResultOutput) Memories() GetBaremetalOfferMemoryArrayOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) []GetBaremetalOfferMemory { return v.Memories }).(GetBaremetalOfferMemoryArrayOutput)
 }
 
+// Name of the CPU.
 func (o GetBaremetalOfferResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -121,6 +169,7 @@ func (o GetBaremetalOfferResultOutput) OfferId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) *string { return v.OfferId }).(pulumi.StringPtrOutput)
 }
 
+// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
 func (o GetBaremetalOfferResultOutput) Stock() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) string { return v.Stock }).(pulumi.StringOutput)
 }

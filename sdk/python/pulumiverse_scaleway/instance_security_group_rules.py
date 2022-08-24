@@ -21,9 +21,9 @@ class InstanceSecurityGroupRulesArgs:
                  outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]]] = None):
         """
         The set of arguments for constructing a InstanceSecurityGroupRules resource.
-        :param pulumi.Input[str] security_group_id: The security group associated with this volume
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: Inbound rules for this set of security group rules
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: Outbound rules for this set of security group rules
+        :param pulumi.Input[str] security_group_id: The ID of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         pulumi.set(__self__, "security_group_id", security_group_id)
         if inbound_rules is not None:
@@ -35,7 +35,7 @@ class InstanceSecurityGroupRulesArgs:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Input[str]:
         """
-        The security group associated with this volume
+        The ID of the security group.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -47,7 +47,7 @@ class InstanceSecurityGroupRulesArgs:
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]]]:
         """
-        Inbound rules for this set of security group rules
+        A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
@@ -59,7 +59,7 @@ class InstanceSecurityGroupRulesArgs:
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]]]:
         """
-        Outbound rules for this set of security group rules
+        A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
@@ -76,9 +76,9 @@ class _InstanceSecurityGroupRulesState:
                  security_group_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceSecurityGroupRules resources.
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: Inbound rules for this set of security group rules
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: Outbound rules for this set of security group rules
-        :param pulumi.Input[str] security_group_id: The security group associated with this volume
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] security_group_id: The ID of the security group.
         """
         if inbound_rules is not None:
             pulumi.set(__self__, "inbound_rules", inbound_rules)
@@ -91,7 +91,7 @@ class _InstanceSecurityGroupRulesState:
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]]]:
         """
-        Inbound rules for this set of security group rules
+        A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
@@ -103,7 +103,7 @@ class _InstanceSecurityGroupRulesState:
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]]]:
         """
-        Outbound rules for this set of security group rules
+        A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
@@ -115,7 +115,7 @@ class _InstanceSecurityGroupRulesState:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The security group associated with this volume
+        The ID of the security group.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -134,12 +134,19 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InstanceSecurityGroupRules resource with the given unique name, props, and options.
+        ## Import
+
+        Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]] inbound_rules: Inbound rules for this set of security group rules
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]] outbound_rules: Outbound rules for this set of security group rules
-        :param pulumi.Input[str] security_group_id: The security group associated with this volume
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] security_group_id: The ID of the security group.
         """
         ...
     @overload
@@ -148,7 +155,14 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                  args: InstanceSecurityGroupRulesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InstanceSecurityGroupRules resource with the given unique name, props, and options.
+        ## Import
+
+        Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param InstanceSecurityGroupRulesArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -201,9 +215,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]] inbound_rules: Inbound rules for this set of security group rules
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]] outbound_rules: Outbound rules for this set of security group rules
-        :param pulumi.Input[str] security_group_id: The security group associated with this volume
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] security_group_id: The ID of the security group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -218,7 +232,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSecurityGroupRulesInboundRule']]]:
         """
-        Inbound rules for this set of security group rules
+        A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
@@ -226,7 +240,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSecurityGroupRulesOutboundRule']]]:
         """
-        Outbound rules for this set of security group rules
+        A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
@@ -234,7 +248,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[str]:
         """
-        The security group associated with this volume
+        The ID of the security group.
         """
         return pulumi.get(self, "security_group_id")
 

@@ -15,20 +15,24 @@ __all__ = ['ContainerNamespaceArgs', 'ContainerNamespace']
 class ContainerNamespaceArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 destroy_registry: Optional[pulumi.Input[bool]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerNamespace resource.
-        :param pulumi.Input[str] description: The description of the container namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the container namespace
-        :param pulumi.Input[str] name: The name of the container namespace
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if destroy_registry is not None:
+            pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if name is not None:
@@ -42,7 +46,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the container namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -51,10 +55,22 @@ class ContainerNamespaceArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="destroyRegistry")
+    def destroy_registry(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Destroy linked container registry on deletion.
+        """
+        return pulumi.get(self, "destroy_registry")
+
+    @destroy_registry.setter
+    def destroy_registry(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "destroy_registry", value)
+
+    @property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The environment variables of the container namespace
+        The environment variables of the namespace.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -66,7 +82,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the container namespace
+        The unique name of the container namespace.
         """
         return pulumi.get(self, "name")
 
@@ -78,7 +94,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -90,7 +106,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -103,6 +119,7 @@ class ContainerNamespaceArgs:
 class _ContainerNamespaceState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 destroy_registry: Optional[pulumi.Input[bool]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
@@ -112,17 +129,20 @@ class _ContainerNamespaceState:
                  registry_namespace_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerNamespace resources.
-        :param pulumi.Input[str] description: The description of the container namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the container namespace
-        :param pulumi.Input[str] name: The name of the container namespace
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] registry_endpoint: The endpoint reachable by docker
-        :param pulumi.Input[str] registry_namespace_id: The ID of the registry namespace
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
+        :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if destroy_registry is not None:
+            pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if name is not None:
@@ -142,7 +162,7 @@ class _ContainerNamespaceState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the container namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -151,10 +171,22 @@ class _ContainerNamespaceState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="destroyRegistry")
+    def destroy_registry(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Destroy linked container registry on deletion.
+        """
+        return pulumi.get(self, "destroy_registry")
+
+    @destroy_registry.setter
+    def destroy_registry(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "destroy_registry", value)
+
+    @property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The environment variables of the container namespace
+        The environment variables of the namespace.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -166,7 +198,7 @@ class _ContainerNamespaceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the container namespace
+        The unique name of the container namespace.
         """
         return pulumi.get(self, "name")
 
@@ -178,7 +210,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -190,7 +222,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -202,7 +234,7 @@ class _ContainerNamespaceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -214,7 +246,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        The endpoint reachable by docker
+        The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
@@ -226,7 +258,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the registry namespace
+        The registry namespace ID of the namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -241,20 +273,43 @@ class ContainerNamespace(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 destroy_registry: Optional[pulumi.Input[bool]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ContainerNamespace resource with the given unique name, props, and options.
+        Creates and manages Scaleway Container Namespace.
+        For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.ContainerNamespace("main", description="Main container namespace")
+        ```
+
+        ## Import
+
+        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the container namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the container namespace
-        :param pulumi.Input[str] name: The name of the container namespace
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         ...
     @overload
@@ -263,7 +318,28 @@ class ContainerNamespace(pulumi.CustomResource):
                  args: Optional[ContainerNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ContainerNamespace resource with the given unique name, props, and options.
+        Creates and manages Scaleway Container Namespace.
+        For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.ContainerNamespace("main", description="Main container namespace")
+        ```
+
+        ## Import
+
+        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param ContainerNamespaceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -280,6 +356,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 destroy_registry: Optional[pulumi.Input[bool]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -294,6 +371,7 @@ class ContainerNamespace(pulumi.CustomResource):
             __props__ = ContainerNamespaceArgs.__new__(ContainerNamespaceArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["destroy_registry"] = destroy_registry
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
@@ -312,6 +390,7 @@ class ContainerNamespace(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
+            destroy_registry: Optional[pulumi.Input[bool]] = None,
             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -326,20 +405,22 @@ class ContainerNamespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the container namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the container namespace
-        :param pulumi.Input[str] name: The name of the container namespace
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] registry_endpoint: The endpoint reachable by docker
-        :param pulumi.Input[str] registry_namespace_id: The ID of the registry namespace
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
+        :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ContainerNamespaceState.__new__(_ContainerNamespaceState)
 
         __props__.__dict__["description"] = description
+        __props__.__dict__["destroy_registry"] = destroy_registry
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
@@ -353,15 +434,23 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the container namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destroyRegistry")
+    def destroy_registry(self) -> pulumi.Output[Optional[bool]]:
+        """
+        . Destroy linked container registry on deletion.
+        """
+        return pulumi.get(self, "destroy_registry")
 
     @property
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The environment variables of the container namespace
+        The environment variables of the namespace.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -369,7 +458,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the container namespace
+        The unique name of the container namespace.
         """
         return pulumi.get(self, "name")
 
@@ -377,7 +466,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -385,7 +474,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -393,7 +482,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -401,7 +490,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> pulumi.Output[str]:
         """
-        The endpoint reachable by docker
+        The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
@@ -409,7 +498,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> pulumi.Output[str]:
         """
-        The ID of the registry namespace
+        The registry namespace ID of the namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 

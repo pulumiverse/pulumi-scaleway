@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a public gateway IP.
+ *
+ * For further information please check the API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-66f0c0)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.VpcPublicGatewayIp("main", {});
+ * const ipById = main.id.apply(id => scaleway.getVpcPublicGatewayIp({
+ *     ipId: id,
+ * }));
+ * ```
+ */
 export function getVpcPublicGatewayIp(args?: GetVpcPublicGatewayIpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayIpResult> {
     args = args || {};
     if (!opts) {

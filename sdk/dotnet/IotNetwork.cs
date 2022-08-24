@@ -10,47 +10,56 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// IoT Networks can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/iotNetwork:IotNetwork")]
-    public partial class IotNetwork : Pulumi.CustomResource
+    public partial class IotNetwork : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the network
+        /// The date and time the Network was created.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The endpoint to use when interacting with the network
+        /// The endpoint to use when interacting with the network.
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the hub on which this network will be created
+        /// The hub ID to which the Network will be attached to.
         /// </summary>
         [Output("hubId")]
         public Output<string> HubId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the network
+        /// The name of the IoT Network you want to create (e.g. `my-net`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The endpoint key to keep secret
+        /// The endpoint key to keep secret.
         /// </summary>
         [Output("secret")]
         public Output<string> Secret { get; private set; } = null!;
 
         /// <summary>
-        /// The prefix that will be prepended to all topics for this Network
+        /// The prefix that will be prepended to all topics for this Network.
         /// </summary>
         [Output("topicPrefix")]
         public Output<string?> TopicPrefix { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the network
+        /// The network type to create (e.g. `sigfox`).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -100,28 +109,28 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class IotNetworkArgs : Pulumi.ResourceArgs
+    public sealed class IotNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the hub on which this network will be created
+        /// The hub ID to which the Network will be attached to.
         /// </summary>
         [Input("hubId", required: true)]
         public Input<string> HubId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the network
+        /// The name of the IoT Network you want to create (e.g. `my-net`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The prefix that will be prepended to all topics for this Network
+        /// The prefix that will be prepended to all topics for this Network.
         /// </summary>
         [Input("topicPrefix")]
         public Input<string>? TopicPrefix { get; set; }
 
         /// <summary>
-        /// The type of the network
+        /// The network type to create (e.g. `sigfox`).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -129,48 +138,49 @@ namespace Pulumiverse.Scaleway
         public IotNetworkArgs()
         {
         }
+        public static new IotNetworkArgs Empty => new IotNetworkArgs();
     }
 
-    public sealed class IotNetworkState : Pulumi.ResourceArgs
+    public sealed class IotNetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the network
+        /// The date and time the Network was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The endpoint to use when interacting with the network
+        /// The endpoint to use when interacting with the network.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// The ID of the hub on which this network will be created
+        /// The hub ID to which the Network will be attached to.
         /// </summary>
         [Input("hubId")]
         public Input<string>? HubId { get; set; }
 
         /// <summary>
-        /// The name of the network
+        /// The name of the IoT Network you want to create (e.g. `my-net`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The endpoint key to keep secret
+        /// The endpoint key to keep secret.
         /// </summary>
         [Input("secret")]
         public Input<string>? Secret { get; set; }
 
         /// <summary>
-        /// The prefix that will be prepended to all topics for this Network
+        /// The prefix that will be prepended to all topics for this Network.
         /// </summary>
         [Input("topicPrefix")]
         public Input<string>? TopicPrefix { get; set; }
 
         /// <summary>
-        /// The type of the network
+        /// The network type to create (e.g. `sigfox`).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -178,5 +188,6 @@ namespace Pulumiverse.Scaleway
         public IotNetworkState()
         {
         }
+        public static new IotNetworkState Empty => new IotNetworkState();
     }
 }

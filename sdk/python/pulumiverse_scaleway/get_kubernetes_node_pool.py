@@ -22,7 +22,7 @@ class GetKubernetesNodePoolResult:
     """
     A collection of values returned by getKubernetesNodePool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, region=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -71,6 +71,12 @@ class GetKubernetesNodePoolResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if root_volume_size_in_gb and not isinstance(root_volume_size_in_gb, int):
+            raise TypeError("Expected argument 'root_volume_size_in_gb' to be a int")
+        pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
+        if root_volume_type and not isinstance(root_volume_type, str):
+            raise TypeError("Expected argument 'root_volume_type' to be a str")
+        pulumi.set(__self__, "root_volume_type", root_volume_type)
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
@@ -99,11 +105,17 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter
     def autohealing(self) -> bool:
+        """
+        True if the autohealing feature is enabled for this pool.
+        """
         return pulumi.get(self, "autohealing")
 
     @property
     @pulumi.getter
     def autoscaling(self) -> bool:
+        """
+        True if the autoscaling feature is enabled for this pool.
+        """
         return pulumi.get(self, "autoscaling")
 
     @property
@@ -114,11 +126,17 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> str:
+        """
+        The container runtime of the pool.
+        """
         return pulumi.get(self, "container_runtime")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The creation date of the pool.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -142,31 +160,49 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> int:
+        """
+        The maximum size of the pool, used by the autoscaling feature.
+        """
         return pulumi.get(self, "max_size")
 
     @property
     @pulumi.getter(name="minSize")
     def min_size(self) -> int:
+        """
+        The minimum size of the pool, used by the autoscaling feature.
+        """
         return pulumi.get(self, "min_size")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the node.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodeType")
     def node_type(self) -> str:
+        """
+        The commercial type of the pool instances.
+        """
         return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter
     def nodes(self) -> Sequence['outputs.GetKubernetesNodePoolNodeResult']:
+        """
+        (List of) The nodes in the default pool.
+        """
         return pulumi.get(self, "nodes")
 
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> str:
+        """
+        [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
+        """
         return pulumi.get(self, "placement_group_id")
 
     @property
@@ -180,23 +216,45 @@ class GetKubernetesNodePoolResult:
         return pulumi.get(self, "region")
 
     @property
+    @pulumi.getter(name="rootVolumeSizeInGb")
+    def root_volume_size_in_gb(self) -> int:
+        return pulumi.get(self, "root_volume_size_in_gb")
+
+    @property
+    @pulumi.getter(name="rootVolumeType")
+    def root_volume_type(self) -> str:
+        return pulumi.get(self, "root_volume_type")
+
+    @property
     @pulumi.getter
     def size(self) -> Optional[int]:
+        """
+        The size of the pool.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The status of the node.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        The tags associated with the pool.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
+        """
+        The last update date of the pool.
+        """
         return pulumi.get(self, "updated_at")
 
     @property
@@ -207,6 +265,9 @@ class GetKubernetesNodePoolResult:
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        The version of the pool.
+        """
         return pulumi.get(self, "version")
 
     @property
@@ -242,6 +303,8 @@ class AwaitableGetKubernetesNodePoolResult(GetKubernetesNodePoolResult):
             placement_group_id=self.placement_group_id,
             pool_id=self.pool_id,
             region=self.region,
+            root_volume_size_in_gb=self.root_volume_size_in_gb,
+            root_volume_type=self.root_volume_type,
             size=self.size,
             status=self.status,
             tags=self.tags,
@@ -259,7 +322,23 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
                              size: Optional[int] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesNodePoolResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Kubernetes Cluster's Pool.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str cluster_id: The cluster ID. Required when `name` is set.
+    :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+    :param str pool_id: The pool's ID. Only one of `name` and `pool_id` should be specified.
+    :param str region: `region`) The region in which the pool exists.
+    :param int size: The size of the pool.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -287,6 +366,8 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
         placement_group_id=__ret__.placement_group_id,
         pool_id=__ret__.pool_id,
         region=__ret__.region,
+        root_volume_size_in_gb=__ret__.root_volume_size_in_gb,
+        root_volume_type=__ret__.root_volume_type,
         size=__ret__.size,
         status=__ret__.status,
         tags=__ret__.tags,
@@ -305,6 +386,22 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
                                     size: Optional[pulumi.Input[Optional[int]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesNodePoolResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Kubernetes Cluster's Pool.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str cluster_id: The cluster ID. Required when `name` is set.
+    :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+    :param str pool_id: The pool's ID. Only one of `name` and `pool_id` should be specified.
+    :param str region: `region`) The region in which the pool exists.
+    :param int size: The size of the pool.
     """
     ...

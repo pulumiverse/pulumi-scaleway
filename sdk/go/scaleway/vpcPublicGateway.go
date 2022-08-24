@@ -11,28 +11,76 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway VPC Public Gateway.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
+//
+// ## Example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
+//				Tags: pulumi.StringArray{
+//					pulumi.String("demo"),
+//					pulumi.String("terraform"),
+//				},
+//				Type: pulumi.String("VPC-GW-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type VpcPublicGateway struct {
 	pulumi.CustomResourceState
 
-	// The date and time of the creation of the public gateway
+	// Enable SSH bastion on the gateway
+	BastionEnabled pulumi.BoolPtrOutput `pulumi:"bastionEnabled"`
+	// The port on which the SSH bastion will listen.
+	BastionPort pulumi.IntOutput `pulumi:"bastionPort"`
+	// The date and time of the creation of the public gateway.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// attach an existing IP to the gateway
+	// Enable SMTP on the gateway
+	EnableSmtp pulumi.BoolOutput `pulumi:"enableSmtp"`
+	// attach an existing flexible IP to the gateway
 	IpId pulumi.StringOutput `pulumi:"ipId"`
-	// name of the gateway
+	// The name of the public gateway. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the public gateway is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The tags associated with public gateway
+	// The tags associated with the public gateway.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// gateway type
+	// The gateway type.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The date and time of the last update of the public gateway
+	// The date and time of the last update of the public gateway.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// override the gateway's default recursive DNS servers, if DNS features are enabled
+	// override the gateway's default recursive DNS servers, if DNS features are enabled.
 	UpstreamDnsServers pulumi.StringArrayOutput `pulumi:"upstreamDnsServers"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -69,48 +117,60 @@ func GetVpcPublicGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPublicGateway resources.
 type vpcPublicGatewayState struct {
-	// The date and time of the creation of the public gateway
+	// Enable SSH bastion on the gateway
+	BastionEnabled *bool `pulumi:"bastionEnabled"`
+	// The port on which the SSH bastion will listen.
+	BastionPort *int `pulumi:"bastionPort"`
+	// The date and time of the creation of the public gateway.
 	CreatedAt *string `pulumi:"createdAt"`
-	// attach an existing IP to the gateway
+	// Enable SMTP on the gateway
+	EnableSmtp *bool `pulumi:"enableSmtp"`
+	// attach an existing flexible IP to the gateway
 	IpId *string `pulumi:"ipId"`
-	// name of the gateway
+	// The name of the public gateway. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the public gateway is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The tags associated with public gateway
+	// The tags associated with the public gateway.
 	Tags []string `pulumi:"tags"`
-	// gateway type
+	// The gateway type.
 	Type *string `pulumi:"type"`
-	// The date and time of the last update of the public gateway
+	// The date and time of the last update of the public gateway.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// override the gateway's default recursive DNS servers, if DNS features are enabled
+	// override the gateway's default recursive DNS servers, if DNS features are enabled.
 	UpstreamDnsServers []string `pulumi:"upstreamDnsServers"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPublicGatewayState struct {
-	// The date and time of the creation of the public gateway
+	// Enable SSH bastion on the gateway
+	BastionEnabled pulumi.BoolPtrInput
+	// The port on which the SSH bastion will listen.
+	BastionPort pulumi.IntPtrInput
+	// The date and time of the creation of the public gateway.
 	CreatedAt pulumi.StringPtrInput
-	// attach an existing IP to the gateway
+	// Enable SMTP on the gateway
+	EnableSmtp pulumi.BoolPtrInput
+	// attach an existing flexible IP to the gateway
 	IpId pulumi.StringPtrInput
-	// name of the gateway
+	// The name of the public gateway. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the public gateway is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The tags associated with public gateway
+	// The tags associated with the public gateway.
 	Tags pulumi.StringArrayInput
-	// gateway type
+	// The gateway type.
 	Type pulumi.StringPtrInput
-	// The date and time of the last update of the public gateway
+	// The date and time of the last update of the public gateway.
 	UpdatedAt pulumi.StringPtrInput
-	// override the gateway's default recursive DNS servers, if DNS features are enabled
+	// override the gateway's default recursive DNS servers, if DNS features are enabled.
 	UpstreamDnsServers pulumi.StringArrayInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -119,37 +179,49 @@ func (VpcPublicGatewayState) ElementType() reflect.Type {
 }
 
 type vpcPublicGatewayArgs struct {
-	// attach an existing IP to the gateway
+	// Enable SSH bastion on the gateway
+	BastionEnabled *bool `pulumi:"bastionEnabled"`
+	// The port on which the SSH bastion will listen.
+	BastionPort *int `pulumi:"bastionPort"`
+	// Enable SMTP on the gateway
+	EnableSmtp *bool `pulumi:"enableSmtp"`
+	// attach an existing flexible IP to the gateway
 	IpId *string `pulumi:"ipId"`
-	// name of the gateway
+	// The name of the public gateway. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The tags associated with public gateway
+	// The tags associated with the public gateway.
 	Tags []string `pulumi:"tags"`
-	// gateway type
+	// The gateway type.
 	Type string `pulumi:"type"`
-	// override the gateway's default recursive DNS servers, if DNS features are enabled
+	// override the gateway's default recursive DNS servers, if DNS features are enabled.
 	UpstreamDnsServers []string `pulumi:"upstreamDnsServers"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcPublicGateway resource.
 type VpcPublicGatewayArgs struct {
-	// attach an existing IP to the gateway
+	// Enable SSH bastion on the gateway
+	BastionEnabled pulumi.BoolPtrInput
+	// The port on which the SSH bastion will listen.
+	BastionPort pulumi.IntPtrInput
+	// Enable SMTP on the gateway
+	EnableSmtp pulumi.BoolPtrInput
+	// attach an existing flexible IP to the gateway
 	IpId pulumi.StringPtrInput
-	// name of the gateway
+	// The name of the public gateway. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The tags associated with public gateway
+	// The tags associated with the public gateway.
 	Tags pulumi.StringArrayInput
-	// gateway type
+	// The gateway type.
 	Type pulumi.StringInput
-	// override the gateway's default recursive DNS servers, if DNS features are enabled
+	// override the gateway's default recursive DNS servers, if DNS features are enabled.
 	UpstreamDnsServers pulumi.StringArrayInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -240,52 +312,67 @@ func (o VpcPublicGatewayOutput) ToVpcPublicGatewayOutputWithContext(ctx context.
 	return o
 }
 
-// The date and time of the creation of the public gateway
+// Enable SSH bastion on the gateway
+func (o VpcPublicGatewayOutput) BastionEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VpcPublicGateway) pulumi.BoolPtrOutput { return v.BastionEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The port on which the SSH bastion will listen.
+func (o VpcPublicGatewayOutput) BastionPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpcPublicGateway) pulumi.IntOutput { return v.BastionPort }).(pulumi.IntOutput)
+}
+
+// The date and time of the creation of the public gateway.
 func (o VpcPublicGatewayOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// attach an existing IP to the gateway
+// Enable SMTP on the gateway
+func (o VpcPublicGatewayOutput) EnableSmtp() pulumi.BoolOutput {
+	return o.ApplyT(func(v *VpcPublicGateway) pulumi.BoolOutput { return v.EnableSmtp }).(pulumi.BoolOutput)
+}
+
+// attach an existing flexible IP to the gateway
 func (o VpcPublicGatewayOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.IpId }).(pulumi.StringOutput)
 }
 
-// name of the gateway
+// The name of the public gateway. If not provided it will be randomly generated.
 func (o VpcPublicGatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the public gateway is associated with.
 func (o VpcPublicGatewayOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the public gateway is associated with.
 func (o VpcPublicGatewayOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The tags associated with public gateway
+// The tags associated with the public gateway.
 func (o VpcPublicGatewayOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// gateway type
+// The gateway type.
 func (o VpcPublicGatewayOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the public gateway
+// The date and time of the last update of the public gateway.
 func (o VpcPublicGatewayOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// override the gateway's default recursive DNS servers, if DNS features are enabled
+// override the gateway's default recursive DNS servers, if DNS features are enabled.
 func (o VpcPublicGatewayOutput) UpstreamDnsServers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringArrayOutput { return v.UpstreamDnsServers }).(pulumi.StringArrayOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which the public gateway should be created.
 func (o VpcPublicGatewayOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

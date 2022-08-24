@@ -20,10 +20,10 @@ class DatabasePrivilegeArgs:
                  user_name: pulumi.Input[str]):
         """
         The set of arguments for constructing a DatabasePrivilege resource.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -34,7 +34,7 @@ class DatabasePrivilegeArgs:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
         """
-        Database name
+        Name of the database (e.g. `my-db-name`).
         """
         return pulumi.get(self, "database_name")
 
@@ -46,7 +46,7 @@ class DatabasePrivilegeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Instance on which the database is created
+        UUID of the instance where to create the database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -58,7 +58,7 @@ class DatabasePrivilegeArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[str]:
         """
-        Privilege
+        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -70,7 +70,7 @@ class DatabasePrivilegeArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Input[str]:
         """
-        User name
+        Name of the user (e.g. `my-db-user`).
         """
         return pulumi.get(self, "user_name")
 
@@ -88,10 +88,10 @@ class _DatabasePrivilegeState:
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DatabasePrivilege resources.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         if database_name is not None:
             pulumi.set(__self__, "database_name", database_name)
@@ -106,7 +106,7 @@ class _DatabasePrivilegeState:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database name
+        Name of the database (e.g. `my-db-name`).
         """
         return pulumi.get(self, "database_name")
 
@@ -118,7 +118,7 @@ class _DatabasePrivilegeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance on which the database is created
+        UUID of the instance where to create the database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -130,7 +130,7 @@ class _DatabasePrivilegeState:
     @pulumi.getter
     def permission(self) -> Optional[pulumi.Input[str]]:
         """
-        Privilege
+        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -142,7 +142,7 @@ class _DatabasePrivilegeState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        User name
+        Name of the user (e.g. `my-db-user`).
         """
         return pulumi.get(self, "user_name")
 
@@ -162,13 +162,37 @@ class DatabasePrivilege(pulumi.CustomResource):
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DatabasePrivilege resource with the given unique name, props, and options.
+        Create and manage Scaleway RDB database privilege.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_database_user = scaleway.DatabaseUser("mainDatabaseUser",
+            instance_id=scaleway_rdb_instance["pgsql"]["id"],
+            password="thiZ_is_v&ry_s3cret",
+            is_admin=False)
+        main_database = scaleway.Database("mainDatabase", instance_id=scaleway_rdb_instance["pgsql"]["id"])
+        priv = scaleway.DatabasePrivilege("priv",
+            instance_id=scaleway_rdb_instance["rdb"]["id"],
+            user_name="my-db-user",
+            database_name="my-db-name",
+            permission="all",
+            opts=pulumi.ResourceOptions(depends_on=[
+                    main_database_user,
+                    main_database,
+                ]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         ...
     @overload
@@ -177,7 +201,31 @@ class DatabasePrivilege(pulumi.CustomResource):
                  args: DatabasePrivilegeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DatabasePrivilege resource with the given unique name, props, and options.
+        Create and manage Scaleway RDB database privilege.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_database_user = scaleway.DatabaseUser("mainDatabaseUser",
+            instance_id=scaleway_rdb_instance["pgsql"]["id"],
+            password="thiZ_is_v&ry_s3cret",
+            is_admin=False)
+        main_database = scaleway.Database("mainDatabase", instance_id=scaleway_rdb_instance["pgsql"]["id"])
+        priv = scaleway.DatabasePrivilege("priv",
+            instance_id=scaleway_rdb_instance["rdb"]["id"],
+            user_name="my-db-user",
+            database_name="my-db-name",
+            permission="all",
+            opts=pulumi.ResourceOptions(depends_on=[
+                    main_database_user,
+                    main_database,
+                ]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param DatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -239,10 +287,10 @@ class DatabasePrivilege(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -258,7 +306,7 @@ class DatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Output[str]:
         """
-        Database name
+        Name of the database (e.g. `my-db-name`).
         """
         return pulumi.get(self, "database_name")
 
@@ -266,7 +314,7 @@ class DatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Instance on which the database is created
+        UUID of the instance where to create the database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -274,7 +322,7 @@ class DatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter
     def permission(self) -> pulumi.Output[str]:
         """
-        Privilege
+        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -282,7 +330,7 @@ class DatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
         """
-        User name
+        Name of the user (e.g. `my-db-user`).
         """
         return pulumi.get(self, "user_name")
 

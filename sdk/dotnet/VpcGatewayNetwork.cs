@@ -10,29 +10,79 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway VPC Public Gateway Network.
+    /// It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+    /// 
+    /// ## Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    /// 
+    ///     var gw01 = new Scaleway.VpcPublicGatewayIp("gw01");
+    /// 
+    ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+    ///     {
+    ///         Subnet = "192.168.1.0/24",
+    ///         PushDefaultRoute = true,
+    ///     });
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///         IpId = gw01.Id,
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         DhcpId = dhcp01.Id,
+    ///         CleanupDhcp = true,
+    ///         EnableMasquerade = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork")]
-    public partial class VpcGatewayNetwork : Pulumi.CustomResource
+    public partial class VpcGatewayNetwork : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Remove DHCP config on this network on destroy
+        /// Remove DHCP config on this network on destroy. It requires DHCP id.
         /// </summary>
         [Output("cleanupDhcp")]
         public Output<bool?> CleanupDhcp { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the gateway network
+        /// The date and time of the creation of the gateway network.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the public gateway DHCP config
+        /// The ID of the public gateway DHCP config.
         /// </summary>
         [Output("dhcpId")]
         public Output<string?> DhcpId { get; private set; } = null!;
 
         /// <summary>
-        /// Enable DHCP config on this network
+        /// Enable DHCP config on this network. It requires DHCP id.
         /// </summary>
         [Output("enableDhcp")]
         public Output<bool?> EnableDhcp { get; private set; } = null!;
@@ -44,37 +94,37 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> EnableMasquerade { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the public gateway where connect to
+        /// The ID of the public gateway.
         /// </summary>
         [Output("gatewayId")]
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// The mac address on this network
+        /// The mac address of the creation of the gateway network.
         /// </summary>
         [Output("macAddress")]
         public Output<string> MacAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the private network where connect to
+        /// The ID of the private network.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// The static IP address in CIDR on this network
+        /// Enable DHCP config on this network
         /// </summary>
         [Output("staticAddress")]
         public Output<string?> StaticAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the gateway network
+        /// The date and time of the last update of the gateway network.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the gateway network should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -124,22 +174,22 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class VpcGatewayNetworkArgs : Pulumi.ResourceArgs
+    public sealed class VpcGatewayNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Remove DHCP config on this network on destroy
+        /// Remove DHCP config on this network on destroy. It requires DHCP id.
         /// </summary>
         [Input("cleanupDhcp")]
         public Input<bool>? CleanupDhcp { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway DHCP config
+        /// The ID of the public gateway DHCP config.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// Enable DHCP config on this network
+        /// Enable DHCP config on this network. It requires DHCP id.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
@@ -151,25 +201,25 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableMasquerade { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway where connect to
+        /// The ID of the public gateway.
         /// </summary>
         [Input("gatewayId", required: true)]
         public Input<string> GatewayId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the private network where connect to
+        /// The ID of the private network.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// The static IP address in CIDR on this network
+        /// Enable DHCP config on this network
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the gateway network should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -177,30 +227,31 @@ namespace Pulumiverse.Scaleway
         public VpcGatewayNetworkArgs()
         {
         }
+        public static new VpcGatewayNetworkArgs Empty => new VpcGatewayNetworkArgs();
     }
 
-    public sealed class VpcGatewayNetworkState : Pulumi.ResourceArgs
+    public sealed class VpcGatewayNetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Remove DHCP config on this network on destroy
+        /// Remove DHCP config on this network on destroy. It requires DHCP id.
         /// </summary>
         [Input("cleanupDhcp")]
         public Input<bool>? CleanupDhcp { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the gateway network
+        /// The date and time of the creation of the gateway network.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway DHCP config
+        /// The ID of the public gateway DHCP config.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// Enable DHCP config on this network
+        /// Enable DHCP config on this network. It requires DHCP id.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
@@ -212,37 +263,37 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableMasquerade { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway where connect to
+        /// The ID of the public gateway.
         /// </summary>
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
 
         /// <summary>
-        /// The mac address on this network
+        /// The mac address of the creation of the gateway network.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the private network where connect to
+        /// The ID of the private network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The static IP address in CIDR on this network
+        /// Enable DHCP config on this network
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the gateway network
+        /// The date and time of the last update of the gateway network.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the gateway network should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -250,5 +301,6 @@ namespace Pulumiverse.Scaleway
         public VpcGatewayNetworkState()
         {
         }
+        public static new VpcGatewayNetworkState Empty => new VpcGatewayNetworkState();
     }
 }

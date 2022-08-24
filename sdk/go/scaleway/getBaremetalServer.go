@@ -10,6 +10,42 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a baremetal server.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupBaremetalServer(ctx, &GetBaremetalServerArgs{
+//				Name: pulumi.StringRef("foobar"),
+//				Zone: pulumi.StringRef("fr-par-2"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupBaremetalServer(ctx, &GetBaremetalServerArgs{
+//				ServerId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupBaremetalServer(ctx *pulumi.Context, args *LookupBaremetalServerArgs, opts ...pulumi.InvokeOption) (*LookupBaremetalServerResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupBaremetalServerResult
@@ -22,9 +58,11 @@ func LookupBaremetalServer(ctx *pulumi.Context, args *LookupBaremetalServerArgs,
 
 // A collection of arguments for invoking getBaremetalServer.
 type LookupBaremetalServerArgs struct {
+	// The server name. Only one of `name` and `serverId` should be specified.
 	Name     *string `pulumi:"name"`
 	ServerId *string `pulumi:"serverId"`
-	Zone     *string `pulumi:"zone"`
+	// `zone`) The zone in which the server exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getBaremetalServer.
@@ -63,9 +101,11 @@ func LookupBaremetalServerOutput(ctx *pulumi.Context, args LookupBaremetalServer
 
 // A collection of arguments for invoking getBaremetalServer.
 type LookupBaremetalServerOutputArgs struct {
+	// The server name. Only one of `name` and `serverId` should be specified.
 	Name     pulumi.StringPtrInput `pulumi:"name"`
 	ServerId pulumi.StringPtrInput `pulumi:"serverId"`
-	Zone     pulumi.StringPtrInput `pulumi:"zone"`
+	// `zone`) The zone in which the server exists.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupBaremetalServerOutputArgs) ElementType() reflect.Type {

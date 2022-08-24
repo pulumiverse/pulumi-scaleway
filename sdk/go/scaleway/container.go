@@ -11,24 +11,127 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Container.
+//
+// For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+//
+// For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+//
+// You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainContainerNamespace, err := scaleway.NewContainerNamespace(ctx, "mainContainerNamespace", &scaleway.ContainerNamespaceArgs{
+//				Description: pulumi.String("test container"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewContainer(ctx, "mainContainer", &scaleway.ContainerArgs{
+//				Description: pulumi.String("environment variables test"),
+//				NamespaceId: mainContainerNamespace.ID(),
+//				RegistryImage: mainContainerNamespace.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
+//					return fmt.Sprintf("%v/alpine:test", registryEndpoint), nil
+//				}).(pulumi.StringOutput),
+//				Port:           pulumi.Int(9997),
+//				CpuLimit:       pulumi.Int(140),
+//				MemoryLimit:    pulumi.Int(256),
+//				MinScale:       pulumi.Int(3),
+//				MaxScale:       pulumi.Int(5),
+//				Timeout:        pulumi.Int(600),
+//				MaxConcurrency: pulumi.Int(80),
+//				Privacy:        pulumi.String("private"),
+//				Protocol:       pulumi.String("h2c"),
+//				Deploy:         pulumi.Bool(true),
+//				EnvironmentVariables: pulumi.StringMap{
+//					"foo": pulumi.String("var"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## Protocols
+//
+// The supported protocols are:
+//
+// * `h2c`: HTTP/2 over TCP.
+// * `http1`: Hypertext Transfer Protocol.
+//
+// **Important:** For details about the protocols check [this](https://httpd.apache.org/docs/2.4/howto/http2.html)
+//
+// ## Privacy
+//
+// By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
+// A container can be made `private` with the privacy parameter.
+//
+// Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+//
+// ## Memory and vCPUs configuration
+//
+// The vCPU represents a portion or share of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
+//
+// You may decide how much computing resources to allocate to each container.
+// The `memoryLimit` (in MB) must correspond with the right amount of vCPU.
+//
+// **Important:** The right choice for your container's resources is very important, as you will be billed based on compute usage over time and the number of Containers executions.
+//
+// Please check our [price](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) section for more details.
+//
+// | Memory (in MB) | vCPU |
+// |----------------|------|
+// | 128            | 70m  |
+// | 256            | 140m |
+// | 512            | 280m |
+// | 1024           | 560m |
+//
+// **Note:** 560mCPU accounts roughly for half of one CPU power of a Scaleway General Purpose instance
+//
+// ## Import
+//
+// Container can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type Container struct {
 	pulumi.CustomResourceState
 
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
-	// The cron status
+	// The cron status of the container.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
-	// This allows you to control your production environment
+	// Boolean controlling whether the container is on a production environment.
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
-	// The container description
+	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The container domain name.
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
-	// The environment variables to be injected into your container at runtime.
+	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
-	// The error description
+	// The error message of the container.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
-	// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntOutput `pulumi:"maxScale"`
@@ -36,24 +139,25 @@ type Container struct {
 	MemoryLimit pulumi.IntOutput `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntOutput `pulumi:"minScale"`
-	// The container name
+	// The unique name of the container name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The container namespace associated
+	// The container namespace ID of the container.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
-	// The port to expose the container. Defaults to 8080
+	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntOutput `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrOutput `pulumi:"privacy"`
-	// The communication protocol http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
-	// The region of the resource
+	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The scaleway registry image address
+	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringOutput `pulumi:"registryImage"`
-	// The container status
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	RegistrySha256 pulumi.StringPtrOutput `pulumi:"registrySha256"`
+	// The container status.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-	// 300s.
+	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 }
 
@@ -92,19 +196,19 @@ func GetContainer(ctx *pulumi.Context,
 type containerState struct {
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit *int `pulumi:"cpuLimit"`
-	// The cron status
+	// The cron status of the container.
 	CronStatus *string `pulumi:"cronStatus"`
-	// This allows you to control your production environment
+	// Boolean controlling whether the container is on a production environment.
 	Deploy *bool `pulumi:"deploy"`
-	// The container description
+	// The description of the container.
 	Description *string `pulumi:"description"`
 	// The container domain name.
 	DomainName *string `pulumi:"domainName"`
-	// The environment variables to be injected into your container at runtime.
+	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The error description
+	// The error message of the container.
 	ErrorMessage *string `pulumi:"errorMessage"`
-	// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale *int `pulumi:"maxScale"`
@@ -112,43 +216,44 @@ type containerState struct {
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale *int `pulumi:"minScale"`
-	// The container name
+	// The unique name of the container name.
 	Name *string `pulumi:"name"`
-	// The container namespace associated
+	// The container namespace ID of the container.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// The port to expose the container. Defaults to 8080
+	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
-	// The communication protocol http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol *string `pulumi:"protocol"`
-	// The region of the resource
+	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
-	// The scaleway registry image address
+	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage *string `pulumi:"registryImage"`
-	// The container status
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	RegistrySha256 *string `pulumi:"registrySha256"`
+	// The container status.
 	Status *string `pulumi:"status"`
-	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-	// 300s.
+	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
 	Timeout *int `pulumi:"timeout"`
 }
 
 type ContainerState struct {
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit pulumi.IntPtrInput
-	// The cron status
+	// The cron status of the container.
 	CronStatus pulumi.StringPtrInput
-	// This allows you to control your production environment
+	// Boolean controlling whether the container is on a production environment.
 	Deploy pulumi.BoolPtrInput
-	// The container description
+	// The description of the container.
 	Description pulumi.StringPtrInput
 	// The container domain name.
 	DomainName pulumi.StringPtrInput
-	// The environment variables to be injected into your container at runtime.
+	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapInput
-	// The error description
+	// The error message of the container.
 	ErrorMessage pulumi.StringPtrInput
-	// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntPtrInput
@@ -156,24 +261,25 @@ type ContainerState struct {
 	MemoryLimit pulumi.IntPtrInput
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntPtrInput
-	// The container name
+	// The unique name of the container name.
 	Name pulumi.StringPtrInput
-	// The container namespace associated
+	// The container namespace ID of the container.
 	NamespaceId pulumi.StringPtrInput
-	// The port to expose the container. Defaults to 8080
+	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
-	// The privacy type define the way to authenticate to your container
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
-	// The communication protocol http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrInput
-	// The region of the resource
+	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
-	// The scaleway registry image address
+	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringPtrInput
-	// The container status
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	RegistrySha256 pulumi.StringPtrInput
+	// The container status.
 	Status pulumi.StringPtrInput
-	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-	// 300s.
+	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -184,15 +290,13 @@ func (ContainerState) ElementType() reflect.Type {
 type containerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit *int `pulumi:"cpuLimit"`
-	// This allows you to control your production environment
+	// Boolean controlling whether the container is on a production environment.
 	Deploy *bool `pulumi:"deploy"`
-	// The container description
+	// The description of the container.
 	Description *string `pulumi:"description"`
-	// The container domain name.
-	DomainName *string `pulumi:"domainName"`
-	// The environment variables to be injected into your container at runtime.
+	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale *int `pulumi:"maxScale"`
@@ -200,22 +304,23 @@ type containerArgs struct {
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale *int `pulumi:"minScale"`
-	// The container name
+	// The unique name of the container name.
 	Name *string `pulumi:"name"`
-	// The container namespace associated
+	// The container namespace ID of the container.
 	NamespaceId string `pulumi:"namespaceId"`
-	// The port to expose the container. Defaults to 8080
+	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
-	// The communication protocol http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol *string `pulumi:"protocol"`
-	// The scaleway registry image address
+	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage *string `pulumi:"registryImage"`
-	// The container status
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	RegistrySha256 *string `pulumi:"registrySha256"`
+	// The container status.
 	Status *string `pulumi:"status"`
-	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-	// 300s.
+	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -223,15 +328,13 @@ type containerArgs struct {
 type ContainerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit pulumi.IntPtrInput
-	// This allows you to control your production environment
+	// Boolean controlling whether the container is on a production environment.
 	Deploy pulumi.BoolPtrInput
-	// The container description
+	// The description of the container.
 	Description pulumi.StringPtrInput
-	// The container domain name.
-	DomainName pulumi.StringPtrInput
-	// The environment variables to be injected into your container at runtime.
+	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapInput
-	// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntPtrInput
@@ -239,22 +342,23 @@ type ContainerArgs struct {
 	MemoryLimit pulumi.IntPtrInput
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntPtrInput
-	// The container name
+	// The unique name of the container name.
 	Name pulumi.StringPtrInput
-	// The container namespace associated
+	// The container namespace ID of the container.
 	NamespaceId pulumi.StringInput
-	// The port to expose the container. Defaults to 8080
+	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
-	// The privacy type define the way to authenticate to your container
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
-	// The communication protocol http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrInput
-	// The scaleway registry image address
+	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringPtrInput
-	// The container status
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	RegistrySha256 pulumi.StringPtrInput
+	// The container status.
 	Status pulumi.StringPtrInput
-	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-	// 300s.
+	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -350,17 +454,17 @@ func (o ContainerOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
 
-// The cron status
+// The cron status of the container.
 func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.CronStatus }).(pulumi.StringOutput)
 }
 
-// This allows you to control your production environment
+// Boolean controlling whether the container is on a production environment.
 func (o ContainerOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
 
-// The container description
+// The description of the container.
 func (o ContainerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -370,17 +474,17 @@ func (o ContainerOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
 }
 
-// The environment variables to be injected into your container at runtime.
+// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 func (o ContainerOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
-// The error description
+// The error message of the container.
 func (o ContainerOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
-// The maximum the number of simultaneous requests your container can handle at the same time. Defaults to 50.
+// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 func (o ContainerOutput) MaxConcurrency() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MaxConcurrency }).(pulumi.IntOutput)
 }
@@ -400,48 +504,52 @@ func (o ContainerOutput) MinScale() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MinScale }).(pulumi.IntOutput)
 }
 
-// The container name
+// The unique name of the container name.
 func (o ContainerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The container namespace associated
+// The container namespace ID of the container.
 func (o ContainerOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
-// The port to expose the container. Defaults to 8080
+// The port to expose the container. Defaults to 8080.
 func (o ContainerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// The privacy type define the way to authenticate to your container
+// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 func (o ContainerOutput) Privacy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Privacy }).(pulumi.StringPtrOutput)
 }
 
-// The communication protocol http1 or h2c. Defaults to http1.
+// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 func (o ContainerOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
-// The region of the resource
+// (Defaults to provider `region`) The region in which the container was created.
 func (o ContainerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The scaleway registry image address
+// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 func (o ContainerOutput) RegistryImage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.RegistryImage }).(pulumi.StringOutput)
 }
 
-// The container status
+// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+func (o ContainerOutput) RegistrySha256() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.RegistrySha256 }).(pulumi.StringPtrOutput)
+}
+
+// The container status.
 func (o ContainerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to
-// 300s.
+// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
 func (o ContainerOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }

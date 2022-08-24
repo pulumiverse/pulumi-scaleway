@@ -9,14 +9,20 @@ export * from "./accountSshKey";
 export * from "./appleSliconValleyServer";
 export * from "./baremetalServer";
 export * from "./container";
+export * from "./containerCron";
 export * from "./containerNamespace";
 export * from "./database";
 export * from "./databaseAcl";
+export * from "./databaseBackup";
 export * from "./databaseInstance";
 export * from "./databasePrivilege";
+export * from "./databaseReadReplica";
 export * from "./databaseUser";
 export * from "./domainRecord";
 export * from "./domainZone";
+export * from "./flexibleIp";
+export * from "./function";
+export * from "./functionCron";
 export * from "./functionNamespace";
 export * from "./getAccountSshKey";
 export * from "./getBaremetalOffer";
@@ -26,15 +32,19 @@ export * from "./getContainer";
 export * from "./getContainerNamespace";
 export * from "./getDatabase";
 export * from "./getDatabaseAcl";
+export * from "./getDatabaseBackup";
 export * from "./getDatabaseInstance";
 export * from "./getDatabasePrivilege";
 export * from "./getDomainRecord";
 export * from "./getDomainZone";
+export * from "./getFlexibleIp";
+export * from "./getFunction";
 export * from "./getFunctionNamespace";
 export * from "./getInstanceImage";
 export * from "./getInstanceIp";
 export * from "./getInstanceSecurityGroup";
 export * from "./getInstanceServer";
+export * from "./getInstanceServers";
 export * from "./getInstanceVolume";
 export * from "./getIotDevice";
 export * from "./getIotHub";
@@ -48,11 +58,14 @@ export * from "./getObjectBucket";
 export * from "./getRedisCluster";
 export * from "./getRegistryImage";
 export * from "./getRegistryNamespace";
+export * from "./getVpcGatewayNetwork";
 export * from "./getVpcPrivateNetwork";
 export * from "./getVpcPublicGateway";
 export * from "./getVpcPublicGatewayDhcp";
+export * from "./getVpcPublicGatewayDhcpReservation";
 export * from "./getVpcPublicGatewayIp";
 export * from "./getVpcPublicPatRule";
+export * from "./instanceImage";
 export * from "./instanceIp";
 export * from "./instanceIpReverseDns";
 export * from "./instancePlacementGroup";
@@ -75,6 +88,8 @@ export * from "./loadbalancerFrontend";
 export * from "./loadbalancerIp";
 export * from "./loadbalancerRoute";
 export * from "./objectBucket";
+export * from "./objectBucketPolicy";
+export * from "./objectBucketWebsiteConfiguration";
 export * from "./provider";
 export * from "./redisCluster";
 export * from "./registryNamespace";
@@ -100,15 +115,22 @@ import { AccountSshKey } from "./accountSshKey";
 import { AppleSliconValleyServer } from "./appleSliconValleyServer";
 import { BaremetalServer } from "./baremetalServer";
 import { Container } from "./container";
+import { ContainerCron } from "./containerCron";
 import { ContainerNamespace } from "./containerNamespace";
 import { Database } from "./database";
 import { DatabaseAcl } from "./databaseAcl";
+import { DatabaseBackup } from "./databaseBackup";
 import { DatabaseInstance } from "./databaseInstance";
 import { DatabasePrivilege } from "./databasePrivilege";
+import { DatabaseReadReplica } from "./databaseReadReplica";
 import { DatabaseUser } from "./databaseUser";
 import { DomainRecord } from "./domainRecord";
 import { DomainZone } from "./domainZone";
+import { FlexibleIp } from "./flexibleIp";
+import { Function } from "./function";
+import { FunctionCron } from "./functionCron";
 import { FunctionNamespace } from "./functionNamespace";
+import { InstanceImage } from "./instanceImage";
 import { InstanceIp } from "./instanceIp";
 import { InstanceIpReverseDns } from "./instanceIpReverseDns";
 import { InstancePlacementGroup } from "./instancePlacementGroup";
@@ -131,6 +153,8 @@ import { LoadbalancerFrontend } from "./loadbalancerFrontend";
 import { LoadbalancerIp } from "./loadbalancerIp";
 import { LoadbalancerRoute } from "./loadbalancerRoute";
 import { ObjectBucket } from "./objectBucket";
+import { ObjectBucketPolicy } from "./objectBucketPolicy";
+import { ObjectBucketWebsiteConfiguration } from "./objectBucketWebsiteConfiguration";
 import { RedisCluster } from "./redisCluster";
 import { RegistryNamespace } from "./registryNamespace";
 import { VpcGatewayNetwork } from "./vpcGatewayNetwork";
@@ -153,24 +177,38 @@ const _module = {
                 return new BaremetalServer(name, <any>undefined, { urn })
             case "scaleway:index/container:Container":
                 return new Container(name, <any>undefined, { urn })
+            case "scaleway:index/containerCron:ContainerCron":
+                return new ContainerCron(name, <any>undefined, { urn })
             case "scaleway:index/containerNamespace:ContainerNamespace":
                 return new ContainerNamespace(name, <any>undefined, { urn })
             case "scaleway:index/database:Database":
                 return new Database(name, <any>undefined, { urn })
             case "scaleway:index/databaseAcl:DatabaseAcl":
                 return new DatabaseAcl(name, <any>undefined, { urn })
+            case "scaleway:index/databaseBackup:DatabaseBackup":
+                return new DatabaseBackup(name, <any>undefined, { urn })
             case "scaleway:index/databaseInstance:DatabaseInstance":
                 return new DatabaseInstance(name, <any>undefined, { urn })
             case "scaleway:index/databasePrivilege:DatabasePrivilege":
                 return new DatabasePrivilege(name, <any>undefined, { urn })
+            case "scaleway:index/databaseReadReplica:DatabaseReadReplica":
+                return new DatabaseReadReplica(name, <any>undefined, { urn })
             case "scaleway:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
                 return new DomainZone(name, <any>undefined, { urn })
+            case "scaleway:index/flexibleIp:FlexibleIp":
+                return new FlexibleIp(name, <any>undefined, { urn })
+            case "scaleway:index/function:Function":
+                return new Function(name, <any>undefined, { urn })
+            case "scaleway:index/functionCron:FunctionCron":
+                return new FunctionCron(name, <any>undefined, { urn })
             case "scaleway:index/functionNamespace:FunctionNamespace":
                 return new FunctionNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/instanceImage:InstanceImage":
+                return new InstanceImage(name, <any>undefined, { urn })
             case "scaleway:index/instanceIp:InstanceIp":
                 return new InstanceIp(name, <any>undefined, { urn })
             case "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns":
@@ -215,6 +253,10 @@ const _module = {
                 return new LoadbalancerRoute(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
+            case "scaleway:index/objectBucketPolicy:ObjectBucketPolicy":
+                return new ObjectBucketPolicy(name, <any>undefined, { urn })
+            case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
+                return new ObjectBucketWebsiteConfiguration(name, <any>undefined, { urn })
             case "scaleway:index/redisCluster:RedisCluster":
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
@@ -242,15 +284,22 @@ pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/database", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseAcl", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/databaseBackup", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/function", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instancePlacementGroup", _module)
@@ -273,6 +322,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", 
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)

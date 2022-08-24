@@ -74,6 +74,9 @@ class GetLoadbalancerResult:
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
+        """
+        The load-balancer public IP Address.
+        """
         return pulumi.get(self, "ip_address")
 
     @property
@@ -104,6 +107,9 @@ class GetLoadbalancerResult:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        (Defaults to provider `project_id`) The ID of the project the LB is associated with.
+        """
         return pulumi.get(self, "project_id")
 
     @property
@@ -119,16 +125,25 @@ class GetLoadbalancerResult:
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        The tags associated with the load-balancers.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of the load-balancer.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def zone(self) -> Optional[str]:
+        """
+        (Defaults to provider `region`) The region in which the LB exists.
+        """
         return pulumi.get(self, "zone")
 
 
@@ -159,7 +174,21 @@ def get_loadbalancer(lb_id: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Load Balancer.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_loadbalancer(name="foobar")
+    by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The IP address.
+    :param str zone: (Defaults to provider `region`) The region in which the LB exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
@@ -192,6 +221,20 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Load Balancer.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_loadbalancer(name="foobar")
+    by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The IP address.
+    :param str zone: (Defaults to provider `region`) The region in which the LB exists.
     """
     ...

@@ -9,14 +9,20 @@ from .account_ssh_key import *
 from .apple_slicon_valley_server import *
 from .baremetal_server import *
 from .container import *
+from .container_cron import *
 from .container_namespace import *
 from .database import *
 from .database_acl import *
+from .database_backup import *
 from .database_instance import *
 from .database_privilege import *
+from .database_read_replica import *
 from .database_user import *
 from .domain_record import *
 from .domain_zone import *
+from .flexible_ip import *
+from .function import *
+from .function_cron import *
 from .function_namespace import *
 from .get_account_ssh_key import *
 from .get_baremetal_offer import *
@@ -26,15 +32,19 @@ from .get_container import *
 from .get_container_namespace import *
 from .get_database import *
 from .get_database_acl import *
+from .get_database_backup import *
 from .get_database_instance import *
 from .get_database_privilege import *
 from .get_domain_record import *
 from .get_domain_zone import *
+from .get_flexible_ip import *
+from .get_function import *
 from .get_function_namespace import *
 from .get_instance_image import *
 from .get_instance_ip import *
 from .get_instance_security_group import *
 from .get_instance_server import *
+from .get_instance_servers import *
 from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
@@ -48,11 +58,14 @@ from .get_object_bucket import *
 from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_namespace import *
+from .get_vpc_gateway_network import *
 from .get_vpc_private_network import *
 from .get_vpc_public_gateway import *
 from .get_vpc_public_gateway_dhcp import *
+from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_pat_rule import *
+from .instance_image import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
 from .instance_placement_group import *
@@ -75,6 +88,8 @@ from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
 from .loadbalancer_route import *
 from .object_bucket import *
+from .object_bucket_policy import *
+from .object_bucket_website_configuration import *
 from .provider import *
 from .redis_cluster import *
 from .registry_namespace import *
@@ -132,6 +147,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/containerCron",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/containerCron:ContainerCron": "ContainerCron"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/containerNamespace",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -156,6 +179,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/databaseBackup",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/databaseBackup:DatabaseBackup": "DatabaseBackup"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/databaseInstance",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -168,6 +199,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databasePrivilege:DatabasePrivilege": "DatabasePrivilege"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/databaseReadReplica",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/databaseReadReplica:DatabaseReadReplica": "DatabaseReadReplica"
   }
  },
  {
@@ -196,10 +235,42 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/flexibleIp",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/flexibleIp:FlexibleIp": "FlexibleIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/function",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/function:Function": "Function"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/functionCron",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/functionCron:FunctionCron": "FunctionCron"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/functionNamespace",
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/functionNamespace:FunctionNamespace": "FunctionNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/instanceImage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/instanceImage:InstanceImage": "InstanceImage"
   }
  },
  {
@@ -376,6 +447,22 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/objectBucket:ObjectBucket": "ObjectBucket"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/objectBucketPolicy",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/objectBucketPolicy:ObjectBucketPolicy": "ObjectBucketPolicy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/objectBucketWebsiteConfiguration",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration": "ObjectBucketWebsiteConfiguration"
   }
  },
  {

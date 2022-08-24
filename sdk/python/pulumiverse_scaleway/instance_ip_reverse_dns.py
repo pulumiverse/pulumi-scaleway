@@ -19,9 +19,9 @@ class InstanceIpReverseDnsArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceIpReverseDns resource.
-        :param pulumi.Input[str] ip_id: The IP ID or IP address
-        :param pulumi.Input[str] reverse: The reverse DNS for this IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] ip_id: The IP ID
+        :param pulumi.Input[str] reverse: The reverse DNS for this IP.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         pulumi.set(__self__, "ip_id", ip_id)
         pulumi.set(__self__, "reverse", reverse)
@@ -32,7 +32,7 @@ class InstanceIpReverseDnsArgs:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Input[str]:
         """
-        The IP ID or IP address
+        The IP ID
         """
         return pulumi.get(self, "ip_id")
 
@@ -44,7 +44,7 @@ class InstanceIpReverseDnsArgs:
     @pulumi.getter
     def reverse(self) -> pulumi.Input[str]:
         """
-        The reverse DNS for this IP
+        The reverse DNS for this IP.
         """
         return pulumi.get(self, "reverse")
 
@@ -56,7 +56,7 @@ class InstanceIpReverseDnsArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 
@@ -73,9 +73,9 @@ class _InstanceIpReverseDnsState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceIpReverseDns resources.
-        :param pulumi.Input[str] ip_id: The IP ID or IP address
-        :param pulumi.Input[str] reverse: The reverse DNS for this IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] ip_id: The IP ID
+        :param pulumi.Input[str] reverse: The reverse DNS for this IP.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
@@ -88,7 +88,7 @@ class _InstanceIpReverseDnsState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP ID or IP address
+        The IP ID
         """
         return pulumi.get(self, "ip_id")
 
@@ -100,7 +100,7 @@ class _InstanceIpReverseDnsState:
     @pulumi.getter
     def reverse(self) -> Optional[pulumi.Input[str]]:
         """
-        The reverse DNS for this IP
+        The reverse DNS for this IP.
         """
         return pulumi.get(self, "reverse")
 
@@ -112,7 +112,7 @@ class _InstanceIpReverseDnsState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 
@@ -131,12 +131,23 @@ class InstanceIpReverseDns(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InstanceIpReverseDns resource with the given unique name, props, and options.
+        Manages Scaleway Compute Instance IPs Reverse DNS.
+
+        Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
+
+        ## Import
+
+        IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_id: The IP ID or IP address
-        :param pulumi.Input[str] reverse: The reverse DNS for this IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] ip_id: The IP ID
+        :param pulumi.Input[str] reverse: The reverse DNS for this IP.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         ...
     @overload
@@ -145,7 +156,18 @@ class InstanceIpReverseDns(pulumi.CustomResource):
                  args: InstanceIpReverseDnsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InstanceIpReverseDns resource with the given unique name, props, and options.
+        Manages Scaleway Compute Instance IPs Reverse DNS.
+
+        Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
+
+        ## Import
+
+        IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param InstanceIpReverseDnsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -200,9 +222,9 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_id: The IP ID or IP address
-        :param pulumi.Input[str] reverse: The reverse DNS for this IP
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] ip_id: The IP ID
+        :param pulumi.Input[str] reverse: The reverse DNS for this IP.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -217,7 +239,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[str]:
         """
-        The IP ID or IP address
+        The IP ID
         """
         return pulumi.get(self, "ip_id")
 
@@ -225,7 +247,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
     @pulumi.getter
     def reverse(self) -> pulumi.Output[str]:
         """
-        The reverse DNS for this IP
+        The reverse DNS for this IP.
         """
         return pulumi.get(self, "reverse")
 
@@ -233,7 +255,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 

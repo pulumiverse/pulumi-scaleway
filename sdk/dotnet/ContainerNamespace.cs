@@ -10,53 +10,90 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Container Namespace.
+    /// For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.ContainerNamespace("main", new()
+    ///     {
+    ///         Description = "Main container namespace",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/containerNamespace:ContainerNamespace")]
-    public partial class ContainerNamespace : Pulumi.CustomResource
+    public partial class ContainerNamespace : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The description of the container namespace
+        /// The description of the namespace.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The environment variables of the container namespace
+        /// . Destroy linked container registry on deletion.
+        /// </summary>
+        [Output("destroyRegistry")]
+        public Output<bool?> DestroyRegistry { get; private set; } = null!;
+
+        /// <summary>
+        /// The environment variables of the namespace.
         /// </summary>
         [Output("environmentVariables")]
         public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the container namespace
+        /// The unique name of the container namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the namespace is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the namespace is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The endpoint reachable by docker
+        /// The registry endpoint of the namespace.
         /// </summary>
         [Output("registryEndpoint")]
         public Output<string> RegistryEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the registry namespace
+        /// The registry namespace ID of the namespace.
         /// </summary>
         [Output("registryNamespaceId")]
         public Output<string> RegistryNamespaceId { get; private set; } = null!;
@@ -106,19 +143,25 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class ContainerNamespaceArgs : Pulumi.ResourceArgs
+    public sealed class ContainerNamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the container namespace
+        /// The description of the namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// . Destroy linked container registry on deletion.
+        /// </summary>
+        [Input("destroyRegistry")]
+        public Input<bool>? DestroyRegistry { get; set; }
 
         [Input("environmentVariables")]
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The environment variables of the container namespace
+        /// The environment variables of the namespace.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -127,19 +170,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The name of the container namespace
+        /// The unique name of the container namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -147,21 +190,28 @@ namespace Pulumiverse.Scaleway
         public ContainerNamespaceArgs()
         {
         }
+        public static new ContainerNamespaceArgs Empty => new ContainerNamespaceArgs();
     }
 
-    public sealed class ContainerNamespaceState : Pulumi.ResourceArgs
+    public sealed class ContainerNamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the container namespace
+        /// The description of the namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// . Destroy linked container registry on deletion.
+        /// </summary>
+        [Input("destroyRegistry")]
+        public Input<bool>? DestroyRegistry { get; set; }
 
         [Input("environmentVariables")]
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The environment variables of the container namespace
+        /// The environment variables of the namespace.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -170,37 +220,37 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The name of the container namespace
+        /// The unique name of the container namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the namespace is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The endpoint reachable by docker
+        /// The registry endpoint of the namespace.
         /// </summary>
         [Input("registryEndpoint")]
         public Input<string>? RegistryEndpoint { get; set; }
 
         /// <summary>
-        /// The ID of the registry namespace
+        /// The registry namespace ID of the namespace.
         /// </summary>
         [Input("registryNamespaceId")]
         public Input<string>? RegistryNamespaceId { get; set; }
@@ -208,5 +258,6 @@ namespace Pulumiverse.Scaleway
         public ContainerNamespaceState()
         {
         }
+        public static new ContainerNamespaceState Empty => new ContainerNamespaceState();
     }
 }

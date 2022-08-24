@@ -4,6 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Container Namespace.
+ * For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.ContainerNamespace("main", {
+ *     description: "Main container namespace",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Namespaces can be imported using the `{region}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class ContainerNamespace extends pulumi.CustomResource {
     /**
      * Get an existing ContainerNamespace resource's state with the given name, ID, and optional extra
@@ -33,35 +58,39 @@ export class ContainerNamespace extends pulumi.CustomResource {
     }
 
     /**
-     * The description of the container namespace
+     * The description of the namespace.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The environment variables of the container namespace
+     * . Destroy linked container registry on deletion.
+     */
+    public readonly destroyRegistry!: pulumi.Output<boolean | undefined>;
+    /**
+     * The environment variables of the namespace.
      */
     public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The name of the container namespace
+     * The unique name of the container namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the namespace is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the namespace is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the namespace should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The endpoint reachable by docker
+     * The registry endpoint of the namespace.
      */
     public /*out*/ readonly registryEndpoint!: pulumi.Output<string>;
     /**
-     * The ID of the registry namespace
+     * The registry namespace ID of the namespace.
      */
     public /*out*/ readonly registryNamespaceId!: pulumi.Output<string>;
 
@@ -79,6 +108,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ContainerNamespaceState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["destroyRegistry"] = state ? state.destroyRegistry : undefined;
             resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -89,6 +119,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
         } else {
             const args = argsOrState as ContainerNamespaceArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["destroyRegistry"] = args ? args.destroyRegistry : undefined;
             resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -107,35 +138,39 @@ export class ContainerNamespace extends pulumi.CustomResource {
  */
 export interface ContainerNamespaceState {
     /**
-     * The description of the container namespace
+     * The description of the namespace.
      */
     description?: pulumi.Input<string>;
     /**
-     * The environment variables of the container namespace
+     * . Destroy linked container registry on deletion.
+     */
+    destroyRegistry?: pulumi.Input<boolean>;
+    /**
+     * The environment variables of the namespace.
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The name of the container namespace
+     * The unique name of the container namespace.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the namespace is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the namespace is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
     /**
-     * The endpoint reachable by docker
+     * The registry endpoint of the namespace.
      */
     registryEndpoint?: pulumi.Input<string>;
     /**
-     * The ID of the registry namespace
+     * The registry namespace ID of the namespace.
      */
     registryNamespaceId?: pulumi.Input<string>;
 }
@@ -145,23 +180,27 @@ export interface ContainerNamespaceState {
  */
 export interface ContainerNamespaceArgs {
     /**
-     * The description of the container namespace
+     * The description of the namespace.
      */
     description?: pulumi.Input<string>;
     /**
-     * The environment variables of the container namespace
+     * . Destroy linked container registry on deletion.
+     */
+    destroyRegistry?: pulumi.Input<boolean>;
+    /**
+     * The environment variables of the namespace.
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The name of the container namespace
+     * The unique name of the container namespace.
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the namespace is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
 }

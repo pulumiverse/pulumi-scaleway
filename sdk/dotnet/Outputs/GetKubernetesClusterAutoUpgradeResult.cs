@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterAutoUpgradeResult
     {
+        /// <summary>
+        /// True if Kubernetes patch version auto upgrades is enabled.
+        /// </summary>
         public readonly bool Enable;
+        /// <summary>
+        /// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        /// </summary>
         public readonly string MaintenanceWindowDay;
+        /// <summary>
+        /// The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+        /// </summary>
         public readonly int MaintenanceWindowStartHour;
 
         [OutputConstructor]

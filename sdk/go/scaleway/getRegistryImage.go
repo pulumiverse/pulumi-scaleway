@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a registry image.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.GetRegistryImage(ctx, &GetRegistryImageArgs{
+//				ImageId:     pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetRegistryImage(ctx *pulumi.Context, args *GetRegistryImageArgs, opts ...pulumi.InvokeOption) (*GetRegistryImageResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRegistryImageResult
@@ -22,27 +51,39 @@ func GetRegistryImage(ctx *pulumi.Context, args *GetRegistryImageArgs, opts ...p
 
 // A collection of arguments for invoking getRegistryImage.
 type GetRegistryImageArgs struct {
-	ImageId     *string  `pulumi:"imageId"`
-	Name        *string  `pulumi:"name"`
-	NamespaceId *string  `pulumi:"namespaceId"`
-	ProjectId   *string  `pulumi:"projectId"`
-	Region      *string  `pulumi:"region"`
-	Tags        []string `pulumi:"tags"`
+	// The image ID.
+	// Only one of `name` and `imageId` should be specified.
+	ImageId *string `pulumi:"imageId"`
+	// The image name.
+	// Only one of `name` and `imageId` should be specified.
+	Name *string `pulumi:"name"`
+	// The namespace ID in which the image is.
+	NamespaceId *string `pulumi:"namespaceId"`
+	// `projectId`) The ID of the project the image is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region in which the image exists.
+	Region *string `pulumi:"region"`
+	// The tags associated with the registry image
+	Tags []string `pulumi:"tags"`
 }
 
 // A collection of values returned by getRegistryImage.
 type GetRegistryImageResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id             string   `pulumi:"id"`
-	ImageId        *string  `pulumi:"imageId"`
-	Name           *string  `pulumi:"name"`
-	NamespaceId    string   `pulumi:"namespaceId"`
-	OrganizationId string   `pulumi:"organizationId"`
-	ProjectId      string   `pulumi:"projectId"`
-	Region         string   `pulumi:"region"`
-	Size           int      `pulumi:"size"`
-	Tags           []string `pulumi:"tags"`
-	Visibility     string   `pulumi:"visibility"`
+	Id          string  `pulumi:"id"`
+	ImageId     *string `pulumi:"imageId"`
+	Name        *string `pulumi:"name"`
+	NamespaceId string  `pulumi:"namespaceId"`
+	// The organization ID the image is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
+	Region         string `pulumi:"region"`
+	// The size of the registry image.
+	Size int `pulumi:"size"`
+	// The tags associated with the registry image
+	Tags []string `pulumi:"tags"`
+	// The privacy policy of the registry image.
+	Visibility string `pulumi:"visibility"`
 }
 
 func GetRegistryImageOutput(ctx *pulumi.Context, args GetRegistryImageOutputArgs, opts ...pulumi.InvokeOption) GetRegistryImageResultOutput {
@@ -60,12 +101,20 @@ func GetRegistryImageOutput(ctx *pulumi.Context, args GetRegistryImageOutputArgs
 
 // A collection of arguments for invoking getRegistryImage.
 type GetRegistryImageOutputArgs struct {
-	ImageId     pulumi.StringPtrInput   `pulumi:"imageId"`
-	Name        pulumi.StringPtrInput   `pulumi:"name"`
-	NamespaceId pulumi.StringPtrInput   `pulumi:"namespaceId"`
-	ProjectId   pulumi.StringPtrInput   `pulumi:"projectId"`
-	Region      pulumi.StringPtrInput   `pulumi:"region"`
-	Tags        pulumi.StringArrayInput `pulumi:"tags"`
+	// The image ID.
+	// Only one of `name` and `imageId` should be specified.
+	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
+	// The image name.
+	// Only one of `name` and `imageId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The namespace ID in which the image is.
+	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
+	// `projectId`) The ID of the project the image is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`) The region in which the image exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The tags associated with the registry image
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (GetRegistryImageOutputArgs) ElementType() reflect.Type {
@@ -104,6 +153,7 @@ func (o GetRegistryImageResultOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) string { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
+// The organization ID the image is associated with.
 func (o GetRegistryImageResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -116,14 +166,17 @@ func (o GetRegistryImageResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// The size of the registry image.
 func (o GetRegistryImageResultOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// The tags associated with the registry image
 func (o GetRegistryImageResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The privacy policy of the registry image.
 func (o GetRegistryImageResultOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) string { return v.Visibility }).(pulumi.StringOutput)
 }

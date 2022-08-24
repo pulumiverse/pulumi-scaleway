@@ -4,6 +4,35 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Create and manage Scaleway RDB database privilege.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainDatabaseUser = new scaleway.DatabaseUser("mainDatabaseUser", {
+ *     instanceId: scaleway_rdb_instance.pgsql.id,
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     isAdmin: false,
+ * });
+ * const mainDatabase = new scaleway.Database("mainDatabase", {instanceId: scaleway_rdb_instance.pgsql.id});
+ * const priv = new scaleway.DatabasePrivilege("priv", {
+ *     instanceId: scaleway_rdb_instance.rdb.id,
+ *     userName: "my-db-user",
+ *     databaseName: "my-db-name",
+ *     permission: "all",
+ * }, {
+ *     dependsOn: [
+ *         mainDatabaseUser,
+ *         mainDatabase,
+ *     ],
+ * });
+ * ```
+ */
 export class DatabasePrivilege extends pulumi.CustomResource {
     /**
      * Get an existing DatabasePrivilege resource's state with the given name, ID, and optional extra
@@ -33,19 +62,19 @@ export class DatabasePrivilege extends pulumi.CustomResource {
     }
 
     /**
-     * Database name
+     * Name of the database (e.g. `my-db-name`).
      */
     public readonly databaseName!: pulumi.Output<string>;
     /**
-     * Instance on which the database is created
+     * UUID of the instance where to create the database.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Privilege
+     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     public readonly permission!: pulumi.Output<string>;
     /**
-     * User name
+     * Name of the user (e.g. `my-db-user`).
      */
     public readonly userName!: pulumi.Output<string>;
 
@@ -95,19 +124,19 @@ export class DatabasePrivilege extends pulumi.CustomResource {
  */
 export interface DatabasePrivilegeState {
     /**
-     * Database name
+     * Name of the database (e.g. `my-db-name`).
      */
     databaseName?: pulumi.Input<string>;
     /**
-     * Instance on which the database is created
+     * UUID of the instance where to create the database.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Privilege
+     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission?: pulumi.Input<string>;
     /**
-     * User name
+     * Name of the user (e.g. `my-db-user`).
      */
     userName?: pulumi.Input<string>;
 }
@@ -117,19 +146,19 @@ export interface DatabasePrivilegeState {
  */
 export interface DatabasePrivilegeArgs {
     /**
-     * Database name
+     * Name of the database (e.g. `my-db-name`).
      */
     databaseName: pulumi.Input<string>;
     /**
-     * Instance on which the database is created
+     * UUID of the instance where to create the database.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Privilege
+     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission: pulumi.Input<string>;
     /**
-     * User name
+     * Name of the user (e.g. `my-db-user`).
      */
     userName: pulumi.Input<string>;
 }

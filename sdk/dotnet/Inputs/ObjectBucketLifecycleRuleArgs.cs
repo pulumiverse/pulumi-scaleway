@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class ObjectBucketLifecycleRuleArgs : Pulumi.ResourceArgs
+    public sealed class ObjectBucketLifecycleRuleArgs : global::Pulumi.ResourceArgs
     {
         [Input("abortIncompleteMultipartUploadDays")]
         public Input<int>? AbortIncompleteMultipartUploadDays { get; set; }
@@ -22,6 +22,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("expiration")]
         public Input<Inputs.ObjectBucketLifecycleRuleExpirationArgs>? Expiration { get; set; }
 
+        /// <summary>
+        /// The unique name of the bucket.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
@@ -30,6 +33,10 @@ namespace Pulumiverse.Scaleway.Inputs
 
         [Input("tags")]
         private InputMap<string>? _tags;
+
+        /// <summary>
+        /// A list of tags (key / value) for the bucket.
+        /// </summary>
         public InputMap<string> Tags
         {
             get => _tags ?? (_tags = new InputMap<string>());
@@ -47,5 +54,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public ObjectBucketLifecycleRuleArgs()
         {
         }
+        public static new ObjectBucketLifecycleRuleArgs Empty => new ObjectBucketLifecycleRuleArgs();
     }
 }

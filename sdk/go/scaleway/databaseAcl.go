@@ -11,12 +11,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Database instance authorized IPs.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#acl-rules-allowed-ips).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseAcl(ctx, "main", &scaleway.DatabaseAclArgs{
+//				InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
+//				AclRules: DatabaseAclAclRuleArray{
+//					&DatabaseAclAclRuleArgs{
+//						Ip:          pulumi.String("1.2.3.4/32"),
+//						Description: pulumi.String("foo"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type DatabaseAcl struct {
 	pulumi.CustomResourceState
 
-	// List of ACL rules to apply
+	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayOutput `pulumi:"aclRules"`
-	// Instance on which the ACL is applied
+	// The instance on which to create the ACL.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -58,18 +105,18 @@ func GetDatabaseAcl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseAcl resources.
 type databaseAclState struct {
-	// List of ACL rules to apply
+	// A list of ACLs (structure is described below)
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
-	// Instance on which the ACL is applied
+	// The instance on which to create the ACL.
 	InstanceId *string `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
 }
 
 type DatabaseAclState struct {
-	// List of ACL rules to apply
+	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayInput
-	// Instance on which the ACL is applied
+	// The instance on which to create the ACL.
 	InstanceId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -80,9 +127,9 @@ func (DatabaseAclState) ElementType() reflect.Type {
 }
 
 type databaseAclArgs struct {
-	// List of ACL rules to apply
+	// A list of ACLs (structure is described below)
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
-	// Instance on which the ACL is applied
+	// The instance on which to create the ACL.
 	InstanceId string `pulumi:"instanceId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -90,9 +137,9 @@ type databaseAclArgs struct {
 
 // The set of arguments for constructing a DatabaseAcl resource.
 type DatabaseAclArgs struct {
-	// List of ACL rules to apply
+	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayInput
-	// Instance on which the ACL is applied
+	// The instance on which to create the ACL.
 	InstanceId pulumi.StringInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -185,12 +232,12 @@ func (o DatabaseAclOutput) ToDatabaseAclOutputWithContext(ctx context.Context) D
 	return o
 }
 
-// List of ACL rules to apply
+// A list of ACLs (structure is described below)
 func (o DatabaseAclOutput) AclRules() DatabaseAclAclRuleArrayOutput {
 	return o.ApplyT(func(v *DatabaseAcl) DatabaseAclAclRuleArrayOutput { return v.AclRules }).(DatabaseAclAclRuleArrayOutput)
 }
 
-// Instance on which the ACL is applied
+// The instance on which to create the ACL.
 func (o DatabaseAclOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

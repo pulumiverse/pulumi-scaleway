@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a RDB instance.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupDatabaseInstance(ctx, &GetDatabaseInstanceArgs{
+//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseInstanceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseInstanceResult
@@ -22,8 +50,12 @@ func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArg
 
 // A collection of arguments for invoking getDatabaseInstance.
 type LookupDatabaseInstanceArgs struct {
+	// The RDB instance ID.
+	// Only one of `name` and `instanceId` should be specified.
 	InstanceId *string `pulumi:"instanceId"`
-	Name       *string `pulumi:"name"`
+	// The name of the RDB instance.
+	// Only one of `name` and `instanceId` should be specified.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getDatabaseInstance.
@@ -71,8 +103,12 @@ func LookupDatabaseInstanceOutput(ctx *pulumi.Context, args LookupDatabaseInstan
 
 // A collection of arguments for invoking getDatabaseInstance.
 type LookupDatabaseInstanceOutputArgs struct {
+	// The RDB instance ID.
+	// Only one of `name` and `instanceId` should be specified.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
-	Name       pulumi.StringPtrInput `pulumi:"name"`
+	// The name of the RDB instance.
+	// Only one of `name` and `instanceId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupDatabaseInstanceOutputArgs) ElementType() reflect.Type {

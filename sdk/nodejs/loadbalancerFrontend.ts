@@ -5,6 +5,32 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ *
+ * ## Examples Usage
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const frontend01 = new scaleway.LoadbalancerFrontend("frontend01", {
+ *     lbId: scaleway_lb.lb01.id,
+ *     backendId: scaleway_lb_backend.backend01.id,
+ *     inboundPort: 80,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class LoadbalancerFrontend extends pulumi.CustomResource {
     /**
      * Get an existing LoadbalancerFrontend resource's state with the given name, ID, and optional extra
@@ -34,37 +60,37 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
     }
 
     /**
-     * ACL rules
+     * A list of ACL rules to apply to the load-balancer frontend.  Defined below.
      */
     public readonly acls!: pulumi.Output<outputs.LoadbalancerFrontendAcl[] | undefined>;
     /**
-     * The load-balancer backend ID
+     * The load-balancer backend ID this frontend is attached to.
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
-     * Certificate ID
+     * (Deprecated) first certificate ID used by the frontend.
      *
      * @deprecated Please use certificate_ids
      */
     public /*out*/ readonly certificateId!: pulumi.Output<string>;
     /**
-     * Collection of Certificate IDs related to the load balancer and domain
+     * List of Certificate IDs that should be used by the frontend.
      */
     public readonly certificateIds!: pulumi.Output<string[] | undefined>;
     /**
-     * TCP port to listen on the front side
+     * TCP port to listen on the front side.
      */
     public readonly inboundPort!: pulumi.Output<number>;
     /**
-     * The load-balancer ID
+     * The load-balancer ID this frontend is attached to.
      */
     public readonly lbId!: pulumi.Output<string>;
     /**
-     * The name of the frontend
+     * The ACL name. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Set the maximum inactivity time on the client side
+     * Maximum inactivity time on the client side. (e.g.: `1s`)
      */
     public readonly timeoutClient!: pulumi.Output<string | undefined>;
 
@@ -119,37 +145,37 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
  */
 export interface LoadbalancerFrontendState {
     /**
-     * ACL rules
+     * A list of ACL rules to apply to the load-balancer frontend.  Defined below.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[]>;
     /**
-     * The load-balancer backend ID
+     * The load-balancer backend ID this frontend is attached to.
      */
     backendId?: pulumi.Input<string>;
     /**
-     * Certificate ID
+     * (Deprecated) first certificate ID used by the frontend.
      *
      * @deprecated Please use certificate_ids
      */
     certificateId?: pulumi.Input<string>;
     /**
-     * Collection of Certificate IDs related to the load balancer and domain
+     * List of Certificate IDs that should be used by the frontend.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * TCP port to listen on the front side
+     * TCP port to listen on the front side.
      */
     inboundPort?: pulumi.Input<number>;
     /**
-     * The load-balancer ID
+     * The load-balancer ID this frontend is attached to.
      */
     lbId?: pulumi.Input<string>;
     /**
-     * The name of the frontend
+     * The ACL name. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * Set the maximum inactivity time on the client side
+     * Maximum inactivity time on the client side. (e.g.: `1s`)
      */
     timeoutClient?: pulumi.Input<string>;
 }
@@ -159,31 +185,31 @@ export interface LoadbalancerFrontendState {
  */
 export interface LoadbalancerFrontendArgs {
     /**
-     * ACL rules
+     * A list of ACL rules to apply to the load-balancer frontend.  Defined below.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[]>;
     /**
-     * The load-balancer backend ID
+     * The load-balancer backend ID this frontend is attached to.
      */
     backendId: pulumi.Input<string>;
     /**
-     * Collection of Certificate IDs related to the load balancer and domain
+     * List of Certificate IDs that should be used by the frontend.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * TCP port to listen on the front side
+     * TCP port to listen on the front side.
      */
     inboundPort: pulumi.Input<number>;
     /**
-     * The load-balancer ID
+     * The load-balancer ID this frontend is attached to.
      */
     lbId: pulumi.Input<string>;
     /**
-     * The name of the frontend
+     * The ACL name. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * Set the maximum inactivity time on the client side
+     * Maximum inactivity time on the client side. (e.g.: `1s`)
      */
     timeoutClient?: pulumi.Input<string>;
 }

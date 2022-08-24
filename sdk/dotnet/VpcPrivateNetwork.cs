@@ -10,8 +10,41 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway VPC Private Networks.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
+    /// 
+    /// ## Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pnPriv", new()
+    ///     {
+    ///         Tags = new[]
+    ///         {
+    ///             "demo",
+    ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Private networks can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork")]
-    public partial class VpcPrivateNetwork : Pulumi.CustomResource
+    public partial class VpcPrivateNetwork : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time of the creation of the private network
@@ -20,25 +53,25 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the private network
+        /// The name of the private network. If not provided it will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the private network is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the private network is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with private network
+        /// The tags associated with the private network.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -50,7 +83,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the private network should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -100,16 +133,16 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class VpcPrivateNetworkArgs : Pulumi.ResourceArgs
+    public sealed class VpcPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the private network
+        /// The name of the private network. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the private network is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -118,7 +151,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with private network
+        /// The tags associated with the private network.
         /// </summary>
         public InputList<string> Tags
         {
@@ -127,7 +160,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the private network should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -135,9 +168,10 @@ namespace Pulumiverse.Scaleway
         public VpcPrivateNetworkArgs()
         {
         }
+        public static new VpcPrivateNetworkArgs Empty => new VpcPrivateNetworkArgs();
     }
 
-    public sealed class VpcPrivateNetworkState : Pulumi.ResourceArgs
+    public sealed class VpcPrivateNetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time of the creation of the private network
@@ -146,19 +180,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The name of the private network
+        /// The name of the private network. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the private network is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the private network is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -167,7 +201,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with private network
+        /// The tags associated with the private network.
         /// </summary>
         public InputList<string> Tags
         {
@@ -182,7 +216,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the private network should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -190,5 +224,6 @@ namespace Pulumiverse.Scaleway
         public VpcPrivateNetworkState()
         {
         }
+        public static new VpcPrivateNetworkState Empty => new VpcPrivateNetworkState();
     }
 }

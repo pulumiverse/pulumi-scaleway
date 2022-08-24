@@ -5,6 +5,27 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a baremetal server.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by server name
+ * const byName = pulumi.output(scaleway.getBaremetalServer({
+ *     name: "foobar",
+ *     zone: "fr-par-2",
+ * }));
+ * // Get info by server id
+ * const byId = pulumi.output(scaleway.getBaremetalServer({
+ *     serverId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalServerResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +44,14 @@ export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.
  * A collection of arguments for invoking getBaremetalServer.
  */
 export interface GetBaremetalServerArgs {
+    /**
+     * The server name. Only one of `name` and `serverId` should be specified.
+     */
     name?: string;
     serverId?: string;
+    /**
+     * `zone`) The zone in which the server exists.
+     */
     zone?: string;
 }
 
@@ -61,7 +88,13 @@ export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, op
  * A collection of arguments for invoking getBaremetalServer.
  */
 export interface GetBaremetalServerOutputArgs {
+    /**
+     * The server name. Only one of `name` and `serverId` should be specified.
+     */
     name?: pulumi.Input<string>;
     serverId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the server exists.
+     */
     zone?: pulumi.Input<string>;
 }

@@ -10,65 +10,74 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// IoT devices can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/iotDevice:IotDevice")]
-    public partial class IotDevice : Pulumi.CustomResource
+    public partial class IotDevice : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+        /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         /// </summary>
         [Output("allowInsecure")]
         public Output<bool?> AllowInsecure { get; private set; } = null!;
 
         /// <summary>
-        /// Allow multiple connections
+        /// Allow more than one simultaneous connection using the same device credentials.
         /// </summary>
         [Output("allowMultipleConnections")]
         public Output<bool?> AllowMultipleConnections { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate section of the device
+        /// The certificate bundle of the device.
         /// </summary>
         [Output("certificate")]
         public Output<Outputs.IotDeviceCertificate> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the device
+        /// The date and time the device was created.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The description of the device
+        /// The description of the IoT device (e.g. `living room`).
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the hub on which this device will be created
+        /// The ID of the hub on which this device will be created.
         /// </summary>
         [Output("hubId")]
         public Output<string> HubId { get; private set; } = null!;
 
         /// <summary>
-        /// The MQTT connection status of the device
+        /// The current connection status of the device.
         /// </summary>
         [Output("isConnected")]
         public Output<bool> IsConnected { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of last MQTT activity of the device
+        /// The last MQTT activity of the device.
         /// </summary>
         [Output("lastActivityAt")]
         public Output<string> LastActivityAt { get; private set; } = null!;
 
         /// <summary>
-        /// Rules to authorize or deny the device to publish/subscribe to specific topics
+        /// Rules that define which messages are authorized or denied based on their topic.
         /// </summary>
         [Output("messageFilters")]
         public Output<Outputs.IotDeviceMessageFilters?> MessageFilters { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the device
+        /// The name of the IoT device you want to create (e.g. `my-device`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -80,13 +89,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the device
+        /// The current status of the device.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the device
+        /// The date and time the device resource was updated.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -136,46 +145,46 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class IotDeviceArgs : Pulumi.ResourceArgs
+    public sealed class IotDeviceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+        /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         /// </summary>
         [Input("allowInsecure")]
         public Input<bool>? AllowInsecure { get; set; }
 
         /// <summary>
-        /// Allow multiple connections
+        /// Allow more than one simultaneous connection using the same device credentials.
         /// </summary>
         [Input("allowMultipleConnections")]
         public Input<bool>? AllowMultipleConnections { get; set; }
 
         /// <summary>
-        /// Certificate section of the device
+        /// The certificate bundle of the device.
         /// </summary>
         [Input("certificate")]
         public Input<Inputs.IotDeviceCertificateArgs>? Certificate { get; set; }
 
         /// <summary>
-        /// The description of the device
+        /// The description of the IoT device (e.g. `living room`).
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the hub on which this device will be created
+        /// The ID of the hub on which this device will be created.
         /// </summary>
         [Input("hubId", required: true)]
         public Input<string> HubId { get; set; } = null!;
 
         /// <summary>
-        /// Rules to authorize or deny the device to publish/subscribe to specific topics
+        /// Rules that define which messages are authorized or denied based on their topic.
         /// </summary>
         [Input("messageFilters")]
         public Input<Inputs.IotDeviceMessageFiltersArgs>? MessageFilters { get; set; }
 
         /// <summary>
-        /// The name of the device
+        /// The name of the IoT device you want to create (e.g. `my-device`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -189,66 +198,67 @@ namespace Pulumiverse.Scaleway
         public IotDeviceArgs()
         {
         }
+        public static new IotDeviceArgs Empty => new IotDeviceArgs();
     }
 
-    public sealed class IotDeviceState : Pulumi.ResourceArgs
+    public sealed class IotDeviceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+        /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         /// </summary>
         [Input("allowInsecure")]
         public Input<bool>? AllowInsecure { get; set; }
 
         /// <summary>
-        /// Allow multiple connections
+        /// Allow more than one simultaneous connection using the same device credentials.
         /// </summary>
         [Input("allowMultipleConnections")]
         public Input<bool>? AllowMultipleConnections { get; set; }
 
         /// <summary>
-        /// Certificate section of the device
+        /// The certificate bundle of the device.
         /// </summary>
         [Input("certificate")]
         public Input<Inputs.IotDeviceCertificateGetArgs>? Certificate { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the device
+        /// The date and time the device was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The description of the device
+        /// The description of the IoT device (e.g. `living room`).
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the hub on which this device will be created
+        /// The ID of the hub on which this device will be created.
         /// </summary>
         [Input("hubId")]
         public Input<string>? HubId { get; set; }
 
         /// <summary>
-        /// The MQTT connection status of the device
+        /// The current connection status of the device.
         /// </summary>
         [Input("isConnected")]
         public Input<bool>? IsConnected { get; set; }
 
         /// <summary>
-        /// The date and time of last MQTT activity of the device
+        /// The last MQTT activity of the device.
         /// </summary>
         [Input("lastActivityAt")]
         public Input<string>? LastActivityAt { get; set; }
 
         /// <summary>
-        /// Rules to authorize or deny the device to publish/subscribe to specific topics
+        /// Rules that define which messages are authorized or denied based on their topic.
         /// </summary>
         [Input("messageFilters")]
         public Input<Inputs.IotDeviceMessageFiltersGetArgs>? MessageFilters { get; set; }
 
         /// <summary>
-        /// The name of the device
+        /// The name of the IoT device you want to create (e.g. `my-device`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -260,13 +270,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The status of the device
+        /// The current status of the device.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the device
+        /// The date and time the device resource was updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
@@ -274,5 +284,6 @@ namespace Pulumiverse.Scaleway
         public IotDeviceState()
         {
         }
+        public static new IotDeviceState Empty => new IotDeviceState();
     }
 }

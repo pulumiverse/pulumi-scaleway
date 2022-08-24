@@ -4,6 +4,13 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a private network.
+ *
+ * ## Example Usage
+ *
+ * N/A, the usage will be meaningful in the next releases of VPC.
+ */
 export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPrivateNetworkResult> {
     args = args || {};
     if (!opts) {
@@ -21,6 +28,9 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
  * A collection of arguments for invoking getVpcPrivateNetwork.
  */
 export interface GetVpcPrivateNetworkArgs {
+    /**
+     * Exact name of the private network.
+     */
     name?: string;
     privateNetworkId?: string;
 }
@@ -51,6 +61,9 @@ export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs
  * A collection of arguments for invoking getVpcPrivateNetwork.
  */
 export interface GetVpcPrivateNetworkOutputArgs {
+    /**
+     * Exact name of the private network.
+     */
     name?: pulumi.Input<string>;
     privateNetworkId?: pulumi.Input<string>;
 }

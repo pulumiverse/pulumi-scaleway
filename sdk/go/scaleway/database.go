@@ -11,18 +11,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway RDB database.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabase(ctx, "main", &scaleway.DatabaseArgs{
+//				InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// RDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+//
+// ```
 type Database struct {
 	pulumi.CustomResourceState
 
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Whether or not the database is managed
+	// Whether or not the database is managed or not.
 	Managed pulumi.BoolOutput `pulumi:"managed"`
-	// Database name
+	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// User that own the database
+	// The name of the owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
-	// Size of the database
+	// Size of the database (in bytes).
 	Size pulumi.StringOutput `pulumi:"size"`
 }
 
@@ -59,28 +99,28 @@ func GetDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId *string `pulumi:"instanceId"`
-	// Whether or not the database is managed
+	// Whether or not the database is managed or not.
 	Managed *bool `pulumi:"managed"`
-	// Database name
+	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
-	// User that own the database
+	// The name of the owner of the database.
 	Owner *string `pulumi:"owner"`
-	// Size of the database
+	// Size of the database (in bytes).
 	Size *string `pulumi:"size"`
 }
 
 type DatabaseState struct {
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId pulumi.StringPtrInput
-	// Whether or not the database is managed
+	// Whether or not the database is managed or not.
 	Managed pulumi.BoolPtrInput
-	// Database name
+	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
-	// User that own the database
+	// The name of the owner of the database.
 	Owner pulumi.StringPtrInput
-	// Size of the database
+	// Size of the database (in bytes).
 	Size pulumi.StringPtrInput
 }
 
@@ -89,17 +129,17 @@ func (DatabaseState) ElementType() reflect.Type {
 }
 
 type databaseArgs struct {
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId string `pulumi:"instanceId"`
-	// Database name
+	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Database resource.
 type DatabaseArgs struct {
-	// Instance on which the database is created
+	// UUID of the instance where to create the database.
 	InstanceId pulumi.StringInput
-	// Database name
+	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
 }
 
@@ -190,27 +230,27 @@ func (o DatabaseOutput) ToDatabaseOutputWithContext(ctx context.Context) Databas
 	return o
 }
 
-// Instance on which the database is created
+// UUID of the instance where to create the database.
 func (o DatabaseOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Whether or not the database is managed
+// Whether or not the database is managed or not.
 func (o DatabaseOutput) Managed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Database) pulumi.BoolOutput { return v.Managed }).(pulumi.BoolOutput)
 }
 
-// Database name
+// Name of the database (e.g. `my-new-database`).
 func (o DatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// User that own the database
+// The name of the owner of the database.
 func (o DatabaseOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }
 
-// Size of the database
+// Size of the database (in bytes).
 func (o DatabaseOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }

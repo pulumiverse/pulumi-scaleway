@@ -85,6 +85,9 @@ class GetInstanceVolumeResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the organization the volume is associated with.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
@@ -148,7 +151,23 @@ def get_instance_volume(name: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceVolumeResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an instance volume.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The volume name.
+           Only one of `name` and `volume_id` should be specified.
+    :param str volume_id: The volume id.
+           Only one of `name` and `volume_id` should be specified.
+    :param str zone: `zone`) The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -178,6 +197,22 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceVolumeResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an instance volume.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The volume name.
+           Only one of `name` and `volume_id` should be specified.
+    :param str volume_id: The volume id.
+           Only one of `name` and `volume_id` should be specified.
+    :param str zone: `zone`) The zone in which the volume exists.
     """
     ...

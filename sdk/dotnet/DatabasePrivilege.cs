@@ -10,29 +10,72 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Create and manage Scaleway RDB database privilege.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainDatabaseUser = new Scaleway.DatabaseUser("mainDatabaseUser", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Pgsql.Id,
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         IsAdmin = false,
+    ///     });
+    /// 
+    ///     var mainDatabase = new Scaleway.Database("mainDatabase", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Pgsql.Id,
+    ///     });
+    /// 
+    ///     var priv = new Scaleway.DatabasePrivilege("priv", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Rdb.Id,
+    ///         UserName = "my-db-user",
+    ///         DatabaseName = "my-db-name",
+    ///         Permission = "all",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             mainDatabaseUser,
+    ///             mainDatabase,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/databasePrivilege:DatabasePrivilege")]
-    public partial class DatabasePrivilege : Pulumi.CustomResource
+    public partial class DatabasePrivilege : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-db-name`).
         /// </summary>
         [Output("databaseName")]
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the instance where to create the database.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Privilege
+        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
 
         /// <summary>
-        /// User name
+        /// Name of the user (e.g. `my-db-user`).
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
@@ -82,28 +125,28 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class DatabasePrivilegeArgs : Pulumi.ResourceArgs
+    public sealed class DatabasePrivilegeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-db-name`).
         /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the instance where to create the database.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Privilege
+        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// User name
+        /// Name of the user (e.g. `my-db-user`).
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
@@ -111,30 +154,31 @@ namespace Pulumiverse.Scaleway
         public DatabasePrivilegeArgs()
         {
         }
+        public static new DatabasePrivilegeArgs Empty => new DatabasePrivilegeArgs();
     }
 
-    public sealed class DatabasePrivilegeState : Pulumi.ResourceArgs
+    public sealed class DatabasePrivilegeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-db-name`).
         /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the instance where to create the database.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Privilege
+        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }
 
         /// <summary>
-        /// User name
+        /// Name of the user (e.g. `my-db-user`).
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -142,5 +186,6 @@ namespace Pulumiverse.Scaleway
         public DatabasePrivilegeState()
         {
         }
+        public static new DatabasePrivilegeState Empty => new DatabasePrivilegeState();
     }
 }

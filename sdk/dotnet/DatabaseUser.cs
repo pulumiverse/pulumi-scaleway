@@ -10,29 +10,69 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Database Users.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Random = Pulumi.Random;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var dbPassword = new Random.RandomPassword("dbPassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///     });
+    /// 
+    ///     var dbAdmin = new Scaleway.DatabaseUser("dbAdmin", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///         Password = dbPassword.Result,
+    ///         IsAdmin = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/databaseUser:DatabaseUser")]
-    public partial class DatabaseUser : Pulumi.CustomResource
+    public partial class DatabaseUser : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance on which the user is created
+        /// The instance on which to create the user.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to database user
+        /// Grant admin permissions to the Database User.
         /// </summary>
         [Output("isAdmin")]
         public Output<bool?> IsAdmin { get; private set; } = null!;
 
         /// <summary>
-        /// Database user name
+        /// Database User name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Database user password
+        /// Database User password.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -88,28 +128,28 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class DatabaseUserArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the user is created
+        /// The instance on which to create the user.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to database user
+        /// Grant admin permissions to the Database User.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database user name
+        /// Database User name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Database user password
+        /// Database User password.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
@@ -123,30 +163,31 @@ namespace Pulumiverse.Scaleway
         public DatabaseUserArgs()
         {
         }
+        public static new DatabaseUserArgs Empty => new DatabaseUserArgs();
     }
 
-    public sealed class DatabaseUserState : Pulumi.ResourceArgs
+    public sealed class DatabaseUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the user is created
+        /// The instance on which to create the user.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Grant admin permissions to database user
+        /// Grant admin permissions to the Database User.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database user name
+        /// Database User name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Database user password
+        /// Database User password.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -160,5 +201,6 @@ namespace Pulumiverse.Scaleway
         public DatabaseUserState()
         {
         }
+        public static new DatabaseUserState Empty => new DatabaseUserState();
     }
 }

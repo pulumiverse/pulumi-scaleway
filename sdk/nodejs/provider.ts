@@ -34,6 +34,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly apiUrl!: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway organization ID.
+     */
+    public readonly organizationId!: pulumi.Output<string | undefined>;
+    /**
      * The Scaleway profile to use.
      */
     public readonly profile!: pulumi.Output<string | undefined>;
@@ -67,6 +71,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
             resourceInputs["apiUrl"] = args ? args.apiUrl : undefined;
+            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["profile"] = args ? args.profile : undefined;
             resourceInputs["projectId"] = (args ? args.projectId : undefined) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
             resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("SCW_DEFAULT_REGION");
@@ -90,6 +95,10 @@ export interface ProviderArgs {
      * The Scaleway API URL to use.
      */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * The Scaleway organization ID.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * The Scaleway profile to use.
      */

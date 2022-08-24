@@ -11,51 +11,72 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Import
+//
+// Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type KubernetesNodePool struct {
 	pulumi.CustomResourceState
 
-	// Enable the autohealing on the pool
+	// Enables the autohealing feature for this pool.
 	Autohealing pulumi.BoolPtrOutput `pulumi:"autohealing"`
-	// Enable the autoscaling on the pool
+	// Enables the autoscaling feature for this pool.
+	// > **Important:** When enabled, an update of the `size` will not be taken into account.
 	Autoscaling pulumi.BoolPtrOutput `pulumi:"autoscaling"`
-	// The ID of the cluster on which this pool will be created
+	// The ID of the Kubernetes cluster on which this pool will be created.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// Container runtime for the pool
+	// The container runtime of the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	ContainerRuntime pulumi.StringPtrOutput `pulumi:"containerRuntime"`
-	// The date and time of the creation of the pool
+	// The creation date of the pool.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The actual size of the pool
 	CurrentSize pulumi.IntOutput `pulumi:"currentSize"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapOutput `pulumi:"kubeletArgs"`
-	// Maximum size of the pool
+	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntOutput `pulumi:"maxSize"`
-	// Minimun size of the pool
+	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize pulumi.IntPtrOutput `pulumi:"minSize"`
-	// The name of the cluster
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Server type of the pool servers
-	NodeType pulumi.StringOutput               `pulumi:"nodeType"`
-	Nodes    KubernetesNodePoolNodeArrayOutput `pulumi:"nodes"`
-	// ID of the placement group
+	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	NodeType pulumi.StringOutput `pulumi:"nodeType"`
+	// (List of) The nodes in the default pool.
+	Nodes KubernetesNodePoolNodeArrayOutput `pulumi:"nodes"`
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the pool should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Size of the pool
+	// The size of the system volume of the nodes in gigabyte
+	RootVolumeSizeInGb pulumi.IntPtrOutput `pulumi:"rootVolumeSizeInGb"`
+	// System volume type of the nodes composing the pool
+	RootVolumeType pulumi.StringPtrOutput `pulumi:"rootVolumeType"`
+	// The size of the pool.
+	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntOutput `pulumi:"size"`
-	// The status of the pool
+	// The status of the node.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The tags associated with the pool
+	// The tags associated with the pool.
+	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The date and time of the last update of the pool
+	// The last update date of the pool.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyOutput `pulumi:"upgradePolicy"`
-	// The Kubernetes version of the pool
+	// The version of the pool.
 	Version pulumi.StringOutput `pulumi:"version"`
-	// Whether to wait for the pool to be ready
+	// Whether to wait for the pool to be ready.
 	WaitForPoolReady pulumi.BoolPtrOutput `pulumi:"waitForPoolReady"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the pool should be created.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -98,94 +119,118 @@ func GetKubernetesNodePool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesNodePool resources.
 type kubernetesNodePoolState struct {
-	// Enable the autohealing on the pool
+	// Enables the autohealing feature for this pool.
 	Autohealing *bool `pulumi:"autohealing"`
-	// Enable the autoscaling on the pool
+	// Enables the autoscaling feature for this pool.
+	// > **Important:** When enabled, an update of the `size` will not be taken into account.
 	Autoscaling *bool `pulumi:"autoscaling"`
-	// The ID of the cluster on which this pool will be created
+	// The ID of the Kubernetes cluster on which this pool will be created.
 	ClusterId *string `pulumi:"clusterId"`
-	// Container runtime for the pool
+	// The container runtime of the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	ContainerRuntime *string `pulumi:"containerRuntime"`
-	// The date and time of the creation of the pool
+	// The creation date of the pool.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The actual size of the pool
 	CurrentSize *int `pulumi:"currentSize"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
-	// Maximum size of the pool
+	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize *int `pulumi:"maxSize"`
-	// Minimun size of the pool
+	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize *int `pulumi:"minSize"`
-	// The name of the cluster
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
-	// Server type of the pool servers
-	NodeType *string                  `pulumi:"nodeType"`
-	Nodes    []KubernetesNodePoolNode `pulumi:"nodes"`
-	// ID of the placement group
+	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	NodeType *string `pulumi:"nodeType"`
+	// (List of) The nodes in the default pool.
+	Nodes []KubernetesNodePoolNode `pulumi:"nodes"`
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
-	// Size of the pool
+	// The size of the system volume of the nodes in gigabyte
+	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
+	// System volume type of the nodes composing the pool
+	RootVolumeType *string `pulumi:"rootVolumeType"`
+	// The size of the pool.
+	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size *int `pulumi:"size"`
-	// The status of the pool
+	// The status of the node.
 	Status *string `pulumi:"status"`
-	// The tags associated with the pool
+	// The tags associated with the pool.
+	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
 	Tags []string `pulumi:"tags"`
-	// The date and time of the last update of the pool
+	// The last update date of the pool.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
-	// The Kubernetes version of the pool
+	// The version of the pool.
 	Version *string `pulumi:"version"`
-	// Whether to wait for the pool to be ready
+	// Whether to wait for the pool to be ready.
 	WaitForPoolReady *bool `pulumi:"waitForPoolReady"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the pool should be created.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Zone *string `pulumi:"zone"`
 }
 
 type KubernetesNodePoolState struct {
-	// Enable the autohealing on the pool
+	// Enables the autohealing feature for this pool.
 	Autohealing pulumi.BoolPtrInput
-	// Enable the autoscaling on the pool
+	// Enables the autoscaling feature for this pool.
+	// > **Important:** When enabled, an update of the `size` will not be taken into account.
 	Autoscaling pulumi.BoolPtrInput
-	// The ID of the cluster on which this pool will be created
+	// The ID of the Kubernetes cluster on which this pool will be created.
 	ClusterId pulumi.StringPtrInput
-	// Container runtime for the pool
+	// The container runtime of the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	ContainerRuntime pulumi.StringPtrInput
-	// The date and time of the creation of the pool
+	// The creation date of the pool.
 	CreatedAt pulumi.StringPtrInput
 	// The actual size of the pool
 	CurrentSize pulumi.IntPtrInput
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapInput
-	// Maximum size of the pool
+	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntPtrInput
-	// Minimun size of the pool
+	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize pulumi.IntPtrInput
-	// The name of the cluster
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput
-	// Server type of the pool servers
+	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	NodeType pulumi.StringPtrInput
-	Nodes    KubernetesNodePoolNodeArrayInput
-	// ID of the placement group
+	// (List of) The nodes in the default pool.
+	Nodes KubernetesNodePoolNodeArrayInput
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
-	// Size of the pool
+	// The size of the system volume of the nodes in gigabyte
+	RootVolumeSizeInGb pulumi.IntPtrInput
+	// System volume type of the nodes composing the pool
+	RootVolumeType pulumi.StringPtrInput
+	// The size of the pool.
+	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntPtrInput
-	// The status of the pool
+	// The status of the node.
 	Status pulumi.StringPtrInput
-	// The tags associated with the pool
+	// The tags associated with the pool.
+	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
 	Tags pulumi.StringArrayInput
-	// The date and time of the last update of the pool
+	// The last update date of the pool.
 	UpdatedAt pulumi.StringPtrInput
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
-	// The Kubernetes version of the pool
+	// The version of the pool.
 	Version pulumi.StringPtrInput
-	// Whether to wait for the pool to be ready
+	// Whether to wait for the pool to be ready.
 	WaitForPoolReady pulumi.BoolPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the pool should be created.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Zone pulumi.StringPtrInput
 }
 
@@ -194,73 +239,95 @@ func (KubernetesNodePoolState) ElementType() reflect.Type {
 }
 
 type kubernetesNodePoolArgs struct {
-	// Enable the autohealing on the pool
+	// Enables the autohealing feature for this pool.
 	Autohealing *bool `pulumi:"autohealing"`
-	// Enable the autoscaling on the pool
+	// Enables the autoscaling feature for this pool.
+	// > **Important:** When enabled, an update of the `size` will not be taken into account.
 	Autoscaling *bool `pulumi:"autoscaling"`
-	// The ID of the cluster on which this pool will be created
+	// The ID of the Kubernetes cluster on which this pool will be created.
 	ClusterId string `pulumi:"clusterId"`
-	// Container runtime for the pool
+	// The container runtime of the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	ContainerRuntime *string `pulumi:"containerRuntime"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
-	// Maximum size of the pool
+	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize *int `pulumi:"maxSize"`
-	// Minimun size of the pool
+	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize *int `pulumi:"minSize"`
-	// The name of the cluster
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
-	// Server type of the pool servers
+	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	NodeType string `pulumi:"nodeType"`
-	// ID of the placement group
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
-	// Size of the pool
+	// The size of the system volume of the nodes in gigabyte
+	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
+	// System volume type of the nodes composing the pool
+	RootVolumeType *string `pulumi:"rootVolumeType"`
+	// The size of the pool.
+	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size int `pulumi:"size"`
-	// The tags associated with the pool
+	// The tags associated with the pool.
+	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
 	Tags []string `pulumi:"tags"`
 	// The Pool upgrade policy
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
-	// Whether to wait for the pool to be ready
+	// Whether to wait for the pool to be ready.
 	WaitForPoolReady *bool `pulumi:"waitForPoolReady"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the pool should be created.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a KubernetesNodePool resource.
 type KubernetesNodePoolArgs struct {
-	// Enable the autohealing on the pool
+	// Enables the autohealing feature for this pool.
 	Autohealing pulumi.BoolPtrInput
-	// Enable the autoscaling on the pool
+	// Enables the autoscaling feature for this pool.
+	// > **Important:** When enabled, an update of the `size` will not be taken into account.
 	Autoscaling pulumi.BoolPtrInput
-	// The ID of the cluster on which this pool will be created
+	// The ID of the Kubernetes cluster on which this pool will be created.
 	ClusterId pulumi.StringInput
-	// Container runtime for the pool
+	// The container runtime of the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	ContainerRuntime pulumi.StringPtrInput
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapInput
-	// Maximum size of the pool
+	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntPtrInput
-	// Minimun size of the pool
+	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize pulumi.IntPtrInput
-	// The name of the cluster
+	// The name for the pool.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput
-	// Server type of the pool servers
+	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	NodeType pulumi.StringInput
-	// ID of the placement group
+	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
-	// Size of the pool
+	// The size of the system volume of the nodes in gigabyte
+	RootVolumeSizeInGb pulumi.IntPtrInput
+	// System volume type of the nodes composing the pool
+	RootVolumeType pulumi.StringPtrInput
+	// The size of the pool.
+	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntInput
-	// The tags associated with the pool
+	// The tags associated with the pool.
+	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
 	Tags pulumi.StringArrayInput
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
-	// Whether to wait for the pool to be ready
+	// Whether to wait for the pool to be ready.
 	WaitForPoolReady pulumi.BoolPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the pool should be created.
+	// > **Important:** Updates to this field will recreate a new resource.
 	Zone pulumi.StringPtrInput
 }
 
@@ -351,27 +418,29 @@ func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutputWithContext(ctx cont
 	return o
 }
 
-// Enable the autohealing on the pool
+// Enables the autohealing feature for this pool.
 func (o KubernetesNodePoolOutput) Autohealing() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.BoolPtrOutput { return v.Autohealing }).(pulumi.BoolPtrOutput)
 }
 
-// Enable the autoscaling on the pool
+// Enables the autoscaling feature for this pool.
+// > **Important:** When enabled, an update of the `size` will not be taken into account.
 func (o KubernetesNodePoolOutput) Autoscaling() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.BoolPtrOutput { return v.Autoscaling }).(pulumi.BoolPtrOutput)
 }
 
-// The ID of the cluster on which this pool will be created
+// The ID of the Kubernetes cluster on which this pool will be created.
 func (o KubernetesNodePoolOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// Container runtime for the pool
+// The container runtime of the pool.
+// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) ContainerRuntime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.ContainerRuntime }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the creation of the pool
+// The creation date of the pool.
 func (o KubernetesNodePoolOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -386,56 +455,71 @@ func (o KubernetesNodePoolOutput) KubeletArgs() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringMapOutput { return v.KubeletArgs }).(pulumi.StringMapOutput)
 }
 
-// Maximum size of the pool
+// The maximum size of the pool, used by the autoscaling feature.
 func (o KubernetesNodePoolOutput) MaxSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.MaxSize }).(pulumi.IntOutput)
 }
 
-// Minimun size of the pool
+// The minimum size of the pool, used by the autoscaling feature.
 func (o KubernetesNodePoolOutput) MinSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.MinSize }).(pulumi.IntPtrOutput)
 }
 
-// The name of the cluster
+// The name for the pool.
+// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Server type of the pool servers
+// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 func (o KubernetesNodePoolOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
 
+// (List of) The nodes in the default pool.
 func (o KubernetesNodePoolOutput) Nodes() KubernetesNodePoolNodeArrayOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) KubernetesNodePoolNodeArrayOutput { return v.Nodes }).(KubernetesNodePoolNodeArrayOutput)
 }
 
-// ID of the placement group
+// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the pool should be created.
 func (o KubernetesNodePoolOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Size of the pool
+// The size of the system volume of the nodes in gigabyte
+func (o KubernetesNodePoolOutput) RootVolumeSizeInGb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.RootVolumeSizeInGb }).(pulumi.IntPtrOutput)
+}
+
+// System volume type of the nodes composing the pool
+func (o KubernetesNodePoolOutput) RootVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.RootVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// The size of the pool.
+// > **Important:** This field will only be used at creation if autoscaling is enabled.
 func (o KubernetesNodePoolOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
-// The status of the pool
+// The status of the node.
 func (o KubernetesNodePoolOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The tags associated with the pool
+// The tags associated with the pool.
+// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
 func (o KubernetesNodePoolOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The date and time of the last update of the pool
+// The last update date of the pool.
 func (o KubernetesNodePoolOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
@@ -445,17 +529,18 @@ func (o KubernetesNodePoolOutput) UpgradePolicy() KubernetesNodePoolUpgradePolic
 	return o.ApplyT(func(v *KubernetesNodePool) KubernetesNodePoolUpgradePolicyOutput { return v.UpgradePolicy }).(KubernetesNodePoolUpgradePolicyOutput)
 }
 
-// The Kubernetes version of the pool
+// The version of the pool.
 func (o KubernetesNodePoolOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
-// Whether to wait for the pool to be ready
+// Whether to wait for the pool to be ready.
 func (o KubernetesNodePoolOutput) WaitForPoolReady() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.BoolPtrOutput { return v.WaitForPoolReady }).(pulumi.BoolPtrOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which the pool should be created.
+// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

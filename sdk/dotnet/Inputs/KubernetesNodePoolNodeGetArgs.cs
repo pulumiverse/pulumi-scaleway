@@ -11,22 +11,36 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class KubernetesNodePoolNodeGetArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesNodePoolNodeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name for the pool.
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The public IPv4.
+        /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
 
+        /// <summary>
+        /// The public IPv6.
+        /// </summary>
         [Input("publicIpV6")]
         public Input<string>? PublicIpV6 { get; set; }
 
+        /// <summary>
+        /// The status of the node.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         public KubernetesNodePoolNodeGetArgs()
         {
         }
+        public static new KubernetesNodePoolNodeGetArgs Empty => new KubernetesNodePoolNodeGetArgs();
     }
 }

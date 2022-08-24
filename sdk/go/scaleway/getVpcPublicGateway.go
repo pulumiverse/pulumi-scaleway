@@ -10,6 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a public gateway.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
+//				Name: main.Name,
+//			}, nil)
+//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
+//				PublicGatewayId: main.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayResult
@@ -22,13 +56,17 @@ func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArg
 
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayArgs struct {
+	// Exact name of the public gateway.
 	Name            *string `pulumi:"name"`
 	PublicGatewayId *string `pulumi:"publicGatewayId"`
 }
 
 // A collection of values returned by getVpcPublicGateway.
 type LookupVpcPublicGatewayResult struct {
-	CreatedAt string `pulumi:"createdAt"`
+	BastionEnabled bool   `pulumi:"bastionEnabled"`
+	BastionPort    int    `pulumi:"bastionPort"`
+	CreatedAt      string `pulumi:"createdAt"`
+	EnableSmtp     bool   `pulumi:"enableSmtp"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                 string   `pulumi:"id"`
 	IpId               string   `pulumi:"ipId"`
@@ -58,6 +96,7 @@ func LookupVpcPublicGatewayOutput(ctx *pulumi.Context, args LookupVpcPublicGatew
 
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayOutputArgs struct {
+	// Exact name of the public gateway.
 	Name            pulumi.StringPtrInput `pulumi:"name"`
 	PublicGatewayId pulumi.StringPtrInput `pulumi:"publicGatewayId"`
 }
@@ -81,8 +120,20 @@ func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutput
 	return o
 }
 
+func (o LookupVpcPublicGatewayResultOutput) BastionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) bool { return v.BastionEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupVpcPublicGatewayResultOutput) BastionPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) int { return v.BastionPort }).(pulumi.IntOutput)
+}
+
 func (o LookupVpcPublicGatewayResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupVpcPublicGatewayResultOutput) EnableSmtp() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) bool { return v.EnableSmtp }).(pulumi.BoolOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

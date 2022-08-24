@@ -177,7 +177,24 @@ def get_iot_device(device_id: Optional[str] = None,
                    region: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIotDeviceResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an IOT Device.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_device = scaleway.get_iot_device(device_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str device_id: The device ID.
+           Only one of the `name` and `device_id` should be specified.
+    :param str hub_id: The hub ID.
+    :param str name: The name of the Hub.
+           Only one of the `name` and `device_id` should be specified.
+    :param str region: `region`) The region in which the hub exists.
     """
     __args__ = dict()
     __args__['deviceId'] = device_id
@@ -212,6 +229,23 @@ def get_iot_device_output(device_id: Optional[pulumi.Input[Optional[str]]] = Non
                           region: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIotDeviceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an IOT Device.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_device = scaleway.get_iot_device(device_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str device_id: The device ID.
+           Only one of the `name` and `device_id` should be specified.
+    :param str hub_id: The hub ID.
+    :param str name: The name of the Hub.
+           Only one of the `name` and `device_id` should be specified.
+    :param str region: `region`) The region in which the hub exists.
     """
     ...

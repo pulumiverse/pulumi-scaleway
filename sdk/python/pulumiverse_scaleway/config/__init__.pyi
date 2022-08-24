@@ -19,6 +19,11 @@ apiUrl: Optional[str]
 The Scaleway API URL to use.
 """
 
+organizationId: Optional[str]
+"""
+The Scaleway organization ID.
+"""
+
 profile: Optional[str]
 """
 The Scaleway profile to use.

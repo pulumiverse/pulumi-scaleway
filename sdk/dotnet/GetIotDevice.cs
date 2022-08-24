@@ -12,50 +12,128 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetIotDevice
     {
+        /// <summary>
+        /// Gets information about an IOT Device.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDevice = Scaleway.GetIotDevice.Invoke(new()
+        ///     {
+        ///         DeviceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetIotDeviceResult> InvokeAsync(GetIotDeviceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about an IOT Device.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDevice = Scaleway.GetIotDevice.Invoke(new()
+        ///     {
+        ///         DeviceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetIotDeviceResult> Invoke(GetIotDeviceInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetIotDeviceArgs : Pulumi.InvokeArgs
+    public sealed class GetIotDeviceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The device ID.
+        /// Only one of the `name` and `device_id` should be specified.
+        /// </summary>
         [Input("deviceId")]
         public string? DeviceId { get; set; }
 
+        /// <summary>
+        /// The hub ID.
+        /// </summary>
         [Input("hubId")]
         public string? HubId { get; set; }
 
+        /// <summary>
+        /// The name of the Hub.
+        /// Only one of the `name` and `device_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the hub exists.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetIotDeviceArgs()
         {
         }
+        public static new GetIotDeviceArgs Empty => new GetIotDeviceArgs();
     }
 
-    public sealed class GetIotDeviceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetIotDeviceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The device ID.
+        /// Only one of the `name` and `device_id` should be specified.
+        /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
 
+        /// <summary>
+        /// The hub ID.
+        /// </summary>
         [Input("hubId")]
         public Input<string>? HubId { get; set; }
 
+        /// <summary>
+        /// The name of the Hub.
+        /// Only one of the `name` and `device_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the hub exists.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetIotDeviceInvokeArgs()
         {
         }
+        public static new GetIotDeviceInvokeArgs Empty => new GetIotDeviceInvokeArgs();
     }
 
 

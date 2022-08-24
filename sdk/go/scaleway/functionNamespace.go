@@ -10,24 +10,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Function Namespace.
+// For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//				Description: pulumi.String("Main function namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type FunctionNamespace struct {
 	pulumi.CustomResourceState
 
-	// The description of the function namespace
+	// The description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The environment variables of the function namespace
+	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
-	// The name of the function namespace
+	// The unique name of the function namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The endpoint reachable by docker
+	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
-	// The ID of the registry namespace
+	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
 }
 
@@ -61,40 +101,40 @@ func GetFunctionNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FunctionNamespace resources.
 type functionNamespaceState struct {
-	// The description of the function namespace
+	// The description of the namespace.
 	Description *string `pulumi:"description"`
-	// The environment variables of the function namespace
+	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The name of the function namespace
+	// The unique name of the function namespace.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the namespace is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
-	// The endpoint reachable by docker
+	// The registry endpoint of the namespace.
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
-	// The ID of the registry namespace
+	// The registry namespace ID of the namespace.
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
 }
 
 type FunctionNamespaceState struct {
-	// The description of the function namespace
+	// The description of the namespace.
 	Description pulumi.StringPtrInput
-	// The environment variables of the function namespace
+	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The name of the function namespace
+	// The unique name of the function namespace.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
-	// The endpoint reachable by docker
+	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringPtrInput
-	// The ID of the registry namespace
+	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringPtrInput
 }
 
@@ -103,29 +143,29 @@ func (FunctionNamespaceState) ElementType() reflect.Type {
 }
 
 type functionNamespaceArgs struct {
-	// The description of the function namespace
+	// The description of the namespace.
 	Description *string `pulumi:"description"`
-	// The environment variables of the function namespace
+	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The name of the function namespace
+	// The unique name of the function namespace.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a FunctionNamespace resource.
 type FunctionNamespaceArgs struct {
-	// The description of the function namespace
+	// The description of the namespace.
 	Description pulumi.StringPtrInput
-	// The environment variables of the function namespace
+	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The name of the function namespace
+	// The unique name of the function namespace.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -216,42 +256,42 @@ func (o FunctionNamespaceOutput) ToFunctionNamespaceOutputWithContext(ctx contex
 	return o
 }
 
-// The description of the function namespace
+// The description of the namespace.
 func (o FunctionNamespaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The environment variables of the function namespace
+// The environment variables of the namespace.
 func (o FunctionNamespaceOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
-// The name of the function namespace
+// The unique name of the function namespace.
 func (o FunctionNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the namespace is associated with.
 func (o FunctionNamespaceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the namespace is associated with.
 func (o FunctionNamespaceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// `region`). The region in which the namespace should be created.
 func (o FunctionNamespaceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The endpoint reachable by docker
+// The registry endpoint of the namespace.
 func (o FunctionNamespaceOutput) RegistryEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.RegistryEndpoint }).(pulumi.StringOutput)
 }
 
-// The ID of the registry namespace
+// The registry namespace ID of the namespace.
 func (o FunctionNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }

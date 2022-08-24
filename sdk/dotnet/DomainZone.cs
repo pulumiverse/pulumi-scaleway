@@ -10,8 +10,38 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Domain zone.\
+    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Scaleway.DomainZone("test", new()
+    ///     {
+    ///         Domain = "scaleway-terraform.com",
+    ///         Subdomain = "test",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/domainZone:DomainZone")]
-    public partial class DomainZone : Pulumi.CustomResource
+    public partial class DomainZone : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The domain where the DNS zone will be created.
@@ -44,7 +74,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> NsMasters { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the domain is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -56,7 +86,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The subdomain of the DNS zone to create.
+        /// The subdomain(zone name) to create in the domain.
         /// </summary>
         [Output("subdomain")]
         public Output<string> Subdomain { get; private set; } = null!;
@@ -112,7 +142,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class DomainZoneArgs : Pulumi.ResourceArgs
+    public sealed class DomainZoneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The domain where the DNS zone will be created.
@@ -121,13 +151,13 @@ namespace Pulumiverse.Scaleway
         public Input<string> Domain { get; set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the domain is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The subdomain of the DNS zone to create.
+        /// The subdomain(zone name) to create in the domain.
         /// </summary>
         [Input("subdomain", required: true)]
         public Input<string> Subdomain { get; set; } = null!;
@@ -135,9 +165,10 @@ namespace Pulumiverse.Scaleway
         public DomainZoneArgs()
         {
         }
+        public static new DomainZoneArgs Empty => new DomainZoneArgs();
     }
 
-    public sealed class DomainZoneState : Pulumi.ResourceArgs
+    public sealed class DomainZoneState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The domain where the DNS zone will be created.
@@ -188,7 +219,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the domain is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -200,7 +231,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The subdomain of the DNS zone to create.
+        /// The subdomain(zone name) to create in the domain.
         /// </summary>
         [Input("subdomain")]
         public Input<string>? Subdomain { get; set; }
@@ -214,5 +245,6 @@ namespace Pulumiverse.Scaleway
         public DomainZoneState()
         {
         }
+        public static new DomainZoneState Empty => new DomainZoneState();
     }
 }

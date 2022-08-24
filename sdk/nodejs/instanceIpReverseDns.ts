@@ -4,6 +4,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages Scaleway Compute Instance IPs Reverse DNS.
+ *
+ * Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
+ *
+ * ## Import
+ *
+ * IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class InstanceIpReverseDns extends pulumi.CustomResource {
     /**
      * Get an existing InstanceIpReverseDns resource's state with the given name, ID, and optional extra
@@ -33,15 +46,15 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
     }
 
     /**
-     * The IP ID or IP address
+     * The IP ID
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse DNS for this IP.
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -83,15 +96,15 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
  */
 export interface InstanceIpReverseDnsState {
     /**
-     * The IP ID or IP address
+     * The IP ID
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse DNS for this IP.
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
 }
@@ -101,15 +114,15 @@ export interface InstanceIpReverseDnsState {
  */
 export interface InstanceIpReverseDnsArgs {
     /**
-     * The IP ID or IP address
+     * The IP ID
      */
     ipId: pulumi.Input<string>;
     /**
-     * The reverse DNS for this IP
+     * The reverse DNS for this IP.
      */
     reverse: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
 }

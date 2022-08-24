@@ -11,14 +11,85 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+// It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ip01, err := scaleway.NewLoadbalancerIp(ctx, "ip01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			lb01, err := scaleway.NewLoadbalancer(ctx, "lb01", &scaleway.LoadbalancerArgs{
+//				IpId: ip01.ID(),
+//				Type: pulumi.String("lb-s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bkd01, err := scaleway.NewLoadbalancerBackend(ctx, "bkd01", &scaleway.LoadbalancerBackendArgs{
+//				LbId:            lb01.ID(),
+//				ForwardProtocol: pulumi.String("tcp"),
+//				ForwardPort:     pulumi.Int(80),
+//				ProxyProtocol:   pulumi.String("none"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			frt01, err := scaleway.NewLoadbalancerFrontend(ctx, "frt01", &scaleway.LoadbalancerFrontendArgs{
+//				LbId:        lb01.ID(),
+//				BackendId:   bkd01.ID(),
+//				InboundPort: pulumi.Int(80),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewLoadbalancerRoute(ctx, "rt01", &scaleway.LoadbalancerRouteArgs{
+//				FrontendId: frt01.ID(),
+//				BackendId:  bkd01.ID(),
+//				MatchSni:   pulumi.String("scaleway.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type LoadbalancerRoute struct {
 	pulumi.CustomResourceState
 
-	// The backend ID destination of redirection
+	// The ID of the backend to which the route is associated.
+	// - `frontendId`: (Required) The ID of the frontend to which the route is associated.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
 	// The frontend ID origin of redirection
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
-	// The domain to match against
+	// The SNI to match.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
 }
 
@@ -58,20 +129,22 @@ func GetLoadbalancerRoute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerRoute resources.
 type loadbalancerRouteState struct {
-	// The backend ID destination of redirection
+	// The ID of the backend to which the route is associated.
+	// - `frontendId`: (Required) The ID of the frontend to which the route is associated.
 	BackendId *string `pulumi:"backendId"`
 	// The frontend ID origin of redirection
 	FrontendId *string `pulumi:"frontendId"`
-	// The domain to match against
+	// The SNI to match.
 	MatchSni *string `pulumi:"matchSni"`
 }
 
 type LoadbalancerRouteState struct {
-	// The backend ID destination of redirection
+	// The ID of the backend to which the route is associated.
+	// - `frontendId`: (Required) The ID of the frontend to which the route is associated.
 	BackendId pulumi.StringPtrInput
 	// The frontend ID origin of redirection
 	FrontendId pulumi.StringPtrInput
-	// The domain to match against
+	// The SNI to match.
 	MatchSni pulumi.StringPtrInput
 }
 
@@ -80,21 +153,23 @@ func (LoadbalancerRouteState) ElementType() reflect.Type {
 }
 
 type loadbalancerRouteArgs struct {
-	// The backend ID destination of redirection
+	// The ID of the backend to which the route is associated.
+	// - `frontendId`: (Required) The ID of the frontend to which the route is associated.
 	BackendId string `pulumi:"backendId"`
 	// The frontend ID origin of redirection
 	FrontendId string `pulumi:"frontendId"`
-	// The domain to match against
+	// The SNI to match.
 	MatchSni *string `pulumi:"matchSni"`
 }
 
 // The set of arguments for constructing a LoadbalancerRoute resource.
 type LoadbalancerRouteArgs struct {
-	// The backend ID destination of redirection
+	// The ID of the backend to which the route is associated.
+	// - `frontendId`: (Required) The ID of the frontend to which the route is associated.
 	BackendId pulumi.StringInput
 	// The frontend ID origin of redirection
 	FrontendId pulumi.StringInput
-	// The domain to match against
+	// The SNI to match.
 	MatchSni pulumi.StringPtrInput
 }
 
@@ -185,7 +260,8 @@ func (o LoadbalancerRouteOutput) ToLoadbalancerRouteOutputWithContext(ctx contex
 	return o
 }
 
-// The backend ID destination of redirection
+// The ID of the backend to which the route is associated.
+// - `frontendId`: (Required) The ID of the frontend to which the route is associated.
 func (o LoadbalancerRouteOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
@@ -195,7 +271,7 @@ func (o LoadbalancerRouteOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.FrontendId }).(pulumi.StringOutput)
 }
 
-// The domain to match against
+// The SNI to match.
 func (o LoadbalancerRouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
 }

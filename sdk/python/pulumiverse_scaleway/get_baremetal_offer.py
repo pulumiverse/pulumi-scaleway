@@ -60,21 +60,33 @@ class GetBaremetalOfferResult:
     @property
     @pulumi.getter
     def bandwidth(self) -> int:
+        """
+        Available Bandwidth with the offer.
+        """
         return pulumi.get(self, "bandwidth")
 
     @property
     @pulumi.getter(name="commercialRange")
     def commercial_range(self) -> str:
+        """
+        Commercial range of the offer.
+        """
         return pulumi.get(self, "commercial_range")
 
     @property
     @pulumi.getter
     def cpu(self) -> 'outputs.GetBaremetalOfferCpuResult':
+        """
+        A list of cpu specifications. (Structure is documented below.)
+        """
         return pulumi.get(self, "cpu")
 
     @property
     @pulumi.getter
     def disks(self) -> Sequence['outputs.GetBaremetalOfferDiskResult']:
+        """
+        A list of disk specifications. (Structure is documented below.)
+        """
         return pulumi.get(self, "disks")
 
     @property
@@ -93,11 +105,17 @@ class GetBaremetalOfferResult:
     @property
     @pulumi.getter
     def memories(self) -> Sequence['outputs.GetBaremetalOfferMemoryResult']:
+        """
+        A list of memory specifications. (Structure is documented below.)
+        """
         return pulumi.get(self, "memories")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the CPU.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -108,6 +126,9 @@ class GetBaremetalOfferResult:
     @property
     @pulumi.getter
     def stock(self) -> str:
+        """
+        Stock status for this offer. Possible values are: `empty`, `low` or `available`.
+        """
         return pulumi.get(self, "stock")
 
     @property
@@ -141,7 +162,22 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalOfferResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_offer = scaleway.get_baremetal_offer(offer_id="25dcf38b-c90c-4b18-97a2-6956e9d1e113",
+        zone="fr-par-2")
+    ```
+
+
+    :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+    :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
+    :param str zone: `zone`) The zone in which the offer should be created.
     """
     __args__ = dict()
     __args__['includeDisabled'] = include_disabled
@@ -172,6 +208,21 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOfferResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_offer = scaleway.get_baremetal_offer(offer_id="25dcf38b-c90c-4b18-97a2-6956e9d1e113",
+        zone="fr-par-2")
+    ```
+
+
+    :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+    :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
+    :param str zone: `zone`) The zone in which the offer should be created.
     """
     ...

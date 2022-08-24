@@ -11,14 +11,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Import
+//
+// Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type InstanceSecurityGroupRules struct {
 	pulumi.CustomResourceState
 
-	// Inbound rules for this set of security group rules
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules InstanceSecurityGroupRulesInboundRuleArrayOutput `pulumi:"inboundRules"`
-	// Outbound rules for this set of security group rules
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules InstanceSecurityGroupRulesOutboundRuleArrayOutput `pulumi:"outboundRules"`
-	// The security group associated with this volume
+	// The ID of the security group.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 }
 
@@ -55,20 +64,20 @@ func GetInstanceSecurityGroupRules(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceSecurityGroupRules resources.
 type instanceSecurityGroupRulesState struct {
-	// Inbound rules for this set of security group rules
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules []InstanceSecurityGroupRulesInboundRule `pulumi:"inboundRules"`
-	// Outbound rules for this set of security group rules
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules []InstanceSecurityGroupRulesOutboundRule `pulumi:"outboundRules"`
-	// The security group associated with this volume
+	// The ID of the security group.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 }
 
 type InstanceSecurityGroupRulesState struct {
-	// Inbound rules for this set of security group rules
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules InstanceSecurityGroupRulesInboundRuleArrayInput
-	// Outbound rules for this set of security group rules
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules InstanceSecurityGroupRulesOutboundRuleArrayInput
-	// The security group associated with this volume
+	// The ID of the security group.
 	SecurityGroupId pulumi.StringPtrInput
 }
 
@@ -77,21 +86,21 @@ func (InstanceSecurityGroupRulesState) ElementType() reflect.Type {
 }
 
 type instanceSecurityGroupRulesArgs struct {
-	// Inbound rules for this set of security group rules
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules []InstanceSecurityGroupRulesInboundRule `pulumi:"inboundRules"`
-	// Outbound rules for this set of security group rules
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules []InstanceSecurityGroupRulesOutboundRule `pulumi:"outboundRules"`
-	// The security group associated with this volume
+	// The ID of the security group.
 	SecurityGroupId string `pulumi:"securityGroupId"`
 }
 
 // The set of arguments for constructing a InstanceSecurityGroupRules resource.
 type InstanceSecurityGroupRulesArgs struct {
-	// Inbound rules for this set of security group rules
+	// A list of inbound rule to add to the security group. (Structure is documented below.)
 	InboundRules InstanceSecurityGroupRulesInboundRuleArrayInput
-	// Outbound rules for this set of security group rules
+	// A list of outbound rule to add to the security group. (Structure is documented below.)
 	OutboundRules InstanceSecurityGroupRulesOutboundRuleArrayInput
-	// The security group associated with this volume
+	// The ID of the security group.
 	SecurityGroupId pulumi.StringInput
 }
 
@@ -182,21 +191,21 @@ func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutputWith
 	return o
 }
 
-// Inbound rules for this set of security group rules
+// A list of inbound rule to add to the security group. (Structure is documented below.)
 func (o InstanceSecurityGroupRulesOutput) InboundRules() InstanceSecurityGroupRulesInboundRuleArrayOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroupRules) InstanceSecurityGroupRulesInboundRuleArrayOutput {
 		return v.InboundRules
 	}).(InstanceSecurityGroupRulesInboundRuleArrayOutput)
 }
 
-// Outbound rules for this set of security group rules
+// A list of outbound rule to add to the security group. (Structure is documented below.)
 func (o InstanceSecurityGroupRulesOutput) OutboundRules() InstanceSecurityGroupRulesOutboundRuleArrayOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroupRules) InstanceSecurityGroupRulesOutboundRuleArrayOutput {
 		return v.OutboundRules
 	}).(InstanceSecurityGroupRulesOutboundRuleArrayOutput)
 }
 
-// The security group associated with this volume
+// The ID of the security group.
 func (o InstanceSecurityGroupRulesOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroupRules) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }

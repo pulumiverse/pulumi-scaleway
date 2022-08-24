@@ -26,14 +26,14 @@ class LoadbalancerArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Loadbalancer resource.
-        :param pulumi.Input[str] ip_id: The load-balance public IP ID
-        :param pulumi.Input[str] type: The type of load-balancer you want to create
-        :param pulumi.Input[str] name: Name of the lb
+        :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[bool] release_ip: Release the IPs related to this load-balancer
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the load-balancer
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
+        :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         pulumi.set(__self__, "ip_id", ip_id)
         pulumi.set(__self__, "type", type)
@@ -57,7 +57,7 @@ class LoadbalancerArgs:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Input[str]:
         """
-        The load-balance public IP ID
+        The ID of the associated LB IP. See below.
         """
         return pulumi.get(self, "ip_id")
 
@@ -69,7 +69,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of load-balancer you want to create
+        The type of the load-balancer. Please check the migration section to upgrade the type
         """
         return pulumi.get(self, "type")
 
@@ -81,7 +81,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the lb
+        The name of the load-balancer.
         """
         return pulumi.get(self, "name")
 
@@ -105,7 +105,7 @@ class LoadbalancerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the load-balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -117,7 +117,7 @@ class LoadbalancerArgs:
     @pulumi.getter(name="releaseIp")
     def release_ip(self) -> Optional[pulumi.Input[bool]]:
         """
-        Release the IPs related to this load-balancer
+        The release_ip allow release the ip address associated with the load-balancers.
         """
         return pulumi.get(self, "release_ip")
 
@@ -129,7 +129,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Array of tags to associate with the load-balancer
+        The tags associated with the load-balancers.
         """
         return pulumi.get(self, "tags")
 
@@ -141,7 +141,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 
@@ -166,17 +166,17 @@ class _LoadbalancerState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Loadbalancer resources.
-        :param pulumi.Input[str] ip_address: The load-balance public IP address
-        :param pulumi.Input[str] ip_id: The load-balance public IP ID
-        :param pulumi.Input[str] name: Name of the lb
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] ip_address: The load-balance public IP Address
+        :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+        :param pulumi.Input[str] name: The name of the load-balancer.
+        :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
-        :param pulumi.Input[bool] release_ip: Release the IPs related to this load-balancer
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the load-balancer
-        :param pulumi.Input[str] type: The type of load-balancer you want to create
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
@@ -208,7 +208,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balance public IP address
+        The load-balance public IP Address
         """
         return pulumi.get(self, "ip_address")
 
@@ -220,7 +220,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balance public IP ID
+        The ID of the associated LB IP. See below.
         """
         return pulumi.get(self, "ip_id")
 
@@ -232,7 +232,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the lb
+        The name of the load-balancer.
         """
         return pulumi.get(self, "name")
 
@@ -244,7 +244,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the load-balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -268,7 +268,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the load-balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -292,7 +292,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="releaseIp")
     def release_ip(self) -> Optional[pulumi.Input[bool]]:
         """
-        Release the IPs related to this load-balancer
+        The release_ip allow release the ip address associated with the load-balancers.
         """
         return pulumi.get(self, "release_ip")
 
@@ -304,7 +304,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Array of tags to associate with the load-balancer
+        The tags associated with the load-balancers.
         """
         return pulumi.get(self, "tags")
 
@@ -316,7 +316,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of load-balancer you want to create
+        The type of the load-balancer. Please check the migration section to upgrade the type
         """
         return pulumi.get(self, "type")
 
@@ -328,7 +328,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 
@@ -352,17 +352,153 @@ class Loadbalancer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Loadbalancer resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancers.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.LoadbalancerIp("main", zone="fr-par-1")
+        base = scaleway.Loadbalancer("base",
+            ip_id=main.id,
+            zone=main.zone,
+            type="LB-S")
+        ```
+
+        ### IP for Public Gateway
+        resource "scaleway_vpc_public_gateway_ip" "main" {
+        }
+
+        ### Scaleway Private Network
+        resource scaleway_vpc_private_network main {
+        }
+
+        ### VPC Public Gateway Network
+        resource "scaleway_vpc_public_gateway" "main" {
+            name  = "tf-test-public-gw"
+            type  = "VPC-GW-S"
+            ip_id = scaleway_vpc_public_gateway_ip.main.id
+        }
+
+        ### VPC Public Gateway Network DHCP config
+        resource "scaleway_vpc_public_gateway_dhcp" "main" {
+            subnet = "10.0.0.0/24"
+        }
+
+        ### VPC Gateway Network
+        resource "scaleway_vpc_gateway_network" "main" {
+            gateway_id         = scaleway_vpc_public_gateway.main.id
+            private_network_id = scaleway_vpc_private_network.main.id
+            dhcp_id            = scaleway_vpc_public_gateway_dhcp.main.id
+            cleanup_dhcp       = true
+            enable_masquerade  = true
+        }
+
+        ### Scaleway Instance
+        resource "scaleway_instance_server" "main" {
+            name        = "Scaleway Terraform Provider"
+            type        = "DEV1-S"
+            image       = "debian_bullseye"
+            enable_ipv6 = false
+
+            private_network {
+                pn_id = scaleway_vpc_private_network.main.id
+            }
+        }
+
+        ### IP for LB IP
+        resource scaleway_lb_ip main {
+        }
+
+        ### Scaleway Private Network
+        resource scaleway_vpc_private_network "main" {
+            name = "private network with static config"
+        }
+
+        ## Migration
+
+        In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
+        this change will not recreate your Load Balancer.
+
+        Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+
+        ## IP ID
+
+        Since v1.15.0, `ip_id` is a required field. This means that now a separate `LoadbalancerIp` is required.
+        When importing, the IP needs to be imported as well as the LB.
+        When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
+
+        For instance, if you had the following:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.Loadbalancer("main",
+            type="LB-S",
+            zone="fr-par-1")
+        ```
+
+        You will need to update it to:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
+        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
+            ip_id=main_loadbalancer_ip.id,
+            zone="fr-par-1",
+            type="LB-S",
+            release_ip=False)
+        ```
+
+        ## Private Network with static config
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
+        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
+        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
+            ip_id=main_loadbalancer_ip.id,
+            type="LB-S",
+            release_ip=False,
+            private_networks=[scaleway.LoadbalancerPrivateNetworkArgs(
+                private_network_id=main_vpc_private_network.id,
+                static_configs=[
+                    "172.16.0.100",
+                    "172.16.0.101",
+                ],
+            )])
+        ```
+
+        ## Import
+
+        Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
+         Be aware that you will also need to import the `scaleway_lb_ip` resource.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_id: The load-balance public IP ID
-        :param pulumi.Input[str] name: Name of the lb
+        :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+        :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[bool] release_ip: Release the IPs related to this load-balancer
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the load-balancer
-        :param pulumi.Input[str] type: The type of load-balancer you want to create
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
+        :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         ...
     @overload
@@ -371,7 +507,143 @@ class Loadbalancer(pulumi.CustomResource):
                  args: LoadbalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Loadbalancer resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancers.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.LoadbalancerIp("main", zone="fr-par-1")
+        base = scaleway.Loadbalancer("base",
+            ip_id=main.id,
+            zone=main.zone,
+            type="LB-S")
+        ```
+
+        ### IP for Public Gateway
+        resource "scaleway_vpc_public_gateway_ip" "main" {
+        }
+
+        ### Scaleway Private Network
+        resource scaleway_vpc_private_network main {
+        }
+
+        ### VPC Public Gateway Network
+        resource "scaleway_vpc_public_gateway" "main" {
+            name  = "tf-test-public-gw"
+            type  = "VPC-GW-S"
+            ip_id = scaleway_vpc_public_gateway_ip.main.id
+        }
+
+        ### VPC Public Gateway Network DHCP config
+        resource "scaleway_vpc_public_gateway_dhcp" "main" {
+            subnet = "10.0.0.0/24"
+        }
+
+        ### VPC Gateway Network
+        resource "scaleway_vpc_gateway_network" "main" {
+            gateway_id         = scaleway_vpc_public_gateway.main.id
+            private_network_id = scaleway_vpc_private_network.main.id
+            dhcp_id            = scaleway_vpc_public_gateway_dhcp.main.id
+            cleanup_dhcp       = true
+            enable_masquerade  = true
+        }
+
+        ### Scaleway Instance
+        resource "scaleway_instance_server" "main" {
+            name        = "Scaleway Terraform Provider"
+            type        = "DEV1-S"
+            image       = "debian_bullseye"
+            enable_ipv6 = false
+
+            private_network {
+                pn_id = scaleway_vpc_private_network.main.id
+            }
+        }
+
+        ### IP for LB IP
+        resource scaleway_lb_ip main {
+        }
+
+        ### Scaleway Private Network
+        resource scaleway_vpc_private_network "main" {
+            name = "private network with static config"
+        }
+
+        ## Migration
+
+        In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
+        this change will not recreate your Load Balancer.
+
+        Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+
+        ## IP ID
+
+        Since v1.15.0, `ip_id` is a required field. This means that now a separate `LoadbalancerIp` is required.
+        When importing, the IP needs to be imported as well as the LB.
+        When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
+
+        For instance, if you had the following:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.Loadbalancer("main",
+            type="LB-S",
+            zone="fr-par-1")
+        ```
+
+        You will need to update it to:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
+        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
+            ip_id=main_loadbalancer_ip.id,
+            zone="fr-par-1",
+            type="LB-S",
+            release_ip=False)
+        ```
+
+        ## Private Network with static config
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
+        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
+        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
+            ip_id=main_loadbalancer_ip.id,
+            type="LB-S",
+            release_ip=False,
+            private_networks=[scaleway.LoadbalancerPrivateNetworkArgs(
+                private_network_id=main_vpc_private_network.id,
+                static_configs=[
+                    "172.16.0.100",
+                    "172.16.0.101",
+                ],
+            )])
+        ```
+
+        ## Import
+
+        Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
+         Be aware that you will also need to import the `scaleway_lb_ip` resource.
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -450,17 +722,17 @@ class Loadbalancer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_address: The load-balance public IP address
-        :param pulumi.Input[str] ip_id: The load-balance public IP ID
-        :param pulumi.Input[str] name: Name of the lb
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
+        :param pulumi.Input[str] ip_address: The load-balance public IP Address
+        :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+        :param pulumi.Input[str] name: The name of the load-balancer.
+        :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
-        :param pulumi.Input[bool] release_ip: Release the IPs related to this load-balancer
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Array of tags to associate with the load-balancer
-        :param pulumi.Input[str] type: The type of load-balancer you want to create
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -483,7 +755,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Output[str]:
         """
-        The load-balance public IP address
+        The load-balance public IP Address
         """
         return pulumi.get(self, "ip_address")
 
@@ -491,7 +763,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[str]:
         """
-        The load-balance public IP ID
+        The ID of the associated LB IP. See below.
         """
         return pulumi.get(self, "ip_id")
 
@@ -499,7 +771,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the lb
+        The name of the load-balancer.
         """
         return pulumi.get(self, "name")
 
@@ -507,7 +779,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the load-balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -523,7 +795,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the load-balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -539,7 +811,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="releaseIp")
     def release_ip(self) -> pulumi.Output[Optional[bool]]:
         """
-        Release the IPs related to this load-balancer
+        The release_ip allow release the ip address associated with the load-balancers.
         """
         return pulumi.get(self, "release_ip")
 
@@ -547,7 +819,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Array of tags to associate with the load-balancer
+        The tags associated with the load-balancers.
         """
         return pulumi.get(self, "tags")
 
@@ -555,7 +827,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of load-balancer you want to create
+        The type of the load-balancer. Please check the migration section to upgrade the type
         """
         return pulumi.get(self, "type")
 
@@ -563,7 +835,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 

@@ -5,6 +5,84 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Redis Clusters.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.RedisCluster("main", {
+ *     acls: [{
+ *         description: "Allow all",
+ *         ip: "0.0.0.0/0",
+ *     }],
+ *     clusterSize: 1,
+ *     nodeType: "RED1-MICRO",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     tags: [
+ *         "test",
+ *         "redis",
+ *     ],
+ *     tlsEnabled: true,
+ *     userName: "my_initial_user",
+ *     version: "6.2.6",
+ * });
+ * ```
+ *
+ * ### With settings
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.RedisCluster("main", {
+ *     nodeType: "RED1-MICRO",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     settings: {
+ *         maxclients: "1000",
+ *         "tcp-keepalive": "120",
+ *     },
+ *     userName: "my_initial_user",
+ *     version: "6.2.6",
+ * });
+ * ```
+ *
+ * ### With a private network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.RedisCluster("main", {
+ *     version: "6.2.6",
+ *     nodeType: "RED1-MICRO",
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     clusterSize: 1,
+ *     privateNetworks: [{
+ *         id: pn.id,
+ *         serviceIps: ["10.12.1.1/20"],
+ *     }],
+ * }, {
+ *     dependsOn: [pn],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class RedisCluster extends pulumi.CustomResource {
     /**
      * Get an existing RedisCluster resource's state with the given name, ID, and optional extra
@@ -34,59 +112,71 @@ export class RedisCluster extends pulumi.CustomResource {
     }
 
     /**
-     * List of acl rules.
+     * List of acl rules, this is cluster's authorized IPs.
      */
     public readonly acls!: pulumi.Output<outputs.RedisClusterAcl[] | undefined>;
     /**
-     * Number of nodes for the cluster.
+     * The PEM of the certificate used by redis, only when `tlsEnabled` is true
+     */
+    public /*out*/ readonly certificate!: pulumi.Output<string>;
+    /**
+     * The number of nodes in the Redis Cluster.
      */
     public readonly clusterSize!: pulumi.Output<number>;
     /**
-     * The date and time of the creation of the Redis cluster
+     * The date and time of creation of the Redis Cluster.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Name of the redis cluster
+     * The name of the Redis Cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Type of node to use for the cluster
+     * The type of Redis Cluster you want to create (e.g. `RED1-M`).
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
-     * Password of the user
+     * Password for the first user of the Redis Cluster.
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     */
+    public readonly privateNetworks!: pulumi.Output<outputs.RedisClusterPrivateNetwork[] | undefined>;
+    /**
+     * `projectId`) The ID of the project the Redis Cluster is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Map of settings to define for the cluster.
+     * Public network specs details
+     */
+    public readonly publicNetwork!: pulumi.Output<outputs.RedisClusterPublicNetwork>;
+    /**
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
      */
     public readonly settings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a redis cluster
+     * The tags associated with the Redis Cluster.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * Whether or not TLS is enabled.
+     * Whether TLS is enabled or not.
      */
     public readonly tlsEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * The date and time of the last update of the Redis cluster
+     * The date and time of the last update of the Redis Cluster.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * Name of the user created when the cluster is created
+     * Identifier for the first user of the Redis Cluster.
      */
     public readonly userName!: pulumi.Output<string>;
     /**
-     * Redis version of the cluster
+     * Redis's Cluster version (e.g. `6.2.6`).
      */
     public readonly version!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the Redis Cluster should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -104,12 +194,15 @@ export class RedisCluster extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RedisClusterState | undefined;
             resourceInputs["acls"] = state ? state.acls : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["clusterSize"] = state ? state.clusterSize : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["publicNetwork"] = state ? state.publicNetwork : undefined;
             resourceInputs["settings"] = state ? state.settings : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["tlsEnabled"] = state ? state.tlsEnabled : undefined;
@@ -136,13 +229,16 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["publicNetwork"] = args ? args.publicNetwork : undefined;
             resourceInputs["settings"] = args ? args.settings : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["tlsEnabled"] = args ? args.tlsEnabled : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -156,59 +252,71 @@ export class RedisCluster extends pulumi.CustomResource {
  */
 export interface RedisClusterState {
     /**
-     * List of acl rules.
+     * List of acl rules, this is cluster's authorized IPs.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.RedisClusterAcl>[]>;
     /**
-     * Number of nodes for the cluster.
+     * The PEM of the certificate used by redis, only when `tlsEnabled` is true
+     */
+    certificate?: pulumi.Input<string>;
+    /**
+     * The number of nodes in the Redis Cluster.
      */
     clusterSize?: pulumi.Input<number>;
     /**
-     * The date and time of the creation of the Redis cluster
+     * The date and time of creation of the Redis Cluster.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Name of the redis cluster
+     * The name of the Redis Cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * Type of node to use for the cluster
+     * The type of Redis Cluster you want to create (e.g. `RED1-M`).
      */
     nodeType?: pulumi.Input<string>;
     /**
-     * Password of the user
+     * Password for the first user of the Redis Cluster.
      */
     password?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
+    /**
+     * `projectId`) The ID of the project the Redis Cluster is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Map of settings to define for the cluster.
+     * Public network specs details
+     */
+    publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork>;
+    /**
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a redis cluster
+     * The tags associated with the Redis Cluster.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Whether or not TLS is enabled.
+     * Whether TLS is enabled or not.
      */
     tlsEnabled?: pulumi.Input<boolean>;
     /**
-     * The date and time of the last update of the Redis cluster
+     * The date and time of the last update of the Redis Cluster.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * Name of the user created when the cluster is created
+     * Identifier for the first user of the Redis Cluster.
      */
     userName?: pulumi.Input<string>;
     /**
-     * Redis version of the cluster
+     * Redis's Cluster version (e.g. `6.2.6`).
      */
     version?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the Redis Cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -218,51 +326,59 @@ export interface RedisClusterState {
  */
 export interface RedisClusterArgs {
     /**
-     * List of acl rules.
+     * List of acl rules, this is cluster's authorized IPs.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.RedisClusterAcl>[]>;
     /**
-     * Number of nodes for the cluster.
+     * The number of nodes in the Redis Cluster.
      */
     clusterSize?: pulumi.Input<number>;
     /**
-     * Name of the redis cluster
+     * The name of the Redis Cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * Type of node to use for the cluster
+     * The type of Redis Cluster you want to create (e.g. `RED1-M`).
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password of the user
+     * Password for the first user of the Redis Cluster.
      */
     password: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
+    /**
+     * `projectId`) The ID of the project the Redis Cluster is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Map of settings to define for the cluster.
+     * Public network specs details
+     */
+    publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork>;
+    /**
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a redis cluster
+     * The tags associated with the Redis Cluster.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Whether or not TLS is enabled.
+     * Whether TLS is enabled or not.
      */
     tlsEnabled?: pulumi.Input<boolean>;
     /**
-     * Name of the user created when the cluster is created
+     * Identifier for the first user of the Redis Cluster.
      */
     userName: pulumi.Input<string>;
     /**
-     * Redis version of the cluster
+     * Redis's Cluster version (e.g. `6.2.6`).
      */
     version: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the Redis Cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }

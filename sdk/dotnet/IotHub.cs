@@ -10,17 +10,26 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/iotHub:IotHub")]
-    public partial class IotHub : Pulumi.CustomResource
+    public partial class IotHub : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The current number of connected devices in the Hub
+        /// The current number of connected devices in the Hub.
         /// </summary>
         [Output("connectedDeviceCount")]
         public Output<int> ConnectedDeviceCount { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the IoT Hub
+        /// The date and time the Hub was created.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -32,7 +41,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> DeviceAutoProvisioning { get; private set; } = null!;
 
         /// <summary>
-        /// The number of registered devices in the Hub
+        /// The number of registered devices in the Hub.
         /// </summary>
         [Output("deviceCount")]
         public Output<int> DeviceCount { get; private set; } = null!;
@@ -44,13 +53,13 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> DisableEvents { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable the hub or not
+        /// Wether the IoT Hub instance should be enabled or not.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// The endpoint to connect the devices to
+        /// The MQTT network endpoint to connect MQTT devices to.
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
@@ -74,7 +83,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> HubCaChallenge { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the hub
+        /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -86,31 +95,31 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The product plan of the hub
+        /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
         /// </summary>
         [Output("productPlan")]
         public Output<string> ProductPlan { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the IoT Hub Instance is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the hub
+        /// The current status of the Hub.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the IoT Hub
+        /// The date and time the Hub resource was updated.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -160,7 +169,7 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class IotHubArgs : Pulumi.ResourceArgs
+    public sealed class IotHubArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Wether to enable the device auto provisioning or not
@@ -175,7 +184,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? DisableEvents { get; set; }
 
         /// <summary>
-        /// Whether to enable the hub or not
+        /// Wether the IoT Hub instance should be enabled or not.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -199,25 +208,25 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HubCaChallenge { get; set; }
 
         /// <summary>
-        /// The name of the hub
+        /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The product plan of the hub
+        /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
         /// </summary>
         [Input("productPlan", required: true)]
         public Input<string> ProductPlan { get; set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the IoT Hub Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -225,18 +234,19 @@ namespace Pulumiverse.Scaleway
         public IotHubArgs()
         {
         }
+        public static new IotHubArgs Empty => new IotHubArgs();
     }
 
-    public sealed class IotHubState : Pulumi.ResourceArgs
+    public sealed class IotHubState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The current number of connected devices in the Hub
+        /// The current number of connected devices in the Hub.
         /// </summary>
         [Input("connectedDeviceCount")]
         public Input<int>? ConnectedDeviceCount { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the IoT Hub
+        /// The date and time the Hub was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -248,7 +258,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? DeviceAutoProvisioning { get; set; }
 
         /// <summary>
-        /// The number of registered devices in the Hub
+        /// The number of registered devices in the Hub.
         /// </summary>
         [Input("deviceCount")]
         public Input<int>? DeviceCount { get; set; }
@@ -260,13 +270,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? DisableEvents { get; set; }
 
         /// <summary>
-        /// Whether to enable the hub or not
+        /// Wether the IoT Hub instance should be enabled or not.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The endpoint to connect the devices to
+        /// The MQTT network endpoint to connect MQTT devices to.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -290,7 +300,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HubCaChallenge { get; set; }
 
         /// <summary>
-        /// The name of the hub
+        /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -302,31 +312,31 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The product plan of the hub
+        /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
         /// </summary>
         [Input("productPlan")]
         public Input<string>? ProductPlan { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the IoT Hub Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The status of the hub
+        /// The current status of the Hub.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the IoT Hub
+        /// The date and time the Hub resource was updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
@@ -334,5 +344,6 @@ namespace Pulumiverse.Scaleway
         public IotHubState()
         {
         }
+        public static new IotHubState Empty => new IotHubState();
     }
 }

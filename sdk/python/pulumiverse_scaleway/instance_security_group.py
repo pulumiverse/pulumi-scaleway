@@ -30,17 +30,19 @@ class InstanceSecurityGroupArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceSecurityGroup resource.
-        :param pulumi.Input[str] description: The description of the security group
-        :param pulumi.Input[bool] enable_default_security: Enable blocking of SMTP on IPv4 and IPv6
-        :param pulumi.Input[str] inbound_default_policy: Default inbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]] inbound_rules: Inbound rules for this security group
-        :param pulumi.Input[str] name: The name of the security group
-        :param pulumi.Input[str] outbound_default_policy: Default outbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: Outbound rules for this security group
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[bool] stateful: The stateful value of the security group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the security group.
+        :param pulumi.Input[bool] enable_default_security: Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        :param pulumi.Input[bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
+               If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        :param pulumi.Input[str] inbound_default_policy: The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] name: The name of the security group.
+        :param pulumi.Input[str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
+        :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -71,7 +73,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the security group
+        The description of the security group.
         """
         return pulumi.get(self, "description")
 
@@ -83,7 +85,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter(name="enableDefaultSecurity")
     def enable_default_security(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable blocking of SMTP on IPv4 and IPv6
+        Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         """
         return pulumi.get(self, "enable_default_security")
 
@@ -94,6 +96,10 @@ class InstanceSecurityGroupArgs:
     @property
     @pulumi.getter(name="externalRules")
     def external_rules(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A boolean to specify whether to use instance_security_group_rules.
+        If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        """
         return pulumi.get(self, "external_rules")
 
     @external_rules.setter
@@ -104,7 +110,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter(name="inboundDefaultPolicy")
     def inbound_default_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Default inbound traffic policy for this security group
+        The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "inbound_default_policy")
 
@@ -116,7 +122,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]]]:
         """
-        Inbound rules for this security group
+        A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
@@ -128,7 +134,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the security group
+        The name of the security group.
         """
         return pulumi.get(self, "name")
 
@@ -140,7 +146,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter(name="outboundDefaultPolicy")
     def outbound_default_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Default outbound traffic policy for this security group
+        The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "outbound_default_policy")
 
@@ -152,7 +158,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]]]:
         """
-        Outbound rules for this security group
+        A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
@@ -164,7 +170,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the security group is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -176,7 +182,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter
     def stateful(self) -> Optional[pulumi.Input[bool]]:
         """
-        The stateful value of the security group
+        A boolean to specify whether the security group should be stateful or not.
         """
         return pulumi.get(self, "stateful")
 
@@ -188,7 +194,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the security group
+        The tags of the security group.
         """
         return pulumi.get(self, "tags")
 
@@ -200,7 +206,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the security group should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -227,18 +233,20 @@ class _InstanceSecurityGroupState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceSecurityGroup resources.
-        :param pulumi.Input[str] description: The description of the security group
-        :param pulumi.Input[bool] enable_default_security: Enable blocking of SMTP on IPv4 and IPv6
-        :param pulumi.Input[str] inbound_default_policy: Default inbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]] inbound_rules: Inbound rules for this security group
-        :param pulumi.Input[str] name: The name of the security group
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] outbound_default_policy: Default outbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: Outbound rules for this security group
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[bool] stateful: The stateful value of the security group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the security group.
+        :param pulumi.Input[bool] enable_default_security: Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        :param pulumi.Input[bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
+               If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        :param pulumi.Input[str] inbound_default_policy: The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] name: The name of the security group.
+        :param pulumi.Input[str] organization_id: The organization ID the security group is associated with.
+        :param pulumi.Input[str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
+        :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -271,7 +279,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the security group
+        The description of the security group.
         """
         return pulumi.get(self, "description")
 
@@ -283,7 +291,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="enableDefaultSecurity")
     def enable_default_security(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable blocking of SMTP on IPv4 and IPv6
+        Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         """
         return pulumi.get(self, "enable_default_security")
 
@@ -294,6 +302,10 @@ class _InstanceSecurityGroupState:
     @property
     @pulumi.getter(name="externalRules")
     def external_rules(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A boolean to specify whether to use instance_security_group_rules.
+        If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        """
         return pulumi.get(self, "external_rules")
 
     @external_rules.setter
@@ -304,7 +316,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="inboundDefaultPolicy")
     def inbound_default_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Default inbound traffic policy for this security group
+        The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "inbound_default_policy")
 
@@ -316,7 +328,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]]]:
         """
-        Inbound rules for this security group
+        A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
@@ -328,7 +340,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the security group
+        The name of the security group.
         """
         return pulumi.get(self, "name")
 
@@ -340,7 +352,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the security group is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -352,7 +364,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="outboundDefaultPolicy")
     def outbound_default_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Default outbound traffic policy for this security group
+        The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "outbound_default_policy")
 
@@ -364,7 +376,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]]]:
         """
-        Outbound rules for this security group
+        A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
@@ -376,7 +388,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the security group is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -388,7 +400,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter
     def stateful(self) -> Optional[pulumi.Input[bool]]:
         """
-        The stateful value of the security group
+        A boolean to specify whether the security group should be stateful or not.
         """
         return pulumi.get(self, "stateful")
 
@@ -400,7 +412,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the security group
+        The tags of the security group.
         """
         return pulumi.get(self, "tags")
 
@@ -412,7 +424,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the security group should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -440,20 +452,29 @@ class InstanceSecurityGroup(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InstanceSecurityGroup resource with the given unique name, props, and options.
+        ## Import
+
+        Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the security group
-        :param pulumi.Input[bool] enable_default_security: Enable blocking of SMTP on IPv4 and IPv6
-        :param pulumi.Input[str] inbound_default_policy: Default inbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]] inbound_rules: Inbound rules for this security group
-        :param pulumi.Input[str] name: The name of the security group
-        :param pulumi.Input[str] outbound_default_policy: Default outbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: Outbound rules for this security group
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[bool] stateful: The stateful value of the security group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the security group.
+        :param pulumi.Input[bool] enable_default_security: Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        :param pulumi.Input[bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
+               If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        :param pulumi.Input[str] inbound_default_policy: The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] name: The name of the security group.
+        :param pulumi.Input[str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
+        :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         ...
     @overload
@@ -462,7 +483,14 @@ class InstanceSecurityGroup(pulumi.CustomResource):
                  args: Optional[InstanceSecurityGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InstanceSecurityGroup resource with the given unique name, props, and options.
+        ## Import
+
+        Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param InstanceSecurityGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -542,18 +570,20 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the security group
-        :param pulumi.Input[bool] enable_default_security: Enable blocking of SMTP on IPv4 and IPv6
-        :param pulumi.Input[str] inbound_default_policy: Default inbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]] inbound_rules: Inbound rules for this security group
-        :param pulumi.Input[str] name: The name of the security group
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] outbound_default_policy: Default outbound traffic policy for this security group
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: Outbound rules for this security group
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[bool] stateful: The stateful value of the security group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the security group.
+        :param pulumi.Input[bool] enable_default_security: Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
+        :param pulumi.Input[bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
+               If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        :param pulumi.Input[str] inbound_default_policy: The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] name: The name of the security group.
+        :param pulumi.Input[str] organization_id: The organization ID the security group is associated with.
+        :param pulumi.Input[str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
+        :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -578,7 +608,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the security group
+        The description of the security group.
         """
         return pulumi.get(self, "description")
 
@@ -586,20 +616,24 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="enableDefaultSecurity")
     def enable_default_security(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable blocking of SMTP on IPv4 and IPv6
+        Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         """
         return pulumi.get(self, "enable_default_security")
 
     @property
     @pulumi.getter(name="externalRules")
     def external_rules(self) -> pulumi.Output[Optional[bool]]:
+        """
+        A boolean to specify whether to use instance_security_group_rules.
+        If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        """
         return pulumi.get(self, "external_rules")
 
     @property
     @pulumi.getter(name="inboundDefaultPolicy")
     def inbound_default_policy(self) -> pulumi.Output[Optional[str]]:
         """
-        Default inbound traffic policy for this security group
+        The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "inbound_default_policy")
 
@@ -607,7 +641,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="inboundRules")
     def inbound_rules(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSecurityGroupInboundRule']]]:
         """
-        Inbound rules for this security group
+        A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
@@ -615,7 +649,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the security group
+        The name of the security group.
         """
         return pulumi.get(self, "name")
 
@@ -623,7 +657,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the security group is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -631,7 +665,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="outboundDefaultPolicy")
     def outbound_default_policy(self) -> pulumi.Output[Optional[str]]:
         """
-        Default outbound traffic policy for this security group
+        The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "outbound_default_policy")
 
@@ -639,7 +673,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="outboundRules")
     def outbound_rules(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSecurityGroupOutboundRule']]]:
         """
-        Outbound rules for this security group
+        A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
@@ -647,7 +681,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the security group is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -655,7 +689,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter
     def stateful(self) -> pulumi.Output[Optional[bool]]:
         """
-        The stateful value of the security group
+        A boolean to specify whether the security group should be stateful or not.
         """
         return pulumi.get(self, "stateful")
 
@@ -663,7 +697,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the security group
+        The tags of the security group.
         """
         return pulumi.get(self, "tags")
 
@@ -671,7 +705,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the security group should be created.
         """
         return pulumi.get(self, "zone")
 

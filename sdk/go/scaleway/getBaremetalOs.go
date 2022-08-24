@@ -10,6 +10,44 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a baremetal operating system.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+//
+// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.GetBaremetalOs(ctx, &GetBaremetalOsArgs{
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.GetBaremetalOs(ctx, &GetBaremetalOsArgs{
+//				OsId: pulumi.StringRef("03b7f4ba-a6a1-4305-984e-b54fafbf1681"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetBaremetalOs(ctx *pulumi.Context, args *GetBaremetalOsArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOsResult
@@ -22,10 +60,14 @@ func GetBaremetalOs(ctx *pulumi.Context, args *GetBaremetalOsArgs, opts ...pulum
 
 // A collection of arguments for invoking getBaremetalOs.
 type GetBaremetalOsArgs struct {
-	Name    *string `pulumi:"name"`
-	OsId    *string `pulumi:"osId"`
+	// The os name. Only one of `name` and `osId` should be specified.
+	Name *string `pulumi:"name"`
+	// The operating system id. Only one of `name` and `osId` should be specified.
+	OsId *string `pulumi:"osId"`
+	// The os version.
 	Version *string `pulumi:"version"`
-	Zone    *string `pulumi:"zone"`
+	// `zone`) The zone in which the os exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getBaremetalOs.
@@ -53,10 +95,14 @@ func GetBaremetalOsOutput(ctx *pulumi.Context, args GetBaremetalOsOutputArgs, op
 
 // A collection of arguments for invoking getBaremetalOs.
 type GetBaremetalOsOutputArgs struct {
-	Name    pulumi.StringPtrInput `pulumi:"name"`
-	OsId    pulumi.StringPtrInput `pulumi:"osId"`
+	// The os name. Only one of `name` and `osId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The operating system id. Only one of `name` and `osId` should be specified.
+	OsId pulumi.StringPtrInput `pulumi:"osId"`
+	// The os version.
 	Version pulumi.StringPtrInput `pulumi:"version"`
-	Zone    pulumi.StringPtrInput `pulumi:"zone"`
+	// `zone`) The zone in which the os exists.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetBaremetalOsOutputArgs) ElementType() reflect.Type {

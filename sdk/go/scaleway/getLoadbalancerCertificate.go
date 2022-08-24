@@ -10,6 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about Scaleway Load-Balancer Certificates.
+//
+// This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+//
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+//
+// ## Examples
 func LookupLoadbalancerCertificate(ctx *pulumi.Context, args *LookupLoadbalancerCertificateArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerCertificateResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerCertificateResult
@@ -22,9 +29,14 @@ func LookupLoadbalancerCertificate(ctx *pulumi.Context, args *LookupLoadbalancer
 
 // A collection of arguments for invoking getLoadbalancerCertificate.
 type LookupLoadbalancerCertificateArgs struct {
+	// The certificate id.
+	// - Only one of `name` and `certificateId` should be specified.
 	CertificateId *string `pulumi:"certificateId"`
-	LbId          *string `pulumi:"lbId"`
-	Name          *string `pulumi:"name"`
+	// The load-balancer ID this certificate is attached to.
+	LbId *string `pulumi:"lbId"`
+	// The name of the certificate backend.
+	// - When using a certificate `name` you should specify the `lb-id`
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getLoadbalancerCertificate.
@@ -59,9 +71,14 @@ func LookupLoadbalancerCertificateOutput(ctx *pulumi.Context, args LookupLoadbal
 
 // A collection of arguments for invoking getLoadbalancerCertificate.
 type LookupLoadbalancerCertificateOutputArgs struct {
+	// The certificate id.
+	// - Only one of `name` and `certificateId` should be specified.
 	CertificateId pulumi.StringPtrInput `pulumi:"certificateId"`
-	LbId          pulumi.StringPtrInput `pulumi:"lbId"`
-	Name          pulumi.StringPtrInput `pulumi:"name"`
+	// The load-balancer ID this certificate is attached to.
+	LbId pulumi.StringPtrInput `pulumi:"lbId"`
+	// The name of the certificate backend.
+	// - When using a certificate `name` you should specify the `lb-id`
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupLoadbalancerCertificateOutputArgs) ElementType() reflect.Type {

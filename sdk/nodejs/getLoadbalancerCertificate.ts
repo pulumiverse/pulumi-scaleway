@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about Scaleway Load-Balancer Certificates.
+ *
+ * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+ *
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+ *
+ * ## Examples
+ */
 export function getLoadbalancerCertificate(args?: GetLoadbalancerCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerCertificateResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +32,19 @@ export function getLoadbalancerCertificate(args?: GetLoadbalancerCertificateArgs
  * A collection of arguments for invoking getLoadbalancerCertificate.
  */
 export interface GetLoadbalancerCertificateArgs {
+    /**
+     * The certificate id.
+     * - Only one of `name` and `certificateId` should be specified.
+     */
     certificateId?: string;
+    /**
+     * The load-balancer ID this certificate is attached to.
+     */
     lbId?: string;
+    /**
+     * The name of the certificate backend.
+     * - When using a certificate `name` you should specify the `lb-id`
+     */
     name?: string;
 }
 
@@ -57,7 +77,18 @@ export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertifica
  * A collection of arguments for invoking getLoadbalancerCertificate.
  */
 export interface GetLoadbalancerCertificateOutputArgs {
+    /**
+     * The certificate id.
+     * - Only one of `name` and `certificateId` should be specified.
+     */
     certificateId?: pulumi.Input<string>;
+    /**
+     * The load-balancer ID this certificate is attached to.
+     */
     lbId?: pulumi.Input<string>;
+    /**
+     * The name of the certificate backend.
+     * - When using a certificate `name` you should specify the `lb-id`
+     */
     name?: pulumi.Input<string>;
 }

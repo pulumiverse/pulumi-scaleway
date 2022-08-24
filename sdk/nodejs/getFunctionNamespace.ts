@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a function namespace.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by namespace ID
+ * const myNamespace = pulumi.output(scaleway.getFunctionNamespace({
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionNamespaceResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +37,19 @@ export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pul
  * A collection of arguments for invoking getFunctionNamespace.
  */
 export interface GetFunctionNamespaceArgs {
+    /**
+     * The namespace name.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     name?: string;
+    /**
+     * The namespace id.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     namespaceId?: string;
+    /**
+     * `region`) The region in which the namespace exists.
+     */
     region?: string;
 }
 
@@ -31,7 +57,13 @@ export interface GetFunctionNamespaceArgs {
  * A collection of values returned by getFunctionNamespace.
  */
 export interface GetFunctionNamespaceResult {
+    /**
+     * The description of the namespace.
+     */
     readonly description: string;
+    /**
+     * The environment variables of the namespace.
+     */
     readonly environmentVariables: {[key: string]: string};
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -39,10 +71,19 @@ export interface GetFunctionNamespaceResult {
     readonly id: string;
     readonly name?: string;
     readonly namespaceId?: string;
+    /**
+     * The organization ID the namespace is associated with.
+     */
     readonly organizationId: string;
     readonly projectId: string;
     readonly region?: string;
+    /**
+     * The registry endpoint of the namespace.
+     */
     readonly registryEndpoint: string;
+    /**
+     * The registry namespace ID of the namespace.
+     */
     readonly registryNamespaceId: string;
 }
 
@@ -54,7 +95,18 @@ export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs
  * A collection of arguments for invoking getFunctionNamespace.
  */
 export interface GetFunctionNamespaceOutputArgs {
+    /**
+     * The namespace name.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace id.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     namespaceId?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the namespace exists.
+     */
     region?: pulumi.Input<string>;
 }

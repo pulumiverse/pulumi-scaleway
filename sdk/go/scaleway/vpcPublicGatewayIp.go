@@ -10,24 +10,72 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway VPC Public Gateway IP.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
+//
+// ## Example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", &scaleway.VpcPublicGatewayIpArgs{
+//				Reverse: pulumi.String("tf.example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDomainRecord(ctx, "tfA", &scaleway.DomainRecordArgs{
+//				Data:     main.Address,
+//				DnsZone:  pulumi.String("example.com"),
+//				Priority: pulumi.Int(1),
+//				Ttl:      pulumi.Int(3600),
+//				Type:     pulumi.String("A"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type VpcPublicGatewayIp struct {
 	pulumi.CustomResourceState
 
-	// the IP itself
+	// The IP address itself.
 	Address pulumi.StringOutput `pulumi:"address"`
-	// The date and time of the creation of the public gateway IP
+	// The date and time of the creation of the public gateway ip.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the public gateway ip is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// reverse domain name for the IP address
+	// The reverse domain name for the IP address
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
-	// The tags associated with public gateway IP
+	// The tags associated with the public gateway IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The date and time of the last update of the public gateway IP
+	// The date and time of the last update of the public gateway ip.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway ip should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -61,40 +109,40 @@ func GetVpcPublicGatewayIp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPublicGatewayIp resources.
 type vpcPublicGatewayIpState struct {
-	// the IP itself
+	// The IP address itself.
 	Address *string `pulumi:"address"`
-	// The date and time of the creation of the public gateway IP
+	// The date and time of the creation of the public gateway ip.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the public gateway ip is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// reverse domain name for the IP address
+	// The reverse domain name for the IP address
 	Reverse *string `pulumi:"reverse"`
-	// The tags associated with public gateway IP
+	// The tags associated with the public gateway IP.
 	Tags []string `pulumi:"tags"`
-	// The date and time of the last update of the public gateway IP
+	// The date and time of the last update of the public gateway ip.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway ip should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPublicGatewayIpState struct {
-	// the IP itself
+	// The IP address itself.
 	Address pulumi.StringPtrInput
-	// The date and time of the creation of the public gateway IP
+	// The date and time of the creation of the public gateway ip.
 	CreatedAt pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the public gateway ip is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId pulumi.StringPtrInput
-	// reverse domain name for the IP address
+	// The reverse domain name for the IP address
 	Reverse pulumi.StringPtrInput
-	// The tags associated with public gateway IP
+	// The tags associated with the public gateway IP.
 	Tags pulumi.StringArrayInput
-	// The date and time of the last update of the public gateway IP
+	// The date and time of the last update of the public gateway ip.
 	UpdatedAt pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway ip should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -103,25 +151,25 @@ func (VpcPublicGatewayIpState) ElementType() reflect.Type {
 }
 
 type vpcPublicGatewayIpArgs struct {
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// reverse domain name for the IP address
+	// The reverse domain name for the IP address
 	Reverse *string `pulumi:"reverse"`
-	// The tags associated with public gateway IP
+	// The tags associated with the public gateway IP.
 	Tags []string `pulumi:"tags"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway ip should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcPublicGatewayIp resource.
 type VpcPublicGatewayIpArgs struct {
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the public gateway ip is associated with.
 	ProjectId pulumi.StringPtrInput
-	// reverse domain name for the IP address
+	// The reverse domain name for the IP address
 	Reverse pulumi.StringPtrInput
-	// The tags associated with public gateway IP
+	// The tags associated with the public gateway IP.
 	Tags pulumi.StringArrayInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which the public gateway ip should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -212,42 +260,42 @@ func (o VpcPublicGatewayIpOutput) ToVpcPublicGatewayIpOutputWithContext(ctx cont
 	return o
 }
 
-// the IP itself
+// The IP address itself.
 func (o VpcPublicGatewayIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
-// The date and time of the creation of the public gateway IP
+// The date and time of the creation of the public gateway ip.
 func (o VpcPublicGatewayIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the public gateway ip is associated with.
 func (o VpcPublicGatewayIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the public gateway ip is associated with.
 func (o VpcPublicGatewayIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// reverse domain name for the IP address
+// The reverse domain name for the IP address
 func (o VpcPublicGatewayIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.Reverse }).(pulumi.StringOutput)
 }
 
-// The tags associated with public gateway IP
+// The tags associated with the public gateway IP.
 func (o VpcPublicGatewayIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The date and time of the last update of the public gateway IP
+// The date and time of the last update of the public gateway ip.
 func (o VpcPublicGatewayIpOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which the public gateway ip should be created.
 func (o VpcPublicGatewayIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

@@ -12,38 +12,104 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetDatabaseInstance
     {
+        /// <summary>
+        /// Gets information about a RDB instance.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myInstance = Scaleway.GetDatabaseInstance.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetDatabaseInstanceResult> InvokeAsync(GetDatabaseInstanceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a RDB instance.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myInstance = Scaleway.GetDatabaseInstance.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetDatabaseInstanceResult> Invoke(GetDatabaseInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetDatabaseInstanceArgs : Pulumi.InvokeArgs
+    public sealed class GetDatabaseInstanceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The RDB instance ID.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
 
+        /// <summary>
+        /// The name of the RDB instance.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         public GetDatabaseInstanceArgs()
         {
         }
+        public static new GetDatabaseInstanceArgs Empty => new GetDatabaseInstanceArgs();
     }
 
-    public sealed class GetDatabaseInstanceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDatabaseInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The RDB instance ID.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
+        /// <summary>
+        /// The name of the RDB instance.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         public GetDatabaseInstanceInvokeArgs()
         {
         }
+        public static new GetDatabaseInstanceInvokeArgs Empty => new GetDatabaseInstanceInvokeArgs();
     }
 
 

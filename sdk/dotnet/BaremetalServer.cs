@@ -10,83 +10,135 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = "GP-BM1-S",
+    ///         Os = "d17d6872-0412-45d9-a198-af82c34d3c5c",
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/baremetalServer:BaremetalServer")]
-    public partial class BaremetalServer : Pulumi.CustomResource
+    public partial class BaremetalServer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Some description to associate to the server, max 255 characters
+        /// A description for the server.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The domain of the server.
+        /// </summary>
         [Output("domain")]
         public Output<string> Domain { get; private set; } = null!;
 
         /// <summary>
-        /// Hostname of the server
+        /// The hostname of the server.
         /// </summary>
         [Output("hostname")]
         public Output<string?> Hostname { get; private set; } = null!;
 
+        /// <summary>
+        /// (List of) The IPs of the server.
+        /// </summary>
         [Output("ips")]
         public Output<ImmutableArray<Outputs.BaremetalServerIp>> Ips { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the server
+        /// The name of the server.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// ID or name of the server offer
+        /// The offer name or UUID of the baremetal server.
+        /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
         /// </summary>
         [Output("offer")]
         public Output<string> Offer { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the server offer
+        /// The ID of the offer.
         /// </summary>
         [Output("offerId")]
         public Output<string> OfferId { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the server is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The base image of the server
+        /// The UUID of the os to install on the server.
+        /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Output("os")]
         public Output<string> Os { get; private set; } = null!;
 
         /// <summary>
-        /// The base image ID of the server
+        /// The ID of the os.
         /// </summary>
         [Output("osId")]
         public Output<string> OsId { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Array of SSH key IDs allowed to SSH to the server
+        /// List of SSH keys allowed to connect to the server.
+        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         [Output("sshKeyIds")]
         public Output<ImmutableArray<string>> SshKeyIds { get; private set; } = null!;
 
         /// <summary>
-        /// Array of tags to associate with the server
+        /// The tags associated with the server.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the server should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -136,40 +188,43 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class BaremetalServerArgs : Pulumi.ResourceArgs
+    public sealed class BaremetalServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Some description to associate to the server, max 255 characters
+        /// A description for the server.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Hostname of the server
+        /// The hostname of the server.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// Name of the server
+        /// The name of the server.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// ID or name of the server offer
+        /// The offer name or UUID of the baremetal server.
+        /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
 
         /// <summary>
-        /// The base image of the server
+        /// The UUID of the os to install on the server.
+        /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Input("os", required: true)]
         public Input<string> Os { get; set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -178,7 +233,8 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
-        /// Array of SSH key IDs allowed to SSH to the server
+        /// List of SSH keys allowed to connect to the server.
+        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         public InputList<string> SshKeyIds
         {
@@ -190,7 +246,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// Array of tags to associate with the server
+        /// The tags associated with the server.
         /// </summary>
         public InputList<string> Tags
         {
@@ -199,7 +255,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -207,27 +263,35 @@ namespace Pulumiverse.Scaleway
         public BaremetalServerArgs()
         {
         }
+        public static new BaremetalServerArgs Empty => new BaremetalServerArgs();
     }
 
-    public sealed class BaremetalServerState : Pulumi.ResourceArgs
+    public sealed class BaremetalServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Some description to associate to the server, max 255 characters
+        /// A description for the server.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The domain of the server.
+        /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
         /// <summary>
-        /// Hostname of the server
+        /// The hostname of the server.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         [Input("ips")]
         private InputList<Inputs.BaremetalServerIpGetArgs>? _ips;
+
+        /// <summary>
+        /// (List of) The IPs of the server.
+        /// </summary>
         public InputList<Inputs.BaremetalServerIpGetArgs> Ips
         {
             get => _ips ?? (_ips = new InputList<Inputs.BaremetalServerIpGetArgs>());
@@ -235,43 +299,46 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Name of the server
+        /// The name of the server.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// ID or name of the server offer
+        /// The offer name or UUID of the baremetal server.
+        /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
         /// </summary>
         [Input("offer")]
         public Input<string>? Offer { get; set; }
 
         /// <summary>
-        /// ID of the server offer
+        /// The ID of the offer.
         /// </summary>
         [Input("offerId")]
         public Input<string>? OfferId { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the server is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The base image of the server
+        /// The UUID of the os to install on the server.
+        /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
 
         /// <summary>
-        /// The base image ID of the server
+        /// The ID of the os.
         /// </summary>
         [Input("osId")]
         public Input<string>? OsId { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -280,7 +347,8 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
-        /// Array of SSH key IDs allowed to SSH to the server
+        /// List of SSH keys allowed to connect to the server.
+        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         public InputList<string> SshKeyIds
         {
@@ -292,7 +360,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// Array of tags to associate with the server
+        /// The tags associated with the server.
         /// </summary>
         public InputList<string> Tags
         {
@@ -301,7 +369,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -309,5 +377,6 @@ namespace Pulumiverse.Scaleway
         public BaremetalServerState()
         {
         }
+        public static new BaremetalServerState Empty => new BaremetalServerState();
     }
 }

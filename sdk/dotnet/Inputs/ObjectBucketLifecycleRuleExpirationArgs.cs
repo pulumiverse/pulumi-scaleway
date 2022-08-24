@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class ObjectBucketLifecycleRuleExpirationArgs : Pulumi.ResourceArgs
+    public sealed class ObjectBucketLifecycleRuleExpirationArgs : global::Pulumi.ResourceArgs
     {
         [Input("days", required: true)]
         public Input<int> Days { get; set; } = null!;
@@ -19,5 +19,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public ObjectBucketLifecycleRuleExpirationArgs()
         {
         }
+        public static new ObjectBucketLifecycleRuleExpirationArgs Empty => new ObjectBucketLifecycleRuleExpirationArgs();
     }
 }

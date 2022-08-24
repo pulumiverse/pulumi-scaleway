@@ -64,6 +64,9 @@ class GetVpcPublicPatRuleResult:
     @property
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> str:
+        """
+        The ID of the public gateway.
+        """
         return pulumi.get(self, "gateway_id")
 
     @property
@@ -87,21 +90,33 @@ class GetVpcPublicPatRuleResult:
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
+        """
+        The Private IP to forward data to (IP address).
+        """
         return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="privatePort")
     def private_port(self) -> int:
+        """
+        The Private port to translate to.
+        """
         return pulumi.get(self, "private_port")
 
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="publicPort")
     def public_port(self) -> int:
+        """
+        The Public port to listen on.
+        """
         return pulumi.get(self, "public_port")
 
     @property
@@ -138,7 +153,43 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
                             zone: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicPatRuleResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway PAT rule. For further information please check the
+    API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+    dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
+    pn01 = scaleway.VpcPrivateNetwork("pn01")
+    gn01 = scaleway.VpcGatewayNetwork("gn01",
+        gateway_id=pg01.id,
+        private_network_id=pn01.id,
+        dhcp_id=dhcp01.id,
+        cleanup_dhcp=True,
+        enable_masquerade=True,
+        opts=pulumi.ResourceOptions(depends_on=[pn01]))
+    main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule",
+        gateway_id=pg01.id,
+        private_ip=dhcp01.address,
+        private_port=42,
+        public_port=42,
+        protocol="both",
+        opts=pulumi.ResourceOptions(depends_on=[
+                gn01,
+                pn01,
+            ]))
+    main_vpc_public_pat_rule = scaleway.get_vpc_public_pat_rule_output(pat_rule_id=main_vpc_public_gateway_pat_rule.id)
+    ```
+
+
+    :param str pat_rule_id: The ID of the PAT rule to retrieve
+    :param str zone: `zone`) The zone in which
+           the image exists.
     """
     __args__ = dict()
     __args__['patRuleId'] = pat_rule_id
@@ -165,6 +216,42 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicPatRuleResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a public gateway PAT rule. For further information please check the
+    API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+    dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
+    pn01 = scaleway.VpcPrivateNetwork("pn01")
+    gn01 = scaleway.VpcGatewayNetwork("gn01",
+        gateway_id=pg01.id,
+        private_network_id=pn01.id,
+        dhcp_id=dhcp01.id,
+        cleanup_dhcp=True,
+        enable_masquerade=True,
+        opts=pulumi.ResourceOptions(depends_on=[pn01]))
+    main_vpc_public_gateway_pat_rule = scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule",
+        gateway_id=pg01.id,
+        private_ip=dhcp01.address,
+        private_port=42,
+        public_port=42,
+        protocol="both",
+        opts=pulumi.ResourceOptions(depends_on=[
+                gn01,
+                pn01,
+            ]))
+    main_vpc_public_pat_rule = scaleway.get_vpc_public_pat_rule_output(pat_rule_id=main_vpc_public_gateway_pat_rule.id)
+    ```
+
+
+    :param str pat_rule_id: The ID of the PAT rule to retrieve
+    :param str zone: `zone`) The zone in which
+           the image exists.
     """
     ...

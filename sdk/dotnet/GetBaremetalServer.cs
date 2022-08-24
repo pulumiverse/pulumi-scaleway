@@ -12,44 +12,120 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetBaremetalServer
     {
+        /// <summary>
+        /// Gets information about a baremetal server.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byName = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Zone = "fr-par-2",
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     {
+        ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetBaremetalServerResult> InvokeAsync(GetBaremetalServerArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a baremetal server.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byName = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Zone = "fr-par-2",
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     {
+        ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetBaremetalServerResult> Invoke(GetBaremetalServerInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetBaremetalServerArgs : Pulumi.InvokeArgs
+    public sealed class GetBaremetalServerArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         [Input("serverId")]
         public string? ServerId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the server exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
         public GetBaremetalServerArgs()
         {
         }
+        public static new GetBaremetalServerArgs Empty => new GetBaremetalServerArgs();
     }
 
-    public sealed class GetBaremetalServerInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetBaremetalServerInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the server exists.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
         public GetBaremetalServerInvokeArgs()
         {
         }
+        public static new GetBaremetalServerInvokeArgs Empty => new GetBaremetalServerInvokeArgs();
     }
 
 

@@ -4,6 +4,29 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a baremetal operating system.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ *
+ * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by os name and version
+ * const byName = pulumi.output(scaleway.getBaremetalOs({
+ *     name: "Ubuntu",
+ *     version: "20.04 LTS (Focal Fossa)",
+ * }));
+ * // Get info by os id
+ * const byId = pulumi.output(scaleway.getBaremetalOs({
+ *     osId: "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
+ * }));
+ * ```
+ */
 export function getBaremetalOs(args?: GetBaremetalOsArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOsResult> {
     args = args || {};
     if (!opts) {
@@ -23,9 +46,21 @@ export function getBaremetalOs(args?: GetBaremetalOsArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getBaremetalOs.
  */
 export interface GetBaremetalOsArgs {
+    /**
+     * The os name. Only one of `name` and `osId` should be specified.
+     */
     name?: string;
+    /**
+     * The operating system id. Only one of `name` and `osId` should be specified.
+     */
     osId?: string;
+    /**
+     * The os version.
+     */
     version?: string;
+    /**
+     * `zone`) The zone in which the os exists.
+     */
     zone?: string;
 }
 
@@ -51,8 +86,20 @@ export function getBaremetalOsOutput(args?: GetBaremetalOsOutputArgs, opts?: pul
  * A collection of arguments for invoking getBaremetalOs.
  */
 export interface GetBaremetalOsOutputArgs {
+    /**
+     * The os name. Only one of `name` and `osId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The operating system id. Only one of `name` and `osId` should be specified.
+     */
     osId?: pulumi.Input<string>;
+    /**
+     * The os version.
+     */
     version?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the os exists.
+     */
     zone?: pulumi.Input<string>;
 }

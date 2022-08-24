@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const availabilityGroup = new scaleway.InstancePlacementGroup("availability_group", {});
+ * ```
+ *
+ * ## Import
+ *
+ * Placement groups can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class InstancePlacementGroup extends pulumi.CustomResource {
     /**
      * Get an existing InstancePlacementGroup resource's state with the given name, ID, and optional extra
@@ -33,15 +53,15 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the placement group
+     * The name of the placement group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the placement group is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * One of the two policy_mode may be selected: enforced or optional.
+     * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
     public readonly policyMode!: pulumi.Output<string | undefined>;
     /**
@@ -49,19 +69,19 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly policyRespected!: pulumi.Output<boolean>;
     /**
-     * The operating mode is selected by a policy_type
+     * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     public readonly policyType!: pulumi.Output<string | undefined>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the placement group is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The tags associated with the placement group
+     * A list of tags to apply to the placement group.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the placement group should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -107,15 +127,15 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
  */
 export interface InstancePlacementGroupState {
     /**
-     * The name of the placement group
+     * The name of the placement group.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the placement group is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * One of the two policy_mode may be selected: enforced or optional.
+     * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
     policyMode?: pulumi.Input<string>;
     /**
@@ -123,19 +143,19 @@ export interface InstancePlacementGroupState {
      */
     policyRespected?: pulumi.Input<boolean>;
     /**
-     * The operating mode is selected by a policy_type
+     * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     policyType?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the placement group is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with the placement group
+     * A list of tags to apply to the placement group.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the placement group should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -145,27 +165,27 @@ export interface InstancePlacementGroupState {
  */
 export interface InstancePlacementGroupArgs {
     /**
-     * The name of the placement group
+     * The name of the placement group.
      */
     name?: pulumi.Input<string>;
     /**
-     * One of the two policy_mode may be selected: enforced or optional.
+     * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
     policyMode?: pulumi.Input<string>;
     /**
-     * The operating mode is selected by a policy_type
+     * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     policyType?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the placement group is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with the placement group
+     * A list of tags to apply to the placement group.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the placement group should be created.
      */
     zone?: pulumi.Input<string>;
 }

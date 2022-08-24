@@ -11,16 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class IotDeviceMessageFiltersArgs : Pulumi.ResourceArgs
+    public sealed class IotDeviceMessageFiltersArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Rules used to restrict topics the device can publish to.
+        /// </summary>
         [Input("publish")]
         public Input<Inputs.IotDeviceMessageFiltersPublishArgs>? Publish { get; set; }
 
+        /// <summary>
+        /// Rules used to restrict topics the device can subscribe to.
+        /// </summary>
         [Input("subscribe")]
         public Input<Inputs.IotDeviceMessageFiltersSubscribeArgs>? Subscribe { get; set; }
 
         public IotDeviceMessageFiltersArgs()
         {
         }
+        public static new IotDeviceMessageFiltersArgs Empty => new IotDeviceMessageFiltersArgs();
     }
 }

@@ -86,7 +86,27 @@ def get_baremetal_os(name: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalOsResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a baremetal operating system.
+    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_baremetal_os(name="Ubuntu",
+        version="20.04 LTS (Focal Fossa)")
+    by_id = scaleway.get_baremetal_os(os_id="03b7f4ba-a6a1-4305-984e-b54fafbf1681")
+    ```
+
+
+    :param str name: The os name. Only one of `name` and `os_id` should be specified.
+    :param str os_id: The operating system id. Only one of `name` and `os_id` should be specified.
+    :param str version: The os version.
+    :param str zone: `zone`) The zone in which the os exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -111,6 +131,26 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a baremetal operating system.
+    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+
+    You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_name = scaleway.get_baremetal_os(name="Ubuntu",
+        version="20.04 LTS (Focal Fossa)")
+    by_id = scaleway.get_baremetal_os(os_id="03b7f4ba-a6a1-4305-984e-b54fafbf1681")
+    ```
+
+
+    :param str name: The os name. Only one of `name` and `os_id` should be specified.
+    :param str os_id: The operating system id. Only one of `name` and `os_id` should be specified.
+    :param str version: The os version.
+    :param str zone: `zone`) The zone in which the os exists.
     """
     ...

@@ -12,15 +12,75 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetVpcPublicGatewayDhcp
     {
+        /// <summary>
+        /// Gets information about a public gateway DHCP.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+        ///     {
+        ///         Subnet = "192.168.0.0/24",
+        ///     });
+        /// 
+        ///     var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new()
+        ///     {
+        ///         DhcpId = main.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetVpcPublicGatewayDhcpResult> InvokeAsync(GetVpcPublicGatewayDhcpArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a public gateway DHCP.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+        ///     {
+        ///         Subnet = "192.168.0.0/24",
+        ///     });
+        /// 
+        ///     var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new()
+        ///     {
+        ///         DhcpId = main.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetVpcPublicGatewayDhcpResult> Invoke(GetVpcPublicGatewayDhcpInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetVpcPublicGatewayDhcpArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPublicGatewayDhcpArgs : global::Pulumi.InvokeArgs
     {
         [Input("dhcpId", required: true)]
         public string DhcpId { get; set; } = null!;
@@ -28,9 +88,10 @@ namespace Pulumiverse.Scaleway
         public GetVpcPublicGatewayDhcpArgs()
         {
         }
+        public static new GetVpcPublicGatewayDhcpArgs Empty => new GetVpcPublicGatewayDhcpArgs();
     }
 
-    public sealed class GetVpcPublicGatewayDhcpInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPublicGatewayDhcpInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("dhcpId", required: true)]
         public Input<string> DhcpId { get; set; } = null!;
@@ -38,6 +99,7 @@ namespace Pulumiverse.Scaleway
         public GetVpcPublicGatewayDhcpInvokeArgs()
         {
         }
+        public static new GetVpcPublicGatewayDhcpInvokeArgs Empty => new GetVpcPublicGatewayDhcpInvokeArgs();
     }
 
 

@@ -14,9 +14,21 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class KubernetesClusterKubeconfig
     {
+        /// <summary>
+        /// The CA certificate of the Kubernetes API server.
+        /// </summary>
         public readonly string? ClusterCaCertificate;
+        /// <summary>
+        /// The raw kubeconfig file.
+        /// </summary>
         public readonly string? ConfigFile;
+        /// <summary>
+        /// The URL of the Kubernetes API server.
+        /// </summary>
         public readonly string? Host;
+        /// <summary>
+        /// The token to connect to the Kubernetes API server.
+        /// </summary>
         public readonly string? Token;
 
         [OutputConstructor]

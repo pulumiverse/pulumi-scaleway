@@ -4,6 +4,57 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Compute Snapshots.
+ * For more information,
+ * see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
+ *
+ * ## Example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.InstanceSnapshot("main", {
+ *     volumeId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ## Example with Unified type
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainInstanceVolume = new scaleway.InstanceVolume("mainInstanceVolume", {
+ *     type: "l_ssd",
+ *     sizeInGb: 10,
+ * });
+ * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
+ *     image: "ubuntu_jammy",
+ *     type: "DEV1-S",
+ *     rootVolume: {
+ *         sizeInGb: 10,
+ *         volumeType: "l_ssd",
+ *     },
+ *     additionalVolumeIds: [mainInstanceVolume.id],
+ * });
+ * const mainInstanceSnapshot = new scaleway.InstanceSnapshot("mainInstanceSnapshot", {
+ *     volumeId: mainInstanceVolume.id,
+ *     type: "unified",
+ * }, {
+ *     dependsOn: [mainInstanceServer],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class InstanceSnapshot extends pulumi.CustomResource {
     /**
      * Get an existing InstanceSnapshot resource's state with the given name, ID, and optional extra
@@ -33,39 +84,42 @@ export class InstanceSnapshot extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the snapshot
+     * The snapshot creation time.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The name of the snapshot
+     * The name of the snapshot. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the snapshot is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the snapshot is
+     * associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The size of the snapshot in gigabyte
+     * (Optional) The size of the snapshot.
      */
     public /*out*/ readonly sizeInGb!: pulumi.Output<number>;
     /**
-     * The tags associated with the snapshot
+     * A list of tags to apply to the snapshot.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The volume type of the snapshot
+     * The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+     * Updates to this field will recreate a new resource.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    public readonly type!: pulumi.Output<string>;
     /**
-     * ID of the volume to take a snapshot from
+     * The ID of the volume to take a snapshot from.
      */
     public readonly volumeId!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which
+     * the snapshot should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -99,12 +153,12 @@ export class InstanceSnapshot extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["sizeInGb"] = undefined /*out*/;
-            resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceSnapshot.__pulumiType, name, resourceInputs, opts);
@@ -116,39 +170,42 @@ export class InstanceSnapshot extends pulumi.CustomResource {
  */
 export interface InstanceSnapshotState {
     /**
-     * The date and time of the creation of the snapshot
+     * The snapshot creation time.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The name of the snapshot
+     * The name of the snapshot. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the snapshot is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the snapshot is
+     * associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the snapshot in gigabyte
+     * (Optional) The size of the snapshot.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
-     * The tags associated with the snapshot
+     * A list of tags to apply to the snapshot.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The volume type of the snapshot
+     * The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+     * Updates to this field will recreate a new resource.
      */
     type?: pulumi.Input<string>;
     /**
-     * ID of the volume to take a snapshot from
+     * The ID of the volume to take a snapshot from.
      */
     volumeId?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which
+     * the snapshot should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -158,23 +215,30 @@ export interface InstanceSnapshotState {
  */
 export interface InstanceSnapshotArgs {
     /**
-     * The name of the snapshot
+     * The name of the snapshot. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the snapshot is
+     * associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The tags associated with the snapshot
+     * A list of tags to apply to the snapshot.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * ID of the volume to take a snapshot from
+     * The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+     * Updates to this field will recreate a new resource.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * The ID of the volume to take a snapshot from.
      */
     volumeId: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which
+     * the snapshot should be created.
      */
     zone?: pulumi.Input<string>;
 }

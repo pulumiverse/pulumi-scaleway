@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a registry namespace.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by namespace ID
+ * const myNamespace = pulumi.output(scaleway.getRegistryNamespace({
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +37,19 @@ export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pul
  * A collection of arguments for invoking getRegistryNamespace.
  */
 export interface GetRegistryNamespaceArgs {
+    /**
+     * The namespace name.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     name?: string;
+    /**
+     * The namespace id.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     namespaceId?: string;
+    /**
+     * `region`) The region in which the namespace exists.
+     */
     region?: string;
 }
 
@@ -32,14 +58,23 @@ export interface GetRegistryNamespaceArgs {
  */
 export interface GetRegistryNamespaceResult {
     readonly description: string;
+    /**
+     * The endpoint of the Registry Namespace.
+     */
     readonly endpoint: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The Namespace Privacy Policy: whether or not the images are public.
+     */
     readonly isPublic: boolean;
     readonly name?: string;
     readonly namespaceId?: string;
+    /**
+     * The organization ID the namespace is associated with.
+     */
     readonly organizationId: string;
     readonly projectId: string;
     readonly region?: string;
@@ -53,7 +88,18 @@ export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs
  * A collection of arguments for invoking getRegistryNamespace.
  */
 export interface GetRegistryNamespaceOutputArgs {
+    /**
+     * The namespace name.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace id.
+     * Only one of `name` and `namespaceId` should be specified.
+     */
     namespaceId?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the namespace exists.
+     */
     region?: pulumi.Input<string>;
 }

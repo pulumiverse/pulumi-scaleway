@@ -12,38 +12,192 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetVpcPublicPatRule
     {
+        /// <summary>
+        /// Gets information about a public gateway PAT rule. For further information please check the
+        /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///     });
+        /// 
+        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     {
+        ///         Subnet = "192.168.1.0/24",
+        ///     });
+        /// 
+        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+        /// 
+        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             pn01,
+        ///         },
+        ///     });
+        /// 
+        ///     var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateIp = dhcp01.Address,
+        ///         PrivatePort = 42,
+        ///         PublicPort = 42,
+        ///         Protocol = "both",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             gn01,
+        ///             pn01,
+        ///         },
+        ///     });
+        /// 
+        ///     var mainVpcPublicPatRule = Scaleway.GetVpcPublicPatRule.Invoke(new()
+        ///     {
+        ///         PatRuleId = mainVpcPublicGatewayPatRule.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetVpcPublicPatRuleResult> InvokeAsync(GetVpcPublicPatRuleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a public gateway PAT rule. For further information please check the
+        /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///     });
+        /// 
+        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     {
+        ///         Subnet = "192.168.1.0/24",
+        ///     });
+        /// 
+        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+        /// 
+        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             pn01,
+        ///         },
+        ///     });
+        /// 
+        ///     var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateIp = dhcp01.Address,
+        ///         PrivatePort = 42,
+        ///         PublicPort = 42,
+        ///         Protocol = "both",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             gn01,
+        ///             pn01,
+        ///         },
+        ///     });
+        /// 
+        ///     var mainVpcPublicPatRule = Scaleway.GetVpcPublicPatRule.Invoke(new()
+        ///     {
+        ///         PatRuleId = mainVpcPublicGatewayPatRule.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetVpcPublicPatRuleResult> Invoke(GetVpcPublicPatRuleInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetVpcPublicPatRuleArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPublicPatRuleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the PAT rule to retrieve
+        /// </summary>
         [Input("patRuleId", required: true)]
         public string PatRuleId { get; set; } = null!;
 
+        /// <summary>
+        /// `zone`) The zone in which
+        /// the image exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
         public GetVpcPublicPatRuleArgs()
         {
         }
+        public static new GetVpcPublicPatRuleArgs Empty => new GetVpcPublicPatRuleArgs();
     }
 
-    public sealed class GetVpcPublicPatRuleInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcPublicPatRuleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the PAT rule to retrieve
+        /// </summary>
         [Input("patRuleId", required: true)]
         public Input<string> PatRuleId { get; set; } = null!;
 
+        /// <summary>
+        /// `zone`) The zone in which
+        /// the image exists.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
         public GetVpcPublicPatRuleInvokeArgs()
         {
         }
+        public static new GetVpcPublicPatRuleInvokeArgs Empty => new GetVpcPublicPatRuleInvokeArgs();
     }
 
 
@@ -51,6 +205,9 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcPublicPatRuleResult
     {
         public readonly string CreatedAt;
+        /// <summary>
+        /// The ID of the public gateway.
+        /// </summary>
         public readonly string GatewayId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -58,9 +215,21 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string OrganizationId;
         public readonly string PatRuleId;
+        /// <summary>
+        /// The Private IP to forward data to (IP address).
+        /// </summary>
         public readonly string PrivateIp;
+        /// <summary>
+        /// The Private port to translate to.
+        /// </summary>
         public readonly int PrivatePort;
+        /// <summary>
+        /// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// The Public port to listen on.
+        /// </summary>
         public readonly int PublicPort;
         public readonly string UpdatedAt;
         public readonly string? Zone;

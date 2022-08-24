@@ -5,6 +5,148 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Load-Balancers.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.LoadbalancerIp("main", {zone: "fr-par-1"});
+ * const base = new scaleway.Loadbalancer("base", {
+ *     ipId: main.id,
+ *     zone: main.zone,
+ *     type: "LB-S",
+ * });
+ * ```
+ *
+ * ### IP for Public Gateway
+ * resource "scaleway_vpc_public_gateway_ip" "main" {
+ * }
+ *
+ * ### Scaleway Private Network
+ * resource scaleway_vpc_private_network main {
+ * }
+ *
+ * ### VPC Public Gateway Network
+ * resource "scaleway_vpc_public_gateway" "main" {
+ *     name  = "tf-test-public-gw"
+ *     type  = "VPC-GW-S"
+ *     ip_id = scaleway_vpc_public_gateway_ip.main.id
+ * }
+ *
+ * ### VPC Public Gateway Network DHCP config
+ * resource "scaleway_vpc_public_gateway_dhcp" "main" {
+ *     subnet = "10.0.0.0/24"
+ * }
+ *
+ * ### VPC Gateway Network
+ * resource "scaleway_vpc_gateway_network" "main" {
+ *     gateway_id         = scaleway_vpc_public_gateway.main.id
+ *     private_network_id = scaleway_vpc_private_network.main.id
+ *     dhcp_id            = scaleway_vpc_public_gateway_dhcp.main.id
+ *     cleanup_dhcp       = true
+ *     enable_masquerade  = true
+ * }
+ *
+ * ### Scaleway Instance
+ * resource "scaleway_instance_server" "main" {
+ *     name        = "Scaleway Terraform Provider"
+ *     type        = "DEV1-S"
+ *     image       = "debian_bullseye"
+ *     enable_ipv6 = false
+ *
+ *     private_network {
+ *         pn_id = scaleway_vpc_private_network.main.id
+ *     }
+ * }
+ *
+ * ### IP for LB IP
+ * resource scaleway_lb_ip main {
+ * }
+ *
+ * ### Scaleway Private Network
+ * resource scaleway_vpc_private_network "main" {
+ *     name = "private network with static config"
+ * }
+ *
+ * ## Migration
+ *
+ * In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
+ * this change will not recreate your Load Balancer.
+ *
+ * Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+ *
+ * ## IP ID
+ *
+ * Since v1.15.0, `ipId` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
+ * When importing, the IP needs to be imported as well as the LB.
+ * When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
+ *
+ * For instance, if you had the following:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.Loadbalancer("main", {
+ *     type: "LB-S",
+ *     zone: "fr-par-1",
+ * });
+ * ```
+ *
+ * You will need to update it to:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
+ * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
+ *     ipId: mainLoadbalancerIp.id,
+ *     zone: "fr-par-1",
+ *     type: "LB-S",
+ *     releaseIp: false,
+ * });
+ * ```
+ *
+ * ## Private Network with static config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
+ * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
+ * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
+ *     ipId: mainLoadbalancerIp.id,
+ *     type: "LB-S",
+ *     releaseIp: false,
+ *     privateNetworks: [{
+ *         privateNetworkId: mainVpcPrivateNetwork.id,
+ *         staticConfigs: [
+ *             "172.16.0.100",
+ *             "172.16.0.101",
+ *         ],
+ *     }],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ *
+ *  Be aware that you will also need to import the `scaleway_lb_ip` resource.
+ */
 export class Loadbalancer extends pulumi.CustomResource {
     /**
      * Get an existing Loadbalancer resource's state with the given name, ID, and optional extra
@@ -34,19 +176,19 @@ export class Loadbalancer extends pulumi.CustomResource {
     }
 
     /**
-     * The load-balance public IP address
+     * The load-balance public IP Address
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The load-balance public IP ID
+     * The ID of the associated LB IP. See below.
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
-     * Name of the lb
+     * The name of the load-balancer.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the load-balancer is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -54,7 +196,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly privateNetworks!: pulumi.Output<outputs.LoadbalancerPrivateNetwork[] | undefined>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the load-balancer is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -62,21 +204,21 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public /*out*/ readonly region!: pulumi.Output<string>;
     /**
-     * Release the IPs related to this load-balancer
+     * The releaseIp allow release the ip address associated with the load-balancers.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
     public readonly releaseIp!: pulumi.Output<boolean | undefined>;
     /**
-     * Array of tags to associate with the load-balancer
+     * The tags associated with the load-balancers.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of load-balancer you want to create
+     * The type of the load-balancer. Please check the migration section to upgrade the type
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -134,19 +276,19 @@ export class Loadbalancer extends pulumi.CustomResource {
  */
 export interface LoadbalancerState {
     /**
-     * The load-balance public IP address
+     * The load-balance public IP Address
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The load-balance public IP ID
+     * The ID of the associated LB IP. See below.
      */
     ipId?: pulumi.Input<string>;
     /**
-     * Name of the lb
+     * The name of the load-balancer.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the load-balancer is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -154,7 +296,7 @@ export interface LoadbalancerState {
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerPrivateNetwork>[]>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the load-balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -162,21 +304,21 @@ export interface LoadbalancerState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Release the IPs related to this load-balancer
+     * The releaseIp allow release the ip address associated with the load-balancers.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
     releaseIp?: pulumi.Input<boolean>;
     /**
-     * Array of tags to associate with the load-balancer
+     * The tags associated with the load-balancers.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of load-balancer you want to create
+     * The type of the load-balancer. Please check the migration section to upgrade the type
      */
     type?: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
 }
@@ -186,11 +328,11 @@ export interface LoadbalancerState {
  */
 export interface LoadbalancerArgs {
     /**
-     * The load-balance public IP ID
+     * The ID of the associated LB IP. See below.
      */
     ipId: pulumi.Input<string>;
     /**
-     * Name of the lb
+     * The name of the load-balancer.
      */
     name?: pulumi.Input<string>;
     /**
@@ -198,25 +340,25 @@ export interface LoadbalancerArgs {
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerPrivateNetwork>[]>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the load-balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Release the IPs related to this load-balancer
+     * The releaseIp allow release the ip address associated with the load-balancers.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
     releaseIp?: pulumi.Input<boolean>;
     /**
-     * Array of tags to associate with the load-balancer
+     * The tags associated with the load-balancers.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of load-balancer you want to create
+     * The type of the load-balancer. Please check the migration section to upgrade the type
      */
     type: pulumi.Input<string>;
     /**
-     * The zone you want to attach the resource to
+     * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
 }

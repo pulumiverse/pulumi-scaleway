@@ -11,13 +11,20 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class LoadbalancerCertificateLetsencryptGetArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerCertificateLetsencryptGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Main domain of the certificate. A new certificate will be created if this field is changed.
+        /// </summary>
         [Input("commonName", required: true)]
         public Input<string> CommonName { get; set; } = null!;
 
         [Input("subjectAlternativeNames")]
         private InputList<string>? _subjectAlternativeNames;
+
+        /// <summary>
+        /// Array of alternative domain names.  A new certificate will be created if this field is changed.
+        /// </summary>
         public InputList<string> SubjectAlternativeNames
         {
             get => _subjectAlternativeNames ?? (_subjectAlternativeNames = new InputList<string>());
@@ -27,5 +34,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public LoadbalancerCertificateLetsencryptGetArgs()
         {
         }
+        public static new LoadbalancerCertificateLetsencryptGetArgs Empty => new LoadbalancerCertificateLetsencryptGetArgs();
     }
 }

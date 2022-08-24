@@ -11,19 +11,29 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class LoadbalancerFrontendAclGetArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerFrontendAclGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Action to undertake when an ACL filter matches.
+        /// </summary>
         [Input("action", required: true)]
         public Input<Inputs.LoadbalancerFrontendAclActionGetArgs> Action { get; set; } = null!;
 
+        /// <summary>
+        /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        /// </summary>
         [Input("match", required: true)]
         public Input<Inputs.LoadbalancerFrontendAclMatchGetArgs> Match { get; set; } = null!;
 
+        /// <summary>
+        /// The ACL name. If not provided it will be randomly generated.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         public LoadbalancerFrontendAclGetArgs()
         {
         }
+        public static new LoadbalancerFrontendAclGetArgs Empty => new LoadbalancerFrontendAclGetArgs();
     }
 }

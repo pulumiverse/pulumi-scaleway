@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about an IOT Device.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupIotDevice(ctx, &GetIotDeviceArgs{
+//				DeviceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupIotDevice(ctx *pulumi.Context, args *LookupIotDeviceArgs, opts ...pulumi.InvokeOption) (*LookupIotDeviceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIotDeviceResult
@@ -22,10 +50,16 @@ func LookupIotDevice(ctx *pulumi.Context, args *LookupIotDeviceArgs, opts ...pul
 
 // A collection of arguments for invoking getIotDevice.
 type LookupIotDeviceArgs struct {
+	// The device ID.
+	// Only one of the `name` and `deviceId` should be specified.
 	DeviceId *string `pulumi:"deviceId"`
-	HubId    *string `pulumi:"hubId"`
-	Name     *string `pulumi:"name"`
-	Region   *string `pulumi:"region"`
+	// The hub ID.
+	HubId *string `pulumi:"hubId"`
+	// The name of the Hub.
+	// Only one of the `name` and `deviceId` should be specified.
+	Name *string `pulumi:"name"`
+	// `region`) The region in which the hub exists.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getIotDevice.
@@ -63,10 +97,16 @@ func LookupIotDeviceOutput(ctx *pulumi.Context, args LookupIotDeviceOutputArgs, 
 
 // A collection of arguments for invoking getIotDevice.
 type LookupIotDeviceOutputArgs struct {
+	// The device ID.
+	// Only one of the `name` and `deviceId` should be specified.
 	DeviceId pulumi.StringPtrInput `pulumi:"deviceId"`
-	HubId    pulumi.StringPtrInput `pulumi:"hubId"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	Region   pulumi.StringPtrInput `pulumi:"region"`
+	// The hub ID.
+	HubId pulumi.StringPtrInput `pulumi:"hubId"`
+	// The name of the Hub.
+	// Only one of the `name` and `deviceId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `region`) The region in which the hub exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupIotDeviceOutputArgs) ElementType() reflect.Type {

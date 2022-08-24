@@ -10,47 +10,79 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Container Registry.
+    /// For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RegistryNamespace("main", new()
+    ///     {
+    ///         Description = "Main container registry",
+    ///         IsPublic = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/registryNamespace:RegistryNamespace")]
-    public partial class RegistryNamespace : Pulumi.CustomResource
+    public partial class RegistryNamespace : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The description of the container registry namespace
+        /// The description of the namespace.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The endpoint reachable by docker
+        /// Endpoint reachable by Docker.
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Define the default visibity policy
+        /// Whether the images stored in the namespace should be downloadable publicly (docker pull).
         /// </summary>
         [Output("isPublic")]
         public Output<bool?> IsPublic { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the container registry namespace
+        /// The unique name of the namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the namespace is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the namespace is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -100,34 +132,34 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class RegistryNamespaceArgs : Pulumi.ResourceArgs
+    public sealed class RegistryNamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the container registry namespace
+        /// The description of the namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Define the default visibity policy
+        /// Whether the images stored in the namespace should be downloadable publicly (docker pull).
         /// </summary>
         [Input("isPublic")]
         public Input<bool>? IsPublic { get; set; }
 
         /// <summary>
-        /// The name of the container registry namespace
+        /// The unique name of the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -135,48 +167,49 @@ namespace Pulumiverse.Scaleway
         public RegistryNamespaceArgs()
         {
         }
+        public static new RegistryNamespaceArgs Empty => new RegistryNamespaceArgs();
     }
 
-    public sealed class RegistryNamespaceState : Pulumi.ResourceArgs
+    public sealed class RegistryNamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The description of the container registry namespace
+        /// The description of the namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The endpoint reachable by docker
+        /// Endpoint reachable by Docker.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// Define the default visibity policy
+        /// Whether the images stored in the namespace should be downloadable publicly (docker pull).
         /// </summary>
         [Input("isPublic")]
         public Input<bool>? IsPublic { get; set; }
 
         /// <summary>
-        /// The name of the container registry namespace
+        /// The unique name of the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the namespace is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -184,5 +217,6 @@ namespace Pulumiverse.Scaleway
         public RegistryNamespaceState()
         {
         }
+        public static new RegistryNamespaceState Empty => new RegistryNamespaceState();
     }
 }

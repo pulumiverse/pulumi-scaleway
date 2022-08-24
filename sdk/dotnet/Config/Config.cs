@@ -52,6 +52,16 @@ namespace Pulumiverse.Scaleway
             set => _apiUrl.Set(value);
         }
 
+        private static readonly __Value<string?> _organizationId = new __Value<string?>(() => __config.Get("organizationId"));
+        /// <summary>
+        /// The Scaleway organization ID.
+        /// </summary>
+        public static string? OrganizationId
+        {
+            get => _organizationId.Get();
+            set => _organizationId.Set(value);
+        }
+
         private static readonly __Value<string?> _profile = new __Value<string?>(() => __config.Get("profile"));
         /// <summary>
         /// The Scaleway profile to use.

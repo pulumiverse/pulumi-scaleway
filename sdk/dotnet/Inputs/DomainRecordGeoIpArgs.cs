@@ -11,10 +11,14 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class DomainRecordGeoIpArgs : Pulumi.ResourceArgs
+    public sealed class DomainRecordGeoIpArgs : global::Pulumi.ResourceArgs
     {
         [Input("matches", required: true)]
         private InputList<Inputs.DomainRecordGeoIpMatchArgs>? _matches;
+
+        /// <summary>
+        /// The list of matches. *(Can be more than 1)*
+        /// </summary>
         public InputList<Inputs.DomainRecordGeoIpMatchArgs> Matches
         {
             get => _matches ?? (_matches = new InputList<Inputs.DomainRecordGeoIpMatchArgs>());
@@ -24,5 +28,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public DomainRecordGeoIpArgs()
         {
         }
+        public static new DomainRecordGeoIpArgs Empty => new DomainRecordGeoIpArgs();
     }
 }

@@ -16,6 +16,7 @@ class ProviderArgs:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
                  api_url: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[str]] = None,
                  profile: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -25,6 +26,7 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] access_key: The Scaleway access key.
         :param pulumi.Input[str] api_url: The Scaleway API URL to use.
+        :param pulumi.Input[str] organization_id: The Scaleway organization ID.
         :param pulumi.Input[str] profile: The Scaleway profile to use.
         :param pulumi.Input[str] project_id: The Scaleway project ID.
         :param pulumi.Input[str] region: The region you want to attach the resource to
@@ -37,6 +39,8 @@ class ProviderArgs:
             pulumi.set(__self__, "access_key", access_key)
         if api_url is not None:
             pulumi.set(__self__, "api_url", api_url)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if profile is not None:
             pulumi.set(__self__, "profile", profile)
         if project_id is None:
@@ -79,6 +83,18 @@ class ProviderArgs:
     @api_url.setter
     def api_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "api_url", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Scaleway organization ID.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "organization_id", value)
 
     @property
     @pulumi.getter
@@ -148,6 +164,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  api_url: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[str]] = None,
                  profile: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -164,6 +181,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The Scaleway access key.
         :param pulumi.Input[str] api_url: The Scaleway API URL to use.
+        :param pulumi.Input[str] organization_id: The Scaleway organization ID.
         :param pulumi.Input[str] profile: The Scaleway profile to use.
         :param pulumi.Input[str] project_id: The Scaleway project ID.
         :param pulumi.Input[str] region: The region you want to attach the resource to
@@ -199,6 +217,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  api_url: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[str]] = None,
                  profile: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -217,6 +236,7 @@ class Provider(pulumi.ProviderResource):
                 access_key = _utilities.get_env('SCW_ACCESS_KEY')
             __props__.__dict__["access_key"] = access_key
             __props__.__dict__["api_url"] = api_url
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["profile"] = profile
             if project_id is None:
                 project_id = _utilities.get_env('SCW_DEFAULT_PROJECT_ID')
@@ -251,6 +271,14 @@ class Provider(pulumi.ProviderResource):
         The Scaleway API URL to use.
         """
         return pulumi.get(self, "api_url")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Scaleway organization ID.
+        """
+        return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter

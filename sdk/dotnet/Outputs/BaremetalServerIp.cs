@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class BaremetalServerIp
     {
+        /// <summary>
+        /// The address of the IP.
+        /// </summary>
         public readonly string? Address;
+        /// <summary>
+        /// The ID of the IP.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The reverse of the IP.
+        /// </summary>
         public readonly string? Reverse;
         public readonly string? Version;
 

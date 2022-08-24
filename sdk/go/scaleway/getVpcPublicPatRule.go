@@ -10,6 +10,73 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a public gateway PAT rule. For further information please check the
+// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet: pulumi.String("192.168.1.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			gn01, err := scaleway.NewVpcGatewayNetwork(ctx, "gn01", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				DhcpId:           dhcp01.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pn01,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayPatRule, err := scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
+//				GatewayId:   pg01.ID(),
+//				PrivateIp:   dhcp01.Address,
+//				PrivatePort: pulumi.Int(42),
+//				PublicPort:  pulumi.Int(42),
+//				Protocol:    pulumi.String("both"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				gn01,
+//				pn01,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.GetVpcPublicPatRuleOutput(ctx, GetVpcPublicPatRuleOutputArgs{
+//				PatRuleId: mainVpcPublicGatewayPatRule.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetVpcPublicPatRule(ctx *pulumi.Context, args *GetVpcPublicPatRuleArgs, opts ...pulumi.InvokeOption) (*GetVpcPublicPatRuleResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetVpcPublicPatRuleResult
@@ -22,24 +89,32 @@ func GetVpcPublicPatRule(ctx *pulumi.Context, args *GetVpcPublicPatRuleArgs, opt
 
 // A collection of arguments for invoking getVpcPublicPatRule.
 type GetVpcPublicPatRuleArgs struct {
-	PatRuleId string  `pulumi:"patRuleId"`
-	Zone      *string `pulumi:"zone"`
+	// The ID of the PAT rule to retrieve
+	PatRuleId string `pulumi:"patRuleId"`
+	// `zone`) The zone in which
+	// the image exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getVpcPublicPatRule.
 type GetVpcPublicPatRuleResult struct {
 	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the public gateway.
 	GatewayId string `pulumi:"gatewayId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	OrganizationId string  `pulumi:"organizationId"`
-	PatRuleId      string  `pulumi:"patRuleId"`
-	PrivateIp      string  `pulumi:"privateIp"`
-	PrivatePort    int     `pulumi:"privatePort"`
-	Protocol       string  `pulumi:"protocol"`
-	PublicPort     int     `pulumi:"publicPort"`
-	UpdatedAt      string  `pulumi:"updatedAt"`
-	Zone           *string `pulumi:"zone"`
+	Id             string `pulumi:"id"`
+	OrganizationId string `pulumi:"organizationId"`
+	PatRuleId      string `pulumi:"patRuleId"`
+	// The Private IP to forward data to (IP address).
+	PrivateIp string `pulumi:"privateIp"`
+	// The Private port to translate to.
+	PrivatePort int `pulumi:"privatePort"`
+	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	Protocol string `pulumi:"protocol"`
+	// The Public port to listen on.
+	PublicPort int     `pulumi:"publicPort"`
+	UpdatedAt  string  `pulumi:"updatedAt"`
+	Zone       *string `pulumi:"zone"`
 }
 
 func GetVpcPublicPatRuleOutput(ctx *pulumi.Context, args GetVpcPublicPatRuleOutputArgs, opts ...pulumi.InvokeOption) GetVpcPublicPatRuleResultOutput {
@@ -57,8 +132,11 @@ func GetVpcPublicPatRuleOutput(ctx *pulumi.Context, args GetVpcPublicPatRuleOutp
 
 // A collection of arguments for invoking getVpcPublicPatRule.
 type GetVpcPublicPatRuleOutputArgs struct {
-	PatRuleId pulumi.StringInput    `pulumi:"patRuleId"`
-	Zone      pulumi.StringPtrInput `pulumi:"zone"`
+	// The ID of the PAT rule to retrieve
+	PatRuleId pulumi.StringInput `pulumi:"patRuleId"`
+	// `zone`) The zone in which
+	// the image exists.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetVpcPublicPatRuleOutputArgs) ElementType() reflect.Type {
@@ -84,6 +162,7 @@ func (o GetVpcPublicPatRuleResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of the public gateway.
 func (o GetVpcPublicPatRuleResultOutput) GatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.GatewayId }).(pulumi.StringOutput)
 }
@@ -101,18 +180,22 @@ func (o GetVpcPublicPatRuleResultOutput) PatRuleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.PatRuleId }).(pulumi.StringOutput)
 }
 
+// The Private IP to forward data to (IP address).
 func (o GetVpcPublicPatRuleResultOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
+// The Private port to translate to.
 func (o GetVpcPublicPatRuleResultOutput) PrivatePort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) int { return v.PrivatePort }).(pulumi.IntOutput)
 }
 
+// The Protocol the rule should apply to. Possible values are both, tcp and udp.
 func (o GetVpcPublicPatRuleResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// The Public port to listen on.
 func (o GetVpcPublicPatRuleResultOutput) PublicPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) int { return v.PublicPort }).(pulumi.IntOutput)
 }

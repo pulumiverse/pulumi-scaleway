@@ -19,9 +19,9 @@ class AccountSshKeyArgs:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AccountSshKey resource.
-        :param pulumi.Input[str] public_key: The public SSH key
-        :param pulumi.Input[str] name: The name of the SSH key
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] public_key: The public SSH key to be added.
+        :param pulumi.Input[str] name: The name of the SSH key.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
         """
         pulumi.set(__self__, "public_key", public_key)
         if name is not None:
@@ -33,7 +33,7 @@ class AccountSshKeyArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Input[str]:
         """
-        The public SSH key
+        The public SSH key to be added.
         """
         return pulumi.get(self, "public_key")
 
@@ -45,7 +45,7 @@ class AccountSshKeyArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the SSH key
+        The name of the SSH key.
         """
         return pulumi.get(self, "name")
 
@@ -57,7 +57,7 @@ class AccountSshKeyArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the SSH key is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -75,10 +75,10 @@ class _AccountSshKeyState:
                  public_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AccountSshKey resources.
-        :param pulumi.Input[str] name: The name of the SSH key
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] public_key: The public SSH key
+        :param pulumi.Input[str] name: The name of the SSH key.
+        :param pulumi.Input[str] organization_id: The organization ID the SSH key is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
+        :param pulumi.Input[str] public_key: The public SSH key to be added.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -93,7 +93,7 @@ class _AccountSshKeyState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the SSH key
+        The name of the SSH key.
         """
         return pulumi.get(self, "name")
 
@@ -105,7 +105,7 @@ class _AccountSshKeyState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the SSH key is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -117,7 +117,7 @@ class _AccountSshKeyState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the SSH key is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -129,7 +129,7 @@ class _AccountSshKeyState:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The public SSH key
+        The public SSH key to be added.
         """
         return pulumi.get(self, "public_key")
 
@@ -148,12 +148,30 @@ class AccountSshKey(pulumi.CustomResource):
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AccountSshKey resource with the given unique name, props, and options.
+        Manages user SSH keys to access servers provisioned on Scaleway.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.AccountSshKey("main", public_key="<YOUR-PUBLIC-SSH-KEY>")
+        ```
+
+        ## Import
+
+        SSH keys can be imported using the `id`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the SSH key
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] public_key: The public SSH key
+        :param pulumi.Input[str] name: The name of the SSH key.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
+        :param pulumi.Input[str] public_key: The public SSH key to be added.
         """
         ...
     @overload
@@ -162,7 +180,25 @@ class AccountSshKey(pulumi.CustomResource):
                  args: AccountSshKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AccountSshKey resource with the given unique name, props, and options.
+        Manages user SSH keys to access servers provisioned on Scaleway.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.AccountSshKey("main", public_key="<YOUR-PUBLIC-SSH-KEY>")
+        ```
+
+        ## Import
+
+        SSH keys can be imported using the `id`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param AccountSshKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -217,10 +253,10 @@ class AccountSshKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the SSH key
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] public_key: The public SSH key
+        :param pulumi.Input[str] name: The name of the SSH key.
+        :param pulumi.Input[str] organization_id: The organization ID the SSH key is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
+        :param pulumi.Input[str] public_key: The public SSH key to be added.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -236,7 +272,7 @@ class AccountSshKey(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the SSH key
+        The name of the SSH key.
         """
         return pulumi.get(self, "name")
 
@@ -244,7 +280,7 @@ class AccountSshKey(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the SSH key is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -252,7 +288,7 @@ class AccountSshKey(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the SSH key is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -260,7 +296,7 @@ class AccountSshKey(pulumi.CustomResource):
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[str]:
         """
-        The public SSH key
+        The public SSH key to be added.
         """
         return pulumi.get(self, "public_key")
 

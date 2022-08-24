@@ -4,6 +4,29 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway RDB database.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.Database("main", {instanceId: scaleway_rdb_instance.main.id});
+ * ```
+ *
+ * ## Import
+ *
+ * RDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+ * ```
+ */
 export class Database extends pulumi.CustomResource {
     /**
      * Get an existing Database resource's state with the given name, ID, and optional extra
@@ -33,23 +56,23 @@ export class Database extends pulumi.CustomResource {
     }
 
     /**
-     * Instance on which the database is created
+     * UUID of the instance where to create the database.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Whether or not the database is managed
+     * Whether or not the database is managed or not.
      */
     public /*out*/ readonly managed!: pulumi.Output<boolean>;
     /**
-     * Database name
+     * Name of the database (e.g. `my-new-database`).
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * User that own the database
+     * The name of the owner of the database.
      */
     public /*out*/ readonly owner!: pulumi.Output<string>;
     /**
-     * Size of the database
+     * Size of the database (in bytes).
      */
     public /*out*/ readonly size!: pulumi.Output<string>;
 
@@ -92,23 +115,23 @@ export class Database extends pulumi.CustomResource {
  */
 export interface DatabaseState {
     /**
-     * Instance on which the database is created
+     * UUID of the instance where to create the database.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Whether or not the database is managed
+     * Whether or not the database is managed or not.
      */
     managed?: pulumi.Input<boolean>;
     /**
-     * Database name
+     * Name of the database (e.g. `my-new-database`).
      */
     name?: pulumi.Input<string>;
     /**
-     * User that own the database
+     * The name of the owner of the database.
      */
     owner?: pulumi.Input<string>;
     /**
-     * Size of the database
+     * Size of the database (in bytes).
      */
     size?: pulumi.Input<string>;
 }
@@ -118,11 +141,11 @@ export interface DatabaseState {
  */
 export interface DatabaseArgs {
     /**
-     * Instance on which the database is created
+     * UUID of the instance where to create the database.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Database name
+     * Name of the database (e.g. `my-new-database`).
      */
     name?: pulumi.Input<string>;
 }

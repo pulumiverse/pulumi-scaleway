@@ -59,6 +59,9 @@ class GetDatabasePrivilegeResult:
     @property
     @pulumi.getter
     def permission(self) -> str:
+        """
+        The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        """
         return pulumi.get(self, "permission")
 
     @property
@@ -85,7 +88,23 @@ def get_database_privilege(database_name: Optional[str] = None,
                            user_name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabasePrivilegeResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about the privilege on a RDB database.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    find_priv = scaleway.get_database_privilege(database_name="my-database",
+        instance_id="fr-par/11111111-1111-111111111111",
+        user_name="my-user")
+    ```
+
+
+    :param str database_name: The database name.
+    :param str instance_id: The RDB instance ID.
+    :param str user_name: The user name.
     """
     __args__ = dict()
     __args__['databaseName'] = database_name
@@ -108,6 +127,22 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
                                   user_name: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabasePrivilegeResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about the privilege on a RDB database.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    find_priv = scaleway.get_database_privilege(database_name="my-database",
+        instance_id="fr-par/11111111-1111-111111111111",
+        user_name="my-user")
+    ```
+
+
+    :param str database_name: The database name.
+    :param str instance_id: The RDB instance ID.
+    :param str user_name: The user name.
     """
     ...

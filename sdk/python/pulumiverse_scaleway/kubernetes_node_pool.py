@@ -28,28 +28,39 @@ class KubernetesNodePoolArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+                 root_volume_type: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  upgrade_policy: Optional[pulumi.Input['KubernetesNodePoolUpgradePolicyArgs']] = None,
                  wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KubernetesNodePool resource.
-        :param pulumi.Input[str] cluster_id: The ID of the cluster on which this pool will be created
-        :param pulumi.Input[str] node_type: Server type of the pool servers
-        :param pulumi.Input[int] size: Size of the pool
-        :param pulumi.Input[bool] autohealing: Enable the autohealing on the pool
-        :param pulumi.Input[bool] autoscaling: Enable the autoscaling on the pool
-        :param pulumi.Input[str] container_runtime: Container runtime for the pool
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
+        :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        :param pulumi.Input[int] size: The size of the pool.
+               > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
+        :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               > **Important:** When enabled, an update of the `size` will not be taken into account.
+        :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] kubelet_args: The Kubelet arguments to be used by this pool
-        :param pulumi.Input[int] max_size: Maximum size of the pool
-        :param pulumi.Input[int] min_size: Minimun size of the pool
-        :param pulumi.Input[str] name: The name of the cluster
-        :param pulumi.Input[str] placement_group_id: ID of the placement group
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool
+        :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[str] name: The name for the pool.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
+        :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+        :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
-        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               > **Important:** Updates to this field will recreate a new resource.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "node_type", node_type)
@@ -72,6 +83,10 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if root_volume_size_in_gb is not None:
+            pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
+        if root_volume_type is not None:
+            pulumi.set(__self__, "root_volume_type", root_volume_type)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if upgrade_policy is not None:
@@ -85,7 +100,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
         """
-        The ID of the cluster on which this pool will be created
+        The ID of the Kubernetes cluster on which this pool will be created.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -97,7 +112,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Input[str]:
         """
-        Server type of the pool servers
+        The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
         """
         return pulumi.get(self, "node_type")
 
@@ -109,7 +124,8 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
         """
-        Size of the pool
+        The size of the pool.
+        > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
 
@@ -121,7 +137,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def autohealing(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable the autohealing on the pool
+        Enables the autohealing feature for this pool.
         """
         return pulumi.get(self, "autohealing")
 
@@ -133,7 +149,8 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def autoscaling(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable the autoscaling on the pool
+        Enables the autoscaling feature for this pool.
+        > **Important:** When enabled, an update of the `size` will not be taken into account.
         """
         return pulumi.get(self, "autoscaling")
 
@@ -145,7 +162,8 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> Optional[pulumi.Input[str]]:
         """
-        Container runtime for the pool
+        The container runtime of the pool.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "container_runtime")
 
@@ -169,7 +187,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum size of the pool
+        The maximum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "max_size")
 
@@ -181,7 +199,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimun size of the pool
+        The minimum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "min_size")
 
@@ -193,7 +211,8 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the cluster
+        The name for the pool.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
 
@@ -205,7 +224,8 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the placement group
+        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -217,7 +237,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the pool should be created.
         """
         return pulumi.get(self, "region")
 
@@ -226,10 +246,35 @@ class KubernetesNodePoolArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="rootVolumeSizeInGb")
+    def root_volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of the system volume of the nodes in gigabyte
+        """
+        return pulumi.get(self, "root_volume_size_in_gb")
+
+    @root_volume_size_in_gb.setter
+    def root_volume_size_in_gb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "root_volume_size_in_gb", value)
+
+    @property
+    @pulumi.getter(name="rootVolumeType")
+    def root_volume_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        System volume type of the nodes composing the pool
+        """
+        return pulumi.get(self, "root_volume_type")
+
+    @root_volume_type.setter
+    def root_volume_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "root_volume_type", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the pool
+        The tags associated with the pool.
+        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
         """
         return pulumi.get(self, "tags")
 
@@ -253,7 +298,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="waitForPoolReady")
     def wait_for_pool_ready(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to wait for the pool to be ready
+        Whether to wait for the pool to be ready.
         """
         return pulumi.get(self, "wait_for_pool_ready")
 
@@ -265,7 +310,8 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the pool should be created.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "zone")
 
@@ -291,6 +337,8 @@ class _KubernetesNodePoolState:
                  nodes: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+                 root_volume_type: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -301,27 +349,37 @@ class _KubernetesNodePoolState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KubernetesNodePool resources.
-        :param pulumi.Input[bool] autohealing: Enable the autohealing on the pool
-        :param pulumi.Input[bool] autoscaling: Enable the autoscaling on the pool
-        :param pulumi.Input[str] cluster_id: The ID of the cluster on which this pool will be created
-        :param pulumi.Input[str] container_runtime: Container runtime for the pool
-        :param pulumi.Input[str] created_at: The date and time of the creation of the pool
+        :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
+        :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               > **Important:** When enabled, an update of the `size` will not be taken into account.
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
+        :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] created_at: The creation date of the pool.
         :param pulumi.Input[int] current_size: The actual size of the pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] kubelet_args: The Kubelet arguments to be used by this pool
-        :param pulumi.Input[int] max_size: Maximum size of the pool
-        :param pulumi.Input[int] min_size: Minimun size of the pool
-        :param pulumi.Input[str] name: The name of the cluster
-        :param pulumi.Input[str] node_type: Server type of the pool servers
-        :param pulumi.Input[str] placement_group_id: ID of the placement group
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[int] size: Size of the pool
-        :param pulumi.Input[str] status: The status of the pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the pool
+        :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[str] name: The name for the pool.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]] nodes: (List of) The nodes in the default pool.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
+        :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+        :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[int] size: The size of the pool.
+               > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[str] status: The status of the node.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+        :param pulumi.Input[str] updated_at: The last update date of the pool.
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
-        :param pulumi.Input[str] version: The Kubernetes version of the pool
-        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] version: The version of the pool.
+        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               > **Important:** Updates to this field will recreate a new resource.
         """
         if autohealing is not None:
             pulumi.set(__self__, "autohealing", autohealing)
@@ -351,6 +409,10 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if root_volume_size_in_gb is not None:
+            pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
+        if root_volume_type is not None:
+            pulumi.set(__self__, "root_volume_type", root_volume_type)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if status is not None:
@@ -372,7 +434,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def autohealing(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable the autohealing on the pool
+        Enables the autohealing feature for this pool.
         """
         return pulumi.get(self, "autohealing")
 
@@ -384,7 +446,8 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def autoscaling(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable the autoscaling on the pool
+        Enables the autoscaling feature for this pool.
+        > **Important:** When enabled, an update of the `size` will not be taken into account.
         """
         return pulumi.get(self, "autoscaling")
 
@@ -396,7 +459,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the cluster on which this pool will be created
+        The ID of the Kubernetes cluster on which this pool will be created.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -408,7 +471,8 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> Optional[pulumi.Input[str]]:
         """
-        Container runtime for the pool
+        The container runtime of the pool.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "container_runtime")
 
@@ -420,7 +484,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the pool
+        The creation date of the pool.
         """
         return pulumi.get(self, "created_at")
 
@@ -456,7 +520,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum size of the pool
+        The maximum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "max_size")
 
@@ -468,7 +532,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="minSize")
     def min_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimun size of the pool
+        The minimum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "min_size")
 
@@ -480,7 +544,8 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the cluster
+        The name for the pool.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
 
@@ -492,7 +557,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Server type of the pool servers
+        The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
         """
         return pulumi.get(self, "node_type")
 
@@ -503,6 +568,9 @@ class _KubernetesNodePoolState:
     @property
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]]]:
+        """
+        (List of) The nodes in the default pool.
+        """
         return pulumi.get(self, "nodes")
 
     @nodes.setter
@@ -513,7 +581,8 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the placement group
+        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -525,7 +594,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the pool should be created.
         """
         return pulumi.get(self, "region")
 
@@ -534,10 +603,35 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="rootVolumeSizeInGb")
+    def root_volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of the system volume of the nodes in gigabyte
+        """
+        return pulumi.get(self, "root_volume_size_in_gb")
+
+    @root_volume_size_in_gb.setter
+    def root_volume_size_in_gb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "root_volume_size_in_gb", value)
+
+    @property
+    @pulumi.getter(name="rootVolumeType")
+    def root_volume_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        System volume type of the nodes composing the pool
+        """
+        return pulumi.get(self, "root_volume_type")
+
+    @root_volume_type.setter
+    def root_volume_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "root_volume_type", value)
+
+    @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
         """
-        Size of the pool
+        The size of the pool.
+        > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
 
@@ -549,7 +643,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the pool
+        The status of the node.
         """
         return pulumi.get(self, "status")
 
@@ -561,7 +655,8 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the pool
+        The tags associated with the pool.
+        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
         """
         return pulumi.get(self, "tags")
 
@@ -573,7 +668,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the pool
+        The last update date of the pool.
         """
         return pulumi.get(self, "updated_at")
 
@@ -597,7 +692,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        The Kubernetes version of the pool
+        The version of the pool.
         """
         return pulumi.get(self, "version")
 
@@ -609,7 +704,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="waitForPoolReady")
     def wait_for_pool_ready(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to wait for the pool to be ready
+        Whether to wait for the pool to be ready.
         """
         return pulumi.get(self, "wait_for_pool_ready")
 
@@ -621,7 +716,8 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the pool should be created.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "zone")
 
@@ -646,6 +742,8 @@ class KubernetesNodePool(pulumi.CustomResource):
                  node_type: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+                 root_volume_type: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  upgrade_policy: Optional[pulumi.Input[pulumi.InputType['KubernetesNodePoolUpgradePolicyArgs']]] = None,
@@ -653,25 +751,41 @@ class KubernetesNodePool(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a KubernetesNodePool resource with the given unique name, props, and options.
+        ## Import
+
+        Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] autohealing: Enable the autohealing on the pool
-        :param pulumi.Input[bool] autoscaling: Enable the autoscaling on the pool
-        :param pulumi.Input[str] cluster_id: The ID of the cluster on which this pool will be created
-        :param pulumi.Input[str] container_runtime: Container runtime for the pool
+        :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
+        :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               > **Important:** When enabled, an update of the `size` will not be taken into account.
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
+        :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] kubelet_args: The Kubelet arguments to be used by this pool
-        :param pulumi.Input[int] max_size: Maximum size of the pool
-        :param pulumi.Input[int] min_size: Minimun size of the pool
-        :param pulumi.Input[str] name: The name of the cluster
-        :param pulumi.Input[str] node_type: Server type of the pool servers
-        :param pulumi.Input[str] placement_group_id: ID of the placement group
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[int] size: Size of the pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool
+        :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[str] name: The name for the pool.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
+        :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+        :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[int] size: The size of the pool.
+               > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
         :param pulumi.Input[pulumi.InputType['KubernetesNodePoolUpgradePolicyArgs']] upgrade_policy: The Pool upgrade policy
-        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               > **Important:** Updates to this field will recreate a new resource.
         """
         ...
     @overload
@@ -680,7 +794,14 @@ class KubernetesNodePool(pulumi.CustomResource):
                  args: KubernetesNodePoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KubernetesNodePool resource with the given unique name, props, and options.
+        ## Import
+
+        Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param KubernetesNodePoolArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -707,6 +828,8 @@ class KubernetesNodePool(pulumi.CustomResource):
                  node_type: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+                 root_volume_type: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  upgrade_policy: Optional[pulumi.Input[pulumi.InputType['KubernetesNodePoolUpgradePolicyArgs']]] = None,
@@ -736,6 +859,8 @@ class KubernetesNodePool(pulumi.CustomResource):
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["placement_group_id"] = placement_group_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
+            __props__.__dict__["root_volume_type"] = root_volume_type
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -773,6 +898,8 @@ class KubernetesNodePool(pulumi.CustomResource):
             nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolNodeArgs']]]]] = None,
             placement_group_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+            root_volume_type: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -788,27 +915,37 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] autohealing: Enable the autohealing on the pool
-        :param pulumi.Input[bool] autoscaling: Enable the autoscaling on the pool
-        :param pulumi.Input[str] cluster_id: The ID of the cluster on which this pool will be created
-        :param pulumi.Input[str] container_runtime: Container runtime for the pool
-        :param pulumi.Input[str] created_at: The date and time of the creation of the pool
+        :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
+        :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               > **Important:** When enabled, an update of the `size` will not be taken into account.
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
+        :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] created_at: The creation date of the pool.
         :param pulumi.Input[int] current_size: The actual size of the pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] kubelet_args: The Kubelet arguments to be used by this pool
-        :param pulumi.Input[int] max_size: Maximum size of the pool
-        :param pulumi.Input[int] min_size: Minimun size of the pool
-        :param pulumi.Input[str] name: The name of the cluster
-        :param pulumi.Input[str] node_type: Server type of the pool servers
-        :param pulumi.Input[str] placement_group_id: ID of the placement group
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[int] size: Size of the pool
-        :param pulumi.Input[str] status: The status of the pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the pool
+        :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
+        :param pulumi.Input[str] name: The name for the pool.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolNodeArgs']]]] nodes: (List of) The nodes in the default pool.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
+        :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+        :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[int] size: The size of the pool.
+               > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[str] status: The status of the node.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+        :param pulumi.Input[str] updated_at: The last update date of the pool.
         :param pulumi.Input[pulumi.InputType['KubernetesNodePoolUpgradePolicyArgs']] upgrade_policy: The Pool upgrade policy
-        :param pulumi.Input[str] version: The Kubernetes version of the pool
-        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] version: The version of the pool.
+        :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               > **Important:** Updates to this field will recreate a new resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -828,6 +965,8 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["placement_group_id"] = placement_group_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
+        __props__.__dict__["root_volume_type"] = root_volume_type
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -842,7 +981,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def autohealing(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable the autohealing on the pool
+        Enables the autohealing feature for this pool.
         """
         return pulumi.get(self, "autohealing")
 
@@ -850,7 +989,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def autoscaling(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable the autoscaling on the pool
+        Enables the autoscaling feature for this pool.
+        > **Important:** When enabled, an update of the `size` will not be taken into account.
         """
         return pulumi.get(self, "autoscaling")
 
@@ -858,7 +998,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
         """
-        The ID of the cluster on which this pool will be created
+        The ID of the Kubernetes cluster on which this pool will be created.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -866,7 +1006,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> pulumi.Output[Optional[str]]:
         """
-        Container runtime for the pool
+        The container runtime of the pool.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "container_runtime")
 
@@ -874,7 +1015,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the pool
+        The creation date of the pool.
         """
         return pulumi.get(self, "created_at")
 
@@ -898,7 +1039,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="maxSize")
     def max_size(self) -> pulumi.Output[int]:
         """
-        Maximum size of the pool
+        The maximum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "max_size")
 
@@ -906,7 +1047,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="minSize")
     def min_size(self) -> pulumi.Output[Optional[int]]:
         """
-        Minimun size of the pool
+        The minimum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "min_size")
 
@@ -914,7 +1055,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the cluster
+        The name for the pool.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
 
@@ -922,20 +1064,24 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Output[str]:
         """
-        Server type of the pool servers
+        The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
         """
         return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter
     def nodes(self) -> pulumi.Output[Sequence['outputs.KubernetesNodePoolNode']]:
+        """
+        (List of) The nodes in the default pool.
+        """
         return pulumi.get(self, "nodes")
 
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of the placement group
+        The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -943,15 +1089,32 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the pool should be created.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="rootVolumeSizeInGb")
+    def root_volume_size_in_gb(self) -> pulumi.Output[Optional[int]]:
+        """
+        The size of the system volume of the nodes in gigabyte
+        """
+        return pulumi.get(self, "root_volume_size_in_gb")
+
+    @property
+    @pulumi.getter(name="rootVolumeType")
+    def root_volume_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        System volume type of the nodes composing the pool
+        """
+        return pulumi.get(self, "root_volume_type")
 
     @property
     @pulumi.getter
     def size(self) -> pulumi.Output[int]:
         """
-        Size of the pool
+        The size of the pool.
+        > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
 
@@ -959,7 +1122,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the pool
+        The status of the node.
         """
         return pulumi.get(self, "status")
 
@@ -967,7 +1130,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the pool
+        The tags associated with the pool.
+        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
         """
         return pulumi.get(self, "tags")
 
@@ -975,7 +1139,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the pool
+        The last update date of the pool.
         """
         return pulumi.get(self, "updated_at")
 
@@ -991,7 +1155,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        The Kubernetes version of the pool
+        The version of the pool.
         """
         return pulumi.get(self, "version")
 
@@ -999,7 +1163,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="waitForPoolReady")
     def wait_for_pool_ready(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether to wait for the pool to be ready
+        Whether to wait for the pool to be ready.
         """
         return pulumi.get(self, "wait_for_pool_ready")
 
@@ -1007,7 +1171,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the pool should be created.
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "zone")
 

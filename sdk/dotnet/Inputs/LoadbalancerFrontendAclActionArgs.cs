@@ -11,13 +11,17 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class LoadbalancerFrontendAclActionArgs : Pulumi.ResourceArgs
+    public sealed class LoadbalancerFrontendAclActionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The action type. Possible values are: `allow` or `deny`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         public LoadbalancerFrontendAclActionArgs()
         {
         }
+        public static new LoadbalancerFrontendAclActionArgs Empty => new LoadbalancerFrontendAclActionArgs();
     }
 }

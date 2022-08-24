@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class ObjectBucketCorsRuleGetArgs : Pulumi.ResourceArgs
+    public sealed class ObjectBucketCorsRuleGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedHeaders")]
         private InputList<string>? _allowedHeaders;
@@ -51,5 +51,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public ObjectBucketCorsRuleGetArgs()
         {
         }
+        public static new ObjectBucketCorsRuleGetArgs Empty => new ObjectBucketCorsRuleGetArgs();
     }
 }

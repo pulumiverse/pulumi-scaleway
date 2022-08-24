@@ -21,11 +21,11 @@ class FunctionNamespaceArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FunctionNamespace resource.
-        :param pulumi.Input[str] description: The description of the function namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function namespace
-        :param pulumi.Input[str] name: The name of the function namespace
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -42,7 +42,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the function namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -54,7 +54,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The environment variables of the function namespace
+        The environment variables of the namespace.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -66,7 +66,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the function namespace
+        The unique name of the function namespace.
         """
         return pulumi.get(self, "name")
 
@@ -78,7 +78,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -90,7 +90,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -112,14 +112,14 @@ class _FunctionNamespaceState:
                  registry_namespace_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FunctionNamespace resources.
-        :param pulumi.Input[str] description: The description of the function namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function namespace
-        :param pulumi.Input[str] name: The name of the function namespace
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] registry_endpoint: The endpoint reachable by docker
-        :param pulumi.Input[str] registry_namespace_id: The ID of the registry namespace
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
+        :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -142,7 +142,7 @@ class _FunctionNamespaceState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the function namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -154,7 +154,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The environment variables of the function namespace
+        The environment variables of the namespace.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -166,7 +166,7 @@ class _FunctionNamespaceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the function namespace
+        The unique name of the function namespace.
         """
         return pulumi.get(self, "name")
 
@@ -178,7 +178,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -190,7 +190,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -202,7 +202,7 @@ class _FunctionNamespaceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -214,7 +214,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        The endpoint reachable by docker
+        The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
@@ -226,7 +226,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the registry namespace
+        The registry namespace ID of the namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -247,14 +247,35 @@ class FunctionNamespace(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a FunctionNamespace resource with the given unique name, props, and options.
+        Creates and manages Scaleway Function Namespace.
+        For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.FunctionNamespace("main", description="Main function namespace")
+        ```
+
+        ## Import
+
+        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the function namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function namespace
-        :param pulumi.Input[str] name: The name of the function namespace
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
         ...
     @overload
@@ -263,7 +284,28 @@ class FunctionNamespace(pulumi.CustomResource):
                  args: Optional[FunctionNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FunctionNamespace resource with the given unique name, props, and options.
+        Creates and manages Scaleway Function Namespace.
+        For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.FunctionNamespace("main", description="Main function namespace")
+        ```
+
+        ## Import
+
+        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param FunctionNamespaceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -326,14 +368,14 @@ class FunctionNamespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the function namespace
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function namespace
-        :param pulumi.Input[str] name: The name of the function namespace
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] registry_endpoint: The endpoint reachable by docker
-        :param pulumi.Input[str] registry_namespace_id: The ID of the registry namespace
+        :param pulumi.Input[str] description: The description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
+        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
+        :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -353,7 +395,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the function namespace
+        The description of the namespace.
         """
         return pulumi.get(self, "description")
 
@@ -361,7 +403,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The environment variables of the function namespace
+        The environment variables of the namespace.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -369,7 +411,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the function namespace
+        The unique name of the function namespace.
         """
         return pulumi.get(self, "name")
 
@@ -377,7 +419,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -385,7 +427,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -393,7 +435,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
@@ -401,7 +443,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> pulumi.Output[str]:
         """
-        The endpoint reachable by docker
+        The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
@@ -409,7 +451,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> pulumi.Output[str]:
         """
-        The ID of the registry namespace
+        The registry namespace ID of the namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 

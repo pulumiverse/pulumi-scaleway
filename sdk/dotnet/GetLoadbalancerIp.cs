@@ -12,38 +12,104 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetLoadbalancerIp
     {
+        /// <summary>
+        /// Gets information about a Load Balancer IP.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myIp = Scaleway.GetLoadbalancerIp.Invoke(new()
+        ///     {
+        ///         IpId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetLoadbalancerIpResult> InvokeAsync(GetLoadbalancerIpArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a Load Balancer IP.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myIp = Scaleway.GetLoadbalancerIp.Invoke(new()
+        ///     {
+        ///         IpId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetLoadbalancerIpResult> Invoke(GetLoadbalancerIpInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetLoadbalancerIpArgs : Pulumi.InvokeArgs
+    public sealed class GetLoadbalancerIpArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The IP address.
+        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// </summary>
         [Input("ipAddress")]
         public string? IpAddress { get; set; }
 
+        /// <summary>
+        /// The IP ID.
+        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// </summary>
         [Input("ipId")]
         public string? IpId { get; set; }
 
         public GetLoadbalancerIpArgs()
         {
         }
+        public static new GetLoadbalancerIpArgs Empty => new GetLoadbalancerIpArgs();
     }
 
-    public sealed class GetLoadbalancerIpInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetLoadbalancerIpInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The IP address.
+        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
+        /// <summary>
+        /// The IP ID.
+        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         public GetLoadbalancerIpInvokeArgs()
         {
         }
+        public static new GetLoadbalancerIpInvokeArgs Empty => new GetLoadbalancerIpInvokeArgs();
     }
 
 
@@ -56,10 +122,19 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string? IpAddress;
         public readonly string? IpId;
+        /// <summary>
+        /// The associated load-balancer ID if any
+        /// </summary>
         public readonly string LbId;
+        /// <summary>
+        /// (Defaults to provider `organization_id`) The ID of the organization the LB IP is associated with.
+        /// </summary>
         public readonly string OrganizationId;
         public readonly string ProjectId;
         public readonly string Region;
+        /// <summary>
+        /// The reverse domain associated with this IP.
+        /// </summary>
         public readonly string Reverse;
         public readonly string Zone;
 

@@ -11,26 +11,119 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Compute Snapshots.
+// For more information,
+// see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
+//
+// ## Example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewInstanceSnapshot(ctx, "main", &scaleway.InstanceSnapshotArgs{
+//				VolumeId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example with Unified type
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "mainInstanceVolume", &scaleway.InstanceVolumeArgs{
+//				Type:     pulumi.String("l_ssd"),
+//				SizeInGb: pulumi.Int(10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
+//				Image: pulumi.String("ubuntu_jammy"),
+//				Type:  pulumi.String("DEV1-S"),
+//				RootVolume: &InstanceServerRootVolumeArgs{
+//					SizeInGb:   pulumi.Int(10),
+//					VolumeType: pulumi.String("l_ssd"),
+//				},
+//				AdditionalVolumeIds: pulumi.StringArray{
+//					mainInstanceVolume.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceSnapshot(ctx, "mainInstanceSnapshot", &scaleway.InstanceSnapshotArgs{
+//				VolumeId: mainInstanceVolume.ID(),
+//				Type:     pulumi.String("unified"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				mainInstanceServer,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+//
+// ```
 type InstanceSnapshot struct {
 	pulumi.CustomResourceState
 
-	// The date and time of the creation of the snapshot
+	// The snapshot creation time.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The name of the snapshot
+	// The name of the snapshot. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the snapshot is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the snapshot is
+	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The size of the snapshot in gigabyte
+	// (Optional) The size of the snapshot.
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
-	// The tags associated with the snapshot
+	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The volume type of the snapshot
+	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// Updates to this field will recreate a new resource.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// ID of the volume to take a snapshot from
+	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the snapshot should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -67,44 +160,50 @@ func GetInstanceSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceSnapshot resources.
 type instanceSnapshotState struct {
-	// The date and time of the creation of the snapshot
+	// The snapshot creation time.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The name of the snapshot
+	// The name of the snapshot. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organization ID the snapshot is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the snapshot is
+	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the snapshot in gigabyte
+	// (Optional) The size of the snapshot.
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// The tags associated with the snapshot
+	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
-	// The volume type of the snapshot
+	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// Updates to this field will recreate a new resource.
 	Type *string `pulumi:"type"`
-	// ID of the volume to take a snapshot from
+	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the snapshot should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceSnapshotState struct {
-	// The date and time of the creation of the snapshot
+	// The snapshot creation time.
 	CreatedAt pulumi.StringPtrInput
-	// The name of the snapshot
+	// The name of the snapshot. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organization ID the snapshot is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the snapshot is
+	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the snapshot in gigabyte
+	// (Optional) The size of the snapshot.
 	SizeInGb pulumi.IntPtrInput
-	// The tags associated with the snapshot
+	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
-	// The volume type of the snapshot
+	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// Updates to this field will recreate a new resource.
 	Type pulumi.StringPtrInput
-	// ID of the volume to take a snapshot from
+	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the snapshot should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -113,29 +212,39 @@ func (InstanceSnapshotState) ElementType() reflect.Type {
 }
 
 type instanceSnapshotArgs struct {
-	// The name of the snapshot
+	// The name of the snapshot. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the snapshot is
+	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The tags associated with the snapshot
+	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
-	// ID of the volume to take a snapshot from
+	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// Updates to this field will recreate a new resource.
+	Type *string `pulumi:"type"`
+	// The ID of the volume to take a snapshot from.
 	VolumeId string `pulumi:"volumeId"`
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the snapshot should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceSnapshot resource.
 type InstanceSnapshotArgs struct {
-	// The name of the snapshot
+	// The name of the snapshot. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// `projectId`) The ID of the project the snapshot is
+	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// The tags associated with the snapshot
+	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
-	// ID of the volume to take a snapshot from
+	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// Updates to this field will recreate a new resource.
+	Type pulumi.StringPtrInput
+	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringInput
-	// The zone you want to attach the resource to
+	// `zone`) The zone in which
+	// the snapshot should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -226,47 +335,50 @@ func (o InstanceSnapshotOutput) ToInstanceSnapshotOutputWithContext(ctx context.
 	return o
 }
 
-// The date and time of the creation of the snapshot
+// The snapshot creation time.
 func (o InstanceSnapshotOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The name of the snapshot
+// The name of the snapshot. If not provided it will be randomly generated.
 func (o InstanceSnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organization ID the snapshot is associated with.
 func (o InstanceSnapshotOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// `projectId`) The ID of the project the snapshot is
+// associated with.
 func (o InstanceSnapshotOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The size of the snapshot in gigabyte
+// (Optional) The size of the snapshot.
 func (o InstanceSnapshotOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }
 
-// The tags associated with the snapshot
+// A list of tags to apply to the snapshot.
 func (o InstanceSnapshotOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The volume type of the snapshot
+// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+// Updates to this field will recreate a new resource.
 func (o InstanceSnapshotOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// ID of the volume to take a snapshot from
+// The ID of the volume to take a snapshot from.
 func (o InstanceSnapshotOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
 }
 
-// The zone you want to attach the resource to
+// `zone`) The zone in which
+// the snapshot should be created.
 func (o InstanceSnapshotOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

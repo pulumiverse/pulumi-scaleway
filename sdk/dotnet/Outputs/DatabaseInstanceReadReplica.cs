@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class DatabaseInstanceReadReplica
     {
+        /// <summary>
+        /// IP of the endpoint.
+        /// </summary>
         public readonly string? Ip;
+        /// <summary>
+        /// The name of the Database Instance.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Port of the endpoint.
+        /// </summary>
         public readonly int? Port;
 
         [OutputConstructor]

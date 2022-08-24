@@ -10,56 +10,82 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway VPC Public Gateway DHCP.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544).
+    /// 
+    /// ## Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+    ///     {
+    ///         Subnet = "192.168.1.0/24",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp")]
-    public partial class VpcPublicGatewayDhcp : Pulumi.CustomResource
+    public partial class VpcPublicGatewayDhcp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
-        /// of the subnet
+        /// The IP address of the public gateway DHCP config.
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the public gateway.
+        /// The date and time of the creation of the public gateway DHCP config.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
-        /// Network name if created along a GatewayNetwork, or else to `priv`.
+        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
         /// </summary>
         [Output("dnsLocalName")]
         public Output<string> DnsLocalName { get; private set; } = null!;
 
         /// <summary>
-        /// Additional DNS search paths.
+        /// Additional DNS search paths
         /// </summary>
         [Output("dnsSearches")]
         public Output<ImmutableArray<string>> DnsSearches { get; private set; } = null!;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
         /// </summary>
         [Output("dnsServersOverrides")]
         public Output<ImmutableArray<string>> DnsServersOverrides { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
-        /// handed out. Defaults to true.
+        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
         /// </summary>
         [Output("enableDynamic")]
         public Output<bool> EnableDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the public gateway DHCP config is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
+        /// High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
         /// </summary>
         [Output("poolHigh")]
         public Output<string> PoolHigh { get; private set; } = null!;
@@ -71,45 +97,43 @@ namespace Pulumiverse.Scaleway
         public Output<string> PoolLow { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
         /// </summary>
         [Output("pushDefaultRoute")]
         public Output<bool> PushDefaultRoute { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -&gt; IP resolution.
-        /// Defaults to true.
+        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
         /// </summary>
         [Output("pushDnsServer")]
         public Output<bool> PushDnsServer { get; private set; } = null!;
 
         /// <summary>
-        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
-        /// `valid_lifetime`. Defaults to 51m (3060s).
+        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         /// </summary>
         [Output("rebindTimer")]
         public Output<int> RebindTimer { get; private set; } = null!;
 
         /// <summary>
-        /// After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
+        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         /// </summary>
         [Output("renewTimer")]
         public Output<int> RenewTimer { get; private set; } = null!;
 
         /// <summary>
-        /// Subnet for the DHCP server
+        /// The subnet to associate with the public gateway DHCP config.
         /// </summary>
         [Output("subnet")]
         public Output<string> Subnet { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway.
+        /// The date and time of the last update of the public gateway DHCP config.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -121,7 +145,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> ValidLifetime { get; private set; } = null!;
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the public gateway DHCP config should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -171,18 +195,16 @@ namespace Pulumiverse.Scaleway
         }
     }
 
-    public sealed class VpcPublicGatewayDhcpArgs : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayDhcpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
-        /// of the subnet
+        /// The IP address of the public gateway DHCP config.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
-        /// Network name if created along a GatewayNetwork, or else to `priv`.
+        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
         /// </summary>
         [Input("dnsLocalName")]
         public Input<string>? DnsLocalName { get; set; }
@@ -191,7 +213,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _dnsSearches;
 
         /// <summary>
-        /// Additional DNS search paths.
+        /// Additional DNS search paths
         /// </summary>
         public InputList<string> DnsSearches
         {
@@ -203,7 +225,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _dnsServersOverrides;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
         /// </summary>
         public InputList<string> DnsServersOverrides
         {
@@ -212,14 +234,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
-        /// handed out. Defaults to true.
+        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
         /// </summary>
         [Input("enableDynamic")]
         public Input<bool>? EnableDynamic { get; set; }
 
         /// <summary>
-        /// High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
+        /// High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
         /// </summary>
         [Input("poolHigh")]
         public Input<string>? PoolHigh { get; set; }
@@ -231,39 +252,37 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -&gt; IP resolution.
-        /// Defaults to true.
+        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
         /// </summary>
         [Input("pushDnsServer")]
         public Input<bool>? PushDnsServer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
-        /// `valid_lifetime`. Defaults to 51m (3060s).
+        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         /// </summary>
         [Input("rebindTimer")]
         public Input<int>? RebindTimer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
+        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         /// </summary>
         [Input("renewTimer")]
         public Input<int>? RenewTimer { get; set; }
 
         /// <summary>
-        /// Subnet for the DHCP server
+        /// The subnet to associate with the public gateway DHCP config.
         /// </summary>
         [Input("subnet", required: true)]
         public Input<string> Subnet { get; set; } = null!;
@@ -275,7 +294,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the public gateway DHCP config should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -283,26 +302,25 @@ namespace Pulumiverse.Scaleway
         public VpcPublicGatewayDhcpArgs()
         {
         }
+        public static new VpcPublicGatewayDhcpArgs Empty => new VpcPublicGatewayDhcpArgs();
     }
 
-    public sealed class VpcPublicGatewayDhcpState : Pulumi.ResourceArgs
+    public sealed class VpcPublicGatewayDhcpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The address of the DHCP server. This will be the gateway's address in the private network. Defaults to the first address
-        /// of the subnet
+        /// The IP address of the public gateway DHCP config.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the public gateway.
+        /// The date and time of the creation of the public gateway DHCP config.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private
-        /// Network name if created along a GatewayNetwork, or else to `priv`.
+        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
         /// </summary>
         [Input("dnsLocalName")]
         public Input<string>? DnsLocalName { get; set; }
@@ -311,7 +329,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _dnsSearches;
 
         /// <summary>
-        /// Additional DNS search paths.
+        /// Additional DNS search paths
         /// </summary>
         public InputList<string> DnsSearches
         {
@@ -323,7 +341,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _dnsServersOverrides;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
         /// </summary>
         public InputList<string> DnsServersOverrides
         {
@@ -332,20 +350,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be
-        /// handed out. Defaults to true.
+        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
         /// </summary>
         [Input("enableDynamic")]
         public Input<bool>? EnableDynamic { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The organization ID the public gateway DHCP config is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// High IP (included) of the dynamic address pool. Defaults to the last address of the subnet.
+        /// High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
         /// </summary>
         [Input("poolHigh")]
         public Input<string>? PoolHigh { get; set; }
@@ -357,45 +374,43 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to true.
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname -&gt; IP resolution.
-        /// Defaults to true.
+        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
         /// </summary>
         [Input("pushDnsServer")]
         public Input<bool>? PushDnsServer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than
-        /// `valid_lifetime`. Defaults to 51m (3060s).
+        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         /// </summary>
         [Input("rebindTimer")]
         public Input<int>? RebindTimer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a renew will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
+        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         /// </summary>
         [Input("renewTimer")]
         public Input<int>? RenewTimer { get; set; }
 
         /// <summary>
-        /// Subnet for the DHCP server
+        /// The subnet to associate with the public gateway DHCP config.
         /// </summary>
         [Input("subnet")]
         public Input<string>? Subnet { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway.
+        /// The date and time of the last update of the public gateway DHCP config.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
@@ -407,7 +422,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// The zone you want to attach the resource to
+        /// `zone`) The zone in which the public gateway DHCP config should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -415,5 +430,6 @@ namespace Pulumiverse.Scaleway
         public VpcPublicGatewayDhcpState()
         {
         }
+        public static new VpcPublicGatewayDhcpState Empty => new VpcPublicGatewayDhcpState();
     }
 }

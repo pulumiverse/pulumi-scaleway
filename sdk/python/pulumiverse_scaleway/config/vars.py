@@ -30,6 +30,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('apiUrl')
 
     @property
+    def organization_id(self) -> Optional[str]:
+        """
+        The Scaleway organization ID.
+        """
+        return __config__.get('organizationId')
+
+    @property
     def profile(self) -> Optional[str]:
         """
         The Scaleway profile to use.

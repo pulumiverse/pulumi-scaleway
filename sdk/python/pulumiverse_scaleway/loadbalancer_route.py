@@ -19,9 +19,10 @@ class LoadbalancerRouteArgs:
                  match_sni: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerRoute resource.
-        :param pulumi.Input[str] backend_id: The backend ID destination of redirection
+        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
+               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
-        :param pulumi.Input[str] match_sni: The domain to match against
+        :param pulumi.Input[str] match_sni: The SNI to match.
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "frontend_id", frontend_id)
@@ -32,7 +33,8 @@ class LoadbalancerRouteArgs:
     @pulumi.getter(name="backendId")
     def backend_id(self) -> pulumi.Input[str]:
         """
-        The backend ID destination of redirection
+        The ID of the backend to which the route is associated.
+        - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "backend_id")
 
@@ -56,7 +58,7 @@ class LoadbalancerRouteArgs:
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain to match against
+        The SNI to match.
         """
         return pulumi.get(self, "match_sni")
 
@@ -73,9 +75,10 @@ class _LoadbalancerRouteState:
                  match_sni: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerRoute resources.
-        :param pulumi.Input[str] backend_id: The backend ID destination of redirection
+        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
+               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
-        :param pulumi.Input[str] match_sni: The domain to match against
+        :param pulumi.Input[str] match_sni: The SNI to match.
         """
         if backend_id is not None:
             pulumi.set(__self__, "backend_id", backend_id)
@@ -88,7 +91,8 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="backendId")
     def backend_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The backend ID destination of redirection
+        The ID of the backend to which the route is associated.
+        - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "backend_id")
 
@@ -112,7 +116,7 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain to match against
+        The SNI to match.
         """
         return pulumi.get(self, "match_sni")
 
@@ -131,12 +135,50 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  match_sni: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LoadbalancerRoute resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+        It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ip01 = scaleway.LoadbalancerIp("ip01")
+        lb01 = scaleway.Loadbalancer("lb01",
+            ip_id=ip01.id,
+            type="lb-s")
+        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+            lb_id=lb01.id,
+            forward_protocol="tcp",
+            forward_port=80,
+            proxy_protocol="none")
+        frt01 = scaleway.LoadbalancerFrontend("frt01",
+            lb_id=lb01.id,
+            backend_id=bkd01.id,
+            inbound_port=80)
+        rt01 = scaleway.LoadbalancerRoute("rt01",
+            frontend_id=frt01.id,
+            backend_id=bkd01.id,
+            match_sni="scaleway.com")
+        ```
+
+        ## Import
+
+        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_id: The backend ID destination of redirection
+        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
+               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
-        :param pulumi.Input[str] match_sni: The domain to match against
+        :param pulumi.Input[str] match_sni: The SNI to match.
         """
         ...
     @overload
@@ -145,7 +187,44 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  args: LoadbalancerRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LoadbalancerRoute resource with the given unique name, props, and options.
+        Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+        It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ip01 = scaleway.LoadbalancerIp("ip01")
+        lb01 = scaleway.Loadbalancer("lb01",
+            ip_id=ip01.id,
+            type="lb-s")
+        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+            lb_id=lb01.id,
+            forward_protocol="tcp",
+            forward_port=80,
+            proxy_protocol="none")
+        frt01 = scaleway.LoadbalancerFrontend("frt01",
+            lb_id=lb01.id,
+            backend_id=bkd01.id,
+            inbound_port=80)
+        rt01 = scaleway.LoadbalancerRoute("rt01",
+            frontend_id=frt01.id,
+            backend_id=bkd01.id,
+            match_sni="scaleway.com")
+        ```
+
+        ## Import
+
+        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerRouteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -200,9 +279,10 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_id: The backend ID destination of redirection
+        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
+               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
-        :param pulumi.Input[str] match_sni: The domain to match against
+        :param pulumi.Input[str] match_sni: The SNI to match.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -217,7 +297,8 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="backendId")
     def backend_id(self) -> pulumi.Output[str]:
         """
-        The backend ID destination of redirection
+        The ID of the backend to which the route is associated.
+        - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "backend_id")
 
@@ -233,7 +314,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> pulumi.Output[Optional[str]]:
         """
-        The domain to match against
+        The SNI to match.
         """
         return pulumi.get(self, "match_sni")
 

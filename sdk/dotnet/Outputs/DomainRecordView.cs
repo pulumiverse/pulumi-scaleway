@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class DomainRecordView
     {
+        /// <summary>
+        /// The data of the view record
+        /// </summary>
         public readonly string Data;
+        /// <summary>
+        /// The subnet of the view
+        /// </summary>
         public readonly string Subnet;
 
         [OutputConstructor]

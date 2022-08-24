@@ -4,6 +4,28 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages user SSH keys to access servers provisioned on Scaleway.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.AccountSshKey("main", {
+ *     publicKey: "<YOUR-PUBLIC-SSH-KEY>",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * SSH keys can be imported using the `id`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class AccountSshKey extends pulumi.CustomResource {
     /**
      * Get an existing AccountSshKey resource's state with the given name, ID, and optional extra
@@ -33,19 +55,19 @@ export class AccountSshKey extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the SSH key
+     * The name of the SSH key.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the SSH key is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the SSH key is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The public SSH key
+     * The public SSH key to be added.
      */
     public readonly publicKey!: pulumi.Output<string>;
 
@@ -86,19 +108,19 @@ export class AccountSshKey extends pulumi.CustomResource {
  */
 export interface AccountSshKeyState {
     /**
-     * The name of the SSH key
+     * The name of the SSH key.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organization ID the SSH key is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the SSH key is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The public SSH key
+     * The public SSH key to be added.
      */
     publicKey?: pulumi.Input<string>;
 }
@@ -108,15 +130,15 @@ export interface AccountSshKeyState {
  */
 export interface AccountSshKeyArgs {
     /**
-     * The name of the SSH key
+     * The name of the SSH key.
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the SSH key is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The public SSH key
+     * The public SSH key to be added.
      */
     publicKey: pulumi.Input<string>;
 }

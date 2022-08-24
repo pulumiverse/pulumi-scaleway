@@ -11,34 +11,43 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Import
+//
+// IoT devices can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type IotDevice struct {
 	pulumi.CustomResourceState
 
-	// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure pulumi.BoolPtrOutput `pulumi:"allowInsecure"`
-	// Allow multiple connections
+	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections pulumi.BoolPtrOutput `pulumi:"allowMultipleConnections"`
-	// Certificate section of the device
+	// The certificate bundle of the device.
 	Certificate IotDeviceCertificateOutput `pulumi:"certificate"`
-	// The date and time of the creation of the device
+	// The date and time the device was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The description of the device
+	// The description of the IoT device (e.g. `living room`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The ID of the hub on which this device will be created
+	// The ID of the hub on which this device will be created.
 	HubId pulumi.StringOutput `pulumi:"hubId"`
-	// The MQTT connection status of the device
+	// The current connection status of the device.
 	IsConnected pulumi.BoolOutput `pulumi:"isConnected"`
-	// The date and time of last MQTT activity of the device
+	// The last MQTT activity of the device.
 	LastActivityAt pulumi.StringOutput `pulumi:"lastActivityAt"`
-	// Rules to authorize or deny the device to publish/subscribe to specific topics
+	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters IotDeviceMessageFiltersPtrOutput `pulumi:"messageFilters"`
-	// The name of the device
+	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The status of the device
+	// The current status of the device.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The date and time of the last update of the device
+	// The date and time the device resource was updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -75,60 +84,60 @@ func GetIotDevice(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IotDevice resources.
 type iotDeviceState struct {
-	// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure *bool `pulumi:"allowInsecure"`
-	// Allow multiple connections
+	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections *bool `pulumi:"allowMultipleConnections"`
-	// Certificate section of the device
+	// The certificate bundle of the device.
 	Certificate *IotDeviceCertificate `pulumi:"certificate"`
-	// The date and time of the creation of the device
+	// The date and time the device was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The description of the device
+	// The description of the IoT device (e.g. `living room`).
 	Description *string `pulumi:"description"`
-	// The ID of the hub on which this device will be created
+	// The ID of the hub on which this device will be created.
 	HubId *string `pulumi:"hubId"`
-	// The MQTT connection status of the device
+	// The current connection status of the device.
 	IsConnected *bool `pulumi:"isConnected"`
-	// The date and time of last MQTT activity of the device
+	// The last MQTT activity of the device.
 	LastActivityAt *string `pulumi:"lastActivityAt"`
-	// Rules to authorize or deny the device to publish/subscribe to specific topics
+	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters *IotDeviceMessageFilters `pulumi:"messageFilters"`
-	// The name of the device
+	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name *string `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
-	// The status of the device
+	// The current status of the device.
 	Status *string `pulumi:"status"`
-	// The date and time of the last update of the device
+	// The date and time the device resource was updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type IotDeviceState struct {
-	// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure pulumi.BoolPtrInput
-	// Allow multiple connections
+	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections pulumi.BoolPtrInput
-	// Certificate section of the device
+	// The certificate bundle of the device.
 	Certificate IotDeviceCertificatePtrInput
-	// The date and time of the creation of the device
+	// The date and time the device was created.
 	CreatedAt pulumi.StringPtrInput
-	// The description of the device
+	// The description of the IoT device (e.g. `living room`).
 	Description pulumi.StringPtrInput
-	// The ID of the hub on which this device will be created
+	// The ID of the hub on which this device will be created.
 	HubId pulumi.StringPtrInput
-	// The MQTT connection status of the device
+	// The current connection status of the device.
 	IsConnected pulumi.BoolPtrInput
-	// The date and time of last MQTT activity of the device
+	// The last MQTT activity of the device.
 	LastActivityAt pulumi.StringPtrInput
-	// Rules to authorize or deny the device to publish/subscribe to specific topics
+	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters IotDeviceMessageFiltersPtrInput
-	// The name of the device
+	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
-	// The status of the device
+	// The current status of the device.
 	Status pulumi.StringPtrInput
-	// The date and time of the last update of the device
+	// The date and time the device resource was updated.
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -137,19 +146,19 @@ func (IotDeviceState) ElementType() reflect.Type {
 }
 
 type iotDeviceArgs struct {
-	// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure *bool `pulumi:"allowInsecure"`
-	// Allow multiple connections
+	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections *bool `pulumi:"allowMultipleConnections"`
-	// Certificate section of the device
+	// The certificate bundle of the device.
 	Certificate *IotDeviceCertificate `pulumi:"certificate"`
-	// The description of the device
+	// The description of the IoT device (e.g. `living room`).
 	Description *string `pulumi:"description"`
-	// The ID of the hub on which this device will be created
+	// The ID of the hub on which this device will be created.
 	HubId string `pulumi:"hubId"`
-	// Rules to authorize or deny the device to publish/subscribe to specific topics
+	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters *IotDeviceMessageFilters `pulumi:"messageFilters"`
-	// The name of the device
+	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name *string `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -157,19 +166,19 @@ type iotDeviceArgs struct {
 
 // The set of arguments for constructing a IotDevice resource.
 type IotDeviceArgs struct {
-	// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 	AllowInsecure pulumi.BoolPtrInput
-	// Allow multiple connections
+	// Allow more than one simultaneous connection using the same device credentials.
 	AllowMultipleConnections pulumi.BoolPtrInput
-	// Certificate section of the device
+	// The certificate bundle of the device.
 	Certificate IotDeviceCertificatePtrInput
-	// The description of the device
+	// The description of the IoT device (e.g. `living room`).
 	Description pulumi.StringPtrInput
-	// The ID of the hub on which this device will be created
+	// The ID of the hub on which this device will be created.
 	HubId pulumi.StringInput
-	// Rules to authorize or deny the device to publish/subscribe to specific topics
+	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters IotDeviceMessageFiltersPtrInput
-	// The name of the device
+	// The name of the IoT device you want to create (e.g. `my-device`).
 	Name pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -262,52 +271,52 @@ func (o IotDeviceOutput) ToIotDeviceOutputWithContext(ctx context.Context) IotDe
 	return o
 }
 
-// Allow plain and server-authenticated SSL connections in addition to mutually-authenticated ones
+// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 func (o IotDeviceOutput) AllowInsecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.BoolPtrOutput { return v.AllowInsecure }).(pulumi.BoolPtrOutput)
 }
 
-// Allow multiple connections
+// Allow more than one simultaneous connection using the same device credentials.
 func (o IotDeviceOutput) AllowMultipleConnections() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.BoolPtrOutput { return v.AllowMultipleConnections }).(pulumi.BoolPtrOutput)
 }
 
-// Certificate section of the device
+// The certificate bundle of the device.
 func (o IotDeviceOutput) Certificate() IotDeviceCertificateOutput {
 	return o.ApplyT(func(v *IotDevice) IotDeviceCertificateOutput { return v.Certificate }).(IotDeviceCertificateOutput)
 }
 
-// The date and time of the creation of the device
+// The date and time the device was created.
 func (o IotDeviceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The description of the device
+// The description of the IoT device (e.g. `living room`).
 func (o IotDeviceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the hub on which this device will be created
+// The ID of the hub on which this device will be created.
 func (o IotDeviceOutput) HubId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.HubId }).(pulumi.StringOutput)
 }
 
-// The MQTT connection status of the device
+// The current connection status of the device.
 func (o IotDeviceOutput) IsConnected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.BoolOutput { return v.IsConnected }).(pulumi.BoolOutput)
 }
 
-// The date and time of last MQTT activity of the device
+// The last MQTT activity of the device.
 func (o IotDeviceOutput) LastActivityAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.LastActivityAt }).(pulumi.StringOutput)
 }
 
-// Rules to authorize or deny the device to publish/subscribe to specific topics
+// Rules that define which messages are authorized or denied based on their topic.
 func (o IotDeviceOutput) MessageFilters() IotDeviceMessageFiltersPtrOutput {
 	return o.ApplyT(func(v *IotDevice) IotDeviceMessageFiltersPtrOutput { return v.MessageFilters }).(IotDeviceMessageFiltersPtrOutput)
 }
 
-// The name of the device
+// The name of the IoT device you want to create (e.g. `my-device`).
 func (o IotDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -317,12 +326,12 @@ func (o IotDeviceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The status of the device
+// The current status of the device.
 func (o IotDeviceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the device
+// The date and time the device resource was updated.
 func (o IotDeviceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

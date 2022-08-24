@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class IotRouteS3Args : Pulumi.ResourceArgs
+    public sealed class IotRouteS3Args : global::Pulumi.ResourceArgs
     {
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
@@ -28,5 +28,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public IotRouteS3Args()
         {
         }
+        public static new IotRouteS3Args Empty => new IotRouteS3Args();
     }
 }

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inputs
 {
 
-    public sealed class IotRouteRestArgs : Pulumi.ResourceArgs
+    public sealed class IotRouteRestArgs : global::Pulumi.ResourceArgs
     {
         [Input("headers", required: true)]
         private InputMap<string>? _headers;
@@ -30,5 +30,6 @@ namespace Pulumiverse.Scaleway.Inputs
         public IotRouteRestArgs()
         {
         }
+        public static new IotRouteRestArgs Empty => new IotRouteRestArgs();
     }
 }

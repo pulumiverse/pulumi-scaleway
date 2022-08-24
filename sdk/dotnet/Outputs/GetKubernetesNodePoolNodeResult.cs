@@ -14,9 +14,21 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetKubernetesNodePoolNodeResult
     {
+        /// <summary>
+        /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The public IPv4.
+        /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// The public IPv6.
+        /// </summary>
         public readonly string PublicIpV6;
+        /// <summary>
+        /// The status of the node.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

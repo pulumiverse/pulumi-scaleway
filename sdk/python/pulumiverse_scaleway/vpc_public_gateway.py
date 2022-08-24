@@ -15,6 +15,9 @@ __all__ = ['VpcPublicGatewayArgs', 'VpcPublicGateway']
 class VpcPublicGatewayArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
+                 bastion_enabled: Optional[pulumi.Input[bool]] = None,
+                 bastion_port: Optional[pulumi.Input[int]] = None,
+                 enable_smtp: Optional[pulumi.Input[bool]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -23,15 +26,24 @@ class VpcPublicGatewayArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGateway resource.
-        :param pulumi.Input[str] type: gateway type
-        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
-        :param pulumi.Input[str] name: name of the gateway
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[str] type: The gateway type.
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
         """
         pulumi.set(__self__, "type", type)
+        if bastion_enabled is not None:
+            pulumi.set(__self__, "bastion_enabled", bastion_enabled)
+        if bastion_port is not None:
+            pulumi.set(__self__, "bastion_port", bastion_port)
+        if enable_smtp is not None:
+            pulumi.set(__self__, "enable_smtp", enable_smtp)
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
         if name is not None:
@@ -49,7 +61,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        gateway type
+        The gateway type.
         """
         return pulumi.get(self, "type")
 
@@ -58,10 +70,46 @@ class VpcPublicGatewayArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="bastionEnabled")
+    def bastion_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable SSH bastion on the gateway
+        """
+        return pulumi.get(self, "bastion_enabled")
+
+    @bastion_enabled.setter
+    def bastion_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bastion_enabled", value)
+
+    @property
+    @pulumi.getter(name="bastionPort")
+    def bastion_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port on which the SSH bastion will listen.
+        """
+        return pulumi.get(self, "bastion_port")
+
+    @bastion_port.setter
+    def bastion_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bastion_port", value)
+
+    @property
+    @pulumi.getter(name="enableSmtp")
+    def enable_smtp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable SMTP on the gateway
+        """
+        return pulumi.get(self, "enable_smtp")
+
+    @enable_smtp.setter
+    def enable_smtp(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_smtp", value)
+
+    @property
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing IP to the gateway
+        attach an existing flexible IP to the gateway
         """
         return pulumi.get(self, "ip_id")
 
@@ -73,7 +121,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        name of the gateway
+        The name of the public gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -85,7 +133,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -97,7 +145,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with public gateway
+        The tags associated with the public gateway.
         """
         return pulumi.get(self, "tags")
 
@@ -109,7 +157,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled
+        override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -121,7 +169,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -133,7 +181,10 @@ class VpcPublicGatewayArgs:
 @pulumi.input_type
 class _VpcPublicGatewayState:
     def __init__(__self__, *,
+                 bastion_enabled: Optional[pulumi.Input[bool]] = None,
+                 bastion_port: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 enable_smtp: Optional[pulumi.Input[bool]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
@@ -145,19 +196,28 @@ class _VpcPublicGatewayState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGateway resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway
-        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
-        :param pulumi.Input[str] name: name of the gateway
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
-        :param pulumi.Input[str] type: gateway type
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[str] type: The gateway type.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
         """
+        if bastion_enabled is not None:
+            pulumi.set(__self__, "bastion_enabled", bastion_enabled)
+        if bastion_port is not None:
+            pulumi.set(__self__, "bastion_port", bastion_port)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if enable_smtp is not None:
+            pulumi.set(__self__, "enable_smtp", enable_smtp)
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
         if name is not None:
@@ -178,10 +238,34 @@ class _VpcPublicGatewayState:
             pulumi.set(__self__, "zone", zone)
 
     @property
+    @pulumi.getter(name="bastionEnabled")
+    def bastion_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable SSH bastion on the gateway
+        """
+        return pulumi.get(self, "bastion_enabled")
+
+    @bastion_enabled.setter
+    def bastion_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bastion_enabled", value)
+
+    @property
+    @pulumi.getter(name="bastionPort")
+    def bastion_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port on which the SSH bastion will listen.
+        """
+        return pulumi.get(self, "bastion_port")
+
+    @bastion_port.setter
+    def bastion_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bastion_port", value)
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the public gateway
+        The date and time of the creation of the public gateway.
         """
         return pulumi.get(self, "created_at")
 
@@ -190,10 +274,22 @@ class _VpcPublicGatewayState:
         pulumi.set(self, "created_at", value)
 
     @property
+    @pulumi.getter(name="enableSmtp")
+    def enable_smtp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable SMTP on the gateway
+        """
+        return pulumi.get(self, "enable_smtp")
+
+    @enable_smtp.setter
+    def enable_smtp(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_smtp", value)
+
+    @property
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing IP to the gateway
+        attach an existing flexible IP to the gateway
         """
         return pulumi.get(self, "ip_id")
 
@@ -205,7 +301,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        name of the gateway
+        The name of the public gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -217,7 +313,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the public gateway is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -229,7 +325,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -241,7 +337,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with public gateway
+        The tags associated with the public gateway.
         """
         return pulumi.get(self, "tags")
 
@@ -253,7 +349,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        gateway type
+        The gateway type.
         """
         return pulumi.get(self, "type")
 
@@ -265,7 +361,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the public gateway
+        The date and time of the last update of the public gateway.
         """
         return pulumi.get(self, "updated_at")
 
@@ -277,7 +373,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled
+        override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -289,7 +385,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -303,6 +399,9 @@ class VpcPublicGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 bastion_enabled: Optional[pulumi.Input[bool]] = None,
+                 bastion_port: Optional[pulumi.Input[int]] = None,
+                 enable_smtp: Optional[pulumi.Input[bool]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -312,16 +411,43 @@ class VpcPublicGateway(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcPublicGateway resource with the given unique name, props, and options.
+        Creates and manages Scaleway VPC Public Gateway.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
+
+        ## Example
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.VpcPublicGateway("main",
+            tags=[
+                "demo",
+                "terraform",
+            ],
+            type="VPC-GW-S")
+        ```
+
+        ## Import
+
+        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
-        :param pulumi.Input[str] name: name of the gateway
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
-        :param pulumi.Input[str] type: gateway type
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[str] type: The gateway type.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
         """
         ...
     @overload
@@ -330,7 +456,31 @@ class VpcPublicGateway(pulumi.CustomResource):
                  args: VpcPublicGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcPublicGateway resource with the given unique name, props, and options.
+        Creates and manages Scaleway VPC Public Gateway.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
+
+        ## Example
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.VpcPublicGateway("main",
+            tags=[
+                "demo",
+                "terraform",
+            ],
+            type="VPC-GW-S")
+        ```
+
+        ## Import
+
+        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -346,6 +496,9 @@ class VpcPublicGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 bastion_enabled: Optional[pulumi.Input[bool]] = None,
+                 bastion_port: Optional[pulumi.Input[int]] = None,
+                 enable_smtp: Optional[pulumi.Input[bool]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -362,6 +515,9 @@ class VpcPublicGateway(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcPublicGatewayArgs.__new__(VpcPublicGatewayArgs)
 
+            __props__.__dict__["bastion_enabled"] = bastion_enabled
+            __props__.__dict__["bastion_port"] = bastion_port
+            __props__.__dict__["enable_smtp"] = enable_smtp
             __props__.__dict__["ip_id"] = ip_id
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
@@ -384,7 +540,10 @@ class VpcPublicGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            bastion_enabled: Optional[pulumi.Input[bool]] = None,
+            bastion_port: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            enable_smtp: Optional[pulumi.Input[bool]] = None,
             ip_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -401,22 +560,28 @@ class VpcPublicGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway
-        :param pulumi.Input[str] ip_id: attach an existing IP to the gateway
-        :param pulumi.Input[str] name: name of the gateway
-        :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with public gateway
-        :param pulumi.Input[str] type: gateway type
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[str] type: The gateway type.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _VpcPublicGatewayState.__new__(_VpcPublicGatewayState)
 
+        __props__.__dict__["bastion_enabled"] = bastion_enabled
+        __props__.__dict__["bastion_port"] = bastion_port
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enable_smtp"] = enable_smtp
         __props__.__dict__["ip_id"] = ip_id
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
@@ -429,18 +594,42 @@ class VpcPublicGateway(pulumi.CustomResource):
         return VpcPublicGateway(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="bastionEnabled")
+    def bastion_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enable SSH bastion on the gateway
+        """
+        return pulumi.get(self, "bastion_enabled")
+
+    @property
+    @pulumi.getter(name="bastionPort")
+    def bastion_port(self) -> pulumi.Output[int]:
+        """
+        The port on which the SSH bastion will listen.
+        """
+        return pulumi.get(self, "bastion_port")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the public gateway
+        The date and time of the creation of the public gateway.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableSmtp")
+    def enable_smtp(self) -> pulumi.Output[bool]:
+        """
+        Enable SMTP on the gateway
+        """
+        return pulumi.get(self, "enable_smtp")
 
     @property
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[str]:
         """
-        attach an existing IP to the gateway
+        attach an existing flexible IP to the gateway
         """
         return pulumi.get(self, "ip_id")
 
@@ -448,7 +637,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        name of the gateway
+        The name of the public gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -456,7 +645,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization_id you want to attach the resource to
+        The organization ID the public gateway is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -464,7 +653,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -472,7 +661,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with public gateway
+        The tags associated with the public gateway.
         """
         return pulumi.get(self, "tags")
 
@@ -480,7 +669,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        gateway type
+        The gateway type.
         """
         return pulumi.get(self, "type")
 
@@ -488,7 +677,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the public gateway
+        The date and time of the last update of the public gateway.
         """
         return pulumi.get(self, "updated_at")
 
@@ -496,7 +685,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled
+        override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -504,7 +693,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone you want to attach the resource to
+        `zone`) The zone in which the public gateway should be created.
         """
         return pulumi.get(self, "zone")
 

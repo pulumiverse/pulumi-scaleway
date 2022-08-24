@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about an instance volume.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get info by volume ID
+ * const myVolume = pulumi.output(scaleway.getInstanceVolume({
+ *     volumeId: "11111111-1111-1111-1111-111111111111",
+ * }));
+ * ```
+ */
 export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceVolumeResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +37,19 @@ export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.In
  * A collection of arguments for invoking getInstanceVolume.
  */
 export interface GetInstanceVolumeArgs {
+    /**
+     * The volume name.
+     * Only one of `name` and `volumeId` should be specified.
+     */
     name?: string;
+    /**
+     * The volume id.
+     * Only one of `name` and `volumeId` should be specified.
+     */
     volumeId?: string;
+    /**
+     * `zone`) The zone in which the volume exists.
+     */
     zone?: string;
 }
 
@@ -38,6 +64,9 @@ export interface GetInstanceVolumeResult {
      */
     readonly id: string;
     readonly name?: string;
+    /**
+     * The ID of the organization the volume is associated with.
+     */
     readonly organizationId: string;
     readonly projectId: string;
     readonly serverId: string;
@@ -56,7 +85,18 @@ export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts
  * A collection of arguments for invoking getInstanceVolume.
  */
 export interface GetInstanceVolumeOutputArgs {
+    /**
+     * The volume name.
+     * Only one of `name` and `volumeId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The volume id.
+     * Only one of `name` and `volumeId` should be specified.
+     */
     volumeId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the volume exists.
+     */
     zone?: pulumi.Input<string>;
 }
