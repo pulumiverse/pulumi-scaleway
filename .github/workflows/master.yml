@@ -81,6 +81,11 @@ jobs:
       with:
         name: ${{ matrix.language  }}-sdk.tar.gz
         path: ${{ github.workspace}}/sdk/${{ matrix.language }}.tar.gz
+    - name: Upload schema
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.language  }}-schema.json
+        path: ${{ github.workspace}}/provider/pulumi-resource-scaleway/schema.json
     strategy:
       fail-fast: true
       matrix:
