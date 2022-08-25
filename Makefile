@@ -77,7 +77,7 @@ build_java:: bin/pulumi-java-gen
 		gradle --console=plain build
 
 bin/pulumi-java-gen:: 
-	$(pulumi plugin install language java)
+	$(pulumi plugin install language java ${JAVA_GEN_VERSION})
 
 lint_provider:: provider # lint the provider code
 	cd provider && golangci-lint run -c ../.golangci.yml
