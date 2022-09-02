@@ -10,7 +10,7 @@ The Pulumi Scaleway provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumiverse/scaleway`](https://www.npmjs.com/package/@pulumiverse/scaleway)
 * Python: [`pulumiverse_scaleway`](https://pypi.org/project/pulumiverse-scaleway/)
-* Go: [`github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway`](https://pkg.go.dev/github.com/pulumiverse/pulumi-scaleway/sdk)
+* Go: [`github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway`](https://pkg.go.dev/github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway)
 * .NET: [`Pulumiverse.Scaleway`](https://www.nuget.org/packages/Pulumiverse.Scaleway)
 
 ### Provider Binary
