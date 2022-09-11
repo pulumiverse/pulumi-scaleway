@@ -315,7 +315,7 @@ def get_container(container_id: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
     main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
@@ -384,7 +384,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
     main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)

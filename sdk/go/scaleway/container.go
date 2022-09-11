@@ -28,8 +28,8 @@ import (
 //
 //	"fmt"
 //
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //

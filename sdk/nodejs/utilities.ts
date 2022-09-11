@@ -50,5 +50,5 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/pulumiverse" };
+    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/lbrlabs" };
 }

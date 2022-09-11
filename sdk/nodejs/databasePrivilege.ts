@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as scaleway from "@lbrlabs/scaleway";
  *
  * const mainDatabaseUser = new scaleway.DatabaseUser("mainDatabaseUser", {
  *     instanceId: scaleway_rdb_instance.pgsql.id,

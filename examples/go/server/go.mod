@@ -1,10 +1,10 @@
-module github.com/pulumiverse/pulumi-scaleway/examples/go/server
+module github.com/lbrlabs/pulumi-scaleway/examples/go/server
 
 go 1.18
 
 require (
 	github.com/pulumi/pulumi/sdk/v3 v3.17.0
-	github.com/pulumiverse/pulumi-scaleway/sdk v0.0.0-20220107151835-dedeaaa3fbbb
+	github.com/lbrlabs/pulumi-scaleway/sdk v0.0.0-20220107151835-dedeaaa3fbbb
 )
 
 require (

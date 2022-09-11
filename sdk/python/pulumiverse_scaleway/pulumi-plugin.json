@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "scaleway",
-  "server": "github://api.github.com/pulumiverse"
+  "server": "github://api.github.com/lbrlabs"
 }

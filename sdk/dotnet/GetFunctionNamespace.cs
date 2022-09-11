@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace lbrlabs.Scaleway
 {
     public static class GetFunctionNamespace
     {

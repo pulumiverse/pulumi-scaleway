@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace lbrlabs.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
@@ -18,7 +18,7 @@ namespace Pulumiverse.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Scaleway = lbrlabs.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -103,7 +103,7 @@ namespace Pulumiverse.Scaleway
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/lbrlabs",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

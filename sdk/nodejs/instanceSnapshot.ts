@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as scaleway from "@lbrlabs/scaleway";
  *
  * const mainInstanceVolume = new scaleway.InstanceVolume("mainInstanceVolume", {
  *     type: "l_ssd",

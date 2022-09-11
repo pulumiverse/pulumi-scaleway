@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-scaleway/scripts/
+module github.com/lbrlabs/pulumi-scaleway/scripts/
 
 go 1.18
 

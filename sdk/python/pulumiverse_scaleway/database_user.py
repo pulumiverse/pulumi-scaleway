@@ -207,7 +207,7 @@ class DatabaseUser(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_random as random
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         db_password = random.RandomPassword("dbPassword",
             length=16,
@@ -251,7 +251,7 @@ class DatabaseUser(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_random as random
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         db_password = random.RandomPassword("dbPassword",
             length=16,

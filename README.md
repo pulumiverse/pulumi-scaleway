@@ -13,13 +13,13 @@ This package is available in many languages in the standard packaging formats.
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @pulumiverse/scaleway
+$ npm install @lbrlabs/scaleway
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @pulumiverse/scaleway
+$ yarn add @lbrlabs/scaleway
 ```
 
 ### Python
@@ -27,7 +27,7 @@ $ yarn add @pulumiverse/scaleway
 To use from Python, install using `pip`:
 
 ```
-$ pip install pulumiverse-scaleway
+$ pip install lbrlabs-scaleway
 ```
 
 ### Go
@@ -35,7 +35,7 @@ $ pip install pulumiverse-scaleway
 To use from Go, use `go get` to grab the latest version of the library
 
 ```
-$ go get github.com/pulumiverse/pulumi-scaleway/sdk/go/...
+$ go get github.com/lbrlabs/pulumi-scaleway/sdk/go/...
 ```
 
 ### .NET
@@ -44,7 +44,7 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package Pulumiverse.Scaleway
+$ dotnet add package lbrlabs.Scaleway
 ```
 
 ## Reference

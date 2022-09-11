@@ -166,7 +166,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     main = scaleway.VpcGatewayNetwork("main",
         gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
@@ -226,7 +226,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     main = scaleway.VpcGatewayNetwork("main",
         gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],

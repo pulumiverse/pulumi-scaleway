@@ -36,8 +36,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/scaleway";
  * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const mainAccountSshKey = new scaleway.AccountSshKey("mainAccountSshKey", {publicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com"});
  * const byId = scaleway.getBaremetalOs({

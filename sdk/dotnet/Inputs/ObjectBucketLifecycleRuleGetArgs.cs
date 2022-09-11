@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway.Inputs
+namespace lbrlabs.Scaleway.Inputs
 {
 
     public sealed class ObjectBucketLifecycleRuleGetArgs : global::Pulumi.ResourceArgs

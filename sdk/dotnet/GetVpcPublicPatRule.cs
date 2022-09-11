@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace lbrlabs.Scaleway
 {
     public static class GetVpcPublicPatRule
     {
@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = Pulumiverse.Scaleway;
+        /// using Scaleway = lbrlabs.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -96,7 +96,7 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = Pulumiverse.Scaleway;
+        /// using Scaleway = lbrlabs.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {

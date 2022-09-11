@@ -435,7 +435,7 @@ class BaremetalServer(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main = scaleway.get_account_ssh_key(name="main")
         base = scaleway.BaremetalServer("base",
@@ -485,7 +485,7 @@ class BaremetalServer(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main = scaleway.get_account_ssh_key(name="main")
         base = scaleway.BaremetalServer("base",

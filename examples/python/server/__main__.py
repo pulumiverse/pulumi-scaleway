@@ -1,7 +1,7 @@
 """A Python Pulumi program"""
 
 import pulumi
-import pulumiverse_scaleway as scaleway
+import lbrlabs_scaleway as scaleway
 
 public_ip = scaleway.InstanceIp("example")
 

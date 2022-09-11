@@ -1,7 +1,7 @@
 PACK             := scaleway
-ORG              := pulumiverse
+ORG              := lbrlabs
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
-NODE_MODULE_NAME := @pulumiverse/${PACK}
+NODE_MODULE_NAME := @lbrlabs/${PACK}
 TF_NAME          := ${PACK}
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version

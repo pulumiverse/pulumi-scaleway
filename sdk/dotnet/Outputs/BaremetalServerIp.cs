@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway.Outputs
+namespace lbrlabs.Scaleway.Outputs
 {
 
     [OutputType]

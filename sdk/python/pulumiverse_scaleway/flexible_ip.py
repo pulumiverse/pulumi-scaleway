@@ -321,7 +321,7 @@ class FlexibleIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
         ```
@@ -330,7 +330,7 @@ class FlexibleIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", zone="fr-par-2")
         ```
@@ -340,7 +340,7 @@ class FlexibleIp(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main_account_ssh_key = scaleway.AccountSshKey("mainAccountSshKey", public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
         by_id = scaleway.get_baremetal_os(zone="fr-par-2",
@@ -391,7 +391,7 @@ class FlexibleIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
         ```
@@ -400,7 +400,7 @@ class FlexibleIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", zone="fr-par-2")
         ```
@@ -410,7 +410,7 @@ class FlexibleIp(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
+        import lbrlabs_scaleway as scaleway
 
         main_account_ssh_key = scaleway.AccountSshKey("mainAccountSshKey", public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
         by_id = scaleway.get_baremetal_os(zone="fr-par-2",

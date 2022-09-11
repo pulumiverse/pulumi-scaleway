@@ -141,7 +141,7 @@ def get_object_bucket(name: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     main = scaleway.ObjectBucket("main", tags={
         "foo": "bar",
@@ -185,7 +185,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     main = scaleway.ObjectBucket("main", tags={
         "foo": "bar",

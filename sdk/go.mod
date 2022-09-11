@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-scaleway/sdk
+module github.com/lbrlabs/pulumi-scaleway/sdk
 
 go 1.19
 

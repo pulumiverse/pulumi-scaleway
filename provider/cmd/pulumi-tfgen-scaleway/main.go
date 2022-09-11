@@ -17,8 +17,8 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 
-	scaleway "github.com/pulumiverse/pulumi-scaleway/provider"
-	"github.com/pulumiverse/pulumi-scaleway/provider/pkg/version"
+	scaleway "github.com/lbrlabs/pulumi-scaleway/provider"
+	"github.com/lbrlabs/pulumi-scaleway/provider/pkg/version"
 )
 
 func main() {

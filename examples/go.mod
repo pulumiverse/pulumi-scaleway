@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-scaleway/examples
+module github.com/lbrlabs/pulumi-scaleway/examples
 
 go 1.19
 

@@ -25,7 +25,7 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	baseJS := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
-			"@pulumiverse/scaleway",
+			"@lbrlabs/scaleway",
 		},
 	})
 

@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as scaleway from "@lbrlabs/scaleway";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const gw01 = new scaleway.VpcPublicGatewayIp("gw01", {});

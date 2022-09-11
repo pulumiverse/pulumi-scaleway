@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	scaleway "github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+	scaleway "github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 )
 
 func main() {

@@ -24,7 +24,7 @@ func getCsharpBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	baseCsharp := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
-			"Pulumiverse.Scaleway",
+			"lbrlabs.Scaleway",
 		},
 	})
 

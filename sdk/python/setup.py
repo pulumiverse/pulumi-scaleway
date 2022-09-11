@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'scaleway', PLUGIN_VERSION, '--server', 'github://api.github.com/lbrlabs'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,7 +37,7 @@ def readme():
         return "scaleway Pulumi Package - Development Version"
 
 
-setup(name='pulumiverse_scaleway',
+setup(name='lbrlabs_scaleway',
       version=VERSION,
       description="A Pulumi package for creating and managing scaleway cloud resources.",
       long_description=readme(),
@@ -45,15 +45,15 @@ setup(name='pulumiverse_scaleway',
       cmdclass={
           'install': InstallPluginCommand,
       },
-      keywords='pulumi scaleway pulumiverse',
+      keywords='pulumi scaleway lbrlabs',
       url='https://leebriggs.co.uk/projects#pulumi-scaleway',
       project_urls={
-          'Repository': 'https://github.com/pulumiverse/pulumi-scaleway'
+          'Repository': 'https://github.com/lbrlabs/pulumi-scaleway'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumiverse_scaleway': [
+          'lbrlabs_scaleway': [
               'py.typed',
               'pulumi-plugin.json',
           ]

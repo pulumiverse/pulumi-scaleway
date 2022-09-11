@@ -20,10 +20,10 @@ import (
 	"path/filepath"
 	"unicode"
 
+	"github.com/lbrlabs/pulumi-scaleway/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumiverse/pulumi-scaleway/provider/pkg/version"
 	"github.com/scaleway/terraform-provider-scaleway/v2/scaleway"
 )
 
@@ -80,15 +80,15 @@ func Provider() tfbridge.ProviderInfo {
 		P:                       p,
 		Name:                    "scaleway",
 		Description:             "A Pulumi package for creating and managing scaleway cloud resources.",
-		Keywords:                []string{"pulumi", "scaleway", "pulumiverse"},
+		Keywords:                []string{"pulumi", "scaleway", "lbrlabs"},
 		TFProviderLicense:       refProviderLicense(tfbridge.MITLicenseType),
 		License:                 "Apache-2.0",
-		LogoURL:                 "https://raw.githubusercontent.com/pulumiverse/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
+		LogoURL:                 "https://raw.githubusercontent.com/lbrlabs/pulumi-scaleway/master/assets/scaleway-svgrepo-com.svg", //nolint:golint,lll
 		Homepage:                "https://leebriggs.co.uk/projects#pulumi-scaleway",
-		Repository:              "https://github.com/pulumiverse/pulumi-scaleway",
-		PluginDownloadURL:       "github://api.github.com/pulumiverse",
+		Repository:              "https://github.com/lbrlabs/pulumi-scaleway",
+		PluginDownloadURL:       "github://api.github.com/lbrlabs",
 		GitHubOrg:               "scaleway", // not in the terraform-providers repo
-		Publisher:               "Pulumiverse",
+		Publisher:               "lbrlabs",
 		DisplayName:             "Scaleway",
 		TFProviderModuleVersion: "v2",
 		Config: map[string]*tfbridge.SchemaInfo{
@@ -237,28 +237,28 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@pulumiverse/scaleway",
+			PackageName: "@lbrlabs/scaleway",
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "pulumiverse_scaleway",
+			PackageName: "lbrlabs_scaleway",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Pulumiverse",
+			RootNamespace: "lbrlabs",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", scalewayPkg),
+				fmt.Sprintf("github.com/lbrlabs/pulumi-%[1]s/sdk/", scalewayPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				scalewayPkg,

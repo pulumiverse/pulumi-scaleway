@@ -161,7 +161,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
     dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
@@ -224,7 +224,7 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
+    import lbrlabs_scaleway as scaleway
 
     pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
     dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
