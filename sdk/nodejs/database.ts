@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/scaleway";
+ * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.Database("main", {instanceId: scaleway_rdb_instance.main.id});
  * ```

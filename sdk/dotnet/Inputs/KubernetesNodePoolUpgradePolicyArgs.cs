@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway.Inputs
+namespace Lbrlabs_Pulumi.Scaleway.Inputs
 {
 
     public sealed class KubernetesNodePoolUpgradePolicyArgs : global::Pulumi.ResourceArgs

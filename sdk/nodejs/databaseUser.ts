@@ -14,8 +14,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as random from "@pulumi/random";
- * import * as scaleway from "@lbrlabs/scaleway";
  *
  * const dbPassword = new random.RandomPassword("dbPassword", {
  *     length: 16,

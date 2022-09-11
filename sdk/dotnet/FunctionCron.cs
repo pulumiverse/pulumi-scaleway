@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
@@ -31,7 +31,7 @@ namespace lbrlabs.Scaleway
     /// using System.Collections.Generic;
     /// using System.Text.Json;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

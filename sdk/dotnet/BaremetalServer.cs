@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -20,8 +20,8 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = lbrlabs.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

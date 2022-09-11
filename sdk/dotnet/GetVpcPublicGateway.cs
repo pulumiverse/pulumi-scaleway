@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     public static class GetVpcPublicGateway
     {
@@ -22,8 +22,8 @@ namespace lbrlabs.Scaleway
         /// ```csharp
         /// using System.Collections.Generic;
         /// using Pulumi;
+        /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
         /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = lbrlabs.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -60,8 +60,8 @@ namespace lbrlabs.Scaleway
         /// ```csharp
         /// using System.Collections.Generic;
         /// using Pulumi;
+        /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
         /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = lbrlabs.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {

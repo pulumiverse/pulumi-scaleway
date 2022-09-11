@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Database Users.
@@ -22,7 +22,7 @@ namespace lbrlabs.Scaleway
     /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Random = Pulumi.Random;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

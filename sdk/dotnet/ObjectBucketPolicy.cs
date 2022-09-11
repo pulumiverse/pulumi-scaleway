@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway object storage bucket policy.

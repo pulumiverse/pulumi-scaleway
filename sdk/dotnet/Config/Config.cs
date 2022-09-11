@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     public static class Config
     {

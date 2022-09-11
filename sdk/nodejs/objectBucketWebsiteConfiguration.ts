@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/scaleway";
+ * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/scaleway";
+ * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketPolicy = new scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", {

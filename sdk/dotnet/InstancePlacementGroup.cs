@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653).
@@ -18,7 +18,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

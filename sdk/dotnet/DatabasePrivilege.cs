@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Create and manage Scaleway RDB database privilege.
@@ -19,7 +19,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

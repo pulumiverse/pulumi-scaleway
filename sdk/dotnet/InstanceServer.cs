@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Scaleway
+namespace Lbrlabs_Pulumi.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
@@ -22,7 +22,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -43,7 +43,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -80,7 +80,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -106,7 +106,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -159,7 +159,7 @@ namespace lbrlabs.Scaleway
     /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -182,7 +182,7 @@ namespace lbrlabs.Scaleway
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Scaleway = lbrlabs.Scaleway;
+    /// using Scaleway = Lbrlabs_Pulumi.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

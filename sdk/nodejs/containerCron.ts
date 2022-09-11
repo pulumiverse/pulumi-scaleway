@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/scaleway";
+ * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {});
  * const mainContainer = new scaleway.Container("mainContainer", {namespaceId: mainContainerNamespace.id});

@@ -237,21 +237,21 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@lbrlabs/scaleway",
+			PackageName: "@lbrlabs/pulumi-scaleway",
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "lbrlabs_scaleway",
+			PackageName: "lbrlabs_pulumi_scaleway",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "lbrlabs",
+			RootNamespace: "Lbrlabs_Pulumi",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
