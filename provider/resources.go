@@ -251,7 +251,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Lbrlabs_Pulumi",
+			RootNamespace: "Lbrlabs.PulumiPackage",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
