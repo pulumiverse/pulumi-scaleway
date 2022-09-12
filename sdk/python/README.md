@@ -13,13 +13,13 @@ This package is available in many languages in the standard packaging formats.
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @lbrlabs/scaleway
+$ npm install @lbrlabs/pulumi-scaleway
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @lbrlabs/scaleway
+$ yarn add @lbrlabs/pulumi-scaleway
 ```
 
 ### Python
@@ -44,7 +44,7 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package lbrlabs.Scaleway
+$ dotnet add package lbrlabs.PulumiPackage.Scaleway
 ```
 
 ## Reference
