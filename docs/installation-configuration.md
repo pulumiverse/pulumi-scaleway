@@ -8,10 +8,10 @@ layout: installation
 
 The Pulumi Scaleway provider is available as a package in all Pulumi languages:
 
-* JavaScript/TypeScript: [`@lbrlabs/scaleway`](https://www.npmjs.com/package/@lbrlabs/scaleway)
-* Python: [`lbrlabs_scaleway`](https://pypi.org/project/lbrlabs-scaleway/)
+* JavaScript/TypeScript: [`@lbrlabs/scaleway`](https://www.npmjs.com/package/@lbrlabs/pulumi-scaleway)
+* Python: [`lbrlabs_scaleway`](https://pypi.org/project/lbrlabs-pulumi-scaleway/)
 * Go: [`github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway`](https://pkg.go.dev/github.com/lbrlabs/pulumi-scaleway/sdk)
-* .NET: [`lbrlabs.Scaleway`](https://www.nuget.org/packages/lbrlabs.Scaleway)
+* .NET: [`lbrlabs.Scaleway`](https://www.nuget.org/packages/Lbrlabs.PulumiPackage.Scaleway)
 
 ### Provider Binary
 
