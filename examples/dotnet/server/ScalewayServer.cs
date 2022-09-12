@@ -1,5 +1,5 @@
 using Pulumi;
-using Pulumi.Scaleway;
+using Lbrlabs_Pulumi.Scaleway;
 
 class ScalewayServer : Stack
 {

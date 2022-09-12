@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@lbrlabs/scaleway";
+import * as scaleway from "@lbrlabs/pulumi-scaleway";
 
 const publicIp = new scaleway.InstanceIp("example")
 const server = new scaleway.InstanceServer("example", {
