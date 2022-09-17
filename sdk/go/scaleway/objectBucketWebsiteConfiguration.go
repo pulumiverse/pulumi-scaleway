@@ -22,7 +22,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -59,7 +58,6 @@ import (
 //	"encoding/json"
 //
 //	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

@@ -124,7 +124,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const config = new pulumi.Config();
  * const projectId = config.require("projectId");

@@ -24,7 +24,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -68,7 +67,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -108,7 +106,7 @@ import (
 //
 // ## Import
 //
-// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+// Database Read replica can be imported using the `{region}/{id}`, e.g. bash
 //
 // ```sh
 //

@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const mainFunctionNamespace = new scaleway.FunctionNamespace("mainFunctionNamespace", {});
  * const mainFunction = new scaleway.Function("mainFunction", {

@@ -3,9 +3,9 @@ module github.com/lbrlabs/pulumi-scaleway/provider
 go 1.19
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.28.1
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.30.0
 	github.com/pulumi/pulumi/sdk/v3 v3.40.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.2.8
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.2.9
 )
 
 require (

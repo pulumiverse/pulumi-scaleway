@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const instance = new scaleway.DatabaseInstance("instance", {
  *     nodeType: "db-dev-s",
@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const instance = new scaleway.DatabaseInstance("instance", {
  *     nodeType: "db-dev-s",
@@ -62,7 +62,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database Instance can be imported using the `{region}/{id}`, e.g. bash
+ * Database Read replica can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
  *  $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
