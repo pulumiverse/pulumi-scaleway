@@ -8,7 +8,7 @@ on:
 
 jobs:
   generate:
-    if: ${{ github.event.label.name == 'dependabot' }}
+    if: ${{ github.event.label.name == 'dependencies' }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
