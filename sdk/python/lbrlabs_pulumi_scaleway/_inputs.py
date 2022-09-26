@@ -33,6 +33,9 @@ __all__ = [
     'IotDeviceMessageFiltersArgs',
     'IotDeviceMessageFiltersPublishArgs',
     'IotDeviceMessageFiltersSubscribeArgs',
+    'IotRouteDatabaseArgs',
+    'IotRouteRestArgs',
+    'IotRouteS3Args',
     'KubernetesClusterAutoUpgradeArgs',
     'KubernetesClusterAutoscalerConfigArgs',
     'KubernetesClusterKubeconfigArgs',
@@ -48,6 +51,10 @@ __all__ = [
     'LoadbalancerFrontendAclActionArgs',
     'LoadbalancerFrontendAclMatchArgs',
     'LoadbalancerPrivateNetworkArgs',
+    'ObjectBucketAclAccessControlPolicyArgs',
+    'ObjectBucketAclAccessControlPolicyGrantArgs',
+    'ObjectBucketAclAccessControlPolicyGrantGranteeArgs',
+    'ObjectBucketAclAccessControlPolicyOwnerArgs',
     'ObjectBucketCorsRuleArgs',
     'ObjectBucketLifecycleRuleArgs',
     'ObjectBucketLifecycleRuleExpirationArgs',
@@ -1110,6 +1117,9 @@ class InstanceSecurityGroupInboundRuleArgs:
         """
         pulumi.set(__self__, "action", action)
         if ip is not None:
+            warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+            pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+        if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip_range is not None:
             pulumi.set(__self__, "ip_range", ip_range)
@@ -1207,6 +1217,9 @@ class InstanceSecurityGroupOutboundRuleArgs:
         :param pulumi.Input[str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
+        if ip is not None:
+            warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+            pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip_range is not None:
@@ -1306,6 +1319,9 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
         """
         pulumi.set(__self__, "action", action)
         if ip is not None:
+            warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+            pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+        if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip_range is not None:
             pulumi.set(__self__, "ip_range", ip_range)
@@ -1403,6 +1419,9 @@ class InstanceSecurityGroupRulesOutboundRuleArgs:
         :param pulumi.Input[str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
+        if ip is not None:
+            warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+            pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip_range is not None:
@@ -1797,6 +1816,165 @@ class IotDeviceMessageFiltersSubscribeArgs:
     @topics.setter
     def topics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "topics", value)
+
+
+@pulumi.input_type
+class IotRouteDatabaseArgs:
+    def __init__(__self__, *,
+                 dbname: pulumi.Input[str],
+                 host: pulumi.Input[str],
+                 password: pulumi.Input[str],
+                 port: pulumi.Input[int],
+                 query: pulumi.Input[str],
+                 username: pulumi.Input[str]):
+        pulumi.set(__self__, "dbname", dbname)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "dbname")
+
+    @dbname.setter
+    def dbname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "dbname", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[str]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[int]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def query(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class IotRouteRestArgs:
+    def __init__(__self__, *,
+                 headers: pulumi.Input[Mapping[str, pulumi.Input[str]]],
+                 uri: pulumi.Input[str],
+                 verb: pulumi.Input[str]):
+        pulumi.set(__self__, "headers", headers)
+        pulumi.set(__self__, "uri", uri)
+        pulumi.set(__self__, "verb", verb)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: pulumi.Input[str]):
+        pulumi.set(self, "uri", value)
+
+    @property
+    @pulumi.getter
+    def verb(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "verb")
+
+    @verb.setter
+    def verb(self, value: pulumi.Input[str]):
+        pulumi.set(self, "verb", value)
+
+
+@pulumi.input_type
+class IotRouteS3Args:
+    def __init__(__self__, *,
+                 bucket_name: pulumi.Input[str],
+                 bucket_region: pulumi.Input[str],
+                 strategy: pulumi.Input[str],
+                 object_prefix: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "bucket_region", bucket_region)
+        pulumi.set(__self__, "strategy", strategy)
+        if object_prefix is not None:
+            pulumi.set(__self__, "object_prefix", object_prefix)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bucket_name")
+
+    @bucket_name.setter
+    def bucket_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bucket_region")
+
+    @bucket_region.setter
+    def bucket_region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket_region", value)
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "strategy")
+
+    @strategy.setter
+    def strategy(self, value: pulumi.Input[str]):
+        pulumi.set(self, "strategy", value)
+
+    @property
+    @pulumi.getter(name="objectPrefix")
+    def object_prefix(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "object_prefix")
+
+    @object_prefix.setter
+    def object_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_prefix", value)
 
 
 @pulumi.input_type
@@ -2738,6 +2916,141 @@ class LoadbalancerPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone", value)
+
+
+@pulumi.input_type
+class ObjectBucketAclAccessControlPolicyArgs:
+    def __init__(__self__, *,
+                 owner: pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs'],
+                 grants: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]] = None):
+        pulumi.set(__self__, "owner", owner)
+        if grants is not None:
+            pulumi.set(__self__, "grants", grants)
+
+    @property
+    @pulumi.getter
+    def owner(self) -> pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs']:
+        return pulumi.get(self, "owner")
+
+    @owner.setter
+    def owner(self, value: pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs']):
+        pulumi.set(self, "owner", value)
+
+    @property
+    @pulumi.getter
+    def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]]:
+        return pulumi.get(self, "grants")
+
+    @grants.setter
+    def grants(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]]):
+        pulumi.set(self, "grants", value)
+
+
+@pulumi.input_type
+class ObjectBucketAclAccessControlPolicyGrantArgs:
+    def __init__(__self__, *,
+                 permission: pulumi.Input[str],
+                 grantee: Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgs']] = None):
+        pulumi.set(__self__, "permission", permission)
+        if grantee is not None:
+            pulumi.set(__self__, "grantee", grantee)
+
+    @property
+    @pulumi.getter
+    def permission(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "permission")
+
+    @permission.setter
+    def permission(self, value: pulumi.Input[str]):
+        pulumi.set(self, "permission", value)
+
+    @property
+    @pulumi.getter
+    def grantee(self) -> Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgs']]:
+        return pulumi.get(self, "grantee")
+
+    @grantee.setter
+    def grantee(self, value: Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgs']]):
+        pulumi.set(self, "grantee", value)
+
+
+@pulumi.input_type
+class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 display_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "type", type)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
+
+
+@pulumi.input_type
+class ObjectBucketAclAccessControlPolicyOwnerArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 display_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        pulumi.set(__self__, "id", id)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
 
 
 @pulumi.input_type

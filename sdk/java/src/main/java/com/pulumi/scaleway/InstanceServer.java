@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * 
  *         var web = new InstanceServer(&#34;web&#34;, InstanceServerArgs.builder()        
  *             .type(&#34;DEV1-S&#34;)
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .ipId(publicIp.id())
  *             .build());
  * 
@@ -94,7 +94,7 @@ import javax.annotation.Nullable;
  * 
  *         var web = new InstanceServer(&#34;web&#34;, InstanceServerArgs.builder()        
  *             .type(&#34;DEV1-S&#34;)
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .tags(            
  *                 &#34;hello&#34;,
  *                 &#34;public&#34;)
@@ -197,7 +197,7 @@ import javax.annotation.Nullable;
  * 
  *         var web = new InstanceServer(&#34;web&#34;, InstanceServerArgs.builder()        
  *             .type(&#34;DEV1-S&#34;)
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .securityGroupId(www.id())
  *             .build());
  * 
@@ -229,7 +229,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var web = new InstanceServer(&#34;web&#34;, InstanceServerArgs.builder()        
  *             .type(&#34;DEV1-S&#34;)
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .userData(Map.ofEntries(
  *                 Map.entry(&#34;foo&#34;, &#34;bar&#34;),
  *                 Map.entry(&#34;cloud-init&#34;, Files.readString(Paths.get(String.format(&#34;%s/cloud-init.yml&#34;, path.module()))))
@@ -267,7 +267,7 @@ import javax.annotation.Nullable;
  *         var pn01 = new VpcPrivateNetwork(&#34;pn01&#34;);
  * 
  *         var base = new InstanceServer(&#34;base&#34;, InstanceServerArgs.builder()        
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .type(&#34;DEV1-S&#34;)
  *             .privateNetworks(InstanceServerPrivateNetworkArgs.builder()
  *                 .pnId(pn01.id())

@@ -65,6 +65,7 @@ type LookupLoadbalancerArgs struct {
 
 // A collection of values returned by getLoadbalancer.
 type LookupLoadbalancerResult struct {
+	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The load-balancer public IP Address.
@@ -75,9 +76,10 @@ type LookupLoadbalancerResult struct {
 	OrganizationId  string                          `pulumi:"organizationId"`
 	PrivateNetworks []GetLoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
 	// (Defaults to provider `projectId`) The ID of the project the LB is associated with.
-	ProjectId string `pulumi:"projectId"`
-	Region    string `pulumi:"region"`
-	ReleaseIp *bool  `pulumi:"releaseIp"`
+	ProjectId             string `pulumi:"projectId"`
+	Region                string `pulumi:"region"`
+	ReleaseIp             *bool  `pulumi:"releaseIp"`
+	SslCompatibilityLevel string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer.
@@ -128,6 +130,10 @@ func (o LookupLoadbalancerResultOutput) ToLookupLoadbalancerResultOutputWithCont
 	return o
 }
 
+func (o LookupLoadbalancerResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupLoadbalancerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Id }).(pulumi.StringOutput)
@@ -169,6 +175,10 @@ func (o LookupLoadbalancerResultOutput) Region() pulumi.StringOutput {
 
 func (o LookupLoadbalancerResultOutput) ReleaseIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) *bool { return v.ReleaseIp }).(pulumi.BoolPtrOutput)
+}
+
+func (o LookupLoadbalancerResultOutput) SslCompatibilityLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.SslCompatibilityLevel }).(pulumi.StringOutput)
 }
 
 // The tags associated with the load-balancers.

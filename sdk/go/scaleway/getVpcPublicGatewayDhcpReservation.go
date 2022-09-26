@@ -24,10 +24,14 @@ func LookupVpcPublicGatewayDhcpReservation(ctx *pulumi.Context, args *LookupVpcP
 
 // A collection of arguments for invoking getVpcPublicGatewayDhcpReservation.
 type LookupVpcPublicGatewayDhcpReservationArgs struct {
+	// The ID of the owning GatewayNetwork.
+	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the Reservation to retrieve
 	ReservationId *string `pulumi:"reservationId"`
+	// Boolean to wait for macAddress to exist in dhcp
+	WaitForDhcp *bool `pulumi:"waitForDhcp"`
 	// `zone`) The zone in which
 	// the image exists.
 	Zone *string `pulumi:"zone"`
@@ -38,7 +42,7 @@ type LookupVpcPublicGatewayDhcpReservationResult struct {
 	// The date and time of the creation of the public gateway DHCP config.
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the owning GatewayNetwork.
-	GatewayNetworkId string `pulumi:"gatewayNetworkId"`
+	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
 	// The Hostname of the client machine.
 	Hostname string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
@@ -50,8 +54,9 @@ type LookupVpcPublicGatewayDhcpReservationResult struct {
 	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
 	Type string `pulumi:"type"`
 	// The date and time of the last update of the public gateway DHCP config.
-	UpdatedAt string  `pulumi:"updatedAt"`
-	Zone      *string `pulumi:"zone"`
+	UpdatedAt   string  `pulumi:"updatedAt"`
+	WaitForDhcp *bool   `pulumi:"waitForDhcp"`
+	Zone        *string `pulumi:"zone"`
 }
 
 func LookupVpcPublicGatewayDhcpReservationOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayDhcpReservationOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayDhcpReservationResultOutput {
@@ -69,10 +74,14 @@ func LookupVpcPublicGatewayDhcpReservationOutput(ctx *pulumi.Context, args Looku
 
 // A collection of arguments for invoking getVpcPublicGatewayDhcpReservation.
 type LookupVpcPublicGatewayDhcpReservationOutputArgs struct {
+	// The ID of the owning GatewayNetwork.
+	GatewayNetworkId pulumi.StringPtrInput `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The ID of the Reservation to retrieve
 	ReservationId pulumi.StringPtrInput `pulumi:"reservationId"`
+	// Boolean to wait for macAddress to exist in dhcp
+	WaitForDhcp pulumi.BoolPtrInput `pulumi:"waitForDhcp"`
 	// `zone`) The zone in which
 	// the image exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
@@ -103,8 +112,8 @@ func (o LookupVpcPublicGatewayDhcpReservationResultOutput) CreatedAt() pulumi.St
 }
 
 // The ID of the owning GatewayNetwork.
-func (o LookupVpcPublicGatewayDhcpReservationResultOutput) GatewayNetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpReservationResult) string { return v.GatewayNetworkId }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayDhcpReservationResultOutput) GatewayNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpReservationResult) *string { return v.GatewayNetworkId }).(pulumi.StringPtrOutput)
 }
 
 // The Hostname of the client machine.
@@ -138,6 +147,10 @@ func (o LookupVpcPublicGatewayDhcpReservationResultOutput) Type() pulumi.StringO
 // The date and time of the last update of the public gateway DHCP config.
 func (o LookupVpcPublicGatewayDhcpReservationResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpReservationResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupVpcPublicGatewayDhcpReservationResultOutput) WaitForDhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayDhcpReservationResult) *bool { return v.WaitForDhcp }).(pulumi.BoolPtrOutput)
 }
 
 func (o LookupVpcPublicGatewayDhcpReservationResultOutput) Zone() pulumi.StringPtrOutput {

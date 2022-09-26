@@ -46,7 +46,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetBaremetalOsResult> InvokeAsync(GetBaremetalOsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalOsResult>("scaleway:index/getBaremetalOs:getBaremetalOs", args ?? new GetBaremetalOsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalOsResult>("scaleway:index/getBaremetalOs:getBaremetalOs", args ?? new GetBaremetalOsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a baremetal operating system.
@@ -82,7 +82,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetBaremetalOsResult> Invoke(GetBaremetalOsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetBaremetalOsResult>("scaleway:index/getBaremetalOs:getBaremetalOs", args ?? new GetBaremetalOsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOsResult>("scaleway:index/getBaremetalOs:getBaremetalOs", args ?? new GetBaremetalOsInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -208,7 +208,7 @@ import (
 //			web, err := scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
 //				ProjectId: pulumi.String(projectId),
 //				Type:      pulumi.String("DEV1-S"),
-//				Image:     pulumi.String("ubuntu_focal"),
+//				Image:     pulumi.String("ubuntu_jammy"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("front"),
 //					pulumi.String("web"),

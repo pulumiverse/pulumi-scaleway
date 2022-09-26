@@ -196,14 +196,14 @@ public class Container extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="environmentVariables", type=Map.class, parameters={String.class, String.class})
-    private Output</* @Nullable */ Map<String,String>> environmentVariables;
+    private Output<Map<String,String>> environmentVariables;
 
     /**
      * @return The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
      * 
      */
-    public Output<Optional<Map<String,String>>> environmentVariables() {
-        return Codegen.optional(this.environmentVariables);
+    public Output<Map<String,String>> environmentVariables() {
+        return this.environmentVariables;
     }
     /**
      * The error message of the container.

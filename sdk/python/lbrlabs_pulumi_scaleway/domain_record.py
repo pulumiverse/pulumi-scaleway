@@ -564,7 +564,7 @@ class DomainRecord(pulumi.CustomResource):
         web = scaleway.InstanceServer("web",
             project_id=project_id,
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             tags=[
                 "front",
                 "web",
@@ -746,7 +746,7 @@ class DomainRecord(pulumi.CustomResource):
         web = scaleway.InstanceServer("web",
             project_id=project_id,
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             tags=[
                 "front",
                 "web",

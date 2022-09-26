@@ -34,6 +34,9 @@ __all__ = [
     'IotDeviceMessageFilters',
     'IotDeviceMessageFiltersPublish',
     'IotDeviceMessageFiltersSubscribe',
+    'IotRouteDatabase',
+    'IotRouteRest',
+    'IotRouteS3',
     'KubernetesClusterAutoUpgrade',
     'KubernetesClusterAutoscalerConfig',
     'KubernetesClusterKubeconfig',
@@ -49,6 +52,10 @@ __all__ = [
     'LoadbalancerFrontendAclAction',
     'LoadbalancerFrontendAclMatch',
     'LoadbalancerPrivateNetwork',
+    'ObjectBucketAclAccessControlPolicy',
+    'ObjectBucketAclAccessControlPolicyGrant',
+    'ObjectBucketAclAccessControlPolicyGrantGrantee',
+    'ObjectBucketAclAccessControlPolicyOwner',
     'ObjectBucketCorsRule',
     'ObjectBucketLifecycleRule',
     'ObjectBucketLifecycleRuleExpiration',
@@ -1664,6 +1671,134 @@ class IotDeviceMessageFiltersSubscribe(dict):
 
 
 @pulumi.output_type
+class IotRouteDatabase(dict):
+    def __init__(__self__, *,
+                 dbname: str,
+                 host: str,
+                 password: str,
+                 port: int,
+                 query: str,
+                 username: str):
+        pulumi.set(__self__, "dbname", dbname)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> str:
+        return pulumi.get(self, "dbname")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class IotRouteRest(dict):
+    def __init__(__self__, *,
+                 headers: Mapping[str, str],
+                 uri: str,
+                 verb: str):
+        pulumi.set(__self__, "headers", headers)
+        pulumi.set(__self__, "uri", uri)
+        pulumi.set(__self__, "verb", verb)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Mapping[str, str]:
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        return pulumi.get(self, "uri")
+
+    @property
+    @pulumi.getter
+    def verb(self) -> str:
+        return pulumi.get(self, "verb")
+
+
+@pulumi.output_type
+class IotRouteS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "bucketRegion":
+            suggest = "bucket_region"
+        elif key == "objectPrefix":
+            suggest = "object_prefix"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IotRouteS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IotRouteS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IotRouteS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 bucket_region: str,
+                 strategy: str,
+                 object_prefix: Optional[str] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "bucket_region", bucket_region)
+        pulumi.set(__self__, "strategy", strategy)
+        if object_prefix is not None:
+            pulumi.set(__self__, "object_prefix", object_prefix)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> str:
+        return pulumi.get(self, "bucket_region")
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> str:
+        return pulumi.get(self, "strategy")
+
+    @property
+    @pulumi.getter(name="objectPrefix")
+    def object_prefix(self) -> Optional[str]:
+        return pulumi.get(self, "object_prefix")
+
+
+@pulumi.output_type
 class KubernetesClusterAutoUpgrade(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2606,6 +2741,139 @@ class LoadbalancerPrivateNetwork(dict):
         `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class ObjectBucketAclAccessControlPolicy(dict):
+    def __init__(__self__, *,
+                 owner: 'outputs.ObjectBucketAclAccessControlPolicyOwner',
+                 grants: Optional[Sequence['outputs.ObjectBucketAclAccessControlPolicyGrant']] = None):
+        pulumi.set(__self__, "owner", owner)
+        if grants is not None:
+            pulumi.set(__self__, "grants", grants)
+
+    @property
+    @pulumi.getter
+    def owner(self) -> 'outputs.ObjectBucketAclAccessControlPolicyOwner':
+        return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter
+    def grants(self) -> Optional[Sequence['outputs.ObjectBucketAclAccessControlPolicyGrant']]:
+        return pulumi.get(self, "grants")
+
+
+@pulumi.output_type
+class ObjectBucketAclAccessControlPolicyGrant(dict):
+    def __init__(__self__, *,
+                 permission: str,
+                 grantee: Optional['outputs.ObjectBucketAclAccessControlPolicyGrantGrantee'] = None):
+        pulumi.set(__self__, "permission", permission)
+        if grantee is not None:
+            pulumi.set(__self__, "grantee", grantee)
+
+    @property
+    @pulumi.getter
+    def permission(self) -> str:
+        return pulumi.get(self, "permission")
+
+    @property
+    @pulumi.getter
+    def grantee(self) -> Optional['outputs.ObjectBucketAclAccessControlPolicyGrantGrantee']:
+        return pulumi.get(self, "grantee")
+
+
+@pulumi.output_type
+class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayName":
+            suggest = "display_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ObjectBucketAclAccessControlPolicyGrantGrantee. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ObjectBucketAclAccessControlPolicyGrantGrantee.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ObjectBucketAclAccessControlPolicyGrantGrantee.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 type: str,
+                 display_name: Optional[str] = None):
+        """
+        :param str id: The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "type", type)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[str]:
+        return pulumi.get(self, "display_name")
+
+
+@pulumi.output_type
+class ObjectBucketAclAccessControlPolicyOwner(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayName":
+            suggest = "display_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ObjectBucketAclAccessControlPolicyOwner. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ObjectBucketAclAccessControlPolicyOwner.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ObjectBucketAclAccessControlPolicyOwner.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 display_name: Optional[str] = None):
+        """
+        :param str id: The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        pulumi.set(__self__, "id", id)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The `region`,`bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[str]:
+        return pulumi.get(self, "display_name")
 
 
 @pulumi.output_type

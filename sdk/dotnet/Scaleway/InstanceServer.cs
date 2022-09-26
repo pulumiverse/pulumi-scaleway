@@ -31,7 +31,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     var web = new Scaleway.InstanceServer("web", new()
     ///     {
     ///         Type = "DEV1-S",
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         IpId = publicIp.Id,
     ///     });
     /// 
@@ -56,7 +56,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     var web = new Scaleway.InstanceServer("web", new()
     ///     {
     ///         Type = "DEV1-S",
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         Tags = new[]
     ///         {
     ///             "hello",
@@ -146,7 +146,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     var web = new Scaleway.InstanceServer("web", new()
     ///     {
     ///         Type = "DEV1-S",
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         SecurityGroupId = www.Id,
     ///     });
     /// 
@@ -166,7 +166,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     var web = new Scaleway.InstanceServer("web", new()
     ///     {
     ///         Type = "DEV1-S",
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         UserData = 
     ///         {
     ///             { "foo", "bar" },
@@ -190,7 +190,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var @base = new Scaleway.InstanceServer("base", new()
     ///     {
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
     ///         PrivateNetworks = new[]
     ///         {

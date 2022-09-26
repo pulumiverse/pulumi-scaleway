@@ -80,7 +80,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int?> SizeInGb { get; private set; } = null!;
@@ -175,7 +175,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -249,7 +249,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }

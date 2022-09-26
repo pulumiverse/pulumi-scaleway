@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -180,6 +181,8 @@ export class ObjectBucket extends pulumi.CustomResource {
 
     /**
      * The canned ACL you want to apply to the bucket.
+     *
+     * @deprecated ACL is deprecated. Please use resource_bucket_acl instead.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
@@ -260,6 +263,8 @@ export class ObjectBucket extends pulumi.CustomResource {
 export interface ObjectBucketState {
     /**
      * The canned ACL you want to apply to the bucket.
+     *
+     * @deprecated ACL is deprecated. Please use resource_bucket_acl instead.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -302,6 +307,8 @@ export interface ObjectBucketState {
 export interface ObjectBucketArgs {
     /**
      * The canned ACL you want to apply to the bucket.
+     *
+     * @deprecated ACL is deprecated. Please use resource_bucket_acl instead.
      */
     acl?: pulumi.Input<string>;
     /**

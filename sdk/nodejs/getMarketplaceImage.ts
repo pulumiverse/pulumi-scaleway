@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const myImage = pulumi.output(scaleway.getMarketplaceImage({
- *     label: "ubuntu_focal",
+ *     label: "ubuntu_jammy",
  * }));
  * ```
  */

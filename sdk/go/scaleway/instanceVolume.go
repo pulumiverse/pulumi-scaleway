@@ -65,7 +65,7 @@ type InstanceVolume struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The id of the associated server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	SizeInGb pulumi.IntPtrOutput `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -120,7 +120,7 @@ type instanceVolumeState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The id of the associated server.
 	ServerId *string `pulumi:"serverId"`
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -143,7 +143,7 @@ type InstanceVolumeState struct {
 	ProjectId pulumi.StringPtrInput
 	// The id of the associated server.
 	ServerId pulumi.StringPtrInput
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -166,7 +166,7 @@ type instanceVolumeArgs struct {
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -186,7 +186,7 @@ type InstanceVolumeArgs struct {
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+	// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -313,7 +313,7 @@ func (o InstanceVolumeOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+// The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 func (o InstanceVolumeOutput) SizeInGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.IntPtrOutput { return v.SizeInGb }).(pulumi.IntPtrOutput)
 }

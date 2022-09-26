@@ -36,6 +36,9 @@ class ObjectBucketArgs:
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
+            warnings.warn("""ACL is deprecated. Please use resource_bucket_acl instead.""", DeprecationWarning)
+            pulumi.log.warn("""acl is deprecated: ACL is deprecated. Please use resource_bucket_acl instead.""")
+        if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if cors_rules is not None:
             pulumi.set(__self__, "cors_rules", cors_rules)
@@ -173,6 +176,9 @@ class _ObjectBucketState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
+        if acl is not None:
+            warnings.warn("""ACL is deprecated. Please use resource_bucket_acl instead.""", DeprecationWarning)
+            pulumi.log.warn("""acl is deprecated: ACL is deprecated. Please use resource_bucket_acl instead.""")
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if cors_rules is not None:
@@ -620,6 +626,9 @@ class ObjectBucket(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ObjectBucketArgs.__new__(ObjectBucketArgs)
 
+            if acl is not None and not opts.urn:
+                warnings.warn("""ACL is deprecated. Please use resource_bucket_acl instead.""", DeprecationWarning)
+                pulumi.log.warn("""acl is deprecated: ACL is deprecated. Please use resource_bucket_acl instead.""")
             __props__.__dict__["acl"] = acl
             __props__.__dict__["cors_rules"] = cors_rules
             __props__.__dict__["force_destroy"] = force_destroy

@@ -70,7 +70,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewInstanceServer(ctx, "server", &scaleway.InstanceServerArgs{
-//				Image: pulumi.String("ubuntu_focal"),
+//				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //			})
 //			if err != nil {

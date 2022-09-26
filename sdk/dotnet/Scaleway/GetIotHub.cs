@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetIotHubResult> InvokeAsync(GetIotHubArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIotHubResult>("scaleway:index/getIotHub:getIotHub", args ?? new GetIotHubArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIotHubResult>("scaleway:index/getIotHub:getIotHub", args ?? new GetIotHubArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an IOT Hub.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetIotHubResult> Invoke(GetIotHubInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIotHubResult>("scaleway:index/getIotHub:getIotHub", args ?? new GetIotHubInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIotHubResult>("scaleway:index/getIotHub:getIotHub", args ?? new GetIotHubInvokeArgs(), options.WithDefaults());
     }
 
 

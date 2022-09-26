@@ -58,7 +58,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetContainerResult> InvokeAsync(GetContainerArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about the Scaleway Container.
@@ -106,7 +106,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetContainerResult> Invoke(GetContainerInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
     }
 
 

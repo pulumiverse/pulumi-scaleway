@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.GetMarketplaceImage(ctx, &GetMarketplaceImageArgs{
-//				Label: "ubuntu_focal",
+//				Label: "ubuntu_jammy",
 //			}, nil)
 //			if err != nil {
 //				return err

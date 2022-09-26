@@ -43,7 +43,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpcPublicGatewayDhcpResult> InvokeAsync(GetVpcPublicGatewayDhcpArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a public gateway DHCP.
@@ -76,7 +76,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVpcPublicGatewayDhcpResult> Invoke(GetVpcPublicGatewayDhcpInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpInvokeArgs(), options.WithDefaults());
     }
 
 

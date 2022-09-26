@@ -42,7 +42,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetContainerNamespaceResult> InvokeAsync(GetContainerNamespaceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a container namespace.
@@ -74,7 +74,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetContainerNamespaceResult> Invoke(GetContainerNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

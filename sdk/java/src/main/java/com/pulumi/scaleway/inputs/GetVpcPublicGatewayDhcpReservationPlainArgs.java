@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,6 +14,21 @@ import javax.annotation.Nullable;
 public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetVpcPublicGatewayDhcpReservationPlainArgs Empty = new GetVpcPublicGatewayDhcpReservationPlainArgs();
+
+    /**
+     * The ID of the owning GatewayNetwork.
+     * 
+     */
+    @Import(name="gatewayNetworkId")
+    private @Nullable String gatewayNetworkId;
+
+    /**
+     * @return The ID of the owning GatewayNetwork.
+     * 
+     */
+    public Optional<String> gatewayNetworkId() {
+        return Optional.ofNullable(this.gatewayNetworkId);
+    }
 
     /**
      * The MAC address of the reservation to retrieve
@@ -45,6 +61,21 @@ public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulum
     }
 
     /**
+     * Boolean to wait for mac_address to exist in dhcp
+     * 
+     */
+    @Import(name="waitForDhcp")
+    private @Nullable Boolean waitForDhcp;
+
+    /**
+     * @return Boolean to wait for mac_address to exist in dhcp
+     * 
+     */
+    public Optional<Boolean> waitForDhcp() {
+        return Optional.ofNullable(this.waitForDhcp);
+    }
+
+    /**
      * `zone`) The zone in which
      * the image exists.
      * 
@@ -64,8 +95,10 @@ public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulum
     private GetVpcPublicGatewayDhcpReservationPlainArgs() {}
 
     private GetVpcPublicGatewayDhcpReservationPlainArgs(GetVpcPublicGatewayDhcpReservationPlainArgs $) {
+        this.gatewayNetworkId = $.gatewayNetworkId;
         this.macAddress = $.macAddress;
         this.reservationId = $.reservationId;
+        this.waitForDhcp = $.waitForDhcp;
         this.zone = $.zone;
     }
 
@@ -88,6 +121,17 @@ public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulum
         }
 
         /**
+         * @param gatewayNetworkId The ID of the owning GatewayNetwork.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gatewayNetworkId(@Nullable String gatewayNetworkId) {
+            $.gatewayNetworkId = gatewayNetworkId;
+            return this;
+        }
+
+        /**
          * @param macAddress The MAC address of the reservation to retrieve
          * 
          * @return builder
@@ -106,6 +150,17 @@ public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulum
          */
         public Builder reservationId(@Nullable String reservationId) {
             $.reservationId = reservationId;
+            return this;
+        }
+
+        /**
+         * @param waitForDhcp Boolean to wait for mac_address to exist in dhcp
+         * 
+         * @return builder
+         * 
+         */
+        public Builder waitForDhcp(@Nullable Boolean waitForDhcp) {
+            $.waitForDhcp = waitForDhcp;
             return this;
         }
 

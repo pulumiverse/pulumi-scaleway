@@ -27,7 +27,7 @@ class FunctionArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None):
         """
@@ -45,7 +45,7 @@ class FunctionArgs:
         :param pulumi.Input[str] name: The unique name of the function.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -236,14 +236,14 @@ class FunctionArgs:
 
     @property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[str]]:
+    def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Holds the max duration (in seconds) the function is allowed for responding to a request
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[str]]):
+    def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
 
     @property
@@ -290,7 +290,7 @@ class _FunctionState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None):
         """
@@ -311,7 +311,7 @@ class _FunctionState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -548,14 +548,14 @@ class _FunctionState:
 
     @property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[str]]:
+    def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Holds the max duration (in seconds) the function is allowed for responding to a request
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[str]]):
+    def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
 
     @property
@@ -601,7 +601,7 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -648,7 +648,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -714,7 +714,7 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -779,7 +779,7 @@ class Function(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             runtime: Optional[pulumi.Input[str]] = None,
-            timeout: Optional[pulumi.Input[str]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
             zip_file: Optional[pulumi.Input[str]] = None,
             zip_hash: Optional[pulumi.Input[str]] = None) -> 'Function':
         """
@@ -805,7 +805,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -964,7 +964,7 @@ class Function(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def timeout(self) -> pulumi.Output[str]:
+    def timeout(self) -> pulumi.Output[int]:
         """
         Holds the max duration (in seconds) the function is allowed for responding to a request
         """

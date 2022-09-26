@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceServerResult> InvokeAsync(GetInstanceServerArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an instance server.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstanceServerResult> Invoke(GetInstanceServerInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerInvokeArgs(), options.WithDefaults());
     }
 
 

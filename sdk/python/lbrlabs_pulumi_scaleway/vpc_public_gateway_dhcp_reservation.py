@@ -245,7 +245,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
 
         main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
         main_instance_server = scaleway.InstanceServer("mainInstanceServer",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
@@ -312,7 +312,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
 
         main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
         main_instance_server = scaleway.InstanceServer("mainInstanceServer",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(

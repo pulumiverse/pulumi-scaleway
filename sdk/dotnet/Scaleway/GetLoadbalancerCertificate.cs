@@ -22,7 +22,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// ## Examples
         /// </summary>
         public static Task<GetLoadbalancerCertificateResult> InvokeAsync(GetLoadbalancerCertificateArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerCertificateResult>("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", args ?? new GetLoadbalancerCertificateArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerCertificateResult>("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", args ?? new GetLoadbalancerCertificateArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about Scaleway Load-Balancer Certificates.
@@ -34,7 +34,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// ## Examples
         /// </summary>
         public static Output<GetLoadbalancerCertificateResult> Invoke(GetLoadbalancerCertificateInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLoadbalancerCertificateResult>("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", args ?? new GetLoadbalancerCertificateInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLoadbalancerCertificateResult>("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", args ?? new GetLoadbalancerCertificateInvokeArgs(), options.WithDefaults());
     }
 
 

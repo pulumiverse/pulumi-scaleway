@@ -17,19 +17,25 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
         /// </summary>
         public static Task<GetVpcPublicGatewayDhcpReservationResult> InvokeAsync(GetVpcPublicGatewayDhcpReservationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a dhcp entries. For further information please check the
         /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
         /// </summary>
         public static Output<GetVpcPublicGatewayDhcpReservationResult> Invoke(GetVpcPublicGatewayDhcpReservationInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetVpcPublicGatewayDhcpReservationArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the owning GatewayNetwork.
+        /// </summary>
+        [Input("gatewayNetworkId")]
+        public string? GatewayNetworkId { get; set; }
+
         /// <summary>
         /// The MAC address of the reservation to retrieve
         /// </summary>
@@ -41,6 +47,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("reservationId")]
         public string? ReservationId { get; set; }
+
+        /// <summary>
+        /// Boolean to wait for mac_address to exist in dhcp
+        /// </summary>
+        [Input("waitForDhcp")]
+        public bool? WaitForDhcp { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which
@@ -58,6 +70,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class GetVpcPublicGatewayDhcpReservationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The ID of the owning GatewayNetwork.
+        /// </summary>
+        [Input("gatewayNetworkId")]
+        public Input<string>? GatewayNetworkId { get; set; }
+
+        /// <summary>
         /// The MAC address of the reservation to retrieve
         /// </summary>
         [Input("macAddress")]
@@ -68,6 +86,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("reservationId")]
         public Input<string>? ReservationId { get; set; }
+
+        /// <summary>
+        /// Boolean to wait for mac_address to exist in dhcp
+        /// </summary>
+        [Input("waitForDhcp")]
+        public Input<bool>? WaitForDhcp { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which
@@ -93,7 +117,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the owning GatewayNetwork.
         /// </summary>
-        public readonly string GatewayNetworkId;
+        public readonly string? GatewayNetworkId;
         /// <summary>
         /// The Hostname of the client machine.
         /// </summary>
@@ -116,13 +140,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The date and time of the last update of the public gateway DHCP config.
         /// </summary>
         public readonly string UpdatedAt;
+        public readonly bool? WaitForDhcp;
         public readonly string? Zone;
 
         [OutputConstructor]
         private GetVpcPublicGatewayDhcpReservationResult(
             string createdAt,
 
-            string gatewayNetworkId,
+            string? gatewayNetworkId,
 
             string hostname,
 
@@ -138,6 +163,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string updatedAt,
 
+            bool? waitForDhcp,
+
             string? zone)
         {
             CreatedAt = createdAt;
@@ -149,6 +176,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             ReservationId = reservationId;
             Type = type;
             UpdatedAt = updatedAt;
+            WaitForDhcp = waitForDhcp;
             Zone = zone;
         }
     }

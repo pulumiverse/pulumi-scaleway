@@ -48,7 +48,7 @@ type LookupFunctionResult struct {
 	ProjectId      string  `pulumi:"projectId"`
 	Region         string  `pulumi:"region"`
 	Runtime        string  `pulumi:"runtime"`
-	Timeout        string  `pulumi:"timeout"`
+	Timeout        int     `pulumi:"timeout"`
 	ZipFile        string  `pulumi:"zipFile"`
 	ZipHash        string  `pulumi:"zipHash"`
 }
@@ -165,8 +165,8 @@ func (o LookupFunctionResultOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionResult) string { return v.Runtime }).(pulumi.StringOutput)
 }
 
-func (o LookupFunctionResultOutput) Timeout() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFunctionResult) string { return v.Timeout }).(pulumi.StringOutput)
+func (o LookupFunctionResultOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFunctionResult) int { return v.Timeout }).(pulumi.IntOutput)
 }
 
 func (o LookupFunctionResultOutput) ZipFile() pulumi.StringOutput {

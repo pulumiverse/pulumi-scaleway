@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabaseInstanceResult> InvokeAsync(GetDatabaseInstanceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a RDB instance.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatabaseInstanceResult> Invoke(GetDatabaseInstanceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

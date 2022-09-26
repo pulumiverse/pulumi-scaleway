@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAccountSshKeyResult> InvokeAsync(GetAccountSshKeyArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get SSH key information based on its ID or name.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAccountSshKeyResult> Invoke(GetAccountSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyInvokeArgs(), options.WithDefaults());
     }
 
 

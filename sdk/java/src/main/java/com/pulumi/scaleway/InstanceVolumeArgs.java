@@ -78,14 +78,14 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+     * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     @Import(name="sizeInGb")
     private @Nullable Output<Integer> sizeInGb;
 
     /**
-     * @return The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+     * @return The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     public Optional<Output<Integer>> sizeInGb() {
@@ -253,7 +253,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sizeInGb The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+         * @param sizeInGb The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 
@@ -264,7 +264,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sizeInGb The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+         * @param sizeInGb The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 

@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {zone: "fr-par-2"});
  * const base = new scaleway.InstanceServer("base", {
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     zone: pn01.zone,
  * });

@@ -152,7 +152,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Holds the max duration (in seconds) the function is allowed for responding to a request
         /// </summary>
         [Output("timeout")]
-        public Output<string> Timeout { get; private set; } = null!;
+        public Output<int> Timeout { get; private set; } = null!;
 
         /// <summary>
         /// Location of the zip file to upload containing your function sources
@@ -301,7 +301,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Holds the max duration (in seconds) the function is allowed for responding to a request
         /// </summary>
         [Input("timeout")]
-        public Input<string>? Timeout { get; set; }
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// Location of the zip file to upload containing your function sources
@@ -429,7 +429,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Holds the max duration (in seconds) the function is allowed for responding to a request
         /// </summary>
         [Input("timeout")]
-        public Input<string>? Timeout { get; set; }
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// Location of the zip file to upload containing your function sources

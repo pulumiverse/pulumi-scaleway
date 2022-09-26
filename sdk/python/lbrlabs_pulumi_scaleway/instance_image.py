@@ -420,7 +420,7 @@ class InstanceImage(pulumi.CustomResource):
         import lbrlabs_pulumi_scaleway as scaleway
 
         server = scaleway.InstanceServer("server",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S")
         server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
         server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
@@ -477,7 +477,7 @@ class InstanceImage(pulumi.CustomResource):
         import lbrlabs_pulumi_scaleway as scaleway
 
         server = scaleway.InstanceServer("server",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S")
         server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
         server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)

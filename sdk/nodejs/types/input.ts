@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface BaremetalServerIp {
     /**
@@ -279,6 +280,8 @@ export interface InstanceSecurityGroupInboundRule {
     action: pulumi.Input<string>;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -303,6 +306,8 @@ export interface InstanceSecurityGroupOutboundRule {
     action: pulumi.Input<string>;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -327,6 +332,8 @@ export interface InstanceSecurityGroupRulesInboundRule {
     action: pulumi.Input<string>;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -351,6 +358,8 @@ export interface InstanceSecurityGroupRulesOutboundRule {
     action: pulumi.Input<string>;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -444,6 +453,28 @@ export interface IotDeviceMessageFiltersSubscribe {
      * Same as publish rules.
      */
     topics?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface IotRouteDatabase {
+    dbname: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    query: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface IotRouteRest {
+    headers: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    uri: pulumi.Input<string>;
+    verb: pulumi.Input<string>;
+}
+
+export interface IotRouteS3 {
+    bucketName: pulumi.Input<string>;
+    bucketRegion: pulumi.Input<string>;
+    objectPrefix?: pulumi.Input<string>;
+    strategy: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterAutoUpgrade {
@@ -700,6 +731,33 @@ export interface LoadbalancerPrivateNetwork {
      * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
+}
+
+export interface ObjectBucketAclAccessControlPolicy {
+    grants?: pulumi.Input<pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrant>[]>;
+    owner: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyOwner>;
+}
+
+export interface ObjectBucketAclAccessControlPolicyGrant {
+    grantee?: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrantGrantee>;
+    permission: pulumi.Input<string>;
+}
+
+export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
+    displayName?: pulumi.Input<string>;
+    /**
+     * The `region`,`bucket` and `acl` separated by (`/`).
+     */
+    id: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface ObjectBucketAclAccessControlPolicyOwner {
+    displayName?: pulumi.Input<string>;
+    /**
+     * The `region`,`bucket` and `acl` separated by (`/`).
+     */
+    id: pulumi.Input<string>;
 }
 
 export interface ObjectBucketCorsRule {

@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *         var mainVpcPrivateNetwork = new VpcPrivateNetwork(&#34;mainVpcPrivateNetwork&#34;);
  * 
  *         var mainInstanceServer = new InstanceServer(&#34;mainInstanceServer&#34;, InstanceServerArgs.builder()        
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .type(&#34;DEV1-S&#34;)
  *             .zone(&#34;fr-par-1&#34;)
  *             .privateNetworks(InstanceServerPrivateNetworkArgs.builder()

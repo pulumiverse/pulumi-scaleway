@@ -84,6 +84,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IotHub{}
 	case "scaleway:index/iotNetwork:IotNetwork":
 		r = &IotNetwork{}
+	case "scaleway:index/iotRoute:IotRoute":
+		r = &IotRoute{}
 	case "scaleway:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
 	case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -102,6 +104,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerRoute{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
+	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
+		r = &ObjectBucketAcl{}
 	case "scaleway:index/objectBucketPolicy:ObjectBucketPolicy":
 		r = &ObjectBucketPolicy{}
 	case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
@@ -314,6 +318,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/iotRoute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/kubernetesCluster",
 		&module{version},
 	)
@@ -355,6 +364,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/objectBucket",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/objectBucketAcl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -147,14 +147,14 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
         return this.serverId;
     }
     /**
-     * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+     * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     @Export(name="sizeInGb", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> sizeInGb;
 
     /**
-     * @return The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+     * @return The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     public Output<Optional<Integer>> sizeInGb() {

@@ -2108,6 +2108,8 @@ type InstanceSecurityGroupInboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -2133,6 +2135,8 @@ type InstanceSecurityGroupInboundRuleArgs struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -2200,6 +2204,8 @@ func (o InstanceSecurityGroupInboundRuleOutput) Action() pulumi.StringOutput {
 }
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+//
+// Deprecated: Ip address is deprecated. Please use ip_range instead
 func (o InstanceSecurityGroupInboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -2247,6 +2253,8 @@ type InstanceSecurityGroupOutboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -2272,6 +2280,8 @@ type InstanceSecurityGroupOutboundRuleArgs struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -2339,6 +2349,8 @@ func (o InstanceSecurityGroupOutboundRuleOutput) Action() pulumi.StringOutput {
 }
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+//
+// Deprecated: Ip address is deprecated. Please use ip_range instead
 func (o InstanceSecurityGroupOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -2386,6 +2398,8 @@ type InstanceSecurityGroupRulesInboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -2411,6 +2425,8 @@ type InstanceSecurityGroupRulesInboundRuleArgs struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -2478,6 +2494,8 @@ func (o InstanceSecurityGroupRulesInboundRuleOutput) Action() pulumi.StringOutpu
 }
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+//
+// Deprecated: Ip address is deprecated. Please use ip_range instead
 func (o InstanceSecurityGroupRulesInboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -2525,6 +2543,8 @@ type InstanceSecurityGroupRulesOutboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -2550,6 +2570,8 @@ type InstanceSecurityGroupRulesOutboundRuleArgs struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	//
+	// Deprecated: Ip address is deprecated. Please use ip_range instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -2617,6 +2639,8 @@ func (o InstanceSecurityGroupRulesOutboundRuleOutput) Action() pulumi.StringOutp
 }
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+//
+// Deprecated: Ip address is deprecated. Please use ip_range instead
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -3633,6 +3657,555 @@ func (o IotDeviceMessageFiltersSubscribePtrOutput) Topics() pulumi.StringArrayOu
 		}
 		return v.Topics
 	}).(pulumi.StringArrayOutput)
+}
+
+type IotRouteDatabase struct {
+	Dbname   string `pulumi:"dbname"`
+	Host     string `pulumi:"host"`
+	Password string `pulumi:"password"`
+	Port     int    `pulumi:"port"`
+	Query    string `pulumi:"query"`
+	Username string `pulumi:"username"`
+}
+
+// IotRouteDatabaseInput is an input type that accepts IotRouteDatabaseArgs and IotRouteDatabaseOutput values.
+// You can construct a concrete instance of `IotRouteDatabaseInput` via:
+//
+//	IotRouteDatabaseArgs{...}
+type IotRouteDatabaseInput interface {
+	pulumi.Input
+
+	ToIotRouteDatabaseOutput() IotRouteDatabaseOutput
+	ToIotRouteDatabaseOutputWithContext(context.Context) IotRouteDatabaseOutput
+}
+
+type IotRouteDatabaseArgs struct {
+	Dbname   pulumi.StringInput `pulumi:"dbname"`
+	Host     pulumi.StringInput `pulumi:"host"`
+	Password pulumi.StringInput `pulumi:"password"`
+	Port     pulumi.IntInput    `pulumi:"port"`
+	Query    pulumi.StringInput `pulumi:"query"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (IotRouteDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteDatabase)(nil)).Elem()
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabaseOutput() IotRouteDatabaseOutput {
+	return i.ToIotRouteDatabaseOutputWithContext(context.Background())
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabaseOutputWithContext(ctx context.Context) IotRouteDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteDatabaseOutput)
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return i.ToIotRouteDatabasePtrOutputWithContext(context.Background())
+}
+
+func (i IotRouteDatabaseArgs) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteDatabaseOutput).ToIotRouteDatabasePtrOutputWithContext(ctx)
+}
+
+// IotRouteDatabasePtrInput is an input type that accepts IotRouteDatabaseArgs, IotRouteDatabasePtr and IotRouteDatabasePtrOutput values.
+// You can construct a concrete instance of `IotRouteDatabasePtrInput` via:
+//
+//	        IotRouteDatabaseArgs{...}
+//
+//	or:
+//
+//	        nil
+type IotRouteDatabasePtrInput interface {
+	pulumi.Input
+
+	ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput
+	ToIotRouteDatabasePtrOutputWithContext(context.Context) IotRouteDatabasePtrOutput
+}
+
+type iotRouteDatabasePtrType IotRouteDatabaseArgs
+
+func IotRouteDatabasePtr(v *IotRouteDatabaseArgs) IotRouteDatabasePtrInput {
+	return (*iotRouteDatabasePtrType)(v)
+}
+
+func (*iotRouteDatabasePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteDatabase)(nil)).Elem()
+}
+
+func (i *iotRouteDatabasePtrType) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return i.ToIotRouteDatabasePtrOutputWithContext(context.Background())
+}
+
+func (i *iotRouteDatabasePtrType) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteDatabasePtrOutput)
+}
+
+type IotRouteDatabaseOutput struct{ *pulumi.OutputState }
+
+func (IotRouteDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteDatabase)(nil)).Elem()
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabaseOutput() IotRouteDatabaseOutput {
+	return o
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabaseOutputWithContext(ctx context.Context) IotRouteDatabaseOutput {
+	return o
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return o.ToIotRouteDatabasePtrOutputWithContext(context.Background())
+}
+
+func (o IotRouteDatabaseOutput) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotRouteDatabase) *IotRouteDatabase {
+		return &v
+	}).(IotRouteDatabasePtrOutput)
+}
+
+func (o IotRouteDatabaseOutput) Dbname() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Dbname }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v IotRouteDatabase) int { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o IotRouteDatabaseOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Query }).(pulumi.StringOutput)
+}
+
+func (o IotRouteDatabaseOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteDatabase) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type IotRouteDatabasePtrOutput struct{ *pulumi.OutputState }
+
+func (IotRouteDatabasePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteDatabase)(nil)).Elem()
+}
+
+func (o IotRouteDatabasePtrOutput) ToIotRouteDatabasePtrOutput() IotRouteDatabasePtrOutput {
+	return o
+}
+
+func (o IotRouteDatabasePtrOutput) ToIotRouteDatabasePtrOutputWithContext(ctx context.Context) IotRouteDatabasePtrOutput {
+	return o
+}
+
+func (o IotRouteDatabasePtrOutput) Elem() IotRouteDatabaseOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) IotRouteDatabase {
+		if v != nil {
+			return *v
+		}
+		var ret IotRouteDatabase
+		return ret
+	}).(IotRouteDatabaseOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Dbname
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteDatabasePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteDatabase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type IotRouteRest struct {
+	Headers map[string]string `pulumi:"headers"`
+	Uri     string            `pulumi:"uri"`
+	Verb    string            `pulumi:"verb"`
+}
+
+// IotRouteRestInput is an input type that accepts IotRouteRestArgs and IotRouteRestOutput values.
+// You can construct a concrete instance of `IotRouteRestInput` via:
+//
+//	IotRouteRestArgs{...}
+type IotRouteRestInput interface {
+	pulumi.Input
+
+	ToIotRouteRestOutput() IotRouteRestOutput
+	ToIotRouteRestOutputWithContext(context.Context) IotRouteRestOutput
+}
+
+type IotRouteRestArgs struct {
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	Uri     pulumi.StringInput    `pulumi:"uri"`
+	Verb    pulumi.StringInput    `pulumi:"verb"`
+}
+
+func (IotRouteRestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteRest)(nil)).Elem()
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestOutput() IotRouteRestOutput {
+	return i.ToIotRouteRestOutputWithContext(context.Background())
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestOutputWithContext(ctx context.Context) IotRouteRestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteRestOutput)
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return i.ToIotRouteRestPtrOutputWithContext(context.Background())
+}
+
+func (i IotRouteRestArgs) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteRestOutput).ToIotRouteRestPtrOutputWithContext(ctx)
+}
+
+// IotRouteRestPtrInput is an input type that accepts IotRouteRestArgs, IotRouteRestPtr and IotRouteRestPtrOutput values.
+// You can construct a concrete instance of `IotRouteRestPtrInput` via:
+//
+//	        IotRouteRestArgs{...}
+//
+//	or:
+//
+//	        nil
+type IotRouteRestPtrInput interface {
+	pulumi.Input
+
+	ToIotRouteRestPtrOutput() IotRouteRestPtrOutput
+	ToIotRouteRestPtrOutputWithContext(context.Context) IotRouteRestPtrOutput
+}
+
+type iotRouteRestPtrType IotRouteRestArgs
+
+func IotRouteRestPtr(v *IotRouteRestArgs) IotRouteRestPtrInput {
+	return (*iotRouteRestPtrType)(v)
+}
+
+func (*iotRouteRestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteRest)(nil)).Elem()
+}
+
+func (i *iotRouteRestPtrType) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return i.ToIotRouteRestPtrOutputWithContext(context.Background())
+}
+
+func (i *iotRouteRestPtrType) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteRestPtrOutput)
+}
+
+type IotRouteRestOutput struct{ *pulumi.OutputState }
+
+func (IotRouteRestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteRest)(nil)).Elem()
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestOutput() IotRouteRestOutput {
+	return o
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestOutputWithContext(ctx context.Context) IotRouteRestOutput {
+	return o
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return o.ToIotRouteRestPtrOutputWithContext(context.Background())
+}
+
+func (o IotRouteRestOutput) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotRouteRest) *IotRouteRest {
+		return &v
+	}).(IotRouteRestPtrOutput)
+}
+
+func (o IotRouteRestOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v IotRouteRest) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+func (o IotRouteRestOutput) Uri() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteRest) string { return v.Uri }).(pulumi.StringOutput)
+}
+
+func (o IotRouteRestOutput) Verb() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteRest) string { return v.Verb }).(pulumi.StringOutput)
+}
+
+type IotRouteRestPtrOutput struct{ *pulumi.OutputState }
+
+func (IotRouteRestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteRest)(nil)).Elem()
+}
+
+func (o IotRouteRestPtrOutput) ToIotRouteRestPtrOutput() IotRouteRestPtrOutput {
+	return o
+}
+
+func (o IotRouteRestPtrOutput) ToIotRouteRestPtrOutputWithContext(ctx context.Context) IotRouteRestPtrOutput {
+	return o
+}
+
+func (o IotRouteRestPtrOutput) Elem() IotRouteRestOutput {
+	return o.ApplyT(func(v *IotRouteRest) IotRouteRest {
+		if v != nil {
+			return *v
+		}
+		var ret IotRouteRest
+		return ret
+	}).(IotRouteRestOutput)
+}
+
+func (o IotRouteRestPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *IotRouteRest) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
+func (o IotRouteRestPtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteRest) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uri
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteRestPtrOutput) Verb() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteRest) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Verb
+	}).(pulumi.StringPtrOutput)
+}
+
+type IotRouteS3 struct {
+	BucketName   string  `pulumi:"bucketName"`
+	BucketRegion string  `pulumi:"bucketRegion"`
+	ObjectPrefix *string `pulumi:"objectPrefix"`
+	Strategy     string  `pulumi:"strategy"`
+}
+
+// IotRouteS3Input is an input type that accepts IotRouteS3Args and IotRouteS3Output values.
+// You can construct a concrete instance of `IotRouteS3Input` via:
+//
+//	IotRouteS3Args{...}
+type IotRouteS3Input interface {
+	pulumi.Input
+
+	ToIotRouteS3Output() IotRouteS3Output
+	ToIotRouteS3OutputWithContext(context.Context) IotRouteS3Output
+}
+
+type IotRouteS3Args struct {
+	BucketName   pulumi.StringInput    `pulumi:"bucketName"`
+	BucketRegion pulumi.StringInput    `pulumi:"bucketRegion"`
+	ObjectPrefix pulumi.StringPtrInput `pulumi:"objectPrefix"`
+	Strategy     pulumi.StringInput    `pulumi:"strategy"`
+}
+
+func (IotRouteS3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteS3)(nil)).Elem()
+}
+
+func (i IotRouteS3Args) ToIotRouteS3Output() IotRouteS3Output {
+	return i.ToIotRouteS3OutputWithContext(context.Background())
+}
+
+func (i IotRouteS3Args) ToIotRouteS3OutputWithContext(ctx context.Context) IotRouteS3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteS3Output)
+}
+
+func (i IotRouteS3Args) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return i.ToIotRouteS3PtrOutputWithContext(context.Background())
+}
+
+func (i IotRouteS3Args) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteS3Output).ToIotRouteS3PtrOutputWithContext(ctx)
+}
+
+// IotRouteS3PtrInput is an input type that accepts IotRouteS3Args, IotRouteS3Ptr and IotRouteS3PtrOutput values.
+// You can construct a concrete instance of `IotRouteS3PtrInput` via:
+//
+//	        IotRouteS3Args{...}
+//
+//	or:
+//
+//	        nil
+type IotRouteS3PtrInput interface {
+	pulumi.Input
+
+	ToIotRouteS3PtrOutput() IotRouteS3PtrOutput
+	ToIotRouteS3PtrOutputWithContext(context.Context) IotRouteS3PtrOutput
+}
+
+type iotRouteS3PtrType IotRouteS3Args
+
+func IotRouteS3Ptr(v *IotRouteS3Args) IotRouteS3PtrInput {
+	return (*iotRouteS3PtrType)(v)
+}
+
+func (*iotRouteS3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteS3)(nil)).Elem()
+}
+
+func (i *iotRouteS3PtrType) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return i.ToIotRouteS3PtrOutputWithContext(context.Background())
+}
+
+func (i *iotRouteS3PtrType) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IotRouteS3PtrOutput)
+}
+
+type IotRouteS3Output struct{ *pulumi.OutputState }
+
+func (IotRouteS3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IotRouteS3)(nil)).Elem()
+}
+
+func (o IotRouteS3Output) ToIotRouteS3Output() IotRouteS3Output {
+	return o
+}
+
+func (o IotRouteS3Output) ToIotRouteS3OutputWithContext(ctx context.Context) IotRouteS3Output {
+	return o
+}
+
+func (o IotRouteS3Output) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return o.ToIotRouteS3PtrOutputWithContext(context.Background())
+}
+
+func (o IotRouteS3Output) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IotRouteS3) *IotRouteS3 {
+		return &v
+	}).(IotRouteS3PtrOutput)
+}
+
+func (o IotRouteS3Output) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteS3) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+func (o IotRouteS3Output) BucketRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteS3) string { return v.BucketRegion }).(pulumi.StringOutput)
+}
+
+func (o IotRouteS3Output) ObjectPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IotRouteS3) *string { return v.ObjectPrefix }).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3Output) Strategy() pulumi.StringOutput {
+	return o.ApplyT(func(v IotRouteS3) string { return v.Strategy }).(pulumi.StringOutput)
+}
+
+type IotRouteS3PtrOutput struct{ *pulumi.OutputState }
+
+func (IotRouteS3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IotRouteS3)(nil)).Elem()
+}
+
+func (o IotRouteS3PtrOutput) ToIotRouteS3PtrOutput() IotRouteS3PtrOutput {
+	return o
+}
+
+func (o IotRouteS3PtrOutput) ToIotRouteS3PtrOutputWithContext(ctx context.Context) IotRouteS3PtrOutput {
+	return o
+}
+
+func (o IotRouteS3PtrOutput) Elem() IotRouteS3Output {
+	return o.ApplyT(func(v *IotRouteS3) IotRouteS3 {
+		if v != nil {
+			return *v
+		}
+		var ret IotRouteS3
+		return ret
+	}).(IotRouteS3Output)
+}
+
+func (o IotRouteS3PtrOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BucketName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3PtrOutput) BucketRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BucketRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3PtrOutput) ObjectPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ObjectPrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotRouteS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Strategy
+	}).(pulumi.StringPtrOutput)
 }
 
 type KubernetesClusterAutoUpgrade struct {
@@ -5930,6 +6503,575 @@ func (o LoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Loadbala
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerPrivateNetwork {
 		return vs[0].([]LoadbalancerPrivateNetwork)[vs[1].(int)]
 	}).(LoadbalancerPrivateNetworkOutput)
+}
+
+type ObjectBucketAclAccessControlPolicy struct {
+	Grants []ObjectBucketAclAccessControlPolicyGrant `pulumi:"grants"`
+	Owner  ObjectBucketAclAccessControlPolicyOwner   `pulumi:"owner"`
+}
+
+// ObjectBucketAclAccessControlPolicyInput is an input type that accepts ObjectBucketAclAccessControlPolicyArgs and ObjectBucketAclAccessControlPolicyOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyInput` via:
+//
+//	ObjectBucketAclAccessControlPolicyArgs{...}
+type ObjectBucketAclAccessControlPolicyInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyOutput() ObjectBucketAclAccessControlPolicyOutput
+	ToObjectBucketAclAccessControlPolicyOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyOutput
+}
+
+type ObjectBucketAclAccessControlPolicyArgs struct {
+	Grants ObjectBucketAclAccessControlPolicyGrantArrayInput `pulumi:"grants"`
+	Owner  ObjectBucketAclAccessControlPolicyOwnerInput      `pulumi:"owner"`
+}
+
+func (ObjectBucketAclAccessControlPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicy)(nil)).Elem()
+}
+
+func (i ObjectBucketAclAccessControlPolicyArgs) ToObjectBucketAclAccessControlPolicyOutput() ObjectBucketAclAccessControlPolicyOutput {
+	return i.ToObjectBucketAclAccessControlPolicyOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyArgs) ToObjectBucketAclAccessControlPolicyOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyOutput)
+}
+
+func (i ObjectBucketAclAccessControlPolicyArgs) ToObjectBucketAclAccessControlPolicyPtrOutput() ObjectBucketAclAccessControlPolicyPtrOutput {
+	return i.ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyArgs) ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyOutput).ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(ctx)
+}
+
+// ObjectBucketAclAccessControlPolicyPtrInput is an input type that accepts ObjectBucketAclAccessControlPolicyArgs, ObjectBucketAclAccessControlPolicyPtr and ObjectBucketAclAccessControlPolicyPtrOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyPtrInput` via:
+//
+//	        ObjectBucketAclAccessControlPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObjectBucketAclAccessControlPolicyPtrInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyPtrOutput() ObjectBucketAclAccessControlPolicyPtrOutput
+	ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyPtrOutput
+}
+
+type objectBucketAclAccessControlPolicyPtrType ObjectBucketAclAccessControlPolicyArgs
+
+func ObjectBucketAclAccessControlPolicyPtr(v *ObjectBucketAclAccessControlPolicyArgs) ObjectBucketAclAccessControlPolicyPtrInput {
+	return (*objectBucketAclAccessControlPolicyPtrType)(v)
+}
+
+func (*objectBucketAclAccessControlPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketAclAccessControlPolicy)(nil)).Elem()
+}
+
+func (i *objectBucketAclAccessControlPolicyPtrType) ToObjectBucketAclAccessControlPolicyPtrOutput() ObjectBucketAclAccessControlPolicyPtrOutput {
+	return i.ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *objectBucketAclAccessControlPolicyPtrType) ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyPtrOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicy)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyOutput) ToObjectBucketAclAccessControlPolicyOutput() ObjectBucketAclAccessControlPolicyOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyOutput) ToObjectBucketAclAccessControlPolicyOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyOutput) ToObjectBucketAclAccessControlPolicyPtrOutput() ObjectBucketAclAccessControlPolicyPtrOutput {
+	return o.ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o ObjectBucketAclAccessControlPolicyOutput) ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObjectBucketAclAccessControlPolicy) *ObjectBucketAclAccessControlPolicy {
+		return &v
+	}).(ObjectBucketAclAccessControlPolicyPtrOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyOutput) Grants() ObjectBucketAclAccessControlPolicyGrantArrayOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicy) []ObjectBucketAclAccessControlPolicyGrant { return v.Grants }).(ObjectBucketAclAccessControlPolicyGrantArrayOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyOutput) Owner() ObjectBucketAclAccessControlPolicyOwnerOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicy) ObjectBucketAclAccessControlPolicyOwner { return v.Owner }).(ObjectBucketAclAccessControlPolicyOwnerOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketAclAccessControlPolicy)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyPtrOutput) ToObjectBucketAclAccessControlPolicyPtrOutput() ObjectBucketAclAccessControlPolicyPtrOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyPtrOutput) ToObjectBucketAclAccessControlPolicyPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyPtrOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyPtrOutput) Elem() ObjectBucketAclAccessControlPolicyOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicy) ObjectBucketAclAccessControlPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret ObjectBucketAclAccessControlPolicy
+		return ret
+	}).(ObjectBucketAclAccessControlPolicyOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyPtrOutput) Grants() ObjectBucketAclAccessControlPolicyGrantArrayOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicy) []ObjectBucketAclAccessControlPolicyGrant {
+		if v == nil {
+			return nil
+		}
+		return v.Grants
+	}).(ObjectBucketAclAccessControlPolicyGrantArrayOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyPtrOutput) Owner() ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicy) *ObjectBucketAclAccessControlPolicyOwner {
+		if v == nil {
+			return nil
+		}
+		return &v.Owner
+	}).(ObjectBucketAclAccessControlPolicyOwnerPtrOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyGrant struct {
+	Grantee    *ObjectBucketAclAccessControlPolicyGrantGrantee `pulumi:"grantee"`
+	Permission string                                          `pulumi:"permission"`
+}
+
+// ObjectBucketAclAccessControlPolicyGrantInput is an input type that accepts ObjectBucketAclAccessControlPolicyGrantArgs and ObjectBucketAclAccessControlPolicyGrantOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyGrantInput` via:
+//
+//	ObjectBucketAclAccessControlPolicyGrantArgs{...}
+type ObjectBucketAclAccessControlPolicyGrantInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyGrantOutput() ObjectBucketAclAccessControlPolicyGrantOutput
+	ToObjectBucketAclAccessControlPolicyGrantOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyGrantOutput
+}
+
+type ObjectBucketAclAccessControlPolicyGrantArgs struct {
+	Grantee    ObjectBucketAclAccessControlPolicyGrantGranteePtrInput `pulumi:"grantee"`
+	Permission pulumi.StringInput                                     `pulumi:"permission"`
+}
+
+func (ObjectBucketAclAccessControlPolicyGrantArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrant)(nil)).Elem()
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantArgs) ToObjectBucketAclAccessControlPolicyGrantOutput() ObjectBucketAclAccessControlPolicyGrantOutput {
+	return i.ToObjectBucketAclAccessControlPolicyGrantOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantArgs) ToObjectBucketAclAccessControlPolicyGrantOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyGrantOutput)
+}
+
+// ObjectBucketAclAccessControlPolicyGrantArrayInput is an input type that accepts ObjectBucketAclAccessControlPolicyGrantArray and ObjectBucketAclAccessControlPolicyGrantArrayOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyGrantArrayInput` via:
+//
+//	ObjectBucketAclAccessControlPolicyGrantArray{ ObjectBucketAclAccessControlPolicyGrantArgs{...} }
+type ObjectBucketAclAccessControlPolicyGrantArrayInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyGrantArrayOutput() ObjectBucketAclAccessControlPolicyGrantArrayOutput
+	ToObjectBucketAclAccessControlPolicyGrantArrayOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyGrantArrayOutput
+}
+
+type ObjectBucketAclAccessControlPolicyGrantArray []ObjectBucketAclAccessControlPolicyGrantInput
+
+func (ObjectBucketAclAccessControlPolicyGrantArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ObjectBucketAclAccessControlPolicyGrant)(nil)).Elem()
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantArray) ToObjectBucketAclAccessControlPolicyGrantArrayOutput() ObjectBucketAclAccessControlPolicyGrantArrayOutput {
+	return i.ToObjectBucketAclAccessControlPolicyGrantArrayOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantArray) ToObjectBucketAclAccessControlPolicyGrantArrayOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyGrantArrayOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyGrantOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyGrantOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrant)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantOutput) ToObjectBucketAclAccessControlPolicyGrantOutput() ObjectBucketAclAccessControlPolicyGrantOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantOutput) ToObjectBucketAclAccessControlPolicyGrantOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantOutput) Grantee() ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrant) *ObjectBucketAclAccessControlPolicyGrantGrantee {
+		return v.Grantee
+	}).(ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantOutput) Permission() pulumi.StringOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrant) string { return v.Permission }).(pulumi.StringOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyGrantArrayOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyGrantArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ObjectBucketAclAccessControlPolicyGrant)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) ToObjectBucketAclAccessControlPolicyGrantArrayOutput() ObjectBucketAclAccessControlPolicyGrantArrayOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) ToObjectBucketAclAccessControlPolicyGrantArrayOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantArrayOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntInput) ObjectBucketAclAccessControlPolicyGrantOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ObjectBucketAclAccessControlPolicyGrant {
+		return vs[0].([]ObjectBucketAclAccessControlPolicyGrant)[vs[1].(int)]
+	}).(ObjectBucketAclAccessControlPolicyGrantOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyGrantGrantee struct {
+	DisplayName *string `pulumi:"displayName"`
+	// The `region`,`bucket` and `acl` separated by (`/`).
+	Id   string `pulumi:"id"`
+	Type string `pulumi:"type"`
+}
+
+// ObjectBucketAclAccessControlPolicyGrantGranteeInput is an input type that accepts ObjectBucketAclAccessControlPolicyGrantGranteeArgs and ObjectBucketAclAccessControlPolicyGrantGranteeOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyGrantGranteeInput` via:
+//
+//	ObjectBucketAclAccessControlPolicyGrantGranteeArgs{...}
+type ObjectBucketAclAccessControlPolicyGrantGranteeInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyGrantGranteeOutput() ObjectBucketAclAccessControlPolicyGrantGranteeOutput
+	ToObjectBucketAclAccessControlPolicyGrantGranteeOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyGrantGranteeOutput
+}
+
+type ObjectBucketAclAccessControlPolicyGrantGranteeArgs struct {
+	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
+	// The `region`,`bucket` and `acl` separated by (`/`).
+	Id   pulumi.StringInput `pulumi:"id"`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantGrantee)(nil)).Elem()
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ToObjectBucketAclAccessControlPolicyGrantGranteeOutput() ObjectBucketAclAccessControlPolicyGrantGranteeOutput {
+	return i.ToObjectBucketAclAccessControlPolicyGrantGranteeOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ToObjectBucketAclAccessControlPolicyGrantGranteeOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantGranteeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyGrantGranteeOutput)
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutput() ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return i.ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyGrantGranteeOutput).ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(ctx)
+}
+
+// ObjectBucketAclAccessControlPolicyGrantGranteePtrInput is an input type that accepts ObjectBucketAclAccessControlPolicyGrantGranteeArgs, ObjectBucketAclAccessControlPolicyGrantGranteePtr and ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyGrantGranteePtrInput` via:
+//
+//	        ObjectBucketAclAccessControlPolicyGrantGranteeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObjectBucketAclAccessControlPolicyGrantGranteePtrInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutput() ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput
+	ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput
+}
+
+type objectBucketAclAccessControlPolicyGrantGranteePtrType ObjectBucketAclAccessControlPolicyGrantGranteeArgs
+
+func ObjectBucketAclAccessControlPolicyGrantGranteePtr(v *ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ObjectBucketAclAccessControlPolicyGrantGranteePtrInput {
+	return (*objectBucketAclAccessControlPolicyGrantGranteePtrType)(v)
+}
+
+func (*objectBucketAclAccessControlPolicyGrantGranteePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketAclAccessControlPolicyGrantGrantee)(nil)).Elem()
+}
+
+func (i *objectBucketAclAccessControlPolicyGrantGranteePtrType) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutput() ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return i.ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(context.Background())
+}
+
+func (i *objectBucketAclAccessControlPolicyGrantGranteePtrType) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyGrantGranteeOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyGrantGranteeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantGrantee)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) ToObjectBucketAclAccessControlPolicyGrantGranteeOutput() ObjectBucketAclAccessControlPolicyGrantGranteeOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) ToObjectBucketAclAccessControlPolicyGrantGranteeOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantGranteeOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutput() ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return o.ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(context.Background())
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObjectBucketAclAccessControlPolicyGrantGrantee) *ObjectBucketAclAccessControlPolicyGrantGrantee {
+		return &v
+	}).(ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// The `region`,`bucket` and `acl` separated by (`/`).
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketAclAccessControlPolicyGrantGrantee)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutput() ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) ToObjectBucketAclAccessControlPolicyGrantGranteePtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Elem() ObjectBucketAclAccessControlPolicyGrantGranteeOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) ObjectBucketAclAccessControlPolicyGrantGrantee {
+		if v != nil {
+			return *v
+		}
+		var ret ObjectBucketAclAccessControlPolicyGrantGrantee
+		return ret
+	}).(ObjectBucketAclAccessControlPolicyGrantGranteeOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DisplayName
+	}).(pulumi.StringPtrOutput)
+}
+
+// The `region`,`bucket` and `acl` separated by (`/`).
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyOwner struct {
+	DisplayName *string `pulumi:"displayName"`
+	// The `region`,`bucket` and `acl` separated by (`/`).
+	Id string `pulumi:"id"`
+}
+
+// ObjectBucketAclAccessControlPolicyOwnerInput is an input type that accepts ObjectBucketAclAccessControlPolicyOwnerArgs and ObjectBucketAclAccessControlPolicyOwnerOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyOwnerInput` via:
+//
+//	ObjectBucketAclAccessControlPolicyOwnerArgs{...}
+type ObjectBucketAclAccessControlPolicyOwnerInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyOwnerOutput() ObjectBucketAclAccessControlPolicyOwnerOutput
+	ToObjectBucketAclAccessControlPolicyOwnerOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyOwnerOutput
+}
+
+type ObjectBucketAclAccessControlPolicyOwnerArgs struct {
+	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
+	// The `region`,`bucket` and `acl` separated by (`/`).
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (ObjectBucketAclAccessControlPolicyOwnerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicyOwner)(nil)).Elem()
+}
+
+func (i ObjectBucketAclAccessControlPolicyOwnerArgs) ToObjectBucketAclAccessControlPolicyOwnerOutput() ObjectBucketAclAccessControlPolicyOwnerOutput {
+	return i.ToObjectBucketAclAccessControlPolicyOwnerOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyOwnerArgs) ToObjectBucketAclAccessControlPolicyOwnerOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOwnerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyOwnerOutput)
+}
+
+func (i ObjectBucketAclAccessControlPolicyOwnerArgs) ToObjectBucketAclAccessControlPolicyOwnerPtrOutput() ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return i.ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketAclAccessControlPolicyOwnerArgs) ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyOwnerOutput).ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(ctx)
+}
+
+// ObjectBucketAclAccessControlPolicyOwnerPtrInput is an input type that accepts ObjectBucketAclAccessControlPolicyOwnerArgs, ObjectBucketAclAccessControlPolicyOwnerPtr and ObjectBucketAclAccessControlPolicyOwnerPtrOutput values.
+// You can construct a concrete instance of `ObjectBucketAclAccessControlPolicyOwnerPtrInput` via:
+//
+//	        ObjectBucketAclAccessControlPolicyOwnerArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObjectBucketAclAccessControlPolicyOwnerPtrInput interface {
+	pulumi.Input
+
+	ToObjectBucketAclAccessControlPolicyOwnerPtrOutput() ObjectBucketAclAccessControlPolicyOwnerPtrOutput
+	ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(context.Context) ObjectBucketAclAccessControlPolicyOwnerPtrOutput
+}
+
+type objectBucketAclAccessControlPolicyOwnerPtrType ObjectBucketAclAccessControlPolicyOwnerArgs
+
+func ObjectBucketAclAccessControlPolicyOwnerPtr(v *ObjectBucketAclAccessControlPolicyOwnerArgs) ObjectBucketAclAccessControlPolicyOwnerPtrInput {
+	return (*objectBucketAclAccessControlPolicyOwnerPtrType)(v)
+}
+
+func (*objectBucketAclAccessControlPolicyOwnerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketAclAccessControlPolicyOwner)(nil)).Elem()
+}
+
+func (i *objectBucketAclAccessControlPolicyOwnerPtrType) ToObjectBucketAclAccessControlPolicyOwnerPtrOutput() ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return i.ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(context.Background())
+}
+
+func (i *objectBucketAclAccessControlPolicyOwnerPtrType) ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclAccessControlPolicyOwnerPtrOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyOwnerOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyOwnerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketAclAccessControlPolicyOwner)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerOutput) ToObjectBucketAclAccessControlPolicyOwnerOutput() ObjectBucketAclAccessControlPolicyOwnerOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerOutput) ToObjectBucketAclAccessControlPolicyOwnerOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOwnerOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerOutput) ToObjectBucketAclAccessControlPolicyOwnerPtrOutput() ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return o.ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(context.Background())
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerOutput) ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObjectBucketAclAccessControlPolicyOwner) *ObjectBucketAclAccessControlPolicyOwner {
+		return &v
+	}).(ObjectBucketAclAccessControlPolicyOwnerPtrOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyOwner) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// The `region`,`bucket` and `acl` separated by (`/`).
+func (o ObjectBucketAclAccessControlPolicyOwnerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyOwner) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type ObjectBucketAclAccessControlPolicyOwnerPtrOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketAclAccessControlPolicyOwnerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketAclAccessControlPolicyOwner)(nil)).Elem()
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) ToObjectBucketAclAccessControlPolicyOwnerPtrOutput() ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) ToObjectBucketAclAccessControlPolicyOwnerPtrOutputWithContext(ctx context.Context) ObjectBucketAclAccessControlPolicyOwnerPtrOutput {
+	return o
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) Elem() ObjectBucketAclAccessControlPolicyOwnerOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyOwner) ObjectBucketAclAccessControlPolicyOwner {
+		if v != nil {
+			return *v
+		}
+		var ret ObjectBucketAclAccessControlPolicyOwner
+		return ret
+	}).(ObjectBucketAclAccessControlPolicyOwnerOutput)
+}
+
+func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyOwner) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DisplayName
+	}).(pulumi.StringPtrOutput)
+}
+
+// The `region`,`bucket` and `acl` separated by (`/`).
+func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyOwner) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
 }
 
 type ObjectBucketCorsRule struct {
@@ -11813,6 +12955,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersPublishPtrInput)(nil)).Elem(), IotDeviceMessageFiltersPublishArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersSubscribeInput)(nil)).Elem(), IotDeviceMessageFiltersSubscribeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersSubscribePtrInput)(nil)).Elem(), IotDeviceMessageFiltersSubscribeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteDatabaseInput)(nil)).Elem(), IotRouteDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteDatabasePtrInput)(nil)).Elem(), IotRouteDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestInput)(nil)).Elem(), IotRouteRestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestPtrInput)(nil)).Elem(), IotRouteRestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3Input)(nil)).Elem(), IotRouteS3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3PtrInput)(nil)).Elem(), IotRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradeInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradePtrInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoscalerConfigInput)(nil)).Elem(), KubernetesClusterAutoscalerConfigArgs{})
@@ -11841,6 +12989,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclMatchInput)(nil)).Elem(), LoadbalancerFrontendAclMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkInput)(nil)).Elem(), LoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), LoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyPtrInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantArrayInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantGranteeInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantGranteeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantGranteePtrInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantGranteeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyOwnerInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyOwnerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyOwnerPtrInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyOwnerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketCorsRuleInput)(nil)).Elem(), ObjectBucketCorsRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketCorsRuleArrayInput)(nil)).Elem(), ObjectBucketCorsRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleInput)(nil)).Elem(), ObjectBucketLifecycleRuleArgs{})
@@ -11984,6 +13140,12 @@ func init() {
 	pulumi.RegisterOutputType(IotDeviceMessageFiltersPublishPtrOutput{})
 	pulumi.RegisterOutputType(IotDeviceMessageFiltersSubscribeOutput{})
 	pulumi.RegisterOutputType(IotDeviceMessageFiltersSubscribePtrOutput{})
+	pulumi.RegisterOutputType(IotRouteDatabaseOutput{})
+	pulumi.RegisterOutputType(IotRouteDatabasePtrOutput{})
+	pulumi.RegisterOutputType(IotRouteRestOutput{})
+	pulumi.RegisterOutputType(IotRouteRestPtrOutput{})
+	pulumi.RegisterOutputType(IotRouteS3Output{})
+	pulumi.RegisterOutputType(IotRouteS3PtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradePtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoscalerConfigOutput{})
@@ -12012,6 +13174,14 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclMatchOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyPtrOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantArrayOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantGranteeOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOwnerOutput{})
+	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOwnerPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketCorsRuleOutput{})
 	pulumi.RegisterOutputType(ObjectBucketCorsRuleArrayOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleOutput{})

@@ -171,7 +171,7 @@ class InstancePrivateNic(pulumi.CustomResource):
 
         pn01 = scaleway.VpcPrivateNetwork("pn01", zone="fr-par-2")
         base = scaleway.InstanceServer("base",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             zone=pn01.zone)
         pnic01 = scaleway.InstancePrivateNic("pnic01",
@@ -225,7 +225,7 @@ class InstancePrivateNic(pulumi.CustomResource):
 
         pn01 = scaleway.VpcPrivateNetwork("pn01", zone="fr-par-2")
         base = scaleway.InstanceServer("base",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             zone=pn01.zone)
         pnic01 = scaleway.InstancePrivateNic("pnic01",

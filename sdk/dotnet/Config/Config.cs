@@ -30,7 +30,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("scaleway");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("scaleway");
 
         private static readonly __Value<string?> _accessKey = new __Value<string?>(() => __config.Get("accessKey") ?? Utilities.GetEnv("SCW_ACCESS_KEY"));
         /// <summary>

@@ -22,7 +22,10 @@ class GetLoadbalancerResult:
     """
     A collection of values returned by getLoadbalancer.
     """
-    def __init__(__self__, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, tags=None, type=None, zone=None):
+    def __init__(__self__, description=None, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -53,6 +56,9 @@ class GetLoadbalancerResult:
         if release_ip and not isinstance(release_ip, bool):
             raise TypeError("Expected argument 'release_ip' to be a bool")
         pulumi.set(__self__, "release_ip", release_ip)
+        if ssl_compatibility_level and not isinstance(ssl_compatibility_level, str):
+            raise TypeError("Expected argument 'ssl_compatibility_level' to be a str")
+        pulumi.set(__self__, "ssl_compatibility_level", ssl_compatibility_level)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -62,6 +68,11 @@ class GetLoadbalancerResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -123,6 +134,11 @@ class GetLoadbalancerResult:
         return pulumi.get(self, "release_ip")
 
     @property
+    @pulumi.getter(name="sslCompatibilityLevel")
+    def ssl_compatibility_level(self) -> str:
+        return pulumi.get(self, "ssl_compatibility_level")
+
+    @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
@@ -153,6 +169,7 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
         if False:
             yield self
         return GetLoadbalancerResult(
+            description=self.description,
             id=self.id,
             ip_address=self.ip_address,
             ip_id=self.ip_id,
@@ -163,6 +180,7 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
             project_id=self.project_id,
             region=self.region,
             release_ip=self.release_ip,
+            ssl_compatibility_level=self.ssl_compatibility_level,
             tags=self.tags,
             type=self.type,
             zone=self.zone)
@@ -199,6 +217,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancer:getLoadbalancer', __args__, opts=opts, typ=GetLoadbalancerResult).value
 
     return AwaitableGetLoadbalancerResult(
+        description=__ret__.description,
         id=__ret__.id,
         ip_address=__ret__.ip_address,
         ip_id=__ret__.ip_id,
@@ -209,6 +228,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
         project_id=__ret__.project_id,
         region=__ret__.region,
         release_ip=__ret__.release_ip,
+        ssl_compatibility_level=__ret__.ssl_compatibility_level,
         tags=__ret__.tags,
         type=__ret__.type,
         zone=__ret__.zone)

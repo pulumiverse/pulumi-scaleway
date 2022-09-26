@@ -192,6 +192,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class Loadbalancer : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The description of the load-balancer.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
         /// The load-balance public IP Address
         /// </summary>
         [Output("ipAddress")]
@@ -238,6 +244,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("releaseIp")]
         public Output<bool?> ReleaseIp { get; private set; } = null!;
+
+        /// <summary>
+        /// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        /// </summary>
+        [Output("sslCompatibilityLevel")]
+        public Output<string?> SslCompatibilityLevel { get; private set; } = null!;
 
         /// <summary>
         /// The tags associated with the load-balancers.
@@ -305,6 +317,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class LoadbalancerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The description of the load-balancer.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// The ID of the associated LB IP. See below.
         /// </summary>
         [Input("ipId", required: true)]
@@ -340,6 +358,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
 
+        /// <summary>
+        /// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        /// </summary>
+        [Input("sslCompatibilityLevel")]
+        public Input<string>? SslCompatibilityLevel { get; set; }
+
         [Input("tags")]
         private InputList<string>? _tags;
 
@@ -372,6 +396,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
     public sealed class LoadbalancerState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The description of the load-balancer.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         /// <summary>
         /// The load-balance public IP Address
         /// </summary>
@@ -425,6 +455,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
+
+        /// <summary>
+        /// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        /// </summary>
+        [Input("sslCompatibilityLevel")]
+        public Input<string>? SslCompatibilityLevel { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

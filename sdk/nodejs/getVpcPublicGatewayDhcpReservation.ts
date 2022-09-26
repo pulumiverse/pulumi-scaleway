@@ -16,8 +16,10 @@ export function getVpcPublicGatewayDhcpReservation(args?: GetVpcPublicGatewayDhc
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", {
+        "gatewayNetworkId": args.gatewayNetworkId,
         "macAddress": args.macAddress,
         "reservationId": args.reservationId,
+        "waitForDhcp": args.waitForDhcp,
         "zone": args.zone,
     }, opts);
 }
@@ -27,6 +29,10 @@ export function getVpcPublicGatewayDhcpReservation(args?: GetVpcPublicGatewayDhc
  */
 export interface GetVpcPublicGatewayDhcpReservationArgs {
     /**
+     * The ID of the owning GatewayNetwork.
+     */
+    gatewayNetworkId?: string;
+    /**
      * The MAC address of the reservation to retrieve
      */
     macAddress?: string;
@@ -34,6 +40,10 @@ export interface GetVpcPublicGatewayDhcpReservationArgs {
      * The ID of the Reservation to retrieve
      */
     reservationId?: string;
+    /**
+     * Boolean to wait for macAddress to exist in dhcp
+     */
+    waitForDhcp?: boolean;
     /**
      * `zone`) The zone in which
      * the image exists.
@@ -52,7 +62,7 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
     /**
      * The ID of the owning GatewayNetwork.
      */
-    readonly gatewayNetworkId: string;
+    readonly gatewayNetworkId?: string;
     /**
      * The Hostname of the client machine.
      */
@@ -75,6 +85,7 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
      * The date and time of the last update of the public gateway DHCP config.
      */
     readonly updatedAt: string;
+    readonly waitForDhcp?: boolean;
     readonly zone?: string;
 }
 
@@ -87,6 +98,10 @@ export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGate
  */
 export interface GetVpcPublicGatewayDhcpReservationOutputArgs {
     /**
+     * The ID of the owning GatewayNetwork.
+     */
+    gatewayNetworkId?: pulumi.Input<string>;
+    /**
      * The MAC address of the reservation to retrieve
      */
     macAddress?: pulumi.Input<string>;
@@ -94,6 +109,10 @@ export interface GetVpcPublicGatewayDhcpReservationOutputArgs {
      * The ID of the Reservation to retrieve
      */
     reservationId?: pulumi.Input<string>;
+    /**
+     * Boolean to wait for macAddress to exist in dhcp
+     */
+    waitForDhcp?: pulumi.Input<boolean>;
     /**
      * `zone`) The zone in which
      * the image exists.

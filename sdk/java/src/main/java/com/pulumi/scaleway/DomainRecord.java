@@ -217,7 +217,7 @@ import javax.annotation.Nullable;
  *         var web = new InstanceServer(&#34;web&#34;, InstanceServerArgs.builder()        
  *             .projectId(projectId)
  *             .type(&#34;DEV1-S&#34;)
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .tags(            
  *                 &#34;front&#34;,
  *                 &#34;web&#34;)

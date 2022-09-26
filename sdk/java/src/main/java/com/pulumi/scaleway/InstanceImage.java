@@ -93,7 +93,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var server = new InstanceServer(&#34;server&#34;, InstanceServerArgs.builder()        
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .type(&#34;DEV1-S&#34;)
  *             .build());
  * 
@@ -139,7 +139,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var server = new InstanceServer(&#34;server&#34;, InstanceServerArgs.builder()        
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .type(&#34;DEV1-S&#34;)
  *             .build());
  * 

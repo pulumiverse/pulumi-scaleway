@@ -250,6 +250,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/loadbalancer:Loadbalancer")
 public class Loadbalancer extends com.pulumi.resources.CustomResource {
     /**
+     * The description of the load-balancer.
+     * 
+     */
+    @Export(name="description", type=String.class, parameters={})
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return The description of the load-balancer.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
+    }
+    /**
      * The load-balance public IP Address
      * 
      */
@@ -364,6 +378,20 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> releaseIp() {
         return Codegen.optional(this.releaseIp);
+    }
+    /**
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * 
+     */
+    @Export(name="sslCompatibilityLevel", type=String.class, parameters={})
+    private Output</* @Nullable */ String> sslCompatibilityLevel;
+
+    /**
+     * @return Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * 
+     */
+    public Output<Optional<String>> sslCompatibilityLevel() {
+        return Codegen.optional(this.sslCompatibilityLevel);
     }
     /**
      * The tags associated with the load-balancers.

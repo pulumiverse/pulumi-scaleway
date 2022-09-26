@@ -82,7 +82,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpcPublicPatRuleResult> InvokeAsync(GetVpcPublicPatRuleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a public gateway PAT rule. For further information please check the
@@ -154,7 +154,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVpcPublicPatRuleResult> Invoke(GetVpcPublicPatRuleInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleInvokeArgs(), options.WithDefaults());
     }
 
 

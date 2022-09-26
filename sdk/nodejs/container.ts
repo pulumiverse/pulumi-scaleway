@@ -134,7 +134,7 @@ export class Container extends pulumi.CustomResource {
     /**
      * The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
      */
-    public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly environmentVariables!: pulumi.Output<{[key: string]: string}>;
     /**
      * The error message of the container.
      */

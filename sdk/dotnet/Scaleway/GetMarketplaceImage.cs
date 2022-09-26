@@ -28,7 +28,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {
         ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
         ///     {
-        ///         Label = "ubuntu_focal",
+        ///         Label = "ubuntu_jammy",
         ///     });
         /// 
         /// });
@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMarketplaceImageResult> InvokeAsync(GetMarketplaceImageArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMarketplaceImageResult>("scaleway:index/getMarketplaceImage:getMarketplaceImage", args ?? new GetMarketplaceImageArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMarketplaceImageResult>("scaleway:index/getMarketplaceImage:getMarketplaceImage", args ?? new GetMarketplaceImageArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets local image ID of an image from its label name.
@@ -55,7 +55,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {
         ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
         ///     {
-        ///         Label = "ubuntu_focal",
+        ///         Label = "ubuntu_jammy",
         ///     });
         /// 
         /// });
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetMarketplaceImageResult> Invoke(GetMarketplaceImageInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMarketplaceImageResult>("scaleway:index/getMarketplaceImage:getMarketplaceImage", args ?? new GetMarketplaceImageInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMarketplaceImageResult>("scaleway:index/getMarketplaceImage:getMarketplaceImage", args ?? new GetMarketplaceImageInvokeArgs(), options.WithDefaults());
     }
 
 

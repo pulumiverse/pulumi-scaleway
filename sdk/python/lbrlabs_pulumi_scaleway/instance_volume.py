@@ -29,7 +29,7 @@ class InstanceVolumeArgs:
         :param pulumi.Input[str] from_volume_id: If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
@@ -113,7 +113,7 @@ class InstanceVolumeArgs:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -167,7 +167,7 @@ class _InstanceVolumeState:
         :param pulumi.Input[str] organization_id: The organization ID the volume is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[str] server_id: The id of the associated server.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
@@ -269,7 +269,7 @@ class _InstanceVolumeState:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -357,7 +357,7 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[str] from_volume_id: If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
@@ -468,7 +468,7 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the volume is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[str] server_id: The id of the associated server.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
@@ -541,7 +541,7 @@ class InstanceVolume(pulumi.CustomResource):
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Output[Optional[int]]:
         """
-        The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_volume_id` should be specified.
+        The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "size_in_gb")
 

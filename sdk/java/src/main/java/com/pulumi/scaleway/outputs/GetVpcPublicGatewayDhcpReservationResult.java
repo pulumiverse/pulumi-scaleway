@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
      * @return The ID of the owning GatewayNetwork.
      * 
      */
-    private String gatewayNetworkId;
+    private @Nullable String gatewayNetworkId;
     /**
      * @return The Hostname of the client machine.
      * 
@@ -48,6 +49,7 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
      * 
      */
     private String updatedAt;
+    private @Nullable Boolean waitForDhcp;
     private @Nullable String zone;
 
     private GetVpcPublicGatewayDhcpReservationResult() {}
@@ -62,8 +64,8 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
      * @return The ID of the owning GatewayNetwork.
      * 
      */
-    public String gatewayNetworkId() {
-        return this.gatewayNetworkId;
+    public Optional<String> gatewayNetworkId() {
+        return Optional.ofNullable(this.gatewayNetworkId);
     }
     /**
      * @return The Hostname of the client machine.
@@ -106,6 +108,9 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
     public String updatedAt() {
         return this.updatedAt;
     }
+    public Optional<Boolean> waitForDhcp() {
+        return Optional.ofNullable(this.waitForDhcp);
+    }
     public Optional<String> zone() {
         return Optional.ofNullable(this.zone);
     }
@@ -120,7 +125,7 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
     @CustomType.Builder
     public static final class Builder {
         private String createdAt;
-        private String gatewayNetworkId;
+        private @Nullable String gatewayNetworkId;
         private String hostname;
         private String id;
         private String ipAddress;
@@ -128,6 +133,7 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
         private @Nullable String reservationId;
         private String type;
         private String updatedAt;
+        private @Nullable Boolean waitForDhcp;
         private @Nullable String zone;
         public Builder() {}
         public Builder(GetVpcPublicGatewayDhcpReservationResult defaults) {
@@ -141,6 +147,7 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
     	      this.reservationId = defaults.reservationId;
     	      this.type = defaults.type;
     	      this.updatedAt = defaults.updatedAt;
+    	      this.waitForDhcp = defaults.waitForDhcp;
     	      this.zone = defaults.zone;
         }
 
@@ -150,8 +157,8 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
             return this;
         }
         @CustomType.Setter
-        public Builder gatewayNetworkId(String gatewayNetworkId) {
-            this.gatewayNetworkId = Objects.requireNonNull(gatewayNetworkId);
+        public Builder gatewayNetworkId(@Nullable String gatewayNetworkId) {
+            this.gatewayNetworkId = gatewayNetworkId;
             return this;
         }
         @CustomType.Setter
@@ -190,6 +197,11 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
             return this;
         }
         @CustomType.Setter
+        public Builder waitForDhcp(@Nullable Boolean waitForDhcp) {
+            this.waitForDhcp = waitForDhcp;
+            return this;
+        }
+        @CustomType.Setter
         public Builder zone(@Nullable String zone) {
             this.zone = zone;
             return this;
@@ -205,6 +217,7 @@ public final class GetVpcPublicGatewayDhcpReservationResult {
             o.reservationId = reservationId;
             o.type = type;
             o.updatedAt = updatedAt;
+            o.waitForDhcp = waitForDhcp;
             o.zone = zone;
             return o;
         }

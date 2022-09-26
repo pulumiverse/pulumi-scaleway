@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetLoadbalancerIpResult> InvokeAsync(GetLoadbalancerIpArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Load Balancer IP.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetLoadbalancerIpResult> Invoke(GetLoadbalancerIpInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpInvokeArgs(), options.WithDefaults());
     }
 
 

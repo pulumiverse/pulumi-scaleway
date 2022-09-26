@@ -78,6 +78,7 @@ from .instance_volume import *
 from .iot_device import *
 from .iot_hub import *
 from .iot_network import *
+from .iot_route import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .loadbalancer import *
@@ -87,6 +88,7 @@ from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
 from .loadbalancer_route import *
 from .object_bucket import *
+from .object_bucket_acl import *
 from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
 from .provider import *
@@ -370,6 +372,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/iotRoute",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iotRoute:IotRoute": "IotRoute"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/kubernetesCluster",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -438,6 +448,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/objectBucket:ObjectBucket": "ObjectBucket"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/objectBucketAcl",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/objectBucketAcl:ObjectBucketAcl": "ObjectBucketAcl"
   }
  },
  {

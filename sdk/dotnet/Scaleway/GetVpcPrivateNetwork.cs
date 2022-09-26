@@ -22,7 +22,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpcPrivateNetworkResult> InvokeAsync(GetVpcPrivateNetworkArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a private network.
@@ -34,7 +34,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVpcPrivateNetworkResult> Invoke(GetVpcPrivateNetworkInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkInvokeArgs(), options.WithDefaults());
     }
 
 

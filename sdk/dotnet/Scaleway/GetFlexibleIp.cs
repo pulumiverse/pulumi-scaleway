@@ -16,13 +16,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Gets information about a Flexible IP.
         /// </summary>
         public static Task<GetFlexibleIpResult> InvokeAsync(GetFlexibleIpArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFlexibleIpResult>("scaleway:index/getFlexibleIp:getFlexibleIp", args ?? new GetFlexibleIpArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFlexibleIpResult>("scaleway:index/getFlexibleIp:getFlexibleIp", args ?? new GetFlexibleIpArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Flexible IP.
         /// </summary>
         public static Output<GetFlexibleIpResult> Invoke(GetFlexibleIpInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFlexibleIpResult>("scaleway:index/getFlexibleIp:getFlexibleIp", args ?? new GetFlexibleIpInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFlexibleIpResult>("scaleway:index/getFlexibleIp:getFlexibleIp", args ?? new GetFlexibleIpInvokeArgs(), options.WithDefaults());
     }
 
 

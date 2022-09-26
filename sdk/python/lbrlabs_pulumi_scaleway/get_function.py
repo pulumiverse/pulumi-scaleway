@@ -76,8 +76,8 @@ class GetFunctionResult:
         if runtime and not isinstance(runtime, str):
             raise TypeError("Expected argument 'runtime' to be a str")
         pulumi.set(__self__, "runtime", runtime)
-        if timeout and not isinstance(timeout, str):
-            raise TypeError("Expected argument 'timeout' to be a str")
+        if timeout and not isinstance(timeout, int):
+            raise TypeError("Expected argument 'timeout' to be a int")
         pulumi.set(__self__, "timeout", timeout)
         if zip_file and not isinstance(zip_file, str):
             raise TypeError("Expected argument 'zip_file' to be a str")
@@ -181,7 +181,7 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter
-    def timeout(self) -> str:
+    def timeout(self) -> int:
         return pulumi.get(self, "timeout")
 
     @property

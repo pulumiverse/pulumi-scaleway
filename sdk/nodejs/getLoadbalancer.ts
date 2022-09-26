@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -59,6 +60,7 @@ export interface GetLoadbalancerArgs {
  * A collection of values returned by getLoadbalancer.
  */
 export interface GetLoadbalancerResult {
+    readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -78,6 +80,7 @@ export interface GetLoadbalancerResult {
     readonly projectId: string;
     readonly region: string;
     readonly releaseIp?: boolean;
+    readonly sslCompatibilityLevel: string;
     /**
      * The tags associated with the load-balancers.
      */

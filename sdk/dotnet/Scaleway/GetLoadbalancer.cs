@@ -42,7 +42,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetLoadbalancerResult> InvokeAsync(GetLoadbalancerArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerResult>("scaleway:index/getLoadbalancer:getLoadbalancer", args ?? new GetLoadbalancerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerResult>("scaleway:index/getLoadbalancer:getLoadbalancer", args ?? new GetLoadbalancerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Load Balancer.
@@ -74,7 +74,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetLoadbalancerResult> Invoke(GetLoadbalancerInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLoadbalancerResult>("scaleway:index/getLoadbalancer:getLoadbalancer", args ?? new GetLoadbalancerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLoadbalancerResult>("scaleway:index/getLoadbalancer:getLoadbalancer", args ?? new GetLoadbalancerInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -134,6 +134,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     [OutputType]
     public sealed class GetLoadbalancerResult
     {
+        public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -153,6 +154,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string ProjectId;
         public readonly string Region;
         public readonly bool? ReleaseIp;
+        public readonly string SslCompatibilityLevel;
         /// <summary>
         /// The tags associated with the load-balancers.
         /// </summary>
@@ -168,6 +170,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         [OutputConstructor]
         private GetLoadbalancerResult(
+            string description,
+
             string id,
 
             string ipAddress,
@@ -188,12 +192,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             bool? releaseIp,
 
+            string sslCompatibilityLevel,
+
             ImmutableArray<string> tags,
 
             string type,
 
             string? zone)
         {
+            Description = description;
             Id = id;
             IpAddress = ipAddress;
             IpId = ipId;
@@ -204,6 +211,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             ProjectId = projectId;
             Region = region;
             ReleaseIp = releaseIp;
+            SslCompatibilityLevel = sslCompatibilityLevel;
             Tags = tags;
             Type = type;
             Zone = zone;

@@ -19,6 +19,21 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     public static final LoadbalancerArgs Empty = new LoadbalancerArgs();
 
     /**
+     * The description of the load-balancer.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The description of the load-balancer.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * The ID of the associated LB IP. See below.
      * 
      */
@@ -102,6 +117,21 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * 
+     */
+    @Import(name="sslCompatibilityLevel")
+    private @Nullable Output<String> sslCompatibilityLevel;
+
+    /**
+     * @return Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * 
+     */
+    public Optional<Output<String>> sslCompatibilityLevel() {
+        return Optional.ofNullable(this.sslCompatibilityLevel);
+    }
+
+    /**
      * The tags associated with the load-balancers.
      * 
      */
@@ -149,11 +179,13 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     private LoadbalancerArgs() {}
 
     private LoadbalancerArgs(LoadbalancerArgs $) {
+        this.description = $.description;
         this.ipId = $.ipId;
         this.name = $.name;
         this.privateNetworks = $.privateNetworks;
         this.projectId = $.projectId;
         this.releaseIp = $.releaseIp;
+        this.sslCompatibilityLevel = $.sslCompatibilityLevel;
         this.tags = $.tags;
         this.type = $.type;
         this.zone = $.zone;
@@ -175,6 +207,27 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(LoadbalancerArgs defaults) {
             $ = new LoadbalancerArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description The description of the load-balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The description of the load-balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -298,6 +351,27 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         @Deprecated /* The resource ip will be destroyed by it's own resource. Please set this to `false` */
         public Builder releaseIp(Boolean releaseIp) {
             return releaseIp(Output.of(releaseIp));
+        }
+
+        /**
+         * @param sslCompatibilityLevel Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslCompatibilityLevel(@Nullable Output<String> sslCompatibilityLevel) {
+            $.sslCompatibilityLevel = sslCompatibilityLevel;
+            return this;
+        }
+
+        /**
+         * @param sslCompatibilityLevel Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslCompatibilityLevel(String sslCompatibilityLevel) {
+            return sslCompatibilityLevel(Output.of(sslCompatibilityLevel));
         }
 
         /**

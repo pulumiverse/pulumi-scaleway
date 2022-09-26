@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -176,6 +177,10 @@ export class Loadbalancer extends pulumi.CustomResource {
     }
 
     /**
+     * The description of the load-balancer.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * The load-balance public IP Address
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
@@ -210,6 +215,10 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly releaseIp!: pulumi.Output<boolean | undefined>;
     /**
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     */
+    public readonly sslCompatibilityLevel!: pulumi.Output<string | undefined>;
+    /**
      * The tags associated with the load-balancers.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
@@ -235,6 +244,7 @@ export class Loadbalancer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerState | undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
             resourceInputs["ipId"] = state ? state.ipId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -243,6 +253,7 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["releaseIp"] = state ? state.releaseIp : undefined;
+            resourceInputs["sslCompatibilityLevel"] = state ? state.sslCompatibilityLevel : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
@@ -254,11 +265,13 @@ export class Loadbalancer extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["ipId"] = args ? args.ipId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["releaseIp"] = args ? args.releaseIp : undefined;
+            resourceInputs["sslCompatibilityLevel"] = args ? args.sslCompatibilityLevel : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
@@ -275,6 +288,10 @@ export class Loadbalancer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Loadbalancer resources.
  */
 export interface LoadbalancerState {
+    /**
+     * The description of the load-balancer.
+     */
+    description?: pulumi.Input<string>;
     /**
      * The load-balance public IP Address
      */
@@ -310,6 +327,10 @@ export interface LoadbalancerState {
      */
     releaseIp?: pulumi.Input<boolean>;
     /**
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     */
+    sslCompatibilityLevel?: pulumi.Input<string>;
+    /**
      * The tags associated with the load-balancers.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
@@ -327,6 +348,10 @@ export interface LoadbalancerState {
  * The set of arguments for constructing a Loadbalancer resource.
  */
 export interface LoadbalancerArgs {
+    /**
+     * The description of the load-balancer.
+     */
+    description?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
      */
@@ -349,6 +374,10 @@ export interface LoadbalancerArgs {
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
     releaseIp?: pulumi.Input<boolean>;
+    /**
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     */
+    sslCompatibilityLevel?: pulumi.Input<string>;
     /**
      * The tags associated with the load-balancers.
      */

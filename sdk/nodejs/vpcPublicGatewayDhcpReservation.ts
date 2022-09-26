@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *
  * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
  * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     zone: "fr-par-1",
  *     privateNetworks: [{

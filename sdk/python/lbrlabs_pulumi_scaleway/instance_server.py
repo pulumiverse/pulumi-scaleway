@@ -811,7 +811,7 @@ class InstanceServer(pulumi.CustomResource):
         public_ip = scaleway.InstanceIp("publicIp")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             ip_id=public_ip.id)
         ```
 
@@ -826,7 +826,7 @@ class InstanceServer(pulumi.CustomResource):
             type="b_ssd")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             tags=[
                 "hello",
                 "public",
@@ -884,7 +884,7 @@ class InstanceServer(pulumi.CustomResource):
             )])
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             security_group_id=www.id)
         ```
 
@@ -896,7 +896,7 @@ class InstanceServer(pulumi.CustomResource):
 
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             user_data={
                 "foo": "bar",
                 "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
@@ -911,7 +911,7 @@ class InstanceServer(pulumi.CustomResource):
 
         pn01 = scaleway.VpcPrivateNetwork("pn01")
         base = scaleway.InstanceServer("base",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
                 pn_id=pn01.id,
@@ -989,7 +989,7 @@ class InstanceServer(pulumi.CustomResource):
         public_ip = scaleway.InstanceIp("publicIp")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             ip_id=public_ip.id)
         ```
 
@@ -1004,7 +1004,7 @@ class InstanceServer(pulumi.CustomResource):
             type="b_ssd")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             tags=[
                 "hello",
                 "public",
@@ -1062,7 +1062,7 @@ class InstanceServer(pulumi.CustomResource):
             )])
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             security_group_id=www.id)
         ```
 
@@ -1074,7 +1074,7 @@ class InstanceServer(pulumi.CustomResource):
 
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             user_data={
                 "foo": "bar",
                 "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
@@ -1089,7 +1089,7 @@ class InstanceServer(pulumi.CustomResource):
 
         pn01 = scaleway.VpcPrivateNetwork("pn01")
         base = scaleway.InstanceServer("base",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
                 pn_id=pn01.id,

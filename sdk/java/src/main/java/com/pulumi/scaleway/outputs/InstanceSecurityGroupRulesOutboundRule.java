@@ -20,7 +20,11 @@ public final class InstanceSecurityGroupRulesOutboundRule {
     /**
      * @return The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
      * 
+     * @deprecated
+     * Ip address is deprecated. Please use ip_range instead
+     * 
      */
+    @Deprecated /* Ip address is deprecated. Please use ip_range instead */
     private @Nullable String ip;
     /**
      * @return The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
@@ -50,7 +54,11 @@ public final class InstanceSecurityGroupRulesOutboundRule {
     /**
      * @return The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
      * 
+     * @deprecated
+     * Ip address is deprecated. Please use ip_range instead
+     * 
      */
+    @Deprecated /* Ip address is deprecated. Please use ip_range instead */
     public Optional<String> ip() {
         return Optional.ofNullable(this.ip);
     }

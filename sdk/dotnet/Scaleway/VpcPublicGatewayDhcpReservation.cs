@@ -34,7 +34,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
     ///     {
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
     ///         Zone = "fr-par-1",
     ///         PrivateNetworks = new[]

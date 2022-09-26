@@ -1032,7 +1032,7 @@ class Container(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="environmentVariables")
-    def environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def environment_variables(self) -> pulumi.Output[Mapping[str, str]]:
         """
         The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         """

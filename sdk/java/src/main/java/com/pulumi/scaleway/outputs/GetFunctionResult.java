@@ -36,7 +36,7 @@ public final class GetFunctionResult {
     private String projectId;
     private String region;
     private String runtime;
-    private String timeout;
+    private Integer timeout;
     private String zipFile;
     private String zipHash;
 
@@ -99,7 +99,7 @@ public final class GetFunctionResult {
     public String runtime() {
         return this.runtime;
     }
-    public String timeout() {
+    public Integer timeout() {
         return this.timeout;
     }
     public String zipFile() {
@@ -136,7 +136,7 @@ public final class GetFunctionResult {
         private String projectId;
         private String region;
         private String runtime;
-        private String timeout;
+        private Integer timeout;
         private String zipFile;
         private String zipHash;
         public Builder() {}
@@ -256,7 +256,7 @@ public final class GetFunctionResult {
             return this;
         }
         @CustomType.Setter
-        public Builder timeout(String timeout) {
+        public Builder timeout(Integer timeout) {
             this.timeout = Objects.requireNonNull(timeout);
             return this;
         }

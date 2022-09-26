@@ -42,7 +42,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpcPublicGatewayIpResult> InvokeAsync(GetVpcPublicGatewayIpArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a public gateway IP.
@@ -74,7 +74,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVpcPublicGatewayIpResult> Invoke(GetVpcPublicGatewayIpInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetLoadbalancerResult {
+    private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -36,6 +37,7 @@ public final class GetLoadbalancerResult {
     private String projectId;
     private String region;
     private @Nullable Boolean releaseIp;
+    private String sslCompatibilityLevel;
     /**
      * @return The tags associated with the load-balancers.
      * 
@@ -53,6 +55,9 @@ public final class GetLoadbalancerResult {
     private @Nullable String zone;
 
     private GetLoadbalancerResult() {}
+    public String description() {
+        return this.description;
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -95,6 +100,9 @@ public final class GetLoadbalancerResult {
     public Optional<Boolean> releaseIp() {
         return Optional.ofNullable(this.releaseIp);
     }
+    public String sslCompatibilityLevel() {
+        return this.sslCompatibilityLevel;
+    }
     /**
      * @return The tags associated with the load-balancers.
      * 
@@ -126,6 +134,7 @@ public final class GetLoadbalancerResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String description;
         private String id;
         private String ipAddress;
         private String ipId;
@@ -136,12 +145,14 @@ public final class GetLoadbalancerResult {
         private String projectId;
         private String region;
         private @Nullable Boolean releaseIp;
+        private String sslCompatibilityLevel;
         private List<String> tags;
         private String type;
         private @Nullable String zone;
         public Builder() {}
         public Builder(GetLoadbalancerResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.ipAddress = defaults.ipAddress;
     	      this.ipId = defaults.ipId;
@@ -152,11 +163,17 @@ public final class GetLoadbalancerResult {
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.releaseIp = defaults.releaseIp;
+    	      this.sslCompatibilityLevel = defaults.sslCompatibilityLevel;
     	      this.tags = defaults.tags;
     	      this.type = defaults.type;
     	      this.zone = defaults.zone;
         }
 
+        @CustomType.Setter
+        public Builder description(String description) {
+            this.description = Objects.requireNonNull(description);
+            return this;
+        }
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
@@ -211,6 +228,11 @@ public final class GetLoadbalancerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder sslCompatibilityLevel(String sslCompatibilityLevel) {
+            this.sslCompatibilityLevel = Objects.requireNonNull(sslCompatibilityLevel);
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             this.tags = Objects.requireNonNull(tags);
             return this;
@@ -230,6 +252,7 @@ public final class GetLoadbalancerResult {
         }
         public GetLoadbalancerResult build() {
             final var o = new GetLoadbalancerResult();
+            o.description = description;
             o.id = id;
             o.ipAddress = ipAddress;
             o.ipId = ipId;
@@ -240,6 +263,7 @@ public final class GetLoadbalancerResult {
             o.projectId = projectId;
             o.region = region;
             o.releaseIp = releaseIp;
+            o.sslCompatibilityLevel = sslCompatibilityLevel;
             o.tags = tags;
             o.type = type;
             o.zone = zone;

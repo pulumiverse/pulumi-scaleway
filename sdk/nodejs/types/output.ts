@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface BaremetalServerIp {
     /**
@@ -744,6 +745,8 @@ export interface InstanceSecurityGroupInboundRule {
     action: string;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: string;
     /**
@@ -768,6 +771,8 @@ export interface InstanceSecurityGroupOutboundRule {
     action: string;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: string;
     /**
@@ -792,6 +797,8 @@ export interface InstanceSecurityGroupRulesInboundRule {
     action: string;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: string;
     /**
@@ -816,6 +823,8 @@ export interface InstanceSecurityGroupRulesOutboundRule {
     action: string;
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     *
+     * @deprecated Ip address is deprecated. Please use ip_range instead
      */
     ip?: string;
     /**
@@ -909,6 +918,28 @@ export interface IotDeviceMessageFiltersSubscribe {
      * Same as publish rules.
      */
     topics?: string[];
+}
+
+export interface IotRouteDatabase {
+    dbname: string;
+    host: string;
+    password: string;
+    port: number;
+    query: string;
+    username: string;
+}
+
+export interface IotRouteRest {
+    headers: {[key: string]: string};
+    uri: string;
+    verb: string;
+}
+
+export interface IotRouteS3 {
+    bucketName: string;
+    bucketRegion: string;
+    objectPrefix?: string;
+    strategy: string;
 }
 
 export interface KubernetesClusterAutoUpgrade {
@@ -1165,6 +1196,33 @@ export interface LoadbalancerPrivateNetwork {
      * `zone`) The zone in which the IP should be reserved.
      */
     zone: string;
+}
+
+export interface ObjectBucketAclAccessControlPolicy {
+    grants?: outputs.ObjectBucketAclAccessControlPolicyGrant[];
+    owner: outputs.ObjectBucketAclAccessControlPolicyOwner;
+}
+
+export interface ObjectBucketAclAccessControlPolicyGrant {
+    grantee?: outputs.ObjectBucketAclAccessControlPolicyGrantGrantee;
+    permission: string;
+}
+
+export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
+    displayName: string;
+    /**
+     * The `region`,`bucket` and `acl` separated by (`/`).
+     */
+    id: string;
+    type: string;
+}
+
+export interface ObjectBucketAclAccessControlPolicyOwner {
+    displayName: string;
+    /**
+     * The `region`,`bucket` and `acl` separated by (`/`).
+     */
+    id: string;
 }
 
 export interface ObjectBucketCorsRule {

@@ -191,7 +191,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     {
     ///         ProjectId = projectId,
     ///         Type = "DEV1-S",
-    ///         Image = "ubuntu_focal",
+    ///         Image = "ubuntu_jammy",
     ///         Tags = new[]
     ///         {
     ///             "front",

@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceVolumeResult> InvokeAsync(GetInstanceVolumeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an instance volume.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstanceVolumeResult> Invoke(GetInstanceVolumeInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithDefaults());
     }
 
 

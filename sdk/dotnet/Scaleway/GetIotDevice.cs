@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetIotDeviceResult> InvokeAsync(GetIotDeviceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an IOT Device.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetIotDeviceResult> Invoke(GetIotDeviceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceInvokeArgs(), options.WithDefaults());
     }
 
 

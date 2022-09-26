@@ -37,7 +37,7 @@ import (
 //			}
 //			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
-//				Image: pulumi.String("ubuntu_focal"),
+//				Image: pulumi.String("ubuntu_jammy"),
 //				IpId:  publicIp.ID(),
 //			})
 //			if err != nil {
@@ -72,7 +72,7 @@ import (
 //			}
 //			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
-//				Image: pulumi.String("ubuntu_focal"),
+//				Image: pulumi.String("ubuntu_jammy"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("hello"),
 //					pulumi.String("public"),
@@ -173,7 +173,7 @@ import (
 //			}
 //			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
 //				Type:            pulumi.String("DEV1-S"),
-//				Image:           pulumi.String("ubuntu_focal"),
+//				Image:           pulumi.String("ubuntu_jammy"),
 //				SecurityGroupId: www.ID(),
 //			})
 //			if err != nil {
@@ -212,7 +212,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
-//				Image: pulumi.String("ubuntu_focal"),
+//				Image: pulumi.String("ubuntu_jammy"),
 //				UserData: pulumi.StringMap{
 //					"foo":        pulumi.String("bar"),
 //					"cloud-init": readFileOrPanic(fmt.Sprintf("%v/cloud-init.yml", path.Module)),
@@ -246,7 +246,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
-//				Image: pulumi.String("ubuntu_focal"),
+//				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //				PrivateNetworks: InstanceServerPrivateNetworkArray{
 //					&InstanceServerPrivateNetworkArgs{

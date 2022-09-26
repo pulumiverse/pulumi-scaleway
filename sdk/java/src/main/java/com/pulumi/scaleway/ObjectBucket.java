@@ -191,7 +191,11 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
     /**
      * The canned ACL you want to apply to the bucket.
      * 
+     * @deprecated
+     * ACL is deprecated. Please use resource_bucket_acl instead.
+     * 
      */
+    @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
     @Export(name="acl", type=String.class, parameters={})
     private Output</* @Nullable */ String> acl;
 

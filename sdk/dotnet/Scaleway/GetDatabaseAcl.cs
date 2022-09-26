@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabaseAclResult> InvokeAsync(GetDatabaseAclArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about the RDB instance network Access Control List.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatabaseAclResult> Invoke(GetDatabaseAclInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclInvokeArgs(), options.WithDefaults());
     }
 
 

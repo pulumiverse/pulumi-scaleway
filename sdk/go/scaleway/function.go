@@ -96,7 +96,7 @@ type Function struct {
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime pulumi.StringOutput `pulumi:"runtime"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
-	Timeout pulumi.StringOutput `pulumi:"timeout"`
+	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// Location of the zip file to upload containing your function sources
 	ZipFile pulumi.StringPtrOutput `pulumi:"zipFile"`
 	// The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -178,7 +178,7 @@ type functionState struct {
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime *string `pulumi:"runtime"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
-	Timeout *string `pulumi:"timeout"`
+	Timeout *int `pulumi:"timeout"`
 	// Location of the zip file to upload containing your function sources
 	ZipFile *string `pulumi:"zipFile"`
 	// The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -219,7 +219,7 @@ type FunctionState struct {
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime pulumi.StringPtrInput
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
-	Timeout pulumi.StringPtrInput
+	Timeout pulumi.IntPtrInput
 	// Location of the zip file to upload containing your function sources
 	ZipFile pulumi.StringPtrInput
 	// The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -258,7 +258,7 @@ type functionArgs struct {
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime string `pulumi:"runtime"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
-	Timeout *string `pulumi:"timeout"`
+	Timeout *int `pulumi:"timeout"`
 	// Location of the zip file to upload containing your function sources
 	ZipFile *string `pulumi:"zipFile"`
 	// The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -294,7 +294,7 @@ type FunctionArgs struct {
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime pulumi.StringInput
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
-	Timeout pulumi.StringPtrInput
+	Timeout pulumi.IntPtrInput
 	// Location of the zip file to upload containing your function sources
 	ZipFile pulumi.StringPtrInput
 	// The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -469,8 +469,8 @@ func (o FunctionOutput) Runtime() pulumi.StringOutput {
 }
 
 // Holds the max duration (in seconds) the function is allowed for responding to a request
-func (o FunctionOutput) Timeout() pulumi.StringOutput {
-	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Timeout }).(pulumi.StringOutput)
+func (o FunctionOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
 // Location of the zip file to upload containing your function sources

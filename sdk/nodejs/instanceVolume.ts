@@ -81,7 +81,7 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     public readonly sizeInGb!: pulumi.Output<number | undefined>;
     /**
@@ -170,7 +170,7 @@ export interface InstanceVolumeState {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
@@ -208,7 +208,7 @@ export interface InstanceVolumeArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromVolumeId` should be specified.
+     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     sizeInGb?: pulumi.Input<number>;
     /**

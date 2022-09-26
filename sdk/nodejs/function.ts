@@ -128,7 +128,7 @@ export class Function extends pulumi.CustomResource {
     /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      */
-    public readonly timeout!: pulumi.Output<string>;
+    public readonly timeout!: pulumi.Output<number>;
     /**
      * Location of the zip file to upload containing your function sources
      */
@@ -280,7 +280,7 @@ export interface FunctionState {
     /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      */
-    timeout?: pulumi.Input<string>;
+    timeout?: pulumi.Input<number>;
     /**
      * Location of the zip file to upload containing your function sources
      */
@@ -350,7 +350,7 @@ export interface FunctionArgs {
     /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      */
-    timeout?: pulumi.Input<string>;
+    timeout?: pulumi.Input<number>;
     /**
      * Location of the zip file to upload containing your function sources
      */

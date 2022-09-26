@@ -34,14 +34,22 @@ public final class InstanceSecurityGroupOutboundRuleArgs extends com.pulumi.reso
     /**
      * The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
      * 
+     * @deprecated
+     * Ip address is deprecated. Please use ip_range instead
+     * 
      */
+    @Deprecated /* Ip address is deprecated. Please use ip_range instead */
     @Import(name="ip")
     private @Nullable Output<String> ip;
 
     /**
      * @return The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
      * 
+     * @deprecated
+     * Ip address is deprecated. Please use ip_range instead
+     * 
      */
+    @Deprecated /* Ip address is deprecated. Please use ip_range instead */
     public Optional<Output<String>> ip() {
         return Optional.ofNullable(this.ip);
     }
@@ -153,7 +161,11 @@ public final class InstanceSecurityGroupOutboundRuleArgs extends com.pulumi.reso
          * 
          * @return builder
          * 
+         * @deprecated
+         * Ip address is deprecated. Please use ip_range instead
+         * 
          */
+        @Deprecated /* Ip address is deprecated. Please use ip_range instead */
         public Builder ip(@Nullable Output<String> ip) {
             $.ip = ip;
             return this;
@@ -164,7 +176,11 @@ public final class InstanceSecurityGroupOutboundRuleArgs extends com.pulumi.reso
          * 
          * @return builder
          * 
+         * @deprecated
+         * Ip address is deprecated. Please use ip_range instead
+         * 
          */
+        @Deprecated /* Ip address is deprecated. Please use ip_range instead */
         public Builder ip(String ip) {
             return ip(Output.of(ip));
         }

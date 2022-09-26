@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRedisClusterResult> InvokeAsync(GetRedisClusterArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Redis cluster.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetRedisClusterResult> Invoke(GetRedisClusterInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterInvokeArgs(), options.WithDefaults());
     }
 
 

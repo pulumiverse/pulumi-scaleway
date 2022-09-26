@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFunctionNamespaceResult> InvokeAsync(GetFunctionNamespaceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a function namespace.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFunctionNamespaceResult> Invoke(GetFunctionNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

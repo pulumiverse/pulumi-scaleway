@@ -44,7 +44,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetBaremetalServerResult> InvokeAsync(GetBaremetalServerArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a baremetal server.
@@ -78,7 +78,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetBaremetalServerResult> Invoke(GetBaremetalServerInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerInvokeArgs(), options.WithDefaults());
     }
 
 

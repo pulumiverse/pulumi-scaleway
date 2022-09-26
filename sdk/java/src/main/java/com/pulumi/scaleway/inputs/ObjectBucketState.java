@@ -24,14 +24,22 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
     /**
      * The canned ACL you want to apply to the bucket.
      * 
+     * @deprecated
+     * ACL is deprecated. Please use resource_bucket_acl instead.
+     * 
      */
+    @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
     @Import(name="acl")
     private @Nullable Output<String> acl;
 
     /**
      * @return The canned ACL you want to apply to the bucket.
      * 
+     * @deprecated
+     * ACL is deprecated. Please use resource_bucket_acl instead.
+     * 
      */
+    @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
     public Optional<Output<String>> acl() {
         return Optional.ofNullable(this.acl);
     }
@@ -193,7 +201,11 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * ACL is deprecated. Please use resource_bucket_acl instead.
+         * 
          */
+        @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
         public Builder acl(@Nullable Output<String> acl) {
             $.acl = acl;
             return this;
@@ -204,7 +216,11 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * ACL is deprecated. Please use resource_bucket_acl instead.
+         * 
          */
+        @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
         public Builder acl(String acl) {
             return acl(Output.of(acl));
         }

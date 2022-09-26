@@ -137,7 +137,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         /// </summary>
         [Output("environmentVariables")]
-        public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
         /// The error message of the container.

@@ -6308,7 +6308,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myImage = ScalewayFunctions.getMarketplaceImage(GetMarketplaceImageArgs.builder()
-     *             .label(&#34;ubuntu_focal&#34;)
+     *             .label(&#34;ubuntu_jammy&#34;)
      *             .build());
      * 
      *     }
@@ -6345,7 +6345,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myImage = ScalewayFunctions.getMarketplaceImage(GetMarketplaceImageArgs.builder()
-     *             .label(&#34;ubuntu_focal&#34;)
+     *             .label(&#34;ubuntu_jammy&#34;)
      *             .build());
      * 
      *     }
@@ -6382,7 +6382,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myImage = ScalewayFunctions.getMarketplaceImage(GetMarketplaceImageArgs.builder()
-     *             .label(&#34;ubuntu_focal&#34;)
+     *             .label(&#34;ubuntu_jammy&#34;)
      *             .build());
      * 
      *     }
@@ -6419,7 +6419,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myImage = ScalewayFunctions.getMarketplaceImage(GetMarketplaceImageArgs.builder()
-     *             .label(&#34;ubuntu_focal&#34;)
+     *             .label(&#34;ubuntu_jammy&#34;)
      *             .build());
      * 
      *     }

@@ -48,7 +48,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabaseBackupResult> InvokeAsync(GetDatabaseBackupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseBackupResult>("scaleway:index/getDatabaseBackup:getDatabaseBackup", args ?? new GetDatabaseBackupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseBackupResult>("scaleway:index/getDatabaseBackup:getDatabaseBackup", args ?? new GetDatabaseBackupArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an RDB backup.
@@ -86,7 +86,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatabaseBackupResult> Invoke(GetDatabaseBackupInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatabaseBackupResult>("scaleway:index/getDatabaseBackup:getDatabaseBackup", args ?? new GetDatabaseBackupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseBackupResult>("scaleway:index/getDatabaseBackup:getDatabaseBackup", args ?? new GetDatabaseBackupInvokeArgs(), options.WithDefaults());
     }
 
 

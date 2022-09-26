@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -21,7 +22,7 @@ import * as utilities from "./utilities";
  * const publicIp = new scaleway.InstanceIp("publicIp", {});
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     ipId: publicIp.id,
  * });
  * ```
@@ -38,7 +39,7 @@ import * as utilities from "./utilities";
  * });
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     tags: [
  *         "hello",
  *         "public",
@@ -99,7 +100,7 @@ import * as utilities from "./utilities";
  * });
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     securityGroupId: www.id,
  * });
  * ```
@@ -113,7 +114,7 @@ import * as utilities from "./utilities";
  *
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     userData: {
  *         foo: "bar",
  *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`),
@@ -129,7 +130,7 @@ import * as utilities from "./utilities";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const base = new scaleway.InstanceServer("base", {
- *     image: "ubuntu_focal",
+ *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     privateNetworks: [{
  *         pnId: pn01.id,

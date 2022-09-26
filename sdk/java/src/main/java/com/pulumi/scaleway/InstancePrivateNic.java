@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var base = new InstanceServer(&#34;base&#34;, InstanceServerArgs.builder()        
- *             .image(&#34;ubuntu_focal&#34;)
+ *             .image(&#34;ubuntu_jammy&#34;)
  *             .type(&#34;DEV1-S&#34;)
  *             .zone(pn01.zone())
  *             .build());

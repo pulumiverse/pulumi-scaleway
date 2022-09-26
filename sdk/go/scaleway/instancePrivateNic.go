@@ -64,7 +64,7 @@ import (
 //				return err
 //			}
 //			base, err := scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
-//				Image: pulumi.String("ubuntu_focal"),
+//				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //				Zone:  pn01.Zone,
 //			})

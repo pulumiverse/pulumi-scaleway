@@ -301,14 +301,14 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      * 
      */
-    @Export(name="timeout", type=String.class, parameters={})
-    private Output<String> timeout;
+    @Export(name="timeout", type=Integer.class, parameters={})
+    private Output<Integer> timeout;
 
     /**
      * @return Holds the max duration (in seconds) the function is allowed for responding to a request
      * 
      */
-    public Output<String> timeout() {
+    public Output<Integer> timeout() {
         return this.timeout;
     }
     /**

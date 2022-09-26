@@ -218,13 +218,13 @@ public final class FunctionArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="timeout")
-    private @Nullable Output<String> timeout;
+    private @Nullable Output<Integer> timeout;
 
     /**
      * @return Holds the max duration (in seconds) the function is allowed for responding to a request
      * 
      */
-    public Optional<Output<String>> timeout() {
+    public Optional<Output<Integer>> timeout() {
         return Optional.ofNullable(this.timeout);
     }
 
@@ -576,7 +576,7 @@ public final class FunctionArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder timeout(@Nullable Output<String> timeout) {
+        public Builder timeout(@Nullable Output<Integer> timeout) {
             $.timeout = timeout;
             return this;
         }
@@ -587,7 +587,7 @@ public final class FunctionArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder timeout(String timeout) {
+        public Builder timeout(Integer timeout) {
             return timeout(Output.of(timeout));
         }
 

@@ -37,7 +37,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRegistryNamespaceResult> InvokeAsync(GetRegistryNamespaceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a registry namespace.
@@ -64,7 +64,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetRegistryNamespaceResult> Invoke(GetRegistryNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -38,7 +38,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetRegistryImageResult> InvokeAsync(GetRegistryImageArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a registry image.
@@ -66,7 +66,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetRegistryImageResult> Invoke(GetRegistryImageInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageInvokeArgs(), options.WithDefaults());
     }
 
 

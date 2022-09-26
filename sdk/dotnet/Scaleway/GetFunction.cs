@@ -13,10 +13,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public static class GetFunction
     {
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
         public static Output<GetFunctionResult> Invoke(GetFunctionInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -79,7 +79,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string ProjectId;
         public readonly string Region;
         public readonly string Runtime;
-        public readonly string Timeout;
+        public readonly int Timeout;
         public readonly string ZipFile;
         public readonly string ZipHash;
 
@@ -121,7 +121,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string runtime,
 
-            string timeout,
+            int timeout,
 
             string zipFile,
 

@@ -39,7 +39,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabasePrivilegeResult> InvokeAsync(GetDatabasePrivilegeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about the privilege on a RDB database.
@@ -68,7 +68,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatabasePrivilegeResult> Invoke(GetDatabasePrivilegeInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -47,7 +47,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetObjectBucketResult> InvokeAsync(GetObjectBucketArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about the Bucket.
@@ -84,7 +84,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetObjectBucketResult> Invoke(GetObjectBucketInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());
     }
 
 

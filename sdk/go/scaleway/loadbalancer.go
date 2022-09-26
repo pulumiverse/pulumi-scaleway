@@ -237,6 +237,8 @@ import (
 type Loadbalancer struct {
 	pulumi.CustomResourceState
 
+	// The description of the load-balancer.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The load-balance public IP Address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
@@ -255,6 +257,8 @@ type Loadbalancer struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrOutput `pulumi:"releaseIp"`
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	SslCompatibilityLevel pulumi.StringPtrOutput `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The type of the load-balancer. Please check the migration section to upgrade the type
@@ -299,6 +303,8 @@ func GetLoadbalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Loadbalancer resources.
 type loadbalancerState struct {
+	// The description of the load-balancer.
+	Description *string `pulumi:"description"`
 	// The load-balance public IP Address
 	IpAddress *string `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
@@ -317,6 +323,8 @@ type loadbalancerState struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp *bool `pulumi:"releaseIp"`
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer. Please check the migration section to upgrade the type
@@ -326,6 +334,8 @@ type loadbalancerState struct {
 }
 
 type LoadbalancerState struct {
+	// The description of the load-balancer.
+	Description pulumi.StringPtrInput
 	// The load-balance public IP Address
 	IpAddress pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
@@ -344,6 +354,8 @@ type LoadbalancerState struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrInput
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	SslCompatibilityLevel pulumi.StringPtrInput
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
 	// The type of the load-balancer. Please check the migration section to upgrade the type
@@ -357,6 +369,8 @@ func (LoadbalancerState) ElementType() reflect.Type {
 }
 
 type loadbalancerArgs struct {
+	// The description of the load-balancer.
+	Description *string `pulumi:"description"`
 	// The ID of the associated LB IP. See below.
 	IpId string `pulumi:"ipId"`
 	// The name of the load-balancer.
@@ -369,6 +383,8 @@ type loadbalancerArgs struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp *bool `pulumi:"releaseIp"`
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer. Please check the migration section to upgrade the type
@@ -379,6 +395,8 @@ type loadbalancerArgs struct {
 
 // The set of arguments for constructing a Loadbalancer resource.
 type LoadbalancerArgs struct {
+	// The description of the load-balancer.
+	Description pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
 	IpId pulumi.StringInput
 	// The name of the load-balancer.
@@ -391,6 +409,8 @@ type LoadbalancerArgs struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrInput
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	SslCompatibilityLevel pulumi.StringPtrInput
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
 	// The type of the load-balancer. Please check the migration section to upgrade the type
@@ -486,6 +506,11 @@ func (o LoadbalancerOutput) ToLoadbalancerOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The description of the load-balancer.
+func (o LoadbalancerOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
 // The load-balance public IP Address
 func (o LoadbalancerOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
@@ -526,6 +551,11 @@ func (o LoadbalancerOutput) Region() pulumi.StringOutput {
 // Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 func (o LoadbalancerOutput) ReleaseIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.ReleaseIp }).(pulumi.BoolPtrOutput)
+}
+
+// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+func (o LoadbalancerOutput) SslCompatibilityLevel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.SslCompatibilityLevel }).(pulumi.StringPtrOutput)
 }
 
 // The tags associated with the load-balancers.
