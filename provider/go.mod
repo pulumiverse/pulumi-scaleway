@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.31.0
 	github.com/pulumi/pulumi/sdk/v3 v3.40.2
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.3.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.4.0
 )
 
 require (
@@ -163,7 +163,7 @@ require (
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.0.0 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20220913083321-4f3b37b96a57 // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20221004094754-879a66c4d2f9 // indirect
 	github.com/segmentio/asm v1.1.3 // indirect
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
