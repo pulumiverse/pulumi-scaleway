@@ -414,6 +414,17 @@ export interface InstanceServerRootVolume {
     volumeType?: pulumi.Input<string>;
 }
 
+export interface InstanceSnapshotImport {
+    /**
+     * Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+     */
+    bucket: pulumi.Input<string>;
+    /**
+     * Key of the object to import
+     */
+    key: pulumi.Input<string>;
+}
+
 export interface IotDeviceCertificate {
     crt?: pulumi.Input<string>;
     /**

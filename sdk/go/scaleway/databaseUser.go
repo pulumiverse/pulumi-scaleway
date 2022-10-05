@@ -89,6 +89,13 @@ func NewDatabaseUser(ctx *pulumi.Context,
 	if args.Password == nil {
 		return nil, errors.New("invalid value for required argument 'Password'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource DatabaseUser
 	err := ctx.RegisterResource("scaleway:index/databaseUser:DatabaseUser", name, args, &resource, opts...)

@@ -3039,6 +3039,162 @@ func (o InstanceServerRootVolumePtrOutput) VolumeType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type InstanceSnapshotImport struct {
+	// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+	Bucket string `pulumi:"bucket"`
+	// Key of the object to import
+	Key string `pulumi:"key"`
+}
+
+// InstanceSnapshotImportInput is an input type that accepts InstanceSnapshotImportArgs and InstanceSnapshotImportOutput values.
+// You can construct a concrete instance of `InstanceSnapshotImportInput` via:
+//
+//	InstanceSnapshotImportArgs{...}
+type InstanceSnapshotImportInput interface {
+	pulumi.Input
+
+	ToInstanceSnapshotImportOutput() InstanceSnapshotImportOutput
+	ToInstanceSnapshotImportOutputWithContext(context.Context) InstanceSnapshotImportOutput
+}
+
+type InstanceSnapshotImportArgs struct {
+	// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Key of the object to import
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (InstanceSnapshotImportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceSnapshotImport)(nil)).Elem()
+}
+
+func (i InstanceSnapshotImportArgs) ToInstanceSnapshotImportOutput() InstanceSnapshotImportOutput {
+	return i.ToInstanceSnapshotImportOutputWithContext(context.Background())
+}
+
+func (i InstanceSnapshotImportArgs) ToInstanceSnapshotImportOutputWithContext(ctx context.Context) InstanceSnapshotImportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotImportOutput)
+}
+
+func (i InstanceSnapshotImportArgs) ToInstanceSnapshotImportPtrOutput() InstanceSnapshotImportPtrOutput {
+	return i.ToInstanceSnapshotImportPtrOutputWithContext(context.Background())
+}
+
+func (i InstanceSnapshotImportArgs) ToInstanceSnapshotImportPtrOutputWithContext(ctx context.Context) InstanceSnapshotImportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotImportOutput).ToInstanceSnapshotImportPtrOutputWithContext(ctx)
+}
+
+// InstanceSnapshotImportPtrInput is an input type that accepts InstanceSnapshotImportArgs, InstanceSnapshotImportPtr and InstanceSnapshotImportPtrOutput values.
+// You can construct a concrete instance of `InstanceSnapshotImportPtrInput` via:
+//
+//	        InstanceSnapshotImportArgs{...}
+//
+//	or:
+//
+//	        nil
+type InstanceSnapshotImportPtrInput interface {
+	pulumi.Input
+
+	ToInstanceSnapshotImportPtrOutput() InstanceSnapshotImportPtrOutput
+	ToInstanceSnapshotImportPtrOutputWithContext(context.Context) InstanceSnapshotImportPtrOutput
+}
+
+type instanceSnapshotImportPtrType InstanceSnapshotImportArgs
+
+func InstanceSnapshotImportPtr(v *InstanceSnapshotImportArgs) InstanceSnapshotImportPtrInput {
+	return (*instanceSnapshotImportPtrType)(v)
+}
+
+func (*instanceSnapshotImportPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceSnapshotImport)(nil)).Elem()
+}
+
+func (i *instanceSnapshotImportPtrType) ToInstanceSnapshotImportPtrOutput() InstanceSnapshotImportPtrOutput {
+	return i.ToInstanceSnapshotImportPtrOutputWithContext(context.Background())
+}
+
+func (i *instanceSnapshotImportPtrType) ToInstanceSnapshotImportPtrOutputWithContext(ctx context.Context) InstanceSnapshotImportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotImportPtrOutput)
+}
+
+type InstanceSnapshotImportOutput struct{ *pulumi.OutputState }
+
+func (InstanceSnapshotImportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceSnapshotImport)(nil)).Elem()
+}
+
+func (o InstanceSnapshotImportOutput) ToInstanceSnapshotImportOutput() InstanceSnapshotImportOutput {
+	return o
+}
+
+func (o InstanceSnapshotImportOutput) ToInstanceSnapshotImportOutputWithContext(ctx context.Context) InstanceSnapshotImportOutput {
+	return o
+}
+
+func (o InstanceSnapshotImportOutput) ToInstanceSnapshotImportPtrOutput() InstanceSnapshotImportPtrOutput {
+	return o.ToInstanceSnapshotImportPtrOutputWithContext(context.Background())
+}
+
+func (o InstanceSnapshotImportOutput) ToInstanceSnapshotImportPtrOutputWithContext(ctx context.Context) InstanceSnapshotImportPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InstanceSnapshotImport) *InstanceSnapshotImport {
+		return &v
+	}).(InstanceSnapshotImportPtrOutput)
+}
+
+// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+func (o InstanceSnapshotImportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceSnapshotImport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Key of the object to import
+func (o InstanceSnapshotImportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceSnapshotImport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type InstanceSnapshotImportPtrOutput struct{ *pulumi.OutputState }
+
+func (InstanceSnapshotImportPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceSnapshotImport)(nil)).Elem()
+}
+
+func (o InstanceSnapshotImportPtrOutput) ToInstanceSnapshotImportPtrOutput() InstanceSnapshotImportPtrOutput {
+	return o
+}
+
+func (o InstanceSnapshotImportPtrOutput) ToInstanceSnapshotImportPtrOutputWithContext(ctx context.Context) InstanceSnapshotImportPtrOutput {
+	return o
+}
+
+func (o InstanceSnapshotImportPtrOutput) Elem() InstanceSnapshotImportOutput {
+	return o.ApplyT(func(v *InstanceSnapshotImport) InstanceSnapshotImport {
+		if v != nil {
+			return *v
+		}
+		var ret InstanceSnapshotImport
+		return ret
+	}).(InstanceSnapshotImportOutput)
+}
+
+// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+func (o InstanceSnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceSnapshotImport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key of the object to import
+func (o InstanceSnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceSnapshotImport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
 type IotDeviceCertificate struct {
 	Crt *string `pulumi:"crt"`
 	// The private key of the device, in case it is generated by Scaleway.
@@ -12947,6 +13103,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateNetworkArrayInput)(nil)).Elem(), InstanceServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerRootVolumeInput)(nil)).Elem(), InstanceServerRootVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerRootVolumePtrInput)(nil)).Elem(), InstanceServerRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSnapshotImportInput)(nil)).Elem(), InstanceSnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSnapshotImportPtrInput)(nil)).Elem(), InstanceSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceCertificateInput)(nil)).Elem(), IotDeviceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceCertificatePtrInput)(nil)).Elem(), IotDeviceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotDeviceMessageFiltersInput)(nil)).Elem(), IotDeviceMessageFiltersArgs{})
@@ -13132,6 +13290,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(InstanceServerRootVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceServerRootVolumePtrOutput{})
+	pulumi.RegisterOutputType(InstanceSnapshotImportOutput{})
+	pulumi.RegisterOutputType(InstanceSnapshotImportPtrOutput{})
 	pulumi.RegisterOutputType(IotDeviceCertificateOutput{})
 	pulumi.RegisterOutputType(IotDeviceCertificatePtrOutput{})
 	pulumi.RegisterOutputType(IotDeviceMessageFiltersOutput{})

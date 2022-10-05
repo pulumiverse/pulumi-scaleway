@@ -30,6 +30,7 @@ __all__ = [
     'InstanceSecurityGroupRulesOutboundRule',
     'InstanceServerPrivateNetwork',
     'InstanceServerRootVolume',
+    'InstanceSnapshotImport',
     'IotDeviceCertificate',
     'IotDeviceMessageFilters',
     'IotDeviceMessageFiltersPublish',
@@ -1548,6 +1549,35 @@ class InstanceServerRootVolume(dict):
         Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
         """
         return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class InstanceSnapshotImport(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 key: str):
+        """
+        :param str bucket: Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+        :param str key: Key of the object to import
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Key of the object to import
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type

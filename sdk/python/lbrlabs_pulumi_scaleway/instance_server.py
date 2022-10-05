@@ -1324,7 +1324,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> pulumi.Output[Optional[str]]:
+    def cloud_init(self) -> pulumi.Output[str]:
         """
         The cloud init script associated with this server
         """
@@ -1497,7 +1497,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userData")
-    def user_data(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def user_data(self) -> pulumi.Output[Mapping[str, str]]:
         """
         The user data associated with the server
         """

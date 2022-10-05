@@ -352,14 +352,14 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="cloudInit", type=String.class, parameters={})
-    private Output</* @Nullable */ String> cloudInit;
+    private Output<String> cloudInit;
 
     /**
      * @return The cloud init script associated with this server
      * 
      */
-    public Output<Optional<String>> cloudInit() {
-        return Codegen.optional(this.cloudInit);
+    public Output<String> cloudInit() {
+        return this.cloudInit;
     }
     /**
      * If true a dynamic IP will be attached to the server.
@@ -656,14 +656,14 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="userData", type=Map.class, parameters={String.class, String.class})
-    private Output</* @Nullable */ Map<String,String>> userData;
+    private Output<Map<String,String>> userData;
 
     /**
      * @return The user data associated with the server
      * 
      */
-    public Output<Optional<Map<String,String>>> userData() {
-        return Codegen.optional(this.userData);
+    public Output<Map<String,String>> userData() {
+        return this.userData;
     }
     /**
      * `zone`) The zone in which the server should be created.

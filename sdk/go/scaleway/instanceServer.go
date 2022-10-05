@@ -297,7 +297,7 @@ type InstanceServer struct {
 	// The ID of the bootscript to use  (set bootType to `bootscript`).
 	BootscriptId pulumi.StringOutput `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
-	CloudInit pulumi.StringPtrOutput `pulumi:"cloudInit"`
+	CloudInit pulumi.StringOutput `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrOutput `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server.
@@ -704,8 +704,8 @@ func (o InstanceServerOutput) BootscriptId() pulumi.StringOutput {
 }
 
 // The cloud init script associated with this server
-func (o InstanceServerOutput) CloudInit() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.CloudInit }).(pulumi.StringPtrOutput)
+func (o InstanceServerOutput) CloudInit() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.CloudInit }).(pulumi.StringOutput)
 }
 
 // If true a dynamic IP will be attached to the server.

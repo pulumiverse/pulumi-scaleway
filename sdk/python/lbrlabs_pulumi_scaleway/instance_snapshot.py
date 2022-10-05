@@ -8,31 +8,36 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['InstanceSnapshotArgs', 'InstanceSnapshot']
 
 @pulumi.input_type
 class InstanceSnapshotArgs:
     def __init__(__self__, *,
-                 volume_id: pulumi.Input[str],
+                 import_: Optional[pulumi.Input['InstanceSnapshotImportArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 volume_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceSnapshot resource.
-        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
+        :param pulumi.Input['InstanceSnapshotImportArgs'] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
                Updates to this field will recreate a new resource.
+        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
         """
-        pulumi.set(__self__, "volume_id", volume_id)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -41,20 +46,22 @@ class InstanceSnapshotArgs:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if volume_id is not None:
+            pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
     @property
-    @pulumi.getter(name="volumeId")
-    def volume_id(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input['InstanceSnapshotImportArgs']]:
         """
-        The ID of the volume to take a snapshot from.
+        Import a snapshot from a qcow2 file located in a bucket
         """
-        return pulumi.get(self, "volume_id")
+        return pulumi.get(self, "import_")
 
-    @volume_id.setter
-    def volume_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "volume_id", value)
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input['InstanceSnapshotImportArgs']]):
+        pulumi.set(self, "import_", value)
 
     @property
     @pulumi.getter
@@ -107,6 +114,18 @@ class InstanceSnapshotArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the volume to take a snapshot from.
+        """
+        return pulumi.get(self, "volume_id")
+
+    @volume_id.setter
+    def volume_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume_id", value)
+
+    @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -124,6 +143,7 @@ class InstanceSnapshotArgs:
 class _InstanceSnapshotState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 import_: Optional[pulumi.Input['InstanceSnapshotImportArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -135,6 +155,7 @@ class _InstanceSnapshotState:
         """
         Input properties used for looking up and filtering InstanceSnapshot resources.
         :param pulumi.Input[str] created_at: The snapshot creation time.
+        :param pulumi.Input['InstanceSnapshotImportArgs'] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the snapshot is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
@@ -149,6 +170,8 @@ class _InstanceSnapshotState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
@@ -177,6 +200,18 @@ class _InstanceSnapshotState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input['InstanceSnapshotImportArgs']]:
+        """
+        Import a snapshot from a qcow2 file located in a bucket
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input['InstanceSnapshotImportArgs']]):
+        pulumi.set(self, "import_", value)
 
     @property
     @pulumi.getter
@@ -283,6 +318,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 import_: Optional[pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -327,6 +363,25 @@ class InstanceSnapshot(pulumi.CustomResource):
             opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
 
+        ## Import a local qcow2 file
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        bucket = scaleway.ObjectBucket("bucket")
+        qcow = scaleway.ObjectItem("qcow",
+            bucket=bucket.name,
+            key="server.qcow2",
+            file="myqcow.qcow2")
+        snapshot = scaleway.InstanceSnapshot("snapshot",
+            type="unified",
+            import_=scaleway.InstanceSnapshotImportArgs(
+                bucket=qcow.bucket,
+                key=qcow.key,
+            ))
+        ```
+
         ## Import
 
         Snapshots can be imported using the `{zone}/{id}`, e.g. bash
@@ -337,6 +392,7 @@ class InstanceSnapshot(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
@@ -351,7 +407,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: InstanceSnapshotArgs,
+                 args: Optional[InstanceSnapshotArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Compute Snapshots.
@@ -390,6 +446,25 @@ class InstanceSnapshot(pulumi.CustomResource):
             opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
 
+        ## Import a local qcow2 file
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        bucket = scaleway.ObjectBucket("bucket")
+        qcow = scaleway.ObjectItem("qcow",
+            bucket=bucket.name,
+            key="server.qcow2",
+            file="myqcow.qcow2")
+        snapshot = scaleway.InstanceSnapshot("snapshot",
+            type="unified",
+            import_=scaleway.InstanceSnapshotImportArgs(
+                bucket=qcow.bucket,
+                key=qcow.key,
+            ))
+        ```
+
         ## Import
 
         Snapshots can be imported using the `{zone}/{id}`, e.g. bash
@@ -413,6 +488,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 import_: Optional[pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -428,12 +504,11 @@ class InstanceSnapshot(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceSnapshotArgs.__new__(InstanceSnapshotArgs)
 
+            __props__.__dict__["import_"] = import_
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["type"] = type
-            if volume_id is None and not opts.urn:
-                raise TypeError("Missing required property 'volume_id'")
             __props__.__dict__["volume_id"] = volume_id
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
@@ -450,6 +525,7 @@ class InstanceSnapshot(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            import_: Optional[pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -466,6 +542,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The snapshot creation time.
+        :param pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the snapshot is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
@@ -483,6 +560,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         __props__ = _InstanceSnapshotState.__new__(_InstanceSnapshotState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["import_"] = import_
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
@@ -500,6 +578,14 @@ class InstanceSnapshot(pulumi.CustomResource):
         The snapshot creation time.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> pulumi.Output[Optional['outputs.InstanceSnapshotImport']]:
+        """
+        Import a snapshot from a qcow2 file located in a bucket
+        """
+        return pulumi.get(self, "import_")
 
     @property
     @pulumi.getter
@@ -553,7 +639,7 @@ class InstanceSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> pulumi.Output[str]:
+    def volume_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the volume to take a snapshot from.
         """

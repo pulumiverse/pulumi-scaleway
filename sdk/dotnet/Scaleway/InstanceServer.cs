@@ -252,7 +252,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The cloud init script associated with this server
         /// </summary>
         [Output("cloudInit")]
-        public Output<string?> CloudInit { get; private set; } = null!;
+        public Output<string> CloudInit { get; private set; } = null!;
 
         /// <summary>
         /// If true a dynamic IP will be attached to the server.
@@ -383,7 +383,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The user data associated with the server
         /// </summary>
         [Output("userData")]
-        public Output<ImmutableDictionary<string, string>?> UserData { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> UserData { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.

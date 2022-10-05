@@ -107,6 +107,8 @@ export class IotNetwork extends pulumi.CustomResource {
             resourceInputs["secret"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IotNetwork.__pulumiType, name, resourceInputs, opts);
     }
 }

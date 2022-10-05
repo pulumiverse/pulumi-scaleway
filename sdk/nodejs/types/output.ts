@@ -879,6 +879,17 @@ export interface InstanceServerRootVolume {
     volumeType: string;
 }
 
+export interface InstanceSnapshotImport {
+    /**
+     * Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+     */
+    bucket: string;
+    /**
+     * Key of the object to import
+     */
+    key: string;
+}
+
 export interface IotDeviceCertificate {
     crt: string;
     /**

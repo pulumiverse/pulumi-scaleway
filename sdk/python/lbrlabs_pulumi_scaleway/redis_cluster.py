@@ -758,7 +758,7 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["node_type"] = node_type
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_network"] = public_network
@@ -775,6 +775,8 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RedisCluster, __self__).__init__(
             'scaleway:index/redisCluster:RedisCluster',
             resource_name,

@@ -970,7 +970,7 @@ class DatabaseInstance(pulumi.CustomResource):
             if node_type is None and not opts.urn:
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -985,6 +985,8 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["load_balancers"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["read_replicas"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DatabaseInstance, __self__).__init__(
             'scaleway:index/databaseInstance:DatabaseInstance',
             resource_name,

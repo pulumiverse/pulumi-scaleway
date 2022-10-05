@@ -74,6 +74,7 @@ from .instance_security_group import *
 from .instance_security_group_rules import *
 from .instance_server import *
 from .instance_snapshot import *
+from .instance_user_data import *
 from .instance_volume import *
 from .iot_device import *
 from .iot_hub import *
@@ -91,6 +92,7 @@ from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
+from .object_item import *
 from .provider import *
 from .redis_cluster import *
 from .registry_namespace import *
@@ -340,6 +342,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/instanceUserData",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/instanceUserData:InstanceUserData": "InstanceUserData"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/instanceVolume",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -472,6 +482,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration": "ObjectBucketWebsiteConfiguration"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/objectItem",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/objectItem:ObjectItem": "ObjectItem"
   }
  },
  {

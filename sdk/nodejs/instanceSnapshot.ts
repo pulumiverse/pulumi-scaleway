@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -47,6 +49,27 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Import a local qcow2 file
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const qcow = new scaleway.ObjectItem("qcow", {
+ *     bucket: bucket.name,
+ *     key: "server.qcow2",
+ *     file: "myqcow.qcow2",
+ * });
+ * const snapshot = new scaleway.InstanceSnapshot("snapshot", {
+ *     type: "unified",
+ *     "import": {
+ *         bucket: qcow.bucket,
+ *         key: qcow.key,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Snapshots can be imported using the `{zone}/{id}`, e.g. bash
@@ -88,6 +111,10 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Import a snapshot from a qcow2 file located in a bucket
+     */
+    public readonly import!: pulumi.Output<outputs.InstanceSnapshotImport | undefined>;
+    /**
      * The name of the snapshot. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
@@ -116,7 +143,7 @@ export class InstanceSnapshot extends pulumi.CustomResource {
     /**
      * The ID of the volume to take a snapshot from.
      */
-    public readonly volumeId!: pulumi.Output<string>;
+    public readonly volumeId!: pulumi.Output<string | undefined>;
     /**
      * `zone`) The zone in which
      * the snapshot should be created.
@@ -130,13 +157,14 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: InstanceSnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: InstanceSnapshotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceSnapshotArgs | InstanceSnapshotState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceSnapshotState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["import"] = state ? state.import : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -147,9 +175,7 @@ export class InstanceSnapshot extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceSnapshotArgs | undefined;
-            if ((!args || args.volumeId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'volumeId'");
-            }
+            resourceInputs["import"] = args ? args.import : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -173,6 +199,10 @@ export interface InstanceSnapshotState {
      * The snapshot creation time.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Import a snapshot from a qcow2 file located in a bucket
+     */
+    import?: pulumi.Input<inputs.InstanceSnapshotImport>;
     /**
      * The name of the snapshot. If not provided it will be randomly generated.
      */
@@ -215,6 +245,10 @@ export interface InstanceSnapshotState {
  */
 export interface InstanceSnapshotArgs {
     /**
+     * Import a snapshot from a qcow2 file located in a bucket
+     */
+    import?: pulumi.Input<inputs.InstanceSnapshotImport>;
+    /**
      * The name of the snapshot. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
@@ -235,7 +269,7 @@ export interface InstanceSnapshotArgs {
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which
      * the snapshot should be created.

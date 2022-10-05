@@ -20,7 +20,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string> Host { get; set; } = null!;
 
         [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        private Input<string>? _password;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;

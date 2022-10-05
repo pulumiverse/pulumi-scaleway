@@ -288,7 +288,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -305,6 +305,8 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["readReplicas"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(DatabaseInstance.__pulumiType, name, resourceInputs, opts);
     }
 }

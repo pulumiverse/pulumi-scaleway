@@ -229,7 +229,7 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["clusterSize"] = args ? args.clusterSize : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["publicNetwork"] = args ? args.publicNetwork : undefined;
@@ -244,6 +244,8 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(RedisCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

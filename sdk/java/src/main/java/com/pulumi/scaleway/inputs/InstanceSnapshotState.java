@@ -5,6 +5,7 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.InstanceSnapshotImportArgs;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -30,6 +31,21 @@ public final class InstanceSnapshotState extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> createdAt() {
         return Optional.ofNullable(this.createdAt);
+    }
+
+    /**
+     * Import a snapshot from a qcow2 file located in a bucket
+     * 
+     */
+    @Import(name="import")
+    private @Nullable Output<InstanceSnapshotImportArgs> import_;
+
+    /**
+     * @return Import a snapshot from a qcow2 file located in a bucket
+     * 
+     */
+    public Optional<Output<InstanceSnapshotImportArgs>> import_() {
+        return Optional.ofNullable(this.import_);
     }
 
     /**
@@ -162,6 +178,7 @@ public final class InstanceSnapshotState extends com.pulumi.resources.ResourceAr
 
     private InstanceSnapshotState(InstanceSnapshotState $) {
         this.createdAt = $.createdAt;
+        this.import_ = $.import_;
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.projectId = $.projectId;
@@ -209,6 +226,27 @@ public final class InstanceSnapshotState extends com.pulumi.resources.ResourceAr
          */
         public Builder createdAt(String createdAt) {
             return createdAt(Output.of(createdAt));
+        }
+
+        /**
+         * @param import_ Import a snapshot from a qcow2 file located in a bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(@Nullable Output<InstanceSnapshotImportArgs> import_) {
+            $.import_ = import_;
+            return this;
+        }
+
+        /**
+         * @param import_ Import a snapshot from a qcow2 file located in a bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(InstanceSnapshotImportArgs import_) {
+            return import_(Output.of(import_));
         }
 
         /**

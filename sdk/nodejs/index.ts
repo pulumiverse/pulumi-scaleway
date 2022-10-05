@@ -281,6 +281,10 @@ export { InstanceSnapshotArgs, InstanceSnapshotState } from "./instanceSnapshot"
 export type InstanceSnapshot = import("./instanceSnapshot").InstanceSnapshot;
 export const InstanceSnapshot: typeof import("./instanceSnapshot").InstanceSnapshot = null as any;
 
+export { InstanceUserDataArgs, InstanceUserDataState } from "./instanceUserData";
+export type InstanceUserData = import("./instanceUserData").InstanceUserData;
+export const InstanceUserData: typeof import("./instanceUserData").InstanceUserData = null as any;
+
 export { InstanceVolumeArgs, InstanceVolumeState } from "./instanceVolume";
 export type InstanceVolume = import("./instanceVolume").InstanceVolume;
 export const InstanceVolume: typeof import("./instanceVolume").InstanceVolume = null as any;
@@ -348,6 +352,10 @@ export const ObjectBucketPolicy: typeof import("./objectBucketPolicy").ObjectBuc
 export { ObjectBucketWebsiteConfigurationArgs, ObjectBucketWebsiteConfigurationState } from "./objectBucketWebsiteConfiguration";
 export type ObjectBucketWebsiteConfiguration = import("./objectBucketWebsiteConfiguration").ObjectBucketWebsiteConfiguration;
 export const ObjectBucketWebsiteConfiguration: typeof import("./objectBucketWebsiteConfiguration").ObjectBucketWebsiteConfiguration = null as any;
+
+export { ObjectItemArgs, ObjectItemState } from "./objectItem";
+export type ObjectItem = import("./objectItem").ObjectItem;
+export const ObjectItem: typeof import("./objectItem").ObjectItem = null as any;
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -458,6 +466,7 @@ utilities.lazyLoad(exports, ["InstanceSecurityGroup"], () => require("./instance
 utilities.lazyLoad(exports, ["InstanceSecurityGroupRules"], () => require("./instanceSecurityGroupRules"));
 utilities.lazyLoad(exports, ["InstanceServer"], () => require("./instanceServer"));
 utilities.lazyLoad(exports, ["InstanceSnapshot"], () => require("./instanceSnapshot"));
+utilities.lazyLoad(exports, ["InstanceUserData"], () => require("./instanceUserData"));
 utilities.lazyLoad(exports, ["InstanceVolume"], () => require("./instanceVolume"));
 utilities.lazyLoad(exports, ["IotDevice"], () => require("./iotDevice"));
 utilities.lazyLoad(exports, ["IotHub"], () => require("./iotHub"));
@@ -475,6 +484,7 @@ utilities.lazyLoad(exports, ["ObjectBucket"], () => require("./objectBucket"));
 utilities.lazyLoad(exports, ["ObjectBucketAcl"], () => require("./objectBucketAcl"));
 utilities.lazyLoad(exports, ["ObjectBucketPolicy"], () => require("./objectBucketPolicy"));
 utilities.lazyLoad(exports, ["ObjectBucketWebsiteConfiguration"], () => require("./objectBucketWebsiteConfiguration"));
+utilities.lazyLoad(exports, ["ObjectItem"], () => require("./objectItem"));
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 utilities.lazyLoad(exports, ["RedisCluster"], () => require("./redisCluster"));
 utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
@@ -555,6 +565,8 @@ const _module = {
                 return new InstanceServer(name, <any>undefined, { urn })
             case "scaleway:index/instanceSnapshot:InstanceSnapshot":
                 return new InstanceSnapshot(name, <any>undefined, { urn })
+            case "scaleway:index/instanceUserData:InstanceUserData":
+                return new InstanceUserData(name, <any>undefined, { urn })
             case "scaleway:index/instanceVolume:InstanceVolume":
                 return new InstanceVolume(name, <any>undefined, { urn })
             case "scaleway:index/iotDevice:IotDevice":
@@ -589,6 +601,8 @@ const _module = {
                 return new ObjectBucketPolicy(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
                 return new ObjectBucketWebsiteConfiguration(name, <any>undefined, { urn })
+            case "scaleway:index/objectItem:ObjectItem":
+                return new ObjectItem(name, <any>undefined, { urn })
             case "scaleway:index/redisCluster:RedisCluster":
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
@@ -640,6 +654,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/instanceSecurityGroup",
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceSecurityGroupRules", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceSnapshot", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/instanceUserData", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotDevice", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
@@ -657,6 +672,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)

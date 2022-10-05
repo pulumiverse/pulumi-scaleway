@@ -253,6 +253,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -306,11 +310,21 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// Password for the first user of the Redis Cluster.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("privateNetworks")]
         private InputList<Inputs.RedisClusterPrivateNetworkArgs>? _privateNetworks;
@@ -434,11 +448,21 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// Password for the first user of the Redis Cluster.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("privateNetworks")]
         private InputList<Inputs.RedisClusterPrivateNetworkGetArgs>? _privateNetworks;

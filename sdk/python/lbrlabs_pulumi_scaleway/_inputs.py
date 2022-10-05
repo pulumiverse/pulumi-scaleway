@@ -29,6 +29,7 @@ __all__ = [
     'InstanceSecurityGroupRulesOutboundRuleArgs',
     'InstanceServerPrivateNetworkArgs',
     'InstanceServerRootVolumeArgs',
+    'InstanceSnapshotImportArgs',
     'IotDeviceCertificateArgs',
     'IotDeviceMessageFiltersArgs',
     'IotDeviceMessageFiltersPublishArgs',
@@ -1664,6 +1665,43 @@ class InstanceServerRootVolumeArgs:
     @volume_type.setter
     def volume_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "volume_type", value)
+
+
+@pulumi.input_type
+class InstanceSnapshotImportArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[str],
+                 key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] bucket: Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+        :param pulumi.Input[str] key: Key of the object to import
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[str]:
+        """
+        Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        Key of the object to import
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
 
 
 @pulumi.input_type

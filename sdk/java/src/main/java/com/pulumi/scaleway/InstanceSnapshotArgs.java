@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.InstanceSnapshotImportArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class InstanceSnapshotArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final InstanceSnapshotArgs Empty = new InstanceSnapshotArgs();
+
+    /**
+     * Import a snapshot from a qcow2 file located in a bucket
+     * 
+     */
+    @Import(name="import")
+    private @Nullable Output<InstanceSnapshotImportArgs> import_;
+
+    /**
+     * @return Import a snapshot from a qcow2 file located in a bucket
+     * 
+     */
+    public Optional<Output<InstanceSnapshotImportArgs>> import_() {
+        return Optional.ofNullable(this.import_);
+    }
 
     /**
      * The name of the snapshot. If not provided it will be randomly generated.
@@ -84,15 +100,15 @@ public final class InstanceSnapshotArgs extends com.pulumi.resources.ResourceArg
      * The ID of the volume to take a snapshot from.
      * 
      */
-    @Import(name="volumeId", required=true)
-    private Output<String> volumeId;
+    @Import(name="volumeId")
+    private @Nullable Output<String> volumeId;
 
     /**
      * @return The ID of the volume to take a snapshot from.
      * 
      */
-    public Output<String> volumeId() {
-        return this.volumeId;
+    public Optional<Output<String>> volumeId() {
+        return Optional.ofNullable(this.volumeId);
     }
 
     /**
@@ -115,6 +131,7 @@ public final class InstanceSnapshotArgs extends com.pulumi.resources.ResourceArg
     private InstanceSnapshotArgs() {}
 
     private InstanceSnapshotArgs(InstanceSnapshotArgs $) {
+        this.import_ = $.import_;
         this.name = $.name;
         this.projectId = $.projectId;
         this.tags = $.tags;
@@ -139,6 +156,27 @@ public final class InstanceSnapshotArgs extends com.pulumi.resources.ResourceArg
 
         public Builder(InstanceSnapshotArgs defaults) {
             $ = new InstanceSnapshotArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param import_ Import a snapshot from a qcow2 file located in a bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(@Nullable Output<InstanceSnapshotImportArgs> import_) {
+            $.import_ = import_;
+            return this;
+        }
+
+        /**
+         * @param import_ Import a snapshot from a qcow2 file located in a bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(InstanceSnapshotImportArgs import_) {
+            return import_(Output.of(import_));
         }
 
         /**
@@ -245,7 +283,7 @@ public final class InstanceSnapshotArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder volumeId(Output<String> volumeId) {
+        public Builder volumeId(@Nullable Output<String> volumeId) {
             $.volumeId = volumeId;
             return this;
         }
@@ -284,7 +322,6 @@ public final class InstanceSnapshotArgs extends com.pulumi.resources.ResourceArg
         }
 
         public InstanceSnapshotArgs build() {
-            $.volumeId = Objects.requireNonNull($.volumeId, "expected parameter 'volumeId' to be non-null");
             return $;
         }
     }

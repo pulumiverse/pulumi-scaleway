@@ -201,6 +201,13 @@ func NewRedisCluster(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource RedisCluster
 	err := ctx.RegisterResource("scaleway:index/redisCluster:RedisCluster", name, args, &resource, opts...)

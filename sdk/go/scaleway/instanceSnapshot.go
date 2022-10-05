@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -91,6 +90,48 @@ import (
 //
 // ```
 //
+// ## Import a local qcow2 file
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			qcow, err := scaleway.NewObjectItem(ctx, "qcow", &scaleway.ObjectItemArgs{
+//				Bucket: bucket.Name,
+//				Key:    pulumi.String("server.qcow2"),
+//				File:   pulumi.String("myqcow.qcow2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceSnapshot(ctx, "snapshot", &scaleway.InstanceSnapshotArgs{
+//				Type: pulumi.String("unified"),
+//				Import: &InstanceSnapshotImportArgs{
+//					Bucket: qcow.Bucket,
+//					Key:    qcow.Key,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Snapshots can be imported using the `{zone}/{id}`, e.g. bash
@@ -105,6 +146,8 @@ type InstanceSnapshot struct {
 
 	// The snapshot creation time.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Import a snapshot from a qcow2 file located in a bucket
+	Import InstanceSnapshotImportPtrOutput `pulumi:"import"`
 	// The name of the snapshot. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the snapshot is associated with.
@@ -120,7 +163,7 @@ type InstanceSnapshot struct {
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
-	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
+	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// `zone`) The zone in which
 	// the snapshot should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -130,12 +173,9 @@ type InstanceSnapshot struct {
 func NewInstanceSnapshot(ctx *pulumi.Context,
 	name string, args *InstanceSnapshotArgs, opts ...pulumi.ResourceOption) (*InstanceSnapshot, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &InstanceSnapshotArgs{}
 	}
 
-	if args.VolumeId == nil {
-		return nil, errors.New("invalid value for required argument 'VolumeId'")
-	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceSnapshot
 	err := ctx.RegisterResource("scaleway:index/instanceSnapshot:InstanceSnapshot", name, args, &resource, opts...)
@@ -161,6 +201,8 @@ func GetInstanceSnapshot(ctx *pulumi.Context,
 type instanceSnapshotState struct {
 	// The snapshot creation time.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Import a snapshot from a qcow2 file located in a bucket
+	Import *InstanceSnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// The organization ID the snapshot is associated with.
@@ -185,6 +227,8 @@ type instanceSnapshotState struct {
 type InstanceSnapshotState struct {
 	// The snapshot creation time.
 	CreatedAt pulumi.StringPtrInput
+	// Import a snapshot from a qcow2 file located in a bucket
+	Import InstanceSnapshotImportPtrInput
 	// The name of the snapshot. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// The organization ID the snapshot is associated with.
@@ -211,6 +255,8 @@ func (InstanceSnapshotState) ElementType() reflect.Type {
 }
 
 type instanceSnapshotArgs struct {
+	// Import a snapshot from a qcow2 file located in a bucket
+	Import *InstanceSnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the snapshot is
@@ -222,7 +268,7 @@ type instanceSnapshotArgs struct {
 	// Updates to this field will recreate a new resource.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
-	VolumeId string `pulumi:"volumeId"`
+	VolumeId *string `pulumi:"volumeId"`
 	// `zone`) The zone in which
 	// the snapshot should be created.
 	Zone *string `pulumi:"zone"`
@@ -230,6 +276,8 @@ type instanceSnapshotArgs struct {
 
 // The set of arguments for constructing a InstanceSnapshot resource.
 type InstanceSnapshotArgs struct {
+	// Import a snapshot from a qcow2 file located in a bucket
+	Import InstanceSnapshotImportPtrInput
 	// The name of the snapshot. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the snapshot is
@@ -241,7 +289,7 @@ type InstanceSnapshotArgs struct {
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
-	VolumeId pulumi.StringInput
+	VolumeId pulumi.StringPtrInput
 	// `zone`) The zone in which
 	// the snapshot should be created.
 	Zone pulumi.StringPtrInput
@@ -339,6 +387,11 @@ func (o InstanceSnapshotOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Import a snapshot from a qcow2 file located in a bucket
+func (o InstanceSnapshotOutput) Import() InstanceSnapshotImportPtrOutput {
+	return o.ApplyT(func(v *InstanceSnapshot) InstanceSnapshotImportPtrOutput { return v.Import }).(InstanceSnapshotImportPtrOutput)
+}
+
 // The name of the snapshot. If not provided it will be randomly generated.
 func (o InstanceSnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -372,8 +425,8 @@ func (o InstanceSnapshotOutput) Type() pulumi.StringOutput {
 }
 
 // The ID of the volume to take a snapshot from.
-func (o InstanceSnapshotOutput) VolumeId() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
+func (o InstanceSnapshotOutput) VolumeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringPtrOutput { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
 
 // `zone`) The zone in which

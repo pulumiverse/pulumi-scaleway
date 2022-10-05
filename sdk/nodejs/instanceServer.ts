@@ -204,7 +204,7 @@ export class InstanceServer extends pulumi.CustomResource {
     /**
      * The cloud init script associated with this server
      */
-    public readonly cloudInit!: pulumi.Output<string | undefined>;
+    public readonly cloudInit!: pulumi.Output<string>;
     /**
      * If true a dynamic IP will be attached to the server.
      */
@@ -293,7 +293,7 @@ export class InstanceServer extends pulumi.CustomResource {
     /**
      * The user data associated with the server
      */
-    public readonly userData!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly userData!: pulumi.Output<{[key: string]: string}>;
     /**
      * `zone`) The zone in which the server should be created.
      */

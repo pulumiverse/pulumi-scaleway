@@ -220,6 +220,13 @@ func NewDatabaseInstance(ctx *pulumi.Context,
 	if args.NodeType == nil {
 		return nil, errors.New("invalid value for required argument 'NodeType'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource DatabaseInstance
 	err := ctx.RegisterResource("scaleway:index/databaseInstance:DatabaseInstance", name, args, &resource, opts...)

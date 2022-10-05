@@ -18,6 +18,8 @@ cloud.google.com/go/compute v0.1.0/go.mod h1:GAesmwr110a34z04OlxYkATPBEfVhkymfTB
 cloud.google.com/go/compute v1.3.0/go.mod h1:cCZiE1NHEtai4wiufUhW8I8S1JKkAnhnQJWM7YD99wM=
 cloud.google.com/go/compute v1.5.0 h1:b1zWmYuuHz7gO9kDcM/EpHGr06UgsYNRpNJzI2kFiLM=
 cloud.google.com/go/compute v1.5.0/go.mod h1:9SMHyhJlzhlkJqrPAc839t2BZFTSk6Jdj6mkzQJeu0M=
+cloud.google.com/go/compute v1.6.0 h1:XdQIN5mdPTSBVwSIVDuY5e8ZzVAccsHvD3qTEz4zIps=
+cloud.google.com/go/compute v1.6.0/go.mod h1:T29tfhtVbq1wvAPo0E3+7vhgmkOYeXjhFvz/FMzPu0s=
 cloud.google.com/go/iam v0.3.0 h1:exkAomrVUuzx9kWFI1wm3KI0uoDeUFPB4kKGzx6x+Gc=
 cloud.google.com/go/iam v0.3.0/go.mod h1:XzJPvDayI+9zsASAFO68Hk07u3z+f+JrT2xXNdp4bnY=
 cloud.google.com/go/kms v0.1.0/go.mod h1:8Qp8PCAypHg4FdmlyW1QRAv09BGQ9Uzh7JnmIZxPk+c=
@@ -29,6 +31,8 @@ cloud.google.com/go/secretmanager v0.1.0/go.mod h1:3nGKHvnzDUVit7U0S9KAKJ4aOsO1x
 cloud.google.com/go/storage v1.16.1/go.mod h1:LaNorbty3ehnU3rEjXSNV/NRgQA0O8Y+uh6bPe5UOk4=
 cloud.google.com/go/storage v1.22.0 h1:NUV0NNp9nkBuW66BFRLuMgldN60C57ET3dhbwLIYio8=
 cloud.google.com/go/storage v1.22.0/go.mod h1:GbaLEoMqbVm6sx3Z0R++gSiBlgMv6yUi2q1DeGFKQgE=
+cloud.google.com/go/storage v1.22.1 h1:F6IlQJZrZM++apn9V5/VfS3gbTUYg98PS3EMQAzqtfg=
+cloud.google.com/go/storage v1.22.1/go.mod h1:S8N1cAStu7BOeFfE8KAQzmyyLkK8p/vmRq6kuBTW58Y=
 cloud.google.com/go/trace v0.1.0/go.mod h1:wxEwsoeRVPbeSkt7ZC9nWCgmoKQRAoySN7XHW2AmI7g=
 contrib.go.opencensus.io/exporter/stackdriver v0.13.8/go.mod h1:huNtlWx75MwO7qMs0KrMxPZXzNNWebav1Sq/pm02JdQ=
 github.com/Azure/azure-amqp-common-go/v3 v3.1.1/go.mod h1:YsDaPfaO9Ub2XeSKdIy2DfwuiQlHQCauHJwSqtrkECI=
@@ -179,6 +183,8 @@ github.com/googleapis/gax-go/v2 v2.1.0/go.mod h1:Q3nei7sK6ybPYH7twZdmQpAd1MKb7pf
 github.com/googleapis/gax-go/v2 v2.1.1/go.mod h1:hddJymUZASv3XPyGkUpKj8pPO47Rmb0eJc8R6ouapiM=
 github.com/googleapis/gax-go/v2 v2.2.0 h1:s7jOdKSaksJVOxE0Y/S32otcfiP+UQ0cL8/GTKaONwE=
 github.com/googleapis/gax-go/v2 v2.2.0/go.mod h1:as02EH8zWkzwUoLbBaFeQ+arQaj/OthfcblKl4IGNaM=
+github.com/googleapis/gax-go/v2 v2.3.0 h1:nRJtk3y8Fm770D42QV6T90ZnvFZyk7agSo3Q+Z9p3WI=
+github.com/googleapis/gax-go/v2 v2.3.0/go.mod h1:b8LNqSzNabLiUpXKkY7HAR5jr6bIT99EXz9pXxye9YM=
 github.com/googleapis/go-type-adapters v1.0.0 h1:9XdMn+d/G57qq1s8dNc5IesGCXHf6V2HZ2JwRxfA2tA=
 github.com/googleapis/go-type-adapters v1.0.0/go.mod h1:zHW75FOG2aur7gAO2B+MLby+cLsWGBF62rFAi7WjWO4=
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
@@ -273,6 +279,7 @@ github.com/kevinburke/ssh_config v1.1.0/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF
 github.com/keybase/go-crypto v0.0.0-20161004153544-93f5b35093ba/go.mod h1:ghbZscTyKdM07+Fw3KSi0hcJm+AlEUWj8QLlPtijN/M=
 github.com/klauspost/compress v1.13.5/go.mod h1:/3/Vjq9QcHkK5uEr5lBEmyoZ1iFhe47etQ6QUkpK6sk=
 github.com/kr/fs v0.1.0/go.mod h1:FFnZGqtBN9Gxj7eW1uZ42v5BccTP0vu6NEaFoC2HwRg=
+github.com/kr/pretty v0.3.0/go.mod h1:640gp4NfQd8pI5XOwp5fnNeVWj67G7CFk/SaSQn7NBk=
 github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+fNqagV/RAw=
 github.com/lib/pq v1.10.2/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
 github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0/go.mod h1:zJYVVT2jmtg6P3p1VtQj7WsuWi/y4VnjVBn7F8KPB3I=
@@ -306,6 +313,7 @@ github.com/mitchellh/reflectwalk v1.0.1/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx
 github.com/mitchellh/reflectwalk v1.0.2 h1:G2LzWKi524PWgd3mLHV8Y5k7s6XUvT0Gef6zxSIeXaQ=
 github.com/mitchellh/reflectwalk v1.0.2/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx0jmZXqmk4esnw=
 github.com/moby/moby v20.10.14+incompatible/go.mod h1:fDXVQ6+S340veQPv35CzDahGBmHsiclFwfEygB/TWMc=
+github.com/moby/moby v20.10.18+incompatible/go.mod h1:fDXVQ6+S340veQPv35CzDahGBmHsiclFwfEygB/TWMc=
 github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6 h1:dcztxKSvZ4Id8iPpHERQBbIJfabdt4wUm5qy3wOL2Zc=
 github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6/go.mod h1:E2VnQOmVuvZB6UYnnDB0qG5Nq/1tD9acaOpo6xmt0Kw=
 github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M=
@@ -347,11 +355,15 @@ github.com/pulumi/pulumi-terraform-bridge/v3 v3.30.0 h1:UrqZOn0bWEkF2iSaMSWL7I68
 github.com/pulumi/pulumi-terraform-bridge/v3 v3.30.0/go.mod h1:UBHN/uk0Z/xVbkTqgk/M3otQuOmSsldPMOdAX01jMi0=
 github.com/pulumi/pulumi-terraform-bridge/v3 v3.30.1 h1:r1BSd09sxpZQLW7GdOnrXlfUgbkL/LoSrrmw+9rBb68=
 github.com/pulumi/pulumi-terraform-bridge/v3 v3.30.1/go.mod h1:9LVvgA5X2qiHVzYX+bmu12sXJm+jx8s6o4j+H8auErE=
+github.com/pulumi/pulumi-terraform-bridge/v3 v3.31.0 h1:3tYTp/e+cs5fMf19/mqlP5V2pYAUolU17Ovh7rcNOaA=
+github.com/pulumi/pulumi-terraform-bridge/v3 v3.31.0/go.mod h1:WziTkxLCMyrrgzlxAc4kM74FR2tF5Judn+oVu13NtN0=
 github.com/pulumi/pulumi-yaml v0.5.3/go.mod h1:DVllQAk4eYy9rtDqykGyV/6WiFjzpg/j/k87GZRwV7g=
 github.com/pulumi/pulumi-yaml v0.5.4 h1:O4H0PD0hiJjpci0GJFSkihS+yC8rWACKxuLyjYVt5wo=
 github.com/pulumi/pulumi-yaml v0.5.4/go.mod h1:e8BcP30yunk/u3mLXDykhtEQf8tTItYgQzPHDmRvJcg=
 github.com/pulumi/pulumi-yaml v0.5.5 h1:D1taIPKTaC4Ga5SPmLruNz9VhZOM7m2Mjh3LUnTnNeU=
 github.com/pulumi/pulumi-yaml v0.5.5/go.mod h1:erKneF31b8HYQFuy+B3RileYsaIDSzl32zLQaN92+p8=
+github.com/pulumi/pulumi-yaml v0.5.8 h1:bJp8g6A0wU+5c56Cft8GEQ7/8prGggBlZuDTcgTS40o=
+github.com/pulumi/pulumi-yaml v0.5.8/go.mod h1:rJCp0HXvJGG+hs40wII9yYxuCeBBr2+e8FytW0YnINM=
 github.com/pulumi/pulumi/pkg/v3 v3.36.0/go.mod h1:tKeUmcAqWDJhgc4dAbWx7eiJ5oF5DHvy2fujT/aipvw=
 github.com/pulumi/pulumi/pkg/v3 v3.36.1-0.20220725155140-d69eea638451/go.mod h1:W6+hMuAfpcsQONfi3e/El4yavNNeER7NDpGS29dQHVQ=
 github.com/pulumi/pulumi/pkg/v3 v3.37.3-0.20220809202049-8441ea2eeefd/go.mod h1:fqioE6+15BcfbrwtMbatflfCSZtKtjJe2t+z6itTkt0=
@@ -362,6 +374,8 @@ github.com/pulumi/pulumi/pkg/v3 v3.39.0 h1:dpsc3E5aAkk/7rZ3Z7zG8pVyjDMj5uM3y/sHf
 github.com/pulumi/pulumi/pkg/v3 v3.39.0/go.mod h1:YoOVshE3e6cMgwumozs+VJlz2oNvRuGsHfpwDFtambo=
 github.com/pulumi/pulumi/pkg/v3 v3.40.1 h1:uY1KQQ1ljcplXmvSDDh43mpCrYWohPCqXX6Q+VkLJic=
 github.com/pulumi/pulumi/pkg/v3 v3.40.1/go.mod h1:Of6sFHjTHQGIFqUoXOu2fG/H+HzR4bQRDNTUZZrIvUY=
+github.com/pulumi/pulumi/pkg/v3 v3.40.2 h1:0uDJHd74nM5tvp9JrRr2ODGirpOPH9DRa6WpvlXrlEY=
+github.com/pulumi/pulumi/pkg/v3 v3.40.2/go.mod h1:2deaFjnn816pgaHr4pyrHGgQjIBq2Vyv47wReijquTQ=
 github.com/pulumi/pulumi/sdk/v3 v3.36.1-0.20220725155140-d69eea638451/go.mod h1:e1xuPnh9aKzCesrFf96DEzcybLdRWRMhKeKVBmb2lm0=
 github.com/pulumi/pulumi/sdk/v3 v3.37.3-0.20220809202049-8441ea2eeefd/go.mod h1:3/6Fr/c01n7Hw7mtAlO7X8WMBgLP5AVTyYe4CRfJQc4=
 github.com/pulumi/pulumi/sdk/v3 v3.38.1-0.20220825161912-0fc18cbafb78/go.mod h1:Fw52iyR/4T9xWm7cTcshy4rGEXyPwhXKKEalczKZ8RY=
@@ -370,6 +384,8 @@ github.com/pulumi/pulumi/sdk/v3 v3.40.0 h1:s1XNwPIyW7bU4Dn0U8sd2nVQ0SiYLuLSpu5GD
 github.com/pulumi/pulumi/sdk/v3 v3.40.0/go.mod h1:Fw52iyR/4T9xWm7cTcshy4rGEXyPwhXKKEalczKZ8RY=
 github.com/pulumi/pulumi/sdk/v3 v3.40.1 h1:PLKYHyRffrO9nNfidDGGr2xkf8G0wjtSZx1Zj7OwyyA=
 github.com/pulumi/pulumi/sdk/v3 v3.40.1/go.mod h1:tSNA8Z+GnEjMxH+qtrfcwpmOQj7mTPTAmJUhwvuox5I=
+github.com/pulumi/pulumi/sdk/v3 v3.40.2 h1:y3ldnshfB1Hz+XrCmHkpF5igpCHepKSdvd2Mu/8xvng=
+github.com/pulumi/pulumi/sdk/v3 v3.40.2/go.mod h1:N5jL+cw5KiOeMn9bwvRuPQEAhbE3KPq2wSb/Kw+6HuY=
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Dik4Qe/+xguB8JagPyXNlbOnRiXGmq/PSPQTGunYnTk=
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9 h1:JMw+t5I+6E8Lna7JF+ghAoOLOl23UIbshJyRNP+K1HU=
@@ -377,6 +393,7 @@ github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9/go.
 github.com/robfig/cron/v3 v3.0.1 h1:WdRxkvbJztn8LMz/QEvLN5sBU+xKpSqwwUO1Pjr4qDs=
 github.com/robfig/cron/v3 v3.0.1/go.mod h1:eQICP3HwyT7UooqI/z+Ov+PtYAWygg1TEWWzGIFLtro=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
+github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rogpeppe/go-internal v1.6.2/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=
 github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 h1:OkMGxebDjyw0ULyrTYWeN0UNCCkmCWfjPnIA2W6oviI=
@@ -385,12 +402,16 @@ github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20220805144307-2228017fa4e8 
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20220805144307-2228017fa4e8/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20220913083321-4f3b37b96a57 h1:ZxowDQZM/KMIHuYWgHtPROiiDK33TcmXo465D9mQeSE=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20220913083321-4f3b37b96a57/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20221004094754-879a66c4d2f9 h1:+1XmEP+Os3mmd4u8B3JhbtZHax+Ed+fR1boOJXoCHI8=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9.0.20221004094754-879a66c4d2f9/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.2.8 h1:VAG5UfOxHI/1w4+23jW8bH/kDa0CYt/teGrt093UBzk=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.2.8/go.mod h1:ZiY9YA4svDJsrp4VCN7iRCrHwhmpuQE+IM+YzrPjCzU=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.2.9 h1:SnlOyyIEz4nJ4U5plA9yBtWEZxpGjMhBsIKrqU0v3YY=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.2.9/go.mod h1:ZiY9YA4svDJsrp4VCN7iRCrHwhmpuQE+IM+YzrPjCzU=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.3.0 h1:vVZWy6775YqTHu2V4Io4LlVUBIuVa+raBenG9l7nl3Q=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.3.0/go.mod h1:ZcwLPUf03YFy5bbfCWI0PZ3IKc2N8XOB0sD7ZxJeQ8E=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.4.0 h1:73g+j1olkVVEJ6aM4BENXRc85CAbHnMovCKHXqUVJ6c=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.4.0/go.mod h1:ARUbLq1yVuu2Bmb7fGqC+SnfKn9+NuvFwyBpKwltEho=
 github.com/sebdah/goldie v1.0.0/go.mod h1:jXP4hmWywNEwZzhMuv2ccnqTSFpuq8iyQhtQdkkZBH4=
 github.com/segmentio/asm v1.1.3 h1:WM03sfUOENvvKexOLp+pCqgb/WDjsi7EK8gIsICtzhc=
 github.com/segmentio/asm v1.1.3/go.mod h1:Ld3L4ZXGNcSLRg4JBsZ3//1+f/TjYl0Mzen/DQy1EJg=
@@ -509,6 +530,8 @@ golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8/go.mod h1:KelEdhl1UZF7XfJ
 golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b/go.mod h1:DAh4E804XQdzx2j+YRIaUnCqCV2RuMz24cGBJ5QYIrc=
 golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a h1:qfl7ob3DIEs3Ml9oLuPwY2N04gymzAW04WsUQHIClgM=
 golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a/go.mod h1:DAh4E804XQdzx2j+YRIaUnCqCV2RuMz24cGBJ5QYIrc=
+golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5 h1:OSnWWcOd/CtWQC2cYSBgbTSJv3ciqd8r54ySIW2y3RE=
+golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5/go.mod h1:DAh4E804XQdzx2j+YRIaUnCqCV2RuMz24cGBJ5QYIrc=
 golang.org/x/sys v0.0.0-20190804053845-51ab0e2deafa/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20201204225414-ed752295db88/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
@@ -617,8 +640,11 @@ google.golang.org/genproto v0.0.0-20220304144024-325a89244dc8/go.mod h1:kGP+zUP2
 google.golang.org/genproto v0.0.0-20220310185008-1973136f34c6/go.mod h1:kGP+zUP2Ddo0ayMi4YuN7C3WZyJvGLZRh8Z5wnAqvEI=
 google.golang.org/genproto v0.0.0-20220324131243-acbaeb5b85eb/go.mod h1:hAL49I2IFola2sVEjAn7MEwsja0xp51I0tlGAf9hz4E=
 google.golang.org/genproto v0.0.0-20220405205423-9d709892a2bf/go.mod h1:8w6bsBMX6yCPbAVTeqQHvzxW0EIFigd5lZyahWgyfDo=
+google.golang.org/genproto v0.0.0-20220407144326-9054f6ed7bac/go.mod h1:8w6bsBMX6yCPbAVTeqQHvzxW0EIFigd5lZyahWgyfDo=
 google.golang.org/genproto v0.0.0-20220413183235-5e96e2839df9 h1:XGQ6tc+EnM35IAazg4y6AHmUg4oK8NXsXaILte1vRlk=
 google.golang.org/genproto v0.0.0-20220413183235-5e96e2839df9/go.mod h1:8w6bsBMX6yCPbAVTeqQHvzxW0EIFigd5lZyahWgyfDo=
+google.golang.org/genproto v0.0.0-20220518221133-4f43b3371335 h1:2D0OT6tPVdrQTOnVe1VQjfJPTED6EZ7fdJ/f6Db6OsY=
+google.golang.org/genproto v0.0.0-20220518221133-4f43b3371335/go.mod h1:RAyBrSAP7Fh3Nc84ghnVLDPuV51xc9agzmm4Ph6i0Q4=
 google.golang.org/grpc v1.8.0/go.mod h1:yo6s7OP7yaDglbqo1J04qKzAhqBH6lvTonzMVmEdcZw=
 google.golang.org/grpc v1.33.1/go.mod h1:fr5YgcSWrqhRRxogOsw7RzIpsmvOZ6IcH4kBYTpR3n0=
 google.golang.org/grpc v1.37.1/go.mod h1:NREThFqKR1f3iQ6oBuvc5LadQuXVGo9rkm5ZGrQdJfM=
@@ -629,6 +655,7 @@ google.golang.org/grpc v1.40.0/go.mod h1:ogyxbiOoUXAkP+4+xa6PZSE9DZgIHtSpzjDTB9K
 google.golang.org/grpc v1.40.1/go.mod h1:ogyxbiOoUXAkP+4+xa6PZSE9DZgIHtSpzjDTB9KAK34=
 google.golang.org/grpc v1.44.0/go.mod h1:k+4IHHFw41K8+bbowsex27ge2rCb65oeWqe4jJ590SU=
 google.golang.org/grpc v1.45.0/go.mod h1:lN7owxKUQEqMfSyQikvvk5tf/6zMPsrK+ONuO11+0rQ=
+google.golang.org/grpc v1.46.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
 google.golang.org/grpc v1.47.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
 google.golang.org/grpc v1.48.0 h1:rQOsyJ/8+ufEDJd/Gdsz7HG220Mh9HAhFHRGnIjda0w=
 google.golang.org/grpc v1.48.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=

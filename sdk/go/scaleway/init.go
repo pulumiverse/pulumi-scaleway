@@ -76,6 +76,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &InstanceServer{}
 	case "scaleway:index/instanceSnapshot:InstanceSnapshot":
 		r = &InstanceSnapshot{}
+	case "scaleway:index/instanceUserData:InstanceUserData":
+		r = &InstanceUserData{}
 	case "scaleway:index/instanceVolume:InstanceVolume":
 		r = &InstanceVolume{}
 	case "scaleway:index/iotDevice:IotDevice":
@@ -110,6 +112,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectBucketPolicy{}
 	case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
 		r = &ObjectBucketWebsiteConfiguration{}
+	case "scaleway:index/objectItem:ObjectItem":
+		r = &ObjectItem{}
 	case "scaleway:index/redisCluster:RedisCluster":
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
@@ -298,6 +302,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/instanceUserData",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/instanceVolume",
 		&module{version},
 	)
@@ -379,6 +388,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/objectBucketWebsiteConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/objectItem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

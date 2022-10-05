@@ -77,6 +77,37 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ## Import a local qcow2 file
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    /// 
+    ///     var qcow = new Scaleway.ObjectItem("qcow", new()
+    ///     {
+    ///         Bucket = bucket.Name,
+    ///         Key = "server.qcow2",
+    ///         File = "myqcow.qcow2",
+    ///     });
+    /// 
+    ///     var snapshot = new Scaleway.InstanceSnapshot("snapshot", new()
+    ///     {
+    ///         Type = "unified",
+    ///         Import = new Scaleway.Inputs.InstanceSnapshotImportArgs
+    ///         {
+    ///             Bucket = qcow.Bucket,
+    ///             Key = qcow.Key,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Snapshots can be imported using the `{zone}/{id}`, e.g. bash
@@ -93,6 +124,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Import a snapshot from a qcow2 file located in a bucket
+        /// </summary>
+        [Output("import")]
+        public Output<Outputs.InstanceSnapshotImport?> Import { get; private set; } = null!;
 
         /// <summary>
         /// The name of the snapshot. If not provided it will be randomly generated.
@@ -136,7 +173,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The ID of the volume to take a snapshot from.
         /// </summary>
         [Output("volumeId")]
-        public Output<string> VolumeId { get; private set; } = null!;
+        public Output<string?> VolumeId { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which
@@ -153,7 +190,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public InstanceSnapshot(string name, InstanceSnapshotArgs args, CustomResourceOptions? options = null)
+        public InstanceSnapshot(string name, InstanceSnapshotArgs? args = null, CustomResourceOptions? options = null)
             : base("scaleway:index/instanceSnapshot:InstanceSnapshot", name, args ?? new InstanceSnapshotArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -193,6 +230,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class InstanceSnapshotArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Import a snapshot from a qcow2 file located in a bucket
+        /// </summary>
+        [Input("import")]
+        public Input<Inputs.InstanceSnapshotImportArgs>? Import { get; set; }
+
+        /// <summary>
         /// The name of the snapshot. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -227,8 +270,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the volume to take a snapshot from.
         /// </summary>
-        [Input("volumeId", required: true)]
-        public Input<string> VolumeId { get; set; } = null!;
+        [Input("volumeId")]
+        public Input<string>? VolumeId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which
@@ -250,6 +293,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Import a snapshot from a qcow2 file located in a bucket
+        /// </summary>
+        [Input("import")]
+        public Input<Inputs.InstanceSnapshotImportGetArgs>? Import { get; set; }
 
         /// <summary>
         /// The name of the snapshot. If not provided it will be randomly generated.

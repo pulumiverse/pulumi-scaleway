@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.InstanceSnapshotArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.InstanceSnapshotState;
+import com.pulumi.scaleway.outputs.InstanceSnapshotImport;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -105,6 +106,52 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import a local qcow2 file
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ObjectBucket;
+ * import com.pulumi.scaleway.ObjectItem;
+ * import com.pulumi.scaleway.ObjectItemArgs;
+ * import com.pulumi.scaleway.InstanceSnapshot;
+ * import com.pulumi.scaleway.InstanceSnapshotArgs;
+ * import com.pulumi.scaleway.inputs.InstanceSnapshotImportArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var bucket = new ObjectBucket(&#34;bucket&#34;);
+ * 
+ *         var qcow = new ObjectItem(&#34;qcow&#34;, ObjectItemArgs.builder()        
+ *             .bucket(bucket.name())
+ *             .key(&#34;server.qcow2&#34;)
+ *             .file(&#34;myqcow.qcow2&#34;)
+ *             .build());
+ * 
+ *         var snapshot = new InstanceSnapshot(&#34;snapshot&#34;, InstanceSnapshotArgs.builder()        
+ *             .type(&#34;unified&#34;)
+ *             .import_(InstanceSnapshotImportArgs.builder()
+ *                 .bucket(qcow.bucket())
+ *                 .key(qcow.key())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Snapshots can be imported using the `{zone}/{id}`, e.g. bash
@@ -129,6 +176,20 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createdAt() {
         return this.createdAt;
+    }
+    /**
+     * Import a snapshot from a qcow2 file located in a bucket
+     * 
+     */
+    @Export(name="import", type=InstanceSnapshotImport.class, parameters={})
+    private Output</* @Nullable */ InstanceSnapshotImport> import_;
+
+    /**
+     * @return Import a snapshot from a qcow2 file located in a bucket
+     * 
+     */
+    public Output<Optional<InstanceSnapshotImport>> import_() {
+        return Codegen.optional(this.import_);
     }
     /**
      * The name of the snapshot. If not provided it will be randomly generated.
@@ -223,14 +284,14 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="volumeId", type=String.class, parameters={})
-    private Output<String> volumeId;
+    private Output</* @Nullable */ String> volumeId;
 
     /**
      * @return The ID of the volume to take a snapshot from.
      * 
      */
-    public Output<String> volumeId() {
-        return this.volumeId;
+    public Output<Optional<String>> volumeId() {
+        return Codegen.optional(this.volumeId);
     }
     /**
      * `zone`) The zone in which
@@ -261,7 +322,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public InstanceSnapshot(String name, InstanceSnapshotArgs args) {
+    public InstanceSnapshot(String name, @Nullable InstanceSnapshotArgs args) {
         this(name, args, null);
     }
     /**
@@ -270,7 +331,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public InstanceSnapshot(String name, InstanceSnapshotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public InstanceSnapshot(String name, @Nullable InstanceSnapshotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("scaleway:index/instanceSnapshot:InstanceSnapshot", name, args == null ? InstanceSnapshotArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

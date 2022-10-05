@@ -52,6 +52,10 @@ func NewIotNetwork(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secret",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource IotNetwork
 	err := ctx.RegisterResource("scaleway:index/iotNetwork:IotNetwork", name, args, &resource, opts...)
