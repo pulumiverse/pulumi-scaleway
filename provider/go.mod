@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.31.0
-	github.com/pulumi/pulumi/sdk/v3 v3.40.2
+	github.com/pulumi/pulumi/sdk/v3 v3.40.3
 	github.com/scaleway/terraform-provider-scaleway/v2 v2.4.0
 )
 
