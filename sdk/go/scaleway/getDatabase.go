@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupDatabase(ctx, &GetDatabaseArgs{
+//			_, err = scaleway.LookupDatabase(ctx, &GetDatabaseArgs{
 //				InstanceId: "11111111-1111-1111-1111-111111111111",
 //				Name:       "foobar",
 //			}, nil)

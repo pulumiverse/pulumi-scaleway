@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupLoadbalancer(ctx, &GetLoadbalancerArgs{
+//			_, err = scaleway.LookupLoadbalancer(ctx, &GetLoadbalancerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {

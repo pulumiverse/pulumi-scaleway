@@ -12,33 +12,67 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  *
- * ### Basic
+ * ### Example Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     disableBackup: true,
+ *     engine: "PostgreSQL-11",
+ *     isHaCluster: true,
+ *     nodeType: "DB-DEV-S",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     userName: "my_initial_user",
+ * });
+ * ```
+ *
+ * ### Example with Settings
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     disableBackup: true,
+ *     engine: "MySQL-8",
+ *     initSettings: {
+ *         lower_case_table_names: 1,
+ *     },
+ *     nodeType: "db-dev-s",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     settings: {
+ *         max_connections: "350",
+ *     },
+ *     userName: "my_initial_user",
+ * });
+ * ```
+ *
+ * ### Example with backup schedule
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     backupScheduleFrequency: 24, // every day
+ *     backupScheduleRetention: 7, // keep it one week
+ *     disableBackup: false,
+ *     engine: "PostgreSQL-11",
+ *     isHaCluster: true,
+ *     nodeType: "DB-DEV-S",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     userName: "my_initial_user",
+ * });
+ * ```
+ *
+ * ### Example with private network and dhcp configuration
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
- *     nodeType: "DB-DEV-S",
- *     engine: "PostgreSQL-11",
- *     isHaCluster: true,
- *     disableBackup: true,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- * });
- * // with backup schedule
- * const mainIndex_databaseInstanceDatabaseInstance = new scaleway.DatabaseInstance("mainIndex/databaseInstanceDatabaseInstance", {
- *     nodeType: "DB-DEV-S",
- *     engine: "PostgreSQL-11",
- *     isHaCluster: true,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     disableBackup: true,
- *     backupScheduleFrequency: 24,
- *     backupScheduleRetention: 7,
- * });
- * // keep it one week
- * // with private network and dhcp configuration
  * const pn02 = new scaleway.VpcPrivateNetwork("pn02", {});
  * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", {subnet: "192.168.1.0/24"});
  * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
@@ -58,19 +92,7 @@ import * as utilities from "./utilities";
  *         pn02,
  *     ],
  * });
- * const mainVpcPublicGatewayPatRule = new scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", {
- *     gatewayId: mainVpcPublicGateway.id,
- *     privateIp: mainVpcPublicGatewayDhcp.address,
- *     privatePort: mainDatabaseInstance.privateNetwork.apply(privateNetwork => privateNetwork?.port),
- *     publicPort: 42,
- *     protocol: "both",
- * }, {
- *     dependsOn: [
- *         mainVpcGatewayNetwork,
- *         pn02,
- *     ],
- * });
- * const mainScalewayIndex_databaseInstanceDatabaseInstance = new scaleway.DatabaseInstance("mainScalewayIndex/databaseInstanceDatabaseInstance", {
+ * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-11",
  *     isHaCluster: false,
@@ -91,7 +113,23 @@ import * as utilities from "./utilities";
  *         pnId: pn02.id,
  *     },
  * });
+ * const mainVpcPublicGatewayPatRule = new scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", {
+ *     gatewayId: mainVpcPublicGateway.id,
+ *     privateIp: mainVpcPublicGatewayDhcp.address,
+ *     privatePort: mainDatabaseInstance.privateNetwork.apply(privateNetwork => privateNetwork?.port),
+ *     publicPort: 42,
+ *     protocol: "both",
+ * }, {
+ *     dependsOn: [
+ *         mainVpcGatewayNetwork,
+ *         pn02,
+ *     ],
+ * });
  * ```
+ *
+ * ## Settings
+ *
+ * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` on your `nodeType` of your convenient.
  *
  * ## Private Network
  *
@@ -176,6 +214,10 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly engine!: pulumi.Output<string>;
     /**
+     * Map of engine settings to be set at database initialisation.
+     */
+    public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Enable or disable high availability for the database instance.
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
@@ -216,7 +258,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * Map of engine settings to be set. Using this option will override default config.
      */
     public readonly settings!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -257,6 +299,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["endpointIp"] = state ? state.endpointIp : undefined;
             resourceInputs["endpointPort"] = state ? state.endpointPort : undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
+            resourceInputs["initSettings"] = state ? state.initSettings : undefined;
             resourceInputs["isHaCluster"] = state ? state.isHaCluster : undefined;
             resourceInputs["loadBalancers"] = state ? state.loadBalancers : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -285,6 +328,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["backupScheduleRetention"] = args ? args.backupScheduleRetention : undefined;
             resourceInputs["disableBackup"] = args ? args.disableBackup : undefined;
             resourceInputs["engine"] = args ? args.engine : undefined;
+            resourceInputs["initSettings"] = args ? args.initSettings : undefined;
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
@@ -350,6 +394,10 @@ export interface DatabaseInstanceState {
      */
     engine?: pulumi.Input<string>;
     /**
+     * Map of engine settings to be set at database initialisation.
+     */
+    initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Enable or disable high availability for the database instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
@@ -390,7 +438,7 @@ export interface DatabaseInstanceState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * Map of engine settings to be set. Using this option will override default config.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -436,6 +484,10 @@ export interface DatabaseInstanceArgs {
      */
     engine: pulumi.Input<string>;
     /**
+     * Map of engine settings to be set at database initialisation.
+     */
+    initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Enable or disable high availability for the database instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
@@ -464,7 +516,7 @@ export interface DatabaseInstanceArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * Map of engine settings to be set. Using this option will override default config.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupDomainZone(ctx, &GetDomainZoneArgs{
+//			_, err = scaleway.LookupDomainZone(ctx, &GetDomainZoneArgs{
 //				Domain:    pulumi.StringRef("scaleway-terraform.com"),
 //				Subdomain: pulumi.StringRef("test"),
 //			}, nil)

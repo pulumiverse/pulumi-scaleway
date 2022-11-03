@@ -1320,3 +1320,4 @@ export interface RedisClusterPublicNetwork {
     ips: string[];
     port: number;
 }
+

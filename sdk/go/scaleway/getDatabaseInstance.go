@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a RDB instance.
+// Gets information about an RDB instance.
 //
 // ## Example Usage
 //
@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupDatabaseInstance(ctx, &GetDatabaseInstanceArgs{
+//			_, err = scaleway.LookupDatabaseInstance(ctx, &GetDatabaseInstanceArgs{
 //				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -69,6 +69,7 @@ type LookupDatabaseInstanceResult struct {
 	Engine                  string `pulumi:"engine"`
 	// The provider-assigned unique ID for this managed resource.
 	Id              string                              `pulumi:"id"`
+	InitSettings    map[string]string                   `pulumi:"initSettings"`
 	InstanceId      *string                             `pulumi:"instanceId"`
 	IsHaCluster     bool                                `pulumi:"isHaCluster"`
 	LoadBalancers   []GetDatabaseInstanceLoadBalancer   `pulumi:"loadBalancers"`
@@ -164,6 +165,10 @@ func (o LookupDatabaseInstanceResultOutput) Engine() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupDatabaseInstanceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) InitSettings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) map[string]string { return v.InitSettings }).(pulumi.StringMapOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) InstanceId() pulumi.StringPtrOutput {

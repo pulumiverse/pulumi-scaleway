@@ -8,493 +8,498 @@ import * as utilities from "./utilities";
 export { AccountSshKeyArgs, AccountSshKeyState } from "./accountSshKey";
 export type AccountSshKey = import("./accountSshKey").AccountSshKey;
 export const AccountSshKey: typeof import("./accountSshKey").AccountSshKey = null as any;
+utilities.lazyLoad(exports, ["AccountSshKey"], () => require("./accountSshKey"));
 
 export { AppleSliconValleyServerArgs, AppleSliconValleyServerState } from "./appleSliconValleyServer";
 export type AppleSliconValleyServer = import("./appleSliconValleyServer").AppleSliconValleyServer;
 export const AppleSliconValleyServer: typeof import("./appleSliconValleyServer").AppleSliconValleyServer = null as any;
+utilities.lazyLoad(exports, ["AppleSliconValleyServer"], () => require("./appleSliconValleyServer"));
 
 export { BaremetalServerArgs, BaremetalServerState } from "./baremetalServer";
 export type BaremetalServer = import("./baremetalServer").BaremetalServer;
 export const BaremetalServer: typeof import("./baremetalServer").BaremetalServer = null as any;
+utilities.lazyLoad(exports, ["BaremetalServer"], () => require("./baremetalServer"));
 
 export { ContainerArgs, ContainerState } from "./container";
 export type Container = import("./container").Container;
 export const Container: typeof import("./container").Container = null as any;
+utilities.lazyLoad(exports, ["Container"], () => require("./container"));
 
 export { ContainerCronArgs, ContainerCronState } from "./containerCron";
 export type ContainerCron = import("./containerCron").ContainerCron;
 export const ContainerCron: typeof import("./containerCron").ContainerCron = null as any;
+utilities.lazyLoad(exports, ["ContainerCron"], () => require("./containerCron"));
 
 export { ContainerNamespaceArgs, ContainerNamespaceState } from "./containerNamespace";
 export type ContainerNamespace = import("./containerNamespace").ContainerNamespace;
 export const ContainerNamespace: typeof import("./containerNamespace").ContainerNamespace = null as any;
+utilities.lazyLoad(exports, ["ContainerNamespace"], () => require("./containerNamespace"));
+
+export { ContainerTokenArgs, ContainerTokenState } from "./containerToken";
+export type ContainerToken = import("./containerToken").ContainerToken;
+export const ContainerToken: typeof import("./containerToken").ContainerToken = null as any;
+utilities.lazyLoad(exports, ["ContainerToken"], () => require("./containerToken"));
 
 export { DatabaseArgs, DatabaseState } from "./database";
 export type Database = import("./database").Database;
 export const Database: typeof import("./database").Database = null as any;
+utilities.lazyLoad(exports, ["Database"], () => require("./database"));
 
 export { DatabaseAclArgs, DatabaseAclState } from "./databaseAcl";
 export type DatabaseAcl = import("./databaseAcl").DatabaseAcl;
 export const DatabaseAcl: typeof import("./databaseAcl").DatabaseAcl = null as any;
+utilities.lazyLoad(exports, ["DatabaseAcl"], () => require("./databaseAcl"));
 
 export { DatabaseBackupArgs, DatabaseBackupState } from "./databaseBackup";
 export type DatabaseBackup = import("./databaseBackup").DatabaseBackup;
 export const DatabaseBackup: typeof import("./databaseBackup").DatabaseBackup = null as any;
+utilities.lazyLoad(exports, ["DatabaseBackup"], () => require("./databaseBackup"));
 
 export { DatabaseInstanceArgs, DatabaseInstanceState } from "./databaseInstance";
 export type DatabaseInstance = import("./databaseInstance").DatabaseInstance;
 export const DatabaseInstance: typeof import("./databaseInstance").DatabaseInstance = null as any;
+utilities.lazyLoad(exports, ["DatabaseInstance"], () => require("./databaseInstance"));
 
 export { DatabasePrivilegeArgs, DatabasePrivilegeState } from "./databasePrivilege";
 export type DatabasePrivilege = import("./databasePrivilege").DatabasePrivilege;
 export const DatabasePrivilege: typeof import("./databasePrivilege").DatabasePrivilege = null as any;
+utilities.lazyLoad(exports, ["DatabasePrivilege"], () => require("./databasePrivilege"));
 
 export { DatabaseReadReplicaArgs, DatabaseReadReplicaState } from "./databaseReadReplica";
 export type DatabaseReadReplica = import("./databaseReadReplica").DatabaseReadReplica;
 export const DatabaseReadReplica: typeof import("./databaseReadReplica").DatabaseReadReplica = null as any;
+utilities.lazyLoad(exports, ["DatabaseReadReplica"], () => require("./databaseReadReplica"));
 
 export { DatabaseUserArgs, DatabaseUserState } from "./databaseUser";
 export type DatabaseUser = import("./databaseUser").DatabaseUser;
 export const DatabaseUser: typeof import("./databaseUser").DatabaseUser = null as any;
+utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
 
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
+utilities.lazyLoad(exports, ["DomainRecord"], () => require("./domainRecord"));
 
 export { DomainZoneArgs, DomainZoneState } from "./domainZone";
 export type DomainZone = import("./domainZone").DomainZone;
 export const DomainZone: typeof import("./domainZone").DomainZone = null as any;
+utilities.lazyLoad(exports, ["DomainZone"], () => require("./domainZone"));
 
 export { FlexibleIpArgs, FlexibleIpState } from "./flexibleIp";
 export type FlexibleIp = import("./flexibleIp").FlexibleIp;
 export const FlexibleIp: typeof import("./flexibleIp").FlexibleIp = null as any;
+utilities.lazyLoad(exports, ["FlexibleIp"], () => require("./flexibleIp"));
 
 export { FunctionArgs, FunctionState } from "./function";
 export type Function = import("./function").Function;
 export const Function: typeof import("./function").Function = null as any;
+utilities.lazyLoad(exports, ["Function"], () => require("./function"));
 
 export { FunctionCronArgs, FunctionCronState } from "./functionCron";
 export type FunctionCron = import("./functionCron").FunctionCron;
 export const FunctionCron: typeof import("./functionCron").FunctionCron = null as any;
+utilities.lazyLoad(exports, ["FunctionCron"], () => require("./functionCron"));
 
 export { FunctionNamespaceArgs, FunctionNamespaceState } from "./functionNamespace";
 export type FunctionNamespace = import("./functionNamespace").FunctionNamespace;
 export const FunctionNamespace: typeof import("./functionNamespace").FunctionNamespace = null as any;
+utilities.lazyLoad(exports, ["FunctionNamespace"], () => require("./functionNamespace"));
 
 export { GetAccountSshKeyArgs, GetAccountSshKeyResult, GetAccountSshKeyOutputArgs } from "./getAccountSshKey";
 export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSshKey = null as any;
 export const getAccountSshKeyOutput: typeof import("./getAccountSshKey").getAccountSshKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountSshKey","getAccountSshKeyOutput"], () => require("./getAccountSshKey"));
 
 export { GetBaremetalOfferArgs, GetBaremetalOfferResult, GetBaremetalOfferOutputArgs } from "./getBaremetalOffer";
 export const getBaremetalOffer: typeof import("./getBaremetalOffer").getBaremetalOffer = null as any;
 export const getBaremetalOfferOutput: typeof import("./getBaremetalOffer").getBaremetalOfferOutput = null as any;
+utilities.lazyLoad(exports, ["getBaremetalOffer","getBaremetalOfferOutput"], () => require("./getBaremetalOffer"));
 
 export { GetBaremetalOsArgs, GetBaremetalOsResult, GetBaremetalOsOutputArgs } from "./getBaremetalOs";
 export const getBaremetalOs: typeof import("./getBaremetalOs").getBaremetalOs = null as any;
 export const getBaremetalOsOutput: typeof import("./getBaremetalOs").getBaremetalOsOutput = null as any;
+utilities.lazyLoad(exports, ["getBaremetalOs","getBaremetalOsOutput"], () => require("./getBaremetalOs"));
 
 export { GetBaremetalServerArgs, GetBaremetalServerResult, GetBaremetalServerOutputArgs } from "./getBaremetalServer";
 export const getBaremetalServer: typeof import("./getBaremetalServer").getBaremetalServer = null as any;
 export const getBaremetalServerOutput: typeof import("./getBaremetalServer").getBaremetalServerOutput = null as any;
+utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
 
 export { GetContainerArgs, GetContainerResult, GetContainerOutputArgs } from "./getContainer";
 export const getContainer: typeof import("./getContainer").getContainer = null as any;
 export const getContainerOutput: typeof import("./getContainer").getContainerOutput = null as any;
+utilities.lazyLoad(exports, ["getContainer","getContainerOutput"], () => require("./getContainer"));
 
 export { GetContainerNamespaceArgs, GetContainerNamespaceResult, GetContainerNamespaceOutputArgs } from "./getContainerNamespace";
 export const getContainerNamespace: typeof import("./getContainerNamespace").getContainerNamespace = null as any;
 export const getContainerNamespaceOutput: typeof import("./getContainerNamespace").getContainerNamespaceOutput = null as any;
+utilities.lazyLoad(exports, ["getContainerNamespace","getContainerNamespaceOutput"], () => require("./getContainerNamespace"));
 
 export { GetDatabaseArgs, GetDatabaseResult, GetDatabaseOutputArgs } from "./getDatabase";
 export const getDatabase: typeof import("./getDatabase").getDatabase = null as any;
 export const getDatabaseOutput: typeof import("./getDatabase").getDatabaseOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabase","getDatabaseOutput"], () => require("./getDatabase"));
 
 export { GetDatabaseAclArgs, GetDatabaseAclResult, GetDatabaseAclOutputArgs } from "./getDatabaseAcl";
 export const getDatabaseAcl: typeof import("./getDatabaseAcl").getDatabaseAcl = null as any;
 export const getDatabaseAclOutput: typeof import("./getDatabaseAcl").getDatabaseAclOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabaseAcl","getDatabaseAclOutput"], () => require("./getDatabaseAcl"));
 
 export { GetDatabaseBackupArgs, GetDatabaseBackupResult, GetDatabaseBackupOutputArgs } from "./getDatabaseBackup";
 export const getDatabaseBackup: typeof import("./getDatabaseBackup").getDatabaseBackup = null as any;
 export const getDatabaseBackupOutput: typeof import("./getDatabaseBackup").getDatabaseBackupOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabaseBackup","getDatabaseBackupOutput"], () => require("./getDatabaseBackup"));
 
 export { GetDatabaseInstanceArgs, GetDatabaseInstanceResult, GetDatabaseInstanceOutputArgs } from "./getDatabaseInstance";
 export const getDatabaseInstance: typeof import("./getDatabaseInstance").getDatabaseInstance = null as any;
 export const getDatabaseInstanceOutput: typeof import("./getDatabaseInstance").getDatabaseInstanceOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabaseInstance","getDatabaseInstanceOutput"], () => require("./getDatabaseInstance"));
 
 export { GetDatabasePrivilegeArgs, GetDatabasePrivilegeResult, GetDatabasePrivilegeOutputArgs } from "./getDatabasePrivilege";
 export const getDatabasePrivilege: typeof import("./getDatabasePrivilege").getDatabasePrivilege = null as any;
 export const getDatabasePrivilegeOutput: typeof import("./getDatabasePrivilege").getDatabasePrivilegeOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabasePrivilege","getDatabasePrivilegeOutput"], () => require("./getDatabasePrivilege"));
 
 export { GetDomainRecordArgs, GetDomainRecordResult, GetDomainRecordOutputArgs } from "./getDomainRecord";
 export const getDomainRecord: typeof import("./getDomainRecord").getDomainRecord = null as any;
 export const getDomainRecordOutput: typeof import("./getDomainRecord").getDomainRecordOutput = null as any;
+utilities.lazyLoad(exports, ["getDomainRecord","getDomainRecordOutput"], () => require("./getDomainRecord"));
 
 export { GetDomainZoneArgs, GetDomainZoneResult, GetDomainZoneOutputArgs } from "./getDomainZone";
 export const getDomainZone: typeof import("./getDomainZone").getDomainZone = null as any;
 export const getDomainZoneOutput: typeof import("./getDomainZone").getDomainZoneOutput = null as any;
+utilities.lazyLoad(exports, ["getDomainZone","getDomainZoneOutput"], () => require("./getDomainZone"));
 
 export { GetFlexibleIpArgs, GetFlexibleIpResult, GetFlexibleIpOutputArgs } from "./getFlexibleIp";
 export const getFlexibleIp: typeof import("./getFlexibleIp").getFlexibleIp = null as any;
 export const getFlexibleIpOutput: typeof import("./getFlexibleIp").getFlexibleIpOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexibleIp","getFlexibleIpOutput"], () => require("./getFlexibleIp"));
 
 export { GetFunctionArgs, GetFunctionResult, GetFunctionOutputArgs } from "./getFunction";
 export const getFunction: typeof import("./getFunction").getFunction = null as any;
 export const getFunctionOutput: typeof import("./getFunction").getFunctionOutput = null as any;
+utilities.lazyLoad(exports, ["getFunction","getFunctionOutput"], () => require("./getFunction"));
 
 export { GetFunctionNamespaceArgs, GetFunctionNamespaceResult, GetFunctionNamespaceOutputArgs } from "./getFunctionNamespace";
 export const getFunctionNamespace: typeof import("./getFunctionNamespace").getFunctionNamespace = null as any;
 export const getFunctionNamespaceOutput: typeof import("./getFunctionNamespace").getFunctionNamespaceOutput = null as any;
+utilities.lazyLoad(exports, ["getFunctionNamespace","getFunctionNamespaceOutput"], () => require("./getFunctionNamespace"));
 
 export { GetInstanceImageArgs, GetInstanceImageResult, GetInstanceImageOutputArgs } from "./getInstanceImage";
 export const getInstanceImage: typeof import("./getInstanceImage").getInstanceImage = null as any;
 export const getInstanceImageOutput: typeof import("./getInstanceImage").getInstanceImageOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceImage","getInstanceImageOutput"], () => require("./getInstanceImage"));
 
 export { GetInstanceIpArgs, GetInstanceIpResult, GetInstanceIpOutputArgs } from "./getInstanceIp";
 export const getInstanceIp: typeof import("./getInstanceIp").getInstanceIp = null as any;
 export const getInstanceIpOutput: typeof import("./getInstanceIp").getInstanceIpOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceIp","getInstanceIpOutput"], () => require("./getInstanceIp"));
 
 export { GetInstanceSecurityGroupArgs, GetInstanceSecurityGroupResult, GetInstanceSecurityGroupOutputArgs } from "./getInstanceSecurityGroup";
 export const getInstanceSecurityGroup: typeof import("./getInstanceSecurityGroup").getInstanceSecurityGroup = null as any;
 export const getInstanceSecurityGroupOutput: typeof import("./getInstanceSecurityGroup").getInstanceSecurityGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceSecurityGroup","getInstanceSecurityGroupOutput"], () => require("./getInstanceSecurityGroup"));
 
 export { GetInstanceServerArgs, GetInstanceServerResult, GetInstanceServerOutputArgs } from "./getInstanceServer";
 export const getInstanceServer: typeof import("./getInstanceServer").getInstanceServer = null as any;
 export const getInstanceServerOutput: typeof import("./getInstanceServer").getInstanceServerOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceServer","getInstanceServerOutput"], () => require("./getInstanceServer"));
 
 export { GetInstanceServersArgs, GetInstanceServersResult, GetInstanceServersOutputArgs } from "./getInstanceServers";
 export const getInstanceServers: typeof import("./getInstanceServers").getInstanceServers = null as any;
 export const getInstanceServersOutput: typeof import("./getInstanceServers").getInstanceServersOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceServers","getInstanceServersOutput"], () => require("./getInstanceServers"));
 
 export { GetInstanceVolumeArgs, GetInstanceVolumeResult, GetInstanceVolumeOutputArgs } from "./getInstanceVolume";
 export const getInstanceVolume: typeof import("./getInstanceVolume").getInstanceVolume = null as any;
 export const getInstanceVolumeOutput: typeof import("./getInstanceVolume").getInstanceVolumeOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceVolume","getInstanceVolumeOutput"], () => require("./getInstanceVolume"));
 
 export { GetIotDeviceArgs, GetIotDeviceResult, GetIotDeviceOutputArgs } from "./getIotDevice";
 export const getIotDevice: typeof import("./getIotDevice").getIotDevice = null as any;
 export const getIotDeviceOutput: typeof import("./getIotDevice").getIotDeviceOutput = null as any;
+utilities.lazyLoad(exports, ["getIotDevice","getIotDeviceOutput"], () => require("./getIotDevice"));
 
 export { GetIotHubArgs, GetIotHubResult, GetIotHubOutputArgs } from "./getIotHub";
 export const getIotHub: typeof import("./getIotHub").getIotHub = null as any;
 export const getIotHubOutput: typeof import("./getIotHub").getIotHubOutput = null as any;
+utilities.lazyLoad(exports, ["getIotHub","getIotHubOutput"], () => require("./getIotHub"));
 
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
 export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;
+utilities.lazyLoad(exports, ["getKubernetesCluster","getKubernetesClusterOutput"], () => require("./getKubernetesCluster"));
 
 export { GetKubernetesNodePoolArgs, GetKubernetesNodePoolResult, GetKubernetesNodePoolOutputArgs } from "./getKubernetesNodePool";
 export const getKubernetesNodePool: typeof import("./getKubernetesNodePool").getKubernetesNodePool = null as any;
 export const getKubernetesNodePoolOutput: typeof import("./getKubernetesNodePool").getKubernetesNodePoolOutput = null as any;
+utilities.lazyLoad(exports, ["getKubernetesNodePool","getKubernetesNodePoolOutput"], () => require("./getKubernetesNodePool"));
 
 export { GetLoadbalancerArgs, GetLoadbalancerResult, GetLoadbalancerOutputArgs } from "./getLoadbalancer";
 export const getLoadbalancer: typeof import("./getLoadbalancer").getLoadbalancer = null as any;
 export const getLoadbalancerOutput: typeof import("./getLoadbalancer").getLoadbalancerOutput = null as any;
+utilities.lazyLoad(exports, ["getLoadbalancer","getLoadbalancerOutput"], () => require("./getLoadbalancer"));
 
 export { GetLoadbalancerCertificateArgs, GetLoadbalancerCertificateResult, GetLoadbalancerCertificateOutputArgs } from "./getLoadbalancerCertificate";
 export const getLoadbalancerCertificate: typeof import("./getLoadbalancerCertificate").getLoadbalancerCertificate = null as any;
 export const getLoadbalancerCertificateOutput: typeof import("./getLoadbalancerCertificate").getLoadbalancerCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getLoadbalancerCertificate","getLoadbalancerCertificateOutput"], () => require("./getLoadbalancerCertificate"));
 
 export { GetLoadbalancerIpArgs, GetLoadbalancerIpResult, GetLoadbalancerIpOutputArgs } from "./getLoadbalancerIp";
 export const getLoadbalancerIp: typeof import("./getLoadbalancerIp").getLoadbalancerIp = null as any;
 export const getLoadbalancerIpOutput: typeof import("./getLoadbalancerIp").getLoadbalancerIpOutput = null as any;
+utilities.lazyLoad(exports, ["getLoadbalancerIp","getLoadbalancerIpOutput"], () => require("./getLoadbalancerIp"));
 
 export { GetMarketplaceImageArgs, GetMarketplaceImageResult, GetMarketplaceImageOutputArgs } from "./getMarketplaceImage";
 export const getMarketplaceImage: typeof import("./getMarketplaceImage").getMarketplaceImage = null as any;
 export const getMarketplaceImageOutput: typeof import("./getMarketplaceImage").getMarketplaceImageOutput = null as any;
+utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
 
 export { GetObjectBucketArgs, GetObjectBucketResult, GetObjectBucketOutputArgs } from "./getObjectBucket";
 export const getObjectBucket: typeof import("./getObjectBucket").getObjectBucket = null as any;
 export const getObjectBucketOutput: typeof import("./getObjectBucket").getObjectBucketOutput = null as any;
+utilities.lazyLoad(exports, ["getObjectBucket","getObjectBucketOutput"], () => require("./getObjectBucket"));
 
 export { GetRedisClusterArgs, GetRedisClusterResult, GetRedisClusterOutputArgs } from "./getRedisCluster";
 export const getRedisCluster: typeof import("./getRedisCluster").getRedisCluster = null as any;
 export const getRedisClusterOutput: typeof import("./getRedisCluster").getRedisClusterOutput = null as any;
+utilities.lazyLoad(exports, ["getRedisCluster","getRedisClusterOutput"], () => require("./getRedisCluster"));
 
 export { GetRegistryImageArgs, GetRegistryImageResult, GetRegistryImageOutputArgs } from "./getRegistryImage";
 export const getRegistryImage: typeof import("./getRegistryImage").getRegistryImage = null as any;
 export const getRegistryImageOutput: typeof import("./getRegistryImage").getRegistryImageOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryImage","getRegistryImageOutput"], () => require("./getRegistryImage"));
 
 export { GetRegistryNamespaceArgs, GetRegistryNamespaceResult, GetRegistryNamespaceOutputArgs } from "./getRegistryNamespace";
 export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRegistryNamespace = null as any;
 export const getRegistryNamespaceOutput: typeof import("./getRegistryNamespace").getRegistryNamespaceOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
 
 export { GetVpcGatewayNetworkArgs, GetVpcGatewayNetworkResult, GetVpcGatewayNetworkOutputArgs } from "./getVpcGatewayNetwork";
 export const getVpcGatewayNetwork: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetwork = null as any;
 export const getVpcGatewayNetworkOutput: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetworkOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcGatewayNetwork","getVpcGatewayNetworkOutput"], () => require("./getVpcGatewayNetwork"));
 
 export { GetVpcPrivateNetworkArgs, GetVpcPrivateNetworkResult, GetVpcPrivateNetworkOutputArgs } from "./getVpcPrivateNetwork";
 export const getVpcPrivateNetwork: typeof import("./getVpcPrivateNetwork").getVpcPrivateNetwork = null as any;
 export const getVpcPrivateNetworkOutput: typeof import("./getVpcPrivateNetwork").getVpcPrivateNetworkOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcPrivateNetwork","getVpcPrivateNetworkOutput"], () => require("./getVpcPrivateNetwork"));
 
 export { GetVpcPublicGatewayArgs, GetVpcPublicGatewayResult, GetVpcPublicGatewayOutputArgs } from "./getVpcPublicGateway";
 export const getVpcPublicGateway: typeof import("./getVpcPublicGateway").getVpcPublicGateway = null as any;
 export const getVpcPublicGatewayOutput: typeof import("./getVpcPublicGateway").getVpcPublicGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcPublicGateway","getVpcPublicGatewayOutput"], () => require("./getVpcPublicGateway"));
 
 export { GetVpcPublicGatewayDhcpArgs, GetVpcPublicGatewayDhcpResult, GetVpcPublicGatewayDhcpOutputArgs } from "./getVpcPublicGatewayDhcp";
 export const getVpcPublicGatewayDhcp: typeof import("./getVpcPublicGatewayDhcp").getVpcPublicGatewayDhcp = null as any;
 export const getVpcPublicGatewayDhcpOutput: typeof import("./getVpcPublicGatewayDhcp").getVpcPublicGatewayDhcpOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcPublicGatewayDhcp","getVpcPublicGatewayDhcpOutput"], () => require("./getVpcPublicGatewayDhcp"));
 
 export { GetVpcPublicGatewayDhcpReservationArgs, GetVpcPublicGatewayDhcpReservationResult, GetVpcPublicGatewayDhcpReservationOutputArgs } from "./getVpcPublicGatewayDhcpReservation";
 export const getVpcPublicGatewayDhcpReservation: typeof import("./getVpcPublicGatewayDhcpReservation").getVpcPublicGatewayDhcpReservation = null as any;
 export const getVpcPublicGatewayDhcpReservationOutput: typeof import("./getVpcPublicGatewayDhcpReservation").getVpcPublicGatewayDhcpReservationOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcPublicGatewayDhcpReservation","getVpcPublicGatewayDhcpReservationOutput"], () => require("./getVpcPublicGatewayDhcpReservation"));
 
 export { GetVpcPublicGatewayIpArgs, GetVpcPublicGatewayIpResult, GetVpcPublicGatewayIpOutputArgs } from "./getVpcPublicGatewayIp";
 export const getVpcPublicGatewayIp: typeof import("./getVpcPublicGatewayIp").getVpcPublicGatewayIp = null as any;
 export const getVpcPublicGatewayIpOutput: typeof import("./getVpcPublicGatewayIp").getVpcPublicGatewayIpOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcPublicGatewayIp","getVpcPublicGatewayIpOutput"], () => require("./getVpcPublicGatewayIp"));
 
 export { GetVpcPublicPatRuleArgs, GetVpcPublicPatRuleResult, GetVpcPublicPatRuleOutputArgs } from "./getVpcPublicPatRule";
 export const getVpcPublicPatRule: typeof import("./getVpcPublicPatRule").getVpcPublicPatRule = null as any;
 export const getVpcPublicPatRuleOutput: typeof import("./getVpcPublicPatRule").getVpcPublicPatRuleOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcPublicPatRule","getVpcPublicPatRuleOutput"], () => require("./getVpcPublicPatRule"));
 
 export { InstanceImageArgs, InstanceImageState } from "./instanceImage";
 export type InstanceImage = import("./instanceImage").InstanceImage;
 export const InstanceImage: typeof import("./instanceImage").InstanceImage = null as any;
+utilities.lazyLoad(exports, ["InstanceImage"], () => require("./instanceImage"));
 
 export { InstanceIpArgs, InstanceIpState } from "./instanceIp";
 export type InstanceIp = import("./instanceIp").InstanceIp;
 export const InstanceIp: typeof import("./instanceIp").InstanceIp = null as any;
+utilities.lazyLoad(exports, ["InstanceIp"], () => require("./instanceIp"));
 
 export { InstanceIpReverseDnsArgs, InstanceIpReverseDnsState } from "./instanceIpReverseDns";
 export type InstanceIpReverseDns = import("./instanceIpReverseDns").InstanceIpReverseDns;
 export const InstanceIpReverseDns: typeof import("./instanceIpReverseDns").InstanceIpReverseDns = null as any;
+utilities.lazyLoad(exports, ["InstanceIpReverseDns"], () => require("./instanceIpReverseDns"));
 
 export { InstancePlacementGroupArgs, InstancePlacementGroupState } from "./instancePlacementGroup";
 export type InstancePlacementGroup = import("./instancePlacementGroup").InstancePlacementGroup;
 export const InstancePlacementGroup: typeof import("./instancePlacementGroup").InstancePlacementGroup = null as any;
+utilities.lazyLoad(exports, ["InstancePlacementGroup"], () => require("./instancePlacementGroup"));
 
 export { InstancePrivateNicArgs, InstancePrivateNicState } from "./instancePrivateNic";
 export type InstancePrivateNic = import("./instancePrivateNic").InstancePrivateNic;
 export const InstancePrivateNic: typeof import("./instancePrivateNic").InstancePrivateNic = null as any;
+utilities.lazyLoad(exports, ["InstancePrivateNic"], () => require("./instancePrivateNic"));
 
 export { InstanceSecurityGroupArgs, InstanceSecurityGroupState } from "./instanceSecurityGroup";
 export type InstanceSecurityGroup = import("./instanceSecurityGroup").InstanceSecurityGroup;
 export const InstanceSecurityGroup: typeof import("./instanceSecurityGroup").InstanceSecurityGroup = null as any;
+utilities.lazyLoad(exports, ["InstanceSecurityGroup"], () => require("./instanceSecurityGroup"));
 
 export { InstanceSecurityGroupRulesArgs, InstanceSecurityGroupRulesState } from "./instanceSecurityGroupRules";
 export type InstanceSecurityGroupRules = import("./instanceSecurityGroupRules").InstanceSecurityGroupRules;
 export const InstanceSecurityGroupRules: typeof import("./instanceSecurityGroupRules").InstanceSecurityGroupRules = null as any;
+utilities.lazyLoad(exports, ["InstanceSecurityGroupRules"], () => require("./instanceSecurityGroupRules"));
 
 export { InstanceServerArgs, InstanceServerState } from "./instanceServer";
 export type InstanceServer = import("./instanceServer").InstanceServer;
 export const InstanceServer: typeof import("./instanceServer").InstanceServer = null as any;
+utilities.lazyLoad(exports, ["InstanceServer"], () => require("./instanceServer"));
 
 export { InstanceSnapshotArgs, InstanceSnapshotState } from "./instanceSnapshot";
 export type InstanceSnapshot = import("./instanceSnapshot").InstanceSnapshot;
 export const InstanceSnapshot: typeof import("./instanceSnapshot").InstanceSnapshot = null as any;
+utilities.lazyLoad(exports, ["InstanceSnapshot"], () => require("./instanceSnapshot"));
 
 export { InstanceUserDataArgs, InstanceUserDataState } from "./instanceUserData";
 export type InstanceUserData = import("./instanceUserData").InstanceUserData;
 export const InstanceUserData: typeof import("./instanceUserData").InstanceUserData = null as any;
+utilities.lazyLoad(exports, ["InstanceUserData"], () => require("./instanceUserData"));
 
 export { InstanceVolumeArgs, InstanceVolumeState } from "./instanceVolume";
 export type InstanceVolume = import("./instanceVolume").InstanceVolume;
 export const InstanceVolume: typeof import("./instanceVolume").InstanceVolume = null as any;
+utilities.lazyLoad(exports, ["InstanceVolume"], () => require("./instanceVolume"));
 
 export { IotDeviceArgs, IotDeviceState } from "./iotDevice";
 export type IotDevice = import("./iotDevice").IotDevice;
 export const IotDevice: typeof import("./iotDevice").IotDevice = null as any;
+utilities.lazyLoad(exports, ["IotDevice"], () => require("./iotDevice"));
 
 export { IotHubArgs, IotHubState } from "./iotHub";
 export type IotHub = import("./iotHub").IotHub;
 export const IotHub: typeof import("./iotHub").IotHub = null as any;
+utilities.lazyLoad(exports, ["IotHub"], () => require("./iotHub"));
 
 export { IotNetworkArgs, IotNetworkState } from "./iotNetwork";
 export type IotNetwork = import("./iotNetwork").IotNetwork;
 export const IotNetwork: typeof import("./iotNetwork").IotNetwork = null as any;
+utilities.lazyLoad(exports, ["IotNetwork"], () => require("./iotNetwork"));
 
 export { IotRouteArgs, IotRouteState } from "./iotRoute";
 export type IotRoute = import("./iotRoute").IotRoute;
 export const IotRoute: typeof import("./iotRoute").IotRoute = null as any;
+utilities.lazyLoad(exports, ["IotRoute"], () => require("./iotRoute"));
 
 export { KubernetesClusterArgs, KubernetesClusterState } from "./kubernetesCluster";
 export type KubernetesCluster = import("./kubernetesCluster").KubernetesCluster;
 export const KubernetesCluster: typeof import("./kubernetesCluster").KubernetesCluster = null as any;
+utilities.lazyLoad(exports, ["KubernetesCluster"], () => require("./kubernetesCluster"));
 
 export { KubernetesNodePoolArgs, KubernetesNodePoolState } from "./kubernetesNodePool";
 export type KubernetesNodePool = import("./kubernetesNodePool").KubernetesNodePool;
 export const KubernetesNodePool: typeof import("./kubernetesNodePool").KubernetesNodePool = null as any;
+utilities.lazyLoad(exports, ["KubernetesNodePool"], () => require("./kubernetesNodePool"));
 
 export { LoadbalancerArgs, LoadbalancerState } from "./loadbalancer";
 export type Loadbalancer = import("./loadbalancer").Loadbalancer;
 export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
+utilities.lazyLoad(exports, ["Loadbalancer"], () => require("./loadbalancer"));
 
 export { LoadbalancerBackendArgs, LoadbalancerBackendState } from "./loadbalancerBackend";
 export type LoadbalancerBackend = import("./loadbalancerBackend").LoadbalancerBackend;
 export const LoadbalancerBackend: typeof import("./loadbalancerBackend").LoadbalancerBackend = null as any;
+utilities.lazyLoad(exports, ["LoadbalancerBackend"], () => require("./loadbalancerBackend"));
 
 export { LoadbalancerCertificateArgs, LoadbalancerCertificateState } from "./loadbalancerCertificate";
 export type LoadbalancerCertificate = import("./loadbalancerCertificate").LoadbalancerCertificate;
 export const LoadbalancerCertificate: typeof import("./loadbalancerCertificate").LoadbalancerCertificate = null as any;
+utilities.lazyLoad(exports, ["LoadbalancerCertificate"], () => require("./loadbalancerCertificate"));
 
 export { LoadbalancerFrontendArgs, LoadbalancerFrontendState } from "./loadbalancerFrontend";
 export type LoadbalancerFrontend = import("./loadbalancerFrontend").LoadbalancerFrontend;
 export const LoadbalancerFrontend: typeof import("./loadbalancerFrontend").LoadbalancerFrontend = null as any;
+utilities.lazyLoad(exports, ["LoadbalancerFrontend"], () => require("./loadbalancerFrontend"));
 
 export { LoadbalancerIpArgs, LoadbalancerIpState } from "./loadbalancerIp";
 export type LoadbalancerIp = import("./loadbalancerIp").LoadbalancerIp;
 export const LoadbalancerIp: typeof import("./loadbalancerIp").LoadbalancerIp = null as any;
+utilities.lazyLoad(exports, ["LoadbalancerIp"], () => require("./loadbalancerIp"));
 
 export { LoadbalancerRouteArgs, LoadbalancerRouteState } from "./loadbalancerRoute";
 export type LoadbalancerRoute = import("./loadbalancerRoute").LoadbalancerRoute;
 export const LoadbalancerRoute: typeof import("./loadbalancerRoute").LoadbalancerRoute = null as any;
+utilities.lazyLoad(exports, ["LoadbalancerRoute"], () => require("./loadbalancerRoute"));
 
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
 export const ObjectBucket: typeof import("./objectBucket").ObjectBucket = null as any;
+utilities.lazyLoad(exports, ["ObjectBucket"], () => require("./objectBucket"));
 
 export { ObjectBucketAclArgs, ObjectBucketAclState } from "./objectBucketAcl";
 export type ObjectBucketAcl = import("./objectBucketAcl").ObjectBucketAcl;
 export const ObjectBucketAcl: typeof import("./objectBucketAcl").ObjectBucketAcl = null as any;
+utilities.lazyLoad(exports, ["ObjectBucketAcl"], () => require("./objectBucketAcl"));
 
 export { ObjectBucketPolicyArgs, ObjectBucketPolicyState } from "./objectBucketPolicy";
 export type ObjectBucketPolicy = import("./objectBucketPolicy").ObjectBucketPolicy;
 export const ObjectBucketPolicy: typeof import("./objectBucketPolicy").ObjectBucketPolicy = null as any;
+utilities.lazyLoad(exports, ["ObjectBucketPolicy"], () => require("./objectBucketPolicy"));
 
 export { ObjectBucketWebsiteConfigurationArgs, ObjectBucketWebsiteConfigurationState } from "./objectBucketWebsiteConfiguration";
 export type ObjectBucketWebsiteConfiguration = import("./objectBucketWebsiteConfiguration").ObjectBucketWebsiteConfiguration;
 export const ObjectBucketWebsiteConfiguration: typeof import("./objectBucketWebsiteConfiguration").ObjectBucketWebsiteConfiguration = null as any;
+utilities.lazyLoad(exports, ["ObjectBucketWebsiteConfiguration"], () => require("./objectBucketWebsiteConfiguration"));
 
 export { ObjectItemArgs, ObjectItemState } from "./objectItem";
 export type ObjectItem = import("./objectItem").ObjectItem;
 export const ObjectItem: typeof import("./objectItem").ObjectItem = null as any;
+utilities.lazyLoad(exports, ["ObjectItem"], () => require("./objectItem"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 export { RedisClusterArgs, RedisClusterState } from "./redisCluster";
 export type RedisCluster = import("./redisCluster").RedisCluster;
 export const RedisCluster: typeof import("./redisCluster").RedisCluster = null as any;
+utilities.lazyLoad(exports, ["RedisCluster"], () => require("./redisCluster"));
 
 export { RegistryNamespaceArgs, RegistryNamespaceState } from "./registryNamespace";
 export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;
 export const RegistryNamespace: typeof import("./registryNamespace").RegistryNamespace = null as any;
+utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
 
 export { VpcGatewayNetworkArgs, VpcGatewayNetworkState } from "./vpcGatewayNetwork";
 export type VpcGatewayNetwork = import("./vpcGatewayNetwork").VpcGatewayNetwork;
 export const VpcGatewayNetwork: typeof import("./vpcGatewayNetwork").VpcGatewayNetwork = null as any;
+utilities.lazyLoad(exports, ["VpcGatewayNetwork"], () => require("./vpcGatewayNetwork"));
 
 export { VpcPrivateNetworkArgs, VpcPrivateNetworkState } from "./vpcPrivateNetwork";
 export type VpcPrivateNetwork = import("./vpcPrivateNetwork").VpcPrivateNetwork;
 export const VpcPrivateNetwork: typeof import("./vpcPrivateNetwork").VpcPrivateNetwork = null as any;
+utilities.lazyLoad(exports, ["VpcPrivateNetwork"], () => require("./vpcPrivateNetwork"));
 
 export { VpcPublicGatewayArgs, VpcPublicGatewayState } from "./vpcPublicGateway";
 export type VpcPublicGateway = import("./vpcPublicGateway").VpcPublicGateway;
 export const VpcPublicGateway: typeof import("./vpcPublicGateway").VpcPublicGateway = null as any;
+utilities.lazyLoad(exports, ["VpcPublicGateway"], () => require("./vpcPublicGateway"));
 
 export { VpcPublicGatewayDhcpArgs, VpcPublicGatewayDhcpState } from "./vpcPublicGatewayDhcp";
 export type VpcPublicGatewayDhcp = import("./vpcPublicGatewayDhcp").VpcPublicGatewayDhcp;
 export const VpcPublicGatewayDhcp: typeof import("./vpcPublicGatewayDhcp").VpcPublicGatewayDhcp = null as any;
+utilities.lazyLoad(exports, ["VpcPublicGatewayDhcp"], () => require("./vpcPublicGatewayDhcp"));
 
 export { VpcPublicGatewayDhcpReservationArgs, VpcPublicGatewayDhcpReservationState } from "./vpcPublicGatewayDhcpReservation";
 export type VpcPublicGatewayDhcpReservation = import("./vpcPublicGatewayDhcpReservation").VpcPublicGatewayDhcpReservation;
 export const VpcPublicGatewayDhcpReservation: typeof import("./vpcPublicGatewayDhcpReservation").VpcPublicGatewayDhcpReservation = null as any;
+utilities.lazyLoad(exports, ["VpcPublicGatewayDhcpReservation"], () => require("./vpcPublicGatewayDhcpReservation"));
 
 export { VpcPublicGatewayIpArgs, VpcPublicGatewayIpState } from "./vpcPublicGatewayIp";
 export type VpcPublicGatewayIp = import("./vpcPublicGatewayIp").VpcPublicGatewayIp;
 export const VpcPublicGatewayIp: typeof import("./vpcPublicGatewayIp").VpcPublicGatewayIp = null as any;
+utilities.lazyLoad(exports, ["VpcPublicGatewayIp"], () => require("./vpcPublicGatewayIp"));
 
 export { VpcPublicGatewayPatRuleArgs, VpcPublicGatewayPatRuleState } from "./vpcPublicGatewayPatRule";
 export type VpcPublicGatewayPatRule = import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule;
 export const VpcPublicGatewayPatRule: typeof import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule = null as any;
-
-utilities.lazyLoad(exports, ["AccountSshKey"], () => require("./accountSshKey"));
-utilities.lazyLoad(exports, ["AppleSliconValleyServer"], () => require("./appleSliconValleyServer"));
-utilities.lazyLoad(exports, ["BaremetalServer"], () => require("./baremetalServer"));
-utilities.lazyLoad(exports, ["Container"], () => require("./container"));
-utilities.lazyLoad(exports, ["ContainerCron"], () => require("./containerCron"));
-utilities.lazyLoad(exports, ["ContainerNamespace"], () => require("./containerNamespace"));
-utilities.lazyLoad(exports, ["Database"], () => require("./database"));
-utilities.lazyLoad(exports, ["DatabaseAcl"], () => require("./databaseAcl"));
-utilities.lazyLoad(exports, ["DatabaseBackup"], () => require("./databaseBackup"));
-utilities.lazyLoad(exports, ["DatabaseInstance"], () => require("./databaseInstance"));
-utilities.lazyLoad(exports, ["DatabasePrivilege"], () => require("./databasePrivilege"));
-utilities.lazyLoad(exports, ["DatabaseReadReplica"], () => require("./databaseReadReplica"));
-utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
-utilities.lazyLoad(exports, ["DomainRecord"], () => require("./domainRecord"));
-utilities.lazyLoad(exports, ["DomainZone"], () => require("./domainZone"));
-utilities.lazyLoad(exports, ["FlexibleIp"], () => require("./flexibleIp"));
-utilities.lazyLoad(exports, ["Function"], () => require("./function"));
-utilities.lazyLoad(exports, ["FunctionCron"], () => require("./functionCron"));
-utilities.lazyLoad(exports, ["FunctionNamespace"], () => require("./functionNamespace"));
-utilities.lazyLoad(exports, ["getAccountSshKey","getAccountSshKeyOutput"], () => require("./getAccountSshKey"));
-utilities.lazyLoad(exports, ["getBaremetalOffer","getBaremetalOfferOutput"], () => require("./getBaremetalOffer"));
-utilities.lazyLoad(exports, ["getBaremetalOs","getBaremetalOsOutput"], () => require("./getBaremetalOs"));
-utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
-utilities.lazyLoad(exports, ["getContainer","getContainerOutput"], () => require("./getContainer"));
-utilities.lazyLoad(exports, ["getContainerNamespace","getContainerNamespaceOutput"], () => require("./getContainerNamespace"));
-utilities.lazyLoad(exports, ["getDatabase","getDatabaseOutput"], () => require("./getDatabase"));
-utilities.lazyLoad(exports, ["getDatabaseAcl","getDatabaseAclOutput"], () => require("./getDatabaseAcl"));
-utilities.lazyLoad(exports, ["getDatabaseBackup","getDatabaseBackupOutput"], () => require("./getDatabaseBackup"));
-utilities.lazyLoad(exports, ["getDatabaseInstance","getDatabaseInstanceOutput"], () => require("./getDatabaseInstance"));
-utilities.lazyLoad(exports, ["getDatabasePrivilege","getDatabasePrivilegeOutput"], () => require("./getDatabasePrivilege"));
-utilities.lazyLoad(exports, ["getDomainRecord","getDomainRecordOutput"], () => require("./getDomainRecord"));
-utilities.lazyLoad(exports, ["getDomainZone","getDomainZoneOutput"], () => require("./getDomainZone"));
-utilities.lazyLoad(exports, ["getFlexibleIp","getFlexibleIpOutput"], () => require("./getFlexibleIp"));
-utilities.lazyLoad(exports, ["getFunction","getFunctionOutput"], () => require("./getFunction"));
-utilities.lazyLoad(exports, ["getFunctionNamespace","getFunctionNamespaceOutput"], () => require("./getFunctionNamespace"));
-utilities.lazyLoad(exports, ["getInstanceImage","getInstanceImageOutput"], () => require("./getInstanceImage"));
-utilities.lazyLoad(exports, ["getInstanceIp","getInstanceIpOutput"], () => require("./getInstanceIp"));
-utilities.lazyLoad(exports, ["getInstanceSecurityGroup","getInstanceSecurityGroupOutput"], () => require("./getInstanceSecurityGroup"));
-utilities.lazyLoad(exports, ["getInstanceServer","getInstanceServerOutput"], () => require("./getInstanceServer"));
-utilities.lazyLoad(exports, ["getInstanceServers","getInstanceServersOutput"], () => require("./getInstanceServers"));
-utilities.lazyLoad(exports, ["getInstanceVolume","getInstanceVolumeOutput"], () => require("./getInstanceVolume"));
-utilities.lazyLoad(exports, ["getIotDevice","getIotDeviceOutput"], () => require("./getIotDevice"));
-utilities.lazyLoad(exports, ["getIotHub","getIotHubOutput"], () => require("./getIotHub"));
-utilities.lazyLoad(exports, ["getKubernetesCluster","getKubernetesClusterOutput"], () => require("./getKubernetesCluster"));
-utilities.lazyLoad(exports, ["getKubernetesNodePool","getKubernetesNodePoolOutput"], () => require("./getKubernetesNodePool"));
-utilities.lazyLoad(exports, ["getLoadbalancer","getLoadbalancerOutput"], () => require("./getLoadbalancer"));
-utilities.lazyLoad(exports, ["getLoadbalancerCertificate","getLoadbalancerCertificateOutput"], () => require("./getLoadbalancerCertificate"));
-utilities.lazyLoad(exports, ["getLoadbalancerIp","getLoadbalancerIpOutput"], () => require("./getLoadbalancerIp"));
-utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
-utilities.lazyLoad(exports, ["getObjectBucket","getObjectBucketOutput"], () => require("./getObjectBucket"));
-utilities.lazyLoad(exports, ["getRedisCluster","getRedisClusterOutput"], () => require("./getRedisCluster"));
-utilities.lazyLoad(exports, ["getRegistryImage","getRegistryImageOutput"], () => require("./getRegistryImage"));
-utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
-utilities.lazyLoad(exports, ["getVpcGatewayNetwork","getVpcGatewayNetworkOutput"], () => require("./getVpcGatewayNetwork"));
-utilities.lazyLoad(exports, ["getVpcPrivateNetwork","getVpcPrivateNetworkOutput"], () => require("./getVpcPrivateNetwork"));
-utilities.lazyLoad(exports, ["getVpcPublicGateway","getVpcPublicGatewayOutput"], () => require("./getVpcPublicGateway"));
-utilities.lazyLoad(exports, ["getVpcPublicGatewayDhcp","getVpcPublicGatewayDhcpOutput"], () => require("./getVpcPublicGatewayDhcp"));
-utilities.lazyLoad(exports, ["getVpcPublicGatewayDhcpReservation","getVpcPublicGatewayDhcpReservationOutput"], () => require("./getVpcPublicGatewayDhcpReservation"));
-utilities.lazyLoad(exports, ["getVpcPublicGatewayIp","getVpcPublicGatewayIpOutput"], () => require("./getVpcPublicGatewayIp"));
-utilities.lazyLoad(exports, ["getVpcPublicPatRule","getVpcPublicPatRuleOutput"], () => require("./getVpcPublicPatRule"));
-utilities.lazyLoad(exports, ["InstanceImage"], () => require("./instanceImage"));
-utilities.lazyLoad(exports, ["InstanceIp"], () => require("./instanceIp"));
-utilities.lazyLoad(exports, ["InstanceIpReverseDns"], () => require("./instanceIpReverseDns"));
-utilities.lazyLoad(exports, ["InstancePlacementGroup"], () => require("./instancePlacementGroup"));
-utilities.lazyLoad(exports, ["InstancePrivateNic"], () => require("./instancePrivateNic"));
-utilities.lazyLoad(exports, ["InstanceSecurityGroup"], () => require("./instanceSecurityGroup"));
-utilities.lazyLoad(exports, ["InstanceSecurityGroupRules"], () => require("./instanceSecurityGroupRules"));
-utilities.lazyLoad(exports, ["InstanceServer"], () => require("./instanceServer"));
-utilities.lazyLoad(exports, ["InstanceSnapshot"], () => require("./instanceSnapshot"));
-utilities.lazyLoad(exports, ["InstanceUserData"], () => require("./instanceUserData"));
-utilities.lazyLoad(exports, ["InstanceVolume"], () => require("./instanceVolume"));
-utilities.lazyLoad(exports, ["IotDevice"], () => require("./iotDevice"));
-utilities.lazyLoad(exports, ["IotHub"], () => require("./iotHub"));
-utilities.lazyLoad(exports, ["IotNetwork"], () => require("./iotNetwork"));
-utilities.lazyLoad(exports, ["IotRoute"], () => require("./iotRoute"));
-utilities.lazyLoad(exports, ["KubernetesCluster"], () => require("./kubernetesCluster"));
-utilities.lazyLoad(exports, ["KubernetesNodePool"], () => require("./kubernetesNodePool"));
-utilities.lazyLoad(exports, ["Loadbalancer"], () => require("./loadbalancer"));
-utilities.lazyLoad(exports, ["LoadbalancerBackend"], () => require("./loadbalancerBackend"));
-utilities.lazyLoad(exports, ["LoadbalancerCertificate"], () => require("./loadbalancerCertificate"));
-utilities.lazyLoad(exports, ["LoadbalancerFrontend"], () => require("./loadbalancerFrontend"));
-utilities.lazyLoad(exports, ["LoadbalancerIp"], () => require("./loadbalancerIp"));
-utilities.lazyLoad(exports, ["LoadbalancerRoute"], () => require("./loadbalancerRoute"));
-utilities.lazyLoad(exports, ["ObjectBucket"], () => require("./objectBucket"));
-utilities.lazyLoad(exports, ["ObjectBucketAcl"], () => require("./objectBucketAcl"));
-utilities.lazyLoad(exports, ["ObjectBucketPolicy"], () => require("./objectBucketPolicy"));
-utilities.lazyLoad(exports, ["ObjectBucketWebsiteConfiguration"], () => require("./objectBucketWebsiteConfiguration"));
-utilities.lazyLoad(exports, ["ObjectItem"], () => require("./objectItem"));
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-utilities.lazyLoad(exports, ["RedisCluster"], () => require("./redisCluster"));
-utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
-utilities.lazyLoad(exports, ["VpcGatewayNetwork"], () => require("./vpcGatewayNetwork"));
-utilities.lazyLoad(exports, ["VpcPrivateNetwork"], () => require("./vpcPrivateNetwork"));
-utilities.lazyLoad(exports, ["VpcPublicGateway"], () => require("./vpcPublicGateway"));
-utilities.lazyLoad(exports, ["VpcPublicGatewayDhcp"], () => require("./vpcPublicGatewayDhcp"));
-utilities.lazyLoad(exports, ["VpcPublicGatewayDhcpReservation"], () => require("./vpcPublicGatewayDhcpReservation"));
-utilities.lazyLoad(exports, ["VpcPublicGatewayIp"], () => require("./vpcPublicGatewayIp"));
 utilities.lazyLoad(exports, ["VpcPublicGatewayPatRule"], () => require("./vpcPublicGatewayPatRule"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -521,6 +526,8 @@ const _module = {
                 return new ContainerCron(name, <any>undefined, { urn })
             case "scaleway:index/containerNamespace:ContainerNamespace":
                 return new ContainerNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/containerToken:ContainerToken":
+                return new ContainerToken(name, <any>undefined, { urn })
             case "scaleway:index/database:Database":
                 return new Database(name, <any>undefined, { urn })
             case "scaleway:index/databaseAcl:DatabaseAcl":
@@ -632,6 +639,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _modu
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/containerToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/database", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseBackup", _module)

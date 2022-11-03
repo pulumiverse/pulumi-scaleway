@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public static class GetDatabaseInstance
     {
         /// <summary>
-        /// Gets information about a RDB instance.
+        /// Gets information about an RDB instance.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -40,7 +40,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a RDB instance.
+        /// Gets information about an RDB instance.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -128,6 +128,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableDictionary<string, string> InitSettings;
         public readonly string? InstanceId;
         public readonly bool IsHaCluster;
         public readonly ImmutableArray<Outputs.GetDatabaseInstanceLoadBalancerResult> LoadBalancers;
@@ -164,6 +165,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string engine,
 
             string id,
+
+            ImmutableDictionary<string, string> initSettings,
 
             string? instanceId,
 
@@ -206,6 +209,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             EndpointPort = endpointPort;
             Engine = engine;
             Id = id;
+            InitSettings = initSettings;
             InstanceId = instanceId;
             IsHaCluster = isHaCluster;
             LoadBalancers = loadBalancers;

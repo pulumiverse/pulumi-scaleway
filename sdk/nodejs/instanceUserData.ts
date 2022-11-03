@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  *     value: "bar",
  * });
  * // User Data with many keys.
- * const data: scaleway.InstanceUserData[];
+ * const data: scaleway.InstanceUserData[] = [];
  * for (const range = {value: 0}; range.value < userData; range.value++) {
  *     data.push(new scaleway.InstanceUserData(`data-${range.value}`, {
  *         serverId: mainInstanceServer.id,

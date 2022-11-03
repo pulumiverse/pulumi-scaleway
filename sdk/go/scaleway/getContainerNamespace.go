@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupContainerNamespace(ctx, &GetContainerNamespaceArgs{
+//			_, err = scaleway.LookupContainerNamespace(ctx, &GetContainerNamespaceArgs{
 //				Name: pulumi.StringRef("my-namespace-name"),
 //			}, nil)
 //			if err != nil {

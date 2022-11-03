@@ -16,7 +16,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Examples
     /// 
-    /// ### Basic
+    /// ### Example Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -25,31 +25,81 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         NodeType = "DB-DEV-S",
+    ///         DisableBackup = true,
     ///         Engine = "PostgreSQL-11",
     ///         IsHaCluster = true,
-    ///         DisableBackup = true,
-    ///         UserName = "my_initial_user",
+    ///         NodeType = "DB-DEV-S",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
     ///     });
     /// 
-    ///     // with backup schedule
-    ///     var mainIndex_databaseInstanceDatabaseInstance = new Scaleway.DatabaseInstance("mainIndex/databaseInstanceDatabaseInstance", new()
+    /// });
+    /// ```
+    /// 
+    /// ### Example with Settings
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         NodeType = "DB-DEV-S",
-    ///         Engine = "PostgreSQL-11",
-    ///         IsHaCluster = true,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         DisableBackup = true,
+    ///         Engine = "MySQL-8",
+    ///         InitSettings = 
+    ///         {
+    ///             { "lower_case_table_names", "1" },
+    ///         },
+    ///         NodeType = "db-dev-s",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Settings = 
+    ///         {
+    ///             { "max_connections", "350" },
+    ///         },
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with backup schedule
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
     ///         BackupScheduleFrequency = 24,
     ///         BackupScheduleRetention = 7,
+    ///         DisableBackup = false,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
     ///     });
     /// 
-    ///     // keep it one week
-    ///     // with private network and dhcp configuration
+    /// });
+    /// ```
+    /// 
+    /// ### Example with private network and dhcp configuration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
     ///     var pn02 = new Scaleway.VpcPrivateNetwork("pn02");
     /// 
     ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
@@ -81,23 +131,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new()
-    ///     {
-    ///         GatewayId = mainVpcPublicGateway.Id,
-    ///         PrivateIp = mainVpcPublicGatewayDhcp.Address,
-    ///         PrivatePort = mainDatabaseInstance.PrivateNetwork.Apply(privateNetwork =&gt; privateNetwork?.Port),
-    ///         PublicPort = 42,
-    ///         Protocol = "both",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             mainVpcGatewayNetwork,
-    ///             pn02,
-    ///         },
-    ///     });
-    /// 
-    ///     var mainScalewayIndex_databaseInstanceDatabaseInstance = new Scaleway.DatabaseInstance("mainScalewayIndex/databaseInstanceDatabaseInstance", new()
+    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
     ///     {
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-11",
@@ -122,8 +156,28 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///         },
     ///     });
     /// 
+    ///     var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new()
+    ///     {
+    ///         GatewayId = mainVpcPublicGateway.Id,
+    ///         PrivateIp = mainVpcPublicGatewayDhcp.Address,
+    ///         PrivatePort = mainDatabaseInstance.PrivateNetwork.Apply(privateNetwork =&gt; privateNetwork?.Port),
+    ///         PublicPort = 42,
+    ///         Protocol = "both",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             mainVpcGatewayNetwork,
+    ///             pn02,
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
+    /// 
+    /// ## Settings
+    /// 
+    /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` on your `node_type` of your convenient.
     /// 
     /// ## Private Network
     /// 
@@ -197,6 +251,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
+        /// Map of engine settings to be set at database initialisation.
+        /// </summary>
+        [Output("initSettings")]
+        public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
+
+        /// <summary>
         /// Enable or disable high availability for the database instance.
         /// </summary>
         [Output("isHaCluster")]
@@ -257,7 +317,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+        /// Map of engine settings to be set. Using this option will override default config.
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
@@ -367,6 +427,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
 
+        [Input("initSettings")]
+        private InputMap<string>? _initSettings;
+
+        /// <summary>
+        /// Map of engine settings to be set at database initialisation.
+        /// </summary>
+        public InputMap<string> InitSettings
+        {
+            get => _initSettings ?? (_initSettings = new InputMap<string>());
+            set => _initSettings = value;
+        }
+
         /// <summary>
         /// Enable or disable high availability for the database instance.
         /// </summary>
@@ -423,7 +495,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+        /// Map of engine settings to be set. Using this option will override default config.
         /// </summary>
         public InputMap<string> Settings
         {
@@ -517,6 +589,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("engine")]
         public Input<string>? Engine { get; set; }
 
+        [Input("initSettings")]
+        private InputMap<string>? _initSettings;
+
+        /// <summary>
+        /// Map of engine settings to be set at database initialisation.
+        /// </summary>
+        public InputMap<string> InitSettings
+        {
+            get => _initSettings ?? (_initSettings = new InputMap<string>());
+            set => _initSettings = value;
+        }
+
         /// <summary>
         /// Enable or disable high availability for the database instance.
         /// </summary>
@@ -603,7 +687,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+        /// Map of engine settings to be set. Using this option will override default config.
         /// </summary>
         public InputMap<string> Settings
         {

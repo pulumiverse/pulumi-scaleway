@@ -2167,7 +2167,7 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getDatabaseBackup:getDatabaseBackup", TypeShape.of(GetDatabaseBackupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about a RDB instance.
+     * Gets information about an RDB instance.
      * 
      * ## Example Usage
      * ```java
@@ -2204,7 +2204,7 @@ public final class ScalewayFunctions {
         return getDatabaseInstance(GetDatabaseInstanceArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a RDB instance.
+     * Gets information about an RDB instance.
      * 
      * ## Example Usage
      * ```java
@@ -2241,7 +2241,7 @@ public final class ScalewayFunctions {
         return getDatabaseInstancePlain(GetDatabaseInstancePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a RDB instance.
+     * Gets information about an RDB instance.
      * 
      * ## Example Usage
      * ```java
@@ -2278,7 +2278,7 @@ public final class ScalewayFunctions {
         return getDatabaseInstance(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a RDB instance.
+     * Gets information about an RDB instance.
      * 
      * ## Example Usage
      * ```java
@@ -2315,7 +2315,7 @@ public final class ScalewayFunctions {
         return getDatabaseInstancePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a RDB instance.
+     * Gets information about an RDB instance.
      * 
      * ## Example Usage
      * ```java
@@ -2352,7 +2352,7 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", TypeShape.of(GetDatabaseInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about a RDB instance.
+     * Gets information about an RDB instance.
      * 
      * ## Example Usage
      * ```java
