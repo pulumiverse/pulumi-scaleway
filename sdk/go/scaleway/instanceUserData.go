@@ -64,7 +64,9 @@ import (
 //				return err
 //			}
 //			var data []*scaleway.InstanceUserData
-//			for key0, val0 := range userData {
+//			for index := 0; index < userData; index++ {
+//				key0 := index
+//				val0 := index
 //				__res, err := scaleway.NewInstanceUserData(ctx, fmt.Sprintf("data-%v", key0), &scaleway.InstanceUserDataArgs{
 //					ServerId: mainInstanceServer.ID(),
 //					Key:      pulumi.Any(key0),

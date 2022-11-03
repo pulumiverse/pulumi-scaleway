@@ -32,6 +32,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerCron{}
 	case "scaleway:index/containerNamespace:ContainerNamespace":
 		r = &ContainerNamespace{}
+	case "scaleway:index/containerToken:ContainerToken":
+		r = &ContainerToken{}
 	case "scaleway:index/database:Database":
 		r = &Database{}
 	case "scaleway:index/databaseAcl:DatabaseAcl":
@@ -188,6 +190,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/containerNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/containerToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

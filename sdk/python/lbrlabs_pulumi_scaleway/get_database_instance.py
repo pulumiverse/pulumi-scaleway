@@ -22,7 +22,7 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -50,6 +50,9 @@ class GetDatabaseInstanceResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if init_settings and not isinstance(init_settings, dict):
+            raise TypeError("Expected argument 'init_settings' to be a dict")
+        pulumi.set(__self__, "init_settings", init_settings)
         if instance_id and not isinstance(instance_id, str):
             raise TypeError("Expected argument 'instance_id' to be a str")
         pulumi.set(__self__, "instance_id", instance_id)
@@ -148,6 +151,11 @@ class GetDatabaseInstanceResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="initSettings")
+    def init_settings(self) -> Mapping[str, str]:
+        return pulumi.get(self, "init_settings")
+
+    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[str]:
         return pulumi.get(self, "instance_id")
@@ -243,6 +251,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             endpoint_port=self.endpoint_port,
             engine=self.engine,
             id=self.id,
+            init_settings=self.init_settings,
             instance_id=self.instance_id,
             is_ha_cluster=self.is_ha_cluster,
             load_balancers=self.load_balancers,
@@ -265,7 +274,7 @@ def get_database_instance(instance_id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
-    Gets information about a RDB instance.
+    Gets information about an RDB instance.
 
     ## Example Usage
 
@@ -298,6 +307,7 @@ def get_database_instance(instance_id: Optional[str] = None,
         endpoint_port=__ret__.endpoint_port,
         engine=__ret__.engine,
         id=__ret__.id,
+        init_settings=__ret__.init_settings,
         instance_id=__ret__.instance_id,
         is_ha_cluster=__ret__.is_ha_cluster,
         load_balancers=__ret__.load_balancers,
@@ -321,7 +331,7 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
-    Gets information about a RDB instance.
+    Gets information about an RDB instance.
 
     ## Example Usage
 

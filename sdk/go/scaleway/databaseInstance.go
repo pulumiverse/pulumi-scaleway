@@ -16,7 +16,7 @@ import (
 //
 // ## Examples
 //
-// ### Basic
+// ### Example Basic
 //
 // ```go
 // package main
@@ -30,30 +30,106 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainDatabaseInstance, err := scaleway.NewDatabaseInstance(ctx, "mainDatabaseInstance", &scaleway.DatabaseInstanceArgs{
-//				NodeType:      pulumi.String("DB-DEV-S"),
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				DisableBackup: pulumi.Bool(true),
 //				Engine:        pulumi.String("PostgreSQL-11"),
 //				IsHaCluster:   pulumi.Bool(true),
-//				DisableBackup: pulumi.Bool(true),
-//				UserName:      pulumi.String("my_initial_user"),
+//				NodeType:      pulumi.String("DB-DEV-S"),
 //				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:      pulumi.String("my_initial_user"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseInstance(ctx, "mainIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
-//				NodeType:                pulumi.String("DB-DEV-S"),
-//				Engine:                  pulumi.String("PostgreSQL-11"),
-//				IsHaCluster:             pulumi.Bool(true),
-//				UserName:                pulumi.String("my_initial_user"),
-//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
-//				DisableBackup:           pulumi.Bool(true),
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with Settings
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				DisableBackup: pulumi.Bool(true),
+//				Engine:        pulumi.String("MySQL-8"),
+//				InitSettings: pulumi.StringMap{
+//					"lower_case_table_names": pulumi.String("1"),
+//				},
+//				NodeType: pulumi.String("db-dev-s"),
+//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
+//				Settings: pulumi.StringMap{
+//					"max_connections": pulumi.String("350"),
+//				},
+//				UserName: pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with backup schedule
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
 //				BackupScheduleFrequency: pulumi.Int(24),
 //				BackupScheduleRetention: pulumi.Int(7),
+//				DisableBackup:           pulumi.Bool(false),
+//				Engine:                  pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:             pulumi.Bool(true),
+//				NodeType:                pulumi.String("DB-DEV-S"),
+//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:                pulumi.String("my_initial_user"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with private network and dhcp configuration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
 //			pn02, err := scaleway.NewVpcPrivateNetwork(ctx, "pn02", nil)
 //			if err != nil {
 //				return err
@@ -88,22 +164,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
-//				GatewayId: mainVpcPublicGateway.ID(),
-//				PrivateIp: mainVpcPublicGatewayDhcp.Address,
-//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork DatabaseInstancePrivateNetwork) (int, error) {
-//					return privateNetwork.Port, nil
-//				}).(pulumi.IntOutput),
-//				PublicPort: pulumi.Int(42),
-//				Protocol:   pulumi.String("both"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainVpcGatewayNetwork,
-//				pn02,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewDatabaseInstance(ctx, "mainScalewayIndex/databaseInstanceDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+//			mainDatabaseInstance, err := scaleway.NewDatabaseInstance(ctx, "mainDatabaseInstance", &scaleway.DatabaseInstanceArgs{
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-11"),
 //				IsHaCluster:   pulumi.Bool(false),
@@ -127,11 +188,30 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
+//				GatewayId: mainVpcPublicGateway.ID(),
+//				PrivateIp: mainVpcPublicGatewayDhcp.Address,
+//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork DatabaseInstancePrivateNetwork) (int, error) {
+//					return privateNetwork.Port, nil
+//				}).(pulumi.IntOutput),
+//				PublicPort: pulumi.Int(42),
+//				Protocol:   pulumi.String("both"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				mainVpcGatewayNetwork,
+//				pn02,
+//			}))
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// ## Settings
+//
+// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` on your `nodeType` of your convenient.
 //
 // ## Private Network
 //
@@ -175,6 +255,8 @@ type DatabaseInstance struct {
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringOutput `pulumi:"engine"`
+	// Map of engine settings to be set at database initialisation.
+	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
@@ -195,7 +277,7 @@ type DatabaseInstance struct {
 	ReadReplicas DatabaseInstanceReadReplicaArrayOutput `pulumi:"readReplicas"`
 	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -268,6 +350,8 @@ type databaseInstanceState struct {
 	EndpointPort *int `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine *string `pulumi:"engine"`
+	// Map of engine settings to be set at database initialisation.
+	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
@@ -288,7 +372,7 @@ type databaseInstanceState struct {
 	ReadReplicas []DatabaseInstanceReadReplica `pulumi:"readReplicas"`
 	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+	// Map of engine settings to be set. Using this option will override default config.
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -319,6 +403,8 @@ type DatabaseInstanceState struct {
 	EndpointPort pulumi.IntPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringPtrInput
+	// Map of engine settings to be set at database initialisation.
+	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
@@ -339,7 +425,7 @@ type DatabaseInstanceState struct {
 	ReadReplicas DatabaseInstanceReadReplicaArrayInput
 	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -366,6 +452,8 @@ type databaseInstanceArgs struct {
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine string `pulumi:"engine"`
+	// Map of engine settings to be set at database initialisation.
+	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// The name of the Database Instance.
@@ -380,7 +468,7 @@ type databaseInstanceArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+	// Map of engine settings to be set. Using this option will override default config.
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -404,6 +492,8 @@ type DatabaseInstanceArgs struct {
 	DisableBackup pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	Engine pulumi.StringInput
+	// Map of engine settings to be set at database initialisation.
+	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// The name of the Database Instance.
@@ -418,7 +508,7 @@ type DatabaseInstanceArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -559,6 +649,11 @@ func (o DatabaseInstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
 
+// Map of engine settings to be set at database initialisation.
+func (o DatabaseInstanceOutput) InitSettings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.InitSettings }).(pulumi.StringMapOutput)
+}
+
 // Enable or disable high availability for the database instance.
 func (o DatabaseInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
@@ -609,7 +704,7 @@ func (o DatabaseInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+// Map of engine settings to be set. Using this option will override default config.
 func (o DatabaseInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }

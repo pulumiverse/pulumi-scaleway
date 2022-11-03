@@ -855,4 +855,3 @@ export interface RedisClusterPublicNetwork {
     ips?: pulumi.Input<pulumi.Input<string>[]>;
     port?: pulumi.Input<number>;
 }
-

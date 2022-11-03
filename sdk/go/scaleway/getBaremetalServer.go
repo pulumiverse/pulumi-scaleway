@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupBaremetalServer(ctx, &GetBaremetalServerArgs{
+//			_, err = scaleway.LookupBaremetalServer(ctx, &GetBaremetalServerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //				Zone: pulumi.StringRef("fr-par-2"),
 //			}, nil)

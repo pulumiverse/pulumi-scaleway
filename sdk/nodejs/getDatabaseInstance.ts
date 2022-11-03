@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a RDB instance.
+ * Gets information about an RDB instance.
  *
  * ## Example Usage
  *
@@ -66,6 +66,7 @@ export interface GetDatabaseInstanceResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly initSettings: {[key: string]: string};
     readonly instanceId?: string;
     readonly isHaCluster: boolean;
     readonly loadBalancers: outputs.GetDatabaseInstanceLoadBalancer[];

@@ -31,6 +31,7 @@ public final class GetDatabaseInstanceResult {
      * 
      */
     private String id;
+    private Map<String,String> initSettings;
     private @Nullable String instanceId;
     private Boolean isHaCluster;
     private List<GetDatabaseInstanceLoadBalancer> loadBalancers;
@@ -79,6 +80,9 @@ public final class GetDatabaseInstanceResult {
      */
     public String id() {
         return this.id;
+    }
+    public Map<String,String> initSettings() {
+        return this.initSettings;
     }
     public Optional<String> instanceId() {
         return Optional.ofNullable(this.instanceId);
@@ -147,6 +151,7 @@ public final class GetDatabaseInstanceResult {
         private Integer endpointPort;
         private String engine;
         private String id;
+        private Map<String,String> initSettings;
         private @Nullable String instanceId;
         private Boolean isHaCluster;
         private List<GetDatabaseInstanceLoadBalancer> loadBalancers;
@@ -175,6 +180,7 @@ public final class GetDatabaseInstanceResult {
     	      this.endpointPort = defaults.endpointPort;
     	      this.engine = defaults.engine;
     	      this.id = defaults.id;
+    	      this.initSettings = defaults.initSettings;
     	      this.instanceId = defaults.instanceId;
     	      this.isHaCluster = defaults.isHaCluster;
     	      this.loadBalancers = defaults.loadBalancers;
@@ -236,6 +242,11 @@ public final class GetDatabaseInstanceResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder initSettings(Map<String,String> initSettings) {
+            this.initSettings = Objects.requireNonNull(initSettings);
             return this;
         }
         @CustomType.Setter
@@ -341,6 +352,7 @@ public final class GetDatabaseInstanceResult {
             o.endpointPort = endpointPort;
             o.engine = engine;
             o.id = id;
+            o.initSettings = initSettings;
             o.instanceId = instanceId;
             o.isHaCluster = isHaCluster;
             o.loadBalancers = loadBalancers;

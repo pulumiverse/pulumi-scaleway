@@ -11,6 +11,7 @@ from .baremetal_server import *
 from .container import *
 from .container_cron import *
 from .container_namespace import *
+from .container_token import *
 from .database import *
 from .database_acl import *
 from .database_backup import *
@@ -162,6 +163,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/containerNamespace:ContainerNamespace": "ContainerNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/containerToken",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/containerToken:ContainerToken": "ContainerToken"
   }
  },
  {

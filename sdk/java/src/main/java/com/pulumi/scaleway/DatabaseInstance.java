@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
  * 
  * ## Examples
  * 
- * ### Basic
+ * ### Example Basic
  * ```java
  * package generated_program;
  * 
@@ -36,6 +36,112 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.scaleway.DatabaseInstance;
  * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .disableBackup(true)
+ *             .engine(&#34;PostgreSQL-11&#34;)
+ *             .isHaCluster(true)
+ *             .nodeType(&#34;DB-DEV-S&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Example with Settings
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .disableBackup(true)
+ *             .engine(&#34;MySQL-8&#34;)
+ *             .initSettings(Map.of(&#34;lower_case_table_names&#34;, 1))
+ *             .nodeType(&#34;db-dev-s&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .settings(Map.of(&#34;max_connections&#34;, &#34;350&#34;))
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Example with backup schedule
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .backupScheduleFrequency(24)
+ *             .backupScheduleRetention(7)
+ *             .disableBackup(false)
+ *             .engine(&#34;PostgreSQL-11&#34;)
+ *             .isHaCluster(true)
+ *             .nodeType(&#34;DB-DEV-S&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Example with private network and dhcp configuration
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
  * import com.pulumi.scaleway.VpcPrivateNetwork;
  * import com.pulumi.scaleway.VpcPublicGatewayDhcp;
  * import com.pulumi.scaleway.VpcPublicGatewayDhcpArgs;
@@ -44,9 +150,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.scaleway.VpcPublicGatewayArgs;
  * import com.pulumi.scaleway.VpcGatewayNetwork;
  * import com.pulumi.scaleway.VpcGatewayNetworkArgs;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
  * import com.pulumi.scaleway.VpcPublicGatewayPatRule;
  * import com.pulumi.scaleway.VpcPublicGatewayPatRuleArgs;
- * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
  * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -61,26 +169,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mainDatabaseInstance = new DatabaseInstance(&#34;mainDatabaseInstance&#34;, DatabaseInstanceArgs.builder()        
- *             .nodeType(&#34;DB-DEV-S&#34;)
- *             .engine(&#34;PostgreSQL-11&#34;)
- *             .isHaCluster(true)
- *             .disableBackup(true)
- *             .userName(&#34;my_initial_user&#34;)
- *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
- *             .build());
- * 
- *         var mainIndex_databaseInstanceDatabaseInstance = new DatabaseInstance(&#34;mainIndex/databaseInstanceDatabaseInstance&#34;, DatabaseInstanceArgs.builder()        
- *             .nodeType(&#34;DB-DEV-S&#34;)
- *             .engine(&#34;PostgreSQL-11&#34;)
- *             .isHaCluster(true)
- *             .userName(&#34;my_initial_user&#34;)
- *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
- *             .disableBackup(true)
- *             .backupScheduleFrequency(24)
- *             .backupScheduleRetention(7)
- *             .build());
- * 
  *         var pn02 = new VpcPrivateNetwork(&#34;pn02&#34;);
  * 
  *         var mainVpcPublicGatewayDhcp = new VpcPublicGatewayDhcp(&#34;mainVpcPublicGatewayDhcp&#34;, VpcPublicGatewayDhcpArgs.builder()        
@@ -106,19 +194,7 @@ import javax.annotation.Nullable;
  *                     pn02)
  *                 .build());
  * 
- *         var mainVpcPublicGatewayPatRule = new VpcPublicGatewayPatRule(&#34;mainVpcPublicGatewayPatRule&#34;, VpcPublicGatewayPatRuleArgs.builder()        
- *             .gatewayId(mainVpcPublicGateway.id())
- *             .privateIp(mainVpcPublicGatewayDhcp.address())
- *             .privatePort(mainDatabaseInstance.privateNetwork().applyValue(privateNetwork -&gt; privateNetwork.port()))
- *             .publicPort(42)
- *             .protocol(&#34;both&#34;)
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(                
- *                     mainVpcGatewayNetwork,
- *                     pn02)
- *                 .build());
- * 
- *         var mainScalewayIndex_databaseInstanceDatabaseInstance = new DatabaseInstance(&#34;mainScalewayIndex/databaseInstanceDatabaseInstance&#34;, DatabaseInstanceArgs.builder()        
+ *         var mainDatabaseInstance = new DatabaseInstance(&#34;mainDatabaseInstance&#34;, DatabaseInstanceArgs.builder()        
  *             .nodeType(&#34;db-dev-s&#34;)
  *             .engine(&#34;PostgreSQL-11&#34;)
  *             .isHaCluster(false)
@@ -139,9 +215,25 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         var mainVpcPublicGatewayPatRule = new VpcPublicGatewayPatRule(&#34;mainVpcPublicGatewayPatRule&#34;, VpcPublicGatewayPatRuleArgs.builder()        
+ *             .gatewayId(mainVpcPublicGateway.id())
+ *             .privateIp(mainVpcPublicGatewayDhcp.address())
+ *             .privatePort(mainDatabaseInstance.privateNetwork().applyValue(privateNetwork -&gt; privateNetwork.port()))
+ *             .publicPort(42)
+ *             .protocol(&#34;both&#34;)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(                
+ *                     mainVpcGatewayNetwork,
+ *                     pn02)
+ *                 .build());
+ * 
  *     }
  * }
  * ```
+ * 
+ * ## Settings
+ * 
+ * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` on your `node_type` of your convenient.
  * 
  * ## Private Network
  * 
@@ -281,6 +373,20 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      */
     public Output<String> engine() {
         return this.engine;
+    }
+    /**
+     * Map of engine settings to be set at database initialisation.
+     * 
+     */
+    @Export(name="initSettings", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> initSettings;
+
+    /**
+     * @return Map of engine settings to be set at database initialisation.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> initSettings() {
+        return Codegen.optional(this.initSettings);
     }
     /**
      * Enable or disable high availability for the database instance.
@@ -423,14 +529,14 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
-     * Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * Map of engine settings to be set. Using this option will override default config.
      * 
      */
     @Export(name="settings", type=Map.class, parameters={String.class, String.class})
     private Output<Map<String,String>> settings;
 
     /**
-     * @return Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * @return Map of engine settings to be set. Using this option will override default config.
      * 
      */
     public Output<Map<String,String>> settings() {

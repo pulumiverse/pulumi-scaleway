@@ -96,6 +96,21 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Map of engine settings to be set at database initialisation.
+     * 
+     */
+    @Import(name="initSettings")
+    private @Nullable Output<Map<String,String>> initSettings;
+
+    /**
+     * @return Map of engine settings to be set at database initialisation.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> initSettings() {
+        return Optional.ofNullable(this.initSettings);
+    }
+
+    /**
      * Enable or disable high availability for the database instance.
      * 
      */
@@ -201,14 +216,14 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * Map of engine settings to be set. Using this option will override default config.
      * 
      */
     @Import(name="settings")
     private @Nullable Output<Map<String,String>> settings;
 
     /**
-     * @return Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+     * @return Map of engine settings to be set. Using this option will override default config.
      * 
      */
     public Optional<Output<Map<String,String>>> settings() {
@@ -283,6 +298,7 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
         this.backupScheduleRetention = $.backupScheduleRetention;
         this.disableBackup = $.disableBackup;
         this.engine = $.engine;
+        this.initSettings = $.initSettings;
         this.isHaCluster = $.isHaCluster;
         this.name = $.name;
         this.nodeType = $.nodeType;
@@ -418,6 +434,27 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder engine(String engine) {
             return engine(Output.of(engine));
+        }
+
+        /**
+         * @param initSettings Map of engine settings to be set at database initialisation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder initSettings(@Nullable Output<Map<String,String>> initSettings) {
+            $.initSettings = initSettings;
+            return this;
+        }
+
+        /**
+         * @param initSettings Map of engine settings to be set at database initialisation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder initSettings(Map<String,String> initSettings) {
+            return initSettings(Output.of(initSettings));
         }
 
         /**
@@ -568,7 +605,7 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param settings Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+         * @param settings Map of engine settings to be set. Using this option will override default config.
          * 
          * @return builder
          * 
@@ -579,7 +616,7 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param settings Map of engine settings to be set. Using this option will override default config. Available settings for your engine can be found on scaleway console or fetched using [rdb engine list route](https://developers.scaleway.com/en/products/rdb/api/#get-1eafb7)
+         * @param settings Map of engine settings to be set. Using this option will override default config.
          * 
          * @return builder
          * 

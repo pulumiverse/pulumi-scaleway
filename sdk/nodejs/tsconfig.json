@@ -21,6 +21,7 @@
         "container.ts",
         "containerCron.ts",
         "containerNamespace.ts",
+        "containerToken.ts",
         "database.ts",
         "databaseAcl.ts",
         "databaseBackup.ts",

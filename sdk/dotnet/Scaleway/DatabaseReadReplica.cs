@@ -44,7 +44,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     var replica = new Scaleway.DatabaseReadReplica("replica", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         DirectAccess = ,
+    ///         DirectAccess = null,
     ///     });
     /// 
     /// });

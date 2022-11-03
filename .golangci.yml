@@ -3,7 +3,7 @@ linters:
   - deadcode
   - errcheck
   - goconst
-  - gofmt
+    #- gofmt
   - revive
   - gosec
   - govet
