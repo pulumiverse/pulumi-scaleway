@@ -215,7 +215,7 @@ require (
 )
 
 replace (
-	github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.8.1
+	github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.9.0
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 )
