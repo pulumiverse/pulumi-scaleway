@@ -45,7 +45,7 @@ jobs:
     - name: Generate
       run: |
         make install_plugins provider build_sdks
-    - uses: EndBug/add-and-commit@v5
+    - uses: EndBug/add-and-commit@v9
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
