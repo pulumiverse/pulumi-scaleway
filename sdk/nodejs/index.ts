@@ -300,6 +300,11 @@ export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRe
 export const getRegistryNamespaceOutput: typeof import("./getRegistryNamespace").getRegistryNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
 
+export { GetTemDomainArgs, GetTemDomainResult, GetTemDomainOutputArgs } from "./getTemDomain";
+export const getTemDomain: typeof import("./getTemDomain").getTemDomain = null as any;
+export const getTemDomainOutput: typeof import("./getTemDomain").getTemDomainOutput = null as any;
+utilities.lazyLoad(exports, ["getTemDomain","getTemDomainOutput"], () => require("./getTemDomain"));
+
 export { GetVpcGatewayNetworkArgs, GetVpcGatewayNetworkResult, GetVpcGatewayNetworkOutputArgs } from "./getVpcGatewayNetwork";
 export const getVpcGatewayNetwork: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetwork = null as any;
 export const getVpcGatewayNetworkOutput: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetworkOutput = null as any;

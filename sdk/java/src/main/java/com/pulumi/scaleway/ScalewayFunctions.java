@@ -80,6 +80,8 @@ import com.pulumi.scaleway.inputs.GetRegistryImageArgs;
 import com.pulumi.scaleway.inputs.GetRegistryImagePlainArgs;
 import com.pulumi.scaleway.inputs.GetRegistryNamespaceArgs;
 import com.pulumi.scaleway.inputs.GetRegistryNamespacePlainArgs;
+import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+import com.pulumi.scaleway.inputs.GetTemDomainPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcGatewayNetworkArgs;
 import com.pulumi.scaleway.inputs.GetVpcGatewayNetworkPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
@@ -130,6 +132,7 @@ import com.pulumi.scaleway.outputs.GetObjectBucketResult;
 import com.pulumi.scaleway.outputs.GetRedisClusterResult;
 import com.pulumi.scaleway.outputs.GetRegistryImageResult;
 import com.pulumi.scaleway.outputs.GetRegistryNamespaceResult;
+import com.pulumi.scaleway.outputs.GetTemDomainResult;
 import com.pulumi.scaleway.outputs.GetVpcGatewayNetworkResult;
 import com.pulumi.scaleway.outputs.GetVpcPrivateNetworkResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicGatewayDhcpReservationResult;
@@ -7869,6 +7872,228 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetRegistryNamespaceResult> getRegistryNamespacePlain(GetRegistryNamespacePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getRegistryNamespace:getRegistryNamespace", TypeShape.of(GetRegistryNamespaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a transactional email domain.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
+     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetTemDomainResult> getTemDomain() {
+        return getTemDomain(GetTemDomainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a transactional email domain.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
+     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetTemDomainResult> getTemDomainPlain() {
+        return getTemDomainPlain(GetTemDomainPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a transactional email domain.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
+     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetTemDomainResult> getTemDomain(GetTemDomainArgs args) {
+        return getTemDomain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a transactional email domain.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
+     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetTemDomainResult> getTemDomainPlain(GetTemDomainPlainArgs args) {
+        return getTemDomainPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a transactional email domain.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
+     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetTemDomainResult> getTemDomain(GetTemDomainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getTemDomain:getTemDomain", TypeShape.of(GetTemDomainResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a transactional email domain.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetTemDomainArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
+     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetTemDomainResult> getTemDomainPlain(GetTemDomainPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getTemDomain:getTemDomain", TypeShape.of(GetTemDomainResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a gateway network.

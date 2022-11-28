@@ -74,6 +74,7 @@
         "getRedisCluster.ts",
         "getRegistryImage.ts",
         "getRegistryNamespace.ts",
+        "getTemDomain.ts",
         "getVpcGatewayNetwork.ts",
         "getVpcPrivateNetwork.ts",
         "getVpcPublicGateway.ts",

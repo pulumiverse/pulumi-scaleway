@@ -17381,6 +17381,92 @@
                 ]
             }
         },
+        "scaleway:index/getTemDomain:getTemDomain": {
+            "description": "Gets information about a transactional email domain.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\n// Get info by domain ID\nconst myDomain = pulumi.output(scaleway.getTemDomain({\n    id: \"11111111-1111-1111-1111-111111111111\",\n}));\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetTemDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()\n            .id(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myDomain:\n    fn::invoke:\n      Function: scaleway:getTemDomain\n      Arguments:\n        id: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getTemDomain.\n",
+                "properties": {
+                    "domainId": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The domain name.\nOnly one of `name` and `id` should be specified.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region in which the domain exists.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTemDomain.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the Transaction Email Domain's creation (RFC 3339 format).\n"
+                    },
+                    "dkimConfig": {
+                        "type": "string",
+                        "description": "The DKIM public key, as should be recorded in the DNS zone.\n"
+                    },
+                    "domainId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Transaction Email Domain.\n"
+                    },
+                    "lastError": {
+                        "type": "string",
+                        "description": "The error message if the last check failed.\n"
+                    },
+                    "lastValidAt": {
+                        "type": "string",
+                        "description": "The date and time the domain was last found to be valid (RFC 3339 format).\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "nextCheckAt": {
+                        "type": "string",
+                        "description": "The date and time of the next scheduled check (RFC 3339 format).\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "revokedAt": {
+                        "type": "string",
+                        "description": "The date and time of the revocation of the domain (RFC 3339 format).\n"
+                    },
+                    "spfConfig": {
+                        "type": "string",
+                        "description": "The snippet of the SPF record that should be registered in the DNS zone.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the Transaction Email Domain.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "dkimConfig",
+                    "id",
+                    "lastError",
+                    "lastValidAt",
+                    "nextCheckAt",
+                    "projectId",
+                    "revokedAt",
+                    "spfConfig",
+                    "status"
+                ]
+            }
+        },
         "scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork": {
             "description": "Gets information about a gateway network.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = new scaleway.VpcGatewayNetwork(\"main\", {\n    gatewayId: scaleway_vpc_public_gateway.pg01.id,\n    privateNetworkId: scaleway_vpc_private_network.pn01.id,\n    dhcpId: scaleway_vpc_public_gateway_dhcp.dhcp01.id,\n    cleanupDhcp: true,\n    enableMasquerade: true,\n});\nconst byId = scaleway.getVpcGatewayNetworkOutput({\n    gatewayNetworkId: main.id,\n});\nconst byGatewayAndPn = scaleway.getVpcGatewayNetwork({\n    gatewayId: scaleway_vpc_public_gateway.pg01.id,\n    privateNetworkId: scaleway_vpc_private_network.pn01.id,\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.VpcGatewayNetwork(\"main\",\n    gateway_id=scaleway_vpc_public_gateway[\"pg01\"][\"id\"],\n    private_network_id=scaleway_vpc_private_network[\"pn01\"][\"id\"],\n    dhcp_id=scaleway_vpc_public_gateway_dhcp[\"dhcp01\"][\"id\"],\n    cleanup_dhcp=True,\n    enable_masquerade=True)\nby_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)\nby_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway[\"pg01\"][\"id\"],\n    private_network_id=scaleway_vpc_private_network[\"pn01\"][\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.VpcGatewayNetwork(\"main\", new()\n    {\n        GatewayId = scaleway_vpc_public_gateway.Pg01.Id,\n        PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,\n        DhcpId = scaleway_vpc_public_gateway_dhcp.Dhcp01.Id,\n        CleanupDhcp = true,\n        EnableMasquerade = true,\n    });\n\n    var byId = Scaleway.GetVpcGatewayNetwork.Invoke(new()\n    {\n        GatewayNetworkId = main.Id,\n    });\n\n    var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()\n    {\n        GatewayId = scaleway_vpc_public_gateway.Pg01.Id,\n        PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := scaleway.NewVpcGatewayNetwork(ctx, \"main\", \u0026scaleway.VpcGatewayNetworkArgs{\n\t\t\tGatewayId:        pulumi.Any(scaleway_vpc_public_gateway.Pg01.Id),\n\t\t\tPrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn01.Id),\n\t\t\tDhcpId:           pulumi.Any(scaleway_vpc_public_gateway_dhcp.Dhcp01.Id),\n\t\t\tCleanupDhcp:      pulumi.Bool(true),\n\t\t\tEnableMasquerade: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.LookupVpcGatewayNetworkOutput(ctx, GetVpcGatewayNetworkOutputArgs{\n\t\t\tGatewayNetworkId: main.ID(),\n\t\t}, nil)\n\t\t_, err = scaleway.LookupVpcGatewayNetwork(ctx, \u0026GetVpcGatewayNetworkArgs{\n\t\t\tGatewayId:        pulumi.StringRef(scaleway_vpc_public_gateway.Pg01.Id),\n\t\t\tPrivateNetworkId: pulumi.StringRef(scaleway_vpc_private_network.Pn01.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcGatewayNetwork;\nimport com.pulumi.scaleway.VpcGatewayNetworkArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetVpcGatewayNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new VpcGatewayNetwork(\"main\", VpcGatewayNetworkArgs.builder()        \n            .gatewayId(scaleway_vpc_public_gateway.pg01().id())\n            .privateNetworkId(scaleway_vpc_private_network.pn01().id())\n            .dhcpId(scaleway_vpc_public_gateway_dhcp.dhcp01().id())\n            .cleanupDhcp(true)\n            .enableMasquerade(true)\n            .build());\n\n        final var byId = ScalewayFunctions.getVpcGatewayNetwork(GetVpcGatewayNetworkArgs.builder()\n            .gatewayNetworkId(main.id())\n            .build());\n\n        final var byGatewayAndPn = ScalewayFunctions.getVpcGatewayNetwork(GetVpcGatewayNetworkArgs.builder()\n            .gatewayId(scaleway_vpc_public_gateway.pg01().id())\n            .privateNetworkId(scaleway_vpc_private_network.pn01().id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:VpcGatewayNetwork\n    properties:\n      gatewayId: ${scaleway_vpc_public_gateway.pg01.id}\n      privateNetworkId: ${scaleway_vpc_private_network.pn01.id}\n      dhcpId: ${scaleway_vpc_public_gateway_dhcp.dhcp01.id}\n      cleanupDhcp: true\n      enableMasquerade: true\nvariables:\n  byId:\n    fn::invoke:\n      Function: scaleway:getVpcGatewayNetwork\n      Arguments:\n        gatewayNetworkId: ${main.id}\n  byGatewayAndPn:\n    fn::invoke:\n      Function: scaleway:getVpcGatewayNetwork\n      Arguments:\n        gatewayId: ${scaleway_vpc_public_gateway.pg01.id}\n        privateNetworkId: ${scaleway_vpc_private_network.pn01.id}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {

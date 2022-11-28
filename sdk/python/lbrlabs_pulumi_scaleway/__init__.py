@@ -64,6 +64,7 @@ from .get_object_bucket import *
 from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_namespace import *
+from .get_tem_domain import *
 from .get_vpc_gateway_network import *
 from .get_vpc_private_network import *
 from .get_vpc_public_gateway import *
