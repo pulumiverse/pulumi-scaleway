@@ -156,6 +156,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The registry namespace ID of the namespace.
         /// </summary>
         public readonly string RegistryNamespaceId;
+        public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
 
         [OutputConstructor]
         private GetFunctionNamespaceResult(
@@ -177,7 +178,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string registryEndpoint,
 
-            string registryNamespaceId)
+            string registryNamespaceId,
+
+            ImmutableDictionary<string, string> secretEnvironmentVariables)
         {
             Description = description;
             EnvironmentVariables = environmentVariables;
@@ -189,6 +192,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Region = region;
             RegistryEndpoint = registryEndpoint;
             RegistryNamespaceId = registryNamespaceId;
+            SecretEnvironmentVariables = secretEnvironmentVariables;
         }
     }
 }

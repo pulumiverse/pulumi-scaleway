@@ -60,6 +60,9 @@ import (
 //				EnvironmentVariables: pulumi.StringMap{
 //					"foo": pulumi.String("var"),
 //				},
+//				SecretEnvironmentVariables: pulumi.StringMap{
+//					"key": pulumi.String("secret"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -125,7 +128,7 @@ type Container struct {
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The container domain name.
+	// The native domain name of the container
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
@@ -155,6 +158,8 @@ type Container struct {
 	RegistryImage pulumi.StringOutput `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
 	RegistrySha256 pulumi.StringPtrOutput `pulumi:"registrySha256"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -171,6 +176,13 @@ func NewContainer(ctx *pulumi.Context,
 	if args.NamespaceId == nil {
 		return nil, errors.New("invalid value for required argument 'NamespaceId'")
 	}
+	if args.SecretEnvironmentVariables != nil {
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretEnvironmentVariables",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Container
 	err := ctx.RegisterResource("scaleway:index/container:Container", name, args, &resource, opts...)
@@ -202,7 +214,7 @@ type containerState struct {
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
-	// The container domain name.
+	// The native domain name of the container
 	DomainName *string `pulumi:"domainName"`
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
@@ -232,6 +244,8 @@ type containerState struct {
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
 	RegistrySha256 *string `pulumi:"registrySha256"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status *string `pulumi:"status"`
 	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -247,7 +261,7 @@ type ContainerState struct {
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
-	// The container domain name.
+	// The native domain name of the container
 	DomainName pulumi.StringPtrInput
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapInput
@@ -277,6 +291,8 @@ type ContainerState struct {
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
 	RegistrySha256 pulumi.StringPtrInput
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
 	Status pulumi.StringPtrInput
 	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -318,6 +334,8 @@ type containerArgs struct {
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
 	RegistrySha256 *string `pulumi:"registrySha256"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status *string `pulumi:"status"`
 	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -356,6 +374,8 @@ type ContainerArgs struct {
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
 	RegistrySha256 pulumi.StringPtrInput
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
 	Status pulumi.StringPtrInput
 	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -469,7 +489,7 @@ func (o ContainerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The container domain name.
+// The native domain name of the container
 func (o ContainerOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
 }
@@ -542,6 +562,11 @@ func (o ContainerOutput) RegistryImage() pulumi.StringOutput {
 // The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
 func (o ContainerOutput) RegistrySha256() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.RegistrySha256 }).(pulumi.StringPtrOutput)
+}
+
+// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+func (o ContainerOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
 // The container status.

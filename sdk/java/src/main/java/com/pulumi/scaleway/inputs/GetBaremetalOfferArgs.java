@@ -54,6 +54,21 @@ public final class GetBaremetalOfferArgs extends com.pulumi.resources.InvokeArgs
     }
 
     /**
+     * Period of subscription the desired offer. Should be `hourly` or `monthly`.
+     * 
+     */
+    @Import(name="subscriptionPeriod")
+    private @Nullable Output<String> subscriptionPeriod;
+
+    /**
+     * @return Period of subscription the desired offer. Should be `hourly` or `monthly`.
+     * 
+     */
+    public Optional<Output<String>> subscriptionPeriod() {
+        return Optional.ofNullable(this.subscriptionPeriod);
+    }
+
+    /**
      * `zone`) The zone in which the offer should be created.
      * 
      */
@@ -74,6 +89,7 @@ public final class GetBaremetalOfferArgs extends com.pulumi.resources.InvokeArgs
         this.includeDisabled = $.includeDisabled;
         this.name = $.name;
         this.offerId = $.offerId;
+        this.subscriptionPeriod = $.subscriptionPeriod;
         this.zone = $.zone;
     }
 
@@ -144,6 +160,27 @@ public final class GetBaremetalOfferArgs extends com.pulumi.resources.InvokeArgs
          */
         public Builder offerId(String offerId) {
             return offerId(Output.of(offerId));
+        }
+
+        /**
+         * @param subscriptionPeriod Period of subscription the desired offer. Should be `hourly` or `monthly`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscriptionPeriod(@Nullable Output<String> subscriptionPeriod) {
+            $.subscriptionPeriod = subscriptionPeriod;
+            return this;
+        }
+
+        /**
+         * @param subscriptionPeriod Period of subscription the desired offer. Should be `hourly` or `monthly`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscriptionPeriod(String subscriptionPeriod) {
+            return subscriptionPeriod(Output.of(subscriptionPeriod));
         }
 
         /**

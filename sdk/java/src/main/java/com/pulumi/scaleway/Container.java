@@ -13,6 +13,7 @@ import com.pulumi.scaleway.inputs.ContainerState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -69,6 +70,7 @@ import javax.annotation.Nullable;
  *             .protocol(&#34;h2c&#34;)
  *             .deploy(true)
  *             .environmentVariables(Map.of(&#34;foo&#34;, &#34;var&#34;))
+ *             .secretEnvironmentVariables(Map.of(&#34;key&#34;, &#34;secret&#34;))
  *             .build());
  * 
  *     }
@@ -178,14 +180,14 @@ public class Container extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * The container domain name.
+     * The native domain name of the container
      * 
      */
     @Export(name="domainName", type=String.class, parameters={})
     private Output<String> domainName;
 
     /**
-     * @return The container domain name.
+     * @return The native domain name of the container
      * 
      */
     public Output<String> domainName() {
@@ -388,6 +390,20 @@ public class Container extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.registrySha256);
     }
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     * 
+     */
+    @Export(name="secretEnvironmentVariables", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> secretEnvironmentVariables() {
+        return Codegen.optional(this.secretEnvironmentVariables);
+    }
+    /**
      * The container status.
      * 
      */
@@ -448,6 +464,9 @@ public class Container extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secretEnvironmentVariables"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

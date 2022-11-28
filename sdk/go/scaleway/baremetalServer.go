@@ -87,13 +87,23 @@ type BaremetalServer struct {
 	Os pulumi.StringOutput `pulumi:"os"`
 	// The ID of the os.
 	OsId pulumi.StringOutput `pulumi:"osId"`
+	// Password used for the installation. May be required depending on used os.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// If True, this boolean allows to reinstall the server on install config changes.
+	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+	ReinstallOnConfigChanges pulumi.BoolPtrOutput `pulumi:"reinstallOnConfigChanges"`
+	// Password used for the service to install. May be required depending on used os.
+	ServicePassword pulumi.StringPtrOutput `pulumi:"servicePassword"`
+	// User used for the service to install.
+	ServiceUser pulumi.StringOutput `pulumi:"serviceUser"`
 	// List of SSH keys allowed to connect to the server.
-	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds pulumi.StringArrayOutput `pulumi:"sshKeyIds"`
 	// The tags associated with the server.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// User used for the installation.
+	User pulumi.StringOutput `pulumi:"user"`
 	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -114,6 +124,17 @@ func NewBaremetalServer(ctx *pulumi.Context,
 	if args.SshKeyIds == nil {
 		return nil, errors.New("invalid value for required argument 'SshKeyIds'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrOutput)
+	}
+	if args.ServicePassword != nil {
+		args.ServicePassword = pulumi.ToSecret(args.ServicePassword).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+		"servicePassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource BaremetalServer
 	err := ctx.RegisterResource("scaleway:index/baremetalServer:BaremetalServer", name, args, &resource, opts...)
@@ -160,13 +181,23 @@ type baremetalServerState struct {
 	Os *string `pulumi:"os"`
 	// The ID of the os.
 	OsId *string `pulumi:"osId"`
+	// Password used for the installation. May be required depending on used os.
+	Password *string `pulumi:"password"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// If True, this boolean allows to reinstall the server on install config changes.
+	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
+	// Password used for the service to install. May be required depending on used os.
+	ServicePassword *string `pulumi:"servicePassword"`
+	// User used for the service to install.
+	ServiceUser *string `pulumi:"serviceUser"`
 	// List of SSH keys allowed to connect to the server.
-	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds []string `pulumi:"sshKeyIds"`
 	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
+	// User used for the installation.
+	User *string `pulumi:"user"`
 	// `zone`) The zone in which the server should be created.
 	Zone *string `pulumi:"zone"`
 }
@@ -195,13 +226,23 @@ type BaremetalServerState struct {
 	Os pulumi.StringPtrInput
 	// The ID of the os.
 	OsId pulumi.StringPtrInput
+	// Password used for the installation. May be required depending on used os.
+	Password pulumi.StringPtrInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// If True, this boolean allows to reinstall the server on install config changes.
+	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+	ReinstallOnConfigChanges pulumi.BoolPtrInput
+	// Password used for the service to install. May be required depending on used os.
+	ServicePassword pulumi.StringPtrInput
+	// User used for the service to install.
+	ServiceUser pulumi.StringPtrInput
 	// List of SSH keys allowed to connect to the server.
-	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds pulumi.StringArrayInput
 	// The tags associated with the server.
 	Tags pulumi.StringArrayInput
+	// User used for the installation.
+	User pulumi.StringPtrInput
 	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringPtrInput
 }
@@ -224,13 +265,23 @@ type baremetalServerArgs struct {
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os string `pulumi:"os"`
+	// Password used for the installation. May be required depending on used os.
+	Password *string `pulumi:"password"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// If True, this boolean allows to reinstall the server on install config changes.
+	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
+	// Password used for the service to install. May be required depending on used os.
+	ServicePassword *string `pulumi:"servicePassword"`
+	// User used for the service to install.
+	ServiceUser *string `pulumi:"serviceUser"`
 	// List of SSH keys allowed to connect to the server.
-	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds []string `pulumi:"sshKeyIds"`
 	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
+	// User used for the installation.
+	User *string `pulumi:"user"`
 	// `zone`) The zone in which the server should be created.
 	Zone *string `pulumi:"zone"`
 }
@@ -250,13 +301,23 @@ type BaremetalServerArgs struct {
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringInput
+	// Password used for the installation. May be required depending on used os.
+	Password pulumi.StringPtrInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// If True, this boolean allows to reinstall the server on install config changes.
+	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+	ReinstallOnConfigChanges pulumi.BoolPtrInput
+	// Password used for the service to install. May be required depending on used os.
+	ServicePassword pulumi.StringPtrInput
+	// User used for the service to install.
+	ServiceUser pulumi.StringPtrInput
 	// List of SSH keys allowed to connect to the server.
-	// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 	SshKeyIds pulumi.StringArrayInput
 	// The tags associated with the server.
 	Tags pulumi.StringArrayInput
+	// User used for the installation.
+	User pulumi.StringPtrInput
 	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringPtrInput
 }
@@ -401,13 +462,33 @@ func (o BaremetalServerOutput) OsId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OsId }).(pulumi.StringOutput)
 }
 
+// Password used for the installation. May be required depending on used os.
+func (o BaremetalServerOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
 // `projectId`) The ID of the project the server is associated with.
 func (o BaremetalServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// If True, this boolean allows to reinstall the server on install config changes.
+// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+func (o BaremetalServerOutput) ReinstallOnConfigChanges() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.BoolPtrOutput { return v.ReinstallOnConfigChanges }).(pulumi.BoolPtrOutput)
+}
+
+// Password used for the service to install. May be required depending on used os.
+func (o BaremetalServerOutput) ServicePassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.ServicePassword }).(pulumi.StringPtrOutput)
+}
+
+// User used for the service to install.
+func (o BaremetalServerOutput) ServiceUser() pulumi.StringOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.ServiceUser }).(pulumi.StringOutput)
+}
+
 // List of SSH keys allowed to connect to the server.
-// > **Important:** Updates to `sshKeyIds` will reinstall the server.
 func (o BaremetalServerOutput) SshKeyIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringArrayOutput { return v.SshKeyIds }).(pulumi.StringArrayOutput)
 }
@@ -415,6 +496,11 @@ func (o BaremetalServerOutput) SshKeyIds() pulumi.StringArrayOutput {
 // The tags associated with the server.
 func (o BaremetalServerOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// User used for the installation.
+func (o BaremetalServerOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
 }
 
 // `zone`) The zone in which the server should be created.

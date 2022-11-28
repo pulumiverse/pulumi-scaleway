@@ -10,6 +10,7 @@ from .apple_slicon_valley_server import *
 from .baremetal_server import *
 from .container import *
 from .container_cron import *
+from .container_domain import *
 from .container_namespace import *
 from .container_token import *
 from .database import *
@@ -24,9 +25,12 @@ from .domain_zone import *
 from .flexible_ip import *
 from .function import *
 from .function_cron import *
+from .function_domain import *
 from .function_namespace import *
+from .function_token import *
 from .get_account_ssh_key import *
 from .get_baremetal_offer import *
+from .get_baremetal_option import *
 from .get_baremetal_os import *
 from .get_baremetal_server import *
 from .get_container import *
@@ -46,6 +50,7 @@ from .get_instance_ip import *
 from .get_instance_security_group import *
 from .get_instance_server import *
 from .get_instance_servers import *
+from .get_instance_snapshot import *
 from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
@@ -91,12 +96,14 @@ from .loadbalancer_ip import *
 from .loadbalancer_route import *
 from .object_bucket import *
 from .object_bucket_acl import *
+from .object_bucket_lock_configuration import *
 from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
 from .object_item import *
 from .provider import *
 from .redis_cluster import *
 from .registry_namespace import *
+from .tem_domain import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
 from .vpc_public_gateway import *
@@ -155,6 +162,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/containerCron:ContainerCron": "ContainerCron"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/containerDomain",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/containerDomain:ContainerDomain": "ContainerDomain"
   }
  },
  {
@@ -271,10 +286,26 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/functionDomain",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/functionDomain:FunctionDomain": "FunctionDomain"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/functionNamespace",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/functionNamespace:FunctionNamespace": "FunctionNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/functionToken",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/functionToken:FunctionToken": "FunctionToken"
   }
  },
  {
@@ -479,6 +510,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/objectBucketLockConfiguration",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration": "ObjectBucketLockConfiguration"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/objectBucketPolicy",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -515,6 +554,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/registryNamespace:RegistryNamespace": "RegistryNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/temDomain",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/temDomain:TemDomain": "TemDomain"
   }
  },
  {

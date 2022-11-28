@@ -37,11 +37,29 @@ public final class GetVpcPublicGatewayArgs extends com.pulumi.resources.InvokeAr
         return Optional.ofNullable(this.publicGatewayId);
     }
 
+    /**
+     * `zone`) The zone in which
+     * the public gateway should be created.
+     * 
+     */
+    @Import(name="zone")
+    private @Nullable Output<String> zone;
+
+    /**
+     * @return `zone`) The zone in which
+     * the public gateway should be created.
+     * 
+     */
+    public Optional<Output<String>> zone() {
+        return Optional.ofNullable(this.zone);
+    }
+
     private GetVpcPublicGatewayArgs() {}
 
     private GetVpcPublicGatewayArgs(GetVpcPublicGatewayArgs $) {
         this.name = $.name;
         this.publicGatewayId = $.publicGatewayId;
+        this.zone = $.zone;
     }
 
     public static Builder builder() {
@@ -90,6 +108,29 @@ public final class GetVpcPublicGatewayArgs extends com.pulumi.resources.InvokeAr
 
         public Builder publicGatewayId(String publicGatewayId) {
             return publicGatewayId(Output.of(publicGatewayId));
+        }
+
+        /**
+         * @param zone `zone`) The zone in which
+         * the public gateway should be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder zone(@Nullable Output<String> zone) {
+            $.zone = zone;
+            return this;
+        }
+
+        /**
+         * @param zone `zone`) The zone in which
+         * the public gateway should be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder zone(String zone) {
+            return zone(Output.of(zone));
         }
 
         public GetVpcPublicGatewayArgs build() {

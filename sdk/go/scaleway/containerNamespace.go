@@ -71,6 +71,8 @@ type ContainerNamespace struct {
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
+	// The secret environment variables of the namespace.
+	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 }
 
 // NewContainerNamespace registers a new resource with the given unique name, arguments, and options.
@@ -80,6 +82,13 @@ func NewContainerNamespace(ctx *pulumi.Context,
 		args = &ContainerNamespaceArgs{}
 	}
 
+	if args.SecretEnvironmentVariables != nil {
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretEnvironmentVariables",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ContainerNamespace
 	err := ctx.RegisterResource("scaleway:index/containerNamespace:ContainerNamespace", name, args, &resource, opts...)
@@ -121,6 +130,8 @@ type containerNamespaceState struct {
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
+	// The secret environment variables of the namespace.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
 type ContainerNamespaceState struct {
@@ -142,6 +153,8 @@ type ContainerNamespaceState struct {
 	RegistryEndpoint pulumi.StringPtrInput
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringPtrInput
+	// The secret environment variables of the namespace.
+	SecretEnvironmentVariables pulumi.StringMapInput
 }
 
 func (ContainerNamespaceState) ElementType() reflect.Type {
@@ -161,6 +174,8 @@ type containerNamespaceArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
+	// The secret environment variables of the namespace.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
 // The set of arguments for constructing a ContainerNamespace resource.
@@ -177,6 +192,8 @@ type ContainerNamespaceArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
+	// The secret environment variables of the namespace.
+	SecretEnvironmentVariables pulumi.StringMapInput
 }
 
 func (ContainerNamespaceArgs) ElementType() reflect.Type {
@@ -309,6 +326,11 @@ func (o ContainerNamespaceOutput) RegistryEndpoint() pulumi.StringOutput {
 // The registry namespace ID of the namespace.
 func (o ContainerNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
+}
+
+// The secret environment variables of the namespace.
+func (o ContainerNamespaceOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
 type ContainerNamespaceArrayOutput struct{ *pulumi.OutputState }

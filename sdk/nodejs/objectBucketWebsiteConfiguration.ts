@@ -53,12 +53,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## errorDocument
- *
- * The errorDocument configuration block supports the following arguments:
- *
- * * `key` - (Required) The object key name to use when a 4XX class error occurs.
- *
  * ## indexDocument
  *
  * The `indexDocument` configuration block supports the following arguments:
@@ -70,10 +64,16 @@ import * as utilities from "./utilities";
  * In addition to all above arguments, the following attribute is exported:
  *
  * * `id` - The bucket and region separated by a slash (/)
- * * `websiteDomain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/dns-cloud/how-to/manage-dns-records).
+ * * `websiteDomain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
  * * `websiteEndpoint` - The website endpoint.
  *
  * > **Important:** Please check our concepts section to know more about the [endpoint](https://www.scaleway.com/en/docs/storage/object/concepts/#endpoint).
+ *
+ * ## errorDocument
+ *
+ * The errorDocument configuration block supports the following arguments:
+ *
+ * * `key` - (Required) The object key name to use when a 4XX class error occurs.
  *
  * ## Import
  *
@@ -120,9 +120,9 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      */
     public readonly errorDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
     /**
-     * (Optional) The name of the index document for the website detailed below.
+     * (Required) The name of the index document for the website detailed below.
      */
-    public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument | undefined>;
+    public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
      * The website endpoint.
      */
@@ -155,6 +155,9 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
             if ((!args || args.bucket === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bucket'");
             }
+            if ((!args || args.indexDocument === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'indexDocument'");
+            }
             resourceInputs["bucket"] = args ? args.bucket : undefined;
             resourceInputs["errorDocument"] = args ? args.errorDocument : undefined;
             resourceInputs["indexDocument"] = args ? args.indexDocument : undefined;
@@ -179,7 +182,7 @@ export interface ObjectBucketWebsiteConfigurationState {
      */
     errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
     /**
-     * (Optional) The name of the index document for the website detailed below.
+     * (Required) The name of the index document for the website detailed below.
      */
     indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
@@ -205,7 +208,7 @@ export interface ObjectBucketWebsiteConfigurationArgs {
      */
     errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
     /**
-     * (Optional) The name of the index document for the website detailed below.
+     * (Required) The name of the index document for the website detailed below.
      */
-    indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
+    indexDocument: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
 }

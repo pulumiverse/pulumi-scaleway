@@ -191,6 +191,8 @@ type ObjectBucket struct {
 	LifecycleRules ObjectBucketLifecycleRuleArrayOutput `pulumi:"lifecycleRules"`
 	// The name of the bucket.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable object lock
+	ObjectLockEnabled pulumi.BoolPtrOutput `pulumi:"objectLockEnabled"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
@@ -243,6 +245,8 @@ type objectBucketState struct {
 	LifecycleRules []ObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
 	// The name of the bucket.
 	Name *string `pulumi:"name"`
+	// Enable object lock
+	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
@@ -266,6 +270,8 @@ type ObjectBucketState struct {
 	LifecycleRules ObjectBucketLifecycleRuleArrayInput
 	// The name of the bucket.
 	Name pulumi.StringPtrInput
+	// Enable object lock
+	ObjectLockEnabled pulumi.BoolPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
@@ -291,6 +297,8 @@ type objectBucketArgs struct {
 	LifecycleRules []ObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
 	// The name of the bucket.
 	Name *string `pulumi:"name"`
+	// Enable object lock
+	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
@@ -313,6 +321,8 @@ type ObjectBucketArgs struct {
 	LifecycleRules ObjectBucketLifecycleRuleArrayInput
 	// The name of the bucket.
 	Name pulumi.StringPtrInput
+	// Enable object lock
+	ObjectLockEnabled pulumi.BoolPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
@@ -438,6 +448,11 @@ func (o ObjectBucketOutput) LifecycleRules() ObjectBucketLifecycleRuleArrayOutpu
 // The name of the bucket.
 func (o ObjectBucketOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable object lock
+func (o ObjectBucketOutput) ObjectLockEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ObjectBucket) pulumi.BoolPtrOutput { return v.ObjectLockEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

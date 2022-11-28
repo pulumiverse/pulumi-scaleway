@@ -32,6 +32,7 @@ public final class GetObjectBucketResult {
     private String id;
     private List<GetObjectBucketLifecycleRule> lifecycleRules;
     private @Nullable String name;
+    private Boolean objectLockEnabled;
     private @Nullable String region;
     private Map<String,String> tags;
     private List<GetObjectBucketVersioning> versionings;
@@ -66,6 +67,9 @@ public final class GetObjectBucketResult {
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    public Boolean objectLockEnabled() {
+        return this.objectLockEnabled;
+    }
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -92,6 +96,7 @@ public final class GetObjectBucketResult {
         private String id;
         private List<GetObjectBucketLifecycleRule> lifecycleRules;
         private @Nullable String name;
+        private Boolean objectLockEnabled;
         private @Nullable String region;
         private Map<String,String> tags;
         private List<GetObjectBucketVersioning> versionings;
@@ -105,6 +110,7 @@ public final class GetObjectBucketResult {
     	      this.id = defaults.id;
     	      this.lifecycleRules = defaults.lifecycleRules;
     	      this.name = defaults.name;
+    	      this.objectLockEnabled = defaults.objectLockEnabled;
     	      this.region = defaults.region;
     	      this.tags = defaults.tags;
     	      this.versionings = defaults.versionings;
@@ -152,6 +158,11 @@ public final class GetObjectBucketResult {
             return this;
         }
         @CustomType.Setter
+        public Builder objectLockEnabled(Boolean objectLockEnabled) {
+            this.objectLockEnabled = Objects.requireNonNull(objectLockEnabled);
+            return this;
+        }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
@@ -178,6 +189,7 @@ public final class GetObjectBucketResult {
             o.id = id;
             o.lifecycleRules = lifecycleRules;
             o.name = name;
+            o.objectLockEnabled = objectLockEnabled;
             o.region = region;
             o.tags = tags;
             o.versionings = versionings;

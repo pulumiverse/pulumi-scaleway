@@ -59,6 +59,7 @@ public final class GetBaremetalOfferResult {
      * 
      */
     private String stock;
+    private @Nullable String subscriptionPeriod;
     private String zone;
 
     private GetBaremetalOfferResult() {}
@@ -124,6 +125,9 @@ public final class GetBaremetalOfferResult {
     public String stock() {
         return this.stock;
     }
+    public Optional<String> subscriptionPeriod() {
+        return Optional.ofNullable(this.subscriptionPeriod);
+    }
     public String zone() {
         return this.zone;
     }
@@ -147,6 +151,7 @@ public final class GetBaremetalOfferResult {
         private @Nullable String name;
         private @Nullable String offerId;
         private String stock;
+        private @Nullable String subscriptionPeriod;
         private String zone;
         public Builder() {}
         public Builder(GetBaremetalOfferResult defaults) {
@@ -161,6 +166,7 @@ public final class GetBaremetalOfferResult {
     	      this.name = defaults.name;
     	      this.offerId = defaults.offerId;
     	      this.stock = defaults.stock;
+    	      this.subscriptionPeriod = defaults.subscriptionPeriod;
     	      this.zone = defaults.zone;
         }
 
@@ -221,6 +227,11 @@ public final class GetBaremetalOfferResult {
             return this;
         }
         @CustomType.Setter
+        public Builder subscriptionPeriod(@Nullable String subscriptionPeriod) {
+            this.subscriptionPeriod = subscriptionPeriod;
+            return this;
+        }
+        @CustomType.Setter
         public Builder zone(String zone) {
             this.zone = Objects.requireNonNull(zone);
             return this;
@@ -237,6 +248,7 @@ public final class GetBaremetalOfferResult {
             o.name = name;
             o.offerId = offerId;
             o.stock = stock;
+            o.subscriptionPeriod = subscriptionPeriod;
             o.zone = zone;
             return o;
         }

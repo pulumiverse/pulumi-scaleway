@@ -30,6 +30,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Container{}
 	case "scaleway:index/containerCron:ContainerCron":
 		r = &ContainerCron{}
+	case "scaleway:index/containerDomain:ContainerDomain":
+		r = &ContainerDomain{}
 	case "scaleway:index/containerNamespace:ContainerNamespace":
 		r = &ContainerNamespace{}
 	case "scaleway:index/containerToken:ContainerToken":
@@ -58,8 +60,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Function{}
 	case "scaleway:index/functionCron:FunctionCron":
 		r = &FunctionCron{}
+	case "scaleway:index/functionDomain:FunctionDomain":
+		r = &FunctionDomain{}
 	case "scaleway:index/functionNamespace:FunctionNamespace":
 		r = &FunctionNamespace{}
+	case "scaleway:index/functionToken:FunctionToken":
+		r = &FunctionToken{}
 	case "scaleway:index/instanceImage:InstanceImage":
 		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
@@ -110,6 +116,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
 		r = &ObjectBucketAcl{}
+	case "scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration":
+		r = &ObjectBucketLockConfiguration{}
 	case "scaleway:index/objectBucketPolicy:ObjectBucketPolicy":
 		r = &ObjectBucketPolicy{}
 	case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
@@ -120,6 +128,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
+	case "scaleway:index/temDomain:TemDomain":
+		r = &TemDomain{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
 		r = &VpcGatewayNetwork{}
 	case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
@@ -185,6 +195,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/containerCron",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/containerDomain",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -259,7 +274,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/functionDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/functionNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/functionToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -389,6 +414,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/objectBucketLockConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/objectBucketPolicy",
 		&module{version},
 	)
@@ -410,6 +440,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/registryNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/temDomain",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

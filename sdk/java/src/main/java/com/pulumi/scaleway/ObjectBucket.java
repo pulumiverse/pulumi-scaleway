@@ -277,6 +277,20 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * Enable object lock
+     * 
+     */
+    @Export(name="objectLockEnabled", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> objectLockEnabled;
+
+    /**
+     * @return Enable object lock
+     * 
+     */
+    public Output<Optional<Boolean>> objectLockEnabled() {
+        return Codegen.optional(this.objectLockEnabled);
+    }
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */

@@ -88,6 +88,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public string? OfferId { get; set; }
 
         /// <summary>
+        /// Period of subscription the desired offer. Should be `hourly` or `monthly`.
+        /// </summary>
+        [Input("subscriptionPeriod")]
+        public string? SubscriptionPeriod { get; set; }
+
+        /// <summary>
         /// `zone`) The zone in which the offer should be created.
         /// </summary>
         [Input("zone")]
@@ -115,6 +121,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("offerId")]
         public Input<string>? OfferId { get; set; }
+
+        /// <summary>
+        /// Period of subscription the desired offer. Should be `hourly` or `monthly`.
+        /// </summary>
+        [Input("subscriptionPeriod")]
+        public Input<string>? SubscriptionPeriod { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the offer should be created.
@@ -166,6 +178,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
         /// </summary>
         public readonly string Stock;
+        public readonly string? SubscriptionPeriod;
         public readonly string Zone;
 
         [OutputConstructor]
@@ -190,6 +203,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string stock,
 
+            string? subscriptionPeriod,
+
             string zone)
         {
             Bandwidth = bandwidth;
@@ -202,6 +217,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Name = name;
             OfferId = offerId;
             Stock = stock;
+            SubscriptionPeriod = subscriptionPeriod;
             Zone = zone;
         }
     }

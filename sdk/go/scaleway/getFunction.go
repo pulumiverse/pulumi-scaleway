@@ -37,20 +37,21 @@ type LookupFunctionResult struct {
 	FunctionId           *string           `pulumi:"functionId"`
 	Handler              string            `pulumi:"handler"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	MaxScale       int     `pulumi:"maxScale"`
-	MemoryLimit    int     `pulumi:"memoryLimit"`
-	MinScale       int     `pulumi:"minScale"`
-	Name           *string `pulumi:"name"`
-	NamespaceId    string  `pulumi:"namespaceId"`
-	OrganizationId string  `pulumi:"organizationId"`
-	Privacy        string  `pulumi:"privacy"`
-	ProjectId      string  `pulumi:"projectId"`
-	Region         string  `pulumi:"region"`
-	Runtime        string  `pulumi:"runtime"`
-	Timeout        int     `pulumi:"timeout"`
-	ZipFile        string  `pulumi:"zipFile"`
-	ZipHash        string  `pulumi:"zipHash"`
+	Id                         string            `pulumi:"id"`
+	MaxScale                   int               `pulumi:"maxScale"`
+	MemoryLimit                int               `pulumi:"memoryLimit"`
+	MinScale                   int               `pulumi:"minScale"`
+	Name                       *string           `pulumi:"name"`
+	NamespaceId                string            `pulumi:"namespaceId"`
+	OrganizationId             string            `pulumi:"organizationId"`
+	Privacy                    string            `pulumi:"privacy"`
+	ProjectId                  string            `pulumi:"projectId"`
+	Region                     string            `pulumi:"region"`
+	Runtime                    string            `pulumi:"runtime"`
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	Timeout                    int               `pulumi:"timeout"`
+	ZipFile                    string            `pulumi:"zipFile"`
+	ZipHash                    string            `pulumi:"zipHash"`
 }
 
 func LookupFunctionOutput(ctx *pulumi.Context, args LookupFunctionOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionResultOutput {
@@ -163,6 +164,10 @@ func (o LookupFunctionResultOutput) Region() pulumi.StringOutput {
 
 func (o LookupFunctionResultOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionResult) string { return v.Runtime }).(pulumi.StringOutput)
+}
+
+func (o LookupFunctionResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupFunctionResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
 func (o LookupFunctionResultOutput) Timeout() pulumi.IntOutput {

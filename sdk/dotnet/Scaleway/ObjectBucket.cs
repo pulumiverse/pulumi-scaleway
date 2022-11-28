@@ -212,6 +212,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Enable object lock
+        /// </summary>
+        [Output("objectLockEnabled")]
+        public Output<bool?> ObjectLockEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         /// </summary>
         [Output("region")]
@@ -319,6 +325,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Enable object lock
+        /// </summary>
+        [Input("objectLockEnabled")]
+        public Input<bool>? ObjectLockEnabled { get; set; }
+
+        /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         /// </summary>
         [Input("region")]
@@ -397,6 +409,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enable object lock
+        /// </summary>
+        [Input("objectLockEnabled")]
+        public Input<bool>? ObjectLockEnabled { get; set; }
 
         /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

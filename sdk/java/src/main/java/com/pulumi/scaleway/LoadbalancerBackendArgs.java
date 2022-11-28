@@ -22,6 +22,25 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
     public static final LoadbalancerBackendArgs Empty = new LoadbalancerBackendArgs();
 
     /**
+     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     * &gt; **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
+     * 
+     */
+    @Import(name="failoverHost")
+    private @Nullable Output<String> failoverHost;
+
+    /**
+     * @return Scaleway S3 bucket website to be served in case all backend servers are down.
+     * &gt; **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
+     * 
+     */
+    public Optional<Output<String>> failoverHost() {
+        return Optional.ofNullable(this.failoverHost);
+    }
+
+    /**
      * User sessions will be forwarded to this port of backend servers.
      * 
      */
@@ -349,6 +368,7 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
     private LoadbalancerBackendArgs() {}
 
     private LoadbalancerBackendArgs(LoadbalancerBackendArgs $) {
+        this.failoverHost = $.failoverHost;
         this.forwardPort = $.forwardPort;
         this.forwardPortAlgorithm = $.forwardPortAlgorithm;
         this.forwardProtocol = $.forwardProtocol;
@@ -388,6 +408,31 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
 
         public Builder(LoadbalancerBackendArgs defaults) {
             $ = new LoadbalancerBackendArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param failoverHost Scaleway S3 bucket website to be served in case all backend servers are down.
+         * &gt; **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+         * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverHost(@Nullable Output<String> failoverHost) {
+            $.failoverHost = failoverHost;
+            return this;
+        }
+
+        /**
+         * @param failoverHost Scaleway S3 bucket website to be served in case all backend servers are down.
+         * &gt; **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+         * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverHost(String failoverHost) {
+            return failoverHost(Output.of(failoverHost));
         }
 
         /**

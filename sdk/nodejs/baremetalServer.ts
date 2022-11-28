@@ -109,18 +109,38 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly osId!: pulumi.Output<string>;
     /**
+     * Password used for the installation. May be required depending on used os.
+     */
+    public readonly password!: pulumi.Output<string | undefined>;
+    /**
      * `projectId`) The ID of the project the server is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * If True, this boolean allows to reinstall the server on install config changes.
+     * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+     */
+    public readonly reinstallOnConfigChanges!: pulumi.Output<boolean | undefined>;
+    /**
+     * Password used for the service to install. May be required depending on used os.
+     */
+    public readonly servicePassword!: pulumi.Output<string | undefined>;
+    /**
+     * User used for the service to install.
+     */
+    public readonly serviceUser!: pulumi.Output<string>;
+    /**
      * List of SSH keys allowed to connect to the server.
-     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     public readonly sshKeyIds!: pulumi.Output<string[]>;
     /**
      * The tags associated with the server.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
+     * User used for the installation.
+     */
+    public readonly user!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the server should be created.
      */
@@ -149,9 +169,14 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["osId"] = state ? state.osId : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["reinstallOnConfigChanges"] = state ? state.reinstallOnConfigChanges : undefined;
+            resourceInputs["servicePassword"] = state ? state.servicePassword : undefined;
+            resourceInputs["serviceUser"] = state ? state.serviceUser : undefined;
             resourceInputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as BaremetalServerArgs | undefined;
@@ -169,9 +194,14 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["offer"] = args ? args.offer : undefined;
             resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["reinstallOnConfigChanges"] = args ? args.reinstallOnConfigChanges : undefined;
+            resourceInputs["servicePassword"] = args?.servicePassword ? pulumi.secret(args.servicePassword) : undefined;
+            resourceInputs["serviceUser"] = args ? args.serviceUser : undefined;
             resourceInputs["sshKeyIds"] = args ? args.sshKeyIds : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["domain"] = undefined /*out*/;
             resourceInputs["ips"] = undefined /*out*/;
@@ -180,6 +210,8 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["osId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password", "servicePassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(BaremetalServer.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -232,18 +264,38 @@ export interface BaremetalServerState {
      */
     osId?: pulumi.Input<string>;
     /**
+     * Password used for the installation. May be required depending on used os.
+     */
+    password?: pulumi.Input<string>;
+    /**
      * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
+     * If True, this boolean allows to reinstall the server on install config changes.
+     * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+     */
+    reinstallOnConfigChanges?: pulumi.Input<boolean>;
+    /**
+     * Password used for the service to install. May be required depending on used os.
+     */
+    servicePassword?: pulumi.Input<string>;
+    /**
+     * User used for the service to install.
+     */
+    serviceUser?: pulumi.Input<string>;
+    /**
      * List of SSH keys allowed to connect to the server.
-     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags associated with the server.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * User used for the installation.
+     */
+    user?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server should be created.
      */
@@ -278,18 +330,38 @@ export interface BaremetalServerArgs {
      */
     os: pulumi.Input<string>;
     /**
+     * Password used for the installation. May be required depending on used os.
+     */
+    password?: pulumi.Input<string>;
+    /**
      * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
+     * If True, this boolean allows to reinstall the server on install config changes.
+     * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+     */
+    reinstallOnConfigChanges?: pulumi.Input<boolean>;
+    /**
+     * Password used for the service to install. May be required depending on used os.
+     */
+    servicePassword?: pulumi.Input<string>;
+    /**
+     * User used for the service to install.
+     */
+    serviceUser?: pulumi.Input<string>;
+    /**
      * List of SSH keys allowed to connect to the server.
-     * > **Important:** Updates to `sshKeyIds` will reinstall the server.
      */
     sshKeyIds: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags associated with the server.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * User used for the installation.
+     */
+    user?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server should be created.
      */

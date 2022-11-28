@@ -126,6 +126,10 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly runtime!: pulumi.Output<string>;
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     */
+    public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      */
     public readonly timeout!: pulumi.Output<number>;
@@ -167,6 +171,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["runtime"] = state ? state.runtime : undefined;
+            resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["zipFile"] = state ? state.zipFile : undefined;
             resourceInputs["zipHash"] = state ? state.zipHash : undefined;
@@ -197,6 +202,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["runtime"] = args ? args.runtime : undefined;
+            resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["zipFile"] = args ? args.zipFile : undefined;
             resourceInputs["zipHash"] = args ? args.zipHash : undefined;
@@ -205,6 +211,8 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["organizationId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Function.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -278,6 +286,10 @@ export interface FunctionState {
      */
     runtime?: pulumi.Input<string>;
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      */
     timeout?: pulumi.Input<number>;
@@ -347,6 +359,10 @@ export interface FunctionArgs {
      * Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
      */
     runtime: pulumi.Input<string>;
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      */

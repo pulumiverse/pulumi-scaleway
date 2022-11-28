@@ -804,6 +804,16 @@ export interface ObjectBucketLifecycleRuleTransition {
     storageClass: pulumi.Input<string>;
 }
 
+export interface ObjectBucketLockConfigurationRule {
+    defaultRetention: pulumi.Input<inputs.ObjectBucketLockConfigurationRuleDefaultRetention>;
+}
+
+export interface ObjectBucketLockConfigurationRuleDefaultRetention {
+    days?: pulumi.Input<number>;
+    mode: pulumi.Input<string>;
+    years?: pulumi.Input<number>;
+}
+
 export interface ObjectBucketVersioning {
     enabled?: pulumi.Input<boolean>;
 }

@@ -12,6 +12,7 @@ import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.ContainerNamespaceState;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -189,6 +190,20 @@ public class ContainerNamespace extends com.pulumi.resources.CustomResource {
     public Output<String> registryNamespaceId() {
         return this.registryNamespaceId;
     }
+    /**
+     * The secret environment variables of the namespace.
+     * 
+     */
+    @Export(name="secretEnvironmentVariables", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The secret environment variables of the namespace.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> secretEnvironmentVariables() {
+        return Codegen.optional(this.secretEnvironmentVariables);
+    }
 
     /**
      *
@@ -222,6 +237,9 @@ public class ContainerNamespace extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secretEnvironmentVariables"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

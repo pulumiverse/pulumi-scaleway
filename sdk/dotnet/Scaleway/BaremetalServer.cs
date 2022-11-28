@@ -119,14 +119,38 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> OsId { get; private set; } = null!;
 
         /// <summary>
+        /// Password used for the installation. May be required depending on used os.
+        /// </summary>
+        [Output("password")]
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
         /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// If True, this boolean allows to reinstall the server on install config changes.
+        /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        /// </summary>
+        [Output("reinstallOnConfigChanges")]
+        public Output<bool?> ReinstallOnConfigChanges { get; private set; } = null!;
+
+        /// <summary>
+        /// Password used for the service to install. May be required depending on used os.
+        /// </summary>
+        [Output("servicePassword")]
+        public Output<string?> ServicePassword { get; private set; } = null!;
+
+        /// <summary>
+        /// User used for the service to install.
+        /// </summary>
+        [Output("serviceUser")]
+        public Output<string> ServiceUser { get; private set; } = null!;
+
+        /// <summary>
         /// List of SSH keys allowed to connect to the server.
-        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         [Output("sshKeyIds")]
         public Output<ImmutableArray<string>> SshKeyIds { get; private set; } = null!;
@@ -136,6 +160,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// User used for the installation.
+        /// </summary>
+        [Output("user")]
+        public Output<string> User { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.
@@ -167,6 +197,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                    "servicePassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -223,18 +258,62 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("os", required: true)]
         public Input<string> Os { get; set; } = null!;
 
+        [Input("password")]
+        private Input<string>? _password;
+
+        /// <summary>
+        /// Password used for the installation. May be required depending on used os.
+        /// </summary>
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// If True, this boolean allows to reinstall the server on install config changes.
+        /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        /// </summary>
+        [Input("reinstallOnConfigChanges")]
+        public Input<bool>? ReinstallOnConfigChanges { get; set; }
+
+        [Input("servicePassword")]
+        private Input<string>? _servicePassword;
+
+        /// <summary>
+        /// Password used for the service to install. May be required depending on used os.
+        /// </summary>
+        public Input<string>? ServicePassword
+        {
+            get => _servicePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _servicePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// User used for the service to install.
+        /// </summary>
+        [Input("serviceUser")]
+        public Input<string>? ServiceUser { get; set; }
+
         [Input("sshKeyIds", required: true)]
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
         /// List of SSH keys allowed to connect to the server.
-        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         public InputList<string> SshKeyIds
         {
@@ -253,6 +332,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// User used for the installation.
+        /// </summary>
+        [Input("user")]
+        public Input<string>? User { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.
@@ -337,18 +422,62 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("osId")]
         public Input<string>? OsId { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
+        /// <summary>
+        /// Password used for the installation. May be required depending on used os.
+        /// </summary>
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// If True, this boolean allows to reinstall the server on install config changes.
+        /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        /// </summary>
+        [Input("reinstallOnConfigChanges")]
+        public Input<bool>? ReinstallOnConfigChanges { get; set; }
+
+        [Input("servicePassword")]
+        private Input<string>? _servicePassword;
+
+        /// <summary>
+        /// Password used for the service to install. May be required depending on used os.
+        /// </summary>
+        public Input<string>? ServicePassword
+        {
+            get => _servicePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _servicePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// User used for the service to install.
+        /// </summary>
+        [Input("serviceUser")]
+        public Input<string>? ServiceUser { get; set; }
+
         [Input("sshKeyIds")]
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
         /// List of SSH keys allowed to connect to the server.
-        /// &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
         /// </summary>
         public InputList<string> SshKeyIds
         {
@@ -367,6 +496,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// User used for the installation.
+        /// </summary>
+        [Input("user")]
+        public Input<string>? User { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.

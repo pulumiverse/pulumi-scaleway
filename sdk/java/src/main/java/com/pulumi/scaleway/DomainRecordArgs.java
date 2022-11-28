@@ -53,14 +53,14 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+     * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
      * 
      */
     @Import(name="geoIp")
     private @Nullable Output<DomainRecordGeoIpArgs> geoIp;
 
     /**
-     * @return The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+     * @return The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
      * 
      */
     public Optional<Output<DomainRecordGeoIpArgs>> geoIp() {
@@ -68,14 +68,14 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+     * The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
      * 
      */
     @Import(name="httpService")
     private @Nullable Output<DomainRecordHttpServiceArgs> httpService;
 
     /**
-     * @return The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+     * @return The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
      * 
      */
     public Optional<Output<DomainRecordHttpServiceArgs>> httpService() {
@@ -173,14 +173,14 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+     * The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
      * 
      */
     @Import(name="views")
     private @Nullable Output<List<DomainRecordViewArgs>> views;
 
     /**
-     * @return The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+     * @return The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
      * 
      */
     public Optional<Output<List<DomainRecordViewArgs>>> views() {
@@ -188,14 +188,14 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+     * You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
      * 
      */
     @Import(name="weighteds")
     private @Nullable Output<List<DomainRecordWeightedArgs>> weighteds;
 
     /**
-     * @return You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+     * @return You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
      * 
      */
     public Optional<Output<List<DomainRecordWeightedArgs>>> weighteds() {
@@ -280,7 +280,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param geoIp The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+         * @param geoIp The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
          * 
          * @return builder
          * 
@@ -291,7 +291,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param geoIp The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+         * @param geoIp The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
          * 
          * @return builder
          * 
@@ -301,7 +301,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param httpService The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+         * @param httpService The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
          * 
          * @return builder
          * 
@@ -312,7 +312,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param httpService The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+         * @param httpService The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
          * 
          * @return builder
          * 
@@ -448,7 +448,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param views The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+         * @param views The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
          * 
          * @return builder
          * 
@@ -459,7 +459,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param views The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+         * @param views The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
          * 
          * @return builder
          * 
@@ -469,7 +469,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param views The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+         * @param views The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
          * 
          * @return builder
          * 
@@ -479,7 +479,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param weighteds You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+         * @param weighteds You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
          * 
          * @return builder
          * 
@@ -490,7 +490,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param weighteds You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+         * @param weighteds You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
          * 
          * @return builder
          * 
@@ -500,7 +500,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param weighteds You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+         * @param weighteds You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
          * 
          * @return builder
          * 

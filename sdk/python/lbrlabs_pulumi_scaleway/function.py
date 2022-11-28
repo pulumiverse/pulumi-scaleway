@@ -27,6 +27,7 @@ class FunctionArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None):
@@ -45,6 +46,7 @@ class FunctionArgs:
         :param pulumi.Input[str] name: The unique name of the function.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -71,6 +73,8 @@ class FunctionArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if secret_environment_variables is not None:
+            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if zip_file is not None:
@@ -235,6 +239,18 @@ class FunctionArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        """
+        return pulumi.get(self, "secret_environment_variables")
+
+    @secret_environment_variables.setter
+    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "secret_environment_variables", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -290,6 +306,7 @@ class _FunctionState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None):
@@ -311,6 +328,7 @@ class _FunctionState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -347,6 +365,8 @@ class _FunctionState:
             pulumi.set(__self__, "region", region)
         if runtime is not None:
             pulumi.set(__self__, "runtime", runtime)
+        if secret_environment_variables is not None:
+            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if zip_file is not None:
@@ -547,6 +567,18 @@ class _FunctionState:
         pulumi.set(self, "runtime", value)
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        """
+        return pulumi.get(self, "secret_environment_variables")
+
+    @secret_environment_variables.setter
+    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "secret_environment_variables", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -601,6 +633,7 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
@@ -648,6 +681,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -714,6 +748,7 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
@@ -747,12 +782,15 @@ class Function(pulumi.CustomResource):
             if runtime is None and not opts.urn:
                 raise TypeError("Missing required property 'runtime'")
             __props__.__dict__["runtime"] = runtime
+            __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
             __props__.__dict__["timeout"] = timeout
             __props__.__dict__["zip_file"] = zip_file
             __props__.__dict__["zip_hash"] = zip_hash
             __props__.__dict__["cpu_limit"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["organization_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Function, __self__).__init__(
             'scaleway:index/function:Function',
             resource_name,
@@ -779,6 +817,7 @@ class Function(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             runtime: Optional[pulumi.Input[str]] = None,
+            secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
             zip_file: Optional[pulumi.Input[str]] = None,
             zip_hash: Optional[pulumi.Input[str]] = None) -> 'Function':
@@ -805,6 +844,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
@@ -829,6 +869,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["runtime"] = runtime
+        __props__.__dict__["secret_environment_variables"] = secret_environment_variables
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["zip_file"] = zip_file
         __props__.__dict__["zip_hash"] = zip_hash
@@ -961,6 +1002,14 @@ class Function(pulumi.CustomResource):
         Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
         """
         return pulumi.get(self, "runtime")
+
+    @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        """
+        return pulumi.get(self, "secret_environment_variables")
 
     @property
     @pulumi.getter

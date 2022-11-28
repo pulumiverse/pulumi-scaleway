@@ -37,6 +37,9 @@ import * as utilities from "./utilities";
  *     environmentVariables: {
  *         foo: "var",
  *     },
+ *     secretEnvironmentVariables: {
+ *         key: "secret",
+ *     },
  * });
  * ```
  * ## Protocols
@@ -128,7 +131,7 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The container domain name.
+     * The native domain name of the container
      */
     public /*out*/ readonly domainName!: pulumi.Output<string>;
     /**
@@ -188,6 +191,10 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly registrySha256!: pulumi.Output<string | undefined>;
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     */
+    public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The container status.
      */
     public readonly status!: pulumi.Output<string>;
@@ -228,6 +235,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["registryImage"] = state ? state.registryImage : undefined;
             resourceInputs["registrySha256"] = state ? state.registrySha256 : undefined;
+            resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
         } else {
@@ -250,6 +258,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["registryImage"] = args ? args.registryImage : undefined;
             resourceInputs["registrySha256"] = args ? args.registrySha256 : undefined;
+            resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["cronStatus"] = undefined /*out*/;
@@ -258,6 +267,8 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["region"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Container.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -283,7 +294,7 @@ export interface ContainerState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The container domain name.
+     * The native domain name of the container
      */
     domainName?: pulumi.Input<string>;
     /**
@@ -342,6 +353,10 @@ export interface ContainerState {
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
      */
     registrySha256?: pulumi.Input<string>;
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The container status.
      */
@@ -416,6 +431,10 @@ export interface ContainerArgs {
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
      */
     registrySha256?: pulumi.Input<string>;
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The container status.
      */

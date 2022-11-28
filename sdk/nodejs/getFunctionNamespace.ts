@@ -85,6 +85,7 @@ export interface GetFunctionNamespaceResult {
      * The registry namespace ID of the namespace.
      */
     readonly registryNamespaceId: string;
+    readonly secretEnvironmentVariables: {[key: string]: string};
 }
 
 export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionNamespaceResult> {

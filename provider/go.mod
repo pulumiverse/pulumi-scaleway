@@ -4,8 +4,8 @@ go 1.19
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
-	github.com/pulumi/pulumi/sdk/v3 v3.45.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.5.0
+	github.com/pulumi/pulumi/sdk/v3 v3.46.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.7.1
 )
 
 require (
@@ -215,7 +215,7 @@ require (
 )
 
 replace (
-	github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.8.1
+	github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.9.0
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 )

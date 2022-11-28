@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway Domain record.\
-// For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
+// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 //
 // ## Examples
 //
@@ -277,9 +277,9 @@ type DomainRecord struct {
 	Data pulumi.StringOutput `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringOutput `pulumi:"dnsZone"`
-	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp DomainRecordGeoIpPtrOutput `pulumi:"geoIp"`
-	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
 	HttpService DomainRecordHttpServicePtrOutput `pulumi:"httpService"`
 	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
 	KeepEmptyZone pulumi.BoolPtrOutput `pulumi:"keepEmptyZone"`
@@ -295,9 +295,9 @@ type DomainRecord struct {
 	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
 	Views DomainRecordViewArrayOutput `pulumi:"views"`
-	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
 	Weighteds DomainRecordWeightedArrayOutput `pulumi:"weighteds"`
 }
 
@@ -344,9 +344,9 @@ type domainRecordState struct {
 	Data *string `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone *string `pulumi:"dnsZone"`
-	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
-	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
 	HttpService *DomainRecordHttpService `pulumi:"httpService"`
 	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
 	KeepEmptyZone *bool `pulumi:"keepEmptyZone"`
@@ -362,9 +362,9 @@ type domainRecordState struct {
 	Ttl *int `pulumi:"ttl"`
 	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
 	Type *string `pulumi:"type"`
-	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
 	Views []DomainRecordView `pulumi:"views"`
-	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
 	Weighteds []DomainRecordWeighted `pulumi:"weighteds"`
 }
 
@@ -373,9 +373,9 @@ type DomainRecordState struct {
 	Data pulumi.StringPtrInput
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringPtrInput
-	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp DomainRecordGeoIpPtrInput
-	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
 	HttpService DomainRecordHttpServicePtrInput
 	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
 	KeepEmptyZone pulumi.BoolPtrInput
@@ -391,9 +391,9 @@ type DomainRecordState struct {
 	Ttl pulumi.IntPtrInput
 	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
 	Type pulumi.StringPtrInput
-	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
 	Views DomainRecordViewArrayInput
-	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
 	Weighteds DomainRecordWeightedArrayInput
 }
 
@@ -406,9 +406,9 @@ type domainRecordArgs struct {
 	Data string `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone string `pulumi:"dnsZone"`
-	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
-	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
 	HttpService *DomainRecordHttpService `pulumi:"httpService"`
 	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
 	KeepEmptyZone *bool `pulumi:"keepEmptyZone"`
@@ -422,9 +422,9 @@ type domainRecordArgs struct {
 	Ttl *int `pulumi:"ttl"`
 	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
 	Type string `pulumi:"type"`
-	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
 	Views []DomainRecordView `pulumi:"views"`
-	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
 	Weighteds []DomainRecordWeighted `pulumi:"weighteds"`
 }
 
@@ -434,9 +434,9 @@ type DomainRecordArgs struct {
 	Data pulumi.StringInput
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringInput
-	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp DomainRecordGeoIpPtrInput
-	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
 	HttpService DomainRecordHttpServicePtrInput
 	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
 	KeepEmptyZone pulumi.BoolPtrInput
@@ -450,9 +450,9 @@ type DomainRecordArgs struct {
 	Ttl pulumi.IntPtrInput
 	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
 	Type pulumi.StringInput
-	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+	// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
 	Views DomainRecordViewArrayInput
-	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+	// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
 	Weighteds DomainRecordWeightedArrayInput
 }
 
@@ -553,12 +553,12 @@ func (o DomainRecordOutput) DnsZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.DnsZone }).(pulumi.StringOutput)
 }
 
-// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Geo-IP-Records)
+// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 func (o DomainRecordOutput) GeoIp() DomainRecordGeoIpPtrOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordGeoIpPtrOutput { return v.GeoIp }).(DomainRecordGeoIpPtrOutput)
 }
 
-// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Healthcheck-records)
+// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
 func (o DomainRecordOutput) HttpService() DomainRecordHttpServicePtrOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordHttpServicePtrOutput { return v.HttpService }).(DomainRecordHttpServicePtrOutput)
 }
@@ -598,12 +598,12 @@ func (o DomainRecordOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Views-records)
+// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
 func (o DomainRecordOutput) Views() DomainRecordViewArrayOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordViewArrayOutput { return v.Views }).(DomainRecordViewArrayOutput)
 }
 
-// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/scaleway-dns/#-Weight-Records)
+// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
 func (o DomainRecordOutput) Weighteds() DomainRecordWeightedArrayOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordWeightedArrayOutput { return v.Weighteds }).(DomainRecordWeightedArrayOutput)
 }

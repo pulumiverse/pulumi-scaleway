@@ -259,6 +259,21 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
+    /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      * 
      */
@@ -322,6 +337,7 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
         this.projectId = $.projectId;
         this.region = $.region;
         this.runtime = $.runtime;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
         this.timeout = $.timeout;
         this.zipFile = $.zipFile;
         this.zipHash = $.zipHash;
@@ -679,6 +695,27 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder runtime(String runtime) {
             return runtime(Output.of(runtime));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         /**

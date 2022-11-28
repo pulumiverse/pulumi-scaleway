@@ -93,12 +93,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
-    /// ## error_document
-    /// 
-    /// The error_document configuration block supports the following arguments:
-    /// 
-    /// * `key` - (Required) The object key name to use when a 4XX class error occurs.
-    /// 
     /// ## index_document
     /// 
     /// The `index_document` configuration block supports the following arguments:
@@ -110,10 +104,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// In addition to all above arguments, the following attribute is exported:
     /// 
     /// * `id` - The bucket and region separated by a slash (/)
-    /// * `website_domain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/dns-cloud/how-to/manage-dns-records).
+    /// * `website_domain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
     /// * `website_endpoint` - The website endpoint.
     /// 
     /// &gt; **Important:** Please check our concepts section to know more about the [endpoint](https://www.scaleway.com/en/docs/storage/object/concepts/#endpoint).
+    /// 
+    /// ## error_document
+    /// 
+    /// The error_document configuration block supports the following arguments:
+    /// 
+    /// * `key` - (Required) The object key name to use when a 4XX class error occurs.
     /// 
     /// ## Import
     /// 
@@ -139,10 +139,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<Outputs.ObjectBucketWebsiteConfigurationErrorDocument?> ErrorDocument { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional) The name of the index document for the website detailed below.
+        /// (Required) The name of the index document for the website detailed below.
         /// </summary>
         [Output("indexDocument")]
-        public Output<Outputs.ObjectBucketWebsiteConfigurationIndexDocument?> IndexDocument { get; private set; } = null!;
+        public Output<Outputs.ObjectBucketWebsiteConfigurationIndexDocument> IndexDocument { get; private set; } = null!;
 
         /// <summary>
         /// The website endpoint.
@@ -216,10 +216,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.ObjectBucketWebsiteConfigurationErrorDocumentArgs>? ErrorDocument { get; set; }
 
         /// <summary>
-        /// (Optional) The name of the index document for the website detailed below.
+        /// (Required) The name of the index document for the website detailed below.
         /// </summary>
-        [Input("indexDocument")]
-        public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs>? IndexDocument { get; set; }
+        [Input("indexDocument", required: true)]
+        public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs> IndexDocument { get; set; } = null!;
 
         public ObjectBucketWebsiteConfigurationArgs()
         {
@@ -242,7 +242,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.ObjectBucketWebsiteConfigurationErrorDocumentGetArgs>? ErrorDocument { get; set; }
 
         /// <summary>
-        /// (Optional) The name of the index document for the website detailed below.
+        /// (Required) The name of the index document for the website detailed below.
         /// </summary>
         [Input("indexDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentGetArgs>? IndexDocument { get; set; }

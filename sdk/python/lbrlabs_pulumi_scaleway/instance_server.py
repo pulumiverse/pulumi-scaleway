@@ -918,6 +918,41 @@ class InstanceServer(pulumi.CustomResource):
             )])
         ```
 
+        ### Root volume configuration
+
+        #### Resized block volume with installed image
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        image = scaleway.InstanceServer("image",
+            image="ubuntu_jammy",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                size_in_gb=100,
+                volume_type="b_ssd",
+            ),
+            type="PRO2-XXS")
+        ```
+
+        #### From snapshot
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_scaleway as scaleway
+
+        snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
+        from_snapshot_instance_volume = scaleway.InstanceVolume("fromSnapshotInstanceVolume",
+            from_snapshot_id=snapshot.id,
+            type="b_ssd")
+        from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
+            type="PRO2-XXS",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                volume_id=from_snapshot_instance_volume.id,
+            ))
+        ```
+
         ## Private Network
 
         > **Important:** Updates to `private_network` will recreate a new private network interface.
@@ -1094,6 +1129,41 @@ class InstanceServer(pulumi.CustomResource):
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
                 pn_id=pn01.id,
             )])
+        ```
+
+        ### Root volume configuration
+
+        #### Resized block volume with installed image
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        image = scaleway.InstanceServer("image",
+            image="ubuntu_jammy",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                size_in_gb=100,
+                volume_type="b_ssd",
+            ),
+            type="PRO2-XXS")
+        ```
+
+        #### From snapshot
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_scaleway as scaleway
+
+        snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
+        from_snapshot_instance_volume = scaleway.InstanceVolume("fromSnapshotInstanceVolume",
+            from_snapshot_id=snapshot.id,
+            type="b_ssd")
+        from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
+            type="PRO2-XXS",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                volume_id=from_snapshot_instance_volume.id,
+            ))
         ```
 
         ## Private Network

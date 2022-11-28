@@ -48,14 +48,14 @@ public final class ObjectBucketWebsiteConfigurationState extends com.pulumi.reso
     }
 
     /**
-     * (Optional) The name of the index document for the website detailed below.
+     * (Required) The name of the index document for the website detailed below.
      * 
      */
     @Import(name="indexDocument")
     private @Nullable Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs> indexDocument;
 
     /**
-     * @return (Optional) The name of the index document for the website detailed below.
+     * @return (Required) The name of the index document for the website detailed below.
      * 
      */
     public Optional<Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs>> indexDocument() {
@@ -163,7 +163,7 @@ public final class ObjectBucketWebsiteConfigurationState extends com.pulumi.reso
         }
 
         /**
-         * @param indexDocument (Optional) The name of the index document for the website detailed below.
+         * @param indexDocument (Required) The name of the index document for the website detailed below.
          * 
          * @return builder
          * 
@@ -174,7 +174,7 @@ public final class ObjectBucketWebsiteConfigurationState extends com.pulumi.reso
         }
 
         /**
-         * @param indexDocument (Optional) The name of the index document for the website detailed below.
+         * @param indexDocument (Required) The name of the index document for the website detailed below.
          * 
          * @return builder
          * 

@@ -12,6 +12,8 @@ import com.pulumi.scaleway.inputs.GetAccountSshKeyArgs;
 import com.pulumi.scaleway.inputs.GetAccountSshKeyPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOfferPlainArgs;
+import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+import com.pulumi.scaleway.inputs.GetBaremetalOptionPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOsArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOsPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerArgs;
@@ -50,6 +52,8 @@ import com.pulumi.scaleway.inputs.GetInstanceServerArgs;
 import com.pulumi.scaleway.inputs.GetInstanceServerPlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceServersArgs;
 import com.pulumi.scaleway.inputs.GetInstanceServersPlainArgs;
+import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+import com.pulumi.scaleway.inputs.GetInstanceSnapshotPlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceVolumeArgs;
 import com.pulumi.scaleway.inputs.GetInstanceVolumePlainArgs;
 import com.pulumi.scaleway.inputs.GetIotDeviceArgs;
@@ -92,6 +96,7 @@ import com.pulumi.scaleway.inputs.GetVpcPublicPatRuleArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRulePlainArgs;
 import com.pulumi.scaleway.outputs.GetAccountSshKeyResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOfferResult;
+import com.pulumi.scaleway.outputs.GetBaremetalOptionResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOsResult;
 import com.pulumi.scaleway.outputs.GetBaremetalServerResult;
 import com.pulumi.scaleway.outputs.GetContainerNamespaceResult;
@@ -111,6 +116,7 @@ import com.pulumi.scaleway.outputs.GetInstanceIpResult;
 import com.pulumi.scaleway.outputs.GetInstanceSecurityGroupResult;
 import com.pulumi.scaleway.outputs.GetInstanceServerResult;
 import com.pulumi.scaleway.outputs.GetInstanceServersResult;
+import com.pulumi.scaleway.outputs.GetInstanceSnapshotResult;
 import com.pulumi.scaleway.outputs.GetInstanceVolumeResult;
 import com.pulumi.scaleway.outputs.GetIotDeviceResult;
 import com.pulumi.scaleway.outputs.GetIotHubResult;
@@ -583,6 +589,258 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetBaremetalOfferResult> getBaremetalOfferPlain(GetBaremetalOfferPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getBaremetalOffer:getBaremetalOffer", TypeShape.of(GetBaremetalOfferResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a baremetal option.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .name(&#34;Remote Access&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .optionId(&#34;931df052-d713-4674-8b58-96a63244c8e2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetBaremetalOptionResult> getBaremetalOption() {
+        return getBaremetalOption(GetBaremetalOptionArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a baremetal option.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .name(&#34;Remote Access&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .optionId(&#34;931df052-d713-4674-8b58-96a63244c8e2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetBaremetalOptionResult> getBaremetalOptionPlain() {
+        return getBaremetalOptionPlain(GetBaremetalOptionPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a baremetal option.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .name(&#34;Remote Access&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .optionId(&#34;931df052-d713-4674-8b58-96a63244c8e2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetBaremetalOptionResult> getBaremetalOption(GetBaremetalOptionArgs args) {
+        return getBaremetalOption(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a baremetal option.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .name(&#34;Remote Access&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .optionId(&#34;931df052-d713-4674-8b58-96a63244c8e2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetBaremetalOptionResult> getBaremetalOptionPlain(GetBaremetalOptionPlainArgs args) {
+        return getBaremetalOptionPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a baremetal option.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .name(&#34;Remote Access&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .optionId(&#34;931df052-d713-4674-8b58-96a63244c8e2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetBaremetalOptionResult> getBaremetalOption(GetBaremetalOptionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getBaremetalOption:getBaremetalOption", TypeShape.of(GetBaremetalOptionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a baremetal option.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .name(&#34;Remote Access&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getBaremetalOption(GetBaremetalOptionArgs.builder()
+     *             .optionId(&#34;931df052-d713-4674-8b58-96a63244c8e2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetBaremetalOptionResult> getBaremetalOptionPlain(GetBaremetalOptionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getBaremetalOption:getBaremetalOption", TypeShape.of(GetBaremetalOptionResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a baremetal operating system.
@@ -4627,6 +4885,252 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getInstanceServers:getInstanceServers", TypeShape.of(GetInstanceServersResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about an instance snapshot.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .name(&#34;my-snapshot-name&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .snapshotId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetInstanceSnapshotResult> getInstanceSnapshot() {
+        return getInstanceSnapshot(GetInstanceSnapshotArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an instance snapshot.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .name(&#34;my-snapshot-name&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .snapshotId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetInstanceSnapshotResult> getInstanceSnapshotPlain() {
+        return getInstanceSnapshotPlain(GetInstanceSnapshotPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an instance snapshot.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .name(&#34;my-snapshot-name&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .snapshotId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetInstanceSnapshotResult> getInstanceSnapshot(GetInstanceSnapshotArgs args) {
+        return getInstanceSnapshot(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an instance snapshot.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .name(&#34;my-snapshot-name&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .snapshotId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetInstanceSnapshotResult> getInstanceSnapshotPlain(GetInstanceSnapshotPlainArgs args) {
+        return getInstanceSnapshotPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an instance snapshot.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .name(&#34;my-snapshot-name&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .snapshotId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetInstanceSnapshotResult> getInstanceSnapshot(GetInstanceSnapshotArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", TypeShape.of(GetInstanceSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an instance snapshot.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .name(&#34;my-snapshot-name&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+     *             .snapshotId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetInstanceSnapshotResult> getInstanceSnapshotPlain(GetInstanceSnapshotPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", TypeShape.of(GetInstanceSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about an instance volume.
      * 
      * ## Example Usage
@@ -7773,10 +8277,12 @@ public final class ScalewayFunctions {
      *     public static void stack(Context ctx) {
      *         var main = new VpcPublicGateway(&#34;main&#34;, VpcPublicGatewayArgs.builder()        
      *             .type(&#34;VPC-GW-S&#34;)
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestByName = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
      *             .name(main.name())
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestById = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
@@ -7820,10 +8326,12 @@ public final class ScalewayFunctions {
      *     public static void stack(Context ctx) {
      *         var main = new VpcPublicGateway(&#34;main&#34;, VpcPublicGatewayArgs.builder()        
      *             .type(&#34;VPC-GW-S&#34;)
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestByName = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
      *             .name(main.name())
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestById = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
@@ -7867,10 +8375,12 @@ public final class ScalewayFunctions {
      *     public static void stack(Context ctx) {
      *         var main = new VpcPublicGateway(&#34;main&#34;, VpcPublicGatewayArgs.builder()        
      *             .type(&#34;VPC-GW-S&#34;)
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestByName = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
      *             .name(main.name())
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestById = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
@@ -7914,10 +8424,12 @@ public final class ScalewayFunctions {
      *     public static void stack(Context ctx) {
      *         var main = new VpcPublicGateway(&#34;main&#34;, VpcPublicGatewayArgs.builder()        
      *             .type(&#34;VPC-GW-S&#34;)
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestByName = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
      *             .name(main.name())
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestById = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
@@ -7961,10 +8473,12 @@ public final class ScalewayFunctions {
      *     public static void stack(Context ctx) {
      *         var main = new VpcPublicGateway(&#34;main&#34;, VpcPublicGatewayArgs.builder()        
      *             .type(&#34;VPC-GW-S&#34;)
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestByName = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
      *             .name(main.name())
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestById = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
@@ -8008,10 +8522,12 @@ public final class ScalewayFunctions {
      *     public static void stack(Context ctx) {
      *         var main = new VpcPublicGateway(&#34;main&#34;, VpcPublicGatewayArgs.builder()        
      *             .type(&#34;VPC-GW-S&#34;)
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestByName = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()
      *             .name(main.name())
+     *             .zone(&#34;nl-ams-1&#34;)
      *             .build());
      * 
      *         final var pgTestById = ScalewayFunctions.getVpcPublicGateway(GetVpcPublicGatewayArgs.builder()

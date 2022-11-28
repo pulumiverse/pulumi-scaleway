@@ -22,8 +22,13 @@ class BaremetalServerArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
+                 service_password: Optional[pulumi.Input[str]] = None,
+                 service_user: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BaremetalServer resource.
@@ -33,12 +38,17 @@ class BaremetalServerArgs:
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         :param pulumi.Input[str] description: A description for the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
+               > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        :param pulumi.Input[str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "offer", offer)
@@ -50,10 +60,20 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "hostname", hostname)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if reinstall_on_config_changes is not None:
+            pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
+        if service_password is not None:
+            pulumi.set(__self__, "service_password", service_password)
+        if service_user is not None:
+            pulumi.set(__self__, "service_user", service_user)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -89,7 +109,6 @@ class BaremetalServerArgs:
     def ssh_key_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         List of SSH keys allowed to connect to the server.
-        > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         """
         return pulumi.get(self, "ssh_key_ids")
 
@@ -134,6 +153,18 @@ class BaremetalServerArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password used for the installation. May be required depending on used os.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -146,6 +177,43 @@ class BaremetalServerArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="reinstallOnConfigChanges")
+    def reinstall_on_config_changes(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If True, this boolean allows to reinstall the server on install config changes.
+        > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        """
+        return pulumi.get(self, "reinstall_on_config_changes")
+
+    @reinstall_on_config_changes.setter
+    def reinstall_on_config_changes(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reinstall_on_config_changes", value)
+
+    @property
+    @pulumi.getter(name="servicePassword")
+    def service_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password used for the service to install. May be required depending on used os.
+        """
+        return pulumi.get(self, "service_password")
+
+    @service_password.setter
+    def service_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_password", value)
+
+    @property
+    @pulumi.getter(name="serviceUser")
+    def service_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User used for the service to install.
+        """
+        return pulumi.get(self, "service_user")
+
+    @service_user.setter
+    def service_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_user", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -156,6 +224,18 @@ class BaremetalServerArgs:
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User used for the installation.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
 
     @property
     @pulumi.getter
@@ -183,9 +263,14 @@ class _BaremetalServerState:
                  organization_id: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  os_id: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
+                 service_password: Optional[pulumi.Input[str]] = None,
+                 service_user: Optional[pulumi.Input[str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BaremetalServer resources.
@@ -202,10 +287,15 @@ class _BaremetalServerState:
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_id: The ID of the os.
+        :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
+               > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        :param pulumi.Input[str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         if description is not None:
@@ -228,12 +318,22 @@ class _BaremetalServerState:
             pulumi.set(__self__, "os", os)
         if os_id is not None:
             pulumi.set(__self__, "os_id", os_id)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if reinstall_on_config_changes is not None:
+            pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
+        if service_password is not None:
+            pulumi.set(__self__, "service_password", service_password)
+        if service_user is not None:
+            pulumi.set(__self__, "service_user", service_user)
         if ssh_key_ids is not None:
             pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -361,6 +461,18 @@ class _BaremetalServerState:
         pulumi.set(self, "os_id", value)
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password used for the installation. May be required depending on used os.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -373,11 +485,47 @@ class _BaremetalServerState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="reinstallOnConfigChanges")
+    def reinstall_on_config_changes(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If True, this boolean allows to reinstall the server on install config changes.
+        > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        """
+        return pulumi.get(self, "reinstall_on_config_changes")
+
+    @reinstall_on_config_changes.setter
+    def reinstall_on_config_changes(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reinstall_on_config_changes", value)
+
+    @property
+    @pulumi.getter(name="servicePassword")
+    def service_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password used for the service to install. May be required depending on used os.
+        """
+        return pulumi.get(self, "service_password")
+
+    @service_password.setter
+    def service_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_password", value)
+
+    @property
+    @pulumi.getter(name="serviceUser")
+    def service_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User used for the service to install.
+        """
+        return pulumi.get(self, "service_user")
+
+    @service_user.setter
+    def service_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_user", value)
+
+    @property
     @pulumi.getter(name="sshKeyIds")
     def ssh_key_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of SSH keys allowed to connect to the server.
-        > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         """
         return pulumi.get(self, "ssh_key_ids")
 
@@ -396,6 +544,18 @@ class _BaremetalServerState:
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User used for the installation.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
 
     @property
     @pulumi.getter
@@ -420,9 +580,14 @@ class BaremetalServer(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
+                 service_password: Optional[pulumi.Input[str]] = None,
+                 service_user: Optional[pulumi.Input[str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -463,10 +628,15 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
+        :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
+               > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        :param pulumi.Input[str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         ...
@@ -523,9 +693,14 @@ class BaremetalServer(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
+                 service_password: Optional[pulumi.Input[str]] = None,
+                 service_user: Optional[pulumi.Input[str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -545,17 +720,24 @@ class BaremetalServer(pulumi.CustomResource):
             if os is None and not opts.urn:
                 raise TypeError("Missing required property 'os'")
             __props__.__dict__["os"] = os
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
+            __props__.__dict__["service_password"] = None if service_password is None else pulumi.Output.secret(service_password)
+            __props__.__dict__["service_user"] = service_user
             if ssh_key_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'ssh_key_ids'")
             __props__.__dict__["ssh_key_ids"] = ssh_key_ids
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["user"] = user
             __props__.__dict__["zone"] = zone
             __props__.__dict__["domain"] = None
             __props__.__dict__["ips"] = None
             __props__.__dict__["offer_id"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["os_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "servicePassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(BaremetalServer, __self__).__init__(
             'scaleway:index/baremetalServer:BaremetalServer',
             resource_name,
@@ -576,9 +758,14 @@ class BaremetalServer(pulumi.CustomResource):
             organization_id: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
             os_id: Optional[pulumi.Input[str]] = None,
+            password: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
+            service_password: Optional[pulumi.Input[str]] = None,
+            service_user: Optional[pulumi.Input[str]] = None,
             ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            user: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'BaremetalServer':
         """
         Get an existing BaremetalServer resource's state with the given name, id, and optional extra
@@ -600,10 +787,15 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_id: The ID of the os.
+        :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
+               > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        :param pulumi.Input[str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
-               > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
+        :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -620,9 +812,14 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["os"] = os
         __props__.__dict__["os_id"] = os_id
+        __props__.__dict__["password"] = password
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
+        __props__.__dict__["service_password"] = service_password
+        __props__.__dict__["service_user"] = service_user
         __props__.__dict__["ssh_key_ids"] = ssh_key_ids
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["user"] = user
         __props__.__dict__["zone"] = zone
         return BaremetalServer(resource_name, opts=opts, __props__=__props__)
 
@@ -710,6 +907,14 @@ class BaremetalServer(pulumi.CustomResource):
         return pulumi.get(self, "os_id")
 
     @property
+    @pulumi.getter
+    def password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password used for the installation. May be required depending on used os.
+        """
+        return pulumi.get(self, "password")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
@@ -718,11 +923,35 @@ class BaremetalServer(pulumi.CustomResource):
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="reinstallOnConfigChanges")
+    def reinstall_on_config_changes(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If True, this boolean allows to reinstall the server on install config changes.
+        > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        """
+        return pulumi.get(self, "reinstall_on_config_changes")
+
+    @property
+    @pulumi.getter(name="servicePassword")
+    def service_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password used for the service to install. May be required depending on used os.
+        """
+        return pulumi.get(self, "service_password")
+
+    @property
+    @pulumi.getter(name="serviceUser")
+    def service_user(self) -> pulumi.Output[str]:
+        """
+        User used for the service to install.
+        """
+        return pulumi.get(self, "service_user")
+
+    @property
     @pulumi.getter(name="sshKeyIds")
     def ssh_key_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         List of SSH keys allowed to connect to the server.
-        > **Important:** Updates to `ssh_key_ids` will reinstall the server.
         """
         return pulumi.get(self, "ssh_key_ids")
 
@@ -733,6 +962,14 @@ class BaremetalServer(pulumi.CustomResource):
         The tags associated with the server.
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def user(self) -> pulumi.Output[str]:
+        """
+        User used for the installation.
+        """
+        return pulumi.get(self, "user")
 
     @property
     @pulumi.getter

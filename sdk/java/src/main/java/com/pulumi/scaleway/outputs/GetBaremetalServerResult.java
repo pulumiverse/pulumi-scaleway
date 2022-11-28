@@ -5,6 +5,7 @@ package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.scaleway.outputs.GetBaremetalServerIp;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -28,10 +29,15 @@ public final class GetBaremetalServerResult {
     private String organizationId;
     private String os;
     private String osId;
+    private String password;
     private String projectId;
+    private Boolean reinstallOnConfigChanges;
     private @Nullable String serverId;
+    private String servicePassword;
+    private String serviceUser;
     private List<String> sshKeyIds;
     private List<String> tags;
+    private String user;
     private @Nullable String zone;
 
     private GetBaremetalServerResult() {}
@@ -72,17 +78,32 @@ public final class GetBaremetalServerResult {
     public String osId() {
         return this.osId;
     }
+    public String password() {
+        return this.password;
+    }
     public String projectId() {
         return this.projectId;
     }
+    public Boolean reinstallOnConfigChanges() {
+        return this.reinstallOnConfigChanges;
+    }
     public Optional<String> serverId() {
         return Optional.ofNullable(this.serverId);
+    }
+    public String servicePassword() {
+        return this.servicePassword;
+    }
+    public String serviceUser() {
+        return this.serviceUser;
     }
     public List<String> sshKeyIds() {
         return this.sshKeyIds;
     }
     public List<String> tags() {
         return this.tags;
+    }
+    public String user() {
+        return this.user;
     }
     public Optional<String> zone() {
         return Optional.ofNullable(this.zone);
@@ -108,10 +129,15 @@ public final class GetBaremetalServerResult {
         private String organizationId;
         private String os;
         private String osId;
+        private String password;
         private String projectId;
+        private Boolean reinstallOnConfigChanges;
         private @Nullable String serverId;
+        private String servicePassword;
+        private String serviceUser;
         private List<String> sshKeyIds;
         private List<String> tags;
+        private String user;
         private @Nullable String zone;
         public Builder() {}
         public Builder(GetBaremetalServerResult defaults) {
@@ -127,10 +153,15 @@ public final class GetBaremetalServerResult {
     	      this.organizationId = defaults.organizationId;
     	      this.os = defaults.os;
     	      this.osId = defaults.osId;
+    	      this.password = defaults.password;
     	      this.projectId = defaults.projectId;
+    	      this.reinstallOnConfigChanges = defaults.reinstallOnConfigChanges;
     	      this.serverId = defaults.serverId;
+    	      this.servicePassword = defaults.servicePassword;
+    	      this.serviceUser = defaults.serviceUser;
     	      this.sshKeyIds = defaults.sshKeyIds;
     	      this.tags = defaults.tags;
+    	      this.user = defaults.user;
     	      this.zone = defaults.zone;
         }
 
@@ -193,13 +224,33 @@ public final class GetBaremetalServerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder password(String password) {
+            this.password = Objects.requireNonNull(password);
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
         }
         @CustomType.Setter
+        public Builder reinstallOnConfigChanges(Boolean reinstallOnConfigChanges) {
+            this.reinstallOnConfigChanges = Objects.requireNonNull(reinstallOnConfigChanges);
+            return this;
+        }
+        @CustomType.Setter
         public Builder serverId(@Nullable String serverId) {
             this.serverId = serverId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder servicePassword(String servicePassword) {
+            this.servicePassword = Objects.requireNonNull(servicePassword);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder serviceUser(String serviceUser) {
+            this.serviceUser = Objects.requireNonNull(serviceUser);
             return this;
         }
         @CustomType.Setter
@@ -219,6 +270,11 @@ public final class GetBaremetalServerResult {
             return tags(List.of(tags));
         }
         @CustomType.Setter
+        public Builder user(String user) {
+            this.user = Objects.requireNonNull(user);
+            return this;
+        }
+        @CustomType.Setter
         public Builder zone(@Nullable String zone) {
             this.zone = zone;
             return this;
@@ -236,10 +292,15 @@ public final class GetBaremetalServerResult {
             o.organizationId = organizationId;
             o.os = os;
             o.osId = osId;
+            o.password = password;
             o.projectId = projectId;
+            o.reinstallOnConfigChanges = reinstallOnConfigChanges;
             o.serverId = serverId;
+            o.servicePassword = servicePassword;
+            o.serviceUser = serviceUser;
             o.sshKeyIds = sshKeyIds;
             o.tags = tags;
+            o.user = user;
             o.zone = zone;
             return o;
         }

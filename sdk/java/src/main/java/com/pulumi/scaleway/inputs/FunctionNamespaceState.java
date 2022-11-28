@@ -136,6 +136,21 @@ public final class FunctionNamespaceState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.registryNamespaceId);
     }
 
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
     private FunctionNamespaceState() {}
 
     private FunctionNamespaceState(FunctionNamespaceState $) {
@@ -147,6 +162,7 @@ public final class FunctionNamespaceState extends com.pulumi.resources.ResourceA
         this.region = $.region;
         this.registryEndpoint = $.registryEndpoint;
         this.registryNamespaceId = $.registryNamespaceId;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
     }
 
     public static Builder builder() {
@@ -333,6 +349,27 @@ public final class FunctionNamespaceState extends com.pulumi.resources.ResourceA
          */
         public Builder registryNamespaceId(String registryNamespaceId) {
             return registryNamespaceId(Output.of(registryNamespaceId));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         public FunctionNamespaceState build() {

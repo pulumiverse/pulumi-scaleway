@@ -138,6 +138,46 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Root volume configuration
+ *
+ * #### Resized block volume with installed image
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const image = new scaleway.InstanceServer("image", {
+ *     image: "ubuntu_jammy",
+ *     rootVolume: {
+ *         sizeInGb: 100,
+ *         volumeType: "b_ssd",
+ *     },
+ *     type: "PRO2-XXS",
+ * });
+ * ```
+ *
+ * #### From snapshot
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const snapshot = scaleway.getInstanceSnapshot({
+ *     name: "my_snapshot",
+ * });
+ * const fromSnapshotInstanceVolume = new scaleway.InstanceVolume("fromSnapshotInstanceVolume", {
+ *     fromSnapshotId: snapshot.then(snapshot => snapshot.id),
+ *     type: "b_ssd",
+ * });
+ * const fromSnapshotInstanceServer = new scaleway.InstanceServer("fromSnapshotInstanceServer", {
+ *     type: "PRO2-XXS",
+ *     rootVolume: {
+ *         volumeId: fromSnapshotInstanceVolume.id,
+ *     },
+ * });
+ * ```
+ *
  * ## Private Network
  *
  * > **Important:** Updates to `privateNetwork` will recreate a new private network interface.

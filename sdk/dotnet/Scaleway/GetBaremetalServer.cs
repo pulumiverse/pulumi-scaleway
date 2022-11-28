@@ -146,10 +146,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string OrganizationId;
         public readonly string Os;
         public readonly string OsId;
+        public readonly string Password;
         public readonly string ProjectId;
+        public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
+        public readonly string ServicePassword;
+        public readonly string ServiceUser;
         public readonly ImmutableArray<string> SshKeyIds;
         public readonly ImmutableArray<string> Tags;
+        public readonly string User;
         public readonly string? Zone;
 
         [OutputConstructor]
@@ -176,13 +181,23 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string osId,
 
+            string password,
+
             string projectId,
 
+            bool reinstallOnConfigChanges,
+
             string? serverId,
+
+            string servicePassword,
+
+            string serviceUser,
 
             ImmutableArray<string> sshKeyIds,
 
             ImmutableArray<string> tags,
+
+            string user,
 
             string? zone)
         {
@@ -197,10 +212,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             OrganizationId = organizationId;
             Os = os;
             OsId = osId;
+            Password = password;
             ProjectId = projectId;
+            ReinstallOnConfigChanges = reinstallOnConfigChanges;
             ServerId = serverId;
+            ServicePassword = servicePassword;
+            ServiceUser = serviceUser;
             SshKeyIds = sshKeyIds;
             Tags = tags;
+            User = user;
             Zone = zone;
         }
     }

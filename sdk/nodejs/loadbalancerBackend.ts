@@ -78,6 +78,12 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
     }
 
     /**
+     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     * > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+     */
+    public readonly failoverHost!: pulumi.Output<string | undefined>;
+    /**
      * User sessions will be forwarded to this port of backend servers.
      */
     public readonly forwardPort!: pulumi.Output<number>;
@@ -178,6 +184,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerBackendState | undefined;
+            resourceInputs["failoverHost"] = state ? state.failoverHost : undefined;
             resourceInputs["forwardPort"] = state ? state.forwardPort : undefined;
             resourceInputs["forwardPortAlgorithm"] = state ? state.forwardPortAlgorithm : undefined;
             resourceInputs["forwardProtocol"] = state ? state.forwardProtocol : undefined;
@@ -210,6 +217,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
             if ((!args || args.lbId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
+            resourceInputs["failoverHost"] = args ? args.failoverHost : undefined;
             resourceInputs["forwardPort"] = args ? args.forwardPort : undefined;
             resourceInputs["forwardPortAlgorithm"] = args ? args.forwardPortAlgorithm : undefined;
             resourceInputs["forwardProtocol"] = args ? args.forwardProtocol : undefined;
@@ -241,6 +249,12 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LoadbalancerBackend resources.
  */
 export interface LoadbalancerBackendState {
+    /**
+     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     * > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+     */
+    failoverHost?: pulumi.Input<string>;
     /**
      * User sessions will be forwarded to this port of backend servers.
      */
@@ -334,6 +348,12 @@ export interface LoadbalancerBackendState {
  * The set of arguments for constructing a LoadbalancerBackend resource.
  */
 export interface LoadbalancerBackendArgs {
+    /**
+     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     * > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+     */
+    failoverHost?: pulumi.Input<string>;
     /**
      * User sessions will be forwarded to this port of backend servers.
      */

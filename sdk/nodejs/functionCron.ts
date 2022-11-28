@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  * the [documentation](https://www.scaleway.com/en/docs/compute/functions/api-cli/fun-uploading-with-serverless-framework/#configuring-events)
  * .
  *
- * If you want to restrict the access to your function please check [this](https://www.scaleway.com/en/docs/compute/functions/api-cli/restricting-access-to-a-function/).
- *
  * For more details about the limitation
  * check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
  *

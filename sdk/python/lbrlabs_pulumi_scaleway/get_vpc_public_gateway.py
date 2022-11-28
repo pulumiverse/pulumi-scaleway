@@ -143,7 +143,7 @@ class GetVpcPublicGatewayResult:
 
     @property
     @pulumi.getter
-    def zone(self) -> str:
+    def zone(self) -> Optional[str]:
         return pulumi.get(self, "zone")
 
 
@@ -172,6 +172,7 @@ class AwaitableGetVpcPublicGatewayResult(GetVpcPublicGatewayResult):
 
 def get_vpc_public_gateway(name: Optional[str] = None,
                            public_gateway_id: Optional[str] = None,
+                           zone: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayResult:
     """
     Gets information about a public gateway.
@@ -183,17 +184,23 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     import lbrlabs_pulumi_scaleway as scaleway
     import pulumi_scaleway as scaleway
 
-    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
+    main = scaleway.VpcPublicGateway("main",
+        type="VPC-GW-S",
+        zone="nl-ams-1")
+    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
+        zone="nl-ams-1")
     pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
     ```
 
 
     :param str name: Exact name of the public gateway.
+    :param str zone: `zone`) The zone in which
+           the public gateway should be created.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['publicGatewayId'] = public_gateway_id
+    __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGateway:getVpcPublicGateway', __args__, opts=opts, typ=GetVpcPublicGatewayResult).value
 
@@ -218,6 +225,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
 @_utilities.lift_output_func(get_vpc_public_gateway)
 def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
     Gets information about a public gateway.
@@ -229,12 +237,17 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     import lbrlabs_pulumi_scaleway as scaleway
     import pulumi_scaleway as scaleway
 
-    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
+    main = scaleway.VpcPublicGateway("main",
+        type="VPC-GW-S",
+        zone="nl-ams-1")
+    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
+        zone="nl-ams-1")
     pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
     ```
 
 
     :param str name: Exact name of the public gateway.
+    :param str zone: `zone`) The zone in which
+           the public gateway should be created.
     """
     ...

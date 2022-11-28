@@ -206,6 +206,10 @@ export class ObjectBucket extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Enable object lock
+     */
+    public readonly objectLockEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
     public readonly region!: pulumi.Output<string>;
@@ -237,6 +241,7 @@ export class ObjectBucket extends pulumi.CustomResource {
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
             resourceInputs["lifecycleRules"] = state ? state.lifecycleRules : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["objectLockEnabled"] = state ? state.objectLockEnabled : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["versioning"] = state ? state.versioning : undefined;
@@ -247,6 +252,7 @@ export class ObjectBucket extends pulumi.CustomResource {
             resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
             resourceInputs["lifecycleRules"] = args ? args.lifecycleRules : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["objectLockEnabled"] = args ? args.objectLockEnabled : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["versioning"] = args ? args.versioning : undefined;
@@ -288,6 +294,10 @@ export interface ObjectBucketState {
      */
     name?: pulumi.Input<string>;
     /**
+     * Enable object lock
+     */
+    objectLockEnabled?: pulumi.Input<boolean>;
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
     region?: pulumi.Input<string>;
@@ -327,6 +337,10 @@ export interface ObjectBucketArgs {
      * The name of the bucket.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable object lock
+     */
+    objectLockEnabled?: pulumi.Input<boolean>;
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */

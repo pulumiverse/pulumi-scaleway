@@ -91,6 +91,21 @@ public final class FunctionNamespaceArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
     private FunctionNamespaceArgs() {}
 
     private FunctionNamespaceArgs(FunctionNamespaceArgs $) {
@@ -99,6 +114,7 @@ public final class FunctionNamespaceArgs extends com.pulumi.resources.ResourceAr
         this.name = $.name;
         this.projectId = $.projectId;
         this.region = $.region;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
     }
 
     public static Builder builder() {
@@ -222,6 +238,27 @@ public final class FunctionNamespaceArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         public FunctionNamespaceArgs build() {

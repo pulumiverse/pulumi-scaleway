@@ -16,15 +16,15 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      uses: jaxxstorm/action-install-gh-release@v1.7.1
       with:
         repo: pulumi/pulumictl
     - name: Install golang-ci
-      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      uses: jaxxstorm/action-install-gh-release@v1.7.1
       with:
         repo: golangci/golangci-lint
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1.0.1
+      uses: pulumi/action-install-pulumi-cli@v1.1.1
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
@@ -45,7 +45,7 @@ jobs:
     - name: Generate
       run: |
         make install_plugins provider build_sdks
-    - uses: EndBug/add-and-commit@v5
+    - uses: EndBug/add-and-commit@v9
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

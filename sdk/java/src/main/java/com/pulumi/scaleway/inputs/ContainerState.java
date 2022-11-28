@@ -79,14 +79,14 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The container domain name.
+     * The native domain name of the container
      * 
      */
     @Import(name="domainName")
     private @Nullable Output<String> domainName;
 
     /**
-     * @return The container domain name.
+     * @return The native domain name of the container
      * 
      */
     public Optional<Output<String>> domainName() {
@@ -304,6 +304,21 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
+    /**
      * The container status.
      * 
      */
@@ -355,6 +370,7 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         this.region = $.region;
         this.registryImage = $.registryImage;
         this.registrySha256 = $.registrySha256;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
         this.status = $.status;
         this.timeout = $.timeout;
     }
@@ -462,7 +478,7 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domainName The container domain name.
+         * @param domainName The native domain name of the container
          * 
          * @return builder
          * 
@@ -473,7 +489,7 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domainName The container domain name.
+         * @param domainName The native domain name of the container
          * 
          * @return builder
          * 
@@ -774,6 +790,27 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder registrySha256(String registrySha256) {
             return registrySha256(Output.of(registrySha256));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         /**

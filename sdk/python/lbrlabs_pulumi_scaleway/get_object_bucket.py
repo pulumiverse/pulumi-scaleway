@@ -22,7 +22,7 @@ class GetObjectBucketResult:
     """
     A collection of values returned by getObjectBucket.
     """
-    def __init__(__self__, acl=None, cors_rules=None, endpoint=None, force_destroy=None, id=None, lifecycle_rules=None, name=None, region=None, tags=None, versionings=None):
+    def __init__(__self__, acl=None, cors_rules=None, endpoint=None, force_destroy=None, id=None, lifecycle_rules=None, name=None, object_lock_enabled=None, region=None, tags=None, versionings=None):
         if acl and not isinstance(acl, str):
             raise TypeError("Expected argument 'acl' to be a str")
         pulumi.set(__self__, "acl", acl)
@@ -44,6 +44,9 @@ class GetObjectBucketResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if object_lock_enabled and not isinstance(object_lock_enabled, bool):
+            raise TypeError("Expected argument 'object_lock_enabled' to be a bool")
+        pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -96,6 +99,11 @@ class GetObjectBucketResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="objectLockEnabled")
+    def object_lock_enabled(self) -> bool:
+        return pulumi.get(self, "object_lock_enabled")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
@@ -124,6 +132,7 @@ class AwaitableGetObjectBucketResult(GetObjectBucketResult):
             id=self.id,
             lifecycle_rules=self.lifecycle_rules,
             name=self.name,
+            object_lock_enabled=self.object_lock_enabled,
             region=self.region,
             tags=self.tags,
             versionings=self.versionings)
@@ -167,6 +176,7 @@ def get_object_bucket(name: Optional[str] = None,
         id=__ret__.id,
         lifecycle_rules=__ret__.lifecycle_rules,
         name=__ret__.name,
+        object_lock_enabled=__ret__.object_lock_enabled,
         region=__ret__.region,
         tags=__ret__.tags,
         versionings=__ret__.versionings)

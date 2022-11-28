@@ -72,12 +72,13 @@ type LookupObjectBucketResult struct {
 	Endpoint     string `pulumi:"endpoint"`
 	ForceDestroy bool   `pulumi:"forceDestroy"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string                         `pulumi:"id"`
-	LifecycleRules []GetObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
-	Name           *string                        `pulumi:"name"`
-	Region         *string                        `pulumi:"region"`
-	Tags           map[string]string              `pulumi:"tags"`
-	Versionings    []GetObjectBucketVersioning    `pulumi:"versionings"`
+	Id                string                         `pulumi:"id"`
+	LifecycleRules    []GetObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
+	Name              *string                        `pulumi:"name"`
+	ObjectLockEnabled bool                           `pulumi:"objectLockEnabled"`
+	Region            *string                        `pulumi:"region"`
+	Tags              map[string]string              `pulumi:"tags"`
+	Versionings       []GetObjectBucketVersioning    `pulumi:"versionings"`
 }
 
 func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutputArgs, opts ...pulumi.InvokeOption) LookupObjectBucketResultOutput {
@@ -148,6 +149,10 @@ func (o LookupObjectBucketResultOutput) LifecycleRules() GetObjectBucketLifecycl
 
 func (o LookupObjectBucketResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupObjectBucketResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupObjectBucketResultOutput) ObjectLockEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupObjectBucketResult) bool { return v.ObjectLockEnabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupObjectBucketResultOutput) Region() pulumi.StringPtrOutput {
