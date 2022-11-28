@@ -30,11 +30,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         ///     var main = new Scaleway.VpcPublicGateway("main", new()
         ///     {
         ///         Type = "VPC-GW-S",
+        ///         Zone = "nl-ams-1",
         ///     });
         /// 
         ///     var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new()
         ///     {
         ///         Name = main.Name,
+        ///         Zone = "nl-ams-1",
         ///     });
         /// 
         ///     var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new()
@@ -68,11 +70,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         ///     var main = new Scaleway.VpcPublicGateway("main", new()
         ///     {
         ///         Type = "VPC-GW-S",
+        ///         Zone = "nl-ams-1",
         ///     });
         /// 
         ///     var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new()
         ///     {
         ///         Name = main.Name,
+        ///         Zone = "nl-ams-1",
         ///     });
         /// 
         ///     var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new()
@@ -101,6 +105,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("publicGatewayId")]
         public string? PublicGatewayId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which
+        /// the public gateway should be created.
+        /// </summary>
+        [Input("zone")]
+        public string? Zone { get; set; }
+
         public GetVpcPublicGatewayArgs()
         {
         }
@@ -117,6 +128,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         [Input("publicGatewayId")]
         public Input<string>? PublicGatewayId { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which
+        /// the public gateway should be created.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
 
         public GetVpcPublicGatewayInvokeArgs()
         {
@@ -145,7 +163,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Type;
         public readonly string UpdatedAt;
         public readonly ImmutableArray<string> UpstreamDnsServers;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetVpcPublicGatewayResult(
@@ -177,7 +195,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             ImmutableArray<string> upstreamDnsServers,
 
-            string zone)
+            string? zone)
         {
             BastionEnabled = bastionEnabled;
             BastionPort = bastionPort;

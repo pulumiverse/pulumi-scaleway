@@ -204,6 +204,64 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Root volume configuration
+    /// 
+    /// #### Resized block volume with installed image
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var image = new Scaleway.InstanceServer("image", new()
+    ///     {
+    ///         Image = "ubuntu_jammy",
+    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         {
+    ///             SizeInGb = 100,
+    ///             VolumeType = "b_ssd",
+    ///         },
+    ///         Type = "PRO2-XXS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// #### From snapshot
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var snapshot = Scaleway.GetInstanceSnapshot.Invoke(new()
+    ///     {
+    ///         Name = "my_snapshot",
+    ///     });
+    /// 
+    ///     var fromSnapshotInstanceVolume = new Scaleway.InstanceVolume("fromSnapshotInstanceVolume", new()
+    ///     {
+    ///         FromSnapshotId = snapshot.Apply(getInstanceSnapshotResult =&gt; getInstanceSnapshotResult.Id),
+    ///         Type = "b_ssd",
+    ///     });
+    /// 
+    ///     var fromSnapshotInstanceServer = new Scaleway.InstanceServer("fromSnapshotInstanceServer", new()
+    ///     {
+    ///         Type = "PRO2-XXS",
+    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         {
+    ///             VolumeId = fromSnapshotInstanceVolume.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Private Network
     /// 
     /// &gt; **Important:** Updates to `private_network` will recreate a new private network interface.

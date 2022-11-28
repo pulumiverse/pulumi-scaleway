@@ -13,6 +13,7 @@ import com.pulumi.scaleway.inputs.FunctionState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -298,6 +299,20 @@ public class Function extends com.pulumi.resources.CustomResource {
         return this.runtime;
     }
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * 
+     */
+    @Export(name="secretEnvironmentVariables", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> secretEnvironmentVariables() {
+        return Codegen.optional(this.secretEnvironmentVariables);
+    }
+    /**
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      * 
      */
@@ -372,6 +387,9 @@ public class Function extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secretEnvironmentVariables"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

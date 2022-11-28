@@ -228,7 +228,7 @@ class DomainZone(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Domain zone.\\
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
+        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 
         ## Examples
 
@@ -263,7 +263,7 @@ class DomainZone(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Domain zone.\\
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/scaleway-dns/).
+        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 
         ## Examples
 

@@ -52,6 +52,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///         {
     ///             { "foo", "var" },
     ///         },
+    ///         SecretEnvironmentVariables = 
+    ///         {
+    ///             { "key", "secret" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -128,7 +132,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The container domain name.
+        /// The native domain name of the container
         /// </summary>
         [Output("domainName")]
         public Output<string> DomainName { get; private set; } = null!;
@@ -218,6 +222,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> RegistrySha256 { get; private set; } = null!;
 
         /// <summary>
+        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        /// </summary>
+        [Output("secretEnvironmentVariables")]
+        public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
+
+        /// <summary>
         /// The container status.
         /// </summary>
         [Output("status")]
@@ -253,6 +263,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "secretEnvironmentVariables",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -372,6 +386,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }
 
+        [Input("secretEnvironmentVariables")]
+        private InputMap<string>? _secretEnvironmentVariables;
+
+        /// <summary>
+        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        /// </summary>
+        public InputMap<string> SecretEnvironmentVariables
+        {
+            get => _secretEnvironmentVariables ?? (_secretEnvironmentVariables = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
         /// <summary>
         /// The container status.
         /// </summary>
@@ -417,7 +447,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The container domain name.
+        /// The native domain name of the container
         /// </summary>
         [Input("domainName")]
         public Input<string>? DomainName { get; set; }
@@ -511,6 +541,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }
+
+        [Input("secretEnvironmentVariables")]
+        private InputMap<string>? _secretEnvironmentVariables;
+
+        /// <summary>
+        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        /// </summary>
+        public InputMap<string> SecretEnvironmentVariables
+        {
+            get => _secretEnvironmentVariables ?? (_secretEnvironmentVariables = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
 
         /// <summary>
         /// The container status.

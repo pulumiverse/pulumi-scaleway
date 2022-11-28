@@ -11,6 +11,7 @@ import com.pulumi.scaleway.BaremetalServerArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.BaremetalServerState;
 import com.pulumi.scaleway.outputs.BaremetalServerIp;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -218,6 +219,20 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
         return this.osId;
     }
     /**
+     * Password used for the installation. May be required depending on used os.
+     * 
+     */
+    @Export(name="password", type=String.class, parameters={})
+    private Output</* @Nullable */ String> password;
+
+    /**
+     * @return Password used for the installation. May be required depending on used os.
+     * 
+     */
+    public Output<Optional<String>> password() {
+        return Codegen.optional(this.password);
+    }
+    /**
      * `project_id`) The ID of the project the server is associated with.
      * 
      */
@@ -232,8 +247,51 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
+     * If True, this boolean allows to reinstall the server on install config changes.
+     * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
+     * 
+     */
+    @Export(name="reinstallOnConfigChanges", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> reinstallOnConfigChanges;
+
+    /**
+     * @return If True, this boolean allows to reinstall the server on install config changes.
+     * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
+     * 
+     */
+    public Output<Optional<Boolean>> reinstallOnConfigChanges() {
+        return Codegen.optional(this.reinstallOnConfigChanges);
+    }
+    /**
+     * Password used for the service to install. May be required depending on used os.
+     * 
+     */
+    @Export(name="servicePassword", type=String.class, parameters={})
+    private Output</* @Nullable */ String> servicePassword;
+
+    /**
+     * @return Password used for the service to install. May be required depending on used os.
+     * 
+     */
+    public Output<Optional<String>> servicePassword() {
+        return Codegen.optional(this.servicePassword);
+    }
+    /**
+     * User used for the service to install.
+     * 
+     */
+    @Export(name="serviceUser", type=String.class, parameters={})
+    private Output<String> serviceUser;
+
+    /**
+     * @return User used for the service to install.
+     * 
+     */
+    public Output<String> serviceUser() {
+        return this.serviceUser;
+    }
+    /**
      * List of SSH keys allowed to connect to the server.
-     * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
      * 
      */
     @Export(name="sshKeyIds", type=List.class, parameters={String.class})
@@ -241,7 +299,6 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
 
     /**
      * @return List of SSH keys allowed to connect to the server.
-     * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
      * 
      */
     public Output<List<String>> sshKeyIds() {
@@ -260,6 +317,20 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
+    }
+    /**
+     * User used for the installation.
+     * 
+     */
+    @Export(name="user", type=String.class, parameters={})
+    private Output<String> user;
+
+    /**
+     * @return User used for the installation.
+     * 
+     */
+    public Output<String> user() {
+        return this.user;
     }
     /**
      * `zone`) The zone in which the server should be created.
@@ -308,6 +379,10 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "password",
+                "servicePassword"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

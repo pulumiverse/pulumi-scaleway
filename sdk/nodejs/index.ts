@@ -30,6 +30,11 @@ export type ContainerCron = import("./containerCron").ContainerCron;
 export const ContainerCron: typeof import("./containerCron").ContainerCron = null as any;
 utilities.lazyLoad(exports, ["ContainerCron"], () => require("./containerCron"));
 
+export { ContainerDomainArgs, ContainerDomainState } from "./containerDomain";
+export type ContainerDomain = import("./containerDomain").ContainerDomain;
+export const ContainerDomain: typeof import("./containerDomain").ContainerDomain = null as any;
+utilities.lazyLoad(exports, ["ContainerDomain"], () => require("./containerDomain"));
+
 export { ContainerNamespaceArgs, ContainerNamespaceState } from "./containerNamespace";
 export type ContainerNamespace = import("./containerNamespace").ContainerNamespace;
 export const ContainerNamespace: typeof import("./containerNamespace").ContainerNamespace = null as any;
@@ -100,10 +105,20 @@ export type FunctionCron = import("./functionCron").FunctionCron;
 export const FunctionCron: typeof import("./functionCron").FunctionCron = null as any;
 utilities.lazyLoad(exports, ["FunctionCron"], () => require("./functionCron"));
 
+export { FunctionDomainArgs, FunctionDomainState } from "./functionDomain";
+export type FunctionDomain = import("./functionDomain").FunctionDomain;
+export const FunctionDomain: typeof import("./functionDomain").FunctionDomain = null as any;
+utilities.lazyLoad(exports, ["FunctionDomain"], () => require("./functionDomain"));
+
 export { FunctionNamespaceArgs, FunctionNamespaceState } from "./functionNamespace";
 export type FunctionNamespace = import("./functionNamespace").FunctionNamespace;
 export const FunctionNamespace: typeof import("./functionNamespace").FunctionNamespace = null as any;
 utilities.lazyLoad(exports, ["FunctionNamespace"], () => require("./functionNamespace"));
+
+export { FunctionTokenArgs, FunctionTokenState } from "./functionToken";
+export type FunctionToken = import("./functionToken").FunctionToken;
+export const FunctionToken: typeof import("./functionToken").FunctionToken = null as any;
+utilities.lazyLoad(exports, ["FunctionToken"], () => require("./functionToken"));
 
 export { GetAccountSshKeyArgs, GetAccountSshKeyResult, GetAccountSshKeyOutputArgs } from "./getAccountSshKey";
 export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSshKey = null as any;
@@ -114,6 +129,11 @@ export { GetBaremetalOfferArgs, GetBaremetalOfferResult, GetBaremetalOfferOutput
 export const getBaremetalOffer: typeof import("./getBaremetalOffer").getBaremetalOffer = null as any;
 export const getBaremetalOfferOutput: typeof import("./getBaremetalOffer").getBaremetalOfferOutput = null as any;
 utilities.lazyLoad(exports, ["getBaremetalOffer","getBaremetalOfferOutput"], () => require("./getBaremetalOffer"));
+
+export { GetBaremetalOptionArgs, GetBaremetalOptionResult, GetBaremetalOptionOutputArgs } from "./getBaremetalOption";
+export const getBaremetalOption: typeof import("./getBaremetalOption").getBaremetalOption = null as any;
+export const getBaremetalOptionOutput: typeof import("./getBaremetalOption").getBaremetalOptionOutput = null as any;
+utilities.lazyLoad(exports, ["getBaremetalOption","getBaremetalOptionOutput"], () => require("./getBaremetalOption"));
 
 export { GetBaremetalOsArgs, GetBaremetalOsResult, GetBaremetalOsOutputArgs } from "./getBaremetalOs";
 export const getBaremetalOs: typeof import("./getBaremetalOs").getBaremetalOs = null as any;
@@ -210,6 +230,11 @@ export const getInstanceServers: typeof import("./getInstanceServers").getInstan
 export const getInstanceServersOutput: typeof import("./getInstanceServers").getInstanceServersOutput = null as any;
 utilities.lazyLoad(exports, ["getInstanceServers","getInstanceServersOutput"], () => require("./getInstanceServers"));
 
+export { GetInstanceSnapshotArgs, GetInstanceSnapshotResult, GetInstanceSnapshotOutputArgs } from "./getInstanceSnapshot";
+export const getInstanceSnapshot: typeof import("./getInstanceSnapshot").getInstanceSnapshot = null as any;
+export const getInstanceSnapshotOutput: typeof import("./getInstanceSnapshot").getInstanceSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceSnapshot","getInstanceSnapshotOutput"], () => require("./getInstanceSnapshot"));
+
 export { GetInstanceVolumeArgs, GetInstanceVolumeResult, GetInstanceVolumeOutputArgs } from "./getInstanceVolume";
 export const getInstanceVolume: typeof import("./getInstanceVolume").getInstanceVolume = null as any;
 export const getInstanceVolumeOutput: typeof import("./getInstanceVolume").getInstanceVolumeOutput = null as any;
@@ -274,6 +299,11 @@ export { GetRegistryNamespaceArgs, GetRegistryNamespaceResult, GetRegistryNamesp
 export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRegistryNamespace = null as any;
 export const getRegistryNamespaceOutput: typeof import("./getRegistryNamespace").getRegistryNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
+
+export { GetTemDomainArgs, GetTemDomainResult, GetTemDomainOutputArgs } from "./getTemDomain";
+export const getTemDomain: typeof import("./getTemDomain").getTemDomain = null as any;
+export const getTemDomainOutput: typeof import("./getTemDomain").getTemDomainOutput = null as any;
+utilities.lazyLoad(exports, ["getTemDomain","getTemDomainOutput"], () => require("./getTemDomain"));
 
 export { GetVpcGatewayNetworkArgs, GetVpcGatewayNetworkResult, GetVpcGatewayNetworkOutputArgs } from "./getVpcGatewayNetwork";
 export const getVpcGatewayNetwork: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetwork = null as any;
@@ -435,6 +465,11 @@ export type ObjectBucketAcl = import("./objectBucketAcl").ObjectBucketAcl;
 export const ObjectBucketAcl: typeof import("./objectBucketAcl").ObjectBucketAcl = null as any;
 utilities.lazyLoad(exports, ["ObjectBucketAcl"], () => require("./objectBucketAcl"));
 
+export { ObjectBucketLockConfigurationArgs, ObjectBucketLockConfigurationState } from "./objectBucketLockConfiguration";
+export type ObjectBucketLockConfiguration = import("./objectBucketLockConfiguration").ObjectBucketLockConfiguration;
+export const ObjectBucketLockConfiguration: typeof import("./objectBucketLockConfiguration").ObjectBucketLockConfiguration = null as any;
+utilities.lazyLoad(exports, ["ObjectBucketLockConfiguration"], () => require("./objectBucketLockConfiguration"));
+
 export { ObjectBucketPolicyArgs, ObjectBucketPolicyState } from "./objectBucketPolicy";
 export type ObjectBucketPolicy = import("./objectBucketPolicy").ObjectBucketPolicy;
 export const ObjectBucketPolicy: typeof import("./objectBucketPolicy").ObjectBucketPolicy = null as any;
@@ -464,6 +499,11 @@ export { RegistryNamespaceArgs, RegistryNamespaceState } from "./registryNamespa
 export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;
 export const RegistryNamespace: typeof import("./registryNamespace").RegistryNamespace = null as any;
 utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
+
+export { TemDomainArgs, TemDomainState } from "./temDomain";
+export type TemDomain = import("./temDomain").TemDomain;
+export const TemDomain: typeof import("./temDomain").TemDomain = null as any;
+utilities.lazyLoad(exports, ["TemDomain"], () => require("./temDomain"));
 
 export { VpcGatewayNetworkArgs, VpcGatewayNetworkState } from "./vpcGatewayNetwork";
 export type VpcGatewayNetwork = import("./vpcGatewayNetwork").VpcGatewayNetwork;
@@ -524,6 +564,8 @@ const _module = {
                 return new Container(name, <any>undefined, { urn })
             case "scaleway:index/containerCron:ContainerCron":
                 return new ContainerCron(name, <any>undefined, { urn })
+            case "scaleway:index/containerDomain:ContainerDomain":
+                return new ContainerDomain(name, <any>undefined, { urn })
             case "scaleway:index/containerNamespace:ContainerNamespace":
                 return new ContainerNamespace(name, <any>undefined, { urn })
             case "scaleway:index/containerToken:ContainerToken":
@@ -552,8 +594,12 @@ const _module = {
                 return new Function(name, <any>undefined, { urn })
             case "scaleway:index/functionCron:FunctionCron":
                 return new FunctionCron(name, <any>undefined, { urn })
+            case "scaleway:index/functionDomain:FunctionDomain":
+                return new FunctionDomain(name, <any>undefined, { urn })
             case "scaleway:index/functionNamespace:FunctionNamespace":
                 return new FunctionNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/functionToken:FunctionToken":
+                return new FunctionToken(name, <any>undefined, { urn })
             case "scaleway:index/instanceImage:InstanceImage":
                 return new InstanceImage(name, <any>undefined, { urn })
             case "scaleway:index/instanceIp:InstanceIp":
@@ -604,6 +650,8 @@ const _module = {
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
                 return new ObjectBucketAcl(name, <any>undefined, { urn })
+            case "scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration":
+                return new ObjectBucketLockConfiguration(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketPolicy:ObjectBucketPolicy":
                 return new ObjectBucketPolicy(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration":
@@ -614,6 +662,8 @@ const _module = {
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
                 return new RegistryNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/temDomain:TemDomain":
+                return new TemDomain(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
                 return new VpcGatewayNetwork(name, <any>undefined, { urn })
             case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
@@ -638,6 +688,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/containerDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/database", _module)
@@ -652,7 +703,9 @@ pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/function", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/functionDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/functionToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
@@ -678,11 +731,13 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGateway", _module)

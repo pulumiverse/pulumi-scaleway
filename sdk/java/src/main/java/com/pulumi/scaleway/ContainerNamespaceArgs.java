@@ -107,6 +107,21 @@ public final class ContainerNamespaceArgs extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * The secret environment variables of the namespace.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The secret environment variables of the namespace.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
     private ContainerNamespaceArgs() {}
 
     private ContainerNamespaceArgs(ContainerNamespaceArgs $) {
@@ -116,6 +131,7 @@ public final class ContainerNamespaceArgs extends com.pulumi.resources.ResourceA
         this.name = $.name;
         this.projectId = $.projectId;
         this.region = $.region;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
     }
 
     public static Builder builder() {
@@ -260,6 +276,27 @@ public final class ContainerNamespaceArgs extends com.pulumi.resources.ResourceA
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The secret environment variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The secret environment variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         public ContainerNamespaceArgs build() {

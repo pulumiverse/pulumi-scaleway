@@ -482,6 +482,11 @@ export interface GetInstanceServersServer {
     zone: string;
 }
 
+export interface GetInstanceSnapshotImport {
+    bucket: string;
+    key: string;
+}
+
 export interface GetIotDeviceCertificate {
     crt: string;
     key: string;
@@ -1267,6 +1272,16 @@ export interface ObjectBucketLifecycleRuleExpiration {
 export interface ObjectBucketLifecycleRuleTransition {
     days?: number;
     storageClass: string;
+}
+
+export interface ObjectBucketLockConfigurationRule {
+    defaultRetention: outputs.ObjectBucketLockConfigurationRuleDefaultRetention;
+}
+
+export interface ObjectBucketLockConfigurationRuleDefaultRetention {
+    days?: number;
+    mode: string;
+    years?: number;
 }
 
 export interface ObjectBucketVersioning {

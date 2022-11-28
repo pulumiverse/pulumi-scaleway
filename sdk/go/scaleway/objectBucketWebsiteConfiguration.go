@@ -113,12 +113,6 @@ import (
 //
 // ```
 //
-// ## errorDocument
-//
-// The errorDocument configuration block supports the following arguments:
-//
-// * `key` - (Required) The object key name to use when a 4XX class error occurs.
-//
 // ## indexDocument
 //
 // The `indexDocument` configuration block supports the following arguments:
@@ -130,10 +124,16 @@ import (
 // In addition to all above arguments, the following attribute is exported:
 //
 // * `id` - The bucket and region separated by a slash (/)
-// * `websiteDomain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/dns-cloud/how-to/manage-dns-records).
+// * `websiteDomain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 // * `websiteEndpoint` - The website endpoint.
 //
 // > **Important:** Please check our concepts section to know more about the [endpoint](https://www.scaleway.com/en/docs/storage/object/concepts/#endpoint).
+//
+// ## errorDocument
+//
+// The errorDocument configuration block supports the following arguments:
+//
+// * `key` - (Required) The object key name to use when a 4XX class error occurs.
 //
 // ## Import
 //
@@ -151,8 +151,8 @@ type ObjectBucketWebsiteConfiguration struct {
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// (Optional) The name of the error document for the website detailed below.
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput `pulumi:"errorDocument"`
-	// (Optional) The name of the index document for the website detailed below.
-	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput `pulumi:"indexDocument"`
+	// (Required) The name of the index document for the website detailed below.
+	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentOutput `pulumi:"indexDocument"`
 	// The website endpoint.
 	WebsiteDomain pulumi.StringOutput `pulumi:"websiteDomain"`
 	// The domain of the website endpoint.
@@ -168,6 +168,9 @@ func NewObjectBucketWebsiteConfiguration(ctx *pulumi.Context,
 
 	if args.Bucket == nil {
 		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.IndexDocument == nil {
+		return nil, errors.New("invalid value for required argument 'IndexDocument'")
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ObjectBucketWebsiteConfiguration
@@ -196,7 +199,7 @@ type objectBucketWebsiteConfigurationState struct {
 	Bucket *string `pulumi:"bucket"`
 	// (Optional) The name of the error document for the website detailed below.
 	ErrorDocument *ObjectBucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
-	// (Optional) The name of the index document for the website detailed below.
+	// (Required) The name of the index document for the website detailed below.
 	IndexDocument *ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
 	// The website endpoint.
 	WebsiteDomain *string `pulumi:"websiteDomain"`
@@ -209,7 +212,7 @@ type ObjectBucketWebsiteConfigurationState struct {
 	Bucket pulumi.StringPtrInput
 	// (Optional) The name of the error document for the website detailed below.
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrInput
-	// (Optional) The name of the index document for the website detailed below.
+	// (Required) The name of the index document for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentPtrInput
 	// The website endpoint.
 	WebsiteDomain pulumi.StringPtrInput
@@ -226,8 +229,8 @@ type objectBucketWebsiteConfigurationArgs struct {
 	Bucket string `pulumi:"bucket"`
 	// (Optional) The name of the error document for the website detailed below.
 	ErrorDocument *ObjectBucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
-	// (Optional) The name of the index document for the website detailed below.
-	IndexDocument *ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
+	// (Required) The name of the index document for the website detailed below.
+	IndexDocument ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
 }
 
 // The set of arguments for constructing a ObjectBucketWebsiteConfiguration resource.
@@ -236,8 +239,8 @@ type ObjectBucketWebsiteConfigurationArgs struct {
 	Bucket pulumi.StringInput
 	// (Optional) The name of the error document for the website detailed below.
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrInput
-	// (Optional) The name of the index document for the website detailed below.
-	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentPtrInput
+	// (Required) The name of the index document for the website detailed below.
+	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentInput
 }
 
 func (ObjectBucketWebsiteConfigurationArgs) ElementType() reflect.Type {
@@ -339,11 +342,11 @@ func (o ObjectBucketWebsiteConfigurationOutput) ErrorDocument() ObjectBucketWebs
 	}).(ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput)
 }
 
-// (Optional) The name of the index document for the website detailed below.
-func (o ObjectBucketWebsiteConfigurationOutput) IndexDocument() ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput {
-	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput {
+// (Required) The name of the index document for the website detailed below.
+func (o ObjectBucketWebsiteConfigurationOutput) IndexDocument() ObjectBucketWebsiteConfigurationIndexDocumentOutput {
+	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) ObjectBucketWebsiteConfigurationIndexDocumentOutput {
 		return v.IndexDocument
-	}).(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput)
+	}).(ObjectBucketWebsiteConfigurationIndexDocumentOutput)
 }
 
 // The website endpoint.

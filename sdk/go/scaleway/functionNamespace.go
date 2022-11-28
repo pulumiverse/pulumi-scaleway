@@ -69,6 +69,8 @@ type FunctionNamespace struct {
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 }
 
 // NewFunctionNamespace registers a new resource with the given unique name, arguments, and options.
@@ -78,6 +80,13 @@ func NewFunctionNamespace(ctx *pulumi.Context,
 		args = &FunctionNamespaceArgs{}
 	}
 
+	if args.SecretEnvironmentVariables != nil {
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretEnvironmentVariables",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource FunctionNamespace
 	err := ctx.RegisterResource("scaleway:index/functionNamespace:FunctionNamespace", name, args, &resource, opts...)
@@ -117,6 +126,8 @@ type functionNamespaceState struct {
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
 type FunctionNamespaceState struct {
@@ -136,6 +147,8 @@ type FunctionNamespaceState struct {
 	RegistryEndpoint pulumi.StringPtrInput
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringPtrInput
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	SecretEnvironmentVariables pulumi.StringMapInput
 }
 
 func (FunctionNamespaceState) ElementType() reflect.Type {
@@ -153,6 +166,8 @@ type functionNamespaceArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
 // The set of arguments for constructing a FunctionNamespace resource.
@@ -167,6 +182,8 @@ type FunctionNamespaceArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	SecretEnvironmentVariables pulumi.StringMapInput
 }
 
 func (FunctionNamespaceArgs) ElementType() reflect.Type {
@@ -294,6 +311,11 @@ func (o FunctionNamespaceOutput) RegistryEndpoint() pulumi.StringOutput {
 // The registry namespace ID of the namespace.
 func (o FunctionNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
+}
+
+// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+func (o FunctionNamespaceOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
 type FunctionNamespaceArrayOutput struct{ *pulumi.OutputState }

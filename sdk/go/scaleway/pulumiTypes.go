@@ -7717,6 +7717,304 @@ func (o ObjectBucketLifecycleRuleTransitionArrayOutput) Index(i pulumi.IntInput)
 	}).(ObjectBucketLifecycleRuleTransitionOutput)
 }
 
+type ObjectBucketLockConfigurationRule struct {
+	DefaultRetention ObjectBucketLockConfigurationRuleDefaultRetention `pulumi:"defaultRetention"`
+}
+
+// ObjectBucketLockConfigurationRuleInput is an input type that accepts ObjectBucketLockConfigurationRuleArgs and ObjectBucketLockConfigurationRuleOutput values.
+// You can construct a concrete instance of `ObjectBucketLockConfigurationRuleInput` via:
+//
+//	ObjectBucketLockConfigurationRuleArgs{...}
+type ObjectBucketLockConfigurationRuleInput interface {
+	pulumi.Input
+
+	ToObjectBucketLockConfigurationRuleOutput() ObjectBucketLockConfigurationRuleOutput
+	ToObjectBucketLockConfigurationRuleOutputWithContext(context.Context) ObjectBucketLockConfigurationRuleOutput
+}
+
+type ObjectBucketLockConfigurationRuleArgs struct {
+	DefaultRetention ObjectBucketLockConfigurationRuleDefaultRetentionInput `pulumi:"defaultRetention"`
+}
+
+func (ObjectBucketLockConfigurationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLockConfigurationRule)(nil)).Elem()
+}
+
+func (i ObjectBucketLockConfigurationRuleArgs) ToObjectBucketLockConfigurationRuleOutput() ObjectBucketLockConfigurationRuleOutput {
+	return i.ToObjectBucketLockConfigurationRuleOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLockConfigurationRuleArgs) ToObjectBucketLockConfigurationRuleOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationRuleOutput)
+}
+
+func (i ObjectBucketLockConfigurationRuleArgs) ToObjectBucketLockConfigurationRulePtrOutput() ObjectBucketLockConfigurationRulePtrOutput {
+	return i.ToObjectBucketLockConfigurationRulePtrOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLockConfigurationRuleArgs) ToObjectBucketLockConfigurationRulePtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationRuleOutput).ToObjectBucketLockConfigurationRulePtrOutputWithContext(ctx)
+}
+
+// ObjectBucketLockConfigurationRulePtrInput is an input type that accepts ObjectBucketLockConfigurationRuleArgs, ObjectBucketLockConfigurationRulePtr and ObjectBucketLockConfigurationRulePtrOutput values.
+// You can construct a concrete instance of `ObjectBucketLockConfigurationRulePtrInput` via:
+//
+//	        ObjectBucketLockConfigurationRuleArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObjectBucketLockConfigurationRulePtrInput interface {
+	pulumi.Input
+
+	ToObjectBucketLockConfigurationRulePtrOutput() ObjectBucketLockConfigurationRulePtrOutput
+	ToObjectBucketLockConfigurationRulePtrOutputWithContext(context.Context) ObjectBucketLockConfigurationRulePtrOutput
+}
+
+type objectBucketLockConfigurationRulePtrType ObjectBucketLockConfigurationRuleArgs
+
+func ObjectBucketLockConfigurationRulePtr(v *ObjectBucketLockConfigurationRuleArgs) ObjectBucketLockConfigurationRulePtrInput {
+	return (*objectBucketLockConfigurationRulePtrType)(v)
+}
+
+func (*objectBucketLockConfigurationRulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketLockConfigurationRule)(nil)).Elem()
+}
+
+func (i *objectBucketLockConfigurationRulePtrType) ToObjectBucketLockConfigurationRulePtrOutput() ObjectBucketLockConfigurationRulePtrOutput {
+	return i.ToObjectBucketLockConfigurationRulePtrOutputWithContext(context.Background())
+}
+
+func (i *objectBucketLockConfigurationRulePtrType) ToObjectBucketLockConfigurationRulePtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationRulePtrOutput)
+}
+
+type ObjectBucketLockConfigurationRuleOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLockConfigurationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLockConfigurationRule)(nil)).Elem()
+}
+
+func (o ObjectBucketLockConfigurationRuleOutput) ToObjectBucketLockConfigurationRuleOutput() ObjectBucketLockConfigurationRuleOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRuleOutput) ToObjectBucketLockConfigurationRuleOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRuleOutput) ToObjectBucketLockConfigurationRulePtrOutput() ObjectBucketLockConfigurationRulePtrOutput {
+	return o.ToObjectBucketLockConfigurationRulePtrOutputWithContext(context.Background())
+}
+
+func (o ObjectBucketLockConfigurationRuleOutput) ToObjectBucketLockConfigurationRulePtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObjectBucketLockConfigurationRule) *ObjectBucketLockConfigurationRule {
+		return &v
+	}).(ObjectBucketLockConfigurationRulePtrOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleOutput) DefaultRetention() ObjectBucketLockConfigurationRuleDefaultRetentionOutput {
+	return o.ApplyT(func(v ObjectBucketLockConfigurationRule) ObjectBucketLockConfigurationRuleDefaultRetention {
+		return v.DefaultRetention
+	}).(ObjectBucketLockConfigurationRuleDefaultRetentionOutput)
+}
+
+type ObjectBucketLockConfigurationRulePtrOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLockConfigurationRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketLockConfigurationRule)(nil)).Elem()
+}
+
+func (o ObjectBucketLockConfigurationRulePtrOutput) ToObjectBucketLockConfigurationRulePtrOutput() ObjectBucketLockConfigurationRulePtrOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRulePtrOutput) ToObjectBucketLockConfigurationRulePtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRulePtrOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRulePtrOutput) Elem() ObjectBucketLockConfigurationRuleOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfigurationRule) ObjectBucketLockConfigurationRule {
+		if v != nil {
+			return *v
+		}
+		var ret ObjectBucketLockConfigurationRule
+		return ret
+	}).(ObjectBucketLockConfigurationRuleOutput)
+}
+
+func (o ObjectBucketLockConfigurationRulePtrOutput) DefaultRetention() ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfigurationRule) *ObjectBucketLockConfigurationRuleDefaultRetention {
+		if v == nil {
+			return nil
+		}
+		return &v.DefaultRetention
+	}).(ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput)
+}
+
+type ObjectBucketLockConfigurationRuleDefaultRetention struct {
+	Days  *int   `pulumi:"days"`
+	Mode  string `pulumi:"mode"`
+	Years *int   `pulumi:"years"`
+}
+
+// ObjectBucketLockConfigurationRuleDefaultRetentionInput is an input type that accepts ObjectBucketLockConfigurationRuleDefaultRetentionArgs and ObjectBucketLockConfigurationRuleDefaultRetentionOutput values.
+// You can construct a concrete instance of `ObjectBucketLockConfigurationRuleDefaultRetentionInput` via:
+//
+//	ObjectBucketLockConfigurationRuleDefaultRetentionArgs{...}
+type ObjectBucketLockConfigurationRuleDefaultRetentionInput interface {
+	pulumi.Input
+
+	ToObjectBucketLockConfigurationRuleDefaultRetentionOutput() ObjectBucketLockConfigurationRuleDefaultRetentionOutput
+	ToObjectBucketLockConfigurationRuleDefaultRetentionOutputWithContext(context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionOutput
+}
+
+type ObjectBucketLockConfigurationRuleDefaultRetentionArgs struct {
+	Days  pulumi.IntPtrInput `pulumi:"days"`
+	Mode  pulumi.StringInput `pulumi:"mode"`
+	Years pulumi.IntPtrInput `pulumi:"years"`
+}
+
+func (ObjectBucketLockConfigurationRuleDefaultRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (i ObjectBucketLockConfigurationRuleDefaultRetentionArgs) ToObjectBucketLockConfigurationRuleDefaultRetentionOutput() ObjectBucketLockConfigurationRuleDefaultRetentionOutput {
+	return i.ToObjectBucketLockConfigurationRuleDefaultRetentionOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLockConfigurationRuleDefaultRetentionArgs) ToObjectBucketLockConfigurationRuleDefaultRetentionOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationRuleDefaultRetentionOutput)
+}
+
+func (i ObjectBucketLockConfigurationRuleDefaultRetentionArgs) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput() ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return i.ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLockConfigurationRuleDefaultRetentionArgs) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationRuleDefaultRetentionOutput).ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx)
+}
+
+// ObjectBucketLockConfigurationRuleDefaultRetentionPtrInput is an input type that accepts ObjectBucketLockConfigurationRuleDefaultRetentionArgs, ObjectBucketLockConfigurationRuleDefaultRetentionPtr and ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput values.
+// You can construct a concrete instance of `ObjectBucketLockConfigurationRuleDefaultRetentionPtrInput` via:
+//
+//	        ObjectBucketLockConfigurationRuleDefaultRetentionArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObjectBucketLockConfigurationRuleDefaultRetentionPtrInput interface {
+	pulumi.Input
+
+	ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput() ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput
+	ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput
+}
+
+type objectBucketLockConfigurationRuleDefaultRetentionPtrType ObjectBucketLockConfigurationRuleDefaultRetentionArgs
+
+func ObjectBucketLockConfigurationRuleDefaultRetentionPtr(v *ObjectBucketLockConfigurationRuleDefaultRetentionArgs) ObjectBucketLockConfigurationRuleDefaultRetentionPtrInput {
+	return (*objectBucketLockConfigurationRuleDefaultRetentionPtrType)(v)
+}
+
+func (*objectBucketLockConfigurationRuleDefaultRetentionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (i *objectBucketLockConfigurationRuleDefaultRetentionPtrType) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput() ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return i.ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Background())
+}
+
+func (i *objectBucketLockConfigurationRuleDefaultRetentionPtrType) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput)
+}
+
+type ObjectBucketLockConfigurationRuleDefaultRetentionOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ToObjectBucketLockConfigurationRuleDefaultRetentionOutput() ObjectBucketLockConfigurationRuleDefaultRetentionOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ToObjectBucketLockConfigurationRuleDefaultRetentionOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput() ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o.ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(context.Background())
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObjectBucketLockConfigurationRuleDefaultRetention) *ObjectBucketLockConfigurationRuleDefaultRetention {
+		return &v
+	}).(ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Years() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Years }).(pulumi.IntPtrOutput)
+}
+
+type ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketLockConfigurationRuleDefaultRetention)(nil)).Elem()
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput() ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) ToObjectBucketLockConfigurationRuleDefaultRetentionPtrOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput {
+	return o
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Elem() ObjectBucketLockConfigurationRuleDefaultRetentionOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) ObjectBucketLockConfigurationRuleDefaultRetention {
+		if v != nil {
+			return *v
+		}
+		var ret ObjectBucketLockConfigurationRuleDefaultRetention
+		return ret
+	}).(ObjectBucketLockConfigurationRuleDefaultRetentionOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Days
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Years
+	}).(pulumi.IntPtrOutput)
+}
+
 type ObjectBucketVersioning struct {
 	Enabled *bool `pulumi:"enabled"`
 }
@@ -10718,6 +11016,106 @@ func (o GetInstanceServersServerArrayOutput) Index(i pulumi.IntInput) GetInstanc
 	}).(GetInstanceServersServerOutput)
 }
 
+type GetInstanceSnapshotImport struct {
+	Bucket string `pulumi:"bucket"`
+	Key    string `pulumi:"key"`
+}
+
+// GetInstanceSnapshotImportInput is an input type that accepts GetInstanceSnapshotImportArgs and GetInstanceSnapshotImportOutput values.
+// You can construct a concrete instance of `GetInstanceSnapshotImportInput` via:
+//
+//	GetInstanceSnapshotImportArgs{...}
+type GetInstanceSnapshotImportInput interface {
+	pulumi.Input
+
+	ToGetInstanceSnapshotImportOutput() GetInstanceSnapshotImportOutput
+	ToGetInstanceSnapshotImportOutputWithContext(context.Context) GetInstanceSnapshotImportOutput
+}
+
+type GetInstanceSnapshotImportArgs struct {
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	Key    pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetInstanceSnapshotImportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceSnapshotImport)(nil)).Elem()
+}
+
+func (i GetInstanceSnapshotImportArgs) ToGetInstanceSnapshotImportOutput() GetInstanceSnapshotImportOutput {
+	return i.ToGetInstanceSnapshotImportOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSnapshotImportArgs) ToGetInstanceSnapshotImportOutputWithContext(ctx context.Context) GetInstanceSnapshotImportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSnapshotImportOutput)
+}
+
+// GetInstanceSnapshotImportArrayInput is an input type that accepts GetInstanceSnapshotImportArray and GetInstanceSnapshotImportArrayOutput values.
+// You can construct a concrete instance of `GetInstanceSnapshotImportArrayInput` via:
+//
+//	GetInstanceSnapshotImportArray{ GetInstanceSnapshotImportArgs{...} }
+type GetInstanceSnapshotImportArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceSnapshotImportArrayOutput() GetInstanceSnapshotImportArrayOutput
+	ToGetInstanceSnapshotImportArrayOutputWithContext(context.Context) GetInstanceSnapshotImportArrayOutput
+}
+
+type GetInstanceSnapshotImportArray []GetInstanceSnapshotImportInput
+
+func (GetInstanceSnapshotImportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceSnapshotImport)(nil)).Elem()
+}
+
+func (i GetInstanceSnapshotImportArray) ToGetInstanceSnapshotImportArrayOutput() GetInstanceSnapshotImportArrayOutput {
+	return i.ToGetInstanceSnapshotImportArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceSnapshotImportArray) ToGetInstanceSnapshotImportArrayOutputWithContext(ctx context.Context) GetInstanceSnapshotImportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceSnapshotImportArrayOutput)
+}
+
+type GetInstanceSnapshotImportOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceSnapshotImportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceSnapshotImport)(nil)).Elem()
+}
+
+func (o GetInstanceSnapshotImportOutput) ToGetInstanceSnapshotImportOutput() GetInstanceSnapshotImportOutput {
+	return o
+}
+
+func (o GetInstanceSnapshotImportOutput) ToGetInstanceSnapshotImportOutputWithContext(ctx context.Context) GetInstanceSnapshotImportOutput {
+	return o
+}
+
+func (o GetInstanceSnapshotImportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSnapshotImport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+func (o GetInstanceSnapshotImportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceSnapshotImport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetInstanceSnapshotImportArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceSnapshotImportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceSnapshotImport)(nil)).Elem()
+}
+
+func (o GetInstanceSnapshotImportArrayOutput) ToGetInstanceSnapshotImportArrayOutput() GetInstanceSnapshotImportArrayOutput {
+	return o
+}
+
+func (o GetInstanceSnapshotImportArrayOutput) ToGetInstanceSnapshotImportArrayOutputWithContext(ctx context.Context) GetInstanceSnapshotImportArrayOutput {
+	return o
+}
+
+func (o GetInstanceSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetInstanceSnapshotImportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceSnapshotImport {
+		return vs[0].([]GetInstanceSnapshotImport)[vs[1].(int)]
+	}).(GetInstanceSnapshotImportOutput)
+}
+
 type GetIotDeviceCertificate struct {
 	Crt string `pulumi:"crt"`
 	Key string `pulumi:"key"`
@@ -13163,6 +13561,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleExpirationPtrInput)(nil)).Elem(), ObjectBucketLifecycleRuleExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleTransitionInput)(nil)).Elem(), ObjectBucketLifecycleRuleTransitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), ObjectBucketLifecycleRuleTransitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLockConfigurationRuleInput)(nil)).Elem(), ObjectBucketLockConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLockConfigurationRulePtrInput)(nil)).Elem(), ObjectBucketLockConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLockConfigurationRuleDefaultRetentionInput)(nil)).Elem(), ObjectBucketLockConfigurationRuleDefaultRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLockConfigurationRuleDefaultRetentionPtrInput)(nil)).Elem(), ObjectBucketLockConfigurationRuleDefaultRetentionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketVersioningInput)(nil)).Elem(), ObjectBucketVersioningArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketVersioningPtrInput)(nil)).Elem(), ObjectBucketVersioningArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationErrorDocumentInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationErrorDocumentArgs{})
@@ -13210,6 +13612,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerRootVolumeArrayInput)(nil)).Elem(), GetInstanceServerRootVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerInput)(nil)).Elem(), GetInstanceServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerArrayInput)(nil)).Elem(), GetInstanceServersServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportInput)(nil)).Elem(), GetInstanceSnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportArrayInput)(nil)).Elem(), GetInstanceSnapshotImportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateInput)(nil)).Elem(), GetIotDeviceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateArrayInput)(nil)).Elem(), GetIotDeviceCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterInput)(nil)).Elem(), GetIotDeviceMessageFilterArgs{})
@@ -13350,6 +13754,10 @@ func init() {
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleExpirationPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleTransitionOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleTransitionArrayOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLockConfigurationRuleOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLockConfigurationRulePtrOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLockConfigurationRuleDefaultRetentionOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketVersioningOutput{})
 	pulumi.RegisterOutputType(ObjectBucketVersioningPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationErrorDocumentOutput{})
@@ -13397,6 +13805,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceServerRootVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServersServerOutput{})
 	pulumi.RegisterOutputType(GetInstanceServersServerArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceSnapshotImportOutput{})
+	pulumi.RegisterOutputType(GetInstanceSnapshotImportArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceCertificateOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceMessageFilterOutput{})

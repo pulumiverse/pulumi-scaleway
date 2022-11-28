@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -98,6 +99,21 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Password used for the installation. May be required depending on used os.
+     * 
+     */
+    @Import(name="password")
+    private @Nullable Output<String> password;
+
+    /**
+     * @return Password used for the installation. May be required depending on used os.
+     * 
+     */
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
+    }
+
+    /**
      * `project_id`) The ID of the project the server is associated with.
      * 
      */
@@ -113,8 +129,54 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * If True, this boolean allows to reinstall the server on install config changes.
+     * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
+     * 
+     */
+    @Import(name="reinstallOnConfigChanges")
+    private @Nullable Output<Boolean> reinstallOnConfigChanges;
+
+    /**
+     * @return If True, this boolean allows to reinstall the server on install config changes.
+     * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
+     * 
+     */
+    public Optional<Output<Boolean>> reinstallOnConfigChanges() {
+        return Optional.ofNullable(this.reinstallOnConfigChanges);
+    }
+
+    /**
+     * Password used for the service to install. May be required depending on used os.
+     * 
+     */
+    @Import(name="servicePassword")
+    private @Nullable Output<String> servicePassword;
+
+    /**
+     * @return Password used for the service to install. May be required depending on used os.
+     * 
+     */
+    public Optional<Output<String>> servicePassword() {
+        return Optional.ofNullable(this.servicePassword);
+    }
+
+    /**
+     * User used for the service to install.
+     * 
+     */
+    @Import(name="serviceUser")
+    private @Nullable Output<String> serviceUser;
+
+    /**
+     * @return User used for the service to install.
+     * 
+     */
+    public Optional<Output<String>> serviceUser() {
+        return Optional.ofNullable(this.serviceUser);
+    }
+
+    /**
      * List of SSH keys allowed to connect to the server.
-     * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
      * 
      */
     @Import(name="sshKeyIds", required=true)
@@ -122,7 +184,6 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return List of SSH keys allowed to connect to the server.
-     * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
      * 
      */
     public Output<List<String>> sshKeyIds() {
@@ -142,6 +203,21 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<List<String>>> tags() {
         return Optional.ofNullable(this.tags);
+    }
+
+    /**
+     * User used for the installation.
+     * 
+     */
+    @Import(name="user")
+    private @Nullable Output<String> user;
+
+    /**
+     * @return User used for the installation.
+     * 
+     */
+    public Optional<Output<String>> user() {
+        return Optional.ofNullable(this.user);
     }
 
     /**
@@ -167,9 +243,14 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
         this.name = $.name;
         this.offer = $.offer;
         this.os = $.os;
+        this.password = $.password;
         this.projectId = $.projectId;
+        this.reinstallOnConfigChanges = $.reinstallOnConfigChanges;
+        this.servicePassword = $.servicePassword;
+        this.serviceUser = $.serviceUser;
         this.sshKeyIds = $.sshKeyIds;
         this.tags = $.tags;
+        this.user = $.user;
         this.zone = $.zone;
     }
 
@@ -303,6 +384,27 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param password Password used for the installation. May be required depending on used os.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder password(@Nullable Output<String> password) {
+            $.password = password;
+            return this;
+        }
+
+        /**
+         * @param password Password used for the installation. May be required depending on used os.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder password(String password) {
+            return password(Output.of(password));
+        }
+
+        /**
          * @param projectId `project_id`) The ID of the project the server is associated with.
          * 
          * @return builder
@@ -324,8 +426,72 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param reinstallOnConfigChanges If True, this boolean allows to reinstall the server on install config changes.
+         * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reinstallOnConfigChanges(@Nullable Output<Boolean> reinstallOnConfigChanges) {
+            $.reinstallOnConfigChanges = reinstallOnConfigChanges;
+            return this;
+        }
+
+        /**
+         * @param reinstallOnConfigChanges If True, this boolean allows to reinstall the server on install config changes.
+         * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reinstallOnConfigChanges(Boolean reinstallOnConfigChanges) {
+            return reinstallOnConfigChanges(Output.of(reinstallOnConfigChanges));
+        }
+
+        /**
+         * @param servicePassword Password used for the service to install. May be required depending on used os.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder servicePassword(@Nullable Output<String> servicePassword) {
+            $.servicePassword = servicePassword;
+            return this;
+        }
+
+        /**
+         * @param servicePassword Password used for the service to install. May be required depending on used os.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder servicePassword(String servicePassword) {
+            return servicePassword(Output.of(servicePassword));
+        }
+
+        /**
+         * @param serviceUser User used for the service to install.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceUser(@Nullable Output<String> serviceUser) {
+            $.serviceUser = serviceUser;
+            return this;
+        }
+
+        /**
+         * @param serviceUser User used for the service to install.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceUser(String serviceUser) {
+            return serviceUser(Output.of(serviceUser));
+        }
+
+        /**
          * @param sshKeyIds List of SSH keys allowed to connect to the server.
-         * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
          * 
          * @return builder
          * 
@@ -337,7 +503,6 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param sshKeyIds List of SSH keys allowed to connect to the server.
-         * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
          * 
          * @return builder
          * 
@@ -348,7 +513,6 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param sshKeyIds List of SSH keys allowed to connect to the server.
-         * &gt; **Important:** Updates to `ssh_key_ids` will reinstall the server.
          * 
          * @return builder
          * 
@@ -386,6 +550,27 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        /**
+         * @param user User used for the installation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder user(@Nullable Output<String> user) {
+            $.user = user;
+            return this;
+        }
+
+        /**
+         * @param user User used for the installation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder user(String user) {
+            return user(Output.of(user));
         }
 
         /**

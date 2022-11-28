@@ -36,11 +36,29 @@ public final class GetVpcPublicGatewayPlainArgs extends com.pulumi.resources.Inv
         return Optional.ofNullable(this.publicGatewayId);
     }
 
+    /**
+     * `zone`) The zone in which
+     * the public gateway should be created.
+     * 
+     */
+    @Import(name="zone")
+    private @Nullable String zone;
+
+    /**
+     * @return `zone`) The zone in which
+     * the public gateway should be created.
+     * 
+     */
+    public Optional<String> zone() {
+        return Optional.ofNullable(this.zone);
+    }
+
     private GetVpcPublicGatewayPlainArgs() {}
 
     private GetVpcPublicGatewayPlainArgs(GetVpcPublicGatewayPlainArgs $) {
         this.name = $.name;
         this.publicGatewayId = $.publicGatewayId;
+        this.zone = $.zone;
     }
 
     public static Builder builder() {
@@ -74,6 +92,18 @@ public final class GetVpcPublicGatewayPlainArgs extends com.pulumi.resources.Inv
 
         public Builder publicGatewayId(@Nullable String publicGatewayId) {
             $.publicGatewayId = publicGatewayId;
+            return this;
+        }
+
+        /**
+         * @param zone `zone`) The zone in which
+         * the public gateway should be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder zone(@Nullable String zone) {
+            $.zone = zone;
             return this;
         }
 

@@ -98,6 +98,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Output("registryNamespaceId")]
         public Output<string> RegistryNamespaceId { get; private set; } = null!;
 
+        /// <summary>
+        /// The secret environment variables of the namespace.
+        /// </summary>
+        [Output("secretEnvironmentVariables")]
+        public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ContainerNamespace resource with the given unique name, arguments, and options.
@@ -122,6 +128,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "secretEnvironmentVariables",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -186,6 +196,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("secretEnvironmentVariables")]
+        private InputMap<string>? _secretEnvironmentVariables;
+
+        /// <summary>
+        /// The secret environment variables of the namespace.
+        /// </summary>
+        public InputMap<string> SecretEnvironmentVariables
+        {
+            get => _secretEnvironmentVariables ?? (_secretEnvironmentVariables = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
 
         public ContainerNamespaceArgs()
         {
@@ -254,6 +280,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("registryNamespaceId")]
         public Input<string>? RegistryNamespaceId { get; set; }
+
+        [Input("secretEnvironmentVariables")]
+        private InputMap<string>? _secretEnvironmentVariables;
+
+        /// <summary>
+        /// The secret environment variables of the namespace.
+        /// </summary>
+        public InputMap<string> SecretEnvironmentVariables
+        {
+            get => _secretEnvironmentVariables ?? (_secretEnvironmentVariables = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
 
         public ContainerNamespaceState()
         {

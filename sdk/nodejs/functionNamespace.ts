@@ -89,6 +89,10 @@ export class FunctionNamespace extends pulumi.CustomResource {
      * The registry namespace ID of the namespace.
      */
     public /*out*/ readonly registryNamespaceId!: pulumi.Output<string>;
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     */
+    public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a FunctionNamespace resource with the given unique name, arguments, and options.
@@ -111,6 +115,7 @@ export class FunctionNamespace extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["registryEndpoint"] = state ? state.registryEndpoint : undefined;
             resourceInputs["registryNamespaceId"] = state ? state.registryNamespaceId : undefined;
+            resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
         } else {
             const args = argsOrState as FunctionNamespaceArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -118,11 +123,14 @@ export class FunctionNamespace extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["registryEndpoint"] = undefined /*out*/;
             resourceInputs["registryNamespaceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(FunctionNamespace.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -163,6 +171,10 @@ export interface FunctionNamespaceState {
      * The registry namespace ID of the namespace.
      */
     registryNamespaceId?: pulumi.Input<string>;
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
@@ -189,4 +201,8 @@ export interface FunctionNamespaceArgs {
      * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

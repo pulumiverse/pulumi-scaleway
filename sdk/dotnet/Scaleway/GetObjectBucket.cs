@@ -145,6 +145,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetObjectBucketLifecycleRuleResult> LifecycleRules;
         public readonly string? Name;
+        public readonly bool ObjectLockEnabled;
         public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Tags;
         public readonly ImmutableArray<Outputs.GetObjectBucketVersioningResult> Versionings;
@@ -165,6 +166,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? name,
 
+            bool objectLockEnabled,
+
             string? region,
 
             ImmutableDictionary<string, string> tags,
@@ -178,6 +181,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Id = id;
             LifecycleRules = lifecycleRules;
             Name = name;
+            ObjectLockEnabled = objectLockEnabled;
             Region = region;
             Tags = tags;
             Versionings = versionings;

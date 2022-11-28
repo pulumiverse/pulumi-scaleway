@@ -55,6 +55,8 @@ type GetBaremetalOfferArgs struct {
 	Name *string `pulumi:"name"`
 	// The offer id. Only one of `name` and `offerId` should be specified.
 	OfferId *string `pulumi:"offerId"`
+	// Period of subscription the desired offer. Should be `hourly` or `monthly`.
+	SubscriptionPeriod *string `pulumi:"subscriptionPeriod"`
 	// `zone`) The zone in which the offer should be created.
 	Zone *string `pulumi:"zone"`
 }
@@ -78,8 +80,9 @@ type GetBaremetalOfferResult struct {
 	Name    *string `pulumi:"name"`
 	OfferId *string `pulumi:"offerId"`
 	// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
-	Stock string `pulumi:"stock"`
-	Zone  string `pulumi:"zone"`
+	Stock              string  `pulumi:"stock"`
+	SubscriptionPeriod *string `pulumi:"subscriptionPeriod"`
+	Zone               string  `pulumi:"zone"`
 }
 
 func GetBaremetalOfferOutput(ctx *pulumi.Context, args GetBaremetalOfferOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOfferResultOutput {
@@ -102,6 +105,8 @@ type GetBaremetalOfferOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The offer id. Only one of `name` and `offerId` should be specified.
 	OfferId pulumi.StringPtrInput `pulumi:"offerId"`
+	// Period of subscription the desired offer. Should be `hourly` or `monthly`.
+	SubscriptionPeriod pulumi.StringPtrInput `pulumi:"subscriptionPeriod"`
 	// `zone`) The zone in which the offer should be created.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -171,6 +176,10 @@ func (o GetBaremetalOfferResultOutput) OfferId() pulumi.StringPtrOutput {
 // Stock status for this offer. Possible values are: `empty`, `low` or `available`.
 func (o GetBaremetalOfferResultOutput) Stock() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalOfferResult) string { return v.Stock }).(pulumi.StringOutput)
+}
+
+func (o GetBaremetalOfferResultOutput) SubscriptionPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBaremetalOfferResult) *string { return v.SubscriptionPeriod }).(pulumi.StringPtrOutput)
 }
 
 func (o GetBaremetalOfferResultOutput) Zone() pulumi.StringOutput {

@@ -79,6 +79,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string ProjectId;
         public readonly string Region;
         public readonly string Runtime;
+        public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         public readonly int Timeout;
         public readonly string ZipFile;
         public readonly string ZipHash;
@@ -121,6 +122,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string runtime,
 
+            ImmutableDictionary<string, string> secretEnvironmentVariables,
+
             int timeout,
 
             string zipFile,
@@ -145,6 +148,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             ProjectId = projectId;
             Region = region;
             Runtime = runtime;
+            SecretEnvironmentVariables = secretEnvironmentVariables;
             Timeout = timeout;
             ZipFile = zipFile;
             ZipHash = zipHash;

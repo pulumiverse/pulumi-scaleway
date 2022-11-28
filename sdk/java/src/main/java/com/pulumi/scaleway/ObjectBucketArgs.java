@@ -105,6 +105,21 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Enable object lock
+     * 
+     */
+    @Import(name="objectLockEnabled")
+    private @Nullable Output<Boolean> objectLockEnabled;
+
+    /**
+     * @return Enable object lock
+     * 
+     */
+    public Optional<Output<Boolean>> objectLockEnabled() {
+        return Optional.ofNullable(this.objectLockEnabled);
+    }
+
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */
@@ -157,6 +172,7 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
         this.forceDestroy = $.forceDestroy;
         this.lifecycleRules = $.lifecycleRules;
         this.name = $.name;
+        this.objectLockEnabled = $.objectLockEnabled;
         this.region = $.region;
         this.tags = $.tags;
         this.versioning = $.versioning;
@@ -311,6 +327,27 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param objectLockEnabled Enable object lock
+         * 
+         * @return builder
+         * 
+         */
+        public Builder objectLockEnabled(@Nullable Output<Boolean> objectLockEnabled) {
+            $.objectLockEnabled = objectLockEnabled;
+            return this;
+        }
+
+        /**
+         * @param objectLockEnabled Enable object lock
+         * 
+         * @return builder
+         * 
+         */
+        public Builder objectLockEnabled(Boolean objectLockEnabled) {
+            return objectLockEnabled(Output.of(objectLockEnabled));
         }
 
         /**

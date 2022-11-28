@@ -87,6 +87,10 @@ import (
 type LoadbalancerBackend struct {
 	pulumi.CustomResourceState
 
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+	// e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	FailoverHost pulumi.StringPtrOutput `pulumi:"failoverHost"`
 	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort pulumi.IntOutput `pulumi:"forwardPort"`
 	// Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
@@ -173,6 +177,10 @@ func GetLoadbalancerBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerBackend resources.
 type loadbalancerBackendState struct {
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+	// e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	FailoverHost *string `pulumi:"failoverHost"`
 	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort *int `pulumi:"forwardPort"`
 	// Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
@@ -221,6 +229,10 @@ type loadbalancerBackendState struct {
 }
 
 type LoadbalancerBackendState struct {
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+	// e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	FailoverHost pulumi.StringPtrInput
 	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort pulumi.IntPtrInput
 	// Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
@@ -273,6 +285,10 @@ func (LoadbalancerBackendState) ElementType() reflect.Type {
 }
 
 type loadbalancerBackendArgs struct {
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+	// e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	FailoverHost *string `pulumi:"failoverHost"`
 	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort int `pulumi:"forwardPort"`
 	// Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
@@ -322,6 +338,10 @@ type loadbalancerBackendArgs struct {
 
 // The set of arguments for constructing a LoadbalancerBackend resource.
 type LoadbalancerBackendArgs struct {
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+	// e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	FailoverHost pulumi.StringPtrInput
 	// User sessions will be forwarded to this port of backend servers.
 	ForwardPort pulumi.IntInput
 	// Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
@@ -454,6 +474,13 @@ func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutput() LoadbalancerBac
 
 func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutputWithContext(ctx context.Context) LoadbalancerBackendOutput {
 	return o
+}
+
+// Scaleway S3 bucket website to be served in case all backend servers are down.
+// > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+// e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+func (o LoadbalancerBackendOutput) FailoverHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.FailoverHost }).(pulumi.StringPtrOutput)
 }
 
 // User sessions will be forwarded to this port of backend servers.

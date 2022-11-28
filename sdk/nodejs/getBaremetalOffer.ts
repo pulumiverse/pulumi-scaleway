@@ -33,6 +33,7 @@ export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.In
         "includeDisabled": args.includeDisabled,
         "name": args.name,
         "offerId": args.offerId,
+        "subscriptionPeriod": args.subscriptionPeriod,
         "zone": args.zone,
     }, opts);
 }
@@ -50,6 +51,10 @@ export interface GetBaremetalOfferArgs {
      * The offer id. Only one of `name` and `offerId` should be specified.
      */
     offerId?: string;
+    /**
+     * Period of subscription the desired offer. Should be `hourly` or `monthly`.
+     */
+    subscriptionPeriod?: string;
     /**
      * `zone`) The zone in which the offer should be created.
      */
@@ -94,6 +99,7 @@ export interface GetBaremetalOfferResult {
      * Stock status for this offer. Possible values are: `empty`, `low` or `available`.
      */
     readonly stock: string;
+    readonly subscriptionPeriod?: string;
     readonly zone: string;
 }
 
@@ -114,6 +120,10 @@ export interface GetBaremetalOfferOutputArgs {
      * The offer id. Only one of `name` and `offerId` should be specified.
      */
     offerId?: pulumi.Input<string>;
+    /**
+     * Period of subscription the desired offer. Should be `hourly` or `monthly`.
+     */
+    subscriptionPeriod?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the offer should be created.
      */

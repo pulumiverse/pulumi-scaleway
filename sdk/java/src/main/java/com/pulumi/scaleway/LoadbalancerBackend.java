@@ -106,6 +106,24 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/loadbalancerBackend:LoadbalancerBackend")
 public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
     /**
+     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     * &gt; **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
+     * 
+     */
+    @Export(name="failoverHost", type=String.class, parameters={})
+    private Output</* @Nullable */ String> failoverHost;
+
+    /**
+     * @return Scaleway S3 bucket website to be served in case all backend servers are down.
+     * &gt; **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+     * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
+     * 
+     */
+    public Output<Optional<String>> failoverHost() {
+        return Codegen.optional(this.failoverHost);
+    }
+    /**
      * User sessions will be forwarded to this port of backend servers.
      * 
      */

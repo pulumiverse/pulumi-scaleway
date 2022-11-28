@@ -15,9 +15,11 @@ import * as utilities from "./utilities";
  *
  * const main = new scaleway.VpcPublicGateway("main", {
  *     type: "VPC-GW-S",
+ *     zone: "nl-ams-1",
  * });
  * const pgTestByName = main.name.apply(name => scaleway.getVpcPublicGateway({
  *     name: name,
+ *     zone: "nl-ams-1",
  * }));
  * const pgTestById = main.id.apply(id => scaleway.getVpcPublicGateway({
  *     publicGatewayId: id,
@@ -34,6 +36,7 @@ export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulum
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", {
         "name": args.name,
         "publicGatewayId": args.publicGatewayId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -46,6 +49,11 @@ export interface GetVpcPublicGatewayArgs {
      */
     name?: string;
     publicGatewayId?: string;
+    /**
+     * `zone`) The zone in which
+     * the public gateway should be created.
+     */
+    zone?: string;
 }
 
 /**
@@ -69,7 +77,7 @@ export interface GetVpcPublicGatewayResult {
     readonly type: string;
     readonly updatedAt: string;
     readonly upstreamDnsServers: string[];
-    readonly zone: string;
+    readonly zone?: string;
 }
 
 export function getVpcPublicGatewayOutput(args?: GetVpcPublicGatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayResult> {
@@ -85,4 +93,9 @@ export interface GetVpcPublicGatewayOutputArgs {
      */
     name?: pulumi.Input<string>;
     publicGatewayId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which
+     * the public gateway should be created.
+     */
+    zone?: pulumi.Input<string>;
 }

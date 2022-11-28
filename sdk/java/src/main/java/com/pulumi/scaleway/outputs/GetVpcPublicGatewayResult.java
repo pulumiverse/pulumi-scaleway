@@ -32,7 +32,7 @@ public final class GetVpcPublicGatewayResult {
     private String type;
     private String updatedAt;
     private List<String> upstreamDnsServers;
-    private String zone;
+    private @Nullable String zone;
 
     private GetVpcPublicGatewayResult() {}
     public Boolean bastionEnabled() {
@@ -81,8 +81,8 @@ public final class GetVpcPublicGatewayResult {
     public List<String> upstreamDnsServers() {
         return this.upstreamDnsServers;
     }
-    public String zone() {
-        return this.zone;
+    public Optional<String> zone() {
+        return Optional.ofNullable(this.zone);
     }
 
     public static Builder builder() {
@@ -108,7 +108,7 @@ public final class GetVpcPublicGatewayResult {
         private String type;
         private String updatedAt;
         private List<String> upstreamDnsServers;
-        private String zone;
+        private @Nullable String zone;
         public Builder() {}
         public Builder(GetVpcPublicGatewayResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -206,8 +206,8 @@ public final class GetVpcPublicGatewayResult {
             return upstreamDnsServers(List.of(upstreamDnsServers));
         }
         @CustomType.Setter
-        public Builder zone(String zone) {
-            this.zone = Objects.requireNonNull(zone);
+        public Builder zone(@Nullable String zone) {
+            this.zone = zone;
             return this;
         }
         public GetVpcPublicGatewayResult build() {

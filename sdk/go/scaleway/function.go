@@ -95,6 +95,8 @@ type Function struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime pulumi.StringOutput `pulumi:"runtime"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// Location of the zip file to upload containing your function sources
@@ -122,6 +124,13 @@ func NewFunction(ctx *pulumi.Context,
 	if args.Runtime == nil {
 		return nil, errors.New("invalid value for required argument 'Runtime'")
 	}
+	if args.SecretEnvironmentVariables != nil {
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretEnvironmentVariables",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Function
 	err := ctx.RegisterResource("scaleway:index/function:Function", name, args, &resource, opts...)
@@ -177,6 +186,8 @@ type functionState struct {
 	Region *string `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime *string `pulumi:"runtime"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
 	Timeout *int `pulumi:"timeout"`
 	// Location of the zip file to upload containing your function sources
@@ -218,6 +229,8 @@ type FunctionState struct {
 	Region pulumi.StringPtrInput
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime pulumi.StringPtrInput
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+	SecretEnvironmentVariables pulumi.StringMapInput
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
 	Timeout pulumi.IntPtrInput
 	// Location of the zip file to upload containing your function sources
@@ -257,6 +270,8 @@ type functionArgs struct {
 	Region *string `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime string `pulumi:"runtime"`
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
 	Timeout *int `pulumi:"timeout"`
 	// Location of the zip file to upload containing your function sources
@@ -293,6 +308,8 @@ type FunctionArgs struct {
 	Region pulumi.StringPtrInput
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 	Runtime pulumi.StringInput
+	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+	SecretEnvironmentVariables pulumi.StringMapInput
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
 	Timeout pulumi.IntPtrInput
 	// Location of the zip file to upload containing your function sources
@@ -466,6 +483,11 @@ func (o FunctionOutput) Region() pulumi.StringOutput {
 // Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
 func (o FunctionOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Runtime }).(pulumi.StringOutput)
+}
+
+// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+func (o FunctionOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
 // Holds the max duration (in seconds) the function is allowed for responding to a request

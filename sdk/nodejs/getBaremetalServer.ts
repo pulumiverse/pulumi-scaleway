@@ -74,10 +74,15 @@ export interface GetBaremetalServerResult {
     readonly organizationId: string;
     readonly os: string;
     readonly osId: string;
+    readonly password: string;
     readonly projectId: string;
+    readonly reinstallOnConfigChanges: boolean;
     readonly serverId?: string;
+    readonly servicePassword: string;
+    readonly serviceUser: string;
     readonly sshKeyIds: string[];
     readonly tags: string[];
+    readonly user: string;
     readonly zone?: string;
 }
 

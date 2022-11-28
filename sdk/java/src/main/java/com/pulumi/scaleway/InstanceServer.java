@@ -278,6 +278,91 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Root volume configuration
+ * 
+ * #### Resized block volume with installed image
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.InstanceServer;
+ * import com.pulumi.scaleway.InstanceServerArgs;
+ * import com.pulumi.scaleway.inputs.InstanceServerRootVolumeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var image = new InstanceServer(&#34;image&#34;, InstanceServerArgs.builder()        
+ *             .image(&#34;ubuntu_jammy&#34;)
+ *             .rootVolume(InstanceServerRootVolumeArgs.builder()
+ *                 .sizeInGb(100)
+ *                 .volumeType(&#34;b_ssd&#34;)
+ *                 .build())
+ *             .type(&#34;PRO2-XXS&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * #### From snapshot
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetInstanceSnapshotArgs;
+ * import com.pulumi.scaleway.InstanceVolume;
+ * import com.pulumi.scaleway.InstanceVolumeArgs;
+ * import com.pulumi.scaleway.InstanceServer;
+ * import com.pulumi.scaleway.InstanceServerArgs;
+ * import com.pulumi.scaleway.inputs.InstanceServerRootVolumeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var snapshot = ScalewayFunctions.getInstanceSnapshot(GetInstanceSnapshotArgs.builder()
+ *             .name(&#34;my_snapshot&#34;)
+ *             .build());
+ * 
+ *         var fromSnapshotInstanceVolume = new InstanceVolume(&#34;fromSnapshotInstanceVolume&#34;, InstanceVolumeArgs.builder()        
+ *             .fromSnapshotId(snapshot.applyValue(getInstanceSnapshotResult -&gt; getInstanceSnapshotResult.id()))
+ *             .type(&#34;b_ssd&#34;)
+ *             .build());
+ * 
+ *         var fromSnapshotInstanceServer = new InstanceServer(&#34;fromSnapshotInstanceServer&#34;, InstanceServerArgs.builder()        
+ *             .type(&#34;PRO2-XXS&#34;)
+ *             .rootVolume(InstanceServerRootVolumeArgs.builder()
+ *                 .volumeId(fromSnapshotInstanceVolume.id())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Private Network
  * 
  * &gt; **Important:** Updates to `private_network` will recreate a new private network interface.

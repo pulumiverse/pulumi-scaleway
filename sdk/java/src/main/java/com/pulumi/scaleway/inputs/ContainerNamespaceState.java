@@ -152,6 +152,21 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.registryNamespaceId);
     }
 
+    /**
+     * The secret environment variables of the namespace.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The secret environment variables of the namespace.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
     private ContainerNamespaceState() {}
 
     private ContainerNamespaceState(ContainerNamespaceState $) {
@@ -164,6 +179,7 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
         this.region = $.region;
         this.registryEndpoint = $.registryEndpoint;
         this.registryNamespaceId = $.registryNamespaceId;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
     }
 
     public static Builder builder() {
@@ -371,6 +387,27 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
          */
         public Builder registryNamespaceId(String registryNamespaceId) {
             return registryNamespaceId(Output.of(registryNamespaceId));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The secret environment variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The secret environment variables of the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         public ContainerNamespaceState build() {

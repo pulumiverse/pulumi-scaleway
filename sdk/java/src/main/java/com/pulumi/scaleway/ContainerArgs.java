@@ -244,6 +244,21 @@ public final class ContainerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     * 
+     */
+    @Import(name="secretEnvironmentVariables")
+    private @Nullable Output<Map<String,String>> secretEnvironmentVariables;
+
+    /**
+     * @return The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> secretEnvironmentVariables() {
+        return Optional.ofNullable(this.secretEnvironmentVariables);
+    }
+
+    /**
      * The container status.
      * 
      */
@@ -291,6 +306,7 @@ public final class ContainerArgs extends com.pulumi.resources.ResourceArgs {
         this.protocol = $.protocol;
         this.registryImage = $.registryImage;
         this.registrySha256 = $.registrySha256;
+        this.secretEnvironmentVariables = $.secretEnvironmentVariables;
         this.status = $.status;
         this.timeout = $.timeout;
     }
@@ -626,6 +642,27 @@ public final class ContainerArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder registrySha256(String registrySha256) {
             return registrySha256(Output.of(registrySha256));
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(@Nullable Output<Map<String,String>> secretEnvironmentVariables) {
+            $.secretEnvironmentVariables = secretEnvironmentVariables;
+            return this;
+        }
+
+        /**
+         * @param secretEnvironmentVariables The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            return secretEnvironmentVariables(Output.of(secretEnvironmentVariables));
         }
 
         /**

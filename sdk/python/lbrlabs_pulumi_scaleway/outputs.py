@@ -61,6 +61,8 @@ __all__ = [
     'ObjectBucketLifecycleRule',
     'ObjectBucketLifecycleRuleExpiration',
     'ObjectBucketLifecycleRuleTransition',
+    'ObjectBucketLockConfigurationRule',
+    'ObjectBucketLockConfigurationRuleDefaultRetention',
     'ObjectBucketVersioning',
     'ObjectBucketWebsiteConfigurationErrorDocument',
     'ObjectBucketWebsiteConfigurationIndexDocument',
@@ -85,6 +87,7 @@ __all__ = [
     'GetInstanceServerPrivateNetworkResult',
     'GetInstanceServerRootVolumeResult',
     'GetInstanceServersServerResult',
+    'GetInstanceSnapshotImportResult',
     'GetIotDeviceCertificateResult',
     'GetIotDeviceMessageFilterResult',
     'GetIotDeviceMessageFilterPublishResult',
@@ -3111,6 +3114,63 @@ class ObjectBucketLifecycleRuleTransition(dict):
 
 
 @pulumi.output_type
+class ObjectBucketLockConfigurationRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultRetention":
+            suggest = "default_retention"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ObjectBucketLockConfigurationRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ObjectBucketLockConfigurationRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ObjectBucketLockConfigurationRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_retention: 'outputs.ObjectBucketLockConfigurationRuleDefaultRetention'):
+        pulumi.set(__self__, "default_retention", default_retention)
+
+    @property
+    @pulumi.getter(name="defaultRetention")
+    def default_retention(self) -> 'outputs.ObjectBucketLockConfigurationRuleDefaultRetention':
+        return pulumi.get(self, "default_retention")
+
+
+@pulumi.output_type
+class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
+    def __init__(__self__, *,
+                 mode: str,
+                 days: Optional[int] = None,
+                 years: Optional[int] = None):
+        pulumi.set(__self__, "mode", mode)
+        if days is not None:
+            pulumi.set(__self__, "days", days)
+        if years is not None:
+            pulumi.set(__self__, "years", years)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> str:
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter
+    def days(self) -> Optional[int]:
+        return pulumi.get(self, "days")
+
+    @property
+    @pulumi.getter
+    def years(self) -> Optional[int]:
+        return pulumi.get(self, "years")
+
+
+@pulumi.output_type
 class ObjectBucketVersioning(dict):
     def __init__(__self__, *,
                  enabled: Optional[bool] = None):
@@ -4190,6 +4250,25 @@ class GetInstanceServersServerResult(dict):
         `zone`) The zone in which servers exist.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetInstanceSnapshotImportResult(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 key: str):
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type

@@ -48,18 +48,18 @@ public final class ObjectBucketWebsiteConfigurationArgs extends com.pulumi.resou
     }
 
     /**
-     * (Optional) The name of the index document for the website detailed below.
+     * (Required) The name of the index document for the website detailed below.
      * 
      */
-    @Import(name="indexDocument")
-    private @Nullable Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs> indexDocument;
+    @Import(name="indexDocument", required=true)
+    private Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs> indexDocument;
 
     /**
-     * @return (Optional) The name of the index document for the website detailed below.
+     * @return (Required) The name of the index document for the website detailed below.
      * 
      */
-    public Optional<Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs>> indexDocument() {
-        return Optional.ofNullable(this.indexDocument);
+    public Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs> indexDocument() {
+        return this.indexDocument;
     }
 
     private ObjectBucketWebsiteConfigurationArgs() {}
@@ -131,18 +131,18 @@ public final class ObjectBucketWebsiteConfigurationArgs extends com.pulumi.resou
         }
 
         /**
-         * @param indexDocument (Optional) The name of the index document for the website detailed below.
+         * @param indexDocument (Required) The name of the index document for the website detailed below.
          * 
          * @return builder
          * 
          */
-        public Builder indexDocument(@Nullable Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs> indexDocument) {
+        public Builder indexDocument(Output<ObjectBucketWebsiteConfigurationIndexDocumentArgs> indexDocument) {
             $.indexDocument = indexDocument;
             return this;
         }
 
         /**
-         * @param indexDocument (Optional) The name of the index document for the website detailed below.
+         * @param indexDocument (Required) The name of the index document for the website detailed below.
          * 
          * @return builder
          * 
@@ -153,6 +153,7 @@ public final class ObjectBucketWebsiteConfigurationArgs extends com.pulumi.resou
 
         public ObjectBucketWebsiteConfigurationArgs build() {
             $.bucket = Objects.requireNonNull($.bucket, "expected parameter 'bucket' to be non-null");
+            $.indexDocument = Objects.requireNonNull($.indexDocument, "expected parameter 'indexDocument' to be non-null");
             return $;
         }
     }

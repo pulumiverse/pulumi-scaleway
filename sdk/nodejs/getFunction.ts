@@ -51,6 +51,7 @@ export interface GetFunctionResult {
     readonly projectId: string;
     readonly region: string;
     readonly runtime: string;
+    readonly secretEnvironmentVariables: {[key: string]: string};
     readonly timeout: number;
     readonly zipFile: string;
     readonly zipHash: string;

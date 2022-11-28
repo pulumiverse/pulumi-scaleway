@@ -21,6 +21,7 @@ class ObjectBucketArgs:
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 object_lock_enabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None):
@@ -31,6 +32,7 @@ class ObjectBucketArgs:
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -48,6 +50,8 @@ class ObjectBucketArgs:
             pulumi.set(__self__, "lifecycle_rules", lifecycle_rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if object_lock_enabled is not None:
+            pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
@@ -116,6 +120,18 @@ class ObjectBucketArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="objectLockEnabled")
+    def object_lock_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable object lock
+        """
+        return pulumi.get(self, "object_lock_enabled")
+
+    @object_lock_enabled.setter
+    def object_lock_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "object_lock_enabled", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -161,6 +177,7 @@ class _ObjectBucketState:
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 object_lock_enabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None):
@@ -172,6 +189,7 @@ class _ObjectBucketState:
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -191,6 +209,8 @@ class _ObjectBucketState:
             pulumi.set(__self__, "lifecycle_rules", lifecycle_rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if object_lock_enabled is not None:
+            pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
@@ -271,6 +291,18 @@ class _ObjectBucketState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="objectLockEnabled")
+    def object_lock_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable object lock
+        """
+        return pulumi.get(self, "object_lock_enabled")
+
+    @object_lock_enabled.setter
+    def object_lock_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "object_lock_enabled", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -317,6 +349,7 @@ class ObjectBucket(pulumi.CustomResource):
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 object_lock_enabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None,
@@ -456,6 +489,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -614,6 +648,7 @@ class ObjectBucket(pulumi.CustomResource):
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 object_lock_enabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None,
@@ -634,6 +669,7 @@ class ObjectBucket(pulumi.CustomResource):
             __props__.__dict__["force_destroy"] = force_destroy
             __props__.__dict__["lifecycle_rules"] = lifecycle_rules
             __props__.__dict__["name"] = name
+            __props__.__dict__["object_lock_enabled"] = object_lock_enabled
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             __props__.__dict__["versioning"] = versioning
@@ -654,6 +690,7 @@ class ObjectBucket(pulumi.CustomResource):
             force_destroy: Optional[pulumi.Input[bool]] = None,
             lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            object_lock_enabled: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None) -> 'ObjectBucket':
@@ -670,6 +707,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
+        :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -684,6 +722,7 @@ class ObjectBucket(pulumi.CustomResource):
         __props__.__dict__["force_destroy"] = force_destroy
         __props__.__dict__["lifecycle_rules"] = lifecycle_rules
         __props__.__dict__["name"] = name
+        __props__.__dict__["object_lock_enabled"] = object_lock_enabled
         __props__.__dict__["region"] = region
         __props__.__dict__["tags"] = tags
         __props__.__dict__["versioning"] = versioning
@@ -736,6 +775,14 @@ class ObjectBucket(pulumi.CustomResource):
         The name of the bucket.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="objectLockEnabled")
+    def object_lock_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enable object lock
+        """
+        return pulumi.get(self, "object_lock_enabled")
 
     @property
     @pulumi.getter

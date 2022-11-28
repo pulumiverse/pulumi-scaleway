@@ -244,6 +244,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         public readonly string RegistrySha256;
+        public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         /// <summary>
         /// The container status.
         /// </summary>
@@ -297,6 +298,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string registrySha256,
 
+            ImmutableDictionary<string, string> secretEnvironmentVariables,
+
             string status,
 
             int timeout)
@@ -322,6 +325,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Region = region;
             RegistryImage = registryImage;
             RegistrySha256 = registrySha256;
+            SecretEnvironmentVariables = secretEnvironmentVariables;
             Status = status;
             Timeout = timeout;
         }

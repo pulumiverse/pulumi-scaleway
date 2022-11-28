@@ -28,12 +28,14 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
 //				Type: pulumi.String("VPC-GW-S"),
+//				Zone: pulumi.String("nl-ams-1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
 //				Name: main.Name,
+//				Zone: pulumi.String("nl-ams-1"),
 //			}, nil)
 //			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
 //				PublicGatewayId: main.ID(),
@@ -58,6 +60,9 @@ type LookupVpcPublicGatewayArgs struct {
 	// Exact name of the public gateway.
 	Name            *string `pulumi:"name"`
 	PublicGatewayId *string `pulumi:"publicGatewayId"`
+	// `zone`) The zone in which
+	// the public gateway should be created.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getVpcPublicGateway.
@@ -77,7 +82,7 @@ type LookupVpcPublicGatewayResult struct {
 	Type               string   `pulumi:"type"`
 	UpdatedAt          string   `pulumi:"updatedAt"`
 	UpstreamDnsServers []string `pulumi:"upstreamDnsServers"`
-	Zone               string   `pulumi:"zone"`
+	Zone               *string  `pulumi:"zone"`
 }
 
 func LookupVpcPublicGatewayOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayResultOutput {
@@ -98,6 +103,9 @@ type LookupVpcPublicGatewayOutputArgs struct {
 	// Exact name of the public gateway.
 	Name            pulumi.StringPtrInput `pulumi:"name"`
 	PublicGatewayId pulumi.StringPtrInput `pulumi:"publicGatewayId"`
+	// `zone`) The zone in which
+	// the public gateway should be created.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupVpcPublicGatewayOutputArgs) ElementType() reflect.Type {
@@ -176,8 +184,8 @@ func (o LookupVpcPublicGatewayResultOutput) UpstreamDnsServers() pulumi.StringAr
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) []string { return v.UpstreamDnsServers }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupVpcPublicGatewayResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

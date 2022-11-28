@@ -149,6 +149,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Runtime { get; private set; } = null!;
 
         /// <summary>
+        /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        /// </summary>
+        [Output("secretEnvironmentVariables")]
+        public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
+
+        /// <summary>
         /// Holds the max duration (in seconds) the function is allowed for responding to a request
         /// </summary>
         [Output("timeout")]
@@ -190,6 +196,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "secretEnvironmentVariables",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -296,6 +306,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
+
+        [Input("secretEnvironmentVariables")]
+        private InputMap<string>? _secretEnvironmentVariables;
+
+        /// <summary>
+        /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        /// </summary>
+        public InputMap<string> SecretEnvironmentVariables
+        {
+            get => _secretEnvironmentVariables ?? (_secretEnvironmentVariables = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
 
         /// <summary>
         /// Holds the max duration (in seconds) the function is allowed for responding to a request
@@ -424,6 +450,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
+
+        [Input("secretEnvironmentVariables")]
+        private InputMap<string>? _secretEnvironmentVariables;
+
+        /// <summary>
+        /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        /// </summary>
+        public InputMap<string> SecretEnvironmentVariables
+        {
+            get => _secretEnvironmentVariables ?? (_secretEnvironmentVariables = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
 
         /// <summary>
         /// Holds the max duration (in seconds) the function is allowed for responding to a request

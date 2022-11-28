@@ -70,6 +70,7 @@ export interface GetObjectBucketResult {
     readonly id: string;
     readonly lifecycleRules: outputs.GetObjectBucketLifecycleRule[];
     readonly name?: string;
+    readonly objectLockEnabled: boolean;
     readonly region?: string;
     readonly tags: {[key: string]: string};
     readonly versionings: outputs.GetObjectBucketVersioning[];

@@ -21,7 +21,7 @@ class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, project_id=None, region=None, runtime=None, timeout=None, zip_file=None, zip_hash=None):
+    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, project_id=None, region=None, runtime=None, secret_environment_variables=None, timeout=None, zip_file=None, zip_hash=None):
         if cpu_limit and not isinstance(cpu_limit, int):
             raise TypeError("Expected argument 'cpu_limit' to be a int")
         pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -76,6 +76,9 @@ class GetFunctionResult:
         if runtime and not isinstance(runtime, str):
             raise TypeError("Expected argument 'runtime' to be a str")
         pulumi.set(__self__, "runtime", runtime)
+        if secret_environment_variables and not isinstance(secret_environment_variables, dict):
+            raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
+        pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout and not isinstance(timeout, int):
             raise TypeError("Expected argument 'timeout' to be a int")
         pulumi.set(__self__, "timeout", timeout)
@@ -180,6 +183,11 @@ class GetFunctionResult:
         return pulumi.get(self, "runtime")
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Mapping[str, str]:
+        return pulumi.get(self, "secret_environment_variables")
+
+    @property
     @pulumi.getter
     def timeout(self) -> int:
         return pulumi.get(self, "timeout")
@@ -219,6 +227,7 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             project_id=self.project_id,
             region=self.region,
             runtime=self.runtime,
+            secret_environment_variables=self.secret_environment_variables,
             timeout=self.timeout,
             zip_file=self.zip_file,
             zip_hash=self.zip_hash)
@@ -257,6 +266,7 @@ def get_function(function_id: Optional[str] = None,
         project_id=__ret__.project_id,
         region=__ret__.region,
         runtime=__ret__.runtime,
+        secret_environment_variables=__ret__.secret_environment_variables,
         timeout=__ret__.timeout,
         zip_file=__ret__.zip_file,
         zip_hash=__ret__.zip_hash)

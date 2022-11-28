@@ -60,6 +60,8 @@ __all__ = [
     'ObjectBucketLifecycleRuleArgs',
     'ObjectBucketLifecycleRuleExpirationArgs',
     'ObjectBucketLifecycleRuleTransitionArgs',
+    'ObjectBucketLockConfigurationRuleArgs',
+    'ObjectBucketLockConfigurationRuleDefaultRetentionArgs',
     'ObjectBucketVersioningArgs',
     'ObjectBucketWebsiteConfigurationErrorDocumentArgs',
     'ObjectBucketWebsiteConfigurationIndexDocumentArgs',
@@ -3294,6 +3296,62 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @days.setter
     def days(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "days", value)
+
+
+@pulumi.input_type
+class ObjectBucketLockConfigurationRuleArgs:
+    def __init__(__self__, *,
+                 default_retention: pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgs']):
+        pulumi.set(__self__, "default_retention", default_retention)
+
+    @property
+    @pulumi.getter(name="defaultRetention")
+    def default_retention(self) -> pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgs']:
+        return pulumi.get(self, "default_retention")
+
+    @default_retention.setter
+    def default_retention(self, value: pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgs']):
+        pulumi.set(self, "default_retention", value)
+
+
+@pulumi.input_type
+class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
+    def __init__(__self__, *,
+                 mode: pulumi.Input[str],
+                 days: Optional[pulumi.Input[int]] = None,
+                 years: Optional[pulumi.Input[int]] = None):
+        pulumi.set(__self__, "mode", mode)
+        if days is not None:
+            pulumi.set(__self__, "days", days)
+        if years is not None:
+            pulumi.set(__self__, "years", years)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def days(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "days")
+
+    @days.setter
+    def days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "days", value)
+
+    @property
+    @pulumi.getter
+    def years(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "years")
+
+    @years.setter
+    def years(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "years", value)
 
 
 @pulumi.input_type

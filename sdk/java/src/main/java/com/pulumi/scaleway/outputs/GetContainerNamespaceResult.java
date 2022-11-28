@@ -48,6 +48,7 @@ public final class GetContainerNamespaceResult {
      * 
      */
     private String registryNamespaceId;
+    private Map<String,String> secretEnvironmentVariables;
 
     private GetContainerNamespaceResult() {}
     /**
@@ -107,6 +108,9 @@ public final class GetContainerNamespaceResult {
     public String registryNamespaceId() {
         return this.registryNamespaceId;
     }
+    public Map<String,String> secretEnvironmentVariables() {
+        return this.secretEnvironmentVariables;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -128,6 +132,7 @@ public final class GetContainerNamespaceResult {
         private @Nullable String region;
         private String registryEndpoint;
         private String registryNamespaceId;
+        private Map<String,String> secretEnvironmentVariables;
         public Builder() {}
         public Builder(GetContainerNamespaceResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -142,6 +147,7 @@ public final class GetContainerNamespaceResult {
     	      this.region = defaults.region;
     	      this.registryEndpoint = defaults.registryEndpoint;
     	      this.registryNamespaceId = defaults.registryNamespaceId;
+    	      this.secretEnvironmentVariables = defaults.secretEnvironmentVariables;
         }
 
         @CustomType.Setter
@@ -199,6 +205,11 @@ public final class GetContainerNamespaceResult {
             this.registryNamespaceId = Objects.requireNonNull(registryNamespaceId);
             return this;
         }
+        @CustomType.Setter
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            this.secretEnvironmentVariables = Objects.requireNonNull(secretEnvironmentVariables);
+            return this;
+        }
         public GetContainerNamespaceResult build() {
             final var o = new GetContainerNamespaceResult();
             o.description = description;
@@ -212,6 +223,7 @@ public final class GetContainerNamespaceResult {
             o.region = region;
             o.registryEndpoint = registryEndpoint;
             o.registryNamespaceId = registryNamespaceId;
+            o.secretEnvironmentVariables = secretEnvironmentVariables;
             return o;
         }
     }

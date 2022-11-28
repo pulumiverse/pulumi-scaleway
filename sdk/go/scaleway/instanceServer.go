@@ -263,6 +263,81 @@ import (
 //
 // ```
 //
+// ### Root volume configuration
+//
+// #### Resized block volume with installed image
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewInstanceServer(ctx, "image", &scaleway.InstanceServerArgs{
+//				Image: pulumi.String("ubuntu_jammy"),
+//				RootVolume: &InstanceServerRootVolumeArgs{
+//					SizeInGb:   pulumi.Int(100),
+//					VolumeType: pulumi.String("b_ssd"),
+//				},
+//				Type: pulumi.String("PRO2-XXS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// #### From snapshot
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			snapshot, err := scaleway.LookupInstanceSnapshot(ctx, &GetInstanceSnapshotArgs{
+//				Name: pulumi.StringRef("my_snapshot"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fromSnapshotInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "fromSnapshotInstanceVolume", &scaleway.InstanceVolumeArgs{
+//				FromSnapshotId: pulumi.String(snapshot.Id),
+//				Type:           pulumi.String("b_ssd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceServer(ctx, "fromSnapshotInstanceServer", &scaleway.InstanceServerArgs{
+//				Type: pulumi.String("PRO2-XXS"),
+//				RootVolume: &InstanceServerRootVolumeArgs{
+//					VolumeId: fromSnapshotInstanceVolume.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Private Network
 //
 // > **Important:** Updates to `privateNetwork` will recreate a new private network interface.

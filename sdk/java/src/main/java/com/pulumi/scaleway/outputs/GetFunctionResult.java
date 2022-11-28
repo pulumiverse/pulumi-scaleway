@@ -36,6 +36,7 @@ public final class GetFunctionResult {
     private String projectId;
     private String region;
     private String runtime;
+    private Map<String,String> secretEnvironmentVariables;
     private Integer timeout;
     private String zipFile;
     private String zipHash;
@@ -99,6 +100,9 @@ public final class GetFunctionResult {
     public String runtime() {
         return this.runtime;
     }
+    public Map<String,String> secretEnvironmentVariables() {
+        return this.secretEnvironmentVariables;
+    }
     public Integer timeout() {
         return this.timeout;
     }
@@ -136,6 +140,7 @@ public final class GetFunctionResult {
         private String projectId;
         private String region;
         private String runtime;
+        private Map<String,String> secretEnvironmentVariables;
         private Integer timeout;
         private String zipFile;
         private String zipHash;
@@ -160,6 +165,7 @@ public final class GetFunctionResult {
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.runtime = defaults.runtime;
+    	      this.secretEnvironmentVariables = defaults.secretEnvironmentVariables;
     	      this.timeout = defaults.timeout;
     	      this.zipFile = defaults.zipFile;
     	      this.zipHash = defaults.zipHash;
@@ -256,6 +262,11 @@ public final class GetFunctionResult {
             return this;
         }
         @CustomType.Setter
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            this.secretEnvironmentVariables = Objects.requireNonNull(secretEnvironmentVariables);
+            return this;
+        }
+        @CustomType.Setter
         public Builder timeout(Integer timeout) {
             this.timeout = Objects.requireNonNull(timeout);
             return this;
@@ -290,6 +301,7 @@ public final class GetFunctionResult {
             o.projectId = projectId;
             o.region = region;
             o.runtime = runtime;
+            o.secretEnvironmentVariables = secretEnvironmentVariables;
             o.timeout = timeout;
             o.zipFile = zipFile;
             o.zipHash = zipHash;

@@ -19,6 +19,7 @@ class LoadbalancerBackendArgs:
                  forward_port: pulumi.Input[int],
                  forward_protocol: pulumi.Input[str],
                  lb_id: pulumi.Input[str],
+                 failover_host: Optional[pulumi.Input[str]] = None,
                  forward_port_algorithm: Optional[pulumi.Input[str]] = None,
                  health_check_delay: Optional[pulumi.Input[str]] = None,
                  health_check_http: Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs']] = None,
@@ -43,6 +44,9 @@ class LoadbalancerBackendArgs:
         :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[str] failover_host: Scaleway S3 bucket website to be served in case all backend servers are down.
+               > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+               e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         :param pulumi.Input[str] health_check_delay: Interval between two HC requests.
         :param pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs'] health_check_http: This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
@@ -65,6 +69,8 @@ class LoadbalancerBackendArgs:
         pulumi.set(__self__, "forward_port", forward_port)
         pulumi.set(__self__, "forward_protocol", forward_protocol)
         pulumi.set(__self__, "lb_id", lb_id)
+        if failover_host is not None:
+            pulumi.set(__self__, "failover_host", failover_host)
         if forward_port_algorithm is not None:
             pulumi.set(__self__, "forward_port_algorithm", forward_port_algorithm)
         if health_check_delay is not None:
@@ -141,6 +147,20 @@ class LoadbalancerBackendArgs:
     @lb_id.setter
     def lb_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "lb_id", value)
+
+    @property
+    @pulumi.getter(name="failoverHost")
+    def failover_host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Scaleway S3 bucket website to be served in case all backend servers are down.
+        > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+        e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+        """
+        return pulumi.get(self, "failover_host")
+
+    @failover_host.setter
+    def failover_host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "failover_host", value)
 
     @property
     @pulumi.getter(name="forwardPortAlgorithm")
@@ -362,6 +382,7 @@ class LoadbalancerBackendArgs:
 @pulumi.input_type
 class _LoadbalancerBackendState:
     def __init__(__self__, *,
+                 failover_host: Optional[pulumi.Input[str]] = None,
                  forward_port: Optional[pulumi.Input[int]] = None,
                  forward_port_algorithm: Optional[pulumi.Input[str]] = None,
                  forward_protocol: Optional[pulumi.Input[str]] = None,
@@ -385,6 +406,9 @@ class _LoadbalancerBackendState:
                  timeout_tunnel: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerBackend resources.
+        :param pulumi.Input[str] failover_host: Scaleway S3 bucket website to be served in case all backend servers are down.
+               > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+               e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
         :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
@@ -408,6 +432,8 @@ class _LoadbalancerBackendState:
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
+        if failover_host is not None:
+            pulumi.set(__self__, "failover_host", failover_host)
         if forward_port is not None:
             pulumi.set(__self__, "forward_port", forward_port)
         if forward_port_algorithm is not None:
@@ -453,6 +479,20 @@ class _LoadbalancerBackendState:
             pulumi.set(__self__, "timeout_server", timeout_server)
         if timeout_tunnel is not None:
             pulumi.set(__self__, "timeout_tunnel", timeout_tunnel)
+
+    @property
+    @pulumi.getter(name="failoverHost")
+    def failover_host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Scaleway S3 bucket website to be served in case all backend servers are down.
+        > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+        e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+        """
+        return pulumi.get(self, "failover_host")
+
+    @failover_host.setter
+    def failover_host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "failover_host", value)
 
     @property
     @pulumi.getter(name="forwardPort")
@@ -713,6 +753,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 failover_host: Optional[pulumi.Input[str]] = None,
                  forward_port: Optional[pulumi.Input[int]] = None,
                  forward_port_algorithm: Optional[pulumi.Input[str]] = None,
                  forward_protocol: Optional[pulumi.Input[str]] = None,
@@ -778,6 +819,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] failover_host: Scaleway S3 bucket website to be served in case all backend servers are down.
+               > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+               e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
         :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
@@ -863,6 +907,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 failover_host: Optional[pulumi.Input[str]] = None,
                  forward_port: Optional[pulumi.Input[int]] = None,
                  forward_port_algorithm: Optional[pulumi.Input[str]] = None,
                  forward_protocol: Optional[pulumi.Input[str]] = None,
@@ -893,6 +938,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LoadbalancerBackendArgs.__new__(LoadbalancerBackendArgs)
 
+            __props__.__dict__["failover_host"] = failover_host
             if forward_port is None and not opts.urn:
                 raise TypeError("Missing required property 'forward_port'")
             __props__.__dict__["forward_port"] = forward_port
@@ -933,6 +979,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            failover_host: Optional[pulumi.Input[str]] = None,
             forward_port: Optional[pulumi.Input[int]] = None,
             forward_port_algorithm: Optional[pulumi.Input[str]] = None,
             forward_protocol: Optional[pulumi.Input[str]] = None,
@@ -961,6 +1008,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] failover_host: Scaleway S3 bucket website to be served in case all backend servers are down.
+               > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+               e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         :param pulumi.Input[int] forward_port: User sessions will be forwarded to this port of backend servers.
         :param pulumi.Input[str] forward_port_algorithm: Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
         :param pulumi.Input[str] forward_protocol: Backend protocol. Possible values are: `tcp` or `http`.
@@ -988,6 +1038,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
         __props__ = _LoadbalancerBackendState.__new__(_LoadbalancerBackendState)
 
+        __props__.__dict__["failover_host"] = failover_host
         __props__.__dict__["forward_port"] = forward_port
         __props__.__dict__["forward_port_algorithm"] = forward_port_algorithm
         __props__.__dict__["forward_protocol"] = forward_protocol
@@ -1010,6 +1061,16 @@ class LoadbalancerBackend(pulumi.CustomResource):
         __props__.__dict__["timeout_server"] = timeout_server
         __props__.__dict__["timeout_tunnel"] = timeout_tunnel
         return LoadbalancerBackend(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="failoverHost")
+    def failover_host(self) -> pulumi.Output[Optional[str]]:
+        """
+        Scaleway S3 bucket website to be served in case all backend servers are down.
+        > **Note:** Only the host part of the Scaleway S3 bucket website is expected:
+        e.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+        """
+        return pulumi.get(self, "failover_host")
 
     @property
     @pulumi.getter(name="forwardPort")

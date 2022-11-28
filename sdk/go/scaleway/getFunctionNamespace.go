@@ -76,7 +76,8 @@ type LookupFunctionNamespaceResult struct {
 	// The registry endpoint of the namespace.
 	RegistryEndpoint string `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
-	RegistryNamespaceId string `pulumi:"registryNamespaceId"`
+	RegistryNamespaceId        string            `pulumi:"registryNamespaceId"`
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
 func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionNamespaceResultOutput {
@@ -167,6 +168,10 @@ func (o LookupFunctionNamespaceResultOutput) RegistryEndpoint() pulumi.StringOut
 // The registry namespace ID of the namespace.
 func (o LookupFunctionNamespaceResultOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.RegistryNamespaceId }).(pulumi.StringOutput)
+}
+
+func (o LookupFunctionNamespaceResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupFunctionNamespaceResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
 func init() {

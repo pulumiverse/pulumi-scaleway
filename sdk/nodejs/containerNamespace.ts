@@ -93,6 +93,10 @@ export class ContainerNamespace extends pulumi.CustomResource {
      * The registry namespace ID of the namespace.
      */
     public /*out*/ readonly registryNamespaceId!: pulumi.Output<string>;
+    /**
+     * The secret environment variables of the namespace.
+     */
+    public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a ContainerNamespace resource with the given unique name, arguments, and options.
@@ -116,6 +120,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["registryEndpoint"] = state ? state.registryEndpoint : undefined;
             resourceInputs["registryNamespaceId"] = state ? state.registryNamespaceId : undefined;
+            resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
         } else {
             const args = argsOrState as ContainerNamespaceArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -124,11 +129,14 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["registryEndpoint"] = undefined /*out*/;
             resourceInputs["registryNamespaceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ContainerNamespace.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -173,6 +181,10 @@ export interface ContainerNamespaceState {
      * The registry namespace ID of the namespace.
      */
     registryNamespaceId?: pulumi.Input<string>;
+    /**
+     * The secret environment variables of the namespace.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
@@ -203,4 +215,8 @@ export interface ContainerNamespaceArgs {
      * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The secret environment variables of the namespace.
+     */
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

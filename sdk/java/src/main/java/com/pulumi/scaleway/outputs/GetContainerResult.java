@@ -103,6 +103,7 @@ public final class GetContainerResult {
      * 
      */
     private String registrySha256;
+    private Map<String,String> secretEnvironmentVariables;
     /**
      * @return The container status.
      * 
@@ -246,6 +247,9 @@ public final class GetContainerResult {
     public String registrySha256() {
         return this.registrySha256;
     }
+    public Map<String,String> secretEnvironmentVariables() {
+        return this.secretEnvironmentVariables;
+    }
     /**
      * @return The container status.
      * 
@@ -291,6 +295,7 @@ public final class GetContainerResult {
         private @Nullable String region;
         private String registryImage;
         private String registrySha256;
+        private Map<String,String> secretEnvironmentVariables;
         private String status;
         private Integer timeout;
         public Builder() {}
@@ -317,6 +322,7 @@ public final class GetContainerResult {
     	      this.region = defaults.region;
     	      this.registryImage = defaults.registryImage;
     	      this.registrySha256 = defaults.registrySha256;
+    	      this.secretEnvironmentVariables = defaults.secretEnvironmentVariables;
     	      this.status = defaults.status;
     	      this.timeout = defaults.timeout;
         }
@@ -427,6 +433,11 @@ public final class GetContainerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder secretEnvironmentVariables(Map<String,String> secretEnvironmentVariables) {
+            this.secretEnvironmentVariables = Objects.requireNonNull(secretEnvironmentVariables);
+            return this;
+        }
+        @CustomType.Setter
         public Builder status(String status) {
             this.status = Objects.requireNonNull(status);
             return this;
@@ -459,6 +470,7 @@ public final class GetContainerResult {
             o.region = region;
             o.registryImage = registryImage;
             o.registrySha256 = registrySha256;
+            o.secretEnvironmentVariables = secretEnvironmentVariables;
             o.status = status;
             o.timeout = timeout;
             return o;
