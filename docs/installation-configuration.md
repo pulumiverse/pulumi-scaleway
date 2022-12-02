@@ -1,5 +1,5 @@
 ---
-title: Scaleway Setup
+title: Scaleway Installation & Configuration
 meta_desc: Information on how to install the Scaleway provider.
 layout: installation
 ---
