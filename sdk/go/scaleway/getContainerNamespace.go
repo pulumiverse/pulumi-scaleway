@@ -26,13 +26,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupContainerNamespace(ctx, &GetContainerNamespaceArgs{
+//			_, err = scaleway.LookupContainerNamespace(ctx, &scaleway.LookupContainerNamespaceArgs{
 //				Name: pulumi.StringRef("my-namespace-name"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupContainerNamespace(ctx, &GetContainerNamespaceArgs{
+//			_, err = scaleway.LookupContainerNamespace(ctx, &scaleway.LookupContainerNamespaceArgs{
 //				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

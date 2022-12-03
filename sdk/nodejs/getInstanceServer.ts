@@ -15,19 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by server id
- * const myKey = pulumi.output(scaleway.getInstanceServer({
+ * const myKey = scaleway.getInstanceServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServerResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceServer:getInstanceServer", {
         "name": args.name,
         "serverId": args.serverId,

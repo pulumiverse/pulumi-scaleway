@@ -64,7 +64,7 @@ import (
 //			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
-//				RootVolume: &InstanceServerRootVolumeArgs{
+//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
 //					SizeInGb:   pulumi.Int(10),
 //					VolumeType: pulumi.String("l_ssd"),
 //				},
@@ -118,7 +118,7 @@ import (
 //			}
 //			_, err = scaleway.NewInstanceSnapshot(ctx, "snapshot", &scaleway.InstanceSnapshotArgs{
 //				Type: pulumi.String("unified"),
-//				Import: &InstanceSnapshotImportArgs{
+//				Import: &scaleway.InstanceSnapshotImportArgs{
 //					Bucket: qcow.Bucket,
 //					Key:    qcow.Key,
 //				},

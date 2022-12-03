@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetInstanceServers(ctx, &GetInstanceServersArgs{
+//			_, err = scaleway.GetInstanceServers(ctx, &scaleway.GetInstanceServersArgs{
 //				Name: pulumi.StringRef("myserver"),
 //				Zone: pulumi.StringRef("fr-par-2"),
 //			}, nil)

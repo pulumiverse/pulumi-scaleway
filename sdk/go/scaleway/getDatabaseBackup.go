@@ -26,20 +26,20 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupDatabaseBackup(ctx, &GetDatabaseBackupArgs{
+//			_, err = scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
 //				Name: pulumi.StringRef("mybackup"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupDatabaseBackup(ctx, &GetDatabaseBackupArgs{
+//			_, err = scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
 //				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //				Name:       pulumi.StringRef("mybackup"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupDatabaseBackup(ctx, &GetDatabaseBackupArgs{
+//			_, err = scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
 //				BackupId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

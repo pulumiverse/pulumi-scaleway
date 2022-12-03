@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by image id
- * const myImage = pulumi.output(scaleway.getInstanceImage({
+ * const myImage = scaleway.getInstanceImage({
  *     imageId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceImageResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceImage:getInstanceImage", {
         "architecture": args.architecture,
         "imageId": args.imageId,

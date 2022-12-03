@@ -26,13 +26,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupLoadbalancer(ctx, &GetLoadbalancerArgs{
+//			_, err = scaleway.LookupLoadbalancer(ctx, &scaleway.LookupLoadbalancerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupLoadbalancer(ctx, &GetLoadbalancerArgs{
+//			_, err = scaleway.LookupLoadbalancer(ctx, &scaleway.LookupLoadbalancerArgs{
 //				LbId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

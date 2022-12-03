@@ -15,19 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by pool id
- * const myKey = pulumi.output(scaleway.getKubernetesNodePool({
+ * const myKey = scaleway.getKubernetesNodePool({
  *     poolId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getKubernetesNodePool(args?: GetKubernetesNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesNodePoolResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {
         "clusterId": args.clusterId,
         "name": args.name,

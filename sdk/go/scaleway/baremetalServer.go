@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.LookupAccountSshKey(ctx, &GetAccountSshKeyArgs{
+//			main, err := scaleway.LookupAccountSshKey(ctx, &scaleway.LookupAccountSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)
 //			if err != nil {

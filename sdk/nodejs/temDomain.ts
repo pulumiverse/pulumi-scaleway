@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.TemDomain("main", {});
  * ```

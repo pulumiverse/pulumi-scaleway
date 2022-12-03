@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by namespace ID
- * const myNamespace = pulumi.output(scaleway.getRegistryNamespace({
+ * const myNamespace = scaleway.getRegistryNamespace({
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", {
         "name": args.name,
         "namespaceId": args.namespaceId,

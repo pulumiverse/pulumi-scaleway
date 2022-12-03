@@ -6,26 +6,11 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a Flexible IP.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * // Get info by IP ID
- * const myIp = pulumi.output(scaleway.getFlexibleIp({
- *     ipId: "11111111-1111-1111-1111-111111111111",
- * }));
- * ```
  */
 export function getFlexibleIp(args?: GetFlexibleIpArgs, opts?: pulumi.InvokeOptions): Promise<GetFlexibleIpResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFlexibleIp:getFlexibleIp", {
         "flexibleIpId": args.flexibleIpId,
         "ipAddress": args.ipAddress,

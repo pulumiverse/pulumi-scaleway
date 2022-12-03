@@ -14,22 +14,18 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const main = new scaleway.FlexibleIp("main", {
- *     reverse: "my-reverse.com",
- * });
+ * const main = new scaleway.FlexibleIp("main", {reverse: "my-reverse.com"});
  * ```
  *
  * ### With zone
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const main = new scaleway.FlexibleIp("main", {
- *     zone: "fr-par-2",
- * });
+ * const main = new scaleway.FlexibleIp("main", {zone: "fr-par-2"});
  * ```
  *
  * ### With baremetal server

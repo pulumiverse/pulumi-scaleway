@@ -31,8 +31,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
-//				Acls: RedisClusterAclArray{
-//					&RedisClusterAclArgs{
+//				Acls: scaleway.RedisClusterAclArray{
+//					&scaleway.RedisClusterAclArgs{
 //						Description: pulumi.String("Allow all"),
 //						Ip:          pulumi.String("0.0.0.0/0"),
 //					},
@@ -114,8 +114,8 @@ import (
 //				UserName:    pulumi.String("my_initial_user"),
 //				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
 //				ClusterSize: pulumi.Int(1),
-//				PrivateNetworks: RedisClusterPrivateNetworkArray{
-//					&RedisClusterPrivateNetworkArgs{
+//				PrivateNetworks: scaleway.RedisClusterPrivateNetworkArray{
+//					&scaleway.RedisClusterPrivateNetworkArgs{
 //						Id: pn.ID(),
 //						ServiceIps: pulumi.StringArray{
 //							pulumi.String("10.12.1.1/20"),

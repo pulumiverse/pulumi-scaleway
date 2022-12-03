@@ -13,20 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id fr-par/11111111-1111-1111-1111-111111111111
- * const findPriv = pulumi.output(scaleway.getDatabasePrivilege({
+ * const findPriv = scaleway.getDatabasePrivilege({
  *     databaseName: "my-database",
  *     instanceId: "fr-par/11111111-1111-111111111111",
  *     userName: "my-user",
- * }));
+ * });
  * ```
  */
 export function getDatabasePrivilege(args: GetDatabasePrivilegeArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabasePrivilegeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
         "databaseName": args.databaseName,
         "instanceId": args.instanceId,

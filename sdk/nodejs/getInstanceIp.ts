@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by ID
- * const myIp = pulumi.output(scaleway.getInstanceIp({
+ * const myIp = scaleway.getInstanceIp({
  *     id: "fr-par-1/11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceIpResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceIp:getInstanceIp", {
         "address": args.address,
         "id": args.id,

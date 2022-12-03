@@ -87,7 +87,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			byId, err := scaleway.GetBaremetalOs(ctx, &GetBaremetalOsArgs{
+//			byId, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
 //				Zone:    pulumi.StringRef("fr-par-2"),
 //				Name:    pulumi.StringRef("Ubuntu"),
 //				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &GetBaremetalOfferArgs{
+//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
 //				Zone: pulumi.StringRef("fr-par-2"),
 //				Name: pulumi.StringRef("EM-A210R-HDD"),
 //			}, nil)

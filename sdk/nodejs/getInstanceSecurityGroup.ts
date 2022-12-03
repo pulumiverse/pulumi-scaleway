@@ -15,19 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by security group id
- * const myKey = pulumi.output(scaleway.getInstanceSecurityGroup({
+ * const myKey = scaleway.getInstanceSecurityGroup({
  *     securityGroupId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSecurityGroupResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", {
         "name": args.name,
         "securityGroupId": args.securityGroupId,

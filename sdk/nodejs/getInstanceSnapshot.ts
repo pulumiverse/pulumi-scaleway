@@ -15,23 +15,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by snapshot name
- * const byName = pulumi.output(scaleway.getInstanceSnapshot({
+ * const byName = scaleway.getInstanceSnapshot({
  *     name: "my-snapshot-name",
- * }));
- * // Get info by snapshot ID
- * const byId = pulumi.output(scaleway.getInstanceSnapshot({
+ * });
+ * const byId = scaleway.getInstanceSnapshot({
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSnapshotResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {
         "name": args.name,
         "snapshotId": args.snapshotId,

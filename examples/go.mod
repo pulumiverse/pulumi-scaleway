@@ -2,7 +2,7 @@ module github.com/lbrlabs/pulumi-scaleway/examples
 
 go 1.19
 
-require github.com/pulumi/pulumi/pkg/v3 v3.17.0
+require github.com/pulumi/pulumi/pkg/v3 v3.48.0
 
 require github.com/docker/docker v1.6.1 // indirect
 

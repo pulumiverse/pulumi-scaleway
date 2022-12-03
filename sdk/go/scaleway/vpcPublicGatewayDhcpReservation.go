@@ -43,8 +43,8 @@ import (
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //				Zone:  pulumi.String("fr-par-1"),
-//				PrivateNetworks: InstanceServerPrivateNetworkArray{
-//					&InstanceServerPrivateNetworkArgs{
+//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
+//					&scaleway.InstanceServerPrivateNetworkArgs{
 //						PnId: mainVpcPrivateNetwork.ID(),
 //					},
 //				},
@@ -84,7 +84,7 @@ import (
 //			}
 //			_, err = scaleway.NewVpcPublicGatewayDhcpReservation(ctx, "mainVpcPublicGatewayDhcpReservation", &scaleway.VpcPublicGatewayDhcpReservationArgs{
 //				GatewayNetworkId: mainVpcGatewayNetwork.ID(),
-//				MacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []InstanceServerPrivateNetwork) (string, error) {
+//				MacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (string, error) {
 //					return privateNetworks[0].MacAddress, nil
 //				}).(pulumi.StringOutput),
 //				IpAddress: pulumi.String("192.168.1.1"),

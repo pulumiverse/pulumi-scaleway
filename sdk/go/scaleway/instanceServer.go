@@ -77,7 +77,7 @@ import (
 //					pulumi.String("hello"),
 //					pulumi.String("public"),
 //				},
-//				RootVolume: &InstanceServerRootVolumeArgs{
+//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
 //					DeleteOnTermination: pulumi.Bool(false),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
@@ -146,23 +146,23 @@ import (
 //			www, err := scaleway.NewInstanceSecurityGroup(ctx, "www", &scaleway.InstanceSecurityGroupArgs{
 //				InboundDefaultPolicy:  pulumi.String("drop"),
 //				OutboundDefaultPolicy: pulumi.String("accept"),
-//				InboundRules: InstanceSecurityGroupInboundRuleArray{
-//					&InstanceSecurityGroupInboundRuleArgs{
+//				InboundRules: scaleway.InstanceSecurityGroupInboundRuleArray{
+//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
 //						Action: pulumi.String("accept"),
 //						Port:   pulumi.Int(22),
 //						Ip:     pulumi.String("212.47.225.64"),
 //					},
-//					&InstanceSecurityGroupInboundRuleArgs{
+//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
 //						Action: pulumi.String("accept"),
 //						Port:   pulumi.Int(80),
 //					},
-//					&InstanceSecurityGroupInboundRuleArgs{
+//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
 //						Action: pulumi.String("accept"),
 //						Port:   pulumi.Int(443),
 //					},
 //				},
-//				OutboundRules: InstanceSecurityGroupOutboundRuleArray{
-//					&InstanceSecurityGroupOutboundRuleArgs{
+//				OutboundRules: scaleway.InstanceSecurityGroupOutboundRuleArray{
+//					&scaleway.InstanceSecurityGroupOutboundRuleArgs{
 //						Action:  pulumi.String("drop"),
 //						IpRange: pulumi.String("10.20.0.0/24"),
 //					},
@@ -248,8 +248,8 @@ import (
 //			_, err = scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
-//				PrivateNetworks: InstanceServerPrivateNetworkArray{
-//					&InstanceServerPrivateNetworkArgs{
+//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
+//					&scaleway.InstanceServerPrivateNetworkArgs{
 //						PnId: pn01.ID(),
 //					},
 //				},
@@ -281,7 +281,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewInstanceServer(ctx, "image", &scaleway.InstanceServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
-//				RootVolume: &InstanceServerRootVolumeArgs{
+//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
 //					SizeInGb:   pulumi.Int(100),
 //					VolumeType: pulumi.String("b_ssd"),
 //				},
@@ -310,7 +310,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			snapshot, err := scaleway.LookupInstanceSnapshot(ctx, &GetInstanceSnapshotArgs{
+//			snapshot, err := scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
 //				Name: pulumi.StringRef("my_snapshot"),
 //			}, nil)
 //			if err != nil {
@@ -325,7 +325,7 @@ import (
 //			}
 //			_, err = scaleway.NewInstanceServer(ctx, "fromSnapshotInstanceServer", &scaleway.InstanceServerArgs{
 //				Type: pulumi.String("PRO2-XXS"),
-//				RootVolume: &InstanceServerRootVolumeArgs{
+//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
 //					VolumeId: fromSnapshotInstanceVolume.ID(),
 //				},
 //			})

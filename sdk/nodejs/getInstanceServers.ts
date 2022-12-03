@@ -17,20 +17,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Find servers by name and zone
- * const myKey = pulumi.output(scaleway.getInstanceServers({
+ * const myKey = scaleway.getInstanceServers({
  *     name: "myserver",
  *     zone: "fr-par-2",
- * }));
+ * });
  * ```
  */
 export function getInstanceServers(args?: GetInstanceServersArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServersResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceServers:getInstanceServers", {
         "name": args.name,
         "projectId": args.projectId,

@@ -68,7 +68,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetVpcPublicPatRuleOutput(ctx, GetVpcPublicPatRuleOutputArgs{
+//			_ = scaleway.GetVpcPublicPatRuleOutput(ctx, scaleway.GetVpcPublicPatRuleOutputArgs{
 //				PatRuleId: mainVpcPublicGatewayPatRule.ID(),
 //			}, nil)
 //			return nil

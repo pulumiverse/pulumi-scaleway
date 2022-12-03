@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by hub ID
- * const myHub = pulumi.output(scaleway.getIotHub({
+ * const myHub = scaleway.getIotHub({
  *     hubId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getIotHub(args?: GetIotHubArgs, opts?: pulumi.InvokeOptions): Promise<GetIotHubResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIotHub:getIotHub", {
         "hubId": args.hubId,
         "name": args.name,

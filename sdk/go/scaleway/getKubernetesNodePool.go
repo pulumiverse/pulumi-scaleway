@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupKubernetesNodePool(ctx, &GetKubernetesNodePoolArgs{
+//			_, err = scaleway.LookupKubernetesNodePool(ctx, &scaleway.LookupKubernetesNodePoolArgs{
 //				PoolId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

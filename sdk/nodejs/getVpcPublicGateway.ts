@@ -11,28 +11,26 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const main = new scaleway.VpcPublicGateway("main", {
  *     type: "VPC-GW-S",
  *     zone: "nl-ams-1",
  * });
- * const pgTestByName = main.name.apply(name => scaleway.getVpcPublicGateway({
- *     name: name,
+ * const pgTestByName = scaleway.getVpcPublicGatewayOutput({
+ *     name: main.name,
  *     zone: "nl-ams-1",
- * }));
- * const pgTestById = main.id.apply(id => scaleway.getVpcPublicGateway({
- *     publicGatewayId: id,
- * }));
+ * });
+ * const pgTestById = scaleway.getVpcPublicGatewayOutput({
+ *     publicGatewayId: main.id,
+ * });
  * ```
  */
 export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", {
         "name": args.name,
         "publicGatewayId": args.publicGatewayId,

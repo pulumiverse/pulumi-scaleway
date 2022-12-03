@@ -29,14 +29,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetBaremetalOs(ctx, &GetBaremetalOsArgs{
+//			_, err = scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
 //				Name:    pulumi.StringRef("Ubuntu"),
 //				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.GetBaremetalOs(ctx, &GetBaremetalOsArgs{
+//			_, err = scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
 //				OsId: pulumi.StringRef("03b7f4ba-a6a1-4305-984e-b54fafbf1681"),
 //			}, nil)
 //			if err != nil {

@@ -27,13 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetBaremetalOption(ctx, &GetBaremetalOptionArgs{
+//			_, err = scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
 //				Name: pulumi.StringRef("Remote Access"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.GetBaremetalOption(ctx, &GetBaremetalOptionArgs{
+//			_, err = scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
 //				OptionId: pulumi.StringRef("931df052-d713-4674-8b58-96a63244c8e2"),
 //			}, nil)
 //			if err != nil {

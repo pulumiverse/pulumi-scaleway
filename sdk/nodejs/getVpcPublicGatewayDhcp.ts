@@ -11,22 +11,18 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayDhcp("main", {
- *     subnet: "192.168.0.0/24",
+ * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
+ * const dhcpById = scaleway.getVpcPublicGatewayDhcpOutput({
+ *     dhcpId: main.id,
  * });
- * const dhcpById = main.id.apply(id => scaleway.getVpcPublicGatewayDhcp({
- *     dhcpId: id,
- * }));
  * ```
  */
 export function getVpcPublicGatewayDhcp(args: GetVpcPublicGatewayDhcpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,
     }, opts);

@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const myImage = pulumi.output(scaleway.getMarketplaceImage({
+ * const myImage = scaleway.getMarketplaceImage({
  *     label: "ubuntu_jammy",
- * }));
+ * });
  * ```
  */
 export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetMarketplaceImageResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getMarketplaceImage:getMarketplaceImage", {
         "instanceType": args.instanceType,
         "label": args.label,

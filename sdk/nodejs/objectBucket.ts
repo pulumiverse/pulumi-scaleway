@@ -14,9 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("some_bucket", {
+ * const someBucket = new scaleway.ObjectBucket("someBucket", {
  *     acl: "private",
  *     tags: {
  *         key: "value",
@@ -27,14 +27,11 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.ObjectBucket("main", {
  *     acl: "private",
  *     lifecycleRules: [
- *         // This lifecycle configuration rule will make that all objects that got a filter key that start with (path1/) be transferred
- *         // from their default storage class (STANDARD, ONEZONE_IA) to GLACIER after 120 days counting 
- *         // from their creation and then 365 days after that they will be expired and deleted.
  *         {
  *             enabled: true,
  *             expiration: {
@@ -47,8 +44,6 @@ import * as utilities from "./utilities";
  *                 storageClass: "GLACIER",
  *             }],
  *         },
- *         // This lifecycle configuration rule specifies that all objects (identified by the key name prefix (path2/) in the rule)
- *         // from their creation and then 50 days after that they will be expired and deleted.
  *         {
  *             enabled: true,
  *             expiration: {
@@ -57,8 +52,6 @@ import * as utilities from "./utilities";
  *             id: "id2",
  *             prefix: "path2/",
  *         },
- *         // This lifecycle configuration rule remove any object with (path3/) prefix that match
- *         // with the tags one day after creation.
  *         {
  *             enabled: false,
  *             expiration: {
@@ -71,9 +64,6 @@ import * as utilities from "./utilities";
  *                 terraform: "hashicorp",
  *             },
  *         },
- *         // This lifecycle configuration rule specifies a tag-based filter (tag1/value1).
- *         // This rule directs Scaleway S3 to transition objects S3 Glacier class soon after creation.
- *         // It is also disable temporaly.
  *         {
  *             enabled: true,
  *             id: "id4",
@@ -85,13 +75,8 @@ import * as utilities from "./utilities";
  *                 storageClass: "GLACIER",
  *             }],
  *         },
- *         // This lifecycle configuration rule specifies with the AbortIncompleteMultipartUpload action to 
- *         // stop incomplete multipart uploads (identified by the key name prefix (path5/) in the rule)
- *         // if they aren't completed within a specified number of days after initiation.
- *         // Note: It's not recommended using prefix/ for AbortIncompleteMultipartUpload as any incomplete multipart upload will be billed
  *         {
  *             abortIncompleteMultipartUploadDays: 30,
- *             //  prefix  = "path5/"
  *             enabled: true,
  *         },
  *     ],

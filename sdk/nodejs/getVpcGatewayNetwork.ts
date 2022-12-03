@@ -32,11 +32,8 @@ import * as utilities from "./utilities";
  */
 export function getVpcGatewayNetwork(args?: GetVpcGatewayNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGatewayNetworkResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", {
         "dhcpId": args.dhcpId,
         "enableMasquerade": args.enableMasquerade,

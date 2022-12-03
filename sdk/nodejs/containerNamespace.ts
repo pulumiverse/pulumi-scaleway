@@ -14,11 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {
- *     description: "Main container namespace",
- * });
+ * const main = new scaleway.ContainerNamespace("main", {description: "Main container namespace"});
  * ```
  *
  * ## Import

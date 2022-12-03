@@ -12,14 +12,12 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const pnPriv = new scaleway.VpcPrivateNetwork("pn_priv", {
- *     tags: [
- *         "demo",
- *         "terraform",
- *     ],
- * });
+ * const pnPriv = new scaleway.VpcPrivateNetwork("pnPriv", {tags: [
+ *     "demo",
+ *     "terraform",
+ * ]});
  * ```
  *
  * ## Import

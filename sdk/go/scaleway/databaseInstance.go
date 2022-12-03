@@ -180,7 +180,7 @@ import (
 //				},
 //				VolumeType:     pulumi.String("bssd"),
 //				VolumeSizeInGb: pulumi.Int(10),
-//				PrivateNetwork: &DatabaseInstancePrivateNetworkArgs{
+//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
 //					IpNet: pulumi.String("192.168.1.254/24"),
 //					PnId:  pn02.ID(),
 //				},
@@ -191,7 +191,7 @@ import (
 //			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
 //				GatewayId: mainVpcPublicGateway.ID(),
 //				PrivateIp: mainVpcPublicGatewayDhcp.Address,
-//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork DatabaseInstancePrivateNetwork) (int, error) {
+//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork scaleway.DatabaseInstancePrivateNetwork) (int, error) {
 //					return privateNetwork.Port, nil
 //				}).(pulumi.IntOutput),
 //				PublicPort: pulumi.Int(42),

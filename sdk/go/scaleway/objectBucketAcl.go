@@ -61,24 +61,24 @@ import (
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "mainObjectBucketAcl", &scaleway.ObjectBucketAclArgs{
 //				Bucket: mainObjectBucket.Name,
-//				AccessControlPolicy: &ObjectBucketAclAccessControlPolicyArgs{
-//					Grants: ObjectBucketAclAccessControlPolicyGrantArray{
-//						&ObjectBucketAclAccessControlPolicyGrantArgs{
-//							Grantee: &ObjectBucketAclAccessControlPolicyGrantGranteeArgs{
+//				AccessControlPolicy: &scaleway.ObjectBucketAclAccessControlPolicyArgs{
+//					Grants: scaleway.ObjectBucketAclAccessControlPolicyGrantArray{
+//						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
+//							Grantee: &scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs{
 //								Id:   pulumi.String("<project-id>:<project-id>"),
 //								Type: pulumi.String("CanonicalUser"),
 //							},
 //							Permission: pulumi.String("FULL_CONTROL"),
 //						},
-//						&ObjectBucketAclAccessControlPolicyGrantArgs{
-//							Grantee: &ObjectBucketAclAccessControlPolicyGrantGranteeArgs{
+//						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
+//							Grantee: &scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs{
 //								Id:   pulumi.String("<project-id>"),
 //								Type: pulumi.String("CanonicalUser"),
 //							},
 //							Permission: pulumi.String("WRITE"),
 //						},
 //					},
-//					Owner: &ObjectBucketAclAccessControlPolicyOwnerArgs{
+//					Owner: &scaleway.ObjectBucketAclAccessControlPolicyOwnerArgs{
 //						Id: pulumi.String("<project-id>"),
 //					},
 //				},

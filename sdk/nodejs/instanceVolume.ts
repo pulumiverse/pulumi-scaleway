@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const serverVolume = new scaleway.InstanceVolume("server_volume", {
+ * const serverVolume = new scaleway.InstanceVolume("serverVolume", {
  *     sizeInGb: 20,
  *     type: "l_ssd",
  * });

@@ -32,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcPublicGatewayDhcpOutput(ctx, GetVpcPublicGatewayDhcpOutputArgs{
+//			_ = scaleway.LookupVpcPublicGatewayDhcpOutput(ctx, scaleway.GetVpcPublicGatewayDhcpOutputArgs{
 //				DhcpId: main.ID(),
 //			}, nil)
 //			return nil

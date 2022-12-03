@@ -36,10 +36,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcGatewayNetworkOutput(ctx, GetVpcGatewayNetworkOutputArgs{
+//			_ = scaleway.LookupVpcGatewayNetworkOutput(ctx, scaleway.GetVpcGatewayNetworkOutputArgs{
 //				GatewayNetworkId: main.ID(),
 //			}, nil)
-//			_, err = scaleway.LookupVpcGatewayNetwork(ctx, &GetVpcGatewayNetworkArgs{
+//			_, err = scaleway.LookupVpcGatewayNetwork(ctx, &scaleway.LookupVpcGatewayNetworkArgs{
 //				GatewayId:        pulumi.StringRef(scaleway_vpc_public_gateway.Pg01.Id),
 //				PrivateNetworkId: pulumi.StringRef(scaleway_vpc_private_network.Pn01.Id),
 //			}, nil)

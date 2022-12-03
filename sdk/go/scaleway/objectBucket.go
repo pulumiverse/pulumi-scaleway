@@ -57,32 +57,32 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
 //				Acl: pulumi.String("private"),
-//				LifecycleRules: ObjectBucketLifecycleRuleArray{
-//					&ObjectBucketLifecycleRuleArgs{
+//				LifecycleRules: scaleway.ObjectBucketLifecycleRuleArray{
+//					&scaleway.ObjectBucketLifecycleRuleArgs{
 //						Enabled: pulumi.Bool(true),
-//						Expiration: &ObjectBucketLifecycleRuleExpirationArgs{
+//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(365),
 //						},
 //						Id:     pulumi.String("id1"),
 //						Prefix: pulumi.String("path1/"),
-//						Transitions: ObjectBucketLifecycleRuleTransitionArray{
-//							&ObjectBucketLifecycleRuleTransitionArgs{
+//						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
+//							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
 //								Days:         pulumi.Int(120),
 //								StorageClass: pulumi.String("GLACIER"),
 //							},
 //						},
 //					},
-//					&ObjectBucketLifecycleRuleArgs{
+//					&scaleway.ObjectBucketLifecycleRuleArgs{
 //						Enabled: pulumi.Bool(true),
-//						Expiration: &ObjectBucketLifecycleRuleExpirationArgs{
+//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(50),
 //						},
 //						Id:     pulumi.String("id2"),
 //						Prefix: pulumi.String("path2/"),
 //					},
-//					&ObjectBucketLifecycleRuleArgs{
+//					&scaleway.ObjectBucketLifecycleRuleArgs{
 //						Enabled: pulumi.Bool(false),
-//						Expiration: &ObjectBucketLifecycleRuleExpirationArgs{
+//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(1),
 //						},
 //						Id:     pulumi.String("id3"),
@@ -92,20 +92,20 @@ import (
 //							"terraform": pulumi.String("hashicorp"),
 //						},
 //					},
-//					&ObjectBucketLifecycleRuleArgs{
+//					&scaleway.ObjectBucketLifecycleRuleArgs{
 //						Enabled: pulumi.Bool(true),
 //						Id:      pulumi.String("id4"),
 //						Tags: pulumi.StringMap{
 //							"tag1": pulumi.String("value1"),
 //						},
-//						Transitions: ObjectBucketLifecycleRuleTransitionArray{
-//							&ObjectBucketLifecycleRuleTransitionArgs{
+//						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
+//							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
 //								Days:         pulumi.Int(0),
 //								StorageClass: pulumi.String("GLACIER"),
 //							},
 //						},
 //					},
-//					&ObjectBucketLifecycleRuleArgs{
+//					&scaleway.ObjectBucketLifecycleRuleArgs{
 //						AbortIncompleteMultipartUploadDays: pulumi.Int(30),
 //						Enabled:                            pulumi.Bool(true),
 //					},

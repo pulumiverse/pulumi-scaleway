@@ -11,9 +11,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const serverIp = new scaleway.InstanceIp("server_ip", {});
+ * const serverIp = new scaleway.InstanceIp("serverIp", {});
  * ```
  *
  * ## Import

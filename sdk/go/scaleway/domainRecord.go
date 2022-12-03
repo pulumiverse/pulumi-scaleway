@@ -91,9 +91,9 @@ import (
 //			_, err := scaleway.NewDomainRecord(ctx, "geoIp", &scaleway.DomainRecordArgs{
 //				Data:    pulumi.String("1.2.3.4"),
 //				DnsZone: pulumi.String("domain.tld"),
-//				GeoIp: &DomainRecordGeoIpArgs{
-//					Matches: DomainRecordGeoIpMatchArray{
-//						&DomainRecordGeoIpMatchArgs{
+//				GeoIp: &scaleway.DomainRecordGeoIpArgs{
+//					Matches: scaleway.DomainRecordGeoIpMatchArray{
+//						&scaleway.DomainRecordGeoIpMatchArgs{
 //							Continents: pulumi.StringArray{
 //								pulumi.String("EU"),
 //							},
@@ -102,7 +102,7 @@ import (
 //							},
 //							Data: pulumi.String("1.2.3.5"),
 //						},
-//						&DomainRecordGeoIpMatchArgs{
+//						&scaleway.DomainRecordGeoIpMatchArgs{
 //							Continents: pulumi.StringArray{
 //								pulumi.String("NA"),
 //							},
@@ -119,7 +119,7 @@ import (
 //			_, err = scaleway.NewDomainRecord(ctx, "httpService", &scaleway.DomainRecordArgs{
 //				Data:    pulumi.String("1.2.3.4"),
 //				DnsZone: pulumi.String("domain.tld"),
-//				HttpService: &DomainRecordHttpServiceArgs{
+//				HttpService: &scaleway.DomainRecordHttpServiceArgs{
 //					Ips: pulumi.StringArray{
 //						pulumi.String("1.2.3.5"),
 //						pulumi.String("1.2.3.6"),
@@ -140,12 +140,12 @@ import (
 //				DnsZone: pulumi.String("domain.tld"),
 //				Ttl:     pulumi.Int(3600),
 //				Type:    pulumi.String("A"),
-//				Views: DomainRecordViewArray{
-//					&DomainRecordViewArgs{
+//				Views: scaleway.DomainRecordViewArray{
+//					&scaleway.DomainRecordViewArgs{
 //						Data:   pulumi.String("1.2.3.5"),
 //						Subnet: pulumi.String("100.0.0.0/16"),
 //					},
-//					&DomainRecordViewArgs{
+//					&scaleway.DomainRecordViewArgs{
 //						Data:   pulumi.String("1.2.3.6"),
 //						Subnet: pulumi.String("100.1.0.0/16"),
 //					},
@@ -159,12 +159,12 @@ import (
 //				DnsZone: pulumi.String("domain.tld"),
 //				Ttl:     pulumi.Int(3600),
 //				Type:    pulumi.String("A"),
-//				Weighteds: DomainRecordWeightedArray{
-//					&DomainRecordWeightedArgs{
+//				Weighteds: scaleway.DomainRecordWeightedArray{
+//					&scaleway.DomainRecordWeightedArgs{
 //						Ip:     pulumi.String("1.2.3.5"),
 //						Weight: pulumi.Int(1),
 //					},
-//					&DomainRecordWeightedArgs{
+//					&scaleway.DomainRecordWeightedArgs{
 //						Ip:     pulumi.String("1.2.3.6"),
 //						Weight: pulumi.Int(2),
 //					},
@@ -214,7 +214,7 @@ import (
 //					pulumi.String("web"),
 //				},
 //				IpId: publicIp.ID(),
-//				RootVolume: &InstanceServerRootVolumeArgs{
+//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
 //					SizeInGb: pulumi.Int(20),
 //				},
 //			})

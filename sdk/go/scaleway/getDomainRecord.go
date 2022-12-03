@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupDomainRecord(ctx, &GetDomainRecordArgs{
+//			_, err = scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
 //				Data:    pulumi.StringRef("1.2.3.4"),
 //				DnsZone: pulumi.StringRef("domain.tld"),
 //				Name:    pulumi.StringRef("www"),
@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupDomainRecord(ctx, &GetDomainRecordArgs{
+//			_, err = scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
 //				DnsZone:  pulumi.StringRef("domain.tld"),
 //				RecordId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

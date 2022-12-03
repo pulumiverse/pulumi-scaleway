@@ -32,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcPublicGatewayIpOutput(ctx, GetVpcPublicGatewayIpOutputArgs{
+//			_ = scaleway.LookupVpcPublicGatewayIpOutput(ctx, scaleway.GetVpcPublicGatewayIpOutputArgs{
 //				IpId: main.ID(),
 //			}, nil)
 //			return nil

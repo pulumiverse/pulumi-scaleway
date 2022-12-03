@@ -204,8 +204,8 @@ import (
 //				IpId:      mainLoadbalancerIp.ID(),
 //				Type:      pulumi.String("LB-S"),
 //				ReleaseIp: pulumi.Bool(false),
-//				PrivateNetworks: LoadbalancerPrivateNetworkArray{
-//					&LoadbalancerPrivateNetworkArgs{
+//				PrivateNetworks: scaleway.LoadbalancerPrivateNetworkArray{
+//					&scaleway.LoadbalancerPrivateNetworkArgs{
 //						PrivateNetworkId: mainVpcPrivateNetwork.ID(),
 //						StaticConfigs: pulumi.StringArray{
 //							pulumi.String("172.16.0.100"),

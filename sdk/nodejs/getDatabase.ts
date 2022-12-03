@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
- * const myDb = pulumi.output(scaleway.getDatabase({
+ * const myDb = scaleway.getDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",
- * }));
+ * });
  * ```
  */
 export function getDatabase(args: GetDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabase:getDatabase", {
         "instanceId": args.instanceId,
         "name": args.name,

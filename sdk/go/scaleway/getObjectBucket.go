@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupObjectBucket(ctx, &GetObjectBucketArgs{
+//			_, err = scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
 //				Name: pulumi.StringRef("bucket.test.com"),
 //			}, nil)
 //			if err != nil {

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupIotHub(ctx, &GetIotHubArgs{
+//			_, err = scaleway.LookupIotHub(ctx, &scaleway.LookupIotHubArgs{
 //				HubId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

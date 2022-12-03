@@ -27,14 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupBaremetalServer(ctx, &GetBaremetalServerArgs{
+//			_, err = scaleway.LookupBaremetalServer(ctx, &scaleway.LookupBaremetalServerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //				Zone: pulumi.StringRef("fr-par-2"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupBaremetalServer(ctx, &GetBaremetalServerArgs{
+//			_, err = scaleway.LookupBaremetalServer(ctx, &scaleway.LookupBaremetalServerArgs{
 //				ServerId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const www = new scaleway.DomainRecord("www", {
  *     data: "1.2.3.4",
@@ -50,9 +50,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const geoIp = new scaleway.DomainRecord("geo_ip", {
+ * const geoIp = new scaleway.DomainRecord("geoIp", {
  *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
  *     geoIp: {
@@ -71,7 +71,7 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  *     type: "A",
  * });
- * const httpService = new scaleway.DomainRecord("http_service", {
+ * const httpService = new scaleway.DomainRecord("httpService", {
  *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
  *     httpService: {

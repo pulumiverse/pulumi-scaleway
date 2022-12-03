@@ -90,7 +90,7 @@ import (
 //			}
 //			_, err = scaleway.NewDatabaseReadReplica(ctx, "replica", &scaleway.DatabaseReadReplicaArgs{
 //				InstanceId: instance.ID(),
-//				PrivateNetwork: &DatabaseReadReplicaPrivateNetworkArgs{
+//				PrivateNetwork: &scaleway.DatabaseReadReplicaPrivateNetworkArgs{
 //					PrivateNetworkId: pn.ID(),
 //					ServiceIp:        pulumi.String("192.168.1.254/24"),
 //				},

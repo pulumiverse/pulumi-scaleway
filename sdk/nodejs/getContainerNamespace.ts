@@ -13,23 +13,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by namespace name
- * const byName = pulumi.output(scaleway.getContainerNamespace({
+ * const byName = scaleway.getContainerNamespace({
  *     name: "my-namespace-name",
- * }));
- * // Get info by namespace ID
- * const byId = pulumi.output(scaleway.getContainerNamespace({
+ * });
+ * const byId = scaleway.getContainerNamespace({
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getContainerNamespace(args?: GetContainerNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerNamespaceResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getContainerNamespace:getContainerNamespace", {
         "name": args.name,
         "namespaceId": args.namespaceId,

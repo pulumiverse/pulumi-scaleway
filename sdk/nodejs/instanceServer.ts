@@ -144,7 +144,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const image = new scaleway.InstanceServer("image", {
  *     image: "ubuntu_jammy",

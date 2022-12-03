@@ -15,19 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by device ID
- * const myDevice = pulumi.output(scaleway.getIotDevice({
+ * const myDevice = scaleway.getIotDevice({
  *     deviceId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getIotDevice(args?: GetIotDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetIotDeviceResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIotDevice:getIotDevice", {
         "deviceId": args.deviceId,
         "hubId": args.hubId,

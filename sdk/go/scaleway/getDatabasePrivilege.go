@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupDatabasePrivilege(ctx, &GetDatabasePrivilegeArgs{
+//			_, err = scaleway.LookupDatabasePrivilege(ctx, &scaleway.LookupDatabasePrivilegeArgs{
 //				DatabaseName: "my-database",
 //				InstanceId:   "fr-par/11111111-1111-111111111111",
 //				UserName:     "my-user",

@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by IP ID
- * const myIp = pulumi.output(scaleway.getLoadbalancerIp({
+ * const myIp = scaleway.getLoadbalancerIp({
  *     ipId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIpResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,

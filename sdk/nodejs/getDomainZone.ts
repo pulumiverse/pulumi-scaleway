@@ -13,20 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get zone
- * const main = pulumi.output(scaleway.getDomainZone({
+ * const main = scaleway.getDomainZone({
  *     domain: "scaleway-terraform.com",
  *     subdomain: "test",
- * }));
+ * });
  * ```
  */
 export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainZoneResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainZone:getDomainZone", {
         "domain": args.domain,
         "subdomain": args.subdomain,

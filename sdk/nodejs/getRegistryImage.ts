@@ -13,20 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by image ID
- * const myImage = pulumi.output(scaleway.getRegistryImage({
+ * const myImage = scaleway.getRegistryImage({
  *     imageId: "11111111-1111-1111-1111-111111111111",
- *     namespaceId: "11111111-1111-1111-1111-111111111111", // Optional
- * }));
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * });
  * ```
  */
 export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryImage:getRegistryImage", {
         "imageId": args.imageId,
         "name": args.name,

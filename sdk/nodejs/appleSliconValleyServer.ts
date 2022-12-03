@@ -14,11 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const server = new scaleway.AppleSliconValleyServer("server", {
- *     type: "M1-M",
- * });
+ * const server = new scaleway.AppleSliconValleyServer("server", {type: "M1-M"});
  * ```
  *
  * ## Import

@@ -3307,6 +3307,7 @@ public final class ScalewayFunctions {
      * Gets information about a Flexible IP.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3344,6 +3345,7 @@ public final class ScalewayFunctions {
      * Gets information about a Flexible IP.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3381,6 +3383,7 @@ public final class ScalewayFunctions {
      * Gets information about a Flexible IP.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3418,6 +3421,7 @@ public final class ScalewayFunctions {
      * Gets information about a Flexible IP.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3455,6 +3459,7 @@ public final class ScalewayFunctions {
      * Gets information about a Flexible IP.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3492,6 +3497,7 @@ public final class ScalewayFunctions {
      * Gets information about a Flexible IP.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -7877,6 +7883,7 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -7914,6 +7921,7 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -7951,6 +7959,7 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -7988,6 +7997,7 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -8025,6 +8035,7 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -8062,6 +8073,7 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 

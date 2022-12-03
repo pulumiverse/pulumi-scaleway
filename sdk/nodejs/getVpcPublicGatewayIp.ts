@@ -13,21 +13,19 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const main = new scaleway.VpcPublicGatewayIp("main", {});
- * const ipById = main.id.apply(id => scaleway.getVpcPublicGatewayIp({
- *     ipId: id,
- * }));
+ * const ipById = scaleway.getVpcPublicGatewayIpOutput({
+ *     ipId: main.id,
+ * });
  * ```
  */
 export function getVpcPublicGatewayIp(args?: GetVpcPublicGatewayIpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayIpResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", {
         "ipId": args.ipId,
     }, opts);

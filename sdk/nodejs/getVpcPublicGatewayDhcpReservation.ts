@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  */
 export function getVpcPublicGatewayDhcpReservation(args?: GetVpcPublicGatewayDhcpReservationArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpReservationResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", {
         "gatewayNetworkId": args.gatewayNetworkId,
         "macAddress": args.macAddress,

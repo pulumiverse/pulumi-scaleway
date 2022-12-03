@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
  *     disableBackup: true,
@@ -32,13 +32,13 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
  *     disableBackup: true,
  *     engine: "MySQL-8",
  *     initSettings: {
- *         lower_case_table_names: 1,
+ *         lower_case_table_names: "1",
  *     },
  *     nodeType: "db-dev-s",
  *     password: "thiZ_is_v&ry_s3cret",
@@ -53,11 +53,11 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
- *     backupScheduleFrequency: 24, // every day
- *     backupScheduleRetention: 7, // keep it one week
+ *     backupScheduleFrequency: 24,
+ *     backupScheduleRetention: 7,
  *     disableBackup: false,
  *     engine: "PostgreSQL-11",
  *     isHaCluster: true,

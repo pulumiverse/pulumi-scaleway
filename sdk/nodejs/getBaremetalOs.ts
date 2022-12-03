@@ -16,24 +16,19 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by os name and version
- * const byName = pulumi.output(scaleway.getBaremetalOs({
+ * const byName = scaleway.getBaremetalOs({
  *     name: "Ubuntu",
  *     version: "20.04 LTS (Focal Fossa)",
- * }));
- * // Get info by os id
- * const byId = pulumi.output(scaleway.getBaremetalOs({
+ * });
+ * const byId = scaleway.getBaremetalOs({
  *     osId: "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
- * }));
+ * });
  * ```
  */
 export function getBaremetalOs(args?: GetBaremetalOsArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOs:getBaremetalOs", {
         "name": args.name,
         "osId": args.osId,

@@ -62,7 +62,7 @@ import (
 //				LbId:            pulumi.Any(scaleway_lb.Lb01.Id),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
-//				HealthCheckHttp: &LoadbalancerBackendHealthCheckHttpArgs{
+//				HealthCheckHttp: &scaleway.LoadbalancerBackendHealthCheckHttpArgs{
 //					Uri: pulumi.String("www.test.com/health"),
 //				},
 //			})

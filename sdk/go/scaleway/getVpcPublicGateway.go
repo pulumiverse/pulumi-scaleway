@@ -33,11 +33,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
+//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, scaleway.GetVpcPublicGatewayOutputArgs{
 //				Name: main.Name,
 //				Zone: pulumi.String("nl-ams-1"),
 //			}, nil)
-//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, GetVpcPublicGatewayOutputArgs{
+//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, scaleway.GetVpcPublicGatewayOutputArgs{
 //				PublicGatewayId: main.ID(),
 //			}, nil)
 //			return nil

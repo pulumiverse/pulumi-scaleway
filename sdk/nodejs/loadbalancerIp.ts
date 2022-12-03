@@ -14,11 +14,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const ip = new scaleway.LoadbalancerIp("ip", {
- *     reverse: "my-reverse.com",
- * });
+ * const ip = new scaleway.LoadbalancerIp("ip", {reverse: "my-reverse.com"});
  * ```
  *
  * ## Import

@@ -15,23 +15,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by name
- * const byName = pulumi.output(scaleway.getLoadbalancer({
+ * const byName = scaleway.getLoadbalancer({
  *     name: "foobar",
- * }));
- * // Get info by ID
- * const byId = pulumi.output(scaleway.getLoadbalancer({
+ * });
+ * const byId = scaleway.getLoadbalancer({
  *     lbId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancer:getLoadbalancer", {
         "lbId": args.lbId,
         "name": args.name,

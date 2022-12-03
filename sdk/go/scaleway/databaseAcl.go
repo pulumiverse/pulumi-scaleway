@@ -32,8 +32,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseAcl(ctx, "main", &scaleway.DatabaseAclArgs{
 //				InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
-//				AclRules: DatabaseAclAclRuleArray{
-//					&DatabaseAclAclRuleArgs{
+//				AclRules: scaleway.DatabaseAclAclRuleArray{
+//					&scaleway.DatabaseAclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
 //						Description: pulumi.String("foo"),
 //					},

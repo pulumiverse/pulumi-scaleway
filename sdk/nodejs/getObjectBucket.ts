@@ -14,25 +14,21 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
- *     tags: {
- *         foo: "bar",
- *     },
- * });
- * const selected = pulumi.output(scaleway.getObjectBucket({
+ * const main = new scaleway.ObjectBucket("main", {tags: {
+ *     foo: "bar",
+ * }});
+ * const selected = scaleway.getObjectBucket({
  *     name: "bucket.test.com",
- * }));
+ * });
  * ```
  */
 export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getObjectBucket:getObjectBucket", {
         "name": args.name,
         "region": args.region,

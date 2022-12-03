@@ -15,20 +15,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by offer id
- * const myOffer = pulumi.output(scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.getBaremetalOffer({
  *     offerId: "25dcf38b-c90c-4b18-97a2-6956e9d1e113",
  *     zone: "fr-par-2",
- * }));
+ * });
  * ```
  */
 export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOfferResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOffer:getBaremetalOffer", {
         "includeDisabled": args.includeDisabled,
         "name": args.name,

@@ -15,18 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get the database ACL for the instanceid 11111111-1111-1111-1111-111111111111 located in fr-par
- * const myAcl = pulumi.output(scaleway.getDatabaseAcl({
+ * const myAcl = scaleway.getDatabaseAcl({
  *     instanceId: "fr-par/11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseAclResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,
     }, opts);

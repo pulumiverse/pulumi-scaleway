@@ -16,24 +16,19 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by server name
- * const byName = pulumi.output(scaleway.getBaremetalServer({
+ * const byName = scaleway.getBaremetalServer({
  *     name: "foobar",
  *     zone: "fr-par-2",
- * }));
- * // Get info by server id
- * const byId = pulumi.output(scaleway.getBaremetalServer({
+ * });
+ * const byId = scaleway.getBaremetalServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
- * }));
+ * });
  * ```
  */
 export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalServerResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalServer:getBaremetalServer", {
         "name": args.name,
         "serverId": args.serverId,

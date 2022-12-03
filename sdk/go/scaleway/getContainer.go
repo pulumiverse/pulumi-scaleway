@@ -42,11 +42,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupContainerOutput(ctx, GetContainerOutputArgs{
+//			_ = scaleway.LookupContainerOutput(ctx, scaleway.GetContainerOutputArgs{
 //				NamespaceId: mainContainerNamespace.ID(),
 //				Name:        mainContainer.Name,
 //			}, nil)
-//			_ = scaleway.LookupContainerOutput(ctx, GetContainerOutputArgs{
+//			_ = scaleway.LookupContainerOutput(ctx, scaleway.GetContainerOutputArgs{
 //				NamespaceId: mainContainerNamespace.ID(),
 //				ContainerId: mainContainer.ID(),
 //			}, nil)
