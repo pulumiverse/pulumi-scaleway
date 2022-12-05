@@ -83,7 +83,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:                []string{"pulumi", "scaleway", "lbrlabs"},
 		TFProviderLicense:       refProviderLicense(tfbridge.MITLicenseType),
 		License:                 "Apache-2.0",
-		LogoURL:                 "https://raw.githubusercontent.com/lbrlabs/pulumi-scaleway/master/assets/scaleway-svgrepo-com.png", //nolint:golint,lll
+		LogoURL:                 "https://raw.githubusercontent.com/lbrlabs/pulumi-scaleway/master/assets/scaleway.png", //nolint:golint,lll
 		Homepage:                "https://leebriggs.co.uk/projects#pulumi-scaleway",
 		Repository:              "https://github.com/lbrlabs/pulumi-scaleway",
 		PluginDownloadURL:       "github://api.github.com/lbrlabs",
