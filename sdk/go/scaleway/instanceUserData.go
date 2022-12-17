@@ -23,66 +23,6 @@ import (
 //
 // ## Examples
 //
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"fmt"
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cfg := config.New(ctx, "")
-//			userData := map[string]interface{}{
-//				"cloud-init": fmt.Sprintf("#cloud-config\napt-update: true\napt-upgrade: true\n"),
-//				"foo":        "bar",
-//			}
-//			if param := cfg.GetBool("userData"); param != nil {
-//				userData = param
-//			}
-//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
-//				Image: pulumi.String("ubuntu_focal"),
-//				Type:  pulumi.String("DEV1-S"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewInstanceUserData(ctx, "mainInstanceUserData", &scaleway.InstanceUserDataArgs{
-//				ServerId: mainInstanceServer.ID(),
-//				Key:      pulumi.String("foo"),
-//				Value:    pulumi.String("bar"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			var data []*scaleway.InstanceUserData
-//			for index := 0; index < userData; index++ {
-//				key0 := index
-//				val0 := index
-//				__res, err := scaleway.NewInstanceUserData(ctx, fmt.Sprintf("data-%v", key0), &scaleway.InstanceUserDataArgs{
-//					ServerId: mainInstanceServer.ID(),
-//					Key:      pulumi.Any(key0),
-//					Value:    pulumi.Any(val0),
-//				})
-//				if err != nil {
-//					return err
-//				}
-//				data = append(data, __res)
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash

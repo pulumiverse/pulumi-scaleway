@@ -63,9 +63,24 @@ export interface GetVpcPublicGatewayDhcpResult {
     readonly validLifetime: number;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a public gateway DHCP.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
+ * const dhcpById = scaleway.getVpcPublicGatewayDhcpOutput({
+ *     dhcpId: main.id,
+ * });
+ * ```
+ */
 export function getVpcPublicGatewayDhcpOutput(args: GetVpcPublicGatewayDhcpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpResult> {
-    return pulumi.output(args).apply(a => getVpcPublicGatewayDhcp(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayDhcp(a, opts))
 }
 
 /**

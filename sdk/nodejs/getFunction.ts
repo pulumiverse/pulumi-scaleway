@@ -53,9 +53,8 @@ export interface GetFunctionResult {
     readonly zipFile: string;
     readonly zipHash: string;
 }
-
 export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionResult> {
-    return pulumi.output(args).apply(a => getFunction(a, opts))
+    return pulumi.output(args).apply((a: any) => getFunction(a, opts))
 }
 
 /**

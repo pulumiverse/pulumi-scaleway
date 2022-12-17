@@ -111,9 +111,29 @@ export interface GetDomainRecordResult {
      */
     readonly weighteds: outputs.GetDomainRecordWeighted[];
 }
-
+/**
+ * Gets information about a domain record.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byContent = scaleway.getDomainRecord({
+ *     data: "1.2.3.4",
+ *     dnsZone: "domain.tld",
+ *     name: "www",
+ *     type: "A",
+ * });
+ * const byId = scaleway.getDomainRecord({
+ *     dnsZone: "domain.tld",
+ *     recordId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainRecordResult> {
-    return pulumi.output(args).apply(a => getDomainRecord(a, opts))
+    return pulumi.output(args).apply((a: any) => getDomainRecord(a, opts))
 }
 
 /**

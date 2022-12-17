@@ -116,9 +116,22 @@ export interface GetInstanceImageResult {
     readonly state: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about an instance image.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myImage = scaleway.getInstanceImage({
+ *     imageId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceImageResult> {
-    return pulumi.output(args).apply(a => getInstanceImage(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceImage(a, opts))
 }
 
 /**

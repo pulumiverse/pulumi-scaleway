@@ -69,9 +69,25 @@ export interface GetIamApplicationResult {
     readonly organizationId?: string;
     readonly updatedAt: string;
 }
-
+/**
+ * Gets information about an existing IAM application.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const findByName = scaleway.getIamApplication({
+ *     name: "foobar",
+ * });
+ * const findById = scaleway.getIamApplication({
+ *     applicationId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamApplicationResult> {
-    return pulumi.output(args).apply(a => getIamApplication(a, opts))
+    return pulumi.output(args).apply((a: any) => getIamApplication(a, opts))
 }
 
 /**

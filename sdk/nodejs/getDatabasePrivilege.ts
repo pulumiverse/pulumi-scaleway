@@ -64,9 +64,24 @@ export interface GetDatabasePrivilegeResult {
     readonly permission: string;
     readonly userName: string;
 }
-
+/**
+ * Gets information about the privilege on a RDB database.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const findPriv = scaleway.getDatabasePrivilege({
+ *     databaseName: "my-database",
+ *     instanceId: "fr-par/11111111-1111-111111111111",
+ *     userName: "my-user",
+ * });
+ * ```
+ */
 export function getDatabasePrivilegeOutput(args: GetDatabasePrivilegeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabasePrivilegeResult> {
-    return pulumi.output(args).apply(a => getDatabasePrivilege(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabasePrivilege(a, opts))
 }
 
 /**

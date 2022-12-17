@@ -76,9 +76,22 @@ export interface GetIotHubResult {
     readonly status: string;
     readonly updatedAt: string;
 }
-
+/**
+ * Gets information about an IOT Hub.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myHub = scaleway.getIotHub({
+ *     hubId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getIotHubOutput(args?: GetIotHubOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotHubResult> {
-    return pulumi.output(args).apply(a => getIotHub(a, opts))
+    return pulumi.output(args).apply((a: any) => getIotHub(a, opts))
 }
 
 /**

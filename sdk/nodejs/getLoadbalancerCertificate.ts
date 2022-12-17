@@ -66,9 +66,17 @@ export interface GetLoadbalancerCertificateResult {
     readonly status: string;
     readonly subjectAlternativeNames: string[];
 }
-
+/**
+ * Get information about Scaleway Load-Balancer Certificates.
+ *
+ * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+ *
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+ *
+ * ## Examples
+ */
 export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerCertificateResult> {
-    return pulumi.output(args).apply(a => getLoadbalancerCertificate(a, opts))
+    return pulumi.output(args).apply((a: any) => getLoadbalancerCertificate(a, opts))
 }
 
 /**

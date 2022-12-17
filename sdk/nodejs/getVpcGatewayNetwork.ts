@@ -90,9 +90,34 @@ export interface GetVpcGatewayNetworkResult {
     readonly updatedAt: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a gateway network.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.VpcGatewayNetwork("main", {
+ *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
+ *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
+ *     dhcpId: scaleway_vpc_public_gateway_dhcp.dhcp01.id,
+ *     cleanupDhcp: true,
+ *     enableMasquerade: true,
+ * });
+ * const byId = scaleway.getVpcGatewayNetworkOutput({
+ *     gatewayNetworkId: main.id,
+ * });
+ * const byGatewayAndPn = scaleway.getVpcGatewayNetwork({
+ *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
+ *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
+ * });
+ * ```
+ */
 export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcGatewayNetworkResult> {
-    return pulumi.output(args).apply(a => getVpcGatewayNetwork(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcGatewayNetwork(a, opts))
 }
 
 /**

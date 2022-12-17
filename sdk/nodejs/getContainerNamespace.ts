@@ -87,9 +87,25 @@ export interface GetContainerNamespaceResult {
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
 }
-
+/**
+ * Gets information about a container namespace.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byName = scaleway.getContainerNamespace({
+ *     name: "my-namespace-name",
+ * });
+ * const byId = scaleway.getContainerNamespace({
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getContainerNamespaceOutput(args?: GetContainerNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerNamespaceResult> {
-    return pulumi.output(args).apply(a => getContainerNamespace(a, opts))
+    return pulumi.output(args).apply((a: any) => getContainerNamespace(a, opts))
 }
 
 /**

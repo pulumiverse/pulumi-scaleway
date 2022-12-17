@@ -148,9 +148,36 @@ export interface GetContainerResult {
      */
     readonly timeout: number;
 }
-
+/**
+ * Gets information about the Scaleway Container.
+ *
+ * For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+ *
+ * For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+ *
+ * You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {});
+ * const mainContainer = new scaleway.Container("mainContainer", {namespaceId: mainContainerNamespace.id});
+ * const byName = scaleway.getContainerOutput({
+ *     namespaceId: mainContainerNamespace.id,
+ *     name: mainContainer.name,
+ * });
+ * const byId = scaleway.getContainerOutput({
+ *     namespaceId: mainContainerNamespace.id,
+ *     containerId: mainContainer.id,
+ * });
+ * ```
+ */
 export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerResult> {
-    return pulumi.output(args).apply(a => getContainer(a, opts))
+    return pulumi.output(args).apply((a: any) => getContainer(a, opts))
 }
 
 /**

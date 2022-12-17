@@ -78,9 +78,22 @@ export interface GetRedisClusterResult {
     readonly version: string;
     readonly zone?: string;
 }
-
+/**
+ * Gets information about a Redis cluster.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myCluster = scaleway.getRedisCluster({
+ *     clusterId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisClusterResult> {
-    return pulumi.output(args).apply(a => getRedisCluster(a, opts))
+    return pulumi.output(args).apply((a: any) => getRedisCluster(a, opts))
 }
 
 /**

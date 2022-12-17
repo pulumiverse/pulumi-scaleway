@@ -60,9 +60,22 @@ export interface GetMarketplaceImageResult {
     readonly label: string;
     readonly zone: string;
 }
-
+/**
+ * Gets local image ID of an image from its label name.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myImage = scaleway.getMarketplaceImage({
+ *     label: "ubuntu_jammy",
+ * });
+ * ```
+ */
 export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMarketplaceImageResult> {
-    return pulumi.output(args).apply(a => getMarketplaceImage(a, opts))
+    return pulumi.output(args).apply((a: any) => getMarketplaceImage(a, opts))
 }
 
 /**

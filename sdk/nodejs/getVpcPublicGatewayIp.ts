@@ -56,9 +56,26 @@ export interface GetVpcPublicGatewayIpResult {
     readonly updatedAt: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a public gateway IP.
+ *
+ * For further information please check the API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-66f0c0)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.VpcPublicGatewayIp("main", {});
+ * const ipById = scaleway.getVpcPublicGatewayIpOutput({
+ *     ipId: main.id,
+ * });
+ * ```
+ */
 export function getVpcPublicGatewayIpOutput(args?: GetVpcPublicGatewayIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayIpResult> {
-    return pulumi.output(args).apply(a => getVpcPublicGatewayIp(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayIp(a, opts))
 }
 
 /**

@@ -85,9 +85,12 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
     readonly waitForDhcp?: boolean;
     readonly zone?: string;
 }
-
+/**
+ * Gets information about a dhcp entries. For further information please check the
+ * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+ */
 export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGatewayDhcpReservationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpReservationResult> {
-    return pulumi.output(args).apply(a => getVpcPublicGatewayDhcpReservation(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayDhcpReservation(a, opts))
 }
 
 /**

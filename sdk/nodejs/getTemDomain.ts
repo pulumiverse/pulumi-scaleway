@@ -79,9 +79,11 @@ export interface GetTemDomainResult {
      */
     readonly status: string;
 }
-
+/**
+ * Gets information about a transactional email domain.
+ */
 export function getTemDomainOutput(args?: GetTemDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTemDomainResult> {
-    return pulumi.output(args).apply(a => getTemDomain(a, opts))
+    return pulumi.output(args).apply((a: any) => getTemDomain(a, opts))
 }
 
 /**

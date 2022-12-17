@@ -70,9 +70,22 @@ export interface GetLoadbalancerIpResult {
     readonly reverse: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a Load Balancer IP.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myIp = scaleway.getLoadbalancerIp({
+ *     ipId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerIpResult> {
-    return pulumi.output(args).apply(a => getLoadbalancerIp(a, opts))
+    return pulumi.output(args).apply((a: any) => getLoadbalancerIp(a, opts))
 }
 
 /**

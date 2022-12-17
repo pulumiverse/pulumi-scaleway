@@ -90,9 +90,22 @@ export interface GetInstanceSecurityGroupResult {
     readonly tags: string[];
     readonly zone?: string;
 }
-
+/**
+ * Gets information about a Security Group.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myKey = scaleway.getInstanceSecurityGroup({
+ *     securityGroupId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getInstanceSecurityGroupOutput(args?: GetInstanceSecurityGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSecurityGroupResult> {
-    return pulumi.output(args).apply(a => getInstanceSecurityGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceSecurityGroup(a, opts))
 }
 
 /**

@@ -71,9 +71,26 @@ export interface GetIamGroupResult {
     readonly updatedAt: string;
     readonly userIds: string[];
 }
-
+/**
+ * Gets information about an existing IAM group. For more information, please
+ * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const findByName = scaleway.getIamGroup({
+ *     name: "foobar",
+ * });
+ * const findById = scaleway.getIamGroup({
+ *     groupId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamGroupResult> {
-    return pulumi.output(args).apply(a => getIamGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getIamGroup(a, opts))
 }
 
 /**

@@ -138,9 +138,22 @@ export interface GetKubernetesNodePoolResult {
     readonly waitForPoolReady: boolean;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a Kubernetes Cluster's Pool.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myKey = scaleway.getKubernetesNodePool({
+ *     poolId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getKubernetesNodePoolOutput(args?: GetKubernetesNodePoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesNodePoolResult> {
-    return pulumi.output(args).apply(a => getKubernetesNodePool(a, opts))
+    return pulumi.output(args).apply((a: any) => getKubernetesNodePool(a, opts))
 }
 
 /**

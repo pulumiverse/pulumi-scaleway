@@ -17,41 +17,6 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
- *
- * const config = new pulumi.Config();
- * const userData = config.getObject("userData") || {
- *     "cloud-init": `#cloud-config
- * apt-update: true
- * apt-upgrade: true
- * `,
- *     foo: "bar",
- * };
- * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
- *     image: "ubuntu_focal",
- *     type: "DEV1-S",
- * });
- * // User data with a single value
- * const mainInstanceUserData = new scaleway.InstanceUserData("mainInstanceUserData", {
- *     serverId: mainInstanceServer.id,
- *     key: "foo",
- *     value: "bar",
- * });
- * // User Data with many keys.
- * const data: scaleway.InstanceUserData[] = [];
- * for (const range = {value: 0}; range.value < userData; range.value++) {
- *     data.push(new scaleway.InstanceUserData(`data-${range.value}`, {
- *         serverId: mainInstanceServer.id,
- *         key: range.key,
- *         value: range.value,
- *     }));
- * }
- * ```
- *
  * ## Import
  *
  * User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash

@@ -74,9 +74,25 @@ export interface GetInstanceSnapshotResult {
     readonly volumeId: string;
     readonly zone?: string;
 }
-
+/**
+ * Gets information about an instance snapshot.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byName = scaleway.getInstanceSnapshot({
+ *     name: "my-snapshot-name",
+ * });
+ * const byId = scaleway.getInstanceSnapshot({
+ *     snapshotId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSnapshotResult> {
-    return pulumi.output(args).apply(a => getInstanceSnapshot(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceSnapshot(a, opts))
 }
 
 /**

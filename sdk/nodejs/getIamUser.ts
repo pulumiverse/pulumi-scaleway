@@ -66,9 +66,27 @@ export interface GetIamUserResult {
     readonly organizationId?: string;
     readonly userId?: string;
 }
-
+/**
+ * Use this data source to get information on an existing IAM user based on its ID or email address.
+ * For more information,
+ * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const findById = scaleway.getIamUser({
+ *     userId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * const findByEmail = scaleway.getIamUser({
+ *     email: "foo@bar.com",
+ * });
+ * ```
+ */
 export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamUserResult> {
-    return pulumi.output(args).apply(a => getIamUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getIamUser(a, opts))
 }
 
 /**

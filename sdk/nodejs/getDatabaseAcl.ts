@@ -53,9 +53,22 @@ export interface GetDatabaseAclResult {
     readonly instanceId: string;
     readonly region: string;
 }
-
+/**
+ * Gets information about the RDB instance network Access Control List.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myAcl = scaleway.getDatabaseAcl({
+ *     instanceId: "fr-par/11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseAclResult> {
-    return pulumi.output(args).apply(a => getDatabaseAcl(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabaseAcl(a, opts))
 }
 
 /**

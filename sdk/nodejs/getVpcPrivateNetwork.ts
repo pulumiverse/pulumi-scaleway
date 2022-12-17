@@ -49,9 +49,15 @@ export interface GetVpcPrivateNetworkResult {
     readonly updatedAt: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a private network.
+ *
+ * ## Example Usage
+ *
+ * N/A, the usage will be meaningful in the next releases of VPC.
+ */
 export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
-    return pulumi.output(args).apply(a => getVpcPrivateNetwork(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcPrivateNetwork(a, opts))
 }
 
 /**

@@ -147,9 +147,22 @@ export interface GetInstanceServerResult {
     readonly userData: {[key: string]: string};
     readonly zone?: string;
 }
-
+/**
+ * Gets information about an instance server.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myKey = scaleway.getInstanceServer({
+ *     serverId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServerResult> {
-    return pulumi.output(args).apply(a => getInstanceServer(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceServer(a, opts))
 }
 
 /**
