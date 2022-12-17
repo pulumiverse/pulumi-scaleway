@@ -20,7 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The ID of the IP.
+        /// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

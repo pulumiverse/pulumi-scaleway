@@ -90,9 +90,25 @@ export interface GetInstanceServersResult {
      */
     readonly zone: string;
 }
-
+/**
+ * Gets information about multiple instance servers.
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myKey = scaleway.getInstanceServers({
+ *     name: "myserver",
+ *     zone: "fr-par-2",
+ * });
+ * ```
+ */
 export function getInstanceServersOutput(args?: GetInstanceServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServersResult> {
-    return pulumi.output(args).apply(a => getInstanceServers(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceServers(a, opts))
 }
 
 /**

@@ -17,7 +17,7 @@ public final class BaremetalServerIp {
      */
     private @Nullable String address;
     /**
-     * @return The ID of the IP.
+     * @return The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      * 
      */
     private @Nullable String id;
@@ -37,7 +37,7 @@ public final class BaremetalServerIp {
         return Optional.ofNullable(this.address);
     }
     /**
-     * @return The ID of the IP.
+     * @return The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      * 
      */
     public Optional<String> id() {

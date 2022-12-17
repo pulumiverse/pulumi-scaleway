@@ -72,9 +72,22 @@ export interface GetInstanceVolumeResult {
     readonly volumeId?: string;
     readonly zone?: string;
 }
-
+/**
+ * Gets information about an instance volume.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myVolume = scaleway.getInstanceVolume({
+ *     volumeId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceVolumeResult> {
-    return pulumi.output(args).apply(a => getInstanceVolume(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceVolume(a, opts))
 }
 
 /**

@@ -26,57 +26,6 @@ import javax.annotation.Nullable;
  * 
  * ## Examples
  * 
- * ### Basic
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.InstanceServer;
- * import com.pulumi.scaleway.InstanceServerArgs;
- * import com.pulumi.scaleway.InstanceUserData;
- * import com.pulumi.scaleway.InstanceUserDataArgs;
- * import com.pulumi.codegen.internal.KeyedValue;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var config = ctx.config();
- *         final var userData = config.get(&#34;userData&#34;).orElse(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference));
- *         var mainInstanceServer = new InstanceServer(&#34;mainInstanceServer&#34;, InstanceServerArgs.builder()        
- *             .image(&#34;ubuntu_focal&#34;)
- *             .type(&#34;DEV1-S&#34;)
- *             .build());
- * 
- *         var mainInstanceUserData = new InstanceUserData(&#34;mainInstanceUserData&#34;, InstanceUserDataArgs.builder()        
- *             .serverId(mainInstanceServer.id())
- *             .key(&#34;foo&#34;)
- *             .value(&#34;bar&#34;)
- *             .build());
- * 
- *         for (var i = 0; i &lt; userData; i++) {
- *             new InstanceUserData(&#34;data-&#34; + i, InstanceUserDataArgs.builder()            
- *                 .serverId(mainInstanceServer.id())
- *                 .key(range.key())
- *                 .value(range.value())
- *                 .build());
- * 
- *         
- * }
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash

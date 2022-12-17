@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         "outDir": "bin",
         "target": "es2016",
         "module": "commonjs",
@@ -11,12 +10,10 @@
         "experimentalDecorators": true,
         "noFallthroughCasesInSwitch": true,
         "forceConsistentCasingInFileNames": true,
-        "paths": {
-            "@/*": ["*"]
-        },
         "strict": true
     },
     "files": [
+        "accountProject.ts",
         "accountSshKey.ts",
         "appleSliconValleyServer.ts",
         "baremetalServer.ts",
@@ -42,6 +39,7 @@
         "functionDomain.ts",
         "functionNamespace.ts",
         "functionToken.ts",
+        "getAccountProject.ts",
         "getAccountSshKey.ts",
         "getBaremetalOffer.ts",
         "getBaremetalOption.ts",
@@ -59,6 +57,10 @@
         "getFlexibleIp.ts",
         "getFunction.ts",
         "getFunctionNamespace.ts",
+        "getIamApplication.ts",
+        "getIamGroup.ts",
+        "getIamSshKey.ts",
+        "getIamUser.ts",
         "getInstanceImage.ts",
         "getInstanceIp.ts",
         "getInstanceSecurityGroup.ts",
@@ -86,6 +88,11 @@
         "getVpcPublicGatewayDhcpReservation.ts",
         "getVpcPublicGatewayIp.ts",
         "getVpcPublicPatRule.ts",
+        "iamApiKey.ts",
+        "iamApplication.ts",
+        "iamGroup.ts",
+        "iamPolicy.ts",
+        "iamSshKey.ts",
         "index.ts",
         "instanceImage.ts",
         "instanceIp.ts",

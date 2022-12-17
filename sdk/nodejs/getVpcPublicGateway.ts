@@ -77,9 +77,31 @@ export interface GetVpcPublicGatewayResult {
     readonly upstreamDnsServers: string[];
     readonly zone?: string;
 }
-
+/**
+ * Gets information about a public gateway.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.VpcPublicGateway("main", {
+ *     type: "VPC-GW-S",
+ *     zone: "nl-ams-1",
+ * });
+ * const pgTestByName = scaleway.getVpcPublicGatewayOutput({
+ *     name: main.name,
+ *     zone: "nl-ams-1",
+ * });
+ * const pgTestById = scaleway.getVpcPublicGatewayOutput({
+ *     publicGatewayId: main.id,
+ * });
+ * ```
+ */
 export function getVpcPublicGatewayOutput(args?: GetVpcPublicGatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayResult> {
-    return pulumi.output(args).apply(a => getVpcPublicGateway(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcPublicGateway(a, opts))
 }
 
 /**

@@ -67,9 +67,11 @@ export interface GetFlexibleIpResult {
     readonly updatedAt: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a Flexible IP.
+ */
 export function getFlexibleIpOutput(args?: GetFlexibleIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFlexibleIpResult> {
-    return pulumi.output(args).apply(a => getFlexibleIp(a, opts))
+    return pulumi.output(args).apply((a: any) => getFlexibleIp(a, opts))
 }
 
 /**

@@ -69,9 +69,22 @@ export interface GetInstanceIpResult {
     readonly tags: string[];
     readonly zone: string;
 }
-
+/**
+ * Gets information about an instance IP.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myIp = scaleway.getInstanceIp({
+ *     id: "fr-par-1/11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceIpResult> {
-    return pulumi.output(args).apply(a => getInstanceIp(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstanceIp(a, opts))
 }
 
 /**

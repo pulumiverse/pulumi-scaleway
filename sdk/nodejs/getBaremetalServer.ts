@@ -66,6 +66,7 @@ export interface GetBaremetalServerResult {
     readonly name?: string;
     readonly offer: string;
     readonly offerId: string;
+    readonly options: outputs.GetBaremetalServerOption[];
     readonly organizationId: string;
     readonly os: string;
     readonly osId: string;
@@ -80,9 +81,27 @@ export interface GetBaremetalServerResult {
     readonly user: string;
     readonly zone?: string;
 }
-
+/**
+ * Gets information about a baremetal server.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byName = scaleway.getBaremetalServer({
+ *     name: "foobar",
+ *     zone: "fr-par-2",
+ * });
+ * const byId = scaleway.getBaremetalServer({
+ *     serverId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalServerResult> {
-    return pulumi.output(args).apply(a => getBaremetalServer(a, opts))
+    return pulumi.output(args).apply((a: any) => getBaremetalServer(a, opts))
 }
 
 /**

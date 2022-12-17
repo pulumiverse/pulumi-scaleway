@@ -65,9 +65,23 @@ export interface GetDatabaseResult {
      */
     readonly size: string;
 }
-
+/**
+ * Gets information about a RDB database.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myDb = scaleway.getDatabase({
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
+ *     name: "foobar",
+ * });
+ * ```
+ */
 export function getDatabaseOutput(args: GetDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseResult> {
-    return pulumi.output(args).apply(a => getDatabase(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabase(a, opts))
 }
 
 /**

@@ -11,6 +11,7 @@ import com.pulumi.scaleway.BaremetalServerArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.BaremetalServerState;
 import com.pulumi.scaleway.outputs.BaremetalServerIp;
+import com.pulumi.scaleway.outputs.BaremetalServerOption;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -171,6 +172,22 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      */
     public Output<String> offerId() {
         return this.offerId;
+    }
+    /**
+     * The options to enable on the server.
+     * &gt; The `options` block supports:
+     * 
+     */
+    @Export(name="options", type=List.class, parameters={BaremetalServerOption.class})
+    private Output</* @Nullable */ List<BaremetalServerOption>> options;
+
+    /**
+     * @return The options to enable on the server.
+     * &gt; The `options` block supports:
+     * 
+     */
+    public Output<Optional<List<BaremetalServerOption>>> options() {
+        return Codegen.optional(this.options);
     }
     /**
      * The organization ID the server is associated with.

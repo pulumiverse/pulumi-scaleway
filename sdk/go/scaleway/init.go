@@ -20,6 +20,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "scaleway:index/accountProject:AccountProject":
+		r = &AccountProject{}
 	case "scaleway:index/accountSshKey:AccountSshKey":
 		r = &AccountSshKey{}
 	case "scaleway:index/appleSliconValleyServer:AppleSliconValleyServer":
@@ -66,6 +68,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FunctionNamespace{}
 	case "scaleway:index/functionToken:FunctionToken":
 		r = &FunctionToken{}
+	case "scaleway:index/iamApiKey:IamApiKey":
+		r = &IamApiKey{}
+	case "scaleway:index/iamApplication:IamApplication":
+		r = &IamApplication{}
+	case "scaleway:index/iamGroup:IamGroup":
+		r = &IamGroup{}
+	case "scaleway:index/iamPolicy:IamPolicy":
+		r = &IamPolicy{}
+	case "scaleway:index/iamSshKey:IamSshKey":
+		r = &IamSshKey{}
 	case "scaleway:index/instanceImage:InstanceImage":
 		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
@@ -172,6 +184,11 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 
 func init() {
 	version, _ := PkgVersion()
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/accountProject",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/accountSshKey",
@@ -285,6 +302,31 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/functionToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iamApiKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iamApplication",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iamGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iamPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iamSshKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

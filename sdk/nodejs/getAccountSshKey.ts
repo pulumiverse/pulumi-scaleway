@@ -62,9 +62,22 @@ export interface GetAccountSshKeyResult {
     readonly publicKey: string;
     readonly sshKeyId?: string;
 }
-
+/**
+ * Use this data source to get SSH key information based on its ID or name.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myKey = scaleway.getAccountSshKey({
+ *     sshKeyId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountSshKeyResult> {
-    return pulumi.output(args).apply(a => getAccountSshKey(a, opts))
+    return pulumi.output(args).apply((a: any) => getAccountSshKey(a, opts))
 }
 
 /**

@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * });
  * const mainVpcPublicGatewayDhcpReservation = new scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation", {
  *     gatewayNetworkId: mainVpcGatewayNetwork.id,
- *     macAddress: mainInstanceServer.privateNetworks.apply(privateNetworks => privateNetworks?[0]?.macAddress),
+ *     macAddress: mainInstanceServer.privateNetworks.apply(privateNetworks => privateNetworks?.[0]?.macAddress),
  *     ipAddress: "192.168.1.1",
  * });
  * ```

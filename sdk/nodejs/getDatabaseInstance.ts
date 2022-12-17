@@ -80,9 +80,22 @@ export interface GetDatabaseInstanceResult {
     readonly volumeSizeInGb: number;
     readonly volumeType: string;
 }
-
+/**
+ * Gets information about an RDB instance.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myInstance = scaleway.getDatabaseInstance({
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getDatabaseInstanceOutput(args?: GetDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseInstanceResult> {
-    return pulumi.output(args).apply(a => getDatabaseInstance(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabaseInstance(a, opts))
 }
 
 /**

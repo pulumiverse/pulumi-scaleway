@@ -8,6 +8,8 @@ import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.scaleway.Utilities;
+import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+import com.pulumi.scaleway.inputs.GetAccountProjectPlainArgs;
 import com.pulumi.scaleway.inputs.GetAccountSshKeyArgs;
 import com.pulumi.scaleway.inputs.GetAccountSshKeyPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
@@ -42,6 +44,14 @@ import com.pulumi.scaleway.inputs.GetFunctionArgs;
 import com.pulumi.scaleway.inputs.GetFunctionNamespaceArgs;
 import com.pulumi.scaleway.inputs.GetFunctionNamespacePlainArgs;
 import com.pulumi.scaleway.inputs.GetFunctionPlainArgs;
+import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+import com.pulumi.scaleway.inputs.GetIamApplicationPlainArgs;
+import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+import com.pulumi.scaleway.inputs.GetIamGroupPlainArgs;
+import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+import com.pulumi.scaleway.inputs.GetIamSshKeyPlainArgs;
+import com.pulumi.scaleway.inputs.GetIamUserArgs;
+import com.pulumi.scaleway.inputs.GetIamUserPlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceImageArgs;
 import com.pulumi.scaleway.inputs.GetInstanceImagePlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceIpArgs;
@@ -96,6 +106,7 @@ import com.pulumi.scaleway.inputs.GetVpcPublicGatewayIpPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicGatewayPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRuleArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRulePlainArgs;
+import com.pulumi.scaleway.outputs.GetAccountProjectResult;
 import com.pulumi.scaleway.outputs.GetAccountSshKeyResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOfferResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOptionResult;
@@ -113,6 +124,10 @@ import com.pulumi.scaleway.outputs.GetDomainZoneResult;
 import com.pulumi.scaleway.outputs.GetFlexibleIpResult;
 import com.pulumi.scaleway.outputs.GetFunctionNamespaceResult;
 import com.pulumi.scaleway.outputs.GetFunctionResult;
+import com.pulumi.scaleway.outputs.GetIamApplicationResult;
+import com.pulumi.scaleway.outputs.GetIamGroupResult;
+import com.pulumi.scaleway.outputs.GetIamSshKeyResult;
+import com.pulumi.scaleway.outputs.GetIamUserResult;
 import com.pulumi.scaleway.outputs.GetInstanceImageResult;
 import com.pulumi.scaleway.outputs.GetInstanceIpResult;
 import com.pulumi.scaleway.outputs.GetInstanceSecurityGroupResult;
@@ -143,6 +158,252 @@ import com.pulumi.scaleway.outputs.GetVpcPublicPatRuleResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class ScalewayFunctions {
+    /**
+     * Gets information about an existing Project.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .name(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .projectId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAccountProjectResult> getAccountProject() {
+        return getAccountProject(GetAccountProjectArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing Project.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .name(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .projectId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAccountProjectResult> getAccountProjectPlain() {
+        return getAccountProjectPlain(GetAccountProjectPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing Project.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .name(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .projectId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAccountProjectResult> getAccountProject(GetAccountProjectArgs args) {
+        return getAccountProject(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing Project.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .name(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .projectId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAccountProjectResult> getAccountProjectPlain(GetAccountProjectPlainArgs args) {
+        return getAccountProjectPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing Project.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .name(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .projectId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAccountProjectResult> getAccountProject(GetAccountProjectArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getAccountProject:getAccountProject", TypeShape.of(GetAccountProjectResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an existing Project.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .name(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+     *             .projectId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAccountProjectResult> getAccountProjectPlain(GetAccountProjectPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getAccountProject:getAccountProject", TypeShape.of(GetAccountProjectResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to get SSH key information based on its ID or name.
      * 
@@ -3764,6 +4025,984 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetFunctionNamespaceResult> getFunctionNamespacePlain(GetFunctionNamespacePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getFunctionNamespace:getFunctionNamespace", TypeShape.of(GetFunctionNamespaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an existing IAM application.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .applicationId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamApplicationResult> getIamApplication() {
+        return getIamApplication(GetIamApplicationArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM application.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .applicationId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamApplicationResult> getIamApplicationPlain() {
+        return getIamApplicationPlain(GetIamApplicationPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM application.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .applicationId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamApplicationResult> getIamApplication(GetIamApplicationArgs args) {
+        return getIamApplication(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM application.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .applicationId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamApplicationResult> getIamApplicationPlain(GetIamApplicationPlainArgs args) {
+        return getIamApplicationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM application.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .applicationId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamApplicationResult> getIamApplication(GetIamApplicationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getIamApplication:getIamApplication", TypeShape.of(GetIamApplicationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an existing IAM application.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+     *             .applicationId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamApplicationResult> getIamApplicationPlain(GetIamApplicationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getIamApplication:getIamApplication", TypeShape.of(GetIamApplicationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an existing IAM group. For more information, please
+     * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .groupId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamGroupResult> getIamGroup() {
+        return getIamGroup(GetIamGroupArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM group. For more information, please
+     * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .groupId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamGroupResult> getIamGroupPlain() {
+        return getIamGroupPlain(GetIamGroupPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM group. For more information, please
+     * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .groupId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamGroupResult> getIamGroup(GetIamGroupArgs args) {
+        return getIamGroup(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM group. For more information, please
+     * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .groupId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamGroupResult> getIamGroupPlain(GetIamGroupPlainArgs args) {
+        return getIamGroupPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an existing IAM group. For more information, please
+     * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .groupId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamGroupResult> getIamGroup(GetIamGroupArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getIamGroup:getIamGroup", TypeShape.of(GetIamGroupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an existing IAM group. For more information, please
+     * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()
+     *             .groupId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamGroupResult> getIamGroupPlain(GetIamGroupPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getIamGroup:getIamGroup", TypeShape.of(GetIamGroupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get SSH key information based on its ID or name.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()
+     *             .sshKeyId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamSshKeyResult> getIamSshKey() {
+        return getIamSshKey(GetIamSshKeyArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get SSH key information based on its ID or name.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()
+     *             .sshKeyId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamSshKeyResult> getIamSshKeyPlain() {
+        return getIamSshKeyPlain(GetIamSshKeyPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get SSH key information based on its ID or name.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()
+     *             .sshKeyId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamSshKeyResult> getIamSshKey(GetIamSshKeyArgs args) {
+        return getIamSshKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get SSH key information based on its ID or name.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()
+     *             .sshKeyId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamSshKeyResult> getIamSshKeyPlain(GetIamSshKeyPlainArgs args) {
+        return getIamSshKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get SSH key information based on its ID or name.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()
+     *             .sshKeyId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamSshKeyResult> getIamSshKey(GetIamSshKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getIamSshKey:getIamSshKey", TypeShape.of(GetIamSshKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get SSH key information based on its ID or name.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamSshKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()
+     *             .sshKeyId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamSshKeyResult> getIamSshKeyPlain(GetIamSshKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getIamSshKey:getIamSshKey", TypeShape.of(GetIamSshKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information on an existing IAM user based on its ID or email address.
+     * For more information,
+     * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .userId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .email(&#34;foo@bar.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamUserResult> getIamUser() {
+        return getIamUser(GetIamUserArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information on an existing IAM user based on its ID or email address.
+     * For more information,
+     * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .userId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .email(&#34;foo@bar.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamUserResult> getIamUserPlain() {
+        return getIamUserPlain(GetIamUserPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information on an existing IAM user based on its ID or email address.
+     * For more information,
+     * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .userId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .email(&#34;foo@bar.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamUserResult> getIamUser(GetIamUserArgs args) {
+        return getIamUser(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information on an existing IAM user based on its ID or email address.
+     * For more information,
+     * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .userId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .email(&#34;foo@bar.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamUserResult> getIamUserPlain(GetIamUserPlainArgs args) {
+        return getIamUserPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information on an existing IAM user based on its ID or email address.
+     * For more information,
+     * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .userId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .email(&#34;foo@bar.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamUserResult> getIamUser(GetIamUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getIamUser:getIamUser", TypeShape.of(GetIamUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information on an existing IAM user based on its ID or email address.
+     * For more information,
+     * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .userId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+     *             .email(&#34;foo@bar.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamUserResult> getIamUserPlain(GetIamUserPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getIamUser:getIamUser", TypeShape.of(GetIamUserResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about an instance image.

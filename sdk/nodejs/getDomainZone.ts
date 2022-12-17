@@ -79,9 +79,23 @@ export interface GetDomainZoneResult {
      */
     readonly updatedAt: string;
 }
-
+/**
+ * Gets information about a domain zone.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = scaleway.getDomainZone({
+ *     domain: "scaleway-terraform.com",
+ *     subdomain: "test",
+ * });
+ * ```
+ */
 export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainZoneResult> {
-    return pulumi.output(args).apply(a => getDomainZone(a, opts))
+    return pulumi.output(args).apply((a: any) => getDomainZone(a, opts))
 }
 
 /**

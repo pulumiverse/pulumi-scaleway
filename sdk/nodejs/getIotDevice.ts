@@ -79,9 +79,22 @@ export interface GetIotDeviceResult {
     readonly status: string;
     readonly updatedAt: string;
 }
-
+/**
+ * Gets information about an IOT Device.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myDevice = scaleway.getIotDevice({
+ *     deviceId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotDeviceResult> {
-    return pulumi.output(args).apply(a => getIotDevice(a, opts))
+    return pulumi.output(args).apply((a: any) => getIotDevice(a, opts))
 }
 
 /**

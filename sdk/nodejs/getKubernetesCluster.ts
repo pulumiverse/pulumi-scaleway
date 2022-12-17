@@ -135,9 +135,22 @@ export interface GetKubernetesClusterResult {
      */
     readonly wildcardDns: string;
 }
-
+/**
+ * Gets information about a Kubernetes Cluster.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myKey = scaleway.getKubernetesCluster({
+ *     clusterId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
-    return pulumi.output(args).apply(a => getKubernetesCluster(a, opts))
+    return pulumi.output(args).apply((a: any) => getKubernetesCluster(a, opts))
 }
 
 /**

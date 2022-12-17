@@ -31,14 +31,14 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The ID of the IP.
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return The ID of the IP.
+     * @return The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      * 
      */
     public Optional<Output<String>> id() {
@@ -116,7 +116,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param id The ID of the IP.
+         * @param id The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
          * 
          * @return builder
          * 
@@ -127,7 +127,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param id The ID of the IP.
+         * @param id The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
          * 
          * @return builder
          * 

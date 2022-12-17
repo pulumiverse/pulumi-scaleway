@@ -70,9 +70,26 @@ export interface GetBaremetalOptionResult {
     readonly optionId?: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a baremetal option.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byName = scaleway.getBaremetalOption({
+ *     name: "Remote Access",
+ * });
+ * const byId = scaleway.getBaremetalOption({
+ *     optionId: "931df052-d713-4674-8b58-96a63244c8e2",
+ * });
+ * ```
+ */
 export function getBaremetalOptionOutput(args?: GetBaremetalOptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOptionResult> {
-    return pulumi.output(args).apply(a => getBaremetalOption(a, opts))
+    return pulumi.output(args).apply((a: any) => getBaremetalOption(a, opts))
 }
 
 /**

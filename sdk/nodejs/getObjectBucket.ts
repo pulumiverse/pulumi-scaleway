@@ -71,9 +71,27 @@ export interface GetObjectBucketResult {
     readonly tags: {[key: string]: string};
     readonly versionings: outputs.GetObjectBucketVersioning[];
 }
-
+/**
+ * Gets information about the Bucket.
+ * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const main = new scaleway.ObjectBucket("main", {tags: {
+ *     foo: "bar",
+ * }});
+ * const selected = scaleway.getObjectBucket({
+ *     name: "bucket.test.com",
+ * });
+ * ```
+ */
 export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketResult> {
-    return pulumi.output(args).apply(a => getObjectBucket(a, opts))
+    return pulumi.output(args).apply((a: any) => getObjectBucket(a, opts))
 }
 
 /**

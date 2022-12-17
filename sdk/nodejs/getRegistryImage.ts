@@ -95,9 +95,23 @@ export interface GetRegistryImageResult {
      */
     readonly visibility: string;
 }
-
+/**
+ * Gets information about a registry image.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myImage = scaleway.getRegistryImage({
+ *     imageId: "11111111-1111-1111-1111-111111111111",
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryImageResult> {
-    return pulumi.output(args).apply(a => getRegistryImage(a, opts))
+    return pulumi.output(args).apply((a: any) => getRegistryImage(a, opts))
 }
 
 /**

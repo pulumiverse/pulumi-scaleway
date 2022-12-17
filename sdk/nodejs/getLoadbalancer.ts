@@ -89,9 +89,25 @@ export interface GetLoadbalancerResult {
      */
     readonly zone?: string;
 }
-
+/**
+ * Gets information about a Load Balancer.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byName = scaleway.getLoadbalancer({
+ *     name: "foobar",
+ * });
+ * const byId = scaleway.getLoadbalancer({
+ *     lbId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerResult> {
-    return pulumi.output(args).apply(a => getLoadbalancer(a, opts))
+    return pulumi.output(args).apply((a: any) => getLoadbalancer(a, opts))
 }
 
 /**

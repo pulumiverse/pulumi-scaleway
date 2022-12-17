@@ -77,9 +77,29 @@ export interface GetDatabaseBackupResult {
     readonly size: number;
     readonly updatedAt: string;
 }
-
+/**
+ * Gets information about an RDB backup.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const findByName = scaleway.getDatabaseBackup({
+ *     name: "mybackup",
+ * });
+ * const findByNameAndInstance = scaleway.getDatabaseBackup({
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
+ *     name: "mybackup",
+ * });
+ * const findById = scaleway.getDatabaseBackup({
+ *     backupId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getDatabaseBackupOutput(args?: GetDatabaseBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseBackupResult> {
-    return pulumi.output(args).apply(a => getDatabaseBackup(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabaseBackup(a, opts))
 }
 
 /**

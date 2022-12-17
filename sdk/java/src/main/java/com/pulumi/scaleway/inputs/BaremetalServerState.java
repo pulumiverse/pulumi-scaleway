@@ -6,6 +6,7 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.scaleway.inputs.BaremetalServerIpArgs;
+import com.pulumi.scaleway.inputs.BaremetalServerOptionArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -123,6 +124,23 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> offerId() {
         return Optional.ofNullable(this.offerId);
+    }
+
+    /**
+     * The options to enable on the server.
+     * &gt; The `options` block supports:
+     * 
+     */
+    @Import(name="options")
+    private @Nullable Output<List<BaremetalServerOptionArgs>> options;
+
+    /**
+     * @return The options to enable on the server.
+     * &gt; The `options` block supports:
+     * 
+     */
+    public Optional<Output<List<BaremetalServerOptionArgs>>> options() {
+        return Optional.ofNullable(this.options);
     }
 
     /**
@@ -321,6 +339,7 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         this.name = $.name;
         this.offer = $.offer;
         this.offerId = $.offerId;
+        this.options = $.options;
         this.organizationId = $.organizationId;
         this.os = $.os;
         this.osId = $.osId;
@@ -510,6 +529,40 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
          */
         public Builder offerId(String offerId) {
             return offerId(Output.of(offerId));
+        }
+
+        /**
+         * @param options The options to enable on the server.
+         * &gt; The `options` block supports:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(@Nullable Output<List<BaremetalServerOptionArgs>> options) {
+            $.options = options;
+            return this;
+        }
+
+        /**
+         * @param options The options to enable on the server.
+         * &gt; The `options` block supports:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(List<BaremetalServerOptionArgs> options) {
+            return options(Output.of(options));
+        }
+
+        /**
+         * @param options The options to enable on the server.
+         * &gt; The `options` block supports:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(BaremetalServerOptionArgs... options) {
+            return options(List.of(options));
         }
 
         /**

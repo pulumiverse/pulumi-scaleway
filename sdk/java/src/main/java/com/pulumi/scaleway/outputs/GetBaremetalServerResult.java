@@ -5,6 +5,7 @@ package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.scaleway.outputs.GetBaremetalServerIp;
+import com.pulumi.scaleway.outputs.GetBaremetalServerOption;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -26,6 +27,7 @@ public final class GetBaremetalServerResult {
     private @Nullable String name;
     private String offer;
     private String offerId;
+    private List<GetBaremetalServerOption> options;
     private String organizationId;
     private String os;
     private String osId;
@@ -68,6 +70,9 @@ public final class GetBaremetalServerResult {
     }
     public String offerId() {
         return this.offerId;
+    }
+    public List<GetBaremetalServerOption> options() {
+        return this.options;
     }
     public String organizationId() {
         return this.organizationId;
@@ -126,6 +131,7 @@ public final class GetBaremetalServerResult {
         private @Nullable String name;
         private String offer;
         private String offerId;
+        private List<GetBaremetalServerOption> options;
         private String organizationId;
         private String os;
         private String osId;
@@ -150,6 +156,7 @@ public final class GetBaremetalServerResult {
     	      this.name = defaults.name;
     	      this.offer = defaults.offer;
     	      this.offerId = defaults.offerId;
+    	      this.options = defaults.options;
     	      this.organizationId = defaults.organizationId;
     	      this.os = defaults.os;
     	      this.osId = defaults.osId;
@@ -207,6 +214,14 @@ public final class GetBaremetalServerResult {
         public Builder offerId(String offerId) {
             this.offerId = Objects.requireNonNull(offerId);
             return this;
+        }
+        @CustomType.Setter
+        public Builder options(List<GetBaremetalServerOption> options) {
+            this.options = Objects.requireNonNull(options);
+            return this;
+        }
+        public Builder options(GetBaremetalServerOption... options) {
+            return options(List.of(options));
         }
         @CustomType.Setter
         public Builder organizationId(String organizationId) {
@@ -289,6 +304,7 @@ public final class GetBaremetalServerResult {
             o.name = name;
             o.offer = offer;
             o.offerId = offerId;
+            o.options = options;
             o.organizationId = organizationId;
             o.os = os;
             o.osId = osId;

@@ -72,9 +72,29 @@ export interface GetBaremetalOsResult {
     readonly version?: string;
     readonly zone: string;
 }
-
+/**
+ * Gets information about a baremetal operating system.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ *
+ * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byName = scaleway.getBaremetalOs({
+ *     name: "Ubuntu",
+ *     version: "20.04 LTS (Focal Fossa)",
+ * });
+ * const byId = scaleway.getBaremetalOs({
+ *     osId: "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
+ * });
+ * ```
+ */
 export function getBaremetalOsOutput(args?: GetBaremetalOsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOsResult> {
-    return pulumi.output(args).apply(a => getBaremetalOs(a, opts))
+    return pulumi.output(args).apply((a: any) => getBaremetalOs(a, opts))
 }
 
 /**
