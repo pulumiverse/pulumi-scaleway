@@ -16,11 +16,11 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.7.1
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: pulumi/pulumictl
     - name: Install golang-ci
-      uses: jaxxstorm/action-install-gh-release@v1.7.1
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: golangci/golangci-lint
     - name: Install Pulumi CLI
