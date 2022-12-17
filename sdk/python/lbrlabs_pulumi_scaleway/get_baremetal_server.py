@@ -22,7 +22,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, organization_id=None, os=None, os_id=None, password=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, options=None, organization_id=None, os=None, os_id=None, password=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -47,6 +47,9 @@ class GetBaremetalServerResult:
         if offer_id and not isinstance(offer_id, str):
             raise TypeError("Expected argument 'offer_id' to be a str")
         pulumi.set(__self__, "offer_id", offer_id)
+        if options and not isinstance(options, list):
+            raise TypeError("Expected argument 'options' to be a list")
+        pulumi.set(__self__, "options", options)
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
@@ -131,6 +134,11 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "offer_id")
 
     @property
+    @pulumi.getter
+    def options(self) -> Sequence['outputs.GetBaremetalServerOptionResult']:
+        return pulumi.get(self, "options")
+
+    @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         return pulumi.get(self, "organization_id")
@@ -210,6 +218,7 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             name=self.name,
             offer=self.offer,
             offer_id=self.offer_id,
+            options=self.options,
             organization_id=self.organization_id,
             os=self.os,
             os_id=self.os_id,
@@ -264,6 +273,7 @@ def get_baremetal_server(name: Optional[str] = None,
         name=__ret__.name,
         offer=__ret__.offer,
         offer_id=__ret__.offer_id,
+        options=__ret__.options,
         organization_id=__ret__.organization_id,
         os=__ret__.os,
         os_id=__ret__.os_id,

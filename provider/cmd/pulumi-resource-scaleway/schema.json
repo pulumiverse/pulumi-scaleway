@@ -134,7 +134,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The ID of the IP.\n",
+                    "description": "The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -167,6 +167,40 @@
                         "id",
                         "reverse",
                         "version"
+                    ]
+                }
+            }
+        },
+        "scaleway:index/BaremetalServerOption:BaremetalServerOption": {
+            "properties": {
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The auto expiration date for compatible options\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "expiresAt",
+                        "id"
                     ]
                 }
             }
@@ -727,6 +761,47 @@
             "required": [
                 "ip",
                 "weight"
+            ]
+        },
+        "scaleway:index/IamPolicyRule:IamPolicyRule": {
+            "properties": {
+                "organizationId": {
+                    "type": "string",
+                    "description": "ID of organization scoped to the rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "permissionSetNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Names of permission sets bound to the rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of project IDs scoped to the rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "permissionSetNames"
             ]
         },
         "scaleway:index/InstanceImageAdditionalVolume:InstanceImageAdditionalVolume": {
@@ -2896,6 +2971,36 @@
                 }
             }
         },
+        "scaleway:index/getBaremetalServerOption:getBaremetalServerOption": {
+            "properties": {
+                "expiresAt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "expiresAt",
+                "id"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "scaleway:index/getDatabaseAclAclRule:getDatabaseAclAclRule": {
             "properties": {
                 "description": {
@@ -4884,6 +4989,79 @@
         }
     },
     "resources": {
+        "scaleway:index/accountProject:AccountProject": {
+            "description": "Manages organization's projects on Scaleway.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst project = new scaleway.AccountProject(\"project\", {});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\nproject = scaleway.AccountProject(\"project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.AccountProject(\"project\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewAccountProject(ctx, \"project\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountProject;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new AccountProject(\"project\");\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:AccountProject\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nProjects can be imported using the `id`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The Project creation time.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the Project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Project.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The Project last update time.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "name",
+                "organizationId",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the Project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Project.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AccountProject resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The Project creation time.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the Project.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Project.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The Project last update time.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "scaleway:index/accountSshKey:AccountSshKey": {
             "description": "Manages user SSH keys to access servers provisioned on Scaleway.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst main = new scaleway.AccountSshKey(\"main\", {publicKey: \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\nmain = scaleway.AccountSshKey(\"main\", public_key=\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.AccountSshKey(\"main\", new()\n    {\n        PublicKey = \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewAccountSshKey(ctx, \"main\", \u0026scaleway.AccountSshKeyArgs{\n\t\t\tPublicKey: pulumi.String(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountSshKey;\nimport com.pulumi.scaleway.AccountSshKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new AccountSshKey(\"main\", AccountSshKeyArgs.builder()        \n            .publicKey(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:AccountSshKey\n    properties:\n      publicKey: \u003cYOUR-PUBLIC-SSH-KEY\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSH keys can be imported using the `id`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
@@ -5127,6 +5305,13 @@
                     "type": "string",
                     "description": "The ID of the offer.\n"
                 },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/BaremetalServerOption:BaremetalServerOption"
+                    },
+                    "description": "The options to enable on the server.\n\u003e The `options` block supports:\n"
+                },
                 "organizationId": {
                     "type": "string",
                     "description": "The organization ID the server is associated with.\n"
@@ -5216,6 +5401,13 @@
                     "type": "string",
                     "description": "The offer name or UUID of the baremetal server.\nUse [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.\n",
                     "willReplaceOnChanges": true
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/BaremetalServerOption:BaremetalServerOption"
+                    },
+                    "description": "The options to enable on the server.\n\u003e The `options` block supports:\n"
                 },
                 "os": {
                     "type": "string",
@@ -5307,6 +5499,13 @@
                     "offerId": {
                         "type": "string",
                         "description": "The ID of the offer.\n"
+                    },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/BaremetalServerOption:BaremetalServerOption"
+                        },
+                        "description": "The options to enable on the server.\n\u003e The `options` block supports:\n"
                     },
                     "organizationId": {
                         "type": "string",
@@ -8106,6 +8305,597 @@
                         "type": "string",
                         "description": "The token.\n",
                         "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamApiKey:IamApiKey": {
+            "description": "Creates and manages Scaleway IAM API Keys. For more information, please\ncheck [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#api-keys-3665ae)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst ciCd = new scaleway.IamApplication(\"ciCd\", {});\nconst main = new scaleway.IamApiKey(\"main\", {\n    applicationId: scaleway_iam_application.main.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\nci_cd = scaleway.IamApplication(\"ciCd\")\nmain = scaleway.IamApiKey(\"main\",\n    application_id=scaleway_iam_application[\"main\"][\"id\"],\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciCd = new Scaleway.IamApplication(\"ciCd\");\n\n    var main = new Scaleway.IamApiKey(\"main\", new()\n    {\n        ApplicationId = scaleway_iam_application.Main.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewIamApplication(ctx, \"ciCd\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamApiKey(ctx, \"main\", \u0026scaleway.IamApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(scaleway_iam_application.Main.Id),\n\t\t\tDescription:   pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamApiKey;\nimport com.pulumi.scaleway.IamApiKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciCd = new IamApplication(\"ciCd\");\n\n        var main = new IamApiKey(\"main\", IamApiKeyArgs.builder()        \n            .applicationId(scaleway_iam_application.main().id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciCd:\n    type: scaleway:IamApplication\n  main:\n    type: scaleway:IamApiKey\n    properties:\n      applicationId: ${scaleway_iam_application.main.id}\n      description: a description\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nApi keys can be imported using the `{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111\n```\n\n ",
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "The access key of the iam api key.\n- `secret_key`: The secret Key of the iam api key.\n"
+                },
+                "applicationId": {
+                    "type": "string",
+                    "description": "ID of the application attached to the api key\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the iam api key.\n"
+                },
+                "creationIp": {
+                    "type": "string",
+                    "description": "The IP Address of the device which created the API key.\n"
+                },
+                "defaultProjectId": {
+                    "type": "string",
+                    "description": "The default project ID to use with object storage.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the iam api key\n"
+                },
+                "editable": {
+                    "type": "boolean",
+                    "description": "Whether the iam api key is editable.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The date and time of the expiration of the iam api key. Please note that in case of change,\nthe resource will be recreated.\n"
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The secret Key of the iam api key\n",
+                    "secret": true
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the iam api key.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the user attached to the api key.\nOnly one of the `application_id` and `user_id` should be specified.\n"
+                }
+            },
+            "required": [
+                "accessKey",
+                "createdAt",
+                "creationIp",
+                "defaultProjectId",
+                "editable",
+                "secretKey",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "ID of the application attached to the api key\n"
+                },
+                "defaultProjectId": {
+                    "type": "string",
+                    "description": "The default project ID to use with object storage.\n",
+                    "willReplaceOnChanges": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the iam api key\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The date and time of the expiration of the iam api key. Please note that in case of change,\nthe resource will be recreated.\n",
+                    "willReplaceOnChanges": true
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the user attached to the api key.\nOnly one of the `application_id` and `user_id` should be specified.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamApiKey resources.\n",
+                "properties": {
+                    "accessKey": {
+                        "type": "string",
+                        "description": "The access key of the iam api key.\n- `secret_key`: The secret Key of the iam api key.\n"
+                    },
+                    "applicationId": {
+                        "type": "string",
+                        "description": "ID of the application attached to the api key\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the iam api key.\n"
+                    },
+                    "creationIp": {
+                        "type": "string",
+                        "description": "The IP Address of the device which created the API key.\n"
+                    },
+                    "defaultProjectId": {
+                        "type": "string",
+                        "description": "The default project ID to use with object storage.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the iam api key\n"
+                    },
+                    "editable": {
+                        "type": "boolean",
+                        "description": "Whether the iam api key is editable.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The date and time of the expiration of the iam api key. Please note that in case of change,\nthe resource will be recreated.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretKey": {
+                        "type": "string",
+                        "description": "The secret Key of the iam api key\n",
+                        "secret": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the iam api key.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "ID of the user attached to the api key.\nOnly one of the `application_id` and `user_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamApplication:IamApplication": {
+            "description": "Creates and manages Scaleway IAM Applications. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst main = new scaleway.IamApplication(\"main\", {description: \"a description\"});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\nmain = scaleway.IamApplication(\"main\", description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.IamApplication(\"main\", new()\n    {\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewIamApplication(ctx, \"main\", \u0026scaleway.IamApplicationArgs{\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamApplicationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new IamApplication(\"main\", IamApplicationArgs.builder()        \n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:IamApplication\n    properties:\n      description: a description\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nApplications can be imported using the `{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the application.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the iam application.\n"
+                },
+                "editable": {
+                    "type": "boolean",
+                    "description": "Whether the application is editable.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": ".The name of the iam application.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`) The ID of the organization the application is associated with.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the application.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "editable",
+                "name",
+                "organizationId",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the iam application.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": ".The name of the iam application.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`) The ID of the organization the application is associated with.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamApplication resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the application.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the iam application.\n"
+                    },
+                    "editable": {
+                        "type": "boolean",
+                        "description": "Whether the application is editable.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": ".The name of the iam application.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`) The ID of the organization the application is associated with.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the application.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamGroup:IamGroup": {
+            "description": "Creates and manages Scaleway IAM Groups.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst basic = new scaleway.IamGroup(\"basic\", {\n    applicationIds: [],\n    description: \"basic description\",\n    userIds: [],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\nbasic = scaleway.IamGroup(\"basic\",\n    application_ids=[],\n    description=\"basic description\",\n    user_ids=[])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var basic = new Scaleway.IamGroup(\"basic\", new()\n    {\n        ApplicationIds = new[] {},\n        Description = \"basic description\",\n        UserIds = new[] {},\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewIamGroup(ctx, \"basic\", \u0026scaleway.IamGroupArgs{\n\t\t\tApplicationIds: pulumi.StringArray{},\n\t\t\tDescription:    pulumi.String(\"basic description\"),\n\t\t\tUserIds:        pulumi.StringArray{},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamGroup;\nimport com.pulumi.scaleway.IamGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var basic = new IamGroup(\"basic\", IamGroupArgs.builder()        \n            .applicationIds()\n            .description(\"basic description\")\n            .userIds()\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  basic:\n    type: scaleway:IamGroup\n    properties:\n      applicationIds: []\n      description: basic description\n      userIds: []\n```\n\n### With applications\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst app = new scaleway.IamApplication(\"app\", {});\nconst withApp = new scaleway.IamGroup(\"withApp\", {\n    applicationIds: [app.id],\n    userIds: [],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\napp = scaleway.IamApplication(\"app\")\nwith_app = scaleway.IamGroup(\"withApp\",\n    application_ids=[app.id],\n    user_ids=[])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var app = new Scaleway.IamApplication(\"app\");\n\n    var withApp = new Scaleway.IamGroup(\"withApp\", new()\n    {\n        ApplicationIds = new[]\n        {\n            app.Id,\n        },\n        UserIds = new[] {},\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tapp, err := scaleway.NewIamApplication(ctx, \"app\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamGroup(ctx, \"withApp\", \u0026scaleway.IamGroupArgs{\n\t\t\tApplicationIds: pulumi.StringArray{\n\t\t\t\tapp.ID(),\n\t\t\t},\n\t\t\tUserIds: pulumi.StringArray{},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamGroup;\nimport com.pulumi.scaleway.IamGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var app = new IamApplication(\"app\");\n\n        var withApp = new IamGroup(\"withApp\", IamGroupArgs.builder()        \n            .applicationIds(app.id())\n            .userIds()\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  app:\n    type: scaleway:IamApplication\n  withApp:\n    type: scaleway:IamGroup\n    properties:\n      applicationIds:\n        - ${app.id}\n      userIds: []\n```\n\n\n## Import\n\nIAM groups can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamGroup:IamGroup basic fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "applicationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of IDs of the applications attached to the group.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the group\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the IAM group.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the IAM group.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`) The ID of the organization the group is associated with.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the group\n"
+                },
+                "userIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of IDs of the users attached to the group.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "name",
+                "organizationId",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "applicationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of IDs of the applications attached to the group.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the IAM group.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the IAM group.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`) The ID of the organization the group is associated with.\n"
+                },
+                "userIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of IDs of the users attached to the group.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamGroup resources.\n",
+                "properties": {
+                    "applicationIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of IDs of the applications attached to the group.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the group\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the IAM group.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the IAM group.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`) The ID of the organization the group is associated with.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the group\n"
+                    },
+                    "userIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of IDs of the users attached to the group.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamPolicy:IamPolicy": {
+            "description": "Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Create a policy for an organization's project\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst default = scaleway.getAccountProject({\n    name: \"default\",\n});\nconst app = new scaleway.IamApplication(\"app\", {});\nconst objectReadOnly = new scaleway.IamPolicy(\"objectReadOnly\", {\n    description: \"gives app readonly access to object storage in project\",\n    applicationId: app.id,\n    rules: [{\n        projectIds: [_default.then(_default =\u003e _default.id)],\n        permissionSetNames: [\"ObjectStorageReadOnly\"],\n    }],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\ndefault = scaleway.get_account_project(name=\"default\")\napp = scaleway.IamApplication(\"app\")\nobject_read_only = scaleway.IamPolicy(\"objectReadOnly\",\n    description=\"gives app readonly access to object storage in project\",\n    application_id=app.id,\n    rules=[scaleway.IamPolicyRuleArgs(\n        project_ids=[default.id],\n        permission_set_names=[\"ObjectStorageReadOnly\"],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Scaleway.GetAccountProject.Invoke(new()\n    {\n        Name = \"default\",\n    });\n\n    var app = new Scaleway.IamApplication(\"app\");\n\n    var objectReadOnly = new Scaleway.IamPolicy(\"objectReadOnly\", new()\n    {\n        Description = \"gives app readonly access to object storage in project\",\n        ApplicationId = app.Id,\n        Rules = new[]\n        {\n            new Scaleway.Inputs.IamPolicyRuleArgs\n            {\n                ProjectIds = new[]\n                {\n                    @default.Apply(getAccountProjectResult =\u003e getAccountProjectResult).Apply(@default =\u003e @default.Apply(getAccountProjectResult =\u003e getAccountProjectResult.Id)),\n                },\n                PermissionSetNames = new[]\n                {\n                    \"ObjectStorageReadOnly\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_default, err := scaleway.LookupAccountProject(ctx, \u0026scaleway.LookupAccountProjectArgs{\n\t\t\tName: pulumi.StringRef(\"default\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tapp, err := scaleway.NewIamApplication(ctx, \"app\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamPolicy(ctx, \"objectReadOnly\", \u0026scaleway.IamPolicyArgs{\n\t\t\tDescription:   pulumi.String(\"gives app readonly access to object storage in project\"),\n\t\t\tApplicationId: app.ID(),\n\t\t\tRules: scaleway.IamPolicyRuleArray{\n\t\t\t\t\u0026scaleway.IamPolicyRuleArgs{\n\t\t\t\t\tProjectIds: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(_default.Id),\n\t\t\t\t\t},\n\t\t\t\t\tPermissionSetNames: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"ObjectStorageReadOnly\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAccountProjectArgs;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamPolicy;\nimport com.pulumi.scaleway.IamPolicyArgs;\nimport com.pulumi.scaleway.inputs.IamPolicyRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()\n            .name(\"default\")\n            .build());\n\n        var app = new IamApplication(\"app\");\n\n        var objectReadOnly = new IamPolicy(\"objectReadOnly\", IamPolicyArgs.builder()        \n            .description(\"gives app readonly access to object storage in project\")\n            .applicationId(app.id())\n            .rules(IamPolicyRuleArgs.builder()\n                .projectIds(default_.id())\n                .permissionSetNames(\"ObjectStorageReadOnly\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  app:\n    type: scaleway:IamApplication\n  objectReadOnly:\n    type: scaleway:IamPolicy\n    properties:\n      description: gives app readonly access to object storage in project\n      applicationId: ${app.id}\n      rules:\n        - projectIds:\n            - ${default.id}\n          permissionSetNames:\n            - ObjectStorageReadOnly\nvariables:\n  default:\n    fn::invoke:\n      Function: scaleway:getAccountProject\n      Arguments:\n        name: default\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPolicies can be imported using the `{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "ID of the Application the policy will be linked to\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the policy.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the iam policy.\n"
+                },
+                "editable": {
+                    "type": "boolean",
+                    "description": "Whether the policy is editable.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "ID of the Group the policy will be linked to\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": ".The name of the iam policy.\n"
+                },
+                "noPrincipal": {
+                    "type": "boolean",
+                    "description": "If the policy doesn't apply to a principal.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "ID of organization scoped to the rule.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/IamPolicyRule:IamPolicyRule"
+                    },
+                    "description": "List of rules in the policy.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the policy.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the User the policy will be linked to\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "editable",
+                "name",
+                "organizationId",
+                "rules",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "ID of the Application the policy will be linked to\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the iam policy.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "ID of the Group the policy will be linked to\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": ".The name of the iam policy.\n"
+                },
+                "noPrincipal": {
+                    "type": "boolean",
+                    "description": "If the policy doesn't apply to a principal.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "ID of organization scoped to the rule.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/IamPolicyRule:IamPolicyRule"
+                    },
+                    "description": "List of rules in the policy.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the User the policy will be linked to\n"
+                }
+            },
+            "requiredInputs": [
+                "rules"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamPolicy resources.\n",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "ID of the Application the policy will be linked to\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the policy.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the iam policy.\n"
+                    },
+                    "editable": {
+                        "type": "boolean",
+                        "description": "Whether the policy is editable.\n"
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "description": "ID of the Group the policy will be linked to\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": ".The name of the iam policy.\n"
+                    },
+                    "noPrincipal": {
+                        "type": "boolean",
+                        "description": "If the policy doesn't apply to a principal.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "ID of organization scoped to the rule.\n"
+                    },
+                    "rules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/IamPolicyRule:IamPolicyRule"
+                        },
+                        "description": "List of rules in the policy.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the policy.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "ID of the User the policy will be linked to\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamSshKey:IamSshKey": {
+            "description": "Creates and manages Scaleway IAM SSH Keys.\nFor more information,\nsee [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#ssh-keys-d8ccd4).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@lbrlabs/pulumi-scaleway\";\n\nconst main = new scaleway.IamSshKey(\"main\", {publicKey: \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_scaleway as scaleway\n\nmain = scaleway.IamSshKey(\"main\", public_key=\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Lbrlabs.PulumiPackage.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.IamSshKey(\"main\", new()\n    {\n        PublicKey = \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewIamSshKey(ctx, \"main\", \u0026scaleway.IamSshKeyArgs{\n\t\t\tPublicKey: pulumi.String(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamSshKey;\nimport com.pulumi.scaleway.IamSshKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new IamSshKey(\"main\", IamSshKeyArgs.builder()        \n            .publicKey(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:IamSshKey\n    properties:\n      publicKey: \u003cYOUR-PUBLIC-SSH-KEY\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSH keys can be imported using the `id`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamSshKey:IamSshKey main 11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the SSH key.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "The SSH key status.\n"
+                },
+                "fingerprint": {
+                    "type": "string",
+                    "description": "The fingerprint of the iam SSH key.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization the SSH key is associated with.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the SSH key is\nassociated with.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public SSH key to be added.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the SSH key.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "fingerprint",
+                "name",
+                "organizationId",
+                "projectId",
+                "publicKey",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "disabled": {
+                    "type": "boolean",
+                    "description": "The SSH key status.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the SSH key is\nassociated with.\n",
+                    "willReplaceOnChanges": true
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public SSH key to be added.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamSshKey resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the SSH key.\n"
+                    },
+                    "disabled": {
+                        "type": "boolean",
+                        "description": "The SSH key status.\n"
+                    },
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The fingerprint of the iam SSH key.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the SSH key.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization the SSH key is associated with.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the SSH key is\nassociated with.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "The public SSH key to be added.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the SSH key.\n"
                     }
                 },
                 "type": "object"
@@ -14045,6 +14835,61 @@
         }
     },
     "functions": {
+        "scaleway:index/getAccountProject:getAccountProject": {
+            "description": "Gets information about an existing Project.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst byName = scaleway.getAccountProject({\n    name: \"default\",\n});\nconst byId = scaleway.getAccountProject({\n    projectId: \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nby_name = scaleway.get_account_project(name=\"default\")\nby_id = scaleway.get_account_project(project_id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byName = Scaleway.GetAccountProject.Invoke(new()\n    {\n        Name = \"default\",\n    });\n\n    var byId = Scaleway.GetAccountProject.Invoke(new()\n    {\n        ProjectId = \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = scaleway.LookupAccountProject(ctx, \u0026scaleway.LookupAccountProjectArgs{\n\t\t\tName: pulumi.StringRef(\"default\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupAccountProject(ctx, \u0026scaleway.LookupAccountProjectArgs{\n\t\t\tProjectId: pulumi.StringRef(\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAccountProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byName = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()\n            .name(\"default\")\n            .build());\n\n        final var byId = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()\n            .projectId(\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  byName:\n    fn::invoke:\n      Function: scaleway:getAccountProject\n      Arguments:\n        name: default\n  byId:\n    fn::invoke:\n      Function: scaleway:getAccountProject\n      Arguments:\n        projectId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAccountProject.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Project.\nOnly one of the `name` and `project_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization ID the Project is associated with.\nIf no default organization_id is set, one must be set explicitly in this datasource\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the Project.\nOnly one of the `name` and `project_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAccountProject.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "description",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
         "scaleway:index/getAccountSshKey:getAccountSshKey": {
             "description": "Use this data source to get SSH key information based on its ID or name.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myKey = scaleway.getAccountSshKey({\n    sshKeyId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmy_key = scaleway.get_account_ssh_key(ssh_key_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myKey = Scaleway.GetAccountSshKey.Invoke(new()\n    {\n        SshKeyId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = scaleway.LookupAccountSshKey(ctx, \u0026scaleway.LookupAccountSshKeyArgs{\n\t\t\tSshKeyId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAccountSshKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myKey = ScalewayFunctions.getAccountSshKey(GetAccountSshKeyArgs.builder()\n            .sshKeyId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myKey:\n    fn::invoke:\n      Function: scaleway:getAccountSshKey\n      Arguments:\n        sshKeyId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -14343,6 +15188,12 @@
                     "offerId": {
                         "type": "string"
                     },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getBaremetalServerOption:getBaremetalServerOption"
+                        }
+                    },
                     "organizationId": {
                         "type": "string"
                     },
@@ -14397,6 +15248,7 @@
                     "ips",
                     "offer",
                     "offerId",
+                    "options",
                     "organizationId",
                     "os",
                     "osId",
@@ -15504,6 +16356,246 @@
                     "registryEndpoint",
                     "registryNamespaceId",
                     "secretEnvironmentVariables",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getIamApplication:getIamApplication": {
+            "description": "Gets information about an existing IAM application.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst findByName = scaleway.getIamApplication({\n    name: \"foobar\",\n});\nconst findById = scaleway.getIamApplication({\n    applicationId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nfind_by_name = scaleway.get_iam_application(name=\"foobar\")\nfind_by_id = scaleway.get_iam_application(application_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var findByName = Scaleway.GetIamApplication.Invoke(new()\n    {\n        Name = \"foobar\",\n    });\n\n    var findById = Scaleway.GetIamApplication.Invoke(new()\n    {\n        ApplicationId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = scaleway.LookupIamApplication(ctx, \u0026scaleway.LookupIamApplicationArgs{\n\t\t\tName: pulumi.StringRef(\"foobar\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupIamApplication(ctx, \u0026scaleway.LookupIamApplicationArgs{\n\t\t\tApplicationId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamApplicationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var findByName = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()\n            .name(\"foobar\")\n            .build());\n\n        final var findById = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()\n            .applicationId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  findByName:\n    fn::invoke:\n      Function: scaleway:getIamApplication\n      Arguments:\n        name: foobar\n  findById:\n    fn::invoke:\n      Function: scaleway:getIamApplication\n      Arguments:\n        applicationId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIamApplication.\n",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "The ID of the IAM application.\nOnly one of the `name` and `application_id` should be specified.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the IAM application.\nOnly one of the `name` and `application_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`) The ID of the\norganization the application is associated with.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIamApplication.\n",
+                "properties": {
+                    "applicationId": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "editable": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "description",
+                    "editable",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getIamGroup:getIamGroup": {
+            "description": "Gets information about an existing IAM group. For more information, please\ncheck [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst findByName = scaleway.getIamGroup({\n    name: \"foobar\",\n});\nconst findById = scaleway.getIamGroup({\n    groupId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nfind_by_name = scaleway.get_iam_group(name=\"foobar\")\nfind_by_id = scaleway.get_iam_group(group_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var findByName = Scaleway.GetIamGroup.Invoke(new()\n    {\n        Name = \"foobar\",\n    });\n\n    var findById = Scaleway.GetIamGroup.Invoke(new()\n    {\n        GroupId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = scaleway.LookupIamGroup(ctx, \u0026scaleway.LookupIamGroupArgs{\n\t\t\tName: pulumi.StringRef(\"foobar\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupIamGroup(ctx, \u0026scaleway.LookupIamGroupArgs{\n\t\t\tGroupId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var findByName = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()\n            .name(\"foobar\")\n            .build());\n\n        final var findById = ScalewayFunctions.getIamGroup(GetIamGroupArgs.builder()\n            .groupId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  findByName:\n    fn::invoke:\n      Function: scaleway:getIamGroup\n      Arguments:\n        name: foobar\n  findById:\n    fn::invoke:\n      Function: scaleway:getIamGroup\n      Arguments:\n        groupId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIamGroup.\n",
+                "properties": {
+                    "groupId": {
+                        "type": "string",
+                        "description": "The ID of the IAM group.\nOnly one of the `name` and `group_id` should be specified.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the IAM group.\nOnly one of the `name` and `group_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`) The ID of the\norganization the group is associated with.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIamGroup.\n",
+                "properties": {
+                    "applicationIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "groupId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "userIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "applicationIds",
+                    "createdAt",
+                    "description",
+                    "updatedAt",
+                    "userIds",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getIamSshKey:getIamSshKey": {
+            "description": "Use this data source to get SSH key information based on its ID or name.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myKey = scaleway.getIamSshKey({\n    sshKeyId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmy_key = scaleway.get_iam_ssh_key(ssh_key_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myKey = Scaleway.GetIamSshKey.Invoke(new()\n    {\n        SshKeyId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = scaleway.LookupIamSshKey(ctx, \u0026scaleway.LookupIamSshKeyArgs{\n\t\t\tSshKeyId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamSshKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myKey = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()\n            .sshKeyId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myKey:\n    fn::invoke:\n      Function: scaleway:getIamSshKey\n      Arguments:\n        sshKeyId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIamSshKey.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The SSH key name. Only one of `name` and `ssh_key_id` should be specified.\n"
+                    },
+                    "sshKeyId": {
+                        "type": "string",
+                        "description": "The SSH key id. Only one of `name` and `ssh_key_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIamSshKey.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the SSH key.\n"
+                    },
+                    "disabled": {
+                        "type": "boolean",
+                        "description": "The SSH key status.\n"
+                    },
+                    "fingerprint": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization the SSH key is associated with.\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "The SSH public key string\n"
+                    },
+                    "sshKeyId": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the SSH key.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "disabled",
+                    "fingerprint",
+                    "organizationId",
+                    "projectId",
+                    "publicKey",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getIamUser:getIamUser": {
+            "description": "Use this data source to get information on an existing IAM user based on its ID or email address.\nFor more information,\nsee [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst findById = scaleway.getIamUser({\n    userId: \"11111111-1111-1111-1111-111111111111\",\n});\nconst findByEmail = scaleway.getIamUser({\n    email: \"foo@bar.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nfind_by_id = scaleway.get_iam_user(user_id=\"11111111-1111-1111-1111-111111111111\")\nfind_by_email = scaleway.get_iam_user(email=\"foo@bar.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var findById = Scaleway.GetIamUser.Invoke(new()\n    {\n        UserId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n    var findByEmail = Scaleway.GetIamUser.Invoke(new()\n    {\n        Email = \"foo@bar.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = scaleway.GetIamUser(ctx, \u0026scaleway.GetIamUserArgs{\n\t\t\tUserId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.GetIamUser(ctx, \u0026scaleway.GetIamUserArgs{\n\t\t\tEmail: pulumi.StringRef(\"foo@bar.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()\n            .userId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n        final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()\n            .email(\"foo@bar.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  findById:\n    fn::invoke:\n      Function: scaleway:getIamUser\n      Arguments:\n        userId: 11111111-1111-1111-1111-111111111111\n  findByEmail:\n    fn::invoke:\n      Function: scaleway:getIamUser\n      Arguments:\n        email: foo@bar.com\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIamUser.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the IAM user. Only one of the `email` and `user_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`) The ID of the\norganization the user is associated with. For now, it is necessary to\nexplicitly provide the `organization_id` in the datasource.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "The ID of the IAM user. Only one of the `email` and `user_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIamUser.\n",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
                     "id"
                 ]
             }

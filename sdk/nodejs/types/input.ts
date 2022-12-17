@@ -12,7 +12,7 @@ export interface BaremetalServerIp {
      */
     address?: pulumi.Input<string>;
     /**
-     * The ID of the IP.
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      */
     id?: pulumi.Input<string>;
     /**
@@ -20,6 +20,17 @@ export interface BaremetalServerIp {
      */
     reverse?: pulumi.Input<string>;
     version?: pulumi.Input<string>;
+}
+
+export interface BaremetalServerOption {
+    /**
+     * The auto expiration date for compatible options
+     */
+    expiresAt?: pulumi.Input<string>;
+    /**
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     */
+    id: pulumi.Input<string>;
 }
 
 export interface DatabaseAclAclRule {
@@ -217,6 +228,21 @@ export interface DomainRecordWeighted {
      * The weight of the IP as an integer UInt32.
      */
     weight: pulumi.Input<number>;
+}
+
+export interface IamPolicyRule {
+    /**
+     * ID of organization scoped to the rule.
+     */
+    organizationId?: pulumi.Input<string>;
+    /**
+     * Names of permission sets bound to the rule.
+     */
+    permissionSetNames: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of project IDs scoped to the rule.
+     */
+    projectIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface InstanceImageAdditionalVolume {

@@ -13,7 +13,7 @@ import (
 type BaremetalServerIp struct {
 	// The address of the IP.
 	Address *string `pulumi:"address"`
-	// The ID of the IP.
+	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
 	Id *string `pulumi:"id"`
 	// The reverse of the IP.
 	Reverse *string `pulumi:"reverse"`
@@ -34,7 +34,7 @@ type BaremetalServerIpInput interface {
 type BaremetalServerIpArgs struct {
 	// The address of the IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The ID of the IP.
+	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The reverse of the IP.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
@@ -97,7 +97,7 @@ func (o BaremetalServerIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IP.
+// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
 func (o BaremetalServerIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -129,6 +129,112 @@ func (o BaremetalServerIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerIp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerIp {
 		return vs[0].([]BaremetalServerIp)[vs[1].(int)]
 	}).(BaremetalServerIpOutput)
+}
+
+type BaremetalServerOption struct {
+	// The auto expiration date for compatible options
+	ExpiresAt *string `pulumi:"expiresAt"`
+	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+	Id string `pulumi:"id"`
+}
+
+// BaremetalServerOptionInput is an input type that accepts BaremetalServerOptionArgs and BaremetalServerOptionOutput values.
+// You can construct a concrete instance of `BaremetalServerOptionInput` via:
+//
+//	BaremetalServerOptionArgs{...}
+type BaremetalServerOptionInput interface {
+	pulumi.Input
+
+	ToBaremetalServerOptionOutput() BaremetalServerOptionOutput
+	ToBaremetalServerOptionOutputWithContext(context.Context) BaremetalServerOptionOutput
+}
+
+type BaremetalServerOptionArgs struct {
+	// The auto expiration date for compatible options
+	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
+	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (BaremetalServerOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerOption)(nil)).Elem()
+}
+
+func (i BaremetalServerOptionArgs) ToBaremetalServerOptionOutput() BaremetalServerOptionOutput {
+	return i.ToBaremetalServerOptionOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerOptionArgs) ToBaremetalServerOptionOutputWithContext(ctx context.Context) BaremetalServerOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerOptionOutput)
+}
+
+// BaremetalServerOptionArrayInput is an input type that accepts BaremetalServerOptionArray and BaremetalServerOptionArrayOutput values.
+// You can construct a concrete instance of `BaremetalServerOptionArrayInput` via:
+//
+//	BaremetalServerOptionArray{ BaremetalServerOptionArgs{...} }
+type BaremetalServerOptionArrayInput interface {
+	pulumi.Input
+
+	ToBaremetalServerOptionArrayOutput() BaremetalServerOptionArrayOutput
+	ToBaremetalServerOptionArrayOutputWithContext(context.Context) BaremetalServerOptionArrayOutput
+}
+
+type BaremetalServerOptionArray []BaremetalServerOptionInput
+
+func (BaremetalServerOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerOption)(nil)).Elem()
+}
+
+func (i BaremetalServerOptionArray) ToBaremetalServerOptionArrayOutput() BaremetalServerOptionArrayOutput {
+	return i.ToBaremetalServerOptionArrayOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerOptionArray) ToBaremetalServerOptionArrayOutputWithContext(ctx context.Context) BaremetalServerOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerOptionArrayOutput)
+}
+
+type BaremetalServerOptionOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerOption)(nil)).Elem()
+}
+
+func (o BaremetalServerOptionOutput) ToBaremetalServerOptionOutput() BaremetalServerOptionOutput {
+	return o
+}
+
+func (o BaremetalServerOptionOutput) ToBaremetalServerOptionOutputWithContext(ctx context.Context) BaremetalServerOptionOutput {
+	return o
+}
+
+// The auto expiration date for compatible options
+func (o BaremetalServerOptionOutput) ExpiresAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerOption) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
+}
+
+// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+func (o BaremetalServerOptionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v BaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type BaremetalServerOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerOption)(nil)).Elem()
+}
+
+func (o BaremetalServerOptionArrayOutput) ToBaremetalServerOptionArrayOutput() BaremetalServerOptionArrayOutput {
+	return o
+}
+
+func (o BaremetalServerOptionArrayOutput) ToBaremetalServerOptionArrayOutputWithContext(ctx context.Context) BaremetalServerOptionArrayOutput {
+	return o
+}
+
+func (o BaremetalServerOptionArrayOutput) Index(i pulumi.IntInput) BaremetalServerOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerOption {
+		return vs[0].([]BaremetalServerOption)[vs[1].(int)]
+	}).(BaremetalServerOptionOutput)
 }
 
 type DatabaseAclAclRule struct {
@@ -1897,6 +2003,121 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainRecordWeighted {
 		return vs[0].([]DomainRecordWeighted)[vs[1].(int)]
 	}).(DomainRecordWeightedOutput)
+}
+
+type IamPolicyRule struct {
+	// ID of organization scoped to the rule.
+	OrganizationId *string `pulumi:"organizationId"`
+	// Names of permission sets bound to the rule.
+	PermissionSetNames []string `pulumi:"permissionSetNames"`
+	// List of project IDs scoped to the rule.
+	ProjectIds []string `pulumi:"projectIds"`
+}
+
+// IamPolicyRuleInput is an input type that accepts IamPolicyRuleArgs and IamPolicyRuleOutput values.
+// You can construct a concrete instance of `IamPolicyRuleInput` via:
+//
+//	IamPolicyRuleArgs{...}
+type IamPolicyRuleInput interface {
+	pulumi.Input
+
+	ToIamPolicyRuleOutput() IamPolicyRuleOutput
+	ToIamPolicyRuleOutputWithContext(context.Context) IamPolicyRuleOutput
+}
+
+type IamPolicyRuleArgs struct {
+	// ID of organization scoped to the rule.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// Names of permission sets bound to the rule.
+	PermissionSetNames pulumi.StringArrayInput `pulumi:"permissionSetNames"`
+	// List of project IDs scoped to the rule.
+	ProjectIds pulumi.StringArrayInput `pulumi:"projectIds"`
+}
+
+func (IamPolicyRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamPolicyRule)(nil)).Elem()
+}
+
+func (i IamPolicyRuleArgs) ToIamPolicyRuleOutput() IamPolicyRuleOutput {
+	return i.ToIamPolicyRuleOutputWithContext(context.Background())
+}
+
+func (i IamPolicyRuleArgs) ToIamPolicyRuleOutputWithContext(ctx context.Context) IamPolicyRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamPolicyRuleOutput)
+}
+
+// IamPolicyRuleArrayInput is an input type that accepts IamPolicyRuleArray and IamPolicyRuleArrayOutput values.
+// You can construct a concrete instance of `IamPolicyRuleArrayInput` via:
+//
+//	IamPolicyRuleArray{ IamPolicyRuleArgs{...} }
+type IamPolicyRuleArrayInput interface {
+	pulumi.Input
+
+	ToIamPolicyRuleArrayOutput() IamPolicyRuleArrayOutput
+	ToIamPolicyRuleArrayOutputWithContext(context.Context) IamPolicyRuleArrayOutput
+}
+
+type IamPolicyRuleArray []IamPolicyRuleInput
+
+func (IamPolicyRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IamPolicyRule)(nil)).Elem()
+}
+
+func (i IamPolicyRuleArray) ToIamPolicyRuleArrayOutput() IamPolicyRuleArrayOutput {
+	return i.ToIamPolicyRuleArrayOutputWithContext(context.Background())
+}
+
+func (i IamPolicyRuleArray) ToIamPolicyRuleArrayOutputWithContext(ctx context.Context) IamPolicyRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamPolicyRuleArrayOutput)
+}
+
+type IamPolicyRuleOutput struct{ *pulumi.OutputState }
+
+func (IamPolicyRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamPolicyRule)(nil)).Elem()
+}
+
+func (o IamPolicyRuleOutput) ToIamPolicyRuleOutput() IamPolicyRuleOutput {
+	return o
+}
+
+func (o IamPolicyRuleOutput) ToIamPolicyRuleOutputWithContext(ctx context.Context) IamPolicyRuleOutput {
+	return o
+}
+
+// ID of organization scoped to the rule.
+func (o IamPolicyRuleOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IamPolicyRule) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+// Names of permission sets bound to the rule.
+func (o IamPolicyRuleOutput) PermissionSetNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v IamPolicyRule) []string { return v.PermissionSetNames }).(pulumi.StringArrayOutput)
+}
+
+// List of project IDs scoped to the rule.
+func (o IamPolicyRuleOutput) ProjectIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v IamPolicyRule) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
+}
+
+type IamPolicyRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (IamPolicyRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IamPolicyRule)(nil)).Elem()
+}
+
+func (o IamPolicyRuleArrayOutput) ToIamPolicyRuleArrayOutput() IamPolicyRuleArrayOutput {
+	return o
+}
+
+func (o IamPolicyRuleArrayOutput) ToIamPolicyRuleArrayOutputWithContext(ctx context.Context) IamPolicyRuleArrayOutput {
+	return o
+}
+
+func (o IamPolicyRuleArrayOutput) Index(i pulumi.IntInput) IamPolicyRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IamPolicyRule {
+		return vs[0].([]IamPolicyRule)[vs[1].(int)]
+	}).(IamPolicyRuleOutput)
 }
 
 type InstanceImageAdditionalVolume struct {
@@ -9223,6 +9444,106 @@ func (o GetBaremetalServerIpArrayOutput) Index(i pulumi.IntInput) GetBaremetalSe
 	}).(GetBaremetalServerIpOutput)
 }
 
+type GetBaremetalServerOption struct {
+	ExpiresAt string `pulumi:"expiresAt"`
+	Id        string `pulumi:"id"`
+}
+
+// GetBaremetalServerOptionInput is an input type that accepts GetBaremetalServerOptionArgs and GetBaremetalServerOptionOutput values.
+// You can construct a concrete instance of `GetBaremetalServerOptionInput` via:
+//
+//	GetBaremetalServerOptionArgs{...}
+type GetBaremetalServerOptionInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerOptionOutput() GetBaremetalServerOptionOutput
+	ToGetBaremetalServerOptionOutputWithContext(context.Context) GetBaremetalServerOptionOutput
+}
+
+type GetBaremetalServerOptionArgs struct {
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	Id        pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetBaremetalServerOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerOption)(nil)).Elem()
+}
+
+func (i GetBaremetalServerOptionArgs) ToGetBaremetalServerOptionOutput() GetBaremetalServerOptionOutput {
+	return i.ToGetBaremetalServerOptionOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerOptionArgs) ToGetBaremetalServerOptionOutputWithContext(ctx context.Context) GetBaremetalServerOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerOptionOutput)
+}
+
+// GetBaremetalServerOptionArrayInput is an input type that accepts GetBaremetalServerOptionArray and GetBaremetalServerOptionArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalServerOptionArrayInput` via:
+//
+//	GetBaremetalServerOptionArray{ GetBaremetalServerOptionArgs{...} }
+type GetBaremetalServerOptionArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerOptionArrayOutput() GetBaremetalServerOptionArrayOutput
+	ToGetBaremetalServerOptionArrayOutputWithContext(context.Context) GetBaremetalServerOptionArrayOutput
+}
+
+type GetBaremetalServerOptionArray []GetBaremetalServerOptionInput
+
+func (GetBaremetalServerOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerOption)(nil)).Elem()
+}
+
+func (i GetBaremetalServerOptionArray) ToGetBaremetalServerOptionArrayOutput() GetBaremetalServerOptionArrayOutput {
+	return i.ToGetBaremetalServerOptionArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerOptionArray) ToGetBaremetalServerOptionArrayOutputWithContext(ctx context.Context) GetBaremetalServerOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerOptionArrayOutput)
+}
+
+type GetBaremetalServerOptionOutput struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerOption)(nil)).Elem()
+}
+
+func (o GetBaremetalServerOptionOutput) ToGetBaremetalServerOptionOutput() GetBaremetalServerOptionOutput {
+	return o
+}
+
+func (o GetBaremetalServerOptionOutput) ToGetBaremetalServerOptionOutputWithContext(ctx context.Context) GetBaremetalServerOptionOutput {
+	return o
+}
+
+func (o GetBaremetalServerOptionOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerOption) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+func (o GetBaremetalServerOptionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetBaremetalServerOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerOption)(nil)).Elem()
+}
+
+func (o GetBaremetalServerOptionArrayOutput) ToGetBaremetalServerOptionArrayOutput() GetBaremetalServerOptionArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerOptionArrayOutput) ToGetBaremetalServerOptionArrayOutputWithContext(ctx context.Context) GetBaremetalServerOptionArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerOptionArrayOutput) Index(i pulumi.IntInput) GetBaremetalServerOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalServerOption {
+		return vs[0].([]GetBaremetalServerOption)[vs[1].(int)]
+	}).(GetBaremetalServerOptionOutput)
+}
+
 type GetDatabaseAclAclRule struct {
 	// A simple text describing this rule
 	Description string `pulumi:"description"`
@@ -13465,6 +13786,8 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionInput)(nil)).Elem(), BaremetalServerOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionArrayInput)(nil)).Elem(), BaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleInput)(nil)).Elem(), DatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleArrayInput)(nil)).Elem(), DatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArgs{})
@@ -13487,6 +13810,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordViewArrayInput)(nil)).Elem(), DomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedInput)(nil)).Elem(), DomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedArrayInput)(nil)).Elem(), DomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleInput)(nil)).Elem(), IamPolicyRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleArrayInput)(nil)).Elem(), IamPolicyRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeInput)(nil)).Elem(), InstanceImageAdditionalVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeArrayInput)(nil)).Elem(), InstanceImageAdditionalVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArgs{})
@@ -13584,6 +13909,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferMemoryArrayInput)(nil)).Elem(), GetBaremetalOfferMemoryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpInput)(nil)).Elem(), GetBaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpArrayInput)(nil)).Elem(), GetBaremetalServerIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionInput)(nil)).Elem(), GetBaremetalServerOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionArrayInput)(nil)).Elem(), GetBaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleInput)(nil)).Elem(), GetDatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleArrayInput)(nil)).Elem(), GetDatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArgs{})
@@ -13658,6 +13985,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
+	pulumi.RegisterOutputType(BaremetalServerOptionOutput{})
+	pulumi.RegisterOutputType(BaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(DatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerOutput{})
@@ -13680,6 +14009,8 @@ func init() {
 	pulumi.RegisterOutputType(DomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(IamPolicyRuleOutput{})
+	pulumi.RegisterOutputType(IamPolicyRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})
@@ -13777,6 +14108,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBaremetalOfferMemoryArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerIpArrayOutput{})
+	pulumi.RegisterOutputType(GetBaremetalServerOptionOutput{})
+	pulumi.RegisterOutputType(GetBaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerOutput{})

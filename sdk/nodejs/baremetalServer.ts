@@ -95,6 +95,11 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly offerId!: pulumi.Output<string>;
     /**
+     * The options to enable on the server.
+     * > The `options` block supports:
+     */
+    public readonly options!: pulumi.Output<outputs.BaremetalServerOption[] | undefined>;
+    /**
      * The organization ID the server is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
@@ -166,6 +171,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["offer"] = state ? state.offer : undefined;
             resourceInputs["offerId"] = state ? state.offerId : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["osId"] = state ? state.osId : undefined;
@@ -193,6 +199,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["offer"] = args ? args.offer : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["os"] = args ? args.os : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -249,6 +256,11 @@ export interface BaremetalServerState {
      * The ID of the offer.
      */
     offerId?: pulumi.Input<string>;
+    /**
+     * The options to enable on the server.
+     * > The `options` block supports:
+     */
+    options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[]>;
     /**
      * The organization ID the server is associated with.
      */
@@ -323,6 +335,11 @@ export interface BaremetalServerArgs {
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      */
     offer: pulumi.Input<string>;
+    /**
+     * The options to enable on the server.
+     * > The `options` block supports:
+     */
+    options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[]>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.

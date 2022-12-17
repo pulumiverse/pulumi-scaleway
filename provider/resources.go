@@ -120,6 +120,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"scaleway_account_ssh_key": {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
+			"scaleway_account_project": {Tok: scalewayResource(scalewayMod, "AccountProject")},
 			"scaleway_apple_silicon_server": {
 				Tok: scalewayResource(scalewayMod, "AppleSliconValleyServer"),
 				Docs: &tfbridge.DocInfo{
@@ -140,6 +141,11 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_function_domain":               {Tok: scalewayResource(scalewayMod, "FunctionDomain")},
 			"scaleway_function_namespace":            {Tok: scalewayResource(scalewayMod, "FunctionNamespace")},
 			"scaleway_function_token":                {Tok: scalewayResource(scalewayMod, "FunctionToken")},
+			"scaleway_iam_api_key":                   {Tok: scalewayResource(scalewayMod, "IamApiKey")},
+			"scaleway_iam_application":               {Tok: scalewayResource(scalewayMod, "IamApplication")},
+			"scaleway_iam_group":                     {Tok: scalewayResource(scalewayMod, "IamGroup")},
+			"scaleway_iam_policy":                    {Tok: scalewayResource(scalewayMod, "IamPolicy")},
+			"scaleway_iam_ssh_key":                   {Tok: scalewayResource(scalewayMod, "IamSshKey")},
 			"scaleway_instance_image":                {Tok: scalewayResource(scalewayMod, "InstanceImage")},
 			"scaleway_instance_ip":                   {Tok: scalewayResource(scalewayMod, "InstanceIp")},
 			"scaleway_instance_ip_reverse_dns":       {Tok: scalewayResource(scalewayMod, "InstanceIpReverseDns")},
@@ -190,6 +196,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
+			"scaleway_account_project": {Tok: scalewayDataSource(scalewayMod, "getAccountProject")},
 			"scaleway_baremetal_offer": {
 				Tok: scalewayDataSource(scalewayMod, "getBaremetalOffer"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -209,6 +216,10 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_function":                            {Tok: scalewayDataSource(scalewayMod, "getFunction")},
 			"scaleway_function_namespace":                  {Tok: scalewayDataSource(scalewayMod, "getFunctionNamespace")},
 			"scaleway_instance_image":                      {Tok: scalewayDataSource(scalewayMod, "getInstanceImage")},
+			"scaleway_iam_application":                     {Tok: scalewayDataSource(scalewayMod, "getIamApplication")},
+			"scaleway_iam_group":                           {Tok: scalewayDataSource(scalewayMod, "getIamGroup")},
+			"scaleway_iam_ssh_key":                         {Tok: scalewayDataSource(scalewayMod, "getIamSshKey")},
+			"scaleway_iam_user":                            {Tok: scalewayDataSource(scalewayMod, "getIamUser")},
 			"scaleway_instance_ip":                         {Tok: scalewayDataSource(scalewayMod, "getInstanceIp")},
 			"scaleway_instance_security_group":             {Tok: scalewayDataSource(scalewayMod, "getInstanceSecurityGroup")},
 			"scaleway_instance_server":                     {Tok: scalewayDataSource(scalewayMod, "getInstanceServer")},

@@ -79,6 +79,9 @@ type BaremetalServer struct {
 	Offer pulumi.StringOutput `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
+	// The options to enable on the server.
+	// > The `options` block supports:
+	Options BaremetalServerOptionArrayOutput `pulumi:"options"`
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
@@ -173,6 +176,9 @@ type baremetalServerState struct {
 	Offer *string `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId *string `pulumi:"offerId"`
+	// The options to enable on the server.
+	// > The `options` block supports:
+	Options []BaremetalServerOption `pulumi:"options"`
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
@@ -218,6 +224,9 @@ type BaremetalServerState struct {
 	Offer pulumi.StringPtrInput
 	// The ID of the offer.
 	OfferId pulumi.StringPtrInput
+	// The options to enable on the server.
+	// > The `options` block supports:
+	Options BaremetalServerOptionArrayInput
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The UUID of the os to install on the server.
@@ -261,6 +270,9 @@ type baremetalServerArgs struct {
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
 	Offer string `pulumi:"offer"`
+	// The options to enable on the server.
+	// > The `options` block supports:
+	Options []BaremetalServerOption `pulumi:"options"`
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
@@ -297,6 +309,9 @@ type BaremetalServerArgs struct {
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
 	Offer pulumi.StringInput
+	// The options to enable on the server.
+	// > The `options` block supports:
+	Options BaremetalServerOptionArrayInput
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
@@ -443,6 +458,12 @@ func (o BaremetalServerOutput) Offer() pulumi.StringOutput {
 // The ID of the offer.
 func (o BaremetalServerOutput) OfferId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OfferId }).(pulumi.StringOutput)
+}
+
+// The options to enable on the server.
+// > The `options` block supports:
+func (o BaremetalServerOutput) Options() BaremetalServerOptionArrayOutput {
+	return o.ApplyT(func(v *BaremetalServer) BaremetalServerOptionArrayOutput { return v.Options }).(BaremetalServerOptionArrayOutput)
 }
 
 // The organization ID the server is associated with.

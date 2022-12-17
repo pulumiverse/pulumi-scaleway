@@ -143,6 +143,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string? Name;
         public readonly string Offer;
         public readonly string OfferId;
+        public readonly ImmutableArray<Outputs.GetBaremetalServerOptionResult> Options;
         public readonly string OrganizationId;
         public readonly string Os;
         public readonly string OsId;
@@ -174,6 +175,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string offer,
 
             string offerId,
+
+            ImmutableArray<Outputs.GetBaremetalServerOptionResult> options,
 
             string organizationId,
 
@@ -209,6 +212,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Name = name;
             Offer = offer;
             OfferId = offerId;
+            Options = options;
             OrganizationId = organizationId;
             Os = os;
             OsId = osId;

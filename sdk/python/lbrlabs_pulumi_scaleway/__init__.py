@@ -5,6 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .account_project import *
 from .account_ssh_key import *
 from .apple_slicon_valley_server import *
 from .baremetal_server import *
@@ -28,6 +29,7 @@ from .function_cron import *
 from .function_domain import *
 from .function_namespace import *
 from .function_token import *
+from .get_account_project import *
 from .get_account_ssh_key import *
 from .get_baremetal_offer import *
 from .get_baremetal_option import *
@@ -45,6 +47,10 @@ from .get_domain_zone import *
 from .get_flexible_ip import *
 from .get_function import *
 from .get_function_namespace import *
+from .get_iam_application import *
+from .get_iam_group import *
+from .get_iam_ssh_key import *
+from .get_iam_user import *
 from .get_instance_image import *
 from .get_instance_ip import *
 from .get_instance_security_group import *
@@ -72,6 +78,11 @@ from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_pat_rule import *
+from .iam_api_key import *
+from .iam_application import *
+from .iam_group import *
+from .iam_policy import *
+from .iam_ssh_key import *
 from .instance_image import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
@@ -125,6 +136,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "scaleway",
+  "mod": "index/accountProject",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/accountProject:AccountProject": "AccountProject"
+  }
+ },
  {
   "pkg": "scaleway",
   "mod": "index/accountSshKey",
@@ -307,6 +326,46 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/functionToken:FunctionToken": "FunctionToken"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamApiKey",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamApiKey:IamApiKey": "IamApiKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamApplication",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamApplication:IamApplication": "IamApplication"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamGroup",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamGroup:IamGroup": "IamGroup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamPolicy",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamPolicy:IamPolicy": "IamPolicy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamSshKey",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamSshKey:IamSshKey": "IamSshKey"
   }
  },
  {

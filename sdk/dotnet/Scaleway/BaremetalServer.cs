@@ -99,6 +99,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> OfferId { get; private set; } = null!;
 
         /// <summary>
+        /// The options to enable on the server.
+        /// &gt; The `options` block supports:
+        /// </summary>
+        [Output("options")]
+        public Output<ImmutableArray<Outputs.BaremetalServerOption>> Options { get; private set; } = null!;
+
+        /// <summary>
         /// The organization ID the server is associated with.
         /// </summary>
         [Output("organizationId")]
@@ -249,6 +256,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
+
+        [Input("options")]
+        private InputList<Inputs.BaremetalServerOptionArgs>? _options;
+
+        /// <summary>
+        /// The options to enable on the server.
+        /// &gt; The `options` block supports:
+        /// </summary>
+        public InputList<Inputs.BaremetalServerOptionArgs> Options
+        {
+            get => _options ?? (_options = new InputList<Inputs.BaremetalServerOptionArgs>());
+            set => _options = value;
+        }
 
         /// <summary>
         /// The UUID of the os to install on the server.
@@ -401,6 +421,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("offerId")]
         public Input<string>? OfferId { get; set; }
+
+        [Input("options")]
+        private InputList<Inputs.BaremetalServerOptionGetArgs>? _options;
+
+        /// <summary>
+        /// The options to enable on the server.
+        /// &gt; The `options` block supports:
+        /// </summary>
+        public InputList<Inputs.BaremetalServerOptionGetArgs> Options
+        {
+            get => _options ?? (_options = new InputList<Inputs.BaremetalServerOptionGetArgs>());
+            set => _options = value;
+        }
 
         /// <summary>
         /// The organization ID the server is associated with.

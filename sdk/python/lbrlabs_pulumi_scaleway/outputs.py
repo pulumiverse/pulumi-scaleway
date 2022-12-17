@@ -12,6 +12,7 @@ from . import outputs
 
 __all__ = [
     'BaremetalServerIp',
+    'BaremetalServerOption',
     'DatabaseAclAclRule',
     'DatabaseInstanceLoadBalancer',
     'DatabaseInstancePrivateNetwork',
@@ -23,6 +24,7 @@ __all__ = [
     'DomainRecordHttpService',
     'DomainRecordView',
     'DomainRecordWeighted',
+    'IamPolicyRule',
     'InstanceImageAdditionalVolume',
     'InstanceSecurityGroupInboundRule',
     'InstanceSecurityGroupOutboundRule',
@@ -73,6 +75,7 @@ __all__ = [
     'GetBaremetalOfferDiskResult',
     'GetBaremetalOfferMemoryResult',
     'GetBaremetalServerIpResult',
+    'GetBaremetalServerOptionResult',
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
     'GetDatabaseInstancePrivateNetworkResult',
@@ -120,7 +123,7 @@ class BaremetalServerIp(dict):
                  version: Optional[str] = None):
         """
         :param str address: The address of the IP.
-        :param str id: The ID of the IP.
+        :param str id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
         :param str reverse: The reverse of the IP.
         """
         if address is not None:
@@ -144,7 +147,7 @@ class BaremetalServerIp(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the IP.
+        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -160,6 +163,53 @@ class BaremetalServerIp(dict):
     @pulumi.getter
     def version(self) -> Optional[str]:
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class BaremetalServerOption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expiresAt":
+            suggest = "expires_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BaremetalServerOption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BaremetalServerOption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BaremetalServerOption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 expires_at: Optional[str] = None):
+        """
+        :param str id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param str expires_at: The auto expiration date for compatible options
+        """
+        pulumi.set(__self__, "id", id)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[str]:
+        """
+        The auto expiration date for compatible options
+        """
+        return pulumi.get(self, "expires_at")
 
 
 @pulumi.output_type
@@ -829,6 +879,69 @@ class DomainRecordWeighted(dict):
         The weight of the IP as an integer UInt32.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class IamPolicyRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "permissionSetNames":
+            suggest = "permission_set_names"
+        elif key == "organizationId":
+            suggest = "organization_id"
+        elif key == "projectIds":
+            suggest = "project_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IamPolicyRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IamPolicyRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IamPolicyRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 permission_set_names: Sequence[str],
+                 organization_id: Optional[str] = None,
+                 project_ids: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] permission_set_names: Names of permission sets bound to the rule.
+        :param str organization_id: ID of organization scoped to the rule.
+        :param Sequence[str] project_ids: List of project IDs scoped to the rule.
+        """
+        pulumi.set(__self__, "permission_set_names", permission_set_names)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
+        if project_ids is not None:
+            pulumi.set(__self__, "project_ids", project_ids)
+
+    @property
+    @pulumi.getter(name="permissionSetNames")
+    def permission_set_names(self) -> Sequence[str]:
+        """
+        Names of permission sets bound to the rule.
+        """
+        return pulumi.get(self, "permission_set_names")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[str]:
+        """
+        ID of organization scoped to the rule.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="projectIds")
+    def project_ids(self) -> Optional[Sequence[str]]:
+        """
+        List of project IDs scoped to the rule.
+        """
+        return pulumi.get(self, "project_ids")
 
 
 @pulumi.output_type
@@ -3494,6 +3607,25 @@ class GetBaremetalServerIpResult(dict):
     @pulumi.getter
     def version(self) -> str:
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetBaremetalServerOptionResult(dict):
+    def __init__(__self__, *,
+                 expires_at: str,
+                 id: str):
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> str:
+        return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

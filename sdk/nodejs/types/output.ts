@@ -12,7 +12,7 @@ export interface BaremetalServerIp {
      */
     address: string;
     /**
-     * The ID of the IP.
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      */
     id: string;
     /**
@@ -20,6 +20,17 @@ export interface BaremetalServerIp {
      */
     reverse: string;
     version: string;
+}
+
+export interface BaremetalServerOption {
+    /**
+     * The auto expiration date for compatible options
+     */
+    expiresAt: string;
+    /**
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     */
+    id: string;
 }
 
 export interface DatabaseAclAclRule {
@@ -258,6 +269,11 @@ export interface GetBaremetalServerIp {
     id: string;
     reverse: string;
     version: string;
+}
+
+export interface GetBaremetalServerOption {
+    expiresAt: string;
+    id: string;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -687,6 +703,21 @@ export interface GetRedisClusterPublicNetwork {
     id: string;
     ips: string[];
     port: number;
+}
+
+export interface IamPolicyRule {
+    /**
+     * ID of organization scoped to the rule.
+     */
+    organizationId?: string;
+    /**
+     * Names of permission sets bound to the rule.
+     */
+    permissionSetNames: string[];
+    /**
+     * List of project IDs scoped to the rule.
+     */
+    projectIds?: string[];
 }
 
 export interface InstanceImageAdditionalVolume {

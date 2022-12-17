@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AccountProjectArgs, AccountProjectState } from "./accountProject";
+export type AccountProject = import("./accountProject").AccountProject;
+export const AccountProject: typeof import("./accountProject").AccountProject = null as any;
+utilities.lazyLoad(exports, ["AccountProject"], () => require("./accountProject"));
+
 export { AccountSshKeyArgs, AccountSshKeyState } from "./accountSshKey";
 export type AccountSshKey = import("./accountSshKey").AccountSshKey;
 export const AccountSshKey: typeof import("./accountSshKey").AccountSshKey = null as any;
@@ -120,6 +125,11 @@ export type FunctionToken = import("./functionToken").FunctionToken;
 export const FunctionToken: typeof import("./functionToken").FunctionToken = null as any;
 utilities.lazyLoad(exports, ["FunctionToken"], () => require("./functionToken"));
 
+export { GetAccountProjectArgs, GetAccountProjectResult, GetAccountProjectOutputArgs } from "./getAccountProject";
+export const getAccountProject: typeof import("./getAccountProject").getAccountProject = null as any;
+export const getAccountProjectOutput: typeof import("./getAccountProject").getAccountProjectOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountProject","getAccountProjectOutput"], () => require("./getAccountProject"));
+
 export { GetAccountSshKeyArgs, GetAccountSshKeyResult, GetAccountSshKeyOutputArgs } from "./getAccountSshKey";
 export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSshKey = null as any;
 export const getAccountSshKeyOutput: typeof import("./getAccountSshKey").getAccountSshKeyOutput = null as any;
@@ -204,6 +214,26 @@ export { GetFunctionNamespaceArgs, GetFunctionNamespaceResult, GetFunctionNamesp
 export const getFunctionNamespace: typeof import("./getFunctionNamespace").getFunctionNamespace = null as any;
 export const getFunctionNamespaceOutput: typeof import("./getFunctionNamespace").getFunctionNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getFunctionNamespace","getFunctionNamespaceOutput"], () => require("./getFunctionNamespace"));
+
+export { GetIamApplicationArgs, GetIamApplicationResult, GetIamApplicationOutputArgs } from "./getIamApplication";
+export const getIamApplication: typeof import("./getIamApplication").getIamApplication = null as any;
+export const getIamApplicationOutput: typeof import("./getIamApplication").getIamApplicationOutput = null as any;
+utilities.lazyLoad(exports, ["getIamApplication","getIamApplicationOutput"], () => require("./getIamApplication"));
+
+export { GetIamGroupArgs, GetIamGroupResult, GetIamGroupOutputArgs } from "./getIamGroup";
+export const getIamGroup: typeof import("./getIamGroup").getIamGroup = null as any;
+export const getIamGroupOutput: typeof import("./getIamGroup").getIamGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getIamGroup","getIamGroupOutput"], () => require("./getIamGroup"));
+
+export { GetIamSshKeyArgs, GetIamSshKeyResult, GetIamSshKeyOutputArgs } from "./getIamSshKey";
+export const getIamSshKey: typeof import("./getIamSshKey").getIamSshKey = null as any;
+export const getIamSshKeyOutput: typeof import("./getIamSshKey").getIamSshKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getIamSshKey","getIamSshKeyOutput"], () => require("./getIamSshKey"));
+
+export { GetIamUserArgs, GetIamUserResult, GetIamUserOutputArgs } from "./getIamUser";
+export const getIamUser: typeof import("./getIamUser").getIamUser = null as any;
+export const getIamUserOutput: typeof import("./getIamUser").getIamUserOutput = null as any;
+utilities.lazyLoad(exports, ["getIamUser","getIamUserOutput"], () => require("./getIamUser"));
 
 export { GetInstanceImageArgs, GetInstanceImageResult, GetInstanceImageOutputArgs } from "./getInstanceImage";
 export const getInstanceImage: typeof import("./getInstanceImage").getInstanceImage = null as any;
@@ -339,6 +369,31 @@ export { GetVpcPublicPatRuleArgs, GetVpcPublicPatRuleResult, GetVpcPublicPatRule
 export const getVpcPublicPatRule: typeof import("./getVpcPublicPatRule").getVpcPublicPatRule = null as any;
 export const getVpcPublicPatRuleOutput: typeof import("./getVpcPublicPatRule").getVpcPublicPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcPublicPatRule","getVpcPublicPatRuleOutput"], () => require("./getVpcPublicPatRule"));
+
+export { IamApiKeyArgs, IamApiKeyState } from "./iamApiKey";
+export type IamApiKey = import("./iamApiKey").IamApiKey;
+export const IamApiKey: typeof import("./iamApiKey").IamApiKey = null as any;
+utilities.lazyLoad(exports, ["IamApiKey"], () => require("./iamApiKey"));
+
+export { IamApplicationArgs, IamApplicationState } from "./iamApplication";
+export type IamApplication = import("./iamApplication").IamApplication;
+export const IamApplication: typeof import("./iamApplication").IamApplication = null as any;
+utilities.lazyLoad(exports, ["IamApplication"], () => require("./iamApplication"));
+
+export { IamGroupArgs, IamGroupState } from "./iamGroup";
+export type IamGroup = import("./iamGroup").IamGroup;
+export const IamGroup: typeof import("./iamGroup").IamGroup = null as any;
+utilities.lazyLoad(exports, ["IamGroup"], () => require("./iamGroup"));
+
+export { IamPolicyArgs, IamPolicyState } from "./iamPolicy";
+export type IamPolicy = import("./iamPolicy").IamPolicy;
+export const IamPolicy: typeof import("./iamPolicy").IamPolicy = null as any;
+utilities.lazyLoad(exports, ["IamPolicy"], () => require("./iamPolicy"));
+
+export { IamSshKeyArgs, IamSshKeyState } from "./iamSshKey";
+export type IamSshKey = import("./iamSshKey").IamSshKey;
+export const IamSshKey: typeof import("./iamSshKey").IamSshKey = null as any;
+utilities.lazyLoad(exports, ["IamSshKey"], () => require("./iamSshKey"));
 
 export { InstanceImageArgs, InstanceImageState } from "./instanceImage";
 export type InstanceImage = import("./instanceImage").InstanceImage;
@@ -554,6 +609,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "scaleway:index/accountProject:AccountProject":
+                return new AccountProject(name, <any>undefined, { urn })
             case "scaleway:index/accountSshKey:AccountSshKey":
                 return new AccountSshKey(name, <any>undefined, { urn })
             case "scaleway:index/appleSliconValleyServer:AppleSliconValleyServer":
@@ -600,6 +657,16 @@ const _module = {
                 return new FunctionNamespace(name, <any>undefined, { urn })
             case "scaleway:index/functionToken:FunctionToken":
                 return new FunctionToken(name, <any>undefined, { urn })
+            case "scaleway:index/iamApiKey:IamApiKey":
+                return new IamApiKey(name, <any>undefined, { urn })
+            case "scaleway:index/iamApplication:IamApplication":
+                return new IamApplication(name, <any>undefined, { urn })
+            case "scaleway:index/iamGroup:IamGroup":
+                return new IamGroup(name, <any>undefined, { urn })
+            case "scaleway:index/iamPolicy:IamPolicy":
+                return new IamPolicy(name, <any>undefined, { urn })
+            case "scaleway:index/iamSshKey:IamSshKey":
+                return new IamSshKey(name, <any>undefined, { urn })
             case "scaleway:index/instanceImage:InstanceImage":
                 return new InstanceImage(name, <any>undefined, { urn })
             case "scaleway:index/instanceIp:InstanceIp":
@@ -683,6 +750,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
@@ -706,6 +774,11 @@ pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionToken", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamApiKey", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamApplication", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamPolicy", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
