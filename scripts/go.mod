@@ -2,4 +2,4 @@ module github.com/lbrlabs/pulumi-scaleway/scripts/
 
 go 1.18
 
-require github.com/pulumi/pulumi/sdk/v2 v2.0.0
+require github.com/pulumi/pulumi/sdk/v3 v3.50.2
