@@ -4,7 +4,7 @@ meta_desc: Provides an overview of the Scaleway Provider for Pulumi.
 layout: overview
 ---
 
-The Scaleway provider for Pulumi can be used to provision any of the cloud resources available in [Pulumi](https://www.scaleway.com/).
+The [Scaleway](https://www.scaleway.com/) provider for Pulumi can be used to provision any of the cloud resources available in Pulumi.
 The Scaleway provider must be configured with credentials to deploy and update resources in Scaleway.
 
 ## Example
