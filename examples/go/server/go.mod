@@ -1,6 +1,6 @@
 module github.com/lbrlabs/pulumi-scaleway/examples/go/server
 
-go 1.18
+go 1.19
 
 require (
 	github.com/pulumi/pulumi/sdk/v3 v3.17.0
