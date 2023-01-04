@@ -64,10 +64,10 @@ $ export SCW_SECRET_KEY=<SCW_SECRET_KEY>
 
 Use `pulumi config set scaleway:<option>` or pass options to the [constructor of `new scaleway.Provider`]({{< relref "/registry/packages/scaleway/api-docs/provider" >}}).
 
-| Option | Required/Optional | Description |
-|-----|------|----|
-| `access_key`| Required [Scaleway access key](https://console.scaleway.com/project/credentials) |
-| `secret_key`| Required | [Scaleway secret key](https://console.scaleway.com/project/credentials) |
-| `project_id` | Required | The [project ID](https://console.scaleway.com/project/settings) that will be used as default value for all resources. |
-| `region` | Optional | The [project ID](https://console.scaleway.com/project/settings) The [region](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#regions) that will be used as default value for all resources. (fr-par if none specified) |
-| `zone` | Optional | The [project ID](https://console.scaleway.com/project/settings) The [zone](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#zones) that will be used as default value for all resources. (fr-par-1 if none specified)
+| Option | Environment Variables | Required/Optional | Description |
+|-----|------|------|----|
+| `access_key`| `SCW_ACCESS_KEY` | Required | [Scaleway access key](https://console.scaleway.com/project/credentials) |
+| `secret_key`| `SCW_SECRET_KEY` | Required | [Scaleway secret key](https://console.scaleway.com/project/credentials) |
+| `project_id` | `SCW_DEFAULT_PROJECT_ID` | Required | The [project ID](https://console.scaleway.com/project/settings) that will be used as default value for all resources. |
+| `region` | `SCW_DEFAULT_REGION` | Optional | The [region](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#regions) that will be used as default value for all resources. (`fr-par` if none specified) |
+| `zone` | `SCW_DEFAULT_ZONE` | Optional | The [zone](https://registry.terraform.io/providers/scaleway/scaleway/latest/guides/regions_and_zones#zones) that will be used as default value for all resources. (`fr-par-1` if none specified)
