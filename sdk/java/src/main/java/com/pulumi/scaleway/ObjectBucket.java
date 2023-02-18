@@ -47,8 +47,36 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var someBucket = new ObjectBucket(&#34;someBucket&#34;, ObjectBucketArgs.builder()        
- *             .acl(&#34;private&#34;)
  *             .tags(Map.of(&#34;key&#34;, &#34;value&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Creating the bucket in a specific project
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ObjectBucket;
+ * import com.pulumi.scaleway.ObjectBucketArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var someBucket = new ObjectBucket(&#34;someBucket&#34;, ObjectBucketArgs.builder()        
+ *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
  *             .build());
  * 
  *     }
@@ -79,7 +107,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var main = new ObjectBucket(&#34;main&#34;, ObjectBucketArgs.builder()        
- *             .acl(&#34;private&#34;)
  *             .lifecycleRules(            
  *                 ObjectBucketLifecycleRuleArgs.builder()
  *                     .enabled(true)
@@ -132,50 +159,6 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ## The ACL
- * 
- * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
- * 
- * The `CORS` object supports the following:
- * 
- * * `allowed_headers` (Optional) Specifies which headers are allowed.
- * * `allowed_methods` (Required) Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
- * * `allowed_origins` (Required) Specifies which origins are allowed.
- * * `expose_headers` (Optional) Specifies expose header in the response.
- * * `max_age_seconds` (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
- * 
- * The `lifecycle_rule` (Optional) object supports the following:
- * 
- * * `id` - (Optional) Unique identifier for the rule. Must be less than or equal to 255 characters in length.
- * * `prefix` - (Optional) Object key prefix identifying one or more objects to which the rule applies.
- * * `tags` - (Optional) Specifies object tags key and value.
- * * `enabled` - (Required) The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
- * 
- * * `abort_incomplete_multipart_upload_days` (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
- *   
- *     * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
- * 
- * * `expiration` - (Optional) Specifies a period in the object&#39;s expire (documented below).
- * * `transition` - (Optional) Specifies a period in the object&#39;s transitions (documented below).
- * 
- * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
- * 
- * The `expiration` object supports the following
- * 
- * * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
- * 
- * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
- * 
- * The `transition` object supports the following
- * 
- * * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
- * * `storage_class` (Required) Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
- * 
- * &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
- * 
- * The `versioning` object supports the following:
- * 
- * * `enabled` - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
  * 
  * ## Import
  * 
@@ -189,18 +172,18 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/objectBucket:ObjectBucket")
 public class ObjectBucket extends com.pulumi.resources.CustomResource {
     /**
-     * The canned ACL you want to apply to the bucket.
+     * (Deprecated) The canned ACL you want to apply to the bucket.
      * 
      * @deprecated
-     * ACL is deprecated. Please use resource_bucket_acl instead.
+     * ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      * 
      */
-    @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
+    @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
     @Export(name="acl", type=String.class, parameters={})
     private Output</* @Nullable */ String> acl;
 
     /**
-     * @return The canned ACL you want to apply to the bucket.
+     * @return (Deprecated) The canned ACL you want to apply to the bucket.
      * 
      */
     public Output<Optional<String>> acl() {
@@ -289,6 +272,20 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> objectLockEnabled() {
         return Codegen.optional(this.objectLockEnabled);
+    }
+    /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Export(name="projectId", type=String.class, parameters={})
+    private Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
     }
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

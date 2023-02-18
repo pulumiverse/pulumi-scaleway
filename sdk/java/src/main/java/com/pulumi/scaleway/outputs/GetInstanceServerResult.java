@@ -98,10 +98,6 @@ public final class GetInstanceServerResult {
      * 
      */
     private String publicIp;
-    /**
-     * @return Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
-     * 
-     */
     private List<GetInstanceServerRootVolume> rootVolumes;
     /**
      * @return The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -254,10 +250,6 @@ public final class GetInstanceServerResult {
     public String publicIp() {
         return this.publicIp;
     }
-    /**
-     * @return Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
-     * 
-     */
     public List<GetInstanceServerRootVolume> rootVolumes() {
         return this.rootVolumes;
     }

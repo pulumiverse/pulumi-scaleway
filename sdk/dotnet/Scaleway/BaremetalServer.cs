@@ -132,6 +132,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
+        /// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        /// </summary>
+        [Output("privateNetworks")]
+        public Output<ImmutableArray<Outputs.BaremetalServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
+
+        /// <summary>
         /// `project_id`) The ID of the project the server is associated with.
         /// </summary>
         [Output("projectId")]
@@ -292,6 +298,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
                 var emptySecret = Output.CreateSecret(0);
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
+        }
+
+        [Input("privateNetworks")]
+        private InputList<Inputs.BaremetalServerPrivateNetworkArgs>? _privateNetworks;
+
+        /// <summary>
+        /// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        /// </summary>
+        public InputList<Inputs.BaremetalServerPrivateNetworkArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.BaremetalServerPrivateNetworkArgs>());
+            set => _privateNetworks = value;
         }
 
         /// <summary>
@@ -469,6 +487,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
                 var emptySecret = Output.CreateSecret(0);
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
+        }
+
+        [Input("privateNetworks")]
+        private InputList<Inputs.BaremetalServerPrivateNetworkGetArgs>? _privateNetworks;
+
+        /// <summary>
+        /// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        /// </summary>
+        public InputList<Inputs.BaremetalServerPrivateNetworkGetArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.BaremetalServerPrivateNetworkGetArgs>());
+            set => _privateNetworks = value;
         }
 
         /// <summary>

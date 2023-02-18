@@ -79,6 +79,10 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      */
     public readonly certificateIds!: pulumi.Output<string[] | undefined>;
     /**
+     * Activates HTTP/3 protocol.
+     */
+    public readonly enableHttp3!: pulumi.Output<boolean | undefined>;
+    /**
      * TCP port to listen on the front side.
      */
     public readonly inboundPort!: pulumi.Output<number>;
@@ -112,6 +116,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
             resourceInputs["backendId"] = state ? state.backendId : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["certificateIds"] = state ? state.certificateIds : undefined;
+            resourceInputs["enableHttp3"] = state ? state.enableHttp3 : undefined;
             resourceInputs["inboundPort"] = state ? state.inboundPort : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -130,6 +135,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
             resourceInputs["acls"] = args ? args.acls : undefined;
             resourceInputs["backendId"] = args ? args.backendId : undefined;
             resourceInputs["certificateIds"] = args ? args.certificateIds : undefined;
+            resourceInputs["enableHttp3"] = args ? args.enableHttp3 : undefined;
             resourceInputs["inboundPort"] = args ? args.inboundPort : undefined;
             resourceInputs["lbId"] = args ? args.lbId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -164,6 +170,10 @@ export interface LoadbalancerFrontendState {
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Activates HTTP/3 protocol.
+     */
+    enableHttp3?: pulumi.Input<boolean>;
+    /**
      * TCP port to listen on the front side.
      */
     inboundPort?: pulumi.Input<number>;
@@ -197,6 +207,10 @@ export interface LoadbalancerFrontendArgs {
      * List of Certificate IDs that should be used by the frontend.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Activates HTTP/3 protocol.
+     */
+    enableHttp3?: pulumi.Input<boolean>;
     /**
      * TCP port to listen on the front side.
      */

@@ -8221,6 +8221,36 @@ public final class ScalewayFunctions {
      *     }
      * }
      * ```
+     * ### Fetching the bucket from a specific project
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+     *             .name(&#34;bucket.test.com&#34;)
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetObjectBucketResult> getObjectBucket() {
@@ -8260,6 +8290,36 @@ public final class ScalewayFunctions {
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
      *             .name(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Fetching the bucket from a specific project
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+     *             .name(&#34;bucket.test.com&#34;)
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -8309,6 +8369,36 @@ public final class ScalewayFunctions {
      *     }
      * }
      * ```
+     * ### Fetching the bucket from a specific project
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+     *             .name(&#34;bucket.test.com&#34;)
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetObjectBucketResult> getObjectBucket(GetObjectBucketArgs args) {
@@ -8348,6 +8438,36 @@ public final class ScalewayFunctions {
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
      *             .name(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Fetching the bucket from a specific project
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+     *             .name(&#34;bucket.test.com&#34;)
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -8397,6 +8517,36 @@ public final class ScalewayFunctions {
      *     }
      * }
      * ```
+     * ### Fetching the bucket from a specific project
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+     *             .name(&#34;bucket.test.com&#34;)
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetObjectBucketResult> getObjectBucket(GetObjectBucketArgs args, InvokeOptions options) {
@@ -8436,6 +8586,36 @@ public final class ScalewayFunctions {
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
      *             .name(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Fetching the bucket from a specific project
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+     *             .name(&#34;bucket.test.com&#34;)
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }

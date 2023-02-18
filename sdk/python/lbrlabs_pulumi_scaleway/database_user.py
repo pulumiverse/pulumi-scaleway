@@ -202,22 +202,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         ## Examples
 
-        ### Basic
-
-        ```python
-        import pulumi
-        import lbrlabs_pulumi_scaleway as scaleway
-        import pulumi_random as random
-
-        db_password = random.RandomPassword("dbPassword",
-            length=16,
-            special=True)
-        db_admin = scaleway.DatabaseUser("dbAdmin",
-            instance_id=scaleway_rdb_instance["main"]["id"],
-            password=db_password.result,
-            is_admin=True)
-        ```
-
         ## Import
 
         Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
@@ -245,22 +229,6 @@ class DatabaseUser(pulumi.CustomResource):
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
         ## Examples
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import lbrlabs_pulumi_scaleway as scaleway
-        import pulumi_random as random
-
-        db_password = random.RandomPassword("dbPassword",
-            length=16,
-            special=True)
-        db_admin = scaleway.DatabaseUser("dbAdmin",
-            instance_id=scaleway_rdb_instance["main"]["id"],
-            password=db_password.result,
-            is_admin=True)
-        ```
 
         ## Import
 

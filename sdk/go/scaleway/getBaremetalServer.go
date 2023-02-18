@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupBaremetalServer(ctx, &scaleway.LookupBaremetalServerArgs{
+//			_, err := scaleway.LookupBaremetalServer(ctx, &scaleway.LookupBaremetalServerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //				Zone: pulumi.StringRef("fr-par-2"),
 //			}, nil)
@@ -70,25 +70,26 @@ type LookupBaremetalServerResult struct {
 	Domain      string `pulumi:"domain"`
 	Hostname    string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                       string                     `pulumi:"id"`
-	Ips                      []GetBaremetalServerIp     `pulumi:"ips"`
-	Name                     *string                    `pulumi:"name"`
-	Offer                    string                     `pulumi:"offer"`
-	OfferId                  string                     `pulumi:"offerId"`
-	Options                  []GetBaremetalServerOption `pulumi:"options"`
-	OrganizationId           string                     `pulumi:"organizationId"`
-	Os                       string                     `pulumi:"os"`
-	OsId                     string                     `pulumi:"osId"`
-	Password                 string                     `pulumi:"password"`
-	ProjectId                string                     `pulumi:"projectId"`
-	ReinstallOnConfigChanges bool                       `pulumi:"reinstallOnConfigChanges"`
-	ServerId                 *string                    `pulumi:"serverId"`
-	ServicePassword          string                     `pulumi:"servicePassword"`
-	ServiceUser              string                     `pulumi:"serviceUser"`
-	SshKeyIds                []string                   `pulumi:"sshKeyIds"`
-	Tags                     []string                   `pulumi:"tags"`
-	User                     string                     `pulumi:"user"`
-	Zone                     *string                    `pulumi:"zone"`
+	Id                       string                             `pulumi:"id"`
+	Ips                      []GetBaremetalServerIp             `pulumi:"ips"`
+	Name                     *string                            `pulumi:"name"`
+	Offer                    string                             `pulumi:"offer"`
+	OfferId                  string                             `pulumi:"offerId"`
+	Options                  []GetBaremetalServerOption         `pulumi:"options"`
+	OrganizationId           string                             `pulumi:"organizationId"`
+	Os                       string                             `pulumi:"os"`
+	OsId                     string                             `pulumi:"osId"`
+	Password                 string                             `pulumi:"password"`
+	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
+	ProjectId                string                             `pulumi:"projectId"`
+	ReinstallOnConfigChanges bool                               `pulumi:"reinstallOnConfigChanges"`
+	ServerId                 *string                            `pulumi:"serverId"`
+	ServicePassword          string                             `pulumi:"servicePassword"`
+	ServiceUser              string                             `pulumi:"serviceUser"`
+	SshKeyIds                []string                           `pulumi:"sshKeyIds"`
+	Tags                     []string                           `pulumi:"tags"`
+	User                     string                             `pulumi:"user"`
+	Zone                     *string                            `pulumi:"zone"`
 }
 
 func LookupBaremetalServerOutput(ctx *pulumi.Context, args LookupBaremetalServerOutputArgs, opts ...pulumi.InvokeOption) LookupBaremetalServerResultOutput {
@@ -183,6 +184,10 @@ func (o LookupBaremetalServerResultOutput) OsId() pulumi.StringOutput {
 
 func (o LookupBaremetalServerResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) PrivateNetworks() GetBaremetalServerPrivateNetworkArrayOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerPrivateNetwork { return v.PrivateNetworks }).(GetBaremetalServerPrivateNetworkArrayOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) ProjectId() pulumi.StringOutput {

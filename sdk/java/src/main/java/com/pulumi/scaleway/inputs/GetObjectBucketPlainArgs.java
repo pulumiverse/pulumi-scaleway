@@ -30,6 +30,21 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable String projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Optional<String> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * `region`) The region in which the Object Storage exists.
      * 
      */
@@ -48,6 +63,7 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
 
     private GetObjectBucketPlainArgs(GetObjectBucketPlainArgs $) {
         this.name = $.name;
+        this.projectId = $.projectId;
         this.region = $.region;
     }
 
@@ -77,6 +93,17 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
          */
         public Builder name(@Nullable String name) {
             $.name = name;
+            return this;
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable String projectId) {
+            $.projectId = projectId;
             return this;
         }
 

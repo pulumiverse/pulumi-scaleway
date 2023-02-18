@@ -81,7 +81,7 @@ func NewFunctionNamespace(ctx *pulumi.Context,
 	}
 
 	if args.SecretEnvironmentVariables != nil {
-		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"secretEnvironmentVariables",

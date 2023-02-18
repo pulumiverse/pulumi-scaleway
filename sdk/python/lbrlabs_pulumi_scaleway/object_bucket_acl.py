@@ -20,6 +20,7 @@ class ObjectBucketAclArgs:
                  access_control_policy: Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyArgs']] = None,
                  acl: Optional[pulumi.Input[str]] = None,
                  expected_bucket_owner: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectBucketAcl resource.
@@ -27,6 +28,7 @@ class ObjectBucketAclArgs:
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -36,6 +38,8 @@ class ObjectBucketAclArgs:
             pulumi.set(__self__, "acl", acl)
         if expected_bucket_owner is not None:
             pulumi.set(__self__, "expected_bucket_owner", expected_bucket_owner)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -88,6 +92,18 @@ class ObjectBucketAclArgs:
         pulumi.set(self, "expected_bucket_owner", value)
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -107,6 +123,7 @@ class _ObjectBucketAclState:
                  acl: Optional[pulumi.Input[str]] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  expected_bucket_owner: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ObjectBucketAcl resources.
@@ -114,6 +131,7 @@ class _ObjectBucketAclState:
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         if access_control_policy is not None:
@@ -124,6 +142,8 @@ class _ObjectBucketAclState:
             pulumi.set(__self__, "bucket", bucket)
         if expected_bucket_owner is not None:
             pulumi.set(__self__, "expected_bucket_owner", expected_bucket_owner)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -176,6 +196,18 @@ class _ObjectBucketAclState:
         pulumi.set(self, "expected_bucket_owner", value)
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -197,6 +229,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
                  acl: Optional[pulumi.Input[str]] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  expected_bucket_owner: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -299,6 +332,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         ...
@@ -420,6 +454,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
                  acl: Optional[pulumi.Input[str]] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  expected_bucket_owner: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -436,6 +471,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
                 raise TypeError("Missing required property 'bucket'")
             __props__.__dict__["bucket"] = bucket
             __props__.__dict__["expected_bucket_owner"] = expected_bucket_owner
+            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
         super(ObjectBucketAcl, __self__).__init__(
             'scaleway:index/objectBucketAcl:ObjectBucketAcl',
@@ -451,6 +487,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
             acl: Optional[pulumi.Input[str]] = None,
             bucket: Optional[pulumi.Input[str]] = None,
             expected_bucket_owner: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'ObjectBucketAcl':
         """
         Get an existing ObjectBucketAcl resource's state with the given name, id, and optional extra
@@ -463,6 +500,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -473,6 +511,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         __props__.__dict__["acl"] = acl
         __props__.__dict__["bucket"] = bucket
         __props__.__dict__["expected_bucket_owner"] = expected_bucket_owner
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         return ObjectBucketAcl(resource_name, opts=opts, __props__=__props__)
 
@@ -507,6 +546,14 @@ class ObjectBucketAcl(pulumi.CustomResource):
         The project ID of the expected bucket owner.
         """
         return pulumi.get(self, "expected_bucket_owner")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[str]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter

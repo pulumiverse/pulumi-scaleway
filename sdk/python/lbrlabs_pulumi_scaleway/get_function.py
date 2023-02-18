@@ -21,7 +21,7 @@ class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, project_id=None, region=None, runtime=None, secret_environment_variables=None, timeout=None, zip_file=None, zip_hash=None):
+    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, http_option=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, project_id=None, region=None, runtime=None, secret_environment_variables=None, timeout=None, zip_file=None, zip_hash=None):
         if cpu_limit and not isinstance(cpu_limit, int):
             raise TypeError("Expected argument 'cpu_limit' to be a int")
         pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -43,6 +43,9 @@ class GetFunctionResult:
         if handler and not isinstance(handler, str):
             raise TypeError("Expected argument 'handler' to be a str")
         pulumi.set(__self__, "handler", handler)
+        if http_option and not isinstance(http_option, str):
+            raise TypeError("Expected argument 'http_option' to be a str")
+        pulumi.set(__self__, "http_option", http_option)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -123,6 +126,11 @@ class GetFunctionResult:
     @pulumi.getter
     def handler(self) -> str:
         return pulumi.get(self, "handler")
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> str:
+        return pulumi.get(self, "http_option")
 
     @property
     @pulumi.getter
@@ -216,6 +224,7 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             environment_variables=self.environment_variables,
             function_id=self.function_id,
             handler=self.handler,
+            http_option=self.http_option,
             id=self.id,
             max_scale=self.max_scale,
             memory_limit=self.memory_limit,
@@ -255,6 +264,7 @@ def get_function(function_id: Optional[str] = None,
         environment_variables=__ret__.environment_variables,
         function_id=__ret__.function_id,
         handler=__ret__.handler,
+        http_option=__ret__.http_option,
         id=__ret__.id,
         max_scale=__ret__.max_scale,
         memory_limit=__ret__.memory_limit,

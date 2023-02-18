@@ -40,7 +40,7 @@ import (
 //				Offer: pulumi.String("GP-BM1-S"),
 //				Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(main.Id),
+//					*pulumi.String(main.Id),
 //				},
 //			})
 //			if err != nil {
@@ -92,6 +92,8 @@ type BaremetalServer struct {
 	OsId pulumi.StringOutput `pulumi:"osId"`
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+	PrivateNetworks BaremetalServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// If True, this boolean allows to reinstall the server on install config changes.
@@ -128,10 +130,10 @@ func NewBaremetalServer(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'SshKeyIds'")
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrOutput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
 	if args.ServicePassword != nil {
-		args.ServicePassword = pulumi.ToSecret(args.ServicePassword).(pulumi.StringPtrOutput)
+		args.ServicePassword = pulumi.ToSecret(args.ServicePassword).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
@@ -189,6 +191,8 @@ type baremetalServerState struct {
 	OsId *string `pulumi:"osId"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
+	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+	PrivateNetworks []BaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// If True, this boolean allows to reinstall the server on install config changes.
@@ -237,6 +241,8 @@ type BaremetalServerState struct {
 	OsId pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
+	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+	PrivateNetworks BaremetalServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
 	// If True, this boolean allows to reinstall the server on install config changes.
@@ -279,6 +285,8 @@ type baremetalServerArgs struct {
 	Os string `pulumi:"os"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
+	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+	PrivateNetworks []BaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// If True, this boolean allows to reinstall the server on install config changes.
@@ -318,6 +326,8 @@ type BaremetalServerArgs struct {
 	Os pulumi.StringInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
+	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+	PrivateNetworks BaremetalServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
 	// If True, this boolean allows to reinstall the server on install config changes.
@@ -486,6 +496,11 @@ func (o BaremetalServerOutput) OsId() pulumi.StringOutput {
 // Password used for the installation. May be required depending on used os.
 func (o BaremetalServerOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+func (o BaremetalServerOutput) PrivateNetworks() BaremetalServerPrivateNetworkArrayOutput {
+	return o.ApplyT(func(v *BaremetalServer) BaremetalServerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(BaremetalServerPrivateNetworkArrayOutput)
 }
 
 // `projectId`) The ID of the project the server is associated with.

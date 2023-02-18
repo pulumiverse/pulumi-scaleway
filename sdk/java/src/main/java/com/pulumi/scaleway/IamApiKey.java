@@ -67,7 +67,6 @@ import javax.annotation.Nullable;
 public class IamApiKey extends com.pulumi.resources.CustomResource {
     /**
      * The access key of the iam api key.
-     * - `secret_key`: The secret Key of the iam api key.
      * 
      */
     @Export(name="accessKey", type=String.class, parameters={})
@@ -75,21 +74,22 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The access key of the iam api key.
-     * - `secret_key`: The secret Key of the iam api key.
      * 
      */
     public Output<String> accessKey() {
         return this.accessKey;
     }
     /**
-     * ID of the application attached to the api key
+     * ID of the application attached to the api key.
+     * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
     @Export(name="applicationId", type=String.class, parameters={})
     private Output</* @Nullable */ String> applicationId;
 
     /**
-     * @return ID of the application attached to the api key
+     * @return ID of the application attached to the api key.
+     * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
     public Output<Optional<String>> applicationId() {
@@ -138,14 +138,14 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
         return this.defaultProjectId;
     }
     /**
-     * The description of the iam api key
+     * The description of the iam api key.
      * 
      */
     @Export(name="description", type=String.class, parameters={})
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return The description of the iam api key
+     * @return The description of the iam api key.
      * 
      */
     public Output<Optional<String>> description() {
@@ -182,14 +182,14 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.expiresAt);
     }
     /**
-     * The secret Key of the iam api key
+     * The secret Key of the iam api key.
      * 
      */
     @Export(name="secretKey", type=String.class, parameters={})
     private Output<String> secretKey;
 
     /**
-     * @return The secret Key of the iam api key
+     * @return The secret Key of the iam api key.
      * 
      */
     public Output<String> secretKey() {

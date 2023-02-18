@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -48,18 +47,18 @@ public final class LoadbalancerPrivateNetworkArgs extends com.pulumi.resources.R
     }
 
     /**
-     * (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+     * (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      * 
      */
-    @Import(name="staticConfigs")
-    private @Nullable Output<List<String>> staticConfigs;
+    @Import(name="staticConfig")
+    private @Nullable Output<String> staticConfig;
 
     /**
-     * @return (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+     * @return (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      * 
      */
-    public Optional<Output<List<String>>> staticConfigs() {
-        return Optional.ofNullable(this.staticConfigs);
+    public Optional<Output<String>> staticConfig() {
+        return Optional.ofNullable(this.staticConfig);
     }
 
     @Import(name="status")
@@ -89,7 +88,7 @@ public final class LoadbalancerPrivateNetworkArgs extends com.pulumi.resources.R
     private LoadbalancerPrivateNetworkArgs(LoadbalancerPrivateNetworkArgs $) {
         this.dhcpConfig = $.dhcpConfig;
         this.privateNetworkId = $.privateNetworkId;
-        this.staticConfigs = $.staticConfigs;
+        this.staticConfig = $.staticConfig;
         this.status = $.status;
         this.zone = $.zone;
     }
@@ -155,34 +154,24 @@ public final class LoadbalancerPrivateNetworkArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param staticConfigs (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+         * @param staticConfig (Optional) Define a local ip address of your choice for the load balancer instance. See below.
          * 
          * @return builder
          * 
          */
-        public Builder staticConfigs(@Nullable Output<List<String>> staticConfigs) {
-            $.staticConfigs = staticConfigs;
+        public Builder staticConfig(@Nullable Output<String> staticConfig) {
+            $.staticConfig = staticConfig;
             return this;
         }
 
         /**
-         * @param staticConfigs (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+         * @param staticConfig (Optional) Define a local ip address of your choice for the load balancer instance. See below.
          * 
          * @return builder
          * 
          */
-        public Builder staticConfigs(List<String> staticConfigs) {
-            return staticConfigs(Output.of(staticConfigs));
-        }
-
-        /**
-         * @param staticConfigs (Optional) Define two local ip address of your choice for each load balancer instance. See below.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder staticConfigs(String... staticConfigs) {
-            return staticConfigs(List.of(staticConfigs));
+        public Builder staticConfig(String staticConfig) {
+            return staticConfig(Output.of(staticConfig));
         }
 
         public Builder status(@Nullable Output<String> status) {

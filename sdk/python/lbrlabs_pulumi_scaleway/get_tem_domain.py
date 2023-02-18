@@ -87,7 +87,7 @@ class GetTemDomainResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the Transaction Email Domain.
+        The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
 

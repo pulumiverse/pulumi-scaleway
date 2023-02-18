@@ -13,9 +13,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
     public sealed class ObjectBucketLifecycleRuleTransitionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// </summary>
         [Input("days")]
         public Input<int>? Days { get; set; }
 
+        /// <summary>
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        /// </summary>
         [Input("storageClass", required: true)]
         public Input<string> StorageClass { get; set; } = null!;
 

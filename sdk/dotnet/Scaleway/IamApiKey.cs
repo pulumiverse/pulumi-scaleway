@@ -47,13 +47,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The access key of the iam api key.
-        /// - `secret_key`: The secret Key of the iam api key.
         /// </summary>
         [Output("accessKey")]
         public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the application attached to the api key
+        /// ID of the application attached to the api key.
+        /// Only one of the `application_id` and `user_id` should be specified.
         /// </summary>
         [Output("applicationId")]
         public Output<string?> ApplicationId { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> DefaultProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The description of the iam api key
+        /// The description of the iam api key.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -96,7 +96,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// The secret Key of the iam api key
+        /// The secret Key of the iam api key.
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
@@ -166,7 +166,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class IamApiKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the application attached to the api key
+        /// ID of the application attached to the api key.
+        /// Only one of the `application_id` and `user_id` should be specified.
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
@@ -178,7 +179,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? DefaultProjectId { get; set; }
 
         /// <summary>
-        /// The description of the iam api key
+        /// The description of the iam api key.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -207,13 +208,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The access key of the iam api key.
-        /// - `secret_key`: The secret Key of the iam api key.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
         /// <summary>
-        /// ID of the application attached to the api key
+        /// ID of the application attached to the api key.
+        /// Only one of the `application_id` and `user_id` should be specified.
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
@@ -237,7 +238,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? DefaultProjectId { get; set; }
 
         /// <summary>
-        /// The description of the iam api key
+        /// The description of the iam api key.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -259,7 +260,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The secret Key of the iam api key
+        /// The secret Key of the iam api key.
         /// </summary>
         public Input<string>? SecretKey
         {

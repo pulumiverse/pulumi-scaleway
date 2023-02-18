@@ -191,6 +191,21 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     * 
+     */
+    @Import(name="ignoreSslServerVerify")
+    private @Nullable Output<Boolean> ignoreSslServerVerify;
+
+    /**
+     * @return Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     * 
+     */
+    public Optional<Output<Boolean>> ignoreSslServerVerify() {
+        return Optional.ofNullable(this.ignoreSslServerVerify);
+    }
+
+    /**
      * The load-balancer ID this backend is attached to.
      * &gt; **Important:** Updates to `lb_id` will recreate the backend.
      * 
@@ -291,6 +306,21 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Enables SSL between load balancer and backend servers.
+     * 
+     */
+    @Import(name="sslBridging")
+    private @Nullable Output<Boolean> sslBridging;
+
+    /**
+     * @return Enables SSL between load balancer and backend servers.
+     * 
+     */
+    public Optional<Output<Boolean>> sslBridging() {
+        return Optional.ofNullable(this.sslBridging);
+    }
+
+    /**
      * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
      * 
      */
@@ -379,12 +409,14 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
         this.healthCheckPort = $.healthCheckPort;
         this.healthCheckTcp = $.healthCheckTcp;
         this.healthCheckTimeout = $.healthCheckTimeout;
+        this.ignoreSslServerVerify = $.ignoreSslServerVerify;
         this.lbId = $.lbId;
         this.name = $.name;
         this.onMarkedDownAction = $.onMarkedDownAction;
         this.proxyProtocol = $.proxyProtocol;
         this.sendProxyV2 = $.sendProxyV2;
         this.serverIps = $.serverIps;
+        this.sslBridging = $.sslBridging;
         this.stickySessions = $.stickySessions;
         this.stickySessionsCookieName = $.stickySessionsCookieName;
         this.timeoutConnect = $.timeoutConnect;
@@ -646,6 +678,27 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param ignoreSslServerVerify Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ignoreSslServerVerify(@Nullable Output<Boolean> ignoreSslServerVerify) {
+            $.ignoreSslServerVerify = ignoreSslServerVerify;
+            return this;
+        }
+
+        /**
+         * @param ignoreSslServerVerify Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ignoreSslServerVerify(Boolean ignoreSslServerVerify) {
+            return ignoreSslServerVerify(Output.of(ignoreSslServerVerify));
+        }
+
+        /**
          * @param lbId The load-balancer ID this backend is attached to.
          * &gt; **Important:** Updates to `lb_id` will recreate the backend.
          * 
@@ -789,6 +842,27 @@ public final class LoadbalancerBackendArgs extends com.pulumi.resources.Resource
          */
         public Builder serverIps(String... serverIps) {
             return serverIps(List.of(serverIps));
+        }
+
+        /**
+         * @param sslBridging Enables SSL between load balancer and backend servers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslBridging(@Nullable Output<Boolean> sslBridging) {
+            $.sslBridging = sslBridging;
+            return this;
+        }
+
+        /**
+         * @param sslBridging Enables SSL between load balancer and backend servers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslBridging(Boolean sslBridging) {
+            return sslBridging(Output.of(sslBridging));
         }
 
         /**

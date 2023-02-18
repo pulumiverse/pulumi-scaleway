@@ -13,9 +13,17 @@ public final class ObjectBucketLifecycleRuleExpirationArgs extends com.pulumi.re
 
     public static final ObjectBucketLifecycleRuleExpirationArgs Empty = new ObjectBucketLifecycleRuleExpirationArgs();
 
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     */
     @Import(name="days", required=true)
     private Output<Integer> days;
 
+    /**
+     * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     */
     public Output<Integer> days() {
         return this.days;
     }
@@ -44,11 +52,23 @@ public final class ObjectBucketLifecycleRuleExpirationArgs extends com.pulumi.re
             $ = new ObjectBucketLifecycleRuleExpirationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param days Specifies the number of days after object creation when the specific rule action takes effect.
+         * 
+         * @return builder
+         * 
+         */
         public Builder days(Output<Integer> days) {
             $.days = days;
             return this;
         }
 
+        /**
+         * @param days Specifies the number of days after object creation when the specific rule action takes effect.
+         * 
+         * @return builder
+         * 
+         */
         public Builder days(Integer days) {
             return days(Output.of(days));
         }

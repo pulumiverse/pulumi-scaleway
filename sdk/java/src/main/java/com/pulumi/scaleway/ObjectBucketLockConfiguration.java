@@ -31,6 +31,34 @@ public class ObjectBucketLockConfiguration extends com.pulumi.resources.CustomRe
         return this.bucket;
     }
     /**
+     * The project_id you want to attach the resource to
+     * 
+     */
+    @Export(name="projectId", type=String.class, parameters={})
+    private Output<String> projectId;
+
+    /**
+     * @return The project_id you want to attach the resource to
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
+    }
+    /**
+     * The region you want to attach the resource to
+     * 
+     */
+    @Export(name="region", type=String.class, parameters={})
+    private Output<String> region;
+
+    /**
+     * @return The region you want to attach the resource to
+     * 
+     */
+    public Output<String> region() {
+        return this.region;
+    }
+    /**
      * Specifies the Object Lock rule for the specified object.
      * 
      */

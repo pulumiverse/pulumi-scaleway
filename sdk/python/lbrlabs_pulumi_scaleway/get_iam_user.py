@@ -93,8 +93,7 @@ def get_iam_user(email: Optional[str] = None,
 
     :param str email: The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
     :param str organization_id: `organization_id`) The ID of the
-           organization the user is associated with. For now, it is necessary to
-           explicitly provide the `organization_id` in the datasource.
+           organization the user is associated with.
     :param str user_id: The ID of the IAM user. Only one of the `email` and `user_id` should be specified.
     """
     __args__ = dict()
@@ -134,8 +133,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str email: The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
     :param str organization_id: `organization_id`) The ID of the
-           organization the user is associated with. For now, it is necessary to
-           explicitly provide the `organization_id` in the datasource.
+           organization the user is associated with.
     :param str user_id: The ID of the IAM user. Only one of the `email` and `user_id` should be specified.
     """
     ...

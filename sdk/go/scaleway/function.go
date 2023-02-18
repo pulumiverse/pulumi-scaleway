@@ -75,6 +75,8 @@ type Function struct {
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
 	Handler pulumi.StringOutput `pulumi:"handler"`
+	// HTTP traffic configuration
+	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
 	// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
 	MaxScale pulumi.IntPtrOutput `pulumi:"maxScale"`
 	// Memory limit in MB for your function, defaults to 128MB
@@ -125,7 +127,7 @@ func NewFunction(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Runtime'")
 	}
 	if args.SecretEnvironmentVariables != nil {
-		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"secretEnvironmentVariables",
@@ -166,6 +168,8 @@ type functionState struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
 	Handler *string `pulumi:"handler"`
+	// HTTP traffic configuration
+	HttpOption *string `pulumi:"httpOption"`
 	// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
 	MaxScale *int `pulumi:"maxScale"`
 	// Memory limit in MB for your function, defaults to 128MB
@@ -209,6 +213,8 @@ type FunctionState struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
 	Handler pulumi.StringPtrInput
+	// HTTP traffic configuration
+	HttpOption pulumi.StringPtrInput
 	// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
 	MaxScale pulumi.IntPtrInput
 	// Memory limit in MB for your function, defaults to 128MB
@@ -252,6 +258,8 @@ type functionArgs struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
 	Handler string `pulumi:"handler"`
+	// HTTP traffic configuration
+	HttpOption *string `pulumi:"httpOption"`
 	// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
 	MaxScale *int `pulumi:"maxScale"`
 	// Memory limit in MB for your function, defaults to 128MB
@@ -290,6 +298,8 @@ type FunctionArgs struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
 	Handler pulumi.StringInput
+	// HTTP traffic configuration
+	HttpOption pulumi.StringPtrInput
 	// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
 	MaxScale pulumi.IntPtrInput
 	// Memory limit in MB for your function, defaults to 128MB
@@ -433,6 +443,11 @@ func (o FunctionOutput) EnvironmentVariables() pulumi.StringMapOutput {
 // Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
 func (o FunctionOutput) Handler() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Handler }).(pulumi.StringOutput)
+}
+
+// HTTP traffic configuration
+func (o FunctionOutput) HttpOption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
 }
 
 // Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.

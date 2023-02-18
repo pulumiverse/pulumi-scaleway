@@ -178,51 +178,6 @@ import (
 //
 // ```
 //
-// ## Private Network with static config
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainLoadbalancerIp, err := scaleway.NewLoadbalancerIp(ctx, "mainLoadbalancerIp", nil)
-//			if err != nil {
-//				return err
-//			}
-//			mainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, "mainVpcPrivateNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "mainLoadbalancer", &scaleway.LoadbalancerArgs{
-//				IpId:      mainLoadbalancerIp.ID(),
-//				Type:      pulumi.String("LB-S"),
-//				ReleaseIp: pulumi.Bool(false),
-//				PrivateNetworks: scaleway.LoadbalancerPrivateNetworkArray{
-//					&scaleway.LoadbalancerPrivateNetworkArgs{
-//						PrivateNetworkId: mainVpcPrivateNetwork.ID(),
-//						StaticConfigs: pulumi.StringArray{
-//							pulumi.String("172.16.0.100"),
-//							pulumi.String("172.16.0.101"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash

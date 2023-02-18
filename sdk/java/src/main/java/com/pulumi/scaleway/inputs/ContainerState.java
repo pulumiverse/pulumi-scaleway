@@ -124,6 +124,21 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * HTTP traffic configuration
+     * 
+     */
+    @Import(name="httpOption")
+    private @Nullable Output<String> httpOption;
+
+    /**
+     * @return HTTP traffic configuration
+     * 
+     */
+    public Optional<Output<String>> httpOption() {
+        return Optional.ofNullable(this.httpOption);
+    }
+
+    /**
      * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
      * 
      */
@@ -358,6 +373,7 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         this.domainName = $.domainName;
         this.environmentVariables = $.environmentVariables;
         this.errorMessage = $.errorMessage;
+        this.httpOption = $.httpOption;
         this.maxConcurrency = $.maxConcurrency;
         this.maxScale = $.maxScale;
         this.memoryLimit = $.memoryLimit;
@@ -538,6 +554,27 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder errorMessage(String errorMessage) {
             return errorMessage(Output.of(errorMessage));
+        }
+
+        /**
+         * @param httpOption HTTP traffic configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpOption(@Nullable Output<String> httpOption) {
+            $.httpOption = httpOption;
+            return this;
+        }
+
+        /**
+         * @param httpOption HTTP traffic configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpOption(String httpOption) {
+            return httpOption(Output.of(httpOption));
         }
 
         /**

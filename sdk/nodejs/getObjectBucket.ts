@@ -24,6 +24,17 @@ import * as utilities from "./utilities";
  *     name: "bucket.test.com",
  * });
  * ```
+ * ### Fetching the bucket from a specific project
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const selected = scaleway.getObjectBucket({
+ *     name: "bucket.test.com",
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
  */
 export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketResult> {
     args = args || {};
@@ -31,6 +42,7 @@ export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.Invoke
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getObjectBucket:getObjectBucket", {
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -43,6 +55,10 @@ export interface GetObjectBucketArgs {
      * The bucket name.
      */
     name?: string;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the Object Storage exists.
      */
@@ -67,6 +83,7 @@ export interface GetObjectBucketResult {
     readonly lifecycleRules: outputs.GetObjectBucketLifecycleRule[];
     readonly name?: string;
     readonly objectLockEnabled: boolean;
+    readonly projectId?: string;
     readonly region?: string;
     readonly tags: {[key: string]: string};
     readonly versionings: outputs.GetObjectBucketVersioning[];
@@ -89,6 +106,17 @@ export interface GetObjectBucketResult {
  *     name: "bucket.test.com",
  * });
  * ```
+ * ### Fetching the bucket from a specific project
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const selected = scaleway.getObjectBucket({
+ *     name: "bucket.test.com",
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
  */
 export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketResult> {
     return pulumi.output(args).apply((a: any) => getObjectBucket(a, opts))
@@ -102,6 +130,10 @@ export interface GetObjectBucketOutputArgs {
      * The bucket name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the Object Storage exists.
      */

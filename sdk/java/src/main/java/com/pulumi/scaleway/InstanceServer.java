@@ -590,7 +590,6 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
     }
     /**
      * True when the placement group policy is respected.
-     * - `root_volume`
      * 
      */
     @Export(name="placementGroupPolicyRespected", type=Boolean.class, parameters={})
@@ -598,7 +597,6 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
 
     /**
      * @return True when the placement group policy is respected.
-     * - `root_volume`
      * 
      */
     public Output<Boolean> placementGroupPolicyRespected() {

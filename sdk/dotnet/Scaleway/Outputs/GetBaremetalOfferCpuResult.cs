@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class GetBaremetalOfferCpuResult
     {
+        /// <summary>
+        /// Number of core on this CPU.
+        /// </summary>
         public readonly int CoreCount;
         /// <summary>
         /// Frequency of the memory in MHz.
@@ -23,6 +26,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// The offer name. Only one of `name` and `offer_id` should be specified.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Number of thread on this CPU.
+        /// </summary>
         public readonly int ThreadCount;
 
         [OutputConstructor]

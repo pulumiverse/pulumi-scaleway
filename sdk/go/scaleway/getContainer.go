@@ -84,7 +84,8 @@ type LookupContainerResult struct {
 	// The cron status of the container.
 	CronStatus string `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is on a production environment.
-	Deploy      bool   `pulumi:"deploy"`
+	Deploy bool `pulumi:"deploy"`
+	// The description of the container.
 	Description string `pulumi:"description"`
 	// The container domain name.
 	DomainName string `pulumi:"domainName"`
@@ -92,6 +93,7 @@ type LookupContainerResult struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage string `pulumi:"errorMessage"`
+	HttpOption   string `pulumi:"httpOption"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
@@ -185,6 +187,7 @@ func (o LookupContainerResultOutput) Deploy() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupContainerResult) bool { return v.Deploy }).(pulumi.BoolOutput)
 }
 
+// The description of the container.
 func (o LookupContainerResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -202,6 +205,10 @@ func (o LookupContainerResultOutput) EnvironmentVariables() pulumi.StringMapOutp
 // The error message of the container.
 func (o LookupContainerResultOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+func (o LookupContainerResultOutput) HttpOption() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupContainerResult) string { return v.HttpOption }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

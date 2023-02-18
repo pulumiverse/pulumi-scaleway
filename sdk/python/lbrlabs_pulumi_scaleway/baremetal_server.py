@@ -24,6 +24,7 @@ class BaremetalServerArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
@@ -45,6 +46,7 @@ class BaremetalServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -67,6 +69,8 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "options", options)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_networks is not None:
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if reinstall_on_config_changes is not None:
@@ -183,6 +187,18 @@ class BaremetalServerArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]:
+        """
+        The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        """
+        return pulumi.get(self, "private_networks")
+
+    @private_networks.setter
+    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]):
+        pulumi.set(self, "private_networks", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -283,6 +299,7 @@ class _BaremetalServerState:
                  os: Optional[pulumi.Input[str]] = None,
                  os_id: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
@@ -309,6 +326,7 @@ class _BaremetalServerState:
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_id: The ID of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -343,6 +361,8 @@ class _BaremetalServerState:
             pulumi.set(__self__, "os_id", os_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_networks is not None:
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if reinstall_on_config_changes is not None:
@@ -509,6 +529,18 @@ class _BaremetalServerState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]:
+        """
+        The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        """
+        return pulumi.get(self, "private_networks")
+
+    @private_networks.setter
+    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]):
+        pulumi.set(self, "private_networks", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -618,6 +650,7 @@ class BaremetalServer(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
@@ -668,6 +701,7 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -734,6 +768,7 @@ class BaremetalServer(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
@@ -762,6 +797,7 @@ class BaremetalServer(pulumi.CustomResource):
                 raise TypeError("Missing required property 'os'")
             __props__.__dict__["os"] = os
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
             __props__.__dict__["service_password"] = None if service_password is None else pulumi.Output.secret(service_password)
@@ -801,6 +837,7 @@ class BaremetalServer(pulumi.CustomResource):
             os: Optional[pulumi.Input[str]] = None,
             os_id: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
             service_password: Optional[pulumi.Input[str]] = None,
@@ -832,6 +869,7 @@ class BaremetalServer(pulumi.CustomResource):
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_id: The ID of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -858,6 +896,7 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["os"] = os
         __props__.__dict__["os_id"] = os_id
         __props__.__dict__["password"] = password
+        __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
         __props__.__dict__["service_password"] = service_password
@@ -967,6 +1006,14 @@ class BaremetalServer(pulumi.CustomResource):
         Password used for the installation. May be required depending on used os.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.BaremetalServerPrivateNetwork']]]:
+        """
+        The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        """
+        return pulumi.get(self, "private_networks")
 
     @property
     @pulumi.getter(name="projectId")

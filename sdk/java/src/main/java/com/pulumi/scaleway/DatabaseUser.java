@@ -22,45 +22,6 @@ import javax.annotation.Nullable;
  * 
  * ## Examples
  * 
- * ### Basic
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.random.RandomPassword;
- * import com.pulumi.random.RandomPasswordArgs;
- * import com.pulumi.scaleway.DatabaseUser;
- * import com.pulumi.scaleway.DatabaseUserArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var dbPassword = new RandomPassword(&#34;dbPassword&#34;, RandomPasswordArgs.builder()        
- *             .length(16)
- *             .special(true)
- *             .build());
- * 
- *         var dbAdmin = new DatabaseUser(&#34;dbAdmin&#34;, DatabaseUserArgs.builder()        
- *             .instanceId(scaleway_rdb_instance.main().id())
- *             .password(dbPassword.result())
- *             .isAdmin(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash

@@ -36,6 +36,8 @@ type ObjectItem struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
@@ -92,6 +94,8 @@ type objectItemState struct {
 	Key *string `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata map[string]string `pulumi:"metadata"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
@@ -113,6 +117,8 @@ type ObjectItemState struct {
 	Key pulumi.StringPtrInput
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
@@ -138,6 +144,8 @@ type objectItemArgs struct {
 	Key string `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata map[string]string `pulumi:"metadata"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
@@ -160,6 +168,8 @@ type ObjectItemArgs struct {
 	Key pulumi.StringInput
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
@@ -280,6 +290,11 @@ func (o ObjectItemOutput) Key() pulumi.StringOutput {
 // Map of metadata used for the object, keys must be lowercase
 func (o ObjectItemOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// `projectId`) The ID of the project the bucket is associated with.
+func (o ObjectItemOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The Scaleway region this bucket resides in.

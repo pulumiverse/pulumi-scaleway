@@ -38,8 +38,10 @@ type KubernetesCluster struct {
 	Cni pulumi.StringOutput `pulumi:"cni"`
 	// The creation date of the cluster.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-	DeleteAdditionalResources pulumi.BoolPtrOutput `pulumi:"deleteAdditionalResources"`
+	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+	// If you prefer keeping it, you should instead set it as `false`.
+	DeleteAdditionalResources pulumi.BoolOutput `pulumi:"deleteAdditionalResources"`
 	// A description for the Kubernetes cluster.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
@@ -69,7 +71,6 @@ type KubernetesCluster struct {
 	// The version of the Kubernetes cluster.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// The DNS wildcard that points to all ready nodes.
-	// - `kubeconfig`
 	WildcardDns pulumi.StringOutput `pulumi:"wildcardDns"`
 }
 
@@ -82,6 +83,9 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 
 	if args.Cni == nil {
 		return nil, errors.New("invalid value for required argument 'Cni'")
+	}
+	if args.DeleteAdditionalResources == nil {
+		return nil, errors.New("invalid value for required argument 'DeleteAdditionalResources'")
 	}
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
@@ -124,7 +128,9 @@ type kubernetesClusterState struct {
 	Cni *string `pulumi:"cni"`
 	// The creation date of the cluster.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources *bool `pulumi:"deleteAdditionalResources"`
 	// A description for the Kubernetes cluster.
 	Description *string `pulumi:"description"`
@@ -155,7 +161,6 @@ type kubernetesClusterState struct {
 	// The version of the Kubernetes cluster.
 	Version *string `pulumi:"version"`
 	// The DNS wildcard that points to all ready nodes.
-	// - `kubeconfig`
 	WildcardDns *string `pulumi:"wildcardDns"`
 }
 
@@ -175,7 +180,9 @@ type KubernetesClusterState struct {
 	Cni pulumi.StringPtrInput
 	// The creation date of the cluster.
 	CreatedAt pulumi.StringPtrInput
-	// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolPtrInput
 	// A description for the Kubernetes cluster.
 	Description pulumi.StringPtrInput
@@ -206,7 +213,6 @@ type KubernetesClusterState struct {
 	// The version of the Kubernetes cluster.
 	Version pulumi.StringPtrInput
 	// The DNS wildcard that points to all ready nodes.
-	// - `kubeconfig`
 	WildcardDns pulumi.StringPtrInput
 }
 
@@ -226,8 +232,10 @@ type kubernetesClusterArgs struct {
 	// The Container Network Interface (CNI) for the Kubernetes cluster.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Cni string `pulumi:"cni"`
-	// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-	DeleteAdditionalResources *bool `pulumi:"deleteAdditionalResources"`
+	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+	// If you prefer keeping it, you should instead set it as `false`.
+	DeleteAdditionalResources bool `pulumi:"deleteAdditionalResources"`
 	// A description for the Kubernetes cluster.
 	Description *string `pulumi:"description"`
 	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
@@ -261,8 +269,10 @@ type KubernetesClusterArgs struct {
 	// The Container Network Interface (CNI) for the Kubernetes cluster.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Cni pulumi.StringInput
-	// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-	DeleteAdditionalResources pulumi.BoolPtrInput
+	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+	// If you prefer keeping it, you should instead set it as `false`.
+	DeleteAdditionalResources pulumi.BoolInput
 	// A description for the Kubernetes cluster.
 	Description pulumi.StringPtrInput
 	// The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
@@ -406,9 +416,11 @@ func (o KubernetesClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-func (o KubernetesClusterOutput) DeleteAdditionalResources() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolPtrOutput { return v.DeleteAdditionalResources }).(pulumi.BoolPtrOutput)
+// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+// If you prefer keeping it, you should instead set it as `false`.
+func (o KubernetesClusterOutput) DeleteAdditionalResources() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolOutput { return v.DeleteAdditionalResources }).(pulumi.BoolOutput)
 }
 
 // A description for the Kubernetes cluster.
@@ -482,7 +494,6 @@ func (o KubernetesClusterOutput) Version() pulumi.StringOutput {
 }
 
 // The DNS wildcard that points to all ready nodes.
-// - `kubeconfig`
 func (o KubernetesClusterOutput) WildcardDns() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.WildcardDns }).(pulumi.StringOutput)
 }

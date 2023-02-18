@@ -133,18 +133,22 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
     @Export(name="deleteAdditionalResources", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> deleteAdditionalResources;
+    private Output<Boolean> deleteAdditionalResources;
 
     /**
-     * @return Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * @return Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
-    public Output<Optional<Boolean>> deleteAdditionalResources() {
-        return Codegen.optional(this.deleteAdditionalResources);
+    public Output<Boolean> deleteAdditionalResources() {
+        return this.deleteAdditionalResources;
     }
     /**
      * A description for the Kubernetes cluster.
@@ -344,7 +348,6 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     }
     /**
      * The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
      * 
      */
     @Export(name="wildcardDns", type=String.class, parameters={})
@@ -352,7 +355,6 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
      * 
      */
     public Output<String> wildcardDns() {

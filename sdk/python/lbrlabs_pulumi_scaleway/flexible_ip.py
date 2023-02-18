@@ -22,11 +22,11 @@ class FlexibleIpArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FlexibleIp resource.
-        :param pulumi.Input[str] description: Description of the flexible IP
+        :param pulumi.Input[str] description: A description of the flexible IP.
         :param pulumi.Input[str] project_id: The project of the Flexible IP
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[str] server_id: The ID of the associated server
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the flexible IP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[str] zone: The zone of the Flexible IP
         """
         if description is not None:
@@ -46,7 +46,7 @@ class FlexibleIpArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the flexible IP
+        A description of the flexible IP.
         """
         return pulumi.get(self, "description")
 
@@ -94,7 +94,7 @@ class FlexibleIpArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the flexible IP
+        A list of tags to apply to the flexible IP.
         """
         return pulumi.get(self, "tags")
 
@@ -132,14 +132,14 @@ class _FlexibleIpState:
         """
         Input properties used for looking up and filtering FlexibleIp resources.
         :param pulumi.Input[str] created_at: The date and time of the creation of the Flexible IP (Format ISO 8601)
-        :param pulumi.Input[str] description: Description of the flexible IP
+        :param pulumi.Input[str] description: A description of the flexible IP.
         :param pulumi.Input[str] ip_address: The IPv4 address of the Flexible IP
         :param pulumi.Input[str] mac_address: The MAC address of the server associated with this flexible IP
         :param pulumi.Input[str] organization_id: The organization of the Flexible IP
         :param pulumi.Input[str] project_id: The project of the Flexible IP
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[str] server_id: The ID of the associated server
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the flexible IP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Flexible IP (Format ISO 8601)
         :param pulumi.Input[str] zone: The zone of the Flexible IP
         """
@@ -182,7 +182,7 @@ class _FlexibleIpState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the flexible IP
+        A description of the flexible IP.
         """
         return pulumi.get(self, "description")
 
@@ -266,7 +266,7 @@ class _FlexibleIpState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the flexible IP
+        A list of tags to apply to the flexible IP.
         """
         return pulumi.get(self, "tags")
 
@@ -368,11 +368,11 @@ class FlexibleIp(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the flexible IP
+        :param pulumi.Input[str] description: A description of the flexible IP.
         :param pulumi.Input[str] project_id: The project of the Flexible IP
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[str] server_id: The ID of the associated server
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the flexible IP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[str] zone: The zone of the Flexible IP
         """
         ...
@@ -506,14 +506,14 @@ class FlexibleIp(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The date and time of the creation of the Flexible IP (Format ISO 8601)
-        :param pulumi.Input[str] description: Description of the flexible IP
+        :param pulumi.Input[str] description: A description of the flexible IP.
         :param pulumi.Input[str] ip_address: The IPv4 address of the Flexible IP
         :param pulumi.Input[str] mac_address: The MAC address of the server associated with this flexible IP
         :param pulumi.Input[str] organization_id: The organization of the Flexible IP
         :param pulumi.Input[str] project_id: The project of the Flexible IP
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[str] server_id: The ID of the associated server
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the flexible IP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Flexible IP (Format ISO 8601)
         :param pulumi.Input[str] zone: The zone of the Flexible IP
         """
@@ -546,7 +546,7 @@ class FlexibleIp(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        Description of the flexible IP
+        A description of the flexible IP.
         """
         return pulumi.get(self, "description")
 
@@ -602,7 +602,7 @@ class FlexibleIp(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the flexible IP
+        A list of tags to apply to the flexible IP.
         """
         return pulumi.get(self, "tags")
 

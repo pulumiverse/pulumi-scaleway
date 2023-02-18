@@ -92,7 +92,6 @@ import javax.annotation.Nullable;
 public class LoadbalancerRoute extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the backend to which the route is associated.
-     * - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
      * 
      */
     @Export(name="backendId", type=String.class, parameters={})
@@ -100,21 +99,20 @@ public class LoadbalancerRoute extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ID of the backend to which the route is associated.
-     * - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
      * 
      */
     public Output<String> backendId() {
         return this.backendId;
     }
     /**
-     * The frontend ID origin of redirection
+     * The ID of the frontend to which the route is associated.
      * 
      */
     @Export(name="frontendId", type=String.class, parameters={})
     private Output<String> frontendId;
 
     /**
-     * @return The frontend ID origin of redirection
+     * @return The ID of the frontend to which the route is associated.
      * 
      */
     public Output<String> frontendId() {

@@ -71,13 +71,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The ID of the backend to which the route is associated.
-        /// - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// The frontend ID origin of redirection
+        /// The ID of the frontend to which the route is associated.
         /// </summary>
         [Output("frontendId")]
         public Output<string> FrontendId { get; private set; } = null!;
@@ -137,13 +136,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The ID of the backend to which the route is associated.
-        /// - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
 
         /// <summary>
-        /// The frontend ID origin of redirection
+        /// The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("frontendId", required: true)]
         public Input<string> FrontendId { get; set; } = null!;
@@ -164,13 +162,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The ID of the backend to which the route is associated.
-        /// - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// The frontend ID origin of redirection
+        /// The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }

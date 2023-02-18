@@ -22,7 +22,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, options=None, organization_id=None, os=None, os_id=None, password=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, options=None, organization_id=None, os=None, os_id=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -62,6 +62,9 @@ class GetBaremetalServerResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if private_networks and not isinstance(private_networks, list):
+            raise TypeError("Expected argument 'private_networks' to be a list")
+        pulumi.set(__self__, "private_networks", private_networks)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -159,6 +162,11 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Sequence['outputs.GetBaremetalServerPrivateNetworkResult']:
+        return pulumi.get(self, "private_networks")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -223,6 +231,7 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             os=self.os,
             os_id=self.os_id,
             password=self.password,
+            private_networks=self.private_networks,
             project_id=self.project_id,
             reinstall_on_config_changes=self.reinstall_on_config_changes,
             server_id=self.server_id,
@@ -278,6 +287,7 @@ def get_baremetal_server(name: Optional[str] = None,
         os=__ret__.os,
         os_id=__ret__.os_id,
         password=__ret__.password,
+        private_networks=__ret__.private_networks,
         project_id=__ret__.project_id,
         reinstall_on_config_changes=__ret__.reinstall_on_config_changes,
         server_id=__ret__.server_id,

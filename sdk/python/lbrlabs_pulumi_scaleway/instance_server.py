@@ -382,7 +382,6 @@ class _InstanceServerState:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
-               - `root_volume`
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
@@ -626,7 +625,6 @@ class _InstanceServerState:
     def placement_group_policy_respected(self) -> Optional[pulumi.Input[bool]]:
         """
         True when the placement group policy is respected.
-        - `root_volume`
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -1319,7 +1317,6 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
-               - `root_volume`
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
@@ -1486,7 +1483,6 @@ class InstanceServer(pulumi.CustomResource):
     def placement_group_policy_respected(self) -> pulumi.Output[bool]:
         """
         True when the placement group policy is respected.
-        - `root_volume`
         """
         return pulumi.get(self, "placement_group_policy_respected")
 

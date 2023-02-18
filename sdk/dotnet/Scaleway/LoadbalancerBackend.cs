@@ -138,6 +138,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> HealthCheckTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        /// </summary>
+        [Output("ignoreSslServerVerify")]
+        public Output<bool?> IgnoreSslServerVerify { get; private set; } = null!;
+
+        /// <summary>
         /// The load-balancer ID this backend is attached to.
         /// &gt; **Important:** Updates to `lb_id` will recreate the backend.
         /// </summary>
@@ -173,6 +179,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("serverIps")]
         public Output<ImmutableArray<string>> ServerIps { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables SSL between load balancer and backend servers.
+        /// </summary>
+        [Output("sslBridging")]
+        public Output<bool?> SslBridging { get; private set; } = null!;
 
         /// <summary>
         /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
@@ -320,6 +332,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? HealthCheckTimeout { get; set; }
 
         /// <summary>
+        /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        /// </summary>
+        [Input("ignoreSslServerVerify")]
+        public Input<bool>? IgnoreSslServerVerify { get; set; }
+
+        /// <summary>
         /// The load-balancer ID this backend is attached to.
         /// &gt; **Important:** Updates to `lb_id` will recreate the backend.
         /// </summary>
@@ -361,6 +379,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _serverIps ?? (_serverIps = new InputList<string>());
             set => _serverIps = value;
         }
+
+        /// <summary>
+        /// Enables SSL between load balancer and backend servers.
+        /// </summary>
+        [Input("sslBridging")]
+        public Input<bool>? SslBridging { get; set; }
 
         /// <summary>
         /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
@@ -469,6 +493,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? HealthCheckTimeout { get; set; }
 
         /// <summary>
+        /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        /// </summary>
+        [Input("ignoreSslServerVerify")]
+        public Input<bool>? IgnoreSslServerVerify { get; set; }
+
+        /// <summary>
         /// The load-balancer ID this backend is attached to.
         /// &gt; **Important:** Updates to `lb_id` will recreate the backend.
         /// </summary>
@@ -510,6 +540,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _serverIps ?? (_serverIps = new InputList<string>());
             set => _serverIps = value;
         }
+
+        /// <summary>
+        /// Enables SSL between load balancer and backend servers.
+        /// </summary>
+        [Input("sslBridging")]
+        public Input<bool>? SslBridging { get; set; }
 
         /// <summary>
         /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.

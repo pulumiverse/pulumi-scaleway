@@ -28,11 +28,13 @@ class LoadbalancerBackendArgs:
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
@@ -55,11 +57,13 @@ class LoadbalancerBackendArgs:
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
         :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
@@ -87,6 +91,8 @@ class LoadbalancerBackendArgs:
             pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        if ignore_ssl_server_verify is not None:
+            pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if on_marked_down_action is not None:
@@ -100,6 +106,8 @@ class LoadbalancerBackendArgs:
             pulumi.set(__self__, "send_proxy_v2", send_proxy_v2)
         if server_ips is not None:
             pulumi.set(__self__, "server_ips", server_ips)
+        if ssl_bridging is not None:
+            pulumi.set(__self__, "ssl_bridging", ssl_bridging)
         if sticky_sessions is not None:
             pulumi.set(__self__, "sticky_sessions", sticky_sessions)
         if sticky_sessions_cookie_name is not None:
@@ -259,6 +267,18 @@ class LoadbalancerBackendArgs:
         pulumi.set(self, "health_check_timeout", value)
 
     @property
+    @pulumi.getter(name="ignoreSslServerVerify")
+    def ignore_ssl_server_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        """
+        return pulumi.get(self, "ignore_ssl_server_verify")
+
+    @ignore_ssl_server_verify.setter
+    def ignore_ssl_server_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_ssl_server_verify", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -317,6 +337,18 @@ class LoadbalancerBackendArgs:
     @server_ips.setter
     def server_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "server_ips", value)
+
+    @property
+    @pulumi.getter(name="sslBridging")
+    def ssl_bridging(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables SSL between load balancer and backend servers.
+        """
+        return pulumi.get(self, "ssl_bridging")
+
+    @ssl_bridging.setter
+    def ssl_bridging(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ssl_bridging", value)
 
     @property
     @pulumi.getter(name="stickySessions")
@@ -393,12 +425,14 @@ class _LoadbalancerBackendState:
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
@@ -419,6 +453,7 @@ class _LoadbalancerBackendState:
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
@@ -426,6 +461,7 @@ class _LoadbalancerBackendState:
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
@@ -454,6 +490,8 @@ class _LoadbalancerBackendState:
             pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        if ignore_ssl_server_verify is not None:
+            pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if lb_id is not None:
             pulumi.set(__self__, "lb_id", lb_id)
         if name is not None:
@@ -469,6 +507,8 @@ class _LoadbalancerBackendState:
             pulumi.set(__self__, "send_proxy_v2", send_proxy_v2)
         if server_ips is not None:
             pulumi.set(__self__, "server_ips", server_ips)
+        if ssl_bridging is not None:
+            pulumi.set(__self__, "ssl_bridging", ssl_bridging)
         if sticky_sessions is not None:
             pulumi.set(__self__, "sticky_sessions", sticky_sessions)
         if sticky_sessions_cookie_name is not None:
@@ -615,6 +655,18 @@ class _LoadbalancerBackendState:
         pulumi.set(self, "health_check_timeout", value)
 
     @property
+    @pulumi.getter(name="ignoreSslServerVerify")
+    def ignore_ssl_server_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        """
+        return pulumi.get(self, "ignore_ssl_server_verify")
+
+    @ignore_ssl_server_verify.setter
+    def ignore_ssl_server_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_ssl_server_verify", value)
+
+    @property
     @pulumi.getter(name="lbId")
     def lb_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -686,6 +738,18 @@ class _LoadbalancerBackendState:
     @server_ips.setter
     def server_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "server_ips", value)
+
+    @property
+    @pulumi.getter(name="sslBridging")
+    def ssl_bridging(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables SSL between load balancer and backend servers.
+        """
+        return pulumi.get(self, "ssl_bridging")
+
+    @ssl_bridging.setter
+    def ssl_bridging(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ssl_bridging", value)
 
     @property
     @pulumi.getter(name="stickySessions")
@@ -764,12 +828,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
@@ -832,6 +898,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
@@ -839,6 +906,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
@@ -918,12 +986,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
@@ -953,6 +1023,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             __props__.__dict__["health_check_port"] = health_check_port
             __props__.__dict__["health_check_tcp"] = health_check_tcp
             __props__.__dict__["health_check_timeout"] = health_check_timeout
+            __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
             if lb_id is None and not opts.urn:
                 raise TypeError("Missing required property 'lb_id'")
             __props__.__dict__["lb_id"] = lb_id
@@ -964,6 +1035,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                 pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
             __props__.__dict__["send_proxy_v2"] = send_proxy_v2
             __props__.__dict__["server_ips"] = server_ips
+            __props__.__dict__["ssl_bridging"] = ssl_bridging
             __props__.__dict__["sticky_sessions"] = sticky_sessions
             __props__.__dict__["sticky_sessions_cookie_name"] = sticky_sessions_cookie_name
             __props__.__dict__["timeout_connect"] = timeout_connect
@@ -990,12 +1062,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
             health_check_port: Optional[pulumi.Input[int]] = None,
             health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']]] = None,
             health_check_timeout: Optional[pulumi.Input[str]] = None,
+            ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
             lb_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             on_marked_down_action: Optional[pulumi.Input[str]] = None,
             proxy_protocol: Optional[pulumi.Input[str]] = None,
             send_proxy_v2: Optional[pulumi.Input[bool]] = None,
             server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            ssl_bridging: Optional[pulumi.Input[bool]] = None,
             sticky_sessions: Optional[pulumi.Input[str]] = None,
             sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
             timeout_connect: Optional[pulumi.Input[str]] = None,
@@ -1021,6 +1095,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
@@ -1028,6 +1103,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
+        :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
@@ -1049,12 +1125,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
         __props__.__dict__["health_check_port"] = health_check_port
         __props__.__dict__["health_check_tcp"] = health_check_tcp
         __props__.__dict__["health_check_timeout"] = health_check_timeout
+        __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["name"] = name
         __props__.__dict__["on_marked_down_action"] = on_marked_down_action
         __props__.__dict__["proxy_protocol"] = proxy_protocol
         __props__.__dict__["send_proxy_v2"] = send_proxy_v2
         __props__.__dict__["server_ips"] = server_ips
+        __props__.__dict__["ssl_bridging"] = ssl_bridging
         __props__.__dict__["sticky_sessions"] = sticky_sessions
         __props__.__dict__["sticky_sessions_cookie_name"] = sticky_sessions_cookie_name
         __props__.__dict__["timeout_connect"] = timeout_connect
@@ -1153,6 +1231,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
         return pulumi.get(self, "health_check_timeout")
 
     @property
+    @pulumi.getter(name="ignoreSslServerVerify")
+    def ignore_ssl_server_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        """
+        return pulumi.get(self, "ignore_ssl_server_verify")
+
+    @property
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Output[str]:
         """
@@ -1200,6 +1286,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
         List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         """
         return pulumi.get(self, "server_ips")
+
+    @property
+    @pulumi.getter(name="sslBridging")
+    def ssl_bridging(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enables SSL between load balancer and backend servers.
+        """
+        return pulumi.get(self, "ssl_bridging")
 
     @property
     @pulumi.getter(name="stickySessions")

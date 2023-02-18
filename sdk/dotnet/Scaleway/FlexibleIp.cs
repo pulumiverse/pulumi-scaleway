@@ -113,7 +113,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Description of the flexible IP
+        /// A description of the flexible IP.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -155,7 +155,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the flexible IP
+        /// A list of tags to apply to the flexible IP.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -220,7 +220,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class FlexibleIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the flexible IP
+        /// A description of the flexible IP.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -247,7 +247,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the flexible IP
+        /// A list of tags to apply to the flexible IP.
         /// </summary>
         public InputList<string> Tags
         {
@@ -276,7 +276,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Description of the flexible IP
+        /// A description of the flexible IP.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -321,7 +321,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the flexible IP
+        /// A list of tags to apply to the flexible IP.
         /// </summary>
         public InputList<string> Tags
         {

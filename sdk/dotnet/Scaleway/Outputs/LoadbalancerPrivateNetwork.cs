@@ -23,9 +23,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
-        /// (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        /// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         /// </summary>
-        public readonly ImmutableArray<string> StaticConfigs;
+        public readonly string? StaticConfig;
         public readonly string? Status;
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
@@ -38,7 +38,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string privateNetworkId,
 
-            ImmutableArray<string> staticConfigs,
+            string? staticConfig,
 
             string? status,
 
@@ -46,7 +46,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         {
             DhcpConfig = dhcpConfig;
             PrivateNetworkId = privateNetworkId;
-            StaticConfigs = staticConfigs;
+            StaticConfig = staticConfig;
             Status = status;
             Zone = zone;
         }

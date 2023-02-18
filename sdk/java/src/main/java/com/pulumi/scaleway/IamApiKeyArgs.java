@@ -16,14 +16,16 @@ public final class IamApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     public static final IamApiKeyArgs Empty = new IamApiKeyArgs();
 
     /**
-     * ID of the application attached to the api key
+     * ID of the application attached to the api key.
+     * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
     @Import(name="applicationId")
     private @Nullable Output<String> applicationId;
 
     /**
-     * @return ID of the application attached to the api key
+     * @return ID of the application attached to the api key.
+     * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
     public Optional<Output<String>> applicationId() {
@@ -46,14 +48,14 @@ public final class IamApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The description of the iam api key
+     * The description of the iam api key.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return The description of the iam api key
+     * @return The description of the iam api key.
      * 
      */
     public Optional<Output<String>> description() {
@@ -123,7 +125,8 @@ public final class IamApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param applicationId ID of the application attached to the api key
+         * @param applicationId ID of the application attached to the api key.
+         * Only one of the `application_id` and `user_id` should be specified.
          * 
          * @return builder
          * 
@@ -134,7 +137,8 @@ public final class IamApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param applicationId ID of the application attached to the api key
+         * @param applicationId ID of the application attached to the api key.
+         * Only one of the `application_id` and `user_id` should be specified.
          * 
          * @return builder
          * 
@@ -165,7 +169,7 @@ public final class IamApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description The description of the iam api key
+         * @param description The description of the iam api key.
          * 
          * @return builder
          * 
@@ -176,7 +180,7 @@ public final class IamApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description The description of the iam api key
+         * @param description The description of the iam api key.
          * 
          * @return builder
          * 

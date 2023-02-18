@@ -148,6 +148,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Os;
         public readonly string OsId;
         public readonly string Password;
+        public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
         public readonly string ProjectId;
         public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
@@ -186,6 +187,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string password,
 
+            ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> privateNetworks,
+
             string projectId,
 
             bool reinstallOnConfigChanges,
@@ -217,6 +220,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Os = os;
             OsId = osId;
             Password = password;
+            PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             ReinstallOnConfigChanges = reinstallOnConfigChanges;
             ServerId = serverId;

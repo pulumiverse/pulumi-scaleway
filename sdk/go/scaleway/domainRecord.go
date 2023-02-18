@@ -273,7 +273,7 @@ import (
 type DomainRecord struct {
 	pulumi.CustomResourceState
 
-	// The data of the view record
+	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data pulumi.StringOutput `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringOutput `pulumi:"dnsZone"`
@@ -340,7 +340,7 @@ func GetDomainRecord(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DomainRecord resources.
 type domainRecordState struct {
-	// The data of the view record
+	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data *string `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone *string `pulumi:"dnsZone"`
@@ -369,7 +369,7 @@ type domainRecordState struct {
 }
 
 type DomainRecordState struct {
-	// The data of the view record
+	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data pulumi.StringPtrInput
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringPtrInput
@@ -402,7 +402,7 @@ func (DomainRecordState) ElementType() reflect.Type {
 }
 
 type domainRecordArgs struct {
-	// The data of the view record
+	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data string `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone string `pulumi:"dnsZone"`
@@ -430,7 +430,7 @@ type domainRecordArgs struct {
 
 // The set of arguments for constructing a DomainRecord resource.
 type DomainRecordArgs struct {
-	// The data of the view record
+	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data pulumi.StringInput
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringInput
@@ -543,7 +543,7 @@ func (o DomainRecordOutput) ToDomainRecordOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The data of the view record
+// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 func (o DomainRecordOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.Data }).(pulumi.StringOutput)
 }

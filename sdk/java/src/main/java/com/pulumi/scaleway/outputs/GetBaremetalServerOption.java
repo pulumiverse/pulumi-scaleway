@@ -11,6 +11,11 @@ import java.util.Objects;
 public final class GetBaremetalServerOption {
     private String expiresAt;
     private String id;
+    /**
+     * @return The server name. Only one of `name` and `server_id` should be specified.
+     * 
+     */
+    private String name;
 
     private GetBaremetalServerOption() {}
     public String expiresAt() {
@@ -18,6 +23,13 @@ public final class GetBaremetalServerOption {
     }
     public String id() {
         return this.id;
+    }
+    /**
+     * @return The server name. Only one of `name` and `server_id` should be specified.
+     * 
+     */
+    public String name() {
+        return this.name;
     }
 
     public static Builder builder() {
@@ -31,11 +43,13 @@ public final class GetBaremetalServerOption {
     public static final class Builder {
         private String expiresAt;
         private String id;
+        private String name;
         public Builder() {}
         public Builder(GetBaremetalServerOption defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.expiresAt = defaults.expiresAt;
     	      this.id = defaults.id;
+    	      this.name = defaults.name;
         }
 
         @CustomType.Setter
@@ -48,10 +62,16 @@ public final class GetBaremetalServerOption {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
+        public Builder name(String name) {
+            this.name = Objects.requireNonNull(name);
+            return this;
+        }
         public GetBaremetalServerOption build() {
             final var o = new GetBaremetalServerOption();
             o.expiresAt = expiresAt;
             o.id = id;
+            o.name = name;
             return o;
         }
     }

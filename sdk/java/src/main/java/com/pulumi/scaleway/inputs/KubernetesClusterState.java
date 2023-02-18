@@ -129,14 +129,18 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
     @Import(name="deleteAdditionalResources")
     private @Nullable Output<Boolean> deleteAdditionalResources;
 
     /**
-     * @return Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * @return Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
     public Optional<Output<Boolean>> deleteAdditionalResources() {
@@ -355,7 +359,6 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
 
     /**
      * The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
      * 
      */
     @Import(name="wildcardDns")
@@ -363,7 +366,6 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
 
     /**
      * @return The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
      * 
      */
     public Optional<Output<String>> wildcardDns() {
@@ -586,7 +588,9 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param deleteAdditionalResources Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+         * @param deleteAdditionalResources Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+         * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+         * If you prefer keeping it, you should instead set it as `false`.
          * 
          * @return builder
          * 
@@ -597,7 +601,9 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param deleteAdditionalResources Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+         * @param deleteAdditionalResources Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+         * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+         * If you prefer keeping it, you should instead set it as `false`.
          * 
          * @return builder
          * 
@@ -932,7 +938,6 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
 
         /**
          * @param wildcardDns The DNS wildcard that points to all ready nodes.
-         * - `kubeconfig`
          * 
          * @return builder
          * 
@@ -944,7 +949,6 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
 
         /**
          * @param wildcardDns The DNS wildcard that points to all ready nodes.
-         * - `kubeconfig`
          * 
          * @return builder
          * 

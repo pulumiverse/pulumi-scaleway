@@ -10,7 +10,7 @@ import java.util.Objects;
 @CustomType
 public final class DomainRecordView {
     /**
-     * @return The data of the view record
+     * @return The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
     private String data;
@@ -22,7 +22,7 @@ public final class DomainRecordView {
 
     private DomainRecordView() {}
     /**
-     * @return The data of the view record
+     * @return The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
     public String data() {

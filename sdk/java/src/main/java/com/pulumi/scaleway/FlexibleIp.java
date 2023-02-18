@@ -167,14 +167,14 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * Description of the flexible IP
+     * A description of the flexible IP.
      * 
      */
     @Export(name="description", type=String.class, parameters={})
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return Description of the flexible IP
+     * @return A description of the flexible IP.
      * 
      */
     public Output<Optional<String>> description() {
@@ -265,14 +265,14 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.serverId);
     }
     /**
-     * The tags associated with the flexible IP
+     * A list of tags to apply to the flexible IP.
      * 
      */
     @Export(name="tags", type=List.class, parameters={String.class})
     private Output</* @Nullable */ List<String>> tags;
 
     /**
-     * @return The tags associated with the flexible IP
+     * @return A list of tags to apply to the flexible IP.
      * 
      */
     public Output<Optional<List<String>>> tags() {

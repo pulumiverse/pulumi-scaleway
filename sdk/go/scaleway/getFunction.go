@@ -36,6 +36,7 @@ type LookupFunctionResult struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	FunctionId           *string           `pulumi:"functionId"`
 	Handler              string            `pulumi:"handler"`
+	HttpOption           string            `pulumi:"httpOption"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                         string            `pulumi:"id"`
 	MaxScale                   int               `pulumi:"maxScale"`
@@ -119,6 +120,10 @@ func (o LookupFunctionResultOutput) FunctionId() pulumi.StringPtrOutput {
 
 func (o LookupFunctionResultOutput) Handler() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionResult) string { return v.Handler }).(pulumi.StringOutput)
+}
+
+func (o LookupFunctionResultOutput) HttpOption() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFunctionResult) string { return v.HttpOption }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

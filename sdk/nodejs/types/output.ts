@@ -11,7 +11,7 @@ export interface BaremetalServerIp {
      */
     address: string;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the private network to attach.
      */
     id: string;
     /**
@@ -27,9 +27,36 @@ export interface BaremetalServerOption {
      */
     expiresAt: string;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the private network to attach.
      */
     id: string;
+    /**
+     * The name of the server.
+     */
+    name: string;
+}
+
+export interface BaremetalServerPrivateNetwork {
+    /**
+     * The date and time of the creation of the private network.
+     */
+    createdAt: string;
+    /**
+     * The id of the private network to attach.
+     */
+    id: string;
+    /**
+     * The private network status.
+     */
+    status: string;
+    /**
+     * The date and time of the last update of the private network.
+     */
+    updatedAt: string;
+    /**
+     * The VLAN ID associated to the private network.
+     */
+    vlan: number;
 }
 
 export interface DatabaseAclAclRule {
@@ -179,7 +206,7 @@ export interface DomainRecordGeoIpMatch {
      */
     countries?: string[];
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     data: string;
 }
@@ -209,7 +236,7 @@ export interface DomainRecordHttpService {
 
 export interface DomainRecordView {
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     data: string;
     /**
@@ -230,6 +257,9 @@ export interface DomainRecordWeighted {
 }
 
 export interface GetBaremetalOfferCpu {
+    /**
+     * Number of core on this CPU.
+     */
     coreCount: number;
     /**
      * Frequency of the memory in MHz.
@@ -239,10 +269,16 @@ export interface GetBaremetalOfferCpu {
      * The offer name. Only one of `name` and `offerId` should be specified.
      */
     name: string;
+    /**
+     * Number of thread on this CPU.
+     */
     threadCount: number;
 }
 
 export interface GetBaremetalOfferDisk {
+    /**
+     * Capacity of the memory in GB.
+     */
     capacity: number;
     /**
      * Type of memory.
@@ -251,11 +287,17 @@ export interface GetBaremetalOfferDisk {
 }
 
 export interface GetBaremetalOfferMemory {
+    /**
+     * Capacity of the memory in GB.
+     */
     capacity: number;
     /**
      * Frequency of the memory in MHz.
      */
     frequency: number;
+    /**
+     * True if error-correcting code is available on this memory.
+     */
     isEcc: boolean;
     /**
      * Type of memory.
@@ -273,6 +315,18 @@ export interface GetBaremetalServerIp {
 export interface GetBaremetalServerOption {
     expiresAt: string;
     id: string;
+    /**
+     * The server name. Only one of `name` and `serverId` should be specified.
+     */
+    name: string;
+}
+
+export interface GetBaremetalServerPrivateNetwork {
+    createdAt: string;
+    id: string;
+    status: string;
+    updatedAt: string;
+    vlan: number;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -364,10 +418,22 @@ export interface GetInstanceSecurityGroupInboundRule {
      * The action to take when rule match. Possible values are: `accept` or `drop`.
      */
     action: string;
+    /**
+     * The ip this rule apply to.
+     */
     ip: string;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule apply to.
+     */
     ipRange: string;
+    /**
+     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     */
     port: number;
     portRange: string;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol: string;
 }
 
@@ -376,10 +442,22 @@ export interface GetInstanceSecurityGroupOutboundRule {
      * The action to take when rule match. Possible values are: `accept` or `drop`.
      */
     action: string;
+    /**
+     * The ip this rule apply to.
+     */
     ip: string;
+    /**
+     * The ip range (e.g `192.168.1.0/24`) this rule apply to.
+     */
     ipRange: string;
+    /**
+     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     */
     port: number;
     portRange: string;
+    /**
+     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     */
     protocol: string;
 }
 
@@ -1139,7 +1217,7 @@ export interface LoadbalancerBackendHealthCheckHttp {
      */
     method?: string;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTP endpoint URL to call for HC requests.
      */
     uri: string;
 }
@@ -1154,7 +1232,7 @@ export interface LoadbalancerBackendHealthCheckHttps {
      */
     method?: string;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTP endpoint URL to call for HC requests.
      */
     uri: string;
 }
@@ -1235,14 +1313,51 @@ export interface LoadbalancerPrivateNetwork {
      */
     privateNetworkId: string;
     /**
-     * (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+     * (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      */
-    staticConfigs?: string[];
+    staticConfig?: string;
     status: string;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
     zone: string;
+}
+
+export interface MnqCredentialNatsCredentials {
+    /**
+     * Raw content of the NATS credentials file.
+     */
+    content: string;
+}
+
+export interface MnqCredentialSqsSnsCredentials {
+    /**
+     * The ID of the key.
+     */
+    accessKey: string;
+    /**
+     * List of permissions associated to this Credential. Only one of permissions may be set.
+     */
+    permissions?: outputs.MnqCredentialSqsSnsCredentialsPermissions;
+    /**
+     * The Secret value of the key.
+     */
+    secretKey: string;
+}
+
+export interface MnqCredentialSqsSnsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage?: boolean;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish?: boolean;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive?: boolean;
 }
 
 export interface ObjectBucketAclAccessControlPolicy {
@@ -1273,35 +1388,74 @@ export interface ObjectBucketAclAccessControlPolicyOwner {
 }
 
 export interface ObjectBucketCorsRule {
+    /**
+     * Specifies which headers are allowed.
+     */
     allowedHeaders?: string[];
+    /**
+     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     */
     allowedMethods: string[];
+    /**
+     * Specifies which origins are allowed.
+     */
     allowedOrigins: string[];
+    /**
+     * Specifies expose header in the response.
+     */
     exposeHeaders?: string[];
+    /**
+     * Specifies time in seconds that browser can cache the response for a preflight request.
+     */
     maxAgeSeconds?: number;
 }
 
 export interface ObjectBucketLifecycleRule {
+    /**
+     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     */
     abortIncompleteMultipartUploadDays?: number;
+    /**
+     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+     */
     enabled: boolean;
+    /**
+     * Specifies a period in the object's expire (documented below).
+     */
     expiration?: outputs.ObjectBucketLifecycleRuleExpiration;
     /**
-     * The unique name of the bucket.
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
      */
     id: string;
+    /**
+     * Object key prefix identifying one or more objects to which the rule applies.
+     */
     prefix?: string;
     /**
-     * A list of tags (key / value) for the bucket.
+     * Specifies object tags key and value.
      */
     tags?: {[key: string]: string};
+    /**
+     * Specifies a period in the object's transitions (documented below).
+     */
     transitions?: outputs.ObjectBucketLifecycleRuleTransition[];
 }
 
 export interface ObjectBucketLifecycleRuleExpiration {
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days: number;
 }
 
 export interface ObjectBucketLifecycleRuleTransition {
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days?: number;
+    /**
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     */
     storageClass: string;
 }
 
@@ -1316,7 +1470,10 @@ export interface ObjectBucketLockConfigurationRuleDefaultRetention {
 }
 
 export interface ObjectBucketVersioning {
-    enabled?: boolean;
+    /**
+     * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+     */
+    enabled: boolean;
 }
 
 export interface ObjectBucketWebsiteConfigurationErrorDocument {

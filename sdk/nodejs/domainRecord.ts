@@ -208,7 +208,7 @@ export class DomainRecord extends pulumi.CustomResource {
     }
 
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     public readonly data!: pulumi.Output<string>;
     /**
@@ -321,7 +321,7 @@ export class DomainRecord extends pulumi.CustomResource {
  */
 export interface DomainRecordState {
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     data?: pulumi.Input<string>;
     /**
@@ -379,7 +379,7 @@ export interface DomainRecordState {
  */
 export interface DomainRecordArgs {
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     data: pulumi.Input<string>;
     /**

@@ -39,6 +39,14 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
+     * The project_id you want to attach the resource to
+     */
+    public readonly projectId!: pulumi.Output<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    public readonly region!: pulumi.Output<string>;
+    /**
      * Specifies the Object Lock rule for the specified object.
      */
     public readonly rule!: pulumi.Output<outputs.ObjectBucketLockConfigurationRule>;
@@ -57,6 +65,8 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ObjectBucketLockConfigurationState | undefined;
             resourceInputs["bucket"] = state ? state.bucket : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["rule"] = state ? state.rule : undefined;
         } else {
             const args = argsOrState as ObjectBucketLockConfigurationArgs | undefined;
@@ -67,6 +77,8 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
                 throw new Error("Missing required property 'rule'");
             }
             resourceInputs["bucket"] = args ? args.bucket : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["rule"] = args ? args.rule : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -83,6 +95,14 @@ export interface ObjectBucketLockConfigurationState {
      */
     bucket?: pulumi.Input<string>;
     /**
+     * The project_id you want to attach the resource to
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    region?: pulumi.Input<string>;
+    /**
      * Specifies the Object Lock rule for the specified object.
      */
     rule?: pulumi.Input<inputs.ObjectBucketLockConfigurationRule>;
@@ -96,6 +116,14 @@ export interface ObjectBucketLockConfigurationArgs {
      * The bucket name.
      */
     bucket: pulumi.Input<string>;
+    /**
+     * The project_id you want to attach the resource to
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    region?: pulumi.Input<string>;
     /**
      * Specifies the Object Lock rule for the specified object.
      */

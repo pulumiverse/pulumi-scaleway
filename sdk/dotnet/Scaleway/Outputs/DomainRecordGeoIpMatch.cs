@@ -23,7 +23,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Countries;
         /// <summary>
-        /// The data of the view record
+        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         /// </summary>
         public readonly string Data;
 

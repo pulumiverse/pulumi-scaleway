@@ -32,14 +32,14 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The ID of the public gateway DHCP config.
+     * The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     @Import(name="dhcpId")
     private @Nullable Output<String> dhcpId;
 
     /**
-     * @return The ID of the public gateway DHCP config.
+     * @return The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     public Optional<Output<String>> dhcpId() {
@@ -107,14 +107,14 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Enable DHCP config on this network
+     * Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     @Import(name="staticAddress")
     private @Nullable Output<String> staticAddress;
 
     /**
-     * @return Enable DHCP config on this network
+     * @return Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     public Optional<Output<String>> staticAddress() {
@@ -189,7 +189,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param dhcpId The ID of the public gateway DHCP config.
+         * @param dhcpId The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
          * 
          * @return builder
          * 
@@ -200,7 +200,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param dhcpId The ID of the public gateway DHCP config.
+         * @param dhcpId The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
          * 
          * @return builder
          * 
@@ -294,7 +294,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param staticAddress Enable DHCP config on this network
+         * @param staticAddress Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
          * 
          * @return builder
          * 
@@ -305,7 +305,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param staticAddress Enable DHCP config on this network
+         * @param staticAddress Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
          * 
          * @return builder
          * 

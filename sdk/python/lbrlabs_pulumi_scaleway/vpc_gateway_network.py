@@ -27,10 +27,10 @@ class VpcGatewayNetworkArgs:
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[bool] cleanup_dhcp: Remove DHCP config on this network on destroy. It requires DHCP id.
-        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config.
+        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
-        :param pulumi.Input[str] static_address: Enable DHCP config on this network
+        :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
         pulumi.set(__self__, "gateway_id", gateway_id)
@@ -88,7 +88,7 @@ class VpcGatewayNetworkArgs:
     @pulumi.getter(name="dhcpId")
     def dhcp_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the public gateway DHCP config.
+        The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
@@ -124,7 +124,7 @@ class VpcGatewayNetworkArgs:
     @pulumi.getter(name="staticAddress")
     def static_address(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable DHCP config on this network
+        Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -163,13 +163,13 @@ class _VpcGatewayNetworkState:
         Input properties used for looking up and filtering VpcGatewayNetwork resources.
         :param pulumi.Input[bool] cleanup_dhcp: Remove DHCP config on this network on destroy. It requires DHCP id.
         :param pulumi.Input[str] created_at: The date and time of the creation of the gateway network.
-        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config.
+        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
         :param pulumi.Input[str] mac_address: The mac address of the creation of the gateway network.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] static_address: Enable DHCP config on this network
+        :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the gateway network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
@@ -224,7 +224,7 @@ class _VpcGatewayNetworkState:
     @pulumi.getter(name="dhcpId")
     def dhcp_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the public gateway DHCP config.
+        The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
@@ -296,7 +296,7 @@ class _VpcGatewayNetworkState:
     @pulumi.getter(name="staticAddress")
     def static_address(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable DHCP config on this network
+        Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -350,6 +350,8 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         ## Example
 
+        ### Create a gateway network with DHCP
+
         ```python
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
@@ -370,6 +372,22 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             enable_masquerade=True)
         ```
 
+        ### Create a gateway network with a static IP address
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            enable_dhcp=False,
+            enable_masquerade=True,
+            static_address="192.168.1.42/24")
+        ```
+
         ## Import
 
         Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -381,12 +399,12 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cleanup_dhcp: Remove DHCP config on this network on destroy. It requires DHCP id.
-        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config.
+        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] static_address: Enable DHCP config on this network
+        :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
         ...
@@ -402,6 +420,8 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         ## Example
 
+        ### Create a gateway network with DHCP
+
         ```python
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
@@ -420,6 +440,22 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             dhcp_id=dhcp01.id,
             cleanup_dhcp=True,
             enable_masquerade=True)
+        ```
+
+        ### Create a gateway network with a static IP address
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            enable_dhcp=False,
+            enable_masquerade=True,
+            static_address="192.168.1.42/24")
         ```
 
         ## Import
@@ -507,13 +543,13 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cleanup_dhcp: Remove DHCP config on this network on destroy. It requires DHCP id.
         :param pulumi.Input[str] created_at: The date and time of the creation of the gateway network.
-        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config.
+        :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
         :param pulumi.Input[str] mac_address: The mac address of the creation of the gateway network.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] static_address: Enable DHCP config on this network
+        :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the gateway network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
@@ -554,7 +590,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
     @pulumi.getter(name="dhcpId")
     def dhcp_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the public gateway DHCP config.
+        The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
@@ -602,7 +638,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
     @pulumi.getter(name="staticAddress")
     def static_address(self) -> pulumi.Output[Optional[str]]:
         """
-        Enable DHCP config on this network
+        Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         """
         return pulumi.get(self, "static_address")
 

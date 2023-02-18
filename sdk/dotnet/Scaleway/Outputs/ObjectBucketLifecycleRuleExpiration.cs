@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketLifecycleRuleExpiration
     {
+        /// <summary>
+        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// </summary>
         public readonly int Days;
 
         [OutputConstructor]

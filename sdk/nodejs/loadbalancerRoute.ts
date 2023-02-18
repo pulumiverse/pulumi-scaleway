@@ -77,11 +77,10 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
 
     /**
      * The ID of the backend to which the route is associated.
-     * - `frontendId`: (Required) The ID of the frontend to which the route is associated.
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
-     * The frontend ID origin of redirection
+     * The ID of the frontend to which the route is associated.
      */
     public readonly frontendId!: pulumi.Output<string>;
     /**
@@ -128,11 +127,10 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
 export interface LoadbalancerRouteState {
     /**
      * The ID of the backend to which the route is associated.
-     * - `frontendId`: (Required) The ID of the frontend to which the route is associated.
      */
     backendId?: pulumi.Input<string>;
     /**
-     * The frontend ID origin of redirection
+     * The ID of the frontend to which the route is associated.
      */
     frontendId?: pulumi.Input<string>;
     /**
@@ -147,11 +145,10 @@ export interface LoadbalancerRouteState {
 export interface LoadbalancerRouteArgs {
     /**
      * The ID of the backend to which the route is associated.
-     * - `frontendId`: (Required) The ID of the frontend to which the route is associated.
      */
     backendId: pulumi.Input<string>;
     /**
-     * The frontend ID origin of redirection
+     * The ID of the frontend to which the route is associated.
      */
     frontendId: pulumi.Input<string>;
     /**

@@ -10,24 +10,6 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as random from "@pulumi/random";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
- *
- * const dbPassword = new random.RandomPassword("dbPassword", {
- *     length: 16,
- *     special: true,
- * });
- * const dbAdmin = new scaleway.DatabaseUser("dbAdmin", {
- *     instanceId: scaleway_rdb_instance.main.id,
- *     password: dbPassword.result,
- *     isAdmin: true,
- * });
- * ```
- *
  * ## Import
  *
  * Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash

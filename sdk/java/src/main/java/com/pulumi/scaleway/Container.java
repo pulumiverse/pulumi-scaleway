@@ -222,6 +222,20 @@ public class Container extends com.pulumi.resources.CustomResource {
         return this.errorMessage;
     }
     /**
+     * HTTP traffic configuration
+     * 
+     */
+    @Export(name="httpOption", type=String.class, parameters={})
+    private Output</* @Nullable */ String> httpOption;
+
+    /**
+     * @return HTTP traffic configuration
+     * 
+     */
+    public Output<Optional<String>> httpOption() {
+        return Codegen.optional(this.httpOption);
+    }
+    /**
      * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
      * 
      */

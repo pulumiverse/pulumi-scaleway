@@ -89,6 +89,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Handler { get; private set; } = null!;
 
         /// <summary>
+        /// HTTP traffic configuration
+        /// </summary>
+        [Output("httpOption")]
+        public Output<string?> HttpOption { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         /// </summary>
         [Output("maxScale")]
@@ -254,6 +260,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Handler { get; set; } = null!;
 
         /// <summary>
+        /// HTTP traffic configuration
+        /// </summary>
+        [Input("httpOption")]
+        public Input<string>? HttpOption { get; set; }
+
+        /// <summary>
         /// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         /// </summary>
         [Input("maxScale")]
@@ -390,6 +402,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("handler")]
         public Input<string>? Handler { get; set; }
+
+        /// <summary>
+        /// HTTP traffic configuration
+        /// </summary>
+        [Input("httpOption")]
+        public Input<string>? HttpOption { get; set; }
 
         /// <summary>
         /// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.

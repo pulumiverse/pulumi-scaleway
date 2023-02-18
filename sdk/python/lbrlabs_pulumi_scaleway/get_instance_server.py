@@ -257,9 +257,6 @@ class GetInstanceServerResult:
     @property
     @pulumi.getter(name="rootVolumes")
     def root_volumes(self) -> Sequence['outputs.GetInstanceServerRootVolumeResult']:
-        """
-        Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
-        """
         return pulumi.get(self, "root_volumes")
 
     @property

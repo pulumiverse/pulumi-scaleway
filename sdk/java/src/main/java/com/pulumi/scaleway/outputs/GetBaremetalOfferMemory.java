@@ -11,12 +11,20 @@ import java.util.Objects;
 
 @CustomType
 public final class GetBaremetalOfferMemory {
+    /**
+     * @return Capacity of the memory in GB.
+     * 
+     */
     private Integer capacity;
     /**
      * @return Frequency of the memory in MHz.
      * 
      */
     private Integer frequency;
+    /**
+     * @return True if error-correcting code is available on this memory.
+     * 
+     */
     private Boolean isEcc;
     /**
      * @return Type of memory.
@@ -25,6 +33,10 @@ public final class GetBaremetalOfferMemory {
     private String type;
 
     private GetBaremetalOfferMemory() {}
+    /**
+     * @return Capacity of the memory in GB.
+     * 
+     */
     public Integer capacity() {
         return this.capacity;
     }
@@ -35,6 +47,10 @@ public final class GetBaremetalOfferMemory {
     public Integer frequency() {
         return this.frequency;
     }
+    /**
+     * @return True if error-correcting code is available on this memory.
+     * 
+     */
     public Boolean isEcc() {
         return this.isEcc;
     }

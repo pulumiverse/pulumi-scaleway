@@ -118,6 +118,10 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     */
+    public readonly privateNetworks!: pulumi.Output<outputs.BaremetalServerPrivateNetwork[] | undefined>;
+    /**
      * `projectId`) The ID of the project the server is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -176,6 +180,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["osId"] = state ? state.osId : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["reinstallOnConfigChanges"] = state ? state.reinstallOnConfigChanges : undefined;
             resourceInputs["servicePassword"] = state ? state.servicePassword : undefined;
@@ -202,6 +207,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["os"] = args ? args.os : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reinstallOnConfigChanges"] = args ? args.reinstallOnConfigChanges : undefined;
             resourceInputs["servicePassword"] = args?.servicePassword ? pulumi.secret(args.servicePassword) : undefined;
@@ -280,6 +286,10 @@ export interface BaremetalServerState {
      */
     password?: pulumi.Input<string>;
     /**
+     * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateNetwork>[]>;
+    /**
      * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -350,6 +360,10 @@ export interface BaremetalServerArgs {
      * Password used for the installation. May be required depending on used os.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateNetwork>[]>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */

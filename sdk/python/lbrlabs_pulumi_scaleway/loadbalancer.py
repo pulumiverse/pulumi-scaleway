@@ -524,27 +524,6 @@ class Loadbalancer(pulumi.CustomResource):
             release_ip=False)
         ```
 
-        ## Private Network with static config
-
-        ```python
-        import pulumi
-        import lbrlabs_pulumi_scaleway as scaleway
-
-        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
-        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-            ip_id=main_loadbalancer_ip.id,
-            type="LB-S",
-            release_ip=False,
-            private_networks=[scaleway.LoadbalancerPrivateNetworkArgs(
-                private_network_id=main_vpc_private_network.id,
-                static_configs=[
-                    "172.16.0.100",
-                    "172.16.0.101",
-                ],
-            )])
-        ```
-
         ## Import
 
         Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
@@ -679,27 +658,6 @@ class Loadbalancer(pulumi.CustomResource):
             zone="fr-par-1",
             type="LB-S",
             release_ip=False)
-        ```
-
-        ## Private Network with static config
-
-        ```python
-        import pulumi
-        import lbrlabs_pulumi_scaleway as scaleway
-
-        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
-        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-            ip_id=main_loadbalancer_ip.id,
-            type="LB-S",
-            release_ip=False,
-            private_networks=[scaleway.LoadbalancerPrivateNetworkArgs(
-                private_network_id=main_vpc_private_network.id,
-                static_configs=[
-                    "172.16.0.100",
-                    "172.16.0.101",
-                ],
-            )])
         ```
 
         ## Import

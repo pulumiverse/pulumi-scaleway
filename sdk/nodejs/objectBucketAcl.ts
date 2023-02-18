@@ -147,6 +147,10 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly expectedBucketOwner!: pulumi.Output<string | undefined>;
     /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
     public readonly region!: pulumi.Output<string>;
@@ -168,6 +172,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
             resourceInputs["acl"] = state ? state.acl : undefined;
             resourceInputs["bucket"] = state ? state.bucket : undefined;
             resourceInputs["expectedBucketOwner"] = state ? state.expectedBucketOwner : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as ObjectBucketAclArgs | undefined;
@@ -178,6 +183,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
             resourceInputs["acl"] = args ? args.acl : undefined;
             resourceInputs["bucket"] = args ? args.bucket : undefined;
             resourceInputs["expectedBucketOwner"] = args ? args.expectedBucketOwner : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -206,6 +212,10 @@ export interface ObjectBucketAclState {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
     region?: pulumi.Input<string>;
@@ -231,6 +241,10 @@ export interface ObjectBucketAclArgs {
      * The project ID of the expected bucket owner.
      */
     expectedBucketOwner?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */

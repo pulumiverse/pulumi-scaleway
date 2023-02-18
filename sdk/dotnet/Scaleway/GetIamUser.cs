@@ -92,8 +92,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `organization_id`) The ID of the
-        /// organization the user is associated with. For now, it is necessary to
-        /// explicitly provide the `organization_id` in the datasource.
+        /// organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
@@ -120,8 +119,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `organization_id`) The ID of the
-        /// organization the user is associated with. For now, it is necessary to
-        /// explicitly provide the `organization_id` in the datasource.
+        /// organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

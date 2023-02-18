@@ -117,6 +117,8 @@
         "loadbalancerFrontend.ts",
         "loadbalancerIp.ts",
         "loadbalancerRoute.ts",
+        "mnqCredential.ts",
+        "mnqNamespace.ts",
         "objectBucket.ts",
         "objectBucketAcl.ts",
         "objectBucketLockConfiguration.ts",

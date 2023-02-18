@@ -98,18 +98,22 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
-    @Import(name="deleteAdditionalResources")
-    private @Nullable Output<Boolean> deleteAdditionalResources;
+    @Import(name="deleteAdditionalResources", required=true)
+    private Output<Boolean> deleteAdditionalResources;
 
     /**
-     * @return Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * @return Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
-    public Optional<Output<Boolean>> deleteAdditionalResources() {
-        return Optional.ofNullable(this.deleteAdditionalResources);
+    public Output<Boolean> deleteAdditionalResources() {
+        return this.deleteAdditionalResources;
     }
 
     /**
@@ -413,18 +417,22 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param deleteAdditionalResources Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+         * @param deleteAdditionalResources Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+         * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+         * If you prefer keeping it, you should instead set it as `false`.
          * 
          * @return builder
          * 
          */
-        public Builder deleteAdditionalResources(@Nullable Output<Boolean> deleteAdditionalResources) {
+        public Builder deleteAdditionalResources(Output<Boolean> deleteAdditionalResources) {
             $.deleteAdditionalResources = deleteAdditionalResources;
             return this;
         }
 
         /**
-         * @param deleteAdditionalResources Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+         * @param deleteAdditionalResources Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+         * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+         * If you prefer keeping it, you should instead set it as `false`.
          * 
          * @return builder
          * 
@@ -644,6 +652,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
 
         public KubernetesClusterArgs build() {
             $.cni = Objects.requireNonNull($.cni, "expected parameter 'cni' to be non-null");
+            $.deleteAdditionalResources = Objects.requireNonNull($.deleteAdditionalResources, "expected parameter 'deleteAdditionalResources' to be non-null");
             $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
             return $;
         }

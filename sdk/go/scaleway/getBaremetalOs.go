@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
+//			_, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
 //				Name:    pulumi.StringRef("Ubuntu"),
 //				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
 //			}, nil)

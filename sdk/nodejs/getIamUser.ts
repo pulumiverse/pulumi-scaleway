@@ -44,8 +44,7 @@ export interface GetIamUserArgs {
     email?: string;
     /**
      * `organizationId`) The ID of the
-     * organization the user is associated with. For now, it is necessary to
-     * explicitly provide the `organizationId` in the datasource.
+     * organization the user is associated with.
      */
     organizationId?: string;
     /**
@@ -99,8 +98,7 @@ export interface GetIamUserOutputArgs {
     email?: pulumi.Input<string>;
     /**
      * `organizationId`) The ID of the
-     * organization the user is associated with. For now, it is necessary to
-     * explicitly provide the `organizationId` in the datasource.
+     * organization the user is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**

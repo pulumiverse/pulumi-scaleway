@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupInstanceSecurityGroup(ctx, &scaleway.LookupInstanceSecurityGroupArgs{
+//			_, err := scaleway.LookupInstanceSecurityGroup(ctx, &scaleway.LookupInstanceSecurityGroupArgs{
 //				SecurityGroupId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

@@ -17,7 +17,6 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * The ID of the backend to which the route is associated.
-     * - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
      * 
      */
     @Import(name="backendId", required=true)
@@ -25,7 +24,6 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The ID of the backend to which the route is associated.
-     * - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
      * 
      */
     public Output<String> backendId() {
@@ -33,14 +31,14 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The frontend ID origin of redirection
+     * The ID of the frontend to which the route is associated.
      * 
      */
     @Import(name="frontendId", required=true)
     private Output<String> frontendId;
 
     /**
-     * @return The frontend ID origin of redirection
+     * @return The ID of the frontend to which the route is associated.
      * 
      */
     public Output<String> frontendId() {
@@ -90,7 +88,6 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param backendId The ID of the backend to which the route is associated.
-         * - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
          * 
          * @return builder
          * 
@@ -102,7 +99,6 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param backendId The ID of the backend to which the route is associated.
-         * - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
          * 
          * @return builder
          * 
@@ -112,7 +108,7 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param frontendId The frontend ID origin of redirection
+         * @param frontendId The ID of the frontend to which the route is associated.
          * 
          * @return builder
          * 
@@ -123,7 +119,7 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param frontendId The frontend ID origin of redirection
+         * @param frontendId The ID of the frontend to which the route is associated.
          * 
          * @return builder
          * 

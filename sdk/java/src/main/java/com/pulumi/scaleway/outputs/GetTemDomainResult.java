@@ -23,7 +23,7 @@ public final class GetTemDomainResult {
     private String dkimConfig;
     private @Nullable String domainId;
     /**
-     * @return The ID of the Transaction Email Domain.
+     * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
@@ -80,7 +80,7 @@ public final class GetTemDomainResult {
         return Optional.ofNullable(this.domainId);
     }
     /**
-     * @return The ID of the Transaction Email Domain.
+     * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     public String id() {

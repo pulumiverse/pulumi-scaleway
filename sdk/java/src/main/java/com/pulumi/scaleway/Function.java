@@ -159,6 +159,20 @@ public class Function extends com.pulumi.resources.CustomResource {
         return this.handler;
     }
     /**
+     * HTTP traffic configuration
+     * 
+     */
+    @Export(name="httpOption", type=String.class, parameters={})
+    private Output</* @Nullable */ String> httpOption;
+
+    /**
+     * @return HTTP traffic configuration
+     * 
+     */
+    public Output<Optional<String>> httpOption() {
+        return Codegen.optional(this.httpOption);
+    }
+    /**
      * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
      * 
      */

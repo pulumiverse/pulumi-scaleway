@@ -12,6 +12,7 @@ from . import _utilities
 __all__ = [
     'BaremetalServerIpArgs',
     'BaremetalServerOptionArgs',
+    'BaremetalServerPrivateNetworkArgs',
     'DatabaseAclAclRuleArgs',
     'DatabaseInstanceLoadBalancerArgs',
     'DatabaseInstancePrivateNetworkArgs',
@@ -54,6 +55,9 @@ __all__ = [
     'LoadbalancerFrontendAclActionArgs',
     'LoadbalancerFrontendAclMatchArgs',
     'LoadbalancerPrivateNetworkArgs',
+    'MnqCredentialNatsCredentialsArgs',
+    'MnqCredentialSqsSnsCredentialsArgs',
+    'MnqCredentialSqsSnsCredentialsPermissionsArgs',
     'ObjectBucketAclAccessControlPolicyArgs',
     'ObjectBucketAclAccessControlPolicyGrantArgs',
     'ObjectBucketAclAccessControlPolicyGrantGranteeArgs',
@@ -81,7 +85,7 @@ class BaremetalServerIpArgs:
                  version: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] address: The address of the IP.
-        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param pulumi.Input[str] id: The id of the private network to attach.
         :param pulumi.Input[str] reverse: The reverse of the IP.
         """
         if address is not None:
@@ -109,7 +113,7 @@ class BaremetalServerIpArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the private network to attach.
         """
         return pulumi.get(self, "id")
 
@@ -143,20 +147,24 @@ class BaremetalServerIpArgs:
 class BaremetalServerOptionArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[str],
-                 expires_at: Optional[pulumi.Input[str]] = None):
+                 expires_at: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param pulumi.Input[str] id: The id of the private network to attach.
         :param pulumi.Input[str] expires_at: The auto expiration date for compatible options
+        :param pulumi.Input[str] name: The name of the server.
         """
         pulumi.set(__self__, "id", id)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the private network to attach.
         """
         return pulumi.get(self, "id")
 
@@ -175,6 +183,104 @@ class BaremetalServerOptionArgs:
     @expires_at.setter
     def expires_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expires_at", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class BaremetalServerPrivateNetworkArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] id: The id of the private network to attach.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the private network.
+        :param pulumi.Input[str] status: The private network status.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the private network.
+        :param pulumi.Input[int] vlan: The VLAN ID associated to the private network.
+        """
+        pulumi.set(__self__, "id", id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        The id of the private network to attach.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date and time of the creation of the private network.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date and time of the last update of the private network.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[int]]:
+        """
+        The VLAN ID associated to the private network.
+        """
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan", value)
 
 
 @pulumi.input_type
@@ -723,7 +829,7 @@ class DomainRecordGeoIpMatchArgs:
                  continents: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] data: The data of the view record
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] continents: List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
         """
@@ -737,7 +843,7 @@ class DomainRecordGeoIpMatchArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 
@@ -859,7 +965,7 @@ class DomainRecordViewArgs:
                  data: pulumi.Input[str],
                  subnet: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] data: The data of the view record
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] subnet: The subnet of the view
         """
         pulumi.set(__self__, "data", data)
@@ -869,7 +975,7 @@ class DomainRecordViewArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 
@@ -2639,7 +2745,7 @@ class LoadbalancerBackendHealthCheckHttpArgs:
                  code: Optional[pulumi.Input[int]] = None,
                  method: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] uri: The HTTPS endpoint URL to call for HC requests.
+        :param pulumi.Input[str] uri: The HTTP endpoint URL to call for HC requests.
         :param pulumi.Input[int] code: The expected HTTP status code.
         :param pulumi.Input[str] method: The HTTP method to use for HC requests.
         """
@@ -2653,7 +2759,7 @@ class LoadbalancerBackendHealthCheckHttpArgs:
     @pulumi.getter
     def uri(self) -> pulumi.Input[str]:
         """
-        The HTTPS endpoint URL to call for HC requests.
+        The HTTP endpoint URL to call for HC requests.
         """
         return pulumi.get(self, "uri")
 
@@ -2693,7 +2799,7 @@ class LoadbalancerBackendHealthCheckHttpsArgs:
                  code: Optional[pulumi.Input[int]] = None,
                  method: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] uri: The HTTPS endpoint URL to call for HC requests.
+        :param pulumi.Input[str] uri: The HTTP endpoint URL to call for HC requests.
         :param pulumi.Input[int] code: The expected HTTP status code.
         :param pulumi.Input[str] method: The HTTP method to use for HC requests.
         """
@@ -2707,7 +2813,7 @@ class LoadbalancerBackendHealthCheckHttpsArgs:
     @pulumi.getter
     def uri(self) -> pulumi.Input[str]:
         """
-        The HTTPS endpoint URL to call for HC requests.
+        The HTTP endpoint URL to call for HC requests.
         """
         return pulumi.get(self, "uri")
 
@@ -2975,20 +3081,20 @@ class LoadbalancerPrivateNetworkArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[str],
                  dhcp_config: Optional[pulumi.Input[bool]] = None,
-                 static_configs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 static_config: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] private_network_id: (Required) The ID of the Private Network to associate.
         :param pulumi.Input[bool] dhcp_config: (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] static_configs: (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        :param pulumi.Input[str] static_config: (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
-        if static_configs is not None:
-            pulumi.set(__self__, "static_configs", static_configs)
+        if static_config is not None:
+            pulumi.set(__self__, "static_config", static_config)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -3019,16 +3125,16 @@ class LoadbalancerPrivateNetworkArgs:
         pulumi.set(self, "dhcp_config", value)
 
     @property
-    @pulumi.getter(name="staticConfigs")
-    def static_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter(name="staticConfig")
+    def static_config(self) -> Optional[pulumi.Input[str]]:
         """
-        (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         """
-        return pulumi.get(self, "static_configs")
+        return pulumi.get(self, "static_config")
 
-    @static_configs.setter
-    def static_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "static_configs", value)
+    @static_config.setter
+    def static_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "static_config", value)
 
     @property
     @pulumi.getter
@@ -3050,6 +3156,139 @@ class LoadbalancerPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone", value)
+
+
+@pulumi.input_type
+class MnqCredentialNatsCredentialsArgs:
+    def __init__(__self__, *,
+                 content: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] content: Raw content of the NATS credentials file.
+        """
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[str]]:
+        """
+        Raw content of the NATS credentials file.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
+
+
+@pulumi.input_type
+class MnqCredentialSqsSnsCredentialsArgs:
+    def __init__(__self__, *,
+                 access_key: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']] = None,
+                 secret_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] access_key: The ID of the key.
+        :param pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs'] permissions: List of permissions associated to this Credential. Only one of permissions may be set.
+        :param pulumi.Input[str] secret_key: The Secret value of the key.
+        """
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the key.
+        """
+        return pulumi.get(self, "access_key")
+
+    @access_key.setter
+    def access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_key", value)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']]:
+        """
+        List of permissions associated to this Credential. Only one of permissions may be set.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']]):
+        pulumi.set(self, "permissions", value)
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Secret value of the key.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @secret_key.setter
+    def secret_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_key", value)
+
+
+@pulumi.input_type
+class MnqCredentialSqsSnsCredentialsPermissionsArgs:
+    def __init__(__self__, *,
+                 can_manage: Optional[pulumi.Input[bool]] = None,
+                 can_publish: Optional[pulumi.Input[bool]] = None,
+                 can_receive: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] can_manage: . Defines if user can manage the associated resource(s).
+        :param pulumi.Input[bool] can_publish: . Defines if user can publish messages to the service.
+        :param pulumi.Input[bool] can_receive: . Defines if user can receive messages from the service.
+        """
+        if can_manage is not None:
+            pulumi.set(__self__, "can_manage", can_manage)
+        if can_publish is not None:
+            pulumi.set(__self__, "can_publish", can_publish)
+        if can_receive is not None:
+            pulumi.set(__self__, "can_receive", can_receive)
+
+    @property
+    @pulumi.getter(name="canManage")
+    def can_manage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Defines if user can manage the associated resource(s).
+        """
+        return pulumi.get(self, "can_manage")
+
+    @can_manage.setter
+    def can_manage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "can_manage", value)
+
+    @property
+    @pulumi.getter(name="canPublish")
+    def can_publish(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Defines if user can publish messages to the service.
+        """
+        return pulumi.get(self, "can_publish")
+
+    @can_publish.setter
+    def can_publish(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "can_publish", value)
+
+    @property
+    @pulumi.getter(name="canReceive")
+    def can_receive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Defines if user can receive messages from the service.
+        """
+        return pulumi.get(self, "can_receive")
+
+    @can_receive.setter
+    def can_receive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "can_receive", value)
 
 
 @pulumi.input_type
@@ -3195,6 +3434,13 @@ class ObjectBucketCorsRuleArgs:
                  allowed_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age_seconds: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_methods: Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_origins: Specifies which origins are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_headers: Specifies which headers are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies expose header in the response.
+        :param pulumi.Input[int] max_age_seconds: Specifies time in seconds that browser can cache the response for a preflight request.
+        """
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
         if allowed_headers is not None:
@@ -3207,6 +3453,9 @@ class ObjectBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        """
         return pulumi.get(self, "allowed_methods")
 
     @allowed_methods.setter
@@ -3216,6 +3465,9 @@ class ObjectBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="allowedOrigins")
     def allowed_origins(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Specifies which origins are allowed.
+        """
         return pulumi.get(self, "allowed_origins")
 
     @allowed_origins.setter
@@ -3225,6 +3477,9 @@ class ObjectBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="allowedHeaders")
     def allowed_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies which headers are allowed.
+        """
         return pulumi.get(self, "allowed_headers")
 
     @allowed_headers.setter
@@ -3234,6 +3489,9 @@ class ObjectBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies expose header in the response.
+        """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
@@ -3243,6 +3501,9 @@ class ObjectBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies time in seconds that browser can cache the response for a preflight request.
+        """
         return pulumi.get(self, "max_age_seconds")
 
     @max_age_seconds.setter
@@ -3261,8 +3522,13 @@ class ObjectBucketLifecycleRuleArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  transitions: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]] = None):
         """
-        :param pulumi.Input[str] id: The unique name of the bucket.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+        :param pulumi.Input[bool] enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        :param pulumi.Input[int] abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        :param pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period in the object's expire (documented below).
+        :param pulumi.Input[str] id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        :param pulumi.Input[str] prefix: Object key prefix identifying one or more objects to which the rule applies.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies object tags key and value.
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]] transitions: Specifies a period in the object's transitions (documented below).
         """
         pulumi.set(__self__, "enabled", enabled)
         if abort_incomplete_multipart_upload_days is not None:
@@ -3281,6 +3547,9 @@ class ObjectBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Input[bool]:
+        """
+        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -3290,6 +3559,9 @@ class ObjectBucketLifecycleRuleArgs:
     @property
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
     def abort_incomplete_multipart_upload_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        """
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
     @abort_incomplete_multipart_upload_days.setter
@@ -3299,6 +3571,9 @@ class ObjectBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def expiration(self) -> Optional[pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs']]:
+        """
+        Specifies a period in the object's expire (documented below).
+        """
         return pulumi.get(self, "expiration")
 
     @expiration.setter
@@ -3309,7 +3584,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the bucket.
+        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         """
         return pulumi.get(self, "id")
 
@@ -3320,6 +3595,9 @@ class ObjectBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
@@ -3330,7 +3608,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A list of tags (key / value) for the bucket.
+        Specifies object tags key and value.
         """
         return pulumi.get(self, "tags")
 
@@ -3341,6 +3619,9 @@ class ObjectBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def transitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]]:
+        """
+        Specifies a period in the object's transitions (documented below).
+        """
         return pulumi.get(self, "transitions")
 
     @transitions.setter
@@ -3352,11 +3633,17 @@ class ObjectBucketLifecycleRuleArgs:
 class ObjectBucketLifecycleRuleExpirationArgs:
     def __init__(__self__, *,
                  days: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         pulumi.set(__self__, "days", days)
 
     @property
     @pulumi.getter
     def days(self) -> pulumi.Input[int]:
+        """
+        Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -3369,6 +3656,10 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     def __init__(__self__, *,
                  storage_class: pulumi.Input[str],
                  days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         pulumi.set(__self__, "storage_class", storage_class)
         if days is not None:
             pulumi.set(__self__, "days", days)
@@ -3376,6 +3667,9 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @property
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[str]:
+        """
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        """
         return pulumi.get(self, "storage_class")
 
     @storage_class.setter
@@ -3385,6 +3679,9 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @property
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -3452,12 +3749,18 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
 class ObjectBucketVersioningArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter

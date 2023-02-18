@@ -6,7 +6,6 @@ package com.pulumi.scaleway.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -24,10 +23,10 @@ public final class LoadbalancerPrivateNetwork {
      */
     private String privateNetworkId;
     /**
-     * @return (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+     * @return (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      * 
      */
-    private @Nullable List<String> staticConfigs;
+    private @Nullable String staticConfig;
     private @Nullable String status;
     /**
      * @return `zone`) The zone in which the IP should be reserved.
@@ -51,11 +50,11 @@ public final class LoadbalancerPrivateNetwork {
         return this.privateNetworkId;
     }
     /**
-     * @return (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+     * @return (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      * 
      */
-    public List<String> staticConfigs() {
-        return this.staticConfigs == null ? List.of() : this.staticConfigs;
+    public Optional<String> staticConfig() {
+        return Optional.ofNullable(this.staticConfig);
     }
     public Optional<String> status() {
         return Optional.ofNullable(this.status);
@@ -79,7 +78,7 @@ public final class LoadbalancerPrivateNetwork {
     public static final class Builder {
         private @Nullable Boolean dhcpConfig;
         private String privateNetworkId;
-        private @Nullable List<String> staticConfigs;
+        private @Nullable String staticConfig;
         private @Nullable String status;
         private @Nullable String zone;
         public Builder() {}
@@ -87,7 +86,7 @@ public final class LoadbalancerPrivateNetwork {
     	      Objects.requireNonNull(defaults);
     	      this.dhcpConfig = defaults.dhcpConfig;
     	      this.privateNetworkId = defaults.privateNetworkId;
-    	      this.staticConfigs = defaults.staticConfigs;
+    	      this.staticConfig = defaults.staticConfig;
     	      this.status = defaults.status;
     	      this.zone = defaults.zone;
         }
@@ -103,12 +102,9 @@ public final class LoadbalancerPrivateNetwork {
             return this;
         }
         @CustomType.Setter
-        public Builder staticConfigs(@Nullable List<String> staticConfigs) {
-            this.staticConfigs = staticConfigs;
+        public Builder staticConfig(@Nullable String staticConfig) {
+            this.staticConfig = staticConfig;
             return this;
-        }
-        public Builder staticConfigs(String... staticConfigs) {
-            return staticConfigs(List.of(staticConfigs));
         }
         @CustomType.Setter
         public Builder status(@Nullable String status) {
@@ -124,7 +120,7 @@ public final class LoadbalancerPrivateNetwork {
             final var o = new LoadbalancerPrivateNetwork();
             o.dhcpConfig = dhcpConfig;
             o.privateNetworkId = privateNetworkId;
-            o.staticConfigs = staticConfigs;
+            o.staticConfig = staticConfig;
             o.status = status;
             o.zone = zone;
             return o;

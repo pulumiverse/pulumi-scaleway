@@ -38,7 +38,7 @@ type LookupTemDomainResult struct {
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig string  `pulumi:"dkimConfig"`
 	DomainId   *string `pulumi:"domainId"`
-	// The ID of the Transaction Email Domain.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The error message if the last check failed.
 	LastError string `pulumi:"lastError"`
@@ -113,7 +113,7 @@ func (o LookupTemDomainResultOutput) DomainId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) *string { return v.DomainId }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the Transaction Email Domain.
+// The provider-assigned unique ID for this managed resource.
 func (o LookupTemDomainResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.Id }).(pulumi.StringOutput)
 }

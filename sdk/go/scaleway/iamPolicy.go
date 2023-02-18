@@ -44,7 +44,7 @@ import (
 //				Rules: scaleway.IamPolicyRuleArray{
 //					&scaleway.IamPolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
-//							pulumi.String(_default.Id),
+//							*pulumi.String(_default.Id),
 //						},
 //						PermissionSetNames: pulumi.StringArray{
 //							pulumi.String("ObjectStorageReadOnly"),

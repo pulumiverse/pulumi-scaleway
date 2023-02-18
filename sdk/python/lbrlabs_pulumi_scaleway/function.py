@@ -21,6 +21,7 @@ class FunctionArgs:
                  deploy: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -40,6 +41,7 @@ class FunctionArgs:
         :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
@@ -61,6 +63,8 @@ class FunctionArgs:
             pulumi.set(__self__, "description", description)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
+        if http_option is not None:
+            pulumi.set(__self__, "http_option", http_option)
         if max_scale is not None:
             pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit is not None:
@@ -165,6 +169,18 @@ class FunctionArgs:
     @environment_variables.setter
     def environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "environment_variables", value)
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @http_option.setter
+    def http_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_option", value)
 
     @property
     @pulumi.getter(name="maxScale")
@@ -296,6 +312,7 @@ class _FunctionState:
                  domain_name: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  handler: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -318,6 +335,7 @@ class _FunctionState:
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
@@ -345,6 +363,8 @@ class _FunctionState:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if handler is not None:
             pulumi.set(__self__, "handler", handler)
+        if http_option is not None:
+            pulumi.set(__self__, "http_option", http_option)
         if max_scale is not None:
             pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit is not None:
@@ -445,6 +465,18 @@ class _FunctionState:
     @handler.setter
     def handler(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "handler", value)
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @http_option.setter
+    def http_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_option", value)
 
     @property
     @pulumi.getter(name="maxScale")
@@ -624,6 +656,7 @@ class Function(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  handler: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -672,6 +705,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
@@ -739,6 +773,7 @@ class Function(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  handler: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -767,6 +802,7 @@ class Function(pulumi.CustomResource):
             if handler is None and not opts.urn:
                 raise TypeError("Missing required property 'handler'")
             __props__.__dict__["handler"] = handler
+            __props__.__dict__["http_option"] = http_option
             __props__.__dict__["max_scale"] = max_scale
             __props__.__dict__["memory_limit"] = memory_limit
             __props__.__dict__["min_scale"] = min_scale
@@ -807,6 +843,7 @@ class Function(pulumi.CustomResource):
             domain_name: Optional[pulumi.Input[str]] = None,
             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             handler: Optional[pulumi.Input[str]] = None,
+            http_option: Optional[pulumi.Input[str]] = None,
             max_scale: Optional[pulumi.Input[int]] = None,
             memory_limit: Optional[pulumi.Input[int]] = None,
             min_scale: Optional[pulumi.Input[int]] = None,
@@ -834,6 +871,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
@@ -859,6 +897,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["domain_name"] = domain_name
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["handler"] = handler
+        __props__.__dict__["http_option"] = http_option
         __props__.__dict__["max_scale"] = max_scale
         __props__.__dict__["memory_limit"] = memory_limit
         __props__.__dict__["min_scale"] = min_scale
@@ -922,6 +961,14 @@ class Function(pulumi.CustomResource):
         Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
         """
         return pulumi.get(self, "handler")
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> pulumi.Output[Optional[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
 
     @property
     @pulumi.getter(name="maxScale")

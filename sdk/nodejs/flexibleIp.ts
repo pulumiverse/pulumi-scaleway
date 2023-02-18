@@ -98,7 +98,7 @@ export class FlexibleIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Description of the flexible IP
+     * A description of the flexible IP.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -126,7 +126,7 @@ export class FlexibleIp extends pulumi.CustomResource {
      */
     public readonly serverId!: pulumi.Output<string | undefined>;
     /**
-     * The tags associated with the flexible IP
+     * A list of tags to apply to the flexible IP.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -190,7 +190,7 @@ export interface FlexibleIpState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Description of the flexible IP
+     * A description of the flexible IP.
      */
     description?: pulumi.Input<string>;
     /**
@@ -218,7 +218,7 @@ export interface FlexibleIpState {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The tags associated with the flexible IP
+     * A list of tags to apply to the flexible IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -236,7 +236,7 @@ export interface FlexibleIpState {
  */
 export interface FlexibleIpArgs {
     /**
-     * Description of the flexible IP
+     * A description of the flexible IP.
      */
     description?: pulumi.Input<string>;
     /**
@@ -252,7 +252,7 @@ export interface FlexibleIpArgs {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The tags associated with the flexible IP
+     * A list of tags to apply to the flexible IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**

@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ObjectBucketLifecycleRuleTransition {
+    /**
+     * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     */
     private @Nullable Integer days;
+    /**
+     * @return Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     * 
+     */
     private String storageClass;
 
     private ObjectBucketLifecycleRuleTransition() {}
+    /**
+     * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     */
     public Optional<Integer> days() {
         return Optional.ofNullable(this.days);
     }
+    /**
+     * @return Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     * 
+     */
     public String storageClass() {
         return this.storageClass;
     }

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupInstanceServer(ctx, &scaleway.LookupInstanceServerArgs{
+//			_, err := scaleway.LookupInstanceServer(ctx, &scaleway.LookupInstanceServerArgs{
 //				ServerId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -94,8 +94,7 @@ type LookupInstanceServerResult struct {
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The public IPv4 address of the server.
-	PublicIp string `pulumi:"publicIp"`
-	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+	PublicIp    string                        `pulumi:"publicIp"`
 	RootVolumes []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId string  `pulumi:"securityGroupId"`
@@ -250,7 +249,6 @@ func (o LookupInstanceServerResultOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
-// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 func (o LookupInstanceServerResultOutput) RootVolumes() GetInstanceServerRootVolumeArrayOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) []GetInstanceServerRootVolume { return v.RootVolumes }).(GetInstanceServerRootVolumeArrayOutput)
 }

@@ -19,18 +19,25 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string? ExpiresAt;
         /// <summary>
-        /// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        /// The id of the private network to attach.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the server.
+        /// </summary>
+        public readonly string? Name;
 
         [OutputConstructor]
         private BaremetalServerOption(
             string? expiresAt,
 
-            string id)
+            string id,
+
+            string? name)
         {
             ExpiresAt = expiresAt;
             Id = id;
+            Name = name;
         }
     }
 }

@@ -19,6 +19,7 @@ class ContainerArgs:
                  deploy: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -39,6 +40,7 @@ class ContainerArgs:
         :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
@@ -62,6 +64,8 @@ class ContainerArgs:
             pulumi.set(__self__, "description", description)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
+        if http_option is not None:
+            pulumi.set(__self__, "http_option", http_option)
         if max_concurrency is not None:
             pulumi.set(__self__, "max_concurrency", max_concurrency)
         if max_scale is not None:
@@ -148,6 +152,18 @@ class ContainerArgs:
     @environment_variables.setter
     def environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "environment_variables", value)
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @http_option.setter
+    def http_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_option", value)
 
     @property
     @pulumi.getter(name="maxConcurrency")
@@ -316,6 +332,7 @@ class _ContainerState:
                  domain_name: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  error_message: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -340,6 +357,7 @@ class _ContainerState:
         :param pulumi.Input[str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
@@ -370,6 +388,8 @@ class _ContainerState:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if error_message is not None:
             pulumi.set(__self__, "error_message", error_message)
+        if http_option is not None:
+            pulumi.set(__self__, "http_option", http_option)
         if max_concurrency is not None:
             pulumi.set(__self__, "max_concurrency", max_concurrency)
         if max_scale is not None:
@@ -484,6 +504,18 @@ class _ContainerState:
     @error_message.setter
     def error_message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "error_message", value)
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @http_option.setter
+    def http_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_option", value)
 
     @property
     @pulumi.getter(name="maxConcurrency")
@@ -675,6 +707,7 @@ class Container(pulumi.CustomResource):
                  deploy: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -777,6 +810,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
@@ -898,6 +932,7 @@ class Container(pulumi.CustomResource):
                  deploy: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -925,6 +960,7 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["deploy"] = deploy
             __props__.__dict__["description"] = description
             __props__.__dict__["environment_variables"] = environment_variables
+            __props__.__dict__["http_option"] = http_option
             __props__.__dict__["max_concurrency"] = max_concurrency
             __props__.__dict__["max_scale"] = max_scale
             __props__.__dict__["memory_limit"] = memory_limit
@@ -964,6 +1000,7 @@ class Container(pulumi.CustomResource):
             domain_name: Optional[pulumi.Input[str]] = None,
             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             error_message: Optional[pulumi.Input[str]] = None,
+            http_option: Optional[pulumi.Input[str]] = None,
             max_concurrency: Optional[pulumi.Input[int]] = None,
             max_scale: Optional[pulumi.Input[int]] = None,
             memory_limit: Optional[pulumi.Input[int]] = None,
@@ -993,6 +1030,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
@@ -1020,6 +1058,7 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["domain_name"] = domain_name
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["error_message"] = error_message
+        __props__.__dict__["http_option"] = http_option
         __props__.__dict__["max_concurrency"] = max_concurrency
         __props__.__dict__["max_scale"] = max_scale
         __props__.__dict__["memory_limit"] = memory_limit
@@ -1092,6 +1131,14 @@ class Container(pulumi.CustomResource):
         The error message of the container.
         """
         return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> pulumi.Output[Optional[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
 
     @property
     @pulumi.getter(name="maxConcurrency")

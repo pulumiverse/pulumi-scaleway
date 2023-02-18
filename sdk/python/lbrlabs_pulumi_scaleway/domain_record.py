@@ -30,7 +30,7 @@ class DomainRecordArgs:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None):
         """
         The set of arguments for constructing a DomainRecord resource.
-        :param pulumi.Input[str] data: The data of the view record
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
         :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
@@ -69,7 +69,7 @@ class DomainRecordArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 
@@ -228,7 +228,7 @@ class _DomainRecordState:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None):
         """
         Input properties used for looking up and filtering DomainRecord resources.
-        :param pulumi.Input[str] data: The data of the view record
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
         :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
@@ -273,7 +273,7 @@ class _DomainRecordState:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[str]]:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 
@@ -607,7 +607,7 @@ class DomainRecord(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] data: The data of the view record
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
         :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
@@ -872,7 +872,7 @@ class DomainRecord(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] data: The data of the view record
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
         :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
@@ -909,7 +909,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def data(self) -> pulumi.Output[str]:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 

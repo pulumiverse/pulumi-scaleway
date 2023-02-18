@@ -25,11 +25,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// {
     ///     var someBucket = new Scaleway.ObjectBucket("someBucket", new()
     ///     {
-    ///         Acl = "private",
     ///         Tags = 
     ///         {
     ///             { "key", "value" },
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Creating the bucket in a specific project
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var someBucket = new Scaleway.ObjectBucket("someBucket", new()
+    ///     {
+    ///         ProjectId = "11111111-1111-1111-1111-111111111111",
     ///     });
     /// 
     /// });
@@ -45,7 +60,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// {
     ///     var main = new Scaleway.ObjectBucket("main", new()
     ///     {
-    ///         Acl = "private",
     ///         LifecycleRules = new[]
     ///         {
     ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
@@ -119,50 +133,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// });
     /// ```
-    /// ## The ACL
-    /// 
-    /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
-    /// 
-    /// The `CORS` object supports the following:
-    /// 
-    /// * `allowed_headers` (Optional) Specifies which headers are allowed.
-    /// * `allowed_methods` (Required) Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
-    /// * `allowed_origins` (Required) Specifies which origins are allowed.
-    /// * `expose_headers` (Optional) Specifies expose header in the response.
-    /// * `max_age_seconds` (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
-    /// 
-    /// The `lifecycle_rule` (Optional) object supports the following:
-    /// 
-    /// * `id` - (Optional) Unique identifier for the rule. Must be less than or equal to 255 characters in length.
-    /// * `prefix` - (Optional) Object key prefix identifying one or more objects to which the rule applies.
-    /// * `tags` - (Optional) Specifies object tags key and value.
-    /// * `enabled` - (Required) The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
-    /// 
-    /// * `abort_incomplete_multipart_upload_days` (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
-    ///   
-    ///     * &gt; **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
-    /// 
-    /// * `expiration` - (Optional) Specifies a period in the object's expire (documented below).
-    /// * `transition` - (Optional) Specifies a period in the object's transitions (documented below).
-    /// 
-    /// At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
-    /// 
-    /// The `expiration` object supports the following
-    /// 
-    /// * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
-    /// 
-    /// &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-    /// 
-    /// The `transition` object supports the following
-    /// 
-    /// * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
-    /// * `storage_class` (Required) Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
-    /// 
-    /// &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-    /// 
-    /// The `versioning` object supports the following:
-    /// 
-    /// * `enabled` - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
     /// 
     /// ## Import
     /// 
@@ -176,7 +146,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class ObjectBucket : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
@@ -216,6 +186,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("objectLockEnabled")]
         public Output<bool?> ObjectLockEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
@@ -283,7 +259,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ObjectBucketArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -331,6 +307,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<bool>? ObjectLockEnabled { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         /// </summary>
         [Input("region")]
@@ -363,7 +345,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ObjectBucketState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -415,6 +397,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("objectLockEnabled")]
         public Input<bool>? ObjectLockEnabled { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

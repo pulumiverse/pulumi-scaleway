@@ -264,6 +264,20 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.healthCheckTimeout);
     }
     /**
+     * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     * 
+     */
+    @Export(name="ignoreSslServerVerify", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> ignoreSslServerVerify;
+
+    /**
+     * @return Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     * 
+     */
+    public Output<Optional<Boolean>> ignoreSslServerVerify() {
+        return Codegen.optional(this.ignoreSslServerVerify);
+    }
+    /**
      * The load-balancer ID this backend is attached to.
      * &gt; **Important:** Updates to `lb_id` will recreate the backend.
      * 
@@ -352,6 +366,20 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> serverIps() {
         return Codegen.optional(this.serverIps);
+    }
+    /**
+     * Enables SSL between load balancer and backend servers.
+     * 
+     */
+    @Export(name="sslBridging", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> sslBridging;
+
+    /**
+     * @return Enables SSL between load balancer and backend servers.
+     * 
+     */
+    public Output<Optional<Boolean>> sslBridging() {
+        return Codegen.optional(this.sslBridging);
     }
     /**
      * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.

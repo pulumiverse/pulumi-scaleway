@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
  * 
  * ## Example
+ * 
+ * ### Create a gateway network with DHCP
  * ```java
  * package generated_program;
  * 
@@ -74,6 +76,49 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Create a gateway network with a static IP address
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.VpcPrivateNetwork;
+ * import com.pulumi.scaleway.VpcPublicGateway;
+ * import com.pulumi.scaleway.VpcPublicGatewayArgs;
+ * import com.pulumi.scaleway.VpcGatewayNetwork;
+ * import com.pulumi.scaleway.VpcGatewayNetworkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pn01 = new VpcPrivateNetwork(&#34;pn01&#34;);
+ * 
+ *         var pg01 = new VpcPublicGateway(&#34;pg01&#34;, VpcPublicGatewayArgs.builder()        
+ *             .type(&#34;VPC-GW-S&#34;)
+ *             .build());
+ * 
+ *         var main = new VpcGatewayNetwork(&#34;main&#34;, VpcGatewayNetworkArgs.builder()        
+ *             .gatewayId(pg01.id())
+ *             .privateNetworkId(pn01.id())
+ *             .enableDhcp(false)
+ *             .enableMasquerade(true)
+ *             .staticAddress(&#34;192.168.1.42/24&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -114,14 +159,14 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * The ID of the public gateway DHCP config.
+     * The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     @Export(name="dhcpId", type=String.class, parameters={})
     private Output</* @Nullable */ String> dhcpId;
 
     /**
-     * @return The ID of the public gateway DHCP config.
+     * @return The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     public Output<Optional<String>> dhcpId() {
@@ -198,14 +243,14 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
         return this.privateNetworkId;
     }
     /**
-     * Enable DHCP config on this network
+     * Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     @Export(name="staticAddress", type=String.class, parameters={})
     private Output</* @Nullable */ String> staticAddress;
 
     /**
-     * @return Enable DHCP config on this network
+     * @return Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
     public Output<Optional<String>> staticAddress() {

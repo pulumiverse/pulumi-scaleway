@@ -84,9 +84,9 @@ import (
 //			}
 //			_, err = scaleway.NewVpcPublicGatewayDhcpReservation(ctx, "mainVpcPublicGatewayDhcpReservation", &scaleway.VpcPublicGatewayDhcpReservationArgs{
 //				GatewayNetworkId: mainVpcGatewayNetwork.ID(),
-//				MacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (string, error) {
-//					return privateNetworks[0].MacAddress, nil
-//				}).(pulumi.StringOutput),
+//				MacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (*string, error) {
+//					return &privateNetworks[0].MacAddress, nil
+//				}).(pulumi.StringPtrOutput),
 //				IpAddress: pulumi.String("192.168.1.1"),
 //			})
 //			if err != nil {

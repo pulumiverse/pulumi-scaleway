@@ -15,7 +15,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class DomainRecordView
     {
         /// <summary>
-        /// The data of the view record
+        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         /// </summary>
         public readonly string Data;
         /// <summary>

@@ -10,6 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetBaremetalOfferDisk {
+    /**
+     * @return Capacity of the memory in GB.
+     * 
+     */
     private Integer capacity;
     /**
      * @return Type of memory.
@@ -18,6 +22,10 @@ public final class GetBaremetalOfferDisk {
     private String type;
 
     private GetBaremetalOfferDisk() {}
+    /**
+     * @return Capacity of the memory in GB.
+     * 
+     */
     public Integer capacity() {
         return this.capacity;
     }

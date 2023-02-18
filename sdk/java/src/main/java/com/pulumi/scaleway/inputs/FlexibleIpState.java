@@ -32,14 +32,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Description of the flexible IP
+     * A description of the flexible IP.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of the flexible IP
+     * @return A description of the flexible IP.
      * 
      */
     public Optional<Output<String>> description() {
@@ -137,14 +137,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The tags associated with the flexible IP
+     * A list of tags to apply to the flexible IP.
      * 
      */
     @Import(name="tags")
     private @Nullable Output<List<String>> tags;
 
     /**
-     * @return The tags associated with the flexible IP
+     * @return A list of tags to apply to the flexible IP.
      * 
      */
     public Optional<Output<List<String>>> tags() {
@@ -237,7 +237,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description Description of the flexible IP
+         * @param description A description of the flexible IP.
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description Description of the flexible IP
+         * @param description A description of the flexible IP.
          * 
          * @return builder
          * 
@@ -384,7 +384,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags The tags associated with the flexible IP
+         * @param tags A list of tags to apply to the flexible IP.
          * 
          * @return builder
          * 
@@ -395,7 +395,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags The tags associated with the flexible IP
+         * @param tags A list of tags to apply to the flexible IP.
          * 
          * @return builder
          * 
@@ -405,7 +405,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags The tags associated with the flexible IP
+         * @param tags A list of tags to apply to the flexible IP.
          * 
          * @return builder
          * 

@@ -11,7 +11,7 @@ export interface BaremetalServerIp {
      */
     address?: pulumi.Input<string>;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the private network to attach.
      */
     id?: pulumi.Input<string>;
     /**
@@ -27,9 +27,36 @@ export interface BaremetalServerOption {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the private network to attach.
      */
     id: pulumi.Input<string>;
+    /**
+     * The name of the server.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface BaremetalServerPrivateNetwork {
+    /**
+     * The date and time of the creation of the private network.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * The id of the private network to attach.
+     */
+    id: pulumi.Input<string>;
+    /**
+     * The private network status.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the private network.
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * The VLAN ID associated to the private network.
+     */
+    vlan?: pulumi.Input<number>;
 }
 
 export interface DatabaseAclAclRule {
@@ -179,7 +206,7 @@ export interface DomainRecordGeoIpMatch {
      */
     countries?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     data: pulumi.Input<string>;
 }
@@ -209,7 +236,7 @@ export interface DomainRecordHttpService {
 
 export interface DomainRecordView {
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      */
     data: pulumi.Input<string>;
     /**
@@ -664,7 +691,7 @@ export interface LoadbalancerBackendHealthCheckHttp {
      */
     method?: pulumi.Input<string>;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTP endpoint URL to call for HC requests.
      */
     uri: pulumi.Input<string>;
 }
@@ -679,7 +706,7 @@ export interface LoadbalancerBackendHealthCheckHttps {
      */
     method?: pulumi.Input<string>;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTP endpoint URL to call for HC requests.
      */
     uri: pulumi.Input<string>;
 }
@@ -760,14 +787,51 @@ export interface LoadbalancerPrivateNetwork {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+     * (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      */
-    staticConfigs?: pulumi.Input<pulumi.Input<string>[]>;
+    staticConfig?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
+}
+
+export interface MnqCredentialNatsCredentials {
+    /**
+     * Raw content of the NATS credentials file.
+     */
+    content?: pulumi.Input<string>;
+}
+
+export interface MnqCredentialSqsSnsCredentials {
+    /**
+     * The ID of the key.
+     */
+    accessKey?: pulumi.Input<string>;
+    /**
+     * List of permissions associated to this Credential. Only one of permissions may be set.
+     */
+    permissions?: pulumi.Input<inputs.MnqCredentialSqsSnsCredentialsPermissions>;
+    /**
+     * The Secret value of the key.
+     */
+    secretKey?: pulumi.Input<string>;
+}
+
+export interface MnqCredentialSqsSnsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive?: pulumi.Input<boolean>;
 }
 
 export interface ObjectBucketAclAccessControlPolicy {
@@ -798,35 +862,74 @@ export interface ObjectBucketAclAccessControlPolicyOwner {
 }
 
 export interface ObjectBucketCorsRule {
+    /**
+     * Specifies which headers are allowed.
+     */
     allowedHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     */
     allowedMethods: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies which origins are allowed.
+     */
     allowedOrigins: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies expose header in the response.
+     */
     exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies time in seconds that browser can cache the response for a preflight request.
+     */
     maxAgeSeconds?: pulumi.Input<number>;
 }
 
 export interface ObjectBucketLifecycleRule {
+    /**
+     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     */
     abortIncompleteMultipartUploadDays?: pulumi.Input<number>;
+    /**
+     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+     */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Specifies a period in the object's expire (documented below).
+     */
     expiration?: pulumi.Input<inputs.ObjectBucketLifecycleRuleExpiration>;
     /**
-     * The unique name of the bucket.
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
      */
     id?: pulumi.Input<string>;
+    /**
+     * Object key prefix identifying one or more objects to which the rule applies.
+     */
     prefix?: pulumi.Input<string>;
     /**
-     * A list of tags (key / value) for the bucket.
+     * Specifies object tags key and value.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Specifies a period in the object's transitions (documented below).
+     */
     transitions?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRuleTransition>[]>;
 }
 
 export interface ObjectBucketLifecycleRuleExpiration {
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days: pulumi.Input<number>;
 }
 
 export interface ObjectBucketLifecycleRuleTransition {
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days?: pulumi.Input<number>;
+    /**
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     */
     storageClass: pulumi.Input<string>;
 }
 
@@ -841,6 +944,9 @@ export interface ObjectBucketLockConfigurationRuleDefaultRetention {
 }
 
 export interface ObjectBucketVersioning {
+    /**
+     * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+     */
     enabled?: pulumi.Input<boolean>;
 }
 

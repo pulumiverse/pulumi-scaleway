@@ -191,9 +191,9 @@ import (
 //			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
 //				GatewayId: mainVpcPublicGateway.ID(),
 //				PrivateIp: mainVpcPublicGatewayDhcp.Address,
-//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork scaleway.DatabaseInstancePrivateNetwork) (int, error) {
-//					return privateNetwork.Port, nil
-//				}).(pulumi.IntOutput),
+//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork scaleway.DatabaseInstancePrivateNetwork) (*int, error) {
+//					return &privateNetwork.Port, nil
+//				}).(pulumi.IntPtrOutput),
 //				PublicPort: pulumi.Int(42),
 //				Protocol:   pulumi.String("both"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -303,7 +303,7 @@ func NewDatabaseInstance(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'NodeType'")
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrOutput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",

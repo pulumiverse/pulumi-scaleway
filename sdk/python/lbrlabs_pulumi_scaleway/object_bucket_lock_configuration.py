@@ -17,14 +17,22 @@ __all__ = ['ObjectBucketLockConfigurationArgs', 'ObjectBucketLockConfiguration']
 class ObjectBucketLockConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[str],
-                 rule: pulumi.Input['ObjectBucketLockConfigurationRuleArgs']):
+                 rule: pulumi.Input['ObjectBucketLockConfigurationRuleArgs'],
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectBucketLockConfiguration resource.
         :param pulumi.Input[str] bucket: The bucket name.
         :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "rule", rule)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -50,19 +58,51 @@ class ObjectBucketLockConfigurationArgs:
     def rule(self, value: pulumi.Input['ObjectBucketLockConfigurationRuleArgs']):
         pulumi.set(self, "rule", value)
 
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project_id you want to attach the resource to
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region you want to attach the resource to
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class _ObjectBucketLockConfigurationState:
     def __init__(__self__, *,
                  bucket: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  rule: Optional[pulumi.Input['ObjectBucketLockConfigurationRuleArgs']] = None):
         """
         Input properties used for looking up and filtering ObjectBucketLockConfiguration resources.
         :param pulumi.Input[str] bucket: The bucket name.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the Object Lock rule for the specified object.
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if rule is not None:
             pulumi.set(__self__, "rule", rule)
 
@@ -77,6 +117,30 @@ class _ObjectBucketLockConfigurationState:
     @bucket.setter
     def bucket(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project_id you want to attach the resource to
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region you want to attach the resource to
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter
@@ -97,6 +161,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
                  __props__=None):
         """
@@ -104,6 +170,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The bucket name.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']] rule: Specifies the Object Lock rule for the specified object.
         """
         ...
@@ -130,6 +198,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -143,6 +213,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             if bucket is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket'")
             __props__.__dict__["bucket"] = bucket
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["region"] = region
             if rule is None and not opts.urn:
                 raise TypeError("Missing required property 'rule'")
             __props__.__dict__["rule"] = rule
@@ -157,6 +229,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None) -> 'ObjectBucketLockConfiguration':
         """
         Get an existing ObjectBucketLockConfiguration resource's state with the given name, id, and optional extra
@@ -166,6 +240,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The bucket name.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']] rule: Specifies the Object Lock rule for the specified object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -173,6 +249,8 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         __props__ = _ObjectBucketLockConfigurationState.__new__(_ObjectBucketLockConfigurationState)
 
         __props__.__dict__["bucket"] = bucket
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["region"] = region
         __props__.__dict__["rule"] = rule
         return ObjectBucketLockConfiguration(resource_name, opts=opts, __props__=__props__)
 
@@ -183,6 +261,22 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         The bucket name.
         """
         return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[str]:
+        """
+        The project_id you want to attach the resource to
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[str]:
+        """
+        The region you want to attach the resource to
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter

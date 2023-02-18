@@ -13,21 +13,33 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
     public sealed class ObjectBucketLifecycleRuleGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        /// </summary>
         [Input("abortIncompleteMultipartUploadDays")]
         public Input<int>? AbortIncompleteMultipartUploadDays { get; set; }
 
+        /// <summary>
+        /// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
+        /// <summary>
+        /// Specifies a period in the object's expire (documented below).
+        /// </summary>
         [Input("expiration")]
         public Input<Inputs.ObjectBucketLifecycleRuleExpirationGetArgs>? Expiration { get; set; }
 
         /// <summary>
-        /// The unique name of the bucket.
+        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Object key prefix identifying one or more objects to which the rule applies.
+        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
@@ -35,7 +47,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         private InputMap<string>? _tags;
 
         /// <summary>
-        /// A list of tags (key / value) for the bucket.
+        /// Specifies object tags key and value.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -45,6 +57,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
         [Input("transitions")]
         private InputList<Inputs.ObjectBucketLifecycleRuleTransitionGetArgs>? _transitions;
+
+        /// <summary>
+        /// Specifies a period in the object's transitions (documented below).
+        /// </summary>
         public InputList<Inputs.ObjectBucketLifecycleRuleTransitionGetArgs> Transitions
         {
             get => _transitions ?? (_transitions = new InputList<Inputs.ObjectBucketLifecycleRuleTransitionGetArgs>());

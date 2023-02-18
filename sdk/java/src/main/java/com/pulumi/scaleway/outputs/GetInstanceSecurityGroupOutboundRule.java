@@ -15,10 +15,26 @@ public final class GetInstanceSecurityGroupOutboundRule {
      * 
      */
     private String action;
+    /**
+     * @return The ip this rule apply to.
+     * 
+     */
     private String ip;
+    /**
+     * @return The ip range (e.g `192.168.1.0/24`) this rule apply to.
+     * 
+     */
     private String ipRange;
+    /**
+     * @return The port this rule apply to. If no port is specified, rule will apply to all port.
+     * 
+     */
     private Integer port;
     private String portRange;
+    /**
+     * @return The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     * 
+     */
     private String protocol;
 
     private GetInstanceSecurityGroupOutboundRule() {}
@@ -29,18 +45,34 @@ public final class GetInstanceSecurityGroupOutboundRule {
     public String action() {
         return this.action;
     }
+    /**
+     * @return The ip this rule apply to.
+     * 
+     */
     public String ip() {
         return this.ip;
     }
+    /**
+     * @return The ip range (e.g `192.168.1.0/24`) this rule apply to.
+     * 
+     */
     public String ipRange() {
         return this.ipRange;
     }
+    /**
+     * @return The port this rule apply to. If no port is specified, rule will apply to all port.
+     * 
+     */
     public Integer port() {
         return this.port;
     }
     public String portRange() {
         return this.portRange;
     }
+    /**
+     * @return The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     * 
+     */
     public String protocol() {
         return this.protocol;
     }
