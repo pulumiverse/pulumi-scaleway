@@ -16,6 +16,42 @@ import (
 //
 // ## Examples
 //
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			dbPassword, err := random.NewRandomPassword(ctx, "dbPassword", &random.RandomPasswordArgs{
+//				Length:  pulumi.Int(16),
+//				Special: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDatabaseUser(ctx, "dbAdmin", &scaleway.DatabaseUserArgs{
+//				InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
+//				Password:   dbPassword.Result,
+//				IsAdmin:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash

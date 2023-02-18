@@ -16,6 +16,32 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Examples
     /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Random = Pulumi.Random;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var dbPassword = new Random.RandomPassword("dbPassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///     });
+    /// 
+    ///     var dbAdmin = new Scaleway.DatabaseUser("dbAdmin", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///         Password = dbPassword.Result,
+    ///         IsAdmin = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
