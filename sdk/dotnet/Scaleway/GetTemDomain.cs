@@ -88,7 +88,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string DkimConfig;
         public readonly string? DomainId;
         /// <summary>
-        /// The ID of the Transaction Email Domain.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

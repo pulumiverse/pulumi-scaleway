@@ -14,10 +14,25 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketCorsRule
     {
+        /// <summary>
+        /// Specifies which headers are allowed.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedHeaders;
+        /// <summary>
+        /// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedMethods;
+        /// <summary>
+        /// Specifies which origins are allowed.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedOrigins;
+        /// <summary>
+        /// Specifies expose header in the response.
+        /// </summary>
         public readonly ImmutableArray<string> ExposeHeaders;
+        /// <summary>
+        /// Specifies time in seconds that browser can cache the response for a preflight request.
+        /// </summary>
         public readonly int? MaxAgeSeconds;
 
         [OutputConstructor]

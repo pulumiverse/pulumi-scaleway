@@ -21,67 +21,107 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
 
     public static final ObjectBucketLifecycleRuleArgs Empty = new ObjectBucketLifecycleRuleArgs();
 
+    /**
+     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * 
+     */
     @Import(name="abortIncompleteMultipartUploadDays")
     private @Nullable Output<Integer> abortIncompleteMultipartUploadDays;
 
+    /**
+     * @return Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * 
+     */
     public Optional<Output<Integer>> abortIncompleteMultipartUploadDays() {
         return Optional.ofNullable(this.abortIncompleteMultipartUploadDays);
     }
 
+    /**
+     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
+     * 
+     */
     @Import(name="enabled", required=true)
     private Output<Boolean> enabled;
 
+    /**
+     * @return The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
+     * 
+     */
     public Output<Boolean> enabled() {
         return this.enabled;
     }
 
+    /**
+     * Specifies a period in the object&#39;s expire (documented below).
+     * 
+     */
     @Import(name="expiration")
     private @Nullable Output<ObjectBucketLifecycleRuleExpirationArgs> expiration;
 
+    /**
+     * @return Specifies a period in the object&#39;s expire (documented below).
+     * 
+     */
     public Optional<Output<ObjectBucketLifecycleRuleExpirationArgs>> expiration() {
         return Optional.ofNullable(this.expiration);
     }
 
     /**
-     * The unique name of the bucket.
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return The unique name of the bucket.
+     * @return Unique identifier for the rule. Must be less than or equal to 255 characters in length.
      * 
      */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * Object key prefix identifying one or more objects to which the rule applies.
+     * 
+     */
     @Import(name="prefix")
     private @Nullable Output<String> prefix;
 
+    /**
+     * @return Object key prefix identifying one or more objects to which the rule applies.
+     * 
+     */
     public Optional<Output<String>> prefix() {
         return Optional.ofNullable(this.prefix);
     }
 
     /**
-     * A list of tags (key / value) for the bucket.
+     * Specifies object tags key and value.
      * 
      */
     @Import(name="tags")
     private @Nullable Output<Map<String,String>> tags;
 
     /**
-     * @return A list of tags (key / value) for the bucket.
+     * @return Specifies object tags key and value.
      * 
      */
     public Optional<Output<Map<String,String>>> tags() {
         return Optional.ofNullable(this.tags);
     }
 
+    /**
+     * Specifies a period in the object&#39;s transitions (documented below).
+     * 
+     */
     @Import(name="transitions")
     private @Nullable Output<List<ObjectBucketLifecycleRuleTransitionArgs>> transitions;
 
+    /**
+     * @return Specifies a period in the object&#39;s transitions (documented below).
+     * 
+     */
     public Optional<Output<List<ObjectBucketLifecycleRuleTransitionArgs>>> transitions() {
         return Optional.ofNullable(this.transitions);
     }
@@ -116,35 +156,71 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
             $ = new ObjectBucketLifecycleRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param abortIncompleteMultipartUploadDays Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+         * 
+         * @return builder
+         * 
+         */
         public Builder abortIncompleteMultipartUploadDays(@Nullable Output<Integer> abortIncompleteMultipartUploadDays) {
             $.abortIncompleteMultipartUploadDays = abortIncompleteMultipartUploadDays;
             return this;
         }
 
+        /**
+         * @param abortIncompleteMultipartUploadDays Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+         * 
+         * @return builder
+         * 
+         */
         public Builder abortIncompleteMultipartUploadDays(Integer abortIncompleteMultipartUploadDays) {
             return abortIncompleteMultipartUploadDays(Output.of(abortIncompleteMultipartUploadDays));
         }
 
+        /**
+         * @param enabled The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param expiration Specifies a period in the object&#39;s expire (documented below).
+         * 
+         * @return builder
+         * 
+         */
         public Builder expiration(@Nullable Output<ObjectBucketLifecycleRuleExpirationArgs> expiration) {
             $.expiration = expiration;
             return this;
         }
 
+        /**
+         * @param expiration Specifies a period in the object&#39;s expire (documented below).
+         * 
+         * @return builder
+         * 
+         */
         public Builder expiration(ObjectBucketLifecycleRuleExpirationArgs expiration) {
             return expiration(Output.of(expiration));
         }
 
         /**
-         * @param id The unique name of the bucket.
+         * @param id Unique identifier for the rule. Must be less than or equal to 255 characters in length.
          * 
          * @return builder
          * 
@@ -155,7 +231,7 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param id The unique name of the bucket.
+         * @param id Unique identifier for the rule. Must be less than or equal to 255 characters in length.
          * 
          * @return builder
          * 
@@ -164,17 +240,29 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
             return id(Output.of(id));
         }
 
+        /**
+         * @param prefix Object key prefix identifying one or more objects to which the rule applies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefix(@Nullable Output<String> prefix) {
             $.prefix = prefix;
             return this;
         }
 
+        /**
+         * @param prefix Object key prefix identifying one or more objects to which the rule applies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefix(String prefix) {
             return prefix(Output.of(prefix));
         }
 
         /**
-         * @param tags A list of tags (key / value) for the bucket.
+         * @param tags Specifies object tags key and value.
          * 
          * @return builder
          * 
@@ -185,7 +273,7 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param tags A list of tags (key / value) for the bucket.
+         * @param tags Specifies object tags key and value.
          * 
          * @return builder
          * 
@@ -194,15 +282,33 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
             return tags(Output.of(tags));
         }
 
+        /**
+         * @param transitions Specifies a period in the object&#39;s transitions (documented below).
+         * 
+         * @return builder
+         * 
+         */
         public Builder transitions(@Nullable Output<List<ObjectBucketLifecycleRuleTransitionArgs>> transitions) {
             $.transitions = transitions;
             return this;
         }
 
+        /**
+         * @param transitions Specifies a period in the object&#39;s transitions (documented below).
+         * 
+         * @return builder
+         * 
+         */
         public Builder transitions(List<ObjectBucketLifecycleRuleTransitionArgs> transitions) {
             return transitions(Output.of(transitions));
         }
 
+        /**
+         * @param transitions Specifies a period in the object&#39;s transitions (documented below).
+         * 
+         * @return builder
+         * 
+         */
         public Builder transitions(ObjectBucketLifecycleRuleTransitionArgs... transitions) {
             return transitions(List.of(transitions));
         }

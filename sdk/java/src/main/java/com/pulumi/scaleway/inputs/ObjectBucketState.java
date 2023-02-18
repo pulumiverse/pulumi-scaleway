@@ -22,24 +22,24 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
     public static final ObjectBucketState Empty = new ObjectBucketState();
 
     /**
-     * The canned ACL you want to apply to the bucket.
+     * (Deprecated) The canned ACL you want to apply to the bucket.
      * 
      * @deprecated
-     * ACL is deprecated. Please use resource_bucket_acl instead.
+     * ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      * 
      */
-    @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
+    @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
     @Import(name="acl")
     private @Nullable Output<String> acl;
 
     /**
-     * @return The canned ACL you want to apply to the bucket.
+     * @return (Deprecated) The canned ACL you want to apply to the bucket.
      * 
      * @deprecated
-     * ACL is deprecated. Please use resource_bucket_acl instead.
+     * ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      * 
      */
-    @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
+    @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
     public Optional<Output<String>> acl() {
         return Optional.ofNullable(this.acl);
     }
@@ -135,6 +135,21 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */
@@ -189,6 +204,7 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
         this.lifecycleRules = $.lifecycleRules;
         this.name = $.name;
         this.objectLockEnabled = $.objectLockEnabled;
+        this.projectId = $.projectId;
         this.region = $.region;
         this.tags = $.tags;
         this.versioning = $.versioning;
@@ -213,30 +229,30 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acl The canned ACL you want to apply to the bucket.
+         * @param acl (Deprecated) The canned ACL you want to apply to the bucket.
          * 
          * @return builder
          * 
          * @deprecated
-         * ACL is deprecated. Please use resource_bucket_acl instead.
+         * ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
          * 
          */
-        @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
+        @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
         public Builder acl(@Nullable Output<String> acl) {
             $.acl = acl;
             return this;
         }
 
         /**
-         * @param acl The canned ACL you want to apply to the bucket.
+         * @param acl (Deprecated) The canned ACL you want to apply to the bucket.
          * 
          * @return builder
          * 
          * @deprecated
-         * ACL is deprecated. Please use resource_bucket_acl instead.
+         * ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
          * 
          */
-        @Deprecated /* ACL is deprecated. Please use resource_bucket_acl instead. */
+        @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
         public Builder acl(String acl) {
             return acl(Output.of(acl));
         }
@@ -385,6 +401,27 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder objectLockEnabled(Boolean objectLockEnabled) {
             return objectLockEnabled(Output.of(objectLockEnabled));
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

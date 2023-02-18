@@ -111,6 +111,8 @@ type LoadbalancerBackend struct {
 	HealthCheckTcp LoadbalancerBackendHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrOutput `pulumi:"healthCheckTimeout"`
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify pulumi.BoolPtrOutput `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
@@ -126,6 +128,8 @@ type LoadbalancerBackend struct {
 	SendProxyV2 pulumi.BoolPtrOutput `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayOutput `pulumi:"serverIps"`
+	// Enables SSL between load balancer and backend servers.
+	SslBridging pulumi.BoolPtrOutput `pulumi:"sslBridging"`
 	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrOutput `pulumi:"stickySessions"`
 	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
@@ -201,6 +205,8 @@ type loadbalancerBackendState struct {
 	HealthCheckTcp *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId *string `pulumi:"lbId"`
@@ -216,6 +222,8 @@ type loadbalancerBackendState struct {
 	SendProxyV2 *bool `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps []string `pulumi:"serverIps"`
+	// Enables SSL between load balancer and backend servers.
+	SslBridging *bool `pulumi:"sslBridging"`
 	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions *string `pulumi:"stickySessions"`
 	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
@@ -253,6 +261,8 @@ type LoadbalancerBackendState struct {
 	HealthCheckTcp LoadbalancerBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringPtrInput
@@ -268,6 +278,8 @@ type LoadbalancerBackendState struct {
 	SendProxyV2 pulumi.BoolPtrInput
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayInput
+	// Enables SSL between load balancer and backend servers.
+	SslBridging pulumi.BoolPtrInput
 	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrInput
 	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
@@ -309,6 +321,8 @@ type loadbalancerBackendArgs struct {
 	HealthCheckTcp *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId string `pulumi:"lbId"`
@@ -324,6 +338,8 @@ type loadbalancerBackendArgs struct {
 	SendProxyV2 *bool `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps []string `pulumi:"serverIps"`
+	// Enables SSL between load balancer and backend servers.
+	SslBridging *bool `pulumi:"sslBridging"`
 	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions *string `pulumi:"stickySessions"`
 	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
@@ -362,6 +378,8 @@ type LoadbalancerBackendArgs struct {
 	HealthCheckTcp LoadbalancerBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringInput
@@ -377,6 +395,8 @@ type LoadbalancerBackendArgs struct {
 	SendProxyV2 pulumi.BoolPtrInput
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayInput
+	// Enables SSL between load balancer and backend servers.
+	SslBridging pulumi.BoolPtrInput
 	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrInput
 	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
@@ -533,6 +553,11 @@ func (o LoadbalancerBackendOutput) HealthCheckTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.HealthCheckTimeout }).(pulumi.StringPtrOutput)
 }
 
+// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+func (o LoadbalancerBackendOutput) IgnoreSslServerVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolPtrOutput { return v.IgnoreSslServerVerify }).(pulumi.BoolPtrOutput)
+}
+
 // The load-balancer ID this backend is attached to.
 // > **Important:** Updates to `lbId` will recreate the backend.
 func (o LoadbalancerBackendOutput) LbId() pulumi.StringOutput {
@@ -564,6 +589,11 @@ func (o LoadbalancerBackendOutput) SendProxyV2() pulumi.BoolPtrOutput {
 // List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 func (o LoadbalancerBackendOutput) ServerIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringArrayOutput { return v.ServerIps }).(pulumi.StringArrayOutput)
+}
+
+// Enables SSL between load balancer and backend servers.
+func (o LoadbalancerBackendOutput) SslBridging() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolPtrOutput { return v.SslBridging }).(pulumi.BoolPtrOutput)
 }
 
 // Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.

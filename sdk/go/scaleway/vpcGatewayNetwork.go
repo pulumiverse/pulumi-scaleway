@@ -17,6 +17,8 @@ import (
 //
 // ## Example
 //
+// ### Create a gateway network with DHCP
+//
 // ```go
 // package main
 //
@@ -67,6 +69,46 @@ import (
 //
 // ```
 //
+// ### Create a gateway network with a static IP address
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				EnableDhcp:       pulumi.Bool(false),
+//				EnableMasquerade: pulumi.Bool(true),
+//				StaticAddress:    pulumi.String("192.168.1.42/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -83,7 +125,7 @@ type VpcGatewayNetwork struct {
 	CleanupDhcp pulumi.BoolPtrOutput `pulumi:"cleanupDhcp"`
 	// The date and time of the creation of the gateway network.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
 	DhcpId pulumi.StringPtrOutput `pulumi:"dhcpId"`
 	// Enable DHCP config on this network. It requires DHCP id.
 	EnableDhcp pulumi.BoolPtrOutput `pulumi:"enableDhcp"`
@@ -95,7 +137,7 @@ type VpcGatewayNetwork struct {
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
 	// The ID of the private network.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
-	// Enable DHCP config on this network
+	// Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
 	StaticAddress pulumi.StringPtrOutput `pulumi:"staticAddress"`
 	// The date and time of the last update of the gateway network.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -143,7 +185,7 @@ type vpcGatewayNetworkState struct {
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
 	// The date and time of the creation of the gateway network.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
 	DhcpId *string `pulumi:"dhcpId"`
 	// Enable DHCP config on this network. It requires DHCP id.
 	EnableDhcp *bool `pulumi:"enableDhcp"`
@@ -155,7 +197,7 @@ type vpcGatewayNetworkState struct {
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// Enable DHCP config on this network
+	// Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
 	StaticAddress *string `pulumi:"staticAddress"`
 	// The date and time of the last update of the gateway network.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -168,7 +210,7 @@ type VpcGatewayNetworkState struct {
 	CleanupDhcp pulumi.BoolPtrInput
 	// The date and time of the creation of the gateway network.
 	CreatedAt pulumi.StringPtrInput
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
 	DhcpId pulumi.StringPtrInput
 	// Enable DHCP config on this network. It requires DHCP id.
 	EnableDhcp pulumi.BoolPtrInput
@@ -180,7 +222,7 @@ type VpcGatewayNetworkState struct {
 	MacAddress pulumi.StringPtrInput
 	// The ID of the private network.
 	PrivateNetworkId pulumi.StringPtrInput
-	// Enable DHCP config on this network
+	// Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
 	StaticAddress pulumi.StringPtrInput
 	// The date and time of the last update of the gateway network.
 	UpdatedAt pulumi.StringPtrInput
@@ -195,7 +237,7 @@ func (VpcGatewayNetworkState) ElementType() reflect.Type {
 type vpcGatewayNetworkArgs struct {
 	// Remove DHCP config on this network on destroy. It requires DHCP id.
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
 	DhcpId *string `pulumi:"dhcpId"`
 	// Enable DHCP config on this network. It requires DHCP id.
 	EnableDhcp *bool `pulumi:"enableDhcp"`
@@ -205,7 +247,7 @@ type vpcGatewayNetworkArgs struct {
 	GatewayId string `pulumi:"gatewayId"`
 	// The ID of the private network.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Enable DHCP config on this network
+	// Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
 	StaticAddress *string `pulumi:"staticAddress"`
 	// `zone`) The zone in which the gateway network should be created.
 	Zone *string `pulumi:"zone"`
@@ -215,7 +257,7 @@ type vpcGatewayNetworkArgs struct {
 type VpcGatewayNetworkArgs struct {
 	// Remove DHCP config on this network on destroy. It requires DHCP id.
 	CleanupDhcp pulumi.BoolPtrInput
-	// The ID of the public gateway DHCP config.
+	// The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
 	DhcpId pulumi.StringPtrInput
 	// Enable DHCP config on this network. It requires DHCP id.
 	EnableDhcp pulumi.BoolPtrInput
@@ -225,7 +267,7 @@ type VpcGatewayNetworkArgs struct {
 	GatewayId pulumi.StringInput
 	// The ID of the private network.
 	PrivateNetworkId pulumi.StringInput
-	// Enable DHCP config on this network
+	// Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
 	StaticAddress pulumi.StringPtrInput
 	// `zone`) The zone in which the gateway network should be created.
 	Zone pulumi.StringPtrInput
@@ -328,7 +370,7 @@ func (o VpcGatewayNetworkOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the public gateway DHCP config.
+// The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
 func (o VpcGatewayNetworkOutput) DhcpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringPtrOutput { return v.DhcpId }).(pulumi.StringPtrOutput)
 }
@@ -358,7 +400,7 @@ func (o VpcGatewayNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// Enable DHCP config on this network
+// Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
 func (o VpcGatewayNetworkOutput) StaticAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringPtrOutput { return v.StaticAddress }).(pulumi.StringPtrOutput)
 }

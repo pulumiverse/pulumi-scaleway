@@ -167,6 +167,20 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
         return this.policy;
     }
     /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Export(name="projectId", type=String.class, parameters={})
+    private Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
+    }
+    /**
      * The Scaleway region this bucket resides in.
      * 
      */

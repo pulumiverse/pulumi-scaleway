@@ -34,6 +34,7 @@ export interface GetFunctionResult {
     readonly environmentVariables: {[key: string]: string};
     readonly functionId?: string;
     readonly handler: string;
+    readonly httpOption: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

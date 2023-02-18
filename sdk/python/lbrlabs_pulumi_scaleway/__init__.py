@@ -106,6 +106,8 @@ from .loadbalancer_certificate import *
 from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
 from .loadbalancer_route import *
+from .mnq_credential import *
+from .mnq_namespace import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -550,6 +552,22 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/loadbalancerRoute:LoadbalancerRoute": "LoadbalancerRoute"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqCredential",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqCredential:MnqCredential": "MnqCredential"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqNamespace",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqNamespace:MnqNamespace": "MnqNamespace"
   }
  },
  {

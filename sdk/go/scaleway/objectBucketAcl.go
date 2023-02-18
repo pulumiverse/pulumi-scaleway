@@ -154,6 +154,8 @@ type ObjectBucketAcl struct {
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrOutput `pulumi:"expectedBucketOwner"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
@@ -199,6 +201,8 @@ type objectBucketAclState struct {
 	Bucket *string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 }
@@ -212,6 +216,8 @@ type ObjectBucketAclState struct {
 	Bucket pulumi.StringPtrInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 }
@@ -229,6 +235,8 @@ type objectBucketAclArgs struct {
 	Bucket string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 }
@@ -243,6 +251,8 @@ type ObjectBucketAclArgs struct {
 	Bucket pulumi.StringInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 }
@@ -352,6 +362,11 @@ func (o ObjectBucketAclOutput) Bucket() pulumi.StringOutput {
 // The project ID of the expected bucket owner.
 func (o ObjectBucketAclOutput) ExpectedBucketOwner() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.ExpectedBucketOwner }).(pulumi.StringPtrOutput)
+}
+
+// `projectId`) The ID of the project the bucket is associated with.
+func (o ObjectBucketAclOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

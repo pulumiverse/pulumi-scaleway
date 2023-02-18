@@ -16,15 +16,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     {
         public readonly string ExpiresAt;
         public readonly string Id;
+        /// <summary>
+        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// </summary>
+        public readonly string Name;
 
         [OutputConstructor]
         private GetBaremetalServerOptionResult(
             string expiresAt,
 
-            string id)
+            string id,
+
+            string name)
         {
             ExpiresAt = expiresAt;
             Id = id;
+            Name = name;
         }
     }
 }

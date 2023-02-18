@@ -17,49 +17,89 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ObjectBucketLifecycleRule {
+    /**
+     * @return Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * 
+     */
     private @Nullable Integer abortIncompleteMultipartUploadDays;
+    /**
+     * @return The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
+     * 
+     */
     private Boolean enabled;
+    /**
+     * @return Specifies a period in the object&#39;s expire (documented below).
+     * 
+     */
     private @Nullable ObjectBucketLifecycleRuleExpiration expiration;
     /**
-     * @return The unique name of the bucket.
+     * @return Unique identifier for the rule. Must be less than or equal to 255 characters in length.
      * 
      */
     private @Nullable String id;
+    /**
+     * @return Object key prefix identifying one or more objects to which the rule applies.
+     * 
+     */
     private @Nullable String prefix;
     /**
-     * @return A list of tags (key / value) for the bucket.
+     * @return Specifies object tags key and value.
      * 
      */
     private @Nullable Map<String,String> tags;
+    /**
+     * @return Specifies a period in the object&#39;s transitions (documented below).
+     * 
+     */
     private @Nullable List<ObjectBucketLifecycleRuleTransition> transitions;
 
     private ObjectBucketLifecycleRule() {}
+    /**
+     * @return Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * 
+     */
     public Optional<Integer> abortIncompleteMultipartUploadDays() {
         return Optional.ofNullable(this.abortIncompleteMultipartUploadDays);
     }
+    /**
+     * @return The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn&#39;t perform any of the actions defined in the rule.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
+    /**
+     * @return Specifies a period in the object&#39;s expire (documented below).
+     * 
+     */
     public Optional<ObjectBucketLifecycleRuleExpiration> expiration() {
         return Optional.ofNullable(this.expiration);
     }
     /**
-     * @return The unique name of the bucket.
+     * @return Unique identifier for the rule. Must be less than or equal to 255 characters in length.
      * 
      */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return Object key prefix identifying one or more objects to which the rule applies.
+     * 
+     */
     public Optional<String> prefix() {
         return Optional.ofNullable(this.prefix);
     }
     /**
-     * @return A list of tags (key / value) for the bucket.
+     * @return Specifies object tags key and value.
      * 
      */
     public Map<String,String> tags() {
         return this.tags == null ? Map.of() : this.tags;
     }
+    /**
+     * @return Specifies a period in the object&#39;s transitions (documented below).
+     * 
+     */
     public List<ObjectBucketLifecycleRuleTransition> transitions() {
         return this.transitions == null ? List.of() : this.transitions;
     }

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupIamGroup(ctx, &scaleway.LookupIamGroupArgs{
+//			_, err := scaleway.LookupIamGroup(ctx, &scaleway.LookupIamGroupArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {

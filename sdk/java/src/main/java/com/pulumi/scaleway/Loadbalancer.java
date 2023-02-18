@@ -192,6 +192,7 @@ import javax.annotation.Nullable;
  * ```
  * 
  * ## Private Network with static config
+ * 
  * ```java
  * package generated_program;
  * 
@@ -226,9 +227,7 @@ import javax.annotation.Nullable;
  *             .releaseIp(false)
  *             .privateNetworks(LoadbalancerPrivateNetworkArgs.builder()
  *                 .privateNetworkId(mainVpcPrivateNetwork.id())
- *                 .staticConfigs(                
- *                     &#34;172.16.0.100&#34;,
- *                     &#34;172.16.0.101&#34;)
+ *                 .staticConfig(&#34;172.16.0.100&#34;)
  *                 .build())
  *             .build());
  * 

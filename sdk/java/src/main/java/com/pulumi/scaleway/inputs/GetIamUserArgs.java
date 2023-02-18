@@ -32,8 +32,7 @@ public final class GetIamUserArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * `organization_id`) The ID of the
-     * organization the user is associated with. For now, it is necessary to
-     * explicitly provide the `organization_id` in the datasource.
+     * organization the user is associated with.
      * 
      */
     @Import(name="organizationId")
@@ -41,8 +40,7 @@ public final class GetIamUserArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * @return `organization_id`) The ID of the
-     * organization the user is associated with. For now, it is necessary to
-     * explicitly provide the `organization_id` in the datasource.
+     * organization the user is associated with.
      * 
      */
     public Optional<Output<String>> organizationId() {
@@ -113,8 +111,7 @@ public final class GetIamUserArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param organizationId `organization_id`) The ID of the
-         * organization the user is associated with. For now, it is necessary to
-         * explicitly provide the `organization_id` in the datasource.
+         * organization the user is associated with.
          * 
          * @return builder
          * 
@@ -126,8 +123,7 @@ public final class GetIamUserArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param organizationId `organization_id`) The ID of the
-         * organization the user is associated with. For now, it is necessary to
-         * explicitly provide the `organization_id` in the datasource.
+         * organization the user is associated with.
          * 
          * @return builder
          * 

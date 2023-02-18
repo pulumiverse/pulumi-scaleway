@@ -13,6 +13,7 @@ from . import outputs
 __all__ = [
     'BaremetalServerIp',
     'BaremetalServerOption',
+    'BaremetalServerPrivateNetwork',
     'DatabaseAclAclRule',
     'DatabaseInstanceLoadBalancer',
     'DatabaseInstancePrivateNetwork',
@@ -55,6 +56,9 @@ __all__ = [
     'LoadbalancerFrontendAclAction',
     'LoadbalancerFrontendAclMatch',
     'LoadbalancerPrivateNetwork',
+    'MnqCredentialNatsCredentials',
+    'MnqCredentialSqsSnsCredentials',
+    'MnqCredentialSqsSnsCredentialsPermissions',
     'ObjectBucketAclAccessControlPolicy',
     'ObjectBucketAclAccessControlPolicyGrant',
     'ObjectBucketAclAccessControlPolicyGrantGrantee',
@@ -76,6 +80,7 @@ __all__ = [
     'GetBaremetalOfferMemoryResult',
     'GetBaremetalServerIpResult',
     'GetBaremetalServerOptionResult',
+    'GetBaremetalServerPrivateNetworkResult',
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
     'GetDatabaseInstancePrivateNetworkResult',
@@ -123,7 +128,7 @@ class BaremetalServerIp(dict):
                  version: Optional[str] = None):
         """
         :param str address: The address of the IP.
-        :param str id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param str id: The id of the private network to attach.
         :param str reverse: The reverse of the IP.
         """
         if address is not None:
@@ -147,7 +152,7 @@ class BaremetalServerIp(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the private network to attach.
         """
         return pulumi.get(self, "id")
 
@@ -186,20 +191,24 @@ class BaremetalServerOption(dict):
 
     def __init__(__self__, *,
                  id: str,
-                 expires_at: Optional[str] = None):
+                 expires_at: Optional[str] = None,
+                 name: Optional[str] = None):
         """
-        :param str id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param str id: The id of the private network to attach.
         :param str expires_at: The auto expiration date for compatible options
+        :param str name: The name of the server.
         """
         pulumi.set(__self__, "id", id)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> str:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the private network to attach.
         """
         return pulumi.get(self, "id")
 
@@ -210,6 +219,99 @@ class BaremetalServerOption(dict):
         The auto expiration date for compatible options
         """
         return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class BaremetalServerPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BaremetalServerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BaremetalServerPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BaremetalServerPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 created_at: Optional[str] = None,
+                 status: Optional[str] = None,
+                 updated_at: Optional[str] = None,
+                 vlan: Optional[int] = None):
+        """
+        :param str id: The id of the private network to attach.
+        :param str created_at: The date and time of the creation of the private network.
+        :param str status: The private network status.
+        :param str updated_at: The date and time of the last update of the private network.
+        :param int vlan: The VLAN ID associated to the private network.
+        """
+        pulumi.set(__self__, "id", id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the private network to attach.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        The date and time of the creation of the private network.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The private network status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        """
+        The date and time of the last update of the private network.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[int]:
+        """
+        The VLAN ID associated to the private network.
+        """
+        return pulumi.get(self, "vlan")
 
 
 @pulumi.output_type
@@ -706,7 +808,7 @@ class DomainRecordGeoIpMatch(dict):
                  continents: Optional[Sequence[str]] = None,
                  countries: Optional[Sequence[str]] = None):
         """
-        :param str data: The data of the view record
+        :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param Sequence[str] continents: List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
         :param Sequence[str] countries: List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
         """
@@ -720,7 +822,7 @@ class DomainRecordGeoIpMatch(dict):
     @pulumi.getter
     def data(self) -> str:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 
@@ -829,7 +931,7 @@ class DomainRecordView(dict):
                  data: str,
                  subnet: str):
         """
-        :param str data: The data of the view record
+        :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param str subnet: The subnet of the view
         """
         pulumi.set(__self__, "data", data)
@@ -839,7 +941,7 @@ class DomainRecordView(dict):
     @pulumi.getter
     def data(self) -> str:
         """
-        The data of the view record
+        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         """
         return pulumi.get(self, "data")
 
@@ -2488,7 +2590,7 @@ class LoadbalancerBackendHealthCheckHttp(dict):
                  code: Optional[int] = None,
                  method: Optional[str] = None):
         """
-        :param str uri: The HTTPS endpoint URL to call for HC requests.
+        :param str uri: The HTTP endpoint URL to call for HC requests.
         :param int code: The expected HTTP status code.
         :param str method: The HTTP method to use for HC requests.
         """
@@ -2502,7 +2604,7 @@ class LoadbalancerBackendHealthCheckHttp(dict):
     @pulumi.getter
     def uri(self) -> str:
         """
-        The HTTPS endpoint URL to call for HC requests.
+        The HTTP endpoint URL to call for HC requests.
         """
         return pulumi.get(self, "uri")
 
@@ -2530,7 +2632,7 @@ class LoadbalancerBackendHealthCheckHttps(dict):
                  code: Optional[int] = None,
                  method: Optional[str] = None):
         """
-        :param str uri: The HTTPS endpoint URL to call for HC requests.
+        :param str uri: The HTTP endpoint URL to call for HC requests.
         :param int code: The expected HTTP status code.
         :param str method: The HTTP method to use for HC requests.
         """
@@ -2544,7 +2646,7 @@ class LoadbalancerBackendHealthCheckHttps(dict):
     @pulumi.getter
     def uri(self) -> str:
         """
-        The HTTPS endpoint URL to call for HC requests.
+        The HTTP endpoint URL to call for HC requests.
         """
         return pulumi.get(self, "uri")
 
@@ -2815,8 +2917,8 @@ class LoadbalancerPrivateNetwork(dict):
             suggest = "private_network_id"
         elif key == "dhcpConfig":
             suggest = "dhcp_config"
-        elif key == "staticConfigs":
-            suggest = "static_configs"
+        elif key == "staticConfig":
+            suggest = "static_config"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in LoadbalancerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
@@ -2832,20 +2934,20 @@ class LoadbalancerPrivateNetwork(dict):
     def __init__(__self__, *,
                  private_network_id: str,
                  dhcp_config: Optional[bool] = None,
-                 static_configs: Optional[Sequence[str]] = None,
+                 static_config: Optional[str] = None,
                  status: Optional[str] = None,
                  zone: Optional[str] = None):
         """
         :param str private_network_id: (Required) The ID of the Private Network to associate.
         :param bool dhcp_config: (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
-        :param Sequence[str] static_configs: (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        :param str static_config: (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         :param str zone: `zone`) The zone in which the IP should be reserved.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
-        if static_configs is not None:
-            pulumi.set(__self__, "static_configs", static_configs)
+        if static_config is not None:
+            pulumi.set(__self__, "static_config", static_config)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -2868,12 +2970,12 @@ class LoadbalancerPrivateNetwork(dict):
         return pulumi.get(self, "dhcp_config")
 
     @property
-    @pulumi.getter(name="staticConfigs")
-    def static_configs(self) -> Optional[Sequence[str]]:
+    @pulumi.getter(name="staticConfig")
+    def static_config(self) -> Optional[str]:
         """
-        (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         """
-        return pulumi.get(self, "static_configs")
+        return pulumi.get(self, "static_config")
 
     @property
     @pulumi.getter
@@ -2887,6 +2989,151 @@ class LoadbalancerPrivateNetwork(dict):
         `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class MnqCredentialNatsCredentials(dict):
+    def __init__(__self__, *,
+                 content: Optional[str] = None):
+        """
+        :param str content: Raw content of the NATS credentials file.
+        """
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Optional[str]:
+        """
+        Raw content of the NATS credentials file.
+        """
+        return pulumi.get(self, "content")
+
+
+@pulumi.output_type
+class MnqCredentialSqsSnsCredentials(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "secretKey":
+            suggest = "secret_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MnqCredentialSqsSnsCredentials. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MnqCredentialSqsSnsCredentials.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MnqCredentialSqsSnsCredentials.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_key: Optional[str] = None,
+                 permissions: Optional['outputs.MnqCredentialSqsSnsCredentialsPermissions'] = None,
+                 secret_key: Optional[str] = None):
+        """
+        :param str access_key: The ID of the key.
+        :param 'MnqCredentialSqsSnsCredentialsPermissionsArgs' permissions: List of permissions associated to this Credential. Only one of permissions may be set.
+        :param str secret_key: The Secret value of the key.
+        """
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> Optional[str]:
+        """
+        The ID of the key.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional['outputs.MnqCredentialSqsSnsCredentialsPermissions']:
+        """
+        List of permissions associated to this Credential. Only one of permissions may be set.
+        """
+        return pulumi.get(self, "permissions")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[str]:
+        """
+        The Secret value of the key.
+        """
+        return pulumi.get(self, "secret_key")
+
+
+@pulumi.output_type
+class MnqCredentialSqsSnsCredentialsPermissions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "canManage":
+            suggest = "can_manage"
+        elif key == "canPublish":
+            suggest = "can_publish"
+        elif key == "canReceive":
+            suggest = "can_receive"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MnqCredentialSqsSnsCredentialsPermissions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MnqCredentialSqsSnsCredentialsPermissions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MnqCredentialSqsSnsCredentialsPermissions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 can_manage: Optional[bool] = None,
+                 can_publish: Optional[bool] = None,
+                 can_receive: Optional[bool] = None):
+        """
+        :param bool can_manage: . Defines if user can manage the associated resource(s).
+        :param bool can_publish: . Defines if user can publish messages to the service.
+        :param bool can_receive: . Defines if user can receive messages from the service.
+        """
+        if can_manage is not None:
+            pulumi.set(__self__, "can_manage", can_manage)
+        if can_publish is not None:
+            pulumi.set(__self__, "can_publish", can_publish)
+        if can_receive is not None:
+            pulumi.set(__self__, "can_receive", can_receive)
+
+    @property
+    @pulumi.getter(name="canManage")
+    def can_manage(self) -> Optional[bool]:
+        """
+        . Defines if user can manage the associated resource(s).
+        """
+        return pulumi.get(self, "can_manage")
+
+    @property
+    @pulumi.getter(name="canPublish")
+    def can_publish(self) -> Optional[bool]:
+        """
+        . Defines if user can publish messages to the service.
+        """
+        return pulumi.get(self, "can_publish")
+
+    @property
+    @pulumi.getter(name="canReceive")
+    def can_receive(self) -> Optional[bool]:
+        """
+        . Defines if user can receive messages from the service.
+        """
+        return pulumi.get(self, "can_receive")
 
 
 @pulumi.output_type
@@ -3055,6 +3302,13 @@ class ObjectBucketCorsRule(dict):
                  allowed_headers: Optional[Sequence[str]] = None,
                  expose_headers: Optional[Sequence[str]] = None,
                  max_age_seconds: Optional[int] = None):
+        """
+        :param Sequence[str] allowed_methods: Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        :param Sequence[str] allowed_origins: Specifies which origins are allowed.
+        :param Sequence[str] allowed_headers: Specifies which headers are allowed.
+        :param Sequence[str] expose_headers: Specifies expose header in the response.
+        :param int max_age_seconds: Specifies time in seconds that browser can cache the response for a preflight request.
+        """
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
         if allowed_headers is not None:
@@ -3067,26 +3321,41 @@ class ObjectBucketCorsRule(dict):
     @property
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> Sequence[str]:
+        """
+        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        """
         return pulumi.get(self, "allowed_methods")
 
     @property
     @pulumi.getter(name="allowedOrigins")
     def allowed_origins(self) -> Sequence[str]:
+        """
+        Specifies which origins are allowed.
+        """
         return pulumi.get(self, "allowed_origins")
 
     @property
     @pulumi.getter(name="allowedHeaders")
     def allowed_headers(self) -> Optional[Sequence[str]]:
+        """
+        Specifies which headers are allowed.
+        """
         return pulumi.get(self, "allowed_headers")
 
     @property
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Optional[Sequence[str]]:
+        """
+        Specifies expose header in the response.
+        """
         return pulumi.get(self, "expose_headers")
 
     @property
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> Optional[int]:
+        """
+        Specifies time in seconds that browser can cache the response for a preflight request.
+        """
         return pulumi.get(self, "max_age_seconds")
 
 
@@ -3118,8 +3387,13 @@ class ObjectBucketLifecycleRule(dict):
                  tags: Optional[Mapping[str, str]] = None,
                  transitions: Optional[Sequence['outputs.ObjectBucketLifecycleRuleTransition']] = None):
         """
-        :param str id: The unique name of the bucket.
-        :param Mapping[str, str] tags: A list of tags (key / value) for the bucket.
+        :param bool enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        :param int abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        :param 'ObjectBucketLifecycleRuleExpirationArgs' expiration: Specifies a period in the object's expire (documented below).
+        :param str id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        :param str prefix: Object key prefix identifying one or more objects to which the rule applies.
+        :param Mapping[str, str] tags: Specifies object tags key and value.
+        :param Sequence['ObjectBucketLifecycleRuleTransitionArgs'] transitions: Specifies a period in the object's transitions (documented below).
         """
         pulumi.set(__self__, "enabled", enabled)
         if abort_incomplete_multipart_upload_days is not None:
@@ -3138,42 +3412,57 @@ class ObjectBucketLifecycleRule(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
     def abort_incomplete_multipart_upload_days(self) -> Optional[int]:
+        """
+        Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        """
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
     @property
     @pulumi.getter
     def expiration(self) -> Optional['outputs.ObjectBucketLifecycleRuleExpiration']:
+        """
+        Specifies a period in the object's expire (documented below).
+        """
         return pulumi.get(self, "expiration")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The unique name of the bucket.
+        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def prefix(self) -> Optional[str]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
         return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
         """
-        A list of tags (key / value) for the bucket.
+        Specifies object tags key and value.
         """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def transitions(self) -> Optional[Sequence['outputs.ObjectBucketLifecycleRuleTransition']]:
+        """
+        Specifies a period in the object's transitions (documented below).
+        """
         return pulumi.get(self, "transitions")
 
 
@@ -3181,11 +3470,17 @@ class ObjectBucketLifecycleRule(dict):
 class ObjectBucketLifecycleRuleExpiration(dict):
     def __init__(__self__, *,
                  days: int):
+        """
+        :param int days: Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         pulumi.set(__self__, "days", days)
 
     @property
     @pulumi.getter
     def days(self) -> int:
+        """
+        Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         return pulumi.get(self, "days")
 
 
@@ -3211,6 +3506,10 @@ class ObjectBucketLifecycleRuleTransition(dict):
     def __init__(__self__, *,
                  storage_class: str,
                  days: Optional[int] = None):
+        """
+        :param str storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        :param int days: Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         pulumi.set(__self__, "storage_class", storage_class)
         if days is not None:
             pulumi.set(__self__, "days", days)
@@ -3218,11 +3517,17 @@ class ObjectBucketLifecycleRuleTransition(dict):
     @property
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> str:
+        """
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        """
         return pulumi.get(self, "storage_class")
 
     @property
     @pulumi.getter
     def days(self) -> Optional[int]:
+        """
+        Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         return pulumi.get(self, "days")
 
 
@@ -3287,12 +3592,18 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
 class ObjectBucketVersioning(dict):
     def __init__(__self__, *,
                  enabled: Optional[bool] = None):
+        """
+        :param bool enabled: Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
+        """
+        Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
         return pulumi.get(self, "enabled")
 
 
@@ -3473,8 +3784,10 @@ class GetBaremetalOfferCpuResult(dict):
                  name: str,
                  thread_count: int):
         """
+        :param int core_count: Number of core on this CPU.
         :param int frequency: Frequency of the memory in MHz.
         :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+        :param int thread_count: Number of thread on this CPU.
         """
         pulumi.set(__self__, "core_count", core_count)
         pulumi.set(__self__, "frequency", frequency)
@@ -3484,6 +3797,9 @@ class GetBaremetalOfferCpuResult(dict):
     @property
     @pulumi.getter(name="coreCount")
     def core_count(self) -> int:
+        """
+        Number of core on this CPU.
+        """
         return pulumi.get(self, "core_count")
 
     @property
@@ -3505,6 +3821,9 @@ class GetBaremetalOfferCpuResult(dict):
     @property
     @pulumi.getter(name="threadCount")
     def thread_count(self) -> int:
+        """
+        Number of thread on this CPU.
+        """
         return pulumi.get(self, "thread_count")
 
 
@@ -3514,6 +3833,7 @@ class GetBaremetalOfferDiskResult(dict):
                  capacity: int,
                  type: str):
         """
+        :param int capacity: Capacity of the memory in GB.
         :param str type: Type of memory.
         """
         pulumi.set(__self__, "capacity", capacity)
@@ -3522,6 +3842,9 @@ class GetBaremetalOfferDiskResult(dict):
     @property
     @pulumi.getter
     def capacity(self) -> int:
+        """
+        Capacity of the memory in GB.
+        """
         return pulumi.get(self, "capacity")
 
     @property
@@ -3541,7 +3864,9 @@ class GetBaremetalOfferMemoryResult(dict):
                  is_ecc: bool,
                  type: str):
         """
+        :param int capacity: Capacity of the memory in GB.
         :param int frequency: Frequency of the memory in MHz.
+        :param bool is_ecc: True if error-correcting code is available on this memory.
         :param str type: Type of memory.
         """
         pulumi.set(__self__, "capacity", capacity)
@@ -3552,6 +3877,9 @@ class GetBaremetalOfferMemoryResult(dict):
     @property
     @pulumi.getter
     def capacity(self) -> int:
+        """
+        Capacity of the memory in GB.
+        """
         return pulumi.get(self, "capacity")
 
     @property
@@ -3565,6 +3893,9 @@ class GetBaremetalOfferMemoryResult(dict):
     @property
     @pulumi.getter(name="isEcc")
     def is_ecc(self) -> bool:
+        """
+        True if error-correcting code is available on this memory.
+        """
         return pulumi.get(self, "is_ecc")
 
     @property
@@ -3613,9 +3944,14 @@ class GetBaremetalServerIpResult(dict):
 class GetBaremetalServerOptionResult(dict):
     def __init__(__self__, *,
                  expires_at: str,
-                 id: str):
+                 id: str,
+                 name: str):
+        """
+        :param str name: The server name. Only one of `name` and `server_id` should be specified.
+        """
         pulumi.set(__self__, "expires_at", expires_at)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="expiresAt")
@@ -3626,6 +3962,54 @@ class GetBaremetalServerOptionResult(dict):
     @pulumi.getter
     def id(self) -> str:
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The server name. Only one of `name` and `server_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetBaremetalServerPrivateNetworkResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 status: str,
+                 updated_at: str,
+                 vlan: int):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> int:
+        return pulumi.get(self, "vlan")
 
 
 @pulumi.output_type
@@ -3951,6 +4335,10 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
                  protocol: str):
         """
         :param str action: The action to take when rule match. Possible values are: `accept` or `drop`.
+        :param str ip: The ip this rule apply to.
+        :param str ip_range: The ip range (e.g `192.168.1.0/24`) this rule apply to.
+        :param int port: The port this rule apply to. If no port is specified, rule will apply to all port.
+        :param str protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "ip", ip)
@@ -3970,16 +4358,25 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        The ip this rule apply to.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter(name="ipRange")
     def ip_range(self) -> str:
+        """
+        The ip range (e.g `192.168.1.0/24`) this rule apply to.
+        """
         return pulumi.get(self, "ip_range")
 
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        The port this rule apply to. If no port is specified, rule will apply to all port.
+        """
         return pulumi.get(self, "port")
 
     @property
@@ -3990,6 +4387,9 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+        """
         return pulumi.get(self, "protocol")
 
 
@@ -4004,6 +4404,10 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
                  protocol: str):
         """
         :param str action: The action to take when rule match. Possible values are: `accept` or `drop`.
+        :param str ip: The ip this rule apply to.
+        :param str ip_range: The ip range (e.g `192.168.1.0/24`) this rule apply to.
+        :param int port: The port this rule apply to. If no port is specified, rule will apply to all port.
+        :param str protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "ip", ip)
@@ -4023,16 +4427,25 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        The ip this rule apply to.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter(name="ipRange")
     def ip_range(self) -> str:
+        """
+        The ip range (e.g `192.168.1.0/24`) this rule apply to.
+        """
         return pulumi.get(self, "ip_range")
 
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        The port this rule apply to. If no port is specified, rule will apply to all port.
+        """
         return pulumi.get(self, "port")
 
     @property
@@ -4043,6 +4456,9 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+        """
         return pulumi.get(self, "protocol")
 
 

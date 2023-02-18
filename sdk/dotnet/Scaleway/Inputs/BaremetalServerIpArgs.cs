@@ -20,7 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        /// The id of the private network to attach.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

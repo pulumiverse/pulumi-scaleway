@@ -65,6 +65,8 @@ type LoadbalancerFrontend struct {
 	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
 	// List of Certificate IDs that should be used by the frontend.
 	CertificateIds pulumi.StringArrayOutput `pulumi:"certificateIds"`
+	// Activates HTTP/3 protocol.
+	EnableHttp3 pulumi.BoolPtrOutput `pulumi:"enableHttp3"`
 	// TCP port to listen on the front side.
 	InboundPort pulumi.IntOutput `pulumi:"inboundPort"`
 	// The load-balancer ID this frontend is attached to.
@@ -124,6 +126,8 @@ type loadbalancerFrontendState struct {
 	CertificateId *string `pulumi:"certificateId"`
 	// List of Certificate IDs that should be used by the frontend.
 	CertificateIds []string `pulumi:"certificateIds"`
+	// Activates HTTP/3 protocol.
+	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// TCP port to listen on the front side.
 	InboundPort *int `pulumi:"inboundPort"`
 	// The load-balancer ID this frontend is attached to.
@@ -145,6 +149,8 @@ type LoadbalancerFrontendState struct {
 	CertificateId pulumi.StringPtrInput
 	// List of Certificate IDs that should be used by the frontend.
 	CertificateIds pulumi.StringArrayInput
+	// Activates HTTP/3 protocol.
+	EnableHttp3 pulumi.BoolPtrInput
 	// TCP port to listen on the front side.
 	InboundPort pulumi.IntPtrInput
 	// The load-balancer ID this frontend is attached to.
@@ -166,6 +172,8 @@ type loadbalancerFrontendArgs struct {
 	BackendId string `pulumi:"backendId"`
 	// List of Certificate IDs that should be used by the frontend.
 	CertificateIds []string `pulumi:"certificateIds"`
+	// Activates HTTP/3 protocol.
+	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// TCP port to listen on the front side.
 	InboundPort int `pulumi:"inboundPort"`
 	// The load-balancer ID this frontend is attached to.
@@ -184,6 +192,8 @@ type LoadbalancerFrontendArgs struct {
 	BackendId pulumi.StringInput
 	// List of Certificate IDs that should be used by the frontend.
 	CertificateIds pulumi.StringArrayInput
+	// Activates HTTP/3 protocol.
+	EnableHttp3 pulumi.BoolPtrInput
 	// TCP port to listen on the front side.
 	InboundPort pulumi.IntInput
 	// The load-balancer ID this frontend is attached to.
@@ -301,6 +311,11 @@ func (o LoadbalancerFrontendOutput) CertificateId() pulumi.StringOutput {
 // List of Certificate IDs that should be used by the frontend.
 func (o LoadbalancerFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringArrayOutput { return v.CertificateIds }).(pulumi.StringArrayOutput)
+}
+
+// Activates HTTP/3 protocol.
+func (o LoadbalancerFrontendOutput) EnableHttp3() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.BoolPtrOutput { return v.EnableHttp3 }).(pulumi.BoolPtrOutput)
 }
 
 // TCP port to listen on the front side.

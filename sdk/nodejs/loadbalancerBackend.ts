@@ -124,6 +124,10 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      */
     public readonly healthCheckTimeout!: pulumi.Output<string | undefined>;
     /**
+     * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     */
+    public readonly ignoreSslServerVerify!: pulumi.Output<boolean | undefined>;
+    /**
      * The load-balancer ID this backend is attached to.
      * > **Important:** Updates to `lbId` will recreate the backend.
      */
@@ -150,6 +154,10 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
      */
     public readonly serverIps!: pulumi.Output<string[] | undefined>;
+    /**
+     * Enables SSL between load balancer and backend servers.
+     */
+    public readonly sslBridging!: pulumi.Output<boolean | undefined>;
     /**
      * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
      */
@@ -195,12 +203,14 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
             resourceInputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
+            resourceInputs["ignoreSslServerVerify"] = state ? state.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["onMarkedDownAction"] = state ? state.onMarkedDownAction : undefined;
             resourceInputs["proxyProtocol"] = state ? state.proxyProtocol : undefined;
             resourceInputs["sendProxyV2"] = state ? state.sendProxyV2 : undefined;
             resourceInputs["serverIps"] = state ? state.serverIps : undefined;
+            resourceInputs["sslBridging"] = state ? state.sslBridging : undefined;
             resourceInputs["stickySessions"] = state ? state.stickySessions : undefined;
             resourceInputs["stickySessionsCookieName"] = state ? state.stickySessionsCookieName : undefined;
             resourceInputs["timeoutConnect"] = state ? state.timeoutConnect : undefined;
@@ -228,12 +238,14 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
             resourceInputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
+            resourceInputs["ignoreSslServerVerify"] = args ? args.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = args ? args.lbId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["onMarkedDownAction"] = args ? args.onMarkedDownAction : undefined;
             resourceInputs["proxyProtocol"] = args ? args.proxyProtocol : undefined;
             resourceInputs["sendProxyV2"] = args ? args.sendProxyV2 : undefined;
             resourceInputs["serverIps"] = args ? args.serverIps : undefined;
+            resourceInputs["sslBridging"] = args ? args.sslBridging : undefined;
             resourceInputs["stickySessions"] = args ? args.stickySessions : undefined;
             resourceInputs["stickySessionsCookieName"] = args ? args.stickySessionsCookieName : undefined;
             resourceInputs["timeoutConnect"] = args ? args.timeoutConnect : undefined;
@@ -296,6 +308,10 @@ export interface LoadbalancerBackendState {
      */
     healthCheckTimeout?: pulumi.Input<string>;
     /**
+     * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     */
+    ignoreSslServerVerify?: pulumi.Input<boolean>;
+    /**
      * The load-balancer ID this backend is attached to.
      * > **Important:** Updates to `lbId` will recreate the backend.
      */
@@ -322,6 +338,10 @@ export interface LoadbalancerBackendState {
      * List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
      */
     serverIps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Enables SSL between load balancer and backend servers.
+     */
+    sslBridging?: pulumi.Input<boolean>;
     /**
      * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
      */
@@ -395,6 +415,10 @@ export interface LoadbalancerBackendArgs {
      */
     healthCheckTimeout?: pulumi.Input<string>;
     /**
+     * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     */
+    ignoreSslServerVerify?: pulumi.Input<boolean>;
+    /**
      * The load-balancer ID this backend is attached to.
      * > **Important:** Updates to `lbId` will recreate the backend.
      */
@@ -421,6 +445,10 @@ export interface LoadbalancerBackendArgs {
      * List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
      */
     serverIps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Enables SSL between load balancer and backend servers.
+     */
+    sslBridging?: pulumi.Input<boolean>;
     /**
      * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
      */

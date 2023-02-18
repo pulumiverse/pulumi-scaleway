@@ -21,9 +21,10 @@ class IamApiKeyArgs:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IamApiKey resource.
-        :param pulumi.Input[str] application_id: ID of the application attached to the api key
+        :param pulumi.Input[str] application_id: ID of the application attached to the api key.
+               Only one of the `application_id` and `user_id` should be specified.
         :param pulumi.Input[str] default_project_id: The default project ID to use with object storage.
-        :param pulumi.Input[str] description: The description of the iam api key
+        :param pulumi.Input[str] description: The description of the iam api key.
         :param pulumi.Input[str] expires_at: The date and time of the expiration of the iam api key. Please note that in case of change,
                the resource will be recreated.
         :param pulumi.Input[str] user_id: ID of the user attached to the api key.
@@ -44,7 +45,8 @@ class IamApiKeyArgs:
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the application attached to the api key
+        ID of the application attached to the api key.
+        Only one of the `application_id` and `user_id` should be specified.
         """
         return pulumi.get(self, "application_id")
 
@@ -68,7 +70,7 @@ class IamApiKeyArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the iam api key
+        The description of the iam api key.
         """
         return pulumi.get(self, "description")
 
@@ -120,16 +122,16 @@ class _IamApiKeyState:
         """
         Input properties used for looking up and filtering IamApiKey resources.
         :param pulumi.Input[str] access_key: The access key of the iam api key.
-               - `secret_key`: The secret Key of the iam api key.
-        :param pulumi.Input[str] application_id: ID of the application attached to the api key
+        :param pulumi.Input[str] application_id: ID of the application attached to the api key.
+               Only one of the `application_id` and `user_id` should be specified.
         :param pulumi.Input[str] created_at: The date and time of the creation of the iam api key.
         :param pulumi.Input[str] creation_ip: The IP Address of the device which created the API key.
         :param pulumi.Input[str] default_project_id: The default project ID to use with object storage.
-        :param pulumi.Input[str] description: The description of the iam api key
+        :param pulumi.Input[str] description: The description of the iam api key.
         :param pulumi.Input[bool] editable: Whether the iam api key is editable.
         :param pulumi.Input[str] expires_at: The date and time of the expiration of the iam api key. Please note that in case of change,
                the resource will be recreated.
-        :param pulumi.Input[str] secret_key: The secret Key of the iam api key
+        :param pulumi.Input[str] secret_key: The secret Key of the iam api key.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the iam api key.
         :param pulumi.Input[str] user_id: ID of the user attached to the api key.
                Only one of the `application_id` and `user_id` should be specified.
@@ -162,7 +164,6 @@ class _IamApiKeyState:
     def access_key(self) -> Optional[pulumi.Input[str]]:
         """
         The access key of the iam api key.
-        - `secret_key`: The secret Key of the iam api key.
         """
         return pulumi.get(self, "access_key")
 
@@ -174,7 +175,8 @@ class _IamApiKeyState:
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the application attached to the api key
+        ID of the application attached to the api key.
+        Only one of the `application_id` and `user_id` should be specified.
         """
         return pulumi.get(self, "application_id")
 
@@ -222,7 +224,7 @@ class _IamApiKeyState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the iam api key
+        The description of the iam api key.
         """
         return pulumi.get(self, "description")
 
@@ -259,7 +261,7 @@ class _IamApiKeyState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The secret Key of the iam api key
+        The secret Key of the iam api key.
         """
         return pulumi.get(self, "secret_key")
 
@@ -330,9 +332,10 @@ class IamApiKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] application_id: ID of the application attached to the api key
+        :param pulumi.Input[str] application_id: ID of the application attached to the api key.
+               Only one of the `application_id` and `user_id` should be specified.
         :param pulumi.Input[str] default_project_id: The default project ID to use with object storage.
-        :param pulumi.Input[str] description: The description of the iam api key
+        :param pulumi.Input[str] description: The description of the iam api key.
         :param pulumi.Input[str] expires_at: The date and time of the expiration of the iam api key. Please note that in case of change,
                the resource will be recreated.
         :param pulumi.Input[str] user_id: ID of the user attached to the api key.
@@ -439,16 +442,16 @@ class IamApiKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The access key of the iam api key.
-               - `secret_key`: The secret Key of the iam api key.
-        :param pulumi.Input[str] application_id: ID of the application attached to the api key
+        :param pulumi.Input[str] application_id: ID of the application attached to the api key.
+               Only one of the `application_id` and `user_id` should be specified.
         :param pulumi.Input[str] created_at: The date and time of the creation of the iam api key.
         :param pulumi.Input[str] creation_ip: The IP Address of the device which created the API key.
         :param pulumi.Input[str] default_project_id: The default project ID to use with object storage.
-        :param pulumi.Input[str] description: The description of the iam api key
+        :param pulumi.Input[str] description: The description of the iam api key.
         :param pulumi.Input[bool] editable: Whether the iam api key is editable.
         :param pulumi.Input[str] expires_at: The date and time of the expiration of the iam api key. Please note that in case of change,
                the resource will be recreated.
-        :param pulumi.Input[str] secret_key: The secret Key of the iam api key
+        :param pulumi.Input[str] secret_key: The secret Key of the iam api key.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the iam api key.
         :param pulumi.Input[str] user_id: ID of the user attached to the api key.
                Only one of the `application_id` and `user_id` should be specified.
@@ -475,7 +478,6 @@ class IamApiKey(pulumi.CustomResource):
     def access_key(self) -> pulumi.Output[str]:
         """
         The access key of the iam api key.
-        - `secret_key`: The secret Key of the iam api key.
         """
         return pulumi.get(self, "access_key")
 
@@ -483,7 +485,8 @@ class IamApiKey(pulumi.CustomResource):
     @pulumi.getter(name="applicationId")
     def application_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of the application attached to the api key
+        ID of the application attached to the api key.
+        Only one of the `application_id` and `user_id` should be specified.
         """
         return pulumi.get(self, "application_id")
 
@@ -515,7 +518,7 @@ class IamApiKey(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the iam api key
+        The description of the iam api key.
         """
         return pulumi.get(self, "description")
 
@@ -540,7 +543,7 @@ class IamApiKey(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[str]:
         """
-        The secret Key of the iam api key
+        The secret Key of the iam api key.
         """
         return pulumi.get(self, "secret_key")
 

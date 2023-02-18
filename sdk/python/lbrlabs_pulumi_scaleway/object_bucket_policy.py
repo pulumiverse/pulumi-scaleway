@@ -16,15 +16,19 @@ class ObjectBucketPolicyArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[str],
                  policy: pulumi.Input[str],
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectBucketPolicy resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "policy", policy)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -53,6 +57,18 @@ class ObjectBucketPolicyArgs:
         pulumi.set(self, "policy", value)
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -70,17 +86,21 @@ class _ObjectBucketPolicyState:
     def __init__(__self__, *,
                  bucket: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ObjectBucketPolicy resources.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -109,6 +129,18 @@ class _ObjectBucketPolicyState:
         pulumi.set(self, "policy", value)
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -128,6 +160,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -146,6 +179,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         ...
@@ -183,6 +217,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -199,6 +234,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
             __props__.__dict__["policy"] = policy
+            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
         super(ObjectBucketPolicy, __self__).__init__(
             'scaleway:index/objectBucketPolicy:ObjectBucketPolicy',
@@ -212,6 +248,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: Optional[pulumi.Input[str]] = None,
             policy: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'ObjectBucketPolicy':
         """
         Get an existing ObjectBucketPolicy resource's state with the given name, id, and optional extra
@@ -222,6 +259,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -230,6 +268,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         __props__.__dict__["bucket"] = bucket
         __props__.__dict__["policy"] = policy
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         return ObjectBucketPolicy(resource_name, opts=opts, __props__=__props__)
 
@@ -248,6 +287,14 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         The text of the policy.
         """
         return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[str]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter

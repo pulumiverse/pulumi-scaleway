@@ -288,7 +288,6 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
     /**
      * True when the placement group policy is respected.
-     * - `rootVolume`
      */
     public /*out*/ readonly placementGroupPolicyRespected!: pulumi.Output<boolean>;
     /**
@@ -479,7 +478,6 @@ export interface InstanceServerState {
     placementGroupId?: pulumi.Input<string>;
     /**
      * True when the placement group policy is respected.
-     * - `rootVolume`
      */
     placementGroupPolicyRespected?: pulumi.Input<boolean>;
     /**

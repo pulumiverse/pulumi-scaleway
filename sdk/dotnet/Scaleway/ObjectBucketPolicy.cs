@@ -38,6 +38,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Policy { get; private set; } = null!;
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
         /// The Scaleway region this bucket resides in.
         /// </summary>
         [Output("region")]
@@ -103,6 +109,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Policy { get; set; } = null!;
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The Scaleway region this bucket resides in.
         /// </summary>
         [Input("region")]
@@ -127,6 +139,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The Scaleway region this bucket resides in.

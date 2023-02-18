@@ -194,6 +194,34 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
         return this.indexDocument;
     }
     /**
+     * (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Export(name="projectId", type=String.class, parameters={})
+    private Output<String> projectId;
+
+    /**
+     * @return (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
+    }
+    /**
+     * The region you want to attach the resource to
+     * 
+     */
+    @Export(name="region", type=String.class, parameters={})
+    private Output<String> region;
+
+    /**
+     * @return The region you want to attach the resource to
+     * 
+     */
+    public Output<String> region() {
+        return this.region;
+    }
+    /**
      * The website endpoint.
      * 
      */

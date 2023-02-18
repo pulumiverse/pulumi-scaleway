@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupDatabaseAcl(ctx, &scaleway.LookupDatabaseAclArgs{
+//			_, err := scaleway.LookupDatabaseAcl(ctx, &scaleway.LookupDatabaseAclArgs{
 //				InstanceId: "fr-par/11111111-1111-1111-1111-111111111111",
 //			}, nil)
 //			if err != nil {

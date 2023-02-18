@@ -59,11 +59,11 @@ export class IamApiKey extends pulumi.CustomResource {
 
     /**
      * The access key of the iam api key.
-     * - `secretKey`: The secret Key of the iam api key.
      */
     public /*out*/ readonly accessKey!: pulumi.Output<string>;
     /**
-     * ID of the application attached to the api key
+     * ID of the application attached to the api key.
+     * Only one of the `applicationId` and `userId` should be specified.
      */
     public readonly applicationId!: pulumi.Output<string | undefined>;
     /**
@@ -79,7 +79,7 @@ export class IamApiKey extends pulumi.CustomResource {
      */
     public readonly defaultProjectId!: pulumi.Output<string>;
     /**
-     * The description of the iam api key
+     * The description of the iam api key.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -92,7 +92,7 @@ export class IamApiKey extends pulumi.CustomResource {
      */
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
-     * The secret Key of the iam api key
+     * The secret Key of the iam api key.
      */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
     /**
@@ -156,11 +156,11 @@ export class IamApiKey extends pulumi.CustomResource {
 export interface IamApiKeyState {
     /**
      * The access key of the iam api key.
-     * - `secretKey`: The secret Key of the iam api key.
      */
     accessKey?: pulumi.Input<string>;
     /**
-     * ID of the application attached to the api key
+     * ID of the application attached to the api key.
+     * Only one of the `applicationId` and `userId` should be specified.
      */
     applicationId?: pulumi.Input<string>;
     /**
@@ -176,7 +176,7 @@ export interface IamApiKeyState {
      */
     defaultProjectId?: pulumi.Input<string>;
     /**
-     * The description of the iam api key
+     * The description of the iam api key.
      */
     description?: pulumi.Input<string>;
     /**
@@ -189,7 +189,7 @@ export interface IamApiKeyState {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The secret Key of the iam api key
+     * The secret Key of the iam api key.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -208,7 +208,8 @@ export interface IamApiKeyState {
  */
 export interface IamApiKeyArgs {
     /**
-     * ID of the application attached to the api key
+     * ID of the application attached to the api key.
+     * Only one of the `applicationId` and `userId` should be specified.
      */
     applicationId?: pulumi.Input<string>;
     /**
@@ -216,7 +217,7 @@ export interface IamApiKeyArgs {
      */
     defaultProjectId?: pulumi.Input<string>;
     /**
-     * The description of the iam api key
+     * The description of the iam api key.
      */
     description?: pulumi.Input<string>;
     /**

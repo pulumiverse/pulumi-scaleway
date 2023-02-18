@@ -21,6 +21,7 @@ class LoadbalancerFrontendArgs:
                  lb_id: pulumi.Input[str],
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_http3: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  timeout_client: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,7 @@ class LoadbalancerFrontendArgs:
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
@@ -40,6 +42,8 @@ class LoadbalancerFrontendArgs:
             pulumi.set(__self__, "acls", acls)
         if certificate_ids is not None:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
+        if enable_http3 is not None:
+            pulumi.set(__self__, "enable_http3", enable_http3)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if timeout_client is not None:
@@ -106,6 +110,18 @@ class LoadbalancerFrontendArgs:
         pulumi.set(self, "certificate_ids", value)
 
     @property
+    @pulumi.getter(name="enableHttp3")
+    def enable_http3(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Activates HTTP/3 protocol.
+        """
+        return pulumi.get(self, "enable_http3")
+
+    @enable_http3.setter
+    def enable_http3(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_http3", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -137,6 +153,7 @@ class _LoadbalancerFrontendState:
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_http3: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -147,6 +164,7 @@ class _LoadbalancerFrontendState:
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
         :param pulumi.Input[str] certificate_id: (Deprecated) first certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -163,6 +181,8 @@ class _LoadbalancerFrontendState:
             pulumi.set(__self__, "certificate_id", certificate_id)
         if certificate_ids is not None:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
+        if enable_http3 is not None:
+            pulumi.set(__self__, "enable_http3", enable_http3)
         if inbound_port is not None:
             pulumi.set(__self__, "inbound_port", inbound_port)
         if lb_id is not None:
@@ -221,6 +241,18 @@ class _LoadbalancerFrontendState:
         pulumi.set(self, "certificate_ids", value)
 
     @property
+    @pulumi.getter(name="enableHttp3")
+    def enable_http3(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Activates HTTP/3 protocol.
+        """
+        return pulumi.get(self, "enable_http3")
+
+    @enable_http3.setter
+    def enable_http3(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_http3", value)
+
+    @property
     @pulumi.getter(name="inboundPort")
     def inbound_port(self) -> Optional[pulumi.Input[int]]:
         """
@@ -277,6 +309,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]]] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_http3: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -312,6 +345,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -366,6 +400,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerFrontendAclArgs']]]]] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_http3: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -384,6 +419,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend_id'")
             __props__.__dict__["backend_id"] = backend_id
             __props__.__dict__["certificate_ids"] = certificate_ids
+            __props__.__dict__["enable_http3"] = enable_http3
             if inbound_port is None and not opts.urn:
                 raise TypeError("Missing required property 'inbound_port'")
             __props__.__dict__["inbound_port"] = inbound_port
@@ -407,6 +443,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             backend_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            enable_http3: Optional[pulumi.Input[bool]] = None,
             inbound_port: Optional[pulumi.Input[int]] = None,
             lb_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -422,6 +459,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
         :param pulumi.Input[str] certificate_id: (Deprecated) first certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+        :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -435,6 +473,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         __props__.__dict__["backend_id"] = backend_id
         __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["certificate_ids"] = certificate_ids
+        __props__.__dict__["enable_http3"] = enable_http3
         __props__.__dict__["inbound_port"] = inbound_port
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["name"] = name
@@ -472,6 +511,14 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         List of Certificate IDs that should be used by the frontend.
         """
         return pulumi.get(self, "certificate_ids")
+
+    @property
+    @pulumi.getter(name="enableHttp3")
+    def enable_http3(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Activates HTTP/3 protocol.
+        """
+        return pulumi.get(self, "enable_http3")
 
     @property
     @pulumi.getter(name="inboundPort")

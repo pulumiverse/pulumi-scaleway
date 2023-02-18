@@ -32,6 +32,36 @@ public final class ObjectBucketLockConfigurationState extends com.pulumi.resourc
     }
 
     /**
+     * The project_id you want to attach the resource to
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return The project_id you want to attach the resource to
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
+     * The region you want to attach the resource to
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return The region you want to attach the resource to
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * Specifies the Object Lock rule for the specified object.
      * 
      */
@@ -50,6 +80,8 @@ public final class ObjectBucketLockConfigurationState extends com.pulumi.resourc
 
     private ObjectBucketLockConfigurationState(ObjectBucketLockConfigurationState $) {
         this.bucket = $.bucket;
+        this.projectId = $.projectId;
+        this.region = $.region;
         this.rule = $.rule;
     }
 
@@ -90,6 +122,48 @@ public final class ObjectBucketLockConfigurationState extends com.pulumi.resourc
          */
         public Builder bucket(String bucket) {
             return bucket(Output.of(bucket));
+        }
+
+        /**
+         * @param projectId The project_id you want to attach the resource to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The project_id you want to attach the resource to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param region The region you want to attach the resource to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region The region you want to attach the resource to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

@@ -155,6 +155,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> ExpectedBucketOwner { get; private set; } = null!;
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         /// </summary>
         [Output("region")]
@@ -232,6 +238,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? ExpectedBucketOwner { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         /// </summary>
         [Input("region")]
@@ -268,6 +280,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("expectedBucketOwner")]
         public Input<string>? ExpectedBucketOwner { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

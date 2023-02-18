@@ -19,6 +19,7 @@ class ObjectItemArgs:
                  file: Optional[pulumi.Input[str]] = None,
                  hash: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -30,6 +31,7 @@ class ObjectItemArgs:
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
@@ -43,6 +45,8 @@ class ObjectItemArgs:
             pulumi.set(__self__, "hash", hash)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if storage_class is not None:
@@ -113,6 +117,18 @@ class ObjectItemArgs:
         pulumi.set(self, "metadata", value)
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -169,6 +185,7 @@ class _ObjectItemState:
                  hash: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -180,6 +197,7 @@ class _ObjectItemState:
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
@@ -195,6 +213,8 @@ class _ObjectItemState:
             pulumi.set(__self__, "key", key)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if storage_class is not None:
@@ -265,6 +285,18 @@ class _ObjectItemState:
         pulumi.set(self, "metadata", value)
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -323,6 +355,7 @@ class ObjectItem(pulumi.CustomResource):
                  hash: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -347,6 +380,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
@@ -390,6 +424,7 @@ class ObjectItem(pulumi.CustomResource):
                  hash: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -412,6 +447,7 @@ class ObjectItem(pulumi.CustomResource):
                 raise TypeError("Missing required property 'key'")
             __props__.__dict__["key"] = key
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["storage_class"] = storage_class
             __props__.__dict__["tags"] = tags
@@ -431,6 +467,7 @@ class ObjectItem(pulumi.CustomResource):
             hash: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             storage_class: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -447,6 +484,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
@@ -461,6 +499,7 @@ class ObjectItem(pulumi.CustomResource):
         __props__.__dict__["hash"] = hash
         __props__.__dict__["key"] = key
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["storage_class"] = storage_class
         __props__.__dict__["tags"] = tags
@@ -506,6 +545,14 @@ class ObjectItem(pulumi.CustomResource):
         Map of metadata used for the object, keys must be lowercase
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[str]:
+        """
+        `project_id`) The ID of the project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter

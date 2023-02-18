@@ -237,7 +237,6 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
 
     /**
      * True when the placement group policy is respected.
-     * - `root_volume`
      * 
      */
     @Import(name="placementGroupPolicyRespected")
@@ -245,7 +244,6 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return True when the placement group policy is respected.
-     * - `root_volume`
      * 
      */
     public Optional<Output<Boolean>> placementGroupPolicyRespected() {
@@ -783,7 +781,6 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param placementGroupPolicyRespected True when the placement group policy is respected.
-         * - `root_volume`
          * 
          * @return builder
          * 
@@ -795,7 +792,6 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param placementGroupPolicyRespected True when the placement group policy is respected.
-         * - `root_volume`
          * 
          * @return builder
          * 

@@ -66,10 +66,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
         [Output("deleteAdditionalResources")]
-        public Output<bool?> DeleteAdditionalResources { get; private set; } = null!;
+        public Output<bool> DeleteAdditionalResources { get; private set; } = null!;
 
         /// <summary>
         /// A description for the Kubernetes cluster.
@@ -157,7 +159,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The DNS wildcard that points to all ready nodes.
-        /// - `kubeconfig`
         /// </summary>
         [Output("wildcardDns")]
         public Output<string> WildcardDns { get; private set; } = null!;
@@ -253,10 +254,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Cni { get; set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
-        [Input("deleteAdditionalResources")]
-        public Input<bool>? DeleteAdditionalResources { get; set; }
+        [Input("deleteAdditionalResources", required: true)]
+        public Input<bool> DeleteAdditionalResources { get; set; } = null!;
 
         /// <summary>
         /// A description for the Kubernetes cluster.
@@ -388,7 +391,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
         [Input("deleteAdditionalResources")]
         public Input<bool>? DeleteAdditionalResources { get; set; }
@@ -497,7 +502,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The DNS wildcard that points to all ready nodes.
-        /// - `kubeconfig`
         /// </summary>
         [Input("wildcardDns")]
         public Input<string>? WildcardDns { get; set; }

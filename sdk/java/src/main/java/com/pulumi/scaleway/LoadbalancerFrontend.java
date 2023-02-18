@@ -11,6 +11,7 @@ import com.pulumi.scaleway.LoadbalancerFrontendArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.LoadbalancerFrontendState;
 import com.pulumi.scaleway.outputs.LoadbalancerFrontendAcl;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -214,6 +215,20 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> certificateIds() {
         return Codegen.optional(this.certificateIds);
+    }
+    /**
+     * Activates HTTP/3 protocol.
+     * 
+     */
+    @Export(name="enableHttp3", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> enableHttp3;
+
+    /**
+     * @return Activates HTTP/3 protocol.
+     * 
+     */
+    public Output<Optional<Boolean>> enableHttp3() {
+        return Codegen.optional(this.enableHttp3);
     }
     /**
      * TCP port to listen on the front side.

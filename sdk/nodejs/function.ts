@@ -86,6 +86,10 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly handler!: pulumi.Output<string>;
     /**
+     * HTTP traffic configuration
+     */
+    public readonly httpOption!: pulumi.Output<string | undefined>;
+    /**
      * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
      */
     public readonly maxScale!: pulumi.Output<number | undefined>;
@@ -161,6 +165,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["domainName"] = state ? state.domainName : undefined;
             resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
             resourceInputs["handler"] = state ? state.handler : undefined;
+            resourceInputs["httpOption"] = state ? state.httpOption : undefined;
             resourceInputs["maxScale"] = state ? state.maxScale : undefined;
             resourceInputs["memoryLimit"] = state ? state.memoryLimit : undefined;
             resourceInputs["minScale"] = state ? state.minScale : undefined;
@@ -193,6 +198,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
             resourceInputs["handler"] = args ? args.handler : undefined;
+            resourceInputs["httpOption"] = args ? args.httpOption : undefined;
             resourceInputs["maxScale"] = args ? args.maxScale : undefined;
             resourceInputs["memoryLimit"] = args ? args.memoryLimit : undefined;
             resourceInputs["minScale"] = args ? args.minScale : undefined;
@@ -245,6 +251,10 @@ export interface FunctionState {
      * Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
      */
     handler?: pulumi.Input<string>;
+    /**
+     * HTTP traffic configuration
+     */
+    httpOption?: pulumi.Input<string>;
     /**
      * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
      */
@@ -323,6 +333,10 @@ export interface FunctionArgs {
      * Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
      */
     handler: pulumi.Input<string>;
+    /**
+     * HTTP traffic configuration
+     */
+    httpOption?: pulumi.Input<string>;
     /**
      * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
      */

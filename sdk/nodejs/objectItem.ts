@@ -65,6 +65,10 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
+    /**
      * The Scaleway region this bucket resides in.
      */
     public readonly region!: pulumi.Output<string>;
@@ -99,6 +103,7 @@ export class ObjectItem extends pulumi.CustomResource {
             resourceInputs["hash"] = state ? state.hash : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["storageClass"] = state ? state.storageClass : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -116,6 +121,7 @@ export class ObjectItem extends pulumi.CustomResource {
             resourceInputs["hash"] = args ? args.hash : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["storageClass"] = args ? args.storageClass : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -150,6 +156,10 @@ export interface ObjectItemState {
      * Map of metadata used for the object, keys must be lowercase
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The Scaleway region this bucket resides in.
      */
@@ -192,6 +202,10 @@ export interface ObjectItemArgs {
      * Map of metadata used for the object, keys must be lowercase
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The Scaleway region this bucket resides in.
      */

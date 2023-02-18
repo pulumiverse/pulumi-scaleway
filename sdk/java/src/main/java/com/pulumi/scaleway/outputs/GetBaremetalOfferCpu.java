@@ -10,6 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetBaremetalOfferCpu {
+    /**
+     * @return Number of core on this CPU.
+     * 
+     */
     private Integer coreCount;
     /**
      * @return Frequency of the memory in MHz.
@@ -21,9 +25,17 @@ public final class GetBaremetalOfferCpu {
      * 
      */
     private String name;
+    /**
+     * @return Number of thread on this CPU.
+     * 
+     */
     private Integer threadCount;
 
     private GetBaremetalOfferCpu() {}
+    /**
+     * @return Number of core on this CPU.
+     * 
+     */
     public Integer coreCount() {
         return this.coreCount;
     }
@@ -41,6 +53,10 @@ public final class GetBaremetalOfferCpu {
     public String name() {
         return this.name;
     }
+    /**
+     * @return Number of thread on this CPU.
+     * 
+     */
     public Integer threadCount() {
         return this.threadCount;
     }

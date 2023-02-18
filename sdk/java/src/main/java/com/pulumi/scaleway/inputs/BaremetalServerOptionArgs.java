@@ -31,18 +31,33 @@ public final class BaremetalServerOptionArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the private network to attach.
      * 
      */
     @Import(name="id", required=true)
     private Output<String> id;
 
     /**
-     * @return The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * @return The id of the private network to attach.
      * 
      */
     public Output<String> id() {
         return this.id;
+    }
+
+    /**
+     * The name of the server.
+     * 
+     */
+    @Import(name="name")
+    private @Nullable Output<String> name;
+
+    /**
+     * @return The name of the server.
+     * 
+     */
+    public Optional<Output<String>> name() {
+        return Optional.ofNullable(this.name);
     }
 
     private BaremetalServerOptionArgs() {}
@@ -50,6 +65,7 @@ public final class BaremetalServerOptionArgs extends com.pulumi.resources.Resour
     private BaremetalServerOptionArgs(BaremetalServerOptionArgs $) {
         this.expiresAt = $.expiresAt;
         this.id = $.id;
+        this.name = $.name;
     }
 
     public static Builder builder() {
@@ -92,7 +108,7 @@ public final class BaremetalServerOptionArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param id The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+         * @param id The id of the private network to attach.
          * 
          * @return builder
          * 
@@ -103,13 +119,34 @@ public final class BaremetalServerOptionArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param id The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+         * @param id The id of the private network to attach.
          * 
          * @return builder
          * 
          */
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        /**
+         * @param name The name of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder name(@Nullable Output<String> name) {
+            $.name = name;
+            return this;
+        }
+
+        /**
+         * @param name The name of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder name(String name) {
+            return name(Output.of(name));
         }
 
         public BaremetalServerOptionArgs build() {

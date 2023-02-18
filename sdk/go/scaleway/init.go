@@ -124,6 +124,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerIp{}
 	case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
 		r = &LoadbalancerRoute{}
+	case "scaleway:index/mnqCredential:MnqCredential":
+		r = &MnqCredential{}
+	case "scaleway:index/mnqNamespace:MnqNamespace":
+		r = &MnqNamespace{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -442,6 +446,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/loadbalancerRoute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqNamespace",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

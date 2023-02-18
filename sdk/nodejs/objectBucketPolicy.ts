@@ -53,6 +53,10 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
      */
     public readonly policy!: pulumi.Output<string>;
     /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
+    /**
      * The Scaleway region this bucket resides in.
      */
     public readonly region!: pulumi.Output<string>;
@@ -72,6 +76,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
             const state = argsOrState as ObjectBucketPolicyState | undefined;
             resourceInputs["bucket"] = state ? state.bucket : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as ObjectBucketPolicyArgs | undefined;
@@ -83,6 +88,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
             }
             resourceInputs["bucket"] = args ? args.bucket : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -103,6 +109,10 @@ export interface ObjectBucketPolicyState {
      */
     policy?: pulumi.Input<string>;
     /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
      * The Scaleway region this bucket resides in.
      */
     region?: pulumi.Input<string>;
@@ -120,6 +130,10 @@ export interface ObjectBucketPolicyArgs {
      * The text of the policy.
      */
     policy: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The Scaleway region this bucket resides in.
      */

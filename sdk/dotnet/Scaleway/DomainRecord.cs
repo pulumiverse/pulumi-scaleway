@@ -250,7 +250,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class DomainRecord : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The data of the view record
+        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         /// </summary>
         [Output("data")]
         public Output<string> Data { get; private set; } = null!;
@@ -375,7 +375,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class DomainRecordArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The data of the view record
+        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         /// </summary>
         [Input("data", required: true)]
         public Input<string> Data { get; set; } = null!;
@@ -467,7 +467,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class DomainRecordState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The data of the view record
+        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         /// </summary>
         [Input("data")]
         public Input<string>? Data { get; set; }

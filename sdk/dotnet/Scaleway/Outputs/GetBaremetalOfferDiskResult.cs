@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class GetBaremetalOfferDiskResult
     {
+        /// <summary>
+        /// Capacity of the memory in GB.
+        /// </summary>
         public readonly int Capacity;
         /// <summary>
         /// Type of memory.

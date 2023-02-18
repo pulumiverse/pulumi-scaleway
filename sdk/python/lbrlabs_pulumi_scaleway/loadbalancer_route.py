@@ -20,8 +20,7 @@ class LoadbalancerRouteArgs:
         """
         The set of arguments for constructing a LoadbalancerRoute resource.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
+        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] match_sni: The SNI to match.
         """
         pulumi.set(__self__, "backend_id", backend_id)
@@ -34,7 +33,6 @@ class LoadbalancerRouteArgs:
     def backend_id(self) -> pulumi.Input[str]:
         """
         The ID of the backend to which the route is associated.
-        - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "backend_id")
 
@@ -46,7 +44,7 @@ class LoadbalancerRouteArgs:
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Input[str]:
         """
-        The frontend ID origin of redirection
+        The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -76,8 +74,7 @@ class _LoadbalancerRouteState:
         """
         Input properties used for looking up and filtering LoadbalancerRoute resources.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
+        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] match_sni: The SNI to match.
         """
         if backend_id is not None:
@@ -92,7 +89,6 @@ class _LoadbalancerRouteState:
     def backend_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the backend to which the route is associated.
-        - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "backend_id")
 
@@ -104,7 +100,7 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The frontend ID origin of redirection
+        The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -176,8 +172,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
+        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] match_sni: The SNI to match.
         """
         ...
@@ -280,8 +275,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-               - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] frontend_id: The frontend ID origin of redirection
+        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
         :param pulumi.Input[str] match_sni: The SNI to match.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -298,7 +292,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
     def backend_id(self) -> pulumi.Output[str]:
         """
         The ID of the backend to which the route is associated.
-        - `frontend_id`: (Required) The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "backend_id")
 
@@ -306,7 +299,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Output[str]:
         """
-        The frontend ID origin of redirection
+        The ID of the frontend to which the route is associated.
         """
         return pulumi.get(self, "frontend_id")
 

@@ -28,10 +28,34 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewObjectBucket(ctx, "someBucket", &scaleway.ObjectBucketArgs{
-//				Acl: pulumi.String("private"),
 //				Tags: pulumi.StringMap{
 //					"key": pulumi.String("value"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Creating the bucket in a specific project
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewObjectBucket(ctx, "someBucket", &scaleway.ObjectBucketArgs{
+//				ProjectId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
 //			if err != nil {
 //				return err
@@ -56,7 +80,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
-//				Acl: pulumi.String("private"),
 //				LifecycleRules: scaleway.ObjectBucketLifecycleRuleArray{
 //					&scaleway.ObjectBucketLifecycleRuleArgs{
 //						Enabled: pulumi.Bool(true),
@@ -120,50 +143,6 @@ import (
 //	}
 //
 // ```
-// ## The ACL
-//
-// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
-//
-// The `CORS` object supports the following:
-//
-// * `allowedHeaders` (Optional) Specifies which headers are allowed.
-// * `allowedMethods` (Required) Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
-// * `allowedOrigins` (Required) Specifies which origins are allowed.
-// * `exposeHeaders` (Optional) Specifies expose header in the response.
-// * `maxAgeSeconds` (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
-//
-// The `lifecycleRule` (Optional) object supports the following:
-//
-// * `id` - (Optional) Unique identifier for the rule. Must be less than or equal to 255 characters in length.
-// * `prefix` - (Optional) Object key prefix identifying one or more objects to which the rule applies.
-// * `tags` - (Optional) Specifies object tags key and value.
-// * `enabled` - (Required) The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
-//
-// * `abortIncompleteMultipartUploadDays` (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
-//
-//   - > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
-//
-// * `expiration` - (Optional) Specifies a period in the object's expire (documented below).
-// * `transition` - (Optional) Specifies a period in the object's transitions (documented below).
-//
-// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
-//
-// # The `expiration` object supports the following
-//
-// * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
-//
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-//
-// # The `transition` object supports the following
-//
-// * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
-// * `storageClass` (Required) Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
-//
-// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-//
-// The `versioning` object supports the following:
-//
-// * `enabled` - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
 //
 // ## Import
 //
@@ -177,9 +156,9 @@ import (
 type ObjectBucket struct {
 	pulumi.CustomResourceState
 
-	// The canned ACL you want to apply to the bucket.
+	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL is deprecated. Please use resource_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules ObjectBucketCorsRuleArrayOutput `pulumi:"corsRules"`
@@ -193,6 +172,8 @@ type ObjectBucket struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Enable object lock
 	ObjectLockEnabled pulumi.BoolPtrOutput `pulumi:"objectLockEnabled"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
@@ -231,9 +212,9 @@ func GetObjectBucket(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectBucket resources.
 type objectBucketState struct {
-	// The canned ACL you want to apply to the bucket.
+	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL is deprecated. Please use resource_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl *string `pulumi:"acl"`
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
@@ -247,6 +228,8 @@ type objectBucketState struct {
 	Name *string `pulumi:"name"`
 	// Enable object lock
 	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
@@ -256,9 +239,9 @@ type objectBucketState struct {
 }
 
 type ObjectBucketState struct {
-	// The canned ACL you want to apply to the bucket.
+	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL is deprecated. Please use resource_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl pulumi.StringPtrInput
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules ObjectBucketCorsRuleArrayInput
@@ -272,6 +255,8 @@ type ObjectBucketState struct {
 	Name pulumi.StringPtrInput
 	// Enable object lock
 	ObjectLockEnabled pulumi.BoolPtrInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
@@ -285,9 +270,9 @@ func (ObjectBucketState) ElementType() reflect.Type {
 }
 
 type objectBucketArgs struct {
-	// The canned ACL you want to apply to the bucket.
+	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL is deprecated. Please use resource_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl *string `pulumi:"acl"`
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
@@ -299,6 +284,8 @@ type objectBucketArgs struct {
 	Name *string `pulumi:"name"`
 	// Enable object lock
 	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
@@ -309,9 +296,9 @@ type objectBucketArgs struct {
 
 // The set of arguments for constructing a ObjectBucket resource.
 type ObjectBucketArgs struct {
-	// The canned ACL you want to apply to the bucket.
+	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL is deprecated. Please use resource_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl pulumi.StringPtrInput
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules ObjectBucketCorsRuleArrayInput
@@ -323,6 +310,8 @@ type ObjectBucketArgs struct {
 	Name pulumi.StringPtrInput
 	// Enable object lock
 	ObjectLockEnabled pulumi.BoolPtrInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
@@ -418,9 +407,9 @@ func (o ObjectBucketOutput) ToObjectBucketOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The canned ACL you want to apply to the bucket.
+// (Deprecated) The canned ACL you want to apply to the bucket.
 //
-// Deprecated: ACL is deprecated. Please use resource_bucket_acl instead.
+// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 func (o ObjectBucketOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }
@@ -453,6 +442,11 @@ func (o ObjectBucketOutput) Name() pulumi.StringOutput {
 // Enable object lock
 func (o ObjectBucketOutput) ObjectLockEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.BoolPtrOutput { return v.ObjectLockEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// `projectId`) The ID of the project the bucket is associated with.
+func (o ObjectBucketOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.

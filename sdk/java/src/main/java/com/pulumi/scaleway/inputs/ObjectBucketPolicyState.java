@@ -46,6 +46,21 @@ public final class ObjectBucketPolicyState extends com.pulumi.resources.Resource
     }
 
     /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * The Scaleway region this bucket resides in.
      * 
      */
@@ -65,6 +80,7 @@ public final class ObjectBucketPolicyState extends com.pulumi.resources.Resource
     private ObjectBucketPolicyState(ObjectBucketPolicyState $) {
         this.bucket = $.bucket;
         this.policy = $.policy;
+        this.projectId = $.projectId;
         this.region = $.region;
     }
 
@@ -126,6 +142,27 @@ public final class ObjectBucketPolicyState extends com.pulumi.resources.Resource
          */
         public Builder policy(String policy) {
             return policy(Output.of(policy));
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

@@ -17,12 +17,12 @@ __all__ = ['KubernetesClusterArgs', 'KubernetesCluster']
 class KubernetesClusterArgs:
     def __init__(__self__, *,
                  cni: pulumi.Input[str],
+                 delete_additional_resources: pulumi.Input[bool],
                  version: pulumi.Input[str],
                  admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  auto_upgrade: Optional[pulumi.Input['KubernetesClusterAutoUpgradeArgs']] = None,
                  autoscaler_config: Optional[pulumi.Input['KubernetesClusterAutoscalerConfigArgs']] = None,
-                 delete_additional_resources: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -35,12 +35,14 @@ class KubernetesClusterArgs:
         The set of arguments for constructing a KubernetesCluster resource.
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
         :param pulumi.Input['KubernetesClusterAutoUpgradeArgs'] auto_upgrade: The auto upgrade configuration.
         :param pulumi.Input['KubernetesClusterAutoscalerConfigArgs'] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
@@ -51,6 +53,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
         """
         pulumi.set(__self__, "cni", cni)
+        pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
         pulumi.set(__self__, "version", version)
         if admission_plugins is not None:
             pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -60,8 +63,6 @@ class KubernetesClusterArgs:
             pulumi.set(__self__, "auto_upgrade", auto_upgrade)
         if autoscaler_config is not None:
             pulumi.set(__self__, "autoscaler_config", autoscaler_config)
-        if delete_additional_resources is not None:
-            pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if feature_gates is not None:
@@ -91,6 +92,20 @@ class KubernetesClusterArgs:
     @cni.setter
     def cni(self, value: pulumi.Input[str]):
         pulumi.set(self, "cni", value)
+
+    @property
+    @pulumi.getter(name="deleteAdditionalResources")
+    def delete_additional_resources(self) -> pulumi.Input[bool]:
+        """
+        Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        If you prefer keeping it, you should instead set it as `false`.
+        """
+        return pulumi.get(self, "delete_additional_resources")
+
+    @delete_additional_resources.setter
+    def delete_additional_resources(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "delete_additional_resources", value)
 
     @property
     @pulumi.getter
@@ -151,18 +166,6 @@ class KubernetesClusterArgs:
     @autoscaler_config.setter
     def autoscaler_config(self, value: Optional[pulumi.Input['KubernetesClusterAutoscalerConfigArgs']]):
         pulumi.set(self, "autoscaler_config", value)
-
-    @property
-    @pulumi.getter(name="deleteAdditionalResources")
-    def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-        """
-        return pulumi.get(self, "delete_additional_resources")
-
-    @delete_additional_resources.setter
-    def delete_additional_resources(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "delete_additional_resources", value)
 
     @property
     @pulumi.getter
@@ -297,7 +300,9 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterKubeconfigArgs']]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
@@ -313,7 +318,6 @@ class _KubernetesClusterState:
         :param pulumi.Input[bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
-               - `kubeconfig`
         """
         if admission_plugins is not None:
             pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -451,7 +455,9 @@ class _KubernetesClusterState:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        If you prefer keeping it, you should instead set it as `false`.
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -632,7 +638,6 @@ class _KubernetesClusterState:
     def wildcard_dns(self) -> Optional[pulumi.Input[str]]:
         """
         The DNS wildcard that points to all ready nodes.
-        - `kubeconfig`
         """
         return pulumi.get(self, "wildcard_dns")
 
@@ -679,7 +684,9 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
@@ -751,6 +758,8 @@ class KubernetesCluster(pulumi.CustomResource):
             if cni is None and not opts.urn:
                 raise TypeError("Missing required property 'cni'")
             __props__.__dict__["cni"] = cni
+            if delete_additional_resources is None and not opts.urn:
+                raise TypeError("Missing required property 'delete_additional_resources'")
             __props__.__dict__["delete_additional_resources"] = delete_additional_resources
             __props__.__dict__["description"] = description
             __props__.__dict__["feature_gates"] = feature_gates
@@ -819,7 +828,9 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterKubeconfigArgs']]]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
@@ -835,7 +846,6 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
-               - `kubeconfig`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -925,9 +935,11 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deleteAdditionalResources")
-    def delete_additional_resources(self) -> pulumi.Output[Optional[bool]]:
+    def delete_additional_resources(self) -> pulumi.Output[bool]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        If you prefer keeping it, you should instead set it as `false`.
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -1048,7 +1060,6 @@ class KubernetesCluster(pulumi.CustomResource):
     def wildcard_dns(self) -> pulumi.Output[str]:
         """
         The DNS wildcard that points to all ready nodes.
-        - `kubeconfig`
         """
         return pulumi.get(self, "wildcard_dns")
 

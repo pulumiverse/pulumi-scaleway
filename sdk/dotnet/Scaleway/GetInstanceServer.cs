@@ -190,9 +190,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The public IPv4 address of the server.
         /// </summary>
         public readonly string PublicIp;
-        /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> RootVolumes;
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.

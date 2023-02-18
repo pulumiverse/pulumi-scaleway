@@ -73,9 +73,11 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      */
-    public readonly deleteAdditionalResources!: pulumi.Output<boolean | undefined>;
+    public readonly deleteAdditionalResources!: pulumi.Output<boolean>;
     /**
      * A description for the Kubernetes cluster.
      */
@@ -134,7 +136,6 @@ export class KubernetesCluster extends pulumi.CustomResource {
     public readonly version!: pulumi.Output<string>;
     /**
      * The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
      */
     public /*out*/ readonly wildcardDns!: pulumi.Output<string>;
 
@@ -178,6 +179,9 @@ export class KubernetesCluster extends pulumi.CustomResource {
             const args = argsOrState as KubernetesClusterArgs | undefined;
             if ((!args || args.cni === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cni'");
+            }
+            if ((!args || args.deleteAdditionalResources === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'deleteAdditionalResources'");
             }
             if ((!args || args.version === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'version'");
@@ -245,7 +249,9 @@ export interface KubernetesClusterState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      */
     deleteAdditionalResources?: pulumi.Input<boolean>;
     /**
@@ -306,7 +312,6 @@ export interface KubernetesClusterState {
     version?: pulumi.Input<string>;
     /**
      * The DNS wildcard that points to all ready nodes.
-     * - `kubeconfig`
      */
     wildcardDns?: pulumi.Input<string>;
 }
@@ -337,9 +342,11 @@ export interface KubernetesClusterArgs {
      */
     cni: pulumi.Input<string>;
     /**
-     * Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+     * If you prefer keeping it, you should instead set it as `false`.
      */
-    deleteAdditionalResources?: pulumi.Input<boolean>;
+    deleteAdditionalResources: pulumi.Input<boolean>;
     /**
      * A description for the Kubernetes cluster.
      */

@@ -21,6 +21,7 @@ public final class GetFunctionResult {
     private Map<String,String> environmentVariables;
     private @Nullable String functionId;
     private String handler;
+    private String httpOption;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -62,6 +63,9 @@ public final class GetFunctionResult {
     }
     public String handler() {
         return this.handler;
+    }
+    public String httpOption() {
+        return this.httpOption;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -129,6 +133,7 @@ public final class GetFunctionResult {
         private Map<String,String> environmentVariables;
         private @Nullable String functionId;
         private String handler;
+        private String httpOption;
         private String id;
         private Integer maxScale;
         private Integer memoryLimit;
@@ -154,6 +159,7 @@ public final class GetFunctionResult {
     	      this.environmentVariables = defaults.environmentVariables;
     	      this.functionId = defaults.functionId;
     	      this.handler = defaults.handler;
+    	      this.httpOption = defaults.httpOption;
     	      this.id = defaults.id;
     	      this.maxScale = defaults.maxScale;
     	      this.memoryLimit = defaults.memoryLimit;
@@ -204,6 +210,11 @@ public final class GetFunctionResult {
         @CustomType.Setter
         public Builder handler(String handler) {
             this.handler = Objects.requireNonNull(handler);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder httpOption(String httpOption) {
+            this.httpOption = Objects.requireNonNull(httpOption);
             return this;
         }
         @CustomType.Setter
@@ -290,6 +301,7 @@ public final class GetFunctionResult {
             o.environmentVariables = environmentVariables;
             o.functionId = functionId;
             o.handler = handler;
+            o.httpOption = httpOption;
             o.id = id;
             o.maxScale = maxScale;
             o.memoryLimit = memoryLimit;

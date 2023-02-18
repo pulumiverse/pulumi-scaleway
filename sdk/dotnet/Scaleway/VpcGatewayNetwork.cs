@@ -17,6 +17,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Example
     /// 
+    /// ### Create a gateway network with DHCP
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
@@ -52,6 +54,34 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Create a gateway network with a static IP address
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         EnableDhcp = false,
+    ///         EnableMasquerade = true,
+    ///         StaticAddress = "192.168.1.42/24",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -76,7 +106,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the public gateway DHCP config.
+        /// The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         /// </summary>
         [Output("dhcpId")]
         public Output<string?> DhcpId { get; private set; } = null!;
@@ -112,7 +142,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// Enable DHCP config on this network
+        /// Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         /// </summary>
         [Output("staticAddress")]
         public Output<string?> StaticAddress { get; private set; } = null!;
@@ -183,7 +213,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<bool>? CleanupDhcp { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway DHCP config.
+        /// The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
@@ -213,7 +243,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Enable DHCP config on this network
+        /// Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
@@ -245,7 +275,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway DHCP config.
+        /// The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
@@ -281,7 +311,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// Enable DHCP config on this network
+        /// Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }

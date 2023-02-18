@@ -43,6 +43,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// });
         /// ```
+        /// 
+        /// {{% /example %}}
+        /// {{% example %}}
+        /// ### Fetching the bucket from a specific project
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     {
+        ///         Name = "bucket.test.com",
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
@@ -80,6 +100,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// });
         /// ```
+        /// 
+        /// {{% /example %}}
+        /// {{% example %}}
+        /// ### Fetching the bucket from a specific project
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     {
+        ///         Name = "bucket.test.com",
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
@@ -95,6 +135,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the Object Storage exists.
@@ -115,6 +161,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the Object Storage exists.
@@ -146,6 +198,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly ImmutableArray<Outputs.GetObjectBucketLifecycleRuleResult> LifecycleRules;
         public readonly string? Name;
         public readonly bool ObjectLockEnabled;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Tags;
         public readonly ImmutableArray<Outputs.GetObjectBucketVersioningResult> Versionings;
@@ -168,6 +221,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             bool objectLockEnabled,
 
+            string? projectId,
+
             string? region,
 
             ImmutableDictionary<string, string> tags,
@@ -182,6 +237,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             LifecycleRules = lifecycleRules;
             Name = name;
             ObjectLockEnabled = objectLockEnabled;
+            ProjectId = projectId;
             Region = region;
             Tags = tags;
             Versionings = versionings;

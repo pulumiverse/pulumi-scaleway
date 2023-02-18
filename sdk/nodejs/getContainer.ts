@@ -79,6 +79,9 @@ export interface GetContainerResult {
      * Boolean indicating whether the container is on a production environment.
      */
     readonly deploy: boolean;
+    /**
+     * The description of the container.
+     */
     readonly description: string;
     /**
      * The container domain name.
@@ -92,6 +95,7 @@ export interface GetContainerResult {
      * The error message of the container.
      */
     readonly errorMessage: string;
+    readonly httpOption: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

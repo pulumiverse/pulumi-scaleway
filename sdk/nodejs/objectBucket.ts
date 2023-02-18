@@ -16,12 +16,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("someBucket", {
- *     acl: "private",
- *     tags: {
- *         key: "value",
- *     },
- * });
+ * const someBucket = new scaleway.ObjectBucket("someBucket", {tags: {
+ *     key: "value",
+ * }});
+ * ```
+ * ### Creating the bucket in a specific project
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const someBucket = new scaleway.ObjectBucket("someBucket", {projectId: "11111111-1111-1111-1111-111111111111"});
  * ```
  * ### Using object lifecycle
  *
@@ -30,7 +35,6 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const main = new scaleway.ObjectBucket("main", {
- *     acl: "private",
  *     lifecycleRules: [
  *         {
  *             enabled: true,
@@ -83,50 +87,6 @@ import * as utilities from "./utilities";
  *     region: "fr-par",
  * });
  * ```
- * ## The ACL
- *
- * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
- *
- * The `CORS` object supports the following:
- *
- * * `allowedHeaders` (Optional) Specifies which headers are allowed.
- * * `allowedMethods` (Required) Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
- * * `allowedOrigins` (Required) Specifies which origins are allowed.
- * * `exposeHeaders` (Optional) Specifies expose header in the response.
- * * `maxAgeSeconds` (Optional) Specifies time in seconds that browser can cache the response for a preflight request.
- *
- * The `lifecycleRule` (Optional) object supports the following:
- *
- * * `id` - (Optional) Unique identifier for the rule. Must be less than or equal to 255 characters in length.
- * * `prefix` - (Optional) Object key prefix identifying one or more objects to which the rule applies.
- * * `tags` - (Optional) Specifies object tags key and value.
- * * `enabled` - (Required) The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
- *
- * * `abortIncompleteMultipartUploadDays` (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
- *   
- *     * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
- *
- * * `expiration` - (Optional) Specifies a period in the object's expire (documented below).
- * * `transition` - (Optional) Specifies a period in the object's transitions (documented below).
- *
- * At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
- *
- * The `expiration` object supports the following
- *
- * * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
- *
- * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
- *
- * The `transition` object supports the following
- *
- * * `days` (Optional) Specifies the number of days after object creation when the specific rule action takes effect.
- * * `storageClass` (Required) Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
- *
- * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
- *
- * The `versioning` object supports the following:
- *
- * * `enabled` - (Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
  *
  * ## Import
  *
@@ -165,9 +125,9 @@ export class ObjectBucket extends pulumi.CustomResource {
     }
 
     /**
-     * The canned ACL you want to apply to the bucket.
+     * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL is deprecated. Please use resource_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
@@ -194,6 +154,10 @@ export class ObjectBucket extends pulumi.CustomResource {
      * Enable object lock
      */
     public readonly objectLockEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
@@ -227,6 +191,7 @@ export class ObjectBucket extends pulumi.CustomResource {
             resourceInputs["lifecycleRules"] = state ? state.lifecycleRules : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objectLockEnabled"] = state ? state.objectLockEnabled : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["versioning"] = state ? state.versioning : undefined;
@@ -238,6 +203,7 @@ export class ObjectBucket extends pulumi.CustomResource {
             resourceInputs["lifecycleRules"] = args ? args.lifecycleRules : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objectLockEnabled"] = args ? args.objectLockEnabled : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["versioning"] = args ? args.versioning : undefined;
@@ -253,9 +219,9 @@ export class ObjectBucket extends pulumi.CustomResource {
  */
 export interface ObjectBucketState {
     /**
-     * The canned ACL you want to apply to the bucket.
+     * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL is deprecated. Please use resource_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -283,6 +249,10 @@ export interface ObjectBucketState {
      */
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */
     region?: pulumi.Input<string>;
@@ -301,9 +271,9 @@ export interface ObjectBucketState {
  */
 export interface ObjectBucketArgs {
     /**
-     * The canned ACL you want to apply to the bucket.
+     * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL is deprecated. Please use resource_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -326,6 +296,10 @@ export interface ObjectBucketArgs {
      * Enable object lock
      */
     objectLockEnabled?: pulumi.Input<boolean>;
+    /**
+     * `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      */

@@ -14,11 +14,17 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class GetBaremetalOfferMemoryResult
     {
+        /// <summary>
+        /// Capacity of the memory in GB.
+        /// </summary>
         public readonly int Capacity;
         /// <summary>
         /// Frequency of the memory in MHz.
         /// </summary>
         public readonly int Frequency;
+        /// <summary>
+        /// True if error-correcting code is available on this memory.
+        /// </summary>
         public readonly bool IsEcc;
         /// <summary>
         /// Type of memory.

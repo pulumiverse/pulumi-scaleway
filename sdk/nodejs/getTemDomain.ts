@@ -48,7 +48,7 @@ export interface GetTemDomainResult {
     readonly dkimConfig: string;
     readonly domainId?: string;
     /**
-     * The ID of the Transaction Email Domain.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     /**

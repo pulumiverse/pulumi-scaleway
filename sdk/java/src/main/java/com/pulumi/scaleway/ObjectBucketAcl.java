@@ -214,6 +214,20 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.expectedBucketOwner);
     }
     /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Export(name="projectId", type=String.class, parameters={})
+    private Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Output<String> projectId() {
+        return this.projectId;
+    }
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */

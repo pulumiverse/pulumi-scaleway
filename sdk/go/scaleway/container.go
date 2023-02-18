@@ -134,6 +134,8 @@ type Container struct {
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
+	// HTTP traffic configuration
+	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
@@ -177,7 +179,7 @@ func NewContainer(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'NamespaceId'")
 	}
 	if args.SecretEnvironmentVariables != nil {
-		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapOutput)
+		args.SecretEnvironmentVariables = pulumi.ToSecret(args.SecretEnvironmentVariables).(pulumi.StringMapInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"secretEnvironmentVariables",
@@ -220,6 +222,8 @@ type containerState struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage *string `pulumi:"errorMessage"`
+	// HTTP traffic configuration
+	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
@@ -267,6 +271,8 @@ type ContainerState struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// The error message of the container.
 	ErrorMessage pulumi.StringPtrInput
+	// HTTP traffic configuration
+	HttpOption pulumi.StringPtrInput
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
@@ -312,6 +318,8 @@ type containerArgs struct {
 	Description *string `pulumi:"description"`
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
+	// HTTP traffic configuration
+	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
@@ -352,6 +360,8 @@ type ContainerArgs struct {
 	Description pulumi.StringPtrInput
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapInput
+	// HTTP traffic configuration
+	HttpOption pulumi.StringPtrInput
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
@@ -502,6 +512,11 @@ func (o ContainerOutput) EnvironmentVariables() pulumi.StringMapOutput {
 // The error message of the container.
 func (o ContainerOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// HTTP traffic configuration
+func (o ContainerOutput) HttpOption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.

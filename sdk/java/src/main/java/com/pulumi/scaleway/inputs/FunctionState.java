@@ -109,6 +109,21 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * HTTP traffic configuration
+     * 
+     */
+    @Import(name="httpOption")
+    private @Nullable Output<String> httpOption;
+
+    /**
+     * @return HTTP traffic configuration
+     * 
+     */
+    public Optional<Output<String>> httpOption() {
+        return Optional.ofNullable(this.httpOption);
+    }
+
+    /**
      * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
      * 
      */
@@ -327,6 +342,7 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
         this.domainName = $.domainName;
         this.environmentVariables = $.environmentVariables;
         this.handler = $.handler;
+        this.httpOption = $.httpOption;
         this.maxScale = $.maxScale;
         this.memoryLimit = $.memoryLimit;
         this.minScale = $.minScale;
@@ -485,6 +501,27 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder handler(String handler) {
             return handler(Output.of(handler));
+        }
+
+        /**
+         * @param httpOption HTTP traffic configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpOption(@Nullable Output<String> httpOption) {
+            $.httpOption = httpOption;
+            return this;
+        }
+
+        /**
+         * @param httpOption HTTP traffic configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpOption(String httpOption) {
+            return httpOption(Output.of(httpOption));
         }
 
         /**

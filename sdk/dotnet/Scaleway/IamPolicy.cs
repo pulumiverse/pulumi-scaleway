@@ -41,7 +41,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///             {
     ///                 ProjectIds = new[]
     ///                 {
-    ///                     @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult).Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
+    ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
     ///                 },
     ///                 PermissionSetNames = new[]
     ///                 {

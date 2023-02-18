@@ -375,7 +375,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// True when the placement group policy is respected.
-        /// - `root_volume`
         /// </summary>
         [Output("placementGroupPolicyRespected")]
         public Output<bool> PlacementGroupPolicyRespected { get; private set; } = null!;
@@ -741,7 +740,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// True when the placement group policy is respected.
-        /// - `root_volume`
         /// </summary>
         [Input("placementGroupPolicyRespected")]
         public Input<bool>? PlacementGroupPolicyRespected { get; set; }

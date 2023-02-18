@@ -145,6 +145,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<Outputs.ObjectBucketWebsiteConfigurationIndexDocument> IndexDocument { get; private set; } = null!;
 
         /// <summary>
+        /// (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// The website endpoint.
         /// </summary>
         [Output("websiteDomain")]
@@ -221,6 +233,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("indexDocument", required: true)]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs> IndexDocument { get; set; } = null!;
 
+        /// <summary>
+        /// (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         public ObjectBucketWebsiteConfigurationArgs()
         {
         }
@@ -246,6 +270,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("indexDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentGetArgs>? IndexDocument { get; set; }
+
+        /// <summary>
+        /// (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// The website endpoint.

@@ -193,7 +193,7 @@ import (
 // import (
 //
 //	"fmt"
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -201,7 +201,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -317,7 +317,7 @@ import (
 //				return err
 //			}
 //			fromSnapshotInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "fromSnapshotInstanceVolume", &scaleway.InstanceVolumeArgs{
-//				FromSnapshotId: pulumi.String(snapshot.Id),
+//				FromSnapshotId: *pulumi.String(snapshot.Id),
 //				Type:           pulumi.String("b_ssd"),
 //			})
 //			if err != nil {
@@ -395,7 +395,6 @@ type InstanceServer struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
-	// - `rootVolume`
 	PlacementGroupPolicyRespected pulumi.BoolOutput `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
@@ -488,7 +487,6 @@ type instanceServerState struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
-	// - `rootVolume`
 	PlacementGroupPolicyRespected *bool `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp *string `pulumi:"privateIp"`
@@ -549,7 +547,6 @@ type InstanceServerState struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId pulumi.StringPtrInput
 	// True when the placement group policy is respected.
-	// - `rootVolume`
 	PlacementGroupPolicyRespected pulumi.BoolPtrInput
 	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringPtrInput
@@ -835,7 +832,6 @@ func (o InstanceServerOutput) PlacementGroupId() pulumi.StringPtrOutput {
 }
 
 // True when the placement group policy is respected.
-// - `rootVolume`
 func (o InstanceServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }

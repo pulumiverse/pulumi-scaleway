@@ -70,6 +70,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<string>> CertificateIds { get; private set; } = null!;
 
         /// <summary>
+        /// Activates HTTP/3 protocol.
+        /// </summary>
+        [Output("enableHttp3")]
+        public Output<bool?> EnableHttp3 { get; private set; } = null!;
+
+        /// <summary>
         /// TCP port to listen on the front side.
         /// </summary>
         [Output("inboundPort")]
@@ -171,6 +177,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
+        /// Activates HTTP/3 protocol.
+        /// </summary>
+        [Input("enableHttp3")]
+        public Input<bool>? EnableHttp3 { get; set; }
+
+        /// <summary>
         /// TCP port to listen on the front side.
         /// </summary>
         [Input("inboundPort", required: true)]
@@ -237,6 +249,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _certificateIds ?? (_certificateIds = new InputList<string>());
             set => _certificateIds = value;
         }
+
+        /// <summary>
+        /// Activates HTTP/3 protocol.
+        /// </summary>
+        [Input("enableHttp3")]
+        public Input<bool>? EnableHttp3 { get; set; }
 
         /// <summary>
         /// TCP port to listen on the front side.

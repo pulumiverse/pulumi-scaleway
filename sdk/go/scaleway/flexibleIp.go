@@ -104,8 +104,8 @@ import (
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 //				Zone:      pulumi.String("fr-par-2"),
-//				Offer:     pulumi.String(myOffer.OfferId),
-//				Os:        pulumi.String(byId.OsId),
+//				Offer:     *pulumi.String(myOffer.OfferId),
+//				Os:        *pulumi.String(byId.OsId),
 //				SshKeyIds: mainAccountSshKey.ID(),
 //			})
 //			if err != nil {
@@ -138,7 +138,7 @@ type FlexibleIp struct {
 
 	// The date and time of the creation of the Flexible IP (Format ISO 8601)
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Description of the flexible IP
+	// A description of the flexible IP.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The IPv4 address of the Flexible IP
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
@@ -152,7 +152,7 @@ type FlexibleIp struct {
 	Reverse pulumi.StringPtrOutput `pulumi:"reverse"`
 	// The ID of the associated server
 	ServerId pulumi.StringPtrOutput `pulumi:"serverId"`
-	// The tags associated with the flexible IP
+	// A list of tags to apply to the flexible IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the Flexible IP (Format ISO 8601)
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -192,7 +192,7 @@ func GetFlexibleIp(ctx *pulumi.Context,
 type flexibleIpState struct {
 	// The date and time of the creation of the Flexible IP (Format ISO 8601)
 	CreatedAt *string `pulumi:"createdAt"`
-	// Description of the flexible IP
+	// A description of the flexible IP.
 	Description *string `pulumi:"description"`
 	// The IPv4 address of the Flexible IP
 	IpAddress *string `pulumi:"ipAddress"`
@@ -206,7 +206,7 @@ type flexibleIpState struct {
 	Reverse *string `pulumi:"reverse"`
 	// The ID of the associated server
 	ServerId *string `pulumi:"serverId"`
-	// The tags associated with the flexible IP
+	// A list of tags to apply to the flexible IP.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the Flexible IP (Format ISO 8601)
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -217,7 +217,7 @@ type flexibleIpState struct {
 type FlexibleIpState struct {
 	// The date and time of the creation of the Flexible IP (Format ISO 8601)
 	CreatedAt pulumi.StringPtrInput
-	// Description of the flexible IP
+	// A description of the flexible IP.
 	Description pulumi.StringPtrInput
 	// The IPv4 address of the Flexible IP
 	IpAddress pulumi.StringPtrInput
@@ -231,7 +231,7 @@ type FlexibleIpState struct {
 	Reverse pulumi.StringPtrInput
 	// The ID of the associated server
 	ServerId pulumi.StringPtrInput
-	// The tags associated with the flexible IP
+	// A list of tags to apply to the flexible IP.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the Flexible IP (Format ISO 8601)
 	UpdatedAt pulumi.StringPtrInput
@@ -244,7 +244,7 @@ func (FlexibleIpState) ElementType() reflect.Type {
 }
 
 type flexibleIpArgs struct {
-	// Description of the flexible IP
+	// A description of the flexible IP.
 	Description *string `pulumi:"description"`
 	// The project of the Flexible IP
 	ProjectId *string `pulumi:"projectId"`
@@ -252,7 +252,7 @@ type flexibleIpArgs struct {
 	Reverse *string `pulumi:"reverse"`
 	// The ID of the associated server
 	ServerId *string `pulumi:"serverId"`
-	// The tags associated with the flexible IP
+	// A list of tags to apply to the flexible IP.
 	Tags []string `pulumi:"tags"`
 	// The zone of the Flexible IP
 	Zone *string `pulumi:"zone"`
@@ -260,7 +260,7 @@ type flexibleIpArgs struct {
 
 // The set of arguments for constructing a FlexibleIp resource.
 type FlexibleIpArgs struct {
-	// Description of the flexible IP
+	// A description of the flexible IP.
 	Description pulumi.StringPtrInput
 	// The project of the Flexible IP
 	ProjectId pulumi.StringPtrInput
@@ -268,7 +268,7 @@ type FlexibleIpArgs struct {
 	Reverse pulumi.StringPtrInput
 	// The ID of the associated server
 	ServerId pulumi.StringPtrInput
-	// The tags associated with the flexible IP
+	// A list of tags to apply to the flexible IP.
 	Tags pulumi.StringArrayInput
 	// The zone of the Flexible IP
 	Zone pulumi.StringPtrInput
@@ -366,7 +366,7 @@ func (o FlexibleIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Description of the flexible IP
+// A description of the flexible IP.
 func (o FlexibleIpOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -401,7 +401,7 @@ func (o FlexibleIpOutput) ServerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringPtrOutput { return v.ServerId }).(pulumi.StringPtrOutput)
 }
 
-// The tags associated with the flexible IP
+// A list of tags to apply to the flexible IP.
 func (o FlexibleIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }

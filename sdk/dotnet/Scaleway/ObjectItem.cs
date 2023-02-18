@@ -56,6 +56,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
         /// The Scaleway region this bucket resides in.
         /// </summary>
         [Output("region")]
@@ -163,6 +169,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The Scaleway region this bucket resides in.
         /// </summary>
         [Input("region")]
@@ -235,6 +247,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The Scaleway region this bucket resides in.

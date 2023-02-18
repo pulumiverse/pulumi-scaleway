@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
+//			_, err := scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
 //				Name: pulumi.StringRef("my-snapshot-name"),
 //			}, nil)
 //			if err != nil {

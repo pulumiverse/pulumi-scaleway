@@ -14,18 +14,33 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketLifecycleRule
     {
+        /// <summary>
+        /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        /// </summary>
         public readonly int? AbortIncompleteMultipartUploadDays;
+        /// <summary>
+        /// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Specifies a period in the object's expire (documented below).
+        /// </summary>
         public readonly Outputs.ObjectBucketLifecycleRuleExpiration? Expiration;
         /// <summary>
-        /// The unique name of the bucket.
+        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Object key prefix identifying one or more objects to which the rule applies.
+        /// </summary>
         public readonly string? Prefix;
         /// <summary>
-        /// A list of tags (key / value) for the bucket.
+        /// Specifies object tags key and value.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Tags;
+        /// <summary>
+        /// Specifies a period in the object's transitions (documented below).
+        /// </summary>
         public readonly ImmutableArray<Outputs.ObjectBucketLifecycleRuleTransition> Transitions;
 
         [OutputConstructor]

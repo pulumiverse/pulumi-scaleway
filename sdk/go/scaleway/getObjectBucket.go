@@ -46,6 +46,32 @@ import (
 //	}
 //
 // ```
+// ### Fetching the bucket from a specific project
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
+//				Name:      pulumi.StringRef("bucket.test.com"),
+//				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts ...pulumi.InvokeOption) (*LookupObjectBucketResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupObjectBucketResult
@@ -60,6 +86,8 @@ func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts 
 type LookupObjectBucketArgs struct {
 	// The bucket name.
 	Name *string `pulumi:"name"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
 	Region *string `pulumi:"region"`
 }
@@ -76,6 +104,7 @@ type LookupObjectBucketResult struct {
 	LifecycleRules    []GetObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
 	Name              *string                        `pulumi:"name"`
 	ObjectLockEnabled bool                           `pulumi:"objectLockEnabled"`
+	ProjectId         *string                        `pulumi:"projectId"`
 	Region            *string                        `pulumi:"region"`
 	Tags              map[string]string              `pulumi:"tags"`
 	Versionings       []GetObjectBucketVersioning    `pulumi:"versionings"`
@@ -98,6 +127,8 @@ func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutput
 type LookupObjectBucketOutputArgs struct {
 	// The bucket name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -153,6 +184,10 @@ func (o LookupObjectBucketResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupObjectBucketResultOutput) ObjectLockEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupObjectBucketResult) bool { return v.ObjectLockEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupObjectBucketResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupObjectBucketResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupObjectBucketResultOutput) Region() pulumi.StringPtrOutput {

@@ -116,28 +116,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## Private Network with static config
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
- *
- * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
- * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
- * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
- *     ipId: mainLoadbalancerIp.id,
- *     type: "LB-S",
- *     releaseIp: false,
- *     privateNetworks: [{
- *         privateNetworkId: mainVpcPrivateNetwork.id,
- *         staticConfigs: [
- *             "172.16.0.100",
- *             "172.16.0.101",
- *         ],
- *     }],
- * });
- * ```
- *
  * ## Import
  *
  * Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash

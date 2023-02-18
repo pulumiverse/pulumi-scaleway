@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * ## Example
  *
+ * ### Create a gateway network with DHCP
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
@@ -31,6 +33,23 @@ import * as utilities from "./utilities";
  *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
+ * });
+ * ```
+ *
+ * ### Create a gateway network with a static IP address
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const main = new scaleway.VpcGatewayNetwork("main", {
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     enableDhcp: false,
+ *     enableMasquerade: true,
+ *     staticAddress: "192.168.1.42/24",
  * });
  * ```
  *
@@ -79,7 +98,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The ID of the public gateway DHCP config.
+     * The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
      */
     public readonly dhcpId!: pulumi.Output<string | undefined>;
     /**
@@ -103,7 +122,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
     /**
-     * Enable DHCP config on this network
+     * Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
      */
     public readonly staticAddress!: pulumi.Output<string | undefined>;
     /**
@@ -177,7 +196,7 @@ export interface VpcGatewayNetworkState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the public gateway DHCP config.
+     * The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
      */
     dhcpId?: pulumi.Input<string>;
     /**
@@ -201,7 +220,7 @@ export interface VpcGatewayNetworkState {
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network
+     * Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
      */
     staticAddress?: pulumi.Input<string>;
     /**
@@ -223,7 +242,7 @@ export interface VpcGatewayNetworkArgs {
      */
     cleanupDhcp?: pulumi.Input<boolean>;
     /**
-     * The ID of the public gateway DHCP config.
+     * The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
      */
     dhcpId?: pulumi.Input<string>;
     /**
@@ -243,7 +262,7 @@ export interface VpcGatewayNetworkArgs {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network
+     * Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
      */
     staticAddress?: pulumi.Input<string>;
     /**

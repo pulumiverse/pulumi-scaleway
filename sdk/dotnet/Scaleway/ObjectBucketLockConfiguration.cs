@@ -20,6 +20,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Bucket { get; private set; } = null!;
 
         /// <summary>
+        /// The project_id you want to attach the resource to
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the Object Lock rule for the specified object.
         /// </summary>
         [Output("rule")]
@@ -79,6 +91,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
+        /// The project_id you want to attach the resource to
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// Specifies the Object Lock rule for the specified object.
         /// </summary>
         [Input("rule", required: true)]
@@ -97,6 +121,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
+
+        /// <summary>
+        /// The project_id you want to attach the resource to
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The region you want to attach the resource to
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// Specifies the Object Lock rule for the specified object.

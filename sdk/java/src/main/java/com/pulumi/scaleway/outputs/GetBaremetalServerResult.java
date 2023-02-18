@@ -6,6 +6,7 @@ package com.pulumi.scaleway.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.scaleway.outputs.GetBaremetalServerIp;
 import com.pulumi.scaleway.outputs.GetBaremetalServerOption;
+import com.pulumi.scaleway.outputs.GetBaremetalServerPrivateNetwork;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -32,6 +33,7 @@ public final class GetBaremetalServerResult {
     private String os;
     private String osId;
     private String password;
+    private List<GetBaremetalServerPrivateNetwork> privateNetworks;
     private String projectId;
     private Boolean reinstallOnConfigChanges;
     private @Nullable String serverId;
@@ -86,6 +88,9 @@ public final class GetBaremetalServerResult {
     public String password() {
         return this.password;
     }
+    public List<GetBaremetalServerPrivateNetwork> privateNetworks() {
+        return this.privateNetworks;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -136,6 +141,7 @@ public final class GetBaremetalServerResult {
         private String os;
         private String osId;
         private String password;
+        private List<GetBaremetalServerPrivateNetwork> privateNetworks;
         private String projectId;
         private Boolean reinstallOnConfigChanges;
         private @Nullable String serverId;
@@ -161,6 +167,7 @@ public final class GetBaremetalServerResult {
     	      this.os = defaults.os;
     	      this.osId = defaults.osId;
     	      this.password = defaults.password;
+    	      this.privateNetworks = defaults.privateNetworks;
     	      this.projectId = defaults.projectId;
     	      this.reinstallOnConfigChanges = defaults.reinstallOnConfigChanges;
     	      this.serverId = defaults.serverId;
@@ -244,6 +251,14 @@ public final class GetBaremetalServerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder privateNetworks(List<GetBaremetalServerPrivateNetwork> privateNetworks) {
+            this.privateNetworks = Objects.requireNonNull(privateNetworks);
+            return this;
+        }
+        public Builder privateNetworks(GetBaremetalServerPrivateNetwork... privateNetworks) {
+            return privateNetworks(List.of(privateNetworks));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
@@ -309,6 +324,7 @@ public final class GetBaremetalServerResult {
             o.os = os;
             o.osId = osId;
             o.password = password;
+            o.privateNetworks = privateNetworks;
             o.projectId = projectId;
             o.reinstallOnConfigChanges = reinstallOnConfigChanges;
             o.serverId = serverId;

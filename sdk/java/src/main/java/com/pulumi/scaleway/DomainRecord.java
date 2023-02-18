@@ -271,14 +271,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/domainRecord:DomainRecord")
 public class DomainRecord extends com.pulumi.resources.CustomResource {
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
     @Export(name="data", type=String.class, parameters={})
     private Output<String> data;
 
     /**
-     * @return The data of the view record
+     * @return The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
     public Output<String> data() {

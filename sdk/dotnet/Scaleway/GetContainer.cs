@@ -185,6 +185,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Boolean indicating whether the container is on a production environment.
         /// </summary>
         public readonly bool Deploy;
+        /// <summary>
+        /// The description of the container.
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The container domain name.
@@ -198,6 +201,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The error message of the container.
         /// </summary>
         public readonly string ErrorMessage;
+        public readonly string HttpOption;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -272,6 +276,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string errorMessage,
 
+            string httpOption,
+
             string id,
 
             int maxConcurrency,
@@ -312,6 +318,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             DomainName = domainName;
             EnvironmentVariables = environmentVariables;
             ErrorMessage = errorMessage;
+            HttpOption = httpOption;
             Id = id;
             MaxConcurrency = maxConcurrency;
             MaxScale = maxScale;

@@ -143,41 +143,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
-    /// ## Private Network with static config
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var mainLoadbalancerIp = new Scaleway.LoadbalancerIp("mainLoadbalancerIp");
-    /// 
-    ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
-    /// 
-    ///     var mainLoadbalancer = new Scaleway.Loadbalancer("mainLoadbalancer", new()
-    ///     {
-    ///         IpId = mainLoadbalancerIp.Id,
-    ///         Type = "LB-S",
-    ///         ReleaseIp = false,
-    ///         PrivateNetworks = new[]
-    ///         {
-    ///             new Scaleway.Inputs.LoadbalancerPrivateNetworkArgs
-    ///             {
-    ///                 PrivateNetworkId = mainVpcPrivateNetwork.Id,
-    ///                 StaticConfigs = new[]
-    ///                 {
-    ///                     "172.16.0.100",
-    ///                     "172.16.0.101",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash

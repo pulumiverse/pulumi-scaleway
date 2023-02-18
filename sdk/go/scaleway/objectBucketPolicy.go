@@ -30,6 +30,8 @@ type ObjectBucketPolicy struct {
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The text of the policy.
 	Policy pulumi.StringOutput `pulumi:"policy"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
@@ -74,6 +76,8 @@ type objectBucketPolicyState struct {
 	Bucket *string `pulumi:"bucket"`
 	// The text of the policy.
 	Policy *string `pulumi:"policy"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
 }
@@ -83,6 +87,8 @@ type ObjectBucketPolicyState struct {
 	Bucket pulumi.StringPtrInput
 	// The text of the policy.
 	Policy pulumi.StringPtrInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
 }
@@ -96,6 +102,8 @@ type objectBucketPolicyArgs struct {
 	Bucket string `pulumi:"bucket"`
 	// The text of the policy.
 	Policy string `pulumi:"policy"`
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
 }
@@ -106,6 +114,8 @@ type ObjectBucketPolicyArgs struct {
 	Bucket pulumi.StringInput
 	// The text of the policy.
 	Policy pulumi.StringInput
+	// `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
 }
@@ -205,6 +215,11 @@ func (o ObjectBucketPolicyOutput) Bucket() pulumi.StringOutput {
 // The text of the policy.
 func (o ObjectBucketPolicyOutput) Policy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
+}
+
+// `projectId`) The ID of the project the bucket is associated with.
+func (o ObjectBucketPolicyOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The Scaleway region this bucket resides in.

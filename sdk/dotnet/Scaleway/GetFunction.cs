@@ -65,6 +65,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly ImmutableDictionary<string, string> EnvironmentVariables;
         public readonly string? FunctionId;
         public readonly string Handler;
+        public readonly string HttpOption;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -99,6 +100,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string? functionId,
 
             string handler,
+
+            string httpOption,
 
             string id,
 
@@ -137,6 +140,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             EnvironmentVariables = environmentVariables;
             FunctionId = functionId;
             Handler = handler;
+            HttpOption = httpOption;
             Id = id;
             MaxScale = maxScale;
             MemoryLimit = memoryLimit;

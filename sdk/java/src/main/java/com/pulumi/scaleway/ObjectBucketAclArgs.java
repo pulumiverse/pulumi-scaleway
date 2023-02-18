@@ -77,6 +77,21 @@ public final class ObjectBucketAclArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */
@@ -98,6 +113,7 @@ public final class ObjectBucketAclArgs extends com.pulumi.resources.ResourceArgs
         this.acl = $.acl;
         this.bucket = $.bucket;
         this.expectedBucketOwner = $.expectedBucketOwner;
+        this.projectId = $.projectId;
         this.region = $.region;
     }
 
@@ -201,6 +217,27 @@ public final class ObjectBucketAclArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder expectedBucketOwner(String expectedBucketOwner) {
             return expectedBucketOwner(Output.of(expectedBucketOwner));
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

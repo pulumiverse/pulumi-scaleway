@@ -510,6 +510,16 @@ export type LoadbalancerRoute = import("./loadbalancerRoute").LoadbalancerRoute;
 export const LoadbalancerRoute: typeof import("./loadbalancerRoute").LoadbalancerRoute = null as any;
 utilities.lazyLoad(exports, ["LoadbalancerRoute"], () => require("./loadbalancerRoute"));
 
+export { MnqCredentialArgs, MnqCredentialState } from "./mnqCredential";
+export type MnqCredential = import("./mnqCredential").MnqCredential;
+export const MnqCredential: typeof import("./mnqCredential").MnqCredential = null as any;
+utilities.lazyLoad(exports, ["MnqCredential"], () => require("./mnqCredential"));
+
+export { MnqNamespaceArgs, MnqNamespaceState } from "./mnqNamespace";
+export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
+export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
+utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
+
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
 export const ObjectBucket: typeof import("./objectBucket").ObjectBucket = null as any;
@@ -713,6 +723,10 @@ const _module = {
                 return new LoadbalancerIp(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
                 return new LoadbalancerRoute(name, <any>undefined, { urn })
+            case "scaleway:index/mnqCredential:MnqCredential":
+                return new MnqCredential(name, <any>undefined, { urn })
+            case "scaleway:index/mnqNamespace:MnqNamespace":
+                return new MnqNamespace(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -802,6 +816,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerCertificate
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)

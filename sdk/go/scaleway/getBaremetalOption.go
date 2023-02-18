@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
+//			_, err := scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
 //				Name: pulumi.StringRef("Remote Access"),
 //			}, nil)
 //			if err != nil {

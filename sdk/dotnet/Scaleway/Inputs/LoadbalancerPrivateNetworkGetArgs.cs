@@ -25,17 +25,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
-        [Input("staticConfigs")]
-        private InputList<string>? _staticConfigs;
-
         /// <summary>
-        /// (Optional) Define two local ip address of your choice for each load balancer instance. See below.
+        /// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         /// </summary>
-        public InputList<string> StaticConfigs
-        {
-            get => _staticConfigs ?? (_staticConfigs = new InputList<string>());
-            set => _staticConfigs = value;
-        }
+        [Input("staticConfig")]
+        public Input<string>? StaticConfig { get; set; }
 
         [Input("status")]
         public Input<string>? Status { get; set; }

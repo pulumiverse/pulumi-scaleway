@@ -30,6 +30,10 @@ public final class GetContainerResult {
      * 
      */
     private Boolean deploy;
+    /**
+     * @return The description of the container.
+     * 
+     */
     private String description;
     /**
      * @return The container domain name.
@@ -46,6 +50,7 @@ public final class GetContainerResult {
      * 
      */
     private String errorMessage;
+    private String httpOption;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -140,6 +145,10 @@ public final class GetContainerResult {
     public Boolean deploy() {
         return this.deploy;
     }
+    /**
+     * @return The description of the container.
+     * 
+     */
     public String description() {
         return this.description;
     }
@@ -163,6 +172,9 @@ public final class GetContainerResult {
      */
     public String errorMessage() {
         return this.errorMessage;
+    }
+    public String httpOption() {
+        return this.httpOption;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -282,6 +294,7 @@ public final class GetContainerResult {
         private String domainName;
         private Map<String,String> environmentVariables;
         private String errorMessage;
+        private String httpOption;
         private String id;
         private Integer maxConcurrency;
         private Integer maxScale;
@@ -309,6 +322,7 @@ public final class GetContainerResult {
     	      this.domainName = defaults.domainName;
     	      this.environmentVariables = defaults.environmentVariables;
     	      this.errorMessage = defaults.errorMessage;
+    	      this.httpOption = defaults.httpOption;
     	      this.id = defaults.id;
     	      this.maxConcurrency = defaults.maxConcurrency;
     	      this.maxScale = defaults.maxScale;
@@ -365,6 +379,11 @@ public final class GetContainerResult {
         @CustomType.Setter
         public Builder errorMessage(String errorMessage) {
             this.errorMessage = Objects.requireNonNull(errorMessage);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder httpOption(String httpOption) {
+            this.httpOption = Objects.requireNonNull(httpOption);
             return this;
         }
         @CustomType.Setter
@@ -457,6 +476,7 @@ public final class GetContainerResult {
             o.domainName = domainName;
             o.environmentVariables = environmentVariables;
             o.errorMessage = errorMessage;
+            o.httpOption = httpOption;
             o.id = id;
             o.maxConcurrency = maxConcurrency;
             o.maxScale = maxScale;

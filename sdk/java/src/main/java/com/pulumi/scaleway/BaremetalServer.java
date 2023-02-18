@@ -12,6 +12,7 @@ import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.BaremetalServerState;
 import com.pulumi.scaleway.outputs.BaremetalServerIp;
 import com.pulumi.scaleway.outputs.BaremetalServerOption;
+import com.pulumi.scaleway.outputs.BaremetalServerPrivateNetwork;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -248,6 +249,20 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> password() {
         return Codegen.optional(this.password);
+    }
+    /**
+     * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     * 
+     */
+    @Export(name="privateNetworks", type=List.class, parameters={BaremetalServerPrivateNetwork.class})
+    private Output</* @Nullable */ List<BaremetalServerPrivateNetwork>> privateNetworks;
+
+    /**
+     * @return The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     * 
+     */
+    public Output<Optional<List<BaremetalServerPrivateNetwork>>> privateNetworks() {
+        return Codegen.optional(this.privateNetworks);
     }
     /**
      * `project_id`) The ID of the project the server is associated with.

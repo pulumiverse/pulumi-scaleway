@@ -170,6 +170,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_lb_frontend":                         {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontend")},
 			"scaleway_lb_ip":                               {Tok: scalewayResource(scalewayMod, "LoadbalancerIp")},
 			"scaleway_lb_route":                            {Tok: scalewayResource(scalewayMod, "LoadbalancerRoute")},
+			"scaleway_mnq_credential":                      {Tok: scalewayResource(scalewayMod, "MnqCredential")},
+			"scaleway_mnq_namespace":                       {Tok: scalewayResource(scalewayMod, "MnqNamespace")},
 			"scaleway_object":                              {Tok: scalewayResource(scalewayMod, "ObjectItem")},
 			"scaleway_object_bucket":                       {Tok: scalewayResource(scalewayMod, "ObjectBucket")},
 			"scaleway_object_bucket_acl":                   {Tok: scalewayResource(scalewayMod, "ObjectBucketAcl")},

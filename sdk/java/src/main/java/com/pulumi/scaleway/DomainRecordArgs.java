@@ -23,14 +23,14 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
     public static final DomainRecordArgs Empty = new DomainRecordArgs();
 
     /**
-     * The data of the view record
+     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
     @Import(name="data", required=true)
     private Output<String> data;
 
     /**
-     * @return The data of the view record
+     * @return The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
     public Output<String> data() {
@@ -238,7 +238,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param data The data of the view record
+         * @param data The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
          * 
          * @return builder
          * 
@@ -249,7 +249,7 @@ public final class DomainRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param data The data of the view record
+         * @param data The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
          * 
          * @return builder
          * 

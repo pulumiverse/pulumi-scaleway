@@ -20,10 +20,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        /// The id of the private network to attach.
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
+
+        /// <summary>
+        /// The name of the server.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         public BaremetalServerOptionArgs()
         {

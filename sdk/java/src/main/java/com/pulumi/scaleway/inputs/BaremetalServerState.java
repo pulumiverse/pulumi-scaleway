@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.scaleway.inputs.BaremetalServerIpArgs;
 import com.pulumi.scaleway.inputs.BaremetalServerOptionArgs;
+import com.pulumi.scaleway.inputs.BaremetalServerPrivateNetworkArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -208,6 +209,21 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     * 
+     */
+    @Import(name="privateNetworks")
+    private @Nullable Output<List<BaremetalServerPrivateNetworkArgs>> privateNetworks;
+
+    /**
+     * @return The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+     * 
+     */
+    public Optional<Output<List<BaremetalServerPrivateNetworkArgs>>> privateNetworks() {
+        return Optional.ofNullable(this.privateNetworks);
+    }
+
+    /**
      * `project_id`) The ID of the project the server is associated with.
      * 
      */
@@ -344,6 +360,7 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         this.os = $.os;
         this.osId = $.osId;
         this.password = $.password;
+        this.privateNetworks = $.privateNetworks;
         this.projectId = $.projectId;
         this.reinstallOnConfigChanges = $.reinstallOnConfigChanges;
         this.servicePassword = $.servicePassword;
@@ -651,6 +668,37 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param privateNetworks The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateNetworks(@Nullable Output<List<BaremetalServerPrivateNetworkArgs>> privateNetworks) {
+            $.privateNetworks = privateNetworks;
+            return this;
+        }
+
+        /**
+         * @param privateNetworks The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateNetworks(List<BaremetalServerPrivateNetworkArgs> privateNetworks) {
+            return privateNetworks(Output.of(privateNetworks));
+        }
+
+        /**
+         * @param privateNetworks The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateNetworks(BaremetalServerPrivateNetworkArgs... privateNetworks) {
+            return privateNetworks(List.of(privateNetworks));
         }
 
         /**

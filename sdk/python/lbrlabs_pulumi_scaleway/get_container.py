@@ -21,7 +21,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, protocol=None, region=None, registry_image=None, registry_sha256=None, secret_environment_variables=None, status=None, timeout=None):
+    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, protocol=None, region=None, registry_image=None, registry_sha256=None, secret_environment_variables=None, status=None, timeout=None):
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -46,6 +46,9 @@ class GetContainerResult:
         if error_message and not isinstance(error_message, str):
             raise TypeError("Expected argument 'error_message' to be a str")
         pulumi.set(__self__, "error_message", error_message)
+        if http_option and not isinstance(http_option, str):
+            raise TypeError("Expected argument 'http_option' to be a str")
+        pulumi.set(__self__, "http_option", http_option)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -127,6 +130,9 @@ class GetContainerResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the container.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -152,6 +158,11 @@ class GetContainerResult:
         The error message of the container.
         """
         return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> str:
+        return pulumi.get(self, "http_option")
 
     @property
     @pulumi.getter
@@ -287,6 +298,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             domain_name=self.domain_name,
             environment_variables=self.environment_variables,
             error_message=self.error_message,
+            http_option=self.http_option,
             id=self.id,
             max_concurrency=self.max_concurrency,
             max_scale=self.max_scale,
@@ -356,6 +368,7 @@ def get_container(container_id: Optional[str] = None,
         domain_name=__ret__.domain_name,
         environment_variables=__ret__.environment_variables,
         error_message=__ret__.error_message,
+        http_option=__ret__.http_option,
         id=__ret__.id,
         max_concurrency=__ret__.max_concurrency,
         max_scale=__ret__.max_scale,

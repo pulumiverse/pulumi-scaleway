@@ -18,7 +18,6 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The access key of the iam api key.
-     * - `secret_key`: The secret Key of the iam api key.
      * 
      */
     @Import(name="accessKey")
@@ -26,7 +25,6 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The access key of the iam api key.
-     * - `secret_key`: The secret Key of the iam api key.
      * 
      */
     public Optional<Output<String>> accessKey() {
@@ -34,14 +32,16 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * ID of the application attached to the api key
+     * ID of the application attached to the api key.
+     * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
     @Import(name="applicationId")
     private @Nullable Output<String> applicationId;
 
     /**
-     * @return ID of the application attached to the api key
+     * @return ID of the application attached to the api key.
+     * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
     public Optional<Output<String>> applicationId() {
@@ -94,14 +94,14 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The description of the iam api key
+     * The description of the iam api key.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return The description of the iam api key
+     * @return The description of the iam api key.
      * 
      */
     public Optional<Output<String>> description() {
@@ -141,14 +141,14 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The secret Key of the iam api key
+     * The secret Key of the iam api key.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return The secret Key of the iam api key
+     * @return The secret Key of the iam api key.
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -223,7 +223,6 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param accessKey The access key of the iam api key.
-         * - `secret_key`: The secret Key of the iam api key.
          * 
          * @return builder
          * 
@@ -235,7 +234,6 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param accessKey The access key of the iam api key.
-         * - `secret_key`: The secret Key of the iam api key.
          * 
          * @return builder
          * 
@@ -245,7 +243,8 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param applicationId ID of the application attached to the api key
+         * @param applicationId ID of the application attached to the api key.
+         * Only one of the `application_id` and `user_id` should be specified.
          * 
          * @return builder
          * 
@@ -256,7 +255,8 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param applicationId ID of the application attached to the api key
+         * @param applicationId ID of the application attached to the api key.
+         * Only one of the `application_id` and `user_id` should be specified.
          * 
          * @return builder
          * 
@@ -329,7 +329,7 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description The description of the iam api key
+         * @param description The description of the iam api key.
          * 
          * @return builder
          * 
@@ -340,7 +340,7 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description The description of the iam api key
+         * @param description The description of the iam api key.
          * 
          * @return builder
          * 
@@ -394,7 +394,7 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretKey The secret Key of the iam api key
+         * @param secretKey The secret Key of the iam api key.
          * 
          * @return builder
          * 
@@ -405,7 +405,7 @@ public final class IamApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretKey The secret Key of the iam api key
+         * @param secretKey The secret Key of the iam api key.
          * 
          * @return builder
          * 

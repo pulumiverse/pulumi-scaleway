@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
+//			_, err := scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
 //				SshKeyId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupInstanceIp(ctx, &scaleway.LookupInstanceIpArgs{
+//			_, err := scaleway.LookupInstanceIp(ctx, &scaleway.LookupInstanceIpArgs{
 //				Id: pulumi.StringRef("fr-par-1/11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {

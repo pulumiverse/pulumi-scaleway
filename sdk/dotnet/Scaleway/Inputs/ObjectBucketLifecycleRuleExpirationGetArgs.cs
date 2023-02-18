@@ -13,6 +13,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
     public sealed class ObjectBucketLifecycleRuleExpirationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// </summary>
         [Input("days", required: true)]
         public Input<int> Days { get; set; } = null!;
 

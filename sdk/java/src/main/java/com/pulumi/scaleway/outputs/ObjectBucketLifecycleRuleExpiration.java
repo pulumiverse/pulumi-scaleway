@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class ObjectBucketLifecycleRuleExpiration {
+    /**
+     * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     */
     private Integer days;
 
     private ObjectBucketLifecycleRuleExpiration() {}
+    /**
+     * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     */
     public Integer days() {
         return this.days;
     }

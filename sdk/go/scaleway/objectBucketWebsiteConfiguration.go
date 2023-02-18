@@ -153,6 +153,10 @@ type ObjectBucketWebsiteConfiguration struct {
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput `pulumi:"errorDocument"`
 	// (Required) The name of the index document for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentOutput `pulumi:"indexDocument"`
+	// (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The region you want to attach the resource to
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The website endpoint.
 	WebsiteDomain pulumi.StringOutput `pulumi:"websiteDomain"`
 	// The domain of the website endpoint.
@@ -201,6 +205,10 @@ type objectBucketWebsiteConfigurationState struct {
 	ErrorDocument *ObjectBucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
 	// (Required) The name of the index document for the website detailed below.
 	IndexDocument *ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
+	// (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// The region you want to attach the resource to
+	Region *string `pulumi:"region"`
 	// The website endpoint.
 	WebsiteDomain *string `pulumi:"websiteDomain"`
 	// The domain of the website endpoint.
@@ -214,6 +222,10 @@ type ObjectBucketWebsiteConfigurationState struct {
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrInput
 	// (Required) The name of the index document for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentPtrInput
+	// (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
+	// The region you want to attach the resource to
+	Region pulumi.StringPtrInput
 	// The website endpoint.
 	WebsiteDomain pulumi.StringPtrInput
 	// The domain of the website endpoint.
@@ -231,6 +243,10 @@ type objectBucketWebsiteConfigurationArgs struct {
 	ErrorDocument *ObjectBucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
 	// (Required) The name of the index document for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
+	// (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// The region you want to attach the resource to
+	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a ObjectBucketWebsiteConfiguration resource.
@@ -241,6 +257,10 @@ type ObjectBucketWebsiteConfigurationArgs struct {
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrInput
 	// (Required) The name of the index document for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentInput
+	// (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
+	// The region you want to attach the resource to
+	Region pulumi.StringPtrInput
 }
 
 func (ObjectBucketWebsiteConfigurationArgs) ElementType() reflect.Type {
@@ -347,6 +367,16 @@ func (o ObjectBucketWebsiteConfigurationOutput) IndexDocument() ObjectBucketWebs
 	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) ObjectBucketWebsiteConfigurationIndexDocumentOutput {
 		return v.IndexDocument
 	}).(ObjectBucketWebsiteConfigurationIndexDocumentOutput)
+}
+
+// (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+func (o ObjectBucketWebsiteConfigurationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The region you want to attach the resource to
+func (o ObjectBucketWebsiteConfigurationOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The website endpoint.

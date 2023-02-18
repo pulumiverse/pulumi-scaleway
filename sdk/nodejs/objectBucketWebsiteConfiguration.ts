@@ -124,6 +124,14 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      */
     public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
+     * (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+     */
+    public readonly projectId!: pulumi.Output<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    public readonly region!: pulumi.Output<string>;
+    /**
      * The website endpoint.
      */
     public /*out*/ readonly websiteDomain!: pulumi.Output<string>;
@@ -148,6 +156,8 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
             resourceInputs["bucket"] = state ? state.bucket : undefined;
             resourceInputs["errorDocument"] = state ? state.errorDocument : undefined;
             resourceInputs["indexDocument"] = state ? state.indexDocument : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["websiteDomain"] = state ? state.websiteDomain : undefined;
             resourceInputs["websiteEndpoint"] = state ? state.websiteEndpoint : undefined;
         } else {
@@ -161,6 +171,8 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
             resourceInputs["bucket"] = args ? args.bucket : undefined;
             resourceInputs["errorDocument"] = args ? args.errorDocument : undefined;
             resourceInputs["indexDocument"] = args ? args.indexDocument : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["websiteDomain"] = undefined /*out*/;
             resourceInputs["websiteEndpoint"] = undefined /*out*/;
         }
@@ -185,6 +197,14 @@ export interface ObjectBucketWebsiteConfigurationState {
      * (Required) The name of the index document for the website detailed below.
      */
     indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
+    /**
+     * (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    region?: pulumi.Input<string>;
     /**
      * The website endpoint.
      */
@@ -211,4 +231,12 @@ export interface ObjectBucketWebsiteConfigurationArgs {
      * (Required) The name of the index document for the website detailed below.
      */
     indexDocument: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
+    /**
+     * (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * The region you want to attach the resource to
+     */
+    region?: pulumi.Input<string>;
 }

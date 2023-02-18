@@ -63,6 +63,36 @@ public final class ObjectBucketWebsiteConfigurationState extends com.pulumi.reso
     }
 
     /**
+     * (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
+     * The region you want to attach the resource to
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return The region you want to attach the resource to
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * The website endpoint.
      * 
      */
@@ -98,6 +128,8 @@ public final class ObjectBucketWebsiteConfigurationState extends com.pulumi.reso
         this.bucket = $.bucket;
         this.errorDocument = $.errorDocument;
         this.indexDocument = $.indexDocument;
+        this.projectId = $.projectId;
+        this.region = $.region;
         this.websiteDomain = $.websiteDomain;
         this.websiteEndpoint = $.websiteEndpoint;
     }
@@ -181,6 +213,48 @@ public final class ObjectBucketWebsiteConfigurationState extends com.pulumi.reso
          */
         public Builder indexDocument(ObjectBucketWebsiteConfigurationIndexDocumentArgs indexDocument) {
             return indexDocument(Output.of(indexDocument));
+        }
+
+        /**
+         * @param projectId (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param region The region you want to attach the resource to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region The region you want to attach the resource to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

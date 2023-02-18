@@ -6,6 +6,7 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.scaleway.inputs.LoadbalancerFrontendAclArgs;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -87,6 +88,21 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
     }
 
     /**
+     * Activates HTTP/3 protocol.
+     * 
+     */
+    @Import(name="enableHttp3")
+    private @Nullable Output<Boolean> enableHttp3;
+
+    /**
+     * @return Activates HTTP/3 protocol.
+     * 
+     */
+    public Optional<Output<Boolean>> enableHttp3() {
+        return Optional.ofNullable(this.enableHttp3);
+    }
+
+    /**
      * TCP port to listen on the front side.
      * 
      */
@@ -153,6 +169,7 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         this.backendId = $.backendId;
         this.certificateId = $.certificateId;
         this.certificateIds = $.certificateIds;
+        this.enableHttp3 = $.enableHttp3;
         this.inboundPort = $.inboundPort;
         this.lbId = $.lbId;
         this.name = $.name;
@@ -287,6 +304,27 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
          */
         public Builder certificateIds(String... certificateIds) {
             return certificateIds(List.of(certificateIds));
+        }
+
+        /**
+         * @param enableHttp3 Activates HTTP/3 protocol.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableHttp3(@Nullable Output<Boolean> enableHttp3) {
+            $.enableHttp3 = enableHttp3;
+            return this;
+        }
+
+        /**
+         * @param enableHttp3 Activates HTTP/3 protocol.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableHttp3(Boolean enableHttp3) {
+            return enableHttp3(Output.of(enableHttp3));
         }
 
         /**

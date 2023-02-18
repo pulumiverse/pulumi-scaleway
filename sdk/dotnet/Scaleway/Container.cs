@@ -150,6 +150,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
+        /// HTTP traffic configuration
+        /// </summary>
+        [Output("httpOption")]
+        public Output<string?> HttpOption { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         /// </summary>
         [Output("maxConcurrency")]
@@ -321,6 +327,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
+        /// HTTP traffic configuration
+        /// </summary>
+        [Input("httpOption")]
+        public Input<string>? HttpOption { get; set; }
+
+        /// <summary>
         /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         /// </summary>
         [Input("maxConcurrency")]
@@ -469,6 +481,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("errorMessage")]
         public Input<string>? ErrorMessage { get; set; }
+
+        /// <summary>
+        /// HTTP traffic configuration
+        /// </summary>
+        [Input("httpOption")]
+        public Input<string>? HttpOption { get; set; }
 
         /// <summary>
         /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.

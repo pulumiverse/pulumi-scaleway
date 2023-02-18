@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetIamUser(ctx, &scaleway.GetIamUserArgs{
+//			_, err := scaleway.GetIamUser(ctx, &scaleway.GetIamUserArgs{
 //				UserId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -60,8 +60,7 @@ type GetIamUserArgs struct {
 	// The email address of the IAM user. Only one of the `email` and `userId` should be specified.
 	Email *string `pulumi:"email"`
 	// `organizationId`) The ID of the
-	// organization the user is associated with. For now, it is necessary to
-	// explicitly provide the `organizationId` in the datasource.
+	// organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the IAM user. Only one of the `email` and `userId` should be specified.
 	UserId *string `pulumi:"userId"`
@@ -94,8 +93,7 @@ type GetIamUserOutputArgs struct {
 	// The email address of the IAM user. Only one of the `email` and `userId` should be specified.
 	Email pulumi.StringPtrInput `pulumi:"email"`
 	// `organizationId`) The ID of the
-	// organization the user is associated with. For now, it is necessary to
-	// explicitly provide the `organizationId` in the datasource.
+	// organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// The ID of the IAM user. Only one of the `email` and `userId` should be specified.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`

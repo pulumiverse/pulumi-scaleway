@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//			_, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
 //				OfferId: pulumi.StringRef("25dcf38b-c90c-4b18-97a2-6956e9d1e113"),
 //				Zone:    pulumi.StringRef("fr-par-2"),
 //			}, nil)

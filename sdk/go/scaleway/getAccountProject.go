@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			_, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {

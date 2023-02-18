@@ -143,6 +143,10 @@ export class Container extends pulumi.CustomResource {
      */
     public /*out*/ readonly errorMessage!: pulumi.Output<string>;
     /**
+     * HTTP traffic configuration
+     */
+    public readonly httpOption!: pulumi.Output<string | undefined>;
+    /**
      * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
      */
     public readonly maxConcurrency!: pulumi.Output<number>;
@@ -223,6 +227,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["domainName"] = state ? state.domainName : undefined;
             resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
             resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
+            resourceInputs["httpOption"] = state ? state.httpOption : undefined;
             resourceInputs["maxConcurrency"] = state ? state.maxConcurrency : undefined;
             resourceInputs["maxScale"] = state ? state.maxScale : undefined;
             resourceInputs["memoryLimit"] = state ? state.memoryLimit : undefined;
@@ -247,6 +252,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["deploy"] = args ? args.deploy : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
+            resourceInputs["httpOption"] = args ? args.httpOption : undefined;
             resourceInputs["maxConcurrency"] = args ? args.maxConcurrency : undefined;
             resourceInputs["maxScale"] = args ? args.maxScale : undefined;
             resourceInputs["memoryLimit"] = args ? args.memoryLimit : undefined;
@@ -305,6 +311,10 @@ export interface ContainerState {
      * The error message of the container.
      */
     errorMessage?: pulumi.Input<string>;
+    /**
+     * HTTP traffic configuration
+     */
+    httpOption?: pulumi.Input<string>;
     /**
      * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
      */
@@ -387,6 +397,10 @@ export interface ContainerArgs {
      * The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * HTTP traffic configuration
+     */
+    httpOption?: pulumi.Input<string>;
     /**
      * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
      */
