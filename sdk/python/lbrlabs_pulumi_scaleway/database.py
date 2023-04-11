@@ -15,21 +15,25 @@ __all__ = ['DatabaseArgs', 'Database']
 class DatabaseArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Database resource.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        UUID of the instance where to create the database.
+        UUID of the rdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -49,6 +53,18 @@ class DatabaseArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        `region`) The region in which the resource exists.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class _DatabaseState:
@@ -57,13 +73,15 @@ class _DatabaseState:
                  managed: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
-        :param pulumi.Input[bool] managed: Whether or not the database is managed or not.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[bool] managed: Whether the database is managed or not.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] owner: The name of the owner of the database.
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[str] size: Size of the database (in bytes).
         """
         if instance_id is not None:
@@ -74,6 +92,8 @@ class _DatabaseState:
             pulumi.set(__self__, "name", name)
         if owner is not None:
             pulumi.set(__self__, "owner", owner)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if size is not None:
             pulumi.set(__self__, "size", size)
 
@@ -81,7 +101,7 @@ class _DatabaseState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID of the instance where to create the database.
+        UUID of the rdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -93,7 +113,7 @@ class _DatabaseState:
     @pulumi.getter
     def managed(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the database is managed or not.
+        Whether the database is managed or not.
         """
         return pulumi.get(self, "managed")
 
@@ -127,6 +147,18 @@ class _DatabaseState:
 
     @property
     @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        `region`) The region in which the resource exists.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
         Size of the database (in bytes).
@@ -145,6 +177,7 @@ class Database(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway RDB database.
@@ -171,8 +204,9 @@ class Database(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
         ...
     @overload
@@ -220,6 +254,7 @@ class Database(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -233,6 +268,7 @@ class Database(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["region"] = region
             __props__.__dict__["managed"] = None
             __props__.__dict__["owner"] = None
             __props__.__dict__["size"] = None
@@ -250,6 +286,7 @@ class Database(pulumi.CustomResource):
             managed: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             owner: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None) -> 'Database':
         """
         Get an existing Database resource's state with the given name, id, and optional extra
@@ -258,10 +295,11 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: UUID of the instance where to create the database.
-        :param pulumi.Input[bool] managed: Whether or not the database is managed or not.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[bool] managed: Whether the database is managed or not.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] owner: The name of the owner of the database.
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[str] size: Size of the database (in bytes).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -272,6 +310,7 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["managed"] = managed
         __props__.__dict__["name"] = name
         __props__.__dict__["owner"] = owner
+        __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
         return Database(resource_name, opts=opts, __props__=__props__)
 
@@ -279,7 +318,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        UUID of the instance where to create the database.
+        UUID of the rdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -287,7 +326,7 @@ class Database(pulumi.CustomResource):
     @pulumi.getter
     def managed(self) -> pulumi.Output[bool]:
         """
-        Whether or not the database is managed or not.
+        Whether the database is managed or not.
         """
         return pulumi.get(self, "managed")
 
@@ -306,6 +345,14 @@ class Database(pulumi.CustomResource):
         The name of the owner of the database.
         """
         return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[str]:
+        """
+        `region`) The region in which the resource exists.
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter

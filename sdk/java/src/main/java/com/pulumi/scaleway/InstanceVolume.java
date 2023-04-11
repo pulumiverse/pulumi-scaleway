@@ -66,7 +66,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * Create a volume based on a image
      * 
      */
-    @Export(name="fromSnapshotId", type=String.class, parameters={})
+    @Export(name="fromSnapshotId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fromSnapshotId;
 
     /**
@@ -80,7 +80,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
-    @Export(name="fromVolumeId", type=String.class, parameters={})
+    @Export(name="fromVolumeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fromVolumeId;
 
     /**
@@ -94,7 +94,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * The name of the volume. If not provided it will be randomly generated.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -108,7 +108,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * The organization ID the volume is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -122,7 +122,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the volume is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -136,7 +136,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * The id of the associated server.
      * 
      */
-    @Export(name="serverId", type=String.class, parameters={})
+    @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output<String> serverId;
 
     /**
@@ -150,7 +150,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
-    @Export(name="sizeInGb", type=Integer.class, parameters={})
+    @Export(name="sizeInGb", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sizeInGb;
 
     /**
@@ -164,7 +164,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * A list of tags to apply to the volume.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -178,7 +178,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -192,7 +192,7 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the volume should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

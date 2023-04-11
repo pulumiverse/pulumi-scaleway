@@ -33,16 +33,24 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
     }
 
     /**
-     * . Destroy linked container registry on deletion.
+     * Destroy registry on deletion
+     * 
+     * @deprecated
+     * Registry namespace is automatically destroyed with namespace
      * 
      */
+    @Deprecated /* Registry namespace is automatically destroyed with namespace */
     @Import(name="destroyRegistry")
     private @Nullable Output<Boolean> destroyRegistry;
 
     /**
-     * @return . Destroy linked container registry on deletion.
+     * @return Destroy registry on deletion
+     * 
+     * @deprecated
+     * Registry namespace is automatically destroyed with namespace
      * 
      */
+    @Deprecated /* Registry namespace is automatically destroyed with namespace */
     public Optional<Output<Boolean>> destroyRegistry() {
         return Optional.ofNullable(this.destroyRegistry);
     }
@@ -222,22 +230,30 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param destroyRegistry . Destroy linked container registry on deletion.
+         * @param destroyRegistry Destroy registry on deletion
          * 
          * @return builder
          * 
+         * @deprecated
+         * Registry namespace is automatically destroyed with namespace
+         * 
          */
+        @Deprecated /* Registry namespace is automatically destroyed with namespace */
         public Builder destroyRegistry(@Nullable Output<Boolean> destroyRegistry) {
             $.destroyRegistry = destroyRegistry;
             return this;
         }
 
         /**
-         * @param destroyRegistry . Destroy linked container registry on deletion.
+         * @param destroyRegistry Destroy registry on deletion
          * 
          * @return builder
          * 
+         * @deprecated
+         * Registry namespace is automatically destroyed with namespace
+         * 
          */
+        @Deprecated /* Registry namespace is automatically destroyed with namespace */
         public Builder destroyRegistry(Boolean destroyRegistry) {
             return destroyRegistry(Output.of(destroyRegistry));
         }

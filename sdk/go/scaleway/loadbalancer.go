@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -218,7 +218,7 @@ type Loadbalancer struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The type of the load-balancer. Please check the migration section to upgrade the type
 	Type pulumi.StringOutput `pulumi:"type"`
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -284,7 +284,7 @@ type loadbalancerState struct {
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer. Please check the migration section to upgrade the type
 	Type *string `pulumi:"type"`
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -315,7 +315,7 @@ type LoadbalancerState struct {
 	Tags pulumi.StringArrayInput
 	// The type of the load-balancer. Please check the migration section to upgrade the type
 	Type pulumi.StringPtrInput
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringPtrInput
 }
 
@@ -344,7 +344,7 @@ type loadbalancerArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer. Please check the migration section to upgrade the type
 	Type string `pulumi:"type"`
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -370,7 +370,7 @@ type LoadbalancerArgs struct {
 	Tags pulumi.StringArrayInput
 	// The type of the load-balancer. Please check the migration section to upgrade the type
 	Type pulumi.StringInput
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringPtrInput
 }
 
@@ -523,7 +523,7 @@ func (o LoadbalancerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which the IP should be reserved.
+// `zone`) The zone of the load-balancer.
 func (o LoadbalancerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

@@ -20,6 +20,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<int>? Code { get; set; }
 
         /// <summary>
+        /// The HTTP host header to use for HC requests.
+        /// </summary>
+        [Input("hostHeader")]
+        public Input<string>? HostHeader { get; set; }
+
+        /// <summary>
         /// The HTTP method to use for HC requests.
         /// </summary>
         [Input("method")]

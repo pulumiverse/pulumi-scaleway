@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -48,6 +49,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -112,6 +114,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     [OutputType]
     public sealed class GetAccountSshKeyResult
     {
+        public readonly string CreatedAt;
+        public readonly bool Disabled;
+        public readonly string Fingerprint;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -127,9 +132,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string PublicKey;
         public readonly string? SshKeyId;
+        public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetAccountSshKeyResult(
+            string createdAt,
+
+            bool disabled,
+
+            string fingerprint,
+
             string id,
 
             string? name,
@@ -140,14 +152,20 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string publicKey,
 
-            string? sshKeyId)
+            string? sshKeyId,
+
+            string updatedAt)
         {
+            CreatedAt = createdAt;
+            Disabled = disabled;
+            Fingerprint = fingerprint;
             Id = id;
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicKey = publicKey;
             SshKeyId = sshKeyId;
+            UpdatedAt = updatedAt;
         }
     }
 }

@@ -177,6 +177,21 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The ID of the private network of the cluster.
+     * 
+     */
+    @Import(name="privateNetworkId")
+    private @Nullable Output<String> privateNetworkId;
+
+    /**
+     * @return The ID of the private network of the cluster.
+     * 
+     */
+    public Optional<Output<String>> privateNetworkId() {
+        return Optional.ofNullable(this.privateNetworkId);
+    }
+
+    /**
      * `project_id`) The ID of the project the cluster is associated with.
      * 
      */
@@ -264,6 +279,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         this.featureGates = $.featureGates;
         this.name = $.name;
         this.openIdConnectConfig = $.openIdConnectConfig;
+        this.privateNetworkId = $.privateNetworkId;
         this.projectId = $.projectId;
         this.region = $.region;
         this.tags = $.tags;
@@ -533,6 +549,27 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder openIdConnectConfig(KubernetesClusterOpenIdConnectConfigArgs openIdConnectConfig) {
             return openIdConnectConfig(Output.of(openIdConnectConfig));
+        }
+
+        /**
+         * @param privateNetworkId The ID of the private network of the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateNetworkId(@Nullable Output<String> privateNetworkId) {
+            $.privateNetworkId = privateNetworkId;
+            return this;
+        }
+
+        /**
+         * @param privateNetworkId The ID of the private network of the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateNetworkId(String privateNetworkId) {
+            return privateNetworkId(Output.of(privateNetworkId));
         }
 
         /**

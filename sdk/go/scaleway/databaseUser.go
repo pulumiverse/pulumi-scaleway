@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -54,7 +54,7 @@ import (
 //
 // ## Import
 //
-// Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
 //
 // ```sh
 //
@@ -64,7 +64,7 @@ import (
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 
-	// The instance on which to create the user.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrOutput `pulumi:"isAdmin"`
@@ -72,7 +72,7 @@ type DatabaseUser struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Database User password.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -119,7 +119,7 @@ func GetDatabaseUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseUser resources.
 type databaseUserState struct {
-	// The instance on which to create the user.
+	// UUID of the rdb instance.
 	InstanceId *string `pulumi:"instanceId"`
 	// Grant admin permissions to the Database User.
 	IsAdmin *bool `pulumi:"isAdmin"`
@@ -127,12 +127,12 @@ type databaseUserState struct {
 	Name *string `pulumi:"name"`
 	// Database User password.
 	Password *string `pulumi:"password"`
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
 
 type DatabaseUserState struct {
-	// The instance on which to create the user.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringPtrInput
 	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrInput
@@ -140,7 +140,7 @@ type DatabaseUserState struct {
 	Name pulumi.StringPtrInput
 	// Database User password.
 	Password pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
 }
 
@@ -149,7 +149,7 @@ func (DatabaseUserState) ElementType() reflect.Type {
 }
 
 type databaseUserArgs struct {
-	// The instance on which to create the user.
+	// UUID of the rdb instance.
 	InstanceId string `pulumi:"instanceId"`
 	// Grant admin permissions to the Database User.
 	IsAdmin *bool `pulumi:"isAdmin"`
@@ -157,13 +157,13 @@ type databaseUserArgs struct {
 	Name *string `pulumi:"name"`
 	// Database User password.
 	Password string `pulumi:"password"`
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a DatabaseUser resource.
 type DatabaseUserArgs struct {
-	// The instance on which to create the user.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringInput
 	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrInput
@@ -171,7 +171,7 @@ type DatabaseUserArgs struct {
 	Name pulumi.StringPtrInput
 	// Database User password.
 	Password pulumi.StringInput
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
 }
 
@@ -262,7 +262,7 @@ func (o DatabaseUserOutput) ToDatabaseUserOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The instance on which to create the user.
+// UUID of the rdb instance.
 func (o DatabaseUserOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
@@ -282,7 +282,7 @@ func (o DatabaseUserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// The Scaleway region this resource resides in.
 func (o DatabaseUserOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

@@ -34,7 +34,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * The description of the security group.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -48,7 +48,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
      * 
      */
-    @Export(name="enableDefaultSecurity", type=Boolean.class, parameters={})
+    @Export(name="enableDefaultSecurity", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableDefaultSecurity;
 
     /**
@@ -63,7 +63,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
      * 
      */
-    @Export(name="externalRules", type=Boolean.class, parameters={})
+    @Export(name="externalRules", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> externalRules;
 
     /**
@@ -78,7 +78,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * The default policy on incoming traffic. Possible values are: `accept` or `drop`.
      * 
      */
-    @Export(name="inboundDefaultPolicy", type=String.class, parameters={})
+    @Export(name="inboundDefaultPolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> inboundDefaultPolicy;
 
     /**
@@ -92,7 +92,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      * 
      */
-    @Export(name="inboundRules", type=List.class, parameters={InstanceSecurityGroupInboundRule.class})
+    @Export(name="inboundRules", refs={List.class,InstanceSecurityGroupInboundRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceSecurityGroupInboundRule>> inboundRules;
 
     /**
@@ -106,7 +106,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * The name of the security group.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -120,7 +120,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * The organization ID the security group is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -134,7 +134,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
      * 
      */
-    @Export(name="outboundDefaultPolicy", type=String.class, parameters={})
+    @Export(name="outboundDefaultPolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> outboundDefaultPolicy;
 
     /**
@@ -148,7 +148,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      * 
      */
-    @Export(name="outboundRules", type=List.class, parameters={InstanceSecurityGroupOutboundRule.class})
+    @Export(name="outboundRules", refs={List.class,InstanceSecurityGroupOutboundRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceSecurityGroupOutboundRule>> outboundRules;
 
     /**
@@ -162,7 +162,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the security group is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -176,7 +176,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * A boolean to specify whether the security group should be stateful or not.
      * 
      */
-    @Export(name="stateful", type=Boolean.class, parameters={})
+    @Export(name="stateful", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> stateful;
 
     /**
@@ -190,7 +190,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * The tags of the security group.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -204,7 +204,7 @@ public class InstanceSecurityGroup extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the security group should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

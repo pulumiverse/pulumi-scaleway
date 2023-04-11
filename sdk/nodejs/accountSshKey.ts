@@ -7,6 +7,8 @@ import * as utilities from "./utilities";
 /**
  * Manages user SSH keys to access servers provisioned on Scaleway.
  *
+ * > **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -53,6 +55,18 @@ export class AccountSshKey extends pulumi.CustomResource {
     }
 
     /**
+     * The date and time of the creation of the iam SSH Key
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * The SSH key status
+     */
+    public readonly disabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * The fingerprint of the iam SSH key
+     */
+    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
+    /**
      * The name of the SSH key.
      */
     public readonly name!: pulumi.Output<string>;
@@ -68,6 +82,10 @@ export class AccountSshKey extends pulumi.CustomResource {
      * The public SSH key to be added.
      */
     public readonly publicKey!: pulumi.Output<string>;
+    /**
+     * The date and time of the last update of the iam SSH Key
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a AccountSshKey resource with the given unique name, arguments, and options.
@@ -82,19 +100,27 @@ export class AccountSshKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccountSshKeyState | undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["disabled"] = state ? state.disabled : undefined;
+            resourceInputs["fingerprint"] = state ? state.fingerprint : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as AccountSshKeyArgs | undefined;
             if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
+            resourceInputs["disabled"] = args ? args.disabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["fingerprint"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AccountSshKey.__pulumiType, name, resourceInputs, opts);
@@ -105,6 +131,18 @@ export class AccountSshKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AccountSshKey resources.
  */
 export interface AccountSshKeyState {
+    /**
+     * The date and time of the creation of the iam SSH Key
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * The SSH key status
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * The fingerprint of the iam SSH key
+     */
+    fingerprint?: pulumi.Input<string>;
     /**
      * The name of the SSH key.
      */
@@ -121,12 +159,20 @@ export interface AccountSshKeyState {
      * The public SSH key to be added.
      */
     publicKey?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the iam SSH Key
+     */
+    updatedAt?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a AccountSshKey resource.
  */
 export interface AccountSshKeyArgs {
+    /**
+     * The SSH key status
+     */
+    disabled?: pulumi.Input<boolean>;
     /**
      * The name of the SSH key.
      */

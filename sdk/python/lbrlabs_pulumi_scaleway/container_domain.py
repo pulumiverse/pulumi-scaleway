@@ -180,7 +180,7 @@ class ContainerDomain(pulumi.CustomResource):
             timeout=600,
             max_concurrency=80,
             privacy="public",
-            protocol="h2c",
+            protocol="http1",
             deploy=True)
         app_domain_record = scaleway.DomainRecord("appDomainRecord",
             dns_zone="domain.tld",
@@ -246,7 +246,7 @@ class ContainerDomain(pulumi.CustomResource):
             timeout=600,
             max_concurrency=80,
             privacy="public",
-            protocol="h2c",
+            protocol="http1",
             deploy=True)
         app_domain_record = scaleway.DomainRecord("appDomainRecord",
             dns_zone="domain.tld",

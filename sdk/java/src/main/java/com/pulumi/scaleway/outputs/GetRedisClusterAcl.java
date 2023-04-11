@@ -10,6 +10,10 @@ import java.util.Objects;
 @CustomType
 public final class GetRedisClusterAcl {
     private String description;
+    /**
+     * @return The ID of the Redis cluster.
+     * 
+     */
     private String id;
     private String ip;
 
@@ -17,6 +21,10 @@ public final class GetRedisClusterAcl {
     public String description() {
         return this.description;
     }
+    /**
+     * @return The ID of the Redis cluster.
+     * 
+     */
     public String id() {
         return this.id;
     }

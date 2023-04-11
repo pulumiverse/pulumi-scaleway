@@ -15,15 +15,19 @@ __all__ = ['AccountSshKeyArgs', 'AccountSshKey']
 class AccountSshKeyArgs:
     def __init__(__self__, *,
                  public_key: pulumi.Input[str],
+                 disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AccountSshKey resource.
         :param pulumi.Input[str] public_key: The public SSH key to be added.
+        :param pulumi.Input[bool] disabled: The SSH key status
         :param pulumi.Input[str] name: The name of the SSH key.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
         """
         pulumi.set(__self__, "public_key", public_key)
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -40,6 +44,18 @@ class AccountSshKeyArgs:
     @public_key.setter
     def public_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "public_key", value)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The SSH key status
+        """
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disabled", value)
 
     @property
     @pulumi.getter
@@ -69,17 +85,31 @@ class AccountSshKeyArgs:
 @pulumi.input_type
 class _AccountSshKeyState:
     def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 disabled: Optional[pulumi.Input[bool]] = None,
+                 fingerprint: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 public_key: Optional[pulumi.Input[str]] = None):
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AccountSshKey resources.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the iam SSH Key
+        :param pulumi.Input[bool] disabled: The SSH key status
+        :param pulumi.Input[str] fingerprint: The fingerprint of the iam SSH key
         :param pulumi.Input[str] name: The name of the SSH key.
         :param pulumi.Input[str] organization_id: The organization ID the SSH key is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
         :param pulumi.Input[str] public_key: The public SSH key to be added.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the iam SSH Key
         """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
@@ -88,6 +118,44 @@ class _AccountSshKeyState:
             pulumi.set(__self__, "project_id", project_id)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date and time of the creation of the iam SSH Key
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The SSH key status
+        """
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disabled", value)
+
+    @property
+    @pulumi.getter
+    def fingerprint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fingerprint of the iam SSH key
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @fingerprint.setter
+    def fingerprint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fingerprint", value)
 
     @property
     @pulumi.getter
@@ -137,18 +205,33 @@ class _AccountSshKeyState:
     def public_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_key", value)
 
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date and time of the last update of the iam SSH Key
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
 
 class AccountSshKey(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages user SSH keys to access servers provisioned on Scaleway.
+
+        > **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
 
         ## Example Usage
 
@@ -169,6 +252,7 @@ class AccountSshKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] disabled: The SSH key status
         :param pulumi.Input[str] name: The name of the SSH key.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
         :param pulumi.Input[str] public_key: The public SSH key to be added.
@@ -181,6 +265,8 @@ class AccountSshKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages user SSH keys to access servers provisioned on Scaleway.
+
+        > **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
 
         ## Example Usage
 
@@ -214,6 +300,7 @@ class AccountSshKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
@@ -226,12 +313,16 @@ class AccountSshKey(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AccountSshKeyArgs.__new__(AccountSshKeyArgs)
 
+            __props__.__dict__["disabled"] = disabled
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             if public_key is None and not opts.urn:
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["fingerprint"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["updated_at"] = None
         super(AccountSshKey, __self__).__init__(
             'scaleway:index/accountSshKey:AccountSshKey',
             resource_name,
@@ -242,10 +333,14 @@ class AccountSshKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
+            disabled: Optional[pulumi.Input[bool]] = None,
+            fingerprint: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            public_key: Optional[pulumi.Input[str]] = None) -> 'AccountSshKey':
+            public_key: Optional[pulumi.Input[str]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None) -> 'AccountSshKey':
         """
         Get an existing AccountSshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -253,20 +348,52 @@ class AccountSshKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the iam SSH Key
+        :param pulumi.Input[bool] disabled: The SSH key status
+        :param pulumi.Input[str] fingerprint: The fingerprint of the iam SSH key
         :param pulumi.Input[str] name: The name of the SSH key.
         :param pulumi.Input[str] organization_id: The organization ID the SSH key is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the SSH key is associated with.
         :param pulumi.Input[str] public_key: The public SSH key to be added.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the iam SSH Key
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountSshKeyState.__new__(_AccountSshKeyState)
 
+        __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["disabled"] = disabled
+        __props__.__dict__["fingerprint"] = fingerprint
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_key"] = public_key
+        __props__.__dict__["updated_at"] = updated_at
         return AccountSshKey(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The date and time of the creation of the iam SSH Key
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        The SSH key status
+        """
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter
+    def fingerprint(self) -> pulumi.Output[str]:
+        """
+        The fingerprint of the iam SSH key
+        """
+        return pulumi.get(self, "fingerprint")
 
     @property
     @pulumi.getter
@@ -299,4 +426,12 @@ class AccountSshKey(pulumi.CustomResource):
         The public SSH key to be added.
         """
         return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        The date and time of the last update of the iam SSH Key
+        """
+        return pulumi.get(self, "updated_at")
 

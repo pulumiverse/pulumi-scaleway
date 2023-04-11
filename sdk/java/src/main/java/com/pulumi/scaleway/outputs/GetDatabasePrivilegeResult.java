@@ -6,6 +6,8 @@ package com.pulumi.scaleway.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDatabasePrivilegeResult {
@@ -17,10 +19,12 @@ public final class GetDatabasePrivilegeResult {
     private String id;
     private String instanceId;
     /**
-     * @return The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+     * @return The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
+     * , `custom` and `none`.
      * 
      */
     private String permission;
+    private @Nullable String region;
     private String userName;
 
     private GetDatabasePrivilegeResult() {}
@@ -38,11 +42,15 @@ public final class GetDatabasePrivilegeResult {
         return this.instanceId;
     }
     /**
-     * @return The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+     * @return The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
+     * , `custom` and `none`.
      * 
      */
     public String permission() {
         return this.permission;
+    }
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
     }
     public String userName() {
         return this.userName;
@@ -61,6 +69,7 @@ public final class GetDatabasePrivilegeResult {
         private String id;
         private String instanceId;
         private String permission;
+        private @Nullable String region;
         private String userName;
         public Builder() {}
         public Builder(GetDatabasePrivilegeResult defaults) {
@@ -69,6 +78,7 @@ public final class GetDatabasePrivilegeResult {
     	      this.id = defaults.id;
     	      this.instanceId = defaults.instanceId;
     	      this.permission = defaults.permission;
+    	      this.region = defaults.region;
     	      this.userName = defaults.userName;
         }
 
@@ -93,6 +103,11 @@ public final class GetDatabasePrivilegeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder region(@Nullable String region) {
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
         public Builder userName(String userName) {
             this.userName = Objects.requireNonNull(userName);
             return this;
@@ -103,6 +118,7 @@ public final class GetDatabasePrivilegeResult {
             o.id = id;
             o.instanceId = instanceId;
             o.permission = permission;
+            o.region = region;
             o.userName = userName;
             return o;
         }

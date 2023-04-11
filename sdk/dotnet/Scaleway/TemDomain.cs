@@ -12,7 +12,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Transactional Email Domains.
-    /// For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+    /// For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
     /// 
     /// ## Examples
     /// 
@@ -20,12 +20,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.TemDomain("main");
+    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     {
+    ///         AcceptTos = true,
+    ///     });
     /// 
     /// });
     /// ```
@@ -41,6 +45,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     [ScalewayResourceType("scaleway:index/temDomain:TemDomain")]
     public partial class TemDomain : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        /// &gt; **Important:**  This attribute must be set to `true`.
+        /// </summary>
+        [Output("acceptTos")]
+        public Output<bool> AcceptTos { get; private set; } = null!;
+
         /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         /// </summary>
@@ -67,7 +78,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -116,7 +127,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public TemDomain(string name, TemDomainArgs? args = null, CustomResourceOptions? options = null)
+        public TemDomain(string name, TemDomainArgs args, CustomResourceOptions? options = null)
             : base("scaleway:index/temDomain:TemDomain", name, args ?? new TemDomainArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -156,8 +167,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class TemDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        /// &gt; **Important:**  This attribute must be set to `true`.
+        /// </summary>
+        [Input("acceptTos", required: true)]
+        public Input<bool> AcceptTos { get; set; } = null!;
+
+        /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -182,6 +200,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
     public sealed class TemDomainState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        /// &gt; **Important:**  This attribute must be set to `true`.
+        /// </summary>
+        [Input("acceptTos")]
+        public Input<bool>? AcceptTos { get; set; }
+
         /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         /// </summary>
@@ -208,7 +233,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

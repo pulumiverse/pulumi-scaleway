@@ -10,12 +10,13 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.TemDomainArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.TemDomainState;
+import java.lang.Boolean;
 import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
  * Creates and manages Scaleway Transactional Email Domains.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+ * For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
  * 
  * ## Examples
  * 
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.scaleway.TemDomain;
+ * import com.pulumi.scaleway.TemDomainArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -40,7 +42,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var main = new TemDomain(&#34;main&#34;);
+ *         var main = new TemDomain(&#34;main&#34;, TemDomainArgs.builder()        
+ *             .acceptTos(true)
+ *             .build());
  * 
  *     }
  * }
@@ -58,10 +62,26 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/temDomain:TemDomain")
 public class TemDomain extends com.pulumi.resources.CustomResource {
     /**
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
+     * 
+     */
+    @Export(name="acceptTos", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> acceptTos;
+
+    /**
+     * @return Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
+     * 
+     */
+    public Output<Boolean> acceptTos() {
+        return this.acceptTos;
+    }
+    /**
      * The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -75,7 +95,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The DKIM public key, as should be recorded in the DNS zone.
      * 
      */
-    @Export(name="dkimConfig", type=String.class, parameters={})
+    @Export(name="dkimConfig", refs={String.class}, tree="[0]")
     private Output<String> dkimConfig;
 
     /**
@@ -89,7 +109,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The error message if the last check failed.
      * 
      */
-    @Export(name="lastError", type=String.class, parameters={})
+    @Export(name="lastError", refs={String.class}, tree="[0]")
     private Output<String> lastError;
 
     /**
@@ -103,7 +123,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The date and time the domain was last found to be valid (RFC 3339 format).
      * 
      */
-    @Export(name="lastValidAt", type=String.class, parameters={})
+    @Export(name="lastValidAt", refs={String.class}, tree="[0]")
     private Output<String> lastValidAt;
 
     /**
@@ -115,15 +135,15 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
     }
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
      * @return The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     public Output<String> name() {
@@ -133,7 +153,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The date and time of the next scheduled check (RFC 3339 format).
      * 
      */
-    @Export(name="nextCheckAt", type=String.class, parameters={})
+    @Export(name="nextCheckAt", refs={String.class}, tree="[0]")
     private Output<String> nextCheckAt;
 
     /**
@@ -147,7 +167,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the domain is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -161,7 +181,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * `region`). The region in which the domain should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -175,7 +195,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The date and time of the revocation of the domain (RFC 3339 format).
      * 
      */
-    @Export(name="revokedAt", type=String.class, parameters={})
+    @Export(name="revokedAt", refs={String.class}, tree="[0]")
     private Output<String> revokedAt;
 
     /**
@@ -189,7 +209,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The snippet of the SPF record that should be registered in the DNS zone.
      * 
      */
-    @Export(name="spfConfig", type=String.class, parameters={})
+    @Export(name="spfConfig", refs={String.class}, tree="[0]")
     private Output<String> spfConfig;
 
     /**
@@ -203,7 +223,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * The status of the Transaction Email Domain.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -226,7 +246,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TemDomain(String name, @Nullable TemDomainArgs args) {
+    public TemDomain(String name, TemDomainArgs args) {
         this(name, args, null);
     }
     /**
@@ -235,7 +255,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TemDomain(String name, @Nullable TemDomainArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public TemDomain(String name, TemDomainArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("scaleway:index/temDomain:TemDomain", name, args == null ? TemDomainArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

@@ -274,7 +274,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
      * 
      */
-    @Export(name="data", type=String.class, parameters={})
+    @Export(name="data", refs={String.class}, tree="[0]")
     private Output<String> data;
 
     /**
@@ -288,7 +288,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The DNS Zone of the domain. If the DNS zone doesn&#39;t exist, it will be automatically created.
      * 
      */
-    @Export(name="dnsZone", type=String.class, parameters={})
+    @Export(name="dnsZone", refs={String.class}, tree="[0]")
     private Output<String> dnsZone;
 
     /**
@@ -302,7 +302,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
      * 
      */
-    @Export(name="geoIp", type=DomainRecordGeoIp.class, parameters={})
+    @Export(name="geoIp", refs={DomainRecordGeoIp.class}, tree="[0]")
     private Output</* @Nullable */ DomainRecordGeoIp> geoIp;
 
     /**
@@ -316,7 +316,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
      * 
      */
-    @Export(name="httpService", type=DomainRecordHttpService.class, parameters={})
+    @Export(name="httpService", refs={DomainRecordHttpService.class}, tree="[0]")
     private Output</* @Nullable */ DomainRecordHttpService> httpService;
 
     /**
@@ -330,7 +330,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
      * 
      */
-    @Export(name="keepEmptyZone", type=Boolean.class, parameters={})
+    @Export(name="keepEmptyZone", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> keepEmptyZone;
 
     /**
@@ -344,7 +344,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The name of the record (can be an empty string for a root record).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -358,7 +358,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The priority of the record (mostly used with an `MX` record)
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output<Integer> priority;
 
     /**
@@ -372,7 +372,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The project_id you want to attach the resource to
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -386,7 +386,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * Does the DNS zone is the root zone or not
      * 
      */
-    @Export(name="rootZone", type=Boolean.class, parameters={})
+    @Export(name="rootZone", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> rootZone;
 
     /**
@@ -400,7 +400,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * Time To Live of the record in seconds.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**
@@ -414,7 +414,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -428,7 +428,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
      * 
      */
-    @Export(name="views", type=List.class, parameters={DomainRecordView.class})
+    @Export(name="views", refs={List.class,DomainRecordView.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainRecordView>> views;
 
     /**
@@ -442,7 +442,7 @@ public class DomainRecord extends com.pulumi.resources.CustomResource {
      * You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
      * 
      */
-    @Export(name="weighteds", type=List.class, parameters={DomainRecordWeighted.class})
+    @Export(name="weighteds", refs={List.class,DomainRecordWeighted.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainRecordWeighted>> weighteds;
 
     /**

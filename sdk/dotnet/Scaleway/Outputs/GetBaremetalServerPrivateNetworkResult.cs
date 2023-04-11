@@ -15,6 +15,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetBaremetalServerPrivateNetworkResult
     {
         public readonly string CreatedAt;
+        /// <summary>
+        /// The ID of the server.
+        /// </summary>
         public readonly string Id;
         public readonly string Status;
         public readonly string UpdatedAt;

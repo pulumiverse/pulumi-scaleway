@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public static class GetRedisCluster
     {
         /// <summary>
-        /// Gets information about a Redis cluster.
+        /// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -40,7 +41,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Redis cluster.
+        /// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -48,6 +49,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 

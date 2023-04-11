@@ -57,6 +57,9 @@ type LookupAccountSshKeyArgs struct {
 
 // A collection of values returned by getAccountSshKey.
 type LookupAccountSshKeyResult struct {
+	CreatedAt   string `pulumi:"createdAt"`
+	Disabled    bool   `pulumi:"disabled"`
+	Fingerprint string `pulumi:"fingerprint"`
 	// The provider-assigned unique ID for this managed resource.
 	Id   string  `pulumi:"id"`
 	Name *string `pulumi:"name"`
@@ -66,6 +69,7 @@ type LookupAccountSshKeyResult struct {
 	// The SSH public key string
 	PublicKey string  `pulumi:"publicKey"`
 	SshKeyId  *string `pulumi:"sshKeyId"`
+	UpdatedAt string  `pulumi:"updatedAt"`
 }
 
 func LookupAccountSshKeyOutput(ctx *pulumi.Context, args LookupAccountSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupAccountSshKeyResultOutput {
@@ -108,6 +112,18 @@ func (o LookupAccountSshKeyResultOutput) ToLookupAccountSshKeyResultOutputWithCo
 	return o
 }
 
+func (o LookupAccountSshKeyResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupAccountSshKeyResultOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAccountSshKeyResult) bool { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupAccountSshKeyResultOutput) Fingerprint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.Fingerprint }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupAccountSshKeyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.Id }).(pulumi.StringOutput)
@@ -133,6 +149,10 @@ func (o LookupAccountSshKeyResultOutput) PublicKey() pulumi.StringOutput {
 
 func (o LookupAccountSshKeyResultOutput) SshKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) *string { return v.SshKeyId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupAccountSshKeyResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

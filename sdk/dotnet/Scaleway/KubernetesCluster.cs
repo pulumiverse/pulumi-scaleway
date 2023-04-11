@@ -110,6 +110,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        [Output("privateNetworkId")]
+        public Output<string> PrivateNetworkId { get; private set; } = null!;
+
+        /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.
         /// </summary>
         [Output("projectId")]
@@ -187,6 +193,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/lbrlabs",
+                AdditionalSecretOutputs =
+                {
+                    "kubeconfigs",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -290,6 +300,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("openIdConnectConfig")]
         public Input<Inputs.KubernetesClusterOpenIdConnectConfigArgs>? OpenIdConnectConfig { get; set; }
+
+        /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        [Input("privateNetworkId")]
+        public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.
@@ -425,7 +441,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public InputList<Inputs.KubernetesClusterKubeconfigGetArgs> Kubeconfigs
         {
             get => _kubeconfigs ?? (_kubeconfigs = new InputList<Inputs.KubernetesClusterKubeconfigGetArgs>());
-            set => _kubeconfigs = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.KubernetesClusterKubeconfigGetArgs>());
+                _kubeconfigs = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -445,6 +465,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        [Input("privateNetworkId")]
+        public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.

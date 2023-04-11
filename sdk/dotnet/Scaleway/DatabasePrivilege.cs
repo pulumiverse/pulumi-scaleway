@@ -12,32 +12,43 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
     /// Create and manage Scaleway RDB database privilege.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#user-and-permissions).
     /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainDatabaseUser = new Scaleway.DatabaseUser("mainDatabaseUser", new()
+    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Pgsql.Id,
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         IsAdmin = false,
     ///     });
     /// 
     ///     var mainDatabase = new Scaleway.Database("mainDatabase", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Pgsql.Id,
+    ///         InstanceId = mainDatabaseInstance.Id,
     ///     });
     /// 
-    ///     var priv = new Scaleway.DatabasePrivilege("priv", new()
+    ///     var mainDatabaseUser = new Scaleway.DatabaseUser("mainDatabaseUser", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Rdb.Id,
+    ///         InstanceId = mainDatabaseInstance.Id,
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         IsAdmin = false,
+    ///     });
+    /// 
+    ///     var mainDatabasePrivilege = new Scaleway.DatabasePrivilege("mainDatabasePrivilege", new()
+    ///     {
+    ///         InstanceId = mainDatabaseInstance.Id,
     ///         UserName = "my-db-user",
     ///         DatabaseName = "my-db-name",
     ///         Permission = "all",
@@ -52,6 +63,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+    /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/databasePrivilege:DatabasePrivilege")]
     public partial class DatabasePrivilege : global::Pulumi.CustomResource
@@ -63,7 +82,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -73,6 +92,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
+
+        /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Name of the user (e.g. `my-db-user`).
@@ -134,7 +159,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -144,6 +169,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
+
+        /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// Name of the user (e.g. `my-db-user`).
@@ -166,7 +197,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -176,6 +207,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// Name of the user (e.g. `my-db-user`).

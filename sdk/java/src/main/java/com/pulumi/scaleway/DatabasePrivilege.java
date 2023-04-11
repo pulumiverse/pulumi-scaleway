@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 
 /**
  * Create and manage Scaleway RDB database privilege.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#user-and-permissions).
  * 
  * ## Example Usage
  * ```java
@@ -24,10 +24,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.DatabaseUser;
- * import com.pulumi.scaleway.DatabaseUserArgs;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
  * import com.pulumi.scaleway.Database;
  * import com.pulumi.scaleway.DatabaseArgs;
+ * import com.pulumi.scaleway.DatabaseUser;
+ * import com.pulumi.scaleway.DatabaseUserArgs;
  * import com.pulumi.scaleway.DatabasePrivilege;
  * import com.pulumi.scaleway.DatabasePrivilegeArgs;
  * import com.pulumi.resources.CustomResourceOptions;
@@ -44,18 +46,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         var mainDatabaseInstance = new DatabaseInstance(&#34;mainDatabaseInstance&#34;, DatabaseInstanceArgs.builder()        
+ *             .nodeType(&#34;DB-DEV-S&#34;)
+ *             .engine(&#34;PostgreSQL-11&#34;)
+ *             .isHaCluster(true)
+ *             .disableBackup(true)
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .build());
+ * 
+ *         var mainDatabase = new Database(&#34;mainDatabase&#34;, DatabaseArgs.builder()        
+ *             .instanceId(mainDatabaseInstance.id())
+ *             .build());
+ * 
  *         var mainDatabaseUser = new DatabaseUser(&#34;mainDatabaseUser&#34;, DatabaseUserArgs.builder()        
- *             .instanceId(scaleway_rdb_instance.pgsql().id())
+ *             .instanceId(mainDatabaseInstance.id())
  *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
  *             .isAdmin(false)
  *             .build());
  * 
- *         var mainDatabase = new Database(&#34;mainDatabase&#34;, DatabaseArgs.builder()        
- *             .instanceId(scaleway_rdb_instance.pgsql().id())
- *             .build());
- * 
- *         var priv = new DatabasePrivilege(&#34;priv&#34;, DatabasePrivilegeArgs.builder()        
- *             .instanceId(scaleway_rdb_instance.rdb().id())
+ *         var mainDatabasePrivilege = new DatabasePrivilege(&#34;mainDatabasePrivilege&#34;, DatabasePrivilegeArgs.builder()        
+ *             .instanceId(mainDatabaseInstance.id())
  *             .userName(&#34;my-db-user&#34;)
  *             .databaseName(&#34;my-db-name&#34;)
  *             .permission(&#34;all&#34;)
@@ -69,6 +80,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+ * 
+ * ```sh
+ *  $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+ * ```
+ * 
  */
 @ResourceType(type="scaleway:index/databasePrivilege:DatabasePrivilege")
 public class DatabasePrivilege extends com.pulumi.resources.CustomResource {
@@ -76,7 +95,7 @@ public class DatabasePrivilege extends com.pulumi.resources.CustomResource {
      * Name of the database (e.g. `my-db-name`).
      * 
      */
-    @Export(name="databaseName", type=String.class, parameters={})
+    @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output<String> databaseName;
 
     /**
@@ -87,14 +106,14 @@ public class DatabasePrivilege extends com.pulumi.resources.CustomResource {
         return this.databaseName;
     }
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where to create the database.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -104,7 +123,7 @@ public class DatabasePrivilege extends com.pulumi.resources.CustomResource {
      * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      * 
      */
-    @Export(name="permission", type=String.class, parameters={})
+    @Export(name="permission", refs={String.class}, tree="[0]")
     private Output<String> permission;
 
     /**
@@ -115,10 +134,24 @@ public class DatabasePrivilege extends com.pulumi.resources.CustomResource {
         return this.permission;
     }
     /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Export(name="region", refs={String.class}, tree="[0]")
+    private Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Output<String> region() {
+        return this.region;
+    }
+    /**
      * Name of the user (e.g. `my-db-user`).
      * 
      */
-    @Export(name="userName", type=String.class, parameters={})
+    @Export(name="userName", refs={String.class}, tree="[0]")
     private Output<String> userName;
 
     /**

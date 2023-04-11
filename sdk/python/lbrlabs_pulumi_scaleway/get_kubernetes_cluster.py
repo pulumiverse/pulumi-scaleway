@@ -22,7 +22,7 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, project_id=None, region=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
+    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, private_network_id=None, project_id=None, region=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
         if admission_plugins and not isinstance(admission_plugins, list):
             raise TypeError("Expected argument 'admission_plugins' to be a list")
         pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -68,6 +68,9 @@ class GetKubernetesClusterResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if private_network_id and not isinstance(private_network_id, str):
+            raise TypeError("Expected argument 'private_network_id' to be a str")
+        pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -202,6 +205,14 @@ class GetKubernetesClusterResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> str:
+        """
+        The ID of the private network of the cluster.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
@@ -295,6 +306,7 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             name=self.name,
             open_id_connect_configs=self.open_id_connect_configs,
             organization_id=self.organization_id,
+            private_network_id=self.private_network_id,
             project_id=self.project_id,
             region=self.region,
             status=self.status,
@@ -350,6 +362,7 @@ def get_kubernetes_cluster(cluster_id: Optional[str] = None,
         name=__ret__.name,
         open_id_connect_configs=__ret__.open_id_connect_configs,
         organization_id=__ret__.organization_id,
+        private_network_id=__ret__.private_network_id,
         project_id=__ret__.project_id,
         region=__ret__.region,
         status=__ret__.status,

@@ -23,14 +23,14 @@ public final class GetLoadbalancerPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * The IP address.
+     * The load balancer name.
      * 
      */
     @Import(name="name")
     private @Nullable String name;
 
     /**
-     * @return The IP address.
+     * @return The load balancer name.
      * 
      */
     public Optional<String> name() {
@@ -45,14 +45,14 @@ public final class GetLoadbalancerPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * (Defaults to provider `region`) The region in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     @Import(name="zone")
     private @Nullable String zone;
 
     /**
-     * @return (Defaults to provider `region`) The region in which the LB exists.
+     * @return (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     public Optional<String> zone() {
@@ -92,7 +92,7 @@ public final class GetLoadbalancerPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param name The IP address.
+         * @param name The load balancer name.
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class GetLoadbalancerPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param zone (Defaults to provider `region`) The region in which the LB exists.
+         * @param zone (Defaults to provider `zone`) The zone in which the LB exists.
          * 
          * @return builder
          * 

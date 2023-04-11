@@ -64,7 +64,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * The IP Address
      * 
      */
-    @Export(name="ipAddress", type=String.class, parameters={})
+    @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
@@ -78,7 +78,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * The associated load-balance ID if any
      * 
      */
-    @Export(name="lbId", type=String.class, parameters={})
+    @Export(name="lbId", refs={String.class}, tree="[0]")
     private Output<String> lbId;
 
     /**
@@ -92,7 +92,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * The organization_id you want to attach the resource to
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -106,7 +106,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the IP is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -120,7 +120,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * The region of the resource
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -134,7 +134,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * The reverse domain associated with this IP.
      * 
      */
-    @Export(name="reverse", type=String.class, parameters={})
+    @Export(name="reverse", refs={String.class}, tree="[0]")
     private Output<String> reverse;
 
     /**
@@ -148,7 +148,7 @@ public class LoadbalancerIp extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the IP should be reserved.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

@@ -31,6 +31,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
+        /// <summary>
+        /// The type of the IP.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

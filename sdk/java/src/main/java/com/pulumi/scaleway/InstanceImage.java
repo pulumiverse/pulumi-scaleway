@@ -180,7 +180,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      * 
      */
-    @Export(name="additionalVolumeIds", type=String.class, parameters={})
+    @Export(name="additionalVolumeIds", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> additionalVolumeIds;
 
     /**
@@ -194,7 +194,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The description of the extra volumes attached to the image.
      * 
      */
-    @Export(name="additionalVolumes", type=List.class, parameters={InstanceImageAdditionalVolume.class})
+    @Export(name="additionalVolumes", refs={List.class,InstanceImageAdditionalVolume.class}, tree="[0,1]")
     private Output<List<InstanceImageAdditionalVolume>> additionalVolumes;
 
     /**
@@ -208,7 +208,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
      * 
      */
-    @Export(name="architecture", type=String.class, parameters={})
+    @Export(name="architecture", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> architecture;
 
     /**
@@ -222,7 +222,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * Date of the volume creation.
      * 
      */
-    @Export(name="creationDate", type=String.class, parameters={})
+    @Export(name="creationDate", refs={String.class}, tree="[0]")
     private Output<String> creationDate;
 
     /**
@@ -236,7 +236,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * ID of the server the image is based on (in case it is a backup).
      * 
      */
-    @Export(name="fromServerId", type=String.class, parameters={})
+    @Export(name="fromServerId", refs={String.class}, tree="[0]")
     private Output<String> fromServerId;
 
     /**
@@ -250,7 +250,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * Date of volume latest update.
      * 
      */
-    @Export(name="modificationDate", type=String.class, parameters={})
+    @Export(name="modificationDate", refs={String.class}, tree="[0]")
     private Output<String> modificationDate;
 
     /**
@@ -264,7 +264,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The name of the image. If not provided it will be randomly generated.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -278,7 +278,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The organization ID the image is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -292,7 +292,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The ID of the project the image is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -306,7 +306,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * Set to `true` if the image is public.
      * 
      */
-    @Export(name="public", type=Boolean.class, parameters={})
+    @Export(name="public", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> public_;
 
     /**
@@ -320,7 +320,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The ID of the snapshot of the volume to be used as root in the image.
      * 
      */
-    @Export(name="rootVolumeId", type=String.class, parameters={})
+    @Export(name="rootVolumeId", refs={String.class}, tree="[0]")
     private Output<String> rootVolumeId;
 
     /**
@@ -334,7 +334,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * State of the volume.
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -348,7 +348,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * A list of tags to apply to the image.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -362,7 +362,7 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
      * The zone in which the image should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

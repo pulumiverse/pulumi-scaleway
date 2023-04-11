@@ -7,13 +7,54 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Manages Scaleway Compute Instance IPs Reverse DNS.
 //
 // Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			serverIp, err := scaleway.NewInstanceIp(ctx, "serverIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDomainRecord(ctx, "tfA", &scaleway.DomainRecordArgs{
+//				DnsZone:  pulumi.String("scaleway.com"),
+//				Type:     pulumi.String("A"),
+//				Data:     serverIp.Address,
+//				Ttl:      pulumi.Int(3600),
+//				Priority: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceIpReverseDns(ctx, "reverse", &scaleway.InstanceIpReverseDnsArgs{
+//				IpId:    serverIp.ID(),
+//				Reverse: pulumi.String("www.scaleway.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

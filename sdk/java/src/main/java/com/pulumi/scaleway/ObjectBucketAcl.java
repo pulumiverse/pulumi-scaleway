@@ -161,7 +161,7 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
      * A configuration block that sets the ACL permissions for an object per grantee documented below.
      * 
      */
-    @Export(name="accessControlPolicy", type=ObjectBucketAclAccessControlPolicy.class, parameters={})
+    @Export(name="accessControlPolicy", refs={ObjectBucketAclAccessControlPolicy.class}, tree="[0]")
     private Output<ObjectBucketAclAccessControlPolicy> accessControlPolicy;
 
     /**
@@ -175,7 +175,7 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
      * The canned ACL you want to apply to the bucket.
      * 
      */
-    @Export(name="acl", type=String.class, parameters={})
+    @Export(name="acl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> acl;
 
     /**
@@ -189,7 +189,7 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
      * The name of the bucket.
      * 
      */
-    @Export(name="bucket", type=String.class, parameters={})
+    @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
@@ -203,7 +203,7 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
      * The project ID of the expected bucket owner.
      * 
      */
-    @Export(name="expectedBucketOwner", type=String.class, parameters={})
+    @Export(name="expectedBucketOwner", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expectedBucketOwner;
 
     /**
@@ -217,7 +217,7 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the bucket is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -231,7 +231,7 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**

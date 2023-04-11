@@ -18,6 +18,50 @@ import javax.annotation.Nullable;
  * 
  * Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
  * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.InstanceIp;
+ * import com.pulumi.scaleway.DomainRecord;
+ * import com.pulumi.scaleway.DomainRecordArgs;
+ * import com.pulumi.scaleway.InstanceIpReverseDns;
+ * import com.pulumi.scaleway.InstanceIpReverseDnsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var serverIp = new InstanceIp(&#34;serverIp&#34;);
+ * 
+ *         var tfA = new DomainRecord(&#34;tfA&#34;, DomainRecordArgs.builder()        
+ *             .dnsZone(&#34;scaleway.com&#34;)
+ *             .type(&#34;A&#34;)
+ *             .data(serverIp.address())
+ *             .ttl(3600)
+ *             .priority(1)
+ *             .build());
+ * 
+ *         var reverse = new InstanceIpReverseDns(&#34;reverse&#34;, InstanceIpReverseDnsArgs.builder()        
+ *             .ipId(serverIp.id())
+ *             .reverse(&#34;www.scaleway.com&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
@@ -33,7 +77,7 @@ public class InstanceIpReverseDns extends com.pulumi.resources.CustomResource {
      * The IP ID
      * 
      */
-    @Export(name="ipId", type=String.class, parameters={})
+    @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output<String> ipId;
 
     /**
@@ -47,7 +91,7 @@ public class InstanceIpReverseDns extends com.pulumi.resources.CustomResource {
      * The reverse DNS for this IP.
      * 
      */
-    @Export(name="reverse", type=String.class, parameters={})
+    @Export(name="reverse", refs={String.class}, tree="[0]")
     private Output<String> reverse;
 
     /**
@@ -61,7 +105,7 @@ public class InstanceIpReverseDns extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the IP should be reserved.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

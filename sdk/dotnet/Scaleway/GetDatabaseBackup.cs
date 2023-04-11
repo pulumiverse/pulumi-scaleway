@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -59,6 +60,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -112,6 +114,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the Database Instance should be created.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -143,6 +148,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the Database Instance should be created.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

@@ -82,7 +82,7 @@ public class FunctionDomain extends com.pulumi.resources.CustomResource {
      * The ID of the function you want to create a domain with.
      * 
      */
-    @Export(name="functionId", type=String.class, parameters={})
+    @Export(name="functionId", refs={String.class}, tree="[0]")
     private Output<String> functionId;
 
     /**
@@ -97,7 +97,7 @@ public class FunctionDomain extends com.pulumi.resources.CustomResource {
      * You should use a CNAME domain record that point to your native function `domain_name` for it.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -109,14 +109,14 @@ public class FunctionDomain extends com.pulumi.resources.CustomResource {
         return this.hostname;
     }
     /**
-     * The region you want to attach the resource to
+     * (Defaults to provider `region`) The region in where the domain was created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return (Defaults to provider `region`) The region in where the domain was created.
      * 
      */
     public Output<String> region() {
@@ -126,7 +126,7 @@ public class FunctionDomain extends com.pulumi.resources.CustomResource {
      * The URL that triggers the function
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**

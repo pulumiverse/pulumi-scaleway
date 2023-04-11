@@ -61,7 +61,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * The name of the placement group.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -75,7 +75,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * The organization ID the placement group is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -89,7 +89,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      * 
      */
-    @Export(name="policyMode", type=String.class, parameters={})
+    @Export(name="policyMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> policyMode;
 
     /**
@@ -103,7 +103,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * Is true when the policy is respected.
      * 
      */
-    @Export(name="policyRespected", type=Boolean.class, parameters={})
+    @Export(name="policyRespected", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> policyRespected;
 
     /**
@@ -117,7 +117,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
      * 
      */
-    @Export(name="policyType", type=String.class, parameters={})
+    @Export(name="policyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> policyType;
 
     /**
@@ -131,7 +131,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * `project_id`) The ID of the project the placement group is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -145,7 +145,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * A list of tags to apply to the placement group.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -159,7 +159,7 @@ public class InstancePlacementGroup extends com.pulumi.resources.CustomResource 
      * `zone`) The zone in which the placement group should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

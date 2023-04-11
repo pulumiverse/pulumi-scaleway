@@ -53,7 +53,8 @@ type LookupDatabaseArgs struct {
 	// The RDB instance ID.
 	InstanceId string `pulumi:"instanceId"`
 	// The name of the RDB instance.
-	Name string `pulumi:"name"`
+	Name   string  `pulumi:"name"`
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getDatabase.
@@ -61,11 +62,12 @@ type LookupDatabaseResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId string `pulumi:"instanceId"`
-	// Whether or not the database is managed or not.
+	// Whether the database is managed or not.
 	Managed bool   `pulumi:"managed"`
 	Name    string `pulumi:"name"`
 	// The name of the owner of the database.
-	Owner string `pulumi:"owner"`
+	Owner  string  `pulumi:"owner"`
+	Region *string `pulumi:"region"`
 	// Size of the database (in bytes).
 	Size string `pulumi:"size"`
 }
@@ -88,7 +90,8 @@ type LookupDatabaseOutputArgs struct {
 	// The RDB instance ID.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The name of the RDB instance.
-	Name pulumi.StringInput `pulumi:"name"`
+	Name   pulumi.StringInput    `pulumi:"name"`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupDatabaseOutputArgs) ElementType() reflect.Type {
@@ -119,7 +122,7 @@ func (o LookupDatabaseResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Whether or not the database is managed or not.
+// Whether the database is managed or not.
 func (o LookupDatabaseResultOutput) Managed() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupDatabaseResult) bool { return v.Managed }).(pulumi.BoolOutput)
 }
@@ -131,6 +134,10 @@ func (o LookupDatabaseResultOutput) Name() pulumi.StringOutput {
 // The name of the owner of the database.
 func (o LookupDatabaseResultOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Owner }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Size of the database (in bytes).

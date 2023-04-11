@@ -35,7 +35,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `zone`) The zone of the load-balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -16,7 +16,7 @@ public final class GetLoadbalancerPrivateNetwork {
     private List<String> staticConfigs;
     private String status;
     /**
-     * @return (Defaults to provider `region`) The region in which the LB exists.
+     * @return (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     private String zone;
@@ -35,7 +35,7 @@ public final class GetLoadbalancerPrivateNetwork {
         return this.status;
     }
     /**
-     * @return (Defaults to provider `region`) The region in which the LB exists.
+     * @return (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     public String zone() {

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about the privilege on a RDB database.
+ * Gets information about the privilege on RDB database.
  *
  * ## Example Usage
  *
@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const findPriv = scaleway.getDatabasePrivilege({
+ * const main = scaleway.getDatabasePrivilege({
  *     databaseName: "my-database",
- *     instanceId: "fr-par/11111111-1111-111111111111",
+ *     instanceId: "11111111-1111-111111111111",
  *     userName: "my-user",
  * });
  * ```
@@ -26,6 +26,7 @@ export function getDatabasePrivilege(args: GetDatabasePrivilegeArgs, opts?: pulu
     return pulumi.runtime.invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
         "databaseName": args.databaseName,
         "instanceId": args.instanceId,
+        "region": args.region,
         "userName": args.userName,
     }, opts);
 }
@@ -43,6 +44,10 @@ export interface GetDatabasePrivilegeArgs {
      */
     instanceId: string;
     /**
+     * `region`) The region in which the resource exists.
+     */
+    region?: string;
+    /**
      * The user name.
      */
     userName: string;
@@ -59,13 +64,15 @@ export interface GetDatabasePrivilegeResult {
     readonly id: string;
     readonly instanceId: string;
     /**
-     * The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+     * The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
+     * , `custom` and `none`.
      */
     readonly permission: string;
+    readonly region?: string;
     readonly userName: string;
 }
 /**
- * Gets information about the privilege on a RDB database.
+ * Gets information about the privilege on RDB database.
  *
  * ## Example Usage
  *
@@ -73,9 +80,9 @@ export interface GetDatabasePrivilegeResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const findPriv = scaleway.getDatabasePrivilege({
+ * const main = scaleway.getDatabasePrivilege({
  *     databaseName: "my-database",
- *     instanceId: "fr-par/11111111-1111-111111111111",
+ *     instanceId: "11111111-1111-111111111111",
  *     userName: "my-user",
  * });
  * ```
@@ -96,6 +103,10 @@ export interface GetDatabasePrivilegeOutputArgs {
      * The RDB instance ID.
      */
     instanceId: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the resource exists.
+     */
+    region?: pulumi.Input<string>;
     /**
      * The user name.
      */

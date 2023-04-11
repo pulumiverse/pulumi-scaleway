@@ -48,14 +48,14 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The region you want to attach the resource to
+     * (Defaults to provider `region`) The region in where the domain was created.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return (Defaults to provider `region`) The region in where the domain was created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -133,7 +133,7 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region (Defaults to provider `region`) The region in where the domain was created.
          * 
          * @return builder
          * 
@@ -144,7 +144,7 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region (Defaults to provider `region`) The region in where the domain was created.
          * 
          * @return builder
          * 

@@ -80,7 +80,7 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
      * The ID of the container.
      * 
      */
-    @Export(name="containerId", type=String.class, parameters={})
+    @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> containerId;
 
     /**
@@ -94,7 +94,7 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
      * The description of the token.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -108,7 +108,7 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
      * The expiration date of the token.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiresAt;
 
     /**
@@ -122,7 +122,7 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
      * The ID of the container namespace.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespaceId;
 
     /**
@@ -136,7 +136,7 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
      * `region`). The region in which the namespace should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -150,7 +150,7 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
      * The token.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output<String> token;
 
     /**

@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public static class GetDatabasePrivilege
     {
         /// <summary>
-        /// Gets information about the privilege on a RDB database.
+        /// Gets information about the privilege on RDB database.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -21,15 +21,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var findPriv = Scaleway.GetDatabasePrivilege.Invoke(new()
+        ///     var main = Scaleway.GetDatabasePrivilege.Invoke(new()
         ///     {
         ///         DatabaseName = "my-database",
-        ///         InstanceId = "fr-par/11111111-1111-111111111111",
+        ///         InstanceId = "11111111-1111-111111111111",
         ///         UserName = "my-user",
         ///     });
         /// 
@@ -42,7 +43,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the privilege on a RDB database.
+        /// Gets information about the privilege on RDB database.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -50,15 +51,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var findPriv = Scaleway.GetDatabasePrivilege.Invoke(new()
+        ///     var main = Scaleway.GetDatabasePrivilege.Invoke(new()
         ///     {
         ///         DatabaseName = "my-database",
-        ///         InstanceId = "fr-par/11111111-1111-111111111111",
+        ///         InstanceId = "11111111-1111-111111111111",
         ///         UserName = "my-user",
         ///     });
         /// 
@@ -87,6 +89,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public string InstanceId { get; set; } = null!;
 
         /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
+        /// <summary>
         /// The user name.
         /// </summary>
         [Input("userName", required: true)]
@@ -113,6 +121,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The user name.
         /// </summary>
         [Input("userName", required: true)]
@@ -135,9 +149,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Id;
         public readonly string InstanceId;
         /// <summary>
-        /// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
+        /// , `custom` and `none`.
         /// </summary>
         public readonly string Permission;
+        public readonly string? Region;
         public readonly string UserName;
 
         [OutputConstructor]
@@ -150,12 +166,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string permission,
 
+            string? region,
+
             string userName)
         {
             DatabaseName = databaseName;
             Id = id;
             InstanceId = instanceId;
             Permission = permission;
+            Region = region;
             UserName = userName;
         }
     }

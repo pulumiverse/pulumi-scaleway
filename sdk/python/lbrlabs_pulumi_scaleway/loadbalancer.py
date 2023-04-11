@@ -37,7 +37,7 @@ class LoadbalancerArgs:
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         pulumi.set(__self__, "ip_id", ip_id)
         pulumi.set(__self__, "type", type)
@@ -173,7 +173,7 @@ class LoadbalancerArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the IP should be reserved.
+        `zone`) The zone of the load-balancer.
         """
         return pulumi.get(self, "zone")
 
@@ -212,7 +212,7 @@ class _LoadbalancerState:
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -392,7 +392,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the IP should be reserved.
+        `zone`) The zone of the load-balancer.
         """
         return pulumi.get(self, "zone")
 
@@ -545,7 +545,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         ...
     @overload
@@ -766,7 +766,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
-        :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
+        :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -887,7 +887,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the IP should be reserved.
+        `zone`) The zone of the load-balancer.
         """
         return pulumi.get(self, "zone")
 

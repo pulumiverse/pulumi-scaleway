@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetDatabaseAclArgs extends com.pulumi.resources.InvokeArgs {
@@ -28,10 +30,26 @@ public final class GetDatabaseAclArgs extends com.pulumi.resources.InvokeArgs {
         return this.instanceId;
     }
 
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the Database Instance should be created.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
     private GetDatabaseAclArgs() {}
 
     private GetDatabaseAclArgs(GetDatabaseAclArgs $) {
         this.instanceId = $.instanceId;
+        this.region = $.region;
     }
 
     public static Builder builder() {
@@ -71,6 +89,27 @@ public final class GetDatabaseAclArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder instanceId(String instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param region `region`) The region in which the Database Instance should be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the Database Instance should be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         public GetDatabaseAclArgs build() {

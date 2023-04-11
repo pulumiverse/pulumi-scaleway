@@ -79,7 +79,7 @@ export class FunctionDomain extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * (Defaults to provider `region`) The region in where the domain was created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -136,7 +136,7 @@ export interface FunctionDomainState {
      */
     hostname?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * (Defaults to provider `region`) The region in where the domain was created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -159,7 +159,7 @@ export interface FunctionDomainArgs {
      */
     hostname: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * (Defaults to provider `region`) The region in where the domain was created.
      */
     region?: pulumi.Input<string>;
 }

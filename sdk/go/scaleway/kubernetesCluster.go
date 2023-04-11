@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -54,6 +54,8 @@ type KubernetesCluster struct {
 	OpenIdConnectConfig KubernetesClusterOpenIdConnectConfigOutput `pulumi:"openIdConnectConfig"`
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -90,6 +92,10 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"kubeconfigs",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("scaleway:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
@@ -144,6 +150,8 @@ type kubernetesClusterState struct {
 	OpenIdConnectConfig *KubernetesClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The organization ID the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -196,6 +204,8 @@ type KubernetesClusterState struct {
 	OpenIdConnectConfig KubernetesClusterOpenIdConnectConfigPtrInput
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The ID of the private network of the cluster.
+	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the cluster should be created.
@@ -244,6 +254,8 @@ type kubernetesClusterArgs struct {
 	Name *string `pulumi:"name"`
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig *KubernetesClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -281,6 +293,8 @@ type KubernetesClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig KubernetesClusterOpenIdConnectConfigPtrInput
+	// The ID of the private network of the cluster.
+	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the cluster should be created.
@@ -451,6 +465,11 @@ func (o KubernetesClusterOutput) OpenIdConnectConfig() KubernetesClusterOpenIdCo
 // The organization ID the cluster is associated with.
 func (o KubernetesClusterOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The ID of the private network of the cluster.
+func (o KubernetesClusterOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 // `projectId`) The ID of the project the cluster is associated with.

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,7 +43,7 @@ type ObjectItem struct {
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
 	// Map of tags
-	Tags pulumi.MapOutput `pulumi:"tags"`
+	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// Visibility of the object, `public-read` or `private`
 	Visibility pulumi.StringOutput `pulumi:"visibility"`
 }
@@ -101,7 +101,7 @@ type objectItemState struct {
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
 	StorageClass *string `pulumi:"storageClass"`
 	// Map of tags
-	Tags map[string]interface{} `pulumi:"tags"`
+	Tags map[string]string `pulumi:"tags"`
 	// Visibility of the object, `public-read` or `private`
 	Visibility *string `pulumi:"visibility"`
 }
@@ -124,7 +124,7 @@ type ObjectItemState struct {
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
 	StorageClass pulumi.StringPtrInput
 	// Map of tags
-	Tags pulumi.MapInput
+	Tags pulumi.StringMapInput
 	// Visibility of the object, `public-read` or `private`
 	Visibility pulumi.StringPtrInput
 }
@@ -151,7 +151,7 @@ type objectItemArgs struct {
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
 	StorageClass *string `pulumi:"storageClass"`
 	// Map of tags
-	Tags map[string]interface{} `pulumi:"tags"`
+	Tags map[string]string `pulumi:"tags"`
 	// Visibility of the object, `public-read` or `private`
 	Visibility *string `pulumi:"visibility"`
 }
@@ -175,7 +175,7 @@ type ObjectItemArgs struct {
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
 	StorageClass pulumi.StringPtrInput
 	// Map of tags
-	Tags pulumi.MapInput
+	Tags pulumi.StringMapInput
 	// Visibility of the object, `public-read` or `private`
 	Visibility pulumi.StringPtrInput
 }
@@ -308,8 +308,8 @@ func (o ObjectItemOutput) StorageClass() pulumi.StringPtrOutput {
 }
 
 // Map of tags
-func (o ObjectItemOutput) Tags() pulumi.MapOutput {
-	return o.ApplyT(func(v *ObjectItem) pulumi.MapOutput { return v.Tags }).(pulumi.MapOutput)
+func (o ObjectItemOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ObjectItem) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 // Visibility of the object, `public-read` or `private`

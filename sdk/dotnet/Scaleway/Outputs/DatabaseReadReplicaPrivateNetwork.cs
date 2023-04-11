@@ -39,7 +39,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
-        /// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+        /// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+        /// limitations. (IP network).
         /// </summary>
         public readonly string ServiceIp;
         public readonly string? Zone;

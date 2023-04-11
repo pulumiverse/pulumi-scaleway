@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  *
- * ### Basic
+ * ### With SNI
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -35,7 +35,36 @@ import * as utilities from "./utilities";
  * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
  *     frontendId: frt01.id,
  *     backendId: bkd01.id,
- *     matchSni: "scaleway.com",
+ *     matchSni: "sni.scaleway.com",
+ * });
+ * ```
+ *
+ * ### With host-header
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
+ * const lb01 = new scaleway.Loadbalancer("lb01", {
+ *     ipId: ip01.id,
+ *     type: "lb-s",
+ * });
+ * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ *     lbId: lb01.id,
+ *     forwardProtocol: "tcp",
+ *     forwardPort: 80,
+ *     proxyProtocol: "none",
+ * });
+ * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ *     lbId: lb01.id,
+ *     backendId: bkd01.id,
+ *     inboundPort: 80,
+ * });
+ * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
+ *     frontendId: frt01.id,
+ *     backendId: bkd01.id,
+ *     matchHostHeader: "host.scaleway.com",
  * });
  * ```
  *
@@ -80,13 +109,27 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
+     * The date at which the route was created.
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
      * The ID of the frontend to which the route is associated.
      */
     public readonly frontendId!: pulumi.Output<string>;
     /**
-     * The SNI to match.
+     * The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `matchSni` and `matchHostHeader` should be specified.
+     */
+    public readonly matchHostHeader!: pulumi.Output<string | undefined>;
+    /**
+     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `matchSni` and `matchHostHeader` should be specified.
      */
     public readonly matchSni!: pulumi.Output<string | undefined>;
+    /**
+     * The date at which the route was last updated.
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a LoadbalancerRoute resource with the given unique name, arguments, and options.
@@ -102,8 +145,11 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as LoadbalancerRouteState | undefined;
             resourceInputs["backendId"] = state ? state.backendId : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["frontendId"] = state ? state.frontendId : undefined;
+            resourceInputs["matchHostHeader"] = state ? state.matchHostHeader : undefined;
             resourceInputs["matchSni"] = state ? state.matchSni : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as LoadbalancerRouteArgs | undefined;
             if ((!args || args.backendId === undefined) && !opts.urn) {
@@ -114,7 +160,10 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
             }
             resourceInputs["backendId"] = args ? args.backendId : undefined;
             resourceInputs["frontendId"] = args ? args.frontendId : undefined;
+            resourceInputs["matchHostHeader"] = args ? args.matchHostHeader : undefined;
             resourceInputs["matchSni"] = args ? args.matchSni : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(LoadbalancerRoute.__pulumiType, name, resourceInputs, opts);
@@ -130,13 +179,27 @@ export interface LoadbalancerRouteState {
      */
     backendId?: pulumi.Input<string>;
     /**
+     * The date at which the route was created.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
      * The ID of the frontend to which the route is associated.
      */
     frontendId?: pulumi.Input<string>;
     /**
-     * The SNI to match.
+     * The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `matchSni` and `matchHostHeader` should be specified.
+     */
+    matchHostHeader?: pulumi.Input<string>;
+    /**
+     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `matchSni` and `matchHostHeader` should be specified.
      */
     matchSni?: pulumi.Input<string>;
+    /**
+     * The date at which the route was last updated.
+     */
+    updatedAt?: pulumi.Input<string>;
 }
 
 /**
@@ -152,7 +215,13 @@ export interface LoadbalancerRouteArgs {
      */
     frontendId: pulumi.Input<string>;
     /**
-     * The SNI to match.
+     * The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `matchSni` and `matchHostHeader` should be specified.
+     */
+    matchHostHeader?: pulumi.Input<string>;
+    /**
+     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `matchSni` and `matchHostHeader` should be specified.
      */
     matchSni?: pulumi.Input<string>;
 }

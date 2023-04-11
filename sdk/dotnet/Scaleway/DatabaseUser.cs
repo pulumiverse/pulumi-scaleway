@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Random = Pulumi.Random;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
@@ -44,7 +45,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+    /// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
     /// 
     /// ```sh
     ///  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
@@ -54,7 +55,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class DatabaseUser : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The instance on which to create the user.
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -78,7 +79,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The Scaleway region this resource resides in.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -135,7 +136,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class DatabaseUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance on which to create the user.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -169,7 +170,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The Scaleway region this resource resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -183,7 +184,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class DatabaseUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance on which to create the user.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -217,7 +218,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The Scaleway region this resource resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -10,6 +10,10 @@ import java.util.Objects;
 @CustomType
 public final class GetBaremetalServerIp {
     private String address;
+    /**
+     * @return The ID of the server.
+     * 
+     */
     private String id;
     private String reverse;
     private String version;
@@ -18,6 +22,10 @@ public final class GetBaremetalServerIp {
     public String address() {
         return this.address;
     }
+    /**
+     * @return The ID of the server.
+     * 
+     */
     public String id() {
         return this.id;
     }

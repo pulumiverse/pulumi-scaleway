@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -49,6 +50,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -84,6 +86,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetDatabaseArgs()
         {
         }
@@ -104,6 +109,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         public GetDatabaseInvokeArgs()
         {
         }
@@ -120,7 +128,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Id;
         public readonly string InstanceId;
         /// <summary>
-        /// Whether or not the database is managed or not.
+        /// Whether the database is managed or not.
         /// </summary>
         public readonly bool Managed;
         public readonly string Name;
@@ -128,6 +136,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The name of the owner of the database.
         /// </summary>
         public readonly string Owner;
+        public readonly string? Region;
         /// <summary>
         /// Size of the database (in bytes).
         /// </summary>
@@ -145,6 +154,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string owner,
 
+            string? region,
+
             string size)
         {
             Id = id;
@@ -152,6 +163,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Managed = managed;
             Name = name;
             Owner = owner;
+            Region = region;
             Size = size;
         }
     }

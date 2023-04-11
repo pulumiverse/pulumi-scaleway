@@ -15,6 +15,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetRedisClusterAclResult
     {
         public readonly string Description;
+        /// <summary>
+        /// The ID of the Redis cluster.
+        /// </summary>
         public readonly string Id;
         public readonly string Ip;
 

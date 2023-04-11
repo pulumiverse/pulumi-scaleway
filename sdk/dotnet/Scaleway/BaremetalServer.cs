@@ -19,6 +19,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// using Scaleway = Pulumi.Scaleway;
@@ -99,6 +100,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> OfferId { get; private set; } = null!;
 
         /// <summary>
+        /// The name of the offer.
+        /// </summary>
+        [Output("offerName")]
+        public Output<string> OfferName { get; private set; } = null!;
+
+        /// <summary>
         /// The options to enable on the server.
         /// &gt; The `options` block supports:
         /// </summary>
@@ -120,10 +127,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Os { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the os.
+        /// The name of the os.
         /// </summary>
-        [Output("osId")]
-        public Output<string> OsId { get; private set; } = null!;
+        [Output("osName")]
+        public Output<string> OsName { get; private set; } = null!;
 
         /// <summary>
         /// Password used for the installation. May be required depending on used os.
@@ -440,6 +447,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("offerId")]
         public Input<string>? OfferId { get; set; }
 
+        /// <summary>
+        /// The name of the offer.
+        /// </summary>
+        [Input("offerName")]
+        public Input<string>? OfferName { get; set; }
+
         [Input("options")]
         private InputList<Inputs.BaremetalServerOptionGetArgs>? _options;
 
@@ -468,10 +481,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Os { get; set; }
 
         /// <summary>
-        /// The ID of the os.
+        /// The name of the os.
         /// </summary>
-        [Input("osId")]
-        public Input<string>? OsId { get; set; }
+        [Input("osName")]
+        public Input<string>? OsName { get; set; }
 
         [Input("password")]
         private Input<string>? _password;

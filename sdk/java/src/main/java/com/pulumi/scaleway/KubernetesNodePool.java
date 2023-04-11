@@ -36,7 +36,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * Enables the autohealing feature for this pool.
      * 
      */
-    @Export(name="autohealing", type=Boolean.class, parameters={})
+    @Export(name="autohealing", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> autohealing;
 
     /**
@@ -51,7 +51,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
      * 
      */
-    @Export(name="autoscaling", type=Boolean.class, parameters={})
+    @Export(name="autoscaling", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> autoscaling;
 
     /**
@@ -66,7 +66,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The ID of the Kubernetes cluster on which this pool will be created.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -81,7 +81,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="containerRuntime", type=String.class, parameters={})
+    @Export(name="containerRuntime", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> containerRuntime;
 
     /**
@@ -96,7 +96,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The creation date of the pool.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -110,7 +110,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The actual size of the pool
      * 
      */
-    @Export(name="currentSize", type=Integer.class, parameters={})
+    @Export(name="currentSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> currentSize;
 
     /**
@@ -124,7 +124,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The Kubelet arguments to be used by this pool
      * 
      */
-    @Export(name="kubeletArgs", type=Map.class, parameters={String.class, String.class})
+    @Export(name="kubeletArgs", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> kubeletArgs;
 
     /**
@@ -138,7 +138,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The maximum size of the pool, used by the autoscaling feature.
      * 
      */
-    @Export(name="maxSize", type=Integer.class, parameters={})
+    @Export(name="maxSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxSize;
 
     /**
@@ -152,7 +152,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The minimum size of the pool, used by the autoscaling feature.
      * 
      */
-    @Export(name="minSize", type=Integer.class, parameters={})
+    @Export(name="minSize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> minSize;
 
     /**
@@ -167,7 +167,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -182,7 +182,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
      * 
      */
-    @Export(name="nodeType", type=String.class, parameters={})
+    @Export(name="nodeType", refs={String.class}, tree="[0]")
     private Output<String> nodeType;
 
     /**
@@ -196,7 +196,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * (List of) The nodes in the default pool.
      * 
      */
-    @Export(name="nodes", type=List.class, parameters={KubernetesNodePoolNode.class})
+    @Export(name="nodes", refs={List.class,KubernetesNodePoolNode.class}, tree="[0,1]")
     private Output<List<KubernetesNodePoolNode>> nodes;
 
     /**
@@ -211,7 +211,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="placementGroupId", type=String.class, parameters={})
+    @Export(name="placementGroupId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> placementGroupId;
 
     /**
@@ -226,7 +226,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * `region`) The region in which the pool should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -240,7 +240,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The size of the system volume of the nodes in gigabyte
      * 
      */
-    @Export(name="rootVolumeSizeInGb", type=Integer.class, parameters={})
+    @Export(name="rootVolumeSizeInGb", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rootVolumeSizeInGb;
 
     /**
@@ -254,7 +254,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * System volume type of the nodes composing the pool
      * 
      */
-    @Export(name="rootVolumeType", type=String.class, parameters={})
+    @Export(name="rootVolumeType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rootVolumeType;
 
     /**
@@ -269,7 +269,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** This field will only be used at creation if autoscaling is enabled.
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
@@ -284,7 +284,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The status of the node.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -299,7 +299,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool&#39;s nodes are applied using tags. (Example: &#34;taint=taintName=taineValue:Effect&#34;)
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -314,7 +314,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The last update date of the pool.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -328,7 +328,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The Pool upgrade policy
      * 
      */
-    @Export(name="upgradePolicy", type=KubernetesNodePoolUpgradePolicy.class, parameters={})
+    @Export(name="upgradePolicy", refs={KubernetesNodePoolUpgradePolicy.class}, tree="[0]")
     private Output<KubernetesNodePoolUpgradePolicy> upgradePolicy;
 
     /**
@@ -342,7 +342,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The version of the pool.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
@@ -356,7 +356,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * Whether to wait for the pool to be ready.
      * 
      */
-    @Export(name="waitForPoolReady", type=Boolean.class, parameters={})
+    @Export(name="waitForPoolReady", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitForPoolReady;
 
     /**
@@ -371,7 +371,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

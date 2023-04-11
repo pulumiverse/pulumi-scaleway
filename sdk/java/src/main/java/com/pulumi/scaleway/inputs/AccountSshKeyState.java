@@ -5,6 +5,7 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,51 @@ import javax.annotation.Nullable;
 public final class AccountSshKeyState extends com.pulumi.resources.ResourceArgs {
 
     public static final AccountSshKeyState Empty = new AccountSshKeyState();
+
+    /**
+     * The date and time of the creation of the iam SSH Key
+     * 
+     */
+    @Import(name="createdAt")
+    private @Nullable Output<String> createdAt;
+
+    /**
+     * @return The date and time of the creation of the iam SSH Key
+     * 
+     */
+    public Optional<Output<String>> createdAt() {
+        return Optional.ofNullable(this.createdAt);
+    }
+
+    /**
+     * The SSH key status
+     * 
+     */
+    @Import(name="disabled")
+    private @Nullable Output<Boolean> disabled;
+
+    /**
+     * @return The SSH key status
+     * 
+     */
+    public Optional<Output<Boolean>> disabled() {
+        return Optional.ofNullable(this.disabled);
+    }
+
+    /**
+     * The fingerprint of the iam SSH key
+     * 
+     */
+    @Import(name="fingerprint")
+    private @Nullable Output<String> fingerprint;
+
+    /**
+     * @return The fingerprint of the iam SSH key
+     * 
+     */
+    public Optional<Output<String>> fingerprint() {
+        return Optional.ofNullable(this.fingerprint);
+    }
 
     /**
      * The name of the SSH key.
@@ -75,13 +121,32 @@ public final class AccountSshKeyState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.publicKey);
     }
 
+    /**
+     * The date and time of the last update of the iam SSH Key
+     * 
+     */
+    @Import(name="updatedAt")
+    private @Nullable Output<String> updatedAt;
+
+    /**
+     * @return The date and time of the last update of the iam SSH Key
+     * 
+     */
+    public Optional<Output<String>> updatedAt() {
+        return Optional.ofNullable(this.updatedAt);
+    }
+
     private AccountSshKeyState() {}
 
     private AccountSshKeyState(AccountSshKeyState $) {
+        this.createdAt = $.createdAt;
+        this.disabled = $.disabled;
+        this.fingerprint = $.fingerprint;
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.projectId = $.projectId;
         this.publicKey = $.publicKey;
+        this.updatedAt = $.updatedAt;
     }
 
     public static Builder builder() {
@@ -100,6 +165,69 @@ public final class AccountSshKeyState extends com.pulumi.resources.ResourceArgs 
 
         public Builder(AccountSshKeyState defaults) {
             $ = new AccountSshKeyState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param createdAt The date and time of the creation of the iam SSH Key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createdAt(@Nullable Output<String> createdAt) {
+            $.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * @param createdAt The date and time of the creation of the iam SSH Key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createdAt(String createdAt) {
+            return createdAt(Output.of(createdAt));
+        }
+
+        /**
+         * @param disabled The SSH key status
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabled(@Nullable Output<Boolean> disabled) {
+            $.disabled = disabled;
+            return this;
+        }
+
+        /**
+         * @param disabled The SSH key status
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabled(Boolean disabled) {
+            return disabled(Output.of(disabled));
+        }
+
+        /**
+         * @param fingerprint The fingerprint of the iam SSH key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fingerprint(@Nullable Output<String> fingerprint) {
+            $.fingerprint = fingerprint;
+            return this;
+        }
+
+        /**
+         * @param fingerprint The fingerprint of the iam SSH key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fingerprint(String fingerprint) {
+            return fingerprint(Output.of(fingerprint));
         }
 
         /**
@@ -184,6 +312,27 @@ public final class AccountSshKeyState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder publicKey(String publicKey) {
             return publicKey(Output.of(publicKey));
+        }
+
+        /**
+         * @param updatedAt The date and time of the last update of the iam SSH Key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updatedAt(@Nullable Output<String> updatedAt) {
+            $.updatedAt = updatedAt;
+            return this;
+        }
+
+        /**
+         * @param updatedAt The date and time of the last update of the iam SSH Key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updatedAt(String updatedAt) {
+            return updatedAt(Output.of(updatedAt));
         }
 
         public AccountSshKeyState build() {

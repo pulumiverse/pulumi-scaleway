@@ -393,7 +393,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * attached to the server. Updates to this field will trigger a stop/start of the server.
      * 
      */
-    @Export(name="additionalVolumeIds", type=List.class, parameters={String.class})
+    @Export(name="additionalVolumeIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> additionalVolumeIds;
 
     /**
@@ -408,7 +408,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      * 
      */
-    @Export(name="bootType", type=String.class, parameters={})
+    @Export(name="bootType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bootType;
 
     /**
@@ -422,7 +422,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The ID of the bootscript to use  (set boot_type to `bootscript`).
      * 
      */
-    @Export(name="bootscriptId", type=String.class, parameters={})
+    @Export(name="bootscriptId", refs={String.class}, tree="[0]")
     private Output<String> bootscriptId;
 
     /**
@@ -436,7 +436,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The cloud init script associated with this server
      * 
      */
-    @Export(name="cloudInit", type=String.class, parameters={})
+    @Export(name="cloudInit", refs={String.class}, tree="[0]")
     private Output<String> cloudInit;
 
     /**
@@ -450,7 +450,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * If true a dynamic IP will be attached to the server.
      * 
      */
-    @Export(name="enableDynamicIp", type=Boolean.class, parameters={})
+    @Export(name="enableDynamicIp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableDynamicIp;
 
     /**
@@ -464,7 +464,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * Determines if IPv6 is enabled for the server.
      * 
      */
-    @Export(name="enableIpv6", type=Boolean.class, parameters={})
+    @Export(name="enableIpv6", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableIpv6;
 
     /**
@@ -479,7 +479,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
      * 
      */
-    @Export(name="image", type=String.class, parameters={})
+    @Export(name="image", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> image;
 
     /**
@@ -494,7 +494,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * = (Optional) The ID of the reserved IP that is attached to the server.
      * 
      */
-    @Export(name="ipId", type=String.class, parameters={})
+    @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ipId;
 
     /**
@@ -508,7 +508,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
      * 
      */
-    @Export(name="ipv6Address", type=String.class, parameters={})
+    @Export(name="ipv6Address", refs={String.class}, tree="[0]")
     private Output<String> ipv6Address;
 
     /**
@@ -522,7 +522,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
      * 
      */
-    @Export(name="ipv6Gateway", type=String.class, parameters={})
+    @Export(name="ipv6Gateway", refs={String.class}, tree="[0]")
     private Output<String> ipv6Gateway;
 
     /**
@@ -536,7 +536,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
      * 
      */
-    @Export(name="ipv6PrefixLength", type=Integer.class, parameters={})
+    @Export(name="ipv6PrefixLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> ipv6PrefixLength;
 
     /**
@@ -550,7 +550,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The name of the server.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -564,7 +564,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The organization ID the server is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -578,7 +578,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      * 
      */
-    @Export(name="placementGroupId", type=String.class, parameters={})
+    @Export(name="placementGroupId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> placementGroupId;
 
     /**
@@ -592,7 +592,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * True when the placement group policy is respected.
      * 
      */
-    @Export(name="placementGroupPolicyRespected", type=Boolean.class, parameters={})
+    @Export(name="placementGroupPolicyRespected", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> placementGroupPolicyRespected;
 
     /**
@@ -606,7 +606,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The Scaleway internal IP address of the server.
      * 
      */
-    @Export(name="privateIp", type=String.class, parameters={})
+    @Export(name="privateIp", refs={String.class}, tree="[0]")
     private Output<String> privateIp;
 
     /**
@@ -621,7 +621,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
      * 
      */
-    @Export(name="privateNetworks", type=List.class, parameters={InstanceServerPrivateNetwork.class})
+    @Export(name="privateNetworks", refs={List.class,InstanceServerPrivateNetwork.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceServerPrivateNetwork>> privateNetworks;
 
     /**
@@ -636,7 +636,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the server is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -650,7 +650,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The public IPv4 address of the server.
      * 
      */
-    @Export(name="publicIp", type=String.class, parameters={})
+    @Export(name="publicIp", refs={String.class}, tree="[0]")
     private Output<String> publicIp;
 
     /**
@@ -664,7 +664,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      * 
      */
-    @Export(name="rootVolume", type=InstanceServerRootVolume.class, parameters={})
+    @Export(name="rootVolume", refs={InstanceServerRootVolume.class}, tree="[0]")
     private Output<InstanceServerRootVolume> rootVolume;
 
     /**
@@ -678,7 +678,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      * 
      */
-    @Export(name="securityGroupId", type=String.class, parameters={})
+    @Export(name="securityGroupId", refs={String.class}, tree="[0]")
     private Output<String> securityGroupId;
 
     /**
@@ -692,7 +692,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> state;
 
     /**
@@ -706,7 +706,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The tags associated with the server.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -722,7 +722,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -738,7 +738,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * The user data associated with the server
      * 
      */
-    @Export(name="userData", type=Map.class, parameters={String.class, String.class})
+    @Export(name="userData", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> userData;
 
     /**
@@ -752,7 +752,7 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the server should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

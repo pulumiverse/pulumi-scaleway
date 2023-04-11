@@ -111,7 +111,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * e.g. &#39;failover-website.s3-website.fr-par.scw.cloud&#39; if your bucket website URL is &#39;https://failover-website.s3-website.fr-par.scw.cloud/&#39;.
      * 
      */
-    @Export(name="failoverHost", type=String.class, parameters={})
+    @Export(name="failoverHost", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> failoverHost;
 
     /**
@@ -127,7 +127,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * User sessions will be forwarded to this port of backend servers.
      * 
      */
-    @Export(name="forwardPort", type=Integer.class, parameters={})
+    @Export(name="forwardPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> forwardPort;
 
     /**
@@ -141,7 +141,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.
      * 
      */
-    @Export(name="forwardPortAlgorithm", type=String.class, parameters={})
+    @Export(name="forwardPortAlgorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> forwardPortAlgorithm;
 
     /**
@@ -155,7 +155,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Backend protocol. Possible values are: `tcp` or `http`.
      * 
      */
-    @Export(name="forwardProtocol", type=String.class, parameters={})
+    @Export(name="forwardProtocol", refs={String.class}, tree="[0]")
     private Output<String> forwardProtocol;
 
     /**
@@ -169,7 +169,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Interval between two HC requests.
      * 
      */
-    @Export(name="healthCheckDelay", type=String.class, parameters={})
+    @Export(name="healthCheckDelay", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> healthCheckDelay;
 
     /**
@@ -183,7 +183,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
      * 
      */
-    @Export(name="healthCheckHttp", type=LoadbalancerBackendHealthCheckHttp.class, parameters={})
+    @Export(name="healthCheckHttp", refs={LoadbalancerBackendHealthCheckHttp.class}, tree="[0]")
     private Output</* @Nullable */ LoadbalancerBackendHealthCheckHttp> healthCheckHttp;
 
     /**
@@ -197,7 +197,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
      * 
      */
-    @Export(name="healthCheckHttps", type=LoadbalancerBackendHealthCheckHttps.class, parameters={})
+    @Export(name="healthCheckHttps", refs={LoadbalancerBackendHealthCheckHttps.class}, tree="[0]")
     private Output</* @Nullable */ LoadbalancerBackendHealthCheckHttps> healthCheckHttps;
 
     /**
@@ -211,7 +211,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Number of allowed failed HC requests before the backend server is marked down.
      * 
      */
-    @Export(name="healthCheckMaxRetries", type=Integer.class, parameters={})
+    @Export(name="healthCheckMaxRetries", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> healthCheckMaxRetries;
 
     /**
@@ -225,7 +225,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Port the HC requests will be send to.
      * 
      */
-    @Export(name="healthCheckPort", type=Integer.class, parameters={})
+    @Export(name="healthCheckPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> healthCheckPort;
 
     /**
@@ -239,7 +239,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
      * 
      */
-    @Export(name="healthCheckTcp", type=LoadbalancerBackendHealthCheckTcp.class, parameters={})
+    @Export(name="healthCheckTcp", refs={LoadbalancerBackendHealthCheckTcp.class}, tree="[0]")
     private Output<LoadbalancerBackendHealthCheckTcp> healthCheckTcp;
 
     /**
@@ -253,7 +253,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Timeout before we consider a HC request failed.
      * 
      */
-    @Export(name="healthCheckTimeout", type=String.class, parameters={})
+    @Export(name="healthCheckTimeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> healthCheckTimeout;
 
     /**
@@ -267,7 +267,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      * 
      */
-    @Export(name="ignoreSslServerVerify", type=Boolean.class, parameters={})
+    @Export(name="ignoreSslServerVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreSslServerVerify;
 
     /**
@@ -282,7 +282,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to `lb_id` will recreate the backend.
      * 
      */
-    @Export(name="lbId", type=String.class, parameters={})
+    @Export(name="lbId", refs={String.class}, tree="[0]")
     private Output<String> lbId;
 
     /**
@@ -297,7 +297,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * The name of the load-balancer backend.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -311,7 +311,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
      * 
      */
-    @Export(name="onMarkedDownAction", type=String.class, parameters={})
+    @Export(name="onMarkedDownAction", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> onMarkedDownAction;
 
     /**
@@ -325,7 +325,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
      * 
      */
-    @Export(name="proxyProtocol", type=String.class, parameters={})
+    @Export(name="proxyProtocol", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyProtocol;
 
     /**
@@ -343,7 +343,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Please use proxy_protocol instead */
-    @Export(name="sendProxyV2", type=Boolean.class, parameters={})
+    @Export(name="sendProxyV2", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendProxyV2;
 
     /**
@@ -357,7 +357,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
      * 
      */
-    @Export(name="serverIps", type=List.class, parameters={String.class})
+    @Export(name="serverIps", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> serverIps;
 
     /**
@@ -371,7 +371,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Enables SSL between load balancer and backend servers.
      * 
      */
-    @Export(name="sslBridging", type=Boolean.class, parameters={})
+    @Export(name="sslBridging", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sslBridging;
 
     /**
@@ -385,7 +385,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
      * 
      */
-    @Export(name="stickySessions", type=String.class, parameters={})
+    @Export(name="stickySessions", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stickySessions;
 
     /**
@@ -399,7 +399,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
      * 
      */
-    @Export(name="stickySessionsCookieName", type=String.class, parameters={})
+    @Export(name="stickySessionsCookieName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stickySessionsCookieName;
 
     /**
@@ -413,7 +413,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      * 
      */
-    @Export(name="timeoutConnect", type=String.class, parameters={})
+    @Export(name="timeoutConnect", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeoutConnect;
 
     /**
@@ -427,7 +427,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Maximum server connection inactivity time. (e.g.: `1s`)
      * 
      */
-    @Export(name="timeoutServer", type=String.class, parameters={})
+    @Export(name="timeoutServer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeoutServer;
 
     /**
@@ -441,7 +441,7 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      * Maximum tunnel inactivity time. (e.g.: `1s`)
      * 
      */
-    @Export(name="timeoutTunnel", type=String.class, parameters={})
+    @Export(name="timeoutTunnel", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeoutTunnel;
 
     /**

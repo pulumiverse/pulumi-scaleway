@@ -22,7 +22,7 @@ class ObjectItemArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectItem resource.
@@ -34,7 +34,7 @@ class ObjectItemArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -154,14 +154,14 @@ class ObjectItemArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Map of tags
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
@@ -188,7 +188,7 @@ class _ObjectItemState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ObjectItem resources.
@@ -200,7 +200,7 @@ class _ObjectItemState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
         """
         if bucket is not None:
@@ -322,14 +322,14 @@ class _ObjectItemState:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Map of tags
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
@@ -358,7 +358,7 @@ class ObjectItem(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -383,7 +383,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
         """
         ...
@@ -427,7 +427,7 @@ class ObjectItem(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -470,7 +470,7 @@ class ObjectItem(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             storage_class: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             visibility: Optional[pulumi.Input[str]] = None) -> 'ObjectItem':
         """
         Get an existing ObjectItem resource's state with the given name, id, and optional extra
@@ -487,7 +487,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, Any]] tags: Map of tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -572,7 +572,7 @@ class ObjectItem(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Map of tags
         """

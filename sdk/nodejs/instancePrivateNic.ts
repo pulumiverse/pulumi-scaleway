@@ -90,6 +90,10 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      */
     public readonly serverId!: pulumi.Output<string>;
     /**
+     * The tags associated with the private NIC.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
      * `zone`) The zone in which the server must be created.
      */
     public readonly zone!: pulumi.Output<string>;
@@ -110,6 +114,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstancePrivateNicArgs | undefined;
@@ -121,6 +126,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             }
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["serverId"] = args ? args.serverId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["macAddress"] = undefined /*out*/;
         }
@@ -146,6 +152,10 @@ export interface InstancePrivateNicState {
      */
     serverId?: pulumi.Input<string>;
     /**
+     * The tags associated with the private NIC.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * `zone`) The zone in which the server must be created.
      */
     zone?: pulumi.Input<string>;
@@ -163,6 +173,10 @@ export interface InstancePrivateNicArgs {
      * The ID of the server associated with.
      */
     serverId: pulumi.Input<string>;
+    /**
+     * The tags associated with the private NIC.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which the server must be created.
      */

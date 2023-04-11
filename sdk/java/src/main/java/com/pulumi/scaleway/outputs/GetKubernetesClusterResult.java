@@ -73,6 +73,11 @@ public final class GetKubernetesClusterResult {
      */
     private String organizationId;
     /**
+     * @return The ID of the private network of the cluster.
+     * 
+     */
+    private String privateNetworkId;
+    /**
      * @return The ID of the project the cluster is associated with.
      * 
      */
@@ -205,6 +210,13 @@ public final class GetKubernetesClusterResult {
         return this.organizationId;
     }
     /**
+     * @return The ID of the private network of the cluster.
+     * 
+     */
+    public String privateNetworkId() {
+        return this.privateNetworkId;
+    }
+    /**
      * @return The ID of the project the cluster is associated with.
      * 
      */
@@ -292,6 +304,7 @@ public final class GetKubernetesClusterResult {
         private @Nullable String name;
         private List<GetKubernetesClusterOpenIdConnectConfig> openIdConnectConfigs;
         private String organizationId;
+        private String privateNetworkId;
         private String projectId;
         private @Nullable String region;
         private String status;
@@ -319,6 +332,7 @@ public final class GetKubernetesClusterResult {
     	      this.name = defaults.name;
     	      this.openIdConnectConfigs = defaults.openIdConnectConfigs;
     	      this.organizationId = defaults.organizationId;
+    	      this.privateNetworkId = defaults.privateNetworkId;
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.status = defaults.status;
@@ -427,6 +441,11 @@ public final class GetKubernetesClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder privateNetworkId(String privateNetworkId) {
+            this.privateNetworkId = Objects.requireNonNull(privateNetworkId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
@@ -491,6 +510,7 @@ public final class GetKubernetesClusterResult {
             o.name = name;
             o.openIdConnectConfigs = openIdConnectConfigs;
             o.organizationId = organizationId;
+            o.privateNetworkId = privateNetworkId;
             o.projectId = projectId;
             o.region = region;
             o.status = status;

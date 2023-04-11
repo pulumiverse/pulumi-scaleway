@@ -15,6 +15,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetBaremetalServerIpResult
     {
         public readonly string Address;
+        /// <summary>
+        /// The ID of the server.
+        /// </summary>
         public readonly string Id;
         public readonly string Reverse;
         public readonly string Version;

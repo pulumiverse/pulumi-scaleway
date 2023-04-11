@@ -15,6 +15,36 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var serverIp = new Scaleway.InstanceIp("serverIp");
+    /// 
+    ///     var tfA = new Scaleway.DomainRecord("tfA", new()
+    ///     {
+    ///         DnsZone = "scaleway.com",
+    ///         Type = "A",
+    ///         Data = serverIp.Address,
+    ///         Ttl = 3600,
+    ///         Priority = 1,
+    ///     });
+    /// 
+    ///     var reverse = new Scaleway.InstanceIpReverseDns("reverse", new()
+    ///     {
+    ///         IpId = serverIp.Id,
+    ///         Reverse = "www.scaleway.com",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash

@@ -127,7 +127,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The amount of vCPU computing resources to allocate to each container. Defaults to 70.
      * 
      */
-    @Export(name="cpuLimit", type=Integer.class, parameters={})
+    @Export(name="cpuLimit", refs={Integer.class}, tree="[0]")
     private Output<Integer> cpuLimit;
 
     /**
@@ -141,7 +141,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The cron status of the container.
      * 
      */
-    @Export(name="cronStatus", type=String.class, parameters={})
+    @Export(name="cronStatus", refs={String.class}, tree="[0]")
     private Output<String> cronStatus;
 
     /**
@@ -155,7 +155,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * Boolean controlling whether the container is on a production environment.
      * 
      */
-    @Export(name="deploy", type=Boolean.class, parameters={})
+    @Export(name="deploy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deploy;
 
     /**
@@ -169,7 +169,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The description of the container.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -183,7 +183,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The native domain name of the container
      * 
      */
-    @Export(name="domainName", type=String.class, parameters={})
+    @Export(name="domainName", refs={String.class}, tree="[0]")
     private Output<String> domainName;
 
     /**
@@ -197,7 +197,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
      * 
      */
-    @Export(name="environmentVariables", type=Map.class, parameters={String.class, String.class})
+    @Export(name="environmentVariables", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> environmentVariables;
 
     /**
@@ -211,7 +211,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The error message of the container.
      * 
      */
-    @Export(name="errorMessage", type=String.class, parameters={})
+    @Export(name="errorMessage", refs={String.class}, tree="[0]")
     private Output<String> errorMessage;
 
     /**
@@ -225,7 +225,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * HTTP traffic configuration
      * 
      */
-    @Export(name="httpOption", type=String.class, parameters={})
+    @Export(name="httpOption", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> httpOption;
 
     /**
@@ -239,7 +239,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
      * 
      */
-    @Export(name="maxConcurrency", type=Integer.class, parameters={})
+    @Export(name="maxConcurrency", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxConcurrency;
 
     /**
@@ -253,7 +253,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The maximum of number of instances this container can scale to. Default to 20.
      * 
      */
-    @Export(name="maxScale", type=Integer.class, parameters={})
+    @Export(name="maxScale", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxScale;
 
     /**
@@ -267,7 +267,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The memory computing resources in MB to allocate to each container. Defaults to 128.
      * 
      */
-    @Export(name="memoryLimit", type=Integer.class, parameters={})
+    @Export(name="memoryLimit", refs={Integer.class}, tree="[0]")
     private Output<Integer> memoryLimit;
 
     /**
@@ -281,7 +281,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The minimum of running container instances continuously. Defaults to 0.
      * 
      */
-    @Export(name="minScale", type=Integer.class, parameters={})
+    @Export(name="minScale", refs={Integer.class}, tree="[0]")
     private Output<Integer> minScale;
 
     /**
@@ -295,7 +295,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The unique name of the container name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -309,7 +309,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The container namespace ID of the container.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -323,7 +323,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The port to expose the container. Defaults to 8080.
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output<Integer> port;
 
     /**
@@ -337,7 +337,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
      * 
      */
-    @Export(name="privacy", type=String.class, parameters={})
+    @Export(name="privacy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privacy;
 
     /**
@@ -351,7 +351,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> protocol;
 
     /**
@@ -365,7 +365,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * (Defaults to provider `region`) The region in which the container was created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -379,7 +379,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The registry image address. e.g: **&#34;rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE&#34;**.
      * 
      */
-    @Export(name="registryImage", type=String.class, parameters={})
+    @Export(name="registryImage", refs={String.class}, tree="[0]")
     private Output<String> registryImage;
 
     /**
@@ -393,7 +393,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
      * 
      */
-    @Export(name="registrySha256", type=String.class, parameters={})
+    @Export(name="registrySha256", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> registrySha256;
 
     /**
@@ -407,7 +407,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
      * 
      */
-    @Export(name="secretEnvironmentVariables", type=Map.class, parameters={String.class, String.class})
+    @Export(name="secretEnvironmentVariables", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> secretEnvironmentVariables;
 
     /**
@@ -421,7 +421,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The container status.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -435,7 +435,7 @@ public class Container extends com.pulumi.resources.CustomResource {
      * The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output<Integer> timeout;
 
     /**

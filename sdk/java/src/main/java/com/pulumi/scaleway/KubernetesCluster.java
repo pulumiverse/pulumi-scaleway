@@ -36,7 +36,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      * 
      */
-    @Export(name="admissionPlugins", type=List.class, parameters={String.class})
+    @Export(name="admissionPlugins", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> admissionPlugins;
 
     /**
@@ -50,7 +50,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * Additional Subject Alternative Names for the Kubernetes API server certificate
      * 
      */
-    @Export(name="apiserverCertSans", type=List.class, parameters={String.class})
+    @Export(name="apiserverCertSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> apiserverCertSans;
 
     /**
@@ -64,7 +64,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The URL of the Kubernetes API server.
      * 
      */
-    @Export(name="apiserverUrl", type=String.class, parameters={})
+    @Export(name="apiserverUrl", refs={String.class}, tree="[0]")
     private Output<String> apiserverUrl;
 
     /**
@@ -78,7 +78,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The auto upgrade configuration.
      * 
      */
-    @Export(name="autoUpgrade", type=KubernetesClusterAutoUpgrade.class, parameters={})
+    @Export(name="autoUpgrade", refs={KubernetesClusterAutoUpgrade.class}, tree="[0]")
     private Output<KubernetesClusterAutoUpgrade> autoUpgrade;
 
     /**
@@ -92,7 +92,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      * 
      */
-    @Export(name="autoscalerConfig", type=KubernetesClusterAutoscalerConfig.class, parameters={})
+    @Export(name="autoscalerConfig", refs={KubernetesClusterAutoscalerConfig.class}, tree="[0]")
     private Output<KubernetesClusterAutoscalerConfig> autoscalerConfig;
 
     /**
@@ -107,7 +107,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="cni", type=String.class, parameters={})
+    @Export(name="cni", refs={String.class}, tree="[0]")
     private Output<String> cni;
 
     /**
@@ -122,7 +122,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The creation date of the cluster.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -138,7 +138,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * If you prefer keeping it, you should instead set it as `false`.
      * 
      */
-    @Export(name="deleteAdditionalResources", type=Boolean.class, parameters={})
+    @Export(name="deleteAdditionalResources", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> deleteAdditionalResources;
 
     /**
@@ -154,7 +154,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * A description for the Kubernetes cluster.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -168,7 +168,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      * 
      */
-    @Export(name="featureGates", type=List.class, parameters={String.class})
+    @Export(name="featureGates", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> featureGates;
 
     /**
@@ -182,7 +182,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The kubeconfig configuration file of the Kubernetes cluster
      * 
      */
-    @Export(name="kubeconfigs", type=List.class, parameters={KubernetesClusterKubeconfig.class})
+    @Export(name="kubeconfigs", refs={List.class,KubernetesClusterKubeconfig.class}, tree="[0,1]")
     private Output<List<KubernetesClusterKubeconfig>> kubeconfigs;
 
     /**
@@ -196,7 +196,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The name for the Kubernetes cluster.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -210,7 +210,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The OpenID Connect configuration of the cluster
      * 
      */
-    @Export(name="openIdConnectConfig", type=KubernetesClusterOpenIdConnectConfig.class, parameters={})
+    @Export(name="openIdConnectConfig", refs={KubernetesClusterOpenIdConnectConfig.class}, tree="[0]")
     private Output<KubernetesClusterOpenIdConnectConfig> openIdConnectConfig;
 
     /**
@@ -224,7 +224,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The organization ID the cluster is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -235,10 +235,24 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.organizationId;
     }
     /**
+     * The ID of the private network of the cluster.
+     * 
+     */
+    @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
+    private Output<String> privateNetworkId;
+
+    /**
+     * @return The ID of the private network of the cluster.
+     * 
+     */
+    public Output<String> privateNetworkId() {
+        return this.privateNetworkId;
+    }
+    /**
      * `project_id`) The ID of the project the cluster is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -252,7 +266,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * `region`) The region in which the cluster should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -266,7 +280,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The status of the Kubernetes cluster.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -280,7 +294,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The tags associated with the Kubernetes cluster.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -294,7 +308,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -308,7 +322,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The last update date of the cluster.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -322,7 +336,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * Set to `true` if a newer Kubernetes version is available.
      * 
      */
-    @Export(name="upgradeAvailable", type=Boolean.class, parameters={})
+    @Export(name="upgradeAvailable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> upgradeAvailable;
 
     /**
@@ -336,7 +350,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The version of the Kubernetes cluster.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
@@ -350,7 +364,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The DNS wildcard that points to all ready nodes.
      * 
      */
-    @Export(name="wildcardDns", type=String.class, parameters={})
+    @Export(name="wildcardDns", refs={String.class}, tree="[0]")
     private Output<String> wildcardDns;
 
     /**
@@ -393,6 +407,9 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "kubeconfigs"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

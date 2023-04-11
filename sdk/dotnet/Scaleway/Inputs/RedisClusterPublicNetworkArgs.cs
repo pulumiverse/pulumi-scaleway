@@ -21,12 +21,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
         [Input("ips")]
         private InputList<string>? _ips;
+
+        /// <summary>
+        /// Lis of IPv4 address of the endpoint (IP address).
+        /// </summary>
         public InputList<string> Ips
         {
             get => _ips ?? (_ips = new InputList<string>());
             set => _ips = value;
         }
 
+        /// <summary>
+        /// TCP port of the endpoint.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 

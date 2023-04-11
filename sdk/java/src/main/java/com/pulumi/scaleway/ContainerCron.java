@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
  * Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
  * 
  * For more information consult
- * the [documentation](https://www.scaleway.com/en/docs/compute/containers/api-cli/cont-uploading-with-serverless-framework/#configuring-events)
+ * the [documentation](https://www.scaleway.com/en/docs/serverless/containers/)
  * .
  * 
  * For more details about the limitation
@@ -95,7 +95,7 @@ public class ContainerCron extends com.pulumi.resources.CustomResource {
      * during
      * 
      */
-    @Export(name="args", type=String.class, parameters={})
+    @Export(name="args", refs={String.class}, tree="[0]")
     private Output<String> args;
 
     /**
@@ -110,7 +110,7 @@ public class ContainerCron extends com.pulumi.resources.CustomResource {
      * The container ID to link with your cron.
      * 
      */
-    @Export(name="containerId", type=String.class, parameters={})
+    @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output<String> containerId;
 
     /**
@@ -125,7 +125,7 @@ public class ContainerCron extends com.pulumi.resources.CustomResource {
      * in where the job was created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -141,7 +141,7 @@ public class ContainerCron extends com.pulumi.resources.CustomResource {
      * executed.
      * 
      */
-    @Export(name="schedule", type=String.class, parameters={})
+    @Export(name="schedule", refs={String.class}, tree="[0]")
     private Output<String> schedule;
 
     /**
@@ -156,7 +156,7 @@ public class ContainerCron extends com.pulumi.resources.CustomResource {
      * The cron status.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

@@ -33,7 +33,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
      * 
      */
-    @Export(name="allowInsecure", type=Boolean.class, parameters={})
+    @Export(name="allowInsecure", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowInsecure;
 
     /**
@@ -47,7 +47,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * Allow more than one simultaneous connection using the same device credentials.
      * 
      */
-    @Export(name="allowMultipleConnections", type=Boolean.class, parameters={})
+    @Export(name="allowMultipleConnections", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowMultipleConnections;
 
     /**
@@ -61,7 +61,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The certificate bundle of the device.
      * 
      */
-    @Export(name="certificate", type=IotDeviceCertificate.class, parameters={})
+    @Export(name="certificate", refs={IotDeviceCertificate.class}, tree="[0]")
     private Output<IotDeviceCertificate> certificate;
 
     /**
@@ -75,7 +75,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The date and time the device was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -89,7 +89,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The description of the IoT device (e.g. `living room`).
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -103,7 +103,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The ID of the hub on which this device will be created.
      * 
      */
-    @Export(name="hubId", type=String.class, parameters={})
+    @Export(name="hubId", refs={String.class}, tree="[0]")
     private Output<String> hubId;
 
     /**
@@ -117,7 +117,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The current connection status of the device.
      * 
      */
-    @Export(name="isConnected", type=Boolean.class, parameters={})
+    @Export(name="isConnected", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isConnected;
 
     /**
@@ -131,7 +131,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The last MQTT activity of the device.
      * 
      */
-    @Export(name="lastActivityAt", type=String.class, parameters={})
+    @Export(name="lastActivityAt", refs={String.class}, tree="[0]")
     private Output<String> lastActivityAt;
 
     /**
@@ -145,7 +145,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * Rules that define which messages are authorized or denied based on their topic.
      * 
      */
-    @Export(name="messageFilters", type=IotDeviceMessageFilters.class, parameters={})
+    @Export(name="messageFilters", refs={IotDeviceMessageFilters.class}, tree="[0]")
     private Output</* @Nullable */ IotDeviceMessageFilters> messageFilters;
 
     /**
@@ -159,7 +159,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The name of the IoT device you want to create (e.g. `my-device`).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -173,7 +173,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The region you want to attach the resource to
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -187,7 +187,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The current status of the device.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -201,7 +201,7 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
      * The date and time the device resource was updated.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

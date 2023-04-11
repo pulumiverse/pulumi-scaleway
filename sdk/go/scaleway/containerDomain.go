@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -80,7 +80,7 @@ import (
 //				Timeout:        pulumi.Int(600),
 //				MaxConcurrency: pulumi.Int(80),
 //				Privacy:        pulumi.String("public"),
-//				Protocol:       pulumi.String("h2c"),
+//				Protocol:       pulumi.String("http1"),
 //				Deploy:         pulumi.Bool(true),
 //			})
 //			if err != nil {

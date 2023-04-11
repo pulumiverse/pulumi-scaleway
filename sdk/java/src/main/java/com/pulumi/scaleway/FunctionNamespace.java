@@ -67,7 +67,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The description of the namespace.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -81,7 +81,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The environment variables of the namespace.
      * 
      */
-    @Export(name="environmentVariables", type=Map.class, parameters={String.class, String.class})
+    @Export(name="environmentVariables", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> environmentVariables;
 
     /**
@@ -95,7 +95,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The unique name of the function namespace.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -109,7 +109,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The organization ID the namespace is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -123,7 +123,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the namespace is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -137,7 +137,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * `region`). The region in which the namespace should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -151,7 +151,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The registry endpoint of the namespace.
      * 
      */
-    @Export(name="registryEndpoint", type=String.class, parameters={})
+    @Export(name="registryEndpoint", refs={String.class}, tree="[0]")
     private Output<String> registryEndpoint;
 
     /**
@@ -165,7 +165,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The registry namespace ID of the namespace.
      * 
      */
-    @Export(name="registryNamespaceId", type=String.class, parameters={})
+    @Export(name="registryNamespaceId", refs={String.class}, tree="[0]")
     private Output<String> registryNamespaceId;
 
     /**
@@ -179,7 +179,7 @@ public class FunctionNamespace extends com.pulumi.resources.CustomResource {
      * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
      * 
      */
-    @Export(name="secretEnvironmentVariables", type=Map.class, parameters={String.class, String.class})
+    @Export(name="secretEnvironmentVariables", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> secretEnvironmentVariables;
 
     /**

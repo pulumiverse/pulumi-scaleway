@@ -60,7 +60,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * The IP address.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -74,7 +74,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * The organization ID the IP is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -88,7 +88,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the IP is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -102,7 +102,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * The reverse dns attached to this IP
      * 
      */
-    @Export(name="reverse", type=String.class, parameters={})
+    @Export(name="reverse", refs={String.class}, tree="[0]")
     private Output<String> reverse;
 
     /**
@@ -116,7 +116,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * The server associated with this IP
      * 
      */
-    @Export(name="serverId", type=String.class, parameters={})
+    @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output<String> serverId;
 
     /**
@@ -130,7 +130,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * The tags associated with the IP.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -144,7 +144,7 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the IP should be reserved.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

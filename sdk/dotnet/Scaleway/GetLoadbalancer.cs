@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -53,6 +54,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -84,7 +86,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public string? LbId { get; set; }
 
         /// <summary>
-        /// The IP address.
+        /// The load balancer name.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -93,7 +95,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public bool? ReleaseIp { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the LB exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -110,7 +112,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The IP address.
+        /// The load balancer name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -119,7 +121,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<bool>? ReleaseIp { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the LB exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -156,7 +158,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly bool? ReleaseIp;
         public readonly string SslCompatibilityLevel;
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// The tags associated with the load-balancer.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
@@ -164,7 +166,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the LB exists.
         /// </summary>
         public readonly string? Zone;
 

@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -38,6 +39,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -93,6 +95,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags associated with the private NIC.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the server must be created.
@@ -159,6 +167,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the private NIC.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// `zone`) The zone in which the server must be created.
         /// </summary>
@@ -190,6 +210,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the private NIC.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// `zone`) The zone in which the server must be created.

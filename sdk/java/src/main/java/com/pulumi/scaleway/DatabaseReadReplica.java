@@ -133,7 +133,7 @@ public class DatabaseReadReplica extends com.pulumi.resources.CustomResource {
      * Creates a direct access endpoint to rdb replica.
      * 
      */
-    @Export(name="directAccess", type=DatabaseReadReplicaDirectAccess.class, parameters={})
+    @Export(name="directAccess", refs={DatabaseReadReplicaDirectAccess.class}, tree="[0]")
     private Output</* @Nullable */ DatabaseReadReplicaDirectAccess> directAccess;
 
     /**
@@ -144,14 +144,14 @@ public class DatabaseReadReplica extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.directAccess);
     }
     /**
-     * Id of the rdb instance to replicate.
+     * UUID of the rdb instance.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
-     * @return Id of the rdb instance to replicate.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -161,7 +161,7 @@ public class DatabaseReadReplica extends com.pulumi.resources.CustomResource {
      * Create an endpoint in a private network.
      * 
      */
-    @Export(name="privateNetwork", type=DatabaseReadReplicaPrivateNetwork.class, parameters={})
+    @Export(name="privateNetwork", refs={DatabaseReadReplicaPrivateNetwork.class}, tree="[0]")
     private Output</* @Nullable */ DatabaseReadReplicaPrivateNetwork> privateNetwork;
 
     /**
@@ -172,14 +172,16 @@ public class DatabaseReadReplica extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.privateNetwork);
     }
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database read replica should be created.
+     * @return `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     public Output<String> region() {

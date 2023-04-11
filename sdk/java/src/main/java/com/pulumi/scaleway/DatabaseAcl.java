@@ -71,7 +71,7 @@ public class DatabaseAcl extends com.pulumi.resources.CustomResource {
      * A list of ACLs (structure is described below)
      * 
      */
-    @Export(name="aclRules", type=List.class, parameters={DatabaseAclAclRule.class})
+    @Export(name="aclRules", refs={List.class,DatabaseAclAclRule.class}, tree="[0,1]")
     private Output<List<DatabaseAclAclRule>> aclRules;
 
     /**
@@ -82,28 +82,28 @@ public class DatabaseAcl extends com.pulumi.resources.CustomResource {
         return this.aclRules;
     }
     /**
-     * The instance on which to create the ACL.
+     * UUID of the rdb instance.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
-     * @return The instance on which to create the ACL.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
         return this.instanceId;
     }
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return `region`) The region in which the Database Instance should be created.
      * 
      */
     public Output<String> region() {

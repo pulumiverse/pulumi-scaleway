@@ -476,6 +476,12 @@ class ObjectBucket(pulumi.CustomResource):
          $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
+         If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+
+        ```sh
+         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
@@ -582,6 +588,12 @@ class ObjectBucket(pulumi.CustomResource):
 
         ```sh
          $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        ```
+
+         If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+
+        ```sh
+         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

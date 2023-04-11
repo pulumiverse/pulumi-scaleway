@@ -33,7 +33,7 @@ public class InstanceSecurityGroupRules extends com.pulumi.resources.CustomResou
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      * 
      */
-    @Export(name="inboundRules", type=List.class, parameters={InstanceSecurityGroupRulesInboundRule.class})
+    @Export(name="inboundRules", refs={List.class,InstanceSecurityGroupRulesInboundRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceSecurityGroupRulesInboundRule>> inboundRules;
 
     /**
@@ -47,7 +47,7 @@ public class InstanceSecurityGroupRules extends com.pulumi.resources.CustomResou
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      * 
      */
-    @Export(name="outboundRules", type=List.class, parameters={InstanceSecurityGroupRulesOutboundRule.class})
+    @Export(name="outboundRules", refs={List.class,InstanceSecurityGroupRulesOutboundRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceSecurityGroupRulesOutboundRule>> outboundRules;
 
     /**
@@ -61,7 +61,7 @@ public class InstanceSecurityGroupRules extends com.pulumi.resources.CustomResou
      * The ID of the security group.
      * 
      */
-    @Export(name="securityGroupId", type=String.class, parameters={})
+    @Export(name="securityGroupId", refs={String.class}, tree="[0]")
     private Output<String> securityGroupId;
 
     /**

@@ -22,7 +22,7 @@ class FunctionDomainArgs:
         :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
         :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
                You should use a CNAME domain record that point to your native function `domain_name` for it.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
         """
         pulumi.set(__self__, "function_id", function_id)
         pulumi.set(__self__, "hostname", hostname)
@@ -58,7 +58,7 @@ class FunctionDomainArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        (Defaults to provider `region`) The region in where the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -79,7 +79,7 @@ class _FunctionDomainState:
         :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
         :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
                You should use a CNAME domain record that point to your native function `domain_name` for it.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
         :param pulumi.Input[str] url: The URL that triggers the function
         """
         if function_id is not None:
@@ -120,7 +120,7 @@ class _FunctionDomainState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        (Defaults to provider `region`) The region in where the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -189,7 +189,7 @@ class FunctionDomain(pulumi.CustomResource):
         :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
         :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
                You should use a CNAME domain record that point to your native function `domain_name` for it.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
         """
         ...
     @overload
@@ -290,7 +290,7 @@ class FunctionDomain(pulumi.CustomResource):
         :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
         :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
                You should use a CNAME domain record that point to your native function `domain_name` for it.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
         :param pulumi.Input[str] url: The URL that triggers the function
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -324,7 +324,7 @@ class FunctionDomain(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        (Defaults to provider `region`) The region in where the domain was created.
         """
         return pulumi.get(self, "region")
 

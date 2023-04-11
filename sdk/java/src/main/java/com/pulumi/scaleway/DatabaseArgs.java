@@ -16,14 +16,14 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
     public static final DatabaseArgs Empty = new DatabaseArgs();
 
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where to create the database.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -45,11 +45,27 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
     private DatabaseArgs() {}
 
     private DatabaseArgs(DatabaseArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.region = $.region;
     }
 
     public static Builder builder() {
@@ -71,7 +87,7 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -82,7 +98,7 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -110,6 +126,27 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         public DatabaseArgs build() {

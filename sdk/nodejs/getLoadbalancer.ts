@@ -41,12 +41,12 @@ export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.Invoke
 export interface GetLoadbalancerArgs {
     lbId?: string;
     /**
-     * The IP address.
+     * The load balancer name.
      */
     name?: string;
     releaseIp?: boolean;
     /**
-     * (Defaults to provider `region`) The region in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the LB exists.
      */
     zone?: string;
 }
@@ -77,7 +77,7 @@ export interface GetLoadbalancerResult {
     readonly releaseIp?: boolean;
     readonly sslCompatibilityLevel: string;
     /**
-     * The tags associated with the load-balancers.
+     * The tags associated with the load-balancer.
      */
     readonly tags: string[];
     /**
@@ -85,7 +85,7 @@ export interface GetLoadbalancerResult {
      */
     readonly type: string;
     /**
-     * (Defaults to provider `region`) The region in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the LB exists.
      */
     readonly zone?: string;
 }
@@ -116,12 +116,12 @@ export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: p
 export interface GetLoadbalancerOutputArgs {
     lbId?: pulumi.Input<string>;
     /**
-     * The IP address.
+     * The load balancer name.
      */
     name?: pulumi.Input<string>;
     releaseIp?: pulumi.Input<boolean>;
     /**
-     * (Defaults to provider `region`) The region in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the LB exists.
      */
     zone?: pulumi.Input<string>;
 }

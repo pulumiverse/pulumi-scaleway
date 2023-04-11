@@ -62,28 +62,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/database:Database")
 public class Database extends com.pulumi.resources.CustomResource {
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where to create the database.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
         return this.instanceId;
     }
     /**
-     * Whether or not the database is managed or not.
+     * Whether the database is managed or not.
      * 
      */
-    @Export(name="managed", type=Boolean.class, parameters={})
+    @Export(name="managed", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> managed;
 
     /**
-     * @return Whether or not the database is managed or not.
+     * @return Whether the database is managed or not.
      * 
      */
     public Output<Boolean> managed() {
@@ -93,7 +93,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Name of the database (e.g. `my-new-database`).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -107,7 +107,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The name of the owner of the database.
      * 
      */
-    @Export(name="owner", type=String.class, parameters={})
+    @Export(name="owner", refs={String.class}, tree="[0]")
     private Output<String> owner;
 
     /**
@@ -118,10 +118,24 @@ public class Database extends com.pulumi.resources.CustomResource {
         return this.owner;
     }
     /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Export(name="region", refs={String.class}, tree="[0]")
+    private Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Output<String> region() {
+        return this.region;
+    }
+    /**
      * Size of the database (in bytes).
      * 
      */
-    @Export(name="size", type=String.class, parameters={})
+    @Export(name="size", refs={String.class}, tree="[0]")
     private Output<String> size;
 
     /**

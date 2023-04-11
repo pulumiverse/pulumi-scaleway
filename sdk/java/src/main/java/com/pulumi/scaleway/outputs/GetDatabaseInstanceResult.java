@@ -42,7 +42,7 @@ public final class GetDatabaseInstanceResult {
     private List<GetDatabaseInstancePrivateNetwork> privateNetworks;
     private String projectId;
     private List<GetDatabaseInstanceReadReplica> readReplicas;
-    private String region;
+    private @Nullable String region;
     private Map<String,String> settings;
     private List<String> tags;
     private String userName;
@@ -114,8 +114,8 @@ public final class GetDatabaseInstanceResult {
     public List<GetDatabaseInstanceReadReplica> readReplicas() {
         return this.readReplicas;
     }
-    public String region() {
-        return this.region;
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
     }
     public Map<String,String> settings() {
         return this.settings;
@@ -162,7 +162,7 @@ public final class GetDatabaseInstanceResult {
         private List<GetDatabaseInstancePrivateNetwork> privateNetworks;
         private String projectId;
         private List<GetDatabaseInstanceReadReplica> readReplicas;
-        private String region;
+        private @Nullable String region;
         private Map<String,String> settings;
         private List<String> tags;
         private String userName;
@@ -309,8 +309,8 @@ public final class GetDatabaseInstanceResult {
             return readReplicas(List.of(readReplicas));
         }
         @CustomType.Setter
-        public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+        public Builder region(@Nullable String region) {
+            this.region = region;
             return this;
         }
         @CustomType.Setter

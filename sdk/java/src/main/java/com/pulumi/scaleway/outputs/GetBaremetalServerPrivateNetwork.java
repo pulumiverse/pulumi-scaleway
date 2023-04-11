@@ -11,6 +11,10 @@ import java.util.Objects;
 @CustomType
 public final class GetBaremetalServerPrivateNetwork {
     private String createdAt;
+    /**
+     * @return The ID of the server.
+     * 
+     */
     private String id;
     private String status;
     private String updatedAt;
@@ -20,6 +24,10 @@ public final class GetBaremetalServerPrivateNetwork {
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The ID of the server.
+     * 
+     */
     public String id() {
         return this.id;
     }

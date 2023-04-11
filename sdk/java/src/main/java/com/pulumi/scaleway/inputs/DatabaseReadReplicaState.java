@@ -33,14 +33,14 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Id of the rdb instance to replicate.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
-     * @return Id of the rdb instance to replicate.
+     * @return UUID of the rdb instance.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -63,14 +63,16 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database read replica should be created.
+     * @return `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -126,7 +128,7 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param instanceId Id of the rdb instance to replicate.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -137,7 +139,7 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param instanceId Id of the rdb instance to replicate.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -168,7 +170,8 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param region `region`) The region in which the Database read replica should be created.
+         * @param region `region`) The region
+         * in which the Database read replica should be created.
          * 
          * @return builder
          * 
@@ -179,7 +182,8 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param region `region`) The region in which the Database read replica should be created.
+         * @param region `region`) The region
+         * in which the Database read replica should be created.
          * 
          * @return builder
          * 

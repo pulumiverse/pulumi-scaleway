@@ -84,7 +84,7 @@ export class DatabaseBackup extends pulumi.CustomResource {
      */
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
-     * UUID of the instance where the database to backup is.
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -96,7 +96,7 @@ export class DatabaseBackup extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -170,7 +170,7 @@ export interface DatabaseBackupState {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * UUID of the instance where the database to backup is.
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -182,7 +182,7 @@ export interface DatabaseBackupState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string>;
     /**
@@ -208,7 +208,7 @@ export interface DatabaseBackupArgs {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * UUID of the instance where the database to backup is.
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
@@ -216,7 +216,7 @@ export interface DatabaseBackupArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string>;
 }

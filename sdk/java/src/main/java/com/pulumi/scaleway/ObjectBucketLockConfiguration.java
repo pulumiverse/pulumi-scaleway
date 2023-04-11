@@ -20,7 +20,7 @@ public class ObjectBucketLockConfiguration extends com.pulumi.resources.CustomRe
      * The bucket name.
      * 
      */
-    @Export(name="bucket", type=String.class, parameters={})
+    @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
@@ -34,7 +34,7 @@ public class ObjectBucketLockConfiguration extends com.pulumi.resources.CustomRe
      * The project_id you want to attach the resource to
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -48,7 +48,7 @@ public class ObjectBucketLockConfiguration extends com.pulumi.resources.CustomRe
      * The region you want to attach the resource to
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -62,7 +62,7 @@ public class ObjectBucketLockConfiguration extends com.pulumi.resources.CustomRe
      * Specifies the Object Lock rule for the specified object.
      * 
      */
-    @Export(name="rule", type=ObjectBucketLockConfigurationRule.class, parameters={})
+    @Export(name="rule", refs={ObjectBucketLockConfigurationRule.class}, tree="[0]")
     private Output<ObjectBucketLockConfigurationRule> rule;
 
     /**

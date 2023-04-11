@@ -9,6 +9,9 @@ from .account_project import *
 from .account_ssh_key import *
 from .apple_slicon_valley_server import *
 from .baremetal_server import *
+from .cockpit import *
+from .cockpit_grafana_user import *
+from .cockpit_token import *
 from .container import *
 from .container_cron import *
 from .container_domain import *
@@ -35,6 +38,7 @@ from .get_baremetal_offer import *
 from .get_baremetal_option import *
 from .get_baremetal_os import *
 from .get_baremetal_server import *
+from .get_cockpit import *
 from .get_container import *
 from .get_container_namespace import *
 from .get_database import *
@@ -53,6 +57,7 @@ from .get_iam_ssh_key import *
 from .get_iam_user import *
 from .get_instance_image import *
 from .get_instance_ip import *
+from .get_instance_private_nic import *
 from .get_instance_security_group import *
 from .get_instance_server import *
 from .get_instance_servers import *
@@ -60,8 +65,18 @@ from .get_instance_snapshot import *
 from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
+from .get_k8s_version import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
+from .get_lb_acls import *
+from .get_lb_backend import *
+from .get_lb_backends import *
+from .get_lb_frontend import *
+from .get_lb_frontends import *
+from .get_lb_ips import *
+from .get_lb_route import *
+from .get_lb_routes import *
+from .get_lbs import *
 from .get_loadbalancer import *
 from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
@@ -70,6 +85,8 @@ from .get_object_bucket import *
 from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_namespace import *
+from .get_secret import *
+from .get_secret_version import *
 from .get_tem_domain import *
 from .get_vpc_gateway_network import *
 from .get_vpc_private_network import *
@@ -78,6 +95,7 @@ from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_pat_rule import *
+from .get_web_host_offer import *
 from .iam_api_key import *
 from .iam_application import *
 from .iam_group import *
@@ -117,6 +135,8 @@ from .object_item import *
 from .provider import *
 from .redis_cluster import *
 from .registry_namespace import *
+from .secret import *
+from .secret_version import *
 from .tem_domain import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
@@ -124,6 +144,7 @@ from .vpc_public_gateway import *
 from .vpc_public_gateway_dhcp import *
 from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
+from .vpc_public_gateway_ip_reverse_dns import *
 from .vpc_public_gateway_pat_rule import *
 from ._inputs import *
 from . import outputs
@@ -168,6 +189,30 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/baremetalServer:BaremetalServer": "BaremetalServer"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/cockpit",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/cockpit:Cockpit": "Cockpit"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/cockpitGrafanaUser",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser": "CockpitGrafanaUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/cockpitToken",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/cockpitToken:CockpitToken": "CockpitToken"
   }
  },
  {
@@ -636,6 +681,22 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/secret",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/secret:Secret": "Secret"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/secretVersion",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/secretVersion:SecretVersion": "SecretVersion"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/temDomain",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -688,6 +749,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp": "VpcPublicGatewayIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/vpcPublicGatewayIpReverseDns",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns": "VpcPublicGatewayIpReverseDns"
   }
  },
  {

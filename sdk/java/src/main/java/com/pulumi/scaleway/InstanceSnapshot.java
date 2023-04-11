@@ -167,7 +167,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * The snapshot creation time.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -181,7 +181,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * Import a snapshot from a qcow2 file located in a bucket
      * 
      */
-    @Export(name="import", type=InstanceSnapshotImport.class, parameters={})
+    @Export(name="import", refs={InstanceSnapshotImport.class}, tree="[0]")
     private Output</* @Nullable */ InstanceSnapshotImport> import_;
 
     /**
@@ -195,7 +195,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * The name of the snapshot. If not provided it will be randomly generated.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -209,7 +209,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * The organization ID the snapshot is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -224,7 +224,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -239,7 +239,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * (Optional) The size of the snapshot.
      * 
      */
-    @Export(name="sizeInGb", type=Integer.class, parameters={})
+    @Export(name="sizeInGb", refs={Integer.class}, tree="[0]")
     private Output<Integer> sizeInGb;
 
     /**
@@ -253,7 +253,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * A list of tags to apply to the snapshot.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -268,7 +268,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * Updates to this field will recreate a new resource.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -283,7 +283,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * The ID of the volume to take a snapshot from.
      * 
      */
-    @Export(name="volumeId", type=String.class, parameters={})
+    @Export(name="volumeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> volumeId;
 
     /**
@@ -298,7 +298,7 @@ public class InstanceSnapshot extends com.pulumi.resources.CustomResource {
      * the snapshot should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

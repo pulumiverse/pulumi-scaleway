@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -123,7 +123,7 @@ import (
 //
 // In addition to all above arguments, the following attribute is exported:
 //
-// * `id` - The bucket and region separated by a slash (/)
+// * `id` - The region and bucket separated by a slash (/)
 // * `websiteDomain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 // * `websiteEndpoint` - The website endpoint.
 //

@@ -142,7 +142,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        The tags associated with the load-balancers.
+        The tags associated with the load-balancer.
         """
         return pulumi.get(self, "tags")
 
@@ -158,7 +158,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def zone(self) -> Optional[str]:
         """
-        (Defaults to provider `region`) The region in which the LB exists.
+        (Defaults to provider `zone`) The zone in which the LB exists.
         """
         return pulumi.get(self, "zone")
 
@@ -205,8 +205,8 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     ```
 
 
-    :param str name: The IP address.
-    :param str zone: (Defaults to provider `region`) The region in which the LB exists.
+    :param str name: The load balancer name.
+    :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
@@ -254,7 +254,7 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The IP address.
-    :param str zone: (Defaults to provider `region`) The region in which the LB exists.
+    :param str name: The load balancer name.
+    :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
     """
     ...

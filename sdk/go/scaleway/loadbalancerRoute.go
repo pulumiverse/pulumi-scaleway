@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,7 +16,7 @@ import (
 //
 // ## Examples
 //
-// ### Basic
+// ### With SNI
 //
 // ```go
 // package main
@@ -61,7 +61,63 @@ import (
 //			_, err = scaleway.NewLoadbalancerRoute(ctx, "rt01", &scaleway.LoadbalancerRouteArgs{
 //				FrontendId: frt01.ID(),
 //				BackendId:  bkd01.ID(),
-//				MatchSni:   pulumi.String("scaleway.com"),
+//				MatchSni:   pulumi.String("sni.scaleway.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With host-header
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ip01, err := scaleway.NewLoadbalancerIp(ctx, "ip01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			lb01, err := scaleway.NewLoadbalancer(ctx, "lb01", &scaleway.LoadbalancerArgs{
+//				IpId: ip01.ID(),
+//				Type: pulumi.String("lb-s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bkd01, err := scaleway.NewLoadbalancerBackend(ctx, "bkd01", &scaleway.LoadbalancerBackendArgs{
+//				LbId:            lb01.ID(),
+//				ForwardProtocol: pulumi.String("tcp"),
+//				ForwardPort:     pulumi.Int(80),
+//				ProxyProtocol:   pulumi.String("none"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			frt01, err := scaleway.NewLoadbalancerFrontend(ctx, "frt01", &scaleway.LoadbalancerFrontendArgs{
+//				LbId:        lb01.ID(),
+//				BackendId:   bkd01.ID(),
+//				InboundPort: pulumi.Int(80),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewLoadbalancerRoute(ctx, "rt01", &scaleway.LoadbalancerRouteArgs{
+//				FrontendId:      frt01.ID(),
+//				BackendId:       bkd01.ID(),
+//				MatchHostHeader: pulumi.String("host.scaleway.com"),
 //			})
 //			if err != nil {
 //				return err
@@ -86,10 +142,18 @@ type LoadbalancerRoute struct {
 
 	// The ID of the backend to which the route is associated.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
+	// The date at which the route was created.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the frontend to which the route is associated.
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
-	// The SNI to match.
+	// The Host request header specifies the host of the server to which the request is being sent.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	MatchHostHeader pulumi.StringPtrOutput `pulumi:"matchHostHeader"`
+	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
+	// The date at which the route was last updated.
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
 // NewLoadbalancerRoute registers a new resource with the given unique name, arguments, and options.
@@ -130,19 +194,35 @@ func GetLoadbalancerRoute(ctx *pulumi.Context,
 type loadbalancerRouteState struct {
 	// The ID of the backend to which the route is associated.
 	BackendId *string `pulumi:"backendId"`
+	// The date at which the route was created.
+	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the frontend to which the route is associated.
 	FrontendId *string `pulumi:"frontendId"`
-	// The SNI to match.
+	// The Host request header specifies the host of the server to which the request is being sent.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	MatchHostHeader *string `pulumi:"matchHostHeader"`
+	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
 	MatchSni *string `pulumi:"matchSni"`
+	// The date at which the route was last updated.
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type LoadbalancerRouteState struct {
 	// The ID of the backend to which the route is associated.
 	BackendId pulumi.StringPtrInput
+	// The date at which the route was created.
+	CreatedAt pulumi.StringPtrInput
 	// The ID of the frontend to which the route is associated.
 	FrontendId pulumi.StringPtrInput
-	// The SNI to match.
+	// The Host request header specifies the host of the server to which the request is being sent.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	MatchHostHeader pulumi.StringPtrInput
+	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
 	MatchSni pulumi.StringPtrInput
+	// The date at which the route was last updated.
+	UpdatedAt pulumi.StringPtrInput
 }
 
 func (LoadbalancerRouteState) ElementType() reflect.Type {
@@ -154,7 +234,11 @@ type loadbalancerRouteArgs struct {
 	BackendId string `pulumi:"backendId"`
 	// The ID of the frontend to which the route is associated.
 	FrontendId string `pulumi:"frontendId"`
-	// The SNI to match.
+	// The Host request header specifies the host of the server to which the request is being sent.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	MatchHostHeader *string `pulumi:"matchHostHeader"`
+	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
 	MatchSni *string `pulumi:"matchSni"`
 }
 
@@ -164,7 +248,11 @@ type LoadbalancerRouteArgs struct {
 	BackendId pulumi.StringInput
 	// The ID of the frontend to which the route is associated.
 	FrontendId pulumi.StringInput
-	// The SNI to match.
+	// The Host request header specifies the host of the server to which the request is being sent.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	MatchHostHeader pulumi.StringPtrInput
+	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// Only one of `matchSni` and `matchHostHeader` should be specified.
 	MatchSni pulumi.StringPtrInput
 }
 
@@ -260,14 +348,31 @@ func (o LoadbalancerRouteOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
 
+// The date at which the route was created.
+func (o LoadbalancerRouteOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // The ID of the frontend to which the route is associated.
 func (o LoadbalancerRouteOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.FrontendId }).(pulumi.StringOutput)
 }
 
-// The SNI to match.
+// The Host request header specifies the host of the server to which the request is being sent.
+// Only one of `matchSni` and `matchHostHeader` should be specified.
+func (o LoadbalancerRouteOutput) MatchHostHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchHostHeader }).(pulumi.StringPtrOutput)
+}
+
+// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+// Only one of `matchSni` and `matchHostHeader` should be specified.
 func (o LoadbalancerRouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
+}
+
+// The date at which the route was last updated.
+func (o LoadbalancerRouteOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type LoadbalancerRouteArrayOutput struct{ *pulumi.OutputState }

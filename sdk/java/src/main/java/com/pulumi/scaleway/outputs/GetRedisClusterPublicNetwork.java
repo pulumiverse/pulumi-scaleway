@@ -11,11 +11,19 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRedisClusterPublicNetwork {
+    /**
+     * @return The ID of the Redis cluster.
+     * 
+     */
     private String id;
     private List<String> ips;
     private Integer port;
 
     private GetRedisClusterPublicNetwork() {}
+    /**
+     * @return The ID of the Redis cluster.
+     * 
+     */
     public String id() {
         return this.id;
     }

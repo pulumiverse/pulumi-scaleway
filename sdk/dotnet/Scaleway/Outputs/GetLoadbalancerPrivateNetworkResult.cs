@@ -19,7 +19,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         public readonly ImmutableArray<string> StaticConfigs;
         public readonly string Status;
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the LB exists.
         /// </summary>
         public readonly string Zone;
 

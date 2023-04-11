@@ -117,7 +117,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The date and time of the creation of the public gateway DHCP config.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -131,7 +131,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The ID of the owning GatewayNetwork.
      * 
      */
-    @Export(name="gatewayNetworkId", type=String.class, parameters={})
+    @Export(name="gatewayNetworkId", refs={String.class}, tree="[0]")
     private Output<String> gatewayNetworkId;
 
     /**
@@ -145,7 +145,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The Hostname of the client machine.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -159,7 +159,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The IP address to give to the machine (IP address).
      * 
      */
-    @Export(name="ipAddress", type=String.class, parameters={})
+    @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
@@ -173,7 +173,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The MAC address to give a static entry to.
      * 
      */
-    @Export(name="macAddress", type=String.class, parameters={})
+    @Export(name="macAddress", refs={String.class}, tree="[0]")
     private Output<String> macAddress;
 
     /**
@@ -187,7 +187,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -201,7 +201,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * The date and time of the last update of the public gateway DHCP config.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -215,7 +215,7 @@ public class VpcPublicGatewayDhcpReservation extends com.pulumi.resources.Custom
      * `zone`) The zone in which the public gateway DHCP config should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

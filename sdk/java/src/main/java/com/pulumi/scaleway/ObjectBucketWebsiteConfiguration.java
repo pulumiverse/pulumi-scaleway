@@ -128,7 +128,7 @@ import javax.annotation.Nullable;
  * 
  * In addition to all above arguments, the following attribute is exported:
  * 
- * * `id` - The bucket and region separated by a slash (/)
+ * * `id` - The region and bucket separated by a slash (/)
  * * `website_domain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
  * * `website_endpoint` - The website endpoint.
  * 
@@ -155,7 +155,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * (Required, Forces new resource) The name of the bucket.
      * 
      */
-    @Export(name="bucket", type=String.class, parameters={})
+    @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
@@ -169,7 +169,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * (Optional) The name of the error document for the website detailed below.
      * 
      */
-    @Export(name="errorDocument", type=ObjectBucketWebsiteConfigurationErrorDocument.class, parameters={})
+    @Export(name="errorDocument", refs={ObjectBucketWebsiteConfigurationErrorDocument.class}, tree="[0]")
     private Output</* @Nullable */ ObjectBucketWebsiteConfigurationErrorDocument> errorDocument;
 
     /**
@@ -183,7 +183,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * (Required) The name of the index document for the website detailed below.
      * 
      */
-    @Export(name="indexDocument", type=ObjectBucketWebsiteConfigurationIndexDocument.class, parameters={})
+    @Export(name="indexDocument", refs={ObjectBucketWebsiteConfigurationIndexDocument.class}, tree="[0]")
     private Output<ObjectBucketWebsiteConfigurationIndexDocument> indexDocument;
 
     /**
@@ -197,7 +197,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -211,7 +211,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * The region you want to attach the resource to
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -225,7 +225,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * The website endpoint.
      * 
      */
-    @Export(name="websiteDomain", type=String.class, parameters={})
+    @Export(name="websiteDomain", refs={String.class}, tree="[0]")
     private Output<String> websiteDomain;
 
     /**
@@ -239,7 +239,7 @@ public class ObjectBucketWebsiteConfiguration extends com.pulumi.resources.Custo
      * The domain of the website endpoint.
      * 
      */
-    @Export(name="websiteEndpoint", type=String.class, parameters={})
+    @Export(name="websiteEndpoint", refs={String.class}, tree="[0]")
     private Output<String> websiteEndpoint;
 
     /**

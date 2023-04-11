@@ -23,14 +23,14 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
     public static final RedisClusterArgs Empty = new RedisClusterArgs();
 
     /**
-     * List of acl rules, this is cluster&#39;s authorized IPs.
+     * List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
      * 
      */
     @Import(name="acls")
     private @Nullable Output<List<RedisClusterAclArgs>> acls;
 
     /**
-     * @return List of acl rules, this is cluster&#39;s authorized IPs.
+     * @return List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
      * 
      */
     public Optional<Output<List<RedisClusterAclArgs>>> acls() {
@@ -98,14 +98,16 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      * 
      */
     @Import(name="privateNetworks")
     private @Nullable Output<List<RedisClusterPrivateNetworkArgs>> privateNetworks;
 
     /**
-     * @return Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * @return Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      * 
      */
     public Optional<Output<List<RedisClusterPrivateNetworkArgs>>> privateNetworks() {
@@ -113,14 +115,16 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `project_id`) The ID of the project the Redis Cluster is associated with.
+     * `project_id`) The ID of the project the Redis Cluster is
+     * associated with.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return `project_id`) The ID of the project the Redis Cluster is associated with.
+     * @return `project_id`) The ID of the project the Redis Cluster is
+     * associated with.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -128,14 +132,16 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Public network specs details
+     * (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+     * &gt; The `public_network` block exports:
      * 
      */
     @Import(name="publicNetwork")
     private @Nullable Output<RedisClusterPublicNetworkArgs> publicNetwork;
 
     /**
-     * @return Public network specs details
+     * @return (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+     * &gt; The `public_network` block exports:
      * 
      */
     public Optional<Output<RedisClusterPublicNetworkArgs>> publicNetwork() {
@@ -143,14 +149,16 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      * 
      */
     @Import(name="settings")
     private @Nullable Output<Map<String,String>> settings;
 
     /**
-     * @return Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * @return Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      * 
      */
     public Optional<Output<Map<String,String>>> settings() {
@@ -218,14 +226,16 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the Redis Cluster should be created.
+     * @return `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -270,7 +280,7 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acls List of acl rules, this is cluster&#39;s authorized IPs.
+         * @param acls List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
          * 
          * @return builder
          * 
@@ -281,7 +291,7 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acls List of acl rules, this is cluster&#39;s authorized IPs.
+         * @param acls List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
          * 
          * @return builder
          * 
@@ -291,7 +301,7 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acls List of acl rules, this is cluster&#39;s authorized IPs.
+         * @param acls List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
          * 
          * @return builder
          * 
@@ -385,7 +395,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+         * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public
+         * network will be provided. More details on the Private Network section
          * 
          * @return builder
          * 
@@ -396,7 +407,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+         * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public
+         * network will be provided. More details on the Private Network section
          * 
          * @return builder
          * 
@@ -406,7 +418,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+         * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public
+         * network will be provided. More details on the Private Network section
          * 
          * @return builder
          * 
@@ -416,7 +429,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId `project_id`) The ID of the project the Redis Cluster is associated with.
+         * @param projectId `project_id`) The ID of the project the Redis Cluster is
+         * associated with.
          * 
          * @return builder
          * 
@@ -427,7 +441,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId `project_id`) The ID of the project the Redis Cluster is associated with.
+         * @param projectId `project_id`) The ID of the project the Redis Cluster is
+         * associated with.
          * 
          * @return builder
          * 
@@ -437,7 +452,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicNetwork Public network specs details
+         * @param publicNetwork (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+         * &gt; The `public_network` block exports:
          * 
          * @return builder
          * 
@@ -448,7 +464,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicNetwork Public network specs details
+         * @param publicNetwork (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+         * &gt; The `public_network` block exports:
          * 
          * @return builder
          * 
@@ -458,7 +475,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param settings Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+         * @param settings Map of settings for redis cluster. Available settings can be found by listing redis versions
+         * with scaleway API or CLI
          * 
          * @return builder
          * 
@@ -469,7 +487,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param settings Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+         * @param settings Map of settings for redis cluster. Available settings can be found by listing redis versions
+         * with scaleway API or CLI
          * 
          * @return builder
          * 
@@ -573,7 +592,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone `zone`) The zone in which the Redis Cluster should be created.
+         * @param zone `zone`) The zone in which the
+         * Redis Cluster should be created.
          * 
          * @return builder
          * 
@@ -584,7 +604,8 @@ public final class RedisClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone `zone`) The zone in which the Redis Cluster should be created.
+         * @param zone `zone`) The zone in which the
+         * Redis Cluster should be created.
          * 
          * @return builder
          * 

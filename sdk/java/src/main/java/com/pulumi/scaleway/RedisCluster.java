@@ -157,21 +157,21 @@ import javax.annotation.Nullable;
  * Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
  * 
  * ```sh
- *  $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  * 
  */
 @ResourceType(type="scaleway:index/redisCluster:RedisCluster")
 public class RedisCluster extends com.pulumi.resources.CustomResource {
     /**
-     * List of acl rules, this is cluster&#39;s authorized IPs.
+     * List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
      * 
      */
-    @Export(name="acls", type=List.class, parameters={RedisClusterAcl.class})
+    @Export(name="acls", refs={List.class,RedisClusterAcl.class}, tree="[0,1]")
     private Output</* @Nullable */ List<RedisClusterAcl>> acls;
 
     /**
-     * @return List of acl rules, this is cluster&#39;s authorized IPs.
+     * @return List of acl rules, this is cluster&#39;s authorized IPs. More details on the ACL section.
      * 
      */
     public Output<Optional<List<RedisClusterAcl>>> acls() {
@@ -181,7 +181,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The PEM of the certificate used by redis, only when `tls_enabled` is true
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -195,7 +195,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The number of nodes in the Redis Cluster.
      * 
      */
-    @Export(name="clusterSize", type=Integer.class, parameters={})
+    @Export(name="clusterSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> clusterSize;
 
     /**
@@ -209,7 +209,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The date and time of creation of the Redis Cluster.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -223,7 +223,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The name of the Redis Cluster.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -237,7 +237,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The type of Redis Cluster you want to create (e.g. `RED1-M`).
      * 
      */
-    @Export(name="nodeType", type=String.class, parameters={})
+    @Export(name="nodeType", refs={String.class}, tree="[0]")
     private Output<String> nodeType;
 
     /**
@@ -251,7 +251,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * Password for the first user of the Redis Cluster.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -262,56 +262,64 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
         return this.password;
     }
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      * 
      */
-    @Export(name="privateNetworks", type=List.class, parameters={RedisClusterPrivateNetwork.class})
+    @Export(name="privateNetworks", refs={List.class,RedisClusterPrivateNetwork.class}, tree="[0,1]")
     private Output</* @Nullable */ List<RedisClusterPrivateNetwork>> privateNetworks;
 
     /**
-     * @return Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * @return Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      * 
      */
     public Output<Optional<List<RedisClusterPrivateNetwork>>> privateNetworks() {
         return Codegen.optional(this.privateNetworks);
     }
     /**
-     * `project_id`) The ID of the project the Redis Cluster is associated with.
+     * `project_id`) The ID of the project the Redis Cluster is
+     * associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return `project_id`) The ID of the project the Redis Cluster is associated with.
+     * @return `project_id`) The ID of the project the Redis Cluster is
+     * associated with.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
     /**
-     * Public network specs details
+     * (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+     * &gt; The `public_network` block exports:
      * 
      */
-    @Export(name="publicNetwork", type=RedisClusterPublicNetwork.class, parameters={})
+    @Export(name="publicNetwork", refs={RedisClusterPublicNetwork.class}, tree="[0]")
     private Output<RedisClusterPublicNetwork> publicNetwork;
 
     /**
-     * @return Public network specs details
+     * @return (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+     * &gt; The `public_network` block exports:
      * 
      */
     public Output<RedisClusterPublicNetwork> publicNetwork() {
         return this.publicNetwork;
     }
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      * 
      */
-    @Export(name="settings", type=Map.class, parameters={String.class, String.class})
+    @Export(name="settings", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> settings;
 
     /**
-     * @return Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * @return Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      * 
      */
     public Output<Optional<Map<String,String>>> settings() {
@@ -321,7 +329,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The tags associated with the Redis Cluster.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -335,7 +343,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * Whether TLS is enabled or not.
      * 
      */
-    @Export(name="tlsEnabled", type=Boolean.class, parameters={})
+    @Export(name="tlsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsEnabled;
 
     /**
@@ -349,7 +357,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the Redis Cluster.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -363,7 +371,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * Identifier for the first user of the Redis Cluster.
      * 
      */
-    @Export(name="userName", type=String.class, parameters={})
+    @Export(name="userName", refs={String.class}, tree="[0]")
     private Output<String> userName;
 
     /**
@@ -377,7 +385,7 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
      * Redis&#39;s Cluster version (e.g. `6.2.6`).
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
@@ -388,14 +396,16 @@ public class RedisCluster extends com.pulumi.resources.CustomResource {
         return this.version;
     }
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the Redis Cluster should be created.
+     * @return `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     public Output<String> zone() {

@@ -26,6 +26,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// The reverse of the IP.
         /// </summary>
         public readonly string? Reverse;
+        /// <summary>
+        /// The type of the IP.
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

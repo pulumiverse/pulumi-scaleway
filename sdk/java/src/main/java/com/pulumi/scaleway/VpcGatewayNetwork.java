@@ -134,7 +134,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * Remove DHCP config on this network on destroy. It requires DHCP id.
      * 
      */
-    @Export(name="cleanupDhcp", type=Boolean.class, parameters={})
+    @Export(name="cleanupDhcp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> cleanupDhcp;
 
     /**
@@ -148,7 +148,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the gateway network.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -162,7 +162,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
-    @Export(name="dhcpId", type=String.class, parameters={})
+    @Export(name="dhcpId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dhcpId;
 
     /**
@@ -176,7 +176,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * Enable DHCP config on this network. It requires DHCP id.
      * 
      */
-    @Export(name="enableDhcp", type=Boolean.class, parameters={})
+    @Export(name="enableDhcp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableDhcp;
 
     /**
@@ -190,7 +190,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * Enable masquerade on this network
      * 
      */
-    @Export(name="enableMasquerade", type=Boolean.class, parameters={})
+    @Export(name="enableMasquerade", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableMasquerade;
 
     /**
@@ -204,7 +204,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * The ID of the public gateway.
      * 
      */
-    @Export(name="gatewayId", type=String.class, parameters={})
+    @Export(name="gatewayId", refs={String.class}, tree="[0]")
     private Output<String> gatewayId;
 
     /**
@@ -218,7 +218,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * The mac address of the creation of the gateway network.
      * 
      */
-    @Export(name="macAddress", type=String.class, parameters={})
+    @Export(name="macAddress", refs={String.class}, tree="[0]")
     private Output<String> macAddress;
 
     /**
@@ -232,7 +232,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * The ID of the private network.
      * 
      */
-    @Export(name="privateNetworkId", type=String.class, parameters={})
+    @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
     private Output<String> privateNetworkId;
 
     /**
@@ -246,7 +246,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
      * 
      */
-    @Export(name="staticAddress", type=String.class, parameters={})
+    @Export(name="staticAddress", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> staticAddress;
 
     /**
@@ -260,7 +260,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the gateway network.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -274,7 +274,7 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the gateway network should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

@@ -43,7 +43,8 @@ public final class DatabaseReadReplicaPrivateNetwork {
      */
     private String privateNetworkId;
     /**
-     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      * 
      */
     private String serviceIp;
@@ -93,7 +94,8 @@ public final class DatabaseReadReplicaPrivateNetwork {
         return this.privateNetworkId;
     }
     /**
-     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      * 
      */
     public String serviceIp() {

@@ -74,7 +74,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * The IP address itself.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -88,7 +88,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the public gateway ip.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -102,7 +102,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * The organization ID the public gateway ip is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -116,7 +116,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the public gateway ip is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -130,7 +130,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * The reverse domain name for the IP address
      * 
      */
-    @Export(name="reverse", type=String.class, parameters={})
+    @Export(name="reverse", refs={String.class}, tree="[0]")
     private Output<String> reverse;
 
     /**
@@ -144,7 +144,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * The tags associated with the public gateway IP.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -158,7 +158,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the public gateway ip.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -172,7 +172,7 @@ public class VpcPublicGatewayIp extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the public gateway ip should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

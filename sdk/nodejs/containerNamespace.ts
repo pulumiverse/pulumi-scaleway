@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Container Namespace.
+ * Creates and manages Scaleway Serverless Container Namespace.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
  *
  * ## Examples
@@ -60,7 +60,9 @@ export class ContainerNamespace extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * . Destroy linked container registry on deletion.
+     * Destroy registry on deletion
+     *
+     * @deprecated Registry namespace is automatically destroyed with namespace
      */
     public readonly destroyRegistry!: pulumi.Output<boolean | undefined>;
     /**
@@ -148,7 +150,9 @@ export interface ContainerNamespaceState {
      */
     description?: pulumi.Input<string>;
     /**
-     * . Destroy linked container registry on deletion.
+     * Destroy registry on deletion
+     *
+     * @deprecated Registry namespace is automatically destroyed with namespace
      */
     destroyRegistry?: pulumi.Input<boolean>;
     /**
@@ -194,7 +198,9 @@ export interface ContainerNamespaceArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * . Destroy linked container registry on deletion.
+     * Destroy registry on deletion
+     *
+     * @deprecated Registry namespace is automatically destroyed with namespace
      */
     destroyRegistry?: pulumi.Input<boolean>;
     /**

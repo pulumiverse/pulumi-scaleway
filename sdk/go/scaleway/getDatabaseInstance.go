@@ -10,33 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an RDB instance.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupDatabaseInstance(ctx, &scaleway.LookupDatabaseInstanceArgs{
-//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseInstanceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseInstanceResult
@@ -55,6 +29,8 @@ type LookupDatabaseInstanceArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
+	// `region`) The region in which the RDB instance exists.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getDatabaseInstance.
@@ -80,7 +56,7 @@ type LookupDatabaseInstanceResult struct {
 	PrivateNetworks []GetDatabaseInstancePrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       string                              `pulumi:"projectId"`
 	ReadReplicas    []GetDatabaseInstanceReadReplica    `pulumi:"readReplicas"`
-	Region          string                              `pulumi:"region"`
+	Region          *string                             `pulumi:"region"`
 	Settings        map[string]string                   `pulumi:"settings"`
 	Tags            []string                            `pulumi:"tags"`
 	UserName        string                              `pulumi:"userName"`
@@ -109,6 +85,8 @@ type LookupDatabaseInstanceOutputArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `region`) The region in which the RDB instance exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupDatabaseInstanceOutputArgs) ElementType() reflect.Type {
@@ -211,8 +189,8 @@ func (o LookupDatabaseInstanceResultOutput) ReadReplicas() GetDatabaseInstanceRe
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceReadReplica { return v.ReadReplicas }).(GetDatabaseInstanceReadReplicaArrayOutput)
 }
 
-func (o LookupDatabaseInstanceResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupDatabaseInstanceResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) Settings() pulumi.StringMapOutput {

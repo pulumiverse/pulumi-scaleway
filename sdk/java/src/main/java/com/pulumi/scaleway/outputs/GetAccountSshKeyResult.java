@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +12,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccountSshKeyResult {
+    private String createdAt;
+    private Boolean disabled;
+    private String fingerprint;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -29,8 +33,18 @@ public final class GetAccountSshKeyResult {
      */
     private String publicKey;
     private @Nullable String sshKeyId;
+    private String updatedAt;
 
     private GetAccountSshKeyResult() {}
+    public String createdAt() {
+        return this.createdAt;
+    }
+    public Boolean disabled() {
+        return this.disabled;
+    }
+    public String fingerprint() {
+        return this.fingerprint;
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -61,6 +75,9 @@ public final class GetAccountSshKeyResult {
     public Optional<String> sshKeyId() {
         return Optional.ofNullable(this.sshKeyId);
     }
+    public String updatedAt() {
+        return this.updatedAt;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -71,23 +88,46 @@ public final class GetAccountSshKeyResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String createdAt;
+        private Boolean disabled;
+        private String fingerprint;
         private String id;
         private @Nullable String name;
         private String organizationId;
         private String projectId;
         private String publicKey;
         private @Nullable String sshKeyId;
+        private String updatedAt;
         public Builder() {}
         public Builder(GetAccountSshKeyResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.createdAt = defaults.createdAt;
+    	      this.disabled = defaults.disabled;
+    	      this.fingerprint = defaults.fingerprint;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.organizationId = defaults.organizationId;
     	      this.projectId = defaults.projectId;
     	      this.publicKey = defaults.publicKey;
     	      this.sshKeyId = defaults.sshKeyId;
+    	      this.updatedAt = defaults.updatedAt;
         }
 
+        @CustomType.Setter
+        public Builder createdAt(String createdAt) {
+            this.createdAt = Objects.requireNonNull(createdAt);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disabled(Boolean disabled) {
+            this.disabled = Objects.requireNonNull(disabled);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder fingerprint(String fingerprint) {
+            this.fingerprint = Objects.requireNonNull(fingerprint);
+            return this;
+        }
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
@@ -118,14 +158,23 @@ public final class GetAccountSshKeyResult {
             this.sshKeyId = sshKeyId;
             return this;
         }
+        @CustomType.Setter
+        public Builder updatedAt(String updatedAt) {
+            this.updatedAt = Objects.requireNonNull(updatedAt);
+            return this;
+        }
         public GetAccountSshKeyResult build() {
             final var o = new GetAccountSshKeyResult();
+            o.createdAt = createdAt;
+            o.disabled = disabled;
+            o.fingerprint = fingerprint;
             o.id = id;
             o.name = name;
             o.organizationId = organizationId;
             o.projectId = projectId;
             o.publicKey = publicKey;
             o.sshKeyId = sshKeyId;
+            o.updatedAt = updatedAt;
             return o;
         }
     }

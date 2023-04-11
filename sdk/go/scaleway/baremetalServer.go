@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -79,6 +79,8 @@ type BaremetalServer struct {
 	Offer pulumi.StringOutput `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
+	// The name of the offer.
+	OfferName pulumi.StringOutput `pulumi:"offerName"`
 	// The options to enable on the server.
 	// > The `options` block supports:
 	Options BaremetalServerOptionArrayOutput `pulumi:"options"`
@@ -88,8 +90,8 @@ type BaremetalServer struct {
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringOutput `pulumi:"os"`
-	// The ID of the os.
-	OsId pulumi.StringOutput `pulumi:"osId"`
+	// The name of the os.
+	OsName pulumi.StringOutput `pulumi:"osName"`
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -178,6 +180,8 @@ type baremetalServerState struct {
 	Offer *string `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId *string `pulumi:"offerId"`
+	// The name of the offer.
+	OfferName *string `pulumi:"offerName"`
 	// The options to enable on the server.
 	// > The `options` block supports:
 	Options []BaremetalServerOption `pulumi:"options"`
@@ -187,8 +191,8 @@ type baremetalServerState struct {
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os *string `pulumi:"os"`
-	// The ID of the os.
-	OsId *string `pulumi:"osId"`
+	// The name of the os.
+	OsName *string `pulumi:"osName"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -228,6 +232,8 @@ type BaremetalServerState struct {
 	Offer pulumi.StringPtrInput
 	// The ID of the offer.
 	OfferId pulumi.StringPtrInput
+	// The name of the offer.
+	OfferName pulumi.StringPtrInput
 	// The options to enable on the server.
 	// > The `options` block supports:
 	Options BaremetalServerOptionArrayInput
@@ -237,8 +243,8 @@ type BaremetalServerState struct {
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrInput
-	// The ID of the os.
-	OsId pulumi.StringPtrInput
+	// The name of the os.
+	OsName pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -470,6 +476,11 @@ func (o BaremetalServerOutput) OfferId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OfferId }).(pulumi.StringOutput)
 }
 
+// The name of the offer.
+func (o BaremetalServerOutput) OfferName() pulumi.StringOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OfferName }).(pulumi.StringOutput)
+}
+
 // The options to enable on the server.
 // > The `options` block supports:
 func (o BaremetalServerOutput) Options() BaremetalServerOptionArrayOutput {
@@ -488,9 +499,9 @@ func (o BaremetalServerOutput) Os() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
 }
 
-// The ID of the os.
-func (o BaremetalServerOutput) OsId() pulumi.StringOutput {
-	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OsId }).(pulumi.StringOutput)
+// The name of the os.
+func (o BaremetalServerOutput) OsName() pulumi.StringOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OsName }).(pulumi.StringOutput)
 }
 
 // Password used for the installation. May be required depending on used os.

@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Transactional Email Domains.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+ * For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
  *
  * ## Examples
  *
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const main = new scaleway.TemDomain("main", {});
+ * const main = new scaleway.TemDomain("main", {acceptTos: true});
  * ```
  *
  * ## Import
@@ -56,6 +56,11 @@ export class TemDomain extends pulumi.CustomResource {
     }
 
     /**
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * > **Important:**  This attribute must be set to `true`.
+     */
+    public readonly acceptTos!: pulumi.Output<boolean>;
+    /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -73,7 +78,7 @@ export class TemDomain extends pulumi.CustomResource {
     public /*out*/ readonly lastValidAt!: pulumi.Output<string>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * > **Important** Updates to `name` will recreate the domain.
+     * > **Important:** Updates to `name` will recreate the domain.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -108,12 +113,13 @@ export class TemDomain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: TemDomainArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: TemDomainArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TemDomainArgs | TemDomainState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TemDomainState | undefined;
+            resourceInputs["acceptTos"] = state ? state.acceptTos : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dkimConfig"] = state ? state.dkimConfig : undefined;
             resourceInputs["lastError"] = state ? state.lastError : undefined;
@@ -127,6 +133,10 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as TemDomainArgs | undefined;
+            if ((!args || args.acceptTos === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'acceptTos'");
+            }
+            resourceInputs["acceptTos"] = args ? args.acceptTos : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -149,6 +159,11 @@ export class TemDomain extends pulumi.CustomResource {
  */
 export interface TemDomainState {
     /**
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * > **Important:**  This attribute must be set to `true`.
+     */
+    acceptTos?: pulumi.Input<boolean>;
+    /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
@@ -166,7 +181,7 @@ export interface TemDomainState {
     lastValidAt?: pulumi.Input<string>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * > **Important** Updates to `name` will recreate the domain.
+     * > **Important:** Updates to `name` will recreate the domain.
      */
     name?: pulumi.Input<string>;
     /**
@@ -200,8 +215,13 @@ export interface TemDomainState {
  */
 export interface TemDomainArgs {
     /**
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * > **Important:**  This attribute must be set to `true`.
+     */
+    acceptTos: pulumi.Input<boolean>;
+    /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * > **Important** Updates to `name` will recreate the domain.
+     * > **Important:** Updates to `name` will recreate the domain.
      */
     name?: pulumi.Input<string>;
     /**

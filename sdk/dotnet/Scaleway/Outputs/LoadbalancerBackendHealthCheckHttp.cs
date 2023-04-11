@@ -19,6 +19,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly int? Code;
         /// <summary>
+        /// The HTTP host header to use for HC requests.
+        /// </summary>
+        public readonly string? HostHeader;
+        /// <summary>
         /// The HTTP method to use for HC requests.
         /// </summary>
         public readonly string? Method;
@@ -31,11 +35,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         private LoadbalancerBackendHealthCheckHttp(
             int? code,
 
+            string? hostHeader,
+
             string? method,
 
             string uri)
         {
             Code = code;
+            HostHeader = hostHeader;
             Method = method;
             Uri = uri;
         }

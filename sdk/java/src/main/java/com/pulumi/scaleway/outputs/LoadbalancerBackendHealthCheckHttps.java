@@ -18,10 +18,20 @@ public final class LoadbalancerBackendHealthCheckHttps {
      */
     private @Nullable Integer code;
     /**
+     * @return The HTTP host header to use for HC requests.
+     * 
+     */
+    private @Nullable String hostHeader;
+    /**
      * @return The HTTP method to use for HC requests.
      * 
      */
     private @Nullable String method;
+    /**
+     * @return The SNI to use for HC requests over SSL.
+     * 
+     */
+    private @Nullable String sni;
     /**
      * @return The HTTP endpoint URL to call for HC requests.
      * 
@@ -37,11 +47,25 @@ public final class LoadbalancerBackendHealthCheckHttps {
         return Optional.ofNullable(this.code);
     }
     /**
+     * @return The HTTP host header to use for HC requests.
+     * 
+     */
+    public Optional<String> hostHeader() {
+        return Optional.ofNullable(this.hostHeader);
+    }
+    /**
      * @return The HTTP method to use for HC requests.
      * 
      */
     public Optional<String> method() {
         return Optional.ofNullable(this.method);
+    }
+    /**
+     * @return The SNI to use for HC requests over SSL.
+     * 
+     */
+    public Optional<String> sni() {
+        return Optional.ofNullable(this.sni);
     }
     /**
      * @return The HTTP endpoint URL to call for HC requests.
@@ -61,13 +85,17 @@ public final class LoadbalancerBackendHealthCheckHttps {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer code;
+        private @Nullable String hostHeader;
         private @Nullable String method;
+        private @Nullable String sni;
         private String uri;
         public Builder() {}
         public Builder(LoadbalancerBackendHealthCheckHttps defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.code = defaults.code;
+    	      this.hostHeader = defaults.hostHeader;
     	      this.method = defaults.method;
+    	      this.sni = defaults.sni;
     	      this.uri = defaults.uri;
         }
 
@@ -77,8 +105,18 @@ public final class LoadbalancerBackendHealthCheckHttps {
             return this;
         }
         @CustomType.Setter
+        public Builder hostHeader(@Nullable String hostHeader) {
+            this.hostHeader = hostHeader;
+            return this;
+        }
+        @CustomType.Setter
         public Builder method(@Nullable String method) {
             this.method = method;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder sni(@Nullable String sni) {
+            this.sni = sni;
             return this;
         }
         @CustomType.Setter
@@ -89,7 +127,9 @@ public final class LoadbalancerBackendHealthCheckHttps {
         public LoadbalancerBackendHealthCheckHttps build() {
             final var o = new LoadbalancerBackendHealthCheckHttps();
             o.code = code;
+            o.hostHeader = hostHeader;
             o.method = method;
+            o.sni = sni;
             o.uri = uri;
             return o;
         }

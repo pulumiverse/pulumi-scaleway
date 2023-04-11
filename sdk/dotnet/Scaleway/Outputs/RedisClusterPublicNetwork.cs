@@ -18,7 +18,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// The UUID of the private network resource.
         /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Lis of IPv4 address of the endpoint (IP address).
+        /// </summary>
         public readonly ImmutableArray<string> Ips;
+        /// <summary>
+        /// TCP port of the endpoint.
+        /// </summary>
         public readonly int? Port;
 
         [OutputConstructor]

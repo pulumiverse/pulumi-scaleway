@@ -24,7 +24,7 @@ class ContainerNamespaceArgs:
         """
         The set of arguments for constructing a ContainerNamespace resource.
         :param pulumi.Input[str] description: The description of the namespace.
-        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the container namespace.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -33,6 +33,9 @@ class ContainerNamespaceArgs:
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if destroy_registry is not None:
+            warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
+            pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
         if destroy_registry is not None:
             pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
@@ -62,7 +65,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter(name="destroyRegistry")
     def destroy_registry(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Destroy linked container registry on deletion.
+        Destroy registry on deletion
         """
         return pulumi.get(self, "destroy_registry")
 
@@ -147,7 +150,7 @@ class _ContainerNamespaceState:
         """
         Input properties used for looking up and filtering ContainerNamespace resources.
         :param pulumi.Input[str] description: The description of the namespace.
-        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the container namespace.
         :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
@@ -159,6 +162,9 @@ class _ContainerNamespaceState:
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if destroy_registry is not None:
+            warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
+            pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
         if destroy_registry is not None:
             pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
@@ -194,7 +200,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="destroyRegistry")
     def destroy_registry(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Destroy linked container registry on deletion.
+        Destroy registry on deletion
         """
         return pulumi.get(self, "destroy_registry")
 
@@ -313,7 +319,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Container Namespace.
+        Creates and manages Scaleway Serverless Container Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
 
         ## Examples
@@ -338,7 +344,7 @@ class ContainerNamespace(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the namespace.
-        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the container namespace.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -352,7 +358,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  args: Optional[ContainerNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Container Namespace.
+        Creates and manages Scaleway Serverless Container Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
 
         ## Examples
@@ -406,6 +412,9 @@ class ContainerNamespace(pulumi.CustomResource):
             __props__ = ContainerNamespaceArgs.__new__(ContainerNamespaceArgs)
 
             __props__.__dict__["description"] = description
+            if destroy_registry is not None and not opts.urn:
+                warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
+                pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
             __props__.__dict__["destroy_registry"] = destroy_registry
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["name"] = name
@@ -445,7 +454,7 @@ class ContainerNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the namespace.
-        :param pulumi.Input[bool] destroy_registry: . Destroy linked container registry on deletion.
+        :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the container namespace.
         :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
@@ -483,7 +492,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="destroyRegistry")
     def destroy_registry(self) -> pulumi.Output[Optional[bool]]:
         """
-        . Destroy linked container registry on deletion.
+        Destroy registry on deletion
         """
         return pulumi.get(self, "destroy_registry")
 

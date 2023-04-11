@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -140,13 +140,13 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+//	$ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
 //
 // ```
 type RedisCluster struct {
 	pulumi.CustomResourceState
 
-	// List of acl rules, this is cluster's authorized IPs.
+	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls RedisClusterAclArrayOutput `pulumi:"acls"`
 	// The PEM of the certificate used by redis, only when `tlsEnabled` is true
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
@@ -160,13 +160,17 @@ type RedisCluster struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password for the first user of the Redis Cluster.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+	// Describes the private network you want to connect to your cluster. If not set, a public
+	// network will be provided. More details on the Private Network section
 	PrivateNetworks RedisClusterPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
-	// `projectId`) The ID of the project the Redis Cluster is associated with.
+	// `projectId`) The ID of the project the Redis Cluster is
+	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Public network specs details
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+	// > The `publicNetwork` block exports:
 	PublicNetwork RedisClusterPublicNetworkOutput `pulumi:"publicNetwork"`
-	// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+	// Map of settings for redis cluster. Available settings can be found by listing redis versions
+	// with scaleway API or CLI
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// The tags associated with the Redis Cluster.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -178,7 +182,8 @@ type RedisCluster struct {
 	UserName pulumi.StringOutput `pulumi:"userName"`
 	// Redis's Cluster version (e.g. `6.2.6`).
 	Version pulumi.StringOutput `pulumi:"version"`
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -231,7 +236,7 @@ func GetRedisCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RedisCluster resources.
 type redisClusterState struct {
-	// List of acl rules, this is cluster's authorized IPs.
+	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls []RedisClusterAcl `pulumi:"acls"`
 	// The PEM of the certificate used by redis, only when `tlsEnabled` is true
 	Certificate *string `pulumi:"certificate"`
@@ -245,13 +250,17 @@ type redisClusterState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// Password for the first user of the Redis Cluster.
 	Password *string `pulumi:"password"`
-	// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+	// Describes the private network you want to connect to your cluster. If not set, a public
+	// network will be provided. More details on the Private Network section
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
-	// `projectId`) The ID of the project the Redis Cluster is associated with.
+	// `projectId`) The ID of the project the Redis Cluster is
+	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Public network specs details
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+	// > The `publicNetwork` block exports:
 	PublicNetwork *RedisClusterPublicNetwork `pulumi:"publicNetwork"`
-	// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+	// Map of settings for redis cluster. Available settings can be found by listing redis versions
+	// with scaleway API or CLI
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Redis Cluster.
 	Tags []string `pulumi:"tags"`
@@ -263,12 +272,13 @@ type redisClusterState struct {
 	UserName *string `pulumi:"userName"`
 	// Redis's Cluster version (e.g. `6.2.6`).
 	Version *string `pulumi:"version"`
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type RedisClusterState struct {
-	// List of acl rules, this is cluster's authorized IPs.
+	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls RedisClusterAclArrayInput
 	// The PEM of the certificate used by redis, only when `tlsEnabled` is true
 	Certificate pulumi.StringPtrInput
@@ -282,13 +292,17 @@ type RedisClusterState struct {
 	NodeType pulumi.StringPtrInput
 	// Password for the first user of the Redis Cluster.
 	Password pulumi.StringPtrInput
-	// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+	// Describes the private network you want to connect to your cluster. If not set, a public
+	// network will be provided. More details on the Private Network section
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
-	// `projectId`) The ID of the project the Redis Cluster is associated with.
+	// `projectId`) The ID of the project the Redis Cluster is
+	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// Public network specs details
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+	// > The `publicNetwork` block exports:
 	PublicNetwork RedisClusterPublicNetworkPtrInput
-	// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+	// Map of settings for redis cluster. Available settings can be found by listing redis versions
+	// with scaleway API or CLI
 	Settings pulumi.StringMapInput
 	// The tags associated with the Redis Cluster.
 	Tags pulumi.StringArrayInput
@@ -300,7 +314,8 @@ type RedisClusterState struct {
 	UserName pulumi.StringPtrInput
 	// Redis's Cluster version (e.g. `6.2.6`).
 	Version pulumi.StringPtrInput
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -309,7 +324,7 @@ func (RedisClusterState) ElementType() reflect.Type {
 }
 
 type redisClusterArgs struct {
-	// List of acl rules, this is cluster's authorized IPs.
+	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls []RedisClusterAcl `pulumi:"acls"`
 	// The number of nodes in the Redis Cluster.
 	ClusterSize *int `pulumi:"clusterSize"`
@@ -319,13 +334,17 @@ type redisClusterArgs struct {
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the Redis Cluster.
 	Password string `pulumi:"password"`
-	// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+	// Describes the private network you want to connect to your cluster. If not set, a public
+	// network will be provided. More details on the Private Network section
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
-	// `projectId`) The ID of the project the Redis Cluster is associated with.
+	// `projectId`) The ID of the project the Redis Cluster is
+	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Public network specs details
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+	// > The `publicNetwork` block exports:
 	PublicNetwork *RedisClusterPublicNetwork `pulumi:"publicNetwork"`
-	// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+	// Map of settings for redis cluster. Available settings can be found by listing redis versions
+	// with scaleway API or CLI
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Redis Cluster.
 	Tags []string `pulumi:"tags"`
@@ -335,13 +354,14 @@ type redisClusterArgs struct {
 	UserName string `pulumi:"userName"`
 	// Redis's Cluster version (e.g. `6.2.6`).
 	Version string `pulumi:"version"`
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a RedisCluster resource.
 type RedisClusterArgs struct {
-	// List of acl rules, this is cluster's authorized IPs.
+	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls RedisClusterAclArrayInput
 	// The number of nodes in the Redis Cluster.
 	ClusterSize pulumi.IntPtrInput
@@ -351,13 +371,17 @@ type RedisClusterArgs struct {
 	NodeType pulumi.StringInput
 	// Password for the first user of the Redis Cluster.
 	Password pulumi.StringInput
-	// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+	// Describes the private network you want to connect to your cluster. If not set, a public
+	// network will be provided. More details on the Private Network section
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
-	// `projectId`) The ID of the project the Redis Cluster is associated with.
+	// `projectId`) The ID of the project the Redis Cluster is
+	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// Public network specs details
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+	// > The `publicNetwork` block exports:
 	PublicNetwork RedisClusterPublicNetworkPtrInput
-	// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+	// Map of settings for redis cluster. Available settings can be found by listing redis versions
+	// with scaleway API or CLI
 	Settings pulumi.StringMapInput
 	// The tags associated with the Redis Cluster.
 	Tags pulumi.StringArrayInput
@@ -367,7 +391,8 @@ type RedisClusterArgs struct {
 	UserName pulumi.StringInput
 	// Redis's Cluster version (e.g. `6.2.6`).
 	Version pulumi.StringInput
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -458,7 +483,7 @@ func (o RedisClusterOutput) ToRedisClusterOutputWithContext(ctx context.Context)
 	return o
 }
 
-// List of acl rules, this is cluster's authorized IPs.
+// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 func (o RedisClusterOutput) Acls() RedisClusterAclArrayOutput {
 	return o.ApplyT(func(v *RedisCluster) RedisClusterAclArrayOutput { return v.Acls }).(RedisClusterAclArrayOutput)
 }
@@ -493,22 +518,26 @@ func (o RedisClusterOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+// Describes the private network you want to connect to your cluster. If not set, a public
+// network will be provided. More details on the Private Network section
 func (o RedisClusterOutput) PrivateNetworks() RedisClusterPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *RedisCluster) RedisClusterPrivateNetworkArrayOutput { return v.PrivateNetworks }).(RedisClusterPrivateNetworkArrayOutput)
 }
 
-// `projectId`) The ID of the project the Redis Cluster is associated with.
+// `projectId`) The ID of the project the Redis Cluster is
+// associated with.
 func (o RedisClusterOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Public network specs details
+// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+// > The `publicNetwork` block exports:
 func (o RedisClusterOutput) PublicNetwork() RedisClusterPublicNetworkOutput {
 	return o.ApplyT(func(v *RedisCluster) RedisClusterPublicNetworkOutput { return v.PublicNetwork }).(RedisClusterPublicNetworkOutput)
 }
 
-// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+// Map of settings for redis cluster. Available settings can be found by listing redis versions
+// with scaleway API or CLI
 func (o RedisClusterOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }
@@ -538,7 +567,8 @@ func (o RedisClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which the Redis Cluster should be created.
+// `zone`) The zone in which the
+// Redis Cluster should be created.
 func (o RedisClusterOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

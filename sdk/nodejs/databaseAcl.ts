@@ -68,11 +68,11 @@ export class DatabaseAcl extends pulumi.CustomResource {
      */
     public readonly aclRules!: pulumi.Output<outputs.DatabaseAclAclRule[]>;
     /**
-     * The instance on which to create the ACL.
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -118,11 +118,11 @@ export interface DatabaseAclState {
      */
     aclRules?: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
-     * The instance on which to create the ACL.
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
 }
@@ -136,11 +136,11 @@ export interface DatabaseAclArgs {
      */
     aclRules: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
-     * The instance on which to create the ACL.
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
 }

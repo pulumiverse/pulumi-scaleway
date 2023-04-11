@@ -294,10 +294,11 @@ class _BaremetalServerState:
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
                  offer_id: Optional[pulumi.Input[str]] = None,
+                 offer_name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
-                 os_id: Optional[pulumi.Input[str]] = None,
+                 os_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -318,13 +319,14 @@ class _BaremetalServerState:
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
         :param pulumi.Input[str] offer_id: The ID of the offer.
+        :param pulumi.Input[str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] os_id: The ID of the os.
+        :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -351,14 +353,16 @@ class _BaremetalServerState:
             pulumi.set(__self__, "offer", offer)
         if offer_id is not None:
             pulumi.set(__self__, "offer_id", offer_id)
+        if offer_name is not None:
+            pulumi.set(__self__, "offer_name", offer_name)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if os is not None:
             pulumi.set(__self__, "os", os)
-        if os_id is not None:
-            pulumi.set(__self__, "os_id", os_id)
+        if os_name is not None:
+            pulumi.set(__self__, "os_name", os_name)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_networks is not None:
@@ -466,6 +470,18 @@ class _BaremetalServerState:
         pulumi.set(self, "offer_id", value)
 
     @property
+    @pulumi.getter(name="offerName")
+    def offer_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the offer.
+        """
+        return pulumi.get(self, "offer_name")
+
+    @offer_name.setter
+    def offer_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "offer_name", value)
+
+    @property
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]:
         """
@@ -505,16 +521,16 @@ class _BaremetalServerState:
         pulumi.set(self, "os", value)
 
     @property
-    @pulumi.getter(name="osId")
-    def os_id(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="osName")
+    def os_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the os.
+        The name of the os.
         """
-        return pulumi.get(self, "os_id")
+        return pulumi.get(self, "os_name")
 
-    @os_id.setter
-    def os_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "os_id", value)
+    @os_name.setter
+    def os_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os_name", value)
 
     @property
     @pulumi.getter
@@ -811,8 +827,9 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["domain"] = None
             __props__.__dict__["ips"] = None
             __props__.__dict__["offer_id"] = None
+            __props__.__dict__["offer_name"] = None
             __props__.__dict__["organization_id"] = None
-            __props__.__dict__["os_id"] = None
+            __props__.__dict__["os_name"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "servicePassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(BaremetalServer, __self__).__init__(
@@ -832,10 +849,11 @@ class BaremetalServer(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             offer: Optional[pulumi.Input[str]] = None,
             offer_id: Optional[pulumi.Input[str]] = None,
+            offer_name: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
-            os_id: Optional[pulumi.Input[str]] = None,
+            os_name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -861,13 +879,14 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
         :param pulumi.Input[str] offer_id: The ID of the offer.
+        :param pulumi.Input[str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] os_id: The ID of the os.
+        :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -891,10 +910,11 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["offer"] = offer
         __props__.__dict__["offer_id"] = offer_id
+        __props__.__dict__["offer_name"] = offer_name
         __props__.__dict__["options"] = options
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["os"] = os
-        __props__.__dict__["os_id"] = os_id
+        __props__.__dict__["os_name"] = os_name
         __props__.__dict__["password"] = password
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
@@ -965,6 +985,14 @@ class BaremetalServer(pulumi.CustomResource):
         return pulumi.get(self, "offer_id")
 
     @property
+    @pulumi.getter(name="offerName")
+    def offer_name(self) -> pulumi.Output[str]:
+        """
+        The name of the offer.
+        """
+        return pulumi.get(self, "offer_name")
+
+    @property
     @pulumi.getter
     def options(self) -> pulumi.Output[Optional[Sequence['outputs.BaremetalServerOption']]]:
         """
@@ -992,12 +1020,12 @@ class BaremetalServer(pulumi.CustomResource):
         return pulumi.get(self, "os")
 
     @property
-    @pulumi.getter(name="osId")
-    def os_id(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="osName")
+    def os_name(self) -> pulumi.Output[str]:
         """
-        The ID of the os.
+        The name of the os.
         """
-        return pulumi.get(self, "os_id")
+        return pulumi.get(self, "os_name")
 
     @property
     @pulumi.getter
@@ -1058,7 +1086,7 @@ class BaremetalServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def tags(self) -> pulumi.Output[Sequence[str]]:
         """
         The tags associated with the server.
         """

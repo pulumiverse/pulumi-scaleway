@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -77,7 +77,7 @@ type FunctionDomain struct {
 	// The hostname that should resolve to your function id native domain.
 	// You should use a CNAME domain record that point to your native function `domainName` for it.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// The region you want to attach the resource to
+	// (Defaults to provider `region`) The region in where the domain was created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The URL that triggers the function
 	Url pulumi.StringOutput `pulumi:"url"`
@@ -124,7 +124,7 @@ type functionDomainState struct {
 	// The hostname that should resolve to your function id native domain.
 	// You should use a CNAME domain record that point to your native function `domainName` for it.
 	Hostname *string `pulumi:"hostname"`
-	// The region you want to attach the resource to
+	// (Defaults to provider `region`) The region in where the domain was created.
 	Region *string `pulumi:"region"`
 	// The URL that triggers the function
 	Url *string `pulumi:"url"`
@@ -136,7 +136,7 @@ type FunctionDomainState struct {
 	// The hostname that should resolve to your function id native domain.
 	// You should use a CNAME domain record that point to your native function `domainName` for it.
 	Hostname pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// (Defaults to provider `region`) The region in where the domain was created.
 	Region pulumi.StringPtrInput
 	// The URL that triggers the function
 	Url pulumi.StringPtrInput
@@ -152,7 +152,7 @@ type functionDomainArgs struct {
 	// The hostname that should resolve to your function id native domain.
 	// You should use a CNAME domain record that point to your native function `domainName` for it.
 	Hostname string `pulumi:"hostname"`
-	// The region you want to attach the resource to
+	// (Defaults to provider `region`) The region in where the domain was created.
 	Region *string `pulumi:"region"`
 }
 
@@ -163,7 +163,7 @@ type FunctionDomainArgs struct {
 	// The hostname that should resolve to your function id native domain.
 	// You should use a CNAME domain record that point to your native function `domainName` for it.
 	Hostname pulumi.StringInput
-	// The region you want to attach the resource to
+	// (Defaults to provider `region`) The region in where the domain was created.
 	Region pulumi.StringPtrInput
 }
 
@@ -265,7 +265,7 @@ func (o FunctionDomainOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// (Defaults to provider `region`) The region in where the domain was created.
 func (o FunctionDomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

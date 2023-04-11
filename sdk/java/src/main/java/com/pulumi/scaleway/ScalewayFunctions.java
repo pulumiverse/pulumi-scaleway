@@ -20,6 +20,8 @@ import com.pulumi.scaleway.inputs.GetBaremetalOsArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOsPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerPlainArgs;
+import com.pulumi.scaleway.inputs.GetCockpitArgs;
+import com.pulumi.scaleway.inputs.GetCockpitPlainArgs;
 import com.pulumi.scaleway.inputs.GetContainerArgs;
 import com.pulumi.scaleway.inputs.GetContainerNamespaceArgs;
 import com.pulumi.scaleway.inputs.GetContainerNamespacePlainArgs;
@@ -56,6 +58,8 @@ import com.pulumi.scaleway.inputs.GetInstanceImageArgs;
 import com.pulumi.scaleway.inputs.GetInstanceImagePlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceIpArgs;
 import com.pulumi.scaleway.inputs.GetInstanceIpPlainArgs;
+import com.pulumi.scaleway.inputs.GetInstancePrivateNicArgs;
+import com.pulumi.scaleway.inputs.GetInstancePrivateNicPlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceSecurityGroupArgs;
 import com.pulumi.scaleway.inputs.GetInstanceSecurityGroupPlainArgs;
 import com.pulumi.scaleway.inputs.GetInstanceServerArgs;
@@ -70,10 +74,30 @@ import com.pulumi.scaleway.inputs.GetIotDeviceArgs;
 import com.pulumi.scaleway.inputs.GetIotDevicePlainArgs;
 import com.pulumi.scaleway.inputs.GetIotHubArgs;
 import com.pulumi.scaleway.inputs.GetIotHubPlainArgs;
+import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+import com.pulumi.scaleway.inputs.GetK8sVersionPlainArgs;
 import com.pulumi.scaleway.inputs.GetKubernetesClusterArgs;
 import com.pulumi.scaleway.inputs.GetKubernetesClusterPlainArgs;
 import com.pulumi.scaleway.inputs.GetKubernetesNodePoolArgs;
 import com.pulumi.scaleway.inputs.GetKubernetesNodePoolPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbAclsArgs;
+import com.pulumi.scaleway.inputs.GetLbAclsPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+import com.pulumi.scaleway.inputs.GetLbBackendPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbBackendsArgs;
+import com.pulumi.scaleway.inputs.GetLbBackendsPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+import com.pulumi.scaleway.inputs.GetLbFrontendPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbFrontendsArgs;
+import com.pulumi.scaleway.inputs.GetLbFrontendsPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+import com.pulumi.scaleway.inputs.GetLbIpsPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbRouteArgs;
+import com.pulumi.scaleway.inputs.GetLbRoutePlainArgs;
+import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+import com.pulumi.scaleway.inputs.GetLbRoutesPlainArgs;
+import com.pulumi.scaleway.inputs.GetLbsArgs;
+import com.pulumi.scaleway.inputs.GetLbsPlainArgs;
 import com.pulumi.scaleway.inputs.GetLoadbalancerArgs;
 import com.pulumi.scaleway.inputs.GetLoadbalancerCertificateArgs;
 import com.pulumi.scaleway.inputs.GetLoadbalancerCertificatePlainArgs;
@@ -90,6 +114,10 @@ import com.pulumi.scaleway.inputs.GetRegistryImageArgs;
 import com.pulumi.scaleway.inputs.GetRegistryImagePlainArgs;
 import com.pulumi.scaleway.inputs.GetRegistryNamespaceArgs;
 import com.pulumi.scaleway.inputs.GetRegistryNamespacePlainArgs;
+import com.pulumi.scaleway.inputs.GetSecretArgs;
+import com.pulumi.scaleway.inputs.GetSecretPlainArgs;
+import com.pulumi.scaleway.inputs.GetSecretVersionArgs;
+import com.pulumi.scaleway.inputs.GetSecretVersionPlainArgs;
 import com.pulumi.scaleway.inputs.GetTemDomainArgs;
 import com.pulumi.scaleway.inputs.GetTemDomainPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcGatewayNetworkArgs;
@@ -106,12 +134,15 @@ import com.pulumi.scaleway.inputs.GetVpcPublicGatewayIpPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicGatewayPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRuleArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRulePlainArgs;
+import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+import com.pulumi.scaleway.inputs.GetWebHostOfferPlainArgs;
 import com.pulumi.scaleway.outputs.GetAccountProjectResult;
 import com.pulumi.scaleway.outputs.GetAccountSshKeyResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOfferResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOptionResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOsResult;
 import com.pulumi.scaleway.outputs.GetBaremetalServerResult;
+import com.pulumi.scaleway.outputs.GetCockpitResult;
 import com.pulumi.scaleway.outputs.GetContainerNamespaceResult;
 import com.pulumi.scaleway.outputs.GetContainerResult;
 import com.pulumi.scaleway.outputs.GetDatabaseAclResult;
@@ -130,6 +161,7 @@ import com.pulumi.scaleway.outputs.GetIamSshKeyResult;
 import com.pulumi.scaleway.outputs.GetIamUserResult;
 import com.pulumi.scaleway.outputs.GetInstanceImageResult;
 import com.pulumi.scaleway.outputs.GetInstanceIpResult;
+import com.pulumi.scaleway.outputs.GetInstancePrivateNicResult;
 import com.pulumi.scaleway.outputs.GetInstanceSecurityGroupResult;
 import com.pulumi.scaleway.outputs.GetInstanceServerResult;
 import com.pulumi.scaleway.outputs.GetInstanceServersResult;
@@ -137,8 +169,18 @@ import com.pulumi.scaleway.outputs.GetInstanceSnapshotResult;
 import com.pulumi.scaleway.outputs.GetInstanceVolumeResult;
 import com.pulumi.scaleway.outputs.GetIotDeviceResult;
 import com.pulumi.scaleway.outputs.GetIotHubResult;
+import com.pulumi.scaleway.outputs.GetK8sVersionResult;
 import com.pulumi.scaleway.outputs.GetKubernetesClusterResult;
 import com.pulumi.scaleway.outputs.GetKubernetesNodePoolResult;
+import com.pulumi.scaleway.outputs.GetLbAclsResult;
+import com.pulumi.scaleway.outputs.GetLbBackendResult;
+import com.pulumi.scaleway.outputs.GetLbBackendsResult;
+import com.pulumi.scaleway.outputs.GetLbFrontendResult;
+import com.pulumi.scaleway.outputs.GetLbFrontendsResult;
+import com.pulumi.scaleway.outputs.GetLbIpsResult;
+import com.pulumi.scaleway.outputs.GetLbRouteResult;
+import com.pulumi.scaleway.outputs.GetLbRoutesResult;
+import com.pulumi.scaleway.outputs.GetLbsResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerCertificateResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerIpResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerResult;
@@ -147,6 +189,8 @@ import com.pulumi.scaleway.outputs.GetObjectBucketResult;
 import com.pulumi.scaleway.outputs.GetRedisClusterResult;
 import com.pulumi.scaleway.outputs.GetRegistryImageResult;
 import com.pulumi.scaleway.outputs.GetRegistryNamespaceResult;
+import com.pulumi.scaleway.outputs.GetSecretResult;
+import com.pulumi.scaleway.outputs.GetSecretVersionResult;
 import com.pulumi.scaleway.outputs.GetTemDomainResult;
 import com.pulumi.scaleway.outputs.GetVpcGatewayNetworkResult;
 import com.pulumi.scaleway.outputs.GetVpcPrivateNetworkResult;
@@ -155,6 +199,7 @@ import com.pulumi.scaleway.outputs.GetVpcPublicGatewayDhcpResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicGatewayIpResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicGatewayResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicPatRuleResult;
+import com.pulumi.scaleway.outputs.GetWebHostOfferResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class ScalewayFunctions {
@@ -1635,6 +1680,396 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getBaremetalServer:getBaremetalServer", TypeShape.of(GetBaremetalServerResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about the Scaleway Cockpit.
+     * 
+     * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit();
+     * 
+     *     }
+     * }
+     * ```
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCockpitResult> getCockpit() {
+        return getCockpit(GetCockpitArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Scaleway Cockpit.
+     * 
+     * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit();
+     * 
+     *     }
+     * }
+     * ```
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCockpitResult> getCockpitPlain() {
+        return getCockpitPlain(GetCockpitPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Scaleway Cockpit.
+     * 
+     * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit();
+     * 
+     *     }
+     * }
+     * ```
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCockpitResult> getCockpit(GetCockpitArgs args) {
+        return getCockpit(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Scaleway Cockpit.
+     * 
+     * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit();
+     * 
+     *     }
+     * }
+     * ```
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCockpitResult> getCockpitPlain(GetCockpitPlainArgs args) {
+        return getCockpitPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Scaleway Cockpit.
+     * 
+     * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit();
+     * 
+     *     }
+     * }
+     * ```
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCockpitResult> getCockpit(GetCockpitArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getCockpit:getCockpit", TypeShape.of(GetCockpitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about the Scaleway Cockpit.
+     * 
+     * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit();
+     * 
+     *     }
+     * }
+     * ```
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()
+     *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCockpitResult> getCockpitPlain(GetCockpitPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getCockpit:getCockpit", TypeShape.of(GetCockpitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about the Scaleway Container.
      * 
      * For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
@@ -2290,7 +2725,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAcl = ScalewayFunctions.getDatabaseAcl(GetDatabaseAclArgs.builder()
-     *             .instanceId(&#34;fr-par/11111111-1111-1111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -2327,7 +2762,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAcl = ScalewayFunctions.getDatabaseAcl(GetDatabaseAclArgs.builder()
-     *             .instanceId(&#34;fr-par/11111111-1111-1111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -2364,7 +2799,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAcl = ScalewayFunctions.getDatabaseAcl(GetDatabaseAclArgs.builder()
-     *             .instanceId(&#34;fr-par/11111111-1111-1111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -2401,7 +2836,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAcl = ScalewayFunctions.getDatabaseAcl(GetDatabaseAclArgs.builder()
-     *             .instanceId(&#34;fr-par/11111111-1111-1111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -2689,229 +3124,49 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getDatabaseBackup:getDatabaseBackup", TypeShape.of(GetDatabaseBackupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about an RDB instance.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.scaleway.ScalewayFunctions;
-     * import com.pulumi.scaleway.inputs.GetDatabaseInstanceArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myInstance = ScalewayFunctions.getDatabaseInstance(GetDatabaseInstanceArgs.builder()
-     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
      * 
      */
     public static Output<GetDatabaseInstanceResult> getDatabaseInstance() {
         return getDatabaseInstance(GetDatabaseInstanceArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Gets information about an RDB instance.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.scaleway.ScalewayFunctions;
-     * import com.pulumi.scaleway.inputs.GetDatabaseInstanceArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myInstance = ScalewayFunctions.getDatabaseInstance(GetDatabaseInstanceArgs.builder()
-     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
      * 
      */
     public static CompletableFuture<GetDatabaseInstanceResult> getDatabaseInstancePlain() {
         return getDatabaseInstancePlain(GetDatabaseInstancePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Gets information about an RDB instance.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.scaleway.ScalewayFunctions;
-     * import com.pulumi.scaleway.inputs.GetDatabaseInstanceArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myInstance = ScalewayFunctions.getDatabaseInstance(GetDatabaseInstanceArgs.builder()
-     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
      * 
      */
     public static Output<GetDatabaseInstanceResult> getDatabaseInstance(GetDatabaseInstanceArgs args) {
         return getDatabaseInstance(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about an RDB instance.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.scaleway.ScalewayFunctions;
-     * import com.pulumi.scaleway.inputs.GetDatabaseInstanceArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myInstance = ScalewayFunctions.getDatabaseInstance(GetDatabaseInstanceArgs.builder()
-     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
      * 
      */
     public static CompletableFuture<GetDatabaseInstanceResult> getDatabaseInstancePlain(GetDatabaseInstancePlainArgs args) {
         return getDatabaseInstancePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about an RDB instance.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.scaleway.ScalewayFunctions;
-     * import com.pulumi.scaleway.inputs.GetDatabaseInstanceArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myInstance = ScalewayFunctions.getDatabaseInstance(GetDatabaseInstanceArgs.builder()
-     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
      * 
      */
     public static Output<GetDatabaseInstanceResult> getDatabaseInstance(GetDatabaseInstanceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", TypeShape.of(GetDatabaseInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about an RDB instance.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.scaleway.ScalewayFunctions;
-     * import com.pulumi.scaleway.inputs.GetDatabaseInstanceArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myInstance = ScalewayFunctions.getDatabaseInstance(GetDatabaseInstanceArgs.builder()
-     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
      * 
      */
     public static CompletableFuture<GetDatabaseInstanceResult> getDatabaseInstancePlain(GetDatabaseInstancePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getDatabaseInstance:getDatabaseInstance", TypeShape.of(GetDatabaseInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about the privilege on a RDB database.
+     * Gets information about the privilege on RDB database.
      * 
      * ## Example Usage
      * ```java
@@ -2935,9 +3190,9 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var findPriv = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
+     *         final var main = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
      *             .databaseName(&#34;my-database&#34;)
-     *             .instanceId(&#34;fr-par/11111111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-111111111111&#34;)
      *             .userName(&#34;my-user&#34;)
      *             .build());
      * 
@@ -2950,7 +3205,7 @@ public final class ScalewayFunctions {
         return getDatabasePrivilege(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about the privilege on a RDB database.
+     * Gets information about the privilege on RDB database.
      * 
      * ## Example Usage
      * ```java
@@ -2974,9 +3229,9 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var findPriv = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
+     *         final var main = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
      *             .databaseName(&#34;my-database&#34;)
-     *             .instanceId(&#34;fr-par/11111111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-111111111111&#34;)
      *             .userName(&#34;my-user&#34;)
      *             .build());
      * 
@@ -2989,7 +3244,7 @@ public final class ScalewayFunctions {
         return getDatabasePrivilegePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about the privilege on a RDB database.
+     * Gets information about the privilege on RDB database.
      * 
      * ## Example Usage
      * ```java
@@ -3013,9 +3268,9 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var findPriv = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
+     *         final var main = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
      *             .databaseName(&#34;my-database&#34;)
-     *             .instanceId(&#34;fr-par/11111111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-111111111111&#34;)
      *             .userName(&#34;my-user&#34;)
      *             .build());
      * 
@@ -3028,7 +3283,7 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", TypeShape.of(GetDatabasePrivilegeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about the privilege on a RDB database.
+     * Gets information about the privilege on RDB database.
      * 
      * ## Example Usage
      * ```java
@@ -3052,9 +3307,9 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var findPriv = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
+     *         final var main = ScalewayFunctions.getDatabasePrivilege(GetDatabasePrivilegeArgs.builder()
      *             .databaseName(&#34;my-database&#34;)
-     *             .instanceId(&#34;fr-par/11111111-1111-111111111111&#34;)
+     *             .instanceId(&#34;11111111-1111-111111111111&#34;)
      *             .userName(&#34;my-user&#34;)
      *             .build());
      * 
@@ -5449,6 +5704,198 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getInstanceIp:getInstanceIp", TypeShape.of(GetInstanceIpResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about an instance private NIC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstancePrivateNicArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byNicId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNicId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byPnId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byTags = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .tags(&#34;mytag&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetInstancePrivateNicResult> getInstancePrivateNic(GetInstancePrivateNicArgs args) {
+        return getInstancePrivateNic(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an instance private NIC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstancePrivateNicArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byNicId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNicId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byPnId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byTags = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .tags(&#34;mytag&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetInstancePrivateNicResult> getInstancePrivateNicPlain(GetInstancePrivateNicPlainArgs args) {
+        return getInstancePrivateNicPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an instance private NIC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstancePrivateNicArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byNicId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNicId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byPnId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byTags = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .tags(&#34;mytag&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetInstancePrivateNicResult> getInstancePrivateNic(GetInstancePrivateNicArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", TypeShape.of(GetInstancePrivateNicResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an instance private NIC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetInstancePrivateNicArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byNicId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNicId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byPnId = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byTags = ScalewayFunctions.getInstancePrivateNic(GetInstancePrivateNicArgs.builder()
+     *             .serverId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .tags(&#34;mytag&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetInstancePrivateNicResult> getInstancePrivateNicPlain(GetInstancePrivateNicPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", TypeShape.of(GetInstancePrivateNicResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about a Security Group.
      * 
      * ## Example Usage
@@ -7045,6 +7492,286 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getIotHub:getIotHub", TypeShape.of(GetIotHubResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about a Kubernetes version.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+     * 
+     * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
+     * 
+     * ## Example Usage
+     * ### Use the latest version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var latest = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;latest&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Use a specific version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;1.26.0&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetK8sVersionResult> getK8sVersion(GetK8sVersionArgs args) {
+        return getK8sVersion(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Kubernetes version.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+     * 
+     * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
+     * 
+     * ## Example Usage
+     * ### Use the latest version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var latest = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;latest&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Use a specific version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;1.26.0&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetK8sVersionResult> getK8sVersionPlain(GetK8sVersionPlainArgs args) {
+        return getK8sVersionPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Kubernetes version.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+     * 
+     * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
+     * 
+     * ## Example Usage
+     * ### Use the latest version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var latest = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;latest&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Use a specific version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;1.26.0&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetK8sVersionResult> getK8sVersion(GetK8sVersionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getK8sVersion:getK8sVersion", TypeShape.of(GetK8sVersionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a Kubernetes version.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+     * 
+     * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
+     * 
+     * ## Example Usage
+     * ### Use the latest version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var latest = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;latest&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Use a specific version
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getK8sVersion(GetK8sVersionArgs.builder()
+     *             .name(&#34;1.26.0&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetK8sVersionResult> getK8sVersionPlain(GetK8sVersionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getK8sVersion:getK8sVersion", TypeShape.of(GetK8sVersionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about a Kubernetes Cluster.
      * 
      * ## Example Usage
@@ -7487,6 +8214,2296 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetKubernetesNodePoolResult> getKubernetesNodePoolPlain(GetKubernetesNodePoolPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", TypeShape.of(GetKubernetesNodePoolResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer ACLs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbAclsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontID = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var byFrontIDAndName = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .name(&#34;tf-acls-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbAclsResult> getLbAcls(GetLbAclsArgs args) {
+        return getLbAcls(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer ACLs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbAclsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontID = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var byFrontIDAndName = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .name(&#34;tf-acls-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbAclsResult> getLbAclsPlain(GetLbAclsPlainArgs args) {
+        return getLbAclsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer ACLs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbAclsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontID = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var byFrontIDAndName = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .name(&#34;tf-acls-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbAclsResult> getLbAcls(GetLbAclsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbAcls:getLbAcls", TypeShape.of(GetLbAclsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer ACLs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbAclsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontID = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var byFrontIDAndName = ScalewayFunctions.getLbAcls(GetLbAclsArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .name(&#34;tf-acls-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbAclsResult> getLbAclsPlain(GetLbAclsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbAcls:getLbAcls", TypeShape.of(GetLbAclsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Backends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var mainLoadbalancerIp = new LoadbalancerIp(&#34;mainLoadbalancerIp&#34;);
+     * 
+     *         var mainLoadbalancer = new Loadbalancer(&#34;mainLoadbalancer&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(mainLoadbalancerIp.id())
+     *             .type(&#34;LB-S&#34;)
+     *             .build());
+     * 
+     *         var mainLoadbalancerBackend = new LoadbalancerBackend(&#34;mainLoadbalancerBackend&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(mainLoadbalancer.id())
+     *             .forwardProtocol(&#34;http&#34;)
+     *             .forwardPort(&#34;80&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .backendId(mainLoadbalancerBackend.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .name(mainLoadbalancerBackend.name())
+     *             .lbId(mainLoadbalancer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbBackendResult> getLbBackend() {
+        return getLbBackend(GetLbBackendArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Backends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var mainLoadbalancerIp = new LoadbalancerIp(&#34;mainLoadbalancerIp&#34;);
+     * 
+     *         var mainLoadbalancer = new Loadbalancer(&#34;mainLoadbalancer&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(mainLoadbalancerIp.id())
+     *             .type(&#34;LB-S&#34;)
+     *             .build());
+     * 
+     *         var mainLoadbalancerBackend = new LoadbalancerBackend(&#34;mainLoadbalancerBackend&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(mainLoadbalancer.id())
+     *             .forwardProtocol(&#34;http&#34;)
+     *             .forwardPort(&#34;80&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .backendId(mainLoadbalancerBackend.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .name(mainLoadbalancerBackend.name())
+     *             .lbId(mainLoadbalancer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbBackendResult> getLbBackendPlain() {
+        return getLbBackendPlain(GetLbBackendPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Backends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var mainLoadbalancerIp = new LoadbalancerIp(&#34;mainLoadbalancerIp&#34;);
+     * 
+     *         var mainLoadbalancer = new Loadbalancer(&#34;mainLoadbalancer&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(mainLoadbalancerIp.id())
+     *             .type(&#34;LB-S&#34;)
+     *             .build());
+     * 
+     *         var mainLoadbalancerBackend = new LoadbalancerBackend(&#34;mainLoadbalancerBackend&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(mainLoadbalancer.id())
+     *             .forwardProtocol(&#34;http&#34;)
+     *             .forwardPort(&#34;80&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .backendId(mainLoadbalancerBackend.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .name(mainLoadbalancerBackend.name())
+     *             .lbId(mainLoadbalancer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbBackendResult> getLbBackend(GetLbBackendArgs args) {
+        return getLbBackend(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Backends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var mainLoadbalancerIp = new LoadbalancerIp(&#34;mainLoadbalancerIp&#34;);
+     * 
+     *         var mainLoadbalancer = new Loadbalancer(&#34;mainLoadbalancer&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(mainLoadbalancerIp.id())
+     *             .type(&#34;LB-S&#34;)
+     *             .build());
+     * 
+     *         var mainLoadbalancerBackend = new LoadbalancerBackend(&#34;mainLoadbalancerBackend&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(mainLoadbalancer.id())
+     *             .forwardProtocol(&#34;http&#34;)
+     *             .forwardPort(&#34;80&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .backendId(mainLoadbalancerBackend.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .name(mainLoadbalancerBackend.name())
+     *             .lbId(mainLoadbalancer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbBackendResult> getLbBackendPlain(GetLbBackendPlainArgs args) {
+        return getLbBackendPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Backends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var mainLoadbalancerIp = new LoadbalancerIp(&#34;mainLoadbalancerIp&#34;);
+     * 
+     *         var mainLoadbalancer = new Loadbalancer(&#34;mainLoadbalancer&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(mainLoadbalancerIp.id())
+     *             .type(&#34;LB-S&#34;)
+     *             .build());
+     * 
+     *         var mainLoadbalancerBackend = new LoadbalancerBackend(&#34;mainLoadbalancerBackend&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(mainLoadbalancer.id())
+     *             .forwardProtocol(&#34;http&#34;)
+     *             .forwardPort(&#34;80&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .backendId(mainLoadbalancerBackend.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .name(mainLoadbalancerBackend.name())
+     *             .lbId(mainLoadbalancer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbBackendResult> getLbBackend(GetLbBackendArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbBackend:getLbBackend", TypeShape.of(GetLbBackendResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Backends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var mainLoadbalancerIp = new LoadbalancerIp(&#34;mainLoadbalancerIp&#34;);
+     * 
+     *         var mainLoadbalancer = new Loadbalancer(&#34;mainLoadbalancer&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(mainLoadbalancerIp.id())
+     *             .type(&#34;LB-S&#34;)
+     *             .build());
+     * 
+     *         var mainLoadbalancerBackend = new LoadbalancerBackend(&#34;mainLoadbalancerBackend&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(mainLoadbalancer.id())
+     *             .forwardProtocol(&#34;http&#34;)
+     *             .forwardPort(&#34;80&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .backendId(mainLoadbalancerBackend.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbBackend(GetLbBackendArgs.builder()
+     *             .name(mainLoadbalancerBackend.name())
+     *             .lbId(mainLoadbalancer.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbBackendResult> getLbBackendPlain(GetLbBackendPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbBackend:getLbBackend", TypeShape.of(GetLbBackendResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer Backends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-backend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbBackendsResult> getLbBackends(GetLbBackendsArgs args) {
+        return getLbBackends(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Backends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-backend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbBackendsResult> getLbBackendsPlain(GetLbBackendsPlainArgs args) {
+        return getLbBackendsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Backends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-backend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbBackendsResult> getLbBackends(GetLbBackendsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbBackends:getLbBackends", TypeShape.of(GetLbBackendsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer Backends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbBackends(GetLbBackendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-backend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbBackendsResult> getLbBackendsPlain(GetLbBackendsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbBackends:getLbBackends", TypeShape.of(GetLbBackendsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Frontends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .frontendId(frt01.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .name(frt01.name())
+     *             .lbId(lb01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbFrontendResult> getLbFrontend() {
+        return getLbFrontend(GetLbFrontendArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Frontends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .frontendId(frt01.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .name(frt01.name())
+     *             .lbId(lb01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbFrontendResult> getLbFrontendPlain() {
+        return getLbFrontendPlain(GetLbFrontendPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Frontends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .frontendId(frt01.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .name(frt01.name())
+     *             .lbId(lb01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbFrontendResult> getLbFrontend(GetLbFrontendArgs args) {
+        return getLbFrontend(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Frontends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .frontendId(frt01.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .name(frt01.name())
+     *             .lbId(lb01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbFrontendResult> getLbFrontendPlain(GetLbFrontendPlainArgs args) {
+        return getLbFrontendPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Frontends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .frontendId(frt01.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .name(frt01.name())
+     *             .lbId(lb01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbFrontendResult> getLbFrontend(GetLbFrontendArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbFrontend:getLbFrontend", TypeShape.of(GetLbFrontendResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Frontends.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .frontendId(frt01.id())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getLbFrontend(GetLbFrontendArgs.builder()
+     *             .name(frt01.name())
+     *             .lbId(lb01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbFrontendResult> getLbFrontendPlain(GetLbFrontendPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbFrontend:getLbFrontend", TypeShape.of(GetLbFrontendResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer Frontends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-frontend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbFrontendsResult> getLbFrontends(GetLbFrontendsArgs args) {
+        return getLbFrontends(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Frontends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-frontend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbFrontendsResult> getLbFrontendsPlain(GetLbFrontendsPlainArgs args) {
+        return getLbFrontendsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Frontends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-frontend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbFrontendsResult> getLbFrontends(GetLbFrontendsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbFrontends:getLbFrontends", TypeShape.of(GetLbFrontendsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer Frontends.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbFrontendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byLBID = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .build());
+     * 
+     *         final var byLBIDAndName = ScalewayFunctions.getLbFrontends(GetLbFrontendsArgs.builder()
+     *             .lbId(scaleway_lb.lb01().id())
+     *             .name(&#34;tf-frontend-datasource&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbFrontendsResult> getLbFrontendsPlain(GetLbFrontendsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbFrontends:getLbFrontends", TypeShape.of(GetLbFrontendsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbIps(GetLbIpsArgs.builder()
+     *             .ipCidrRange(&#34;0.0.0.0/0&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbIpsResult> getLbIps() {
+        return getLbIps(GetLbIpsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbIps(GetLbIpsArgs.builder()
+     *             .ipCidrRange(&#34;0.0.0.0/0&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbIpsResult> getLbIpsPlain() {
+        return getLbIpsPlain(GetLbIpsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbIps(GetLbIpsArgs.builder()
+     *             .ipCidrRange(&#34;0.0.0.0/0&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbIpsResult> getLbIps(GetLbIpsArgs args) {
+        return getLbIps(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbIps(GetLbIpsArgs.builder()
+     *             .ipCidrRange(&#34;0.0.0.0/0&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbIpsResult> getLbIpsPlain(GetLbIpsPlainArgs args) {
+        return getLbIpsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbIps(GetLbIpsArgs.builder()
+     *             .ipCidrRange(&#34;0.0.0.0/0&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbIpsResult> getLbIps(GetLbIpsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbIps:getLbIps", TypeShape.of(GetLbIpsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbIpsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbIps(GetLbIpsArgs.builder()
+     *             .ipCidrRange(&#34;0.0.0.0/0&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbIpsResult> getLbIpsPlain(GetLbIpsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbIps:getLbIps", TypeShape.of(GetLbIpsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Routes.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.LoadbalancerRoute;
+     * import com.pulumi.scaleway.LoadbalancerRouteArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRouteArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         var rt01 = new LoadbalancerRoute(&#34;rt01&#34;, LoadbalancerRouteArgs.builder()        
+     *             .frontendId(frt01.id())
+     *             .backendId(bkd01.id())
+     *             .matchSni(&#34;sni.scaleway.com&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbRoute(GetLbRouteArgs.builder()
+     *             .routeId(rt01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbRouteResult> getLbRoute(GetLbRouteArgs args) {
+        return getLbRoute(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Routes.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.LoadbalancerRoute;
+     * import com.pulumi.scaleway.LoadbalancerRouteArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRouteArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         var rt01 = new LoadbalancerRoute(&#34;rt01&#34;, LoadbalancerRouteArgs.builder()        
+     *             .frontendId(frt01.id())
+     *             .backendId(bkd01.id())
+     *             .matchSni(&#34;sni.scaleway.com&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbRoute(GetLbRouteArgs.builder()
+     *             .routeId(rt01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbRouteResult> getLbRoutePlain(GetLbRoutePlainArgs args) {
+        return getLbRoutePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Routes.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.LoadbalancerRoute;
+     * import com.pulumi.scaleway.LoadbalancerRouteArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRouteArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         var rt01 = new LoadbalancerRoute(&#34;rt01&#34;, LoadbalancerRouteArgs.builder()        
+     *             .frontendId(frt01.id())
+     *             .backendId(bkd01.id())
+     *             .matchSni(&#34;sni.scaleway.com&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbRoute(GetLbRouteArgs.builder()
+     *             .routeId(rt01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbRouteResult> getLbRoute(GetLbRouteArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbRoute:getLbRoute", TypeShape.of(GetLbRouteResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about Scaleway Load-Balancer Routes.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.LoadbalancerIp;
+     * import com.pulumi.scaleway.Loadbalancer;
+     * import com.pulumi.scaleway.LoadbalancerArgs;
+     * import com.pulumi.scaleway.LoadbalancerBackend;
+     * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+     * import com.pulumi.scaleway.LoadbalancerFrontend;
+     * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+     * import com.pulumi.scaleway.LoadbalancerRoute;
+     * import com.pulumi.scaleway.LoadbalancerRouteArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRouteArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+     * 
+     *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+     *             .ipId(ip01.id())
+     *             .type(&#34;lb-s&#34;)
+     *             .build());
+     * 
+     *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .forwardProtocol(&#34;tcp&#34;)
+     *             .forwardPort(80)
+     *             .proxyProtocol(&#34;none&#34;)
+     *             .build());
+     * 
+     *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+     *             .lbId(lb01.id())
+     *             .backendId(bkd01.id())
+     *             .inboundPort(80)
+     *             .build());
+     * 
+     *         var rt01 = new LoadbalancerRoute(&#34;rt01&#34;, LoadbalancerRouteArgs.builder()        
+     *             .frontendId(frt01.id())
+     *             .backendId(bkd01.id())
+     *             .matchSni(&#34;sni.scaleway.com&#34;)
+     *             .build());
+     * 
+     *         final var byID = ScalewayFunctions.getLbRoute(GetLbRouteArgs.builder()
+     *             .routeId(rt01.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbRouteResult> getLbRoutePlain(GetLbRoutePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbRoute:getLbRoute", TypeShape.of(GetLbRouteResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer Routes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontendID = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var myKey = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbRoutesResult> getLbRoutes() {
+        return getLbRoutes(GetLbRoutesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Routes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontendID = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var myKey = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbRoutesResult> getLbRoutesPlain() {
+        return getLbRoutesPlain(GetLbRoutesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Routes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontendID = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var myKey = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbRoutesResult> getLbRoutes(GetLbRoutesArgs args) {
+        return getLbRoutes(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Routes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontendID = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var myKey = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbRoutesResult> getLbRoutesPlain(GetLbRoutesPlainArgs args) {
+        return getLbRoutesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancer Routes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontendID = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var myKey = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbRoutesResult> getLbRoutes(GetLbRoutesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbRoutes:getLbRoutes", TypeShape.of(GetLbRoutesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancer Routes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbRoutesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byFrontendID = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(scaleway_lb_frontend.frt01().id())
+     *             .build());
+     * 
+     *         final var myKey = ScalewayFunctions.getLbRoutes(GetLbRoutesArgs.builder()
+     *             .frontendId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbRoutesResult> getLbRoutesPlain(GetLbRoutesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbRoutes:getLbRoutes", TypeShape.of(GetLbRoutesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancers.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbs(GetLbsArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbsResult> getLbs() {
+        return getLbs(GetLbsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancers.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbs(GetLbsArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbsResult> getLbsPlain() {
+        return getLbsPlain(GetLbsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancers.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbs(GetLbsArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbsResult> getLbs(GetLbsArgs args) {
+        return getLbs(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancers.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbs(GetLbsArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbsResult> getLbsPlain(GetLbsPlainArgs args) {
+        return getLbsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Load Balancers.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbs(GetLbsArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetLbsResult> getLbs(GetLbsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getLbs:getLbs", TypeShape.of(GetLbsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Load Balancers.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetLbsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getLbs(GetLbsArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .zone(&#34;fr-par-2&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetLbsResult> getLbsPlain(GetLbsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getLbs:getLbs", TypeShape.of(GetLbsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a Load Balancer.
@@ -8627,7 +11644,7 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getObjectBucket:getObjectBucket", TypeShape.of(GetObjectBucketResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about a Redis cluster.
+     * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
      * 
      * ## Example Usage
      * ```java
@@ -8664,7 +11681,7 @@ public final class ScalewayFunctions {
         return getRedisCluster(GetRedisClusterArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a Redis cluster.
+     * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
      * 
      * ## Example Usage
      * ```java
@@ -8701,7 +11718,7 @@ public final class ScalewayFunctions {
         return getRedisClusterPlain(GetRedisClusterPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a Redis cluster.
+     * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
      * 
      * ## Example Usage
      * ```java
@@ -8738,7 +11755,7 @@ public final class ScalewayFunctions {
         return getRedisCluster(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a Redis cluster.
+     * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
      * 
      * ## Example Usage
      * ```java
@@ -8775,7 +11792,7 @@ public final class ScalewayFunctions {
         return getRedisClusterPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Gets information about a Redis cluster.
+     * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
      * 
      * ## Example Usage
      * ```java
@@ -8812,7 +11829,7 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invoke("scaleway:index/getRedisCluster:getRedisCluster", TypeShape.of(GetRedisClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Gets information about a Redis cluster.
+     * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
      * 
      * ## Example Usage
      * ```java
@@ -9297,6 +12314,324 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetRegistryNamespaceResult> getRegistryNamespacePlain(GetRegistryNamespacePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getRegistryNamespace:getRegistryNamespace", TypeShape.of(GetRegistryNamespaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about Scaleway Secrets.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.Secret;
+     * import com.pulumi.scaleway.SecretArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var main = new Secret(&#34;main&#34;, SecretArgs.builder()        
+     *             .description(&#34;barr&#34;)
+     *             .build());
+     * 
+     *         final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .secretId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .name(&#34;your_secret_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSecretResult> getSecret() {
+        return getSecret(GetSecretArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about Scaleway Secrets.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.Secret;
+     * import com.pulumi.scaleway.SecretArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var main = new Secret(&#34;main&#34;, SecretArgs.builder()        
+     *             .description(&#34;barr&#34;)
+     *             .build());
+     * 
+     *         final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .secretId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .name(&#34;your_secret_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSecretResult> getSecretPlain() {
+        return getSecretPlain(GetSecretPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about Scaleway Secrets.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.Secret;
+     * import com.pulumi.scaleway.SecretArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var main = new Secret(&#34;main&#34;, SecretArgs.builder()        
+     *             .description(&#34;barr&#34;)
+     *             .build());
+     * 
+     *         final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .secretId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .name(&#34;your_secret_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSecretResult> getSecret(GetSecretArgs args) {
+        return getSecret(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about Scaleway Secrets.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.Secret;
+     * import com.pulumi.scaleway.SecretArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var main = new Secret(&#34;main&#34;, SecretArgs.builder()        
+     *             .description(&#34;barr&#34;)
+     *             .build());
+     * 
+     *         final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .secretId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .name(&#34;your_secret_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args) {
+        return getSecretPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about Scaleway Secrets.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.Secret;
+     * import com.pulumi.scaleway.SecretArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var main = new Secret(&#34;main&#34;, SecretArgs.builder()        
+     *             .description(&#34;barr&#34;)
+     *             .build());
+     * 
+     *         final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .secretId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .name(&#34;your_secret_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSecretResult> getSecret(GetSecretArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getSecret:getSecret", TypeShape.of(GetSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about Scaleway Secrets.
+     * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.Secret;
+     * import com.pulumi.scaleway.SecretArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var main = new Secret(&#34;main&#34;, SecretArgs.builder()        
+     *             .description(&#34;barr&#34;)
+     *             .build());
+     * 
+     *         final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .secretId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()
+     *             .name(&#34;your_secret_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getSecret:getSecret", TypeShape.of(GetSecretResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSecretVersionResult> getSecretVersion() {
+        return getSecretVersion(GetSecretVersionArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSecretVersionResult> getSecretVersionPlain() {
+        return getSecretVersionPlain(GetSecretVersionPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetSecretVersionResult> getSecretVersion(GetSecretVersionArgs args) {
+        return getSecretVersion(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSecretVersionResult> getSecretVersionPlain(GetSecretVersionPlainArgs args) {
+        return getSecretVersionPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetSecretVersionResult> getSecretVersion(GetSecretVersionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getSecretVersion:getSecretVersion", TypeShape.of(GetSecretVersionResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetSecretVersionResult> getSecretVersionPlain(GetSecretVersionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getSecretVersion:getSecretVersion", TypeShape.of(GetSecretVersionResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a transactional email domain.
@@ -10989,5 +14324,251 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetVpcPublicPatRuleResult> getVpcPublicPatRulePlain(GetVpcPublicPatRulePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", TypeShape.of(GetVpcPublicPatRuleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a webhosting offer.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .name(&#34;performance&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .offerId(&#34;de2426b4-a9e9-11ec-b909-0242ac120002&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetWebHostOfferResult> getWebHostOffer() {
+        return getWebHostOffer(GetWebHostOfferArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting offer.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .name(&#34;performance&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .offerId(&#34;de2426b4-a9e9-11ec-b909-0242ac120002&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetWebHostOfferResult> getWebHostOfferPlain() {
+        return getWebHostOfferPlain(GetWebHostOfferPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting offer.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .name(&#34;performance&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .offerId(&#34;de2426b4-a9e9-11ec-b909-0242ac120002&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetWebHostOfferResult> getWebHostOffer(GetWebHostOfferArgs args) {
+        return getWebHostOffer(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting offer.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .name(&#34;performance&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .offerId(&#34;de2426b4-a9e9-11ec-b909-0242ac120002&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetWebHostOfferResult> getWebHostOfferPlain(GetWebHostOfferPlainArgs args) {
+        return getWebHostOfferPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting offer.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .name(&#34;performance&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .offerId(&#34;de2426b4-a9e9-11ec-b909-0242ac120002&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetWebHostOfferResult> getWebHostOffer(GetWebHostOfferArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getWebHostOffer:getWebHostOffer", TypeShape.of(GetWebHostOfferResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a webhosting offer.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .name(&#34;performance&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()
+     *             .offerId(&#34;de2426b4-a9e9-11ec-b909-0242ac120002&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetWebHostOfferResult> getWebHostOfferPlain(GetWebHostOfferPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getWebHostOffer:getWebHostOffer", TypeShape.of(GetWebHostOfferResult.class), args, Utilities.withVersion(options));
     }
 }

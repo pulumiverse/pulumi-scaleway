@@ -33,6 +33,7 @@ type LookupTemDomainArgs struct {
 
 // A collection of values returned by getTemDomain.
 type LookupTemDomainResult struct {
+	AcceptTos bool `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -97,6 +98,10 @@ func (o LookupTemDomainResultOutput) ToLookupTemDomainResultOutput() LookupTemDo
 
 func (o LookupTemDomainResultOutput) ToLookupTemDomainResultOutputWithContext(ctx context.Context) LookupTemDomainResultOutput {
 	return o
+}
+
+func (o LookupTemDomainResultOutput) AcceptTos() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) bool { return v.AcceptTos }).(pulumi.BoolOutput)
 }
 
 // The date and time of the Transaction Email Domain's creation (RFC 3339 format).

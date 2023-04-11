@@ -102,7 +102,7 @@ export class DatabaseReadReplica extends pulumi.CustomResource {
      */
     public readonly directAccess!: pulumi.Output<outputs.DatabaseReadReplicaDirectAccess | undefined>;
     /**
-     * Id of the rdb instance to replicate.
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -110,7 +110,8 @@ export class DatabaseReadReplica extends pulumi.CustomResource {
      */
     public readonly privateNetwork!: pulumi.Output<outputs.DatabaseReadReplicaPrivateNetwork | undefined>;
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -155,7 +156,7 @@ export interface DatabaseReadReplicaState {
      */
     directAccess?: pulumi.Input<inputs.DatabaseReadReplicaDirectAccess>;
     /**
-     * Id of the rdb instance to replicate.
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -163,7 +164,8 @@ export interface DatabaseReadReplicaState {
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork>;
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      */
     region?: pulumi.Input<string>;
 }
@@ -177,7 +179,7 @@ export interface DatabaseReadReplicaArgs {
      */
     directAccess?: pulumi.Input<inputs.DatabaseReadReplicaDirectAccess>;
     /**
-     * Id of the rdb instance to replicate.
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
@@ -185,7 +187,8 @@ export interface DatabaseReadReplicaArgs {
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork>;
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      */
     region?: pulumi.Input<string>;
 }

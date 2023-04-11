@@ -64,7 +64,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * The domain where the DNS zone will be created.
      * 
      */
-    @Export(name="domain", type=String.class, parameters={})
+    @Export(name="domain", refs={String.class}, tree="[0]")
     private Output<String> domain;
 
     /**
@@ -78,7 +78,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * Message
      * 
      */
-    @Export(name="message", type=String.class, parameters={})
+    @Export(name="message", refs={String.class}, tree="[0]")
     private Output<String> message;
 
     /**
@@ -92,7 +92,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * NameServer list for zone.
      * 
      */
-    @Export(name="ns", type=List.class, parameters={String.class})
+    @Export(name="ns", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> ns;
 
     /**
@@ -106,7 +106,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * NameServer default list for zone.
      * 
      */
-    @Export(name="nsDefaults", type=List.class, parameters={String.class})
+    @Export(name="nsDefaults", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> nsDefaults;
 
     /**
@@ -120,7 +120,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * NameServer master list for zone.
      * 
      */
-    @Export(name="nsMasters", type=List.class, parameters={String.class})
+    @Export(name="nsMasters", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> nsMasters;
 
     /**
@@ -134,7 +134,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the domain is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -148,7 +148,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * The domain zone status.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -162,7 +162,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * The subdomain(zone name) to create in the domain.
      * 
      */
-    @Export(name="subdomain", type=String.class, parameters={})
+    @Export(name="subdomain", refs={String.class}, tree="[0]")
     private Output<String> subdomain;
 
     /**
@@ -176,7 +176,7 @@ public class DomainZone extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the DNS zone.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -54,6 +55,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -102,7 +104,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<Outputs.DatabaseReadReplicaDirectAccess?> DirectAccess { get; private set; } = null!;
 
         /// <summary>
-        /// Id of the rdb instance to replicate.
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -114,7 +116,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<Outputs.DatabaseReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database read replica should be created.
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -173,7 +176,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.DatabaseReadReplicaDirectAccessArgs>? DirectAccess { get; set; }
 
         /// <summary>
-        /// Id of the rdb instance to replicate.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -185,7 +188,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.DatabaseReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database read replica should be created.
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -205,7 +209,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.DatabaseReadReplicaDirectAccessGetArgs>? DirectAccess { get; set; }
 
         /// <summary>
-        /// Id of the rdb instance to replicate.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -217,7 +221,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.DatabaseReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database read replica should be created.
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

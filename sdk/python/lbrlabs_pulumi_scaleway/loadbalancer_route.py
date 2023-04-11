@@ -16,15 +16,21 @@ class LoadbalancerRouteArgs:
     def __init__(__self__, *,
                  backend_id: pulumi.Input[str],
                  frontend_id: pulumi.Input[str],
+                 match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerRoute resource.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
         :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] match_sni: The SNI to match.
+        :param pulumi.Input[str] match_host_header: The Host request header specifies the host of the server to which the request is being sent.
+               Only one of `match_sni` and `match_host_header` should be specified.
+        :param pulumi.Input[str] match_sni: The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+               Only one of `match_sni` and `match_host_header` should be specified.
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "frontend_id", frontend_id)
+        if match_host_header is not None:
+            pulumi.set(__self__, "match_host_header", match_host_header)
         if match_sni is not None:
             pulumi.set(__self__, "match_sni", match_sni)
 
@@ -53,10 +59,24 @@ class LoadbalancerRouteArgs:
         pulumi.set(self, "frontend_id", value)
 
     @property
+    @pulumi.getter(name="matchHostHeader")
+    def match_host_header(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Host request header specifies the host of the server to which the request is being sent.
+        Only one of `match_sni` and `match_host_header` should be specified.
+        """
+        return pulumi.get(self, "match_host_header")
+
+    @match_host_header.setter
+    def match_host_header(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_host_header", value)
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> Optional[pulumi.Input[str]]:
         """
-        The SNI to match.
+        The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        Only one of `match_sni` and `match_host_header` should be specified.
         """
         return pulumi.get(self, "match_sni")
 
@@ -69,20 +89,34 @@ class LoadbalancerRouteArgs:
 class _LoadbalancerRouteState:
     def __init__(__self__, *,
                  backend_id: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
-                 match_sni: Optional[pulumi.Input[str]] = None):
+                 match_host_header: Optional[pulumi.Input[str]] = None,
+                 match_sni: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerRoute resources.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
+        :param pulumi.Input[str] created_at: The date at which the route was created.
         :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] match_sni: The SNI to match.
+        :param pulumi.Input[str] match_host_header: The Host request header specifies the host of the server to which the request is being sent.
+               Only one of `match_sni` and `match_host_header` should be specified.
+        :param pulumi.Input[str] match_sni: The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+               Only one of `match_sni` and `match_host_header` should be specified.
+        :param pulumi.Input[str] updated_at: The date at which the route was last updated.
         """
         if backend_id is not None:
             pulumi.set(__self__, "backend_id", backend_id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
         if frontend_id is not None:
             pulumi.set(__self__, "frontend_id", frontend_id)
+        if match_host_header is not None:
+            pulumi.set(__self__, "match_host_header", match_host_header)
         if match_sni is not None:
             pulumi.set(__self__, "match_sni", match_sni)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="backendId")
@@ -97,6 +131,18 @@ class _LoadbalancerRouteState:
         pulumi.set(self, "backend_id", value)
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date at which the route was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -109,16 +155,42 @@ class _LoadbalancerRouteState:
         pulumi.set(self, "frontend_id", value)
 
     @property
+    @pulumi.getter(name="matchHostHeader")
+    def match_host_header(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Host request header specifies the host of the server to which the request is being sent.
+        Only one of `match_sni` and `match_host_header` should be specified.
+        """
+        return pulumi.get(self, "match_host_header")
+
+    @match_host_header.setter
+    def match_host_header(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_host_header", value)
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> Optional[pulumi.Input[str]]:
         """
-        The SNI to match.
+        The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        Only one of `match_sni` and `match_host_header` should be specified.
         """
         return pulumi.get(self, "match_sni")
 
     @match_sni.setter
     def match_sni(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "match_sni", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date at which the route was last updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
 
 
 class LoadbalancerRoute(pulumi.CustomResource):
@@ -128,6 +200,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
+                 match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -136,7 +209,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         ## Examples
 
-        ### Basic
+        ### With SNI
 
         ```python
         import pulumi
@@ -158,7 +231,32 @@ class LoadbalancerRoute(pulumi.CustomResource):
         rt01 = scaleway.LoadbalancerRoute("rt01",
             frontend_id=frt01.id,
             backend_id=bkd01.id,
-            match_sni="scaleway.com")
+            match_sni="sni.scaleway.com")
+        ```
+
+        ### With host-header
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        ip01 = scaleway.LoadbalancerIp("ip01")
+        lb01 = scaleway.Loadbalancer("lb01",
+            ip_id=ip01.id,
+            type="lb-s")
+        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+            lb_id=lb01.id,
+            forward_protocol="tcp",
+            forward_port=80,
+            proxy_protocol="none")
+        frt01 = scaleway.LoadbalancerFrontend("frt01",
+            lb_id=lb01.id,
+            backend_id=bkd01.id,
+            inbound_port=80)
+        rt01 = scaleway.LoadbalancerRoute("rt01",
+            frontend_id=frt01.id,
+            backend_id=bkd01.id,
+            match_host_header="host.scaleway.com")
         ```
 
         ## Import
@@ -173,7 +271,10 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
         :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] match_sni: The SNI to match.
+        :param pulumi.Input[str] match_host_header: The Host request header specifies the host of the server to which the request is being sent.
+               Only one of `match_sni` and `match_host_header` should be specified.
+        :param pulumi.Input[str] match_sni: The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+               Only one of `match_sni` and `match_host_header` should be specified.
         """
         ...
     @overload
@@ -187,7 +288,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         ## Examples
 
-        ### Basic
+        ### With SNI
 
         ```python
         import pulumi
@@ -209,7 +310,32 @@ class LoadbalancerRoute(pulumi.CustomResource):
         rt01 = scaleway.LoadbalancerRoute("rt01",
             frontend_id=frt01.id,
             backend_id=bkd01.id,
-            match_sni="scaleway.com")
+            match_sni="sni.scaleway.com")
+        ```
+
+        ### With host-header
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        ip01 = scaleway.LoadbalancerIp("ip01")
+        lb01 = scaleway.Loadbalancer("lb01",
+            ip_id=ip01.id,
+            type="lb-s")
+        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+            lb_id=lb01.id,
+            forward_protocol="tcp",
+            forward_port=80,
+            proxy_protocol="none")
+        frt01 = scaleway.LoadbalancerFrontend("frt01",
+            lb_id=lb01.id,
+            backend_id=bkd01.id,
+            inbound_port=80)
+        rt01 = scaleway.LoadbalancerRoute("rt01",
+            frontend_id=frt01.id,
+            backend_id=bkd01.id,
+            match_host_header="host.scaleway.com")
         ```
 
         ## Import
@@ -237,6 +363,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
+                 match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -253,7 +380,10 @@ class LoadbalancerRoute(pulumi.CustomResource):
             if frontend_id is None and not opts.urn:
                 raise TypeError("Missing required property 'frontend_id'")
             __props__.__dict__["frontend_id"] = frontend_id
+            __props__.__dict__["match_host_header"] = match_host_header
             __props__.__dict__["match_sni"] = match_sni
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["updated_at"] = None
         super(LoadbalancerRoute, __self__).__init__(
             'scaleway:index/loadbalancerRoute:LoadbalancerRoute',
             resource_name,
@@ -265,8 +395,11 @@ class LoadbalancerRoute(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend_id: Optional[pulumi.Input[str]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
             frontend_id: Optional[pulumi.Input[str]] = None,
-            match_sni: Optional[pulumi.Input[str]] = None) -> 'LoadbalancerRoute':
+            match_host_header: Optional[pulumi.Input[str]] = None,
+            match_sni: Optional[pulumi.Input[str]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None) -> 'LoadbalancerRoute':
         """
         Get an existing LoadbalancerRoute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -275,16 +408,24 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
+        :param pulumi.Input[str] created_at: The date at which the route was created.
         :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
-        :param pulumi.Input[str] match_sni: The SNI to match.
+        :param pulumi.Input[str] match_host_header: The Host request header specifies the host of the server to which the request is being sent.
+               Only one of `match_sni` and `match_host_header` should be specified.
+        :param pulumi.Input[str] match_sni: The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+               Only one of `match_sni` and `match_host_header` should be specified.
+        :param pulumi.Input[str] updated_at: The date at which the route was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _LoadbalancerRouteState.__new__(_LoadbalancerRouteState)
 
         __props__.__dict__["backend_id"] = backend_id
+        __props__.__dict__["created_at"] = created_at
         __props__.__dict__["frontend_id"] = frontend_id
+        __props__.__dict__["match_host_header"] = match_host_header
         __props__.__dict__["match_sni"] = match_sni
+        __props__.__dict__["updated_at"] = updated_at
         return LoadbalancerRoute(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -296,6 +437,14 @@ class LoadbalancerRoute(pulumi.CustomResource):
         return pulumi.get(self, "backend_id")
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The date at which the route was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Output[str]:
         """
@@ -304,10 +453,28 @@ class LoadbalancerRoute(pulumi.CustomResource):
         return pulumi.get(self, "frontend_id")
 
     @property
+    @pulumi.getter(name="matchHostHeader")
+    def match_host_header(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Host request header specifies the host of the server to which the request is being sent.
+        Only one of `match_sni` and `match_host_header` should be specified.
+        """
+        return pulumi.get(self, "match_host_header")
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> pulumi.Output[Optional[str]]:
         """
-        The SNI to match.
+        The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        Only one of `match_sni` and `match_host_header` should be specified.
         """
         return pulumi.get(self, "match_sni")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        The date at which the route was last updated.
+        """
+        return pulumi.get(self, "updated_at")
 

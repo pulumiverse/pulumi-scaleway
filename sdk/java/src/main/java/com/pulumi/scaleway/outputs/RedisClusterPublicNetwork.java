@@ -18,7 +18,15 @@ public final class RedisClusterPublicNetwork {
      * 
      */
     private @Nullable String id;
+    /**
+     * @return Lis of IPv4 address of the endpoint (IP address).
+     * 
+     */
     private @Nullable List<String> ips;
+    /**
+     * @return TCP port of the endpoint.
+     * 
+     */
     private @Nullable Integer port;
 
     private RedisClusterPublicNetwork() {}
@@ -29,9 +37,17 @@ public final class RedisClusterPublicNetwork {
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return Lis of IPv4 address of the endpoint (IP address).
+     * 
+     */
     public List<String> ips() {
         return this.ips == null ? List.of() : this.ips;
     }
+    /**
+     * @return TCP port of the endpoint.
+     * 
+     */
     public Optional<Integer> port() {
         return Optional.ofNullable(this.port);
     }

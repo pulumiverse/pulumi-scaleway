@@ -22,7 +22,8 @@ public final class RedisClusterAcl {
      */
     private @Nullable String id;
     /**
-     * @return The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * @return The ip range to whitelist
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      * 
      */
     private String ip;
@@ -43,7 +44,8 @@ public final class RedisClusterAcl {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * @return The ip range to whitelist
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      * 
      */
     public String ip() {

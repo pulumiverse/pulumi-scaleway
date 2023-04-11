@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetTemDomainResult {
+    private Boolean acceptTos;
     /**
      * @return The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
      * 
@@ -62,6 +64,9 @@ public final class GetTemDomainResult {
     private String status;
 
     private GetTemDomainResult() {}
+    public Boolean acceptTos() {
+        return this.acceptTos;
+    }
     /**
      * @return The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
      * 
@@ -147,6 +152,7 @@ public final class GetTemDomainResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean acceptTos;
         private String createdAt;
         private String dkimConfig;
         private @Nullable String domainId;
@@ -163,6 +169,7 @@ public final class GetTemDomainResult {
         public Builder() {}
         public Builder(GetTemDomainResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.acceptTos = defaults.acceptTos;
     	      this.createdAt = defaults.createdAt;
     	      this.dkimConfig = defaults.dkimConfig;
     	      this.domainId = defaults.domainId;
@@ -178,6 +185,11 @@ public final class GetTemDomainResult {
     	      this.status = defaults.status;
         }
 
+        @CustomType.Setter
+        public Builder acceptTos(Boolean acceptTos) {
+            this.acceptTos = Objects.requireNonNull(acceptTos);
+            return this;
+        }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
             this.createdAt = Objects.requireNonNull(createdAt);
@@ -245,6 +257,7 @@ public final class GetTemDomainResult {
         }
         public GetTemDomainResult build() {
             final var o = new GetTemDomainResult();
+            o.acceptTos = acceptTos;
             o.createdAt = createdAt;
             o.dkimConfig = dkimConfig;
             o.domainId = domainId;

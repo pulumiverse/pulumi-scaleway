@@ -17,14 +17,14 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
     public static final DatabaseUserState Empty = new DatabaseUserState();
 
     /**
-     * The instance on which to create the user.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
-     * @return The instance on which to create the user.
+     * @return UUID of the rdb instance.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -77,14 +77,14 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return The Scaleway region this resource resides in.
      * 
      */
     public Optional<Output<String>> region() {
@@ -120,7 +120,7 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The instance on which to create the user.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The instance on which to create the user.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -204,7 +204,7 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region The Scaleway region this resource resides in.
          * 
          * @return builder
          * 
@@ -215,7 +215,7 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region The Scaleway region this resource resides in.
          * 
          * @return builder
          * 

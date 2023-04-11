@@ -160,6 +160,7 @@ def get_database_backup(backup_id: Optional[str] = None,
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
            Only one of the `name` and `backup_id` should be specified.
+    :param str region: `region`) The region in which the Database Instance should be created.
     """
     __args__ = dict()
     __args__['backupId'] = backup_id
@@ -210,5 +211,6 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
            Only one of the `name` and `backup_id` should be specified.
+    :param str region: `region`) The region in which the Database Instance should be created.
     """
     ...

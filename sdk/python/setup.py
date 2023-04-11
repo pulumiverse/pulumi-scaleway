@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='lbrlabs_pulumi_scaleway',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing scaleway cloud resources.",
       long_description=readme(),

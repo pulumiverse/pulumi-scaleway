@@ -32,6 +32,21 @@ public final class LoadbalancerBackendHealthCheckHttpArgs extends com.pulumi.res
     }
 
     /**
+     * The HTTP host header to use for HC requests.
+     * 
+     */
+    @Import(name="hostHeader")
+    private @Nullable Output<String> hostHeader;
+
+    /**
+     * @return The HTTP host header to use for HC requests.
+     * 
+     */
+    public Optional<Output<String>> hostHeader() {
+        return Optional.ofNullable(this.hostHeader);
+    }
+
+    /**
      * The HTTP method to use for HC requests.
      * 
      */
@@ -65,6 +80,7 @@ public final class LoadbalancerBackendHealthCheckHttpArgs extends com.pulumi.res
 
     private LoadbalancerBackendHealthCheckHttpArgs(LoadbalancerBackendHealthCheckHttpArgs $) {
         this.code = $.code;
+        this.hostHeader = $.hostHeader;
         this.method = $.method;
         this.uri = $.uri;
     }
@@ -106,6 +122,27 @@ public final class LoadbalancerBackendHealthCheckHttpArgs extends com.pulumi.res
          */
         public Builder code(Integer code) {
             return code(Output.of(code));
+        }
+
+        /**
+         * @param hostHeader The HTTP host header to use for HC requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hostHeader(@Nullable Output<String> hostHeader) {
+            $.hostHeader = hostHeader;
+            return this;
+        }
+
+        /**
+         * @param hostHeader The HTTP host header to use for HC requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hostHeader(String hostHeader) {
+            return hostHeader(Output.of(hostHeader));
         }
 
         /**

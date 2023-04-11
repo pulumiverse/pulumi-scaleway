@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Create and manage Scaleway RDB database privilege.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#user-and-permissions).
  *
  * ## Example Usage
  *
@@ -14,14 +14,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
+ * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-11",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * const mainDatabase = new scaleway.Database("mainDatabase", {instanceId: mainDatabaseInstance.id});
  * const mainDatabaseUser = new scaleway.DatabaseUser("mainDatabaseUser", {
- *     instanceId: scaleway_rdb_instance.pgsql.id,
+ *     instanceId: mainDatabaseInstance.id,
  *     password: "thiZ_is_v&ry_s3cret",
  *     isAdmin: false,
  * });
- * const mainDatabase = new scaleway.Database("mainDatabase", {instanceId: scaleway_rdb_instance.pgsql.id});
- * const priv = new scaleway.DatabasePrivilege("priv", {
- *     instanceId: scaleway_rdb_instance.rdb.id,
+ * const mainDatabasePrivilege = new scaleway.DatabasePrivilege("mainDatabasePrivilege", {
+ *     instanceId: mainDatabaseInstance.id,
  *     userName: "my-db-user",
  *     databaseName: "my-db-name",
  *     permission: "all",
@@ -31,6 +39,14 @@ import * as utilities from "./utilities";
  *         mainDatabase,
  *     ],
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
  * ```
  */
 export class DatabasePrivilege extends pulumi.CustomResource {
@@ -66,13 +82,17 @@ export class DatabasePrivilege extends pulumi.CustomResource {
      */
     public readonly databaseName!: pulumi.Output<string>;
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
      * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     public readonly permission!: pulumi.Output<string>;
+    /**
+     * `region`) The region in which the resource exists.
+     */
+    public readonly region!: pulumi.Output<string>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */
@@ -94,6 +114,7 @@ export class DatabasePrivilege extends pulumi.CustomResource {
             resourceInputs["databaseName"] = state ? state.databaseName : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["permission"] = state ? state.permission : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
         } else {
             const args = argsOrState as DatabasePrivilegeArgs | undefined;
@@ -112,6 +133,7 @@ export class DatabasePrivilege extends pulumi.CustomResource {
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["permission"] = args ? args.permission : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -128,13 +150,17 @@ export interface DatabasePrivilegeState {
      */
     databaseName?: pulumi.Input<string>;
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
      * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the resource exists.
+     */
+    region?: pulumi.Input<string>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */
@@ -150,13 +176,17 @@ export interface DatabasePrivilegeArgs {
      */
     databaseName: pulumi.Input<string>;
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
      * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the resource exists.
+     */
+    region?: pulumi.Input<string>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */

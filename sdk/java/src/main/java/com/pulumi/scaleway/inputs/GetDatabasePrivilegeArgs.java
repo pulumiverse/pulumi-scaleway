@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetDatabasePrivilegeArgs extends com.pulumi.resources.InvokeArgs {
@@ -44,6 +46,21 @@ public final class GetDatabasePrivilegeArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * The user name.
      * 
      */
@@ -63,6 +80,7 @@ public final class GetDatabasePrivilegeArgs extends com.pulumi.resources.InvokeA
     private GetDatabasePrivilegeArgs(GetDatabasePrivilegeArgs $) {
         this.databaseName = $.databaseName;
         this.instanceId = $.instanceId;
+        this.region = $.region;
         this.userName = $.userName;
     }
 
@@ -124,6 +142,27 @@ public final class GetDatabasePrivilegeArgs extends com.pulumi.resources.InvokeA
          */
         public Builder instanceId(String instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

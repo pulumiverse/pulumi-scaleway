@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class AccountSshKeyArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final AccountSshKeyArgs Empty = new AccountSshKeyArgs();
+
+    /**
+     * The SSH key status
+     * 
+     */
+    @Import(name="disabled")
+    private @Nullable Output<Boolean> disabled;
+
+    /**
+     * @return The SSH key status
+     * 
+     */
+    public Optional<Output<Boolean>> disabled() {
+        return Optional.ofNullable(this.disabled);
+    }
 
     /**
      * The name of the SSH key.
@@ -63,6 +79,7 @@ public final class AccountSshKeyArgs extends com.pulumi.resources.ResourceArgs {
     private AccountSshKeyArgs() {}
 
     private AccountSshKeyArgs(AccountSshKeyArgs $) {
+        this.disabled = $.disabled;
         this.name = $.name;
         this.projectId = $.projectId;
         this.publicKey = $.publicKey;
@@ -84,6 +101,27 @@ public final class AccountSshKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(AccountSshKeyArgs defaults) {
             $ = new AccountSshKeyArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param disabled The SSH key status
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabled(@Nullable Output<Boolean> disabled) {
+            $.disabled = disabled;
+            return this;
+        }
+
+        /**
+         * @param disabled The SSH key status
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabled(Boolean disabled) {
+            return disabled(Output.of(disabled));
         }
 
         /**

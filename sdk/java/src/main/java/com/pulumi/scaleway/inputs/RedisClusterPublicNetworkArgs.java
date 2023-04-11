@@ -32,16 +32,32 @@ public final class RedisClusterPublicNetworkArgs extends com.pulumi.resources.Re
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * Lis of IPv4 address of the endpoint (IP address).
+     * 
+     */
     @Import(name="ips")
     private @Nullable Output<List<String>> ips;
 
+    /**
+     * @return Lis of IPv4 address of the endpoint (IP address).
+     * 
+     */
     public Optional<Output<List<String>>> ips() {
         return Optional.ofNullable(this.ips);
     }
 
+    /**
+     * TCP port of the endpoint.
+     * 
+     */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
+    /**
+     * @return TCP port of the endpoint.
+     * 
+     */
     public Optional<Output<Integer>> port() {
         return Optional.ofNullable(this.port);
     }
@@ -93,24 +109,54 @@ public final class RedisClusterPublicNetworkArgs extends com.pulumi.resources.Re
             return id(Output.of(id));
         }
 
+        /**
+         * @param ips Lis of IPv4 address of the endpoint (IP address).
+         * 
+         * @return builder
+         * 
+         */
         public Builder ips(@Nullable Output<List<String>> ips) {
             $.ips = ips;
             return this;
         }
 
+        /**
+         * @param ips Lis of IPv4 address of the endpoint (IP address).
+         * 
+         * @return builder
+         * 
+         */
         public Builder ips(List<String> ips) {
             return ips(Output.of(ips));
         }
 
+        /**
+         * @param ips Lis of IPv4 address of the endpoint (IP address).
+         * 
+         * @return builder
+         * 
+         */
         public Builder ips(String... ips) {
             return ips(List.of(ips));
         }
 
+        /**
+         * @param port TCP port of the endpoint.
+         * 
+         * @return builder
+         * 
+         */
         public Builder port(@Nullable Output<Integer> port) {
             $.port = port;
             return this;
         }
 
+        /**
+         * @param port TCP port of the endpoint.
+         * 
+         * @return builder
+         * 
+         */
         public Builder port(Integer port) {
             return port(Output.of(port));
         }

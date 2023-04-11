@@ -46,14 +46,16 @@ public final class RedisClusterAclArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The ip range to whitelist
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      * 
      */
     @Import(name="ip", required=true)
     private Output<String> ip;
 
     /**
-     * @return The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * @return The ip range to whitelist
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      * 
      */
     public Output<String> ip() {
@@ -129,7 +131,8 @@ public final class RedisClusterAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ip The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * @param ip The ip range to whitelist
+         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
          * 
          * @return builder
          * 
@@ -140,7 +143,8 @@ public final class RedisClusterAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ip The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * @param ip The ip range to whitelist
+         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
          * 
          * @return builder
          * 

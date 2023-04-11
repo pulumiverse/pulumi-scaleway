@@ -69,7 +69,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * Enable SSH bastion on the gateway
      * 
      */
-    @Export(name="bastionEnabled", type=Boolean.class, parameters={})
+    @Export(name="bastionEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> bastionEnabled;
 
     /**
@@ -83,7 +83,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The port on which the SSH bastion will listen.
      * 
      */
-    @Export(name="bastionPort", type=Integer.class, parameters={})
+    @Export(name="bastionPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> bastionPort;
 
     /**
@@ -97,7 +97,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the public gateway.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -111,7 +111,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * Enable SMTP on the gateway
      * 
      */
-    @Export(name="enableSmtp", type=Boolean.class, parameters={})
+    @Export(name="enableSmtp", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enableSmtp;
 
     /**
@@ -125,7 +125,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * attach an existing flexible IP to the gateway
      * 
      */
-    @Export(name="ipId", type=String.class, parameters={})
+    @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output<String> ipId;
 
     /**
@@ -139,7 +139,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The name of the public gateway. If not provided it will be randomly generated.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -153,7 +153,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The organization ID the public gateway is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -167,7 +167,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the public gateway is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -181,7 +181,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The tags associated with the public gateway.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -195,7 +195,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The gateway type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -209,7 +209,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the public gateway.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -223,7 +223,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * override the gateway&#39;s default recursive DNS servers, if DNS features are enabled.
      * 
      */
-    @Export(name="upstreamDnsServers", type=List.class, parameters={String.class})
+    @Export(name="upstreamDnsServers", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> upstreamDnsServers;
 
     /**
@@ -237,7 +237,7 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the public gateway should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

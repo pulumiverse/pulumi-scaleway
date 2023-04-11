@@ -56,11 +56,11 @@ export class Database extends pulumi.CustomResource {
     }
 
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Whether or not the database is managed or not.
+     * Whether the database is managed or not.
      */
     public /*out*/ readonly managed!: pulumi.Output<boolean>;
     /**
@@ -71,6 +71,10 @@ export class Database extends pulumi.CustomResource {
      * The name of the owner of the database.
      */
     public /*out*/ readonly owner!: pulumi.Output<string>;
+    /**
+     * `region`) The region in which the resource exists.
+     */
+    public readonly region!: pulumi.Output<string>;
     /**
      * Size of the database (in bytes).
      */
@@ -93,6 +97,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["managed"] = state ? state.managed : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["owner"] = state ? state.owner : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
         } else {
             const args = argsOrState as DatabaseArgs | undefined;
@@ -101,6 +106,7 @@ export class Database extends pulumi.CustomResource {
             }
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["managed"] = undefined /*out*/;
             resourceInputs["owner"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
@@ -115,11 +121,11 @@ export class Database extends pulumi.CustomResource {
  */
 export interface DatabaseState {
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Whether or not the database is managed or not.
+     * Whether the database is managed or not.
      */
     managed?: pulumi.Input<boolean>;
     /**
@@ -131,6 +137,10 @@ export interface DatabaseState {
      */
     owner?: pulumi.Input<string>;
     /**
+     * `region`) The region in which the resource exists.
+     */
+    region?: pulumi.Input<string>;
+    /**
      * Size of the database (in bytes).
      */
     size?: pulumi.Input<string>;
@@ -141,11 +151,15 @@ export interface DatabaseState {
  */
 export interface DatabaseArgs {
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
      * Name of the database (e.g. `my-new-database`).
      */
     name?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the resource exists.
+     */
+    region?: pulumi.Input<string>;
 }

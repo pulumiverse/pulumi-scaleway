@@ -22,7 +22,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, options=None, organization_id=None, os=None, os_id=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -47,6 +47,9 @@ class GetBaremetalServerResult:
         if offer_id and not isinstance(offer_id, str):
             raise TypeError("Expected argument 'offer_id' to be a str")
         pulumi.set(__self__, "offer_id", offer_id)
+        if offer_name and not isinstance(offer_name, str):
+            raise TypeError("Expected argument 'offer_name' to be a str")
+        pulumi.set(__self__, "offer_name", offer_name)
         if options and not isinstance(options, list):
             raise TypeError("Expected argument 'options' to be a list")
         pulumi.set(__self__, "options", options)
@@ -56,9 +59,9 @@ class GetBaremetalServerResult:
         if os and not isinstance(os, str):
             raise TypeError("Expected argument 'os' to be a str")
         pulumi.set(__self__, "os", os)
-        if os_id and not isinstance(os_id, str):
-            raise TypeError("Expected argument 'os_id' to be a str")
-        pulumi.set(__self__, "os_id", os_id)
+        if os_name and not isinstance(os_name, str):
+            raise TypeError("Expected argument 'os_name' to be a str")
+        pulumi.set(__self__, "os_name", os_name)
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
@@ -137,6 +140,11 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "offer_id")
 
     @property
+    @pulumi.getter(name="offerName")
+    def offer_name(self) -> str:
+        return pulumi.get(self, "offer_name")
+
+    @property
     @pulumi.getter
     def options(self) -> Sequence['outputs.GetBaremetalServerOptionResult']:
         return pulumi.get(self, "options")
@@ -152,9 +160,9 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "os")
 
     @property
-    @pulumi.getter(name="osId")
-    def os_id(self) -> str:
-        return pulumi.get(self, "os_id")
+    @pulumi.getter(name="osName")
+    def os_name(self) -> str:
+        return pulumi.get(self, "os_name")
 
     @property
     @pulumi.getter
@@ -226,10 +234,11 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             name=self.name,
             offer=self.offer,
             offer_id=self.offer_id,
+            offer_name=self.offer_name,
             options=self.options,
             organization_id=self.organization_id,
             os=self.os,
-            os_id=self.os_id,
+            os_name=self.os_name,
             password=self.password,
             private_networks=self.private_networks,
             project_id=self.project_id,
@@ -282,10 +291,11 @@ def get_baremetal_server(name: Optional[str] = None,
         name=__ret__.name,
         offer=__ret__.offer,
         offer_id=__ret__.offer_id,
+        offer_name=__ret__.offer_name,
         options=__ret__.options,
         organization_id=__ret__.organization_id,
         os=__ret__.os,
-        os_id=__ret__.os_id,
+        os_name=__ret__.os_name,
         password=__ret__.password,
         private_networks=__ret__.private_networks,
         project_id=__ret__.project_id,

@@ -21,7 +21,7 @@ class GetDatabaseResult:
     """
     A collection of values returned by getDatabase.
     """
-    def __init__(__self__, id=None, instance_id=None, managed=None, name=None, owner=None, size=None):
+    def __init__(__self__, id=None, instance_id=None, managed=None, name=None, owner=None, region=None, size=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,6 +37,9 @@ class GetDatabaseResult:
         if owner and not isinstance(owner, str):
             raise TypeError("Expected argument 'owner' to be a str")
         pulumi.set(__self__, "owner", owner)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if size and not isinstance(size, str):
             raise TypeError("Expected argument 'size' to be a str")
         pulumi.set(__self__, "size", size)
@@ -58,7 +61,7 @@ class GetDatabaseResult:
     @pulumi.getter
     def managed(self) -> bool:
         """
-        Whether or not the database is managed or not.
+        Whether the database is managed or not.
         """
         return pulumi.get(self, "managed")
 
@@ -74,6 +77,11 @@ class GetDatabaseResult:
         The name of the owner of the database.
         """
         return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -95,11 +103,13 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
             managed=self.managed,
             name=self.name,
             owner=self.owner,
+            region=self.region,
             size=self.size)
 
 
 def get_database(instance_id: Optional[str] = None,
                  name: Optional[str] = None,
+                 region: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseResult:
     """
     Gets information about a RDB database.
@@ -121,6 +131,7 @@ def get_database(instance_id: Optional[str] = None,
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabase:getDatabase', __args__, opts=opts, typ=GetDatabaseResult).value
 
@@ -130,12 +141,14 @@ def get_database(instance_id: Optional[str] = None,
         managed=__ret__.managed,
         name=__ret__.name,
         owner=__ret__.owner,
+        region=__ret__.region,
         size=__ret__.size)
 
 
 @_utilities.lift_output_func(get_database)
 def get_database_output(instance_id: Optional[pulumi.Input[str]] = None,
                         name: Optional[pulumi.Input[str]] = None,
+                        region: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseResult]:
     """
     Gets information about a RDB database.

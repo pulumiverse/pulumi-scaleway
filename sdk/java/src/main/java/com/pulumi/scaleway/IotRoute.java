@@ -23,7 +23,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the IoT Route
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -37,7 +37,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * Database Route parameters
      * 
      */
-    @Export(name="database", type=IotRouteDatabase.class, parameters={})
+    @Export(name="database", refs={IotRouteDatabase.class}, tree="[0]")
     private Output</* @Nullable */ IotRouteDatabase> database;
 
     /**
@@ -51,7 +51,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * The ID of the route&#39;s hub
      * 
      */
-    @Export(name="hubId", type=String.class, parameters={})
+    @Export(name="hubId", refs={String.class}, tree="[0]")
     private Output<String> hubId;
 
     /**
@@ -65,7 +65,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * The name of the route
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -79,7 +79,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * The region you want to attach the resource to
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -93,7 +93,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * Rest Route parameters
      * 
      */
-    @Export(name="rest", type=IotRouteRest.class, parameters={})
+    @Export(name="rest", refs={IotRouteRest.class}, tree="[0]")
     private Output</* @Nullable */ IotRouteRest> rest;
 
     /**
@@ -107,7 +107,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * S3 Route parameters
      * 
      */
-    @Export(name="s3", type=IotRouteS3.class, parameters={})
+    @Export(name="s3", refs={IotRouteS3.class}, tree="[0]")
     private Output</* @Nullable */ IotRouteS3> s3;
 
     /**
@@ -121,7 +121,7 @@ public class IotRoute extends com.pulumi.resources.CustomResource {
      * The Topic the route subscribes to (wildcards allowed)
      * 
      */
-    @Export(name="topic", type=String.class, parameters={})
+    @Export(name="topic", refs={String.class}, tree="[0]")
     private Output<String> topic;
 
     /**

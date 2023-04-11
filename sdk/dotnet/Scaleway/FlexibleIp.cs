@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -37,6 +38,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -54,6 +56,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// using Scaleway = Pulumi.Scaleway;
@@ -146,7 +149,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The reverse domain associated with this flexible IP.
         /// </summary>
         [Output("reverse")]
-        public Output<string?> Reverse { get; private set; } = null!;
+        public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the associated server
