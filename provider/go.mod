@@ -7,7 +7,7 @@ replace github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.43.0
 	github.com/pulumi/pulumi/sdk/v3 v3.62.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.16.2
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.16.3
 )
 
 require (
