@@ -28,10 +28,11 @@ public final class GetBaremetalServerResult {
     private @Nullable String name;
     private String offer;
     private String offerId;
+    private String offerName;
     private List<GetBaremetalServerOption> options;
     private String organizationId;
     private String os;
-    private String osId;
+    private String osName;
     private String password;
     private List<GetBaremetalServerPrivateNetwork> privateNetworks;
     private String projectId;
@@ -73,6 +74,9 @@ public final class GetBaremetalServerResult {
     public String offerId() {
         return this.offerId;
     }
+    public String offerName() {
+        return this.offerName;
+    }
     public List<GetBaremetalServerOption> options() {
         return this.options;
     }
@@ -82,8 +86,8 @@ public final class GetBaremetalServerResult {
     public String os() {
         return this.os;
     }
-    public String osId() {
-        return this.osId;
+    public String osName() {
+        return this.osName;
     }
     public String password() {
         return this.password;
@@ -136,10 +140,11 @@ public final class GetBaremetalServerResult {
         private @Nullable String name;
         private String offer;
         private String offerId;
+        private String offerName;
         private List<GetBaremetalServerOption> options;
         private String organizationId;
         private String os;
-        private String osId;
+        private String osName;
         private String password;
         private List<GetBaremetalServerPrivateNetwork> privateNetworks;
         private String projectId;
@@ -162,10 +167,11 @@ public final class GetBaremetalServerResult {
     	      this.name = defaults.name;
     	      this.offer = defaults.offer;
     	      this.offerId = defaults.offerId;
+    	      this.offerName = defaults.offerName;
     	      this.options = defaults.options;
     	      this.organizationId = defaults.organizationId;
     	      this.os = defaults.os;
-    	      this.osId = defaults.osId;
+    	      this.osName = defaults.osName;
     	      this.password = defaults.password;
     	      this.privateNetworks = defaults.privateNetworks;
     	      this.projectId = defaults.projectId;
@@ -223,6 +229,11 @@ public final class GetBaremetalServerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder offerName(String offerName) {
+            this.offerName = Objects.requireNonNull(offerName);
+            return this;
+        }
+        @CustomType.Setter
         public Builder options(List<GetBaremetalServerOption> options) {
             this.options = Objects.requireNonNull(options);
             return this;
@@ -241,8 +252,8 @@ public final class GetBaremetalServerResult {
             return this;
         }
         @CustomType.Setter
-        public Builder osId(String osId) {
-            this.osId = Objects.requireNonNull(osId);
+        public Builder osName(String osName) {
+            this.osName = Objects.requireNonNull(osName);
             return this;
         }
         @CustomType.Setter
@@ -319,10 +330,11 @@ public final class GetBaremetalServerResult {
             o.name = name;
             o.offer = offer;
             o.offerId = offerId;
+            o.offerName = offerName;
             o.options = options;
             o.organizationId = organizationId;
             o.os = os;
-            o.osId = osId;
+            o.osName = osName;
             o.password = password;
             o.privateNetworks = privateNetworks;
             o.projectId = projectId;

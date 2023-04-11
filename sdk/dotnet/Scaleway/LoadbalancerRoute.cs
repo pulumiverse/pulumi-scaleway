@@ -16,10 +16,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Examples
     /// 
-    /// ### Basic
+    /// ### With SNI
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -52,7 +53,50 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     {
     ///         FrontendId = frt01.Id,
     ///         BackendId = bkd01.Id,
-    ///         MatchSni = "scaleway.com",
+    ///         MatchSni = "sni.scaleway.com",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With host-header
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+    /// 
+    ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+    ///     {
+    ///         IpId = ip01.Id,
+    ///         Type = "lb-s",
+    ///     });
+    /// 
+    ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+    ///     {
+    ///         LbId = lb01.Id,
+    ///         ForwardProtocol = "tcp",
+    ///         ForwardPort = 80,
+    ///         ProxyProtocol = "none",
+    ///     });
+    /// 
+    ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+    ///     {
+    ///         LbId = lb01.Id,
+    ///         BackendId = bkd01.Id,
+    ///         InboundPort = 80,
+    ///     });
+    /// 
+    ///     var rt01 = new Scaleway.LoadbalancerRoute("rt01", new()
+    ///     {
+    ///         FrontendId = frt01.Id,
+    ///         BackendId = bkd01.Id,
+    ///         MatchHostHeader = "host.scaleway.com",
     ///     });
     /// 
     /// });
@@ -76,16 +120,36 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
+        /// The date at which the route was created.
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the frontend to which the route is associated.
         /// </summary>
         [Output("frontendId")]
         public Output<string> FrontendId { get; private set; } = null!;
 
         /// <summary>
-        /// The SNI to match.
+        /// The Host request header specifies the host of the server to which the request is being sent.
+        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// </summary>
+        [Output("matchHostHeader")]
+        public Output<string?> MatchHostHeader { get; private set; } = null!;
+
+        /// <summary>
+        /// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        /// Only one of `match_sni` and `match_host_header` should be specified.
         /// </summary>
         [Output("matchSni")]
         public Output<string?> MatchSni { get; private set; } = null!;
+
+        /// <summary>
+        /// The date at which the route was last updated.
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
@@ -147,7 +211,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> FrontendId { get; set; } = null!;
 
         /// <summary>
-        /// The SNI to match.
+        /// The Host request header specifies the host of the server to which the request is being sent.
+        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// </summary>
+        [Input("matchHostHeader")]
+        public Input<string>? MatchHostHeader { get; set; }
+
+        /// <summary>
+        /// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        /// Only one of `match_sni` and `match_host_header` should be specified.
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
@@ -167,16 +239,36 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
+        /// The date at which the route was created.
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
         /// The ID of the frontend to which the route is associated.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }
 
         /// <summary>
-        /// The SNI to match.
+        /// The Host request header specifies the host of the server to which the request is being sent.
+        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// </summary>
+        [Input("matchHostHeader")]
+        public Input<string>? MatchHostHeader { get; set; }
+
+        /// <summary>
+        /// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        /// Only one of `match_sni` and `match_host_header` should be specified.
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
+
+        /// <summary>
+        /// The date at which the route was last updated.
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         public LoadbalancerRouteState()
         {

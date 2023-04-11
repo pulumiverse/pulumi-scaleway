@@ -21,7 +21,10 @@ class GetTemDomainResult:
     """
     A collection of values returned by getTemDomain.
     """
-    def __init__(__self__, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, name=None, next_check_at=None, project_id=None, region=None, revoked_at=None, spf_config=None, status=None):
+    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, name=None, next_check_at=None, project_id=None, region=None, revoked_at=None, spf_config=None, status=None):
+        if accept_tos and not isinstance(accept_tos, bool):
+            raise TypeError("Expected argument 'accept_tos' to be a bool")
+        pulumi.set(__self__, "accept_tos", accept_tos)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -61,6 +64,11 @@ class GetTemDomainResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="acceptTos")
+    def accept_tos(self) -> bool:
+        return pulumi.get(self, "accept_tos")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -161,6 +169,7 @@ class AwaitableGetTemDomainResult(GetTemDomainResult):
         if False:
             yield self
         return GetTemDomainResult(
+            accept_tos=self.accept_tos,
             created_at=self.created_at,
             dkim_config=self.dkim_config,
             domain_id=self.domain_id,
@@ -196,6 +205,7 @@ def get_tem_domain(domain_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getTemDomain:getTemDomain', __args__, opts=opts, typ=GetTemDomainResult).value
 
     return AwaitableGetTemDomainResult(
+        accept_tos=__ret__.accept_tos,
         created_at=__ret__.created_at,
         dkim_config=__ret__.dkim_config,
         domain_id=__ret__.domain_id,

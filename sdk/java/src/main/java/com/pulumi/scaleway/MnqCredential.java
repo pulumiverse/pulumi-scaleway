@@ -32,7 +32,7 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
      * The credential name..
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -46,7 +46,7 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
      * The namespace containing the Credential.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -57,14 +57,14 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
         return this.namespaceId;
     }
     /**
-     * Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+     * Credentials file used to connect to the NATS service.
      * 
      */
-    @Export(name="natsCredentials", type=MnqCredentialNatsCredentials.class, parameters={})
+    @Export(name="natsCredentials", refs={MnqCredentialNatsCredentials.class}, tree="[0]")
     private Output<MnqCredentialNatsCredentials> natsCredentials;
 
     /**
-     * @return Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+     * @return Credentials file used to connect to the NATS service.
      * 
      */
     public Output<MnqCredentialNatsCredentials> natsCredentials() {
@@ -74,7 +74,7 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
      * The protocol associated to the Credential. Possible values are `nats` and `sqs_sns`.
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
@@ -89,7 +89,7 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
      * in which the namespace should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -101,16 +101,14 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
-     * Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-     * and `sqs_sns_credentials` may be set.
+     * Credential used to connect to the SQS/SNS service.
      * 
      */
-    @Export(name="sqsSnsCredentials", type=MnqCredentialSqsSnsCredentials.class, parameters={})
+    @Export(name="sqsSnsCredentials", refs={MnqCredentialSqsSnsCredentials.class}, tree="[0]")
     private Output</* @Nullable */ MnqCredentialSqsSnsCredentials> sqsSnsCredentials;
 
     /**
-     * @return Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-     * and `sqs_sns_credentials` may be set.
+     * @return Credential used to connect to the SQS/SNS service.
      * 
      */
     public Output<Optional<MnqCredentialSqsSnsCredentials>> sqsSnsCredentials() {

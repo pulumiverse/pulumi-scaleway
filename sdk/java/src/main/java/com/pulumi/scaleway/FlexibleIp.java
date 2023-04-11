@@ -156,7 +156,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the Flexible IP (Format ISO 8601)
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -170,7 +170,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * A description of the flexible IP.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -184,7 +184,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The IPv4 address of the Flexible IP
      * 
      */
-    @Export(name="ipAddress", type=String.class, parameters={})
+    @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
@@ -198,7 +198,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The MAC address of the server associated with this flexible IP
      * 
      */
-    @Export(name="macAddress", type=String.class, parameters={})
+    @Export(name="macAddress", refs={String.class}, tree="[0]")
     private Output<String> macAddress;
 
     /**
@@ -212,7 +212,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The organization of the Flexible IP
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -226,7 +226,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The project of the Flexible IP
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -240,21 +240,21 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The reverse domain associated with this flexible IP.
      * 
      */
-    @Export(name="reverse", type=String.class, parameters={})
-    private Output</* @Nullable */ String> reverse;
+    @Export(name="reverse", refs={String.class}, tree="[0]")
+    private Output<String> reverse;
 
     /**
      * @return The reverse domain associated with this flexible IP.
      * 
      */
-    public Output<Optional<String>> reverse() {
-        return Codegen.optional(this.reverse);
+    public Output<String> reverse() {
+        return this.reverse;
     }
     /**
      * The ID of the associated server
      * 
      */
-    @Export(name="serverId", type=String.class, parameters={})
+    @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serverId;
 
     /**
@@ -268,7 +268,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * A list of tags to apply to the flexible IP.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -282,7 +282,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the Flexible IP (Format ISO 8601)
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -296,7 +296,7 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * The zone of the Flexible IP
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

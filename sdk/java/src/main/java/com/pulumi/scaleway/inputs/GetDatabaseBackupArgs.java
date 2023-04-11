@@ -64,9 +64,17 @@ public final class GetDatabaseBackupArgs extends com.pulumi.resources.InvokeArgs
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     * 
+     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
+    /**
+     * @return `region`) The region in which the Database Instance should be created.
+     * 
+     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
@@ -165,11 +173,23 @@ public final class GetDatabaseBackupArgs extends com.pulumi.resources.InvokeArgs
             return name(Output.of(name));
         }
 
+        /**
+         * @param region `region`) The region in which the Database Instance should be created.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param region `region`) The region in which the Database Instance should be created.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(String region) {
             return region(Output.of(region));
         }

@@ -24,14 +24,14 @@ public final class GetLoadbalancerArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The IP address.
+     * The load balancer name.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The IP address.
+     * @return The load balancer name.
      * 
      */
     public Optional<Output<String>> name() {
@@ -46,14 +46,14 @@ public final class GetLoadbalancerArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * (Defaults to provider `region`) The region in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return (Defaults to provider `region`) The region in which the LB exists.
+     * @return (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -97,7 +97,7 @@ public final class GetLoadbalancerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The IP address.
+         * @param name The load balancer name.
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class GetLoadbalancerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The IP address.
+         * @param name The load balancer name.
          * 
          * @return builder
          * 
@@ -127,7 +127,7 @@ public final class GetLoadbalancerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param zone (Defaults to provider `region`) The region in which the LB exists.
+         * @param zone (Defaults to provider `zone`) The zone in which the LB exists.
          * 
          * @return builder
          * 
@@ -138,7 +138,7 @@ public final class GetLoadbalancerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param zone (Defaults to provider `region`) The region in which the LB exists.
+         * @param zone (Defaults to provider `zone`) The zone in which the LB exists.
          * 
          * @return builder
          * 

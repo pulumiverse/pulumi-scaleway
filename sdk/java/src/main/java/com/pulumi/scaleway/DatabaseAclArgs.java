@@ -33,14 +33,14 @@ public final class DatabaseAclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The instance on which to create the ACL.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<String> instanceId;
 
     /**
-     * @return The instance on which to create the ACL.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -48,14 +48,14 @@ public final class DatabaseAclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the Database Instance should be created.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return `region`) The region in which the Database Instance should be created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -120,7 +120,7 @@ public final class DatabaseAclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The instance on which to create the ACL.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class DatabaseAclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The instance on which to create the ACL.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class DatabaseAclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region `region`) The region in which the Database Instance should be created.
          * 
          * @return builder
          * 
@@ -152,7 +152,7 @@ public final class DatabaseAclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region `region`) The region in which the Database Instance should be created.
          * 
          * @return builder
          * 

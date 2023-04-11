@@ -39,7 +39,7 @@ public final class GetLoadbalancerResult {
     private @Nullable Boolean releaseIp;
     private String sslCompatibilityLevel;
     /**
-     * @return The tags associated with the load-balancers.
+     * @return The tags associated with the load-balancer.
      * 
      */
     private List<String> tags;
@@ -49,7 +49,7 @@ public final class GetLoadbalancerResult {
      */
     private String type;
     /**
-     * @return (Defaults to provider `region`) The region in which the LB exists.
+     * @return (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     private @Nullable String zone;
@@ -104,7 +104,7 @@ public final class GetLoadbalancerResult {
         return this.sslCompatibilityLevel;
     }
     /**
-     * @return The tags associated with the load-balancers.
+     * @return The tags associated with the load-balancer.
      * 
      */
     public List<String> tags() {
@@ -118,7 +118,7 @@ public final class GetLoadbalancerResult {
         return this.type;
     }
     /**
-     * @return (Defaults to provider `region`) The region in which the LB exists.
+     * @return (Defaults to provider `zone`) The zone in which the LB exists.
      * 
      */
     public Optional<String> zone() {

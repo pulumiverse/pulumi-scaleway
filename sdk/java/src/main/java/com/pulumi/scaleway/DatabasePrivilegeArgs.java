@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceArgs {
@@ -29,14 +31,14 @@ public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where to create the database.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -56,6 +58,21 @@ public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceAr
      */
     public Output<String> permission() {
         return this.permission;
+    }
+
+    /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
     }
 
     /**
@@ -79,6 +96,7 @@ public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceAr
         this.databaseName = $.databaseName;
         this.instanceId = $.instanceId;
         this.permission = $.permission;
+        this.region = $.region;
         this.userName = $.userName;
     }
 
@@ -122,7 +140,7 @@ public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -133,7 +151,7 @@ public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -161,6 +179,27 @@ public final class DatabasePrivilegeArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder permission(String permission) {
             return permission(Output.of(permission));
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

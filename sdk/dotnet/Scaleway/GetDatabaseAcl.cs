@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -28,7 +29,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {
         ///     var myAcl = Scaleway.GetDatabaseAcl.Invoke(new()
         ///     {
-        ///         InstanceId = "fr-par/11111111-1111-1111-1111-111111111111",
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         /// });
@@ -48,6 +49,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -55,7 +57,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// {
         ///     var myAcl = Scaleway.GetDatabaseAcl.Invoke(new()
         ///     {
-        ///         InstanceId = "fr-par/11111111-1111-1111-1111-111111111111",
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         /// });
@@ -76,6 +78,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("instanceId", required: true)]
         public string InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// `region`) The region in which the Database Instance should be created.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetDatabaseAclArgs()
         {
         }
@@ -90,6 +98,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// `region`) The region in which the Database Instance should be created.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         public GetDatabaseAclInvokeArgs()
         {
         }
@@ -101,7 +115,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class GetDatabaseAclResult
     {
         /// <summary>
-        /// A list of ACLs (structure is described below)
+        /// A list of ACLs rules (structure is described below)
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseAclAclRuleResult> AclRules;
         /// <summary>
@@ -109,7 +123,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string InstanceId;
-        public readonly string Region;
+        public readonly string? Region;
 
         [OutputConstructor]
         private GetDatabaseAclResult(
@@ -119,7 +133,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string instanceId,
 
-            string region)
+            string? region)
         {
             AclRules = aclRules;
             Id = id;

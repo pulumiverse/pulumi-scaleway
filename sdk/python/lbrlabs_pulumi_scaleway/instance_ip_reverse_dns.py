@@ -135,6 +135,24 @@ class InstanceIpReverseDns(pulumi.CustomResource):
 
         Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        server_ip = scaleway.InstanceIp("serverIp")
+        tf_a = scaleway.DomainRecord("tfA",
+            dns_zone="scaleway.com",
+            type="A",
+            data=server_ip.address,
+            ttl=3600,
+            priority=1)
+        reverse = scaleway.InstanceIpReverseDns("reverse",
+            ip_id=server_ip.id,
+            reverse="www.scaleway.com")
+        ```
+
         ## Import
 
         IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
@@ -159,6 +177,24 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         Manages Scaleway Compute Instance IPs Reverse DNS.
 
         Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        server_ip = scaleway.InstanceIp("serverIp")
+        tf_a = scaleway.DomainRecord("tfA",
+            dns_zone="scaleway.com",
+            type="A",
+            data=server_ip.address,
+            ttl=3600,
+            priority=1)
+        reverse = scaleway.InstanceIpReverseDns("reverse",
+            ip_id=server_ip.id,
+            reverse="www.scaleway.com")
+        ```
 
         ## Import
 

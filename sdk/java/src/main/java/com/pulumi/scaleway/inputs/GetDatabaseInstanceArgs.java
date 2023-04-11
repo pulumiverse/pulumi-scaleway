@@ -49,11 +49,27 @@ public final class GetDatabaseInstanceArgs extends com.pulumi.resources.InvokeAr
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * `region`) The region in which the RDB instance exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the RDB instance exists.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
     private GetDatabaseInstanceArgs() {}
 
     private GetDatabaseInstanceArgs(GetDatabaseInstanceArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.region = $.region;
     }
 
     public static Builder builder() {
@@ -118,6 +134,27 @@ public final class GetDatabaseInstanceArgs extends com.pulumi.resources.InvokeAr
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param region `region`) The region in which the RDB instance exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the RDB instance exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         public GetDatabaseInstanceArgs build() {

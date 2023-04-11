@@ -99,6 +99,10 @@ export interface GetKubernetesClusterResult {
      */
     readonly organizationId: string;
     /**
+     * The ID of the private network of the cluster.
+     */
+    readonly privateNetworkId: string;
+    /**
      * The ID of the project the cluster is associated with.
      */
     readonly projectId: string;

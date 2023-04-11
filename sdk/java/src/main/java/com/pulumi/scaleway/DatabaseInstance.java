@@ -262,7 +262,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Boolean to store logical backups in the same region as the database instance.
      * 
      */
-    @Export(name="backupSameRegion", type=Boolean.class, parameters={})
+    @Export(name="backupSameRegion", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> backupSameRegion;
 
     /**
@@ -276,7 +276,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Backup schedule frequency in hours.
      * 
      */
-    @Export(name="backupScheduleFrequency", type=Integer.class, parameters={})
+    @Export(name="backupScheduleFrequency", refs={Integer.class}, tree="[0]")
     private Output<Integer> backupScheduleFrequency;
 
     /**
@@ -290,7 +290,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Backup schedule retention in days.
      * 
      */
-    @Export(name="backupScheduleRetention", type=Integer.class, parameters={})
+    @Export(name="backupScheduleRetention", refs={Integer.class}, tree="[0]")
     private Output<Integer> backupScheduleRetention;
 
     /**
@@ -304,7 +304,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Certificate of the database instance.
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -318,7 +318,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Disable automated backup for the database instance.
      * 
      */
-    @Export(name="disableBackup", type=Boolean.class, parameters={})
+    @Export(name="disableBackup", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableBackup;
 
     /**
@@ -336,7 +336,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Please use the private_network or the load_balancer attribute */
-    @Export(name="endpointIp", type=String.class, parameters={})
+    @Export(name="endpointIp", refs={String.class}, tree="[0]")
     private Output<String> endpointIp;
 
     /**
@@ -350,7 +350,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * (Deprecated) The port of the Database Instance.
      * 
      */
-    @Export(name="endpointPort", type=Integer.class, parameters={})
+    @Export(name="endpointPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> endpointPort;
 
     /**
@@ -364,7 +364,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
      * 
      */
-    @Export(name="engine", type=String.class, parameters={})
+    @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
@@ -378,7 +378,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Map of engine settings to be set at database initialisation.
      * 
      */
-    @Export(name="initSettings", type=Map.class, parameters={String.class, String.class})
+    @Export(name="initSettings", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> initSettings;
 
     /**
@@ -392,7 +392,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Enable or disable high availability for the database instance.
      * 
      */
-    @Export(name="isHaCluster", type=Boolean.class, parameters={})
+    @Export(name="isHaCluster", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isHaCluster;
 
     /**
@@ -406,7 +406,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * List of load balancer endpoints of the database instance.
      * 
      */
-    @Export(name="loadBalancers", type=List.class, parameters={DatabaseInstanceLoadBalancer.class})
+    @Export(name="loadBalancers", refs={List.class,DatabaseInstanceLoadBalancer.class}, tree="[0,1]")
     private Output<List<DatabaseInstanceLoadBalancer>> loadBalancers;
 
     /**
@@ -420,7 +420,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * The name of the Database Instance.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -434,7 +434,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      * 
      */
-    @Export(name="nodeType", type=String.class, parameters={})
+    @Export(name="nodeType", refs={String.class}, tree="[0]")
     private Output<String> nodeType;
 
     /**
@@ -448,7 +448,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * The organization ID the Database Instance is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -462,7 +462,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Password for the first user of the database instance.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
@@ -476,7 +476,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * List of private networks endpoints of the database instance.
      * 
      */
-    @Export(name="privateNetwork", type=DatabaseInstancePrivateNetwork.class, parameters={})
+    @Export(name="privateNetwork", refs={DatabaseInstancePrivateNetwork.class}, tree="[0]")
     private Output</* @Nullable */ DatabaseInstancePrivateNetwork> privateNetwork;
 
     /**
@@ -490,7 +490,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the Database Instance is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -504,7 +504,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * List of read replicas of the database instance.
      * 
      */
-    @Export(name="readReplicas", type=List.class, parameters={DatabaseInstanceReadReplica.class})
+    @Export(name="readReplicas", refs={List.class,DatabaseInstanceReadReplica.class}, tree="[0,1]")
     private Output<List<DatabaseInstanceReadReplica>> readReplicas;
 
     /**
@@ -518,7 +518,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * `region`) The region in which the Database Instance should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -532,7 +532,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Map of engine settings to be set. Using this option will override default config.
      * 
      */
-    @Export(name="settings", type=Map.class, parameters={String.class, String.class})
+    @Export(name="settings", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> settings;
 
     /**
@@ -546,7 +546,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * The tags associated with the Database Instance.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -560,7 +560,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Identifier for the first user of the database instance.
      * 
      */
-    @Export(name="userName", type=String.class, parameters={})
+    @Export(name="userName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userName;
 
     /**
@@ -574,7 +574,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
      * 
      */
-    @Export(name="volumeSizeInGb", type=Integer.class, parameters={})
+    @Export(name="volumeSizeInGb", refs={Integer.class}, tree="[0]")
     private Output<Integer> volumeSizeInGb;
 
     /**
@@ -588,7 +588,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * Type of volume where data are stored (`bssd` or `lssd`).
      * 
      */
-    @Export(name="volumeType", type=String.class, parameters={})
+    @Export(name="volumeType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> volumeType;
 
     /**

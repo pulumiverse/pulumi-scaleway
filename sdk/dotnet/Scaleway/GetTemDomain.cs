@@ -78,6 +78,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     [OutputType]
     public sealed class GetTemDomainResult
     {
+        public readonly bool AcceptTos;
         /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         /// </summary>
@@ -121,6 +122,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         [OutputConstructor]
         private GetTemDomainResult(
+            bool acceptTos,
+
             string createdAt,
 
             string dkimConfig,
@@ -147,6 +150,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string status)
         {
+            AcceptTos = acceptTos;
             CreatedAt = createdAt;
             DkimConfig = dkimConfig;
             DomainId = domainId;

@@ -6,6 +6,8 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetDatabaseAclPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -27,10 +29,26 @@ public final class GetDatabaseAclPlainArgs extends com.pulumi.resources.InvokeAr
         return this.instanceId;
     }
 
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable String region;
+
+    /**
+     * @return `region`) The region in which the Database Instance should be created.
+     * 
+     */
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
+    }
+
     private GetDatabaseAclPlainArgs() {}
 
     private GetDatabaseAclPlainArgs(GetDatabaseAclPlainArgs $) {
         this.instanceId = $.instanceId;
+        this.region = $.region;
     }
 
     public static Builder builder() {
@@ -59,6 +77,17 @@ public final class GetDatabaseAclPlainArgs extends com.pulumi.resources.InvokeAr
          */
         public Builder instanceId(String instanceId) {
             $.instanceId = instanceId;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the Database Instance should be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable String region) {
+            $.region = region;
             return this;
         }
 

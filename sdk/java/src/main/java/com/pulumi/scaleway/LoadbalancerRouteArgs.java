@@ -46,14 +46,33 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The SNI to match.
+     * The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     */
+    @Import(name="matchHostHeader")
+    private @Nullable Output<String> matchHostHeader;
+
+    /**
+     * @return The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     */
+    public Optional<Output<String>> matchHostHeader() {
+        return Optional.ofNullable(this.matchHostHeader);
+    }
+
+    /**
+     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `match_sni` and `match_host_header` should be specified.
      * 
      */
     @Import(name="matchSni")
     private @Nullable Output<String> matchSni;
 
     /**
-     * @return The SNI to match.
+     * @return The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `match_sni` and `match_host_header` should be specified.
      * 
      */
     public Optional<Output<String>> matchSni() {
@@ -65,6 +84,7 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
     private LoadbalancerRouteArgs(LoadbalancerRouteArgs $) {
         this.backendId = $.backendId;
         this.frontendId = $.frontendId;
+        this.matchHostHeader = $.matchHostHeader;
         this.matchSni = $.matchSni;
     }
 
@@ -129,7 +149,31 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param matchSni The SNI to match.
+         * @param matchHostHeader The Host request header specifies the host of the server to which the request is being sent.
+         * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder matchHostHeader(@Nullable Output<String> matchHostHeader) {
+            $.matchHostHeader = matchHostHeader;
+            return this;
+        }
+
+        /**
+         * @param matchHostHeader The Host request header specifies the host of the server to which the request is being sent.
+         * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder matchHostHeader(String matchHostHeader) {
+            return matchHostHeader(Output.of(matchHostHeader));
+        }
+
+        /**
+         * @param matchSni The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+         * Only one of `match_sni` and `match_host_header` should be specified.
          * 
          * @return builder
          * 
@@ -140,7 +184,8 @@ public final class LoadbalancerRouteArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param matchSni The SNI to match.
+         * @param matchSni The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+         * Only one of `match_sni` and `match_host_header` should be specified.
          * 
          * @return builder
          * 

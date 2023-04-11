@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDatabaseResult {
@@ -17,7 +19,7 @@ public final class GetDatabaseResult {
     private String id;
     private String instanceId;
     /**
-     * @return Whether or not the database is managed or not.
+     * @return Whether the database is managed or not.
      * 
      */
     private Boolean managed;
@@ -27,6 +29,7 @@ public final class GetDatabaseResult {
      * 
      */
     private String owner;
+    private @Nullable String region;
     /**
      * @return Size of the database (in bytes).
      * 
@@ -45,7 +48,7 @@ public final class GetDatabaseResult {
         return this.instanceId;
     }
     /**
-     * @return Whether or not the database is managed or not.
+     * @return Whether the database is managed or not.
      * 
      */
     public Boolean managed() {
@@ -60,6 +63,9 @@ public final class GetDatabaseResult {
      */
     public String owner() {
         return this.owner;
+    }
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
     }
     /**
      * @return Size of the database (in bytes).
@@ -83,6 +89,7 @@ public final class GetDatabaseResult {
         private Boolean managed;
         private String name;
         private String owner;
+        private @Nullable String region;
         private String size;
         public Builder() {}
         public Builder(GetDatabaseResult defaults) {
@@ -92,6 +99,7 @@ public final class GetDatabaseResult {
     	      this.managed = defaults.managed;
     	      this.name = defaults.name;
     	      this.owner = defaults.owner;
+    	      this.region = defaults.region;
     	      this.size = defaults.size;
         }
 
@@ -121,6 +129,11 @@ public final class GetDatabaseResult {
             return this;
         }
         @CustomType.Setter
+        public Builder region(@Nullable String region) {
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
         public Builder size(String size) {
             this.size = Objects.requireNonNull(size);
             return this;
@@ -132,6 +145,7 @@ public final class GetDatabaseResult {
             o.managed = managed;
             o.name = name;
             o.owner = owner;
+            o.region = region;
             o.size = size;
             return o;
         }

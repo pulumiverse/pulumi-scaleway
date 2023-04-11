@@ -48,14 +48,14 @@ public final class MnqCredentialState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+     * Credentials file used to connect to the NATS service.
      * 
      */
     @Import(name="natsCredentials")
     private @Nullable Output<MnqCredentialNatsCredentialsArgs> natsCredentials;
 
     /**
-     * @return Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+     * @return Credentials file used to connect to the NATS service.
      * 
      */
     public Optional<Output<MnqCredentialNatsCredentialsArgs>> natsCredentials() {
@@ -95,16 +95,14 @@ public final class MnqCredentialState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-     * and `sqs_sns_credentials` may be set.
+     * Credential used to connect to the SQS/SNS service.
      * 
      */
     @Import(name="sqsSnsCredentials")
     private @Nullable Output<MnqCredentialSqsSnsCredentialsArgs> sqsSnsCredentials;
 
     /**
-     * @return Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-     * and `sqs_sns_credentials` may be set.
+     * @return Credential used to connect to the SQS/SNS service.
      * 
      */
     public Optional<Output<MnqCredentialSqsSnsCredentialsArgs>> sqsSnsCredentials() {
@@ -183,7 +181,7 @@ public final class MnqCredentialState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param natsCredentials Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+         * @param natsCredentials Credentials file used to connect to the NATS service.
          * 
          * @return builder
          * 
@@ -194,7 +192,7 @@ public final class MnqCredentialState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param natsCredentials Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+         * @param natsCredentials Credentials file used to connect to the NATS service.
          * 
          * @return builder
          * 
@@ -248,8 +246,7 @@ public final class MnqCredentialState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sqsSnsCredentials Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-         * and `sqs_sns_credentials` may be set.
+         * @param sqsSnsCredentials Credential used to connect to the SQS/SNS service.
          * 
          * @return builder
          * 
@@ -260,8 +257,7 @@ public final class MnqCredentialState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sqsSnsCredentials Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-         * and `sqs_sns_credentials` may be set.
+         * @param sqsSnsCredentials Credential used to connect to the SQS/SNS service.
          * 
          * @return builder
          * 

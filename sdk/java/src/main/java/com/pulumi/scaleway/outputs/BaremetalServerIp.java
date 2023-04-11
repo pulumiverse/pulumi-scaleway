@@ -26,6 +26,10 @@ public final class BaremetalServerIp {
      * 
      */
     private @Nullable String reverse;
+    /**
+     * @return The type of the IP.
+     * 
+     */
     private @Nullable String version;
 
     private BaremetalServerIp() {}
@@ -50,6 +54,10 @@ public final class BaremetalServerIp {
     public Optional<String> reverse() {
         return Optional.ofNullable(this.reverse);
     }
+    /**
+     * @return The type of the IP.
+     * 
+     */
     public Optional<String> version() {
         return Optional.ofNullable(this.version);
     }

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Container Namespace.
+    /// Creates and manages Scaleway Serverless Container Namespace.
     /// For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
     /// 
     /// ## Examples
@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -51,7 +52,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// . Destroy linked container registry on deletion.
+        /// Destroy registry on deletion
         /// </summary>
         [Output("destroyRegistry")]
         public Output<bool?> DestroyRegistry { get; private set; } = null!;
@@ -162,7 +163,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// . Destroy linked container registry on deletion.
+        /// Destroy registry on deletion
         /// </summary>
         [Input("destroyRegistry")]
         public Input<bool>? DestroyRegistry { get; set; }
@@ -228,7 +229,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// . Destroy linked container registry on deletion.
+        /// Destroy registry on deletion
         /// </summary>
         [Input("destroyRegistry")]
         public Input<bool>? DestroyRegistry { get; set; }

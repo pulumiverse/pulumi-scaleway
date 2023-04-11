@@ -27,6 +27,7 @@ class KubernetesClusterArgs:
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs']] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -47,6 +48,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -71,6 +73,8 @@ class KubernetesClusterArgs:
             pulumi.set(__self__, "name", name)
         if open_id_connect_config is not None:
             pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -216,6 +220,18 @@ class KubernetesClusterArgs:
         pulumi.set(self, "open_id_connect_config", value)
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the private network of the cluster.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -281,6 +297,7 @@ class _KubernetesClusterState:
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs']] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -309,6 +326,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -347,6 +365,8 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -538,6 +558,18 @@ class _KubernetesClusterState:
         pulumi.set(self, "organization_id", value)
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the private network of the cluster.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -661,6 +693,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -691,6 +724,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -737,6 +771,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -765,6 +800,7 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["feature_gates"] = feature_gates
             __props__.__dict__["name"] = name
             __props__.__dict__["open_id_connect_config"] = open_id_connect_config
+            __props__.__dict__["private_network_id"] = private_network_id
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
@@ -780,6 +816,8 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["upgrade_available"] = None
             __props__.__dict__["wildcard_dns"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["kubeconfigs"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(KubernetesCluster, __self__).__init__(
             'scaleway:index/kubernetesCluster:KubernetesCluster',
             resource_name,
@@ -804,6 +842,7 @@ class KubernetesCluster(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            private_network_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -837,6 +876,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -865,6 +905,7 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["open_id_connect_config"] = open_id_connect_config
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
@@ -990,6 +1031,14 @@ class KubernetesCluster(pulumi.CustomResource):
         The organization ID the cluster is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the private network of the cluster.
+        """
+        return pulumi.get(self, "private_network_id")
 
     @property
     @pulumi.getter(name="projectId")

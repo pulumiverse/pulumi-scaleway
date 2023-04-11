@@ -66,10 +66,11 @@ export interface GetBaremetalServerResult {
     readonly name?: string;
     readonly offer: string;
     readonly offerId: string;
+    readonly offerName: string;
     readonly options: outputs.GetBaremetalServerOption[];
     readonly organizationId: string;
     readonly os: string;
-    readonly osId: string;
+    readonly osName: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
     readonly projectId: string;

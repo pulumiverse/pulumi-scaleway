@@ -35,7 +35,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        /// Credentials file used to connect to the NATS service.
         /// </summary>
         [Output("natsCredentials")]
         public Output<Outputs.MnqCredentialNatsCredentials> NatsCredentials { get; private set; } = null!;
@@ -54,8 +54,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-        /// and `sqs_sns_credentials` may be set.
+        /// Credential used to connect to the SQS/SNS service.
         /// </summary>
         [Output("sqsSnsCredentials")]
         public Output<Outputs.MnqCredentialSqsSnsCredentials?> SqsSnsCredentials { get; private set; } = null!;
@@ -120,7 +119,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        /// Credentials file used to connect to the NATS service.
         /// </summary>
         [Input("natsCredentials")]
         public Input<Inputs.MnqCredentialNatsCredentialsArgs>? NatsCredentials { get; set; }
@@ -133,8 +132,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-        /// and `sqs_sns_credentials` may be set.
+        /// Credential used to connect to the SQS/SNS service.
         /// </summary>
         [Input("sqsSnsCredentials")]
         public Input<Inputs.MnqCredentialSqsSnsCredentialsArgs>? SqsSnsCredentials { get; set; }
@@ -160,7 +158,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        /// Credentials file used to connect to the NATS service.
         /// </summary>
         [Input("natsCredentials")]
         public Input<Inputs.MnqCredentialNatsCredentialsGetArgs>? NatsCredentials { get; set; }
@@ -179,8 +177,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-        /// and `sqs_sns_credentials` may be set.
+        /// Credential used to connect to the SQS/SNS service.
         /// </summary>
         [Input("sqsSnsCredentials")]
         public Input<Inputs.MnqCredentialSqsSnsCredentialsGetArgs>? SqsSnsCredentials { get; set; }

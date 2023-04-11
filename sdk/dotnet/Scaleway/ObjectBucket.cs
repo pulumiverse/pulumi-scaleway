@@ -18,6 +18,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -37,6 +38,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -53,6 +55,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -140,6 +143,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```sh
     ///  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+    /// ```
+    /// 
+    ///  If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucket:ObjectBucket")]

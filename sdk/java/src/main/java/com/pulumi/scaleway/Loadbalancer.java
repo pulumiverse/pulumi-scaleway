@@ -252,7 +252,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The description of the load-balancer.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -266,7 +266,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The load-balance public IP Address
      * 
      */
-    @Export(name="ipAddress", type=String.class, parameters={})
+    @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
@@ -280,7 +280,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The ID of the associated LB IP. See below.
      * 
      */
-    @Export(name="ipId", type=String.class, parameters={})
+    @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output<String> ipId;
 
     /**
@@ -294,7 +294,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The name of the load-balancer.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -308,7 +308,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The organization ID the load-balancer is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -322,7 +322,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * List of private network to connect with your load balancer
      * 
      */
-    @Export(name="privateNetworks", type=List.class, parameters={LoadbalancerPrivateNetwork.class})
+    @Export(name="privateNetworks", refs={List.class,LoadbalancerPrivateNetwork.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LoadbalancerPrivateNetwork>> privateNetworks;
 
     /**
@@ -336,7 +336,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the load-balancer is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -350,7 +350,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The region of the resource
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -368,7 +368,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* The resource ip will be destroyed by it's own resource. Please set this to `false` */
-    @Export(name="releaseIp", type=Boolean.class, parameters={})
+    @Export(name="releaseIp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> releaseIp;
 
     /**
@@ -382,7 +382,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
      * 
      */
-    @Export(name="sslCompatibilityLevel", type=String.class, parameters={})
+    @Export(name="sslCompatibilityLevel", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sslCompatibilityLevel;
 
     /**
@@ -396,7 +396,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The tags associated with the load-balancers.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -410,7 +410,7 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
      * The type of the load-balancer. Please check the migration section to upgrade the type
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -421,14 +421,14 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the IP should be reserved.
+     * @return `zone`) The zone of the load-balancer.
      * 
      */
     public Output<String> zone() {

@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -59,13 +60,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<Outputs.DatabaseAclAclRule>> AclRules { get; private set; } = null!;
 
         /// <summary>
-        /// The instance on which to create the ACL.
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -130,13 +131,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The instance on which to create the ACL.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -162,13 +163,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The instance on which to create the ACL.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -31,6 +31,21 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The date at which the route was created.
+     * 
+     */
+    @Import(name="createdAt")
+    private @Nullable Output<String> createdAt;
+
+    /**
+     * @return The date at which the route was created.
+     * 
+     */
+    public Optional<Output<String>> createdAt() {
+        return Optional.ofNullable(this.createdAt);
+    }
+
+    /**
      * The ID of the frontend to which the route is associated.
      * 
      */
@@ -46,26 +61,63 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The SNI to match.
+     * The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     */
+    @Import(name="matchHostHeader")
+    private @Nullable Output<String> matchHostHeader;
+
+    /**
+     * @return The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     */
+    public Optional<Output<String>> matchHostHeader() {
+        return Optional.ofNullable(this.matchHostHeader);
+    }
+
+    /**
+     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `match_sni` and `match_host_header` should be specified.
      * 
      */
     @Import(name="matchSni")
     private @Nullable Output<String> matchSni;
 
     /**
-     * @return The SNI to match.
+     * @return The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `match_sni` and `match_host_header` should be specified.
      * 
      */
     public Optional<Output<String>> matchSni() {
         return Optional.ofNullable(this.matchSni);
     }
 
+    /**
+     * The date at which the route was last updated.
+     * 
+     */
+    @Import(name="updatedAt")
+    private @Nullable Output<String> updatedAt;
+
+    /**
+     * @return The date at which the route was last updated.
+     * 
+     */
+    public Optional<Output<String>> updatedAt() {
+        return Optional.ofNullable(this.updatedAt);
+    }
+
     private LoadbalancerRouteState() {}
 
     private LoadbalancerRouteState(LoadbalancerRouteState $) {
         this.backendId = $.backendId;
+        this.createdAt = $.createdAt;
         this.frontendId = $.frontendId;
+        this.matchHostHeader = $.matchHostHeader;
         this.matchSni = $.matchSni;
+        this.updatedAt = $.updatedAt;
     }
 
     public static Builder builder() {
@@ -108,6 +160,27 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param createdAt The date at which the route was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createdAt(@Nullable Output<String> createdAt) {
+            $.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * @param createdAt The date at which the route was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createdAt(String createdAt) {
+            return createdAt(Output.of(createdAt));
+        }
+
+        /**
          * @param frontendId The ID of the frontend to which the route is associated.
          * 
          * @return builder
@@ -129,7 +202,31 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param matchSni The SNI to match.
+         * @param matchHostHeader The Host request header specifies the host of the server to which the request is being sent.
+         * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder matchHostHeader(@Nullable Output<String> matchHostHeader) {
+            $.matchHostHeader = matchHostHeader;
+            return this;
+        }
+
+        /**
+         * @param matchHostHeader The Host request header specifies the host of the server to which the request is being sent.
+         * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder matchHostHeader(String matchHostHeader) {
+            return matchHostHeader(Output.of(matchHostHeader));
+        }
+
+        /**
+         * @param matchSni The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+         * Only one of `match_sni` and `match_host_header` should be specified.
          * 
          * @return builder
          * 
@@ -140,13 +237,35 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param matchSni The SNI to match.
+         * @param matchSni The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+         * Only one of `match_sni` and `match_host_header` should be specified.
          * 
          * @return builder
          * 
          */
         public Builder matchSni(String matchSni) {
             return matchSni(Output.of(matchSni));
+        }
+
+        /**
+         * @param updatedAt The date at which the route was last updated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updatedAt(@Nullable Output<String> updatedAt) {
+            $.updatedAt = updatedAt;
+            return this;
+        }
+
+        /**
+         * @param updatedAt The date at which the route was last updated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updatedAt(String updatedAt) {
+            return updatedAt(Output.of(updatedAt));
         }
 
         public LoadbalancerRouteState build() {

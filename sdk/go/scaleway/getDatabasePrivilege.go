@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about the privilege on a RDB database.
+// Gets information about the privilege on RDB database.
 //
 // ## Example Usage
 //
@@ -28,7 +28,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.LookupDatabasePrivilege(ctx, &scaleway.LookupDatabasePrivilegeArgs{
 //				DatabaseName: "my-database",
-//				InstanceId:   "fr-par/11111111-1111-111111111111",
+//				InstanceId:   "11111111-1111-111111111111",
 //				UserName:     "my-user",
 //			}, nil)
 //			if err != nil {
@@ -55,6 +55,8 @@ type LookupDatabasePrivilegeArgs struct {
 	DatabaseName string `pulumi:"databaseName"`
 	// The RDB instance ID.
 	InstanceId string `pulumi:"instanceId"`
+	// `region`) The region in which the resource exists.
+	Region *string `pulumi:"region"`
 	// The user name.
 	UserName string `pulumi:"userName"`
 }
@@ -65,9 +67,11 @@ type LookupDatabasePrivilegeResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId string `pulumi:"instanceId"`
-	// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
-	Permission string `pulumi:"permission"`
-	UserName   string `pulumi:"userName"`
+	// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
+	// , `custom` and `none`.
+	Permission string  `pulumi:"permission"`
+	Region     *string `pulumi:"region"`
+	UserName   string  `pulumi:"userName"`
 }
 
 func LookupDatabasePrivilegeOutput(ctx *pulumi.Context, args LookupDatabasePrivilegeOutputArgs, opts ...pulumi.InvokeOption) LookupDatabasePrivilegeResultOutput {
@@ -89,6 +93,8 @@ type LookupDatabasePrivilegeOutputArgs struct {
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
 	// The RDB instance ID.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// `region`) The region in which the resource exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The user name.
 	UserName pulumi.StringInput `pulumi:"userName"`
 }
@@ -125,9 +131,14 @@ func (o LookupDatabasePrivilegeResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
+// , `custom` and `none`.
 func (o LookupDatabasePrivilegeResultOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.Permission }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabasePrivilegeResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabasePrivilegeResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupDatabasePrivilegeResultOutput) UserName() pulumi.StringOutput {

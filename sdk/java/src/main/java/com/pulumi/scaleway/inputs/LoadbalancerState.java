@@ -207,14 +207,14 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the IP should be reserved.
+     * @return `zone`) The zone of the load-balancer.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -538,7 +538,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone `zone`) The zone in which the IP should be reserved.
+         * @param zone `zone`) The zone of the load-balancer.
          * 
          * @return builder
          * 
@@ -549,7 +549,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone `zone`) The zone in which the IP should be reserved.
+         * @param zone `zone`) The zone of the load-balancer.
          * 
          * @return builder
          * 

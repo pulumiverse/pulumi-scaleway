@@ -17,14 +17,14 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     public static final DatabaseState Empty = new DatabaseState();
 
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where to create the database.
+     * @return UUID of the rdb instance.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -32,14 +32,14 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Whether or not the database is managed or not.
+     * Whether the database is managed or not.
      * 
      */
     @Import(name="managed")
     private @Nullable Output<Boolean> managed;
 
     /**
-     * @return Whether or not the database is managed or not.
+     * @return Whether the database is managed or not.
      * 
      */
     public Optional<Output<Boolean>> managed() {
@@ -77,6 +77,21 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * Size of the database (in bytes).
      * 
      */
@@ -98,6 +113,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         this.managed = $.managed;
         this.name = $.name;
         this.owner = $.owner;
+        this.region = $.region;
         this.size = $.size;
     }
 
@@ -120,7 +136,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -131,7 +147,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -141,7 +157,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param managed Whether or not the database is managed or not.
+         * @param managed Whether the database is managed or not.
          * 
          * @return builder
          * 
@@ -152,7 +168,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param managed Whether or not the database is managed or not.
+         * @param managed Whether the database is managed or not.
          * 
          * @return builder
          * 
@@ -201,6 +217,27 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder owner(String owner) {
             return owner(Output.of(owner));
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -38,6 +39,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -83,7 +85,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// UUID of the instance where the database to backup is.
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -101,7 +103,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -178,7 +180,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// UUID of the instance where the database to backup is.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -190,7 +192,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -222,7 +224,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// UUID of the instance where the database to backup is.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -240,7 +242,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

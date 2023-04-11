@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * 
  * ## Examples
  * 
- * ### Basic
+ * ### With SNI
  * ```java
  * package generated_program;
  * 
@@ -72,7 +72,66 @@ import javax.annotation.Nullable;
  *         var rt01 = new LoadbalancerRoute(&#34;rt01&#34;, LoadbalancerRouteArgs.builder()        
  *             .frontendId(frt01.id())
  *             .backendId(bkd01.id())
- *             .matchSni(&#34;scaleway.com&#34;)
+ *             .matchSni(&#34;sni.scaleway.com&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### With host-header
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.LoadbalancerIp;
+ * import com.pulumi.scaleway.Loadbalancer;
+ * import com.pulumi.scaleway.LoadbalancerArgs;
+ * import com.pulumi.scaleway.LoadbalancerBackend;
+ * import com.pulumi.scaleway.LoadbalancerBackendArgs;
+ * import com.pulumi.scaleway.LoadbalancerFrontend;
+ * import com.pulumi.scaleway.LoadbalancerFrontendArgs;
+ * import com.pulumi.scaleway.LoadbalancerRoute;
+ * import com.pulumi.scaleway.LoadbalancerRouteArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var ip01 = new LoadbalancerIp(&#34;ip01&#34;);
+ * 
+ *         var lb01 = new Loadbalancer(&#34;lb01&#34;, LoadbalancerArgs.builder()        
+ *             .ipId(ip01.id())
+ *             .type(&#34;lb-s&#34;)
+ *             .build());
+ * 
+ *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
+ *             .lbId(lb01.id())
+ *             .forwardProtocol(&#34;tcp&#34;)
+ *             .forwardPort(80)
+ *             .proxyProtocol(&#34;none&#34;)
+ *             .build());
+ * 
+ *         var frt01 = new LoadbalancerFrontend(&#34;frt01&#34;, LoadbalancerFrontendArgs.builder()        
+ *             .lbId(lb01.id())
+ *             .backendId(bkd01.id())
+ *             .inboundPort(80)
+ *             .build());
+ * 
+ *         var rt01 = new LoadbalancerRoute(&#34;rt01&#34;, LoadbalancerRouteArgs.builder()        
+ *             .frontendId(frt01.id())
+ *             .backendId(bkd01.id())
+ *             .matchHostHeader(&#34;host.scaleway.com&#34;)
  *             .build());
  * 
  *     }
@@ -94,7 +153,7 @@ public class LoadbalancerRoute extends com.pulumi.resources.CustomResource {
      * The ID of the backend to which the route is associated.
      * 
      */
-    @Export(name="backendId", type=String.class, parameters={})
+    @Export(name="backendId", refs={String.class}, tree="[0]")
     private Output<String> backendId;
 
     /**
@@ -105,10 +164,24 @@ public class LoadbalancerRoute extends com.pulumi.resources.CustomResource {
         return this.backendId;
     }
     /**
+     * The date at which the route was created.
+     * 
+     */
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
+    private Output<String> createdAt;
+
+    /**
+     * @return The date at which the route was created.
+     * 
+     */
+    public Output<String> createdAt() {
+        return this.createdAt;
+    }
+    /**
      * The ID of the frontend to which the route is associated.
      * 
      */
-    @Export(name="frontendId", type=String.class, parameters={})
+    @Export(name="frontendId", refs={String.class}, tree="[0]")
     private Output<String> frontendId;
 
     /**
@@ -119,18 +192,50 @@ public class LoadbalancerRoute extends com.pulumi.resources.CustomResource {
         return this.frontendId;
     }
     /**
-     * The SNI to match.
+     * The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `match_sni` and `match_host_header` should be specified.
      * 
      */
-    @Export(name="matchSni", type=String.class, parameters={})
+    @Export(name="matchHostHeader", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> matchHostHeader;
+
+    /**
+     * @return The Host request header specifies the host of the server to which the request is being sent.
+     * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     */
+    public Output<Optional<String>> matchHostHeader() {
+        return Codegen.optional(this.matchHostHeader);
+    }
+    /**
+     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     */
+    @Export(name="matchSni", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> matchSni;
 
     /**
-     * @return The SNI to match.
+     * @return The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * Only one of `match_sni` and `match_host_header` should be specified.
      * 
      */
     public Output<Optional<String>> matchSni() {
         return Codegen.optional(this.matchSni);
+    }
+    /**
+     * The date at which the route was last updated.
+     * 
+     */
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
+    private Output<String> updatedAt;
+
+    /**
+     * @return The date at which the route was last updated.
+     * 
+     */
+    public Output<String> updatedAt() {
+        return this.updatedAt;
     }
 
     /**

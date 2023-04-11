@@ -27,6 +27,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using System.Text.Json;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;

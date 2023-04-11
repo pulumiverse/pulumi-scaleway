@@ -19,12 +19,15 @@ public final class RedisClusterPrivateNetwork {
      */
     private String id;
     /**
-     * @return Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * @return Endpoint IPv4 addresses
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+     * least one IP per node.
      * 
      */
     private List<String> serviceIps;
     /**
-     * @return `zone`) The zone in which the Redis Cluster should be created.
+     * @return `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     private @Nullable String zone;
@@ -41,14 +44,17 @@ public final class RedisClusterPrivateNetwork {
         return this.id;
     }
     /**
-     * @return Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * @return Endpoint IPv4 addresses
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+     * least one IP per node.
      * 
      */
     public List<String> serviceIps() {
         return this.serviceIps;
     }
     /**
-     * @return `zone`) The zone in which the Redis Cluster should be created.
+     * @return `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     public Optional<String> zone() {

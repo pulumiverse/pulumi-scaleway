@@ -120,7 +120,7 @@ export class FlexibleIp extends pulumi.CustomResource {
     /**
      * The reverse domain associated with this flexible IP.
      */
-    public readonly reverse!: pulumi.Output<string | undefined>;
+    public readonly reverse!: pulumi.Output<string>;
     /**
      * The ID of the associated server
      */

@@ -25,6 +25,7 @@ export function getDatabase(args: GetDatabaseArgs, opts?: pulumi.InvokeOptions):
     return pulumi.runtime.invoke("scaleway:index/getDatabase:getDatabase", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "region": args.region,
     }, opts);
 }
 
@@ -40,6 +41,7 @@ export interface GetDatabaseArgs {
      * The name of the RDB instance.
      */
     name: string;
+    region?: string;
 }
 
 /**
@@ -52,7 +54,7 @@ export interface GetDatabaseResult {
     readonly id: string;
     readonly instanceId: string;
     /**
-     * Whether or not the database is managed or not.
+     * Whether the database is managed or not.
      */
     readonly managed: boolean;
     readonly name: string;
@@ -60,6 +62,7 @@ export interface GetDatabaseResult {
      * The name of the owner of the database.
      */
     readonly owner: string;
+    readonly region?: string;
     /**
      * Size of the database (in bytes).
      */
@@ -96,4 +99,5 @@ export interface GetDatabaseOutputArgs {
      * The name of the RDB instance.
      */
     name: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
 }

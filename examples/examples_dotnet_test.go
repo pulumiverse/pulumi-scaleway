@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func TestAccWebserver(t *testing.T) {
+func TestAccWebserverDotnet(t *testing.T) {
 	test := getCsharpBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "dotnet/server"),

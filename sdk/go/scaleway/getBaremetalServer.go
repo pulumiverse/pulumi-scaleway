@@ -75,10 +75,11 @@ type LookupBaremetalServerResult struct {
 	Name                     *string                            `pulumi:"name"`
 	Offer                    string                             `pulumi:"offer"`
 	OfferId                  string                             `pulumi:"offerId"`
+	OfferName                string                             `pulumi:"offerName"`
 	Options                  []GetBaremetalServerOption         `pulumi:"options"`
 	OrganizationId           string                             `pulumi:"organizationId"`
 	Os                       string                             `pulumi:"os"`
-	OsId                     string                             `pulumi:"osId"`
+	OsName                   string                             `pulumi:"osName"`
 	Password                 string                             `pulumi:"password"`
 	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                string                             `pulumi:"projectId"`
@@ -166,6 +167,10 @@ func (o LookupBaremetalServerResultOutput) OfferId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.OfferId }).(pulumi.StringOutput)
 }
 
+func (o LookupBaremetalServerResultOutput) OfferName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.OfferName }).(pulumi.StringOutput)
+}
+
 func (o LookupBaremetalServerResultOutput) Options() GetBaremetalServerOptionArrayOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerOption { return v.Options }).(GetBaremetalServerOptionArrayOutput)
 }
@@ -178,8 +183,8 @@ func (o LookupBaremetalServerResultOutput) Os() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Os }).(pulumi.StringOutput)
 }
 
-func (o LookupBaremetalServerResultOutput) OsId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.OsId }).(pulumi.StringOutput)
+func (o LookupBaremetalServerResultOutput) OsName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.OsName }).(pulumi.StringOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) Password() pulumi.StringOutput {

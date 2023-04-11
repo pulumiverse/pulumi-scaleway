@@ -212,7 +212,7 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
                       zone: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisClusterResult:
     """
-    Gets information about a Redis cluster.
+    Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
 
     ## Example Usage
 
@@ -265,7 +265,7 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
                              zone: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRedisClusterResult]:
     """
-    Gets information about a Redis cluster.
+    Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
 
     ## Example Usage
 

@@ -149,7 +149,7 @@ type FlexibleIp struct {
 	// The project of the Flexible IP
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The reverse domain associated with this flexible IP.
-	Reverse pulumi.StringPtrOutput `pulumi:"reverse"`
+	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// The ID of the associated server
 	ServerId pulumi.StringPtrOutput `pulumi:"serverId"`
 	// A list of tags to apply to the flexible IP.
@@ -392,8 +392,8 @@ func (o FlexibleIpOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The reverse domain associated with this flexible IP.
-func (o FlexibleIpOutput) Reverse() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FlexibleIp) pulumi.StringPtrOutput { return v.Reverse }).(pulumi.StringPtrOutput)
+func (o FlexibleIpOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.Reverse }).(pulumi.StringOutput)
 }
 
 // The ID of the associated server

@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.LookupDatabaseAcl(ctx, &scaleway.LookupDatabaseAclArgs{
-//				InstanceId: "fr-par/11111111-1111-1111-1111-111111111111",
+//				InstanceId: "11111111-1111-1111-1111-111111111111",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -51,16 +51,18 @@ func LookupDatabaseAcl(ctx *pulumi.Context, args *LookupDatabaseAclArgs, opts ..
 type LookupDatabaseAclArgs struct {
 	// The RDB instance ID.
 	InstanceId string `pulumi:"instanceId"`
+	// `region`) The region in which the Database Instance should be created.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getDatabaseAcl.
 type LookupDatabaseAclResult struct {
-	// A list of ACLs (structure is described below)
+	// A list of ACLs rules (structure is described below)
 	AclRules []GetDatabaseAclAclRule `pulumi:"aclRules"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
-	InstanceId string `pulumi:"instanceId"`
-	Region     string `pulumi:"region"`
+	Id         string  `pulumi:"id"`
+	InstanceId string  `pulumi:"instanceId"`
+	Region     *string `pulumi:"region"`
 }
 
 func LookupDatabaseAclOutput(ctx *pulumi.Context, args LookupDatabaseAclOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseAclResultOutput {
@@ -80,6 +82,8 @@ func LookupDatabaseAclOutput(ctx *pulumi.Context, args LookupDatabaseAclOutputAr
 type LookupDatabaseAclOutputArgs struct {
 	// The RDB instance ID.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// `region`) The region in which the Database Instance should be created.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupDatabaseAclOutputArgs) ElementType() reflect.Type {
@@ -101,7 +105,7 @@ func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutputWithContex
 	return o
 }
 
-// A list of ACLs (structure is described below)
+// A list of ACLs rules (structure is described below)
 func (o LookupDatabaseAclResultOutput) AclRules() GetDatabaseAclAclRuleArrayOutput {
 	return o.ApplyT(func(v LookupDatabaseAclResult) []GetDatabaseAclAclRule { return v.AclRules }).(GetDatabaseAclAclRuleArrayOutput)
 }
@@ -115,8 +119,8 @@ func (o LookupDatabaseAclResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseAclResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-func (o LookupDatabaseAclResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseAclResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupDatabaseAclResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseAclResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func init() {

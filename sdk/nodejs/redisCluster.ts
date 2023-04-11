@@ -81,7 +81,7 @@ import * as utilities from "./utilities";
  * Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class RedisCluster extends pulumi.CustomResource {
@@ -113,7 +113,7 @@ export class RedisCluster extends pulumi.CustomResource {
     }
 
     /**
-     * List of acl rules, this is cluster's authorized IPs.
+     * List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
      */
     public readonly acls!: pulumi.Output<outputs.RedisClusterAcl[] | undefined>;
     /**
@@ -141,19 +141,23 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      */
     public readonly privateNetworks!: pulumi.Output<outputs.RedisClusterPrivateNetwork[] | undefined>;
     /**
-     * `projectId`) The ID of the project the Redis Cluster is associated with.
+     * `projectId`) The ID of the project the Redis Cluster is
+     * associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Public network specs details
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+     * > The `publicNetwork` block exports:
      */
     public readonly publicNetwork!: pulumi.Output<outputs.RedisClusterPublicNetwork>;
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      */
     public readonly settings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -177,7 +181,8 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public readonly version!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -255,7 +260,7 @@ export class RedisCluster extends pulumi.CustomResource {
  */
 export interface RedisClusterState {
     /**
-     * List of acl rules, this is cluster's authorized IPs.
+     * List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.RedisClusterAcl>[]>;
     /**
@@ -283,19 +288,23 @@ export interface RedisClusterState {
      */
     password?: pulumi.Input<string>;
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
     /**
-     * `projectId`) The ID of the project the Redis Cluster is associated with.
+     * `projectId`) The ID of the project the Redis Cluster is
+     * associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Public network specs details
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+     * > The `publicNetwork` block exports:
      */
     publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork>;
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -319,7 +328,8 @@ export interface RedisClusterState {
      */
     version?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -329,7 +339,7 @@ export interface RedisClusterState {
  */
 export interface RedisClusterArgs {
     /**
-     * List of acl rules, this is cluster's authorized IPs.
+     * List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.RedisClusterAcl>[]>;
     /**
@@ -349,19 +359,23 @@ export interface RedisClusterArgs {
      */
     password: pulumi.Input<string>;
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+     * Describes the private network you want to connect to your cluster. If not set, a public
+     * network will be provided. More details on the Private Network section
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
     /**
-     * `projectId`) The ID of the project the Redis Cluster is associated with.
+     * `projectId`) The ID of the project the Redis Cluster is
+     * associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Public network specs details
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
+     * > The `publicNetwork` block exports:
      */
     publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork>;
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -381,7 +395,8 @@ export interface RedisClusterArgs {
      */
     version: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }

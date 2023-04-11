@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -103,6 +103,8 @@ type InstancePrivateNic struct {
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
+	// The tags associated with the private NIC.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -149,6 +151,8 @@ type instancePrivateNicState struct {
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
 	ServerId *string `pulumi:"serverId"`
+	// The tags associated with the private NIC.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
 	Zone *string `pulumi:"zone"`
 }
@@ -160,6 +164,8 @@ type InstancePrivateNicState struct {
 	PrivateNetworkId pulumi.StringPtrInput
 	// The ID of the server associated with.
 	ServerId pulumi.StringPtrInput
+	// The tags associated with the private NIC.
+	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the server must be created.
 	Zone pulumi.StringPtrInput
 }
@@ -173,6 +179,8 @@ type instancePrivateNicArgs struct {
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
 	ServerId string `pulumi:"serverId"`
+	// The tags associated with the private NIC.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
 	Zone *string `pulumi:"zone"`
 }
@@ -183,6 +191,8 @@ type InstancePrivateNicArgs struct {
 	PrivateNetworkId pulumi.StringInput
 	// The ID of the server associated with.
 	ServerId pulumi.StringInput
+	// The tags associated with the private NIC.
+	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the server must be created.
 	Zone pulumi.StringPtrInput
 }
@@ -287,6 +297,11 @@ func (o InstancePrivateNicOutput) PrivateNetworkId() pulumi.StringOutput {
 // The ID of the server associated with.
 func (o InstancePrivateNicOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
+}
+
+// The tags associated with the private NIC.
+func (o InstancePrivateNicOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // `zone`) The zone in which the server must be created.

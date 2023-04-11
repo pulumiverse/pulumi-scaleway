@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -45,13 +46,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class Database : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not the database is managed or not.
+        /// Whether the database is managed or not.
         /// </summary>
         [Output("managed")]
         public Output<bool> Managed { get; private set; } = null!;
@@ -67,6 +68,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
+
+        /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Size of the database (in bytes).
@@ -122,7 +129,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class DatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -133,6 +140,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         public DatabaseArgs()
         {
         }
@@ -142,13 +155,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UUID of the instance where to create the database.
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Whether or not the database is managed or not.
+        /// Whether the database is managed or not.
         /// </summary>
         [Input("managed")]
         public Input<bool>? Managed { get; set; }
@@ -164,6 +177,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the resource exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// Size of the database (in bytes).

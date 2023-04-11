@@ -89,10 +89,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * IAM groups can be imported using the `{zone}/{id}`, e.g. bash
+ * IAM groups can be imported using the `{id}`, e.g. bash
  * 
  * ```sh
- *  $ pulumi import scaleway:index/iamGroup:IamGroup basic fr-par/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
  * ```
  * 
  */
@@ -102,7 +102,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * The list of IDs of the applications attached to the group.
      * 
      */
-    @Export(name="applicationIds", type=List.class, parameters={String.class})
+    @Export(name="applicationIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> applicationIds;
 
     /**
@@ -116,7 +116,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the group
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -130,7 +130,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * The description of the IAM group.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -144,7 +144,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * The name of the IAM group.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -158,7 +158,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * `organization_id`) The ID of the organization the group is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -172,7 +172,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the group
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -186,7 +186,7 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      * The list of IDs of the users attached to the group.
      * 
      */
-    @Export(name="userIds", type=List.class, parameters={String.class})
+    @Export(name="userIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> userIds;
 
     /**

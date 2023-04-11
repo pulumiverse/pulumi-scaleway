@@ -97,7 +97,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The date and time of the creation of the pat rule config.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -111,7 +111,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The ID of the public gateway.
      * 
      */
-    @Export(name="gatewayId", type=String.class, parameters={})
+    @Export(name="gatewayId", refs={String.class}, tree="[0]")
     private Output<String> gatewayId;
 
     /**
@@ -125,7 +125,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The organization ID the pat rule config is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -139,7 +139,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The Private IP to forward data to (IP address).
      * 
      */
-    @Export(name="privateIp", type=String.class, parameters={})
+    @Export(name="privateIp", refs={String.class}, tree="[0]")
     private Output<String> privateIp;
 
     /**
@@ -153,7 +153,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The Private port to translate to.
      * 
      */
-    @Export(name="privatePort", type=Integer.class, parameters={})
+    @Export(name="privatePort", refs={Integer.class}, tree="[0]")
     private Output<Integer> privatePort;
 
     /**
@@ -167,7 +167,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The Protocol the rule should apply to. Possible values are both, tcp and udp.
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> protocol;
 
     /**
@@ -181,7 +181,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The Public port to listen on.
      * 
      */
-    @Export(name="publicPort", type=Integer.class, parameters={})
+    @Export(name="publicPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> publicPort;
 
     /**
@@ -195,7 +195,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * The date and time of the last update of the pat rule config.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -209,7 +209,7 @@ public class VpcPublicGatewayPatRule extends com.pulumi.resources.CustomResource
      * `zone`) The zone in which the public gateway DHCP config should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

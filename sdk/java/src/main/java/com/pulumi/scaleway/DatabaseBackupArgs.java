@@ -46,14 +46,14 @@ public final class DatabaseBackupArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * UUID of the instance where the database to backup is.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where the database to backup is.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -76,14 +76,14 @@ public final class DatabaseBackupArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return `region`) The region in which the resource exists.
      * 
      */
     public Optional<Output<String>> region() {
@@ -161,7 +161,7 @@ public final class DatabaseBackupArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param instanceId UUID of the instance where the database to backup is.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -172,7 +172,7 @@ public final class DatabaseBackupArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param instanceId UUID of the instance where the database to backup is.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -203,7 +203,7 @@ public final class DatabaseBackupArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region `region`) The region in which the resource exists.
          * 
          * @return builder
          * 
@@ -214,7 +214,7 @@ public final class DatabaseBackupArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The region you want to attach the resource to
+         * @param region `region`) The region in which the resource exists.
          * 
          * @return builder
          * 

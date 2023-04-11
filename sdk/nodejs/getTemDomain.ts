@@ -38,6 +38,7 @@ export interface GetTemDomainArgs {
  * A collection of values returned by getTemDomain.
  */
 export interface GetTemDomainResult {
+    readonly acceptTos: boolean;
     /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */

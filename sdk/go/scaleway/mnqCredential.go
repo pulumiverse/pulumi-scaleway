@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,15 +27,14 @@ type MnqCredential struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace containing the Credential.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
-	// Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+	// Credentials file used to connect to the NATS service.
 	NatsCredentials MnqCredentialNatsCredentialsOutput `pulumi:"natsCredentials"`
 	// The protocol associated to the Credential. Possible values are `nats` and `sqsSns`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// (Defaults to provider `region`). The region
 	// in which the namespace should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-	// and `sqsSnsCredentials` may be set.
+	// Credential used to connect to the SQS/SNS service.
 	SqsSnsCredentials MnqCredentialSqsSnsCredentialsPtrOutput `pulumi:"sqsSnsCredentials"`
 }
 
@@ -76,15 +75,14 @@ type mnqCredentialState struct {
 	Name *string `pulumi:"name"`
 	// The namespace containing the Credential.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+	// Credentials file used to connect to the NATS service.
 	NatsCredentials *MnqCredentialNatsCredentials `pulumi:"natsCredentials"`
 	// The protocol associated to the Credential. Possible values are `nats` and `sqsSns`.
 	Protocol *string `pulumi:"protocol"`
 	// (Defaults to provider `region`). The region
 	// in which the namespace should be created.
 	Region *string `pulumi:"region"`
-	// Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-	// and `sqsSnsCredentials` may be set.
+	// Credential used to connect to the SQS/SNS service.
 	SqsSnsCredentials *MnqCredentialSqsSnsCredentials `pulumi:"sqsSnsCredentials"`
 }
 
@@ -93,15 +91,14 @@ type MnqCredentialState struct {
 	Name pulumi.StringPtrInput
 	// The namespace containing the Credential.
 	NamespaceId pulumi.StringPtrInput
-	// Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+	// Credentials file used to connect to the NATS service.
 	NatsCredentials MnqCredentialNatsCredentialsPtrInput
 	// The protocol associated to the Credential. Possible values are `nats` and `sqsSns`.
 	Protocol pulumi.StringPtrInput
 	// (Defaults to provider `region`). The region
 	// in which the namespace should be created.
 	Region pulumi.StringPtrInput
-	// Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-	// and `sqsSnsCredentials` may be set.
+	// Credential used to connect to the SQS/SNS service.
 	SqsSnsCredentials MnqCredentialSqsSnsCredentialsPtrInput
 }
 
@@ -114,13 +111,12 @@ type mnqCredentialArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace containing the Credential.
 	NamespaceId string `pulumi:"namespaceId"`
-	// Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+	// Credentials file used to connect to the NATS service.
 	NatsCredentials *MnqCredentialNatsCredentials `pulumi:"natsCredentials"`
 	// (Defaults to provider `region`). The region
 	// in which the namespace should be created.
 	Region *string `pulumi:"region"`
-	// Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-	// and `sqsSnsCredentials` may be set.
+	// Credential used to connect to the SQS/SNS service.
 	SqsSnsCredentials *MnqCredentialSqsSnsCredentials `pulumi:"sqsSnsCredentials"`
 }
 
@@ -130,13 +126,12 @@ type MnqCredentialArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace containing the Credential.
 	NamespaceId pulumi.StringInput
-	// Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+	// Credentials file used to connect to the NATS service.
 	NatsCredentials MnqCredentialNatsCredentialsPtrInput
 	// (Defaults to provider `region`). The region
 	// in which the namespace should be created.
 	Region pulumi.StringPtrInput
-	// Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-	// and `sqsSnsCredentials` may be set.
+	// Credential used to connect to the SQS/SNS service.
 	SqsSnsCredentials MnqCredentialSqsSnsCredentialsPtrInput
 }
 
@@ -237,7 +232,7 @@ func (o MnqCredentialOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqCredential) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
-// Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+// Credentials file used to connect to the NATS service.
 func (o MnqCredentialOutput) NatsCredentials() MnqCredentialNatsCredentialsOutput {
 	return o.ApplyT(func(v *MnqCredential) MnqCredentialNatsCredentialsOutput { return v.NatsCredentials }).(MnqCredentialNatsCredentialsOutput)
 }
@@ -253,8 +248,7 @@ func (o MnqCredentialOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqCredential) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-// and `sqsSnsCredentials` may be set.
+// Credential used to connect to the SQS/SNS service.
 func (o MnqCredentialOutput) SqsSnsCredentials() MnqCredentialSqsSnsCredentialsPtrOutput {
 	return o.ApplyT(func(v *MnqCredential) MnqCredentialSqsSnsCredentialsPtrOutput { return v.SqsSnsCredentials }).(MnqCredentialSqsSnsCredentialsPtrOutput)
 }

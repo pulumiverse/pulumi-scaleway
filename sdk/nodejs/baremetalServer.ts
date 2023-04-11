@@ -95,6 +95,10 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly offerId!: pulumi.Output<string>;
     /**
+     * The name of the offer.
+     */
+    public /*out*/ readonly offerName!: pulumi.Output<string>;
+    /**
      * The options to enable on the server.
      * > The `options` block supports:
      */
@@ -110,9 +114,9 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public readonly os!: pulumi.Output<string>;
     /**
-     * The ID of the os.
+     * The name of the os.
      */
-    public /*out*/ readonly osId!: pulumi.Output<string>;
+    public /*out*/ readonly osName!: pulumi.Output<string>;
     /**
      * Password used for the installation. May be required depending on used os.
      */
@@ -145,7 +149,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     /**
      * The tags associated with the server.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    public readonly tags!: pulumi.Output<string[]>;
     /**
      * User used for the installation.
      */
@@ -175,10 +179,11 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["offer"] = state ? state.offer : undefined;
             resourceInputs["offerId"] = state ? state.offerId : undefined;
+            resourceInputs["offerName"] = state ? state.offerName : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["os"] = state ? state.os : undefined;
-            resourceInputs["osId"] = state ? state.osId : undefined;
+            resourceInputs["osName"] = state ? state.osName : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -219,8 +224,9 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["domain"] = undefined /*out*/;
             resourceInputs["ips"] = undefined /*out*/;
             resourceInputs["offerId"] = undefined /*out*/;
+            resourceInputs["offerName"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["osId"] = undefined /*out*/;
+            resourceInputs["osName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password", "servicePassword"] };
@@ -263,6 +269,10 @@ export interface BaremetalServerState {
      */
     offerId?: pulumi.Input<string>;
     /**
+     * The name of the offer.
+     */
+    offerName?: pulumi.Input<string>;
+    /**
      * The options to enable on the server.
      * > The `options` block supports:
      */
@@ -278,9 +288,9 @@ export interface BaremetalServerState {
      */
     os?: pulumi.Input<string>;
     /**
-     * The ID of the os.
+     * The name of the os.
      */
-    osId?: pulumi.Input<string>;
+    osName?: pulumi.Input<string>;
     /**
      * Password used for the installation. May be required depending on used os.
      */

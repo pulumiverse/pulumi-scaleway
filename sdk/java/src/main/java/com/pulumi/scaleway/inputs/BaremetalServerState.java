@@ -128,6 +128,21 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The name of the offer.
+     * 
+     */
+    @Import(name="offerName")
+    private @Nullable Output<String> offerName;
+
+    /**
+     * @return The name of the offer.
+     * 
+     */
+    public Optional<Output<String>> offerName() {
+        return Optional.ofNullable(this.offerName);
+    }
+
+    /**
      * The options to enable on the server.
      * &gt; The `options` block supports:
      * 
@@ -179,18 +194,18 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The ID of the os.
+     * The name of the os.
      * 
      */
-    @Import(name="osId")
-    private @Nullable Output<String> osId;
+    @Import(name="osName")
+    private @Nullable Output<String> osName;
 
     /**
-     * @return The ID of the os.
+     * @return The name of the os.
      * 
      */
-    public Optional<Output<String>> osId() {
-        return Optional.ofNullable(this.osId);
+    public Optional<Output<String>> osName() {
+        return Optional.ofNullable(this.osName);
     }
 
     /**
@@ -355,10 +370,11 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         this.name = $.name;
         this.offer = $.offer;
         this.offerId = $.offerId;
+        this.offerName = $.offerName;
         this.options = $.options;
         this.organizationId = $.organizationId;
         this.os = $.os;
-        this.osId = $.osId;
+        this.osName = $.osName;
         this.password = $.password;
         this.privateNetworks = $.privateNetworks;
         this.projectId = $.projectId;
@@ -549,6 +565,27 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param offerName The name of the offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder offerName(@Nullable Output<String> offerName) {
+            $.offerName = offerName;
+            return this;
+        }
+
+        /**
+         * @param offerName The name of the offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder offerName(String offerName) {
+            return offerName(Output.of(offerName));
+        }
+
+        /**
          * @param options The options to enable on the server.
          * &gt; The `options` block supports:
          * 
@@ -629,24 +666,24 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param osId The ID of the os.
+         * @param osName The name of the os.
          * 
          * @return builder
          * 
          */
-        public Builder osId(@Nullable Output<String> osId) {
-            $.osId = osId;
+        public Builder osName(@Nullable Output<String> osName) {
+            $.osName = osName;
             return this;
         }
 
         /**
-         * @param osId The ID of the os.
+         * @param osName The name of the os.
          * 
          * @return builder
          * 
          */
-        public Builder osId(String osId) {
-            return osId(Output.of(osId));
+        public Builder osName(String osName) {
+            return osName(Output.of(osName));
         }
 
         /**

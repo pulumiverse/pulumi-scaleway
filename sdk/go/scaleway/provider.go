@@ -42,19 +42,19 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.AccessKey) {
+	if args.AccessKey == nil {
 		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string))
 	}
-	if isZero(args.ProjectId) {
+	if args.ProjectId == nil {
 		args.ProjectId = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_PROJECT_ID").(string))
 	}
-	if isZero(args.Region) {
+	if args.Region == nil {
 		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string))
 	}
-	if isZero(args.SecretKey) {
+	if args.SecretKey == nil {
 		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string))
 	}
-	if isZero(args.Zone) {
+	if args.Zone == nil {
 		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string))
 	}
 	opts = pkgResourceDefaultOpts(opts)

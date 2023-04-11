@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -62,9 +62,9 @@ type DatabaseAcl struct {
 
 	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayOutput `pulumi:"aclRules"`
-	// The instance on which to create the ACL.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -106,18 +106,18 @@ func GetDatabaseAcl(ctx *pulumi.Context,
 type databaseAclState struct {
 	// A list of ACLs (structure is described below)
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
-	// The instance on which to create the ACL.
+	// UUID of the rdb instance.
 	InstanceId *string `pulumi:"instanceId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 }
 
 type DatabaseAclState struct {
 	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayInput
-	// The instance on which to create the ACL.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -128,9 +128,9 @@ func (DatabaseAclState) ElementType() reflect.Type {
 type databaseAclArgs struct {
 	// A list of ACLs (structure is described below)
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
-	// The instance on which to create the ACL.
+	// UUID of the rdb instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 }
 
@@ -138,9 +138,9 @@ type databaseAclArgs struct {
 type DatabaseAclArgs struct {
 	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayInput
-	// The instance on which to create the ACL.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -236,12 +236,12 @@ func (o DatabaseAclOutput) AclRules() DatabaseAclAclRuleArrayOutput {
 	return o.ApplyT(func(v *DatabaseAcl) DatabaseAclAclRuleArrayOutput { return v.AclRules }).(DatabaseAclAclRuleArrayOutput)
 }
 
-// The instance on which to create the ACL.
+// UUID of the rdb instance.
 func (o DatabaseAclOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the Database Instance should be created.
 func (o DatabaseAclOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

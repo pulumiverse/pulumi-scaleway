@@ -17,6 +17,7 @@ type BaremetalServerIp struct {
 	Id *string `pulumi:"id"`
 	// The reverse of the IP.
 	Reverse *string `pulumi:"reverse"`
+	// The type of the IP.
 	Version *string `pulumi:"version"`
 }
 
@@ -38,6 +39,7 @@ type BaremetalServerIpArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The reverse of the IP.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
+	// The type of the IP.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -107,6 +109,7 @@ func (o BaremetalServerIpOutput) Reverse() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Reverse }).(pulumi.StringPtrOutput)
 }
 
+// The type of the IP.
 func (o BaremetalServerIpOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
@@ -377,6 +380,381 @@ func (o BaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Barem
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerPrivateNetwork {
 		return vs[0].([]BaremetalServerPrivateNetwork)[vs[1].(int)]
 	}).(BaremetalServerPrivateNetworkOutput)
+}
+
+type CockpitEndpoint struct {
+	// The alertmanager URL
+	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
+	// The grafana URL
+	GrafanaUrl *string `pulumi:"grafanaUrl"`
+	// The logs URL
+	LogsUrl *string `pulumi:"logsUrl"`
+	// The metrics URL
+	MetricsUrl *string `pulumi:"metricsUrl"`
+}
+
+// CockpitEndpointInput is an input type that accepts CockpitEndpointArgs and CockpitEndpointOutput values.
+// You can construct a concrete instance of `CockpitEndpointInput` via:
+//
+//	CockpitEndpointArgs{...}
+type CockpitEndpointInput interface {
+	pulumi.Input
+
+	ToCockpitEndpointOutput() CockpitEndpointOutput
+	ToCockpitEndpointOutputWithContext(context.Context) CockpitEndpointOutput
+}
+
+type CockpitEndpointArgs struct {
+	// The alertmanager URL
+	AlertmanagerUrl pulumi.StringPtrInput `pulumi:"alertmanagerUrl"`
+	// The grafana URL
+	GrafanaUrl pulumi.StringPtrInput `pulumi:"grafanaUrl"`
+	// The logs URL
+	LogsUrl pulumi.StringPtrInput `pulumi:"logsUrl"`
+	// The metrics URL
+	MetricsUrl pulumi.StringPtrInput `pulumi:"metricsUrl"`
+}
+
+func (CockpitEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitEndpoint)(nil)).Elem()
+}
+
+func (i CockpitEndpointArgs) ToCockpitEndpointOutput() CockpitEndpointOutput {
+	return i.ToCockpitEndpointOutputWithContext(context.Background())
+}
+
+func (i CockpitEndpointArgs) ToCockpitEndpointOutputWithContext(ctx context.Context) CockpitEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitEndpointOutput)
+}
+
+// CockpitEndpointArrayInput is an input type that accepts CockpitEndpointArray and CockpitEndpointArrayOutput values.
+// You can construct a concrete instance of `CockpitEndpointArrayInput` via:
+//
+//	CockpitEndpointArray{ CockpitEndpointArgs{...} }
+type CockpitEndpointArrayInput interface {
+	pulumi.Input
+
+	ToCockpitEndpointArrayOutput() CockpitEndpointArrayOutput
+	ToCockpitEndpointArrayOutputWithContext(context.Context) CockpitEndpointArrayOutput
+}
+
+type CockpitEndpointArray []CockpitEndpointInput
+
+func (CockpitEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitEndpoint)(nil)).Elem()
+}
+
+func (i CockpitEndpointArray) ToCockpitEndpointArrayOutput() CockpitEndpointArrayOutput {
+	return i.ToCockpitEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i CockpitEndpointArray) ToCockpitEndpointArrayOutputWithContext(ctx context.Context) CockpitEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitEndpointArrayOutput)
+}
+
+type CockpitEndpointOutput struct{ *pulumi.OutputState }
+
+func (CockpitEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitEndpoint)(nil)).Elem()
+}
+
+func (o CockpitEndpointOutput) ToCockpitEndpointOutput() CockpitEndpointOutput {
+	return o
+}
+
+func (o CockpitEndpointOutput) ToCockpitEndpointOutputWithContext(ctx context.Context) CockpitEndpointOutput {
+	return o
+}
+
+// The alertmanager URL
+func (o CockpitEndpointOutput) AlertmanagerUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitEndpoint) *string { return v.AlertmanagerUrl }).(pulumi.StringPtrOutput)
+}
+
+// The grafana URL
+func (o CockpitEndpointOutput) GrafanaUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitEndpoint) *string { return v.GrafanaUrl }).(pulumi.StringPtrOutput)
+}
+
+// The logs URL
+func (o CockpitEndpointOutput) LogsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitEndpoint) *string { return v.LogsUrl }).(pulumi.StringPtrOutput)
+}
+
+// The metrics URL
+func (o CockpitEndpointOutput) MetricsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitEndpoint) *string { return v.MetricsUrl }).(pulumi.StringPtrOutput)
+}
+
+type CockpitEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (CockpitEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitEndpoint)(nil)).Elem()
+}
+
+func (o CockpitEndpointArrayOutput) ToCockpitEndpointArrayOutput() CockpitEndpointArrayOutput {
+	return o
+}
+
+func (o CockpitEndpointArrayOutput) ToCockpitEndpointArrayOutputWithContext(ctx context.Context) CockpitEndpointArrayOutput {
+	return o
+}
+
+func (o CockpitEndpointArrayOutput) Index(i pulumi.IntInput) CockpitEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CockpitEndpoint {
+		return vs[0].([]CockpitEndpoint)[vs[1].(int)]
+	}).(CockpitEndpointOutput)
+}
+
+type CockpitTokenScopes struct {
+	// Query logs
+	QueryLogs *bool `pulumi:"queryLogs"`
+	// Query metrics
+	QueryMetrics *bool `pulumi:"queryMetrics"`
+	// Setup alerts
+	SetupAlerts *bool `pulumi:"setupAlerts"`
+	// Setup logs rules
+	SetupLogsRules *bool `pulumi:"setupLogsRules"`
+	// Setup metrics rules
+	SetupMetricsRules *bool `pulumi:"setupMetricsRules"`
+	// Write logs
+	WriteLogs *bool `pulumi:"writeLogs"`
+	// Write metrics
+	WriteMetrics *bool `pulumi:"writeMetrics"`
+}
+
+// CockpitTokenScopesInput is an input type that accepts CockpitTokenScopesArgs and CockpitTokenScopesOutput values.
+// You can construct a concrete instance of `CockpitTokenScopesInput` via:
+//
+//	CockpitTokenScopesArgs{...}
+type CockpitTokenScopesInput interface {
+	pulumi.Input
+
+	ToCockpitTokenScopesOutput() CockpitTokenScopesOutput
+	ToCockpitTokenScopesOutputWithContext(context.Context) CockpitTokenScopesOutput
+}
+
+type CockpitTokenScopesArgs struct {
+	// Query logs
+	QueryLogs pulumi.BoolPtrInput `pulumi:"queryLogs"`
+	// Query metrics
+	QueryMetrics pulumi.BoolPtrInput `pulumi:"queryMetrics"`
+	// Setup alerts
+	SetupAlerts pulumi.BoolPtrInput `pulumi:"setupAlerts"`
+	// Setup logs rules
+	SetupLogsRules pulumi.BoolPtrInput `pulumi:"setupLogsRules"`
+	// Setup metrics rules
+	SetupMetricsRules pulumi.BoolPtrInput `pulumi:"setupMetricsRules"`
+	// Write logs
+	WriteLogs pulumi.BoolPtrInput `pulumi:"writeLogs"`
+	// Write metrics
+	WriteMetrics pulumi.BoolPtrInput `pulumi:"writeMetrics"`
+}
+
+func (CockpitTokenScopesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitTokenScopes)(nil)).Elem()
+}
+
+func (i CockpitTokenScopesArgs) ToCockpitTokenScopesOutput() CockpitTokenScopesOutput {
+	return i.ToCockpitTokenScopesOutputWithContext(context.Background())
+}
+
+func (i CockpitTokenScopesArgs) ToCockpitTokenScopesOutputWithContext(ctx context.Context) CockpitTokenScopesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenScopesOutput)
+}
+
+func (i CockpitTokenScopesArgs) ToCockpitTokenScopesPtrOutput() CockpitTokenScopesPtrOutput {
+	return i.ToCockpitTokenScopesPtrOutputWithContext(context.Background())
+}
+
+func (i CockpitTokenScopesArgs) ToCockpitTokenScopesPtrOutputWithContext(ctx context.Context) CockpitTokenScopesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenScopesOutput).ToCockpitTokenScopesPtrOutputWithContext(ctx)
+}
+
+// CockpitTokenScopesPtrInput is an input type that accepts CockpitTokenScopesArgs, CockpitTokenScopesPtr and CockpitTokenScopesPtrOutput values.
+// You can construct a concrete instance of `CockpitTokenScopesPtrInput` via:
+//
+//	        CockpitTokenScopesArgs{...}
+//
+//	or:
+//
+//	        nil
+type CockpitTokenScopesPtrInput interface {
+	pulumi.Input
+
+	ToCockpitTokenScopesPtrOutput() CockpitTokenScopesPtrOutput
+	ToCockpitTokenScopesPtrOutputWithContext(context.Context) CockpitTokenScopesPtrOutput
+}
+
+type cockpitTokenScopesPtrType CockpitTokenScopesArgs
+
+func CockpitTokenScopesPtr(v *CockpitTokenScopesArgs) CockpitTokenScopesPtrInput {
+	return (*cockpitTokenScopesPtrType)(v)
+}
+
+func (*cockpitTokenScopesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CockpitTokenScopes)(nil)).Elem()
+}
+
+func (i *cockpitTokenScopesPtrType) ToCockpitTokenScopesPtrOutput() CockpitTokenScopesPtrOutput {
+	return i.ToCockpitTokenScopesPtrOutputWithContext(context.Background())
+}
+
+func (i *cockpitTokenScopesPtrType) ToCockpitTokenScopesPtrOutputWithContext(ctx context.Context) CockpitTokenScopesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenScopesPtrOutput)
+}
+
+type CockpitTokenScopesOutput struct{ *pulumi.OutputState }
+
+func (CockpitTokenScopesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitTokenScopes)(nil)).Elem()
+}
+
+func (o CockpitTokenScopesOutput) ToCockpitTokenScopesOutput() CockpitTokenScopesOutput {
+	return o
+}
+
+func (o CockpitTokenScopesOutput) ToCockpitTokenScopesOutputWithContext(ctx context.Context) CockpitTokenScopesOutput {
+	return o
+}
+
+func (o CockpitTokenScopesOutput) ToCockpitTokenScopesPtrOutput() CockpitTokenScopesPtrOutput {
+	return o.ToCockpitTokenScopesPtrOutputWithContext(context.Background())
+}
+
+func (o CockpitTokenScopesOutput) ToCockpitTokenScopesPtrOutputWithContext(ctx context.Context) CockpitTokenScopesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CockpitTokenScopes) *CockpitTokenScopes {
+		return &v
+	}).(CockpitTokenScopesPtrOutput)
+}
+
+// Query logs
+func (o CockpitTokenScopesOutput) QueryLogs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryLogs }).(pulumi.BoolPtrOutput)
+}
+
+// Query metrics
+func (o CockpitTokenScopesOutput) QueryMetrics() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryMetrics }).(pulumi.BoolPtrOutput)
+}
+
+// Setup alerts
+func (o CockpitTokenScopesOutput) SetupAlerts() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupAlerts }).(pulumi.BoolPtrOutput)
+}
+
+// Setup logs rules
+func (o CockpitTokenScopesOutput) SetupLogsRules() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupLogsRules }).(pulumi.BoolPtrOutput)
+}
+
+// Setup metrics rules
+func (o CockpitTokenScopesOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupMetricsRules }).(pulumi.BoolPtrOutput)
+}
+
+// Write logs
+func (o CockpitTokenScopesOutput) WriteLogs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteLogs }).(pulumi.BoolPtrOutput)
+}
+
+// Write metrics
+func (o CockpitTokenScopesOutput) WriteMetrics() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteMetrics }).(pulumi.BoolPtrOutput)
+}
+
+type CockpitTokenScopesPtrOutput struct{ *pulumi.OutputState }
+
+func (CockpitTokenScopesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CockpitTokenScopes)(nil)).Elem()
+}
+
+func (o CockpitTokenScopesPtrOutput) ToCockpitTokenScopesPtrOutput() CockpitTokenScopesPtrOutput {
+	return o
+}
+
+func (o CockpitTokenScopesPtrOutput) ToCockpitTokenScopesPtrOutputWithContext(ctx context.Context) CockpitTokenScopesPtrOutput {
+	return o
+}
+
+func (o CockpitTokenScopesPtrOutput) Elem() CockpitTokenScopesOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) CockpitTokenScopes {
+		if v != nil {
+			return *v
+		}
+		var ret CockpitTokenScopes
+		return ret
+	}).(CockpitTokenScopesOutput)
+}
+
+// Query logs
+func (o CockpitTokenScopesPtrOutput) QueryLogs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.QueryLogs
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Query metrics
+func (o CockpitTokenScopesPtrOutput) QueryMetrics() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.QueryMetrics
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Setup alerts
+func (o CockpitTokenScopesPtrOutput) SetupAlerts() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SetupAlerts
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Setup logs rules
+func (o CockpitTokenScopesPtrOutput) SetupLogsRules() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SetupLogsRules
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Setup metrics rules
+func (o CockpitTokenScopesPtrOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SetupMetricsRules
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Write logs
+func (o CockpitTokenScopesPtrOutput) WriteLogs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.WriteLogs
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Write metrics
+func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.WriteMetrics
+	}).(pulumi.BoolPtrOutput)
 }
 
 type DatabaseAclAclRule struct {
@@ -1217,7 +1595,8 @@ type DatabaseReadReplicaPrivateNetwork struct {
 	Port *int `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+	// limitations. (IP network).
 	ServiceIp string  `pulumi:"serviceIp"`
 	Zone      *string `pulumi:"zone"`
 }
@@ -1246,7 +1625,8 @@ type DatabaseReadReplicaPrivateNetworkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+	// limitations. (IP network).
 	ServiceIp pulumi.StringInput    `pulumi:"serviceIp"`
 	Zone      pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -1358,7 +1738,8 @@ func (o DatabaseReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.Strin
 	return o.ApplyT(func(v DatabaseReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+// limitations. (IP network).
 func (o DatabaseReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseReadReplicaPrivateNetwork) string { return v.ServiceIp }).(pulumi.StringOutput)
 }
@@ -1451,7 +1832,8 @@ func (o DatabaseReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+// limitations. (IP network).
 func (o DatabaseReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -5875,6 +6257,8 @@ func (o KubernetesNodePoolUpgradePolicyPtrOutput) MaxUnavailable() pulumi.IntPtr
 type LoadbalancerBackendHealthCheckHttp struct {
 	// The expected HTTP status code.
 	Code *int `pulumi:"code"`
+	// The HTTP host header to use for HC requests.
+	HostHeader *string `pulumi:"hostHeader"`
 	// The HTTP method to use for HC requests.
 	Method *string `pulumi:"method"`
 	// The HTTP endpoint URL to call for HC requests.
@@ -5895,6 +6279,8 @@ type LoadbalancerBackendHealthCheckHttpInput interface {
 type LoadbalancerBackendHealthCheckHttpArgs struct {
 	// The expected HTTP status code.
 	Code pulumi.IntPtrInput `pulumi:"code"`
+	// The HTTP host header to use for HC requests.
+	HostHeader pulumi.StringPtrInput `pulumi:"hostHeader"`
 	// The HTTP method to use for HC requests.
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The HTTP endpoint URL to call for HC requests.
@@ -5983,6 +6369,11 @@ func (o LoadbalancerBackendHealthCheckHttpOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
+// The HTTP host header to use for HC requests.
+func (o LoadbalancerBackendHealthCheckHttpOutput) HostHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) *string { return v.HostHeader }).(pulumi.StringPtrOutput)
+}
+
 // The HTTP method to use for HC requests.
 func (o LoadbalancerBackendHealthCheckHttpOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) *string { return v.Method }).(pulumi.StringPtrOutput)
@@ -6027,6 +6418,16 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Code() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
+// The HTTP host header to use for HC requests.
+func (o LoadbalancerBackendHealthCheckHttpPtrOutput) HostHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HostHeader
+	}).(pulumi.StringPtrOutput)
+}
+
 // The HTTP method to use for HC requests.
 func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttp) *string {
@@ -6050,8 +6451,12 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Uri() pulumi.StringPtrOutpu
 type LoadbalancerBackendHealthCheckHttps struct {
 	// The expected HTTP status code.
 	Code *int `pulumi:"code"`
+	// The HTTP host header to use for HC requests.
+	HostHeader *string `pulumi:"hostHeader"`
 	// The HTTP method to use for HC requests.
 	Method *string `pulumi:"method"`
+	// The SNI to use for HC requests over SSL.
+	Sni *string `pulumi:"sni"`
 	// The HTTP endpoint URL to call for HC requests.
 	Uri string `pulumi:"uri"`
 }
@@ -6070,8 +6475,12 @@ type LoadbalancerBackendHealthCheckHttpsInput interface {
 type LoadbalancerBackendHealthCheckHttpsArgs struct {
 	// The expected HTTP status code.
 	Code pulumi.IntPtrInput `pulumi:"code"`
+	// The HTTP host header to use for HC requests.
+	HostHeader pulumi.StringPtrInput `pulumi:"hostHeader"`
 	// The HTTP method to use for HC requests.
 	Method pulumi.StringPtrInput `pulumi:"method"`
+	// The SNI to use for HC requests over SSL.
+	Sni pulumi.StringPtrInput `pulumi:"sni"`
 	// The HTTP endpoint URL to call for HC requests.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
@@ -6158,9 +6567,19 @@ func (o LoadbalancerBackendHealthCheckHttpsOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
+// The HTTP host header to use for HC requests.
+func (o LoadbalancerBackendHealthCheckHttpsOutput) HostHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *string { return v.HostHeader }).(pulumi.StringPtrOutput)
+}
+
 // The HTTP method to use for HC requests.
 func (o LoadbalancerBackendHealthCheckHttpsOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// The SNI to use for HC requests over SSL.
+func (o LoadbalancerBackendHealthCheckHttpsOutput) Sni() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *string { return v.Sni }).(pulumi.StringPtrOutput)
 }
 
 // The HTTP endpoint URL to call for HC requests.
@@ -6202,6 +6621,16 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Code() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
+// The HTTP host header to use for HC requests.
+func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) HostHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HostHeader
+	}).(pulumi.StringPtrOutput)
+}
+
 // The HTTP method to use for HC requests.
 func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
@@ -6209,6 +6638,16 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Method() pulumi.StringPtrO
 			return nil
 		}
 		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// The SNI to use for HC requests over SSL.
+func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Sni() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Sni
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -6902,7 +7341,7 @@ type LoadbalancerPrivateNetwork struct {
 	// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
 	StaticConfig *string `pulumi:"staticConfig"`
 	Status       *string `pulumi:"status"`
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -6925,7 +7364,7 @@ type LoadbalancerPrivateNetworkArgs struct {
 	// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
 	Status       pulumi.StringPtrInput `pulumi:"status"`
-	// `zone`) The zone in which the IP should be reserved.
+	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -6999,7 +7438,7 @@ func (o LoadbalancerPrivateNetworkOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// `zone`) The zone in which the IP should be reserved.
+// `zone`) The zone of the load-balancer.
 func (o LoadbalancerPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
@@ -9315,7 +9754,8 @@ type RedisClusterAcl struct {
 	Description *string `pulumi:"description"`
 	// The UUID of the private network resource.
 	Id *string `pulumi:"id"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The ip range to whitelist
+	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip string `pulumi:"ip"`
 }
 
@@ -9335,7 +9775,8 @@ type RedisClusterAclArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The UUID of the private network resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The ip range to whitelist
+	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -9400,7 +9841,8 @@ func (o RedisClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The ip range to whitelist
+// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 func (o RedisClusterAclOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v RedisClusterAcl) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -9429,9 +9871,12 @@ type RedisClusterPrivateNetwork struct {
 	EndpointId *string `pulumi:"endpointId"`
 	// The UUID of the private network resource.
 	Id string `pulumi:"id"`
-	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Endpoint IPv4 addresses
+	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+	// least one IP per node.
 	ServiceIps []string `pulumi:"serviceIps"`
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -9450,9 +9895,12 @@ type RedisClusterPrivateNetworkArgs struct {
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// The UUID of the private network resource.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Endpoint IPv4 addresses
+	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+	// least one IP per node.
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
-	// `zone`) The zone in which the Redis Cluster should be created.
+	// `zone`) The zone in which the
+	// Redis Cluster should be created.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -9516,12 +9964,15 @@ func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+// Endpoint IPv4 addresses
+// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+// least one IP per node.
 func (o RedisClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
 }
 
-// `zone`) The zone in which the Redis Cluster should be created.
+// `zone`) The zone in which the
+// Redis Cluster should be created.
 func (o RedisClusterPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
@@ -9548,9 +9999,11 @@ func (o RedisClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) RedisClu
 
 type RedisClusterPublicNetwork struct {
 	// The UUID of the private network resource.
-	Id   *string  `pulumi:"id"`
-	Ips  []string `pulumi:"ips"`
-	Port *int     `pulumi:"port"`
+	Id *string `pulumi:"id"`
+	// Lis of IPv4 address of the endpoint (IP address).
+	Ips []string `pulumi:"ips"`
+	// TCP port of the endpoint.
+	Port *int `pulumi:"port"`
 }
 
 // RedisClusterPublicNetworkInput is an input type that accepts RedisClusterPublicNetworkArgs and RedisClusterPublicNetworkOutput values.
@@ -9566,9 +10019,11 @@ type RedisClusterPublicNetworkInput interface {
 
 type RedisClusterPublicNetworkArgs struct {
 	// The UUID of the private network resource.
-	Id   pulumi.StringPtrInput   `pulumi:"id"`
-	Ips  pulumi.StringArrayInput `pulumi:"ips"`
-	Port pulumi.IntPtrInput      `pulumi:"port"`
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Lis of IPv4 address of the endpoint (IP address).
+	Ips pulumi.StringArrayInput `pulumi:"ips"`
+	// TCP port of the endpoint.
+	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
 func (RedisClusterPublicNetworkArgs) ElementType() reflect.Type {
@@ -9653,10 +10108,12 @@ func (o RedisClusterPublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Lis of IPv4 address of the endpoint (IP address).
 func (o RedisClusterPublicNetworkOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RedisClusterPublicNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
+// TCP port of the endpoint.
 func (o RedisClusterPublicNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RedisClusterPublicNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -9695,6 +10152,7 @@ func (o RedisClusterPublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Lis of IPv4 address of the endpoint (IP address).
 func (o RedisClusterPublicNetworkPtrOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RedisClusterPublicNetwork) []string {
 		if v == nil {
@@ -9704,6 +10162,7 @@ func (o RedisClusterPublicNetworkPtrOutput) Ips() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// TCP port of the endpoint.
 func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RedisClusterPublicNetwork) *int {
 		if v == nil {
@@ -10024,6 +10483,7 @@ func (o GetBaremetalOfferMemoryArrayOutput) Index(i pulumi.IntInput) GetBaremeta
 
 type GetBaremetalServerIp struct {
 	Address string `pulumi:"address"`
+	// The ID of the server.
 	Id      string `pulumi:"id"`
 	Reverse string `pulumi:"reverse"`
 	Version string `pulumi:"version"`
@@ -10042,6 +10502,7 @@ type GetBaremetalServerIpInput interface {
 
 type GetBaremetalServerIpArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the server.
 	Id      pulumi.StringInput `pulumi:"id"`
 	Reverse pulumi.StringInput `pulumi:"reverse"`
 	Version pulumi.StringInput `pulumi:"version"`
@@ -10102,6 +10563,7 @@ func (o GetBaremetalServerIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// The ID of the server.
 func (o GetBaremetalServerIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerIp) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -10136,7 +10598,8 @@ func (o GetBaremetalServerIpArrayOutput) Index(i pulumi.IntInput) GetBaremetalSe
 
 type GetBaremetalServerOption struct {
 	ExpiresAt string `pulumi:"expiresAt"`
-	Id        string `pulumi:"id"`
+	// The ID of the server.
+	Id string `pulumi:"id"`
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name string `pulumi:"name"`
 }
@@ -10154,7 +10617,8 @@ type GetBaremetalServerOptionInput interface {
 
 type GetBaremetalServerOptionArgs struct {
 	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
-	Id        pulumi.StringInput `pulumi:"id"`
+	// The ID of the server.
+	Id pulumi.StringInput `pulumi:"id"`
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name pulumi.StringInput `pulumi:"name"`
 }
@@ -10214,6 +10678,7 @@ func (o GetBaremetalServerOptionOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerOption) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
+// The ID of the server.
 func (o GetBaremetalServerOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -10245,6 +10710,7 @@ func (o GetBaremetalServerOptionArrayOutput) Index(i pulumi.IntInput) GetBaremet
 
 type GetBaremetalServerPrivateNetwork struct {
 	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the server.
 	Id        string `pulumi:"id"`
 	Status    string `pulumi:"status"`
 	UpdatedAt string `pulumi:"updatedAt"`
@@ -10264,6 +10730,7 @@ type GetBaremetalServerPrivateNetworkInput interface {
 
 type GetBaremetalServerPrivateNetworkArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the server.
 	Id        pulumi.StringInput `pulumi:"id"`
 	Status    pulumi.StringInput `pulumi:"status"`
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
@@ -10325,6 +10792,7 @@ func (o GetBaremetalServerPrivateNetworkOutput) CreatedAt() pulumi.StringOutput 
 	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of the server.
 func (o GetBaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -10359,6 +10827,130 @@ func (o GetBaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Ge
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalServerPrivateNetwork {
 		return vs[0].([]GetBaremetalServerPrivateNetwork)[vs[1].(int)]
 	}).(GetBaremetalServerPrivateNetworkOutput)
+}
+
+type GetCockpitEndpoint struct {
+	// The alertmanager URL
+	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
+	// The grafana URL
+	GrafanaUrl string `pulumi:"grafanaUrl"`
+	// The logs URL
+	LogsUrl string `pulumi:"logsUrl"`
+	// The metrics URL
+	MetricsUrl string `pulumi:"metricsUrl"`
+}
+
+// GetCockpitEndpointInput is an input type that accepts GetCockpitEndpointArgs and GetCockpitEndpointOutput values.
+// You can construct a concrete instance of `GetCockpitEndpointInput` via:
+//
+//	GetCockpitEndpointArgs{...}
+type GetCockpitEndpointInput interface {
+	pulumi.Input
+
+	ToGetCockpitEndpointOutput() GetCockpitEndpointOutput
+	ToGetCockpitEndpointOutputWithContext(context.Context) GetCockpitEndpointOutput
+}
+
+type GetCockpitEndpointArgs struct {
+	// The alertmanager URL
+	AlertmanagerUrl pulumi.StringInput `pulumi:"alertmanagerUrl"`
+	// The grafana URL
+	GrafanaUrl pulumi.StringInput `pulumi:"grafanaUrl"`
+	// The logs URL
+	LogsUrl pulumi.StringInput `pulumi:"logsUrl"`
+	// The metrics URL
+	MetricsUrl pulumi.StringInput `pulumi:"metricsUrl"`
+}
+
+func (GetCockpitEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCockpitEndpoint)(nil)).Elem()
+}
+
+func (i GetCockpitEndpointArgs) ToGetCockpitEndpointOutput() GetCockpitEndpointOutput {
+	return i.ToGetCockpitEndpointOutputWithContext(context.Background())
+}
+
+func (i GetCockpitEndpointArgs) ToGetCockpitEndpointOutputWithContext(ctx context.Context) GetCockpitEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitEndpointOutput)
+}
+
+// GetCockpitEndpointArrayInput is an input type that accepts GetCockpitEndpointArray and GetCockpitEndpointArrayOutput values.
+// You can construct a concrete instance of `GetCockpitEndpointArrayInput` via:
+//
+//	GetCockpitEndpointArray{ GetCockpitEndpointArgs{...} }
+type GetCockpitEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetCockpitEndpointArrayOutput() GetCockpitEndpointArrayOutput
+	ToGetCockpitEndpointArrayOutputWithContext(context.Context) GetCockpitEndpointArrayOutput
+}
+
+type GetCockpitEndpointArray []GetCockpitEndpointInput
+
+func (GetCockpitEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCockpitEndpoint)(nil)).Elem()
+}
+
+func (i GetCockpitEndpointArray) ToGetCockpitEndpointArrayOutput() GetCockpitEndpointArrayOutput {
+	return i.ToGetCockpitEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetCockpitEndpointArray) ToGetCockpitEndpointArrayOutputWithContext(ctx context.Context) GetCockpitEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitEndpointArrayOutput)
+}
+
+type GetCockpitEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetCockpitEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCockpitEndpoint)(nil)).Elem()
+}
+
+func (o GetCockpitEndpointOutput) ToGetCockpitEndpointOutput() GetCockpitEndpointOutput {
+	return o
+}
+
+func (o GetCockpitEndpointOutput) ToGetCockpitEndpointOutputWithContext(ctx context.Context) GetCockpitEndpointOutput {
+	return o
+}
+
+// The alertmanager URL
+func (o GetCockpitEndpointOutput) AlertmanagerUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.AlertmanagerUrl }).(pulumi.StringOutput)
+}
+
+// The grafana URL
+func (o GetCockpitEndpointOutput) GrafanaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.GrafanaUrl }).(pulumi.StringOutput)
+}
+
+// The logs URL
+func (o GetCockpitEndpointOutput) LogsUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.LogsUrl }).(pulumi.StringOutput)
+}
+
+// The metrics URL
+func (o GetCockpitEndpointOutput) MetricsUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.MetricsUrl }).(pulumi.StringOutput)
+}
+
+type GetCockpitEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCockpitEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCockpitEndpoint)(nil)).Elem()
+}
+
+func (o GetCockpitEndpointArrayOutput) ToGetCockpitEndpointArrayOutput() GetCockpitEndpointArrayOutput {
+	return o
+}
+
+func (o GetCockpitEndpointArrayOutput) ToGetCockpitEndpointArrayOutputWithContext(ctx context.Context) GetCockpitEndpointArrayOutput {
+	return o
+}
+
+func (o GetCockpitEndpointArrayOutput) Index(i pulumi.IntInput) GetCockpitEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCockpitEndpoint {
+		return vs[0].([]GetCockpitEndpoint)[vs[1].(int)]
+	}).(GetCockpitEndpointOutput)
 }
 
 type GetDatabaseAclAclRule struct {
@@ -13443,6 +14035,2507 @@ func (o GetKubernetesNodePoolUpgradePolicyArrayOutput) Index(i pulumi.IntInput) 
 	}).(GetKubernetesNodePoolUpgradePolicyOutput)
 }
 
+type GetLbAclsAcl struct {
+	// The action that has been undertaken when an ACL filter had matched.
+	Actions []GetLbAclsAclAction `pulumi:"actions"`
+	// The date at which the ACL was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the ACL resource.
+	Description string `pulumi:"description"`
+	// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
+	// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	FrontendId string `pulumi:"frontendId"`
+	// The associated ACL ID.
+	// > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	Id string `pulumi:"id"`
+	// The order between the ACLs.
+	Index int `pulumi:"index"`
+	// The ACL match rule.
+	Matches []GetLbAclsAclMatch `pulumi:"matches"`
+	// The ACL name used as filter. ACLs with a name like it are listed.
+	Name string `pulumi:"name"`
+	// The date at which the ACL was last updated (RFC 3339 format).
+	UpdateAt string `pulumi:"updateAt"`
+}
+
+// GetLbAclsAclInput is an input type that accepts GetLbAclsAclArgs and GetLbAclsAclOutput values.
+// You can construct a concrete instance of `GetLbAclsAclInput` via:
+//
+//	GetLbAclsAclArgs{...}
+type GetLbAclsAclInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclOutput() GetLbAclsAclOutput
+	ToGetLbAclsAclOutputWithContext(context.Context) GetLbAclsAclOutput
+}
+
+type GetLbAclsAclArgs struct {
+	// The action that has been undertaken when an ACL filter had matched.
+	Actions GetLbAclsAclActionArrayInput `pulumi:"actions"`
+	// The date at which the ACL was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the ACL resource.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
+	// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	FrontendId pulumi.StringInput `pulumi:"frontendId"`
+	// The associated ACL ID.
+	// > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	Id pulumi.StringInput `pulumi:"id"`
+	// The order between the ACLs.
+	Index pulumi.IntInput `pulumi:"index"`
+	// The ACL match rule.
+	Matches GetLbAclsAclMatchArrayInput `pulumi:"matches"`
+	// The ACL name used as filter. ACLs with a name like it are listed.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The date at which the ACL was last updated (RFC 3339 format).
+	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
+}
+
+func (GetLbAclsAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAcl)(nil)).Elem()
+}
+
+func (i GetLbAclsAclArgs) ToGetLbAclsAclOutput() GetLbAclsAclOutput {
+	return i.ToGetLbAclsAclOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclArgs) ToGetLbAclsAclOutputWithContext(ctx context.Context) GetLbAclsAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclOutput)
+}
+
+// GetLbAclsAclArrayInput is an input type that accepts GetLbAclsAclArray and GetLbAclsAclArrayOutput values.
+// You can construct a concrete instance of `GetLbAclsAclArrayInput` via:
+//
+//	GetLbAclsAclArray{ GetLbAclsAclArgs{...} }
+type GetLbAclsAclArrayInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclArrayOutput() GetLbAclsAclArrayOutput
+	ToGetLbAclsAclArrayOutputWithContext(context.Context) GetLbAclsAclArrayOutput
+}
+
+type GetLbAclsAclArray []GetLbAclsAclInput
+
+func (GetLbAclsAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAcl)(nil)).Elem()
+}
+
+func (i GetLbAclsAclArray) ToGetLbAclsAclArrayOutput() GetLbAclsAclArrayOutput {
+	return i.ToGetLbAclsAclArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclArray) ToGetLbAclsAclArrayOutputWithContext(ctx context.Context) GetLbAclsAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclArrayOutput)
+}
+
+type GetLbAclsAclOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAcl)(nil)).Elem()
+}
+
+func (o GetLbAclsAclOutput) ToGetLbAclsAclOutput() GetLbAclsAclOutput {
+	return o
+}
+
+func (o GetLbAclsAclOutput) ToGetLbAclsAclOutputWithContext(ctx context.Context) GetLbAclsAclOutput {
+	return o
+}
+
+// The action that has been undertaken when an ACL filter had matched.
+func (o GetLbAclsAclOutput) Actions() GetLbAclsAclActionArrayOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) []GetLbAclsAclAction { return v.Actions }).(GetLbAclsAclActionArrayOutput)
+}
+
+// The date at which the ACL was created (RFC 3339 format).
+func (o GetLbAclsAclOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the ACL resource.
+func (o GetLbAclsAclOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
+// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+func (o GetLbAclsAclOutput) FrontendId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) string { return v.FrontendId }).(pulumi.StringOutput)
+}
+
+// The associated ACL ID.
+// > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+func (o GetLbAclsAclOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The order between the ACLs.
+func (o GetLbAclsAclOutput) Index() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) int { return v.Index }).(pulumi.IntOutput)
+}
+
+// The ACL match rule.
+func (o GetLbAclsAclOutput) Matches() GetLbAclsAclMatchArrayOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) []GetLbAclsAclMatch { return v.Matches }).(GetLbAclsAclMatchArrayOutput)
+}
+
+// The ACL name used as filter. ACLs with a name like it are listed.
+func (o GetLbAclsAclOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The date at which the ACL was last updated (RFC 3339 format).
+func (o GetLbAclsAclOutput) UpdateAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAcl) string { return v.UpdateAt }).(pulumi.StringOutput)
+}
+
+type GetLbAclsAclArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAcl)(nil)).Elem()
+}
+
+func (o GetLbAclsAclArrayOutput) ToGetLbAclsAclArrayOutput() GetLbAclsAclArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclArrayOutput) ToGetLbAclsAclArrayOutputWithContext(ctx context.Context) GetLbAclsAclArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbAclsAcl {
+		return vs[0].([]GetLbAclsAcl)[vs[1].(int)]
+	}).(GetLbAclsAclOutput)
+}
+
+type GetLbAclsAclAction struct {
+	// The action type.
+	Type string `pulumi:"type"`
+}
+
+// GetLbAclsAclActionInput is an input type that accepts GetLbAclsAclActionArgs and GetLbAclsAclActionOutput values.
+// You can construct a concrete instance of `GetLbAclsAclActionInput` via:
+//
+//	GetLbAclsAclActionArgs{...}
+type GetLbAclsAclActionInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclActionOutput() GetLbAclsAclActionOutput
+	ToGetLbAclsAclActionOutputWithContext(context.Context) GetLbAclsAclActionOutput
+}
+
+type GetLbAclsAclActionArgs struct {
+	// The action type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetLbAclsAclActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAclAction)(nil)).Elem()
+}
+
+func (i GetLbAclsAclActionArgs) ToGetLbAclsAclActionOutput() GetLbAclsAclActionOutput {
+	return i.ToGetLbAclsAclActionOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclActionArgs) ToGetLbAclsAclActionOutputWithContext(ctx context.Context) GetLbAclsAclActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclActionOutput)
+}
+
+// GetLbAclsAclActionArrayInput is an input type that accepts GetLbAclsAclActionArray and GetLbAclsAclActionArrayOutput values.
+// You can construct a concrete instance of `GetLbAclsAclActionArrayInput` via:
+//
+//	GetLbAclsAclActionArray{ GetLbAclsAclActionArgs{...} }
+type GetLbAclsAclActionArrayInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclActionArrayOutput() GetLbAclsAclActionArrayOutput
+	ToGetLbAclsAclActionArrayOutputWithContext(context.Context) GetLbAclsAclActionArrayOutput
+}
+
+type GetLbAclsAclActionArray []GetLbAclsAclActionInput
+
+func (GetLbAclsAclActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAclAction)(nil)).Elem()
+}
+
+func (i GetLbAclsAclActionArray) ToGetLbAclsAclActionArrayOutput() GetLbAclsAclActionArrayOutput {
+	return i.ToGetLbAclsAclActionArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclActionArray) ToGetLbAclsAclActionArrayOutputWithContext(ctx context.Context) GetLbAclsAclActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclActionArrayOutput)
+}
+
+type GetLbAclsAclActionOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAclAction)(nil)).Elem()
+}
+
+func (o GetLbAclsAclActionOutput) ToGetLbAclsAclActionOutput() GetLbAclsAclActionOutput {
+	return o
+}
+
+func (o GetLbAclsAclActionOutput) ToGetLbAclsAclActionOutputWithContext(ctx context.Context) GetLbAclsAclActionOutput {
+	return o
+}
+
+// The action type.
+func (o GetLbAclsAclActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAclAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetLbAclsAclActionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAclAction)(nil)).Elem()
+}
+
+func (o GetLbAclsAclActionArrayOutput) ToGetLbAclsAclActionArrayOutput() GetLbAclsAclActionArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclActionArrayOutput) ToGetLbAclsAclActionArrayOutputWithContext(ctx context.Context) GetLbAclsAclActionArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclActionArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbAclsAclAction {
+		return vs[0].([]GetLbAclsAclAction)[vs[1].(int)]
+	}).(GetLbAclsAclActionOutput)
+}
+
+type GetLbAclsAclMatch struct {
+	// The matched HTTP filter.
+	HttpFilter       string `pulumi:"httpFilter"`
+	HttpFilterOption string `pulumi:"httpFilterOption"`
+	// The possible values matched for a given HTTP filter.
+	HttpFilterValues []string `pulumi:"httpFilterValues"`
+	// The condition will be of type "unless" if invert is set to `true`
+	Invert bool `pulumi:"invert"`
+	// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+	IpSubnets []string `pulumi:"ipSubnets"`
+}
+
+// GetLbAclsAclMatchInput is an input type that accepts GetLbAclsAclMatchArgs and GetLbAclsAclMatchOutput values.
+// You can construct a concrete instance of `GetLbAclsAclMatchInput` via:
+//
+//	GetLbAclsAclMatchArgs{...}
+type GetLbAclsAclMatchInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclMatchOutput() GetLbAclsAclMatchOutput
+	ToGetLbAclsAclMatchOutputWithContext(context.Context) GetLbAclsAclMatchOutput
+}
+
+type GetLbAclsAclMatchArgs struct {
+	// The matched HTTP filter.
+	HttpFilter       pulumi.StringInput `pulumi:"httpFilter"`
+	HttpFilterOption pulumi.StringInput `pulumi:"httpFilterOption"`
+	// The possible values matched for a given HTTP filter.
+	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
+	// The condition will be of type "unless" if invert is set to `true`
+	Invert pulumi.BoolInput `pulumi:"invert"`
+	// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+}
+
+func (GetLbAclsAclMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAclMatch)(nil)).Elem()
+}
+
+func (i GetLbAclsAclMatchArgs) ToGetLbAclsAclMatchOutput() GetLbAclsAclMatchOutput {
+	return i.ToGetLbAclsAclMatchOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclMatchArgs) ToGetLbAclsAclMatchOutputWithContext(ctx context.Context) GetLbAclsAclMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclMatchOutput)
+}
+
+// GetLbAclsAclMatchArrayInput is an input type that accepts GetLbAclsAclMatchArray and GetLbAclsAclMatchArrayOutput values.
+// You can construct a concrete instance of `GetLbAclsAclMatchArrayInput` via:
+//
+//	GetLbAclsAclMatchArray{ GetLbAclsAclMatchArgs{...} }
+type GetLbAclsAclMatchArrayInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclMatchArrayOutput() GetLbAclsAclMatchArrayOutput
+	ToGetLbAclsAclMatchArrayOutputWithContext(context.Context) GetLbAclsAclMatchArrayOutput
+}
+
+type GetLbAclsAclMatchArray []GetLbAclsAclMatchInput
+
+func (GetLbAclsAclMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAclMatch)(nil)).Elem()
+}
+
+func (i GetLbAclsAclMatchArray) ToGetLbAclsAclMatchArrayOutput() GetLbAclsAclMatchArrayOutput {
+	return i.ToGetLbAclsAclMatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclMatchArray) ToGetLbAclsAclMatchArrayOutputWithContext(ctx context.Context) GetLbAclsAclMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclMatchArrayOutput)
+}
+
+type GetLbAclsAclMatchOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAclMatch)(nil)).Elem()
+}
+
+func (o GetLbAclsAclMatchOutput) ToGetLbAclsAclMatchOutput() GetLbAclsAclMatchOutput {
+	return o
+}
+
+func (o GetLbAclsAclMatchOutput) ToGetLbAclsAclMatchOutputWithContext(ctx context.Context) GetLbAclsAclMatchOutput {
+	return o
+}
+
+// The matched HTTP filter.
+func (o GetLbAclsAclMatchOutput) HttpFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) string { return v.HttpFilter }).(pulumi.StringOutput)
+}
+
+func (o GetLbAclsAclMatchOutput) HttpFilterOption() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) string { return v.HttpFilterOption }).(pulumi.StringOutput)
+}
+
+// The possible values matched for a given HTTP filter.
+func (o GetLbAclsAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
+}
+
+// The condition will be of type "unless" if invert is set to `true`
+func (o GetLbAclsAclMatchOutput) Invert() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) bool { return v.Invert }).(pulumi.BoolOutput)
+}
+
+// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+func (o GetLbAclsAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+type GetLbAclsAclMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAclMatch)(nil)).Elem()
+}
+
+func (o GetLbAclsAclMatchArrayOutput) ToGetLbAclsAclMatchArrayOutput() GetLbAclsAclMatchArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclMatchArrayOutput) ToGetLbAclsAclMatchArrayOutputWithContext(ctx context.Context) GetLbAclsAclMatchArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclMatchArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbAclsAclMatch {
+		return vs[0].([]GetLbAclsAclMatch)[vs[1].(int)]
+	}).(GetLbAclsAclMatchOutput)
+}
+
+type GetLbBackendHealthCheckHttp struct {
+	Code       int    `pulumi:"code"`
+	HostHeader string `pulumi:"hostHeader"`
+	Method     string `pulumi:"method"`
+	Sni        string `pulumi:"sni"`
+	Uri        string `pulumi:"uri"`
+}
+
+// GetLbBackendHealthCheckHttpInput is an input type that accepts GetLbBackendHealthCheckHttpArgs and GetLbBackendHealthCheckHttpOutput values.
+// You can construct a concrete instance of `GetLbBackendHealthCheckHttpInput` via:
+//
+//	GetLbBackendHealthCheckHttpArgs{...}
+type GetLbBackendHealthCheckHttpInput interface {
+	pulumi.Input
+
+	ToGetLbBackendHealthCheckHttpOutput() GetLbBackendHealthCheckHttpOutput
+	ToGetLbBackendHealthCheckHttpOutputWithContext(context.Context) GetLbBackendHealthCheckHttpOutput
+}
+
+type GetLbBackendHealthCheckHttpArgs struct {
+	Code       pulumi.IntInput    `pulumi:"code"`
+	HostHeader pulumi.StringInput `pulumi:"hostHeader"`
+	Method     pulumi.StringInput `pulumi:"method"`
+	Sni        pulumi.StringInput `pulumi:"sni"`
+	Uri        pulumi.StringInput `pulumi:"uri"`
+}
+
+func (GetLbBackendHealthCheckHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (i GetLbBackendHealthCheckHttpArgs) ToGetLbBackendHealthCheckHttpOutput() GetLbBackendHealthCheckHttpOutput {
+	return i.ToGetLbBackendHealthCheckHttpOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendHealthCheckHttpArgs) ToGetLbBackendHealthCheckHttpOutputWithContext(ctx context.Context) GetLbBackendHealthCheckHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendHealthCheckHttpOutput)
+}
+
+// GetLbBackendHealthCheckHttpArrayInput is an input type that accepts GetLbBackendHealthCheckHttpArray and GetLbBackendHealthCheckHttpArrayOutput values.
+// You can construct a concrete instance of `GetLbBackendHealthCheckHttpArrayInput` via:
+//
+//	GetLbBackendHealthCheckHttpArray{ GetLbBackendHealthCheckHttpArgs{...} }
+type GetLbBackendHealthCheckHttpArrayInput interface {
+	pulumi.Input
+
+	ToGetLbBackendHealthCheckHttpArrayOutput() GetLbBackendHealthCheckHttpArrayOutput
+	ToGetLbBackendHealthCheckHttpArrayOutputWithContext(context.Context) GetLbBackendHealthCheckHttpArrayOutput
+}
+
+type GetLbBackendHealthCheckHttpArray []GetLbBackendHealthCheckHttpInput
+
+func (GetLbBackendHealthCheckHttpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (i GetLbBackendHealthCheckHttpArray) ToGetLbBackendHealthCheckHttpArrayOutput() GetLbBackendHealthCheckHttpArrayOutput {
+	return i.ToGetLbBackendHealthCheckHttpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendHealthCheckHttpArray) ToGetLbBackendHealthCheckHttpArrayOutputWithContext(ctx context.Context) GetLbBackendHealthCheckHttpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendHealthCheckHttpArrayOutput)
+}
+
+type GetLbBackendHealthCheckHttpOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendHealthCheckHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) ToGetLbBackendHealthCheckHttpOutput() GetLbBackendHealthCheckHttpOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) ToGetLbBackendHealthCheckHttpOutputWithContext(ctx context.Context) GetLbBackendHealthCheckHttpOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) Code() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendHealthCheckHttp) int { return v.Code }).(pulumi.IntOutput)
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) HostHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendHealthCheckHttp) string { return v.HostHeader }).(pulumi.StringOutput)
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendHealthCheckHttp) string { return v.Method }).(pulumi.StringOutput)
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) Sni() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendHealthCheckHttp) string { return v.Sni }).(pulumi.StringOutput)
+}
+
+func (o GetLbBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
+}
+
+type GetLbBackendHealthCheckHttpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendHealthCheckHttpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (o GetLbBackendHealthCheckHttpArrayOutput) ToGetLbBackendHealthCheckHttpArrayOutput() GetLbBackendHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckHttpArrayOutput) ToGetLbBackendHealthCheckHttpArrayOutputWithContext(ctx context.Context) GetLbBackendHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckHttpArrayOutput) Index(i pulumi.IntInput) GetLbBackendHealthCheckHttpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbBackendHealthCheckHttp {
+		return vs[0].([]GetLbBackendHealthCheckHttp)[vs[1].(int)]
+	}).(GetLbBackendHealthCheckHttpOutput)
+}
+
+type GetLbBackendHealthCheckTcp struct {
+}
+
+// GetLbBackendHealthCheckTcpInput is an input type that accepts GetLbBackendHealthCheckTcpArgs and GetLbBackendHealthCheckTcpOutput values.
+// You can construct a concrete instance of `GetLbBackendHealthCheckTcpInput` via:
+//
+//	GetLbBackendHealthCheckTcpArgs{...}
+type GetLbBackendHealthCheckTcpInput interface {
+	pulumi.Input
+
+	ToGetLbBackendHealthCheckTcpOutput() GetLbBackendHealthCheckTcpOutput
+	ToGetLbBackendHealthCheckTcpOutputWithContext(context.Context) GetLbBackendHealthCheckTcpOutput
+}
+
+type GetLbBackendHealthCheckTcpArgs struct {
+}
+
+func (GetLbBackendHealthCheckTcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (i GetLbBackendHealthCheckTcpArgs) ToGetLbBackendHealthCheckTcpOutput() GetLbBackendHealthCheckTcpOutput {
+	return i.ToGetLbBackendHealthCheckTcpOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendHealthCheckTcpArgs) ToGetLbBackendHealthCheckTcpOutputWithContext(ctx context.Context) GetLbBackendHealthCheckTcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendHealthCheckTcpOutput)
+}
+
+// GetLbBackendHealthCheckTcpArrayInput is an input type that accepts GetLbBackendHealthCheckTcpArray and GetLbBackendHealthCheckTcpArrayOutput values.
+// You can construct a concrete instance of `GetLbBackendHealthCheckTcpArrayInput` via:
+//
+//	GetLbBackendHealthCheckTcpArray{ GetLbBackendHealthCheckTcpArgs{...} }
+type GetLbBackendHealthCheckTcpArrayInput interface {
+	pulumi.Input
+
+	ToGetLbBackendHealthCheckTcpArrayOutput() GetLbBackendHealthCheckTcpArrayOutput
+	ToGetLbBackendHealthCheckTcpArrayOutputWithContext(context.Context) GetLbBackendHealthCheckTcpArrayOutput
+}
+
+type GetLbBackendHealthCheckTcpArray []GetLbBackendHealthCheckTcpInput
+
+func (GetLbBackendHealthCheckTcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (i GetLbBackendHealthCheckTcpArray) ToGetLbBackendHealthCheckTcpArrayOutput() GetLbBackendHealthCheckTcpArrayOutput {
+	return i.ToGetLbBackendHealthCheckTcpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendHealthCheckTcpArray) ToGetLbBackendHealthCheckTcpArrayOutputWithContext(ctx context.Context) GetLbBackendHealthCheckTcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendHealthCheckTcpArrayOutput)
+}
+
+type GetLbBackendHealthCheckTcpOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendHealthCheckTcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (o GetLbBackendHealthCheckTcpOutput) ToGetLbBackendHealthCheckTcpOutput() GetLbBackendHealthCheckTcpOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckTcpOutput) ToGetLbBackendHealthCheckTcpOutputWithContext(ctx context.Context) GetLbBackendHealthCheckTcpOutput {
+	return o
+}
+
+type GetLbBackendHealthCheckTcpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendHealthCheckTcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (o GetLbBackendHealthCheckTcpArrayOutput) ToGetLbBackendHealthCheckTcpArrayOutput() GetLbBackendHealthCheckTcpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckTcpArrayOutput) ToGetLbBackendHealthCheckTcpArrayOutputWithContext(ctx context.Context) GetLbBackendHealthCheckTcpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendHealthCheckTcpArrayOutput) Index(i pulumi.IntInput) GetLbBackendHealthCheckTcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbBackendHealthCheckTcp {
+		return vs[0].([]GetLbBackendHealthCheckTcp)[vs[1].(int)]
+	}).(GetLbBackendHealthCheckTcpOutput)
+}
+
+type GetLbBackendsBackend struct {
+	// The date at which the backend was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	FailoverHost string `pulumi:"failoverHost"`
+	// User sessions will be forwarded to this port of backend servers.
+	ForwardPort int `pulumi:"forwardPort"`
+	// Load balancing algorithm.
+	ForwardPortAlgorithm string `pulumi:"forwardPortAlgorithm"`
+	// Backend protocol.
+	ForwardProtocol string `pulumi:"forwardProtocol"`
+	// Interval between two HC requests.
+	HealthCheckDelay string `pulumi:"healthCheckDelay"`
+	// This block enable HTTP health check.
+	HealthCheckHttp []GetLbBackendsBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
+	// This block enable HTTPS health check.
+	HealthCheckHttps []GetLbBackendsBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
+	// Number of allowed failed HC requests before the backend server is marked down.
+	HealthCheckMaxRetries int `pulumi:"healthCheckMaxRetries"`
+	// Port the HC requests will be sent to.
+	HealthCheckPort int `pulumi:"healthCheckPort"`
+	// This block enable TCP health check.
+	HealthCheckTcps []GetLbBackendsBackendHealthCheckTcp `pulumi:"healthCheckTcps"`
+	// Timeout before we consider a HC request failed.
+	HealthCheckTimeout string `pulumi:"healthCheckTimeout"`
+	// The associated backend ID.
+	Id string `pulumi:"id"`
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify bool `pulumi:"ignoreSslServerVerify"`
+	// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+	LbId string `pulumi:"lbId"`
+	// The backend name used as filter. Backends with a name like it are listed.
+	Name string `pulumi:"name"`
+	// Modify what occurs when a backend server is marked down.
+	OnMarkedDownAction string `pulumi:"onMarkedDownAction"`
+	// The type of PROXY protocol.
+	ProxyProtocol string `pulumi:"proxyProtocol"`
+	// List of backend server IP addresses.
+	ServerIps []string `pulumi:"serverIps"`
+	// Enables SSL between load balancer and backend servers.
+	SslBridging bool `pulumi:"sslBridging"`
+	// Enables cookie-based session persistence.
+	StickySessions string `pulumi:"stickySessions"`
+	// Cookie name for sticky sessions.
+	StickySessionsCookieName string `pulumi:"stickySessionsCookieName"`
+	// Maximum initial server connection establishment time.
+	TimeoutConnect string `pulumi:"timeoutConnect"`
+	// Maximum server connection inactivity time.
+	TimeoutServer string `pulumi:"timeoutServer"`
+	// Maximum tunnel inactivity time.
+	TimeoutTunnel string `pulumi:"timeoutTunnel"`
+	// The date at which the backend was last updated (RFC 3339 format).
+	UpdateAt string `pulumi:"updateAt"`
+}
+
+// GetLbBackendsBackendInput is an input type that accepts GetLbBackendsBackendArgs and GetLbBackendsBackendOutput values.
+// You can construct a concrete instance of `GetLbBackendsBackendInput` via:
+//
+//	GetLbBackendsBackendArgs{...}
+type GetLbBackendsBackendInput interface {
+	pulumi.Input
+
+	ToGetLbBackendsBackendOutput() GetLbBackendsBackendOutput
+	ToGetLbBackendsBackendOutputWithContext(context.Context) GetLbBackendsBackendOutput
+}
+
+type GetLbBackendsBackendArgs struct {
+	// The date at which the backend was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	FailoverHost pulumi.StringInput `pulumi:"failoverHost"`
+	// User sessions will be forwarded to this port of backend servers.
+	ForwardPort pulumi.IntInput `pulumi:"forwardPort"`
+	// Load balancing algorithm.
+	ForwardPortAlgorithm pulumi.StringInput `pulumi:"forwardPortAlgorithm"`
+	// Backend protocol.
+	ForwardProtocol pulumi.StringInput `pulumi:"forwardProtocol"`
+	// Interval between two HC requests.
+	HealthCheckDelay pulumi.StringInput `pulumi:"healthCheckDelay"`
+	// This block enable HTTP health check.
+	HealthCheckHttp GetLbBackendsBackendHealthCheckHttpArrayInput `pulumi:"healthCheckHttp"`
+	// This block enable HTTPS health check.
+	HealthCheckHttps GetLbBackendsBackendHealthCheckHttpArrayInput `pulumi:"healthCheckHttps"`
+	// Number of allowed failed HC requests before the backend server is marked down.
+	HealthCheckMaxRetries pulumi.IntInput `pulumi:"healthCheckMaxRetries"`
+	// Port the HC requests will be sent to.
+	HealthCheckPort pulumi.IntInput `pulumi:"healthCheckPort"`
+	// This block enable TCP health check.
+	HealthCheckTcps GetLbBackendsBackendHealthCheckTcpArrayInput `pulumi:"healthCheckTcps"`
+	// Timeout before we consider a HC request failed.
+	HealthCheckTimeout pulumi.StringInput `pulumi:"healthCheckTimeout"`
+	// The associated backend ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+	IgnoreSslServerVerify pulumi.BoolInput `pulumi:"ignoreSslServerVerify"`
+	// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+	LbId pulumi.StringInput `pulumi:"lbId"`
+	// The backend name used as filter. Backends with a name like it are listed.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Modify what occurs when a backend server is marked down.
+	OnMarkedDownAction pulumi.StringInput `pulumi:"onMarkedDownAction"`
+	// The type of PROXY protocol.
+	ProxyProtocol pulumi.StringInput `pulumi:"proxyProtocol"`
+	// List of backend server IP addresses.
+	ServerIps pulumi.StringArrayInput `pulumi:"serverIps"`
+	// Enables SSL between load balancer and backend servers.
+	SslBridging pulumi.BoolInput `pulumi:"sslBridging"`
+	// Enables cookie-based session persistence.
+	StickySessions pulumi.StringInput `pulumi:"stickySessions"`
+	// Cookie name for sticky sessions.
+	StickySessionsCookieName pulumi.StringInput `pulumi:"stickySessionsCookieName"`
+	// Maximum initial server connection establishment time.
+	TimeoutConnect pulumi.StringInput `pulumi:"timeoutConnect"`
+	// Maximum server connection inactivity time.
+	TimeoutServer pulumi.StringInput `pulumi:"timeoutServer"`
+	// Maximum tunnel inactivity time.
+	TimeoutTunnel pulumi.StringInput `pulumi:"timeoutTunnel"`
+	// The date at which the backend was last updated (RFC 3339 format).
+	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
+}
+
+func (GetLbBackendsBackendArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendsBackend)(nil)).Elem()
+}
+
+func (i GetLbBackendsBackendArgs) ToGetLbBackendsBackendOutput() GetLbBackendsBackendOutput {
+	return i.ToGetLbBackendsBackendOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendsBackendArgs) ToGetLbBackendsBackendOutputWithContext(ctx context.Context) GetLbBackendsBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendsBackendOutput)
+}
+
+// GetLbBackendsBackendArrayInput is an input type that accepts GetLbBackendsBackendArray and GetLbBackendsBackendArrayOutput values.
+// You can construct a concrete instance of `GetLbBackendsBackendArrayInput` via:
+//
+//	GetLbBackendsBackendArray{ GetLbBackendsBackendArgs{...} }
+type GetLbBackendsBackendArrayInput interface {
+	pulumi.Input
+
+	ToGetLbBackendsBackendArrayOutput() GetLbBackendsBackendArrayOutput
+	ToGetLbBackendsBackendArrayOutputWithContext(context.Context) GetLbBackendsBackendArrayOutput
+}
+
+type GetLbBackendsBackendArray []GetLbBackendsBackendInput
+
+func (GetLbBackendsBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendsBackend)(nil)).Elem()
+}
+
+func (i GetLbBackendsBackendArray) ToGetLbBackendsBackendArrayOutput() GetLbBackendsBackendArrayOutput {
+	return i.ToGetLbBackendsBackendArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendsBackendArray) ToGetLbBackendsBackendArrayOutputWithContext(ctx context.Context) GetLbBackendsBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendsBackendArrayOutput)
+}
+
+type GetLbBackendsBackendOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendsBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendsBackend)(nil)).Elem()
+}
+
+func (o GetLbBackendsBackendOutput) ToGetLbBackendsBackendOutput() GetLbBackendsBackendOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendOutput) ToGetLbBackendsBackendOutputWithContext(ctx context.Context) GetLbBackendsBackendOutput {
+	return o
+}
+
+// The date at which the backend was created (RFC 3339 format).
+func (o GetLbBackendsBackendOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Scaleway S3 bucket website to be served in case all backend servers are down.
+func (o GetLbBackendsBackendOutput) FailoverHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.FailoverHost }).(pulumi.StringOutput)
+}
+
+// User sessions will be forwarded to this port of backend servers.
+func (o GetLbBackendsBackendOutput) ForwardPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) int { return v.ForwardPort }).(pulumi.IntOutput)
+}
+
+// Load balancing algorithm.
+func (o GetLbBackendsBackendOutput) ForwardPortAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.ForwardPortAlgorithm }).(pulumi.StringOutput)
+}
+
+// Backend protocol.
+func (o GetLbBackendsBackendOutput) ForwardProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.ForwardProtocol }).(pulumi.StringOutput)
+}
+
+// Interval between two HC requests.
+func (o GetLbBackendsBackendOutput) HealthCheckDelay() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.HealthCheckDelay }).(pulumi.StringOutput)
+}
+
+// This block enable HTTP health check.
+func (o GetLbBackendsBackendOutput) HealthCheckHttp() GetLbBackendsBackendHealthCheckHttpArrayOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) []GetLbBackendsBackendHealthCheckHttp { return v.HealthCheckHttp }).(GetLbBackendsBackendHealthCheckHttpArrayOutput)
+}
+
+// This block enable HTTPS health check.
+func (o GetLbBackendsBackendOutput) HealthCheckHttps() GetLbBackendsBackendHealthCheckHttpArrayOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) []GetLbBackendsBackendHealthCheckHttp { return v.HealthCheckHttps }).(GetLbBackendsBackendHealthCheckHttpArrayOutput)
+}
+
+// Number of allowed failed HC requests before the backend server is marked down.
+func (o GetLbBackendsBackendOutput) HealthCheckMaxRetries() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) int { return v.HealthCheckMaxRetries }).(pulumi.IntOutput)
+}
+
+// Port the HC requests will be sent to.
+func (o GetLbBackendsBackendOutput) HealthCheckPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) int { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+// This block enable TCP health check.
+func (o GetLbBackendsBackendOutput) HealthCheckTcps() GetLbBackendsBackendHealthCheckTcpArrayOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) []GetLbBackendsBackendHealthCheckTcp { return v.HealthCheckTcps }).(GetLbBackendsBackendHealthCheckTcpArrayOutput)
+}
+
+// Timeout before we consider a HC request failed.
+func (o GetLbBackendsBackendOutput) HealthCheckTimeout() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.HealthCheckTimeout }).(pulumi.StringOutput)
+}
+
+// The associated backend ID.
+func (o GetLbBackendsBackendOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+func (o GetLbBackendsBackendOutput) IgnoreSslServerVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) bool { return v.IgnoreSslServerVerify }).(pulumi.BoolOutput)
+}
+
+// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+func (o GetLbBackendsBackendOutput) LbId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.LbId }).(pulumi.StringOutput)
+}
+
+// The backend name used as filter. Backends with a name like it are listed.
+func (o GetLbBackendsBackendOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Modify what occurs when a backend server is marked down.
+func (o GetLbBackendsBackendOutput) OnMarkedDownAction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.OnMarkedDownAction }).(pulumi.StringOutput)
+}
+
+// The type of PROXY protocol.
+func (o GetLbBackendsBackendOutput) ProxyProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.ProxyProtocol }).(pulumi.StringOutput)
+}
+
+// List of backend server IP addresses.
+func (o GetLbBackendsBackendOutput) ServerIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) []string { return v.ServerIps }).(pulumi.StringArrayOutput)
+}
+
+// Enables SSL between load balancer and backend servers.
+func (o GetLbBackendsBackendOutput) SslBridging() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) bool { return v.SslBridging }).(pulumi.BoolOutput)
+}
+
+// Enables cookie-based session persistence.
+func (o GetLbBackendsBackendOutput) StickySessions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.StickySessions }).(pulumi.StringOutput)
+}
+
+// Cookie name for sticky sessions.
+func (o GetLbBackendsBackendOutput) StickySessionsCookieName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.StickySessionsCookieName }).(pulumi.StringOutput)
+}
+
+// Maximum initial server connection establishment time.
+func (o GetLbBackendsBackendOutput) TimeoutConnect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.TimeoutConnect }).(pulumi.StringOutput)
+}
+
+// Maximum server connection inactivity time.
+func (o GetLbBackendsBackendOutput) TimeoutServer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.TimeoutServer }).(pulumi.StringOutput)
+}
+
+// Maximum tunnel inactivity time.
+func (o GetLbBackendsBackendOutput) TimeoutTunnel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.TimeoutTunnel }).(pulumi.StringOutput)
+}
+
+// The date at which the backend was last updated (RFC 3339 format).
+func (o GetLbBackendsBackendOutput) UpdateAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.UpdateAt }).(pulumi.StringOutput)
+}
+
+type GetLbBackendsBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendsBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendsBackend)(nil)).Elem()
+}
+
+func (o GetLbBackendsBackendArrayOutput) ToGetLbBackendsBackendArrayOutput() GetLbBackendsBackendArrayOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendArrayOutput) ToGetLbBackendsBackendArrayOutputWithContext(ctx context.Context) GetLbBackendsBackendArrayOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendArrayOutput) Index(i pulumi.IntInput) GetLbBackendsBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbBackendsBackend {
+		return vs[0].([]GetLbBackendsBackend)[vs[1].(int)]
+	}).(GetLbBackendsBackendOutput)
+}
+
+type GetLbBackendsBackendHealthCheckHttp struct {
+	// The expected HTTP status code.
+	Code int `pulumi:"code"`
+	// The HTTP host header to use for HC requests.
+	HostHeader string `pulumi:"hostHeader"`
+	// The HTTP method to use for HC requests.
+	Method string `pulumi:"method"`
+	// The SNI to use for HC requests over SSL.
+	Sni string `pulumi:"sni"`
+	// The HTTPS endpoint URL to call for HC requests.
+	Uri string `pulumi:"uri"`
+}
+
+// GetLbBackendsBackendHealthCheckHttpInput is an input type that accepts GetLbBackendsBackendHealthCheckHttpArgs and GetLbBackendsBackendHealthCheckHttpOutput values.
+// You can construct a concrete instance of `GetLbBackendsBackendHealthCheckHttpInput` via:
+//
+//	GetLbBackendsBackendHealthCheckHttpArgs{...}
+type GetLbBackendsBackendHealthCheckHttpInput interface {
+	pulumi.Input
+
+	ToGetLbBackendsBackendHealthCheckHttpOutput() GetLbBackendsBackendHealthCheckHttpOutput
+	ToGetLbBackendsBackendHealthCheckHttpOutputWithContext(context.Context) GetLbBackendsBackendHealthCheckHttpOutput
+}
+
+type GetLbBackendsBackendHealthCheckHttpArgs struct {
+	// The expected HTTP status code.
+	Code pulumi.IntInput `pulumi:"code"`
+	// The HTTP host header to use for HC requests.
+	HostHeader pulumi.StringInput `pulumi:"hostHeader"`
+	// The HTTP method to use for HC requests.
+	Method pulumi.StringInput `pulumi:"method"`
+	// The SNI to use for HC requests over SSL.
+	Sni pulumi.StringInput `pulumi:"sni"`
+	// The HTTPS endpoint URL to call for HC requests.
+	Uri pulumi.StringInput `pulumi:"uri"`
+}
+
+func (GetLbBackendsBackendHealthCheckHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendsBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (i GetLbBackendsBackendHealthCheckHttpArgs) ToGetLbBackendsBackendHealthCheckHttpOutput() GetLbBackendsBackendHealthCheckHttpOutput {
+	return i.ToGetLbBackendsBackendHealthCheckHttpOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendsBackendHealthCheckHttpArgs) ToGetLbBackendsBackendHealthCheckHttpOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendsBackendHealthCheckHttpOutput)
+}
+
+// GetLbBackendsBackendHealthCheckHttpArrayInput is an input type that accepts GetLbBackendsBackendHealthCheckHttpArray and GetLbBackendsBackendHealthCheckHttpArrayOutput values.
+// You can construct a concrete instance of `GetLbBackendsBackendHealthCheckHttpArrayInput` via:
+//
+//	GetLbBackendsBackendHealthCheckHttpArray{ GetLbBackendsBackendHealthCheckHttpArgs{...} }
+type GetLbBackendsBackendHealthCheckHttpArrayInput interface {
+	pulumi.Input
+
+	ToGetLbBackendsBackendHealthCheckHttpArrayOutput() GetLbBackendsBackendHealthCheckHttpArrayOutput
+	ToGetLbBackendsBackendHealthCheckHttpArrayOutputWithContext(context.Context) GetLbBackendsBackendHealthCheckHttpArrayOutput
+}
+
+type GetLbBackendsBackendHealthCheckHttpArray []GetLbBackendsBackendHealthCheckHttpInput
+
+func (GetLbBackendsBackendHealthCheckHttpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendsBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (i GetLbBackendsBackendHealthCheckHttpArray) ToGetLbBackendsBackendHealthCheckHttpArrayOutput() GetLbBackendsBackendHealthCheckHttpArrayOutput {
+	return i.ToGetLbBackendsBackendHealthCheckHttpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendsBackendHealthCheckHttpArray) ToGetLbBackendsBackendHealthCheckHttpArrayOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckHttpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendsBackendHealthCheckHttpArrayOutput)
+}
+
+type GetLbBackendsBackendHealthCheckHttpOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendsBackendHealthCheckHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendsBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (o GetLbBackendsBackendHealthCheckHttpOutput) ToGetLbBackendsBackendHealthCheckHttpOutput() GetLbBackendsBackendHealthCheckHttpOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendHealthCheckHttpOutput) ToGetLbBackendsBackendHealthCheckHttpOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckHttpOutput {
+	return o
+}
+
+// The expected HTTP status code.
+func (o GetLbBackendsBackendHealthCheckHttpOutput) Code() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) int { return v.Code }).(pulumi.IntOutput)
+}
+
+// The HTTP host header to use for HC requests.
+func (o GetLbBackendsBackendHealthCheckHttpOutput) HostHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.HostHeader }).(pulumi.StringOutput)
+}
+
+// The HTTP method to use for HC requests.
+func (o GetLbBackendsBackendHealthCheckHttpOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// The SNI to use for HC requests over SSL.
+func (o GetLbBackendsBackendHealthCheckHttpOutput) Sni() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Sni }).(pulumi.StringOutput)
+}
+
+// The HTTPS endpoint URL to call for HC requests.
+func (o GetLbBackendsBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
+}
+
+type GetLbBackendsBackendHealthCheckHttpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendsBackendHealthCheckHttpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendsBackendHealthCheckHttp)(nil)).Elem()
+}
+
+func (o GetLbBackendsBackendHealthCheckHttpArrayOutput) ToGetLbBackendsBackendHealthCheckHttpArrayOutput() GetLbBackendsBackendHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendHealthCheckHttpArrayOutput) ToGetLbBackendsBackendHealthCheckHttpArrayOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendHealthCheckHttpArrayOutput) Index(i pulumi.IntInput) GetLbBackendsBackendHealthCheckHttpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbBackendsBackendHealthCheckHttp {
+		return vs[0].([]GetLbBackendsBackendHealthCheckHttp)[vs[1].(int)]
+	}).(GetLbBackendsBackendHealthCheckHttpOutput)
+}
+
+type GetLbBackendsBackendHealthCheckTcp struct {
+}
+
+// GetLbBackendsBackendHealthCheckTcpInput is an input type that accepts GetLbBackendsBackendHealthCheckTcpArgs and GetLbBackendsBackendHealthCheckTcpOutput values.
+// You can construct a concrete instance of `GetLbBackendsBackendHealthCheckTcpInput` via:
+//
+//	GetLbBackendsBackendHealthCheckTcpArgs{...}
+type GetLbBackendsBackendHealthCheckTcpInput interface {
+	pulumi.Input
+
+	ToGetLbBackendsBackendHealthCheckTcpOutput() GetLbBackendsBackendHealthCheckTcpOutput
+	ToGetLbBackendsBackendHealthCheckTcpOutputWithContext(context.Context) GetLbBackendsBackendHealthCheckTcpOutput
+}
+
+type GetLbBackendsBackendHealthCheckTcpArgs struct {
+}
+
+func (GetLbBackendsBackendHealthCheckTcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendsBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (i GetLbBackendsBackendHealthCheckTcpArgs) ToGetLbBackendsBackendHealthCheckTcpOutput() GetLbBackendsBackendHealthCheckTcpOutput {
+	return i.ToGetLbBackendsBackendHealthCheckTcpOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendsBackendHealthCheckTcpArgs) ToGetLbBackendsBackendHealthCheckTcpOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckTcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendsBackendHealthCheckTcpOutput)
+}
+
+// GetLbBackendsBackendHealthCheckTcpArrayInput is an input type that accepts GetLbBackendsBackendHealthCheckTcpArray and GetLbBackendsBackendHealthCheckTcpArrayOutput values.
+// You can construct a concrete instance of `GetLbBackendsBackendHealthCheckTcpArrayInput` via:
+//
+//	GetLbBackendsBackendHealthCheckTcpArray{ GetLbBackendsBackendHealthCheckTcpArgs{...} }
+type GetLbBackendsBackendHealthCheckTcpArrayInput interface {
+	pulumi.Input
+
+	ToGetLbBackendsBackendHealthCheckTcpArrayOutput() GetLbBackendsBackendHealthCheckTcpArrayOutput
+	ToGetLbBackendsBackendHealthCheckTcpArrayOutputWithContext(context.Context) GetLbBackendsBackendHealthCheckTcpArrayOutput
+}
+
+type GetLbBackendsBackendHealthCheckTcpArray []GetLbBackendsBackendHealthCheckTcpInput
+
+func (GetLbBackendsBackendHealthCheckTcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendsBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (i GetLbBackendsBackendHealthCheckTcpArray) ToGetLbBackendsBackendHealthCheckTcpArrayOutput() GetLbBackendsBackendHealthCheckTcpArrayOutput {
+	return i.ToGetLbBackendsBackendHealthCheckTcpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbBackendsBackendHealthCheckTcpArray) ToGetLbBackendsBackendHealthCheckTcpArrayOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckTcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbBackendsBackendHealthCheckTcpArrayOutput)
+}
+
+type GetLbBackendsBackendHealthCheckTcpOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendsBackendHealthCheckTcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbBackendsBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (o GetLbBackendsBackendHealthCheckTcpOutput) ToGetLbBackendsBackendHealthCheckTcpOutput() GetLbBackendsBackendHealthCheckTcpOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendHealthCheckTcpOutput) ToGetLbBackendsBackendHealthCheckTcpOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckTcpOutput {
+	return o
+}
+
+type GetLbBackendsBackendHealthCheckTcpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbBackendsBackendHealthCheckTcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbBackendsBackendHealthCheckTcp)(nil)).Elem()
+}
+
+func (o GetLbBackendsBackendHealthCheckTcpArrayOutput) ToGetLbBackendsBackendHealthCheckTcpArrayOutput() GetLbBackendsBackendHealthCheckTcpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendHealthCheckTcpArrayOutput) ToGetLbBackendsBackendHealthCheckTcpArrayOutputWithContext(ctx context.Context) GetLbBackendsBackendHealthCheckTcpArrayOutput {
+	return o
+}
+
+func (o GetLbBackendsBackendHealthCheckTcpArrayOutput) Index(i pulumi.IntInput) GetLbBackendsBackendHealthCheckTcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbBackendsBackendHealthCheckTcp {
+		return vs[0].([]GetLbBackendsBackendHealthCheckTcp)[vs[1].(int)]
+	}).(GetLbBackendsBackendHealthCheckTcpOutput)
+}
+
+type GetLbFrontendAcl struct {
+	Actions []GetLbFrontendAclAction `pulumi:"actions"`
+	Matches []GetLbFrontendAclMatch  `pulumi:"matches"`
+	// The name of the frontend.
+	// - When using the `name` you should specify the `lb-id`
+	Name string `pulumi:"name"`
+}
+
+// GetLbFrontendAclInput is an input type that accepts GetLbFrontendAclArgs and GetLbFrontendAclOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclInput` via:
+//
+//	GetLbFrontendAclArgs{...}
+type GetLbFrontendAclInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclOutput() GetLbFrontendAclOutput
+	ToGetLbFrontendAclOutputWithContext(context.Context) GetLbFrontendAclOutput
+}
+
+type GetLbFrontendAclArgs struct {
+	Actions GetLbFrontendAclActionArrayInput `pulumi:"actions"`
+	Matches GetLbFrontendAclMatchArrayInput  `pulumi:"matches"`
+	// The name of the frontend.
+	// - When using the `name` you should specify the `lb-id`
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetLbFrontendAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAcl)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclArgs) ToGetLbFrontendAclOutput() GetLbFrontendAclOutput {
+	return i.ToGetLbFrontendAclOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclArgs) ToGetLbFrontendAclOutputWithContext(ctx context.Context) GetLbFrontendAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclOutput)
+}
+
+// GetLbFrontendAclArrayInput is an input type that accepts GetLbFrontendAclArray and GetLbFrontendAclArrayOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclArrayInput` via:
+//
+//	GetLbFrontendAclArray{ GetLbFrontendAclArgs{...} }
+type GetLbFrontendAclArrayInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclArrayOutput() GetLbFrontendAclArrayOutput
+	ToGetLbFrontendAclArrayOutputWithContext(context.Context) GetLbFrontendAclArrayOutput
+}
+
+type GetLbFrontendAclArray []GetLbFrontendAclInput
+
+func (GetLbFrontendAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAcl)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclArray) ToGetLbFrontendAclArrayOutput() GetLbFrontendAclArrayOutput {
+	return i.ToGetLbFrontendAclArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclArray) ToGetLbFrontendAclArrayOutputWithContext(ctx context.Context) GetLbFrontendAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclArrayOutput)
+}
+
+type GetLbFrontendAclOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAcl)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclOutput) ToGetLbFrontendAclOutput() GetLbFrontendAclOutput {
+	return o
+}
+
+func (o GetLbFrontendAclOutput) ToGetLbFrontendAclOutputWithContext(ctx context.Context) GetLbFrontendAclOutput {
+	return o
+}
+
+func (o GetLbFrontendAclOutput) Actions() GetLbFrontendAclActionArrayOutput {
+	return o.ApplyT(func(v GetLbFrontendAcl) []GetLbFrontendAclAction { return v.Actions }).(GetLbFrontendAclActionArrayOutput)
+}
+
+func (o GetLbFrontendAclOutput) Matches() GetLbFrontendAclMatchArrayOutput {
+	return o.ApplyT(func(v GetLbFrontendAcl) []GetLbFrontendAclMatch { return v.Matches }).(GetLbFrontendAclMatchArrayOutput)
+}
+
+// The name of the frontend.
+// - When using the `name` you should specify the `lb-id`
+func (o GetLbFrontendAclOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetLbFrontendAclArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAcl)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclArrayOutput) ToGetLbFrontendAclArrayOutput() GetLbFrontendAclArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclArrayOutput) ToGetLbFrontendAclArrayOutputWithContext(ctx context.Context) GetLbFrontendAclArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclArrayOutput) Index(i pulumi.IntInput) GetLbFrontendAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbFrontendAcl {
+		return vs[0].([]GetLbFrontendAcl)[vs[1].(int)]
+	}).(GetLbFrontendAclOutput)
+}
+
+type GetLbFrontendAclAction struct {
+	Type string `pulumi:"type"`
+}
+
+// GetLbFrontendAclActionInput is an input type that accepts GetLbFrontendAclActionArgs and GetLbFrontendAclActionOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclActionInput` via:
+//
+//	GetLbFrontendAclActionArgs{...}
+type GetLbFrontendAclActionInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclActionOutput() GetLbFrontendAclActionOutput
+	ToGetLbFrontendAclActionOutputWithContext(context.Context) GetLbFrontendAclActionOutput
+}
+
+type GetLbFrontendAclActionArgs struct {
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetLbFrontendAclActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAclAction)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclActionArgs) ToGetLbFrontendAclActionOutput() GetLbFrontendAclActionOutput {
+	return i.ToGetLbFrontendAclActionOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclActionArgs) ToGetLbFrontendAclActionOutputWithContext(ctx context.Context) GetLbFrontendAclActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclActionOutput)
+}
+
+// GetLbFrontendAclActionArrayInput is an input type that accepts GetLbFrontendAclActionArray and GetLbFrontendAclActionArrayOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclActionArrayInput` via:
+//
+//	GetLbFrontendAclActionArray{ GetLbFrontendAclActionArgs{...} }
+type GetLbFrontendAclActionArrayInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclActionArrayOutput() GetLbFrontendAclActionArrayOutput
+	ToGetLbFrontendAclActionArrayOutputWithContext(context.Context) GetLbFrontendAclActionArrayOutput
+}
+
+type GetLbFrontendAclActionArray []GetLbFrontendAclActionInput
+
+func (GetLbFrontendAclActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAclAction)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclActionArray) ToGetLbFrontendAclActionArrayOutput() GetLbFrontendAclActionArrayOutput {
+	return i.ToGetLbFrontendAclActionArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclActionArray) ToGetLbFrontendAclActionArrayOutputWithContext(ctx context.Context) GetLbFrontendAclActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclActionArrayOutput)
+}
+
+type GetLbFrontendAclActionOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAclAction)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclActionOutput) ToGetLbFrontendAclActionOutput() GetLbFrontendAclActionOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionOutput) ToGetLbFrontendAclActionOutputWithContext(ctx context.Context) GetLbFrontendAclActionOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAclAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetLbFrontendAclActionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAclAction)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclActionArrayOutput) ToGetLbFrontendAclActionArrayOutput() GetLbFrontendAclActionArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionArrayOutput) ToGetLbFrontendAclActionArrayOutputWithContext(ctx context.Context) GetLbFrontendAclActionArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionArrayOutput) Index(i pulumi.IntInput) GetLbFrontendAclActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbFrontendAclAction {
+		return vs[0].([]GetLbFrontendAclAction)[vs[1].(int)]
+	}).(GetLbFrontendAclActionOutput)
+}
+
+type GetLbFrontendAclMatch struct {
+	HttpFilter       string   `pulumi:"httpFilter"`
+	HttpFilterOption string   `pulumi:"httpFilterOption"`
+	HttpFilterValues []string `pulumi:"httpFilterValues"`
+	Invert           bool     `pulumi:"invert"`
+	IpSubnets        []string `pulumi:"ipSubnets"`
+}
+
+// GetLbFrontendAclMatchInput is an input type that accepts GetLbFrontendAclMatchArgs and GetLbFrontendAclMatchOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclMatchInput` via:
+//
+//	GetLbFrontendAclMatchArgs{...}
+type GetLbFrontendAclMatchInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclMatchOutput() GetLbFrontendAclMatchOutput
+	ToGetLbFrontendAclMatchOutputWithContext(context.Context) GetLbFrontendAclMatchOutput
+}
+
+type GetLbFrontendAclMatchArgs struct {
+	HttpFilter       pulumi.StringInput      `pulumi:"httpFilter"`
+	HttpFilterOption pulumi.StringInput      `pulumi:"httpFilterOption"`
+	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
+	Invert           pulumi.BoolInput        `pulumi:"invert"`
+	IpSubnets        pulumi.StringArrayInput `pulumi:"ipSubnets"`
+}
+
+func (GetLbFrontendAclMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAclMatch)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclMatchArgs) ToGetLbFrontendAclMatchOutput() GetLbFrontendAclMatchOutput {
+	return i.ToGetLbFrontendAclMatchOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclMatchArgs) ToGetLbFrontendAclMatchOutputWithContext(ctx context.Context) GetLbFrontendAclMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclMatchOutput)
+}
+
+// GetLbFrontendAclMatchArrayInput is an input type that accepts GetLbFrontendAclMatchArray and GetLbFrontendAclMatchArrayOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclMatchArrayInput` via:
+//
+//	GetLbFrontendAclMatchArray{ GetLbFrontendAclMatchArgs{...} }
+type GetLbFrontendAclMatchArrayInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclMatchArrayOutput() GetLbFrontendAclMatchArrayOutput
+	ToGetLbFrontendAclMatchArrayOutputWithContext(context.Context) GetLbFrontendAclMatchArrayOutput
+}
+
+type GetLbFrontendAclMatchArray []GetLbFrontendAclMatchInput
+
+func (GetLbFrontendAclMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAclMatch)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclMatchArray) ToGetLbFrontendAclMatchArrayOutput() GetLbFrontendAclMatchArrayOutput {
+	return i.ToGetLbFrontendAclMatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclMatchArray) ToGetLbFrontendAclMatchArrayOutputWithContext(ctx context.Context) GetLbFrontendAclMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclMatchArrayOutput)
+}
+
+type GetLbFrontendAclMatchOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAclMatch)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclMatchOutput) ToGetLbFrontendAclMatchOutput() GetLbFrontendAclMatchOutput {
+	return o
+}
+
+func (o GetLbFrontendAclMatchOutput) ToGetLbFrontendAclMatchOutputWithContext(ctx context.Context) GetLbFrontendAclMatchOutput {
+	return o
+}
+
+func (o GetLbFrontendAclMatchOutput) HttpFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) string { return v.HttpFilter }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendAclMatchOutput) HttpFilterOption() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) string { return v.HttpFilterOption }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
+}
+
+func (o GetLbFrontendAclMatchOutput) Invert() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) bool { return v.Invert }).(pulumi.BoolOutput)
+}
+
+func (o GetLbFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+type GetLbFrontendAclMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAclMatch)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclMatchArrayOutput) ToGetLbFrontendAclMatchArrayOutput() GetLbFrontendAclMatchArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclMatchArrayOutput) ToGetLbFrontendAclMatchArrayOutputWithContext(ctx context.Context) GetLbFrontendAclMatchArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclMatchArrayOutput) Index(i pulumi.IntInput) GetLbFrontendAclMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbFrontendAclMatch {
+		return vs[0].([]GetLbFrontendAclMatch)[vs[1].(int)]
+	}).(GetLbFrontendAclMatchOutput)
+}
+
+type GetLbFrontendsFrontend struct {
+	// The load-balancer backend ID this frontend is attached to.
+	// > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	BackendId string `pulumi:"backendId"`
+	// List of Certificate IDs that are used by the frontend.
+	CertificateIds []string `pulumi:"certificateIds"`
+	// The date at which the frontend was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// If HTTP/3 protocol is activated.
+	EnableHttp3 bool `pulumi:"enableHttp3"`
+	// The associated frontend ID.
+	// > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	Id string `pulumi:"id"`
+	// TCP port the frontend listen to.
+	InboundPort int `pulumi:"inboundPort"`
+	// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+	LbId string `pulumi:"lbId"`
+	// The frontend name used as filter. Frontends with a name like it are listed.
+	Name string `pulumi:"name"`
+	// Maximum inactivity time on the client side.
+	TimeoutClient string `pulumi:"timeoutClient"`
+	// The date at which the frontend was last updated (RFC 3339 format).
+	UpdateAt string `pulumi:"updateAt"`
+}
+
+// GetLbFrontendsFrontendInput is an input type that accepts GetLbFrontendsFrontendArgs and GetLbFrontendsFrontendOutput values.
+// You can construct a concrete instance of `GetLbFrontendsFrontendInput` via:
+//
+//	GetLbFrontendsFrontendArgs{...}
+type GetLbFrontendsFrontendInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendsFrontendOutput() GetLbFrontendsFrontendOutput
+	ToGetLbFrontendsFrontendOutputWithContext(context.Context) GetLbFrontendsFrontendOutput
+}
+
+type GetLbFrontendsFrontendArgs struct {
+	// The load-balancer backend ID this frontend is attached to.
+	// > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	BackendId pulumi.StringInput `pulumi:"backendId"`
+	// List of Certificate IDs that are used by the frontend.
+	CertificateIds pulumi.StringArrayInput `pulumi:"certificateIds"`
+	// The date at which the frontend was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// If HTTP/3 protocol is activated.
+	EnableHttp3 pulumi.BoolInput `pulumi:"enableHttp3"`
+	// The associated frontend ID.
+	// > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	Id pulumi.StringInput `pulumi:"id"`
+	// TCP port the frontend listen to.
+	InboundPort pulumi.IntInput `pulumi:"inboundPort"`
+	// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+	LbId pulumi.StringInput `pulumi:"lbId"`
+	// The frontend name used as filter. Frontends with a name like it are listed.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Maximum inactivity time on the client side.
+	TimeoutClient pulumi.StringInput `pulumi:"timeoutClient"`
+	// The date at which the frontend was last updated (RFC 3339 format).
+	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
+}
+
+func (GetLbFrontendsFrontendArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendsFrontend)(nil)).Elem()
+}
+
+func (i GetLbFrontendsFrontendArgs) ToGetLbFrontendsFrontendOutput() GetLbFrontendsFrontendOutput {
+	return i.ToGetLbFrontendsFrontendOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendsFrontendArgs) ToGetLbFrontendsFrontendOutputWithContext(ctx context.Context) GetLbFrontendsFrontendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendsFrontendOutput)
+}
+
+// GetLbFrontendsFrontendArrayInput is an input type that accepts GetLbFrontendsFrontendArray and GetLbFrontendsFrontendArrayOutput values.
+// You can construct a concrete instance of `GetLbFrontendsFrontendArrayInput` via:
+//
+//	GetLbFrontendsFrontendArray{ GetLbFrontendsFrontendArgs{...} }
+type GetLbFrontendsFrontendArrayInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendsFrontendArrayOutput() GetLbFrontendsFrontendArrayOutput
+	ToGetLbFrontendsFrontendArrayOutputWithContext(context.Context) GetLbFrontendsFrontendArrayOutput
+}
+
+type GetLbFrontendsFrontendArray []GetLbFrontendsFrontendInput
+
+func (GetLbFrontendsFrontendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendsFrontend)(nil)).Elem()
+}
+
+func (i GetLbFrontendsFrontendArray) ToGetLbFrontendsFrontendArrayOutput() GetLbFrontendsFrontendArrayOutput {
+	return i.ToGetLbFrontendsFrontendArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendsFrontendArray) ToGetLbFrontendsFrontendArrayOutputWithContext(ctx context.Context) GetLbFrontendsFrontendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendsFrontendArrayOutput)
+}
+
+type GetLbFrontendsFrontendOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendsFrontendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendsFrontend)(nil)).Elem()
+}
+
+func (o GetLbFrontendsFrontendOutput) ToGetLbFrontendsFrontendOutput() GetLbFrontendsFrontendOutput {
+	return o
+}
+
+func (o GetLbFrontendsFrontendOutput) ToGetLbFrontendsFrontendOutputWithContext(ctx context.Context) GetLbFrontendsFrontendOutput {
+	return o
+}
+
+// The load-balancer backend ID this frontend is attached to.
+// > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+func (o GetLbFrontendsFrontendOutput) BackendId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.BackendId }).(pulumi.StringOutput)
+}
+
+// List of Certificate IDs that are used by the frontend.
+func (o GetLbFrontendsFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) []string { return v.CertificateIds }).(pulumi.StringArrayOutput)
+}
+
+// The date at which the frontend was created (RFC 3339 format).
+func (o GetLbFrontendsFrontendOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// If HTTP/3 protocol is activated.
+func (o GetLbFrontendsFrontendOutput) EnableHttp3() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) bool { return v.EnableHttp3 }).(pulumi.BoolOutput)
+}
+
+// The associated frontend ID.
+// > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+func (o GetLbFrontendsFrontendOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// TCP port the frontend listen to.
+func (o GetLbFrontendsFrontendOutput) InboundPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) int { return v.InboundPort }).(pulumi.IntOutput)
+}
+
+// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+func (o GetLbFrontendsFrontendOutput) LbId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.LbId }).(pulumi.StringOutput)
+}
+
+// The frontend name used as filter. Frontends with a name like it are listed.
+func (o GetLbFrontendsFrontendOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Maximum inactivity time on the client side.
+func (o GetLbFrontendsFrontendOutput) TimeoutClient() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.TimeoutClient }).(pulumi.StringOutput)
+}
+
+// The date at which the frontend was last updated (RFC 3339 format).
+func (o GetLbFrontendsFrontendOutput) UpdateAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.UpdateAt }).(pulumi.StringOutput)
+}
+
+type GetLbFrontendsFrontendArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendsFrontendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendsFrontend)(nil)).Elem()
+}
+
+func (o GetLbFrontendsFrontendArrayOutput) ToGetLbFrontendsFrontendArrayOutput() GetLbFrontendsFrontendArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendsFrontendArrayOutput) ToGetLbFrontendsFrontendArrayOutputWithContext(ctx context.Context) GetLbFrontendsFrontendArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendsFrontendArrayOutput) Index(i pulumi.IntInput) GetLbFrontendsFrontendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbFrontendsFrontend {
+		return vs[0].([]GetLbFrontendsFrontend)[vs[1].(int)]
+	}).(GetLbFrontendsFrontendOutput)
+}
+
+type GetLbIpsIp struct {
+	// The associated IP ID.
+	Id string `pulumi:"id"`
+	// The IP Address
+	IpAddress string `pulumi:"ipAddress"`
+	// The associated load-balancer ID if any
+	LbId string `pulumi:"lbId"`
+	// The organization ID the load-balancer is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the project the load-balancer is associated with.
+	ProjectId string `pulumi:"projectId"`
+	// The reverse domain associated with this IP.
+	Reverse string `pulumi:"reverse"`
+	// `zone`) The zone in which IPs exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetLbIpsIpInput is an input type that accepts GetLbIpsIpArgs and GetLbIpsIpOutput values.
+// You can construct a concrete instance of `GetLbIpsIpInput` via:
+//
+//	GetLbIpsIpArgs{...}
+type GetLbIpsIpInput interface {
+	pulumi.Input
+
+	ToGetLbIpsIpOutput() GetLbIpsIpOutput
+	ToGetLbIpsIpOutputWithContext(context.Context) GetLbIpsIpOutput
+}
+
+type GetLbIpsIpArgs struct {
+	// The associated IP ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The IP Address
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The associated load-balancer ID if any
+	LbId pulumi.StringInput `pulumi:"lbId"`
+	// The organization ID the load-balancer is associated with.
+	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
+	// The ID of the project the load-balancer is associated with.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The reverse domain associated with this IP.
+	Reverse pulumi.StringInput `pulumi:"reverse"`
+	// `zone`) The zone in which IPs exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetLbIpsIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbIpsIp)(nil)).Elem()
+}
+
+func (i GetLbIpsIpArgs) ToGetLbIpsIpOutput() GetLbIpsIpOutput {
+	return i.ToGetLbIpsIpOutputWithContext(context.Background())
+}
+
+func (i GetLbIpsIpArgs) ToGetLbIpsIpOutputWithContext(ctx context.Context) GetLbIpsIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbIpsIpOutput)
+}
+
+// GetLbIpsIpArrayInput is an input type that accepts GetLbIpsIpArray and GetLbIpsIpArrayOutput values.
+// You can construct a concrete instance of `GetLbIpsIpArrayInput` via:
+//
+//	GetLbIpsIpArray{ GetLbIpsIpArgs{...} }
+type GetLbIpsIpArrayInput interface {
+	pulumi.Input
+
+	ToGetLbIpsIpArrayOutput() GetLbIpsIpArrayOutput
+	ToGetLbIpsIpArrayOutputWithContext(context.Context) GetLbIpsIpArrayOutput
+}
+
+type GetLbIpsIpArray []GetLbIpsIpInput
+
+func (GetLbIpsIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbIpsIp)(nil)).Elem()
+}
+
+func (i GetLbIpsIpArray) ToGetLbIpsIpArrayOutput() GetLbIpsIpArrayOutput {
+	return i.ToGetLbIpsIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbIpsIpArray) ToGetLbIpsIpArrayOutputWithContext(ctx context.Context) GetLbIpsIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbIpsIpArrayOutput)
+}
+
+type GetLbIpsIpOutput struct{ *pulumi.OutputState }
+
+func (GetLbIpsIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbIpsIp)(nil)).Elem()
+}
+
+func (o GetLbIpsIpOutput) ToGetLbIpsIpOutput() GetLbIpsIpOutput {
+	return o
+}
+
+func (o GetLbIpsIpOutput) ToGetLbIpsIpOutputWithContext(ctx context.Context) GetLbIpsIpOutput {
+	return o
+}
+
+// The associated IP ID.
+func (o GetLbIpsIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IP Address
+func (o GetLbIpsIpOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The associated load-balancer ID if any
+func (o GetLbIpsIpOutput) LbId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.LbId }).(pulumi.StringOutput)
+}
+
+// The organization ID the load-balancer is associated with.
+func (o GetLbIpsIpOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The ID of the project the load-balancer is associated with.
+func (o GetLbIpsIpOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The reverse domain associated with this IP.
+func (o GetLbIpsIpOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which IPs exist.
+func (o GetLbIpsIpOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsIp) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetLbIpsIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbIpsIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbIpsIp)(nil)).Elem()
+}
+
+func (o GetLbIpsIpArrayOutput) ToGetLbIpsIpArrayOutput() GetLbIpsIpArrayOutput {
+	return o
+}
+
+func (o GetLbIpsIpArrayOutput) ToGetLbIpsIpArrayOutputWithContext(ctx context.Context) GetLbIpsIpArrayOutput {
+	return o
+}
+
+func (o GetLbIpsIpArrayOutput) Index(i pulumi.IntInput) GetLbIpsIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbIpsIp {
+		return vs[0].([]GetLbIpsIp)[vs[1].(int)]
+	}).(GetLbIpsIpOutput)
+}
+
+type GetLbRoutesRoute struct {
+	// The backend ID destination of redirection
+	BackendId string `pulumi:"backendId"`
+	// The date at which the route was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+	FrontendId string `pulumi:"frontendId"`
+	// The associated route ID.
+	Id string `pulumi:"id"`
+	// Specifies the host of the server to which the request is being sent.
+	MatchHostHeader string `pulumi:"matchHostHeader"`
+	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	MatchSni string `pulumi:"matchSni"`
+	// The date at which the route was last updated (RFC 3339 format).
+	UpdateAt string `pulumi:"updateAt"`
+}
+
+// GetLbRoutesRouteInput is an input type that accepts GetLbRoutesRouteArgs and GetLbRoutesRouteOutput values.
+// You can construct a concrete instance of `GetLbRoutesRouteInput` via:
+//
+//	GetLbRoutesRouteArgs{...}
+type GetLbRoutesRouteInput interface {
+	pulumi.Input
+
+	ToGetLbRoutesRouteOutput() GetLbRoutesRouteOutput
+	ToGetLbRoutesRouteOutputWithContext(context.Context) GetLbRoutesRouteOutput
+}
+
+type GetLbRoutesRouteArgs struct {
+	// The backend ID destination of redirection
+	BackendId pulumi.StringInput `pulumi:"backendId"`
+	// The date at which the route was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+	FrontendId pulumi.StringInput `pulumi:"frontendId"`
+	// The associated route ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Specifies the host of the server to which the request is being sent.
+	MatchHostHeader pulumi.StringInput `pulumi:"matchHostHeader"`
+	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	MatchSni pulumi.StringInput `pulumi:"matchSni"`
+	// The date at which the route was last updated (RFC 3339 format).
+	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
+}
+
+func (GetLbRoutesRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbRoutesRoute)(nil)).Elem()
+}
+
+func (i GetLbRoutesRouteArgs) ToGetLbRoutesRouteOutput() GetLbRoutesRouteOutput {
+	return i.ToGetLbRoutesRouteOutputWithContext(context.Background())
+}
+
+func (i GetLbRoutesRouteArgs) ToGetLbRoutesRouteOutputWithContext(ctx context.Context) GetLbRoutesRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbRoutesRouteOutput)
+}
+
+// GetLbRoutesRouteArrayInput is an input type that accepts GetLbRoutesRouteArray and GetLbRoutesRouteArrayOutput values.
+// You can construct a concrete instance of `GetLbRoutesRouteArrayInput` via:
+//
+//	GetLbRoutesRouteArray{ GetLbRoutesRouteArgs{...} }
+type GetLbRoutesRouteArrayInput interface {
+	pulumi.Input
+
+	ToGetLbRoutesRouteArrayOutput() GetLbRoutesRouteArrayOutput
+	ToGetLbRoutesRouteArrayOutputWithContext(context.Context) GetLbRoutesRouteArrayOutput
+}
+
+type GetLbRoutesRouteArray []GetLbRoutesRouteInput
+
+func (GetLbRoutesRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbRoutesRoute)(nil)).Elem()
+}
+
+func (i GetLbRoutesRouteArray) ToGetLbRoutesRouteArrayOutput() GetLbRoutesRouteArrayOutput {
+	return i.ToGetLbRoutesRouteArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbRoutesRouteArray) ToGetLbRoutesRouteArrayOutputWithContext(ctx context.Context) GetLbRoutesRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbRoutesRouteArrayOutput)
+}
+
+type GetLbRoutesRouteOutput struct{ *pulumi.OutputState }
+
+func (GetLbRoutesRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbRoutesRoute)(nil)).Elem()
+}
+
+func (o GetLbRoutesRouteOutput) ToGetLbRoutesRouteOutput() GetLbRoutesRouteOutput {
+	return o
+}
+
+func (o GetLbRoutesRouteOutput) ToGetLbRoutesRouteOutputWithContext(ctx context.Context) GetLbRoutesRouteOutput {
+	return o
+}
+
+// The backend ID destination of redirection
+func (o GetLbRoutesRouteOutput) BackendId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.BackendId }).(pulumi.StringOutput)
+}
+
+// The date at which the route was created (RFC 3339 format).
+func (o GetLbRoutesRouteOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+func (o GetLbRoutesRouteOutput) FrontendId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.FrontendId }).(pulumi.StringOutput)
+}
+
+// The associated route ID.
+func (o GetLbRoutesRouteOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specifies the host of the server to which the request is being sent.
+func (o GetLbRoutesRouteOutput) MatchHostHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.MatchHostHeader }).(pulumi.StringOutput)
+}
+
+// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+func (o GetLbRoutesRouteOutput) MatchSni() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.MatchSni }).(pulumi.StringOutput)
+}
+
+// The date at which the route was last updated (RFC 3339 format).
+func (o GetLbRoutesRouteOutput) UpdateAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.UpdateAt }).(pulumi.StringOutput)
+}
+
+type GetLbRoutesRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbRoutesRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbRoutesRoute)(nil)).Elem()
+}
+
+func (o GetLbRoutesRouteArrayOutput) ToGetLbRoutesRouteArrayOutput() GetLbRoutesRouteArrayOutput {
+	return o
+}
+
+func (o GetLbRoutesRouteArrayOutput) ToGetLbRoutesRouteArrayOutputWithContext(ctx context.Context) GetLbRoutesRouteArrayOutput {
+	return o
+}
+
+func (o GetLbRoutesRouteArrayOutput) Index(i pulumi.IntInput) GetLbRoutesRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbRoutesRoute {
+		return vs[0].([]GetLbRoutesRoute)[vs[1].(int)]
+	}).(GetLbRoutesRouteOutput)
+}
+
+type GetLbsLb struct {
+	// Number of backends the Load balancer has.
+	BackendCount int `pulumi:"backendCount"`
+	// Date at which the Load balancer was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the load-balancer.
+	Description string `pulumi:"description"`
+	// Number of frontends the Load balancer has.
+	FrontendCount int `pulumi:"frontendCount"`
+	// The ID of the load-balancer.
+	Id string `pulumi:"id"`
+	// List of underlying instances.
+	Instances []GetLbsLbInstance `pulumi:"instances"`
+	// List of IPs attached to the Load balancer.
+	Ips []GetLbsLbIp `pulumi:"ips"`
+	// The load balancer name used as a filter. LBs with a name like it are listed.
+	Name string `pulumi:"name"`
+	// The organization ID the load-balancer is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	// Number of private networks attached to the Load balancer.
+	PrivateNetworkCount int `pulumi:"privateNetworkCount"`
+	// The ID of the project the load-balancer is associated with.
+	ProjectId string `pulumi:"projectId"`
+	// Number of routes the Load balancer has.
+	RouteCount int `pulumi:"routeCount"`
+	// Determines the minimal SSL version which needs to be supported on client side.
+	SslCompatibilityLevel string `pulumi:"sslCompatibilityLevel"`
+	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	Status string `pulumi:"status"`
+	// The subscriber information.
+	Subscriber string `pulumi:"subscriber"`
+	// The tags associated with the load-balancer.
+	Tags []string `pulumi:"tags"`
+	// The offer type of the load-balancer.
+	Type string `pulumi:"type"`
+	// Date at which the Load balancer was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// `zone`) The zone in which LBs exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetLbsLbInput is an input type that accepts GetLbsLbArgs and GetLbsLbOutput values.
+// You can construct a concrete instance of `GetLbsLbInput` via:
+//
+//	GetLbsLbArgs{...}
+type GetLbsLbInput interface {
+	pulumi.Input
+
+	ToGetLbsLbOutput() GetLbsLbOutput
+	ToGetLbsLbOutputWithContext(context.Context) GetLbsLbOutput
+}
+
+type GetLbsLbArgs struct {
+	// Number of backends the Load balancer has.
+	BackendCount pulumi.IntInput `pulumi:"backendCount"`
+	// Date at which the Load balancer was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the load-balancer.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Number of frontends the Load balancer has.
+	FrontendCount pulumi.IntInput `pulumi:"frontendCount"`
+	// The ID of the load-balancer.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of underlying instances.
+	Instances GetLbsLbInstanceArrayInput `pulumi:"instances"`
+	// List of IPs attached to the Load balancer.
+	Ips GetLbsLbIpArrayInput `pulumi:"ips"`
+	// The load balancer name used as a filter. LBs with a name like it are listed.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The organization ID the load-balancer is associated with.
+	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
+	// Number of private networks attached to the Load balancer.
+	PrivateNetworkCount pulumi.IntInput `pulumi:"privateNetworkCount"`
+	// The ID of the project the load-balancer is associated with.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Number of routes the Load balancer has.
+	RouteCount pulumi.IntInput `pulumi:"routeCount"`
+	// Determines the minimal SSL version which needs to be supported on client side.
+	SslCompatibilityLevel pulumi.StringInput `pulumi:"sslCompatibilityLevel"`
+	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The subscriber information.
+	Subscriber pulumi.StringInput `pulumi:"subscriber"`
+	// The tags associated with the load-balancer.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The offer type of the load-balancer.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Date at which the Load balancer was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// `zone`) The zone in which LBs exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetLbsLbArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbsLb)(nil)).Elem()
+}
+
+func (i GetLbsLbArgs) ToGetLbsLbOutput() GetLbsLbOutput {
+	return i.ToGetLbsLbOutputWithContext(context.Background())
+}
+
+func (i GetLbsLbArgs) ToGetLbsLbOutputWithContext(ctx context.Context) GetLbsLbOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbsLbOutput)
+}
+
+// GetLbsLbArrayInput is an input type that accepts GetLbsLbArray and GetLbsLbArrayOutput values.
+// You can construct a concrete instance of `GetLbsLbArrayInput` via:
+//
+//	GetLbsLbArray{ GetLbsLbArgs{...} }
+type GetLbsLbArrayInput interface {
+	pulumi.Input
+
+	ToGetLbsLbArrayOutput() GetLbsLbArrayOutput
+	ToGetLbsLbArrayOutputWithContext(context.Context) GetLbsLbArrayOutput
+}
+
+type GetLbsLbArray []GetLbsLbInput
+
+func (GetLbsLbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbsLb)(nil)).Elem()
+}
+
+func (i GetLbsLbArray) ToGetLbsLbArrayOutput() GetLbsLbArrayOutput {
+	return i.ToGetLbsLbArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbsLbArray) ToGetLbsLbArrayOutputWithContext(ctx context.Context) GetLbsLbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbsLbArrayOutput)
+}
+
+type GetLbsLbOutput struct{ *pulumi.OutputState }
+
+func (GetLbsLbOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbsLb)(nil)).Elem()
+}
+
+func (o GetLbsLbOutput) ToGetLbsLbOutput() GetLbsLbOutput {
+	return o
+}
+
+func (o GetLbsLbOutput) ToGetLbsLbOutputWithContext(ctx context.Context) GetLbsLbOutput {
+	return o
+}
+
+// Number of backends the Load balancer has.
+func (o GetLbsLbOutput) BackendCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbsLb) int { return v.BackendCount }).(pulumi.IntOutput)
+}
+
+// Date at which the Load balancer was created.
+func (o GetLbsLbOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the load-balancer.
+func (o GetLbsLbOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Number of frontends the Load balancer has.
+func (o GetLbsLbOutput) FrontendCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbsLb) int { return v.FrontendCount }).(pulumi.IntOutput)
+}
+
+// The ID of the load-balancer.
+func (o GetLbsLbOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of underlying instances.
+func (o GetLbsLbOutput) Instances() GetLbsLbInstanceArrayOutput {
+	return o.ApplyT(func(v GetLbsLb) []GetLbsLbInstance { return v.Instances }).(GetLbsLbInstanceArrayOutput)
+}
+
+// List of IPs attached to the Load balancer.
+func (o GetLbsLbOutput) Ips() GetLbsLbIpArrayOutput {
+	return o.ApplyT(func(v GetLbsLb) []GetLbsLbIp { return v.Ips }).(GetLbsLbIpArrayOutput)
+}
+
+// The load balancer name used as a filter. LBs with a name like it are listed.
+func (o GetLbsLbOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The organization ID the load-balancer is associated with.
+func (o GetLbsLbOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// Number of private networks attached to the Load balancer.
+func (o GetLbsLbOutput) PrivateNetworkCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbsLb) int { return v.PrivateNetworkCount }).(pulumi.IntOutput)
+}
+
+// The ID of the project the load-balancer is associated with.
+func (o GetLbsLbOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Number of routes the Load balancer has.
+func (o GetLbsLbOutput) RouteCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbsLb) int { return v.RouteCount }).(pulumi.IntOutput)
+}
+
+// Determines the minimal SSL version which needs to be supported on client side.
+func (o GetLbsLbOutput) SslCompatibilityLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.SslCompatibilityLevel }).(pulumi.StringOutput)
+}
+
+// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+func (o GetLbsLbOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The subscriber information.
+func (o GetLbsLbOutput) Subscriber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Subscriber }).(pulumi.StringOutput)
+}
+
+// The tags associated with the load-balancer.
+func (o GetLbsLbOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbsLb) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The offer type of the load-balancer.
+func (o GetLbsLbOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Date at which the Load balancer was updated.
+func (o GetLbsLbOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which LBs exist.
+func (o GetLbsLbOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLb) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetLbsLbArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbsLbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbsLb)(nil)).Elem()
+}
+
+func (o GetLbsLbArrayOutput) ToGetLbsLbArrayOutput() GetLbsLbArrayOutput {
+	return o
+}
+
+func (o GetLbsLbArrayOutput) ToGetLbsLbArrayOutputWithContext(ctx context.Context) GetLbsLbArrayOutput {
+	return o
+}
+
+func (o GetLbsLbArrayOutput) Index(i pulumi.IntInput) GetLbsLbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbsLb {
+		return vs[0].([]GetLbsLb)[vs[1].(int)]
+	}).(GetLbsLbOutput)
+}
+
+type GetLbsLbInstance struct {
+	// Date at which the Load balancer was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the load-balancer.
+	Id        string `pulumi:"id"`
+	IpAddress string `pulumi:"ipAddress"`
+	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	Status string `pulumi:"status"`
+	// Date at which the Load balancer was updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// `zone`) The zone in which LBs exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetLbsLbInstanceInput is an input type that accepts GetLbsLbInstanceArgs and GetLbsLbInstanceOutput values.
+// You can construct a concrete instance of `GetLbsLbInstanceInput` via:
+//
+//	GetLbsLbInstanceArgs{...}
+type GetLbsLbInstanceInput interface {
+	pulumi.Input
+
+	ToGetLbsLbInstanceOutput() GetLbsLbInstanceOutput
+	ToGetLbsLbInstanceOutputWithContext(context.Context) GetLbsLbInstanceOutput
+}
+
+type GetLbsLbInstanceArgs struct {
+	// Date at which the Load balancer was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the load-balancer.
+	Id        pulumi.StringInput `pulumi:"id"`
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Date at which the Load balancer was updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// `zone`) The zone in which LBs exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetLbsLbInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbsLbInstance)(nil)).Elem()
+}
+
+func (i GetLbsLbInstanceArgs) ToGetLbsLbInstanceOutput() GetLbsLbInstanceOutput {
+	return i.ToGetLbsLbInstanceOutputWithContext(context.Background())
+}
+
+func (i GetLbsLbInstanceArgs) ToGetLbsLbInstanceOutputWithContext(ctx context.Context) GetLbsLbInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbsLbInstanceOutput)
+}
+
+// GetLbsLbInstanceArrayInput is an input type that accepts GetLbsLbInstanceArray and GetLbsLbInstanceArrayOutput values.
+// You can construct a concrete instance of `GetLbsLbInstanceArrayInput` via:
+//
+//	GetLbsLbInstanceArray{ GetLbsLbInstanceArgs{...} }
+type GetLbsLbInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetLbsLbInstanceArrayOutput() GetLbsLbInstanceArrayOutput
+	ToGetLbsLbInstanceArrayOutputWithContext(context.Context) GetLbsLbInstanceArrayOutput
+}
+
+type GetLbsLbInstanceArray []GetLbsLbInstanceInput
+
+func (GetLbsLbInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbsLbInstance)(nil)).Elem()
+}
+
+func (i GetLbsLbInstanceArray) ToGetLbsLbInstanceArrayOutput() GetLbsLbInstanceArrayOutput {
+	return i.ToGetLbsLbInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbsLbInstanceArray) ToGetLbsLbInstanceArrayOutputWithContext(ctx context.Context) GetLbsLbInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbsLbInstanceArrayOutput)
+}
+
+type GetLbsLbInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetLbsLbInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbsLbInstance)(nil)).Elem()
+}
+
+func (o GetLbsLbInstanceOutput) ToGetLbsLbInstanceOutput() GetLbsLbInstanceOutput {
+	return o
+}
+
+func (o GetLbsLbInstanceOutput) ToGetLbsLbInstanceOutputWithContext(ctx context.Context) GetLbsLbInstanceOutput {
+	return o
+}
+
+// Date at which the Load balancer was created.
+func (o GetLbsLbInstanceOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the load-balancer.
+func (o GetLbsLbInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetLbsLbInstanceOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+func (o GetLbsLbInstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Date at which the Load balancer was updated.
+func (o GetLbsLbInstanceOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which LBs exist.
+func (o GetLbsLbInstanceOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetLbsLbInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbsLbInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbsLbInstance)(nil)).Elem()
+}
+
+func (o GetLbsLbInstanceArrayOutput) ToGetLbsLbInstanceArrayOutput() GetLbsLbInstanceArrayOutput {
+	return o
+}
+
+func (o GetLbsLbInstanceArrayOutput) ToGetLbsLbInstanceArrayOutputWithContext(ctx context.Context) GetLbsLbInstanceArrayOutput {
+	return o
+}
+
+func (o GetLbsLbInstanceArrayOutput) Index(i pulumi.IntInput) GetLbsLbInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbsLbInstance {
+		return vs[0].([]GetLbsLbInstance)[vs[1].(int)]
+	}).(GetLbsLbInstanceOutput)
+}
+
+type GetLbsLbIp struct {
+	// The ID of the load-balancer.
+	Id        string `pulumi:"id"`
+	IpAddress string `pulumi:"ipAddress"`
+	LbId      string `pulumi:"lbId"`
+	// The organization ID the load-balancer is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the project the load-balancer is associated with.
+	ProjectId string `pulumi:"projectId"`
+	Reverse   string `pulumi:"reverse"`
+	// `zone`) The zone in which LBs exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetLbsLbIpInput is an input type that accepts GetLbsLbIpArgs and GetLbsLbIpOutput values.
+// You can construct a concrete instance of `GetLbsLbIpInput` via:
+//
+//	GetLbsLbIpArgs{...}
+type GetLbsLbIpInput interface {
+	pulumi.Input
+
+	ToGetLbsLbIpOutput() GetLbsLbIpOutput
+	ToGetLbsLbIpOutputWithContext(context.Context) GetLbsLbIpOutput
+}
+
+type GetLbsLbIpArgs struct {
+	// The ID of the load-balancer.
+	Id        pulumi.StringInput `pulumi:"id"`
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	LbId      pulumi.StringInput `pulumi:"lbId"`
+	// The organization ID the load-balancer is associated with.
+	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
+	// The ID of the project the load-balancer is associated with.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	Reverse   pulumi.StringInput `pulumi:"reverse"`
+	// `zone`) The zone in which LBs exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetLbsLbIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbsLbIp)(nil)).Elem()
+}
+
+func (i GetLbsLbIpArgs) ToGetLbsLbIpOutput() GetLbsLbIpOutput {
+	return i.ToGetLbsLbIpOutputWithContext(context.Background())
+}
+
+func (i GetLbsLbIpArgs) ToGetLbsLbIpOutputWithContext(ctx context.Context) GetLbsLbIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbsLbIpOutput)
+}
+
+// GetLbsLbIpArrayInput is an input type that accepts GetLbsLbIpArray and GetLbsLbIpArrayOutput values.
+// You can construct a concrete instance of `GetLbsLbIpArrayInput` via:
+//
+//	GetLbsLbIpArray{ GetLbsLbIpArgs{...} }
+type GetLbsLbIpArrayInput interface {
+	pulumi.Input
+
+	ToGetLbsLbIpArrayOutput() GetLbsLbIpArrayOutput
+	ToGetLbsLbIpArrayOutputWithContext(context.Context) GetLbsLbIpArrayOutput
+}
+
+type GetLbsLbIpArray []GetLbsLbIpInput
+
+func (GetLbsLbIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbsLbIp)(nil)).Elem()
+}
+
+func (i GetLbsLbIpArray) ToGetLbsLbIpArrayOutput() GetLbsLbIpArrayOutput {
+	return i.ToGetLbsLbIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbsLbIpArray) ToGetLbsLbIpArrayOutputWithContext(ctx context.Context) GetLbsLbIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbsLbIpArrayOutput)
+}
+
+type GetLbsLbIpOutput struct{ *pulumi.OutputState }
+
+func (GetLbsLbIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbsLbIp)(nil)).Elem()
+}
+
+func (o GetLbsLbIpOutput) ToGetLbsLbIpOutput() GetLbsLbIpOutput {
+	return o
+}
+
+func (o GetLbsLbIpOutput) ToGetLbsLbIpOutputWithContext(ctx context.Context) GetLbsLbIpOutput {
+	return o
+}
+
+// The ID of the load-balancer.
+func (o GetLbsLbIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetLbsLbIpOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+func (o GetLbsLbIpOutput) LbId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.LbId }).(pulumi.StringOutput)
+}
+
+// The organization ID the load-balancer is associated with.
+func (o GetLbsLbIpOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The ID of the project the load-balancer is associated with.
+func (o GetLbsLbIpOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetLbsLbIpOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which LBs exist.
+func (o GetLbsLbIpOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbsLbIp) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetLbsLbIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbsLbIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbsLbIp)(nil)).Elem()
+}
+
+func (o GetLbsLbIpArrayOutput) ToGetLbsLbIpArrayOutput() GetLbsLbIpArrayOutput {
+	return o
+}
+
+func (o GetLbsLbIpArrayOutput) ToGetLbsLbIpArrayOutputWithContext(ctx context.Context) GetLbsLbIpArrayOutput {
+	return o
+}
+
+func (o GetLbsLbIpArrayOutput) Index(i pulumi.IntInput) GetLbsLbIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbsLbIp {
+		return vs[0].([]GetLbsLbIp)[vs[1].(int)]
+	}).(GetLbsLbIpOutput)
+}
+
 type GetLoadbalancerCertificateCustomCertificate struct {
 	CertificateChain string `pulumi:"certificateChain"`
 }
@@ -13642,7 +16735,7 @@ type GetLoadbalancerPrivateNetwork struct {
 	PrivateNetworkId string   `pulumi:"privateNetworkId"`
 	StaticConfigs    []string `pulumi:"staticConfigs"`
 	Status           string   `pulumi:"status"`
-	// (Defaults to provider `region`) The region in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone string `pulumi:"zone"`
 }
 
@@ -13662,7 +16755,7 @@ type GetLoadbalancerPrivateNetworkArgs struct {
 	PrivateNetworkId pulumi.StringInput      `pulumi:"privateNetworkId"`
 	StaticConfigs    pulumi.StringArrayInput `pulumi:"staticConfigs"`
 	Status           pulumi.StringInput      `pulumi:"status"`
-	// (Defaults to provider `region`) The region in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -13733,7 +16826,7 @@ func (o GetLoadbalancerPrivateNetworkOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancerPrivateNetwork) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region in which the LB exists.
+// (Defaults to provider `zone`) The zone in which the LB exists.
 func (o GetLoadbalancerPrivateNetworkOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadbalancerPrivateNetwork) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -14299,8 +17392,9 @@ func (o GetObjectBucketVersioningArrayOutput) Index(i pulumi.IntInput) GetObject
 
 type GetRedisClusterAcl struct {
 	Description string `pulumi:"description"`
-	Id          string `pulumi:"id"`
-	Ip          string `pulumi:"ip"`
+	// The ID of the Redis cluster.
+	Id string `pulumi:"id"`
+	Ip string `pulumi:"ip"`
 }
 
 // GetRedisClusterAclInput is an input type that accepts GetRedisClusterAclArgs and GetRedisClusterAclOutput values.
@@ -14316,8 +17410,9 @@ type GetRedisClusterAclInput interface {
 
 type GetRedisClusterAclArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
-	Id          pulumi.StringInput `pulumi:"id"`
-	Ip          pulumi.StringInput `pulumi:"ip"`
+	// The ID of the Redis cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
 func (GetRedisClusterAclArgs) ElementType() reflect.Type {
@@ -14375,6 +17470,7 @@ func (o GetRedisClusterAclOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterAcl) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// The ID of the Redis cluster.
 func (o GetRedisClusterAclOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterAcl) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -14404,7 +17500,8 @@ func (o GetRedisClusterAclArrayOutput) Index(i pulumi.IntInput) GetRedisClusterA
 }
 
 type GetRedisClusterPrivateNetwork struct {
-	EndpointId string   `pulumi:"endpointId"`
+	EndpointId string `pulumi:"endpointId"`
+	// The ID of the Redis cluster.
 	Id         string   `pulumi:"id"`
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
@@ -14423,7 +17520,8 @@ type GetRedisClusterPrivateNetworkInput interface {
 }
 
 type GetRedisClusterPrivateNetworkArgs struct {
-	EndpointId pulumi.StringInput      `pulumi:"endpointId"`
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// The ID of the Redis cluster.
 	Id         pulumi.StringInput      `pulumi:"id"`
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
@@ -14485,6 +17583,7 @@ func (o GetRedisClusterPrivateNetworkOutput) EndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterPrivateNetwork) string { return v.EndpointId }).(pulumi.StringOutput)
 }
 
+// The ID of the Redis cluster.
 func (o GetRedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -14519,6 +17618,7 @@ func (o GetRedisClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetRe
 }
 
 type GetRedisClusterPublicNetwork struct {
+	// The ID of the Redis cluster.
 	Id   string   `pulumi:"id"`
 	Ips  []string `pulumi:"ips"`
 	Port int      `pulumi:"port"`
@@ -14536,6 +17636,7 @@ type GetRedisClusterPublicNetworkInput interface {
 }
 
 type GetRedisClusterPublicNetworkArgs struct {
+	// The ID of the Redis cluster.
 	Id   pulumi.StringInput      `pulumi:"id"`
 	Ips  pulumi.StringArrayInput `pulumi:"ips"`
 	Port pulumi.IntInput         `pulumi:"port"`
@@ -14592,6 +17693,7 @@ func (o GetRedisClusterPublicNetworkOutput) ToGetRedisClusterPublicNetworkOutput
 	return o
 }
 
+// The ID of the Redis cluster.
 func (o GetRedisClusterPublicNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterPublicNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -14624,6 +17726,175 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetWebHostOfferProduct struct {
+	// The quota of databases.
+	DatabasesQuota int `pulumi:"databasesQuota"`
+	// The quota of email accounts.
+	EmailAccountsQuota int `pulumi:"emailAccountsQuota"`
+	// The quota of email storage.
+	EmailStorageQuota int `pulumi:"emailStorageQuota"`
+	// The quota of hosting storage.
+	HostingStorageQuota int `pulumi:"hostingStorageQuota"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name string `pulumi:"name"`
+	// The product option.
+	Option bool `pulumi:"option"`
+	// The capacity of the memory in GB.
+	Ram int `pulumi:"ram"`
+	// If support is included.
+	SupportIncluded bool `pulumi:"supportIncluded"`
+	// The number of cores.
+	VCpu int `pulumi:"vCpu"`
+}
+
+// GetWebHostOfferProductInput is an input type that accepts GetWebHostOfferProductArgs and GetWebHostOfferProductOutput values.
+// You can construct a concrete instance of `GetWebHostOfferProductInput` via:
+//
+//	GetWebHostOfferProductArgs{...}
+type GetWebHostOfferProductInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferProductOutput() GetWebHostOfferProductOutput
+	ToGetWebHostOfferProductOutputWithContext(context.Context) GetWebHostOfferProductOutput
+}
+
+type GetWebHostOfferProductArgs struct {
+	// The quota of databases.
+	DatabasesQuota pulumi.IntInput `pulumi:"databasesQuota"`
+	// The quota of email accounts.
+	EmailAccountsQuota pulumi.IntInput `pulumi:"emailAccountsQuota"`
+	// The quota of email storage.
+	EmailStorageQuota pulumi.IntInput `pulumi:"emailStorageQuota"`
+	// The quota of hosting storage.
+	HostingStorageQuota pulumi.IntInput `pulumi:"hostingStorageQuota"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The product option.
+	Option pulumi.BoolInput `pulumi:"option"`
+	// The capacity of the memory in GB.
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// If support is included.
+	SupportIncluded pulumi.BoolInput `pulumi:"supportIncluded"`
+	// The number of cores.
+	VCpu pulumi.IntInput `pulumi:"vCpu"`
+}
+
+func (GetWebHostOfferProductArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (i GetWebHostOfferProductArgs) ToGetWebHostOfferProductOutput() GetWebHostOfferProductOutput {
+	return i.ToGetWebHostOfferProductOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferProductArgs) ToGetWebHostOfferProductOutputWithContext(ctx context.Context) GetWebHostOfferProductOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferProductOutput)
+}
+
+// GetWebHostOfferProductArrayInput is an input type that accepts GetWebHostOfferProductArray and GetWebHostOfferProductArrayOutput values.
+// You can construct a concrete instance of `GetWebHostOfferProductArrayInput` via:
+//
+//	GetWebHostOfferProductArray{ GetWebHostOfferProductArgs{...} }
+type GetWebHostOfferProductArrayInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferProductArrayOutput() GetWebHostOfferProductArrayOutput
+	ToGetWebHostOfferProductArrayOutputWithContext(context.Context) GetWebHostOfferProductArrayOutput
+}
+
+type GetWebHostOfferProductArray []GetWebHostOfferProductInput
+
+func (GetWebHostOfferProductArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (i GetWebHostOfferProductArray) ToGetWebHostOfferProductArrayOutput() GetWebHostOfferProductArrayOutput {
+	return i.ToGetWebHostOfferProductArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferProductArray) ToGetWebHostOfferProductArrayOutputWithContext(ctx context.Context) GetWebHostOfferProductArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferProductArrayOutput)
+}
+
+type GetWebHostOfferProductOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferProductOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (o GetWebHostOfferProductOutput) ToGetWebHostOfferProductOutput() GetWebHostOfferProductOutput {
+	return o
+}
+
+func (o GetWebHostOfferProductOutput) ToGetWebHostOfferProductOutputWithContext(ctx context.Context) GetWebHostOfferProductOutput {
+	return o
+}
+
+// The quota of databases.
+func (o GetWebHostOfferProductOutput) DatabasesQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.DatabasesQuota }).(pulumi.IntOutput)
+}
+
+// The quota of email accounts.
+func (o GetWebHostOfferProductOutput) EmailAccountsQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.EmailAccountsQuota }).(pulumi.IntOutput)
+}
+
+// The quota of email storage.
+func (o GetWebHostOfferProductOutput) EmailStorageQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.EmailStorageQuota }).(pulumi.IntOutput)
+}
+
+// The quota of hosting storage.
+func (o GetWebHostOfferProductOutput) HostingStorageQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.HostingStorageQuota }).(pulumi.IntOutput)
+}
+
+// The offer name. Only one of `name` and `offerId` should be specified.
+func (o GetWebHostOfferProductOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The product option.
+func (o GetWebHostOfferProductOutput) Option() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) bool { return v.Option }).(pulumi.BoolOutput)
+}
+
+// The capacity of the memory in GB.
+func (o GetWebHostOfferProductOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// If support is included.
+func (o GetWebHostOfferProductOutput) SupportIncluded() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) bool { return v.SupportIncluded }).(pulumi.BoolOutput)
+}
+
+// The number of cores.
+func (o GetWebHostOfferProductOutput) VCpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.VCpu }).(pulumi.IntOutput)
+}
+
+type GetWebHostOfferProductArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferProductArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (o GetWebHostOfferProductArrayOutput) ToGetWebHostOfferProductArrayOutput() GetWebHostOfferProductArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferProductArrayOutput) ToGetWebHostOfferProductArrayOutputWithContext(ctx context.Context) GetWebHostOfferProductArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferProductArrayOutput) Index(i pulumi.IntInput) GetWebHostOfferProductOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebHostOfferProduct {
+		return vs[0].([]GetWebHostOfferProduct)[vs[1].(int)]
+	}).(GetWebHostOfferProductOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
@@ -14631,6 +17902,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionArrayInput)(nil)).Elem(), BaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointInput)(nil)).Elem(), CockpitEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesInput)(nil)).Elem(), CockpitTokenScopesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleInput)(nil)).Elem(), DatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleArrayInput)(nil)).Elem(), DatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArgs{})
@@ -14762,6 +18037,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionArrayInput)(nil)).Elem(), GetBaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointInput)(nil)).Elem(), GetCockpitEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointArrayInput)(nil)).Elem(), GetCockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleInput)(nil)).Elem(), GetDatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleArrayInput)(nil)).Elem(), GetDatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArgs{})
@@ -14812,6 +18089,40 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodeArrayInput)(nil)).Elem(), GetKubernetesNodePoolNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyArrayInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclInput)(nil)).Elem(), GetLbAclsAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclArrayInput)(nil)).Elem(), GetLbAclsAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclActionInput)(nil)).Elem(), GetLbAclsAclActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclActionArrayInput)(nil)).Elem(), GetLbAclsAclActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclMatchInput)(nil)).Elem(), GetLbAclsAclMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclMatchArrayInput)(nil)).Elem(), GetLbAclsAclMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendHealthCheckHttpInput)(nil)).Elem(), GetLbBackendHealthCheckHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendHealthCheckHttpArrayInput)(nil)).Elem(), GetLbBackendHealthCheckHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendHealthCheckTcpInput)(nil)).Elem(), GetLbBackendHealthCheckTcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendHealthCheckTcpArrayInput)(nil)).Elem(), GetLbBackendHealthCheckTcpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendsBackendInput)(nil)).Elem(), GetLbBackendsBackendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendsBackendArrayInput)(nil)).Elem(), GetLbBackendsBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendsBackendHealthCheckHttpInput)(nil)).Elem(), GetLbBackendsBackendHealthCheckHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendsBackendHealthCheckHttpArrayInput)(nil)).Elem(), GetLbBackendsBackendHealthCheckHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendsBackendHealthCheckTcpInput)(nil)).Elem(), GetLbBackendsBackendHealthCheckTcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendsBackendHealthCheckTcpArrayInput)(nil)).Elem(), GetLbBackendsBackendHealthCheckTcpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclInput)(nil)).Elem(), GetLbFrontendAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclArrayInput)(nil)).Elem(), GetLbFrontendAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclActionInput)(nil)).Elem(), GetLbFrontendAclActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclActionArrayInput)(nil)).Elem(), GetLbFrontendAclActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclMatchInput)(nil)).Elem(), GetLbFrontendAclMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclMatchArrayInput)(nil)).Elem(), GetLbFrontendAclMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendsFrontendInput)(nil)).Elem(), GetLbFrontendsFrontendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendsFrontendArrayInput)(nil)).Elem(), GetLbFrontendsFrontendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbIpsIpInput)(nil)).Elem(), GetLbIpsIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbIpsIpArrayInput)(nil)).Elem(), GetLbIpsIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbRoutesRouteInput)(nil)).Elem(), GetLbRoutesRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbRoutesRouteArrayInput)(nil)).Elem(), GetLbRoutesRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbInput)(nil)).Elem(), GetLbsLbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbArrayInput)(nil)).Elem(), GetLbsLbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbInstanceInput)(nil)).Elem(), GetLbsLbInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbInstanceArrayInput)(nil)).Elem(), GetLbsLbInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbIpInput)(nil)).Elem(), GetLbsLbIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbIpArrayInput)(nil)).Elem(), GetLbsLbIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateCustomCertificateInput)(nil)).Elem(), GetLoadbalancerCertificateCustomCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateCustomCertificateArrayInput)(nil)).Elem(), GetLoadbalancerCertificateCustomCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArgs{})
@@ -14834,12 +18145,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(CockpitEndpointOutput{})
+	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
+	pulumi.RegisterOutputType(CockpitTokenScopesOutput{})
+	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(DatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerOutput{})
@@ -14971,6 +18288,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetCockpitEndpointOutput{})
+	pulumi.RegisterOutputType(GetCockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerOutput{})
@@ -15021,6 +18340,40 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesNodePoolNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolUpgradePolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclArrayOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclActionOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclActionArrayOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclMatchOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclMatchArrayOutput{})
+	pulumi.RegisterOutputType(GetLbBackendHealthCheckHttpOutput{})
+	pulumi.RegisterOutputType(GetLbBackendHealthCheckHttpArrayOutput{})
+	pulumi.RegisterOutputType(GetLbBackendHealthCheckTcpOutput{})
+	pulumi.RegisterOutputType(GetLbBackendHealthCheckTcpArrayOutput{})
+	pulumi.RegisterOutputType(GetLbBackendsBackendOutput{})
+	pulumi.RegisterOutputType(GetLbBackendsBackendArrayOutput{})
+	pulumi.RegisterOutputType(GetLbBackendsBackendHealthCheckHttpOutput{})
+	pulumi.RegisterOutputType(GetLbBackendsBackendHealthCheckHttpArrayOutput{})
+	pulumi.RegisterOutputType(GetLbBackendsBackendHealthCheckTcpOutput{})
+	pulumi.RegisterOutputType(GetLbBackendsBackendHealthCheckTcpArrayOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclArrayOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclActionOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclActionArrayOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclMatchOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclMatchArrayOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendsFrontendOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendsFrontendArrayOutput{})
+	pulumi.RegisterOutputType(GetLbIpsIpOutput{})
+	pulumi.RegisterOutputType(GetLbIpsIpArrayOutput{})
+	pulumi.RegisterOutputType(GetLbRoutesRouteOutput{})
+	pulumi.RegisterOutputType(GetLbRoutesRouteArrayOutput{})
+	pulumi.RegisterOutputType(GetLbsLbOutput{})
+	pulumi.RegisterOutputType(GetLbsLbArrayOutput{})
+	pulumi.RegisterOutputType(GetLbsLbInstanceOutput{})
+	pulumi.RegisterOutputType(GetLbsLbInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetLbsLbIpOutput{})
+	pulumi.RegisterOutputType(GetLbsLbIpArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateCustomCertificateOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateCustomCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateLetsencryptOutput{})
@@ -15043,4 +18396,6 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferProductArrayOutput{})
 }

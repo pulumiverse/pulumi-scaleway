@@ -11,6 +11,8 @@ import com.pulumi.scaleway.InstancePrivateNicArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.InstancePrivateNicState;
 import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -111,7 +113,7 @@ public class InstancePrivateNic extends com.pulumi.resources.CustomResource {
      * The MAC address of the private NIC.
      * 
      */
-    @Export(name="macAddress", type=String.class, parameters={})
+    @Export(name="macAddress", refs={String.class}, tree="[0]")
     private Output<String> macAddress;
 
     /**
@@ -125,7 +127,7 @@ public class InstancePrivateNic extends com.pulumi.resources.CustomResource {
      * The ID of the private network attached to.
      * 
      */
-    @Export(name="privateNetworkId", type=String.class, parameters={})
+    @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
     private Output<String> privateNetworkId;
 
     /**
@@ -139,7 +141,7 @@ public class InstancePrivateNic extends com.pulumi.resources.CustomResource {
      * The ID of the server associated with.
      * 
      */
-    @Export(name="serverId", type=String.class, parameters={})
+    @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output<String> serverId;
 
     /**
@@ -150,10 +152,24 @@ public class InstancePrivateNic extends com.pulumi.resources.CustomResource {
         return this.serverId;
     }
     /**
+     * The tags associated with the private NIC.
+     * 
+     */
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tags;
+
+    /**
+     * @return The tags associated with the private NIC.
+     * 
+     */
+    public Output<Optional<List<String>>> tags() {
+        return Codegen.optional(this.tags);
+    }
+    /**
      * `zone`) The zone in which the server must be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

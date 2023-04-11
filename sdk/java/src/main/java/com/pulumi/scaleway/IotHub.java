@@ -32,7 +32,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The current number of connected devices in the Hub.
      * 
      */
-    @Export(name="connectedDeviceCount", type=Integer.class, parameters={})
+    @Export(name="connectedDeviceCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> connectedDeviceCount;
 
     /**
@@ -46,7 +46,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The date and time the Hub was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -60,7 +60,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Wether to enable the device auto provisioning or not
      * 
      */
-    @Export(name="deviceAutoProvisioning", type=Boolean.class, parameters={})
+    @Export(name="deviceAutoProvisioning", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deviceAutoProvisioning;
 
     /**
@@ -74,7 +74,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The number of registered devices in the Hub.
      * 
      */
-    @Export(name="deviceCount", type=Integer.class, parameters={})
+    @Export(name="deviceCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> deviceCount;
 
     /**
@@ -88,7 +88,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Whether to enable the hub events or not
      * 
      */
-    @Export(name="disableEvents", type=Boolean.class, parameters={})
+    @Export(name="disableEvents", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableEvents;
 
     /**
@@ -102,7 +102,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Wether the IoT Hub instance should be enabled or not.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -116,7 +116,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The MQTT network endpoint to connect MQTT devices to.
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     /**
@@ -130,7 +130,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Topic prefix for the hub events
      * 
      */
-    @Export(name="eventsTopicPrefix", type=String.class, parameters={})
+    @Export(name="eventsTopicPrefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> eventsTopicPrefix;
 
     /**
@@ -144,7 +144,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Custom user provided certificate authority
      * 
      */
-    @Export(name="hubCa", type=String.class, parameters={})
+    @Export(name="hubCa", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hubCa;
 
     /**
@@ -158,7 +158,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Challenge certificate for the user provided hub CA
      * 
      */
-    @Export(name="hubCaChallenge", type=String.class, parameters={})
+    @Export(name="hubCaChallenge", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hubCaChallenge;
 
     /**
@@ -172,7 +172,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -186,7 +186,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The organization_id you want to attach the resource to
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -200,7 +200,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
      * 
      */
-    @Export(name="productPlan", type=String.class, parameters={})
+    @Export(name="productPlan", refs={String.class}, tree="[0]")
     private Output<String> productPlan;
 
     /**
@@ -214,7 +214,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the IoT Hub Instance is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -228,7 +228,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * `region`) The region in which the Database Instance should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -242,7 +242,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The current status of the Hub.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -256,7 +256,7 @@ public class IotHub extends com.pulumi.resources.CustomResource {
      * The date and time the Hub resource was updated.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

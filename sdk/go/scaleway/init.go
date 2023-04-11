@@ -28,6 +28,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AppleSliconValleyServer{}
 	case "scaleway:index/baremetalServer:BaremetalServer":
 		r = &BaremetalServer{}
+	case "scaleway:index/cockpit:Cockpit":
+		r = &Cockpit{}
+	case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
+		r = &CockpitGrafanaUser{}
+	case "scaleway:index/cockpitToken:CockpitToken":
+		r = &CockpitToken{}
 	case "scaleway:index/container:Container":
 		r = &Container{}
 	case "scaleway:index/containerCron:ContainerCron":
@@ -144,6 +150,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
+	case "scaleway:index/secret:Secret":
+		r = &Secret{}
+	case "scaleway:index/secretVersion:SecretVersion":
+		r = &SecretVersion{}
 	case "scaleway:index/temDomain:TemDomain":
 		r = &TemDomain{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -158,6 +168,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcPublicGatewayDhcpReservation{}
 	case "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp":
 		r = &VpcPublicGatewayIp{}
+	case "scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns":
+		r = &VpcPublicGatewayIpReverseDns{}
 	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
 		r = &VpcPublicGatewayPatRule{}
 	default:
@@ -206,6 +218,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/baremetalServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/cockpit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/cockpitGrafanaUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/cockpitToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -500,6 +527,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/secret",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/secretVersion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/temDomain",
 		&module{version},
 	)
@@ -531,6 +568,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/vpcPublicGatewayIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/vpcPublicGatewayIpReverseDns",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

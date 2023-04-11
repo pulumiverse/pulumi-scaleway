@@ -46,6 +46,9 @@ export interface GetAccountSshKeyArgs {
  * A collection of values returned by getAccountSshKey.
  */
 export interface GetAccountSshKeyResult {
+    readonly createdAt: string;
+    readonly disabled: boolean;
+    readonly fingerprint: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -61,6 +64,7 @@ export interface GetAccountSshKeyResult {
      */
     readonly publicKey: string;
     readonly sshKeyId?: string;
+    readonly updatedAt: string;
 }
 /**
  * Use this data source to get SSH key information based on its ID or name.

@@ -13,55 +13,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public static class GetDatabaseInstance
     {
         /// <summary>
-        /// Gets information about an RDB instance.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myInstance = Scaleway.GetDatabaseInstance.Invoke(new()
-        ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
         /// </summary>
         public static Task<GetDatabaseInstanceResult> InvokeAsync(GetDatabaseInstanceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about an RDB instance.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myInstance = Scaleway.GetDatabaseInstance.Invoke(new()
-        ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
         /// </summary>
         public static Output<GetDatabaseInstanceResult> Invoke(GetDatabaseInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceInvokeArgs(), options.WithDefaults());
@@ -84,6 +42,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the RDB instance exists.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetDatabaseInstanceArgs()
         {
         }
@@ -105,6 +69,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the RDB instance exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         public GetDatabaseInstanceInvokeArgs()
         {
@@ -139,7 +109,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly ImmutableArray<Outputs.GetDatabaseInstancePrivateNetworkResult> PrivateNetworks;
         public readonly string ProjectId;
         public readonly ImmutableArray<Outputs.GetDatabaseInstanceReadReplicaResult> ReadReplicas;
-        public readonly string Region;
+        public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Settings;
         public readonly ImmutableArray<string> Tags;
         public readonly string UserName;
@@ -188,7 +158,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             ImmutableArray<Outputs.GetDatabaseInstanceReadReplicaResult> readReplicas,
 
-            string region,
+            string? region,
 
             ImmutableDictionary<string, string> settings,
 

@@ -66,7 +66,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * The date and time the Namespace was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -80,7 +80,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * The endpoint of the service matching the Namespace protocol.
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     /**
@@ -94,7 +94,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * The unique name of the namespace.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -109,7 +109,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * namespace is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -125,7 +125,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * supported [protocols](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/mnq/v1alpha1#pkg-constants).
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
@@ -141,7 +141,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * in which the namespace should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -156,7 +156,7 @@ public class MnqNamespace extends com.pulumi.resources.CustomResource {
      * The date and time the Namespace was updated.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

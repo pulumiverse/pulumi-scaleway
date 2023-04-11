@@ -20,11 +20,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        /// Endpoint IPv4 addresses
+        /// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+        /// least one IP per node.
         /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>
-        /// `zone`) The zone in which the Redis Cluster should be created.
+        /// `zone`) The zone in which the
+        /// Redis Cluster should be created.
         /// </summary>
         public readonly string? Zone;
 

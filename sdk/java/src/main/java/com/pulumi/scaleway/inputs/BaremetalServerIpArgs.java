@@ -60,9 +60,17 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.reverse);
     }
 
+    /**
+     * The type of the IP.
+     * 
+     */
     @Import(name="version")
     private @Nullable Output<String> version;
 
+    /**
+     * @return The type of the IP.
+     * 
+     */
     public Optional<Output<String>> version() {
         return Optional.ofNullable(this.version);
     }
@@ -157,11 +165,23 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
             return reverse(Output.of(reverse));
         }
 
+        /**
+         * @param version The type of the IP.
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(@Nullable Output<String> version) {
             $.version = version;
             return this;
         }
 
+        /**
+         * @param version The type of the IP.
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(String version) {
             return version(Output.of(version));
         }

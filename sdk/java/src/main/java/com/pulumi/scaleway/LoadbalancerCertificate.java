@@ -23,7 +23,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * Main domain of the certificate. A new certificate will be created if this field is changed.
      * 
      */
-    @Export(name="commonName", type=String.class, parameters={})
+    @Export(name="commonName", refs={String.class}, tree="[0]")
     private Output<String> commonName;
 
     /**
@@ -37,7 +37,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
      * 
      */
-    @Export(name="customCertificate", type=LoadbalancerCertificateCustomCertificate.class, parameters={})
+    @Export(name="customCertificate", refs={LoadbalancerCertificateCustomCertificate.class}, tree="[0]")
     private Output</* @Nullable */ LoadbalancerCertificateCustomCertificate> customCertificate;
 
     /**
@@ -51,7 +51,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * The identifier (SHA-1) of the certificate
      * 
      */
-    @Export(name="fingerprint", type=String.class, parameters={})
+    @Export(name="fingerprint", refs={String.class}, tree="[0]")
     private Output<String> fingerprint;
 
     /**
@@ -65,7 +65,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * The load-balancer ID this certificate is attached to.
      * 
      */
-    @Export(name="lbId", type=String.class, parameters={})
+    @Export(name="lbId", refs={String.class}, tree="[0]")
     private Output<String> lbId;
 
     /**
@@ -79,7 +79,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * Configuration block for Let&#39;s Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
      * 
      */
-    @Export(name="letsencrypt", type=LoadbalancerCertificateLetsencrypt.class, parameters={})
+    @Export(name="letsencrypt", refs={LoadbalancerCertificateLetsencrypt.class}, tree="[0]")
     private Output</* @Nullable */ LoadbalancerCertificateLetsencrypt> letsencrypt;
 
     /**
@@ -93,7 +93,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * The name of the certificate backend.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -107,7 +107,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * The not valid after validity bound timestamp
      * 
      */
-    @Export(name="notValidAfter", type=String.class, parameters={})
+    @Export(name="notValidAfter", refs={String.class}, tree="[0]")
     private Output<String> notValidAfter;
 
     /**
@@ -121,7 +121,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * The not valid before validity bound timestamp
      * 
      */
-    @Export(name="notValidBefore", type=String.class, parameters={})
+    @Export(name="notValidBefore", refs={String.class}, tree="[0]")
     private Output<String> notValidBefore;
 
     /**
@@ -135,7 +135,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * Certificate status
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -149,7 +149,7 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
      * Array of alternative domain names.  A new certificate will be created if this field is changed.
      * 
      */
-    @Export(name="subjectAlternativeNames", type=List.class, parameters={String.class})
+    @Export(name="subjectAlternativeNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> subjectAlternativeNames;
 
     /**

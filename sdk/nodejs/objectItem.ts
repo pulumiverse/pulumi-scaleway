@@ -79,7 +79,7 @@ export class ObjectItem extends pulumi.CustomResource {
     /**
      * Map of tags
      */
-    public readonly tags!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Visibility of the object, `public-read` or `private`
      */
@@ -171,7 +171,7 @@ export interface ObjectItemState {
     /**
      * Map of tags
      */
-    tags?: pulumi.Input<{[key: string]: any}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Visibility of the object, `public-read` or `private`
      */
@@ -217,7 +217,7 @@ export interface ObjectItemArgs {
     /**
      * Map of tags
      */
-    tags?: pulumi.Input<{[key: string]: any}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Visibility of the object, `public-read` or `private`
      */

@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -55,6 +56,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -80,6 +82,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -121,14 +124,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/redisCluster:RedisCluster")]
     public partial class RedisCluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// List of acl rules, this is cluster's authorized IPs.
+        /// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.RedisClusterAcl>> Acls { get; private set; } = null!;
@@ -170,25 +173,29 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        /// Describes the private network you want to connect to your cluster. If not set, a public
+        /// network will be provided. More details on the Private Network section
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.RedisClusterPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis Cluster is associated with.
+        /// `project_id`) The ID of the project the Redis Cluster is
+        /// associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Public network specs details
+        /// (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        /// &gt; The `public_network` block exports:
         /// </summary>
         [Output("publicNetwork")]
         public Output<Outputs.RedisClusterPublicNetwork> PublicNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        /// Map of settings for redis cluster. Available settings can be found by listing redis versions
+        /// with scaleway API or CLI
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>?> Settings { get; private set; } = null!;
@@ -224,7 +231,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Version { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Redis Cluster should be created.
+        /// `zone`) The zone in which the
+        /// Redis Cluster should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -284,7 +292,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.RedisClusterAclArgs>? _acls;
 
         /// <summary>
-        /// List of acl rules, this is cluster's authorized IPs.
+        /// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         /// </summary>
         public InputList<Inputs.RedisClusterAclArgs> Acls
         {
@@ -330,7 +338,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.RedisClusterPrivateNetworkArgs>? _privateNetworks;
 
         /// <summary>
-        /// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        /// Describes the private network you want to connect to your cluster. If not set, a public
+        /// network will be provided. More details on the Private Network section
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkArgs> PrivateNetworks
         {
@@ -339,13 +348,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis Cluster is associated with.
+        /// `project_id`) The ID of the project the Redis Cluster is
+        /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Public network specs details
+        /// (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        /// &gt; The `public_network` block exports:
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.RedisClusterPublicNetworkArgs>? PublicNetwork { get; set; }
@@ -354,7 +365,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        /// Map of settings for redis cluster. Available settings can be found by listing redis versions
+        /// with scaleway API or CLI
         /// </summary>
         public InputMap<string> Settings
         {
@@ -393,7 +405,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Version { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Redis Cluster should be created.
+        /// `zone`) The zone in which the
+        /// Redis Cluster should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -410,7 +423,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.RedisClusterAclGetArgs>? _acls;
 
         /// <summary>
-        /// List of acl rules, this is cluster's authorized IPs.
+        /// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         /// </summary>
         public InputList<Inputs.RedisClusterAclGetArgs> Acls
         {
@@ -468,7 +481,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.RedisClusterPrivateNetworkGetArgs>? _privateNetworks;
 
         /// <summary>
-        /// Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        /// Describes the private network you want to connect to your cluster. If not set, a public
+        /// network will be provided. More details on the Private Network section
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkGetArgs> PrivateNetworks
         {
@@ -477,13 +491,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis Cluster is associated with.
+        /// `project_id`) The ID of the project the Redis Cluster is
+        /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Public network specs details
+        /// (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        /// &gt; The `public_network` block exports:
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.RedisClusterPublicNetworkGetArgs>? PublicNetwork { get; set; }
@@ -492,7 +508,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        /// Map of settings for redis cluster. Available settings can be found by listing redis versions
+        /// with scaleway API or CLI
         /// </summary>
         public InputMap<string> Settings
         {
@@ -537,7 +554,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Version { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the Redis Cluster should be created.
+        /// `zone`) The zone in which the
+        /// Redis Cluster should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

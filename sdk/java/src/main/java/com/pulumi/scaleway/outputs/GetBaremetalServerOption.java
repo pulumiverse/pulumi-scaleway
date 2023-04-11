@@ -10,6 +10,10 @@ import java.util.Objects;
 @CustomType
 public final class GetBaremetalServerOption {
     private String expiresAt;
+    /**
+     * @return The ID of the server.
+     * 
+     */
     private String id;
     /**
      * @return The server name. Only one of `name` and `server_id` should be specified.
@@ -21,6 +25,10 @@ public final class GetBaremetalServerOption {
     public String expiresAt() {
         return this.expiresAt;
     }
+    /**
+     * @return The ID of the server.
+     * 
+     */
     public String id() {
         return this.id;
     }

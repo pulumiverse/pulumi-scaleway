@@ -99,7 +99,7 @@ public class FunctionCron extends com.pulumi.resources.CustomResource {
      * during
      * 
      */
-    @Export(name="args", type=String.class, parameters={})
+    @Export(name="args", refs={String.class}, tree="[0]")
     private Output<String> args;
 
     /**
@@ -114,7 +114,7 @@ public class FunctionCron extends com.pulumi.resources.CustomResource {
      * The function ID to link with your cron.
      * 
      */
-    @Export(name="functionId", type=String.class, parameters={})
+    @Export(name="functionId", refs={String.class}, tree="[0]")
     private Output<String> functionId;
 
     /**
@@ -129,7 +129,7 @@ public class FunctionCron extends com.pulumi.resources.CustomResource {
      * in where the job was created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -145,7 +145,7 @@ public class FunctionCron extends com.pulumi.resources.CustomResource {
      * executed.
      * 
      */
-    @Export(name="schedule", type=String.class, parameters={})
+    @Export(name="schedule", refs={String.class}, tree="[0]")
     private Output<String> schedule;
 
     /**
@@ -160,7 +160,7 @@ public class FunctionCron extends com.pulumi.resources.CustomResource {
      * The cron status.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

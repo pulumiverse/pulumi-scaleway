@@ -31,14 +31,14 @@ public final class DatabasePrivilegeState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * UUID of the instance where to create the database.
+     * UUID of the rdb instance.
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where to create the database.
+     * @return UUID of the rdb instance.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -58,6 +58,21 @@ public final class DatabasePrivilegeState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> permission() {
         return Optional.ofNullable(this.permission);
+    }
+
+    /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
     }
 
     /**
@@ -81,6 +96,7 @@ public final class DatabasePrivilegeState extends com.pulumi.resources.ResourceA
         this.databaseName = $.databaseName;
         this.instanceId = $.instanceId;
         this.permission = $.permission;
+        this.region = $.region;
         this.userName = $.userName;
     }
 
@@ -124,7 +140,7 @@ public final class DatabasePrivilegeState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -135,7 +151,7 @@ public final class DatabasePrivilegeState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param instanceId UUID of the instance where to create the database.
+         * @param instanceId UUID of the rdb instance.
          * 
          * @return builder
          * 
@@ -163,6 +179,27 @@ public final class DatabasePrivilegeState extends com.pulumi.resources.ResourceA
          */
         public Builder permission(String permission) {
             return permission(Output.of(permission));
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

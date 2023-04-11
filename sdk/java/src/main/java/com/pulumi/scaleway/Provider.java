@@ -26,7 +26,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Scaleway access key.
      * 
      */
-    @Export(name="accessKey", type=String.class, parameters={})
+    @Export(name="accessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessKey;
 
     /**
@@ -40,7 +40,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Scaleway API URL to use.
      * 
      */
-    @Export(name="apiUrl", type=String.class, parameters={})
+    @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiUrl;
 
     /**
@@ -54,7 +54,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Scaleway organization ID.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organizationId;
 
     /**
@@ -68,7 +68,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Scaleway profile to use.
      * 
      */
-    @Export(name="profile", type=String.class, parameters={})
+    @Export(name="profile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> profile;
 
     /**
@@ -82,7 +82,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Scaleway project ID.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> projectId;
 
     /**
@@ -96,7 +96,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The region you want to attach the resource to
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -110,7 +110,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Scaleway secret Key.
      * 
      */
-    @Export(name="secretKey", type=String.class, parameters={})
+    @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretKey;
 
     /**
@@ -124,7 +124,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The zone you want to attach the resource to
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> zone;
 
     /**

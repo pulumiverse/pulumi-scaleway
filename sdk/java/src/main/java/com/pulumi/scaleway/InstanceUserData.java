@@ -41,7 +41,7 @@ public class InstanceUserData extends com.pulumi.resources.CustomResource {
      * Key of the user data.
      * 
      */
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     /**
@@ -55,7 +55,7 @@ public class InstanceUserData extends com.pulumi.resources.CustomResource {
      * The ID of the server associated with.
      * 
      */
-    @Export(name="serverId", type=String.class, parameters={})
+    @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output<String> serverId;
 
     /**
@@ -69,7 +69,7 @@ public class InstanceUserData extends com.pulumi.resources.CustomResource {
      * Value associated with your key
      * 
      */
-    @Export(name="value", type=String.class, parameters={})
+    @Export(name="value", refs={String.class}, tree="[0]")
     private Output<String> value;
 
     /**
@@ -83,7 +83,7 @@ public class InstanceUserData extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the server should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

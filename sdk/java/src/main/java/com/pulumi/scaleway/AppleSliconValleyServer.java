@@ -64,7 +64,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * The date and time of the creation of the Apple Silicon server.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -78,7 +78,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * The minimal date and time on which you can delete this server due to Apple licence
      * 
      */
-    @Export(name="deletableAt", type=String.class, parameters={})
+    @Export(name="deletableAt", refs={String.class}, tree="[0]")
     private Output<String> deletableAt;
 
     /**
@@ -92,7 +92,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * IPv4 address of the server (IPv4 address).
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -106,7 +106,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * The name of the server.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -120,7 +120,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * The organization ID the server is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -135,7 +135,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -151,7 +151,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -168,7 +168,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * resource.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -184,7 +184,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * The date and time of the last update of the Apple Silicon server.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -198,7 +198,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * URL of the VNC.
      * 
      */
-    @Export(name="vncUrl", type=String.class, parameters={})
+    @Export(name="vncUrl", refs={String.class}, tree="[0]")
     private Output<String> vncUrl;
 
     /**
@@ -213,7 +213,7 @@ public class AppleSliconValleyServer extends com.pulumi.resources.CustomResource
      * the server should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

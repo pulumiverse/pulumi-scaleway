@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+ * Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
  * 
  * ```sh
  *  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
@@ -73,14 +73,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/databaseUser:DatabaseUser")
 public class DatabaseUser extends com.pulumi.resources.CustomResource {
     /**
-     * The instance on which to create the user.
+     * UUID of the rdb instance.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
-     * @return The instance on which to create the user.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -90,7 +90,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Grant admin permissions to the Database User.
      * 
      */
-    @Export(name="isAdmin", type=Boolean.class, parameters={})
+    @Export(name="isAdmin", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isAdmin;
 
     /**
@@ -104,7 +104,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Database User name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -118,7 +118,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Database User password.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -129,14 +129,14 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
         return this.password;
     }
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return The Scaleway region this resource resides in.
      * 
      */
     public Output<String> region() {

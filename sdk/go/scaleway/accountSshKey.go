@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Manages user SSH keys to access servers provisioned on Scaleway.
+//
+// > **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
 //
 // ## Example Usage
 //
@@ -51,6 +53,12 @@ import (
 type AccountSshKey struct {
 	pulumi.CustomResourceState
 
+	// The date and time of the creation of the iam SSH Key
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The SSH key status
+	Disabled pulumi.BoolPtrOutput `pulumi:"disabled"`
+	// The fingerprint of the iam SSH key
+	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
 	// The name of the SSH key.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the SSH key is associated with.
@@ -59,6 +67,8 @@ type AccountSshKey struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// The date and time of the last update of the iam SSH Key
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
 // NewAccountSshKey registers a new resource with the given unique name, arguments, and options.
@@ -94,6 +104,12 @@ func GetAccountSshKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccountSshKey resources.
 type accountSshKeyState struct {
+	// The date and time of the creation of the iam SSH Key
+	CreatedAt *string `pulumi:"createdAt"`
+	// The SSH key status
+	Disabled *bool `pulumi:"disabled"`
+	// The fingerprint of the iam SSH key
+	Fingerprint *string `pulumi:"fingerprint"`
 	// The name of the SSH key.
 	Name *string `pulumi:"name"`
 	// The organization ID the SSH key is associated with.
@@ -102,9 +118,17 @@ type accountSshKeyState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey *string `pulumi:"publicKey"`
+	// The date and time of the last update of the iam SSH Key
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type AccountSshKeyState struct {
+	// The date and time of the creation of the iam SSH Key
+	CreatedAt pulumi.StringPtrInput
+	// The SSH key status
+	Disabled pulumi.BoolPtrInput
+	// The fingerprint of the iam SSH key
+	Fingerprint pulumi.StringPtrInput
 	// The name of the SSH key.
 	Name pulumi.StringPtrInput
 	// The organization ID the SSH key is associated with.
@@ -113,6 +137,8 @@ type AccountSshKeyState struct {
 	ProjectId pulumi.StringPtrInput
 	// The public SSH key to be added.
 	PublicKey pulumi.StringPtrInput
+	// The date and time of the last update of the iam SSH Key
+	UpdatedAt pulumi.StringPtrInput
 }
 
 func (AccountSshKeyState) ElementType() reflect.Type {
@@ -120,6 +146,8 @@ func (AccountSshKeyState) ElementType() reflect.Type {
 }
 
 type accountSshKeyArgs struct {
+	// The SSH key status
+	Disabled *bool `pulumi:"disabled"`
 	// The name of the SSH key.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the SSH key is associated with.
@@ -130,6 +158,8 @@ type accountSshKeyArgs struct {
 
 // The set of arguments for constructing a AccountSshKey resource.
 type AccountSshKeyArgs struct {
+	// The SSH key status
+	Disabled pulumi.BoolPtrInput
 	// The name of the SSH key.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the SSH key is associated with.
@@ -225,6 +255,21 @@ func (o AccountSshKeyOutput) ToAccountSshKeyOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The date and time of the creation of the iam SSH Key
+func (o AccountSshKeyOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The SSH key status
+func (o AccountSshKeyOutput) Disabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AccountSshKey) pulumi.BoolPtrOutput { return v.Disabled }).(pulumi.BoolPtrOutput)
+}
+
+// The fingerprint of the iam SSH key
+func (o AccountSshKeyOutput) Fingerprint() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.Fingerprint }).(pulumi.StringOutput)
+}
+
 // The name of the SSH key.
 func (o AccountSshKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -243,6 +288,11 @@ func (o AccountSshKeyOutput) ProjectId() pulumi.StringOutput {
 // The public SSH key to be added.
 func (o AccountSshKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// The date and time of the last update of the iam SSH Key
+func (o AccountSshKeyOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccountSshKey) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type AccountSshKeyArrayOutput struct{ *pulumi.OutputState }

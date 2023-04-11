@@ -18,6 +18,9 @@ export interface BaremetalServerIp {
      * The reverse of the IP.
      */
     reverse: string;
+    /**
+     * The type of the IP.
+     */
     version: string;
 }
 
@@ -57,6 +60,56 @@ export interface BaremetalServerPrivateNetwork {
      * The VLAN ID associated to the private network.
      */
     vlan: number;
+}
+
+export interface CockpitEndpoint {
+    /**
+     * The alertmanager URL
+     */
+    alertmanagerUrl: string;
+    /**
+     * The grafana URL
+     */
+    grafanaUrl: string;
+    /**
+     * The logs URL
+     */
+    logsUrl: string;
+    /**
+     * The metrics URL
+     */
+    metricsUrl: string;
+}
+
+export interface CockpitTokenScopes {
+    /**
+     * Query logs
+     */
+    queryLogs?: boolean;
+    /**
+     * Query metrics
+     */
+    queryMetrics?: boolean;
+    /**
+     * Setup alerts
+     */
+    setupAlerts?: boolean;
+    /**
+     * Setup logs rules
+     */
+    setupLogsRules?: boolean;
+    /**
+     * Setup metrics rules
+     */
+    setupMetricsRules?: boolean;
+    /**
+     * Write logs
+     */
+    writeLogs?: boolean;
+    /**
+     * Write metrics
+     */
+    writeMetrics?: boolean;
 }
 
 export interface DatabaseAclAclRule {
@@ -183,7 +236,8 @@ export interface DatabaseReadReplicaPrivateNetwork {
      */
     privateNetworkId: string;
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      */
     serviceIp: string;
     zone: string;
@@ -307,6 +361,9 @@ export interface GetBaremetalOfferMemory {
 
 export interface GetBaremetalServerIp {
     address: string;
+    /**
+     * The ID of the server.
+     */
     id: string;
     reverse: string;
     version: string;
@@ -314,6 +371,9 @@ export interface GetBaremetalServerIp {
 
 export interface GetBaremetalServerOption {
     expiresAt: string;
+    /**
+     * The ID of the server.
+     */
     id: string;
     /**
      * The server name. Only one of `name` and `serverId` should be specified.
@@ -323,10 +383,32 @@ export interface GetBaremetalServerOption {
 
 export interface GetBaremetalServerPrivateNetwork {
     createdAt: string;
+    /**
+     * The ID of the server.
+     */
     id: string;
     status: string;
     updatedAt: string;
     vlan: number;
+}
+
+export interface GetCockpitEndpoint {
+    /**
+     * The alertmanager URL
+     */
+    alertmanagerUrl: string;
+    /**
+     * The grafana URL
+     */
+    grafanaUrl: string;
+    /**
+     * The logs URL
+     */
+    logsUrl: string;
+    /**
+     * The metrics URL
+     */
+    metricsUrl: string;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -706,6 +788,472 @@ export interface GetKubernetesNodePoolUpgradePolicy {
     maxUnavailable: number;
 }
 
+export interface GetLbAclsAcl {
+    /**
+     * The action that has been undertaken when an ACL filter had matched.
+     */
+    actions: outputs.GetLbAclsAclAction[];
+    /**
+     * The date at which the ACL was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The description of the ACL resource.
+     */
+    description: string;
+    /**
+     * The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
+     * > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     */
+    frontendId: string;
+    /**
+     * The associated ACL ID.
+     * > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     */
+    id: string;
+    /**
+     * The order between the ACLs.
+     */
+    index: number;
+    /**
+     * The ACL match rule.
+     */
+    matches: outputs.GetLbAclsAclMatch[];
+    /**
+     * The ACL name used as filter. ACLs with a name like it are listed.
+     */
+    name: string;
+    /**
+     * The date at which the ACL was last updated (RFC 3339 format).
+     */
+    updateAt: string;
+}
+
+export interface GetLbAclsAclAction {
+    /**
+     * The action type.
+     */
+    type: string;
+}
+
+export interface GetLbAclsAclMatch {
+    /**
+     * The matched HTTP filter.
+     */
+    httpFilter: string;
+    httpFilterOption: string;
+    /**
+     * The possible values matched for a given HTTP filter.
+     */
+    httpFilterValues: string[];
+    /**
+     * The condition will be of type "unless" if invert is set to `true`
+     */
+    invert: boolean;
+    /**
+     * A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+     */
+    ipSubnets: string[];
+}
+
+export interface GetLbBackendHealthCheckHttp {
+    code: number;
+    hostHeader: string;
+    method: string;
+    sni: string;
+    uri: string;
+}
+
+export interface GetLbBackendHealthCheckTcp {
+}
+
+export interface GetLbBackendsBackend {
+    /**
+     * The date at which the backend was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     */
+    failoverHost: string;
+    /**
+     * User sessions will be forwarded to this port of backend servers.
+     */
+    forwardPort: number;
+    /**
+     * Load balancing algorithm.
+     */
+    forwardPortAlgorithm: string;
+    /**
+     * Backend protocol.
+     */
+    forwardProtocol: string;
+    /**
+     * Interval between two HC requests.
+     */
+    healthCheckDelay: string;
+    /**
+     * This block enable HTTP health check.
+     */
+    healthCheckHttp: outputs.GetLbBackendsBackendHealthCheckHttp[];
+    /**
+     * This block enable HTTPS health check.
+     */
+    healthCheckHttps: outputs.GetLbBackendsBackendHealthCheckHttp[];
+    /**
+     * Number of allowed failed HC requests before the backend server is marked down.
+     */
+    healthCheckMaxRetries: number;
+    /**
+     * Port the HC requests will be sent to.
+     */
+    healthCheckPort: number;
+    /**
+     * This block enable TCP health check.
+     */
+    healthCheckTcps: outputs.GetLbBackendsBackendHealthCheckTcp[];
+    /**
+     * Timeout before we consider a HC request failed.
+     */
+    healthCheckTimeout: string;
+    /**
+     * The associated backend ID.
+     */
+    id: string;
+    /**
+     * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+     */
+    ignoreSslServerVerify: boolean;
+    /**
+     * The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+     */
+    lbId: string;
+    /**
+     * The backend name used as filter. Backends with a name like it are listed.
+     */
+    name: string;
+    /**
+     * Modify what occurs when a backend server is marked down.
+     */
+    onMarkedDownAction: string;
+    /**
+     * The type of PROXY protocol.
+     */
+    proxyProtocol: string;
+    /**
+     * List of backend server IP addresses.
+     */
+    serverIps: string[];
+    /**
+     * Enables SSL between load balancer and backend servers.
+     */
+    sslBridging: boolean;
+    /**
+     * Enables cookie-based session persistence.
+     */
+    stickySessions: string;
+    /**
+     * Cookie name for sticky sessions.
+     */
+    stickySessionsCookieName: string;
+    /**
+     * Maximum initial server connection establishment time.
+     */
+    timeoutConnect: string;
+    /**
+     * Maximum server connection inactivity time.
+     */
+    timeoutServer: string;
+    /**
+     * Maximum tunnel inactivity time.
+     */
+    timeoutTunnel: string;
+    /**
+     * The date at which the backend was last updated (RFC 3339 format).
+     */
+    updateAt: string;
+}
+
+export interface GetLbBackendsBackendHealthCheckHttp {
+    /**
+     * The expected HTTP status code.
+     */
+    code: number;
+    /**
+     * The HTTP host header to use for HC requests.
+     */
+    hostHeader: string;
+    /**
+     * The HTTP method to use for HC requests.
+     */
+    method: string;
+    /**
+     * The SNI to use for HC requests over SSL.
+     */
+    sni: string;
+    /**
+     * The HTTPS endpoint URL to call for HC requests.
+     */
+    uri: string;
+}
+
+export interface GetLbBackendsBackendHealthCheckTcp {
+}
+
+export interface GetLbFrontendAcl {
+    actions: outputs.GetLbFrontendAclAction[];
+    matches: outputs.GetLbFrontendAclMatch[];
+    /**
+     * The name of the frontend.
+     * - When using the `name` you should specify the `lb-id`
+     */
+    name: string;
+}
+
+export interface GetLbFrontendAclAction {
+    type: string;
+}
+
+export interface GetLbFrontendAclMatch {
+    httpFilter: string;
+    httpFilterOption: string;
+    httpFilterValues: string[];
+    invert: boolean;
+    ipSubnets: string[];
+}
+
+export interface GetLbFrontendsFrontend {
+    /**
+     * The load-balancer backend ID this frontend is attached to.
+     * > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     */
+    backendId: string;
+    /**
+     * List of Certificate IDs that are used by the frontend.
+     */
+    certificateIds: string[];
+    /**
+     * The date at which the frontend was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * If HTTP/3 protocol is activated.
+     */
+    enableHttp3: boolean;
+    /**
+     * The associated frontend ID.
+     * > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     */
+    id: string;
+    /**
+     * TCP port the frontend listen to.
+     */
+    inboundPort: number;
+    /**
+     * The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+     */
+    lbId: string;
+    /**
+     * The frontend name used as filter. Frontends with a name like it are listed.
+     */
+    name: string;
+    /**
+     * Maximum inactivity time on the client side.
+     */
+    timeoutClient: string;
+    /**
+     * The date at which the frontend was last updated (RFC 3339 format).
+     */
+    updateAt: string;
+}
+
+export interface GetLbIpsIp {
+    /**
+     * The associated IP ID.
+     */
+    id: string;
+    /**
+     * The IP Address
+     */
+    ipAddress: string;
+    /**
+     * The associated load-balancer ID if any
+     */
+    lbId: string;
+    /**
+     * The organization ID the load-balancer is associated with.
+     */
+    organizationId: string;
+    /**
+     * The ID of the project the load-balancer is associated with.
+     */
+    projectId: string;
+    /**
+     * The reverse domain associated with this IP.
+     */
+    reverse: string;
+    /**
+     * `zone`) The zone in which IPs exist.
+     */
+    zone: string;
+}
+
+export interface GetLbRoutesRoute {
+    /**
+     * The backend ID destination of redirection
+     */
+    backendId: string;
+    /**
+     * The date at which the route was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+     */
+    frontendId: string;
+    /**
+     * The associated route ID.
+     */
+    id: string;
+    /**
+     * Specifies the host of the server to which the request is being sent.
+     */
+    matchHostHeader: string;
+    /**
+     * Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     */
+    matchSni: string;
+    /**
+     * The date at which the route was last updated (RFC 3339 format).
+     */
+    updateAt: string;
+}
+
+export interface GetLbsLb {
+    /**
+     * Number of backends the Load balancer has.
+     */
+    backendCount: number;
+    /**
+     * Date at which the Load balancer was created.
+     */
+    createdAt: string;
+    /**
+     * The description of the load-balancer.
+     */
+    description: string;
+    /**
+     * Number of frontends the Load balancer has.
+     */
+    frontendCount: number;
+    /**
+     * The ID of the load-balancer.
+     */
+    id: string;
+    /**
+     * List of underlying instances.
+     */
+    instances: outputs.GetLbsLbInstance[];
+    /**
+     * List of IPs attached to the Load balancer.
+     */
+    ips: outputs.GetLbsLbIp[];
+    /**
+     * The load balancer name used as a filter. LBs with a name like it are listed.
+     */
+    name: string;
+    /**
+     * The organization ID the load-balancer is associated with.
+     */
+    organizationId: string;
+    /**
+     * Number of private networks attached to the Load balancer.
+     */
+    privateNetworkCount: number;
+    /**
+     * The ID of the project the load-balancer is associated with.
+     */
+    projectId: string;
+    /**
+     * Number of routes the Load balancer has.
+     */
+    routeCount: number;
+    /**
+     * Determines the minimal SSL version which needs to be supported on client side.
+     */
+    sslCompatibilityLevel: string;
+    /**
+     * The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+     */
+    status: string;
+    /**
+     * The subscriber information.
+     */
+    subscriber: string;
+    /**
+     * The tags associated with the load-balancer.
+     */
+    tags: string[];
+    /**
+     * The offer type of the load-balancer.
+     */
+    type: string;
+    /**
+     * Date at which the Load balancer was updated.
+     */
+    updatedAt: string;
+    /**
+     * `zone`) The zone in which LBs exist.
+     */
+    zone: string;
+}
+
+export interface GetLbsLbInstance {
+    /**
+     * Date at which the Load balancer was created.
+     */
+    createdAt: string;
+    /**
+     * The ID of the load-balancer.
+     */
+    id: string;
+    ipAddress: string;
+    /**
+     * The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+     */
+    status: string;
+    /**
+     * Date at which the Load balancer was updated.
+     */
+    updatedAt: string;
+    /**
+     * `zone`) The zone in which LBs exist.
+     */
+    zone: string;
+}
+
+export interface GetLbsLbIp {
+    /**
+     * The ID of the load-balancer.
+     */
+    id: string;
+    ipAddress: string;
+    lbId: string;
+    /**
+     * The organization ID the load-balancer is associated with.
+     */
+    organizationId: string;
+    /**
+     * The ID of the project the load-balancer is associated with.
+     */
+    projectId: string;
+    reverse: string;
+    /**
+     * `zone`) The zone in which LBs exist.
+     */
+    zone: string;
+}
+
 export interface GetLoadbalancerCertificateCustomCertificate {
     certificateChain: string;
 }
@@ -721,7 +1269,7 @@ export interface GetLoadbalancerPrivateNetwork {
     staticConfigs: string[];
     status: string;
     /**
-     * (Defaults to provider `region`) The region in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the LB exists.
      */
     zone: string;
 }
@@ -762,12 +1310,18 @@ export interface GetObjectBucketVersioning {
 
 export interface GetRedisClusterAcl {
     description: string;
+    /**
+     * The ID of the Redis cluster.
+     */
     id: string;
     ip: string;
 }
 
 export interface GetRedisClusterPrivateNetwork {
     endpointId: string;
+    /**
+     * The ID of the Redis cluster.
+     */
     id: string;
     serviceIps: string[];
     /**
@@ -777,9 +1331,51 @@ export interface GetRedisClusterPrivateNetwork {
 }
 
 export interface GetRedisClusterPublicNetwork {
+    /**
+     * The ID of the Redis cluster.
+     */
     id: string;
     ips: string[];
     port: number;
+}
+
+export interface GetWebHostOfferProduct {
+    /**
+     * The quota of databases.
+     */
+    databasesQuota: number;
+    /**
+     * The quota of email accounts.
+     */
+    emailAccountsQuota: number;
+    /**
+     * The quota of email storage.
+     */
+    emailStorageQuota: number;
+    /**
+     * The quota of hosting storage.
+     */
+    hostingStorageQuota: number;
+    /**
+     * The offer name. Only one of `name` and `offerId` should be specified.
+     */
+    name: string;
+    /**
+     * The product option.
+     */
+    option: boolean;
+    /**
+     * The capacity of the memory in GB.
+     */
+    ram: number;
+    /**
+     * If support is included.
+     */
+    supportIncluded: boolean;
+    /**
+     * The number of cores.
+     */
+    vCpu: number;
 }
 
 export interface IamPolicyRule {
@@ -1213,6 +1809,10 @@ export interface LoadbalancerBackendHealthCheckHttp {
      */
     code?: number;
     /**
+     * The HTTP host header to use for HC requests.
+     */
+    hostHeader?: string;
+    /**
      * The HTTP method to use for HC requests.
      */
     method?: string;
@@ -1228,9 +1828,17 @@ export interface LoadbalancerBackendHealthCheckHttps {
      */
     code?: number;
     /**
+     * The HTTP host header to use for HC requests.
+     */
+    hostHeader?: string;
+    /**
      * The HTTP method to use for HC requests.
      */
     method?: string;
+    /**
+     * The SNI to use for HC requests over SSL.
+     */
+    sni?: string;
     /**
      * The HTTP endpoint URL to call for HC requests.
      */
@@ -1318,7 +1926,7 @@ export interface LoadbalancerPrivateNetwork {
     staticConfig?: string;
     status: string;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      */
     zone: string;
 }
@@ -1494,7 +2102,8 @@ export interface RedisClusterAcl {
      */
     id: string;
     /**
-     * The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The ip range to whitelist
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      */
     ip: string;
 }
@@ -1506,11 +2115,14 @@ export interface RedisClusterPrivateNetwork {
      */
     id: string;
     /**
-     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Endpoint IPv4 addresses
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+     * least one IP per node.
      */
     serviceIps: string[];
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      */
     zone: string;
 }
@@ -1520,7 +2132,13 @@ export interface RedisClusterPublicNetwork {
      * The UUID of the private network resource.
      */
     id: string;
+    /**
+     * Lis of IPv4 address of the endpoint (IP address).
+     */
     ips: string[];
+    /**
+     * TCP port of the endpoint.
+     */
     port: number;
 }
 

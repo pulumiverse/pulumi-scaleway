@@ -207,7 +207,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
     @property
@@ -272,28 +272,22 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
 
 def get_database_instance(instance_id: Optional[str] = None,
                           name: Optional[str] = None,
+                          region: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
-    Gets information about an RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
+    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the RDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str region: `region`) The region in which the RDB instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult).value
 
@@ -329,23 +323,16 @@ def get_database_instance(instance_id: Optional[str] = None,
 @_utilities.lift_output_func(get_database_instance)
 def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
+                                 region: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
-    Gets information about an RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
+    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the RDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str region: `region`) The region in which the RDB instance exists.
     """
     ...

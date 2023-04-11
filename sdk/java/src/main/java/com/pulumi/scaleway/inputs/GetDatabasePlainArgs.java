@@ -6,6 +6,8 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetDatabasePlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -42,11 +44,19 @@ public final class GetDatabasePlainArgs extends com.pulumi.resources.InvokeArgs 
         return this.name;
     }
 
+    @Import(name="region")
+    private @Nullable String region;
+
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
+    }
+
     private GetDatabasePlainArgs() {}
 
     private GetDatabasePlainArgs(GetDatabasePlainArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.region = $.region;
     }
 
     public static Builder builder() {
@@ -86,6 +96,11 @@ public final class GetDatabasePlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder name(String name) {
             $.name = name;
+            return this;
+        }
+
+        public Builder region(@Nullable String region) {
+            $.region = region;
             return this;
         }
 

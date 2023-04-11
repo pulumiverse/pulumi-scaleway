@@ -56,10 +56,10 @@ func LookupLoadbalancer(ctx *pulumi.Context, args *LookupLoadbalancerArgs, opts 
 // A collection of arguments for invoking getLoadbalancer.
 type LookupLoadbalancerArgs struct {
 	LbId *string `pulumi:"lbId"`
-	// The IP address.
+	// The load balancer name.
 	Name      *string `pulumi:"name"`
 	ReleaseIp *bool   `pulumi:"releaseIp"`
-	// (Defaults to provider `region`) The region in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -80,11 +80,11 @@ type LookupLoadbalancerResult struct {
 	Region                string `pulumi:"region"`
 	ReleaseIp             *bool  `pulumi:"releaseIp"`
 	SslCompatibilityLevel string `pulumi:"sslCompatibilityLevel"`
-	// The tags associated with the load-balancers.
+	// The tags associated with the load-balancer.
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer.
 	Type string `pulumi:"type"`
-	// (Defaults to provider `region`) The region in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -104,10 +104,10 @@ func LookupLoadbalancerOutput(ctx *pulumi.Context, args LookupLoadbalancerOutput
 // A collection of arguments for invoking getLoadbalancer.
 type LookupLoadbalancerOutputArgs struct {
 	LbId pulumi.StringPtrInput `pulumi:"lbId"`
-	// The IP address.
+	// The load balancer name.
 	Name      pulumi.StringPtrInput `pulumi:"name"`
 	ReleaseIp pulumi.BoolPtrInput   `pulumi:"releaseIp"`
-	// (Defaults to provider `region`) The region in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -181,7 +181,7 @@ func (o LookupLoadbalancerResultOutput) SslCompatibilityLevel() pulumi.StringOut
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.SslCompatibilityLevel }).(pulumi.StringOutput)
 }
 
-// The tags associated with the load-balancers.
+// The tags associated with the load-balancer.
 func (o LookupLoadbalancerResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -191,7 +191,7 @@ func (o LookupLoadbalancerResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region in which the LB exists.
+// (Defaults to provider `zone`) The zone in which the LB exists.
 func (o LookupLoadbalancerResultOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }

@@ -29,7 +29,7 @@ public final class LoadbalancerPrivateNetwork {
     private @Nullable String staticConfig;
     private @Nullable String status;
     /**
-     * @return `zone`) The zone in which the IP should be reserved.
+     * @return `zone`) The zone of the load-balancer.
      * 
      */
     private @Nullable String zone;
@@ -60,7 +60,7 @@ public final class LoadbalancerPrivateNetwork {
         return Optional.ofNullable(this.status);
     }
     /**
-     * @return `zone`) The zone in which the IP should be reserved.
+     * @return `zone`) The zone of the load-balancer.
      * 
      */
     public Optional<String> zone() {

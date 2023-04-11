@@ -94,7 +94,7 @@ import javax.annotation.Nullable;
  *             .timeout(600)
  *             .maxConcurrency(80)
  *             .privacy(&#34;public&#34;)
- *             .protocol(&#34;h2c&#34;)
+ *             .protocol(&#34;http1&#34;)
  *             .deploy(true)
  *             .build());
  * 
@@ -133,7 +133,7 @@ public class ContainerDomain extends com.pulumi.resources.CustomResource {
      * The ID of the container.
      * 
      */
-    @Export(name="containerId", type=String.class, parameters={})
+    @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output<String> containerId;
 
     /**
@@ -147,7 +147,7 @@ public class ContainerDomain extends com.pulumi.resources.CustomResource {
      * The hostname with a CNAME record.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -161,7 +161,7 @@ public class ContainerDomain extends com.pulumi.resources.CustomResource {
      * `region`) The region in which the container exists
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -175,7 +175,7 @@ public class ContainerDomain extends com.pulumi.resources.CustomResource {
      * The URL used to query the container
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**

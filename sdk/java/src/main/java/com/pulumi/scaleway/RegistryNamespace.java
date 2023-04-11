@@ -67,7 +67,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * The description of the namespace.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -81,7 +81,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * Endpoint reachable by Docker.
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     /**
@@ -95,7 +95,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * Whether the images stored in the namespace should be downloadable publicly (docker pull).
      * 
      */
-    @Export(name="isPublic", type=Boolean.class, parameters={})
+    @Export(name="isPublic", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isPublic;
 
     /**
@@ -109,7 +109,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * The unique name of the namespace.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -123,7 +123,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * The organization ID the namespace is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -137,7 +137,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the namespace is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -151,7 +151,7 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
      * `region`). The region in which the namespace should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**

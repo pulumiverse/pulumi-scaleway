@@ -31,7 +31,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The date and time the Network was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -45,7 +45,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The endpoint to use when interacting with the network.
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     /**
@@ -59,7 +59,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The hub ID to which the Network will be attached to.
      * 
      */
-    @Export(name="hubId", type=String.class, parameters={})
+    @Export(name="hubId", refs={String.class}, tree="[0]")
     private Output<String> hubId;
 
     /**
@@ -73,7 +73,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The name of the IoT Network you want to create (e.g. `my-net`).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -87,7 +87,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The endpoint key to keep secret.
      * 
      */
-    @Export(name="secret", type=String.class, parameters={})
+    @Export(name="secret", refs={String.class}, tree="[0]")
     private Output<String> secret;
 
     /**
@@ -101,7 +101,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The prefix that will be prepended to all topics for this Network.
      * 
      */
-    @Export(name="topicPrefix", type=String.class, parameters={})
+    @Export(name="topicPrefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> topicPrefix;
 
     /**
@@ -115,7 +115,7 @@ public class IotNetwork extends com.pulumi.resources.CustomResource {
      * The network type to create (e.g. `sigfox`).
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

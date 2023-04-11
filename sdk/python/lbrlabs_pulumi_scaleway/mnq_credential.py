@@ -25,11 +25,10 @@ class MnqCredentialArgs:
         The set of arguments for constructing a MnqCredential resource.
         :param pulumi.Input[str] namespace_id: The namespace containing the Credential.
         :param pulumi.Input[str] name: The credential name..
-        :param pulumi.Input['MnqCredentialNatsCredentialsArgs'] nats_credentials: Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        :param pulumi.Input['MnqCredentialNatsCredentialsArgs'] nats_credentials: Credentials file used to connect to the NATS service.
         :param pulumi.Input[str] region: (Defaults to provider `region`). The region
                in which the namespace should be created.
-        :param pulumi.Input['MnqCredentialSqsSnsCredentialsArgs'] sqs_sns_credentials: Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-               and `sqs_sns_credentials` may be set.
+        :param pulumi.Input['MnqCredentialSqsSnsCredentialsArgs'] sqs_sns_credentials: Credential used to connect to the SQS/SNS service.
         """
         pulumi.set(__self__, "namespace_id", namespace_id)
         if name is not None:
@@ -69,7 +68,7 @@ class MnqCredentialArgs:
     @pulumi.getter(name="natsCredentials")
     def nats_credentials(self) -> Optional[pulumi.Input['MnqCredentialNatsCredentialsArgs']]:
         """
-        Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        Credentials file used to connect to the NATS service.
         """
         return pulumi.get(self, "nats_credentials")
 
@@ -94,8 +93,7 @@ class MnqCredentialArgs:
     @pulumi.getter(name="sqsSnsCredentials")
     def sqs_sns_credentials(self) -> Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsArgs']]:
         """
-        Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-        and `sqs_sns_credentials` may be set.
+        Credential used to connect to the SQS/SNS service.
         """
         return pulumi.get(self, "sqs_sns_credentials")
 
@@ -117,12 +115,11 @@ class _MnqCredentialState:
         Input properties used for looking up and filtering MnqCredential resources.
         :param pulumi.Input[str] name: The credential name..
         :param pulumi.Input[str] namespace_id: The namespace containing the Credential.
-        :param pulumi.Input['MnqCredentialNatsCredentialsArgs'] nats_credentials: Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        :param pulumi.Input['MnqCredentialNatsCredentialsArgs'] nats_credentials: Credentials file used to connect to the NATS service.
         :param pulumi.Input[str] protocol: The protocol associated to the Credential. Possible values are `nats` and `sqs_sns`.
         :param pulumi.Input[str] region: (Defaults to provider `region`). The region
                in which the namespace should be created.
-        :param pulumi.Input['MnqCredentialSqsSnsCredentialsArgs'] sqs_sns_credentials: Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-               and `sqs_sns_credentials` may be set.
+        :param pulumi.Input['MnqCredentialSqsSnsCredentialsArgs'] sqs_sns_credentials: Credential used to connect to the SQS/SNS service.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -165,7 +162,7 @@ class _MnqCredentialState:
     @pulumi.getter(name="natsCredentials")
     def nats_credentials(self) -> Optional[pulumi.Input['MnqCredentialNatsCredentialsArgs']]:
         """
-        Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        Credentials file used to connect to the NATS service.
         """
         return pulumi.get(self, "nats_credentials")
 
@@ -202,8 +199,7 @@ class _MnqCredentialState:
     @pulumi.getter(name="sqsSnsCredentials")
     def sqs_sns_credentials(self) -> Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsArgs']]:
         """
-        Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-        and `sqs_sns_credentials` may be set.
+        Credential used to connect to the SQS/SNS service.
         """
         return pulumi.get(self, "sqs_sns_credentials")
 
@@ -236,11 +232,10 @@ class MnqCredential(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The credential name..
         :param pulumi.Input[str] namespace_id: The namespace containing the Credential.
-        :param pulumi.Input[pulumi.InputType['MnqCredentialNatsCredentialsArgs']] nats_credentials: Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        :param pulumi.Input[pulumi.InputType['MnqCredentialNatsCredentialsArgs']] nats_credentials: Credentials file used to connect to the NATS service.
         :param pulumi.Input[str] region: (Defaults to provider `region`). The region
                in which the namespace should be created.
-        :param pulumi.Input[pulumi.InputType['MnqCredentialSqsSnsCredentialsArgs']] sqs_sns_credentials: Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-               and `sqs_sns_credentials` may be set.
+        :param pulumi.Input[pulumi.InputType['MnqCredentialSqsSnsCredentialsArgs']] sqs_sns_credentials: Credential used to connect to the SQS/SNS service.
         """
         ...
     @overload
@@ -319,12 +314,11 @@ class MnqCredential(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The credential name..
         :param pulumi.Input[str] namespace_id: The namespace containing the Credential.
-        :param pulumi.Input[pulumi.InputType['MnqCredentialNatsCredentialsArgs']] nats_credentials: Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        :param pulumi.Input[pulumi.InputType['MnqCredentialNatsCredentialsArgs']] nats_credentials: Credentials file used to connect to the NATS service.
         :param pulumi.Input[str] protocol: The protocol associated to the Credential. Possible values are `nats` and `sqs_sns`.
         :param pulumi.Input[str] region: (Defaults to provider `region`). The region
                in which the namespace should be created.
-        :param pulumi.Input[pulumi.InputType['MnqCredentialSqsSnsCredentialsArgs']] sqs_sns_credentials: Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-               and `sqs_sns_credentials` may be set.
+        :param pulumi.Input[pulumi.InputType['MnqCredentialSqsSnsCredentialsArgs']] sqs_sns_credentials: Credential used to connect to the SQS/SNS service.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -358,7 +352,7 @@ class MnqCredential(pulumi.CustomResource):
     @pulumi.getter(name="natsCredentials")
     def nats_credentials(self) -> pulumi.Output['outputs.MnqCredentialNatsCredentials']:
         """
-        Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+        Credentials file used to connect to the NATS service.
         """
         return pulumi.get(self, "nats_credentials")
 
@@ -383,8 +377,7 @@ class MnqCredential(pulumi.CustomResource):
     @pulumi.getter(name="sqsSnsCredentials")
     def sqs_sns_credentials(self) -> pulumi.Output[Optional['outputs.MnqCredentialSqsSnsCredentials']]:
         """
-        Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-        and `sqs_sns_credentials` may be set.
+        Credential used to connect to the SQS/SNS service.
         """
         return pulumi.get(self, "sqs_sns_credentials")
 

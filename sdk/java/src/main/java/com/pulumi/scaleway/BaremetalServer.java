@@ -78,7 +78,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * A description for the server.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -92,7 +92,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The domain of the server.
      * 
      */
-    @Export(name="domain", type=String.class, parameters={})
+    @Export(name="domain", refs={String.class}, tree="[0]")
     private Output<String> domain;
 
     /**
@@ -106,7 +106,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The hostname of the server.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hostname;
 
     /**
@@ -120,7 +120,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * (List of) The IPs of the server.
      * 
      */
-    @Export(name="ips", type=List.class, parameters={BaremetalServerIp.class})
+    @Export(name="ips", refs={List.class,BaremetalServerIp.class}, tree="[0,1]")
     private Output<List<BaremetalServerIp>> ips;
 
     /**
@@ -134,7 +134,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The name of the server.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -149,7 +149,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      * 
      */
-    @Export(name="offer", type=String.class, parameters={})
+    @Export(name="offer", refs={String.class}, tree="[0]")
     private Output<String> offer;
 
     /**
@@ -164,7 +164,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The ID of the offer.
      * 
      */
-    @Export(name="offerId", type=String.class, parameters={})
+    @Export(name="offerId", refs={String.class}, tree="[0]")
     private Output<String> offerId;
 
     /**
@@ -175,11 +175,25 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
         return this.offerId;
     }
     /**
+     * The name of the offer.
+     * 
+     */
+    @Export(name="offerName", refs={String.class}, tree="[0]")
+    private Output<String> offerName;
+
+    /**
+     * @return The name of the offer.
+     * 
+     */
+    public Output<String> offerName() {
+        return this.offerName;
+    }
+    /**
      * The options to enable on the server.
      * &gt; The `options` block supports:
      * 
      */
-    @Export(name="options", type=List.class, parameters={BaremetalServerOption.class})
+    @Export(name="options", refs={List.class,BaremetalServerOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BaremetalServerOption>> options;
 
     /**
@@ -194,7 +208,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The organization ID the server is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -210,7 +224,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to `os` will reinstall the server.
      * 
      */
-    @Export(name="os", type=String.class, parameters={})
+    @Export(name="os", refs={String.class}, tree="[0]")
     private Output<String> os;
 
     /**
@@ -223,24 +237,24 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
         return this.os;
     }
     /**
-     * The ID of the os.
+     * The name of the os.
      * 
      */
-    @Export(name="osId", type=String.class, parameters={})
-    private Output<String> osId;
+    @Export(name="osName", refs={String.class}, tree="[0]")
+    private Output<String> osName;
 
     /**
-     * @return The ID of the os.
+     * @return The name of the os.
      * 
      */
-    public Output<String> osId() {
-        return this.osId;
+    public Output<String> osName() {
+        return this.osName;
     }
     /**
      * Password used for the installation. May be required depending on used os.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
@@ -254,7 +268,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      * 
      */
-    @Export(name="privateNetworks", type=List.class, parameters={BaremetalServerPrivateNetwork.class})
+    @Export(name="privateNetworks", refs={List.class,BaremetalServerPrivateNetwork.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BaremetalServerPrivateNetwork>> privateNetworks;
 
     /**
@@ -268,7 +282,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the server is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -283,7 +297,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set &#39;reinstall_on_config_changes&#39; argument to true.
      * 
      */
-    @Export(name="reinstallOnConfigChanges", type=Boolean.class, parameters={})
+    @Export(name="reinstallOnConfigChanges", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reinstallOnConfigChanges;
 
     /**
@@ -298,7 +312,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * Password used for the service to install. May be required depending on used os.
      * 
      */
-    @Export(name="servicePassword", type=String.class, parameters={})
+    @Export(name="servicePassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> servicePassword;
 
     /**
@@ -312,7 +326,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * User used for the service to install.
      * 
      */
-    @Export(name="serviceUser", type=String.class, parameters={})
+    @Export(name="serviceUser", refs={String.class}, tree="[0]")
     private Output<String> serviceUser;
 
     /**
@@ -326,7 +340,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * List of SSH keys allowed to connect to the server.
      * 
      */
-    @Export(name="sshKeyIds", type=List.class, parameters={String.class})
+    @Export(name="sshKeyIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> sshKeyIds;
 
     /**
@@ -340,21 +354,21 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The tags associated with the server.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
-    private Output</* @Nullable */ List<String>> tags;
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> tags;
 
     /**
      * @return The tags associated with the server.
      * 
      */
-    public Output<Optional<List<String>>> tags() {
-        return Codegen.optional(this.tags);
+    public Output<List<String>> tags() {
+        return this.tags;
     }
     /**
      * User used for the installation.
      * 
      */
-    @Export(name="user", type=String.class, parameters={})
+    @Export(name="user", refs={String.class}, tree="[0]")
     private Output<String> user;
 
     /**
@@ -368,7 +382,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the server should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

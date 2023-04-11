@@ -39,14 +39,18 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Endpoint IPv4 addresses
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+     * least one IP per node.
      * 
      */
     @Import(name="serviceIps", required=true)
     private Output<List<String>> serviceIps;
 
     /**
-     * @return Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * @return Endpoint IPv4 addresses
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+     * least one IP per node.
      * 
      */
     public Output<List<String>> serviceIps() {
@@ -54,14 +58,16 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
     }
 
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the Redis Cluster should be created.
+     * @return `zone`) The zone in which the
+     * Redis Cluster should be created.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -126,7 +132,9 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param serviceIps Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+         * @param serviceIps Endpoint IPv4 addresses
+         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+         * least one IP per node.
          * 
          * @return builder
          * 
@@ -137,7 +145,9 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param serviceIps Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+         * @param serviceIps Endpoint IPv4 addresses
+         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+         * least one IP per node.
          * 
          * @return builder
          * 
@@ -147,7 +157,9 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param serviceIps Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+         * @param serviceIps Endpoint IPv4 addresses
+         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+         * least one IP per node.
          * 
          * @return builder
          * 
@@ -157,7 +169,8 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param zone `zone`) The zone in which the Redis Cluster should be created.
+         * @param zone `zone`) The zone in which the
+         * Redis Cluster should be created.
          * 
          * @return builder
          * 
@@ -168,7 +181,8 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param zone `zone`) The zone in which the Redis Cluster should be created.
+         * @param zone `zone`) The zone in which the
+         * Redis Cluster should be created.
          * 
          * @return builder
          * 

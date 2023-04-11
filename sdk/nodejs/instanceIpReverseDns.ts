@@ -9,6 +9,26 @@ import * as utilities from "./utilities";
  *
  * Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const serverIp = new scaleway.InstanceIp("serverIp", {});
+ * const tfA = new scaleway.DomainRecord("tfA", {
+ *     dnsZone: "scaleway.com",
+ *     type: "A",
+ *     data: serverIp.address,
+ *     ttl: 3600,
+ *     priority: 1,
+ * });
+ * const reverse = new scaleway.InstanceIpReverseDns("reverse", {
+ *     ipId: serverIp.id,
+ *     reverse: "www.scaleway.com",
+ * });
+ * ```
+ *
  * ## Import
  *
  * IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash

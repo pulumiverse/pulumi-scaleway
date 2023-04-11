@@ -142,7 +142,7 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
      * The name of the bucket.
      * 
      */
-    @Export(name="bucket", type=String.class, parameters={})
+    @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
@@ -156,7 +156,7 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
      * The text of the policy.
      * 
      */
-    @Export(name="policy", type=String.class, parameters={})
+    @Export(name="policy", refs={String.class}, tree="[0]")
     private Output<String> policy;
 
     /**
@@ -170,7 +170,7 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the bucket is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -184,7 +184,7 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
      * The Scaleway region this bucket resides in.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**

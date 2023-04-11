@@ -99,7 +99,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Creation date (Format ISO 8601).
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -113,7 +113,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Name of the database of this backup.
      * 
      */
-    @Export(name="databaseName", type=String.class, parameters={})
+    @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output<String> databaseName;
 
     /**
@@ -127,7 +127,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Expiration date (Format ISO 8601).
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiresAt;
 
     /**
@@ -138,14 +138,14 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.expiresAt);
     }
     /**
-     * UUID of the instance where the database to backup is.
+     * UUID of the rdb instance.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
-     * @return UUID of the instance where the database to backup is.
+     * @return UUID of the rdb instance.
      * 
      */
     public Output<String> instanceId() {
@@ -155,7 +155,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Name of the instance of the backup.
      * 
      */
-    @Export(name="instanceName", type=String.class, parameters={})
+    @Export(name="instanceName", refs={String.class}, tree="[0]")
     private Output<String> instanceName;
 
     /**
@@ -169,7 +169,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Name of the database (e.g. `my-database`).
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -180,14 +180,14 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The region you want to attach the resource to
+     * @return `region`) The region in which the resource exists.
      * 
      */
     public Output<String> region() {
@@ -197,7 +197,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Size of the backup (in bytes).
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
@@ -211,7 +211,7 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
      * Updated date (Format ISO 8601).
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

@@ -6,6 +6,7 @@ package com.pulumi.scaleway;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -46,6 +47,21 @@ public final class InstancePrivateNicArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The tags associated with the private NIC.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<String>> tags;
+
+    /**
+     * @return The tags associated with the private NIC.
+     * 
+     */
+    public Optional<Output<List<String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * `zone`) The zone in which the server must be created.
      * 
      */
@@ -65,6 +81,7 @@ public final class InstancePrivateNicArgs extends com.pulumi.resources.ResourceA
     private InstancePrivateNicArgs(InstancePrivateNicArgs $) {
         this.privateNetworkId = $.privateNetworkId;
         this.serverId = $.serverId;
+        this.tags = $.tags;
         this.zone = $.zone;
     }
 
@@ -126,6 +143,37 @@ public final class InstancePrivateNicArgs extends com.pulumi.resources.ResourceA
          */
         public Builder serverId(String serverId) {
             return serverId(Output.of(serverId));
+        }
+
+        /**
+         * @param tags The tags associated with the private NIC.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags The tags associated with the private NIC.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<String> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags The tags associated with the private NIC.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
         }
 
         /**

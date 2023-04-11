@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -89,13 +89,13 @@ type DatabaseBackup struct {
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
 	// Expiration date (Format ISO 8601).
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// UUID of the instance where the database to backup is.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Name of the instance of the backup.
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Size of the backup (in bytes).
 	Size pulumi.IntOutput `pulumi:"size"`
@@ -145,13 +145,13 @@ type databaseBackupState struct {
 	DatabaseName *string `pulumi:"databaseName"`
 	// Expiration date (Format ISO 8601).
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// UUID of the instance where the database to backup is.
+	// UUID of the rdb instance.
 	InstanceId *string `pulumi:"instanceId"`
 	// Name of the instance of the backup.
 	InstanceName *string `pulumi:"instanceName"`
 	// Name of the database (e.g. `my-database`).
 	Name *string `pulumi:"name"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
 	// Size of the backup (in bytes).
 	Size *int `pulumi:"size"`
@@ -166,13 +166,13 @@ type DatabaseBackupState struct {
 	DatabaseName pulumi.StringPtrInput
 	// Expiration date (Format ISO 8601).
 	ExpiresAt pulumi.StringPtrInput
-	// UUID of the instance where the database to backup is.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringPtrInput
 	// Name of the instance of the backup.
 	InstanceName pulumi.StringPtrInput
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
 	// Size of the backup (in bytes).
 	Size pulumi.IntPtrInput
@@ -189,11 +189,11 @@ type databaseBackupArgs struct {
 	DatabaseName string `pulumi:"databaseName"`
 	// Expiration date (Format ISO 8601).
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// UUID of the instance where the database to backup is.
+	// UUID of the rdb instance.
 	InstanceId string `pulumi:"instanceId"`
 	// Name of the database (e.g. `my-database`).
 	Name *string `pulumi:"name"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
 }
 
@@ -203,11 +203,11 @@ type DatabaseBackupArgs struct {
 	DatabaseName pulumi.StringInput
 	// Expiration date (Format ISO 8601).
 	ExpiresAt pulumi.StringPtrInput
-	// UUID of the instance where the database to backup is.
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringInput
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
 }
 
@@ -313,7 +313,7 @@ func (o DatabaseBackupOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// UUID of the instance where the database to backup is.
+// UUID of the rdb instance.
 func (o DatabaseBackupOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
@@ -328,7 +328,7 @@ func (o DatabaseBackupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the resource exists.
 func (o DatabaseBackupOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

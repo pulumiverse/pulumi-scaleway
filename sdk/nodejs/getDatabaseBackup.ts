@@ -55,6 +55,9 @@ export interface GetDatabaseBackupArgs {
      * Only one of the `name` and `backupId` should be specified.
      */
     name?: string;
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     */
     region?: string;
 }
 
@@ -120,5 +123,8 @@ export interface GetDatabaseBackupOutputArgs {
      * Only one of the `name` and `backupId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     */
     region?: pulumi.Input<string>;
 }

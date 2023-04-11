@@ -584,7 +584,7 @@ class FlexibleIp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def reverse(self) -> pulumi.Output[Optional[str]]:
+    def reverse(self) -> pulumi.Output[str]:
         """
         The reverse domain associated with this flexible IP.
         """

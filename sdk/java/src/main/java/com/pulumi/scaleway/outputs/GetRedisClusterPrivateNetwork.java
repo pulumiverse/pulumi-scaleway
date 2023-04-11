@@ -11,6 +11,10 @@ import java.util.Objects;
 @CustomType
 public final class GetRedisClusterPrivateNetwork {
     private String endpointId;
+    /**
+     * @return The ID of the Redis cluster.
+     * 
+     */
     private String id;
     private List<String> serviceIps;
     /**
@@ -23,6 +27,10 @@ public final class GetRedisClusterPrivateNetwork {
     public String endpointId() {
         return this.endpointId;
     }
+    /**
+     * @return The ID of the Redis cluster.
+     * 
+     */
     public String id() {
         return this.id;
     }

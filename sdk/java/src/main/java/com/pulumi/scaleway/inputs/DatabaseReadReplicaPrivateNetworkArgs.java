@@ -107,14 +107,16 @@ public final class DatabaseReadReplicaPrivateNetworkArgs extends com.pulumi.reso
     }
 
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      * 
      */
     @Import(name="serviceIp", required=true)
     private Output<String> serviceIp;
 
     /**
-     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      * 
      */
     public Output<String> serviceIp() {
@@ -286,7 +288,8 @@ public final class DatabaseReadReplicaPrivateNetworkArgs extends com.pulumi.reso
         }
 
         /**
-         * @param serviceIp Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+         * @param serviceIp Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+         * limitations. (IP network).
          * 
          * @return builder
          * 
@@ -297,7 +300,8 @@ public final class DatabaseReadReplicaPrivateNetworkArgs extends com.pulumi.reso
         }
 
         /**
-         * @param serviceIp Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+         * @param serviceIp Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+         * limitations. (IP network).
          * 
          * @return builder
          * 

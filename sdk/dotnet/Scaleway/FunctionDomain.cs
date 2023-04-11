@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -77,7 +78,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// (Defaults to provider `region`) The region in where the domain was created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -149,7 +150,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Hostname { get; set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// (Defaults to provider `region`) The region in where the domain was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -176,7 +177,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// (Defaults to provider `region`) The region in where the domain was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

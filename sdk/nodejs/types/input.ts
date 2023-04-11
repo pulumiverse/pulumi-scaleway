@@ -18,6 +18,9 @@ export interface BaremetalServerIp {
      * The reverse of the IP.
      */
     reverse?: pulumi.Input<string>;
+    /**
+     * The type of the IP.
+     */
     version?: pulumi.Input<string>;
 }
 
@@ -57,6 +60,56 @@ export interface BaremetalServerPrivateNetwork {
      * The VLAN ID associated to the private network.
      */
     vlan?: pulumi.Input<number>;
+}
+
+export interface CockpitEndpoint {
+    /**
+     * The alertmanager URL
+     */
+    alertmanagerUrl?: pulumi.Input<string>;
+    /**
+     * The grafana URL
+     */
+    grafanaUrl?: pulumi.Input<string>;
+    /**
+     * The logs URL
+     */
+    logsUrl?: pulumi.Input<string>;
+    /**
+     * The metrics URL
+     */
+    metricsUrl?: pulumi.Input<string>;
+}
+
+export interface CockpitTokenScopes {
+    /**
+     * Query logs
+     */
+    queryLogs?: pulumi.Input<boolean>;
+    /**
+     * Query metrics
+     */
+    queryMetrics?: pulumi.Input<boolean>;
+    /**
+     * Setup alerts
+     */
+    setupAlerts?: pulumi.Input<boolean>;
+    /**
+     * Setup logs rules
+     */
+    setupLogsRules?: pulumi.Input<boolean>;
+    /**
+     * Setup metrics rules
+     */
+    setupMetricsRules?: pulumi.Input<boolean>;
+    /**
+     * Write logs
+     */
+    writeLogs?: pulumi.Input<boolean>;
+    /**
+     * Write metrics
+     */
+    writeMetrics?: pulumi.Input<boolean>;
 }
 
 export interface DatabaseAclAclRule {
@@ -183,7 +236,8 @@ export interface DatabaseReadReplicaPrivateNetwork {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      */
     serviceIp: pulumi.Input<string>;
     zone?: pulumi.Input<string>;
@@ -687,6 +741,10 @@ export interface LoadbalancerBackendHealthCheckHttp {
      */
     code?: pulumi.Input<number>;
     /**
+     * The HTTP host header to use for HC requests.
+     */
+    hostHeader?: pulumi.Input<string>;
+    /**
      * The HTTP method to use for HC requests.
      */
     method?: pulumi.Input<string>;
@@ -702,9 +760,17 @@ export interface LoadbalancerBackendHealthCheckHttps {
      */
     code?: pulumi.Input<number>;
     /**
+     * The HTTP host header to use for HC requests.
+     */
+    hostHeader?: pulumi.Input<string>;
+    /**
      * The HTTP method to use for HC requests.
      */
     method?: pulumi.Input<string>;
+    /**
+     * The SNI to use for HC requests over SSL.
+     */
+    sni?: pulumi.Input<string>;
     /**
      * The HTTP endpoint URL to call for HC requests.
      */
@@ -792,7 +858,7 @@ export interface LoadbalancerPrivateNetwork {
     staticConfig?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      */
     zone?: pulumi.Input<string>;
 }
@@ -968,7 +1034,8 @@ export interface RedisClusterAcl {
      */
     id?: pulumi.Input<string>;
     /**
-     * The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The ip range to whitelist
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      */
     ip: pulumi.Input<string>;
 }
@@ -980,11 +1047,14 @@ export interface RedisClusterPrivateNetwork {
      */
     id: pulumi.Input<string>;
     /**
-     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Endpoint IPv4 addresses
+     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
+     * least one IP per node.
      */
     serviceIps: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the Redis Cluster should be created.
+     * `zone`) The zone in which the
+     * Redis Cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -994,6 +1064,12 @@ export interface RedisClusterPublicNetwork {
      * The UUID of the private network resource.
      */
     id?: pulumi.Input<string>;
+    /**
+     * Lis of IPv4 address of the endpoint (IP address).
+     */
     ips?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP port of the endpoint.
+     */
     port?: pulumi.Input<number>;
 }

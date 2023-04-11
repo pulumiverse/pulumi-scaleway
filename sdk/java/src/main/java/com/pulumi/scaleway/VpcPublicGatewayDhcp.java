@@ -65,7 +65,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * The IP address of the public gateway DHCP config.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -79,7 +79,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the public gateway DHCP config.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -93,7 +93,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
      * 
      */
-    @Export(name="dnsLocalName", type=String.class, parameters={})
+    @Export(name="dnsLocalName", refs={String.class}, tree="[0]")
     private Output<String> dnsLocalName;
 
     /**
@@ -107,7 +107,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * Additional DNS search paths
      * 
      */
-    @Export(name="dnsSearches", type=List.class, parameters={String.class})
+    @Export(name="dnsSearches", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> dnsSearches;
 
     /**
@@ -121,7 +121,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
      * 
      */
-    @Export(name="dnsServersOverrides", type=List.class, parameters={String.class})
+    @Export(name="dnsServersOverrides", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> dnsServersOverrides;
 
     /**
@@ -135,7 +135,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
      * 
      */
-    @Export(name="enableDynamic", type=Boolean.class, parameters={})
+    @Export(name="enableDynamic", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enableDynamic;
 
     /**
@@ -149,7 +149,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * The organization ID the public gateway DHCP config is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -163,7 +163,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
      * 
      */
-    @Export(name="poolHigh", type=String.class, parameters={})
+    @Export(name="poolHigh", refs={String.class}, tree="[0]")
     private Output<String> poolHigh;
 
     /**
@@ -177,7 +177,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
      * 
      */
-    @Export(name="poolLow", type=String.class, parameters={})
+    @Export(name="poolLow", refs={String.class}, tree="[0]")
     private Output<String> poolLow;
 
     /**
@@ -191,7 +191,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the public gateway DHCP config is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -205,7 +205,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      * 
      */
-    @Export(name="pushDefaultRoute", type=Boolean.class, parameters={})
+    @Export(name="pushDefaultRoute", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> pushDefaultRoute;
 
     /**
@@ -219,7 +219,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
      * 
      */
-    @Export(name="pushDnsServer", type=Boolean.class, parameters={})
+    @Export(name="pushDnsServer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> pushDnsServer;
 
     /**
@@ -233,7 +233,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
      * 
      */
-    @Export(name="rebindTimer", type=Integer.class, parameters={})
+    @Export(name="rebindTimer", refs={Integer.class}, tree="[0]")
     private Output<Integer> rebindTimer;
 
     /**
@@ -247,7 +247,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
      * 
      */
-    @Export(name="renewTimer", type=Integer.class, parameters={})
+    @Export(name="renewTimer", refs={Integer.class}, tree="[0]")
     private Output<Integer> renewTimer;
 
     /**
@@ -261,7 +261,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * The subnet to associate with the public gateway DHCP config.
      * 
      */
-    @Export(name="subnet", type=String.class, parameters={})
+    @Export(name="subnet", refs={String.class}, tree="[0]")
     private Output<String> subnet;
 
     /**
@@ -275,7 +275,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the public gateway DHCP config.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -289,7 +289,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
      * 
      */
-    @Export(name="validLifetime", type=Integer.class, parameters={})
+    @Export(name="validLifetime", refs={Integer.class}, tree="[0]")
     private Output<Integer> validLifetime;
 
     /**
@@ -303,7 +303,7 @@ public class VpcPublicGatewayDhcp extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the public gateway DHCP config should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

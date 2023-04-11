@@ -168,6 +168,12 @@ import javax.annotation.Nullable;
  *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
  * ```
  * 
+ *  If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+ * 
+ * ```sh
+ *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+ * ```
+ * 
  */
 @ResourceType(type="scaleway:index/objectBucket:ObjectBucket")
 public class ObjectBucket extends com.pulumi.resources.CustomResource {
@@ -179,7 +185,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
-    @Export(name="acl", type=String.class, parameters={})
+    @Export(name="acl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> acl;
 
     /**
@@ -193,7 +199,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
      * 
      */
-    @Export(name="corsRules", type=List.class, parameters={ObjectBucketCorsRule.class})
+    @Export(name="corsRules", refs={List.class,ObjectBucketCorsRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ObjectBucketCorsRule>> corsRules;
 
     /**
@@ -207,7 +213,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * The endpoint URL of the bucket
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     /**
@@ -221,7 +227,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
      * 
      */
-    @Export(name="forceDestroy", type=Boolean.class, parameters={})
+    @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
@@ -235,7 +241,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
      * 
      */
-    @Export(name="lifecycleRules", type=List.class, parameters={ObjectBucketLifecycleRule.class})
+    @Export(name="lifecycleRules", refs={List.class,ObjectBucketLifecycleRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ObjectBucketLifecycleRule>> lifecycleRules;
 
     /**
@@ -249,7 +255,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * The name of the bucket.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -263,7 +269,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * Enable object lock
      * 
      */
-    @Export(name="objectLockEnabled", type=Boolean.class, parameters={})
+    @Export(name="objectLockEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> objectLockEnabled;
 
     /**
@@ -277,7 +283,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the bucket is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -291,7 +297,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -305,7 +311,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * A list of tags (key / value) for the bucket.
      * 
      */
-    @Export(name="tags", type=Map.class, parameters={String.class, String.class})
+    @Export(name="tags", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> tags;
 
     /**
@@ -319,7 +325,7 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
      * 
      */
-    @Export(name="versioning", type=ObjectBucketVersioning.class, parameters={})
+    @Export(name="versioning", refs={ObjectBucketVersioning.class}, tree="[0]")
     private Output<ObjectBucketVersioning> versioning;
 
     /**

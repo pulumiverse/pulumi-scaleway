@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func TestAccWebserver(t *testing.T) {
+func TestAccWebserverPython(t *testing.T) {
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "python/server"),

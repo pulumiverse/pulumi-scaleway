@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+ * Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
  *
  * ```sh
  *  $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
@@ -65,7 +65,7 @@ export class DatabaseUser extends pulumi.CustomResource {
     }
 
     /**
-     * The instance on which to create the user.
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -81,7 +81,7 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -129,7 +129,7 @@ export class DatabaseUser extends pulumi.CustomResource {
  */
 export interface DatabaseUserState {
     /**
-     * The instance on which to create the user.
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -145,7 +145,7 @@ export interface DatabaseUserState {
      */
     password?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      */
     region?: pulumi.Input<string>;
 }
@@ -155,7 +155,7 @@ export interface DatabaseUserState {
  */
 export interface DatabaseUserArgs {
     /**
-     * The instance on which to create the user.
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
@@ -171,7 +171,7 @@ export interface DatabaseUserArgs {
      */
     password: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      */
     region?: pulumi.Input<string>;
 }

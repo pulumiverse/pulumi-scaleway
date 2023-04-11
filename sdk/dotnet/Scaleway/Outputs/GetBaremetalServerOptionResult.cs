@@ -15,6 +15,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetBaremetalServerOptionResult
     {
         public readonly string ExpiresAt;
+        /// <summary>
+        /// The ID of the server.
+        /// </summary>
         public readonly string Id;
         /// <summary>
         /// The server name. Only one of `name` and `server_id` should be specified.

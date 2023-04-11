@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -107,6 +108,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -125,6 +127,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -229,7 +232,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `zone`) The zone of the load-balancer.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -348,7 +351,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `zone`) The zone of the load-balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -446,7 +449,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `zone`) The zone of the load-balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

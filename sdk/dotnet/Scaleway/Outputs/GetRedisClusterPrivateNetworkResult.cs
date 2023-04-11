@@ -15,6 +15,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetRedisClusterPrivateNetworkResult
     {
         public readonly string EndpointId;
+        /// <summary>
+        /// The ID of the Redis cluster.
+        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>

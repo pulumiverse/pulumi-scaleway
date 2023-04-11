@@ -160,7 +160,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * A list of ACL rules to apply to the load-balancer frontend.  Defined below.
      * 
      */
-    @Export(name="acls", type=List.class, parameters={LoadbalancerFrontendAcl.class})
+    @Export(name="acls", refs={List.class,LoadbalancerFrontendAcl.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LoadbalancerFrontendAcl>> acls;
 
     /**
@@ -174,7 +174,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * The load-balancer backend ID this frontend is attached to.
      * 
      */
-    @Export(name="backendId", type=String.class, parameters={})
+    @Export(name="backendId", refs={String.class}, tree="[0]")
     private Output<String> backendId;
 
     /**
@@ -192,7 +192,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Please use certificate_ids */
-    @Export(name="certificateId", type=String.class, parameters={})
+    @Export(name="certificateId", refs={String.class}, tree="[0]")
     private Output<String> certificateId;
 
     /**
@@ -206,7 +206,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * List of Certificate IDs that should be used by the frontend.
      * 
      */
-    @Export(name="certificateIds", type=List.class, parameters={String.class})
+    @Export(name="certificateIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> certificateIds;
 
     /**
@@ -220,7 +220,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * Activates HTTP/3 protocol.
      * 
      */
-    @Export(name="enableHttp3", type=Boolean.class, parameters={})
+    @Export(name="enableHttp3", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableHttp3;
 
     /**
@@ -234,7 +234,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * TCP port to listen on the front side.
      * 
      */
-    @Export(name="inboundPort", type=Integer.class, parameters={})
+    @Export(name="inboundPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> inboundPort;
 
     /**
@@ -248,7 +248,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * The load-balancer ID this frontend is attached to.
      * 
      */
-    @Export(name="lbId", type=String.class, parameters={})
+    @Export(name="lbId", refs={String.class}, tree="[0]")
     private Output<String> lbId;
 
     /**
@@ -262,7 +262,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * The ACL name. If not provided it will be randomly generated.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -276,7 +276,7 @@ public class LoadbalancerFrontend extends com.pulumi.resources.CustomResource {
      * Maximum inactivity time on the client side. (e.g.: `1s`)
      * 
      */
-    @Export(name="timeoutClient", type=String.class, parameters={})
+    @Export(name="timeoutClient", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeoutClient;
 
     /**

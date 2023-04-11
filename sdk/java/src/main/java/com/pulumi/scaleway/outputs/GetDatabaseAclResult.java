@@ -8,11 +8,13 @@ import com.pulumi.scaleway.outputs.GetDatabaseAclAclRule;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDatabaseAclResult {
     /**
-     * @return A list of ACLs (structure is described below)
+     * @return A list of ACLs rules (structure is described below)
      * 
      */
     private List<GetDatabaseAclAclRule> aclRules;
@@ -22,11 +24,11 @@ public final class GetDatabaseAclResult {
      */
     private String id;
     private String instanceId;
-    private String region;
+    private @Nullable String region;
 
     private GetDatabaseAclResult() {}
     /**
-     * @return A list of ACLs (structure is described below)
+     * @return A list of ACLs rules (structure is described below)
      * 
      */
     public List<GetDatabaseAclAclRule> aclRules() {
@@ -42,8 +44,8 @@ public final class GetDatabaseAclResult {
     public String instanceId() {
         return this.instanceId;
     }
-    public String region() {
-        return this.region;
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
     }
 
     public static Builder builder() {
@@ -58,7 +60,7 @@ public final class GetDatabaseAclResult {
         private List<GetDatabaseAclAclRule> aclRules;
         private String id;
         private String instanceId;
-        private String region;
+        private @Nullable String region;
         public Builder() {}
         public Builder(GetDatabaseAclResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -87,8 +89,8 @@ public final class GetDatabaseAclResult {
             return this;
         }
         @CustomType.Setter
-        public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+        public Builder region(@Nullable String region) {
+            this.region = region;
             return this;
         }
         public GetDatabaseAclResult build() {

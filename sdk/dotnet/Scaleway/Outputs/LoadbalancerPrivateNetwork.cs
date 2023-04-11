@@ -28,7 +28,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         public readonly string? StaticConfig;
         public readonly string? Status;
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `zone`) The zone of the load-balancer.
         /// </summary>
         public readonly string? Zone;
 

@@ -78,7 +78,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
      * 
      */
-    @Export(name="cpuLimit", type=Integer.class, parameters={})
+    @Export(name="cpuLimit", refs={Integer.class}, tree="[0]")
     private Output<Integer> cpuLimit;
 
     /**
@@ -92,7 +92,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Define if the function should be deployed, terraform will wait for function to be deployed
      * 
      */
-    @Export(name="deploy", type=Boolean.class, parameters={})
+    @Export(name="deploy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deploy;
 
     /**
@@ -106,7 +106,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The description of the function.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -120,7 +120,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The native domain name of the function
      * 
      */
-    @Export(name="domainName", type=String.class, parameters={})
+    @Export(name="domainName", refs={String.class}, tree="[0]")
     private Output<String> domainName;
 
     /**
@@ -134,7 +134,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The environment variables of the function.
      * 
      */
-    @Export(name="environmentVariables", type=Map.class, parameters={String.class, String.class})
+    @Export(name="environmentVariables", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> environmentVariables;
 
     /**
@@ -148,7 +148,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
      * 
      */
-    @Export(name="handler", type=String.class, parameters={})
+    @Export(name="handler", refs={String.class}, tree="[0]")
     private Output<String> handler;
 
     /**
@@ -162,7 +162,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * HTTP traffic configuration
      * 
      */
-    @Export(name="httpOption", type=String.class, parameters={})
+    @Export(name="httpOption", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> httpOption;
 
     /**
@@ -176,7 +176,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
      * 
      */
-    @Export(name="maxScale", type=Integer.class, parameters={})
+    @Export(name="maxScale", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxScale;
 
     /**
@@ -190,7 +190,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Memory limit in MB for your function, defaults to 128MB
      * 
      */
-    @Export(name="memoryLimit", type=Integer.class, parameters={})
+    @Export(name="memoryLimit", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> memoryLimit;
 
     /**
@@ -204,7 +204,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
      * 
      */
-    @Export(name="minScale", type=Integer.class, parameters={})
+    @Export(name="minScale", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> minScale;
 
     /**
@@ -218,7 +218,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The unique name of the function.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -232,7 +232,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The namespace ID associated with this function
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -246,7 +246,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The organization ID the function is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -260,7 +260,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
      * 
      */
-    @Export(name="privacy", type=String.class, parameters={})
+    @Export(name="privacy", refs={String.class}, tree="[0]")
     private Output<String> privacy;
 
     /**
@@ -274,7 +274,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the namespace is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -288,7 +288,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * `region`). The region in which the namespace should be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -302,7 +302,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
      * 
      */
-    @Export(name="runtime", type=String.class, parameters={})
+    @Export(name="runtime", refs={String.class}, tree="[0]")
     private Output<String> runtime;
 
     /**
@@ -316,7 +316,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
      * 
      */
-    @Export(name="secretEnvironmentVariables", type=Map.class, parameters={String.class, String.class})
+    @Export(name="secretEnvironmentVariables", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> secretEnvironmentVariables;
 
     /**
@@ -330,7 +330,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Holds the max duration (in seconds) the function is allowed for responding to a request
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output<Integer> timeout;
 
     /**
@@ -344,7 +344,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * Location of the zip file to upload containing your function sources
      * 
      */
-    @Export(name="zipFile", type=String.class, parameters={})
+    @Export(name="zipFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> zipFile;
 
     /**
@@ -358,7 +358,7 @@ public class Function extends com.pulumi.resources.CustomResource {
      * The hash of your source zip file, changing it will re-apply function. Can be any string
      * 
      */
-    @Export(name="zipHash", type=String.class, parameters={})
+    @Export(name="zipHash", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> zipHash;
 
     /**

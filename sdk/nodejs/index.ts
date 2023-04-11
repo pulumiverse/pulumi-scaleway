@@ -25,6 +25,21 @@ export type BaremetalServer = import("./baremetalServer").BaremetalServer;
 export const BaremetalServer: typeof import("./baremetalServer").BaremetalServer = null as any;
 utilities.lazyLoad(exports, ["BaremetalServer"], () => require("./baremetalServer"));
 
+export { CockpitArgs, CockpitState } from "./cockpit";
+export type Cockpit = import("./cockpit").Cockpit;
+export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
+utilities.lazyLoad(exports, ["Cockpit"], () => require("./cockpit"));
+
+export { CockpitGrafanaUserArgs, CockpitGrafanaUserState } from "./cockpitGrafanaUser";
+export type CockpitGrafanaUser = import("./cockpitGrafanaUser").CockpitGrafanaUser;
+export const CockpitGrafanaUser: typeof import("./cockpitGrafanaUser").CockpitGrafanaUser = null as any;
+utilities.lazyLoad(exports, ["CockpitGrafanaUser"], () => require("./cockpitGrafanaUser"));
+
+export { CockpitTokenArgs, CockpitTokenState } from "./cockpitToken";
+export type CockpitToken = import("./cockpitToken").CockpitToken;
+export const CockpitToken: typeof import("./cockpitToken").CockpitToken = null as any;
+utilities.lazyLoad(exports, ["CockpitToken"], () => require("./cockpitToken"));
+
 export { ContainerArgs, ContainerState } from "./container";
 export type Container = import("./container").Container;
 export const Container: typeof import("./container").Container = null as any;
@@ -155,6 +170,11 @@ export const getBaremetalServer: typeof import("./getBaremetalServer").getBareme
 export const getBaremetalServerOutput: typeof import("./getBaremetalServer").getBaremetalServerOutput = null as any;
 utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
 
+export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCockpit";
+export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
+export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
+utilities.lazyLoad(exports, ["getCockpit","getCockpitOutput"], () => require("./getCockpit"));
+
 export { GetContainerArgs, GetContainerResult, GetContainerOutputArgs } from "./getContainer";
 export const getContainer: typeof import("./getContainer").getContainer = null as any;
 export const getContainerOutput: typeof import("./getContainer").getContainerOutput = null as any;
@@ -245,6 +265,11 @@ export const getInstanceIp: typeof import("./getInstanceIp").getInstanceIp = nul
 export const getInstanceIpOutput: typeof import("./getInstanceIp").getInstanceIpOutput = null as any;
 utilities.lazyLoad(exports, ["getInstanceIp","getInstanceIpOutput"], () => require("./getInstanceIp"));
 
+export { GetInstancePrivateNicArgs, GetInstancePrivateNicResult, GetInstancePrivateNicOutputArgs } from "./getInstancePrivateNic";
+export const getInstancePrivateNic: typeof import("./getInstancePrivateNic").getInstancePrivateNic = null as any;
+export const getInstancePrivateNicOutput: typeof import("./getInstancePrivateNic").getInstancePrivateNicOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePrivateNic","getInstancePrivateNicOutput"], () => require("./getInstancePrivateNic"));
+
 export { GetInstanceSecurityGroupArgs, GetInstanceSecurityGroupResult, GetInstanceSecurityGroupOutputArgs } from "./getInstanceSecurityGroup";
 export const getInstanceSecurityGroup: typeof import("./getInstanceSecurityGroup").getInstanceSecurityGroup = null as any;
 export const getInstanceSecurityGroupOutput: typeof import("./getInstanceSecurityGroup").getInstanceSecurityGroupOutput = null as any;
@@ -280,6 +305,11 @@ export const getIotHub: typeof import("./getIotHub").getIotHub = null as any;
 export const getIotHubOutput: typeof import("./getIotHub").getIotHubOutput = null as any;
 utilities.lazyLoad(exports, ["getIotHub","getIotHubOutput"], () => require("./getIotHub"));
 
+export { GetK8sVersionArgs, GetK8sVersionResult, GetK8sVersionOutputArgs } from "./getK8sVersion";
+export const getK8sVersion: typeof import("./getK8sVersion").getK8sVersion = null as any;
+export const getK8sVersionOutput: typeof import("./getK8sVersion").getK8sVersionOutput = null as any;
+utilities.lazyLoad(exports, ["getK8sVersion","getK8sVersionOutput"], () => require("./getK8sVersion"));
+
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
 export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;
@@ -289,6 +319,51 @@ export { GetKubernetesNodePoolArgs, GetKubernetesNodePoolResult, GetKubernetesNo
 export const getKubernetesNodePool: typeof import("./getKubernetesNodePool").getKubernetesNodePool = null as any;
 export const getKubernetesNodePoolOutput: typeof import("./getKubernetesNodePool").getKubernetesNodePoolOutput = null as any;
 utilities.lazyLoad(exports, ["getKubernetesNodePool","getKubernetesNodePoolOutput"], () => require("./getKubernetesNodePool"));
+
+export { GetLbAclsArgs, GetLbAclsResult, GetLbAclsOutputArgs } from "./getLbAcls";
+export const getLbAcls: typeof import("./getLbAcls").getLbAcls = null as any;
+export const getLbAclsOutput: typeof import("./getLbAcls").getLbAclsOutput = null as any;
+utilities.lazyLoad(exports, ["getLbAcls","getLbAclsOutput"], () => require("./getLbAcls"));
+
+export { GetLbBackendArgs, GetLbBackendResult, GetLbBackendOutputArgs } from "./getLbBackend";
+export const getLbBackend: typeof import("./getLbBackend").getLbBackend = null as any;
+export const getLbBackendOutput: typeof import("./getLbBackend").getLbBackendOutput = null as any;
+utilities.lazyLoad(exports, ["getLbBackend","getLbBackendOutput"], () => require("./getLbBackend"));
+
+export { GetLbBackendsArgs, GetLbBackendsResult, GetLbBackendsOutputArgs } from "./getLbBackends";
+export const getLbBackends: typeof import("./getLbBackends").getLbBackends = null as any;
+export const getLbBackendsOutput: typeof import("./getLbBackends").getLbBackendsOutput = null as any;
+utilities.lazyLoad(exports, ["getLbBackends","getLbBackendsOutput"], () => require("./getLbBackends"));
+
+export { GetLbFrontendArgs, GetLbFrontendResult, GetLbFrontendOutputArgs } from "./getLbFrontend";
+export const getLbFrontend: typeof import("./getLbFrontend").getLbFrontend = null as any;
+export const getLbFrontendOutput: typeof import("./getLbFrontend").getLbFrontendOutput = null as any;
+utilities.lazyLoad(exports, ["getLbFrontend","getLbFrontendOutput"], () => require("./getLbFrontend"));
+
+export { GetLbFrontendsArgs, GetLbFrontendsResult, GetLbFrontendsOutputArgs } from "./getLbFrontends";
+export const getLbFrontends: typeof import("./getLbFrontends").getLbFrontends = null as any;
+export const getLbFrontendsOutput: typeof import("./getLbFrontends").getLbFrontendsOutput = null as any;
+utilities.lazyLoad(exports, ["getLbFrontends","getLbFrontendsOutput"], () => require("./getLbFrontends"));
+
+export { GetLbIpsArgs, GetLbIpsResult, GetLbIpsOutputArgs } from "./getLbIps";
+export const getLbIps: typeof import("./getLbIps").getLbIps = null as any;
+export const getLbIpsOutput: typeof import("./getLbIps").getLbIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getLbIps","getLbIpsOutput"], () => require("./getLbIps"));
+
+export { GetLbRouteArgs, GetLbRouteResult, GetLbRouteOutputArgs } from "./getLbRoute";
+export const getLbRoute: typeof import("./getLbRoute").getLbRoute = null as any;
+export const getLbRouteOutput: typeof import("./getLbRoute").getLbRouteOutput = null as any;
+utilities.lazyLoad(exports, ["getLbRoute","getLbRouteOutput"], () => require("./getLbRoute"));
+
+export { GetLbRoutesArgs, GetLbRoutesResult, GetLbRoutesOutputArgs } from "./getLbRoutes";
+export const getLbRoutes: typeof import("./getLbRoutes").getLbRoutes = null as any;
+export const getLbRoutesOutput: typeof import("./getLbRoutes").getLbRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["getLbRoutes","getLbRoutesOutput"], () => require("./getLbRoutes"));
+
+export { GetLbsArgs, GetLbsResult, GetLbsOutputArgs } from "./getLbs";
+export const getLbs: typeof import("./getLbs").getLbs = null as any;
+export const getLbsOutput: typeof import("./getLbs").getLbsOutput = null as any;
+utilities.lazyLoad(exports, ["getLbs","getLbsOutput"], () => require("./getLbs"));
 
 export { GetLoadbalancerArgs, GetLoadbalancerResult, GetLoadbalancerOutputArgs } from "./getLoadbalancer";
 export const getLoadbalancer: typeof import("./getLoadbalancer").getLoadbalancer = null as any;
@@ -330,6 +405,16 @@ export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRe
 export const getRegistryNamespaceOutput: typeof import("./getRegistryNamespace").getRegistryNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
 
+export { GetSecretArgs, GetSecretResult, GetSecretOutputArgs } from "./getSecret";
+export const getSecret: typeof import("./getSecret").getSecret = null as any;
+export const getSecretOutput: typeof import("./getSecret").getSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getSecret","getSecretOutput"], () => require("./getSecret"));
+
+export { GetSecretVersionArgs, GetSecretVersionResult, GetSecretVersionOutputArgs } from "./getSecretVersion";
+export const getSecretVersion: typeof import("./getSecretVersion").getSecretVersion = null as any;
+export const getSecretVersionOutput: typeof import("./getSecretVersion").getSecretVersionOutput = null as any;
+utilities.lazyLoad(exports, ["getSecretVersion","getSecretVersionOutput"], () => require("./getSecretVersion"));
+
 export { GetTemDomainArgs, GetTemDomainResult, GetTemDomainOutputArgs } from "./getTemDomain";
 export const getTemDomain: typeof import("./getTemDomain").getTemDomain = null as any;
 export const getTemDomainOutput: typeof import("./getTemDomain").getTemDomainOutput = null as any;
@@ -369,6 +454,11 @@ export { GetVpcPublicPatRuleArgs, GetVpcPublicPatRuleResult, GetVpcPublicPatRule
 export const getVpcPublicPatRule: typeof import("./getVpcPublicPatRule").getVpcPublicPatRule = null as any;
 export const getVpcPublicPatRuleOutput: typeof import("./getVpcPublicPatRule").getVpcPublicPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcPublicPatRule","getVpcPublicPatRuleOutput"], () => require("./getVpcPublicPatRule"));
+
+export { GetWebHostOfferArgs, GetWebHostOfferResult, GetWebHostOfferOutputArgs } from "./getWebHostOffer";
+export const getWebHostOffer: typeof import("./getWebHostOffer").getWebHostOffer = null as any;
+export const getWebHostOfferOutput: typeof import("./getWebHostOffer").getWebHostOfferOutput = null as any;
+utilities.lazyLoad(exports, ["getWebHostOffer","getWebHostOfferOutput"], () => require("./getWebHostOffer"));
 
 export { IamApiKeyArgs, IamApiKeyState } from "./iamApiKey";
 export type IamApiKey = import("./iamApiKey").IamApiKey;
@@ -565,6 +655,16 @@ export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;
 export const RegistryNamespace: typeof import("./registryNamespace").RegistryNamespace = null as any;
 utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
 
+export { SecretArgs, SecretState } from "./secret";
+export type Secret = import("./secret").Secret;
+export const Secret: typeof import("./secret").Secret = null as any;
+utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
+
+export { SecretVersionArgs, SecretVersionState } from "./secretVersion";
+export type SecretVersion = import("./secretVersion").SecretVersion;
+export const SecretVersion: typeof import("./secretVersion").SecretVersion = null as any;
+utilities.lazyLoad(exports, ["SecretVersion"], () => require("./secretVersion"));
+
 export { TemDomainArgs, TemDomainState } from "./temDomain";
 export type TemDomain = import("./temDomain").TemDomain;
 export const TemDomain: typeof import("./temDomain").TemDomain = null as any;
@@ -600,6 +700,11 @@ export type VpcPublicGatewayIp = import("./vpcPublicGatewayIp").VpcPublicGateway
 export const VpcPublicGatewayIp: typeof import("./vpcPublicGatewayIp").VpcPublicGatewayIp = null as any;
 utilities.lazyLoad(exports, ["VpcPublicGatewayIp"], () => require("./vpcPublicGatewayIp"));
 
+export { VpcPublicGatewayIpReverseDnsArgs, VpcPublicGatewayIpReverseDnsState } from "./vpcPublicGatewayIpReverseDns";
+export type VpcPublicGatewayIpReverseDns = import("./vpcPublicGatewayIpReverseDns").VpcPublicGatewayIpReverseDns;
+export const VpcPublicGatewayIpReverseDns: typeof import("./vpcPublicGatewayIpReverseDns").VpcPublicGatewayIpReverseDns = null as any;
+utilities.lazyLoad(exports, ["VpcPublicGatewayIpReverseDns"], () => require("./vpcPublicGatewayIpReverseDns"));
+
 export { VpcPublicGatewayPatRuleArgs, VpcPublicGatewayPatRuleState } from "./vpcPublicGatewayPatRule";
 export type VpcPublicGatewayPatRule = import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule;
 export const VpcPublicGatewayPatRule: typeof import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule = null as any;
@@ -627,6 +732,12 @@ const _module = {
                 return new AppleSliconValleyServer(name, <any>undefined, { urn })
             case "scaleway:index/baremetalServer:BaremetalServer":
                 return new BaremetalServer(name, <any>undefined, { urn })
+            case "scaleway:index/cockpit:Cockpit":
+                return new Cockpit(name, <any>undefined, { urn })
+            case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
+                return new CockpitGrafanaUser(name, <any>undefined, { urn })
+            case "scaleway:index/cockpitToken:CockpitToken":
+                return new CockpitToken(name, <any>undefined, { urn })
             case "scaleway:index/container:Container":
                 return new Container(name, <any>undefined, { urn })
             case "scaleway:index/containerCron:ContainerCron":
@@ -743,6 +854,10 @@ const _module = {
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
                 return new RegistryNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/secret:Secret":
+                return new Secret(name, <any>undefined, { urn })
+            case "scaleway:index/secretVersion:SecretVersion":
+                return new SecretVersion(name, <any>undefined, { urn })
             case "scaleway:index/temDomain:TemDomain":
                 return new TemDomain(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -757,6 +872,8 @@ const _module = {
                 return new VpcPublicGatewayDhcpReservation(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp":
                 return new VpcPublicGatewayIp(name, <any>undefined, { urn })
+            case "scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns":
+                return new VpcPublicGatewayIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
                 return new VpcPublicGatewayPatRule(name, <any>undefined, { urn })
             default:
@@ -768,6 +885,9 @@ pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerDomain", _module)
@@ -826,6 +946,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConf
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)
@@ -833,6 +955,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGateway", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcpReservation", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPatRule", _module)
 pulumi.runtime.registerResourcePackage("scaleway", {
     version: utilities.getVersion(),

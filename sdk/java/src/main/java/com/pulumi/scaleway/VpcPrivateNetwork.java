@@ -66,7 +66,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the private network
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -80,7 +80,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * The name of the private network. If not provided it will be randomly generated.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -94,7 +94,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * The organization ID the private network is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -108,7 +108,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * `project_id`) The ID of the project the private network is associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -122,7 +122,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * The tags associated with the private network.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -136,7 +136,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the private network
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -150,7 +150,7 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      * `zone`) The zone in which the private network should be created.
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

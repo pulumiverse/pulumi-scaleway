@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const myAcl = scaleway.getDatabaseAcl({
- *     instanceId: "fr-par/11111111-1111-1111-1111-111111111111",
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
@@ -25,6 +25,7 @@ export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOpt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,
+        "region": args.region,
     }, opts);
 }
 
@@ -36,6 +37,10 @@ export interface GetDatabaseAclArgs {
      * The RDB instance ID.
      */
     instanceId: string;
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     */
+    region?: string;
 }
 
 /**
@@ -43,7 +48,7 @@ export interface GetDatabaseAclArgs {
  */
 export interface GetDatabaseAclResult {
     /**
-     * A list of ACLs (structure is described below)
+     * A list of ACLs rules (structure is described below)
      */
     readonly aclRules: outputs.GetDatabaseAclAclRule[];
     /**
@@ -51,7 +56,7 @@ export interface GetDatabaseAclResult {
      */
     readonly id: string;
     readonly instanceId: string;
-    readonly region: string;
+    readonly region?: string;
 }
 /**
  * Gets information about the RDB instance network Access Control List.
@@ -63,7 +68,7 @@ export interface GetDatabaseAclResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const myAcl = scaleway.getDatabaseAcl({
- *     instanceId: "fr-par/11111111-1111-1111-1111-111111111111",
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
@@ -79,4 +84,8 @@ export interface GetDatabaseAclOutputArgs {
      * The RDB instance ID.
      */
     instanceId: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the Database Instance should be created.
+     */
+    region?: pulumi.Input<string>;
 }

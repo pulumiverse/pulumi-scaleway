@@ -63,7 +63,7 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the application.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -77,7 +77,7 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      * The description of the iam application.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -91,7 +91,7 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      * Whether the application is editable.
      * 
      */
-    @Export(name="editable", type=Boolean.class, parameters={})
+    @Export(name="editable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> editable;
 
     /**
@@ -105,7 +105,7 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      * .The name of the iam application.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -119,7 +119,7 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      * `organization_id`) The ID of the organization the application is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -133,7 +133,7 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the application.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

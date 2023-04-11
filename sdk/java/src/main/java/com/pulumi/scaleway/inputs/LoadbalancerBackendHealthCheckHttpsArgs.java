@@ -32,6 +32,21 @@ public final class LoadbalancerBackendHealthCheckHttpsArgs extends com.pulumi.re
     }
 
     /**
+     * The HTTP host header to use for HC requests.
+     * 
+     */
+    @Import(name="hostHeader")
+    private @Nullable Output<String> hostHeader;
+
+    /**
+     * @return The HTTP host header to use for HC requests.
+     * 
+     */
+    public Optional<Output<String>> hostHeader() {
+        return Optional.ofNullable(this.hostHeader);
+    }
+
+    /**
      * The HTTP method to use for HC requests.
      * 
      */
@@ -44,6 +59,21 @@ public final class LoadbalancerBackendHealthCheckHttpsArgs extends com.pulumi.re
      */
     public Optional<Output<String>> method() {
         return Optional.ofNullable(this.method);
+    }
+
+    /**
+     * The SNI to use for HC requests over SSL.
+     * 
+     */
+    @Import(name="sni")
+    private @Nullable Output<String> sni;
+
+    /**
+     * @return The SNI to use for HC requests over SSL.
+     * 
+     */
+    public Optional<Output<String>> sni() {
+        return Optional.ofNullable(this.sni);
     }
 
     /**
@@ -65,7 +95,9 @@ public final class LoadbalancerBackendHealthCheckHttpsArgs extends com.pulumi.re
 
     private LoadbalancerBackendHealthCheckHttpsArgs(LoadbalancerBackendHealthCheckHttpsArgs $) {
         this.code = $.code;
+        this.hostHeader = $.hostHeader;
         this.method = $.method;
+        this.sni = $.sni;
         this.uri = $.uri;
     }
 
@@ -109,6 +141,27 @@ public final class LoadbalancerBackendHealthCheckHttpsArgs extends com.pulumi.re
         }
 
         /**
+         * @param hostHeader The HTTP host header to use for HC requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hostHeader(@Nullable Output<String> hostHeader) {
+            $.hostHeader = hostHeader;
+            return this;
+        }
+
+        /**
+         * @param hostHeader The HTTP host header to use for HC requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hostHeader(String hostHeader) {
+            return hostHeader(Output.of(hostHeader));
+        }
+
+        /**
          * @param method The HTTP method to use for HC requests.
          * 
          * @return builder
@@ -127,6 +180,27 @@ public final class LoadbalancerBackendHealthCheckHttpsArgs extends com.pulumi.re
          */
         public Builder method(String method) {
             return method(Output.of(method));
+        }
+
+        /**
+         * @param sni The SNI to use for HC requests over SSL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sni(@Nullable Output<String> sni) {
+            $.sni = sni;
+            return this;
+        }
+
+        /**
+         * @param sni The SNI to use for HC requests over SSL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sni(String sni) {
+            return sni(Output.of(sni));
         }
 
         /**

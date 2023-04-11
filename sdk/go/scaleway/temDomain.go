@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Creates and manages Scaleway Transactional Email Domains.
-// For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+// For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
 //
 // ## Examples
 //
@@ -29,7 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewTemDomain(ctx, "main", nil)
+//			_, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//				AcceptTos: pulumi.Bool(true),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -51,6 +54,9 @@ import (
 type TemDomain struct {
 	pulumi.CustomResourceState
 
+	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+	// > **Important:**  This attribute must be set to `true`.
+	AcceptTos pulumi.BoolOutput `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -60,7 +66,7 @@ type TemDomain struct {
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt pulumi.StringOutput `pulumi:"lastValidAt"`
 	// The domain name, must not be used in another Transactional Email Domain.
-	// > **Important** Updates to `name` will recreate the domain.
+	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The date and time of the next scheduled check (RFC 3339 format).
 	NextCheckAt pulumi.StringOutput `pulumi:"nextCheckAt"`
@@ -80,9 +86,12 @@ type TemDomain struct {
 func NewTemDomain(ctx *pulumi.Context,
 	name string, args *TemDomainArgs, opts ...pulumi.ResourceOption) (*TemDomain, error) {
 	if args == nil {
-		args = &TemDomainArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.AcceptTos == nil {
+		return nil, errors.New("invalid value for required argument 'AcceptTos'")
+	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource TemDomain
 	err := ctx.RegisterResource("scaleway:index/temDomain:TemDomain", name, args, &resource, opts...)
@@ -106,6 +115,9 @@ func GetTemDomain(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TemDomain resources.
 type temDomainState struct {
+	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+	// > **Important:**  This attribute must be set to `true`.
+	AcceptTos *bool `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -115,7 +127,7 @@ type temDomainState struct {
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt *string `pulumi:"lastValidAt"`
 	// The domain name, must not be used in another Transactional Email Domain.
-	// > **Important** Updates to `name` will recreate the domain.
+	// > **Important:** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
 	// The date and time of the next scheduled check (RFC 3339 format).
 	NextCheckAt *string `pulumi:"nextCheckAt"`
@@ -132,6 +144,9 @@ type temDomainState struct {
 }
 
 type TemDomainState struct {
+	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+	// > **Important:**  This attribute must be set to `true`.
+	AcceptTos pulumi.BoolPtrInput
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -141,7 +156,7 @@ type TemDomainState struct {
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt pulumi.StringPtrInput
 	// The domain name, must not be used in another Transactional Email Domain.
-	// > **Important** Updates to `name` will recreate the domain.
+	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
 	// The date and time of the next scheduled check (RFC 3339 format).
 	NextCheckAt pulumi.StringPtrInput
@@ -162,8 +177,11 @@ func (TemDomainState) ElementType() reflect.Type {
 }
 
 type temDomainArgs struct {
+	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+	// > **Important:**  This attribute must be set to `true`.
+	AcceptTos bool `pulumi:"acceptTos"`
 	// The domain name, must not be used in another Transactional Email Domain.
-	// > **Important** Updates to `name` will recreate the domain.
+	// > **Important:** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -173,8 +191,11 @@ type temDomainArgs struct {
 
 // The set of arguments for constructing a TemDomain resource.
 type TemDomainArgs struct {
+	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+	// > **Important:**  This attribute must be set to `true`.
+	AcceptTos pulumi.BoolInput
 	// The domain name, must not be used in another Transactional Email Domain.
-	// > **Important** Updates to `name` will recreate the domain.
+	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -269,6 +290,12 @@ func (o TemDomainOutput) ToTemDomainOutputWithContext(ctx context.Context) TemDo
 	return o
 }
 
+// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+// > **Important:**  This attribute must be set to `true`.
+func (o TemDomainOutput) AcceptTos() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.BoolOutput { return v.AcceptTos }).(pulumi.BoolOutput)
+}
+
 // The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 func (o TemDomainOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -290,7 +317,7 @@ func (o TemDomainOutput) LastValidAt() pulumi.StringOutput {
 }
 
 // The domain name, must not be used in another Transactional Email Domain.
-// > **Important** Updates to `name` will recreate the domain.
+// > **Important:** Updates to `name` will recreate the domain.
 func (o TemDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

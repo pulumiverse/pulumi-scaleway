@@ -7,18 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about an RDB instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myInstance = scaleway.getDatabaseInstance({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
+ * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstanceResult> {
     args = args || {};
@@ -27,6 +16,7 @@ export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulum
     return pulumi.runtime.invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "region": args.region,
     }, opts);
 }
 
@@ -44,6 +34,10 @@ export interface GetDatabaseInstanceArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: string;
+    /**
+     * `region`) The region in which the RDB instance exists.
+     */
+    region?: string;
 }
 
 /**
@@ -73,7 +67,7 @@ export interface GetDatabaseInstanceResult {
     readonly privateNetworks: outputs.GetDatabaseInstancePrivateNetwork[];
     readonly projectId: string;
     readonly readReplicas: outputs.GetDatabaseInstanceReadReplica[];
-    readonly region: string;
+    readonly region?: string;
     readonly settings: {[key: string]: string};
     readonly tags: string[];
     readonly userName: string;
@@ -81,18 +75,7 @@ export interface GetDatabaseInstanceResult {
     readonly volumeType: string;
 }
 /**
- * Gets information about an RDB instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myInstance = scaleway.getDatabaseInstance({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
+ * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getDatabaseInstanceOutput(args?: GetDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseInstanceResult> {
     return pulumi.output(args).apply((a: any) => getDatabaseInstance(a, opts))
@@ -112,4 +95,8 @@ export interface GetDatabaseInstanceOutputArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the RDB instance exists.
+     */
+    region?: pulumi.Input<string>;
 }

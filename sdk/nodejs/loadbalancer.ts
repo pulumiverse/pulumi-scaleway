@@ -205,7 +205,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -317,7 +317,7 @@ export interface LoadbalancerState {
      */
     type?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      */
     zone?: pulumi.Input<string>;
 }
@@ -365,7 +365,7 @@ export interface LoadbalancerArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the IP should be reserved.
+     * `zone`) The zone of the load-balancer.
      */
     zone?: pulumi.Input<string>;
 }

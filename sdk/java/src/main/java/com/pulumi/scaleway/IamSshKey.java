@@ -65,7 +65,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the SSH key.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -79,7 +79,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The SSH key status.
      * 
      */
-    @Export(name="disabled", type=Boolean.class, parameters={})
+    @Export(name="disabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disabled;
 
     /**
@@ -93,7 +93,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The fingerprint of the iam SSH key.
      * 
      */
-    @Export(name="fingerprint", type=String.class, parameters={})
+    @Export(name="fingerprint", refs={String.class}, tree="[0]")
     private Output<String> fingerprint;
 
     /**
@@ -107,7 +107,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The name of the SSH key.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -121,7 +121,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The ID of the organization the SSH key is associated with.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -136,7 +136,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * associated with.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -151,7 +151,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The public SSH key to be added.
      * 
      */
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     /**
@@ -165,7 +165,7 @@ public class IamSshKey extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the SSH key.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

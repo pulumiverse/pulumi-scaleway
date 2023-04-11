@@ -6,6 +6,8 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetDatabasePrivilegePlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -43,6 +45,21 @@ public final class GetDatabasePrivilegePlainArgs extends com.pulumi.resources.In
     }
 
     /**
+     * `region`) The region in which the resource exists.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable String region;
+
+    /**
+     * @return `region`) The region in which the resource exists.
+     * 
+     */
+    public Optional<String> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * The user name.
      * 
      */
@@ -62,6 +79,7 @@ public final class GetDatabasePrivilegePlainArgs extends com.pulumi.resources.In
     private GetDatabasePrivilegePlainArgs(GetDatabasePrivilegePlainArgs $) {
         this.databaseName = $.databaseName;
         this.instanceId = $.instanceId;
+        this.region = $.region;
         this.userName = $.userName;
     }
 
@@ -102,6 +120,17 @@ public final class GetDatabasePrivilegePlainArgs extends com.pulumi.resources.In
          */
         public Builder instanceId(String instanceId) {
             $.instanceId = instanceId;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region in which the resource exists.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable String region) {
+            $.region = region;
             return this;
         }
 

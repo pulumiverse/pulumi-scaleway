@@ -69,7 +69,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The access key of the iam api key.
      * 
      */
-    @Export(name="accessKey", type=String.class, parameters={})
+    @Export(name="accessKey", refs={String.class}, tree="[0]")
     private Output<String> accessKey;
 
     /**
@@ -84,7 +84,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
-    @Export(name="applicationId", type=String.class, parameters={})
+    @Export(name="applicationId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationId;
 
     /**
@@ -99,7 +99,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the iam api key.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -113,7 +113,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The IP Address of the device which created the API key.
      * 
      */
-    @Export(name="creationIp", type=String.class, parameters={})
+    @Export(name="creationIp", refs={String.class}, tree="[0]")
     private Output<String> creationIp;
 
     /**
@@ -127,7 +127,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The default project ID to use with object storage.
      * 
      */
-    @Export(name="defaultProjectId", type=String.class, parameters={})
+    @Export(name="defaultProjectId", refs={String.class}, tree="[0]")
     private Output<String> defaultProjectId;
 
     /**
@@ -141,7 +141,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The description of the iam api key.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -155,7 +155,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * Whether the iam api key is editable.
      * 
      */
-    @Export(name="editable", type=Boolean.class, parameters={})
+    @Export(name="editable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> editable;
 
     /**
@@ -170,7 +170,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * the resource will be recreated.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiresAt;
 
     /**
@@ -185,7 +185,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The secret Key of the iam api key.
      * 
      */
-    @Export(name="secretKey", type=String.class, parameters={})
+    @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output<String> secretKey;
 
     /**
@@ -199,7 +199,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the iam api key.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -214,7 +214,7 @@ public class IamApiKey extends com.pulumi.resources.CustomResource {
      * Only one of the `application_id` and `user_id` should be specified.
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
     /**

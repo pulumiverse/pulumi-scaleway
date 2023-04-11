@@ -69,7 +69,8 @@ type LookupDatabaseBackupArgs struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The name of the RDB instance.
 	// Only one of the `name` and `backupId` should be specified.
-	Name   *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 }
 
@@ -111,7 +112,8 @@ type LookupDatabaseBackupOutputArgs struct {
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// The name of the RDB instance.
 	// Only one of the `name` and `backupId` should be specified.
-	Name   pulumi.StringPtrInput `pulumi:"name"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 

@@ -59,7 +59,7 @@ public class AccountProject extends com.pulumi.resources.CustomResource {
      * The Project creation time.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -73,7 +73,7 @@ public class AccountProject extends com.pulumi.resources.CustomResource {
      * The description of the Project.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -87,7 +87,7 @@ public class AccountProject extends com.pulumi.resources.CustomResource {
      * The name of the Project.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -101,7 +101,7 @@ public class AccountProject extends com.pulumi.resources.CustomResource {
      * `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -115,7 +115,7 @@ public class AccountProject extends com.pulumi.resources.CustomResource {
      * The Project last update time.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

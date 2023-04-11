@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Redis cluster.
+ * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
  *
  * ## Example Usage
  *
@@ -79,7 +79,7 @@ export interface GetRedisClusterResult {
     readonly zone?: string;
 }
 /**
- * Gets information about a Redis cluster.
+ * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
  *
  * ## Example Usage
  *

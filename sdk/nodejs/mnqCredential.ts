@@ -52,7 +52,7 @@ export class MnqCredential extends pulumi.CustomResource {
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
-     * Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+     * Credentials file used to connect to the NATS service.
      */
     public readonly natsCredentials!: pulumi.Output<outputs.MnqCredentialNatsCredentials>;
     /**
@@ -65,8 +65,7 @@ export class MnqCredential extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-     * and `sqsSnsCredentials` may be set.
+     * Credential used to connect to the SQS/SNS service.
      */
     public readonly sqsSnsCredentials!: pulumi.Output<outputs.MnqCredentialSqsSnsCredentials | undefined>;
 
@@ -119,7 +118,7 @@ export interface MnqCredentialState {
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+     * Credentials file used to connect to the NATS service.
      */
     natsCredentials?: pulumi.Input<inputs.MnqCredentialNatsCredentials>;
     /**
@@ -132,8 +131,7 @@ export interface MnqCredentialState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-     * and `sqsSnsCredentials` may be set.
+     * Credential used to connect to the SQS/SNS service.
      */
     sqsSnsCredentials?: pulumi.Input<inputs.MnqCredentialSqsSnsCredentials>;
 }
@@ -151,7 +149,7 @@ export interface MnqCredentialArgs {
      */
     namespaceId: pulumi.Input<string>;
     /**
-     * Credentials file used to connect to the NATS service. Only one of `natsCredentials` and `sqsSnsCredentials` may be set.
+     * Credentials file used to connect to the NATS service.
      */
     natsCredentials?: pulumi.Input<inputs.MnqCredentialNatsCredentials>;
     /**
@@ -160,8 +158,7 @@ export interface MnqCredentialArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Credential used to connect to the SQS/SNS service. Only one of `natsCredentials`
-     * and `sqsSnsCredentials` may be set.
+     * Credential used to connect to the SQS/SNS service.
      */
     sqsSnsCredentials?: pulumi.Input<inputs.MnqCredentialSqsSnsCredentials>;
 }

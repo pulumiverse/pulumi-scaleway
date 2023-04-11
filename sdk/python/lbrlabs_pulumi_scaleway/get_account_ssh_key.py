@@ -21,7 +21,16 @@ class GetAccountSshKeyResult:
     """
     A collection of values returned by getAccountSshKey.
     """
-    def __init__(__self__, id=None, name=None, organization_id=None, project_id=None, public_key=None, ssh_key_id=None):
+    def __init__(__self__, created_at=None, disabled=None, fingerprint=None, id=None, name=None, organization_id=None, project_id=None, public_key=None, ssh_key_id=None, updated_at=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if disabled and not isinstance(disabled, bool):
+            raise TypeError("Expected argument 'disabled' to be a bool")
+        pulumi.set(__self__, "disabled", disabled)
+        if fingerprint and not isinstance(fingerprint, str):
+            raise TypeError("Expected argument 'fingerprint' to be a str")
+        pulumi.set(__self__, "fingerprint", fingerprint)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -40,6 +49,24 @@ class GetAccountSshKeyResult:
         if ssh_key_id and not isinstance(ssh_key_id, str):
             raise TypeError("Expected argument 'ssh_key_id' to be a str")
         pulumi.set(__self__, "ssh_key_id", ssh_key_id)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> bool:
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter
+    def fingerprint(self) -> str:
+        return pulumi.get(self, "fingerprint")
 
     @property
     @pulumi.getter
@@ -80,6 +107,11 @@ class GetAccountSshKeyResult:
     def ssh_key_id(self) -> Optional[str]:
         return pulumi.get(self, "ssh_key_id")
 
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
 
 class AwaitableGetAccountSshKeyResult(GetAccountSshKeyResult):
     # pylint: disable=using-constant-test
@@ -87,12 +119,16 @@ class AwaitableGetAccountSshKeyResult(GetAccountSshKeyResult):
         if False:
             yield self
         return GetAccountSshKeyResult(
+            created_at=self.created_at,
+            disabled=self.disabled,
+            fingerprint=self.fingerprint,
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
             project_id=self.project_id,
             public_key=self.public_key,
-            ssh_key_id=self.ssh_key_id)
+            ssh_key_id=self.ssh_key_id,
+            updated_at=self.updated_at)
 
 
 def get_account_ssh_key(name: Optional[str] = None,
@@ -121,12 +157,16 @@ def get_account_ssh_key(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getAccountSshKey:getAccountSshKey', __args__, opts=opts, typ=GetAccountSshKeyResult).value
 
     return AwaitableGetAccountSshKeyResult(
+        created_at=__ret__.created_at,
+        disabled=__ret__.disabled,
+        fingerprint=__ret__.fingerprint,
         id=__ret__.id,
         name=__ret__.name,
         organization_id=__ret__.organization_id,
         project_id=__ret__.project_id,
         public_key=__ret__.public_key,
-        ssh_key_id=__ret__.ssh_key_id)
+        ssh_key_id=__ret__.ssh_key_id,
+        updated_at=__ret__.updated_at)
 
 
 @_utilities.lift_output_func(get_account_ssh_key)

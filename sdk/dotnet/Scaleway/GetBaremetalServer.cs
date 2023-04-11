@@ -22,6 +22,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -56,6 +57,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -143,10 +145,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string? Name;
         public readonly string Offer;
         public readonly string OfferId;
+        public readonly string OfferName;
         public readonly ImmutableArray<Outputs.GetBaremetalServerOptionResult> Options;
         public readonly string OrganizationId;
         public readonly string Os;
-        public readonly string OsId;
+        public readonly string OsName;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
         public readonly string ProjectId;
@@ -177,13 +180,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string offerId,
 
+            string offerName,
+
             ImmutableArray<Outputs.GetBaremetalServerOptionResult> options,
 
             string organizationId,
 
             string os,
 
-            string osId,
+            string osName,
 
             string password,
 
@@ -215,10 +220,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Name = name;
             Offer = offer;
             OfferId = offerId;
+            OfferName = offerName;
             Options = options;
             OrganizationId = organizationId;
             Os = os;
-            OsId = osId;
+            OsName = osName;
             Password = password;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;

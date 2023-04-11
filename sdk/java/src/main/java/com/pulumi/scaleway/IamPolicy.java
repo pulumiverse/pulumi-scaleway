@@ -81,7 +81,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * ID of the Application the policy will be linked to
      * 
      */
-    @Export(name="applicationId", type=String.class, parameters={})
+    @Export(name="applicationId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationId;
 
     /**
@@ -95,7 +95,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * The date and time of the creation of the policy.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -109,7 +109,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * The description of the iam policy.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -123,7 +123,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * Whether the policy is editable.
      * 
      */
-    @Export(name="editable", type=Boolean.class, parameters={})
+    @Export(name="editable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> editable;
 
     /**
@@ -137,7 +137,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * ID of the Group the policy will be linked to
      * 
      */
-    @Export(name="groupId", type=String.class, parameters={})
+    @Export(name="groupId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupId;
 
     /**
@@ -151,7 +151,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * .The name of the iam policy.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -165,7 +165,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * If the policy doesn&#39;t apply to a principal.
      * 
      */
-    @Export(name="noPrincipal", type=Boolean.class, parameters={})
+    @Export(name="noPrincipal", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> noPrincipal;
 
     /**
@@ -179,7 +179,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * ID of organization scoped to the rule.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
@@ -193,7 +193,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * List of rules in the policy.
      * 
      */
-    @Export(name="rules", type=List.class, parameters={IamPolicyRule.class})
+    @Export(name="rules", refs={List.class,IamPolicyRule.class}, tree="[0,1]")
     private Output<List<IamPolicyRule>> rules;
 
     /**
@@ -207,7 +207,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * The date and time of the last update of the policy.
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -221,7 +221,7 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      * ID of the User the policy will be linked to
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
     /**

@@ -77,7 +77,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Map of tags
         /// </summary>
         [Output("tags")]
-        public Output<ImmutableDictionary<string, object>?> Tags { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Visibility of the object, `public-read` or `private`
@@ -187,14 +187,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? StorageClass { get; set; }
 
         [Input("tags")]
-        private InputMap<object>? _tags;
+        private InputMap<string>? _tags;
 
         /// <summary>
         /// Map of tags
         /// </summary>
-        public InputMap<object> Tags
+        public InputMap<string> Tags
         {
-            get => _tags ?? (_tags = new InputMap<object>());
+            get => _tags ?? (_tags = new InputMap<string>());
             set => _tags = value;
         }
 
@@ -267,14 +267,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? StorageClass { get; set; }
 
         [Input("tags")]
-        private InputMap<object>? _tags;
+        private InputMap<string>? _tags;
 
         /// <summary>
         /// Map of tags
         /// </summary>
-        public InputMap<object> Tags
+        public InputMap<string> Tags
         {
-            get => _tags ?? (_tags = new InputMap<object>());
+            get => _tags ?? (_tags = new InputMap<string>());
             set => _tags = value;
         }
 

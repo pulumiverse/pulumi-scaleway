@@ -5,6 +5,7 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,23 @@ import javax.annotation.Nullable;
 public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
     public static final TemDomainState Empty = new TemDomainState();
+
+    /**
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
+     * 
+     */
+    @Import(name="acceptTos")
+    private @Nullable Output<Boolean> acceptTos;
+
+    /**
+     * @return Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> acceptTos() {
+        return Optional.ofNullable(this.acceptTos);
+    }
 
     /**
      * The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
@@ -77,7 +95,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     @Import(name="name")
@@ -85,7 +103,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     public Optional<Output<String>> name() {
@@ -185,6 +203,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     private TemDomainState() {}
 
     private TemDomainState(TemDomainState $) {
+        this.acceptTos = $.acceptTos;
         this.createdAt = $.createdAt;
         this.dkimConfig = $.dkimConfig;
         this.lastError = $.lastError;
@@ -214,6 +233,29 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(TemDomainState defaults) {
             $ = new TemDomainState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param acceptTos Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+         * &gt; **Important:**  This attribute must be set to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder acceptTos(@Nullable Output<Boolean> acceptTos) {
+            $.acceptTos = acceptTos;
+            return this;
+        }
+
+        /**
+         * @param acceptTos Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+         * &gt; **Important:**  This attribute must be set to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder acceptTos(Boolean acceptTos) {
+            return acceptTos(Output.of(acceptTos));
         }
 
         /**
@@ -302,7 +344,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name The domain name, must not be used in another Transactional Email Domain.
-         * &gt; **Important** Updates to `name` will recreate the domain.
+         * &gt; **Important:** Updates to `name` will recreate the domain.
          * 
          * @return builder
          * 
@@ -314,7 +356,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name The domain name, must not be used in another Transactional Email Domain.
-         * &gt; **Important** Updates to `name` will recreate the domain.
+         * &gt; **Important:** Updates to `name` will recreate the domain.
          * 
          * @return builder
          * 

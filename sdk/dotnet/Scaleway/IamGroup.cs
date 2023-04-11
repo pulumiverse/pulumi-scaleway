@@ -20,6 +20,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -39,6 +40,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
     /// 
@@ -60,10 +62,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Import
     /// 
-    /// IAM groups can be imported using the `{zone}/{id}`, e.g. bash
+    /// IAM groups can be imported using the `{id}`, e.g. bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iamGroup:IamGroup basic fr-par/11111111-1111-1111-1111-111111111111
+    ///  $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iamGroup:IamGroup")]
