@@ -20,7 +20,7 @@ public final class GetAccountProjectResult {
     private String id;
     private @Nullable String name;
     private @Nullable String organizationId;
-    private @Nullable String projectId;
+    private String projectId;
     private String updatedAt;
 
     private GetAccountProjectResult() {}
@@ -43,8 +43,8 @@ public final class GetAccountProjectResult {
     public Optional<String> organizationId() {
         return Optional.ofNullable(this.organizationId);
     }
-    public Optional<String> projectId() {
-        return Optional.ofNullable(this.projectId);
+    public String projectId() {
+        return this.projectId;
     }
     public String updatedAt() {
         return this.updatedAt;
@@ -64,7 +64,7 @@ public final class GetAccountProjectResult {
         private String id;
         private @Nullable String name;
         private @Nullable String organizationId;
-        private @Nullable String projectId;
+        private String projectId;
         private String updatedAt;
         public Builder() {}
         public Builder(GetAccountProjectResult defaults) {
@@ -104,8 +104,8 @@ public final class GetAccountProjectResult {
             return this;
         }
         @CustomType.Setter
-        public Builder projectId(@Nullable String projectId) {
-            this.projectId = projectId;
+        public Builder projectId(String projectId) {
+            this.projectId = Objects.requireNonNull(projectId);
             return this;
         }
         @CustomType.Setter
