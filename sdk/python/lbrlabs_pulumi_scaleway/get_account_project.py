@@ -74,7 +74,7 @@ class GetAccountProjectResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[str]:
+    def project_id(self) -> str:
         return pulumi.get(self, "project_id")
 
     @property

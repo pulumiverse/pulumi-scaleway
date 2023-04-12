@@ -74,7 +74,7 @@ type LookupAccountProjectResult struct {
 	Id             string  `pulumi:"id"`
 	Name           *string `pulumi:"name"`
 	OrganizationId *string `pulumi:"organizationId"`
-	ProjectId      *string `pulumi:"projectId"`
+	ProjectId      string  `pulumi:"projectId"`
 	UpdatedAt      string  `pulumi:"updatedAt"`
 }
 
@@ -144,8 +144,8 @@ func (o LookupAccountProjectResultOutput) OrganizationId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupAccountProjectResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupAccountProjectResultOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAccountProjectResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o LookupAccountProjectResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountProjectResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o LookupAccountProjectResultOutput) UpdatedAt() pulumi.StringOutput {
