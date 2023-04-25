@@ -15,13 +15,21 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetLbAclsAclActionResult
     {
         /// <summary>
-        /// The action type.
+        /// Redirect parameters when using an ACL with `redirect` action.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetLbAclsAclActionRedirectResult> Redirects;
+        /// <summary>
+        /// The redirect type.
         /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
-        private GetLbAclsAclActionResult(string type)
+        private GetLbAclsAclActionResult(
+            ImmutableArray<Outputs.GetLbAclsAclActionRedirectResult> redirects,
+
+            string type)
         {
+            Redirects = redirects;
             Type = type;
         }
     }

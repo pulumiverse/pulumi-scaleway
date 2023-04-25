@@ -5,8 +5,12 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.LoadbalancerFrontendAclActionRedirectArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class LoadbalancerFrontendAclActionArgs extends com.pulumi.resources.ResourceArgs {
@@ -14,14 +18,29 @@ public final class LoadbalancerFrontendAclActionArgs extends com.pulumi.resource
     public static final LoadbalancerFrontendAclActionArgs Empty = new LoadbalancerFrontendAclActionArgs();
 
     /**
-     * The action type. Possible values are: `allow` or `deny`.
+     * Redirect parameters when using an ACL with `redirect` action.
+     * 
+     */
+    @Import(name="redirects")
+    private @Nullable Output<List<LoadbalancerFrontendAclActionRedirectArgs>> redirects;
+
+    /**
+     * @return Redirect parameters when using an ACL with `redirect` action.
+     * 
+     */
+    public Optional<Output<List<LoadbalancerFrontendAclActionRedirectArgs>>> redirects() {
+        return Optional.ofNullable(this.redirects);
+    }
+
+    /**
+     * The redirect type. Possible values are: `location` or `scheme`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The action type. Possible values are: `allow` or `deny`.
+     * @return The redirect type. Possible values are: `location` or `scheme`.
      * 
      */
     public Output<String> type() {
@@ -31,6 +50,7 @@ public final class LoadbalancerFrontendAclActionArgs extends com.pulumi.resource
     private LoadbalancerFrontendAclActionArgs() {}
 
     private LoadbalancerFrontendAclActionArgs(LoadbalancerFrontendAclActionArgs $) {
+        this.redirects = $.redirects;
         this.type = $.type;
     }
 
@@ -53,7 +73,38 @@ public final class LoadbalancerFrontendAclActionArgs extends com.pulumi.resource
         }
 
         /**
-         * @param type The action type. Possible values are: `allow` or `deny`.
+         * @param redirects Redirect parameters when using an ACL with `redirect` action.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redirects(@Nullable Output<List<LoadbalancerFrontendAclActionRedirectArgs>> redirects) {
+            $.redirects = redirects;
+            return this;
+        }
+
+        /**
+         * @param redirects Redirect parameters when using an ACL with `redirect` action.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redirects(List<LoadbalancerFrontendAclActionRedirectArgs> redirects) {
+            return redirects(Output.of(redirects));
+        }
+
+        /**
+         * @param redirects Redirect parameters when using an ACL with `redirect` action.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redirects(LoadbalancerFrontendAclActionRedirectArgs... redirects) {
+            return redirects(List.of(redirects));
+        }
+
+        /**
+         * @param type The redirect type. Possible values are: `location` or `scheme`.
          * 
          * @return builder
          * 
@@ -64,7 +115,7 @@ public final class LoadbalancerFrontendAclActionArgs extends com.pulumi.resource
         }
 
         /**
-         * @param type The action type. Possible values are: `allow` or `deny`.
+         * @param type The redirect type. Possible values are: `location` or `scheme`.
          * 
          * @return builder
          * 

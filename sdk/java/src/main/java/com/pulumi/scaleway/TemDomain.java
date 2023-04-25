@@ -11,6 +11,7 @@ import com.pulumi.scaleway.TemDomainArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.TemDomainState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import javax.annotation.Nullable;
 
@@ -204,6 +205,90 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      */
     public Output<String> revokedAt() {
         return this.revokedAt;
+    }
+    /**
+     * SMTP host to use to send emails
+     * 
+     */
+    @Export(name="smtpHost", refs={String.class}, tree="[0]")
+    private Output<String> smtpHost;
+
+    /**
+     * @return SMTP host to use to send emails
+     * 
+     */
+    public Output<String> smtpHost() {
+        return this.smtpHost;
+    }
+    /**
+     * SMTP port to use to send emails over TLS. (Port 587)
+     * 
+     */
+    @Export(name="smtpPort", refs={Integer.class}, tree="[0]")
+    private Output<Integer> smtpPort;
+
+    /**
+     * @return SMTP port to use to send emails over TLS. (Port 587)
+     * 
+     */
+    public Output<Integer> smtpPort() {
+        return this.smtpPort;
+    }
+    /**
+     * SMTP port to use to send emails over TLS. (Port 2587)
+     * 
+     */
+    @Export(name="smtpPortAlternative", refs={Integer.class}, tree="[0]")
+    private Output<Integer> smtpPortAlternative;
+
+    /**
+     * @return SMTP port to use to send emails over TLS. (Port 2587)
+     * 
+     */
+    public Output<Integer> smtpPortAlternative() {
+        return this.smtpPortAlternative;
+    }
+    /**
+     * SMTP port to use to send emails. (Port 25)
+     * 
+     */
+    @Export(name="smtpPortUnsecure", refs={Integer.class}, tree="[0]")
+    private Output<Integer> smtpPortUnsecure;
+
+    /**
+     * @return SMTP port to use to send emails. (Port 25)
+     * 
+     */
+    public Output<Integer> smtpPortUnsecure() {
+        return this.smtpPortUnsecure;
+    }
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * 
+     */
+    @Export(name="smtpsPort", refs={Integer.class}, tree="[0]")
+    private Output<Integer> smtpsPort;
+
+    /**
+     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * 
+     */
+    public Output<Integer> smtpsPort() {
+        return this.smtpsPort;
+    }
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * 
+     */
+    @Export(name="smtpsPortAlternative", refs={Integer.class}, tree="[0]")
+    private Output<Integer> smtpsPortAlternative;
+
+    /**
+     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * 
+     */
+    public Output<Integer> smtpsPortAlternative() {
+        return this.smtpsPortAlternative;
     }
     /**
      * The snippet of the SPF record that should be registered in the DNS zone.

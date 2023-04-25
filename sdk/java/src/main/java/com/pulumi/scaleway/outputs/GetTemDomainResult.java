@@ -5,6 +5,7 @@ package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,6 +53,36 @@ public final class GetTemDomainResult {
      * 
      */
     private String revokedAt;
+    /**
+     * @return The SMTP host to use to send emails.
+     * 
+     */
+    private String smtpHost;
+    /**
+     * @return The SMTP port to use to send emails over TLS.
+     * 
+     */
+    private Integer smtpPort;
+    /**
+     * @return The SMTP port to use to send emails over TLS.
+     * 
+     */
+    private Integer smtpPortAlternative;
+    /**
+     * @return The SMTP port to use to send emails.
+     * 
+     */
+    private Integer smtpPortUnsecure;
+    /**
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
+     * 
+     */
+    private Integer smtpsPort;
+    /**
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
+     * 
+     */
+    private Integer smtpsPortAlternative;
     /**
      * @return The snippet of the SPF record that should be registered in the DNS zone.
      * 
@@ -129,6 +160,48 @@ public final class GetTemDomainResult {
         return this.revokedAt;
     }
     /**
+     * @return The SMTP host to use to send emails.
+     * 
+     */
+    public String smtpHost() {
+        return this.smtpHost;
+    }
+    /**
+     * @return The SMTP port to use to send emails over TLS.
+     * 
+     */
+    public Integer smtpPort() {
+        return this.smtpPort;
+    }
+    /**
+     * @return The SMTP port to use to send emails over TLS.
+     * 
+     */
+    public Integer smtpPortAlternative() {
+        return this.smtpPortAlternative;
+    }
+    /**
+     * @return The SMTP port to use to send emails.
+     * 
+     */
+    public Integer smtpPortUnsecure() {
+        return this.smtpPortUnsecure;
+    }
+    /**
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
+     * 
+     */
+    public Integer smtpsPort() {
+        return this.smtpsPort;
+    }
+    /**
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
+     * 
+     */
+    public Integer smtpsPortAlternative() {
+        return this.smtpsPortAlternative;
+    }
+    /**
      * @return The snippet of the SPF record that should be registered in the DNS zone.
      * 
      */
@@ -164,6 +237,12 @@ public final class GetTemDomainResult {
         private String projectId;
         private @Nullable String region;
         private String revokedAt;
+        private String smtpHost;
+        private Integer smtpPort;
+        private Integer smtpPortAlternative;
+        private Integer smtpPortUnsecure;
+        private Integer smtpsPort;
+        private Integer smtpsPortAlternative;
         private String spfConfig;
         private String status;
         public Builder() {}
@@ -181,6 +260,12 @@ public final class GetTemDomainResult {
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.revokedAt = defaults.revokedAt;
+    	      this.smtpHost = defaults.smtpHost;
+    	      this.smtpPort = defaults.smtpPort;
+    	      this.smtpPortAlternative = defaults.smtpPortAlternative;
+    	      this.smtpPortUnsecure = defaults.smtpPortUnsecure;
+    	      this.smtpsPort = defaults.smtpsPort;
+    	      this.smtpsPortAlternative = defaults.smtpsPortAlternative;
     	      this.spfConfig = defaults.spfConfig;
     	      this.status = defaults.status;
         }
@@ -246,6 +331,36 @@ public final class GetTemDomainResult {
             return this;
         }
         @CustomType.Setter
+        public Builder smtpHost(String smtpHost) {
+            this.smtpHost = Objects.requireNonNull(smtpHost);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder smtpPort(Integer smtpPort) {
+            this.smtpPort = Objects.requireNonNull(smtpPort);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder smtpPortAlternative(Integer smtpPortAlternative) {
+            this.smtpPortAlternative = Objects.requireNonNull(smtpPortAlternative);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder smtpPortUnsecure(Integer smtpPortUnsecure) {
+            this.smtpPortUnsecure = Objects.requireNonNull(smtpPortUnsecure);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder smtpsPort(Integer smtpsPort) {
+            this.smtpsPort = Objects.requireNonNull(smtpsPort);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder smtpsPortAlternative(Integer smtpsPortAlternative) {
+            this.smtpsPortAlternative = Objects.requireNonNull(smtpsPortAlternative);
+            return this;
+        }
+        @CustomType.Setter
         public Builder spfConfig(String spfConfig) {
             this.spfConfig = Objects.requireNonNull(spfConfig);
             return this;
@@ -269,6 +384,12 @@ public final class GetTemDomainResult {
             o.projectId = projectId;
             o.region = region;
             o.revokedAt = revokedAt;
+            o.smtpHost = smtpHost;
+            o.smtpPort = smtpPort;
+            o.smtpPortAlternative = smtpPortAlternative;
+            o.smtpPortUnsecure = smtpPortUnsecure;
+            o.smtpsPort = smtpsPort;
+            o.smtpsPortAlternative = smtpsPortAlternative;
             o.spfConfig = spfConfig;
             o.status = status;
             return o;

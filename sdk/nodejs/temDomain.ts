@@ -98,6 +98,30 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public /*out*/ readonly revokedAt!: pulumi.Output<string>;
     /**
+     * SMTP host to use to send emails
+     */
+    public /*out*/ readonly smtpHost!: pulumi.Output<string>;
+    /**
+     * SMTP port to use to send emails over TLS. (Port 587)
+     */
+    public /*out*/ readonly smtpPort!: pulumi.Output<number>;
+    /**
+     * SMTP port to use to send emails over TLS. (Port 2587)
+     */
+    public /*out*/ readonly smtpPortAlternative!: pulumi.Output<number>;
+    /**
+     * SMTP port to use to send emails. (Port 25)
+     */
+    public /*out*/ readonly smtpPortUnsecure!: pulumi.Output<number>;
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     */
+    public /*out*/ readonly smtpsPort!: pulumi.Output<number>;
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     */
+    public /*out*/ readonly smtpsPortAlternative!: pulumi.Output<number>;
+    /**
      * The snippet of the SPF record that should be registered in the DNS zone.
      */
     public /*out*/ readonly spfConfig!: pulumi.Output<string>;
@@ -129,6 +153,12 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["revokedAt"] = state ? state.revokedAt : undefined;
+            resourceInputs["smtpHost"] = state ? state.smtpHost : undefined;
+            resourceInputs["smtpPort"] = state ? state.smtpPort : undefined;
+            resourceInputs["smtpPortAlternative"] = state ? state.smtpPortAlternative : undefined;
+            resourceInputs["smtpPortUnsecure"] = state ? state.smtpPortUnsecure : undefined;
+            resourceInputs["smtpsPort"] = state ? state.smtpsPort : undefined;
+            resourceInputs["smtpsPortAlternative"] = state ? state.smtpsPortAlternative : undefined;
             resourceInputs["spfConfig"] = state ? state.spfConfig : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
         } else {
@@ -146,6 +176,12 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["lastValidAt"] = undefined /*out*/;
             resourceInputs["nextCheckAt"] = undefined /*out*/;
             resourceInputs["revokedAt"] = undefined /*out*/;
+            resourceInputs["smtpHost"] = undefined /*out*/;
+            resourceInputs["smtpPort"] = undefined /*out*/;
+            resourceInputs["smtpPortAlternative"] = undefined /*out*/;
+            resourceInputs["smtpPortUnsecure"] = undefined /*out*/;
+            resourceInputs["smtpsPort"] = undefined /*out*/;
+            resourceInputs["smtpsPortAlternative"] = undefined /*out*/;
             resourceInputs["spfConfig"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -200,6 +236,30 @@ export interface TemDomainState {
      * The date and time of the revocation of the domain (RFC 3339 format).
      */
     revokedAt?: pulumi.Input<string>;
+    /**
+     * SMTP host to use to send emails
+     */
+    smtpHost?: pulumi.Input<string>;
+    /**
+     * SMTP port to use to send emails over TLS. (Port 587)
+     */
+    smtpPort?: pulumi.Input<number>;
+    /**
+     * SMTP port to use to send emails over TLS. (Port 2587)
+     */
+    smtpPortAlternative?: pulumi.Input<number>;
+    /**
+     * SMTP port to use to send emails. (Port 25)
+     */
+    smtpPortUnsecure?: pulumi.Input<number>;
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     */
+    smtpsPort?: pulumi.Input<number>;
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     */
+    smtpsPortAlternative?: pulumi.Input<number>;
     /**
      * The snippet of the SPF record that should be registered in the DNS zone.
      */

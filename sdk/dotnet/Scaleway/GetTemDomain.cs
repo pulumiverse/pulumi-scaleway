@@ -112,6 +112,30 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string RevokedAt;
         /// <summary>
+        /// The SMTP host to use to send emails.
+        /// </summary>
+        public readonly string SmtpHost;
+        /// <summary>
+        /// The SMTP port to use to send emails over TLS.
+        /// </summary>
+        public readonly int SmtpPort;
+        /// <summary>
+        /// The SMTP port to use to send emails over TLS.
+        /// </summary>
+        public readonly int SmtpPortAlternative;
+        /// <summary>
+        /// The SMTP port to use to send emails.
+        /// </summary>
+        public readonly int SmtpPortUnsecure;
+        /// <summary>
+        /// The SMTPS port to use to send emails over TLS Wrapper.
+        /// </summary>
+        public readonly int SmtpsPort;
+        /// <summary>
+        /// The SMTPS port to use to send emails over TLS Wrapper.
+        /// </summary>
+        public readonly int SmtpsPortAlternative;
+        /// <summary>
         /// The snippet of the SPF record that should be registered in the DNS zone.
         /// </summary>
         public readonly string SpfConfig;
@@ -146,6 +170,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string revokedAt,
 
+            string smtpHost,
+
+            int smtpPort,
+
+            int smtpPortAlternative,
+
+            int smtpPortUnsecure,
+
+            int smtpsPort,
+
+            int smtpsPortAlternative,
+
             string spfConfig,
 
             string status)
@@ -162,6 +198,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             ProjectId = projectId;
             Region = region;
             RevokedAt = revokedAt;
+            SmtpHost = smtpHost;
+            SmtpPort = smtpPort;
+            SmtpPortAlternative = smtpPortAlternative;
+            SmtpPortUnsecure = smtpPortUnsecure;
+            SmtpsPort = smtpsPort;
+            SmtpsPortAlternative = smtpsPortAlternative;
             SpfConfig = spfConfig;
             Status = status;
         }

@@ -4,20 +4,35 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.scaleway.outputs.LoadbalancerFrontendAclActionRedirect;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class LoadbalancerFrontendAclAction {
     /**
-     * @return The action type. Possible values are: `allow` or `deny`.
+     * @return Redirect parameters when using an ACL with `redirect` action.
+     * 
+     */
+    private @Nullable List<LoadbalancerFrontendAclActionRedirect> redirects;
+    /**
+     * @return The redirect type. Possible values are: `location` or `scheme`.
      * 
      */
     private String type;
 
     private LoadbalancerFrontendAclAction() {}
     /**
-     * @return The action type. Possible values are: `allow` or `deny`.
+     * @return Redirect parameters when using an ACL with `redirect` action.
+     * 
+     */
+    public List<LoadbalancerFrontendAclActionRedirect> redirects() {
+        return this.redirects == null ? List.of() : this.redirects;
+    }
+    /**
+     * @return The redirect type. Possible values are: `location` or `scheme`.
      * 
      */
     public String type() {
@@ -33,13 +48,23 @@ public final class LoadbalancerFrontendAclAction {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<LoadbalancerFrontendAclActionRedirect> redirects;
         private String type;
         public Builder() {}
         public Builder(LoadbalancerFrontendAclAction defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.redirects = defaults.redirects;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder redirects(@Nullable List<LoadbalancerFrontendAclActionRedirect> redirects) {
+            this.redirects = redirects;
+            return this;
+        }
+        public Builder redirects(LoadbalancerFrontendAclActionRedirect... redirects) {
+            return redirects(List.of(redirects));
+        }
         @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
@@ -47,6 +72,7 @@ public final class LoadbalancerFrontendAclAction {
         }
         public LoadbalancerFrontendAclAction build() {
             final var o = new LoadbalancerFrontendAclAction();
+            o.redirects = redirects;
             o.type = type;
             return o;
         }

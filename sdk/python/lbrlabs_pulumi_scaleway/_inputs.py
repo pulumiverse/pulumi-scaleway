@@ -55,6 +55,7 @@ __all__ = [
     'LoadbalancerCertificateLetsencryptArgs',
     'LoadbalancerFrontendAclArgs',
     'LoadbalancerFrontendAclActionArgs',
+    'LoadbalancerFrontendAclActionRedirectArgs',
     'LoadbalancerFrontendAclMatchArgs',
     'LoadbalancerPrivateNetworkArgs',
     'MnqCredentialNatsCredentialsArgs',
@@ -3214,22 +3215,93 @@ class LoadbalancerFrontendAclArgs:
 @pulumi.input_type
 class LoadbalancerFrontendAclActionArgs:
     def __init__(__self__, *,
-                 type: pulumi.Input[str]):
+                 type: pulumi.Input[str],
+                 redirects: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgs']]]] = None):
         """
-        :param pulumi.Input[str] type: The action type. Possible values are: `allow` or `deny`.
+        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgs']]] redirects: Redirect parameters when using an ACL with `redirect` action.
         """
         pulumi.set(__self__, "type", type)
+        if redirects is not None:
+            pulumi.set(__self__, "redirects", redirects)
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The action type. Possible values are: `allow` or `deny`.
+        The redirect type. Possible values are: `location` or `scheme`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def redirects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgs']]]]:
+        """
+        Redirect parameters when using an ACL with `redirect` action.
+        """
+        return pulumi.get(self, "redirects")
+
+    @redirects.setter
+    def redirects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgs']]]]):
+        pulumi.set(self, "redirects", value)
+
+
+@pulumi.input_type
+class LoadbalancerFrontendAclActionRedirectArgs:
+    def __init__(__self__, *,
+                 code: Optional[pulumi.Input[int]] = None,
+                 target: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        :param pulumi.Input[str] target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[int]]:
+        """
+        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        """
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "code", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input[str]]:
+        """
+        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The redirect type. Possible values are: `location` or `scheme`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
 

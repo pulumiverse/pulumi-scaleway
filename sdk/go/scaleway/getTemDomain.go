@@ -52,6 +52,18 @@ type LookupTemDomainResult struct {
 	Region      *string `pulumi:"region"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt string `pulumi:"revokedAt"`
+	// The SMTP host to use to send emails.
+	SmtpHost string `pulumi:"smtpHost"`
+	// The SMTP port to use to send emails over TLS.
+	SmtpPort int `pulumi:"smtpPort"`
+	// The SMTP port to use to send emails over TLS.
+	SmtpPortAlternative int `pulumi:"smtpPortAlternative"`
+	// The SMTP port to use to send emails.
+	SmtpPortUnsecure int `pulumi:"smtpPortUnsecure"`
+	// The SMTPS port to use to send emails over TLS Wrapper.
+	SmtpsPort int `pulumi:"smtpsPort"`
+	// The SMTPS port to use to send emails over TLS Wrapper.
+	SmtpsPortAlternative int `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig string `pulumi:"spfConfig"`
 	// The status of the Transaction Email Domain.
@@ -153,6 +165,36 @@ func (o LookupTemDomainResultOutput) Region() pulumi.StringPtrOutput {
 // The date and time of the revocation of the domain (RFC 3339 format).
 func (o LookupTemDomainResultOutput) RevokedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.RevokedAt }).(pulumi.StringOutput)
+}
+
+// The SMTP host to use to send emails.
+func (o LookupTemDomainResultOutput) SmtpHost() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SmtpHost }).(pulumi.StringOutput)
+}
+
+// The SMTP port to use to send emails over TLS.
+func (o LookupTemDomainResultOutput) SmtpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPort }).(pulumi.IntOutput)
+}
+
+// The SMTP port to use to send emails over TLS.
+func (o LookupTemDomainResultOutput) SmtpPortAlternative() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPortAlternative }).(pulumi.IntOutput)
+}
+
+// The SMTP port to use to send emails.
+func (o LookupTemDomainResultOutput) SmtpPortUnsecure() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPortUnsecure }).(pulumi.IntOutput)
+}
+
+// The SMTPS port to use to send emails over TLS Wrapper.
+func (o LookupTemDomainResultOutput) SmtpsPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpsPort }).(pulumi.IntOutput)
+}
+
+// The SMTPS port to use to send emails over TLS Wrapper.
+func (o LookupTemDomainResultOutput) SmtpsPortAlternative() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpsPortAlternative }).(pulumi.IntOutput)
 }
 
 // The snippet of the SPF record that should be registered in the DNS zone.

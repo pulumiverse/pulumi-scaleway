@@ -108,6 +108,42 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> RevokedAt { get; private set; } = null!;
 
         /// <summary>
+        /// SMTP host to use to send emails
+        /// </summary>
+        [Output("smtpHost")]
+        public Output<string> SmtpHost { get; private set; } = null!;
+
+        /// <summary>
+        /// SMTP port to use to send emails over TLS. (Port 587)
+        /// </summary>
+        [Output("smtpPort")]
+        public Output<int> SmtpPort { get; private set; } = null!;
+
+        /// <summary>
+        /// SMTP port to use to send emails over TLS. (Port 2587)
+        /// </summary>
+        [Output("smtpPortAlternative")]
+        public Output<int> SmtpPortAlternative { get; private set; } = null!;
+
+        /// <summary>
+        /// SMTP port to use to send emails. (Port 25)
+        /// </summary>
+        [Output("smtpPortUnsecure")]
+        public Output<int> SmtpPortUnsecure { get; private set; } = null!;
+
+        /// <summary>
+        /// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        /// </summary>
+        [Output("smtpsPort")]
+        public Output<int> SmtpsPort { get; private set; } = null!;
+
+        /// <summary>
+        /// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        /// </summary>
+        [Output("smtpsPortAlternative")]
+        public Output<int> SmtpsPortAlternative { get; private set; } = null!;
+
+        /// <summary>
         /// The snippet of the SPF record that should be registered in the DNS zone.
         /// </summary>
         [Output("spfConfig")]
@@ -261,6 +297,42 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("revokedAt")]
         public Input<string>? RevokedAt { get; set; }
+
+        /// <summary>
+        /// SMTP host to use to send emails
+        /// </summary>
+        [Input("smtpHost")]
+        public Input<string>? SmtpHost { get; set; }
+
+        /// <summary>
+        /// SMTP port to use to send emails over TLS. (Port 587)
+        /// </summary>
+        [Input("smtpPort")]
+        public Input<int>? SmtpPort { get; set; }
+
+        /// <summary>
+        /// SMTP port to use to send emails over TLS. (Port 2587)
+        /// </summary>
+        [Input("smtpPortAlternative")]
+        public Input<int>? SmtpPortAlternative { get; set; }
+
+        /// <summary>
+        /// SMTP port to use to send emails. (Port 25)
+        /// </summary>
+        [Input("smtpPortUnsecure")]
+        public Input<int>? SmtpPortUnsecure { get; set; }
+
+        /// <summary>
+        /// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        /// </summary>
+        [Input("smtpsPort")]
+        public Input<int>? SmtpsPort { get; set; }
+
+        /// <summary>
+        /// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        /// </summary>
+        [Input("smtpsPortAlternative")]
+        public Input<int>? SmtpsPortAlternative { get; set; }
 
         /// <summary>
         /// The snippet of the SPF record that should be registered in the DNS zone.

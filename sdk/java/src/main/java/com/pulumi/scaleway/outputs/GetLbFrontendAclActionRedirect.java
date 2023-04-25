@@ -4,19 +4,22 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.scaleway.outputs.GetLbFrontendAclActionRedirect;
+import java.lang.Integer;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 
 @CustomType
-public final class GetLbFrontendAclAction {
-    private List<GetLbFrontendAclActionRedirect> redirects;
+public final class GetLbFrontendAclActionRedirect {
+    private Integer code;
+    private String target;
     private String type;
 
-    private GetLbFrontendAclAction() {}
-    public List<GetLbFrontendAclActionRedirect> redirects() {
-        return this.redirects;
+    private GetLbFrontendAclActionRedirect() {}
+    public Integer code() {
+        return this.code;
+    }
+    public String target() {
+        return this.target;
     }
     public String type() {
         return this.type;
@@ -26,36 +29,41 @@ public final class GetLbFrontendAclAction {
         return new Builder();
     }
 
-    public static Builder builder(GetLbFrontendAclAction defaults) {
+    public static Builder builder(GetLbFrontendAclActionRedirect defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<GetLbFrontendAclActionRedirect> redirects;
+        private Integer code;
+        private String target;
         private String type;
         public Builder() {}
-        public Builder(GetLbFrontendAclAction defaults) {
+        public Builder(GetLbFrontendAclActionRedirect defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.redirects = defaults.redirects;
+    	      this.code = defaults.code;
+    	      this.target = defaults.target;
     	      this.type = defaults.type;
         }
 
         @CustomType.Setter
-        public Builder redirects(List<GetLbFrontendAclActionRedirect> redirects) {
-            this.redirects = Objects.requireNonNull(redirects);
+        public Builder code(Integer code) {
+            this.code = Objects.requireNonNull(code);
             return this;
         }
-        public Builder redirects(GetLbFrontendAclActionRedirect... redirects) {
-            return redirects(List.of(redirects));
+        @CustomType.Setter
+        public Builder target(String target) {
+            this.target = Objects.requireNonNull(target);
+            return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
         }
-        public GetLbFrontendAclAction build() {
-            final var o = new GetLbFrontendAclAction();
-            o.redirects = redirects;
+        public GetLbFrontendAclActionRedirect build() {
+            final var o = new GetLbFrontendAclActionRedirect();
+            o.code = code;
+            o.target = target;
             o.type = type;
             return o;
         }
