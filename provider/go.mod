@@ -2,7 +2,7 @@ module github.com/lbrlabs/pulumi-scaleway/provider
 
 go 1.19
 
-replace github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-go v1.0.0-beta.15.0.20230330162401-14ed2c90a334
+replace github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.44.3
