@@ -72,6 +72,30 @@ export interface GetTemDomainResult {
      */
     readonly revokedAt: string;
     /**
+     * The SMTP host to use to send emails.
+     */
+    readonly smtpHost: string;
+    /**
+     * The SMTP port to use to send emails over TLS.
+     */
+    readonly smtpPort: number;
+    /**
+     * The SMTP port to use to send emails over TLS.
+     */
+    readonly smtpPortAlternative: number;
+    /**
+     * The SMTP port to use to send emails.
+     */
+    readonly smtpPortUnsecure: number;
+    /**
+     * The SMTPS port to use to send emails over TLS Wrapper.
+     */
+    readonly smtpsPort: number;
+    /**
+     * The SMTPS port to use to send emails over TLS Wrapper.
+     */
+    readonly smtpsPortAlternative: number;
+    /**
      * The snippet of the SPF record that should be registered in the DNS zone.
      */
     readonly spfConfig: string;

@@ -6,6 +6,7 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -171,6 +172,96 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * SMTP host to use to send emails
+     * 
+     */
+    @Import(name="smtpHost")
+    private @Nullable Output<String> smtpHost;
+
+    /**
+     * @return SMTP host to use to send emails
+     * 
+     */
+    public Optional<Output<String>> smtpHost() {
+        return Optional.ofNullable(this.smtpHost);
+    }
+
+    /**
+     * SMTP port to use to send emails over TLS. (Port 587)
+     * 
+     */
+    @Import(name="smtpPort")
+    private @Nullable Output<Integer> smtpPort;
+
+    /**
+     * @return SMTP port to use to send emails over TLS. (Port 587)
+     * 
+     */
+    public Optional<Output<Integer>> smtpPort() {
+        return Optional.ofNullable(this.smtpPort);
+    }
+
+    /**
+     * SMTP port to use to send emails over TLS. (Port 2587)
+     * 
+     */
+    @Import(name="smtpPortAlternative")
+    private @Nullable Output<Integer> smtpPortAlternative;
+
+    /**
+     * @return SMTP port to use to send emails over TLS. (Port 2587)
+     * 
+     */
+    public Optional<Output<Integer>> smtpPortAlternative() {
+        return Optional.ofNullable(this.smtpPortAlternative);
+    }
+
+    /**
+     * SMTP port to use to send emails. (Port 25)
+     * 
+     */
+    @Import(name="smtpPortUnsecure")
+    private @Nullable Output<Integer> smtpPortUnsecure;
+
+    /**
+     * @return SMTP port to use to send emails. (Port 25)
+     * 
+     */
+    public Optional<Output<Integer>> smtpPortUnsecure() {
+        return Optional.ofNullable(this.smtpPortUnsecure);
+    }
+
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * 
+     */
+    @Import(name="smtpsPort")
+    private @Nullable Output<Integer> smtpsPort;
+
+    /**
+     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * 
+     */
+    public Optional<Output<Integer>> smtpsPort() {
+        return Optional.ofNullable(this.smtpsPort);
+    }
+
+    /**
+     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * 
+     */
+    @Import(name="smtpsPortAlternative")
+    private @Nullable Output<Integer> smtpsPortAlternative;
+
+    /**
+     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * 
+     */
+    public Optional<Output<Integer>> smtpsPortAlternative() {
+        return Optional.ofNullable(this.smtpsPortAlternative);
+    }
+
+    /**
      * The snippet of the SPF record that should be registered in the DNS zone.
      * 
      */
@@ -213,6 +304,12 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         this.projectId = $.projectId;
         this.region = $.region;
         this.revokedAt = $.revokedAt;
+        this.smtpHost = $.smtpHost;
+        this.smtpPort = $.smtpPort;
+        this.smtpPortAlternative = $.smtpPortAlternative;
+        this.smtpPortUnsecure = $.smtpPortUnsecure;
+        this.smtpsPort = $.smtpsPort;
+        this.smtpsPortAlternative = $.smtpsPortAlternative;
         this.spfConfig = $.spfConfig;
         this.status = $.status;
     }
@@ -447,6 +544,132 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder revokedAt(String revokedAt) {
             return revokedAt(Output.of(revokedAt));
+        }
+
+        /**
+         * @param smtpHost SMTP host to use to send emails
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpHost(@Nullable Output<String> smtpHost) {
+            $.smtpHost = smtpHost;
+            return this;
+        }
+
+        /**
+         * @param smtpHost SMTP host to use to send emails
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpHost(String smtpHost) {
+            return smtpHost(Output.of(smtpHost));
+        }
+
+        /**
+         * @param smtpPort SMTP port to use to send emails over TLS. (Port 587)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpPort(@Nullable Output<Integer> smtpPort) {
+            $.smtpPort = smtpPort;
+            return this;
+        }
+
+        /**
+         * @param smtpPort SMTP port to use to send emails over TLS. (Port 587)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpPort(Integer smtpPort) {
+            return smtpPort(Output.of(smtpPort));
+        }
+
+        /**
+         * @param smtpPortAlternative SMTP port to use to send emails over TLS. (Port 2587)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpPortAlternative(@Nullable Output<Integer> smtpPortAlternative) {
+            $.smtpPortAlternative = smtpPortAlternative;
+            return this;
+        }
+
+        /**
+         * @param smtpPortAlternative SMTP port to use to send emails over TLS. (Port 2587)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpPortAlternative(Integer smtpPortAlternative) {
+            return smtpPortAlternative(Output.of(smtpPortAlternative));
+        }
+
+        /**
+         * @param smtpPortUnsecure SMTP port to use to send emails. (Port 25)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpPortUnsecure(@Nullable Output<Integer> smtpPortUnsecure) {
+            $.smtpPortUnsecure = smtpPortUnsecure;
+            return this;
+        }
+
+        /**
+         * @param smtpPortUnsecure SMTP port to use to send emails. (Port 25)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpPortUnsecure(Integer smtpPortUnsecure) {
+            return smtpPortUnsecure(Output.of(smtpPortUnsecure));
+        }
+
+        /**
+         * @param smtpsPort SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpsPort(@Nullable Output<Integer> smtpsPort) {
+            $.smtpsPort = smtpsPort;
+            return this;
+        }
+
+        /**
+         * @param smtpsPort SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpsPort(Integer smtpsPort) {
+            return smtpsPort(Output.of(smtpsPort));
+        }
+
+        /**
+         * @param smtpsPortAlternative SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpsPortAlternative(@Nullable Output<Integer> smtpsPortAlternative) {
+            $.smtpsPortAlternative = smtpsPortAlternative;
+            return this;
+        }
+
+        /**
+         * @param smtpsPortAlternative SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder smtpsPortAlternative(Integer smtpsPortAlternative) {
+            return smtpsPortAlternative(Output.of(smtpsPortAlternative));
         }
 
         /**

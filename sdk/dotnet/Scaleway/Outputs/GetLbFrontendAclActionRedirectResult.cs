@@ -12,18 +12,22 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class GetLbFrontendAclActionResult
+    public sealed class GetLbFrontendAclActionRedirectResult
     {
-        public readonly ImmutableArray<Outputs.GetLbFrontendAclActionRedirectResult> Redirects;
+        public readonly int Code;
+        public readonly string Target;
         public readonly string Type;
 
         [OutputConstructor]
-        private GetLbFrontendAclActionResult(
-            ImmutableArray<Outputs.GetLbFrontendAclActionRedirectResult> redirects,
+        private GetLbFrontendAclActionRedirectResult(
+            int code,
+
+            string target,
 
             string type)
         {
-            Redirects = redirects;
+            Code = code;
+            Target = target;
             Type = type;
         }
     }

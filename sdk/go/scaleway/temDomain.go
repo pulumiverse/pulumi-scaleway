@@ -76,6 +76,18 @@ type TemDomain struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt pulumi.StringOutput `pulumi:"revokedAt"`
+	// SMTP host to use to send emails
+	SmtpHost pulumi.StringOutput `pulumi:"smtpHost"`
+	// SMTP port to use to send emails over TLS. (Port 587)
+	SmtpPort pulumi.IntOutput `pulumi:"smtpPort"`
+	// SMTP port to use to send emails over TLS. (Port 2587)
+	SmtpPortAlternative pulumi.IntOutput `pulumi:"smtpPortAlternative"`
+	// SMTP port to use to send emails. (Port 25)
+	SmtpPortUnsecure pulumi.IntOutput `pulumi:"smtpPortUnsecure"`
+	// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+	SmtpsPort pulumi.IntOutput `pulumi:"smtpsPort"`
+	// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+	SmtpsPortAlternative pulumi.IntOutput `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig pulumi.StringOutput `pulumi:"spfConfig"`
 	// The status of the Transaction Email Domain.
@@ -137,6 +149,18 @@ type temDomainState struct {
 	Region *string `pulumi:"region"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt *string `pulumi:"revokedAt"`
+	// SMTP host to use to send emails
+	SmtpHost *string `pulumi:"smtpHost"`
+	// SMTP port to use to send emails over TLS. (Port 587)
+	SmtpPort *int `pulumi:"smtpPort"`
+	// SMTP port to use to send emails over TLS. (Port 2587)
+	SmtpPortAlternative *int `pulumi:"smtpPortAlternative"`
+	// SMTP port to use to send emails. (Port 25)
+	SmtpPortUnsecure *int `pulumi:"smtpPortUnsecure"`
+	// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+	SmtpsPort *int `pulumi:"smtpsPort"`
+	// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+	SmtpsPortAlternative *int `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig *string `pulumi:"spfConfig"`
 	// The status of the Transaction Email Domain.
@@ -166,6 +190,18 @@ type TemDomainState struct {
 	Region pulumi.StringPtrInput
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt pulumi.StringPtrInput
+	// SMTP host to use to send emails
+	SmtpHost pulumi.StringPtrInput
+	// SMTP port to use to send emails over TLS. (Port 587)
+	SmtpPort pulumi.IntPtrInput
+	// SMTP port to use to send emails over TLS. (Port 2587)
+	SmtpPortAlternative pulumi.IntPtrInput
+	// SMTP port to use to send emails. (Port 25)
+	SmtpPortUnsecure pulumi.IntPtrInput
+	// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+	SmtpsPort pulumi.IntPtrInput
+	// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+	SmtpsPortAlternative pulumi.IntPtrInput
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig pulumi.StringPtrInput
 	// The status of the Transaction Email Domain.
@@ -340,6 +376,36 @@ func (o TemDomainOutput) Region() pulumi.StringOutput {
 // The date and time of the revocation of the domain (RFC 3339 format).
 func (o TemDomainOutput) RevokedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.RevokedAt }).(pulumi.StringOutput)
+}
+
+// SMTP host to use to send emails
+func (o TemDomainOutput) SmtpHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.SmtpHost }).(pulumi.StringOutput)
+}
+
+// SMTP port to use to send emails over TLS. (Port 587)
+func (o TemDomainOutput) SmtpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPort }).(pulumi.IntOutput)
+}
+
+// SMTP port to use to send emails over TLS. (Port 2587)
+func (o TemDomainOutput) SmtpPortAlternative() pulumi.IntOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPortAlternative }).(pulumi.IntOutput)
+}
+
+// SMTP port to use to send emails. (Port 25)
+func (o TemDomainOutput) SmtpPortUnsecure() pulumi.IntOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPortUnsecure }).(pulumi.IntOutput)
+}
+
+// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+func (o TemDomainOutput) SmtpsPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpsPort }).(pulumi.IntOutput)
+}
+
+// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+func (o TemDomainOutput) SmtpsPortAlternative() pulumi.IntOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpsPortAlternative }).(pulumi.IntOutput)
 }
 
 // The snippet of the SPF record that should be registered in the DNS zone.

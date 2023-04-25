@@ -99,6 +99,12 @@ class _TemDomainState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  revoked_at: Optional[pulumi.Input[str]] = None,
+                 smtp_host: Optional[pulumi.Input[str]] = None,
+                 smtp_port: Optional[pulumi.Input[int]] = None,
+                 smtp_port_alternative: Optional[pulumi.Input[int]] = None,
+                 smtp_port_unsecure: Optional[pulumi.Input[int]] = None,
+                 smtps_port: Optional[pulumi.Input[int]] = None,
+                 smtps_port_alternative: Optional[pulumi.Input[int]] = None,
                  spf_config: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
@@ -115,6 +121,12 @@ class _TemDomainState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
+        :param pulumi.Input[str] smtp_host: SMTP host to use to send emails
+        :param pulumi.Input[int] smtp_port: SMTP port to use to send emails over TLS. (Port 587)
+        :param pulumi.Input[int] smtp_port_alternative: SMTP port to use to send emails over TLS. (Port 2587)
+        :param pulumi.Input[int] smtp_port_unsecure: SMTP port to use to send emails. (Port 25)
+        :param pulumi.Input[int] smtps_port: SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        :param pulumi.Input[int] smtps_port_alternative: SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
         :param pulumi.Input[str] status: The status of the Transaction Email Domain.
         """
@@ -138,6 +150,18 @@ class _TemDomainState:
             pulumi.set(__self__, "region", region)
         if revoked_at is not None:
             pulumi.set(__self__, "revoked_at", revoked_at)
+        if smtp_host is not None:
+            pulumi.set(__self__, "smtp_host", smtp_host)
+        if smtp_port is not None:
+            pulumi.set(__self__, "smtp_port", smtp_port)
+        if smtp_port_alternative is not None:
+            pulumi.set(__self__, "smtp_port_alternative", smtp_port_alternative)
+        if smtp_port_unsecure is not None:
+            pulumi.set(__self__, "smtp_port_unsecure", smtp_port_unsecure)
+        if smtps_port is not None:
+            pulumi.set(__self__, "smtps_port", smtps_port)
+        if smtps_port_alternative is not None:
+            pulumi.set(__self__, "smtps_port_alternative", smtps_port_alternative)
         if spf_config is not None:
             pulumi.set(__self__, "spf_config", spf_config)
         if status is not None:
@@ -264,6 +288,78 @@ class _TemDomainState:
     @revoked_at.setter
     def revoked_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "revoked_at", value)
+
+    @property
+    @pulumi.getter(name="smtpHost")
+    def smtp_host(self) -> Optional[pulumi.Input[str]]:
+        """
+        SMTP host to use to send emails
+        """
+        return pulumi.get(self, "smtp_host")
+
+    @smtp_host.setter
+    def smtp_host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "smtp_host", value)
+
+    @property
+    @pulumi.getter(name="smtpPort")
+    def smtp_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        SMTP port to use to send emails over TLS. (Port 587)
+        """
+        return pulumi.get(self, "smtp_port")
+
+    @smtp_port.setter
+    def smtp_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "smtp_port", value)
+
+    @property
+    @pulumi.getter(name="smtpPortAlternative")
+    def smtp_port_alternative(self) -> Optional[pulumi.Input[int]]:
+        """
+        SMTP port to use to send emails over TLS. (Port 2587)
+        """
+        return pulumi.get(self, "smtp_port_alternative")
+
+    @smtp_port_alternative.setter
+    def smtp_port_alternative(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "smtp_port_alternative", value)
+
+    @property
+    @pulumi.getter(name="smtpPortUnsecure")
+    def smtp_port_unsecure(self) -> Optional[pulumi.Input[int]]:
+        """
+        SMTP port to use to send emails. (Port 25)
+        """
+        return pulumi.get(self, "smtp_port_unsecure")
+
+    @smtp_port_unsecure.setter
+    def smtp_port_unsecure(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "smtp_port_unsecure", value)
+
+    @property
+    @pulumi.getter(name="smtpsPort")
+    def smtps_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        """
+        return pulumi.get(self, "smtps_port")
+
+    @smtps_port.setter
+    def smtps_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "smtps_port", value)
+
+    @property
+    @pulumi.getter(name="smtpsPortAlternative")
+    def smtps_port_alternative(self) -> Optional[pulumi.Input[int]]:
+        """
+        SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        """
+        return pulumi.get(self, "smtps_port_alternative")
+
+    @smtps_port_alternative.setter
+    def smtps_port_alternative(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "smtps_port_alternative", value)
 
     @property
     @pulumi.getter(name="spfConfig")
@@ -401,6 +497,12 @@ class TemDomain(pulumi.CustomResource):
             __props__.__dict__["last_valid_at"] = None
             __props__.__dict__["next_check_at"] = None
             __props__.__dict__["revoked_at"] = None
+            __props__.__dict__["smtp_host"] = None
+            __props__.__dict__["smtp_port"] = None
+            __props__.__dict__["smtp_port_alternative"] = None
+            __props__.__dict__["smtp_port_unsecure"] = None
+            __props__.__dict__["smtps_port"] = None
+            __props__.__dict__["smtps_port_alternative"] = None
             __props__.__dict__["spf_config"] = None
             __props__.__dict__["status"] = None
         super(TemDomain, __self__).__init__(
@@ -423,6 +525,12 @@ class TemDomain(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             revoked_at: Optional[pulumi.Input[str]] = None,
+            smtp_host: Optional[pulumi.Input[str]] = None,
+            smtp_port: Optional[pulumi.Input[int]] = None,
+            smtp_port_alternative: Optional[pulumi.Input[int]] = None,
+            smtp_port_unsecure: Optional[pulumi.Input[int]] = None,
+            smtps_port: Optional[pulumi.Input[int]] = None,
+            smtps_port_alternative: Optional[pulumi.Input[int]] = None,
             spf_config: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None) -> 'TemDomain':
         """
@@ -444,6 +552,12 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
+        :param pulumi.Input[str] smtp_host: SMTP host to use to send emails
+        :param pulumi.Input[int] smtp_port: SMTP port to use to send emails over TLS. (Port 587)
+        :param pulumi.Input[int] smtp_port_alternative: SMTP port to use to send emails over TLS. (Port 2587)
+        :param pulumi.Input[int] smtp_port_unsecure: SMTP port to use to send emails. (Port 25)
+        :param pulumi.Input[int] smtps_port: SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        :param pulumi.Input[int] smtps_port_alternative: SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
         :param pulumi.Input[str] status: The status of the Transaction Email Domain.
         """
@@ -461,6 +575,12 @@ class TemDomain(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["revoked_at"] = revoked_at
+        __props__.__dict__["smtp_host"] = smtp_host
+        __props__.__dict__["smtp_port"] = smtp_port
+        __props__.__dict__["smtp_port_alternative"] = smtp_port_alternative
+        __props__.__dict__["smtp_port_unsecure"] = smtp_port_unsecure
+        __props__.__dict__["smtps_port"] = smtps_port
+        __props__.__dict__["smtps_port_alternative"] = smtps_port_alternative
         __props__.__dict__["spf_config"] = spf_config
         __props__.__dict__["status"] = status
         return TemDomain(resource_name, opts=opts, __props__=__props__)
@@ -546,6 +666,54 @@ class TemDomain(pulumi.CustomResource):
         The date and time of the revocation of the domain (RFC 3339 format).
         """
         return pulumi.get(self, "revoked_at")
+
+    @property
+    @pulumi.getter(name="smtpHost")
+    def smtp_host(self) -> pulumi.Output[str]:
+        """
+        SMTP host to use to send emails
+        """
+        return pulumi.get(self, "smtp_host")
+
+    @property
+    @pulumi.getter(name="smtpPort")
+    def smtp_port(self) -> pulumi.Output[int]:
+        """
+        SMTP port to use to send emails over TLS. (Port 587)
+        """
+        return pulumi.get(self, "smtp_port")
+
+    @property
+    @pulumi.getter(name="smtpPortAlternative")
+    def smtp_port_alternative(self) -> pulumi.Output[int]:
+        """
+        SMTP port to use to send emails over TLS. (Port 2587)
+        """
+        return pulumi.get(self, "smtp_port_alternative")
+
+    @property
+    @pulumi.getter(name="smtpPortUnsecure")
+    def smtp_port_unsecure(self) -> pulumi.Output[int]:
+        """
+        SMTP port to use to send emails. (Port 25)
+        """
+        return pulumi.get(self, "smtp_port_unsecure")
+
+    @property
+    @pulumi.getter(name="smtpsPort")
+    def smtps_port(self) -> pulumi.Output[int]:
+        """
+        SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        """
+        return pulumi.get(self, "smtps_port")
+
+    @property
+    @pulumi.getter(name="smtpsPortAlternative")
+    def smtps_port_alternative(self) -> pulumi.Output[int]:
+        """
+        SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        """
+        return pulumi.get(self, "smtps_port_alternative")
 
     @property
     @pulumi.getter(name="spfConfig")

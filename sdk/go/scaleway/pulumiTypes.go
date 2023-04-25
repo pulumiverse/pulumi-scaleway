@@ -7188,7 +7188,9 @@ func (o LoadbalancerFrontendAclArrayOutput) Index(i pulumi.IntInput) Loadbalance
 }
 
 type LoadbalancerFrontendAclAction struct {
-	// The action type. Possible values are: `allow` or `deny`.
+	// Redirect parameters when using an ACL with `redirect` action.
+	Redirects []LoadbalancerFrontendAclActionRedirect `pulumi:"redirects"`
+	// The redirect type. Possible values are: `location` or `scheme`.
 	Type string `pulumi:"type"`
 }
 
@@ -7204,7 +7206,9 @@ type LoadbalancerFrontendAclActionInput interface {
 }
 
 type LoadbalancerFrontendAclActionArgs struct {
-	// The action type. Possible values are: `allow` or `deny`.
+	// Redirect parameters when using an ACL with `redirect` action.
+	Redirects LoadbalancerFrontendAclActionRedirectArrayInput `pulumi:"redirects"`
+	// The redirect type. Possible values are: `location` or `scheme`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -7234,9 +7238,129 @@ func (o LoadbalancerFrontendAclActionOutput) ToLoadbalancerFrontendAclActionOutp
 	return o
 }
 
-// The action type. Possible values are: `allow` or `deny`.
+// Redirect parameters when using an ACL with `redirect` action.
+func (o LoadbalancerFrontendAclActionOutput) Redirects() LoadbalancerFrontendAclActionRedirectArrayOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendAclAction) []LoadbalancerFrontendAclActionRedirect { return v.Redirects }).(LoadbalancerFrontendAclActionRedirectArrayOutput)
+}
+
+// The redirect type. Possible values are: `location` or `scheme`.
 func (o LoadbalancerFrontendAclActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type LoadbalancerFrontendAclActionRedirect struct {
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	Code *int `pulumi:"code"`
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	Target *string `pulumi:"target"`
+	// The redirect type. Possible values are: `location` or `scheme`.
+	Type *string `pulumi:"type"`
+}
+
+// LoadbalancerFrontendAclActionRedirectInput is an input type that accepts LoadbalancerFrontendAclActionRedirectArgs and LoadbalancerFrontendAclActionRedirectOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendAclActionRedirectInput` via:
+//
+//	LoadbalancerFrontendAclActionRedirectArgs{...}
+type LoadbalancerFrontendAclActionRedirectInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendAclActionRedirectOutput() LoadbalancerFrontendAclActionRedirectOutput
+	ToLoadbalancerFrontendAclActionRedirectOutputWithContext(context.Context) LoadbalancerFrontendAclActionRedirectOutput
+}
+
+type LoadbalancerFrontendAclActionRedirectArgs struct {
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	Code pulumi.IntPtrInput `pulumi:"code"`
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	Target pulumi.StringPtrInput `pulumi:"target"`
+	// The redirect type. Possible values are: `location` or `scheme`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (LoadbalancerFrontendAclActionRedirectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendAclActionRedirectArgs) ToLoadbalancerFrontendAclActionRedirectOutput() LoadbalancerFrontendAclActionRedirectOutput {
+	return i.ToLoadbalancerFrontendAclActionRedirectOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendAclActionRedirectArgs) ToLoadbalancerFrontendAclActionRedirectOutputWithContext(ctx context.Context) LoadbalancerFrontendAclActionRedirectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendAclActionRedirectOutput)
+}
+
+// LoadbalancerFrontendAclActionRedirectArrayInput is an input type that accepts LoadbalancerFrontendAclActionRedirectArray and LoadbalancerFrontendAclActionRedirectArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerFrontendAclActionRedirectArrayInput` via:
+//
+//	LoadbalancerFrontendAclActionRedirectArray{ LoadbalancerFrontendAclActionRedirectArgs{...} }
+type LoadbalancerFrontendAclActionRedirectArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerFrontendAclActionRedirectArrayOutput() LoadbalancerFrontendAclActionRedirectArrayOutput
+	ToLoadbalancerFrontendAclActionRedirectArrayOutputWithContext(context.Context) LoadbalancerFrontendAclActionRedirectArrayOutput
+}
+
+type LoadbalancerFrontendAclActionRedirectArray []LoadbalancerFrontendAclActionRedirectInput
+
+func (LoadbalancerFrontendAclActionRedirectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (i LoadbalancerFrontendAclActionRedirectArray) ToLoadbalancerFrontendAclActionRedirectArrayOutput() LoadbalancerFrontendAclActionRedirectArrayOutput {
+	return i.ToLoadbalancerFrontendAclActionRedirectArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerFrontendAclActionRedirectArray) ToLoadbalancerFrontendAclActionRedirectArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendAclActionRedirectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendAclActionRedirectArrayOutput)
+}
+
+type LoadbalancerFrontendAclActionRedirectOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendAclActionRedirectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendAclActionRedirectOutput) ToLoadbalancerFrontendAclActionRedirectOutput() LoadbalancerFrontendAclActionRedirectOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendAclActionRedirectOutput) ToLoadbalancerFrontendAclActionRedirectOutputWithContext(ctx context.Context) LoadbalancerFrontendAclActionRedirectOutput {
+	return o
+}
+
+// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+func (o LoadbalancerFrontendAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
+}
+
+// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+func (o LoadbalancerFrontendAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+// The redirect type. Possible values are: `location` or `scheme`.
+func (o LoadbalancerFrontendAclActionRedirectOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendAclActionRedirect) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type LoadbalancerFrontendAclActionRedirectArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerFrontendAclActionRedirectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (o LoadbalancerFrontendAclActionRedirectArrayOutput) ToLoadbalancerFrontendAclActionRedirectArrayOutput() LoadbalancerFrontendAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendAclActionRedirectArrayOutput) ToLoadbalancerFrontendAclActionRedirectArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o LoadbalancerFrontendAclActionRedirectArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendAclActionRedirectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerFrontendAclActionRedirect {
+		return vs[0].([]LoadbalancerFrontendAclActionRedirect)[vs[1].(int)]
+	}).(LoadbalancerFrontendAclActionRedirectOutput)
 }
 
 type LoadbalancerFrontendAclMatch struct {
@@ -14211,7 +14335,9 @@ func (o GetLbAclsAclArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclOutput {
 }
 
 type GetLbAclsAclAction struct {
-	// The action type.
+	// Redirect parameters when using an ACL with `redirect` action.
+	Redirects []GetLbAclsAclActionRedirect `pulumi:"redirects"`
+	// The redirect type.
 	Type string `pulumi:"type"`
 }
 
@@ -14227,7 +14353,9 @@ type GetLbAclsAclActionInput interface {
 }
 
 type GetLbAclsAclActionArgs struct {
-	// The action type.
+	// Redirect parameters when using an ACL with `redirect` action.
+	Redirects GetLbAclsAclActionRedirectArrayInput `pulumi:"redirects"`
+	// The redirect type.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -14282,7 +14410,12 @@ func (o GetLbAclsAclActionOutput) ToGetLbAclsAclActionOutputWithContext(ctx cont
 	return o
 }
 
-// The action type.
+// Redirect parameters when using an ACL with `redirect` action.
+func (o GetLbAclsAclActionOutput) Redirects() GetLbAclsAclActionRedirectArrayOutput {
+	return o.ApplyT(func(v GetLbAclsAclAction) []GetLbAclsAclActionRedirect { return v.Redirects }).(GetLbAclsAclActionRedirectArrayOutput)
+}
+
+// The redirect type.
 func (o GetLbAclsAclActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAclAction) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -14305,6 +14438,121 @@ func (o GetLbAclsAclActionArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclActi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbAclsAclAction {
 		return vs[0].([]GetLbAclsAclAction)[vs[1].(int)]
 	}).(GetLbAclsAclActionOutput)
+}
+
+type GetLbAclsAclActionRedirect struct {
+	// The HTTP redirect code used.
+	Code int `pulumi:"code"`
+	// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+	Target string `pulumi:"target"`
+	// The redirect type.
+	Type string `pulumi:"type"`
+}
+
+// GetLbAclsAclActionRedirectInput is an input type that accepts GetLbAclsAclActionRedirectArgs and GetLbAclsAclActionRedirectOutput values.
+// You can construct a concrete instance of `GetLbAclsAclActionRedirectInput` via:
+//
+//	GetLbAclsAclActionRedirectArgs{...}
+type GetLbAclsAclActionRedirectInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclActionRedirectOutput() GetLbAclsAclActionRedirectOutput
+	ToGetLbAclsAclActionRedirectOutputWithContext(context.Context) GetLbAclsAclActionRedirectOutput
+}
+
+type GetLbAclsAclActionRedirectArgs struct {
+	// The HTTP redirect code used.
+	Code pulumi.IntInput `pulumi:"code"`
+	// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+	Target pulumi.StringInput `pulumi:"target"`
+	// The redirect type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetLbAclsAclActionRedirectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAclActionRedirect)(nil)).Elem()
+}
+
+func (i GetLbAclsAclActionRedirectArgs) ToGetLbAclsAclActionRedirectOutput() GetLbAclsAclActionRedirectOutput {
+	return i.ToGetLbAclsAclActionRedirectOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclActionRedirectArgs) ToGetLbAclsAclActionRedirectOutputWithContext(ctx context.Context) GetLbAclsAclActionRedirectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclActionRedirectOutput)
+}
+
+// GetLbAclsAclActionRedirectArrayInput is an input type that accepts GetLbAclsAclActionRedirectArray and GetLbAclsAclActionRedirectArrayOutput values.
+// You can construct a concrete instance of `GetLbAclsAclActionRedirectArrayInput` via:
+//
+//	GetLbAclsAclActionRedirectArray{ GetLbAclsAclActionRedirectArgs{...} }
+type GetLbAclsAclActionRedirectArrayInput interface {
+	pulumi.Input
+
+	ToGetLbAclsAclActionRedirectArrayOutput() GetLbAclsAclActionRedirectArrayOutput
+	ToGetLbAclsAclActionRedirectArrayOutputWithContext(context.Context) GetLbAclsAclActionRedirectArrayOutput
+}
+
+type GetLbAclsAclActionRedirectArray []GetLbAclsAclActionRedirectInput
+
+func (GetLbAclsAclActionRedirectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAclActionRedirect)(nil)).Elem()
+}
+
+func (i GetLbAclsAclActionRedirectArray) ToGetLbAclsAclActionRedirectArrayOutput() GetLbAclsAclActionRedirectArrayOutput {
+	return i.ToGetLbAclsAclActionRedirectArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbAclsAclActionRedirectArray) ToGetLbAclsAclActionRedirectArrayOutputWithContext(ctx context.Context) GetLbAclsAclActionRedirectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbAclsAclActionRedirectArrayOutput)
+}
+
+type GetLbAclsAclActionRedirectOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclActionRedirectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbAclsAclActionRedirect)(nil)).Elem()
+}
+
+func (o GetLbAclsAclActionRedirectOutput) ToGetLbAclsAclActionRedirectOutput() GetLbAclsAclActionRedirectOutput {
+	return o
+}
+
+func (o GetLbAclsAclActionRedirectOutput) ToGetLbAclsAclActionRedirectOutputWithContext(ctx context.Context) GetLbAclsAclActionRedirectOutput {
+	return o
+}
+
+// The HTTP redirect code used.
+func (o GetLbAclsAclActionRedirectOutput) Code() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbAclsAclActionRedirect) int { return v.Code }).(pulumi.IntOutput)
+}
+
+// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+func (o GetLbAclsAclActionRedirectOutput) Target() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAclActionRedirect) string { return v.Target }).(pulumi.StringOutput)
+}
+
+// The redirect type.
+func (o GetLbAclsAclActionRedirectOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsAclActionRedirect) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetLbAclsAclActionRedirectArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbAclsAclActionRedirectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbAclsAclActionRedirect)(nil)).Elem()
+}
+
+func (o GetLbAclsAclActionRedirectArrayOutput) ToGetLbAclsAclActionRedirectArrayOutput() GetLbAclsAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclActionRedirectArrayOutput) ToGetLbAclsAclActionRedirectArrayOutputWithContext(ctx context.Context) GetLbAclsAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o GetLbAclsAclActionRedirectArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclActionRedirectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbAclsAclActionRedirect {
+		return vs[0].([]GetLbAclsAclActionRedirect)[vs[1].(int)]
+	}).(GetLbAclsAclActionRedirectOutput)
 }
 
 type GetLbAclsAclMatch struct {
@@ -15299,7 +15547,8 @@ func (o GetLbFrontendAclArrayOutput) Index(i pulumi.IntInput) GetLbFrontendAclOu
 }
 
 type GetLbFrontendAclAction struct {
-	Type string `pulumi:"type"`
+	Redirects []GetLbFrontendAclActionRedirect `pulumi:"redirects"`
+	Type      string                           `pulumi:"type"`
 }
 
 // GetLbFrontendAclActionInput is an input type that accepts GetLbFrontendAclActionArgs and GetLbFrontendAclActionOutput values.
@@ -15314,7 +15563,8 @@ type GetLbFrontendAclActionInput interface {
 }
 
 type GetLbFrontendAclActionArgs struct {
-	Type pulumi.StringInput `pulumi:"type"`
+	Redirects GetLbFrontendAclActionRedirectArrayInput `pulumi:"redirects"`
+	Type      pulumi.StringInput                       `pulumi:"type"`
 }
 
 func (GetLbFrontendAclActionArgs) ElementType() reflect.Type {
@@ -15368,6 +15618,10 @@ func (o GetLbFrontendAclActionOutput) ToGetLbFrontendAclActionOutputWithContext(
 	return o
 }
 
+func (o GetLbFrontendAclActionOutput) Redirects() GetLbFrontendAclActionRedirectArrayOutput {
+	return o.ApplyT(func(v GetLbFrontendAclAction) []GetLbFrontendAclActionRedirect { return v.Redirects }).(GetLbFrontendAclActionRedirectArrayOutput)
+}
+
 func (o GetLbFrontendAclActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAclAction) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -15390,6 +15644,112 @@ func (o GetLbFrontendAclActionArrayOutput) Index(i pulumi.IntInput) GetLbFronten
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbFrontendAclAction {
 		return vs[0].([]GetLbFrontendAclAction)[vs[1].(int)]
 	}).(GetLbFrontendAclActionOutput)
+}
+
+type GetLbFrontendAclActionRedirect struct {
+	Code   int    `pulumi:"code"`
+	Target string `pulumi:"target"`
+	Type   string `pulumi:"type"`
+}
+
+// GetLbFrontendAclActionRedirectInput is an input type that accepts GetLbFrontendAclActionRedirectArgs and GetLbFrontendAclActionRedirectOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclActionRedirectInput` via:
+//
+//	GetLbFrontendAclActionRedirectArgs{...}
+type GetLbFrontendAclActionRedirectInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclActionRedirectOutput() GetLbFrontendAclActionRedirectOutput
+	ToGetLbFrontendAclActionRedirectOutputWithContext(context.Context) GetLbFrontendAclActionRedirectOutput
+}
+
+type GetLbFrontendAclActionRedirectArgs struct {
+	Code   pulumi.IntInput    `pulumi:"code"`
+	Target pulumi.StringInput `pulumi:"target"`
+	Type   pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetLbFrontendAclActionRedirectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclActionRedirectArgs) ToGetLbFrontendAclActionRedirectOutput() GetLbFrontendAclActionRedirectOutput {
+	return i.ToGetLbFrontendAclActionRedirectOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclActionRedirectArgs) ToGetLbFrontendAclActionRedirectOutputWithContext(ctx context.Context) GetLbFrontendAclActionRedirectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclActionRedirectOutput)
+}
+
+// GetLbFrontendAclActionRedirectArrayInput is an input type that accepts GetLbFrontendAclActionRedirectArray and GetLbFrontendAclActionRedirectArrayOutput values.
+// You can construct a concrete instance of `GetLbFrontendAclActionRedirectArrayInput` via:
+//
+//	GetLbFrontendAclActionRedirectArray{ GetLbFrontendAclActionRedirectArgs{...} }
+type GetLbFrontendAclActionRedirectArrayInput interface {
+	pulumi.Input
+
+	ToGetLbFrontendAclActionRedirectArrayOutput() GetLbFrontendAclActionRedirectArrayOutput
+	ToGetLbFrontendAclActionRedirectArrayOutputWithContext(context.Context) GetLbFrontendAclActionRedirectArrayOutput
+}
+
+type GetLbFrontendAclActionRedirectArray []GetLbFrontendAclActionRedirectInput
+
+func (GetLbFrontendAclActionRedirectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (i GetLbFrontendAclActionRedirectArray) ToGetLbFrontendAclActionRedirectArrayOutput() GetLbFrontendAclActionRedirectArrayOutput {
+	return i.ToGetLbFrontendAclActionRedirectArrayOutputWithContext(context.Background())
+}
+
+func (i GetLbFrontendAclActionRedirectArray) ToGetLbFrontendAclActionRedirectArrayOutputWithContext(ctx context.Context) GetLbFrontendAclActionRedirectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLbFrontendAclActionRedirectArrayOutput)
+}
+
+type GetLbFrontendAclActionRedirectOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclActionRedirectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLbFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclActionRedirectOutput) ToGetLbFrontendAclActionRedirectOutput() GetLbFrontendAclActionRedirectOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionRedirectOutput) ToGetLbFrontendAclActionRedirectOutputWithContext(ctx context.Context) GetLbFrontendAclActionRedirectOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionRedirectOutput) Code() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbFrontendAclActionRedirect) int { return v.Code }).(pulumi.IntOutput)
+}
+
+func (o GetLbFrontendAclActionRedirectOutput) Target() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAclActionRedirect) string { return v.Target }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendAclActionRedirectOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAclActionRedirect) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetLbFrontendAclActionRedirectArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLbFrontendAclActionRedirectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLbFrontendAclActionRedirect)(nil)).Elem()
+}
+
+func (o GetLbFrontendAclActionRedirectArrayOutput) ToGetLbFrontendAclActionRedirectArrayOutput() GetLbFrontendAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionRedirectArrayOutput) ToGetLbFrontendAclActionRedirectArrayOutputWithContext(ctx context.Context) GetLbFrontendAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o GetLbFrontendAclActionRedirectArrayOutput) Index(i pulumi.IntInput) GetLbFrontendAclActionRedirectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLbFrontendAclActionRedirect {
+		return vs[0].([]GetLbFrontendAclActionRedirect)[vs[1].(int)]
+	}).(GetLbFrontendAclActionRedirectOutput)
 }
 
 type GetLbFrontendAclMatch struct {
@@ -17985,6 +18345,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclInput)(nil)).Elem(), LoadbalancerFrontendAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclArrayInput)(nil)).Elem(), LoadbalancerFrontendAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclActionInput)(nil)).Elem(), LoadbalancerFrontendAclActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclActionRedirectInput)(nil)).Elem(), LoadbalancerFrontendAclActionRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclActionRedirectArrayInput)(nil)).Elem(), LoadbalancerFrontendAclActionRedirectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclMatchInput)(nil)).Elem(), LoadbalancerFrontendAclMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkInput)(nil)).Elem(), LoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), LoadbalancerPrivateNetworkArray{})
@@ -18093,6 +18455,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclArrayInput)(nil)).Elem(), GetLbAclsAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclActionInput)(nil)).Elem(), GetLbAclsAclActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclActionArrayInput)(nil)).Elem(), GetLbAclsAclActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclActionRedirectInput)(nil)).Elem(), GetLbAclsAclActionRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclActionRedirectArrayInput)(nil)).Elem(), GetLbAclsAclActionRedirectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclMatchInput)(nil)).Elem(), GetLbAclsAclMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclMatchArrayInput)(nil)).Elem(), GetLbAclsAclMatchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbBackendHealthCheckHttpInput)(nil)).Elem(), GetLbBackendHealthCheckHttpArgs{})
@@ -18109,6 +18473,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclArrayInput)(nil)).Elem(), GetLbFrontendAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclActionInput)(nil)).Elem(), GetLbFrontendAclActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclActionArrayInput)(nil)).Elem(), GetLbFrontendAclActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclActionRedirectInput)(nil)).Elem(), GetLbFrontendAclActionRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclActionRedirectArrayInput)(nil)).Elem(), GetLbFrontendAclActionRedirectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclMatchInput)(nil)).Elem(), GetLbFrontendAclMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendAclMatchArrayInput)(nil)).Elem(), GetLbFrontendAclMatchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbFrontendsFrontendInput)(nil)).Elem(), GetLbFrontendsFrontendArgs{})
@@ -18236,6 +18602,8 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclActionOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendAclActionRedirectOutput{})
+	pulumi.RegisterOutputType(LoadbalancerFrontendAclActionRedirectArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclMatchOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkArrayOutput{})
@@ -18344,6 +18712,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLbAclsAclArrayOutput{})
 	pulumi.RegisterOutputType(GetLbAclsAclActionOutput{})
 	pulumi.RegisterOutputType(GetLbAclsAclActionArrayOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclActionRedirectOutput{})
+	pulumi.RegisterOutputType(GetLbAclsAclActionRedirectArrayOutput{})
 	pulumi.RegisterOutputType(GetLbAclsAclMatchOutput{})
 	pulumi.RegisterOutputType(GetLbAclsAclMatchArrayOutput{})
 	pulumi.RegisterOutputType(GetLbBackendHealthCheckHttpOutput{})
@@ -18360,6 +18730,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLbFrontendAclArrayOutput{})
 	pulumi.RegisterOutputType(GetLbFrontendAclActionOutput{})
 	pulumi.RegisterOutputType(GetLbFrontendAclActionArrayOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclActionRedirectOutput{})
+	pulumi.RegisterOutputType(GetLbFrontendAclActionRedirectArrayOutput{})
 	pulumi.RegisterOutputType(GetLbFrontendAclMatchOutput{})
 	pulumi.RegisterOutputType(GetLbFrontendAclMatchArrayOutput{})
 	pulumi.RegisterOutputType(GetLbFrontendsFrontendOutput{})
