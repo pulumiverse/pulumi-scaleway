@@ -1735,6 +1735,8 @@ github.com/santhosh-tekuri/jsonschema/v5 v5.0.0/go.mod h1:FKdcjfQW6rpZSnxxUvEA5H
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16 h1:Ted1/3BGV1d0c7J+69N+brveAgJNWZlWnI8iYP3dZMs=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.17 h1:1WuWJu7/e8SqK+uQl7lfk/N/oMZTL2NE/TJsNKRNMc4=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.17/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.17.0 h1:p0nk0I6xFORotQaVvEObAZjg1zgeTe+LqUyyMceNKa4=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.17.0/go.mod h1:3JhdUnfvNZaY5S7Bo7CclFE0q+DJdCjftc0Pp86wEUw=
 github.com/sclevine/agouti v3.0.0+incompatible/go.mod h1:b4WX9W9L1sfQKXeJf1mUTLZKJ48R1S7H23Ji7oFO5Bw=
