@@ -190,4 +190,4 @@ require (
 	sourcegraph.com/sourcegraph/appdash v0.0.0-20211028080628-e2786a622600 // indirect
 )
 
-replace github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.9.0
+replace github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.9.3
