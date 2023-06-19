@@ -42,6 +42,63 @@ import (
 //
 // ```
 //
+// ### Add the required records to your DNS zone
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			domainName := cfg.Require("domainName")
+//			main, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//				AcceptTos: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDomainRecord(ctx, "spf", &scaleway.DomainRecordArgs{
+//				DnsZone: pulumi.String(domainName),
+//				Type:    pulumi.String("TXT"),
+//				Data: main.SpfConfig.ApplyT(func(spfConfig string) (string, error) {
+//					return fmt.Sprintf("v=spf1 %v -all", spfConfig), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDomainRecord(ctx, "dkim", &scaleway.DomainRecordArgs{
+//				DnsZone: pulumi.String(domainName),
+//				Type:    pulumi.String("TXT"),
+//				Data:    main.DkimConfig,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDomainRecord(ctx, "mx", &scaleway.DomainRecordArgs{
+//				DnsZone: pulumi.String(domainName),
+//				Type:    pulumi.String("MX"),
+//				Data:    pulumi.String("."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Domains can be imported using the `{region}/{id}`, e.g. bash

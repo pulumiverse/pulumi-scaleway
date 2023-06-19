@@ -36,6 +36,8 @@ class BaremetalServerArgs:
         The set of arguments for constructing a BaremetalServer resource.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+               
+               > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
@@ -92,6 +94,8 @@ class BaremetalServerArgs:
         """
         The offer name or UUID of the baremetal server.
         Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+
+        > **Important:** Updates to `offer` will recreate the server.
         """
         return pulumi.get(self, "offer")
 
@@ -318,6 +322,8 @@ class _BaremetalServerState:
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+               
+               > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] offer_id: The ID of the offer.
         :param pulumi.Input[str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]] options: The options to enable on the server.
@@ -450,6 +456,8 @@ class _BaremetalServerState:
         """
         The offer name or UUID of the baremetal server.
         Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+
+        > **Important:** Updates to `offer` will recreate the server.
         """
         return pulumi.get(self, "offer")
 
@@ -711,6 +719,8 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+               
+               > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
@@ -878,6 +888,8 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+               
+               > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] offer_id: The ID of the offer.
         :param pulumi.Input[str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]] options: The options to enable on the server.
@@ -973,6 +985,8 @@ class BaremetalServer(pulumi.CustomResource):
         """
         The offer name or UUID of the baremetal server.
         Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+
+        > **Important:** Updates to `offer` will recreate the server.
         """
         return pulumi.get(self, "offer")
 

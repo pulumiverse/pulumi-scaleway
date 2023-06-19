@@ -77,6 +77,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The ID of the function.
+        /// 
+        /// &gt; Only one of `namespace_id` or `function_id` must be set.
         /// </summary>
         [Output("functionId")]
         public Output<string?> FunctionId { get; private set; } = null!;
@@ -89,6 +91,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
+        /// 
+        /// &gt; **Important** Updates to any fields will recreate the token.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -164,6 +168,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The ID of the function.
+        /// 
+        /// &gt; Only one of `namespace_id` or `function_id` must be set.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
@@ -176,6 +182,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
+        /// 
+        /// &gt; **Important** Updates to any fields will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -202,6 +210,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The ID of the function.
+        /// 
+        /// &gt; Only one of `namespace_id` or `function_id` must be set.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
@@ -214,6 +224,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
+        /// 
+        /// &gt; **Important** Updates to any fields will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

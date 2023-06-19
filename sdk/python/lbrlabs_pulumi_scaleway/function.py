@@ -46,6 +46,8 @@ class FunctionArgs:
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
@@ -223,6 +225,8 @@ class FunctionArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the function.
+
+        > **Important** Updates to `name` will recreate the function.
         """
         return pulumi.get(self, "name")
 
@@ -340,6 +344,8 @@ class _FunctionState:
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
@@ -519,6 +525,8 @@ class _FunctionState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the function.
+
+        > **Important** Updates to `name` will recreate the function.
         """
         return pulumi.get(self, "name")
 
@@ -710,6 +718,8 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -876,6 +886,8 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
@@ -999,6 +1011,8 @@ class Function(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The unique name of the function.
+
+        > **Important** Updates to `name` will recreate the function.
         """
         return pulumi.get(self, "name")
 

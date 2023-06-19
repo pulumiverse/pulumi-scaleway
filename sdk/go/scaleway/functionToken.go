@@ -78,10 +78,14 @@ type FunctionToken struct {
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
 	// The ID of the function.
+	//
+	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId pulumi.StringPtrOutput `pulumi:"functionId"`
 	// The ID of the function namespace.
 	NamespaceId pulumi.StringPtrOutput `pulumi:"namespaceId"`
 	// `region`). The region in which the namespace should be created.
+	//
+	// > **Important** Updates to any fields will recreate the token.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
 	Token pulumi.StringOutput `pulumi:"token"`
@@ -126,10 +130,14 @@ type functionTokenState struct {
 	// The expiration date of the token.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The ID of the function.
+	//
+	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId *string `pulumi:"functionId"`
 	// The ID of the function namespace.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// `region`). The region in which the namespace should be created.
+	//
+	// > **Important** Updates to any fields will recreate the token.
 	Region *string `pulumi:"region"`
 	// The token.
 	Token *string `pulumi:"token"`
@@ -141,10 +149,14 @@ type FunctionTokenState struct {
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrInput
 	// The ID of the function.
+	//
+	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId pulumi.StringPtrInput
 	// The ID of the function namespace.
 	NamespaceId pulumi.StringPtrInput
 	// `region`). The region in which the namespace should be created.
+	//
+	// > **Important** Updates to any fields will recreate the token.
 	Region pulumi.StringPtrInput
 	// The token.
 	Token pulumi.StringPtrInput
@@ -160,10 +172,14 @@ type functionTokenArgs struct {
 	// The expiration date of the token.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The ID of the function.
+	//
+	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId *string `pulumi:"functionId"`
 	// The ID of the function namespace.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// `region`). The region in which the namespace should be created.
+	//
+	// > **Important** Updates to any fields will recreate the token.
 	Region *string `pulumi:"region"`
 }
 
@@ -174,10 +190,14 @@ type FunctionTokenArgs struct {
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrInput
 	// The ID of the function.
+	//
+	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId pulumi.StringPtrInput
 	// The ID of the function namespace.
 	NamespaceId pulumi.StringPtrInput
 	// `region`). The region in which the namespace should be created.
+	//
+	// > **Important** Updates to any fields will recreate the token.
 	Region pulumi.StringPtrInput
 }
 
@@ -279,6 +299,8 @@ func (o FunctionTokenOutput) ExpiresAt() pulumi.StringPtrOutput {
 }
 
 // The ID of the function.
+//
+// > Only one of `namespaceId` or `functionId` must be set.
 func (o FunctionTokenOutput) FunctionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionToken) pulumi.StringPtrOutput { return v.FunctionId }).(pulumi.StringPtrOutput)
 }
@@ -289,6 +311,8 @@ func (o FunctionTokenOutput) NamespaceId() pulumi.StringPtrOutput {
 }
 
 // `region`). The region in which the namespace should be created.
+//
+// > **Important** Updates to any fields will recreate the token.
 func (o FunctionTokenOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

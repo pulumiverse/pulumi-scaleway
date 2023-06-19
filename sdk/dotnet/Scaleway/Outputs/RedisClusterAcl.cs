@@ -16,6 +16,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     {
         /// <summary>
         /// A text describing this rule. Default description: `Allow IP`
+        /// 
+        /// &gt; The `acl` conflict with `private_network`. Only one should be specified.
         /// </summary>
         public readonly string? Description;
         /// <summary>

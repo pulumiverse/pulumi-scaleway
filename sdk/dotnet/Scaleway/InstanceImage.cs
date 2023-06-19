@@ -87,6 +87,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
+        /// 
+        /// &gt; **Important:** For now it is only possible to have 1 additional_volume.
         /// </summary>
         [Output("additionalVolumeIds")]
         public Output<string?> AdditionalVolumeIds { get; private set; } = null!;
@@ -218,6 +220,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
+        /// 
+        /// &gt; **Important:** For now it is only possible to have 1 additional_volume.
         /// </summary>
         [Input("additionalVolumeIds")]
         public Input<string>? AdditionalVolumeIds { get; set; }
@@ -280,6 +284,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
+        /// 
+        /// &gt; **Important:** For now it is only possible to have 1 additional_volume.
         /// </summary>
         [Input("additionalVolumeIds")]
         public Input<string>? AdditionalVolumeIds { get; set; }

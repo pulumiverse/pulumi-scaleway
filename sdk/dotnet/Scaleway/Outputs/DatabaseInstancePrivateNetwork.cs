@@ -26,7 +26,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// IP of the endpoint.
         /// </summary>
         public readonly string? Ip;
-        public readonly string IpNet;
+        public readonly string? IpNet;
         /// <summary>
         /// The name of the Database Instance.
         /// </summary>
@@ -46,7 +46,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string? ip,
 
-            string ipNet,
+            string? ipNet,
 
             string? name,
 

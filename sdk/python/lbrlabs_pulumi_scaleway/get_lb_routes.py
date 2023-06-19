@@ -106,7 +106,7 @@ def get_lb_routes(frontend_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_frontend_id = scaleway.get_lb_routes(frontend_id=scaleway_lb_frontend["frt01"]["id"])
+    by_frontend_id = scaleway.get_lb_routes(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     my_key = scaleway.get_lb_routes(frontend_id="11111111-1111-1111-1111-111111111111",
         zone="fr-par-2")
     ```
@@ -145,7 +145,7 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_frontend_id = scaleway.get_lb_routes(frontend_id=scaleway_lb_frontend["frt01"]["id"])
+    by_frontend_id = scaleway.get_lb_routes(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     my_key = scaleway.get_lb_routes(frontend_id="11111111-1111-1111-1111-111111111111",
         zone="fr-par-2")
     ```

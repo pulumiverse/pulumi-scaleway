@@ -198,6 +198,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+        /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -317,6 +320,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+        /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -409,6 +415,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+        /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

@@ -39,6 +39,35 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Example With IPAM
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example with Settings
     /// 
     /// ```csharp
@@ -181,19 +210,24 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Settings
     /// 
-    /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` on your `node_type` of your convenient.
+    /// Please consult
+    /// the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+    /// available `settings` and `init_settings` on your `node_type` of your convenient.
     /// 
     /// ## Private Network
     /// 
     /// &gt; **Important:** Updates to `private_network` will recreate the attachment Instance.
     /// 
-    /// - `ip_net` - (Required) The IP network where to con.
-    /// - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
+    /// - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+    ///   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+    ///   service if not set.
+    /// - `pn_id` - (Required) The ID of the private network.
     /// 
     /// ## Limitations
     /// 
     /// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
-    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+    /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
     /// 
     /// ## Import
     /// 
@@ -250,18 +284,24 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
+        /// 
+        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
 
         /// <summary>
         /// Enable or disable high availability for the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Output("isHaCluster")]
         public Output<bool?> IsHaCluster { get; private set; } = null!;
@@ -280,6 +320,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -303,7 +346,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<Outputs.DatabaseInstancePrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the Database Instance is associated with.
+        /// `project_id`) The ID of the project the Database
+        /// Instance is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -315,7 +359,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<Outputs.DatabaseInstanceReadReplica>> ReadReplicas { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `region`) The region
+        /// in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -334,12 +379,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
         public Output<string?> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        /// Volume size (in GB) when `volume_type` is set to `bssd`.
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
@@ -427,6 +474,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
@@ -436,6 +485,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
+        /// 
+        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -445,6 +496,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Enable or disable high availability for the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -457,6 +510,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -484,13 +540,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.DatabaseInstancePrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Database Instance is associated with.
+        /// `project_id`) The ID of the project the Database
+        /// Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `region`) The region
+        /// in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -521,12 +579,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        /// Volume size (in GB) when `volume_type` is set to `bssd`.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
@@ -589,6 +649,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -598,6 +660,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
+        /// 
+        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -607,6 +671,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Enable or disable high availability for the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -631,6 +697,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -664,7 +733,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<Inputs.DatabaseInstancePrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Database Instance is associated with.
+        /// `project_id`) The ID of the project the Database
+        /// Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -682,7 +752,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `region`) The region
+        /// in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -713,12 +784,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        /// Volume size (in GB) when `volume_type` is set to `bssd`.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }

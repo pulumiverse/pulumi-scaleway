@@ -65,6 +65,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The unique name of the container namespace.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -182,6 +184,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The unique name of the container namespace.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -248,6 +252,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The unique name of the container namespace.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

@@ -36,12 +36,52 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// &gt; **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///             "vpc",
+    ///         },
+    ///     });
+    /// 
+    ///     var regionalPn = new Scaleway.VpcPrivateNetwork("regionalPn", new()
+    ///     {
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///             "pn",
+    ///             "regional",
+    ///         },
+    ///         IsRegional = true,
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
-    /// Private networks can be imported using the `{zone}/{id}`, e.g. bash
+    /// Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
     /// 
     /// ```sh
     ///  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// 
+    ///  bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork")]
@@ -52,6 +92,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The IPv4 subnet associated with the private network.
+        /// </summary>
+        [Output("ipv4Subnet")]
+        public Output<Outputs.VpcPrivateNetworkIpv4Subnet> Ipv4Subnet { get; private set; } = null!;
+
+        /// <summary>
+        /// The IPv6 subnets associated with the private network.
+        /// 
+        /// &gt; **Note:** If using Regional Private Network:
+        /// </summary>
+        [Output("ipv6Subnets")]
+        public Output<ImmutableArray<Outputs.VpcPrivateNetworkIpv6Subnet>> Ipv6Subnets { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines whether the private network is Regional. By default, it will be Zonal.
+        /// </summary>
+        [Output("isRegional")]
+        public Output<bool> IsRegional { get; private set; } = null!;
 
         /// <summary>
         /// The name of the private network. If not provided it will be randomly generated.
@@ -72,6 +132,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// `region`) The region of the private network.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the private network.
         /// </summary>
         [Output("tags")]
@@ -82,6 +148,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The VPC in which to create the private network.
+        /// </summary>
+        [Output("vpcId")]
+        public Output<string> VpcId { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the private network should be created.
@@ -137,6 +209,32 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class VpcPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The IPv4 subnet associated with the private network.
+        /// </summary>
+        [Input("ipv4Subnet")]
+        public Input<Inputs.VpcPrivateNetworkIpv4SubnetArgs>? Ipv4Subnet { get; set; }
+
+        [Input("ipv6Subnets")]
+        private InputList<Inputs.VpcPrivateNetworkIpv6SubnetArgs>? _ipv6Subnets;
+
+        /// <summary>
+        /// The IPv6 subnets associated with the private network.
+        /// 
+        /// &gt; **Note:** If using Regional Private Network:
+        /// </summary>
+        public InputList<Inputs.VpcPrivateNetworkIpv6SubnetArgs> Ipv6Subnets
+        {
+            get => _ipv6Subnets ?? (_ipv6Subnets = new InputList<Inputs.VpcPrivateNetworkIpv6SubnetArgs>());
+            set => _ipv6Subnets = value;
+        }
+
+        /// <summary>
+        /// Defines whether the private network is Regional. By default, it will be Zonal.
+        /// </summary>
+        [Input("isRegional")]
+        public Input<bool>? IsRegional { get; set; }
+
+        /// <summary>
         /// The name of the private network. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -147,6 +245,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region of the private network.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -159,6 +263,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The VPC in which to create the private network.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the private network should be created.
@@ -181,6 +291,32 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
+        /// The IPv4 subnet associated with the private network.
+        /// </summary>
+        [Input("ipv4Subnet")]
+        public Input<Inputs.VpcPrivateNetworkIpv4SubnetGetArgs>? Ipv4Subnet { get; set; }
+
+        [Input("ipv6Subnets")]
+        private InputList<Inputs.VpcPrivateNetworkIpv6SubnetGetArgs>? _ipv6Subnets;
+
+        /// <summary>
+        /// The IPv6 subnets associated with the private network.
+        /// 
+        /// &gt; **Note:** If using Regional Private Network:
+        /// </summary>
+        public InputList<Inputs.VpcPrivateNetworkIpv6SubnetGetArgs> Ipv6Subnets
+        {
+            get => _ipv6Subnets ?? (_ipv6Subnets = new InputList<Inputs.VpcPrivateNetworkIpv6SubnetGetArgs>());
+            set => _ipv6Subnets = value;
+        }
+
+        /// <summary>
+        /// Defines whether the private network is Regional. By default, it will be Zonal.
+        /// </summary>
+        [Input("isRegional")]
+        public Input<bool>? IsRegional { get; set; }
+
+        /// <summary>
         /// The name of the private network. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -197,6 +333,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region of the private network.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -215,6 +357,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The VPC in which to create the private network.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the private network should be created.

@@ -20,6 +20,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         public readonly string CommonName;
         /// <summary>
         /// Array of alternative domain names.  A new certificate will be created if this field is changed.
+        /// 
+        /// &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
         /// </summary>
         public readonly ImmutableArray<string> SubjectAlternativeNames;
 

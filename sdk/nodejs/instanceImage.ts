@@ -78,6 +78,8 @@ export class InstanceImage extends pulumi.CustomResource {
 
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
+     *
+     * > **Important:** For now it is only possible to have 1 additional_volume.
      */
     public readonly additionalVolumeIds!: pulumi.Output<string | undefined>;
     /**
@@ -191,6 +193,8 @@ export class InstanceImage extends pulumi.CustomResource {
 export interface InstanceImageState {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
+     *
+     * > **Important:** For now it is only possible to have 1 additional_volume.
      */
     additionalVolumeIds?: pulumi.Input<string>;
     /**
@@ -253,6 +257,8 @@ export interface InstanceImageState {
 export interface InstanceImageArgs {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
+     *
+     * > **Important:** For now it is only possible to have 1 additional_volume.
      */
     additionalVolumeIds?: pulumi.Input<string>;
     /**

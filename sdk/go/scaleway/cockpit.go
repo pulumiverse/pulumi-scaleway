@@ -24,6 +24,10 @@ type Cockpit struct {
 
 	// Endpoints
 	Endpoints CockpitEndpointArrayOutput `pulumi:"endpoints"`
+	// Name or ID of the plan to use.
+	Plan pulumi.StringPtrOutput `pulumi:"plan"`
+	// The ID of the current plan
+	PlanId pulumi.StringOutput `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
@@ -60,6 +64,10 @@ func GetCockpit(ctx *pulumi.Context,
 type cockpitState struct {
 	// Endpoints
 	Endpoints []CockpitEndpoint `pulumi:"endpoints"`
+	// Name or ID of the plan to use.
+	Plan *string `pulumi:"plan"`
+	// The ID of the current plan
+	PlanId *string `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
 }
@@ -67,6 +75,10 @@ type cockpitState struct {
 type CockpitState struct {
 	// Endpoints
 	Endpoints CockpitEndpointArrayInput
+	// Name or ID of the plan to use.
+	Plan pulumi.StringPtrInput
+	// The ID of the current plan
+	PlanId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
 }
@@ -76,12 +88,16 @@ func (CockpitState) ElementType() reflect.Type {
 }
 
 type cockpitArgs struct {
+	// Name or ID of the plan to use.
+	Plan *string `pulumi:"plan"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 // The set of arguments for constructing a Cockpit resource.
 type CockpitArgs struct {
+	// Name or ID of the plan to use.
+	Plan pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
 }
@@ -176,6 +192,16 @@ func (o CockpitOutput) ToCockpitOutputWithContext(ctx context.Context) CockpitOu
 // Endpoints
 func (o CockpitOutput) Endpoints() CockpitEndpointArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitEndpointArrayOutput { return v.Endpoints }).(CockpitEndpointArrayOutput)
+}
+
+// Name or ID of the plan to use.
+func (o CockpitOutput) Plan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cockpit) pulumi.StringPtrOutput { return v.Plan }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the current plan
+func (o CockpitOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
 }
 
 // `projectId`) The ID of the project the cockpit is associated with.

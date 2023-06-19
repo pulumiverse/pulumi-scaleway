@@ -11,7 +11,7 @@ import (
 )
 
 // Get information about Scaleway Load-Balancer Frontends.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 //
 // ## Example Usage
 //
@@ -96,6 +96,7 @@ type GetLbFrontendResult struct {
 	CertificateId  string             `pulumi:"certificateId"`
 	CertificateIds []string           `pulumi:"certificateIds"`
 	EnableHttp3    bool               `pulumi:"enableHttp3"`
+	ExternalAcls   bool               `pulumi:"externalAcls"`
 	FrontendId     *string            `pulumi:"frontendId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id            string  `pulumi:"id"`
@@ -167,6 +168,10 @@ func (o GetLbFrontendResultOutput) CertificateIds() pulumi.StringArrayOutput {
 
 func (o GetLbFrontendResultOutput) EnableHttp3() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLbFrontendResult) bool { return v.EnableHttp3 }).(pulumi.BoolOutput)
+}
+
+func (o GetLbFrontendResultOutput) ExternalAcls() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendResult) bool { return v.ExternalAcls }).(pulumi.BoolOutput)
 }
 
 func (o GetLbFrontendResultOutput) FrontendId() pulumi.StringPtrOutput {

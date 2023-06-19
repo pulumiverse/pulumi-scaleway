@@ -89,6 +89,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The offer name or UUID of the baremetal server.
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+        /// 
+        /// &gt; **Important:** Updates to `offer` will recreate the server.
         /// </summary>
         [Output("offer")]
         public Output<string> Offer { get; private set; } = null!;
@@ -266,6 +268,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The offer name or UUID of the baremetal server.
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+        /// 
+        /// &gt; **Important:** Updates to `offer` will recreate the server.
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
@@ -437,6 +441,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The offer name or UUID of the baremetal server.
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+        /// 
+        /// &gt; **Important:** Updates to `offer` will recreate the server.
         /// </summary>
         [Input("offer")]
         public Input<string>? Offer { get; set; }

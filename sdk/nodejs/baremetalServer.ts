@@ -88,6 +88,8 @@ export class BaremetalServer extends pulumi.CustomResource {
     /**
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+     *
+     * > **Important:** Updates to `offer` will recreate the server.
      */
     public readonly offer!: pulumi.Output<string>;
     /**
@@ -262,6 +264,8 @@ export interface BaremetalServerState {
     /**
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+     *
+     * > **Important:** Updates to `offer` will recreate the server.
      */
     offer?: pulumi.Input<string>;
     /**
@@ -353,6 +357,8 @@ export interface BaremetalServerArgs {
     /**
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+     *
+     * > **Important:** Updates to `offer` will recreate the server.
      */
     offer: pulumi.Input<string>;
     /**

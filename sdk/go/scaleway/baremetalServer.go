@@ -76,6 +76,8 @@ type BaremetalServer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+	//
+	// > **Important:** Updates to `offer` will recreate the server.
 	Offer pulumi.StringOutput `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
@@ -177,6 +179,8 @@ type baremetalServerState struct {
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+	//
+	// > **Important:** Updates to `offer` will recreate the server.
 	Offer *string `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId *string `pulumi:"offerId"`
@@ -229,6 +233,8 @@ type BaremetalServerState struct {
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+	//
+	// > **Important:** Updates to `offer` will recreate the server.
 	Offer pulumi.StringPtrInput
 	// The ID of the offer.
 	OfferId pulumi.StringPtrInput
@@ -281,6 +287,8 @@ type baremetalServerArgs struct {
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+	//
+	// > **Important:** Updates to `offer` will recreate the server.
 	Offer string `pulumi:"offer"`
 	// The options to enable on the server.
 	// > The `options` block supports:
@@ -322,6 +330,8 @@ type BaremetalServerArgs struct {
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+	//
+	// > **Important:** Updates to `offer` will recreate the server.
 	Offer pulumi.StringInput
 	// The options to enable on the server.
 	// > The `options` block supports:
@@ -467,6 +477,8 @@ func (o BaremetalServerOutput) Name() pulumi.StringOutput {
 
 // The offer name or UUID of the baremetal server.
 // Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+//
+// > **Important:** Updates to `offer` will recreate the server.
 func (o BaremetalServerOutput) Offer() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Offer }).(pulumi.StringOutput)
 }

@@ -38,6 +38,8 @@ class KubernetesNodePoolArgs:
         The set of arguments for constructing a KubernetesNodePool resource.
         :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[int] size: The size of the pool.
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
@@ -113,6 +115,8 @@ class KubernetesNodePoolArgs:
     def node_type(self) -> pulumi.Input[str]:
         """
         The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "node_type")
 
@@ -363,6 +367,8 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[str] name: The name for the pool.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
@@ -558,6 +564,8 @@ class _KubernetesNodePoolState:
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
         The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "node_type")
 
@@ -773,6 +781,8 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name for the pool.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
@@ -929,6 +939,8 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name for the pool.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolNodeArgs']]]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
@@ -1065,6 +1077,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     def node_type(self) -> pulumi.Output[str]:
         """
         The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+
+        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "node_type")
 

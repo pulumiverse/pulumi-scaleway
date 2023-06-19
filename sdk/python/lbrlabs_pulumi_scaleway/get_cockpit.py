@@ -22,13 +22,16 @@ class GetCockpitResult:
     """
     A collection of values returned by getCockpit.
     """
-    def __init__(__self__, endpoints=None, id=None, project_id=None):
+    def __init__(__self__, endpoints=None, id=None, plan_id=None, project_id=None):
         if endpoints and not isinstance(endpoints, list):
             raise TypeError("Expected argument 'endpoints' to be a list")
         pulumi.set(__self__, "endpoints", endpoints)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if plan_id and not isinstance(plan_id, str):
+            raise TypeError("Expected argument 'plan_id' to be a str")
+        pulumi.set(__self__, "plan_id", plan_id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -50,6 +53,14 @@ class GetCockpitResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        """
+        The ID of the current plan
+        """
+        return pulumi.get(self, "plan_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
@@ -63,6 +74,7 @@ class AwaitableGetCockpitResult(GetCockpitResult):
         return GetCockpitResult(
             endpoints=self.endpoints,
             id=self.id,
+            plan_id=self.plan_id,
             project_id=self.project_id)
 
 
@@ -100,6 +112,7 @@ def get_cockpit(project_id: Optional[str] = None,
     return AwaitableGetCockpitResult(
         endpoints=__ret__.endpoints,
         id=__ret__.id,
+        plan_id=__ret__.plan_id,
         project_id=__ret__.project_id)
 
 

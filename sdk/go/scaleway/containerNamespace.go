@@ -62,6 +62,8 @@ type ContainerNamespace struct {
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The unique name of the container namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -123,6 +125,8 @@ type containerNamespaceState struct {
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The unique name of the container namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name *string `pulumi:"name"`
 	// The organization ID the namespace is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -148,6 +152,8 @@ type ContainerNamespaceState struct {
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
 	// The unique name of the container namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringPtrInput
 	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -177,6 +183,8 @@ type containerNamespaceArgs struct {
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The unique name of the container namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -197,6 +205,8 @@ type ContainerNamespaceArgs struct {
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
 	// The unique name of the container namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -311,6 +321,8 @@ func (o ContainerNamespaceOutput) EnvironmentVariables() pulumi.StringMapOutput 
 }
 
 // The unique name of the container namespace.
+//
+// > **Important** Updates to `name` will recreate the namespace.
 func (o ContainerNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

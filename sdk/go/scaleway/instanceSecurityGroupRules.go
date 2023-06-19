@@ -11,6 +11,53 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+//
+// This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
+//
+// > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			sg01, err := scaleway.NewInstanceSecurityGroup(ctx, "sg01", &scaleway.InstanceSecurityGroupArgs{
+//				ExternalRules: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstanceSecurityGroupRules(ctx, "sgrs01", &scaleway.InstanceSecurityGroupRulesArgs{
+//				SecurityGroupId: sg01.ID(),
+//				InboundRules: scaleway.InstanceSecurityGroupRulesInboundRuleArray{
+//					&scaleway.InstanceSecurityGroupRulesInboundRuleArgs{
+//						Action:  pulumi.String("accept"),
+//						Port:    pulumi.Int(80),
+//						IpRange: pulumi.String("0.0.0.0/0"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash

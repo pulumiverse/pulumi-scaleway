@@ -95,7 +95,7 @@ type CockpitToken struct {
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Allowed scopes
-	Scopes CockpitTokenScopesPtrOutput `pulumi:"scopes"`
+	Scopes CockpitTokenScopesOutput `pulumi:"scopes"`
 	// The secret key of the token
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 }
@@ -276,8 +276,8 @@ func (o CockpitTokenOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Allowed scopes
-func (o CockpitTokenOutput) Scopes() CockpitTokenScopesPtrOutput {
-	return o.ApplyT(func(v *CockpitToken) CockpitTokenScopesPtrOutput { return v.Scopes }).(CockpitTokenScopesPtrOutput)
+func (o CockpitTokenOutput) Scopes() CockpitTokenScopesOutput {
+	return o.ApplyT(func(v *CockpitToken) CockpitTokenScopesOutput { return v.Scopes }).(CockpitTokenScopesOutput)
 }
 
 // The secret key of the token

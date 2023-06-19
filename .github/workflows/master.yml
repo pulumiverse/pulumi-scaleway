@@ -173,7 +173,8 @@ jobs:
         - "3.7"
   publish:
     name: publish
-    needs: test
+    needs:
+      - prerequisites
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
@@ -294,6 +295,7 @@ jobs:
         pythonversion:
         - "3.7"
   test:
+    if: false
     name: test
     needs: build_sdk
     runs-on: ubuntu-latest

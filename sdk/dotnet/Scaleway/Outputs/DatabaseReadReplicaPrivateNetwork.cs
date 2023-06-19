@@ -39,10 +39,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
-        /// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-        /// limitations. (IP network).
+        /// The IP network address within the private subnet. This must be an IPv4 address with a
+        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
         /// </summary>
-        public readonly string ServiceIp;
+        public readonly string? ServiceIp;
         public readonly string? Zone;
 
         [OutputConstructor]
@@ -59,7 +60,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string privateNetworkId,
 
-            string serviceIp,
+            string? serviceIp,
 
             string? zone)
         {

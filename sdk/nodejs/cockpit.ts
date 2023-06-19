@@ -48,6 +48,14 @@ export class Cockpit extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.CockpitEndpoint[]>;
     /**
+     * Name or ID of the plan to use.
+     */
+    public readonly plan!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the current plan
+     */
+    public /*out*/ readonly planId!: pulumi.Output<string>;
+    /**
      * `projectId`) The ID of the project the cockpit is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -66,11 +74,15 @@ export class Cockpit extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as CockpitState | undefined;
             resourceInputs["endpoints"] = state ? state.endpoints : undefined;
+            resourceInputs["plan"] = state ? state.plan : undefined;
+            resourceInputs["planId"] = state ? state.planId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as CockpitArgs | undefined;
+            resourceInputs["plan"] = args ? args.plan : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["endpoints"] = undefined /*out*/;
+            resourceInputs["planId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Cockpit.__pulumiType, name, resourceInputs, opts);
@@ -86,6 +98,14 @@ export interface CockpitState {
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.CockpitEndpoint>[]>;
     /**
+     * Name or ID of the plan to use.
+     */
+    plan?: pulumi.Input<string>;
+    /**
+     * The ID of the current plan
+     */
+    planId?: pulumi.Input<string>;
+    /**
      * `projectId`) The ID of the project the cockpit is associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -95,6 +115,10 @@ export interface CockpitState {
  * The set of arguments for constructing a Cockpit resource.
  */
 export interface CockpitArgs {
+    /**
+     * Name or ID of the plan to use.
+     */
+    plan?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the cockpit is associated with.
      */

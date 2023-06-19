@@ -11,7 +11,7 @@ import (
 )
 
 // Get information about Scaleway Load-Balancer Routes.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 //
 // ## Example Usage
 //

@@ -15,6 +15,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     {
         /// <summary>
         /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        /// 
+        /// * &gt; **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
         /// </summary>
         [Input("abortIncompleteMultipartUploadDays")]
         public Input<int>? AbortIncompleteMultipartUploadDays { get; set; }
@@ -60,6 +62,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
         /// <summary>
         /// Specifies a period in the object's transitions (documented below).
+        /// 
+        /// At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
         /// </summary>
         public InputList<Inputs.ObjectBucketLifecycleRuleTransitionArgs> Transitions
         {

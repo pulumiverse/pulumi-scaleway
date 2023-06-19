@@ -411,6 +411,29 @@ class TemDomain(pulumi.CustomResource):
         main = scaleway.TemDomain("main", accept_tos=True)
         ```
 
+        ### Add the required records to your DNS zone
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        config = pulumi.Config()
+        domain_name = config.require("domainName")
+        main = scaleway.TemDomain("main", accept_tos=True)
+        spf = scaleway.DomainRecord("spf",
+            dns_zone=domain_name,
+            type="TXT",
+            data=main.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
+        dkim = scaleway.DomainRecord("dkim",
+            dns_zone=domain_name,
+            type="TXT",
+            data=main.dkim_config)
+        mx = scaleway.DomainRecord("mx",
+            dns_zone=domain_name,
+            type="MX",
+            data=".")
+        ```
+
         ## Import
 
         Domains can be imported using the `{region}/{id}`, e.g. bash
@@ -447,6 +470,29 @@ class TemDomain(pulumi.CustomResource):
         import lbrlabs_pulumi_scaleway as scaleway
 
         main = scaleway.TemDomain("main", accept_tos=True)
+        ```
+
+        ### Add the required records to your DNS zone
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        config = pulumi.Config()
+        domain_name = config.require("domainName")
+        main = scaleway.TemDomain("main", accept_tos=True)
+        spf = scaleway.DomainRecord("spf",
+            dns_zone=domain_name,
+            type="TXT",
+            data=main.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
+        dkim = scaleway.DomainRecord("dkim",
+            dns_zone=domain_name,
+            type="TXT",
+            data=main.dkim_config)
+        mx = scaleway.DomainRecord("mx",
+            dns_zone=domain_name,
+            type="MX",
+            data=".")
         ```
 
         ## Import

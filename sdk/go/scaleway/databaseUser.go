@@ -65,10 +65,14 @@ type DatabaseUser struct {
 	pulumi.CustomResourceState
 
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrOutput `pulumi:"isAdmin"`
 	// Database User name.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Database User password.
 	Password pulumi.StringOutput `pulumi:"password"`
@@ -120,10 +124,14 @@ func GetDatabaseUser(ctx *pulumi.Context,
 // Input properties used for looking up and filtering DatabaseUser resources.
 type databaseUserState struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId *string `pulumi:"instanceId"`
 	// Grant admin permissions to the Database User.
 	IsAdmin *bool `pulumi:"isAdmin"`
 	// Database User name.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name *string `pulumi:"name"`
 	// Database User password.
 	Password *string `pulumi:"password"`
@@ -133,10 +141,14 @@ type databaseUserState struct {
 
 type DatabaseUserState struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId pulumi.StringPtrInput
 	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrInput
 	// Database User name.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name pulumi.StringPtrInput
 	// Database User password.
 	Password pulumi.StringPtrInput
@@ -150,10 +162,14 @@ func (DatabaseUserState) ElementType() reflect.Type {
 
 type databaseUserArgs struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId string `pulumi:"instanceId"`
 	// Grant admin permissions to the Database User.
 	IsAdmin *bool `pulumi:"isAdmin"`
 	// Database User name.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name *string `pulumi:"name"`
 	// Database User password.
 	Password string `pulumi:"password"`
@@ -164,10 +180,14 @@ type databaseUserArgs struct {
 // The set of arguments for constructing a DatabaseUser resource.
 type DatabaseUserArgs struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId pulumi.StringInput
 	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrInput
 	// Database User name.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name pulumi.StringPtrInput
 	// Database User password.
 	Password pulumi.StringInput
@@ -263,6 +283,8 @@ func (o DatabaseUserOutput) ToDatabaseUserOutputWithContext(ctx context.Context)
 }
 
 // UUID of the rdb instance.
+//
+// > **Important:** Updates to `instanceId` will recreate the Database User.
 func (o DatabaseUserOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
@@ -273,6 +295,8 @@ func (o DatabaseUserOutput) IsAdmin() pulumi.BoolPtrOutput {
 }
 
 // Database User name.
+//
+// > **Important:** Updates to `name` will recreate the Database User.
 func (o DatabaseUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

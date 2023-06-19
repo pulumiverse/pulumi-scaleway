@@ -27,9 +27,13 @@ class IotHubArgs:
         """
         The set of arguments for constructing a IotHub resource.
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+               
+               > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
         :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
+               
+               > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
@@ -62,6 +66,8 @@ class IotHubArgs:
     def product_plan(self) -> pulumi.Input[str]:
         """
         Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+
+        > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         """
         return pulumi.get(self, "product_plan")
 
@@ -98,6 +104,8 @@ class IotHubArgs:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Wether the IoT Hub instance should be enabled or not.
+
+        > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         """
         return pulumi.get(self, "enabled")
 
@@ -206,6 +214,8 @@ class _IotHubState:
         :param pulumi.Input[int] device_count: The number of registered devices in the Hub.
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
         :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
+               
+               > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[str] endpoint: The MQTT network endpoint to connect MQTT devices to.
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
@@ -213,6 +223,8 @@ class _IotHubState:
         :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+               
+               > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         :param pulumi.Input[str] status: The current status of the Hub.
@@ -318,6 +330,8 @@ class _IotHubState:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Wether the IoT Hub instance should be enabled or not.
+
+        > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         """
         return pulumi.get(self, "enabled")
 
@@ -402,6 +416,8 @@ class _IotHubState:
     def product_plan(self) -> Optional[pulumi.Input[str]]:
         """
         Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+
+        > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         """
         return pulumi.get(self, "product_plan")
 
@@ -488,11 +504,15 @@ class IotHub(pulumi.CustomResource):
         :param pulumi.Input[bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
         :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
+               
+               > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
         :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+               
+               > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
@@ -604,6 +624,8 @@ class IotHub(pulumi.CustomResource):
         :param pulumi.Input[int] device_count: The number of registered devices in the Hub.
         :param pulumi.Input[bool] disable_events: Whether to enable the hub events or not
         :param pulumi.Input[bool] enabled: Wether the IoT Hub instance should be enabled or not.
+               
+               > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[str] endpoint: The MQTT network endpoint to connect MQTT devices to.
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
@@ -611,6 +633,8 @@ class IotHub(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+               
+               > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         :param pulumi.Input[str] status: The current status of the Hub.
@@ -684,6 +708,8 @@ class IotHub(pulumi.CustomResource):
     def enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Wether the IoT Hub instance should be enabled or not.
+
+        > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         """
         return pulumi.get(self, "enabled")
 
@@ -740,6 +766,8 @@ class IotHub(pulumi.CustomResource):
     def product_plan(self) -> pulumi.Output[str]:
         """
         Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+
+        > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         """
         return pulumi.get(self, "product_plan")
 

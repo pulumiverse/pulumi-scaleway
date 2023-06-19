@@ -115,7 +115,7 @@ export class Container extends pulumi.CustomResource {
     }
 
     /**
-     * The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+     * The amount of vCPU computing resources to allocate to each container. Defaults to 140.
      */
     public readonly cpuLimit!: pulumi.Output<number>;
     /**
@@ -124,6 +124,8 @@ export class Container extends pulumi.CustomResource {
     public /*out*/ readonly cronStatus!: pulumi.Output<string>;
     /**
      * Boolean controlling whether the container is on a production environment.
+     *
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
     public readonly deploy!: pulumi.Output<boolean | undefined>;
     /**
@@ -155,7 +157,7 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly maxScale!: pulumi.Output<number>;
     /**
-     * The memory computing resources in MB to allocate to each container. Defaults to 128.
+     * The memory computing resources in MB to allocate to each container. Defaults to 256.
      */
     public readonly memoryLimit!: pulumi.Output<number>;
     /**
@@ -168,6 +170,10 @@ export class Container extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The container namespace ID of the container.
+     *
+     * > **Important** Updates to `name` will recreate the container.
+     *
+     * The following arguments are optional:
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
@@ -284,7 +290,7 @@ export class Container extends pulumi.CustomResource {
  */
 export interface ContainerState {
     /**
-     * The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+     * The amount of vCPU computing resources to allocate to each container. Defaults to 140.
      */
     cpuLimit?: pulumi.Input<number>;
     /**
@@ -293,6 +299,8 @@ export interface ContainerState {
     cronStatus?: pulumi.Input<string>;
     /**
      * Boolean controlling whether the container is on a production environment.
+     *
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
     deploy?: pulumi.Input<boolean>;
     /**
@@ -324,7 +332,7 @@ export interface ContainerState {
      */
     maxScale?: pulumi.Input<number>;
     /**
-     * The memory computing resources in MB to allocate to each container. Defaults to 128.
+     * The memory computing resources in MB to allocate to each container. Defaults to 256.
      */
     memoryLimit?: pulumi.Input<number>;
     /**
@@ -337,6 +345,10 @@ export interface ContainerState {
     name?: pulumi.Input<string>;
     /**
      * The container namespace ID of the container.
+     *
+     * > **Important** Updates to `name` will recreate the container.
+     *
+     * The following arguments are optional:
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -382,11 +394,13 @@ export interface ContainerState {
  */
 export interface ContainerArgs {
     /**
-     * The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+     * The amount of vCPU computing resources to allocate to each container. Defaults to 140.
      */
     cpuLimit?: pulumi.Input<number>;
     /**
      * Boolean controlling whether the container is on a production environment.
+     *
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
     deploy?: pulumi.Input<boolean>;
     /**
@@ -410,7 +424,7 @@ export interface ContainerArgs {
      */
     maxScale?: pulumi.Input<number>;
     /**
-     * The memory computing resources in MB to allocate to each container. Defaults to 128.
+     * The memory computing resources in MB to allocate to each container. Defaults to 256.
      */
     memoryLimit?: pulumi.Input<number>;
     /**
@@ -423,6 +437,10 @@ export interface ContainerArgs {
     name?: pulumi.Input<string>;
     /**
      * The container namespace ID of the container.
+     *
+     * > **Important** Updates to `name` will recreate the container.
+     *
+     * The following arguments are optional:
      */
     namespaceId: pulumi.Input<string>;
     /**

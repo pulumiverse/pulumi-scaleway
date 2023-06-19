@@ -140,6 +140,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The ID of the current plan
+        /// </summary>
+        public readonly string PlanId;
         public readonly string? ProjectId;
 
         [OutputConstructor]
@@ -148,10 +152,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string id,
 
+            string planId,
+
             string? projectId)
         {
             Endpoints = endpoints;
             Id = id;
+            PlanId = planId;
             ProjectId = projectId;
         }
     }

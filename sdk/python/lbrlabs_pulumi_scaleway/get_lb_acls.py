@@ -116,8 +116,8 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_front_id = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"])
-    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"],
+    by_front_id = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         name="tf-acls-datasource")
     ```
 
@@ -160,8 +160,8 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_front_id = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"])
-    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"],
+    by_front_id = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         name="tf-acls-datasource")
     ```
 

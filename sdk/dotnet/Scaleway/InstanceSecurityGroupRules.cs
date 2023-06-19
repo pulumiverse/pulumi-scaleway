@@ -11,6 +11,46 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+    /// 
+    /// This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+    /// 
+    /// &gt; **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+    ///     {
+    ///         ExternalRules = true,
+    ///     });
+    /// 
+    ///     var sgrs01 = new Scaleway.InstanceSecurityGroupRules("sgrs01", new()
+    ///     {
+    ///         SecurityGroupId = sg01.Id,
+    ///         InboundRules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.InstanceSecurityGroupRulesInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Port = 80,
+    ///                 IpRange = "0.0.0.0/0",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash

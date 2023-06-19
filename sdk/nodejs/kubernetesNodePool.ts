@@ -88,6 +88,8 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
@@ -274,6 +276,8 @@ export interface KubernetesNodePoolState {
     name?: pulumi.Input<string>;
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -375,6 +379,8 @@ export interface KubernetesNodePoolArgs {
     name?: pulumi.Input<string>;
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
      */
     nodeType: pulumi.Input<string>;
     /**

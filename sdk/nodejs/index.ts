@@ -140,6 +140,11 @@ export type FunctionToken = import("./functionToken").FunctionToken;
 export const FunctionToken: typeof import("./functionToken").FunctionToken = null as any;
 utilities.lazyLoad(exports, ["FunctionToken"], () => require("./functionToken"));
 
+export { FunctionTriggerArgs, FunctionTriggerState } from "./functionTrigger";
+export type FunctionTrigger = import("./functionTrigger").FunctionTrigger;
+export const FunctionTrigger: typeof import("./functionTrigger").FunctionTrigger = null as any;
+utilities.lazyLoad(exports, ["FunctionTrigger"], () => require("./functionTrigger"));
+
 export { GetAccountProjectArgs, GetAccountProjectResult, GetAccountProjectOutputArgs } from "./getAccountProject";
 export const getAccountProject: typeof import("./getAccountProject").getAccountProject = null as any;
 export const getAccountProjectOutput: typeof import("./getAccountProject").getAccountProjectOutput = null as any;
@@ -149,6 +154,11 @@ export { GetAccountSshKeyArgs, GetAccountSshKeyResult, GetAccountSshKeyOutputArg
 export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSshKey = null as any;
 export const getAccountSshKeyOutput: typeof import("./getAccountSshKey").getAccountSshKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getAccountSshKey","getAccountSshKeyOutput"], () => require("./getAccountSshKey"));
+
+export { GetAvailabilityZonesArgs, GetAvailabilityZonesResult, GetAvailabilityZonesOutputArgs } from "./getAvailabilityZones";
+export const getAvailabilityZones: typeof import("./getAvailabilityZones").getAvailabilityZones = null as any;
+export const getAvailabilityZonesOutput: typeof import("./getAvailabilityZones").getAvailabilityZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getAvailabilityZones","getAvailabilityZonesOutput"], () => require("./getAvailabilityZones"));
 
 export { GetBaremetalOfferArgs, GetBaremetalOfferResult, GetBaremetalOfferOutputArgs } from "./getBaremetalOffer";
 export const getBaremetalOffer: typeof import("./getBaremetalOffer").getBaremetalOffer = null as any;
@@ -174,6 +184,11 @@ export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCoc
 export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
 export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
 utilities.lazyLoad(exports, ["getCockpit","getCockpitOutput"], () => require("./getCockpit"));
+
+export { GetCockpitPlanArgs, GetCockpitPlanResult, GetCockpitPlanOutputArgs } from "./getCockpitPlan";
+export const getCockpitPlan: typeof import("./getCockpitPlan").getCockpitPlan = null as any;
+export const getCockpitPlanOutput: typeof import("./getCockpitPlan").getCockpitPlanOutput = null as any;
+utilities.lazyLoad(exports, ["getCockpitPlan","getCockpitPlanOutput"], () => require("./getCockpitPlan"));
 
 export { GetContainerArgs, GetContainerResult, GetContainerOutputArgs } from "./getContainer";
 export const getContainer: typeof import("./getContainer").getContainer = null as any;
@@ -390,6 +405,11 @@ export const getObjectBucket: typeof import("./getObjectBucket").getObjectBucket
 export const getObjectBucketOutput: typeof import("./getObjectBucket").getObjectBucketOutput = null as any;
 utilities.lazyLoad(exports, ["getObjectBucket","getObjectBucketOutput"], () => require("./getObjectBucket"));
 
+export { GetObjectBucketPolicyArgs, GetObjectBucketPolicyResult, GetObjectBucketPolicyOutputArgs } from "./getObjectBucketPolicy";
+export const getObjectBucketPolicy: typeof import("./getObjectBucketPolicy").getObjectBucketPolicy = null as any;
+export const getObjectBucketPolicyOutput: typeof import("./getObjectBucketPolicy").getObjectBucketPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getObjectBucketPolicy","getObjectBucketPolicyOutput"], () => require("./getObjectBucketPolicy"));
+
 export { GetRedisClusterArgs, GetRedisClusterResult, GetRedisClusterOutputArgs } from "./getRedisCluster";
 export const getRedisCluster: typeof import("./getRedisCluster").getRedisCluster = null as any;
 export const getRedisClusterOutput: typeof import("./getRedisCluster").getRedisClusterOutput = null as any;
@@ -419,6 +439,11 @@ export { GetTemDomainArgs, GetTemDomainResult, GetTemDomainOutputArgs } from "./
 export const getTemDomain: typeof import("./getTemDomain").getTemDomain = null as any;
 export const getTemDomainOutput: typeof import("./getTemDomain").getTemDomainOutput = null as any;
 utilities.lazyLoad(exports, ["getTemDomain","getTemDomainOutput"], () => require("./getTemDomain"));
+
+export { GetVpcArgs, GetVpcResult, GetVpcOutputArgs } from "./getVpc";
+export const getVpc: typeof import("./getVpc").getVpc = null as any;
+export const getVpcOutput: typeof import("./getVpc").getVpcOutput = null as any;
+utilities.lazyLoad(exports, ["getVpc","getVpcOutput"], () => require("./getVpc"));
 
 export { GetVpcGatewayNetworkArgs, GetVpcGatewayNetworkResult, GetVpcGatewayNetworkOutputArgs } from "./getVpcGatewayNetwork";
 export const getVpcGatewayNetwork: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetwork = null as any;
@@ -575,6 +600,11 @@ export type Loadbalancer = import("./loadbalancer").Loadbalancer;
 export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
 utilities.lazyLoad(exports, ["Loadbalancer"], () => require("./loadbalancer"));
 
+export { LoadbalancerAclArgs, LoadbalancerAclState } from "./loadbalancerAcl";
+export type LoadbalancerAcl = import("./loadbalancerAcl").LoadbalancerAcl;
+export const LoadbalancerAcl: typeof import("./loadbalancerAcl").LoadbalancerAcl = null as any;
+utilities.lazyLoad(exports, ["LoadbalancerAcl"], () => require("./loadbalancerAcl"));
+
 export { LoadbalancerBackendArgs, LoadbalancerBackendState } from "./loadbalancerBackend";
 export type LoadbalancerBackend = import("./loadbalancerBackend").LoadbalancerBackend;
 export const LoadbalancerBackend: typeof import("./loadbalancerBackend").LoadbalancerBackend = null as any;
@@ -609,6 +639,11 @@ export { MnqNamespaceArgs, MnqNamespaceState } from "./mnqNamespace";
 export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
 export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
 utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
+
+export { MnqQueueArgs, MnqQueueState } from "./mnqQueue";
+export type MnqQueue = import("./mnqQueue").MnqQueue;
+export const MnqQueue: typeof import("./mnqQueue").MnqQueue = null as any;
+utilities.lazyLoad(exports, ["MnqQueue"], () => require("./mnqQueue"));
 
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
@@ -669,6 +704,11 @@ export { TemDomainArgs, TemDomainState } from "./temDomain";
 export type TemDomain = import("./temDomain").TemDomain;
 export const TemDomain: typeof import("./temDomain").TemDomain = null as any;
 utilities.lazyLoad(exports, ["TemDomain"], () => require("./temDomain"));
+
+export { VpcArgs, VpcState } from "./vpc";
+export type Vpc = import("./vpc").Vpc;
+export const Vpc: typeof import("./vpc").Vpc = null as any;
+utilities.lazyLoad(exports, ["Vpc"], () => require("./vpc"));
 
 export { VpcGatewayNetworkArgs, VpcGatewayNetworkState } from "./vpcGatewayNetwork";
 export type VpcGatewayNetwork = import("./vpcGatewayNetwork").VpcGatewayNetwork;
@@ -778,6 +818,8 @@ const _module = {
                 return new FunctionNamespace(name, <any>undefined, { urn })
             case "scaleway:index/functionToken:FunctionToken":
                 return new FunctionToken(name, <any>undefined, { urn })
+            case "scaleway:index/functionTrigger:FunctionTrigger":
+                return new FunctionTrigger(name, <any>undefined, { urn })
             case "scaleway:index/iamApiKey:IamApiKey":
                 return new IamApiKey(name, <any>undefined, { urn })
             case "scaleway:index/iamApplication:IamApplication":
@@ -824,6 +866,8 @@ const _module = {
                 return new KubernetesNodePool(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancer:Loadbalancer":
                 return new Loadbalancer(name, <any>undefined, { urn })
+            case "scaleway:index/loadbalancerAcl:LoadbalancerAcl":
+                return new LoadbalancerAcl(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerBackend:LoadbalancerBackend":
                 return new LoadbalancerBackend(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerCertificate:LoadbalancerCertificate":
@@ -838,6 +882,8 @@ const _module = {
                 return new MnqCredential(name, <any>undefined, { urn })
             case "scaleway:index/mnqNamespace:MnqNamespace":
                 return new MnqNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/mnqQueue:MnqQueue":
+                return new MnqQueue(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -860,6 +906,8 @@ const _module = {
                 return new SecretVersion(name, <any>undefined, { urn })
             case "scaleway:index/temDomain:TemDomain":
                 return new TemDomain(name, <any>undefined, { urn })
+            case "scaleway:index/vpc:Vpc":
+                return new Vpc(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
                 return new VpcGatewayNetwork(name, <any>undefined, { urn })
             case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
@@ -908,6 +956,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionToken", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/functionTrigger", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApiKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApplication", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
@@ -931,6 +980,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancer", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerBackend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerCertificate", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", _module)
@@ -938,6 +988,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqQueue", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)
@@ -949,6 +1000,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _mo
 pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGateway", _module)

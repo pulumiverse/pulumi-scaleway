@@ -29,6 +29,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<Outputs.CockpitEndpoint>> Endpoints { get; private set; } = null!;
 
         /// <summary>
+        /// Name or ID of the plan to use.
+        /// </summary>
+        [Output("plan")]
+        public Output<string?> Plan { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the current plan
+        /// </summary>
+        [Output("planId")]
+        public Output<string> PlanId { get; private set; } = null!;
+
+        /// <summary>
         /// `project_id`) The ID of the project the cockpit is associated with.
         /// </summary>
         [Output("projectId")]
@@ -82,6 +94,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class CockpitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Name or ID of the plan to use.
+        /// </summary>
+        [Input("plan")]
+        public Input<string>? Plan { get; set; }
+
+        /// <summary>
         /// `project_id`) The ID of the project the cockpit is associated with.
         /// </summary>
         [Input("projectId")]
@@ -106,6 +124,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _endpoints ?? (_endpoints = new InputList<Inputs.CockpitEndpointGetArgs>());
             set => _endpoints = value;
         }
+
+        /// <summary>
+        /// Name or ID of the plan to use.
+        /// </summary>
+        [Input("plan")]
+        public Input<string>? Plan { get; set; }
+
+        /// <summary>
+        /// The ID of the current plan
+        /// </summary>
+        [Input("planId")]
+        public Input<string>? PlanId { get; set; }
 
         /// <summary>
         /// `project_id`) The ID of the project the cockpit is associated with.

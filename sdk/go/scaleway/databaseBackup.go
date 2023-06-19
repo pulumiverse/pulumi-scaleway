@@ -88,8 +88,12 @@ type DatabaseBackup struct {
 	// Name of the database of this backup.
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
 	// Expiration date (Format ISO 8601).
+	//
+	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Backup.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Name of the instance of the backup.
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
@@ -144,8 +148,12 @@ type databaseBackupState struct {
 	// Name of the database of this backup.
 	DatabaseName *string `pulumi:"databaseName"`
 	// Expiration date (Format ISO 8601).
+	//
+	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Backup.
 	InstanceId *string `pulumi:"instanceId"`
 	// Name of the instance of the backup.
 	InstanceName *string `pulumi:"instanceName"`
@@ -165,8 +173,12 @@ type DatabaseBackupState struct {
 	// Name of the database of this backup.
 	DatabaseName pulumi.StringPtrInput
 	// Expiration date (Format ISO 8601).
+	//
+	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt pulumi.StringPtrInput
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Backup.
 	InstanceId pulumi.StringPtrInput
 	// Name of the instance of the backup.
 	InstanceName pulumi.StringPtrInput
@@ -188,8 +200,12 @@ type databaseBackupArgs struct {
 	// Name of the database of this backup.
 	DatabaseName string `pulumi:"databaseName"`
 	// Expiration date (Format ISO 8601).
+	//
+	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Backup.
 	InstanceId string `pulumi:"instanceId"`
 	// Name of the database (e.g. `my-database`).
 	Name *string `pulumi:"name"`
@@ -202,8 +218,12 @@ type DatabaseBackupArgs struct {
 	// Name of the database of this backup.
 	DatabaseName pulumi.StringInput
 	// Expiration date (Format ISO 8601).
+	//
+	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt pulumi.StringPtrInput
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Backup.
 	InstanceId pulumi.StringInput
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringPtrInput
@@ -309,11 +329,15 @@ func (o DatabaseBackupOutput) DatabaseName() pulumi.StringOutput {
 }
 
 // Expiration date (Format ISO 8601).
+//
+// > **Important:** `expiresAt` cannot be removed after being set.
 func (o DatabaseBackupOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
 // UUID of the rdb instance.
+//
+// > **Important:** Updates to `instanceId` will recreate the Backup.
 func (o DatabaseBackupOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

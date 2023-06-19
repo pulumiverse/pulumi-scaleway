@@ -23,7 +23,11 @@ class DatabaseBackupArgs:
         The set of arguments for constructing a DatabaseBackup resource.
         :param pulumi.Input[str] database_name: Name of the database of this backup.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Backup.
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
+               
+               > **Important:** `expires_at` cannot be removed after being set.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -53,6 +57,8 @@ class DatabaseBackupArgs:
     def instance_id(self) -> pulumi.Input[str]:
         """
         UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Backup.
         """
         return pulumi.get(self, "instance_id")
 
@@ -65,6 +71,8 @@ class DatabaseBackupArgs:
     def expires_at(self) -> Optional[pulumi.Input[str]]:
         """
         Expiration date (Format ISO 8601).
+
+        > **Important:** `expires_at` cannot be removed after being set.
         """
         return pulumi.get(self, "expires_at")
 
@@ -114,7 +122,11 @@ class _DatabaseBackupState:
         :param pulumi.Input[str] created_at: Creation date (Format ISO 8601).
         :param pulumi.Input[str] database_name: Name of the database of this backup.
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
+               
+               > **Important:** `expires_at` cannot be removed after being set.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Backup.
         :param pulumi.Input[str] instance_name: Name of the instance of the backup.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
@@ -169,6 +181,8 @@ class _DatabaseBackupState:
     def expires_at(self) -> Optional[pulumi.Input[str]]:
         """
         Expiration date (Format ISO 8601).
+
+        > **Important:** `expires_at` cannot be removed after being set.
         """
         return pulumi.get(self, "expires_at")
 
@@ -181,6 +195,8 @@ class _DatabaseBackupState:
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
         UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Backup.
         """
         return pulumi.get(self, "instance_id")
 
@@ -301,7 +317,11 @@ class DatabaseBackup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] database_name: Name of the database of this backup.
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
+               
+               > **Important:** `expires_at` cannot be removed after being set.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Backup.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -419,7 +439,11 @@ class DatabaseBackup(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Creation date (Format ISO 8601).
         :param pulumi.Input[str] database_name: Name of the database of this backup.
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
+               
+               > **Important:** `expires_at` cannot be removed after being set.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Backup.
         :param pulumi.Input[str] instance_name: Name of the instance of the backup.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
@@ -462,6 +486,8 @@ class DatabaseBackup(pulumi.CustomResource):
     def expires_at(self) -> pulumi.Output[Optional[str]]:
         """
         Expiration date (Format ISO 8601).
+
+        > **Important:** `expires_at` cannot be removed after being set.
         """
         return pulumi.get(self, "expires_at")
 
@@ -470,6 +496,8 @@ class DatabaseBackup(pulumi.CustomResource):
     def instance_id(self) -> pulumi.Output[str]:
         """
         UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Backup.
         """
         return pulumi.get(self, "instance_id")
 

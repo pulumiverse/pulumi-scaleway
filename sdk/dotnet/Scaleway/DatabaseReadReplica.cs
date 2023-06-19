@@ -105,6 +105,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -177,6 +179,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -210,6 +214,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

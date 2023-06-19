@@ -11,7 +11,7 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+    /// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
     /// 
     /// ## Examples Usage
     /// 
@@ -54,6 +54,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The load-balancer backend ID this frontend is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
@@ -66,6 +68,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// List of Certificate IDs that should be used by the frontend.
+        /// 
+        /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
         [Output("certificateIds")]
         public Output<ImmutableArray<string>> CertificateIds { get; private set; } = null!;
@@ -75,6 +79,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("enableHttp3")]
         public Output<bool?> EnableHttp3 { get; private set; } = null!;
+
+        /// <summary>
+        /// A boolean to specify whether to use lb_acl.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// </summary>
+        [Output("externalAcls")]
+        public Output<bool?> ExternalAcls { get; private set; } = null!;
 
         /// <summary>
         /// TCP port to listen on the front side.
@@ -161,6 +172,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The load-balancer backend ID this frontend is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
@@ -170,6 +183,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// List of Certificate IDs that should be used by the frontend.
+        /// 
+        /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
         public InputList<string> CertificateIds
         {
@@ -182,6 +197,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("enableHttp3")]
         public Input<bool>? EnableHttp3 { get; set; }
+
+        /// <summary>
+        /// A boolean to specify whether to use lb_acl.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// </summary>
+        [Input("externalAcls")]
+        public Input<bool>? ExternalAcls { get; set; }
 
         /// <summary>
         /// TCP port to listen on the front side.
@@ -229,6 +251,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The load-balancer backend ID this frontend is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
@@ -244,6 +268,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// List of Certificate IDs that should be used by the frontend.
+        /// 
+        /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
         public InputList<string> CertificateIds
         {
@@ -256,6 +282,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("enableHttp3")]
         public Input<bool>? EnableHttp3 { get; set; }
+
+        /// <summary>
+        /// A boolean to specify whether to use lb_acl.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// </summary>
+        [Input("externalAcls")]
+        public Input<bool>? ExternalAcls { get; set; }
 
         /// <summary>
         /// TCP port to listen on the front side.

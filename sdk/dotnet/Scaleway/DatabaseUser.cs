@@ -56,6 +56,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -68,6 +70,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Database User name.
+        /// 
+        /// &gt; **Important:** Updates to `name` will recreate the Database User.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -137,6 +141,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -149,6 +155,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Database User name.
+        /// 
+        /// &gt; **Important:** Updates to `name` will recreate the Database User.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -185,6 +193,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -197,6 +207,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Database User name.
+        /// 
+        /// &gt; **Important:** Updates to `name` will recreate the Database User.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

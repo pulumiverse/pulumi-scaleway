@@ -63,6 +63,8 @@ export class IotHub extends pulumi.CustomResource {
     public readonly disableEvents!: pulumi.Output<boolean | undefined>;
     /**
      * Wether the IoT Hub instance should be enabled or not.
+     *
+     * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -91,6 +93,8 @@ export class IotHub extends pulumi.CustomResource {
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
      * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+     *
+     * > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
      */
     public readonly productPlan!: pulumi.Output<string>;
     /**
@@ -194,6 +198,8 @@ export interface IotHubState {
     disableEvents?: pulumi.Input<boolean>;
     /**
      * Wether the IoT Hub instance should be enabled or not.
+     *
+     * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -222,6 +228,8 @@ export interface IotHubState {
     organizationId?: pulumi.Input<string>;
     /**
      * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+     *
+     * > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
      */
     productPlan?: pulumi.Input<string>;
     /**
@@ -256,6 +264,8 @@ export interface IotHubArgs {
     disableEvents?: pulumi.Input<boolean>;
     /**
      * Wether the IoT Hub instance should be enabled or not.
+     *
+     * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -276,6 +286,8 @@ export interface IotHubArgs {
     name?: pulumi.Input<string>;
     /**
      * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+     *
+     * > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
      */
     productPlan: pulumi.Input<string>;
     /**

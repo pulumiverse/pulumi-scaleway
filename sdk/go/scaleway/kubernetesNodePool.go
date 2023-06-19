@@ -47,6 +47,8 @@ type KubernetesNodePool struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// (List of) The nodes in the default pool.
 	Nodes KubernetesNodePoolNodeArrayOutput `pulumi:"nodes"`
@@ -143,6 +145,8 @@ type kubernetesNodePoolState struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType *string `pulumi:"nodeType"`
 	// (List of) The nodes in the default pool.
 	Nodes []KubernetesNodePoolNode `pulumi:"nodes"`
@@ -201,6 +205,8 @@ type KubernetesNodePoolState struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType pulumi.StringPtrInput
 	// (List of) The nodes in the default pool.
 	Nodes KubernetesNodePoolNodeArrayInput
@@ -259,6 +265,8 @@ type kubernetesNodePoolArgs struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType string `pulumi:"nodeType"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -306,6 +314,8 @@ type KubernetesNodePoolArgs struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType pulumi.StringInput
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -472,6 +482,8 @@ func (o KubernetesNodePoolOutput) Name() pulumi.StringOutput {
 }
 
 // The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+//
+// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }

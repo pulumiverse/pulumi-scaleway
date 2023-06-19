@@ -181,6 +181,9 @@ type ObjectBucket struct {
 	// Enable object lock
 	ObjectLockEnabled pulumi.BoolPtrOutput `pulumi:"objectLockEnabled"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -237,6 +240,9 @@ type objectBucketState struct {
 	// Enable object lock
 	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
@@ -264,6 +270,9 @@ type ObjectBucketState struct {
 	// Enable object lock
 	ObjectLockEnabled pulumi.BoolPtrInput
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
@@ -293,6 +302,9 @@ type objectBucketArgs struct {
 	// Enable object lock
 	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
@@ -319,6 +331,9 @@ type ObjectBucketArgs struct {
 	// Enable object lock
 	ObjectLockEnabled pulumi.BoolPtrInput
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
@@ -453,6 +468,9 @@ func (o ObjectBucketOutput) ObjectLockEnabled() pulumi.BoolPtrOutput {
 }
 
 // `projectId`) The ID of the project the bucket is associated with.
+//
+// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 func (o ObjectBucketOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

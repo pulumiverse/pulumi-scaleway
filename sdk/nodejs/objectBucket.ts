@@ -162,6 +162,9 @@ export class ObjectBucket extends pulumi.CustomResource {
     public readonly objectLockEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -256,6 +259,9 @@ export interface ObjectBucketState {
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -304,6 +310,9 @@ export interface ObjectBucketArgs {
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      */
     projectId?: pulumi.Input<string>;
     /**

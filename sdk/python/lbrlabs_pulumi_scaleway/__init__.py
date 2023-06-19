@@ -32,13 +32,16 @@ from .function_cron import *
 from .function_domain import *
 from .function_namespace import *
 from .function_token import *
+from .function_trigger import *
 from .get_account_project import *
 from .get_account_ssh_key import *
+from .get_availability_zones import *
 from .get_baremetal_offer import *
 from .get_baremetal_option import *
 from .get_baremetal_os import *
 from .get_baremetal_server import *
 from .get_cockpit import *
+from .get_cockpit_plan import *
 from .get_container import *
 from .get_container_namespace import *
 from .get_database import *
@@ -82,12 +85,14 @@ from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
 from .get_marketplace_image import *
 from .get_object_bucket import *
+from .get_object_bucket_policy import *
 from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_namespace import *
 from .get_secret import *
 from .get_secret_version import *
 from .get_tem_domain import *
+from .get_vpc import *
 from .get_vpc_gateway_network import *
 from .get_vpc_private_network import *
 from .get_vpc_public_gateway import *
@@ -119,6 +124,7 @@ from .iot_route import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .loadbalancer import *
+from .loadbalancer_acl import *
 from .loadbalancer_backend import *
 from .loadbalancer_certificate import *
 from .loadbalancer_frontend import *
@@ -126,6 +132,7 @@ from .loadbalancer_ip import *
 from .loadbalancer_route import *
 from .mnq_credential import *
 from .mnq_namespace import *
+from .mnq_queue import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -138,6 +145,7 @@ from .registry_namespace import *
 from .secret import *
 from .secret_version import *
 from .tem_domain import *
+from .vpc import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
 from .vpc_public_gateway import *
@@ -377,6 +385,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/functionTrigger",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/functionTrigger:FunctionTrigger": "FunctionTrigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/iamApiKey",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -561,6 +577,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/loadbalancerAcl",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/loadbalancerAcl:LoadbalancerAcl": "LoadbalancerAcl"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/loadbalancerBackend",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -613,6 +637,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/mnqNamespace:MnqNamespace": "MnqNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqQueue",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqQueue:MnqQueue": "MnqQueue"
   }
  },
  {
@@ -701,6 +733,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/temDomain:TemDomain": "TemDomain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/vpc",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/vpc:Vpc": "Vpc"
   }
  },
  {

@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Load-Balancers.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
  *
  * ## Examples
  *
@@ -81,7 +81,7 @@ import * as utilities from "./utilities";
  * In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
  * this change will not recreate your Load Balancer.
  *
- * Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+ * Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
  *
  * ## IP ID
  *
@@ -164,6 +164,8 @@ export class Loadbalancer extends pulumi.CustomResource {
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
      * The ID of the associated LB IP. See below.
+     *
+     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
@@ -193,7 +195,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly releaseIp!: pulumi.Output<boolean | undefined>;
     /**
-     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      */
     public readonly sslCompatibilityLevel!: pulumi.Output<string | undefined>;
     /**
@@ -276,6 +278,8 @@ export interface LoadbalancerState {
     ipAddress?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
+     *
+     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
      */
     ipId?: pulumi.Input<string>;
     /**
@@ -305,7 +309,7 @@ export interface LoadbalancerState {
      */
     releaseIp?: pulumi.Input<boolean>;
     /**
-     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      */
     sslCompatibilityLevel?: pulumi.Input<string>;
     /**
@@ -332,6 +336,8 @@ export interface LoadbalancerArgs {
     description?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
+     *
+     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
      */
     ipId: pulumi.Input<string>;
     /**
@@ -353,7 +359,7 @@ export interface LoadbalancerArgs {
      */
     releaseIp?: pulumi.Input<boolean>;
     /**
-     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      */
     sslCompatibilityLevel?: pulumi.Input<string>;
     /**

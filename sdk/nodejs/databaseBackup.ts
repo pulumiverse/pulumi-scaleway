@@ -81,10 +81,14 @@ export class DatabaseBackup extends pulumi.CustomResource {
     public readonly databaseName!: pulumi.Output<string>;
     /**
      * Expiration date (Format ISO 8601).
+     *
+     * > **Important:** `expiresAt` cannot be removed after being set.
      */
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Backup.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -167,10 +171,14 @@ export interface DatabaseBackupState {
     databaseName?: pulumi.Input<string>;
     /**
      * Expiration date (Format ISO 8601).
+     *
+     * > **Important:** `expiresAt` cannot be removed after being set.
      */
     expiresAt?: pulumi.Input<string>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Backup.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -205,10 +213,14 @@ export interface DatabaseBackupArgs {
     databaseName: pulumi.Input<string>;
     /**
      * Expiration date (Format ISO 8601).
+     *
+     * > **Important:** `expiresAt` cannot be removed after being set.
      */
     expiresAt?: pulumi.Input<string>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Backup.
      */
     instanceId: pulumi.Input<string>;
     /**

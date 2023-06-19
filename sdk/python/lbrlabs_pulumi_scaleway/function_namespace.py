@@ -25,6 +25,8 @@ class FunctionNamespaceArgs:
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the function namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
@@ -71,6 +73,8 @@ class FunctionNamespaceArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the function namespace.
+
+        > **Important** Updates to `name` will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -132,6 +136,8 @@ class _FunctionNamespaceState:
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the function namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
@@ -187,6 +193,8 @@ class _FunctionNamespaceState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the function namespace.
+
+        > **Important** Updates to `name` will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -307,6 +315,8 @@ class FunctionNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the function namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
@@ -410,6 +420,8 @@ class FunctionNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[str] name: The unique name of the function namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
@@ -453,6 +465,8 @@ class FunctionNamespace(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The unique name of the function namespace.
+
+        > **Important** Updates to `name` will recreate the namespace.
         """
         return pulumi.get(self, "name")
 

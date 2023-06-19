@@ -54,6 +54,8 @@ export interface GetContainerArgs {
     name?: string;
     /**
      * The container namespace ID of the container.
+     *
+     * > **Important** Updates to `name` will recreate the container.
      */
     namespaceId: string;
     /**
@@ -195,6 +197,8 @@ export interface GetContainerOutputArgs {
     name?: pulumi.Input<string>;
     /**
      * The container namespace ID of the container.
+     *
+     * > **Important** Updates to `name` will recreate the container.
      */
     namespaceId: pulumi.Input<string>;
     /**

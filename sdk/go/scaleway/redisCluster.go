@@ -151,17 +151,50 @@ type RedisCluster struct {
 	// The PEM of the certificate used by redis, only when `tlsEnabled` is true
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// The number of nodes in the Redis Cluster.
+	//
+	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+	// which is minimum 3 (1 main node + 2 secondary nodes)
+	//
+	// > **Important:** You can set a bigger `clusterSize` than you initially did, it will migrate the Redis Cluster, but
+	// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `clusterSize` will not have any effect.
 	ClusterSize pulumi.IntOutput `pulumi:"clusterSize"`
 	// The date and time of creation of the Redis Cluster.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The name of the Redis Cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+	//
+	// > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
+	// you cannot downgrade a Redis Cluster.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password for the first user of the Redis Cluster.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// Describes the private network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
+	//
+	// > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many private networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+	// public network. You can modify your privateNetwork and its specs, you can have both a private and public network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	PrivateNetworks RedisClusterPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -175,12 +208,17 @@ type RedisCluster struct {
 	// The tags associated with the Redis Cluster.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Whether TLS is enabled or not.
+	//
+	// > The changes on `tlsEnabled` will force the resource creation.
 	TlsEnabled pulumi.BoolPtrOutput `pulumi:"tlsEnabled"`
 	// The date and time of the last update of the Redis Cluster.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Identifier for the first user of the Redis Cluster.
 	UserName pulumi.StringOutput `pulumi:"userName"`
 	// Redis's Cluster version (e.g. `6.2.6`).
+	//
+	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+	// cannot downgrade a Redis Cluster.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -241,17 +279,50 @@ type redisClusterState struct {
 	// The PEM of the certificate used by redis, only when `tlsEnabled` is true
 	Certificate *string `pulumi:"certificate"`
 	// The number of nodes in the Redis Cluster.
+	//
+	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+	// which is minimum 3 (1 main node + 2 secondary nodes)
+	//
+	// > **Important:** You can set a bigger `clusterSize` than you initially did, it will migrate the Redis Cluster, but
+	// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `clusterSize` will not have any effect.
 	ClusterSize *int `pulumi:"clusterSize"`
 	// The date and time of creation of the Redis Cluster.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The name of the Redis Cluster.
 	Name *string `pulumi:"name"`
 	// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+	//
+	// > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
+	// you cannot downgrade a Redis Cluster.
 	NodeType *string `pulumi:"nodeType"`
 	// Password for the first user of the Redis Cluster.
 	Password *string `pulumi:"password"`
 	// Describes the private network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
+	//
+	// > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many private networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+	// public network. You can modify your privateNetwork and its specs, you can have both a private and public network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -265,12 +336,17 @@ type redisClusterState struct {
 	// The tags associated with the Redis Cluster.
 	Tags []string `pulumi:"tags"`
 	// Whether TLS is enabled or not.
+	//
+	// > The changes on `tlsEnabled` will force the resource creation.
 	TlsEnabled *bool `pulumi:"tlsEnabled"`
 	// The date and time of the last update of the Redis Cluster.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Identifier for the first user of the Redis Cluster.
 	UserName *string `pulumi:"userName"`
 	// Redis's Cluster version (e.g. `6.2.6`).
+	//
+	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+	// cannot downgrade a Redis Cluster.
 	Version *string `pulumi:"version"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -283,17 +359,50 @@ type RedisClusterState struct {
 	// The PEM of the certificate used by redis, only when `tlsEnabled` is true
 	Certificate pulumi.StringPtrInput
 	// The number of nodes in the Redis Cluster.
+	//
+	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+	// which is minimum 3 (1 main node + 2 secondary nodes)
+	//
+	// > **Important:** You can set a bigger `clusterSize` than you initially did, it will migrate the Redis Cluster, but
+	// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `clusterSize` will not have any effect.
 	ClusterSize pulumi.IntPtrInput
 	// The date and time of creation of the Redis Cluster.
 	CreatedAt pulumi.StringPtrInput
 	// The name of the Redis Cluster.
 	Name pulumi.StringPtrInput
 	// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+	//
+	// > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
+	// you cannot downgrade a Redis Cluster.
 	NodeType pulumi.StringPtrInput
 	// Password for the first user of the Redis Cluster.
 	Password pulumi.StringPtrInput
 	// Describes the private network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
+	//
+	// > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many private networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+	// public network. You can modify your privateNetwork and its specs, you can have both a private and public network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -307,12 +416,17 @@ type RedisClusterState struct {
 	// The tags associated with the Redis Cluster.
 	Tags pulumi.StringArrayInput
 	// Whether TLS is enabled or not.
+	//
+	// > The changes on `tlsEnabled` will force the resource creation.
 	TlsEnabled pulumi.BoolPtrInput
 	// The date and time of the last update of the Redis Cluster.
 	UpdatedAt pulumi.StringPtrInput
 	// Identifier for the first user of the Redis Cluster.
 	UserName pulumi.StringPtrInput
 	// Redis's Cluster version (e.g. `6.2.6`).
+	//
+	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+	// cannot downgrade a Redis Cluster.
 	Version pulumi.StringPtrInput
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -327,15 +441,48 @@ type redisClusterArgs struct {
 	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls []RedisClusterAcl `pulumi:"acls"`
 	// The number of nodes in the Redis Cluster.
+	//
+	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+	// which is minimum 3 (1 main node + 2 secondary nodes)
+	//
+	// > **Important:** You can set a bigger `clusterSize` than you initially did, it will migrate the Redis Cluster, but
+	// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `clusterSize` will not have any effect.
 	ClusterSize *int `pulumi:"clusterSize"`
 	// The name of the Redis Cluster.
 	Name *string `pulumi:"name"`
 	// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+	//
+	// > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
+	// you cannot downgrade a Redis Cluster.
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the Redis Cluster.
 	Password string `pulumi:"password"`
 	// Describes the private network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
+	//
+	// > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many private networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+	// public network. You can modify your privateNetwork and its specs, you can have both a private and public network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -349,10 +496,15 @@ type redisClusterArgs struct {
 	// The tags associated with the Redis Cluster.
 	Tags []string `pulumi:"tags"`
 	// Whether TLS is enabled or not.
+	//
+	// > The changes on `tlsEnabled` will force the resource creation.
 	TlsEnabled *bool `pulumi:"tlsEnabled"`
 	// Identifier for the first user of the Redis Cluster.
 	UserName string `pulumi:"userName"`
 	// Redis's Cluster version (e.g. `6.2.6`).
+	//
+	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+	// cannot downgrade a Redis Cluster.
 	Version string `pulumi:"version"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -364,15 +516,48 @@ type RedisClusterArgs struct {
 	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls RedisClusterAclArrayInput
 	// The number of nodes in the Redis Cluster.
+	//
+	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+	// which is minimum 3 (1 main node + 2 secondary nodes)
+	//
+	// > **Important:** You can set a bigger `clusterSize` than you initially did, it will migrate the Redis Cluster, but
+	// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `clusterSize` will not have any effect.
 	ClusterSize pulumi.IntPtrInput
 	// The name of the Redis Cluster.
 	Name pulumi.StringPtrInput
 	// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+	//
+	// > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
+	// you cannot downgrade a Redis Cluster.
 	NodeType pulumi.StringInput
 	// Password for the first user of the Redis Cluster.
 	Password pulumi.StringInput
 	// Describes the private network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
+	//
+	// > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many private networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+	// public network. You can modify your privateNetwork and its specs, you can have both a private and public network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -386,10 +571,15 @@ type RedisClusterArgs struct {
 	// The tags associated with the Redis Cluster.
 	Tags pulumi.StringArrayInput
 	// Whether TLS is enabled or not.
+	//
+	// > The changes on `tlsEnabled` will force the resource creation.
 	TlsEnabled pulumi.BoolPtrInput
 	// Identifier for the first user of the Redis Cluster.
 	UserName pulumi.StringInput
 	// Redis's Cluster version (e.g. `6.2.6`).
+	//
+	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+	// cannot downgrade a Redis Cluster.
 	Version pulumi.StringInput
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -494,6 +684,12 @@ func (o RedisClusterOutput) Certificate() pulumi.StringOutput {
 }
 
 // The number of nodes in the Redis Cluster.
+//
+// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+// which is minimum 3 (1 main node + 2 secondary nodes)
+//
+// > **Important:** You can set a bigger `clusterSize` than you initially did, it will migrate the Redis Cluster, but
+// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `clusterSize` will not have any effect.
 func (o RedisClusterOutput) ClusterSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.IntOutput { return v.ClusterSize }).(pulumi.IntOutput)
 }
@@ -509,6 +705,9 @@ func (o RedisClusterOutput) Name() pulumi.StringOutput {
 }
 
 // The type of Redis Cluster you want to create (e.g. `RED1-M`).
+//
+// > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
+// you cannot downgrade a Redis Cluster.
 func (o RedisClusterOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -520,6 +719,33 @@ func (o RedisClusterOutput) Password() pulumi.StringOutput {
 
 // Describes the private network you want to connect to your cluster. If not set, a public
 // network will be provided. More details on the Private Network section
+//
+// > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+//
+// - Standalone mode (`clusterSize` = 1) : you can attach as many private networks as you want (each must be a separate
+// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+// public network. You can modify your privateNetwork and its specs, you can have both a private and public network side
+// by side.
+//
+// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
+// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
 func (o RedisClusterOutput) PrivateNetworks() RedisClusterPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *RedisCluster) RedisClusterPrivateNetworkArrayOutput { return v.PrivateNetworks }).(RedisClusterPrivateNetworkArrayOutput)
 }
@@ -548,6 +774,8 @@ func (o RedisClusterOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // Whether TLS is enabled or not.
+//
+// > The changes on `tlsEnabled` will force the resource creation.
 func (o RedisClusterOutput) TlsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.BoolPtrOutput { return v.TlsEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -563,6 +791,9 @@ func (o RedisClusterOutput) UserName() pulumi.StringOutput {
 }
 
 // Redis's Cluster version (e.g. `6.2.6`).
+//
+// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+// cannot downgrade a Redis Cluster.
 func (o RedisClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

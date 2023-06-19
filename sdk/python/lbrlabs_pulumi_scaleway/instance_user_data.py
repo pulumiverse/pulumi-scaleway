@@ -24,6 +24,11 @@ class InstanceUserDataArgs:
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[str] value: Value associated with your key
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+               
+               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "server_id", server_id)
@@ -72,6 +77,11 @@ class InstanceUserDataArgs:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the server should be created.
+
+        > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        You can define values using:
+        - string
+        - UTF-8 encoded file content using file
         """
         return pulumi.get(self, "zone")
 
@@ -93,6 +103,11 @@ class _InstanceUserDataState:
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[str] value: Value associated with your key
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+               
+               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -144,6 +159,11 @@ class _InstanceUserDataState:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the server should be created.
+
+        > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        You can define values using:
+        - string
+        - UTF-8 encoded file content using file
         """
         return pulumi.get(self, "zone")
 
@@ -189,6 +209,11 @@ class InstanceUserData(pulumi.CustomResource):
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[str] value: Value associated with your key
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+               
+               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
         """
         ...
     @overload
@@ -280,6 +305,11 @@ class InstanceUserData(pulumi.CustomResource):
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[str] value: Value associated with your key
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
+               
+               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -320,6 +350,11 @@ class InstanceUserData(pulumi.CustomResource):
     def zone(self) -> pulumi.Output[str]:
         """
         `zone`) The zone in which the server should be created.
+
+        > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        You can define values using:
+        - string
+        - UTF-8 encoded file content using file
         """
         return pulumi.get(self, "zone")
 

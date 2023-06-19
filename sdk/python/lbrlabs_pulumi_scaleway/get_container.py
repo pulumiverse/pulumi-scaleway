@@ -349,6 +349,8 @@ def get_container(container_id: Optional[str] = None,
 
     :param str name: The unique name of the container name.
     :param str namespace_id: The container namespace ID of the container.
+           
+           > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
     __args__ = dict()
@@ -420,6 +422,8 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
 
     :param str name: The unique name of the container name.
     :param str namespace_id: The container namespace ID of the container.
+           
+           > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
     ...

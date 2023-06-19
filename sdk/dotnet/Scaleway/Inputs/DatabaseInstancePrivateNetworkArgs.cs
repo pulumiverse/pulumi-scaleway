@@ -31,8 +31,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
-        [Input("ipNet", required: true)]
-        public Input<string> IpNet { get; set; } = null!;
+        [Input("ipNet")]
+        public Input<string>? IpNet { get; set; }
 
         /// <summary>
         /// The name of the Database Instance.

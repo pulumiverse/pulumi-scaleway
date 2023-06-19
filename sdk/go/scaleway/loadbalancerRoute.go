@@ -11,12 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
-// It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+// Creates and manages Scaleway Load-Balancer Routes.
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 //
 // ## Examples
 //
-// ### With SNI
+// ### With SNI for direction to TCP backends
 //
 // ```go
 // package main
@@ -72,7 +72,7 @@ import (
 //
 // ```
 //
-// ### With host-header
+// ### With host-header for direction to HTTP backends
 //
 // ```go
 // package main
@@ -99,7 +99,7 @@ import (
 //			}
 //			bkd01, err := scaleway.NewLoadbalancerBackend(ctx, "bkd01", &scaleway.LoadbalancerBackendArgs{
 //				LbId:            lb01.ID(),
-//				ForwardProtocol: pulumi.String("tcp"),
+//				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
 //			})
@@ -146,11 +146,15 @@ type LoadbalancerRoute struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the frontend to which the route is associated.
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
-	// The Host request header specifies the host of the server to which the request is being sent.
+	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader pulumi.StringPtrOutput `pulumi:"matchHostHeader"`
-	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
 	// The date at which the route was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -198,11 +202,15 @@ type loadbalancerRouteState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the frontend to which the route is associated.
 	FrontendId *string `pulumi:"frontendId"`
-	// The Host request header specifies the host of the server to which the request is being sent.
+	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader *string `pulumi:"matchHostHeader"`
-	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
 	// The date at which the route was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -215,11 +223,15 @@ type LoadbalancerRouteState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the frontend to which the route is associated.
 	FrontendId pulumi.StringPtrInput
-	// The Host request header specifies the host of the server to which the request is being sent.
+	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader pulumi.StringPtrInput
-	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
 	// The date at which the route was last updated.
 	UpdatedAt pulumi.StringPtrInput
@@ -234,11 +246,15 @@ type loadbalancerRouteArgs struct {
 	BackendId string `pulumi:"backendId"`
 	// The ID of the frontend to which the route is associated.
 	FrontendId string `pulumi:"frontendId"`
-	// The Host request header specifies the host of the server to which the request is being sent.
+	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader *string `pulumi:"matchHostHeader"`
-	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
 }
 
@@ -248,11 +264,15 @@ type LoadbalancerRouteArgs struct {
 	BackendId pulumi.StringInput
 	// The ID of the frontend to which the route is associated.
 	FrontendId pulumi.StringInput
-	// The Host request header specifies the host of the server to which the request is being sent.
+	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader pulumi.StringPtrInput
-	// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	//
+	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
 }
 
@@ -358,14 +378,18 @@ func (o LoadbalancerRouteOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.FrontendId }).(pulumi.StringOutput)
 }
 
-// The Host request header specifies the host of the server to which the request is being sent.
+// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 // Only one of `matchSni` and `matchHostHeader` should be specified.
+//
+// > **Important:** This field should be set for routes on HTTP Load Balancers.
 func (o LoadbalancerRouteOutput) MatchHostHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchHostHeader }).(pulumi.StringPtrOutput)
 }
 
-// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
 // Only one of `matchSni` and `matchHostHeader` should be specified.
+//
+// > **Important:** This field should be set for routes on TCP Load Balancers.
 func (o LoadbalancerRouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
 }

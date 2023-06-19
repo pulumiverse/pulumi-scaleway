@@ -45,10 +45,14 @@ export class IotDevice extends pulumi.CustomResource {
 
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     *
+     * > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
      */
     public readonly allowInsecure!: pulumi.Output<boolean | undefined>;
     /**
      * Allow more than one simultaneous connection using the same device credentials.
+     *
+     * > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
      */
     public readonly allowMultipleConnections!: pulumi.Output<boolean | undefined>;
     /**
@@ -81,6 +85,8 @@ export class IotDevice extends pulumi.CustomResource {
     public readonly messageFilters!: pulumi.Output<outputs.IotDeviceMessageFilters | undefined>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
+     *
+     * > **Important:** Updates to `name` will destroy and recreate a new resource.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -152,10 +158,14 @@ export class IotDevice extends pulumi.CustomResource {
 export interface IotDeviceState {
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     *
+     * > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
      */
     allowInsecure?: pulumi.Input<boolean>;
     /**
      * Allow more than one simultaneous connection using the same device credentials.
+     *
+     * > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
      */
     allowMultipleConnections?: pulumi.Input<boolean>;
     /**
@@ -188,6 +198,8 @@ export interface IotDeviceState {
     messageFilters?: pulumi.Input<inputs.IotDeviceMessageFilters>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
+     *
+     * > **Important:** Updates to `name` will destroy and recreate a new resource.
      */
     name?: pulumi.Input<string>;
     /**
@@ -210,10 +222,14 @@ export interface IotDeviceState {
 export interface IotDeviceArgs {
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     *
+     * > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
      */
     allowInsecure?: pulumi.Input<boolean>;
     /**
      * Allow more than one simultaneous connection using the same device credentials.
+     *
+     * > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
      */
     allowMultipleConnections?: pulumi.Input<boolean>;
     /**
@@ -234,6 +250,8 @@ export interface IotDeviceArgs {
     messageFilters?: pulumi.Input<inputs.IotDeviceMessageFilters>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
+     *
+     * > **Important:** Updates to `name` will destroy and recreate a new resource.
      */
     name?: pulumi.Input<string>;
     /**

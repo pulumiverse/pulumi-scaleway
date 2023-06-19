@@ -333,7 +333,7 @@ class CockpitToken(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Output[Optional['outputs.CockpitTokenScopes']]:
+    def scopes(self) -> pulumi.Output['outputs.CockpitTokenScopes']:
         """
         Allowed scopes
         """

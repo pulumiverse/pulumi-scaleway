@@ -14,7 +14,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// Get information about Scaleway Load-Balancer Frontends.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -73,7 +73,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Get information about Scaleway Load-Balancer Frontends.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -197,6 +197,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string CertificateId;
         public readonly ImmutableArray<string> CertificateIds;
         public readonly bool EnableHttp3;
+        public readonly bool ExternalAcls;
         public readonly string? FrontendId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -219,6 +220,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             bool enableHttp3,
 
+            bool externalAcls,
+
             string? frontendId,
 
             string id,
@@ -236,6 +239,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             CertificateId = certificateId;
             CertificateIds = certificateIds;
             EnableHttp3 = enableHttp3;
+            ExternalAcls = externalAcls;
             FrontendId = frontendId;
             Id = id;
             InboundPort = inboundPort;

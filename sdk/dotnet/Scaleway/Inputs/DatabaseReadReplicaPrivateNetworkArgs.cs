@@ -50,11 +50,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-        /// limitations. (IP network).
+        /// The IP network address within the private subnet. This must be an IPv4 address with a
+        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
         /// </summary>
-        [Input("serviceIp", required: true)]
-        public Input<string> ServiceIp { get; set; } = null!;
+        [Input("serviceIp")]
+        public Input<string>? ServiceIp { get; set; }
 
         [Input("zone")]
         public Input<string>? Zone { get; set; }

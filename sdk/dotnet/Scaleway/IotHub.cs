@@ -54,6 +54,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Wether the IoT Hub instance should be enabled or not.
+        /// 
+        /// &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -96,6 +98,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        /// 
+        /// &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         /// </summary>
         [Output("productPlan")]
         public Output<string> ProductPlan { get; private set; } = null!;
@@ -185,6 +189,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Wether the IoT Hub instance should be enabled or not.
+        /// 
+        /// &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -215,6 +221,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        /// 
+        /// &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         /// </summary>
         [Input("productPlan", required: true)]
         public Input<string> ProductPlan { get; set; } = null!;
@@ -271,6 +279,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Wether the IoT Hub instance should be enabled or not.
+        /// 
+        /// &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -313,6 +323,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        /// 
+        /// &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         /// </summary>
         [Input("productPlan")]
         public Input<string>? ProductPlan { get; set; }

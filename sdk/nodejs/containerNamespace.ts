@@ -71,6 +71,8 @@ export class ContainerNamespace extends pulumi.CustomResource {
     public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The unique name of the container namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -161,6 +163,8 @@ export interface ContainerNamespaceState {
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The unique name of the container namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**
@@ -209,6 +213,8 @@ export interface ContainerNamespaceArgs {
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The unique name of the container namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**

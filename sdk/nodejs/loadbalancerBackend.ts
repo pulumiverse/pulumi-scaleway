@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Load-Balancer Backends.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Examples
  *
@@ -159,11 +159,11 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      */
     public readonly sslBridging!: pulumi.Output<boolean | undefined>;
     /**
-     * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      */
     public readonly stickySessions!: pulumi.Output<string | undefined>;
     /**
-     * Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+     * Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
      */
     public readonly stickySessionsCookieName!: pulumi.Output<string | undefined>;
     /**
@@ -343,11 +343,11 @@ export interface LoadbalancerBackendState {
      */
     sslBridging?: pulumi.Input<boolean>;
     /**
-     * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      */
     stickySessions?: pulumi.Input<string>;
     /**
-     * Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+     * Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
      */
     stickySessionsCookieName?: pulumi.Input<string>;
     /**
@@ -450,11 +450,11 @@ export interface LoadbalancerBackendArgs {
      */
     sslBridging?: pulumi.Input<boolean>;
     /**
-     * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      */
     stickySessions?: pulumi.Input<string>;
     /**
-     * Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+     * Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
      */
     stickySessionsCookieName?: pulumi.Input<string>;
     /**

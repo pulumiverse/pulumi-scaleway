@@ -78,6 +78,8 @@ export class FunctionToken extends pulumi.CustomResource {
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
      * The ID of the function.
+     *
+     * > Only one of `namespaceId` or `functionId` must be set.
      */
     public readonly functionId!: pulumi.Output<string | undefined>;
     /**
@@ -86,6 +88,8 @@ export class FunctionToken extends pulumi.CustomResource {
     public readonly namespaceId!: pulumi.Output<string | undefined>;
     /**
      * `region`). The region in which the namespace should be created.
+     *
+     * > **Important** Updates to any fields will recreate the token.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -142,6 +146,8 @@ export interface FunctionTokenState {
     expiresAt?: pulumi.Input<string>;
     /**
      * The ID of the function.
+     *
+     * > Only one of `namespaceId` or `functionId` must be set.
      */
     functionId?: pulumi.Input<string>;
     /**
@@ -150,6 +156,8 @@ export interface FunctionTokenState {
     namespaceId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the namespace should be created.
+     *
+     * > **Important** Updates to any fields will recreate the token.
      */
     region?: pulumi.Input<string>;
     /**
@@ -172,6 +180,8 @@ export interface FunctionTokenArgs {
     expiresAt?: pulumi.Input<string>;
     /**
      * The ID of the function.
+     *
+     * > Only one of `namespaceId` or `functionId` must be set.
      */
     functionId?: pulumi.Input<string>;
     /**
@@ -180,6 +190,8 @@ export interface FunctionTokenArgs {
     namespaceId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the namespace should be created.
+     *
+     * > **Important** Updates to any fields will recreate the token.
      */
     region?: pulumi.Input<string>;
 }

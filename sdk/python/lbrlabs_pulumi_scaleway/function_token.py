@@ -24,8 +24,12 @@ class FunctionTokenArgs:
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
         :param pulumi.Input[str] function_id: The ID of the function.
+               
+               > Only one of `namespace_id` or `function_id` must be set.
         :param pulumi.Input[str] namespace_id: The ID of the function namespace.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               
+               > **Important** Updates to any fields will recreate the token.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -67,6 +71,8 @@ class FunctionTokenArgs:
     def function_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the function.
+
+        > Only one of `namespace_id` or `function_id` must be set.
         """
         return pulumi.get(self, "function_id")
 
@@ -91,6 +97,8 @@ class FunctionTokenArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region in which the namespace should be created.
+
+        > **Important** Updates to any fields will recreate the token.
         """
         return pulumi.get(self, "region")
 
@@ -113,8 +121,12 @@ class _FunctionTokenState:
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
         :param pulumi.Input[str] function_id: The ID of the function.
+               
+               > Only one of `namespace_id` or `function_id` must be set.
         :param pulumi.Input[str] namespace_id: The ID of the function namespace.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               
+               > **Important** Updates to any fields will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
         if description is not None:
@@ -159,6 +171,8 @@ class _FunctionTokenState:
     def function_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the function.
+
+        > Only one of `namespace_id` or `function_id` must be set.
         """
         return pulumi.get(self, "function_id")
 
@@ -183,6 +197,8 @@ class _FunctionTokenState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region in which the namespace should be created.
+
+        > **Important** Updates to any fields will recreate the token.
         """
         return pulumi.get(self, "region")
 
@@ -253,8 +269,12 @@ class FunctionToken(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
         :param pulumi.Input[str] function_id: The ID of the function.
+               
+               > Only one of `namespace_id` or `function_id` must be set.
         :param pulumi.Input[str] namespace_id: The ID of the function namespace.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               
+               > **Important** Updates to any fields will recreate the token.
         """
         ...
     @overload
@@ -359,8 +379,12 @@ class FunctionToken(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
         :param pulumi.Input[str] function_id: The ID of the function.
+               
+               > Only one of `namespace_id` or `function_id` must be set.
         :param pulumi.Input[str] namespace_id: The ID of the function namespace.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               
+               > **Important** Updates to any fields will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -396,6 +420,8 @@ class FunctionToken(pulumi.CustomResource):
     def function_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the function.
+
+        > Only one of `namespace_id` or `function_id` must be set.
         """
         return pulumi.get(self, "function_id")
 
@@ -412,6 +438,8 @@ class FunctionToken(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`). The region in which the namespace should be created.
+
+        > **Important** Updates to any fields will recreate the token.
         """
         return pulumi.get(self, "region")
 

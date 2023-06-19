@@ -119,6 +119,8 @@ type DatabaseReadReplica struct {
 	// Creates a direct access endpoint to rdb replica.
 	DirectAccess DatabaseReadReplicaDirectAccessPtrOutput `pulumi:"directAccess"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
@@ -163,6 +165,8 @@ type databaseReadReplicaState struct {
 	// Creates a direct access endpoint to rdb replica.
 	DirectAccess *DatabaseReadReplicaDirectAccess `pulumi:"directAccess"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId *string `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
 	PrivateNetwork *DatabaseReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
@@ -175,6 +179,8 @@ type DatabaseReadReplicaState struct {
 	// Creates a direct access endpoint to rdb replica.
 	DirectAccess DatabaseReadReplicaDirectAccessPtrInput
 	// UUID of the rdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringPtrInput
 	// Create an endpoint in a private network.
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrInput
@@ -191,6 +197,8 @@ type databaseReadReplicaArgs struct {
 	// Creates a direct access endpoint to rdb replica.
 	DirectAccess *DatabaseReadReplicaDirectAccess `pulumi:"directAccess"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId string `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
 	PrivateNetwork *DatabaseReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
@@ -204,6 +212,8 @@ type DatabaseReadReplicaArgs struct {
 	// Creates a direct access endpoint to rdb replica.
 	DirectAccess DatabaseReadReplicaDirectAccessPtrInput
 	// UUID of the rdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringInput
 	// Create an endpoint in a private network.
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrInput
@@ -305,6 +315,8 @@ func (o DatabaseReadReplicaOutput) DirectAccess() DatabaseReadReplicaDirectAcces
 }
 
 // UUID of the rdb instance.
+//
+// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 func (o DatabaseReadReplicaOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
