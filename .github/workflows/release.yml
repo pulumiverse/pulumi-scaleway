@@ -166,7 +166,7 @@ jobs:
   publish:
     name: publish
     needs:
-      - prerequisites
+      - build_sdk
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo

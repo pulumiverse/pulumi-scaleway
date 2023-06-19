@@ -14,6 +14,8 @@ public final class RedisClusterAcl {
     /**
      * @return A text describing this rule. Default description: `Allow IP`
      * 
+     * &gt; The `acl` conflict with `private_network`. Only one should be specified.
+     * 
      */
     private @Nullable String description;
     /**
@@ -31,6 +33,8 @@ public final class RedisClusterAcl {
     private RedisClusterAcl() {}
     /**
      * @return A text describing this rule. Default description: `Allow IP`
+     * 
+     * &gt; The `acl` conflict with `private_network`. Only one should be specified.
      * 
      */
     public Optional<String> description() {

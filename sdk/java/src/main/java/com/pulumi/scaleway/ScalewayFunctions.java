@@ -12,6 +12,8 @@ import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
 import com.pulumi.scaleway.inputs.GetAccountProjectPlainArgs;
 import com.pulumi.scaleway.inputs.GetAccountSshKeyArgs;
 import com.pulumi.scaleway.inputs.GetAccountSshKeyPlainArgs;
+import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+import com.pulumi.scaleway.inputs.GetAvailabilityZonesPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOfferPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOptionArgs;
@@ -22,6 +24,8 @@ import com.pulumi.scaleway.inputs.GetBaremetalServerArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerPlainArgs;
 import com.pulumi.scaleway.inputs.GetCockpitArgs;
 import com.pulumi.scaleway.inputs.GetCockpitPlainArgs;
+import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
+import com.pulumi.scaleway.inputs.GetCockpitPlanPlainArgs;
 import com.pulumi.scaleway.inputs.GetContainerArgs;
 import com.pulumi.scaleway.inputs.GetContainerNamespaceArgs;
 import com.pulumi.scaleway.inputs.GetContainerNamespacePlainArgs;
@@ -108,6 +112,8 @@ import com.pulumi.scaleway.inputs.GetMarketplaceImageArgs;
 import com.pulumi.scaleway.inputs.GetMarketplaceImagePlainArgs;
 import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
 import com.pulumi.scaleway.inputs.GetObjectBucketPlainArgs;
+import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+import com.pulumi.scaleway.inputs.GetObjectBucketPolicyPlainArgs;
 import com.pulumi.scaleway.inputs.GetRedisClusterArgs;
 import com.pulumi.scaleway.inputs.GetRedisClusterPlainArgs;
 import com.pulumi.scaleway.inputs.GetRegistryImageArgs;
@@ -120,8 +126,10 @@ import com.pulumi.scaleway.inputs.GetSecretVersionArgs;
 import com.pulumi.scaleway.inputs.GetSecretVersionPlainArgs;
 import com.pulumi.scaleway.inputs.GetTemDomainArgs;
 import com.pulumi.scaleway.inputs.GetTemDomainPlainArgs;
+import com.pulumi.scaleway.inputs.GetVpcArgs;
 import com.pulumi.scaleway.inputs.GetVpcGatewayNetworkArgs;
 import com.pulumi.scaleway.inputs.GetVpcGatewayNetworkPlainArgs;
+import com.pulumi.scaleway.inputs.GetVpcPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
 import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicGatewayArgs;
@@ -138,10 +146,12 @@ import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
 import com.pulumi.scaleway.inputs.GetWebHostOfferPlainArgs;
 import com.pulumi.scaleway.outputs.GetAccountProjectResult;
 import com.pulumi.scaleway.outputs.GetAccountSshKeyResult;
+import com.pulumi.scaleway.outputs.GetAvailabilityZonesResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOfferResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOptionResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOsResult;
 import com.pulumi.scaleway.outputs.GetBaremetalServerResult;
+import com.pulumi.scaleway.outputs.GetCockpitPlanResult;
 import com.pulumi.scaleway.outputs.GetCockpitResult;
 import com.pulumi.scaleway.outputs.GetContainerNamespaceResult;
 import com.pulumi.scaleway.outputs.GetContainerResult;
@@ -185,6 +195,7 @@ import com.pulumi.scaleway.outputs.GetLoadbalancerCertificateResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerIpResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerResult;
 import com.pulumi.scaleway.outputs.GetMarketplaceImageResult;
+import com.pulumi.scaleway.outputs.GetObjectBucketPolicyResult;
 import com.pulumi.scaleway.outputs.GetObjectBucketResult;
 import com.pulumi.scaleway.outputs.GetRedisClusterResult;
 import com.pulumi.scaleway.outputs.GetRegistryImageResult;
@@ -199,6 +210,7 @@ import com.pulumi.scaleway.outputs.GetVpcPublicGatewayDhcpResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicGatewayIpResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicGatewayResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicPatRuleResult;
+import com.pulumi.scaleway.outputs.GetVpcResult;
 import com.pulumi.scaleway.outputs.GetWebHostOfferResult;
 import java.util.concurrent.CompletableFuture;
 
@@ -670,6 +682,246 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetAccountSshKeyResult> getAccountSshKeyPlain(GetAccountSshKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getAccountSshKey:getAccountSshKey", TypeShape.of(GetAccountSshKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAvailabilityZonesResult> getAvailabilityZones() {
+        return getAvailabilityZones(GetAvailabilityZonesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAvailabilityZonesResult> getAvailabilityZonesPlain() {
+        return getAvailabilityZonesPlain(GetAvailabilityZonesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAvailabilityZonesResult> getAvailabilityZones(GetAvailabilityZonesArgs args) {
+        return getAvailabilityZones(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAvailabilityZonesResult> getAvailabilityZonesPlain(GetAvailabilityZonesPlainArgs args) {
+        return getAvailabilityZonesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAvailabilityZonesResult> getAvailabilityZones(GetAvailabilityZonesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getAvailabilityZones:getAvailabilityZones", TypeShape.of(GetAvailabilityZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAvailabilityZonesResult> getAvailabilityZonesPlain(GetAvailabilityZonesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getAvailabilityZones:getAvailabilityZones", TypeShape.of(GetAvailabilityZonesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -2068,6 +2320,178 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetCockpitResult> getCockpitPlain(GetCockpitPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getCockpit:getCockpit", TypeShape.of(GetCockpitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a Scaleway Cockpit plan.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
+     * import com.pulumi.scaleway.Cockpit;
+     * import com.pulumi.scaleway.CockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var premium = ScalewayFunctions.getCockpitPlan(GetCockpitPlanArgs.builder()
+     *             .name(&#34;premium&#34;)
+     *             .build());
+     * 
+     *         var main = new Cockpit(&#34;main&#34;, CockpitArgs.builder()        
+     *             .plan(premium.applyValue(getCockpitPlanResult -&gt; getCockpitPlanResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCockpitPlanResult> getCockpitPlan(GetCockpitPlanArgs args) {
+        return getCockpitPlan(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Scaleway Cockpit plan.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
+     * import com.pulumi.scaleway.Cockpit;
+     * import com.pulumi.scaleway.CockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var premium = ScalewayFunctions.getCockpitPlan(GetCockpitPlanArgs.builder()
+     *             .name(&#34;premium&#34;)
+     *             .build());
+     * 
+     *         var main = new Cockpit(&#34;main&#34;, CockpitArgs.builder()        
+     *             .plan(premium.applyValue(getCockpitPlanResult -&gt; getCockpitPlanResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCockpitPlanResult> getCockpitPlanPlain(GetCockpitPlanPlainArgs args) {
+        return getCockpitPlanPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Scaleway Cockpit plan.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
+     * import com.pulumi.scaleway.Cockpit;
+     * import com.pulumi.scaleway.CockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var premium = ScalewayFunctions.getCockpitPlan(GetCockpitPlanArgs.builder()
+     *             .name(&#34;premium&#34;)
+     *             .build());
+     * 
+     *         var main = new Cockpit(&#34;main&#34;, CockpitArgs.builder()        
+     *             .plan(premium.applyValue(getCockpitPlanResult -&gt; getCockpitPlanResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetCockpitPlanResult> getCockpitPlan(GetCockpitPlanArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getCockpitPlan:getCockpitPlan", TypeShape.of(GetCockpitPlanResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a Scaleway Cockpit plan.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
+     * import com.pulumi.scaleway.Cockpit;
+     * import com.pulumi.scaleway.CockpitArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var premium = ScalewayFunctions.getCockpitPlan(GetCockpitPlanArgs.builder()
+     *             .name(&#34;premium&#34;)
+     *             .build());
+     * 
+     *         var main = new Cockpit(&#34;main&#34;, CockpitArgs.builder()        
+     *             .plan(premium.applyValue(getCockpitPlanResult -&gt; getCockpitPlanResult.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetCockpitPlanResult> getCockpitPlanPlain(GetCockpitPlanPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getCockpitPlan:getCockpitPlan", TypeShape.of(GetCockpitPlanResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about the Scaleway Container.
@@ -8385,7 +8809,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Backends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
      * 
      * ## Example Usage
      * ```java
@@ -8446,7 +8870,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Backends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
      * 
      * ## Example Usage
      * ```java
@@ -8507,7 +8931,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Backends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
      * 
      * ## Example Usage
      * ```java
@@ -8568,7 +8992,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Backends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
      * 
      * ## Example Usage
      * ```java
@@ -8629,7 +9053,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Backends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
      * 
      * ## Example Usage
      * ```java
@@ -8690,7 +9114,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Backends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#backends-cbf4eb).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
      * 
      * ## Example Usage
      * ```java
@@ -8919,7 +9343,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Frontends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
      * 
      * ## Example Usage
      * ```java
@@ -8989,7 +9413,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Frontends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
      * 
      * ## Example Usage
      * ```java
@@ -9059,7 +9483,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Frontends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
      * 
      * ## Example Usage
      * ```java
@@ -9129,7 +9553,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Frontends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
      * 
      * ## Example Usage
      * ```java
@@ -9199,7 +9623,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Frontends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
      * 
      * ## Example Usage
      * ```java
@@ -9269,7 +9693,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Frontends.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
      * 
      * ## Example Usage
      * ```java
@@ -9735,7 +10159,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Routes.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
      * 
      * ## Example Usage
      * ```java
@@ -9808,7 +10232,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Routes.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
      * 
      * ## Example Usage
      * ```java
@@ -9881,7 +10305,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Routes.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
      * 
      * ## Example Usage
      * ```java
@@ -9954,7 +10378,7 @@ public final class ScalewayFunctions {
     }
     /**
      * Get information about Scaleway Load-Balancer Routes.
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
      * 
      * ## Example Usage
      * ```java
@@ -10756,7 +11180,7 @@ public final class ScalewayFunctions {
      * 
      * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
      * 
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
      * 
      * ## Examples
      * 
@@ -10769,7 +11193,7 @@ public final class ScalewayFunctions {
      * 
      * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
      * 
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
      * 
      * ## Examples
      * 
@@ -10782,7 +11206,7 @@ public final class ScalewayFunctions {
      * 
      * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
      * 
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
      * 
      * ## Examples
      * 
@@ -10795,7 +11219,7 @@ public final class ScalewayFunctions {
      * 
      * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
      * 
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
      * 
      * ## Examples
      * 
@@ -10808,7 +11232,7 @@ public final class ScalewayFunctions {
      * 
      * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
      * 
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
      * 
      * ## Examples
      * 
@@ -10821,7 +11245,7 @@ public final class ScalewayFunctions {
      * 
      * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
      * 
-     * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+     * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
      * 
      * ## Examples
      * 
@@ -11642,6 +12066,158 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetObjectBucketResult> getObjectBucketPlain(GetObjectBucketPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getObjectBucket:getObjectBucket", TypeShape.of(GetObjectBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectBucketPolicyResult> getObjectBucketPolicy(GetObjectBucketPolicyArgs args) {
+        return getObjectBucketPolicy(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectBucketPolicyResult> getObjectBucketPolicyPlain(GetObjectBucketPolicyPlainArgs args) {
+        return getObjectBucketPolicyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectBucketPolicyResult> getObjectBucketPolicy(GetObjectBucketPolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", TypeShape.of(GetObjectBucketPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectBucketPolicyResult> getObjectBucketPolicyPlain(GetObjectBucketPolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", TypeShape.of(GetObjectBucketPolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
@@ -12862,6 +13438,276 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getTemDomain:getTemDomain", TypeShape.of(GetTemDomainResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about a Scaleway Virtual Private Cloud.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .vpcId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .isDefault(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetVpcResult> getVpc() {
+        return getVpc(GetVpcArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Scaleway Virtual Private Cloud.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .vpcId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .isDefault(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetVpcResult> getVpcPlain() {
+        return getVpcPlain(GetVpcPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Scaleway Virtual Private Cloud.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .vpcId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .isDefault(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetVpcResult> getVpc(GetVpcArgs args) {
+        return getVpc(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Scaleway Virtual Private Cloud.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .vpcId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .isDefault(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetVpcResult> getVpcPlain(GetVpcPlainArgs args) {
+        return getVpcPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a Scaleway Virtual Private Cloud.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .vpcId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .isDefault(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetVpcResult> getVpc(GetVpcArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getVpc:getVpc", TypeShape.of(GetVpcResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a Scaleway Virtual Private Cloud.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .vpcId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *         final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()
+     *             .isDefault(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetVpcResult> getVpcPlain(GetVpcPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getVpc:getVpc", TypeShape.of(GetVpcResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about a gateway network.
      * 
      * ## Example Usage
@@ -13178,7 +14024,38 @@ public final class ScalewayFunctions {
      * 
      * ## Example Usage
      * 
-     * N/A, the usage will be meaningful in the next releases of VPC.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetVpcPrivateNetworkResult> getVpcPrivateNetwork() {
@@ -13189,7 +14066,38 @@ public final class ScalewayFunctions {
      * 
      * ## Example Usage
      * 
-     * N/A, the usage will be meaningful in the next releases of VPC.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetVpcPrivateNetworkResult> getVpcPrivateNetworkPlain() {
@@ -13200,7 +14108,38 @@ public final class ScalewayFunctions {
      * 
      * ## Example Usage
      * 
-     * N/A, the usage will be meaningful in the next releases of VPC.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetVpcPrivateNetworkResult> getVpcPrivateNetwork(GetVpcPrivateNetworkArgs args) {
@@ -13211,7 +14150,38 @@ public final class ScalewayFunctions {
      * 
      * ## Example Usage
      * 
-     * N/A, the usage will be meaningful in the next releases of VPC.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetVpcPrivateNetworkResult> getVpcPrivateNetworkPlain(GetVpcPrivateNetworkPlainArgs args) {
@@ -13222,7 +14192,38 @@ public final class ScalewayFunctions {
      * 
      * ## Example Usage
      * 
-     * N/A, the usage will be meaningful in the next releases of VPC.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetVpcPrivateNetworkResult> getVpcPrivateNetwork(GetVpcPrivateNetworkArgs args, InvokeOptions options) {
@@ -13233,7 +14234,38 @@ public final class ScalewayFunctions {
      * 
      * ## Example Usage
      * 
-     * N/A, the usage will be meaningful in the next releases of VPC.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
+     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetVpcPrivateNetworkResult> getVpcPrivateNetworkPlain(GetVpcPrivateNetworkPlainArgs args, InvokeOptions options) {

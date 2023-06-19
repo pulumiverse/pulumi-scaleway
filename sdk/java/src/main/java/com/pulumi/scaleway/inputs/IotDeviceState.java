@@ -21,12 +21,16 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
      * 
+     * &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+     * 
      */
     @Import(name="allowInsecure")
     private @Nullable Output<Boolean> allowInsecure;
 
     /**
      * @return Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     * 
+     * &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
      * 
      */
     public Optional<Output<Boolean>> allowInsecure() {
@@ -36,12 +40,16 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Allow more than one simultaneous connection using the same device credentials.
      * 
+     * &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
+     * 
      */
     @Import(name="allowMultipleConnections")
     private @Nullable Output<Boolean> allowMultipleConnections;
 
     /**
      * @return Allow more than one simultaneous connection using the same device credentials.
+     * 
+     * &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
      * 
      */
     public Optional<Output<Boolean>> allowMultipleConnections() {
@@ -156,12 +164,16 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      * 
+     * &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
+     * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
      * @return The name of the IoT device you want to create (e.g. `my-device`).
+     * 
+     * &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
      * 
      */
     public Optional<Output<String>> name() {
@@ -252,6 +264,8 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowInsecure Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
          * 
+         * &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+         * 
          * @return builder
          * 
          */
@@ -263,6 +277,8 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowInsecure Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
          * 
+         * &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+         * 
          * @return builder
          * 
          */
@@ -272,6 +288,8 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param allowMultipleConnections Allow more than one simultaneous connection using the same device credentials.
+         * 
+         * &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
          * 
          * @return builder
          * 
@@ -283,6 +301,8 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param allowMultipleConnections Allow more than one simultaneous connection using the same device credentials.
+         * 
+         * &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
          * 
          * @return builder
          * 
@@ -441,6 +461,8 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param name The name of the IoT device you want to create (e.g. `my-device`).
          * 
+         * &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
+         * 
          * @return builder
          * 
          */
@@ -451,6 +473,8 @@ public final class IotDeviceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name The name of the IoT device you want to create (e.g. `my-device`).
+         * 
+         * &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
          * 
          * @return builder
          * 

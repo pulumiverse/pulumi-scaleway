@@ -32,6 +32,20 @@ public final class LoadbalancerFrontendAclArgs extends com.pulumi.resources.Reso
         return this.action;
     }
 
+    @Import(name="createdAt")
+    private @Nullable Output<String> createdAt;
+
+    public Optional<Output<String>> createdAt() {
+        return Optional.ofNullable(this.createdAt);
+    }
+
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
     /**
      * The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
      * 
@@ -62,12 +76,22 @@ public final class LoadbalancerFrontendAclArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="updatedAt")
+    private @Nullable Output<String> updatedAt;
+
+    public Optional<Output<String>> updatedAt() {
+        return Optional.ofNullable(this.updatedAt);
+    }
+
     private LoadbalancerFrontendAclArgs() {}
 
     private LoadbalancerFrontendAclArgs(LoadbalancerFrontendAclArgs $) {
         this.action = $.action;
+        this.createdAt = $.createdAt;
+        this.description = $.description;
         this.match = $.match;
         this.name = $.name;
+        this.updatedAt = $.updatedAt;
     }
 
     public static Builder builder() {
@@ -107,6 +131,24 @@ public final class LoadbalancerFrontendAclArgs extends com.pulumi.resources.Reso
          */
         public Builder action(LoadbalancerFrontendAclActionArgs action) {
             return action(Output.of(action));
+        }
+
+        public Builder createdAt(@Nullable Output<String> createdAt) {
+            $.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(String createdAt) {
+            return createdAt(Output.of(createdAt));
+        }
+
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -149,6 +191,15 @@ public final class LoadbalancerFrontendAclArgs extends com.pulumi.resources.Reso
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        public Builder updatedAt(@Nullable Output<String> updatedAt) {
+            $.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Builder updatedAt(String updatedAt) {
+            return updatedAt(Output.of(updatedAt));
         }
 
         public LoadbalancerFrontendAclArgs build() {

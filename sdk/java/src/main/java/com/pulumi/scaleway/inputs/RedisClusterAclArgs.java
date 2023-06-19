@@ -18,12 +18,16 @@ public final class RedisClusterAclArgs extends com.pulumi.resources.ResourceArgs
     /**
      * A text describing this rule. Default description: `Allow IP`
      * 
+     * &gt; The `acl` conflict with `private_network`. Only one should be specified.
+     * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
      * @return A text describing this rule. Default description: `Allow IP`
+     * 
+     * &gt; The `acl` conflict with `private_network`. Only one should be specified.
      * 
      */
     public Optional<Output<String>> description() {
@@ -91,6 +95,8 @@ public final class RedisClusterAclArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param description A text describing this rule. Default description: `Allow IP`
          * 
+         * &gt; The `acl` conflict with `private_network`. Only one should be specified.
+         * 
          * @return builder
          * 
          */
@@ -101,6 +107,8 @@ public final class RedisClusterAclArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param description A text describing this rule. Default description: `Allow IP`
+         * 
+         * &gt; The `acl` conflict with `private_network`. Only one should be specified.
          * 
          * @return builder
          * 

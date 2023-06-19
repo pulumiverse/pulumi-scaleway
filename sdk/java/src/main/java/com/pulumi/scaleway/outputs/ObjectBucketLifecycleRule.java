@@ -20,6 +20,8 @@ public final class ObjectBucketLifecycleRule {
     /**
      * @return Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
      * 
+     * * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+     * 
      */
     private @Nullable Integer abortIncompleteMultipartUploadDays;
     /**
@@ -50,12 +52,16 @@ public final class ObjectBucketLifecycleRule {
     /**
      * @return Specifies a period in the object&#39;s transitions (documented below).
      * 
+     * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+     * 
      */
     private @Nullable List<ObjectBucketLifecycleRuleTransition> transitions;
 
     private ObjectBucketLifecycleRule() {}
     /**
      * @return Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * 
+     * * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
      * 
      */
     public Optional<Integer> abortIncompleteMultipartUploadDays() {
@@ -98,6 +104,8 @@ public final class ObjectBucketLifecycleRule {
     }
     /**
      * @return Specifies a period in the object&#39;s transitions (documented below).
+     * 
+     * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
      * 
      */
     public List<ObjectBucketLifecycleRuleTransition> transitions() {

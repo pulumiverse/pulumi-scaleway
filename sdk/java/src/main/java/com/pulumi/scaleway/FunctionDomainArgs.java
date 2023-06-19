@@ -34,6 +34,8 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
      * The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domain_name` for it.
      * 
+     * &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
+     * 
      */
     @Import(name="hostname", required=true)
     private Output<String> hostname;
@@ -41,6 +43,8 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * @return The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domain_name` for it.
+     * 
+     * &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
      * 
      */
     public Output<String> hostname() {
@@ -113,6 +117,8 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
          * @param hostname The hostname that should resolve to your function id native domain.
          * You should use a CNAME domain record that point to your native function `domain_name` for it.
          * 
+         * &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
+         * 
          * @return builder
          * 
          */
@@ -124,6 +130,8 @@ public final class FunctionDomainArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param hostname The hostname that should resolve to your function id native domain.
          * You should use a CNAME domain record that point to your native function `domain_name` for it.
+         * 
+         * &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
          * 
          * @return builder
          * 

@@ -16,23 +16,31 @@ public final class GetVpcPrivateNetworkArgs extends com.pulumi.resources.InvokeA
     public static final GetVpcPrivateNetworkArgs Empty = new GetVpcPrivateNetworkArgs();
 
     /**
-     * Exact name of the private network.
+     * Name of the private network. One of `name` and `private_network_id` should be specified.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Exact name of the private network.
+     * @return Name of the private network. One of `name` and `private_network_id` should be specified.
      * 
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * ID of the private network. One of `name` and `private_network_id` should be specified.
+     * 
+     */
     @Import(name="privateNetworkId")
     private @Nullable Output<String> privateNetworkId;
 
+    /**
+     * @return ID of the private network. One of `name` and `private_network_id` should be specified.
+     * 
+     */
     public Optional<Output<String>> privateNetworkId() {
         return Optional.ofNullable(this.privateNetworkId);
     }
@@ -63,7 +71,7 @@ public final class GetVpcPrivateNetworkArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param name Exact name of the private network.
+         * @param name Name of the private network. One of `name` and `private_network_id` should be specified.
          * 
          * @return builder
          * 
@@ -74,7 +82,7 @@ public final class GetVpcPrivateNetworkArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param name Exact name of the private network.
+         * @param name Name of the private network. One of `name` and `private_network_id` should be specified.
          * 
          * @return builder
          * 
@@ -83,11 +91,23 @@ public final class GetVpcPrivateNetworkArgs extends com.pulumi.resources.InvokeA
             return name(Output.of(name));
         }
 
+        /**
+         * @param privateNetworkId ID of the private network. One of `name` and `private_network_id` should be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateNetworkId(@Nullable Output<String> privateNetworkId) {
             $.privateNetworkId = privateNetworkId;
             return this;
         }
 
+        /**
+         * @param privateNetworkId ID of the private network. One of `name` and `private_network_id` should be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateNetworkId(String privateNetworkId) {
             return privateNetworkId(Output.of(privateNetworkId));
         }

@@ -49,12 +49,16 @@ public final class DatabaseBackupState extends com.pulumi.resources.ResourceArgs
     /**
      * Expiration date (Format ISO 8601).
      * 
+     * &gt; **Important:** `expires_at` cannot be removed after being set.
+     * 
      */
     @Import(name="expiresAt")
     private @Nullable Output<String> expiresAt;
 
     /**
      * @return Expiration date (Format ISO 8601).
+     * 
+     * &gt; **Important:** `expires_at` cannot be removed after being set.
      * 
      */
     public Optional<Output<String>> expiresAt() {
@@ -64,12 +68,16 @@ public final class DatabaseBackupState extends com.pulumi.resources.ResourceArgs
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Backup.
+     * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Backup.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -228,6 +236,8 @@ public final class DatabaseBackupState extends com.pulumi.resources.ResourceArgs
         /**
          * @param expiresAt Expiration date (Format ISO 8601).
          * 
+         * &gt; **Important:** `expires_at` cannot be removed after being set.
+         * 
          * @return builder
          * 
          */
@@ -239,6 +249,8 @@ public final class DatabaseBackupState extends com.pulumi.resources.ResourceArgs
         /**
          * @param expiresAt Expiration date (Format ISO 8601).
          * 
+         * &gt; **Important:** `expires_at` cannot be removed after being set.
+         * 
          * @return builder
          * 
          */
@@ -248,6 +260,8 @@ public final class DatabaseBackupState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Backup.
          * 
          * @return builder
          * 
@@ -259,6 +273,8 @@ public final class DatabaseBackupState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Backup.
          * 
          * @return builder
          * 

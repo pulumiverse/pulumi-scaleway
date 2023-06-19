@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 
 /**
  * Creates and manages Scaleway Load-Balancers.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
  * 
  * ## Examples
  * 
@@ -116,7 +116,7 @@ import javax.annotation.Nullable;
  * In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
  * this change will not recreate your Load Balancer.
  * 
- * Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+ * Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
  * 
  * ## IP ID
  * 
@@ -279,12 +279,16 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the associated LB IP. See below.
      * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * 
      */
     @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output<String> ipId;
 
     /**
      * @return The ID of the associated LB IP. See below.
+     * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
      * 
      */
     public Output<String> ipId() {
@@ -379,14 +383,14 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.releaseIp);
     }
     /**
-     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      * 
      */
     @Export(name="sslCompatibilityLevel", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sslCompatibilityLevel;
 
     /**
-     * @return Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * @return Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      * 
      */
     public Output<Optional<String>> sslCompatibilityLevel() {

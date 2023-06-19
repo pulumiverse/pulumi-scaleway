@@ -179,12 +179,16 @@ public class InstanceImage extends com.pulumi.resources.CustomResource {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      * 
+     * &gt; **Important:** For now it is only possible to have 1 additional_volume.
+     * 
      */
     @Export(name="additionalVolumeIds", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> additionalVolumeIds;
 
     /**
      * @return List of IDs of the snapshots of the additional volumes to be attached to the image.
+     * 
+     * &gt; **Important:** For now it is only possible to have 1 additional_volume.
      * 
      */
     public Output<Optional<String>> additionalVolumeIds() {

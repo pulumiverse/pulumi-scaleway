@@ -75,12 +75,16 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database User.
+     * 
      */
     @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database User.
      * 
      */
     public Output<String> instanceId() {
@@ -103,12 +107,16 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     /**
      * Database User name.
      * 
+     * &gt; **Important:** Updates to `name` will recreate the Database User.
+     * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
      * @return Database User name.
+     * 
+     * &gt; **Important:** Updates to `name` will recreate the Database User.
      * 
      */
     public Output<String> name() {

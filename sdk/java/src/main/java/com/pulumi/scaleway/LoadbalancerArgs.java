@@ -36,12 +36,16 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The ID of the associated LB IP. See below.
      * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * 
      */
     @Import(name="ipId", required=true)
     private Output<String> ipId;
 
     /**
      * @return The ID of the associated LB IP. See below.
+     * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
      * 
      */
     public Output<String> ipId() {
@@ -117,14 +121,14 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      * 
      */
     @Import(name="sslCompatibilityLevel")
     private @Nullable Output<String> sslCompatibilityLevel;
 
     /**
-     * @return Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+     * @return Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      * 
      */
     public Optional<Output<String>> sslCompatibilityLevel() {
@@ -233,6 +237,8 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ipId The ID of the associated LB IP. See below.
          * 
+         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+         * 
          * @return builder
          * 
          */
@@ -243,6 +249,8 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ipId The ID of the associated LB IP. See below.
+         * 
+         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
          * 
          * @return builder
          * 
@@ -354,7 +362,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sslCompatibilityLevel Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+         * @param sslCompatibilityLevel Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
          * 
          * @return builder
          * 
@@ -365,7 +373,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sslCompatibilityLevel Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+         * @param sslCompatibilityLevel Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
          * 
          * @return builder
          * 

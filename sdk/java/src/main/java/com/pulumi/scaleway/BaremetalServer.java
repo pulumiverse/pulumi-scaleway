@@ -148,6 +148,8 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      * 
+     * &gt; **Important:** Updates to `offer` will recreate the server.
+     * 
      */
     @Export(name="offer", refs={String.class}, tree="[0]")
     private Output<String> offer;
@@ -155,6 +157,8 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
     /**
      * @return The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+     * 
+     * &gt; **Important:** Updates to `offer` will recreate the server.
      * 
      */
     public Output<String> offer() {

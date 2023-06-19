@@ -146,12 +146,16 @@ public class DatabaseReadReplica extends com.pulumi.resources.CustomResource {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+     * 
      */
     @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
      * 
      */
     public Output<String> instanceId() {

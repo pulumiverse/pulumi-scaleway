@@ -4,6 +4,9 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.scaleway.outputs.GetVpcPrivateNetworkIpv4Subnet;
+import com.pulumi.scaleway.outputs.GetVpcPrivateNetworkIpv6Subnet;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -18,12 +21,25 @@ public final class GetVpcPrivateNetworkResult {
      * 
      */
     private String id;
+    /**
+     * @return (Optional) The IPv4 subnet associated with the private network.
+     * 
+     */
+    private List<GetVpcPrivateNetworkIpv4Subnet> ipv4Subnets;
+    /**
+     * @return (Optional) The IPv6 subnets associated with the private network.
+     * 
+     */
+    private List<GetVpcPrivateNetworkIpv6Subnet> ipv6Subnets;
+    private Boolean isRegional;
     private @Nullable String name;
     private String organizationId;
     private @Nullable String privateNetworkId;
     private String projectId;
+    private String region;
     private List<String> tags;
     private String updatedAt;
+    private String vpcId;
     private String zone;
 
     private GetVpcPrivateNetworkResult() {}
@@ -37,6 +53,23 @@ public final class GetVpcPrivateNetworkResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return (Optional) The IPv4 subnet associated with the private network.
+     * 
+     */
+    public List<GetVpcPrivateNetworkIpv4Subnet> ipv4Subnets() {
+        return this.ipv4Subnets;
+    }
+    /**
+     * @return (Optional) The IPv6 subnets associated with the private network.
+     * 
+     */
+    public List<GetVpcPrivateNetworkIpv6Subnet> ipv6Subnets() {
+        return this.ipv6Subnets;
+    }
+    public Boolean isRegional() {
+        return this.isRegional;
+    }
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
@@ -49,11 +82,17 @@ public final class GetVpcPrivateNetworkResult {
     public String projectId() {
         return this.projectId;
     }
+    public String region() {
+        return this.region;
+    }
     public List<String> tags() {
         return this.tags;
     }
     public String updatedAt() {
         return this.updatedAt;
+    }
+    public String vpcId() {
+        return this.vpcId;
     }
     public String zone() {
         return this.zone;
@@ -70,24 +109,34 @@ public final class GetVpcPrivateNetworkResult {
     public static final class Builder {
         private String createdAt;
         private String id;
+        private List<GetVpcPrivateNetworkIpv4Subnet> ipv4Subnets;
+        private List<GetVpcPrivateNetworkIpv6Subnet> ipv6Subnets;
+        private Boolean isRegional;
         private @Nullable String name;
         private String organizationId;
         private @Nullable String privateNetworkId;
         private String projectId;
+        private String region;
         private List<String> tags;
         private String updatedAt;
+        private String vpcId;
         private String zone;
         public Builder() {}
         public Builder(GetVpcPrivateNetworkResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.createdAt = defaults.createdAt;
     	      this.id = defaults.id;
+    	      this.ipv4Subnets = defaults.ipv4Subnets;
+    	      this.ipv6Subnets = defaults.ipv6Subnets;
+    	      this.isRegional = defaults.isRegional;
     	      this.name = defaults.name;
     	      this.organizationId = defaults.organizationId;
     	      this.privateNetworkId = defaults.privateNetworkId;
     	      this.projectId = defaults.projectId;
+    	      this.region = defaults.region;
     	      this.tags = defaults.tags;
     	      this.updatedAt = defaults.updatedAt;
+    	      this.vpcId = defaults.vpcId;
     	      this.zone = defaults.zone;
         }
 
@@ -99,6 +148,27 @@ public final class GetVpcPrivateNetworkResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ipv4Subnets(List<GetVpcPrivateNetworkIpv4Subnet> ipv4Subnets) {
+            this.ipv4Subnets = Objects.requireNonNull(ipv4Subnets);
+            return this;
+        }
+        public Builder ipv4Subnets(GetVpcPrivateNetworkIpv4Subnet... ipv4Subnets) {
+            return ipv4Subnets(List.of(ipv4Subnets));
+        }
+        @CustomType.Setter
+        public Builder ipv6Subnets(List<GetVpcPrivateNetworkIpv6Subnet> ipv6Subnets) {
+            this.ipv6Subnets = Objects.requireNonNull(ipv6Subnets);
+            return this;
+        }
+        public Builder ipv6Subnets(GetVpcPrivateNetworkIpv6Subnet... ipv6Subnets) {
+            return ipv6Subnets(List.of(ipv6Subnets));
+        }
+        @CustomType.Setter
+        public Builder isRegional(Boolean isRegional) {
+            this.isRegional = Objects.requireNonNull(isRegional);
             return this;
         }
         @CustomType.Setter
@@ -122,6 +192,11 @@ public final class GetVpcPrivateNetworkResult {
             return this;
         }
         @CustomType.Setter
+        public Builder region(String region) {
+            this.region = Objects.requireNonNull(region);
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             this.tags = Objects.requireNonNull(tags);
             return this;
@@ -135,6 +210,11 @@ public final class GetVpcPrivateNetworkResult {
             return this;
         }
         @CustomType.Setter
+        public Builder vpcId(String vpcId) {
+            this.vpcId = Objects.requireNonNull(vpcId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder zone(String zone) {
             this.zone = Objects.requireNonNull(zone);
             return this;
@@ -143,12 +223,17 @@ public final class GetVpcPrivateNetworkResult {
             final var o = new GetVpcPrivateNetworkResult();
             o.createdAt = createdAt;
             o.id = id;
+            o.ipv4Subnets = ipv4Subnets;
+            o.ipv6Subnets = ipv6Subnets;
+            o.isRegional = isRegional;
             o.name = name;
             o.organizationId = organizationId;
             o.privateNetworkId = privateNetworkId;
             o.projectId = projectId;
+            o.region = region;
             o.tags = tags;
             o.updatedAt = updatedAt;
+            o.vpcId = vpcId;
             o.zone = zone;
             return o;
         }

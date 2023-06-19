@@ -164,12 +164,16 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
     /**
      * If the policy doesn&#39;t apply to a principal.
      * 
+     * &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+     * 
      */
     @Export(name="noPrincipal", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> noPrincipal;
 
     /**
      * @return If the policy doesn&#39;t apply to a principal.
+     * 
+     * &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
      * 
      */
     public Output<Optional<Boolean>> noPrincipal() {

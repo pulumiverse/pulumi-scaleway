@@ -35,12 +35,16 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+     * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -130,6 +134,8 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
         /**
          * @param instanceId UUID of the rdb instance.
          * 
+         * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+         * 
          * @return builder
          * 
          */
@@ -140,6 +146,8 @@ public final class DatabaseReadReplicaState extends com.pulumi.resources.Resourc
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
          * 
          * @return builder
          * 

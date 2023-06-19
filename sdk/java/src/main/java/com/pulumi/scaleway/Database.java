@@ -64,12 +64,16 @@ public class Database extends com.pulumi.resources.CustomResource {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database.
+     * 
      */
     @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database.
      * 
      */
     public Output<String> instanceId() {

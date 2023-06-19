@@ -64,12 +64,16 @@ public final class GetVpcGatewayNetworkArgs extends com.pulumi.resources.InvokeA
     /**
      * ID of the gateway network.
      * 
+     * &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
+     * 
      */
     @Import(name="gatewayNetworkId")
     private @Nullable Output<String> gatewayNetworkId;
 
     /**
      * @return ID of the gateway network.
+     * 
+     * &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
      * 
      */
     public Optional<Output<String>> gatewayNetworkId() {
@@ -185,6 +189,8 @@ public final class GetVpcGatewayNetworkArgs extends com.pulumi.resources.InvokeA
         /**
          * @param gatewayNetworkId ID of the gateway network.
          * 
+         * &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
+         * 
          * @return builder
          * 
          */
@@ -195,6 +201,8 @@ public final class GetVpcGatewayNetworkArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param gatewayNetworkId ID of the gateway network.
+         * 
+         * &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
          * 
          * @return builder
          * 

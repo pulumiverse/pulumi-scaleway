@@ -13,6 +13,8 @@ import java.util.Objects;
 @CustomType
 public final class GetLbFrontendAcl {
     private List<GetLbFrontendAclAction> actions;
+    private String createdAt;
+    private String description;
     private List<GetLbFrontendAclMatch> matches;
     /**
      * @return The name of the frontend.
@@ -20,10 +22,17 @@ public final class GetLbFrontendAcl {
      * 
      */
     private String name;
+    private String updatedAt;
 
     private GetLbFrontendAcl() {}
     public List<GetLbFrontendAclAction> actions() {
         return this.actions;
+    }
+    public String createdAt() {
+        return this.createdAt;
+    }
+    public String description() {
+        return this.description;
     }
     public List<GetLbFrontendAclMatch> matches() {
         return this.matches;
@@ -36,6 +45,9 @@ public final class GetLbFrontendAcl {
     public String name() {
         return this.name;
     }
+    public String updatedAt() {
+        return this.updatedAt;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -47,14 +59,20 @@ public final class GetLbFrontendAcl {
     @CustomType.Builder
     public static final class Builder {
         private List<GetLbFrontendAclAction> actions;
+        private String createdAt;
+        private String description;
         private List<GetLbFrontendAclMatch> matches;
         private String name;
+        private String updatedAt;
         public Builder() {}
         public Builder(GetLbFrontendAcl defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.actions = defaults.actions;
+    	      this.createdAt = defaults.createdAt;
+    	      this.description = defaults.description;
     	      this.matches = defaults.matches;
     	      this.name = defaults.name;
+    	      this.updatedAt = defaults.updatedAt;
         }
 
         @CustomType.Setter
@@ -64,6 +82,16 @@ public final class GetLbFrontendAcl {
         }
         public Builder actions(GetLbFrontendAclAction... actions) {
             return actions(List.of(actions));
+        }
+        @CustomType.Setter
+        public Builder createdAt(String createdAt) {
+            this.createdAt = Objects.requireNonNull(createdAt);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(String description) {
+            this.description = Objects.requireNonNull(description);
+            return this;
         }
         @CustomType.Setter
         public Builder matches(List<GetLbFrontendAclMatch> matches) {
@@ -78,11 +106,19 @@ public final class GetLbFrontendAcl {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
+        public Builder updatedAt(String updatedAt) {
+            this.updatedAt = Objects.requireNonNull(updatedAt);
+            return this;
+        }
         public GetLbFrontendAcl build() {
             final var o = new GetLbFrontendAcl();
             o.actions = actions;
+            o.createdAt = createdAt;
+            o.description = description;
             o.matches = matches;
             o.name = name;
+            o.updatedAt = updatedAt;
             return o;
         }
     }

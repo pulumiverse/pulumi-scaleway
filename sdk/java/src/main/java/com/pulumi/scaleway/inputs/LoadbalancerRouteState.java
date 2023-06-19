@@ -61,16 +61,20 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The Host request header specifies the host of the server to which the request is being sent.
+     * The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
      * 
      */
     @Import(name="matchHostHeader")
     private @Nullable Output<String> matchHostHeader;
 
     /**
-     * @return The Host request header specifies the host of the server to which the request is being sent.
+     * @return The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
      * 
      */
     public Optional<Output<String>> matchHostHeader() {
@@ -78,16 +82,20 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on TCP Load Balancers.
      * 
      */
     @Import(name="matchSni")
     private @Nullable Output<String> matchSni;
 
     /**
-     * @return The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * @return The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on TCP Load Balancers.
      * 
      */
     public Optional<Output<String>> matchSni() {
@@ -202,8 +210,10 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param matchHostHeader The Host request header specifies the host of the server to which the request is being sent.
+         * @param matchHostHeader The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
          * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
          * 
          * @return builder
          * 
@@ -214,8 +224,10 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param matchHostHeader The Host request header specifies the host of the server to which the request is being sent.
+         * @param matchHostHeader The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
          * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
          * 
          * @return builder
          * 
@@ -225,8 +237,10 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param matchSni The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+         * @param matchSni The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
          * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * &gt; **Important:** This field should be set for routes on TCP Load Balancers.
          * 
          * @return builder
          * 
@@ -237,8 +251,10 @@ public final class LoadbalancerRouteState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param matchSni The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+         * @param matchSni The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
          * Only one of `match_sni` and `match_host_header` should be specified.
+         * 
+         * &gt; **Important:** This field should be set for routes on TCP Load Balancers.
          * 
          * @return builder
          * 

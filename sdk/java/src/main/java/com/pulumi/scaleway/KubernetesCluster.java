@@ -21,6 +21,96 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+ * 
+ * ## Examples
+ * 
+ * ### Basic
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.KubernetesCluster;
+ * import com.pulumi.scaleway.KubernetesClusterArgs;
+ * import com.pulumi.scaleway.KubernetesNodePool;
+ * import com.pulumi.scaleway.KubernetesNodePoolArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var jack = new KubernetesCluster(&#34;jack&#34;, KubernetesClusterArgs.builder()        
+ *             .version(&#34;1.24.3&#34;)
+ *             .cni(&#34;cilium&#34;)
+ *             .deleteAdditionalResources(false)
+ *             .build());
+ * 
+ *         var john = new KubernetesNodePool(&#34;john&#34;, KubernetesNodePoolArgs.builder()        
+ *             .clusterId(jack.id())
+ *             .nodeType(&#34;DEV1-M&#34;)
+ *             .size(1)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Multicloud
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.KubernetesCluster;
+ * import com.pulumi.scaleway.KubernetesClusterArgs;
+ * import com.pulumi.scaleway.KubernetesNodePool;
+ * import com.pulumi.scaleway.KubernetesNodePoolArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var henry = new KubernetesCluster(&#34;henry&#34;, KubernetesClusterArgs.builder()        
+ *             .type(&#34;multicloud&#34;)
+ *             .version(&#34;1.24.3&#34;)
+ *             .cni(&#34;kilo&#34;)
+ *             .deleteAdditionalResources(false)
+ *             .build());
+ * 
+ *         var friendFromOuterSpace = new KubernetesNodePool(&#34;friendFromOuterSpace&#34;, KubernetesNodePoolArgs.builder()        
+ *             .clusterId(henry.id())
+ *             .nodeType(&#34;external&#34;)
+ *             .size(0)
+ *             .minSize(0)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+ * 
+ * ### With additional configuration
+ * 
  * ## Import
  * 
  * Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -133,7 +223,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      * 
@@ -142,7 +232,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     private Output<Boolean> deleteAdditionalResources;
 
     /**
-     * @return Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * @return Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      * 
@@ -237,16 +327,22 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the private network of the cluster.
      * 
+     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * 
      */
     @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
-    private Output<String> privateNetworkId;
+    private Output</* @Nullable */ String> privateNetworkId;
 
     /**
      * @return The ID of the private network of the cluster.
      * 
+     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * 
      */
-    public Output<String> privateNetworkId() {
-        return this.privateNetworkId;
+    public Output<Optional<String>> privateNetworkId() {
+        return Codegen.optional(this.privateNetworkId);
     }
     /**
      * `project_id`) The ID of the project the cluster is associated with.

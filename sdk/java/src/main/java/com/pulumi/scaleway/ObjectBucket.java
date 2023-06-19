@@ -282,12 +282,18 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
     /**
      * `project_id`) The ID of the project the bucket is associated with.
      * 
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
+     * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
      * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      * 
      */
     public Output<String> projectId() {

@@ -27,12 +27,16 @@ public final class InstanceServerRootVolumeArgs extends com.pulumi.resources.Res
     /**
      * Forces deletion of the root volume on instance termination.
      * 
+     * &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+     * 
      */
     @Import(name="deleteOnTermination")
     private @Nullable Output<Boolean> deleteOnTermination;
 
     /**
      * @return Forces deletion of the root volume on instance termination.
+     * 
+     * &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
      * 
      */
     public Optional<Output<Boolean>> deleteOnTermination() {
@@ -146,6 +150,8 @@ public final class InstanceServerRootVolumeArgs extends com.pulumi.resources.Res
         /**
          * @param deleteOnTermination Forces deletion of the root volume on instance termination.
          * 
+         * &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+         * 
          * @return builder
          * 
          */
@@ -156,6 +162,8 @@ public final class InstanceServerRootVolumeArgs extends com.pulumi.resources.Res
 
         /**
          * @param deleteOnTermination Forces deletion of the root volume on instance termination.
+         * 
+         * &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
          * 
          * @return builder
          * 

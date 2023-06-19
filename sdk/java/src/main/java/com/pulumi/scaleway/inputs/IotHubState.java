@@ -95,12 +95,16 @@ public final class IotHubState extends com.pulumi.resources.ResourceArgs {
     /**
      * Wether the IoT Hub instance should be enabled or not.
      * 
+     * &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
+     * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
      * @return Wether the IoT Hub instance should be enabled or not.
+     * 
+     * &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -200,12 +204,16 @@ public final class IotHubState extends com.pulumi.resources.ResourceArgs {
     /**
      * Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
      * 
+     * &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
+     * 
      */
     @Import(name="productPlan")
     private @Nullable Output<String> productPlan;
 
     /**
      * @return Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+     * 
+     * &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
      * 
      */
     public Optional<Output<String>> productPlan() {
@@ -420,6 +428,8 @@ public final class IotHubState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param enabled Wether the IoT Hub instance should be enabled or not.
          * 
+         * &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
+         * 
          * @return builder
          * 
          */
@@ -430,6 +440,8 @@ public final class IotHubState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param enabled Wether the IoT Hub instance should be enabled or not.
+         * 
+         * &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
          * 
          * @return builder
          * 
@@ -567,6 +579,8 @@ public final class IotHubState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param productPlan Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
          * 
+         * &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
+         * 
          * @return builder
          * 
          */
@@ -577,6 +591,8 @@ public final class IotHubState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param productPlan Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+         * 
+         * &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
          * 
          * @return builder
          * 

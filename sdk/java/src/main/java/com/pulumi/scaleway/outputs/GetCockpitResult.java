@@ -23,6 +23,11 @@ public final class GetCockpitResult {
      * 
      */
     private String id;
+    /**
+     * @return The ID of the current plan
+     * 
+     */
+    private String planId;
     private @Nullable String projectId;
 
     private GetCockpitResult() {}
@@ -40,6 +45,13 @@ public final class GetCockpitResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return The ID of the current plan
+     * 
+     */
+    public String planId() {
+        return this.planId;
+    }
     public Optional<String> projectId() {
         return Optional.ofNullable(this.projectId);
     }
@@ -55,12 +67,14 @@ public final class GetCockpitResult {
     public static final class Builder {
         private List<GetCockpitEndpoint> endpoints;
         private String id;
+        private String planId;
         private @Nullable String projectId;
         public Builder() {}
         public Builder(GetCockpitResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.endpoints = defaults.endpoints;
     	      this.id = defaults.id;
+    	      this.planId = defaults.planId;
     	      this.projectId = defaults.projectId;
         }
 
@@ -78,6 +92,11 @@ public final class GetCockpitResult {
             return this;
         }
         @CustomType.Setter
+        public Builder planId(String planId) {
+            this.planId = Objects.requireNonNull(planId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(@Nullable String projectId) {
             this.projectId = projectId;
             return this;
@@ -86,6 +105,7 @@ public final class GetCockpitResult {
             final var o = new GetCockpitResult();
             o.endpoints = endpoints;
             o.id = id;
+            o.planId = planId;
             o.projectId = projectId;
             return o;
         }

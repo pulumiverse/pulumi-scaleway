@@ -34,12 +34,16 @@ public final class LoadbalancerCertificateLetsencryptArgs extends com.pulumi.res
     /**
      * Array of alternative domain names.  A new certificate will be created if this field is changed.
      * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+     * 
      */
     @Import(name="subjectAlternativeNames")
     private @Nullable Output<List<String>> subjectAlternativeNames;
 
     /**
      * @return Array of alternative domain names.  A new certificate will be created if this field is changed.
+     * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
      * 
      */
     public Optional<Output<List<String>>> subjectAlternativeNames() {
@@ -95,6 +99,8 @@ public final class LoadbalancerCertificateLetsencryptArgs extends com.pulumi.res
         /**
          * @param subjectAlternativeNames Array of alternative domain names.  A new certificate will be created if this field is changed.
          * 
+         * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -106,6 +112,8 @@ public final class LoadbalancerCertificateLetsencryptArgs extends com.pulumi.res
         /**
          * @param subjectAlternativeNames Array of alternative domain names.  A new certificate will be created if this field is changed.
          * 
+         * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -115,6 +123,8 @@ public final class LoadbalancerCertificateLetsencryptArgs extends com.pulumi.res
 
         /**
          * @param subjectAlternativeNames Array of alternative domain names.  A new certificate will be created if this field is changed.
+         * 
+         * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
          * 
          * @return builder
          * 

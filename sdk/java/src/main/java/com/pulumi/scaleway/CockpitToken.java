@@ -13,7 +13,6 @@ import com.pulumi.scaleway.inputs.CockpitTokenState;
 import com.pulumi.scaleway.outputs.CockpitTokenScopes;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -138,14 +137,14 @@ public class CockpitToken extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="scopes", refs={CockpitTokenScopes.class}, tree="[0]")
-    private Output</* @Nullable */ CockpitTokenScopes> scopes;
+    private Output<CockpitTokenScopes> scopes;
 
     /**
      * @return Allowed scopes
      * 
      */
-    public Output<Optional<CockpitTokenScopes>> scopes() {
-        return Codegen.optional(this.scopes);
+    public Output<CockpitTokenScopes> scopes() {
+        return this.scopes;
     }
     /**
      * The secret key of the token

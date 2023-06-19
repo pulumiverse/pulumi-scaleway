@@ -63,12 +63,22 @@ public final class InstanceUserDataArgs extends com.pulumi.resources.ResourceArg
     /**
      * `zone`) The zone in which the server should be created.
      * 
+     * &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
+     * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
      * @return `zone`) The zone in which the server should be created.
+     * 
+     * &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
      * 
      */
     public Optional<Output<String>> zone() {
@@ -168,6 +178,11 @@ public final class InstanceUserDataArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param zone `zone`) The zone in which the server should be created.
          * 
+         * &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+         * You can define values using:
+         * - string
+         * - UTF-8 encoded file content using file
+         * 
          * @return builder
          * 
          */
@@ -178,6 +193,11 @@ public final class InstanceUserDataArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param zone `zone`) The zone in which the server should be created.
+         * 
+         * &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+         * You can define values using:
+         * - string
+         * - UTF-8 encoded file content using file
          * 
          * @return builder
          * 

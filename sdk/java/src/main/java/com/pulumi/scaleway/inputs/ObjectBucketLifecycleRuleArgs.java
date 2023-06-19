@@ -24,12 +24,16 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
     /**
      * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
      * 
+     * * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+     * 
      */
     @Import(name="abortIncompleteMultipartUploadDays")
     private @Nullable Output<Integer> abortIncompleteMultipartUploadDays;
 
     /**
      * @return Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * 
+     * * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
      * 
      */
     public Optional<Output<Integer>> abortIncompleteMultipartUploadDays() {
@@ -114,12 +118,16 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
     /**
      * Specifies a period in the object&#39;s transitions (documented below).
      * 
+     * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+     * 
      */
     @Import(name="transitions")
     private @Nullable Output<List<ObjectBucketLifecycleRuleTransitionArgs>> transitions;
 
     /**
      * @return Specifies a period in the object&#39;s transitions (documented below).
+     * 
+     * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
      * 
      */
     public Optional<Output<List<ObjectBucketLifecycleRuleTransitionArgs>>> transitions() {
@@ -159,6 +167,8 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
         /**
          * @param abortIncompleteMultipartUploadDays Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
          * 
+         * * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+         * 
          * @return builder
          * 
          */
@@ -169,6 +179,8 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
 
         /**
          * @param abortIncompleteMultipartUploadDays Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+         * 
+         * * &gt; **Important:** It&#39;s not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
          * 
          * @return builder
          * 
@@ -285,6 +297,8 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
         /**
          * @param transitions Specifies a period in the object&#39;s transitions (documented below).
          * 
+         * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+         * 
          * @return builder
          * 
          */
@@ -296,6 +310,8 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
         /**
          * @param transitions Specifies a period in the object&#39;s transitions (documented below).
          * 
+         * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+         * 
          * @return builder
          * 
          */
@@ -305,6 +321,8 @@ public final class ObjectBucketLifecycleRuleArgs extends com.pulumi.resources.Re
 
         /**
          * @param transitions Specifies a period in the object&#39;s transitions (documented below).
+         * 
+         * At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
          * 
          * @return builder
          * 

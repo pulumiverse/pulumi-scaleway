@@ -51,6 +51,58 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Add the required records to your DNS zone
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.TemDomain;
+ * import com.pulumi.scaleway.TemDomainArgs;
+ * import com.pulumi.scaleway.DomainRecord;
+ * import com.pulumi.scaleway.DomainRecordArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var domainName = config.get(&#34;domainName&#34;);
+ *         var main = new TemDomain(&#34;main&#34;, TemDomainArgs.builder()        
+ *             .acceptTos(true)
+ *             .build());
+ * 
+ *         var spf = new DomainRecord(&#34;spf&#34;, DomainRecordArgs.builder()        
+ *             .dnsZone(domainName)
+ *             .type(&#34;TXT&#34;)
+ *             .data(main.spfConfig().applyValue(spfConfig -&gt; String.format(&#34;v=spf1 %s -all&#34;, spfConfig)))
+ *             .build());
+ * 
+ *         var dkim = new DomainRecord(&#34;dkim&#34;, DomainRecordArgs.builder()        
+ *             .dnsZone(domainName)
+ *             .type(&#34;TXT&#34;)
+ *             .data(main.dkimConfig())
+ *             .build());
+ * 
+ *         var mx = new DomainRecord(&#34;mx&#34;, DomainRecordArgs.builder()        
+ *             .dnsZone(domainName)
+ *             .type(&#34;MX&#34;)
+ *             .data(&#34;.&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Domains can be imported using the `{region}/{id}`, e.g. bash

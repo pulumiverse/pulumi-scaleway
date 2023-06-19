@@ -18,12 +18,16 @@ public final class ContainerTokenArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * The ID of the container.
      * 
+     * &gt; Only one of `namespace_id` or `container_id` must be set.
+     * 
      */
     @Import(name="containerId")
     private @Nullable Output<String> containerId;
 
     /**
      * @return The ID of the container.
+     * 
+     * &gt; Only one of `namespace_id` or `container_id` must be set.
      * 
      */
     public Optional<Output<String>> containerId() {
@@ -78,12 +82,16 @@ public final class ContainerTokenArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * `region`). The region in which the namespace should be created.
      * 
+     * &gt; **Important** Updates to any fields will recreate the token.
+     * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
      * @return `region`). The region in which the namespace should be created.
+     * 
+     * &gt; **Important** Updates to any fields will recreate the token.
      * 
      */
     public Optional<Output<String>> region() {
@@ -121,6 +129,8 @@ public final class ContainerTokenArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param containerId The ID of the container.
          * 
+         * &gt; Only one of `namespace_id` or `container_id` must be set.
+         * 
          * @return builder
          * 
          */
@@ -131,6 +141,8 @@ public final class ContainerTokenArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param containerId The ID of the container.
+         * 
+         * &gt; Only one of `namespace_id` or `container_id` must be set.
          * 
          * @return builder
          * 
@@ -205,6 +217,8 @@ public final class ContainerTokenArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param region `region`). The region in which the namespace should be created.
          * 
+         * &gt; **Important** Updates to any fields will recreate the token.
+         * 
          * @return builder
          * 
          */
@@ -215,6 +229,8 @@ public final class ContainerTokenArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param region `region`). The region in which the namespace should be created.
+         * 
+         * &gt; **Important** Updates to any fields will recreate the token.
          * 
          * @return builder
          * 

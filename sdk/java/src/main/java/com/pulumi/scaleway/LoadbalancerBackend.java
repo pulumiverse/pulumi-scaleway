@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 /**
  * Creates and manages Scaleway Load-Balancer Backends.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  * 
  * ## Examples
  * 
@@ -382,28 +382,28 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.sslBridging);
     }
     /**
-     * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      * 
      */
     @Export(name="stickySessions", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stickySessions;
 
     /**
-     * @return Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * @return The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      * 
      */
     public Output<Optional<String>> stickySessions() {
         return Codegen.optional(this.stickySessions);
     }
     /**
-     * Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+     * Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
      * 
      */
     @Export(name="stickySessionsCookieName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stickySessionsCookieName;
 
     /**
-     * @return Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+     * @return Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
      * 
      */
     public Output<Optional<String>> stickySessionsCookieName() {

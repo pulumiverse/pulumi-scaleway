@@ -15,12 +15,12 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
- * It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+ * Creates and manages Scaleway Load-Balancer Routes.
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
  * 
  * ## Examples
  * 
- * ### With SNI
+ * ### With SNI for direction to TCP backends
  * ```java
  * package generated_program;
  * 
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
- * ### With host-header
+ * ### With host-header for direction to HTTP backends
  * ```java
  * package generated_program;
  * 
@@ -117,7 +117,7 @@ import javax.annotation.Nullable;
  * 
  *         var bkd01 = new LoadbalancerBackend(&#34;bkd01&#34;, LoadbalancerBackendArgs.builder()        
  *             .lbId(lb01.id())
- *             .forwardProtocol(&#34;tcp&#34;)
+ *             .forwardProtocol(&#34;http&#34;)
  *             .forwardPort(80)
  *             .proxyProtocol(&#34;none&#34;)
  *             .build());
@@ -192,32 +192,40 @@ public class LoadbalancerRoute extends com.pulumi.resources.CustomResource {
         return this.frontendId;
     }
     /**
-     * The Host request header specifies the host of the server to which the request is being sent.
+     * The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
      * 
      */
     @Export(name="matchHostHeader", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> matchHostHeader;
 
     /**
-     * @return The Host request header specifies the host of the server to which the request is being sent.
+     * @return The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
      * 
      */
     public Output<Optional<String>> matchHostHeader() {
         return Codegen.optional(this.matchHostHeader);
     }
     /**
-     * The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on TCP Load Balancers.
      * 
      */
     @Export(name="matchSni", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> matchSni;
 
     /**
-     * @return The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+     * @return The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `match_sni` and `match_host_header` should be specified.
+     * 
+     * &gt; **Important:** This field should be set for routes on TCP Load Balancers.
      * 
      */
     public Output<Optional<String>> matchSni() {

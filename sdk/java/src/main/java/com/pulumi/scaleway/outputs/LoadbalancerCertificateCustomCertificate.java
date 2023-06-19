@@ -12,12 +12,16 @@ public final class LoadbalancerCertificateCustomCertificate {
     /**
      * @return Full PEM-formatted certificate chain.
      * 
+     * &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
+     * 
      */
     private String certificateChain;
 
     private LoadbalancerCertificateCustomCertificate() {}
     /**
      * @return Full PEM-formatted certificate chain.
+     * 
+     * &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
      * 
      */
     public String certificateChain() {

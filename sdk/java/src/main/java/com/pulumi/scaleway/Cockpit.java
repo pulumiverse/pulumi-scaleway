@@ -13,6 +13,7 @@ import com.pulumi.scaleway.inputs.CockpitState;
 import com.pulumi.scaleway.outputs.CockpitEndpoint;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -40,6 +41,34 @@ public class Cockpit extends com.pulumi.resources.CustomResource {
      */
     public Output<List<CockpitEndpoint>> endpoints() {
         return this.endpoints;
+    }
+    /**
+     * Name or ID of the plan to use.
+     * 
+     */
+    @Export(name="plan", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> plan;
+
+    /**
+     * @return Name or ID of the plan to use.
+     * 
+     */
+    public Output<Optional<String>> plan() {
+        return Codegen.optional(this.plan);
+    }
+    /**
+     * The ID of the current plan
+     * 
+     */
+    @Export(name="planId", refs={String.class}, tree="[0]")
+    private Output<String> planId;
+
+    /**
+     * @return The ID of the current plan
+     * 
+     */
+    public Output<String> planId() {
+        return this.planId;
     }
     /**
      * `project_id`) The ID of the project the cockpit is associated with.

@@ -18,13 +18,13 @@ import javax.annotation.Nullable;
  * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
  * 
  * ## Example Usage
- * 
  * ```java
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ObjectBucket;
  * import com.pulumi.scaleway.ObjectBucketPolicy;
  * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
@@ -41,12 +41,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var bucket = new ObjectBucketPolicy(&#34;bucket&#34;, ObjectBucketPolicyArgs.builder()        
- *             .name(&#34;some-unique-name&#34;)
- *             .build());
+ *         var bucket = new ObjectBucket(&#34;bucket&#34;);
  * 
  *         var policy = new ObjectBucketPolicy(&#34;policy&#34;, ObjectBucketPolicyArgs.builder()        
- *             .bucket(scaleway_object_bucket.bucket().name())
+ *             .bucket(bucket.name())
  *             .policy(serializeJson(
  *                 jsonObject(
  *                     jsonProperty(&#34;Id&#34;, &#34;MyPolicy&#34;),
@@ -73,17 +71,17 @@ import javax.annotation.Nullable;
  * }
  * ```
  * ## Example with aws provider
- * 
  * ```java
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.ObjectBucketPolicy;
- * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
+ * import com.pulumi.scaleway.ObjectBucket;
  * import com.pulumi.aws.iam.IamFunctions;
  * import com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;
+ * import com.pulumi.scaleway.ObjectBucketPolicy;
+ * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -97,9 +95,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var bucket = new ObjectBucketPolicy(&#34;bucket&#34;, ObjectBucketPolicyArgs.builder()        
- *             .name(&#34;some-unique-name&#34;)
- *             .build());
+ *         var bucket = new ObjectBucket(&#34;bucket&#34;);
  * 
  *         final var policy = IamFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
  *             .version(&#34;2012-10-17&#34;)
@@ -119,7 +115,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var main = new ObjectBucketPolicy(&#34;main&#34;, ObjectBucketPolicyArgs.builder()        
- *             .bucket(scaleway_object_bucket.bucket().name())
+ *             .bucket(bucket.name())
  *             .policy(policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.json()))
  *             .build());
  * 
@@ -169,12 +165,16 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
     /**
      * `project_id`) The ID of the project the bucket is associated with.
      * 
+     * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+     * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
      * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
      * 
      */
     public Output<String> projectId() {

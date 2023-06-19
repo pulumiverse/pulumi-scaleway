@@ -35,12 +35,16 @@ public final class DatabaseAclState extends com.pulumi.resources.ResourceArgs {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
+     * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -122,6 +126,8 @@ public final class DatabaseAclState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param instanceId UUID of the rdb instance.
          * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
+         * 
          * @return builder
          * 
          */
@@ -132,6 +138,8 @@ public final class DatabaseAclState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
          * 
          * @return builder
          * 

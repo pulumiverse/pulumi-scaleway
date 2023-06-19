@@ -32,12 +32,16 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
     /**
      * Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
      * 
+     * &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+     * 
      */
     @Export(name="allowInsecure", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowInsecure;
 
     /**
      * @return Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+     * 
+     * &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
      * 
      */
     public Output<Optional<Boolean>> allowInsecure() {
@@ -46,12 +50,16 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
     /**
      * Allow more than one simultaneous connection using the same device credentials.
      * 
+     * &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
+     * 
      */
     @Export(name="allowMultipleConnections", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowMultipleConnections;
 
     /**
      * @return Allow more than one simultaneous connection using the same device credentials.
+     * 
+     * &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
      * 
      */
     public Output<Optional<Boolean>> allowMultipleConnections() {
@@ -158,12 +166,16 @@ public class IotDevice extends com.pulumi.resources.CustomResource {
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      * 
+     * &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
+     * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
      * @return The name of the IoT device you want to create (e.g. `my-device`).
+     * 
+     * &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
      * 
      */
     public Output<String> name() {

@@ -35,12 +35,16 @@ public final class LoadbalancerCertificateArgs extends com.pulumi.resources.Reso
     /**
      * The load-balancer ID this certificate is attached to.
      * 
+     * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+     * 
      */
     @Import(name="lbId", required=true)
     private Output<String> lbId;
 
     /**
      * @return The load-balancer ID this certificate is attached to.
+     * 
+     * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
      * 
      */
     public Output<String> lbId() {
@@ -128,6 +132,8 @@ public final class LoadbalancerCertificateArgs extends com.pulumi.resources.Reso
         /**
          * @param lbId The load-balancer ID this certificate is attached to.
          * 
+         * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -138,6 +144,8 @@ public final class LoadbalancerCertificateArgs extends com.pulumi.resources.Reso
 
         /**
          * @param lbId The load-balancer ID this certificate is attached to.
+         * 
+         * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
          * 
          * @return builder
          * 

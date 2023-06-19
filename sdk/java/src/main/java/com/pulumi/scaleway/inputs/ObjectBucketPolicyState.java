@@ -48,12 +48,16 @@ public final class ObjectBucketPolicyState extends com.pulumi.resources.Resource
     /**
      * `project_id`) The ID of the project the bucket is associated with.
      * 
+     * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+     * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
      * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -147,6 +151,8 @@ public final class ObjectBucketPolicyState extends com.pulumi.resources.Resource
         /**
          * @param projectId `project_id`) The ID of the project the bucket is associated with.
          * 
+         * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+         * 
          * @return builder
          * 
          */
@@ -157,6 +163,8 @@ public final class ObjectBucketPolicyState extends com.pulumi.resources.Resource
 
         /**
          * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
          * 
          * @return builder
          * 

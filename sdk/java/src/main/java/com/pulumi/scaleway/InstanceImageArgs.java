@@ -20,12 +20,16 @@ public final class InstanceImageArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      * 
+     * &gt; **Important:** For now it is only possible to have 1 additional_volume.
+     * 
      */
     @Import(name="additionalVolumeIds")
     private @Nullable Output<String> additionalVolumeIds;
 
     /**
      * @return List of IDs of the snapshots of the additional volumes to be attached to the image.
+     * 
+     * &gt; **Important:** For now it is only possible to have 1 additional_volume.
      * 
      */
     public Optional<Output<String>> additionalVolumeIds() {
@@ -171,6 +175,8 @@ public final class InstanceImageArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param additionalVolumeIds List of IDs of the snapshots of the additional volumes to be attached to the image.
          * 
+         * &gt; **Important:** For now it is only possible to have 1 additional_volume.
+         * 
          * @return builder
          * 
          */
@@ -181,6 +187,8 @@ public final class InstanceImageArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param additionalVolumeIds List of IDs of the snapshots of the additional volumes to be attached to the image.
+         * 
+         * &gt; **Important:** For now it is only possible to have 1 additional_volume.
          * 
          * @return builder
          * 

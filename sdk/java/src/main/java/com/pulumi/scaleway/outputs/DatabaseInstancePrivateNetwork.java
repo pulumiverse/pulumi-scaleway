@@ -27,7 +27,7 @@ public final class DatabaseInstancePrivateNetwork {
      * 
      */
     private @Nullable String ip;
-    private String ipNet;
+    private @Nullable String ipNet;
     /**
      * @return The name of the Database Instance.
      * 
@@ -63,8 +63,8 @@ public final class DatabaseInstancePrivateNetwork {
     public Optional<String> ip() {
         return Optional.ofNullable(this.ip);
     }
-    public String ipNet() {
-        return this.ipNet;
+    public Optional<String> ipNet() {
+        return Optional.ofNullable(this.ipNet);
     }
     /**
      * @return The name of the Database Instance.
@@ -99,7 +99,7 @@ public final class DatabaseInstancePrivateNetwork {
         private @Nullable String endpointId;
         private @Nullable String hostname;
         private @Nullable String ip;
-        private String ipNet;
+        private @Nullable String ipNet;
         private @Nullable String name;
         private String pnId;
         private @Nullable Integer port;
@@ -133,8 +133,8 @@ public final class DatabaseInstancePrivateNetwork {
             return this;
         }
         @CustomType.Setter
-        public Builder ipNet(String ipNet) {
-            this.ipNet = Objects.requireNonNull(ipNet);
+        public Builder ipNet(@Nullable String ipNet) {
+            this.ipNet = ipNet;
             return this;
         }
         @CustomType.Setter

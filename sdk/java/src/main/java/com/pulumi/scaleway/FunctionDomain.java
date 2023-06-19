@@ -96,6 +96,8 @@ public class FunctionDomain extends com.pulumi.resources.CustomResource {
      * The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domain_name` for it.
      * 
+     * &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
+     * 
      */
     @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
@@ -103,6 +105,8 @@ public class FunctionDomain extends com.pulumi.resources.CustomResource {
     /**
      * @return The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domain_name` for it.
+     * 
+     * &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
      * 
      */
     public Output<String> hostname() {

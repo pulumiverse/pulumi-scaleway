@@ -62,6 +62,48 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Example With IPAM
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.VpcPrivateNetwork;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pn = new VpcPrivateNetwork(&#34;pn&#34;);
+ * 
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .nodeType(&#34;DB-DEV-S&#34;)
+ *             .engine(&#34;PostgreSQL-11&#34;)
+ *             .isHaCluster(true)
+ *             .disableBackup(true)
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .privateNetwork(DatabaseInstancePrivateNetworkArgs.builder()
+ *                 .pnId(pn.id())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ### Example with Settings
  * ```java
  * package generated_program;
@@ -233,19 +275,24 @@ import javax.annotation.Nullable;
  * 
  * ## Settings
  * 
- * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` on your `node_type` of your convenient.
+ * Please consult
+ * the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+ * available `settings` and `init_settings` on your `node_type` of your convenient.
  * 
  * ## Private Network
  * 
  * &gt; **Important:** Updates to `private_network` will recreate the attachment Instance.
  * 
- * - `ip_net` - (Required) The IP network where to con.
- * - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
+ * - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+ *   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+ *   service if not set.
+ * - `pn_id` - (Required) The ID of the private network.
  * 
  * ## Limitations
  * 
  * The Managed Database product is only compliant with the private network in the default availability zone (AZ).
- * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+ * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+ * section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
  * 
  * ## Import
  * 
@@ -363,12 +410,16 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
      * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+     * 
      */
     @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
      * @return Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
+     * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
      * 
      */
     public Output<String> engine() {
@@ -377,12 +428,16 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * Map of engine settings to be set at database initialisation.
      * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+     * 
      */
     @Export(name="initSettings", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> initSettings;
 
     /**
      * @return Map of engine settings to be set at database initialisation.
+     * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
      * 
      */
     public Output<Optional<Map<String,String>>> initSettings() {
@@ -391,12 +446,16 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * Enable or disable high availability for the database instance.
      * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+     * 
      */
     @Export(name="isHaCluster", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isHaCluster;
 
     /**
      * @return Enable or disable high availability for the database instance.
+     * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
      * 
      */
     public Output<Optional<Boolean>> isHaCluster() {
@@ -433,12 +492,18 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
      * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * 
      */
     @Export(name="nodeType", refs={String.class}, tree="[0]")
     private Output<String> nodeType;
 
     /**
      * @return The type of database instance you want to create (e.g. `db-dev-s`).
+     * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      * 
      */
     public Output<String> nodeType() {
@@ -487,14 +552,16 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.privateNetwork);
     }
     /**
-     * `project_id`) The ID of the project the Database Instance is associated with.
+     * `project_id`) The ID of the project the Database
+     * Instance is associated with.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return `project_id`) The ID of the project the Database Instance is associated with.
+     * @return `project_id`) The ID of the project the Database
+     * Instance is associated with.
      * 
      */
     public Output<String> projectId() {
@@ -515,14 +582,16 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
         return this.readReplicas;
     }
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database Instance should be created.
+     * @return `region`) The region
+     * in which the Database Instance should be created.
      * 
      */
     public Output<String> region() {
@@ -559,6 +628,8 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * Identifier for the first user of the database instance.
      * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+     * 
      */
     @Export(name="userName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userName;
@@ -566,19 +637,21 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * @return Identifier for the first user of the database instance.
      * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+     * 
      */
     public Output<Optional<String>> userName() {
         return Codegen.optional(this.userName);
     }
     /**
-     * Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
      */
     @Export(name="volumeSizeInGb", refs={Integer.class}, tree="[0]")
     private Output<Integer> volumeSizeInGb;
 
     /**
-     * @return Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+     * @return Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
      */
     public Output<Integer> volumeSizeInGb() {

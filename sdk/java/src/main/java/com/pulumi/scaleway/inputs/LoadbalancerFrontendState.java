@@ -37,12 +37,16 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
     /**
      * The load-balancer backend ID this frontend is attached to.
      * 
+     * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+     * 
      */
     @Import(name="backendId")
     private @Nullable Output<String> backendId;
 
     /**
      * @return The load-balancer backend ID this frontend is attached to.
+     * 
+     * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
      * 
      */
     public Optional<Output<String>> backendId() {
@@ -75,12 +79,16 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
     /**
      * List of Certificate IDs that should be used by the frontend.
      * 
+     * &gt; **Important:** Certificates are not allowed on port 80.
+     * 
      */
     @Import(name="certificateIds")
     private @Nullable Output<List<String>> certificateIds;
 
     /**
      * @return List of Certificate IDs that should be used by the frontend.
+     * 
+     * &gt; **Important:** Certificates are not allowed on port 80.
      * 
      */
     public Optional<Output<List<String>>> certificateIds() {
@@ -100,6 +108,23 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
      */
     public Optional<Output<Boolean>> enableHttp3() {
         return Optional.ofNullable(this.enableHttp3);
+    }
+
+    /**
+     * A boolean to specify whether to use lb_acl.
+     * If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+     * 
+     */
+    @Import(name="externalAcls")
+    private @Nullable Output<Boolean> externalAcls;
+
+    /**
+     * @return A boolean to specify whether to use lb_acl.
+     * If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+     * 
+     */
+    public Optional<Output<Boolean>> externalAcls() {
+        return Optional.ofNullable(this.externalAcls);
     }
 
     /**
@@ -170,6 +195,7 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         this.certificateId = $.certificateId;
         this.certificateIds = $.certificateIds;
         this.enableHttp3 = $.enableHttp3;
+        this.externalAcls = $.externalAcls;
         this.inboundPort = $.inboundPort;
         this.lbId = $.lbId;
         this.name = $.name;
@@ -228,6 +254,8 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         /**
          * @param backendId The load-balancer backend ID this frontend is attached to.
          * 
+         * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+         * 
          * @return builder
          * 
          */
@@ -238,6 +266,8 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
 
         /**
          * @param backendId The load-balancer backend ID this frontend is attached to.
+         * 
+         * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
          * 
          * @return builder
          * 
@@ -278,6 +308,8 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         /**
          * @param certificateIds List of Certificate IDs that should be used by the frontend.
          * 
+         * &gt; **Important:** Certificates are not allowed on port 80.
+         * 
          * @return builder
          * 
          */
@@ -289,6 +321,8 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
         /**
          * @param certificateIds List of Certificate IDs that should be used by the frontend.
          * 
+         * &gt; **Important:** Certificates are not allowed on port 80.
+         * 
          * @return builder
          * 
          */
@@ -298,6 +332,8 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
 
         /**
          * @param certificateIds List of Certificate IDs that should be used by the frontend.
+         * 
+         * &gt; **Important:** Certificates are not allowed on port 80.
          * 
          * @return builder
          * 
@@ -325,6 +361,29 @@ public final class LoadbalancerFrontendState extends com.pulumi.resources.Resour
          */
         public Builder enableHttp3(Boolean enableHttp3) {
             return enableHttp3(Output.of(enableHttp3));
+        }
+
+        /**
+         * @param externalAcls A boolean to specify whether to use lb_acl.
+         * If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalAcls(@Nullable Output<Boolean> externalAcls) {
+            $.externalAcls = externalAcls;
+            return this;
+        }
+
+        /**
+         * @param externalAcls A boolean to specify whether to use lb_acl.
+         * If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalAcls(Boolean externalAcls) {
+            return externalAcls(Output.of(externalAcls));
         }
 
         /**

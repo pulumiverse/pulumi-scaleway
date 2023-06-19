@@ -79,12 +79,16 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the container.
      * 
+     * &gt; Only one of `namespace_id` or `container_id` must be set.
+     * 
      */
     @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> containerId;
 
     /**
      * @return The ID of the container.
+     * 
+     * &gt; Only one of `namespace_id` or `container_id` must be set.
      * 
      */
     public Output<Optional<String>> containerId() {
@@ -135,12 +139,16 @@ public class ContainerToken extends com.pulumi.resources.CustomResource {
     /**
      * `region`). The region in which the namespace should be created.
      * 
+     * &gt; **Important** Updates to any fields will recreate the token.
+     * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
      * @return `region`). The region in which the namespace should be created.
+     * 
+     * &gt; **Important** Updates to any fields will recreate the token.
      * 
      */
     public Output<String> region() {

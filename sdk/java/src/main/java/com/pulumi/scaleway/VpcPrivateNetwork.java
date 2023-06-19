@@ -10,6 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.VpcPrivateNetworkArgs;
 import com.pulumi.scaleway.inputs.VpcPrivateNetworkState;
+import com.pulumi.scaleway.outputs.VpcPrivateNetworkIpv4Subnet;
+import com.pulumi.scaleway.outputs.VpcPrivateNetworkIpv6Subnet;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -51,12 +54,61 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * &gt; **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.Vpc;
+ * import com.pulumi.scaleway.VpcArgs;
+ * import com.pulumi.scaleway.VpcPrivateNetwork;
+ * import com.pulumi.scaleway.VpcPrivateNetworkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc01 = new Vpc(&#34;vpc01&#34;, VpcArgs.builder()        
+ *             .tags(            
+ *                 &#34;terraform&#34;,
+ *                 &#34;vpc&#34;)
+ *             .build());
+ * 
+ *         var regionalPn = new VpcPrivateNetwork(&#34;regionalPn&#34;, VpcPrivateNetworkArgs.builder()        
+ *             .tags(            
+ *                 &#34;terraform&#34;,
+ *                 &#34;pn&#34;,
+ *                 &#34;regional&#34;)
+ *             .isRegional(true)
+ *             .vpcId(vpc01.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
- * Private networks can be imported using the `{zone}/{id}`, e.g. bash
+ * Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
  * 
  * ```sh
  *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ * 
+ *  bash
+ * 
+ * ```sh
+ *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
  * ```
  * 
  */
@@ -75,6 +127,52 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createdAt() {
         return this.createdAt;
+    }
+    /**
+     * The IPv4 subnet associated with the private network.
+     * 
+     */
+    @Export(name="ipv4Subnet", refs={VpcPrivateNetworkIpv4Subnet.class}, tree="[0]")
+    private Output<VpcPrivateNetworkIpv4Subnet> ipv4Subnet;
+
+    /**
+     * @return The IPv4 subnet associated with the private network.
+     * 
+     */
+    public Output<VpcPrivateNetworkIpv4Subnet> ipv4Subnet() {
+        return this.ipv4Subnet;
+    }
+    /**
+     * The IPv6 subnets associated with the private network.
+     * 
+     * &gt; **Note:** If using Regional Private Network:
+     * 
+     */
+    @Export(name="ipv6Subnets", refs={List.class,VpcPrivateNetworkIpv6Subnet.class}, tree="[0,1]")
+    private Output<List<VpcPrivateNetworkIpv6Subnet>> ipv6Subnets;
+
+    /**
+     * @return The IPv6 subnets associated with the private network.
+     * 
+     * &gt; **Note:** If using Regional Private Network:
+     * 
+     */
+    public Output<List<VpcPrivateNetworkIpv6Subnet>> ipv6Subnets() {
+        return this.ipv6Subnets;
+    }
+    /**
+     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * 
+     */
+    @Export(name="isRegional", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> isRegional;
+
+    /**
+     * @return Defines whether the private network is Regional. By default, it will be Zonal.
+     * 
+     */
+    public Output<Boolean> isRegional() {
+        return this.isRegional;
     }
     /**
      * The name of the private network. If not provided it will be randomly generated.
@@ -119,6 +217,20 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
+     * `region`) The region of the private network.
+     * 
+     */
+    @Export(name="region", refs={String.class}, tree="[0]")
+    private Output<String> region;
+
+    /**
+     * @return `region`) The region of the private network.
+     * 
+     */
+    public Output<String> region() {
+        return this.region;
+    }
+    /**
      * The tags associated with the private network.
      * 
      */
@@ -145,6 +257,20 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
      */
     public Output<String> updatedAt() {
         return this.updatedAt;
+    }
+    /**
+     * The VPC in which to create the private network.
+     * 
+     */
+    @Export(name="vpcId", refs={String.class}, tree="[0]")
+    private Output<String> vpcId;
+
+    /**
+     * @return The VPC in which to create the private network.
+     * 
+     */
+    public Output<String> vpcId() {
+        return this.vpcId;
     }
     /**
      * `zone`) The zone in which the private network should be created.

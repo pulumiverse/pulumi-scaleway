@@ -64,12 +64,16 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
     /**
      * The load-balancer ID this certificate is attached to.
      * 
+     * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+     * 
      */
     @Export(name="lbId", refs={String.class}, tree="[0]")
     private Output<String> lbId;
 
     /**
      * @return The load-balancer ID this certificate is attached to.
+     * 
+     * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
      * 
      */
     public Output<String> lbId() {
@@ -148,12 +152,16 @@ public class LoadbalancerCertificate extends com.pulumi.resources.CustomResource
     /**
      * Array of alternative domain names.  A new certificate will be created if this field is changed.
      * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+     * 
      */
     @Export(name="subjectAlternativeNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> subjectAlternativeNames;
 
     /**
      * @return Array of alternative domain names.  A new certificate will be created if this field is changed.
+     * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
      * 
      */
     public Output<List<String>> subjectAlternativeNames() {
