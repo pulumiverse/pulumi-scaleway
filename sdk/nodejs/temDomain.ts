@@ -19,6 +19,32 @@ import * as utilities from "./utilities";
  * const main = new scaleway.TemDomain("main", {acceptTos: true});
  * ```
  *
+ * ### Add the required records to your DNS zone
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const config = new pulumi.Config();
+ * const domainName = config.require("domainName");
+ * const main = new scaleway.TemDomain("main", {acceptTos: true});
+ * const spf = new scaleway.DomainRecord("spf", {
+ *     dnsZone: domainName,
+ *     type: "TXT",
+ *     data: pulumi.interpolate`v=spf1 ${main.spfConfig} -all`,
+ * });
+ * const dkim = new scaleway.DomainRecord("dkim", {
+ *     dnsZone: domainName,
+ *     type: "TXT",
+ *     data: main.dkimConfig,
+ * });
+ * const mx = new scaleway.DomainRecord("mx", {
+ *     dnsZone: domainName,
+ *     type: "MX",
+ *     data: ".",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Domains can be imported using the `{region}/{id}`, e.g. bash

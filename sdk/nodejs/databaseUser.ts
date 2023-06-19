@@ -66,6 +66,8 @@ export class DatabaseUser extends pulumi.CustomResource {
 
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database User.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -74,6 +76,8 @@ export class DatabaseUser extends pulumi.CustomResource {
     public readonly isAdmin!: pulumi.Output<boolean | undefined>;
     /**
      * Database User name.
+     *
+     * > **Important:** Updates to `name` will recreate the Database User.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -130,6 +134,8 @@ export class DatabaseUser extends pulumi.CustomResource {
 export interface DatabaseUserState {
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database User.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -138,6 +144,8 @@ export interface DatabaseUserState {
     isAdmin?: pulumi.Input<boolean>;
     /**
      * Database User name.
+     *
+     * > **Important:** Updates to `name` will recreate the Database User.
      */
     name?: pulumi.Input<string>;
     /**
@@ -156,6 +164,8 @@ export interface DatabaseUserState {
 export interface DatabaseUserArgs {
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database User.
      */
     instanceId: pulumi.Input<string>;
     /**
@@ -164,6 +174,8 @@ export interface DatabaseUserArgs {
     isAdmin?: pulumi.Input<boolean>;
     /**
      * Database User name.
+     *
+     * > **Important:** Updates to `name` will recreate the Database User.
      */
     name?: pulumi.Input<string>;
     /**

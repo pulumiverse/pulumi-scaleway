@@ -88,7 +88,7 @@ export class CockpitToken extends pulumi.CustomResource {
     /**
      * Allowed scopes
      */
-    public readonly scopes!: pulumi.Output<outputs.CockpitTokenScopes | undefined>;
+    public readonly scopes!: pulumi.Output<outputs.CockpitTokenScopes>;
     /**
      * The secret key of the token
      */

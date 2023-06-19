@@ -60,6 +60,10 @@ export interface GetCockpitResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The ID of the current plan
+     */
+    readonly planId: string;
     readonly projectId?: string;
 }
 /**

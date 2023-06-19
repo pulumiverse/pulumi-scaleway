@@ -67,6 +67,11 @@ export class InstanceUserData extends pulumi.CustomResource {
     public readonly value!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the server should be created.
+     *
+     * > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -126,6 +131,11 @@ export interface InstanceUserDataState {
     value?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server should be created.
+     *
+     * > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
      */
     zone?: pulumi.Input<string>;
 }
@@ -148,6 +158,11 @@ export interface InstanceUserDataArgs {
     value: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server should be created.
+     *
+     * > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
      */
     zone?: pulumi.Input<string>;
 }

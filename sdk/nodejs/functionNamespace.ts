@@ -65,6 +65,8 @@ export class FunctionNamespace extends pulumi.CustomResource {
     public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The unique name of the function namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -147,6 +149,8 @@ export interface FunctionNamespaceState {
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The unique name of the function namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**
@@ -189,6 +193,8 @@ export interface FunctionNamespaceArgs {
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The unique name of the function namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**

@@ -76,6 +76,8 @@ export class FunctionDomain extends pulumi.CustomResource {
     /**
      * The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domainName` for it.
+     *
+     * > **Important** Updates to `functionId` or `hostname` will recreate the domain.
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
@@ -133,6 +135,8 @@ export interface FunctionDomainState {
     /**
      * The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domainName` for it.
+     *
+     * > **Important** Updates to `functionId` or `hostname` will recreate the domain.
      */
     hostname?: pulumi.Input<string>;
     /**
@@ -156,6 +160,8 @@ export interface FunctionDomainArgs {
     /**
      * The hostname that should resolve to your function id native domain.
      * You should use a CNAME domain record that point to your native function `domainName` for it.
+     *
+     * > **Important** Updates to `functionId` or `hostname` will recreate the domain.
      */
     hostname: pulumi.Input<string>;
     /**

@@ -48,6 +48,8 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
      * The load-balancer ID this certificate is attached to.
+     *
+     * > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
      */
     public readonly lbId!: pulumi.Output<string>;
     /**
@@ -72,6 +74,8 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * Array of alternative domain names.  A new certificate will be created if this field is changed.
+     *
+     * > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
      */
     public /*out*/ readonly subjectAlternativeNames!: pulumi.Output<string[]>;
 
@@ -137,6 +141,8 @@ export interface LoadbalancerCertificateState {
     fingerprint?: pulumi.Input<string>;
     /**
      * The load-balancer ID this certificate is attached to.
+     *
+     * > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
      */
     lbId?: pulumi.Input<string>;
     /**
@@ -161,6 +167,8 @@ export interface LoadbalancerCertificateState {
     status?: pulumi.Input<string>;
     /**
      * Array of alternative domain names.  A new certificate will be created if this field is changed.
+     *
+     * > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -175,6 +183,8 @@ export interface LoadbalancerCertificateArgs {
     customCertificate?: pulumi.Input<inputs.LoadbalancerCertificateCustomCertificate>;
     /**
      * The load-balancer ID this certificate is attached to.
+     *
+     * > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
      */
     lbId: pulumi.Input<string>;
     /**

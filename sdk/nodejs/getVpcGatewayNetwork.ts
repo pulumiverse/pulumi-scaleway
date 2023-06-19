@@ -61,6 +61,8 @@ export interface GetVpcGatewayNetworkArgs {
     gatewayId?: string;
     /**
      * ID of the gateway network.
+     *
+     * > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
      */
     gatewayNetworkId?: string;
     /**
@@ -138,6 +140,8 @@ export interface GetVpcGatewayNetworkOutputArgs {
     gatewayId?: pulumi.Input<string>;
     /**
      * ID of the gateway network.
+     *
+     * > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
      */
     gatewayNetworkId?: pulumi.Input<string>;
     /**

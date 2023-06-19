@@ -7,6 +7,31 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+ *
+ * This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
+ *
+ * > **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {externalRules: true});
+ * const sgrs01 = new scaleway.InstanceSecurityGroupRules("sgrs01", {
+ *     securityGroupId: sg01.id,
+ *     inboundRules: [{
+ *         action: "accept",
+ *         port: 80,
+ *         ipRange: "0.0.0.0/0",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash

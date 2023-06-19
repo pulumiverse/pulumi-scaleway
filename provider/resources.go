@@ -201,6 +201,10 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc_public_gateway_ip_reverse_dns":   {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIpReverseDns")},
 			"scaleway_vpc_public_gateway_pat_rule":         {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayPatRule")},
 			"scaleway_vpc_public_gateway_dhcp_reservation": {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcpReservation")}, //nolint:golint,lll
+			"scaleway_function_trigger":                    {Tok: scalewayResource(scalewayMod, "FunctionTrigger")},
+			"scaleway_lb_acl":                              {Tok: scalewayResource(scalewayMod, "LoadbalancerAcl")},
+			"scaleway_mnq_queue":                           {Tok: scalewayResource(scalewayMod, "MnqQueue")},
+			"scaleway_vpc":                                 {Tok: scalewayResource(scalewayMod, "Vpc")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
@@ -272,6 +276,10 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc_public_gateway_dhcp":             {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayDhcp")},
 			"scaleway_vpc_public_gateway_dhcp_reservation": {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayDhcpReservation")}, //nolint:golint,lll
 			"scaleway_vpc_public_gateway_ip":               {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayIp")},
+			"scaleway_availability_zones":                  {Tok: scalewayDataSource(scalewayMod, "getAvailabilityZones")},
+			"scaleway_cockpit_plan":                        {Tok: scalewayDataSource(scalewayMod, "getCockpitPlan")},
+			"scaleway_object_bucket_policy":                {Tok: scalewayDataSource(scalewayMod, "getObjectBucketPolicy")},
+			"scaleway_vpc":                                 {Tok: scalewayDataSource(scalewayMod, "getVpc")},
 
 			"scaleway_vpc_public_gateway_pat_rule": {Tok: scalewayDataSource(scalewayMod, "getVpcPublicPatRule")},
 			"scaleway_webhosting_offer":            {Tok: scalewayDataSource(scalewayMod, "getWebHostOffer")},

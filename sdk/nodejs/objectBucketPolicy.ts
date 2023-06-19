@@ -8,6 +8,68 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway object storage bucket policy.
  * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const policy = new scaleway.ObjectBucketPolicy("policy", {
+ *     bucket: bucket.name,
+ *     policy: JSON.stringify({
+ *         Id: "MyPolicy",
+ *         Statement: [{
+ *             Action: [
+ *                 "s3:ListBucket",
+ *                 "s3:GetObject",
+ *             ],
+ *             Effect: "Allow",
+ *             Principal: {
+ *                 SCW: "*",
+ *             },
+ *             Resource: [
+ *                 "some-unique-name",
+ *                 "some-unique-name/*",
+ *             ],
+ *             Sid: "GrantToEveryone",
+ *         }],
+ *         Version: "2012-10-17",
+ *     }),
+ * });
+ * ```
+ * ## Example with aws provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const policy = aws.iam.getPolicyDocument({
+ *     version: "2012-10-17",
+ *     statements: [{
+ *         sid: "MyPolicy",
+ *         principals: [{
+ *             type: "SCW",
+ *             identifiers: ["project_id:<project_id>"],
+ *         }],
+ *         actions: [
+ *             "s3:GetObject",
+ *             "s3:ListBucket",
+ *         ],
+ *         resources: [
+ *             "some-unique-name",
+ *             "some-unique-name/*",
+ *         ],
+ *     }],
+ * });
+ * const main = new scaleway.ObjectBucketPolicy("main", {
+ *     bucket: bucket.name,
+ *     policy: policy.then(policy => policy.json),
+ * });
+ * ```
+ *
  * ## Import
  *
  * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
@@ -54,6 +116,8 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
     public readonly policy!: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -110,6 +174,8 @@ export interface ObjectBucketPolicyState {
     policy?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -132,6 +198,8 @@ export interface ObjectBucketPolicyArgs {
     policy: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
      */
     projectId?: pulumi.Input<string>;
     /**

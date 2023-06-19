@@ -57,6 +57,8 @@ export class Database extends pulumi.CustomResource {
 
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -122,6 +124,8 @@ export class Database extends pulumi.CustomResource {
 export interface DatabaseState {
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -152,6 +156,8 @@ export interface DatabaseState {
 export interface DatabaseArgs {
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database.
      */
     instanceId: pulumi.Input<string>;
     /**

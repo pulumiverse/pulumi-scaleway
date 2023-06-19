@@ -103,6 +103,8 @@ export class Function extends pulumi.CustomResource {
     public readonly minScale!: pulumi.Output<number | undefined>;
     /**
      * The unique name of the function.
+     *
+     * > **Important** Updates to `name` will recreate the function.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -269,6 +271,8 @@ export interface FunctionState {
     minScale?: pulumi.Input<number>;
     /**
      * The unique name of the function.
+     *
+     * > **Important** Updates to `name` will recreate the function.
      */
     name?: pulumi.Input<string>;
     /**
@@ -351,6 +355,8 @@ export interface FunctionArgs {
     minScale?: pulumi.Input<number>;
     /**
      * The unique name of the function.
+     *
+     * > **Important** Updates to `name` will recreate the function.
      */
     name?: pulumi.Input<string>;
     /**

@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Get information about Scaleway Load-Balancer Frontends.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Example Usage
  *
@@ -82,6 +82,7 @@ export interface GetLbFrontendResult {
     readonly certificateId: string;
     readonly certificateIds: string[];
     readonly enableHttp3: boolean;
+    readonly externalAcls: boolean;
     readonly frontendId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -94,7 +95,7 @@ export interface GetLbFrontendResult {
 }
 /**
  * Get information about Scaleway Load-Balancer Frontends.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Example Usage
  *

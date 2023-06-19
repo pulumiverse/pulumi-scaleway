@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -20,12 +22,39 @@ import * as utilities from "./utilities";
  * ]});
  * ```
  *
+ * > **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `isRegional` to `true`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {tags: [
+ *     "terraform",
+ *     "vpc",
+ * ]});
+ * const regionalPn = new scaleway.VpcPrivateNetwork("regionalPn", {
+ *     tags: [
+ *         "terraform",
+ *         "pn",
+ *         "regional",
+ *     ],
+ *     isRegional: true,
+ *     vpcId: vpc01.id,
+ * });
+ * ```
+ *
  * ## Import
  *
- * Private networks can be imported using the `{zone}/{id}`, e.g. bash
+ * Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
  *
  * ```sh
  *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ *
+ *  bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class VpcPrivateNetwork extends pulumi.CustomResource {
@@ -61,6 +90,20 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * The IPv4 subnet associated with the private network.
+     */
+    public readonly ipv4Subnet!: pulumi.Output<outputs.VpcPrivateNetworkIpv4Subnet>;
+    /**
+     * The IPv6 subnets associated with the private network.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
+    public readonly ipv6Subnets!: pulumi.Output<outputs.VpcPrivateNetworkIpv6Subnet[]>;
+    /**
+     * Defines whether the private network is Regional. By default, it will be Zonal.
+     */
+    public readonly isRegional!: pulumi.Output<boolean>;
+    /**
      * The name of the private network. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
@@ -73,6 +116,10 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * `region`) The region of the private network.
+     */
+    public readonly region!: pulumi.Output<string>;
+    /**
      * The tags associated with the private network.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
@@ -80,6 +127,10 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      * The date and time of the last update of the private network
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * The VPC in which to create the private network.
+     */
+    public readonly vpcId!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the private network should be created.
      */
@@ -99,17 +150,27 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpcPrivateNetworkState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["ipv4Subnet"] = state ? state.ipv4Subnet : undefined;
+            resourceInputs["ipv6Subnets"] = state ? state.ipv6Subnets : undefined;
+            resourceInputs["isRegional"] = state ? state.isRegional : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as VpcPrivateNetworkArgs | undefined;
+            resourceInputs["ipv4Subnet"] = args ? args.ipv4Subnet : undefined;
+            resourceInputs["ipv6Subnets"] = args ? args.ipv6Subnets : undefined;
+            resourceInputs["isRegional"] = args ? args.isRegional : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
@@ -129,6 +190,20 @@ export interface VpcPrivateNetworkState {
      */
     createdAt?: pulumi.Input<string>;
     /**
+     * The IPv4 subnet associated with the private network.
+     */
+    ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
+    /**
+     * The IPv6 subnets associated with the private network.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
+    ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
+    /**
+     * Defines whether the private network is Regional. By default, it will be Zonal.
+     */
+    isRegional?: pulumi.Input<boolean>;
+    /**
      * The name of the private network. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
@@ -141,6 +216,10 @@ export interface VpcPrivateNetworkState {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * `region`) The region of the private network.
+     */
+    region?: pulumi.Input<string>;
+    /**
      * The tags associated with the private network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
@@ -148,6 +227,10 @@ export interface VpcPrivateNetworkState {
      * The date and time of the last update of the private network
      */
     updatedAt?: pulumi.Input<string>;
+    /**
+     * The VPC in which to create the private network.
+     */
+    vpcId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the private network should be created.
      */
@@ -159,6 +242,20 @@ export interface VpcPrivateNetworkState {
  */
 export interface VpcPrivateNetworkArgs {
     /**
+     * The IPv4 subnet associated with the private network.
+     */
+    ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
+    /**
+     * The IPv6 subnets associated with the private network.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
+    ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
+    /**
+     * Defines whether the private network is Regional. By default, it will be Zonal.
+     */
+    isRegional?: pulumi.Input<boolean>;
+    /**
      * The name of the private network. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
@@ -167,9 +264,17 @@ export interface VpcPrivateNetworkArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * `region`) The region of the private network.
+     */
+    region?: pulumi.Input<string>;
+    /**
      * The tags associated with the private network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The VPC in which to create the private network.
+     */
+    vpcId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the private network should be created.
      */

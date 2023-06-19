@@ -65,6 +65,8 @@ export class ContainerToken extends pulumi.CustomResource {
 
     /**
      * The ID of the container.
+     *
+     * > Only one of `namespaceId` or `containerId` must be set.
      */
     public readonly containerId!: pulumi.Output<string | undefined>;
     /**
@@ -81,6 +83,8 @@ export class ContainerToken extends pulumi.CustomResource {
     public readonly namespaceId!: pulumi.Output<string | undefined>;
     /**
      * `region`). The region in which the namespace should be created.
+     *
+     * > **Important** Updates to any fields will recreate the token.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -129,6 +133,8 @@ export class ContainerToken extends pulumi.CustomResource {
 export interface ContainerTokenState {
     /**
      * The ID of the container.
+     *
+     * > Only one of `namespaceId` or `containerId` must be set.
      */
     containerId?: pulumi.Input<string>;
     /**
@@ -145,6 +151,8 @@ export interface ContainerTokenState {
     namespaceId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the namespace should be created.
+     *
+     * > **Important** Updates to any fields will recreate the token.
      */
     region?: pulumi.Input<string>;
     /**
@@ -159,6 +167,8 @@ export interface ContainerTokenState {
 export interface ContainerTokenArgs {
     /**
      * The ID of the container.
+     *
+     * > Only one of `namespaceId` or `containerId` must be set.
      */
     containerId?: pulumi.Input<string>;
     /**
@@ -175,6 +185,8 @@ export interface ContainerTokenArgs {
     namespaceId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the namespace should be created.
+     *
+     * > **Important** Updates to any fields will recreate the token.
      */
     region?: pulumi.Input<string>;
 }

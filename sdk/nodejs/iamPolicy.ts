@@ -93,6 +93,8 @@ export class IamPolicy extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * If the policy doesn't apply to a principal.
+     *
+     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
      */
     public readonly noPrincipal!: pulumi.Output<boolean | undefined>;
     /**
@@ -188,6 +190,8 @@ export interface IamPolicyState {
     name?: pulumi.Input<string>;
     /**
      * If the policy doesn't apply to a principal.
+     *
+     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
@@ -230,6 +234,8 @@ export interface IamPolicyArgs {
     name?: pulumi.Input<string>;
     /**
      * If the policy doesn't apply to a principal.
+     *
+     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**

@@ -28,6 +28,26 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example With IPAM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-11",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * ```
+ *
  * ### Example with Settings
  *
  * ```typescript
@@ -129,19 +149,24 @@ import * as utilities from "./utilities";
  *
  * ## Settings
  *
- * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` on your `nodeType` of your convenient.
+ * Please consult
+ * the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+ * available `settings` and `initSettings` on your `nodeType` of your convenient.
  *
  * ## Private Network
  *
  * > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
  *
- * - `ipNet` - (Required) The IP network where to con.
- * - `pnId` - (Required) The ID of the private network. If not provided it will be randomly generated.
+ * - `ipNet` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+ *   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+ *   service if not set.
+ * - `pnId` - (Required) The ID of the private network.
  *
  * ## Limitations
  *
  * The Managed Database product is only compliant with the private network in the default availability zone (AZ).
- * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+ * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+ * section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
  *
  * ## Import
  *
@@ -211,14 +236,20 @@ export class DatabaseInstance extends pulumi.CustomResource {
     public /*out*/ readonly endpointPort!: pulumi.Output<number>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     public readonly engine!: pulumi.Output<string>;
     /**
      * Map of engine settings to be set at database initialisation.
+     *
+     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
      */
     public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Enable or disable high availability for the database instance.
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
@@ -231,6 +262,9 @@ export class DatabaseInstance extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
@@ -246,7 +280,8 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly privateNetwork!: pulumi.Output<outputs.DatabaseInstancePrivateNetwork | undefined>;
     /**
-     * `projectId`) The ID of the project the Database Instance is associated with.
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -254,7 +289,8 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly readReplicas!: pulumi.Output<outputs.DatabaseInstanceReadReplica[]>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -267,10 +303,12 @@ export class DatabaseInstance extends pulumi.CustomResource {
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
      * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     public readonly userName!: pulumi.Output<string | undefined>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
@@ -391,14 +429,20 @@ export interface DatabaseInstanceState {
     endpointPort?: pulumi.Input<number>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     engine?: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
+     *
+     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Enable or disable high availability for the database instance.
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
@@ -411,6 +455,9 @@ export interface DatabaseInstanceState {
     name?: pulumi.Input<string>;
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -426,7 +473,8 @@ export interface DatabaseInstanceState {
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseInstancePrivateNetwork>;
     /**
-     * `projectId`) The ID of the project the Database Instance is associated with.
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -434,7 +482,8 @@ export interface DatabaseInstanceState {
      */
     readReplicas?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceReadReplica>[]>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -447,10 +496,12 @@ export interface DatabaseInstanceState {
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
@@ -481,14 +532,20 @@ export interface DatabaseInstanceArgs {
     disableBackup?: pulumi.Input<boolean>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     engine: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
+     *
+     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Enable or disable high availability for the database instance.
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
@@ -497,6 +554,9 @@ export interface DatabaseInstanceArgs {
     name?: pulumi.Input<string>;
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     nodeType: pulumi.Input<string>;
     /**
@@ -508,11 +568,13 @@ export interface DatabaseInstanceArgs {
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseInstancePrivateNetwork>;
     /**
-     * `projectId`) The ID of the project the Database Instance is associated with.
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -525,10 +587,12 @@ export interface DatabaseInstanceArgs {
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**

@@ -72,6 +72,8 @@ export class RegistryNamespace extends pulumi.CustomResource {
     public readonly isPublic!: pulumi.Output<boolean | undefined>;
     /**
      * The unique name of the namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -140,6 +142,8 @@ export interface RegistryNamespaceState {
     isPublic?: pulumi.Input<boolean>;
     /**
      * The unique name of the namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**
@@ -170,6 +174,8 @@ export interface RegistryNamespaceArgs {
     isPublic?: pulumi.Input<boolean>;
     /**
      * The unique name of the namespace.
+     *
+     * > **Important** Updates to `name` will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**
