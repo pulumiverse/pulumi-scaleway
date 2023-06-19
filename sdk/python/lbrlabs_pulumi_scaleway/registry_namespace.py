@@ -24,6 +24,8 @@ class RegistryNamespaceArgs:
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
         :param pulumi.Input[str] name: The unique name of the namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
@@ -67,6 +69,8 @@ class RegistryNamespaceArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the namespace.
+
+        > **Important** Updates to `name` will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -115,6 +119,8 @@ class _RegistryNamespaceState:
         :param pulumi.Input[str] endpoint: Endpoint reachable by Docker.
         :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
         :param pulumi.Input[str] name: The unique name of the namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
@@ -175,6 +181,8 @@ class _RegistryNamespaceState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the namespace.
+
+        > **Important** Updates to `name` will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -260,6 +268,8 @@ class RegistryNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
         :param pulumi.Input[str] name: The unique name of the namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
@@ -358,6 +368,8 @@ class RegistryNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] endpoint: Endpoint reachable by Docker.
         :param pulumi.Input[bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
         :param pulumi.Input[str] name: The unique name of the namespace.
+               
+               > **Important** Updates to `name` will recreate the namespace.
         :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
@@ -404,6 +416,8 @@ class RegistryNamespace(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The unique name of the namespace.
+
+        > **Important** Updates to `name` will recreate the namespace.
         """
         return pulumi.get(self, "name")
 

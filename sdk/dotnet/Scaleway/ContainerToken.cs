@@ -62,6 +62,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The ID of the container.
+        /// 
+        /// &gt; Only one of `namespace_id` or `container_id` must be set.
         /// </summary>
         [Output("containerId")]
         public Output<string?> ContainerId { get; private set; } = null!;
@@ -86,6 +88,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
+        /// 
+        /// &gt; **Important** Updates to any fields will recreate the token.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -149,6 +153,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The ID of the container.
+        /// 
+        /// &gt; Only one of `namespace_id` or `container_id` must be set.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -173,6 +179,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
+        /// 
+        /// &gt; **Important** Updates to any fields will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -187,6 +195,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// The ID of the container.
+        /// 
+        /// &gt; Only one of `namespace_id` or `container_id` must be set.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -211,6 +221,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
+        /// 
+        /// &gt; **Important** Updates to any fields will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -34,6 +34,8 @@ type IotHub struct {
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrOutput `pulumi:"disableEvents"`
 	// Wether the IoT Hub instance should be enabled or not.
+	//
+	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// The MQTT network endpoint to connect MQTT devices to.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
@@ -48,6 +50,8 @@ type IotHub struct {
 	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	//
+	// > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
 	ProductPlan pulumi.StringOutput `pulumi:"productPlan"`
 	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -103,6 +107,8 @@ type iotHubState struct {
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
 	// Wether the IoT Hub instance should be enabled or not.
+	//
+	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled *bool `pulumi:"enabled"`
 	// The MQTT network endpoint to connect MQTT devices to.
 	Endpoint *string `pulumi:"endpoint"`
@@ -117,6 +123,8 @@ type iotHubState struct {
 	// The organization_id you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	//
+	// > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
 	ProductPlan *string `pulumi:"productPlan"`
 	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -140,6 +148,8 @@ type IotHubState struct {
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
 	// Wether the IoT Hub instance should be enabled or not.
+	//
+	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrInput
 	// The MQTT network endpoint to connect MQTT devices to.
 	Endpoint pulumi.StringPtrInput
@@ -154,6 +164,8 @@ type IotHubState struct {
 	// The organization_id you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	//
+	// > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
 	ProductPlan pulumi.StringPtrInput
 	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -175,6 +187,8 @@ type iotHubArgs struct {
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
 	// Wether the IoT Hub instance should be enabled or not.
+	//
+	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled *bool `pulumi:"enabled"`
 	// Topic prefix for the hub events
 	EventsTopicPrefix *string `pulumi:"eventsTopicPrefix"`
@@ -185,6 +199,8 @@ type iotHubArgs struct {
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name *string `pulumi:"name"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	//
+	// > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
 	ProductPlan string `pulumi:"productPlan"`
 	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -199,6 +215,8 @@ type IotHubArgs struct {
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
 	// Wether the IoT Hub instance should be enabled or not.
+	//
+	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrInput
 	// Topic prefix for the hub events
 	EventsTopicPrefix pulumi.StringPtrInput
@@ -209,6 +227,8 @@ type IotHubArgs struct {
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringPtrInput
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+	//
+	// > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
 	ProductPlan pulumi.StringInput
 	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -329,6 +349,8 @@ func (o IotHubOutput) DisableEvents() pulumi.BoolPtrOutput {
 }
 
 // Wether the IoT Hub instance should be enabled or not.
+//
+// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 func (o IotHubOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -364,6 +386,8 @@ func (o IotHubOutput) OrganizationId() pulumi.StringOutput {
 }
 
 // Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
+//
+// > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
 func (o IotHubOutput) ProductPlan() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.ProductPlan }).(pulumi.StringOutput)
 }

@@ -82,7 +82,9 @@ type LookupCockpitResult struct {
 	// Endpoints
 	Endpoints []GetCockpitEndpoint `pulumi:"endpoints"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The ID of the current plan
+	PlanId    string  `pulumi:"planId"`
 	ProjectId *string `pulumi:"projectId"`
 }
 
@@ -132,6 +134,11 @@ func (o LookupCockpitResultOutput) Endpoints() GetCockpitEndpointArrayOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupCockpitResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCockpitResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the current plan
+func (o LookupCockpitResultOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCockpitResult) string { return v.PlanId }).(pulumi.StringOutput)
 }
 
 func (o LookupCockpitResultOutput) ProjectId() pulumi.StringPtrOutput {

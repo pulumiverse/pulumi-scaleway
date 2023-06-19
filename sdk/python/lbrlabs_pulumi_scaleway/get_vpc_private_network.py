@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetVpcPrivateNetworkResult',
@@ -21,13 +22,22 @@ class GetVpcPrivateNetworkResult:
     """
     A collection of values returned by getVpcPrivateNetwork.
     """
-    def __init__(__self__, created_at=None, id=None, name=None, organization_id=None, private_network_id=None, project_id=None, tags=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, id=None, ipv4_subnets=None, ipv6_subnets=None, is_regional=None, name=None, organization_id=None, private_network_id=None, project_id=None, region=None, tags=None, updated_at=None, vpc_id=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ipv4_subnets and not isinstance(ipv4_subnets, list):
+            raise TypeError("Expected argument 'ipv4_subnets' to be a list")
+        pulumi.set(__self__, "ipv4_subnets", ipv4_subnets)
+        if ipv6_subnets and not isinstance(ipv6_subnets, list):
+            raise TypeError("Expected argument 'ipv6_subnets' to be a list")
+        pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
+        if is_regional and not isinstance(is_regional, bool):
+            raise TypeError("Expected argument 'is_regional' to be a bool")
+        pulumi.set(__self__, "is_regional", is_regional)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -40,12 +50,18 @@ class GetVpcPrivateNetworkResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -62,6 +78,27 @@ class GetVpcPrivateNetworkResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> Sequence['outputs.GetVpcPrivateNetworkIpv4SubnetResult']:
+        """
+        (Optional) The IPv4 subnet associated with the private network.
+        """
+        return pulumi.get(self, "ipv4_subnets")
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> Sequence['outputs.GetVpcPrivateNetworkIpv6SubnetResult']:
+        """
+        (Optional) The IPv6 subnets associated with the private network.
+        """
+        return pulumi.get(self, "ipv6_subnets")
+
+    @property
+    @pulumi.getter(name="isRegional")
+    def is_regional(self) -> bool:
+        return pulumi.get(self, "is_regional")
 
     @property
     @pulumi.getter
@@ -85,6 +122,11 @@ class GetVpcPrivateNetworkResult:
 
     @property
     @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
     def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
@@ -92,6 +134,11 @@ class GetVpcPrivateNetworkResult:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter
@@ -107,12 +154,17 @@ class AwaitableGetVpcPrivateNetworkResult(GetVpcPrivateNetworkResult):
         return GetVpcPrivateNetworkResult(
             created_at=self.created_at,
             id=self.id,
+            ipv4_subnets=self.ipv4_subnets,
+            ipv6_subnets=self.ipv6_subnets,
+            is_regional=self.is_regional,
             name=self.name,
             organization_id=self.organization_id,
             private_network_id=self.private_network_id,
             project_id=self.project_id,
+            region=self.region,
             tags=self.tags,
             updated_at=self.updated_at,
+            vpc_id=self.vpc_id,
             zone=self.zone)
 
 
@@ -122,12 +174,9 @@ def get_vpc_private_network(name: Optional[str] = None,
     """
     Gets information about a private network.
 
-    ## Example Usage
 
-    N/A, the usage will be meaningful in the next releases of VPC.
-
-
-    :param str name: Exact name of the private network.
+    :param str name: Name of the private network. One of `name` and `private_network_id` should be specified.
+    :param str private_network_id: ID of the private network. One of `name` and `private_network_id` should be specified.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -138,12 +187,17 @@ def get_vpc_private_network(name: Optional[str] = None,
     return AwaitableGetVpcPrivateNetworkResult(
         created_at=__ret__.created_at,
         id=__ret__.id,
+        ipv4_subnets=__ret__.ipv4_subnets,
+        ipv6_subnets=__ret__.ipv6_subnets,
+        is_regional=__ret__.is_regional,
         name=__ret__.name,
         organization_id=__ret__.organization_id,
         private_network_id=__ret__.private_network_id,
         project_id=__ret__.project_id,
+        region=__ret__.region,
         tags=__ret__.tags,
         updated_at=__ret__.updated_at,
+        vpc_id=__ret__.vpc_id,
         zone=__ret__.zone)
 
 
@@ -154,11 +208,8 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     """
     Gets information about a private network.
 
-    ## Example Usage
 
-    N/A, the usage will be meaningful in the next releases of VPC.
-
-
-    :param str name: Exact name of the private network.
+    :param str name: Name of the private network. One of `name` and `private_network_id` should be specified.
+    :param str private_network_id: ID of the private network. One of `name` and `private_network_id` should be specified.
     """
     ...

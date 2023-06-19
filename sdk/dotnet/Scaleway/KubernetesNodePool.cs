@@ -87,6 +87,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -279,6 +281,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -426,6 +430,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }

@@ -19,6 +19,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         [Input("action", required: true)]
         public Input<Inputs.LoadbalancerFrontendAclActionArgs> Action { get; set; } = null!;
 
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         /// <summary>
         /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         /// </summary>
@@ -30,6 +36,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         public LoadbalancerFrontendAclArgs()
         {

@@ -125,6 +125,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public string NamespaceId { get; set; } = null!;
@@ -154,6 +156,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;

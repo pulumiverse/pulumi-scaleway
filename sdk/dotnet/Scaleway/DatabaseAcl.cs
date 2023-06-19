@@ -61,6 +61,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -132,6 +134,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -164,6 +168,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

@@ -23,6 +23,8 @@ class ObjectBucketPolicyArgs:
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -61,6 +63,8 @@ class ObjectBucketPolicyArgs:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 
@@ -93,6 +97,8 @@ class _ObjectBucketPolicyState:
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         if bucket is not None:
@@ -133,6 +139,8 @@ class _ObjectBucketPolicyState:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 
@@ -167,6 +175,65 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         Creates and manages Scaleway object storage bucket policy.
         For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = scaleway.ObjectBucketPolicy("policy",
+            bucket=bucket.name,
+            policy=json.dumps({
+                "Id": "MyPolicy",
+                "Statement": [{
+                    "Action": [
+                        "s3:ListBucket",
+                        "s3:GetObject",
+                    ],
+                    "Effect": "Allow",
+                    "Principal": {
+                        "SCW": "*",
+                    },
+                    "Resource": [
+                        "some-unique-name",
+                        "some-unique-name/*",
+                    ],
+                    "Sid": "GrantToEveryone",
+                }],
+                "Version": "2012-10-17",
+            }))
+        ```
+        ## Example with aws provider
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_aws as aws
+
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = aws.iam.get_policy_document(version="2012-10-17",
+            statements=[aws.iam.GetPolicyDocumentStatementArgs(
+                sid="MyPolicy",
+                principals=[aws.iam.GetPolicyDocumentStatementPrincipalArgs(
+                    type="SCW",
+                    identifiers=["project_id:<project_id>"],
+                )],
+                actions=[
+                    "s3:GetObject",
+                    "s3:ListBucket",
+                ],
+                resources=[
+                    "some-unique-name",
+                    "some-unique-name/*",
+                ],
+            )])
+        main = scaleway.ObjectBucketPolicy("main",
+            bucket=bucket.name,
+            policy=policy.json)
+        ```
+
         ## Import
 
         Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
@@ -180,6 +247,8 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         ...
@@ -191,6 +260,65 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         """
         Creates and manages Scaleway object storage bucket policy.
         For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = scaleway.ObjectBucketPolicy("policy",
+            bucket=bucket.name,
+            policy=json.dumps({
+                "Id": "MyPolicy",
+                "Statement": [{
+                    "Action": [
+                        "s3:ListBucket",
+                        "s3:GetObject",
+                    ],
+                    "Effect": "Allow",
+                    "Principal": {
+                        "SCW": "*",
+                    },
+                    "Resource": [
+                        "some-unique-name",
+                        "some-unique-name/*",
+                    ],
+                    "Sid": "GrantToEveryone",
+                }],
+                "Version": "2012-10-17",
+            }))
+        ```
+        ## Example with aws provider
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_aws as aws
+
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = aws.iam.get_policy_document(version="2012-10-17",
+            statements=[aws.iam.GetPolicyDocumentStatementArgs(
+                sid="MyPolicy",
+                principals=[aws.iam.GetPolicyDocumentStatementPrincipalArgs(
+                    type="SCW",
+                    identifiers=["project_id:<project_id>"],
+                )],
+                actions=[
+                    "s3:GetObject",
+                    "s3:ListBucket",
+                ],
+                resources=[
+                    "some-unique-name",
+                    "some-unique-name/*",
+                ],
+            )])
+        main = scaleway.ObjectBucketPolicy("main",
+            bucket=bucket.name,
+            policy=policy.json)
+        ```
 
         ## Import
 
@@ -260,6 +388,8 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -293,6 +423,8 @@ class ObjectBucketPolicy(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[str]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 

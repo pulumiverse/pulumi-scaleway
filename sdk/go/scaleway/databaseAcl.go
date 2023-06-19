@@ -63,6 +63,8 @@ type DatabaseAcl struct {
 	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayOutput `pulumi:"aclRules"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -107,6 +109,8 @@ type databaseAclState struct {
 	// A list of ACLs (structure is described below)
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId *string `pulumi:"instanceId"`
 	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
@@ -116,6 +120,8 @@ type DatabaseAclState struct {
 	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayInput
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringPtrInput
 	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
@@ -129,6 +135,8 @@ type databaseAclArgs struct {
 	// A list of ACLs (structure is described below)
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId string `pulumi:"instanceId"`
 	// `region`) The region in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
@@ -139,6 +147,8 @@ type DatabaseAclArgs struct {
 	// A list of ACLs (structure is described below)
 	AclRules DatabaseAclAclRuleArrayInput
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringInput
 	// `region`) The region in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
@@ -237,6 +247,8 @@ func (o DatabaseAclOutput) AclRules() DatabaseAclAclRuleArrayOutput {
 }
 
 // UUID of the rdb instance.
+//
+// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 func (o DatabaseAclOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

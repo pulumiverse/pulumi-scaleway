@@ -70,6 +70,8 @@ type LookupVpcGatewayNetworkArgs struct {
 	// ID of the public gateway the gateway network is linked to
 	GatewayId *string `pulumi:"gatewayId"`
 	// ID of the gateway network.
+	//
+	// > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
 	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
 	// ID of the private network the gateway network is linked to
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
@@ -115,6 +117,8 @@ type LookupVpcGatewayNetworkOutputArgs struct {
 	// ID of the public gateway the gateway network is linked to
 	GatewayId pulumi.StringPtrInput `pulumi:"gatewayId"`
 	// ID of the gateway network.
+	//
+	// > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
 	GatewayNetworkId pulumi.StringPtrInput `pulumi:"gatewayNetworkId"`
 	// ID of the private network the gateway network is linked to
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`

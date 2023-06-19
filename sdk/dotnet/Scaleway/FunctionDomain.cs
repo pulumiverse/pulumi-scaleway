@@ -73,6 +73,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The hostname that should resolve to your function id native domain.
         /// You should use a CNAME domain record that point to your native function `domain_name` for it.
+        /// 
+        /// &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
@@ -145,6 +147,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The hostname that should resolve to your function id native domain.
         /// You should use a CNAME domain record that point to your native function `domain_name` for it.
+        /// 
+        /// &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
         /// </summary>
         [Input("hostname", required: true)]
         public Input<string> Hostname { get; set; } = null!;
@@ -172,6 +176,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The hostname that should resolve to your function id native domain.
         /// You should use a CNAME domain record that point to your native function `domain_name` for it.
+        /// 
+        /// &gt; **Important** Updates to `function_id` or `hostname` will recreate the domain.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }

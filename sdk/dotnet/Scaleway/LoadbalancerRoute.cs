@@ -11,12 +11,12 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#route-ff94b7).
-    /// It is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.
+    /// Creates and manages Scaleway Load-Balancer Routes.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
     /// 
     /// ## Examples
     /// 
-    /// ### With SNI
+    /// ### With SNI for direction to TCP backends
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -59,7 +59,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With host-header
+    /// ### With host-header for direction to HTTP backends
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -80,7 +80,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
     ///     {
     ///         LbId = lb01.Id,
-    ///         ForwardProtocol = "tcp",
+    ///         ForwardProtocol = "http",
     ///         ForwardPort = 80,
     ///         ProxyProtocol = "none",
     ///     });
@@ -132,15 +132,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> FrontendId { get; private set; } = null!;
 
         /// <summary>
-        /// The Host request header specifies the host of the server to which the request is being sent.
+        /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
         /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// 
+        /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
         [Output("matchHostHeader")]
         public Output<string?> MatchHostHeader { get; private set; } = null!;
 
         /// <summary>
-        /// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
         /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// 
+        /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
         [Output("matchSni")]
         public Output<string?> MatchSni { get; private set; } = null!;
@@ -211,15 +215,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> FrontendId { get; set; } = null!;
 
         /// <summary>
-        /// The Host request header specifies the host of the server to which the request is being sent.
+        /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
         /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// 
+        /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
         [Input("matchHostHeader")]
         public Input<string>? MatchHostHeader { get; set; }
 
         /// <summary>
-        /// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
         /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// 
+        /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
@@ -251,15 +259,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? FrontendId { get; set; }
 
         /// <summary>
-        /// The Host request header specifies the host of the server to which the request is being sent.
+        /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
         /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// 
+        /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
         [Input("matchHostHeader")]
         public Input<string>? MatchHostHeader { get; set; }
 
         /// <summary>
-        /// The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
         /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// 
+        /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }

@@ -33,6 +33,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The load-balancer ID this certificate is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
@@ -69,6 +71,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Array of alternative domain names.  A new certificate will be created if this field is changed.
+        /// 
+        /// &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
         /// </summary>
         [Output("subjectAlternativeNames")]
         public Output<ImmutableArray<string>> SubjectAlternativeNames { get; private set; } = null!;
@@ -128,6 +132,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The load-balancer ID this certificate is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
@@ -172,6 +178,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The load-balancer ID this certificate is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
@@ -211,6 +219,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Array of alternative domain names.  A new certificate will be created if this field is changed.
+        /// 
+        /// &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {

@@ -20,6 +20,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         public readonly int? Days;
         /// <summary>
         /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        /// 
+        /// &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         /// </summary>
         public readonly string StorageClass;
 

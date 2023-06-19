@@ -22,7 +22,7 @@ class GetLbFrontendResult:
     """
     A collection of values returned by getLbFrontend.
     """
-    def __init__(__self__, acls=None, backend_id=None, certificate_id=None, certificate_ids=None, enable_http3=None, frontend_id=None, id=None, inbound_port=None, lb_id=None, name=None, timeout_client=None):
+    def __init__(__self__, acls=None, backend_id=None, certificate_id=None, certificate_ids=None, enable_http3=None, external_acls=None, frontend_id=None, id=None, inbound_port=None, lb_id=None, name=None, timeout_client=None):
         if acls and not isinstance(acls, list):
             raise TypeError("Expected argument 'acls' to be a list")
         pulumi.set(__self__, "acls", acls)
@@ -38,6 +38,9 @@ class GetLbFrontendResult:
         if enable_http3 and not isinstance(enable_http3, bool):
             raise TypeError("Expected argument 'enable_http3' to be a bool")
         pulumi.set(__self__, "enable_http3", enable_http3)
+        if external_acls and not isinstance(external_acls, bool):
+            raise TypeError("Expected argument 'external_acls' to be a bool")
+        pulumi.set(__self__, "external_acls", external_acls)
         if frontend_id and not isinstance(frontend_id, str):
             raise TypeError("Expected argument 'frontend_id' to be a str")
         pulumi.set(__self__, "frontend_id", frontend_id)
@@ -81,6 +84,11 @@ class GetLbFrontendResult:
     @pulumi.getter(name="enableHttp3")
     def enable_http3(self) -> bool:
         return pulumi.get(self, "enable_http3")
+
+    @property
+    @pulumi.getter(name="externalAcls")
+    def external_acls(self) -> bool:
+        return pulumi.get(self, "external_acls")
 
     @property
     @pulumi.getter(name="frontendId")
@@ -127,6 +135,7 @@ class AwaitableGetLbFrontendResult(GetLbFrontendResult):
             certificate_id=self.certificate_id,
             certificate_ids=self.certificate_ids,
             enable_http3=self.enable_http3,
+            external_acls=self.external_acls,
             frontend_id=self.frontend_id,
             id=self.id,
             inbound_port=self.inbound_port,
@@ -141,7 +150,7 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbFrontendResult:
     """
     Get information about Scaleway Load-Balancer Frontends.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 
@@ -188,6 +197,7 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
         certificate_id=__ret__.certificate_id,
         certificate_ids=__ret__.certificate_ids,
         enable_http3=__ret__.enable_http3,
+        external_acls=__ret__.external_acls,
         frontend_id=__ret__.frontend_id,
         id=__ret__.id,
         inbound_port=__ret__.inbound_port,
@@ -203,7 +213,7 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbFrontendResult]:
     """
     Get information about Scaleway Load-Balancer Frontends.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#frontends-a6a28d).
+    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 

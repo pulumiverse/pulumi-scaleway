@@ -64,8 +64,8 @@ class LoadbalancerBackendArgs:
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -354,7 +354,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="stickySessions")
     def sticky_sessions(self) -> Optional[pulumi.Input[str]]:
         """
-        Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         """
         return pulumi.get(self, "sticky_sessions")
 
@@ -366,7 +366,7 @@ class LoadbalancerBackendArgs:
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -462,8 +462,8 @@ class _LoadbalancerBackendState:
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -755,7 +755,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="stickySessions")
     def sticky_sessions(self) -> Optional[pulumi.Input[str]]:
         """
-        Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         """
         return pulumi.get(self, "sticky_sessions")
 
@@ -767,7 +767,7 @@ class _LoadbalancerBackendState:
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -844,7 +844,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Load-Balancer Backends.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Examples
 
@@ -907,8 +907,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -921,7 +921,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Load-Balancer Backends.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Examples
 
@@ -1104,8 +1104,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
-        :param pulumi.Input[str] sticky_sessions: Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -1299,7 +1299,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="stickySessions")
     def sticky_sessions(self) -> pulumi.Output[Optional[str]]:
         """
-        Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         """
         return pulumi.get(self, "sticky_sessions")
 
@@ -1307,7 +1307,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 

@@ -14,24 +14,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     {
         /// <summary>
         /// Gets information about a private network.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// 
-        /// N/A, the usage will be meaningful in the next releases of VPC.
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpcPrivateNetworkResult> InvokeAsync(GetVpcPrivateNetworkArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a private network.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// 
-        /// N/A, the usage will be meaningful in the next releases of VPC.
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetVpcPrivateNetworkResult> Invoke(GetVpcPrivateNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkInvokeArgs(), options.WithDefaults());
@@ -41,11 +29,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class GetVpcPrivateNetworkArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Exact name of the private network.
+        /// Name of the private network. One of `name` and `private_network_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// ID of the private network. One of `name` and `private_network_id` should be specified.
+        /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
@@ -58,11 +49,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class GetVpcPrivateNetworkInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Exact name of the private network.
+        /// Name of the private network. One of `name` and `private_network_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the private network. One of `name` and `private_network_id` should be specified.
+        /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
@@ -81,12 +75,23 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// (Optional) The IPv4 subnet associated with the private network.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVpcPrivateNetworkIpv4SubnetResult> Ipv4Subnets;
+        /// <summary>
+        /// (Optional) The IPv6 subnets associated with the private network.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVpcPrivateNetworkIpv6SubnetResult> Ipv6Subnets;
+        public readonly bool IsRegional;
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
         public readonly string ProjectId;
+        public readonly string Region;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
+        public readonly string VpcId;
         public readonly string Zone;
 
         [OutputConstructor]
@@ -94,6 +99,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string createdAt,
 
             string id,
+
+            ImmutableArray<Outputs.GetVpcPrivateNetworkIpv4SubnetResult> ipv4Subnets,
+
+            ImmutableArray<Outputs.GetVpcPrivateNetworkIpv6SubnetResult> ipv6Subnets,
+
+            bool isRegional,
 
             string? name,
 
@@ -103,20 +114,29 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string projectId,
 
+            string region,
+
             ImmutableArray<string> tags,
 
             string updatedAt,
+
+            string vpcId,
 
             string zone)
         {
             CreatedAt = createdAt;
             Id = id;
+            Ipv4Subnets = ipv4Subnets;
+            Ipv6Subnets = ipv6Subnets;
+            IsRegional = isRegional;
             Name = name;
             OrganizationId = organizationId;
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
+            Region = region;
             Tags = tags;
             UpdatedAt = updatedAt;
+            VpcId = vpcId;
             Zone = zone;
         }
     }

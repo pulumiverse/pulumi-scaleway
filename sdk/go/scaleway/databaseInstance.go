@@ -47,6 +47,44 @@ import (
 //
 // ```
 //
+// ### Example With IPAM
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
+//					PnId: pn.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example with Settings
 //
 // ```go
@@ -211,19 +249,24 @@ import (
 //
 // ## Settings
 //
-// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` on your `nodeType` of your convenient.
+// Please consult
+// the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+// available `settings` and `initSettings` on your `nodeType` of your convenient.
 //
 // ## Private Network
 //
 // > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
 //
-// - `ipNet` - (Required) The IP network where to con.
-// - `pnId` - (Required) The ID of the private network. If not provided it will be randomly generated.
+//   - `ipNet` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+//     CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+//     service if not set.
+//   - `pnId` - (Required) The ID of the private network.
 //
 // ## Limitations
 //
 // The Managed Database product is only compliant with the private network in the default availability zone (AZ).
-// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 //
 // ## Import
 //
@@ -254,16 +297,25 @@ type DatabaseInstance struct {
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -271,19 +323,23 @@ type DatabaseInstance struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of read replicas of the database instance.
 	ReadReplicas DatabaseInstanceReadReplicaArrayOutput `pulumi:"readReplicas"`
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
@@ -349,16 +405,25 @@ type databaseInstanceState struct {
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort *int `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers []DatabaseInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType *string `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -366,19 +431,23 @@ type databaseInstanceState struct {
 	Password *string `pulumi:"password"`
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork *DatabaseInstancePrivateNetwork `pulumi:"privateNetwork"`
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// List of read replicas of the database instance.
 	ReadReplicas []DatabaseInstanceReadReplica `pulumi:"readReplicas"`
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
@@ -402,16 +471,25 @@ type DatabaseInstanceState struct {
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType pulumi.StringPtrInput
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -419,19 +497,23 @@ type DatabaseInstanceState struct {
 	Password pulumi.StringPtrInput
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrInput
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId pulumi.StringPtrInput
 	// List of read replicas of the database instance.
 	ReadReplicas DatabaseInstanceReadReplicaArrayInput
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntPtrInput
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
@@ -451,30 +533,43 @@ type databaseInstanceArgs struct {
 	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork *DatabaseInstancePrivateNetwork `pulumi:"privateNetwork"`
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
@@ -491,30 +586,43 @@ type DatabaseInstanceArgs struct {
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringInput
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType pulumi.StringInput
 	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrInput
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntPtrInput
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
@@ -645,16 +753,22 @@ func (o DatabaseInstanceOutput) EndpointPort() pulumi.IntOutput {
 }
 
 // Database Instance's engine version (e.g. `PostgreSQL-11`).
+//
+// > **Important:** Updates to `engine` will recreate the Database Instance.
 func (o DatabaseInstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
 
 // Map of engine settings to be set at database initialisation.
+//
+// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 func (o DatabaseInstanceOutput) InitSettings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.InitSettings }).(pulumi.StringMapOutput)
 }
 
 // Enable or disable high availability for the database instance.
+//
+// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 func (o DatabaseInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
@@ -670,6 +784,9 @@ func (o DatabaseInstanceOutput) Name() pulumi.StringOutput {
 }
 
 // The type of database instance you want to create (e.g. `db-dev-s`).
+//
+// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+// interruption. Keep in mind that you cannot downgrade a Database Instance.
 func (o DatabaseInstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -689,7 +806,8 @@ func (o DatabaseInstanceOutput) PrivateNetwork() DatabaseInstancePrivateNetworkP
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(DatabaseInstancePrivateNetworkPtrOutput)
 }
 
-// `projectId`) The ID of the project the Database Instance is associated with.
+// `projectId`) The ID of the project the Database
+// Instance is associated with.
 func (o DatabaseInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -699,7 +817,8 @@ func (o DatabaseInstanceOutput) ReadReplicas() DatabaseInstanceReadReplicaArrayO
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceReadReplicaArrayOutput { return v.ReadReplicas }).(DatabaseInstanceReadReplicaArrayOutput)
 }
 
-// `region`) The region in which the Database Instance should be created.
+// `region`) The region
+// in which the Database Instance should be created.
 func (o DatabaseInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -715,11 +834,13 @@ func (o DatabaseInstanceOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // Identifier for the first user of the database instance.
+//
+// > **Important:** Updates to `userName` will recreate the Database Instance.
 func (o DatabaseInstanceOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
-// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+// Volume size (in GB) when `volumeType` is set to `bssd`.
 func (o DatabaseInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }

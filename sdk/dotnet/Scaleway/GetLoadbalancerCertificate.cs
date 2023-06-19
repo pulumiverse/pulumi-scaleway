@@ -17,7 +17,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
         /// 
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
         /// </summary>
@@ -29,7 +29,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
         /// 
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#certificate-330754).
+        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
         /// </summary>

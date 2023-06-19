@@ -15,6 +15,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     {
         /// <summary>
         /// Full PEM-formatted certificate chain.
+        /// 
+        /// &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
         /// </summary>
         [Input("certificateChain", required: true)]
         public Input<string> CertificateChain { get; set; } = null!;

@@ -11,6 +11,140 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			jack, err := scaleway.NewKubernetesCluster(ctx, "jack", &scaleway.KubernetesClusterArgs{
+//				Version:                   pulumi.String("1.24.3"),
+//				Cni:                       pulumi.String("cilium"),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewKubernetesNodePool(ctx, "john", &scaleway.KubernetesNodePoolArgs{
+//				ClusterId: jack.ID(),
+//				NodeType:  pulumi.String("DEV1-M"),
+//				Size:      pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Multicloud
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			henry, err := scaleway.NewKubernetesCluster(ctx, "henry", &scaleway.KubernetesClusterArgs{
+//				Type:                      pulumi.String("multicloud"),
+//				Version:                   pulumi.String("1.24.3"),
+//				Cni:                       pulumi.String("kilo"),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewKubernetesNodePool(ctx, "friendFromOuterSpace", &scaleway.KubernetesNodePoolArgs{
+//				ClusterId: henry.ID(),
+//				NodeType:  pulumi.String("external"),
+//				Size:      pulumi.Int(0),
+//				MinSize:   pulumi.Int(0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+//
+// ### With additional configuration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			johnKubernetesCluster, err := scaleway.NewKubernetesCluster(ctx, "johnKubernetesCluster", &scaleway.KubernetesClusterArgs{
+//				Description: pulumi.String("my awesome cluster"),
+//				Version:     pulumi.String("1.24.3"),
+//				Cni:         pulumi.String("calico"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("i'm an awesome tag"),
+//					pulumi.String("yay"),
+//				},
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//				AutoscalerConfig: &scaleway.KubernetesClusterAutoscalerConfigArgs{
+//					DisableScaleDown:             pulumi.Bool(false),
+//					ScaleDownDelayAfterAdd:       pulumi.String("5m"),
+//					Estimator:                    pulumi.String("binpacking"),
+//					Expander:                     pulumi.String("random"),
+//					IgnoreDaemonsetsUtilization:  pulumi.Bool(true),
+//					BalanceSimilarNodeGroups:     pulumi.Bool(true),
+//					ExpendablePodsPriorityCutoff: -5,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewKubernetesNodePool(ctx, "johnKubernetesNodePool", &scaleway.KubernetesNodePoolArgs{
+//				ClusterId:   johnKubernetesCluster.ID(),
+//				NodeType:    pulumi.String("DEV1-M"),
+//				Size:        pulumi.Int(3),
+//				Autoscaling: pulumi.Bool(true),
+//				Autohealing: pulumi.Bool(true),
+//				MinSize:     pulumi.Int(1),
+//				MaxSize:     pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -38,7 +172,7 @@ type KubernetesCluster struct {
 	Cni pulumi.StringOutput `pulumi:"cni"`
 	// The creation date of the cluster.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolOutput `pulumi:"deleteAdditionalResources"`
@@ -55,7 +189,10 @@ type KubernetesCluster struct {
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
-	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
+	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -134,7 +271,7 @@ type kubernetesClusterState struct {
 	Cni *string `pulumi:"cni"`
 	// The creation date of the cluster.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources *bool `pulumi:"deleteAdditionalResources"`
@@ -151,6 +288,9 @@ type kubernetesClusterState struct {
 	// The organization ID the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -188,7 +328,7 @@ type KubernetesClusterState struct {
 	Cni pulumi.StringPtrInput
 	// The creation date of the cluster.
 	CreatedAt pulumi.StringPtrInput
-	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolPtrInput
@@ -205,6 +345,9 @@ type KubernetesClusterState struct {
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -242,7 +385,7 @@ type kubernetesClusterArgs struct {
 	// The Container Network Interface (CNI) for the Kubernetes cluster.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Cni string `pulumi:"cni"`
-	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources bool `pulumi:"deleteAdditionalResources"`
@@ -255,6 +398,9 @@ type kubernetesClusterArgs struct {
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig *KubernetesClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -281,7 +427,7 @@ type KubernetesClusterArgs struct {
 	// The Container Network Interface (CNI) for the Kubernetes cluster.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Cni pulumi.StringInput
-	// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolInput
@@ -294,6 +440,9 @@ type KubernetesClusterArgs struct {
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig KubernetesClusterOpenIdConnectConfigPtrInput
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -430,7 +579,7 @@ func (o KubernetesClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
 // > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 // If you prefer keeping it, you should instead set it as `false`.
 func (o KubernetesClusterOutput) DeleteAdditionalResources() pulumi.BoolOutput {
@@ -468,8 +617,11 @@ func (o KubernetesClusterOutput) OrganizationId() pulumi.StringOutput {
 }
 
 // The ID of the private network of the cluster.
-func (o KubernetesClusterOutput) PrivateNetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
+//
+// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+// Changes to this field will cause the cluster to be destroyed then recreated.
+func (o KubernetesClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
 // `projectId`) The ID of the project the cluster is associated with.

@@ -18,6 +18,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
         /// <summary>
         /// Forces deletion of the root volume on instance termination.
+        /// 
+        /// &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         /// </summary>
         [Input("deleteOnTermination")]
         public Input<bool>? DeleteOnTermination { get; set; }

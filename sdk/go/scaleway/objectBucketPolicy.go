@@ -14,6 +14,122 @@ import (
 // Creates and manages Scaleway object storage bucket policy.
 // For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"Id": "MyPolicy",
+//				"Statement": []map[string]interface{}{
+//					map[string]interface{}{
+//						"Action": []string{
+//							"s3:ListBucket",
+//							"s3:GetObject",
+//						},
+//						"Effect": "Allow",
+//						"Principal": map[string]interface{}{
+//							"SCW": "*",
+//						},
+//						"Resource": []string{
+//							"some-unique-name",
+//							"some-unique-name/*",
+//						},
+//						"Sid": "GrantToEveryone",
+//					},
+//				},
+//				"Version": "2012-10-17",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.Name,
+//				Policy: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## Example with aws provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			policy, err := iam.GetPolicyDocument(ctx, &iam.GetPolicyDocumentArgs{
+//				Version: pulumi.StringRef("2012-10-17"),
+//				Statements: []iam.GetPolicyDocumentStatement{
+//					{
+//						Sid: pulumi.StringRef("MyPolicy"),
+//						Principals: []iam.GetPolicyDocumentStatementPrincipal{
+//							{
+//								Type: "SCW",
+//								Identifiers: []string{
+//									"project_id:<project_id>",
+//								},
+//							},
+//						},
+//						Actions: []string{
+//							"s3:GetObject",
+//							"s3:ListBucket",
+//						},
+//						Resources: []string{
+//							"some-unique-name",
+//							"some-unique-name/*",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.Name,
+//				Policy: *pulumi.String(policy.Json),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
@@ -31,6 +147,8 @@ type ObjectBucketPolicy struct {
 	// The text of the policy.
 	Policy pulumi.StringOutput `pulumi:"policy"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -77,6 +195,8 @@ type objectBucketPolicyState struct {
 	// The text of the policy.
 	Policy *string `pulumi:"policy"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -88,6 +208,8 @@ type ObjectBucketPolicyState struct {
 	// The text of the policy.
 	Policy pulumi.StringPtrInput
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -103,6 +225,8 @@ type objectBucketPolicyArgs struct {
 	// The text of the policy.
 	Policy string `pulumi:"policy"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -115,6 +239,8 @@ type ObjectBucketPolicyArgs struct {
 	// The text of the policy.
 	Policy pulumi.StringInput
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -218,6 +344,8 @@ func (o ObjectBucketPolicyOutput) Policy() pulumi.StringOutput {
 }
 
 // `projectId`) The ID of the project the bucket is associated with.
+//
+// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 func (o ObjectBucketPolicyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

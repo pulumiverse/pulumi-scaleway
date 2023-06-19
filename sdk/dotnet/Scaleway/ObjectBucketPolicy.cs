@@ -14,6 +14,108 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// Creates and manages Scaleway object storage bucket policy.
     /// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    /// 
+    ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
+    ///     {
+    ///         Bucket = bucket.Name,
+    ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["Id"] = "MyPolicy",
+    ///             ["Statement"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["Action"] = new[]
+    ///                     {
+    ///                         "s3:ListBucket",
+    ///                         "s3:GetObject",
+    ///                     },
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["SCW"] = "*",
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         "some-unique-name",
+    ///                         "some-unique-name/*",
+    ///                     },
+    ///                     ["Sid"] = "GrantToEveryone",
+    ///                 },
+    ///             },
+    ///             ["Version"] = "2012-10-17",
+    ///         }),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ## Example with aws provider
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    /// 
+    ///     var policy = Aws.Iam.GetPolicyDocument.Invoke(new()
+    ///     {
+    ///         Version = "2012-10-17",
+    ///         Statements = new[]
+    ///         {
+    ///             new Aws.Iam.Inputs.GetPolicyDocumentStatementInputArgs
+    ///             {
+    ///                 Sid = "MyPolicy",
+    ///                 Principals = new[]
+    ///                 {
+    ///                     new Aws.Iam.Inputs.GetPolicyDocumentStatementPrincipalInputArgs
+    ///                     {
+    ///                         Type = "SCW",
+    ///                         Identifiers = new[]
+    ///                         {
+    ///                             "project_id:&lt;project_id&gt;",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Actions = new[]
+    ///                 {
+    ///                     "s3:GetObject",
+    ///                     "s3:ListBucket",
+    ///                 },
+    ///                 Resources = new[]
+    ///                 {
+    ///                     "some-unique-name",
+    ///                     "some-unique-name/*",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var main = new Scaleway.ObjectBucketPolicy("main", new()
+    ///     {
+    ///         Bucket = bucket.Name,
+    ///         Policy = policy.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Json),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
@@ -39,6 +141,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -110,6 +214,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -142,6 +248,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

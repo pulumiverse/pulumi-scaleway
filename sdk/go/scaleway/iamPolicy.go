@@ -86,6 +86,8 @@ type IamPolicy struct {
 	// .The name of the iam policy.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
+	//
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrOutput `pulumi:"noPrincipal"`
 	// ID of organization scoped to the rule.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -143,6 +145,8 @@ type iamPolicyState struct {
 	// .The name of the iam policy.
 	Name *string `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
+	//
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
 	// ID of organization scoped to the rule.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -168,6 +172,8 @@ type IamPolicyState struct {
 	// .The name of the iam policy.
 	Name pulumi.StringPtrInput
 	// If the policy doesn't apply to a principal.
+	//
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrInput
 	// ID of organization scoped to the rule.
 	OrganizationId pulumi.StringPtrInput
@@ -193,6 +199,8 @@ type iamPolicyArgs struct {
 	// .The name of the iam policy.
 	Name *string `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
+	//
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
 	// ID of organization scoped to the rule.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -213,6 +221,8 @@ type IamPolicyArgs struct {
 	// .The name of the iam policy.
 	Name pulumi.StringPtrInput
 	// If the policy doesn't apply to a principal.
+	//
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrInput
 	// ID of organization scoped to the rule.
 	OrganizationId pulumi.StringPtrInput
@@ -340,6 +350,8 @@ func (o IamPolicyOutput) Name() pulumi.StringOutput {
 }
 
 // If the policy doesn't apply to a principal.
+//
+// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 func (o IamPolicyOutput) NoPrincipal() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.BoolPtrOutput { return v.NoPrincipal }).(pulumi.BoolPtrOutput)
 }

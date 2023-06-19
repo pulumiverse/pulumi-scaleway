@@ -22,7 +22,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// <summary>
         /// Endpoint IPv4 addresses
         /// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-        /// least one IP per node.
+        /// least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
+        /// 
+        /// &gt; The `private_network` conflict with `acl`. Only one should be specified.
         /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>

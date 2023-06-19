@@ -124,6 +124,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// ID of the gateway network.
+        /// 
+        /// &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
         /// </summary>
         [Input("gatewayNetworkId")]
         public string? GatewayNetworkId { get; set; }
@@ -162,6 +164,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// ID of the gateway network.
+        /// 
+        /// &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
         /// </summary>
         [Input("gatewayNetworkId")]
         public Input<string>? GatewayNetworkId { get; set; }

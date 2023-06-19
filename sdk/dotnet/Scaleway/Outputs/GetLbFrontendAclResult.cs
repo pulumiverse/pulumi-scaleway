@@ -15,24 +15,36 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class GetLbFrontendAclResult
     {
         public readonly ImmutableArray<Outputs.GetLbFrontendAclActionResult> Actions;
+        public readonly string CreatedAt;
+        public readonly string Description;
         public readonly ImmutableArray<Outputs.GetLbFrontendAclMatchResult> Matches;
         /// <summary>
         /// The name of the frontend.
         /// - When using the `name` you should specify the `lb-id`
         /// </summary>
         public readonly string Name;
+        public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetLbFrontendAclResult(
             ImmutableArray<Outputs.GetLbFrontendAclActionResult> actions,
 
+            string createdAt,
+
+            string description,
+
             ImmutableArray<Outputs.GetLbFrontendAclMatchResult> matches,
 
-            string name)
+            string name,
+
+            string updatedAt)
         {
             Actions = actions;
+            CreatedAt = createdAt;
+            Description = description;
             Matches = matches;
             Name = name;
+            UpdatedAt = updatedAt;
         }
     }
 }

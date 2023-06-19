@@ -116,8 +116,8 @@ def get_lb_frontends(lb_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_lbid = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"])
-    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"],
+    by_lbid = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         name="tf-frontend-datasource")
     ```
 
@@ -159,8 +159,8 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_lbid = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"])
-    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"],
+    by_lbid = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         name="tf-frontend-datasource")
     ```
 

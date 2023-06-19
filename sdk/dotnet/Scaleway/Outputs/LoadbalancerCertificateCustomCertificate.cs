@@ -16,6 +16,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     {
         /// <summary>
         /// Full PEM-formatted certificate chain.
+        /// 
+        /// &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
         /// </summary>
         public readonly string CertificateChain;
 

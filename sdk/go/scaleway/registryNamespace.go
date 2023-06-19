@@ -61,6 +61,8 @@ type RegistryNamespace struct {
 	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic pulumi.BoolPtrOutput `pulumi:"isPublic"`
 	// The unique name of the namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -107,6 +109,8 @@ type registryNamespaceState struct {
 	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic *bool `pulumi:"isPublic"`
 	// The unique name of the namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name *string `pulumi:"name"`
 	// The organization ID the namespace is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -124,6 +128,8 @@ type RegistryNamespaceState struct {
 	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic pulumi.BoolPtrInput
 	// The unique name of the namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringPtrInput
 	// The organization ID the namespace is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -143,6 +149,8 @@ type registryNamespaceArgs struct {
 	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic *bool `pulumi:"isPublic"`
 	// The unique name of the namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -157,6 +165,8 @@ type RegistryNamespaceArgs struct {
 	// Whether the images stored in the namespace should be downloadable publicly (docker pull).
 	IsPublic pulumi.BoolPtrInput
 	// The unique name of the namespace.
+	//
+	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -267,6 +277,8 @@ func (o RegistryNamespaceOutput) IsPublic() pulumi.BoolPtrOutput {
 }
 
 // The unique name of the namespace.
+//
+// > **Important** Updates to `name` will recreate the namespace.
 func (o RegistryNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

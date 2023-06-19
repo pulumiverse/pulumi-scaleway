@@ -144,6 +144,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The number of nodes in the Redis Cluster.
+        /// 
+        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        /// which is minimum 3 (1 main node + 2 secondary nodes)
+        /// 
+        /// &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+        /// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         /// </summary>
         [Output("clusterSize")]
         public Output<int> ClusterSize { get; private set; } = null!;
@@ -162,6 +168,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+        /// you cannot downgrade a Redis Cluster.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -175,6 +184,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// Describes the private network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
+        /// 
+        /// &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+        /// 
+        /// - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+        /// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+        /// public network. You can modify your private_network and its specs, you can have both a private and public network side
+        /// by side.
+        /// 
+        /// - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won't be
+        /// able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.RedisClusterPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
@@ -208,6 +237,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Whether TLS is enabled or not.
+        /// 
+        /// &gt; The changes on `tls_enabled` will force the resource creation.
         /// </summary>
         [Output("tlsEnabled")]
         public Output<bool?> TlsEnabled { get; private set; } = null!;
@@ -226,6 +257,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Redis's Cluster version (e.g. `6.2.6`).
+        /// 
+        /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+        /// cannot downgrade a Redis Cluster.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -302,6 +336,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The number of nodes in the Redis Cluster.
+        /// 
+        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        /// which is minimum 3 (1 main node + 2 secondary nodes)
+        /// 
+        /// &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+        /// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
@@ -314,6 +354,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+        /// you cannot downgrade a Redis Cluster.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -340,6 +383,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// Describes the private network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
+        /// 
+        /// &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+        /// 
+        /// - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+        /// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+        /// public network. You can modify your private_network and its specs, you can have both a private and public network side
+        /// by side.
+        /// 
+        /// - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won't be
+        /// able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkArgs> PrivateNetworks
         {
@@ -388,6 +451,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Whether TLS is enabled or not.
+        /// 
+        /// &gt; The changes on `tls_enabled` will force the resource creation.
         /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
@@ -400,6 +465,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Redis's Cluster version (e.g. `6.2.6`).
+        /// 
+        /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+        /// cannot downgrade a Redis Cluster.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -439,6 +507,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The number of nodes in the Redis Cluster.
+        /// 
+        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        /// which is minimum 3 (1 main node + 2 secondary nodes)
+        /// 
+        /// &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+        /// keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
@@ -457,6 +531,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+        /// you cannot downgrade a Redis Cluster.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -483,6 +560,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// Describes the private network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
+        /// 
+        /// &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+        /// 
+        /// - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+        /// block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+        /// public network. You can modify your private_network and its specs, you can have both a private and public network side
+        /// by side.
+        /// 
+        /// - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won't be
+        /// able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkGetArgs> PrivateNetworks
         {
@@ -531,6 +628,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Whether TLS is enabled or not.
+        /// 
+        /// &gt; The changes on `tls_enabled` will force the resource creation.
         /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
@@ -549,6 +648,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Redis's Cluster version (e.g. `6.2.6`).
+        /// 
+        /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+        /// cannot downgrade a Redis Cluster.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

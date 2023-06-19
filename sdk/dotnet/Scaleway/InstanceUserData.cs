@@ -54,6 +54,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.
+        /// 
+        /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        /// You can define values using:
+        /// - string
+        /// - UTF-8 encoded file content using file
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -125,6 +130,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.
+        /// 
+        /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        /// You can define values using:
+        /// - string
+        /// - UTF-8 encoded file content using file
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -157,6 +167,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the server should be created.
+        /// 
+        /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        /// You can define values using:
+        /// - string
+        /// - UTF-8 encoded file content using file
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

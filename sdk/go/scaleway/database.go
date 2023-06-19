@@ -55,6 +55,8 @@ type Database struct {
 	pulumi.CustomResourceState
 
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Whether the database is managed or not.
 	Managed pulumi.BoolOutput `pulumi:"managed"`
@@ -102,6 +104,8 @@ func GetDatabase(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId *string `pulumi:"instanceId"`
 	// Whether the database is managed or not.
 	Managed *bool `pulumi:"managed"`
@@ -117,6 +121,8 @@ type databaseState struct {
 
 type DatabaseState struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringPtrInput
 	// Whether the database is managed or not.
 	Managed pulumi.BoolPtrInput
@@ -136,6 +142,8 @@ func (DatabaseState) ElementType() reflect.Type {
 
 type databaseArgs struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId string `pulumi:"instanceId"`
 	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
@@ -146,6 +154,8 @@ type databaseArgs struct {
 // The set of arguments for constructing a Database resource.
 type DatabaseArgs struct {
 	// UUID of the rdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringInput
 	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
@@ -241,6 +251,8 @@ func (o DatabaseOutput) ToDatabaseOutputWithContext(ctx context.Context) Databas
 }
 
 // UUID of the rdb instance.
+//
+// > **Important:** Updates to `instanceId` will recreate the Database.
 func (o DatabaseOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

@@ -84,6 +84,8 @@ type Function struct {
 	// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
 	MinScale pulumi.IntPtrOutput `pulumi:"minScale"`
 	// The unique name of the function.
+	//
+	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace ID associated with this function
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
@@ -177,6 +179,8 @@ type functionState struct {
 	// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
 	MinScale *int `pulumi:"minScale"`
 	// The unique name of the function.
+	//
+	// > **Important** Updates to `name` will recreate the function.
 	Name *string `pulumi:"name"`
 	// The namespace ID associated with this function
 	NamespaceId *string `pulumi:"namespaceId"`
@@ -222,6 +226,8 @@ type FunctionState struct {
 	// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
 	MinScale pulumi.IntPtrInput
 	// The unique name of the function.
+	//
+	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringPtrInput
 	// The namespace ID associated with this function
 	NamespaceId pulumi.StringPtrInput
@@ -267,6 +273,8 @@ type functionArgs struct {
 	// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
 	MinScale *int `pulumi:"minScale"`
 	// The unique name of the function.
+	//
+	// > **Important** Updates to `name` will recreate the function.
 	Name *string `pulumi:"name"`
 	// The namespace ID associated with this function
 	NamespaceId string `pulumi:"namespaceId"`
@@ -307,6 +315,8 @@ type FunctionArgs struct {
 	// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
 	MinScale pulumi.IntPtrInput
 	// The unique name of the function.
+	//
+	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringPtrInput
 	// The namespace ID associated with this function
 	NamespaceId pulumi.StringInput
@@ -466,6 +476,8 @@ func (o FunctionOutput) MinScale() pulumi.IntPtrOutput {
 }
 
 // The unique name of the function.
+//
+// > **Important** Updates to `name` will recreate the function.
 func (o FunctionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

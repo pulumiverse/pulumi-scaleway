@@ -120,11 +120,13 @@ import (
 type Container struct {
 	pulumi.CustomResourceState
 
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
 	// The cron status of the container.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -140,13 +142,17 @@ type Container struct {
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntOutput `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit pulumi.IntOutput `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntOutput `pulumi:"minScale"`
 	// The unique name of the container name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntOutput `pulumi:"port"`
@@ -208,11 +214,13 @@ func GetContainer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Container resources.
 type containerState struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// The cron status of the container.
 	CronStatus *string `pulumi:"cronStatus"`
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
@@ -228,13 +236,17 @@ type containerState struct {
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale *int `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale *int `pulumi:"minScale"`
 	// The unique name of the container name.
 	Name *string `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
@@ -257,11 +269,13 @@ type containerState struct {
 }
 
 type ContainerState struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit pulumi.IntPtrInput
 	// The cron status of the container.
 	CronStatus pulumi.StringPtrInput
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
@@ -277,13 +291,17 @@ type ContainerState struct {
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntPtrInput
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit pulumi.IntPtrInput
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntPtrInput
 	// The unique name of the container name.
 	Name pulumi.StringPtrInput
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId pulumi.StringPtrInput
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
@@ -310,9 +328,11 @@ func (ContainerState) ElementType() reflect.Type {
 }
 
 type containerArgs struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
@@ -324,13 +344,17 @@ type containerArgs struct {
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale *int `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale *int `pulumi:"minScale"`
 	// The unique name of the container name.
 	Name *string `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId string `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
@@ -352,9 +376,11 @@ type containerArgs struct {
 
 // The set of arguments for constructing a Container resource.
 type ContainerArgs struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit pulumi.IntPtrInput
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
@@ -366,13 +392,17 @@ type ContainerArgs struct {
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntPtrInput
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit pulumi.IntPtrInput
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntPtrInput
 	// The unique name of the container name.
 	Name pulumi.StringPtrInput
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId pulumi.StringInput
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
@@ -479,7 +509,7 @@ func (o ContainerOutput) ToContainerOutputWithContext(ctx context.Context) Conta
 	return o
 }
 
-// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 func (o ContainerOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
@@ -490,6 +520,8 @@ func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 }
 
 // Boolean controlling whether the container is on a production environment.
+//
+// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 func (o ContainerOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -529,7 +561,7 @@ func (o ContainerOutput) MaxScale() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MaxScale }).(pulumi.IntOutput)
 }
 
-// The memory computing resources in MB to allocate to each container. Defaults to 128.
+// The memory computing resources in MB to allocate to each container. Defaults to 256.
 func (o ContainerOutput) MemoryLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MemoryLimit }).(pulumi.IntOutput)
 }
@@ -545,6 +577,10 @@ func (o ContainerOutput) Name() pulumi.StringOutput {
 }
 
 // The container namespace ID of the container.
+//
+// > **Important** Updates to `name` will recreate the container.
+//
+// The following arguments are optional:
 func (o ContainerOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }

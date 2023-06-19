@@ -366,6 +366,10 @@ type InstanceServer struct {
 
 	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
+	//
+	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+	//
+	// > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
 	AdditionalVolumeIds pulumi.StringArrayOutput `pulumi:"additionalVolumeIds"`
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrOutput `pulumi:"bootType"`
@@ -379,6 +383,10 @@ type InstanceServer struct {
 	EnableIpv6 pulumi.BoolPtrOutput `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	//
+	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+	//
+	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image pulumi.StringPtrOutput `pulumi:"image"`
 	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
@@ -393,6 +401,8 @@ type InstanceServer struct {
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+	//
+	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected pulumi.BoolOutput `pulumi:"placementGroupPolicyRespected"`
@@ -417,7 +427,12 @@ type InstanceServer struct {
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The user data associated with the server
+	// The user data associated with the server.
+	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// You can define values using:
+	// - string
+	// - UTF-8 encoded file content using file
+	// - Binary files using filebase64.
 	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -458,6 +473,10 @@ func GetInstanceServer(ctx *pulumi.Context,
 type instanceServerState struct {
 	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
+	//
+	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+	//
+	// > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
@@ -471,6 +490,10 @@ type instanceServerState struct {
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	//
+	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+	//
+	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image *string `pulumi:"image"`
 	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
@@ -485,6 +508,8 @@ type instanceServerState struct {
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+	//
+	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected *bool `pulumi:"placementGroupPolicyRespected"`
@@ -509,7 +534,12 @@ type instanceServerState struct {
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	// Updates to this field will recreate a new resource.
 	Type *string `pulumi:"type"`
-	// The user data associated with the server
+	// The user data associated with the server.
+	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// You can define values using:
+	// - string
+	// - UTF-8 encoded file content using file
+	// - Binary files using filebase64.
 	UserData map[string]string `pulumi:"userData"`
 	// `zone`) The zone in which the server should be created.
 	Zone *string `pulumi:"zone"`
@@ -518,6 +548,10 @@ type instanceServerState struct {
 type InstanceServerState struct {
 	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
+	//
+	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+	//
+	// > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
 	AdditionalVolumeIds pulumi.StringArrayInput
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
@@ -531,6 +565,10 @@ type InstanceServerState struct {
 	EnableIpv6 pulumi.BoolPtrInput
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	//
+	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+	//
+	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image pulumi.StringPtrInput
 	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
@@ -545,6 +583,8 @@ type InstanceServerState struct {
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+	//
+	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected pulumi.BoolPtrInput
@@ -569,7 +609,12 @@ type InstanceServerState struct {
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringPtrInput
-	// The user data associated with the server
+	// The user data associated with the server.
+	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// You can define values using:
+	// - string
+	// - UTF-8 encoded file content using file
+	// - Binary files using filebase64.
 	UserData pulumi.StringMapInput
 	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringPtrInput
@@ -582,6 +627,10 @@ func (InstanceServerState) ElementType() reflect.Type {
 type instanceServerArgs struct {
 	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
+	//
+	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+	//
+	// > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
@@ -595,12 +644,18 @@ type instanceServerArgs struct {
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	//
+	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+	//
+	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image *string `pulumi:"image"`
 	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+	//
+	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
@@ -619,7 +674,12 @@ type instanceServerArgs struct {
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	// Updates to this field will recreate a new resource.
 	Type string `pulumi:"type"`
-	// The user data associated with the server
+	// The user data associated with the server.
+	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// You can define values using:
+	// - string
+	// - UTF-8 encoded file content using file
+	// - Binary files using filebase64.
 	UserData map[string]string `pulumi:"userData"`
 	// `zone`) The zone in which the server should be created.
 	Zone *string `pulumi:"zone"`
@@ -629,6 +689,10 @@ type instanceServerArgs struct {
 type InstanceServerArgs struct {
 	// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
+	//
+	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+	//
+	// > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
 	AdditionalVolumeIds pulumi.StringArrayInput
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
@@ -642,12 +706,18 @@ type InstanceServerArgs struct {
 	EnableIpv6 pulumi.BoolPtrInput
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+	//
+	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+	//
+	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image pulumi.StringPtrInput
 	// = (Optional) The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+	//
+	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
@@ -666,7 +736,12 @@ type InstanceServerArgs struct {
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringInput
-	// The user data associated with the server
+	// The user data associated with the server.
+	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// You can define values using:
+	// - string
+	// - UTF-8 encoded file content using file
+	// - Binary files using filebase64.
 	UserData pulumi.StringMapInput
 	// `zone`) The zone in which the server should be created.
 	Zone pulumi.StringPtrInput
@@ -761,6 +836,10 @@ func (o InstanceServerOutput) ToInstanceServerOutputWithContext(ctx context.Cont
 
 // The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 // attached to the server. Updates to this field will trigger a stop/start of the server.
+//
+// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+//
+// > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
 func (o InstanceServerOutput) AdditionalVolumeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringArrayOutput { return v.AdditionalVolumeIds }).(pulumi.StringArrayOutput)
 }
@@ -792,6 +871,10 @@ func (o InstanceServerOutput) EnableIpv6() pulumi.BoolPtrOutput {
 
 // The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
 // to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+//
+// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+//
+// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 func (o InstanceServerOutput) Image() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.Image }).(pulumi.StringPtrOutput)
 }
@@ -827,6 +910,8 @@ func (o InstanceServerOutput) OrganizationId() pulumi.StringOutput {
 }
 
 // The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+//
+// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 func (o InstanceServerOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
 }
@@ -884,7 +969,12 @@ func (o InstanceServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The user data associated with the server
+// The user data associated with the server.
+// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+// You can define values using:
+// - string
+// - UTF-8 encoded file content using file
+// - Binary files using filebase64.
 func (o InstanceServerOutput) UserData() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringMapOutput { return v.UserData }).(pulumi.StringMapOutput)
 }

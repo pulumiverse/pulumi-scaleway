@@ -71,6 +71,8 @@ type LookupContainerArgs struct {
 	// The unique name of the container name.
 	Name *string `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
 	NamespaceId string `pulumi:"namespaceId"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
@@ -144,6 +146,8 @@ type LookupContainerOutputArgs struct {
 	// The unique name of the container name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
 	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput `pulumi:"region"`

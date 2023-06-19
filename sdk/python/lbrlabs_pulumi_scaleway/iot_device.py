@@ -28,11 +28,17 @@ class IotDeviceArgs:
         The set of arguments for constructing a IotDevice resource.
         :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
         :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+               
+               > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+               
+               > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         :param pulumi.Input['IotDeviceCertificateArgs'] certificate: The certificate bundle of the device.
         :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
         :param pulumi.Input['IotDeviceMessageFiltersArgs'] message_filters: Rules that define which messages are authorized or denied based on their topic.
         :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
+               
+               > **Important:** Updates to `name` will destroy and recreate a new resource.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         pulumi.set(__self__, "hub_id", hub_id)
@@ -68,6 +74,8 @@ class IotDeviceArgs:
     def allow_insecure(self) -> Optional[pulumi.Input[bool]]:
         """
         Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+
+        > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         """
         return pulumi.get(self, "allow_insecure")
 
@@ -80,6 +88,8 @@ class IotDeviceArgs:
     def allow_multiple_connections(self) -> Optional[pulumi.Input[bool]]:
         """
         Allow more than one simultaneous connection using the same device credentials.
+
+        > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         """
         return pulumi.get(self, "allow_multiple_connections")
 
@@ -128,6 +138,8 @@ class IotDeviceArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the IoT device you want to create (e.g. `my-device`).
+
+        > **Important:** Updates to `name` will destroy and recreate a new resource.
         """
         return pulumi.get(self, "name")
 
@@ -167,7 +179,11 @@ class _IotDeviceState:
         """
         Input properties used for looking up and filtering IotDevice resources.
         :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+               
+               > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+               
+               > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         :param pulumi.Input['IotDeviceCertificateArgs'] certificate: The certificate bundle of the device.
         :param pulumi.Input[str] created_at: The date and time the device was created.
         :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
@@ -176,6 +192,8 @@ class _IotDeviceState:
         :param pulumi.Input[str] last_activity_at: The last MQTT activity of the device.
         :param pulumi.Input['IotDeviceMessageFiltersArgs'] message_filters: Rules that define which messages are authorized or denied based on their topic.
         :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
+               
+               > **Important:** Updates to `name` will destroy and recreate a new resource.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] status: The current status of the device.
         :param pulumi.Input[str] updated_at: The date and time the device resource was updated.
@@ -212,6 +230,8 @@ class _IotDeviceState:
     def allow_insecure(self) -> Optional[pulumi.Input[bool]]:
         """
         Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+
+        > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         """
         return pulumi.get(self, "allow_insecure")
 
@@ -224,6 +244,8 @@ class _IotDeviceState:
     def allow_multiple_connections(self) -> Optional[pulumi.Input[bool]]:
         """
         Allow more than one simultaneous connection using the same device credentials.
+
+        > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         """
         return pulumi.get(self, "allow_multiple_connections")
 
@@ -320,6 +342,8 @@ class _IotDeviceState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the IoT device you want to create (e.g. `my-device`).
+
+        > **Important:** Updates to `name` will destroy and recreate a new resource.
         """
         return pulumi.get(self, "name")
 
@@ -390,12 +414,18 @@ class IotDevice(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+               
+               > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+               
+               > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: The certificate bundle of the device.
         :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
         :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
         :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules that define which messages are authorized or denied based on their topic.
         :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
+               
+               > **Important:** Updates to `name` will destroy and recreate a new resource.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
         ...
@@ -491,7 +521,11 @@ class IotDevice(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+               
+               > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
+               
+               > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: The certificate bundle of the device.
         :param pulumi.Input[str] created_at: The date and time the device was created.
         :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
@@ -500,6 +534,8 @@ class IotDevice(pulumi.CustomResource):
         :param pulumi.Input[str] last_activity_at: The last MQTT activity of the device.
         :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules that define which messages are authorized or denied based on their topic.
         :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
+               
+               > **Important:** Updates to `name` will destroy and recreate a new resource.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] status: The current status of the device.
         :param pulumi.Input[str] updated_at: The date and time the device resource was updated.
@@ -528,6 +564,8 @@ class IotDevice(pulumi.CustomResource):
     def allow_insecure(self) -> pulumi.Output[Optional[bool]]:
         """
         Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+
+        > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
         """
         return pulumi.get(self, "allow_insecure")
 
@@ -536,6 +574,8 @@ class IotDevice(pulumi.CustomResource):
     def allow_multiple_connections(self) -> pulumi.Output[Optional[bool]]:
         """
         Allow more than one simultaneous connection using the same device credentials.
+
+        > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
         """
         return pulumi.get(self, "allow_multiple_connections")
 
@@ -600,6 +640,8 @@ class IotDevice(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The name of the IoT device you want to create (e.g. `my-device`).
+
+        > **Important:** Updates to `name` will destroy and recreate a new resource.
         """
         return pulumi.get(self, "name")
 

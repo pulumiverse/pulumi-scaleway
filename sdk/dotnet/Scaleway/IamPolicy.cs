@@ -104,6 +104,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// If the policy doesn't apply to a principal.
+        /// 
+        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         /// </summary>
         [Output("noPrincipal")]
         public Output<bool?> NoPrincipal { get; private set; } = null!;
@@ -205,6 +207,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// If the policy doesn't apply to a principal.
+        /// 
+        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         /// </summary>
         [Input("noPrincipal")]
         public Input<bool>? NoPrincipal { get; set; }
@@ -279,6 +283,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// If the policy doesn't apply to a principal.
+        /// 
+        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         /// </summary>
         [Input("noPrincipal")]
         public Input<bool>? NoPrincipal { get; set; }

@@ -11,6 +11,115 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var jack = new Scaleway.KubernetesCluster("jack", new()
+    ///     {
+    ///         Version = "1.24.3",
+    ///         Cni = "cilium",
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var john = new Scaleway.KubernetesNodePool("john", new()
+    ///     {
+    ///         ClusterId = jack.Id,
+    ///         NodeType = "DEV1-M",
+    ///         Size = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Multicloud
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var henry = new Scaleway.KubernetesCluster("henry", new()
+    ///     {
+    ///         Type = "multicloud",
+    ///         Version = "1.24.3",
+    ///         Cni = "kilo",
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var friendFromOuterSpace = new Scaleway.KubernetesNodePool("friendFromOuterSpace", new()
+    ///     {
+    ///         ClusterId = henry.Id,
+    ///         NodeType = "external",
+    ///         Size = 0,
+    ///         MinSize = 0,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+    /// 
+    /// ### With additional configuration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var johnKubernetesCluster = new Scaleway.KubernetesCluster("johnKubernetesCluster", new()
+    ///     {
+    ///         Description = "my awesome cluster",
+    ///         Version = "1.24.3",
+    ///         Cni = "calico",
+    ///         Tags = new[]
+    ///         {
+    ///             "i'm an awesome tag",
+    ///             "yay",
+    ///         },
+    ///         DeleteAdditionalResources = false,
+    ///         AutoscalerConfig = new Scaleway.Inputs.KubernetesClusterAutoscalerConfigArgs
+    ///         {
+    ///             DisableScaleDown = false,
+    ///             ScaleDownDelayAfterAdd = "5m",
+    ///             Estimator = "binpacking",
+    ///             Expander = "random",
+    ///             IgnoreDaemonsetsUtilization = true,
+    ///             BalanceSimilarNodeGroups = true,
+    ///             ExpendablePodsPriorityCutoff = -5,
+    ///         },
+    ///     });
+    /// 
+    ///     var johnKubernetesNodePool = new Scaleway.KubernetesNodePool("johnKubernetesNodePool", new()
+    ///     {
+    ///         ClusterId = johnKubernetesCluster.Id,
+    ///         NodeType = "DEV1-M",
+    ///         Size = 3,
+    ///         Autoscaling = true,
+    ///         Autohealing = true,
+    ///         MinSize = 1,
+    ///         MaxSize = 5,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -66,7 +175,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -111,9 +220,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The ID of the private network of the cluster.
+        /// 
+        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+        /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Output("privateNetworkId")]
-        public Output<string> PrivateNetworkId { get; private set; } = null!;
+        public Output<string?> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.
@@ -264,7 +376,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Cni { get; set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -303,6 +415,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The ID of the private network of the cluster.
+        /// 
+        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+        /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -407,7 +522,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -468,6 +583,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The ID of the private network of the cluster.
+        /// 
+        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+        /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

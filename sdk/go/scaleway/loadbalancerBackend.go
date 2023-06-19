@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway Load-Balancer Backends.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 //
 // ## Examples
 //
@@ -130,9 +130,9 @@ type LoadbalancerBackend struct {
 	ServerIps pulumi.StringArrayOutput `pulumi:"serverIps"`
 	// Enables SSL between load balancer and backend servers.
 	SslBridging pulumi.BoolPtrOutput `pulumi:"sslBridging"`
-	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+	// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrOutput `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+	// Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName pulumi.StringPtrOutput `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrOutput `pulumi:"timeoutConnect"`
@@ -224,9 +224,9 @@ type loadbalancerBackendState struct {
 	ServerIps []string `pulumi:"serverIps"`
 	// Enables SSL between load balancer and backend servers.
 	SslBridging *bool `pulumi:"sslBridging"`
-	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+	// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
 	StickySessions *string `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+	// Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
@@ -280,9 +280,9 @@ type LoadbalancerBackendState struct {
 	ServerIps pulumi.StringArrayInput
 	// Enables SSL between load balancer and backend servers.
 	SslBridging pulumi.BoolPtrInput
-	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+	// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrInput
-	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+	// Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
@@ -340,9 +340,9 @@ type loadbalancerBackendArgs struct {
 	ServerIps []string `pulumi:"serverIps"`
 	// Enables SSL between load balancer and backend servers.
 	SslBridging *bool `pulumi:"sslBridging"`
-	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+	// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
 	StickySessions *string `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+	// Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
@@ -397,9 +397,9 @@ type LoadbalancerBackendArgs struct {
 	ServerIps pulumi.StringArrayInput
 	// Enables SSL between load balancer and backend servers.
 	SslBridging pulumi.BoolPtrInput
-	// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+	// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
 	StickySessions pulumi.StringPtrInput
-	// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+	// Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
@@ -596,12 +596,12 @@ func (o LoadbalancerBackendOutput) SslBridging() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolPtrOutput { return v.SslBridging }).(pulumi.BoolPtrOutput)
 }
 
-// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
 func (o LoadbalancerBackendOutput) StickySessions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.StickySessions }).(pulumi.StringPtrOutput)
 }
 
-// Cookie name for for sticky sessions. Only applicable when stickySessions is set to `cookie`.
+// Cookie name for sticky sessions. Only applicable when stickySessions is set to `cookie`.
 func (o LoadbalancerBackendOutput) StickySessionsCookieName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.StickySessionsCookieName }).(pulumi.StringPtrOutput)
 }

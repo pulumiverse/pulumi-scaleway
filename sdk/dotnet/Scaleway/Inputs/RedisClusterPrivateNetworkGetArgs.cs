@@ -22,13 +22,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
-        [Input("serviceIps", required: true)]
+        [Input("serviceIps")]
         private InputList<string>? _serviceIps;
 
         /// <summary>
         /// Endpoint IPv4 addresses
         /// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-        /// least one IP per node.
+        /// least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
+        /// 
+        /// &gt; The `private_network` conflict with `acl`. Only one should be specified.
         /// </summary>
         public InputList<string> ServiceIps
         {

@@ -74,6 +74,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FunctionNamespace{}
 	case "scaleway:index/functionToken:FunctionToken":
 		r = &FunctionToken{}
+	case "scaleway:index/functionTrigger:FunctionTrigger":
+		r = &FunctionTrigger{}
 	case "scaleway:index/iamApiKey:IamApiKey":
 		r = &IamApiKey{}
 	case "scaleway:index/iamApplication:IamApplication":
@@ -120,6 +122,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KubernetesNodePool{}
 	case "scaleway:index/loadbalancer:Loadbalancer":
 		r = &Loadbalancer{}
+	case "scaleway:index/loadbalancerAcl:LoadbalancerAcl":
+		r = &LoadbalancerAcl{}
 	case "scaleway:index/loadbalancerBackend:LoadbalancerBackend":
 		r = &LoadbalancerBackend{}
 	case "scaleway:index/loadbalancerCertificate:LoadbalancerCertificate":
@@ -134,6 +138,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqCredential{}
 	case "scaleway:index/mnqNamespace:MnqNamespace":
 		r = &MnqNamespace{}
+	case "scaleway:index/mnqQueue:MnqQueue":
+		r = &MnqQueue{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -156,6 +162,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretVersion{}
 	case "scaleway:index/temDomain:TemDomain":
 		r = &TemDomain{}
+	case "scaleway:index/vpc:Vpc":
+		r = &Vpc{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
 		r = &VpcGatewayNetwork{}
 	case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
@@ -337,6 +345,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/functionTrigger",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/iamApiKey",
 		&module{version},
 	)
@@ -452,6 +465,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/loadbalancerAcl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/loadbalancerBackend",
 		&module{version},
 	)
@@ -483,6 +501,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/mnqNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqQueue",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -538,6 +561,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/temDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/vpc",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

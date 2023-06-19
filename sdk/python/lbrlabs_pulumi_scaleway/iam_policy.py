@@ -32,6 +32,8 @@ class IamPolicyArgs:
         :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
         :param pulumi.Input[str] name: .The name of the iam policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
+               
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
         :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
         """
@@ -116,6 +118,8 @@ class IamPolicyArgs:
     def no_principal(self) -> Optional[pulumi.Input[bool]]:
         """
         If the policy doesn't apply to a principal.
+
+        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         """
         return pulumi.get(self, "no_principal")
 
@@ -171,6 +175,8 @@ class _IamPolicyState:
         :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
         :param pulumi.Input[str] name: .The name of the iam policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
+               
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
         :param pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]] rules: List of rules in the policy.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the policy.
@@ -276,6 +282,8 @@ class _IamPolicyState:
     def no_principal(self) -> Optional[pulumi.Input[bool]]:
         """
         If the policy doesn't apply to a principal.
+
+        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         """
         return pulumi.get(self, "no_principal")
 
@@ -383,6 +391,8 @@ class IamPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
         :param pulumi.Input[str] name: .The name of the iam policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
+               
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]] rules: List of rules in the policy.
         :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
@@ -503,6 +513,8 @@ class IamPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
         :param pulumi.Input[str] name: .The name of the iam policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
+               
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]] rules: List of rules in the policy.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the policy.
@@ -578,6 +590,8 @@ class IamPolicy(pulumi.CustomResource):
     def no_principal(self) -> pulumi.Output[Optional[bool]]:
         """
         If the policy doesn't apply to a principal.
+
+        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
         """
         return pulumi.get(self, "no_principal")
 

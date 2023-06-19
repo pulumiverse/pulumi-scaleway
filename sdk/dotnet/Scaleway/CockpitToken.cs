@@ -91,7 +91,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Allowed scopes
         /// </summary>
         [Output("scopes")]
-        public Output<Outputs.CockpitTokenScopes?> Scopes { get; private set; } = null!;
+        public Output<Outputs.CockpitTokenScopes> Scopes { get; private set; } = null!;
 
         /// <summary>
         /// The secret key of the token

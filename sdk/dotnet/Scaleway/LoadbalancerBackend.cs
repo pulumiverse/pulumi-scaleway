@@ -12,7 +12,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Load-Balancer Backends.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
     /// 
     /// ## Examples
     /// 
@@ -189,13 +189,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<bool?> SslBridging { get; private set; } = null!;
 
         /// <summary>
-        /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        /// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         /// </summary>
         [Output("stickySessions")]
         public Output<string?> StickySessions { get; private set; } = null!;
 
         /// <summary>
-        /// Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        /// Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         /// </summary>
         [Output("stickySessionsCookieName")]
         public Output<string?> StickySessionsCookieName { get; private set; } = null!;
@@ -389,13 +389,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<bool>? SslBridging { get; set; }
 
         /// <summary>
-        /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        /// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         /// </summary>
         [Input("stickySessions")]
         public Input<string>? StickySessions { get; set; }
 
         /// <summary>
-        /// Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        /// Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         /// </summary>
         [Input("stickySessionsCookieName")]
         public Input<string>? StickySessionsCookieName { get; set; }
@@ -550,13 +550,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<bool>? SslBridging { get; set; }
 
         /// <summary>
-        /// Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+        /// The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         /// </summary>
         [Input("stickySessions")]
         public Input<string>? StickySessions { get; set; }
 
         /// <summary>
-        /// Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+        /// Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         /// </summary>
         [Input("stickySessionsCookieName")]
         public Input<string>? StickySessionsCookieName { get; set; }

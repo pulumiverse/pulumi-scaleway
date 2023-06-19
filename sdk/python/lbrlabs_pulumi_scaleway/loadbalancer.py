@@ -29,13 +29,15 @@ class LoadbalancerArgs:
         """
         The set of arguments for constructing a Loadbalancer resource.
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
-        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
@@ -66,6 +68,8 @@ class LoadbalancerArgs:
     def ip_id(self) -> pulumi.Input[str]:
         """
         The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -149,7 +153,7 @@ class LoadbalancerArgs:
     @pulumi.getter(name="sslCompatibilityLevel")
     def ssl_compatibility_level(self) -> Optional[pulumi.Input[str]]:
         """
-        Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         """
         return pulumi.get(self, "ssl_compatibility_level")
 
@@ -203,13 +207,15 @@ class _LoadbalancerState:
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_address: The load-balance public IP Address
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
-        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
@@ -273,6 +279,8 @@ class _LoadbalancerState:
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -356,7 +364,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="sslCompatibilityLevel")
     def ssl_compatibility_level(self) -> Optional[pulumi.Input[str]]:
         """
-        Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         """
         return pulumi.get(self, "ssl_compatibility_level")
 
@@ -419,7 +427,7 @@ class Loadbalancer(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Load-Balancers.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
 
         ## Examples
 
@@ -491,7 +499,7 @@ class Loadbalancer(pulumi.CustomResource):
         In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
         this change will not recreate your Load Balancer.
 
-        Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+        Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
 
         ## IP ID
 
@@ -538,11 +546,13 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
-        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
@@ -555,7 +565,7 @@ class Loadbalancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Load-Balancers.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
 
         ## Examples
 
@@ -627,7 +637,7 @@ class Loadbalancer(pulumi.CustomResource):
         In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
         this change will not recreate your Load Balancer.
 
-        Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+        Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
 
         ## IP ID
 
@@ -757,13 +767,15 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_address: The load-balance public IP Address
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
-        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
@@ -808,6 +820,8 @@ class Loadbalancer(pulumi.CustomResource):
     def ip_id(self) -> pulumi.Output[str]:
         """
         The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -863,7 +877,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="sslCompatibilityLevel")
     def ssl_compatibility_level(self) -> pulumi.Output[Optional[str]]:
         """
-        Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+        Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         """
         return pulumi.get(self, "ssl_compatibility_level")
 

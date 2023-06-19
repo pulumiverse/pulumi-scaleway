@@ -24,8 +24,12 @@ type IotDevice struct {
 	pulumi.CustomResourceState
 
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+	//
+	// > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
 	AllowInsecure pulumi.BoolPtrOutput `pulumi:"allowInsecure"`
 	// Allow more than one simultaneous connection using the same device credentials.
+	//
+	// > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
 	AllowMultipleConnections pulumi.BoolPtrOutput `pulumi:"allowMultipleConnections"`
 	// The certificate bundle of the device.
 	Certificate IotDeviceCertificateOutput `pulumi:"certificate"`
@@ -42,6 +46,8 @@ type IotDevice struct {
 	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters IotDeviceMessageFiltersPtrOutput `pulumi:"messageFilters"`
 	// The name of the IoT device you want to create (e.g. `my-device`).
+	//
+	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -85,8 +91,12 @@ func GetIotDevice(ctx *pulumi.Context,
 // Input properties used for looking up and filtering IotDevice resources.
 type iotDeviceState struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+	//
+	// > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
 	AllowInsecure *bool `pulumi:"allowInsecure"`
 	// Allow more than one simultaneous connection using the same device credentials.
+	//
+	// > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
 	AllowMultipleConnections *bool `pulumi:"allowMultipleConnections"`
 	// The certificate bundle of the device.
 	Certificate *IotDeviceCertificate `pulumi:"certificate"`
@@ -103,6 +113,8 @@ type iotDeviceState struct {
 	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters *IotDeviceMessageFilters `pulumi:"messageFilters"`
 	// The name of the IoT device you want to create (e.g. `my-device`).
+	//
+	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name *string `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -114,8 +126,12 @@ type iotDeviceState struct {
 
 type IotDeviceState struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+	//
+	// > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
 	AllowInsecure pulumi.BoolPtrInput
 	// Allow more than one simultaneous connection using the same device credentials.
+	//
+	// > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
 	AllowMultipleConnections pulumi.BoolPtrInput
 	// The certificate bundle of the device.
 	Certificate IotDeviceCertificatePtrInput
@@ -132,6 +148,8 @@ type IotDeviceState struct {
 	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters IotDeviceMessageFiltersPtrInput
 	// The name of the IoT device you want to create (e.g. `my-device`).
+	//
+	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -147,8 +165,12 @@ func (IotDeviceState) ElementType() reflect.Type {
 
 type iotDeviceArgs struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+	//
+	// > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
 	AllowInsecure *bool `pulumi:"allowInsecure"`
 	// Allow more than one simultaneous connection using the same device credentials.
+	//
+	// > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
 	AllowMultipleConnections *bool `pulumi:"allowMultipleConnections"`
 	// The certificate bundle of the device.
 	Certificate *IotDeviceCertificate `pulumi:"certificate"`
@@ -159,6 +181,8 @@ type iotDeviceArgs struct {
 	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters *IotDeviceMessageFilters `pulumi:"messageFilters"`
 	// The name of the IoT device you want to create (e.g. `my-device`).
+	//
+	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name *string `pulumi:"name"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -167,8 +191,12 @@ type iotDeviceArgs struct {
 // The set of arguments for constructing a IotDevice resource.
 type IotDeviceArgs struct {
 	// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+	//
+	// > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
 	AllowInsecure pulumi.BoolPtrInput
 	// Allow more than one simultaneous connection using the same device credentials.
+	//
+	// > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
 	AllowMultipleConnections pulumi.BoolPtrInput
 	// The certificate bundle of the device.
 	Certificate IotDeviceCertificatePtrInput
@@ -179,6 +207,8 @@ type IotDeviceArgs struct {
 	// Rules that define which messages are authorized or denied based on their topic.
 	MessageFilters IotDeviceMessageFiltersPtrInput
 	// The name of the IoT device you want to create (e.g. `my-device`).
+	//
+	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -272,11 +302,15 @@ func (o IotDeviceOutput) ToIotDeviceOutputWithContext(ctx context.Context) IotDe
 }
 
 // Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
+//
+// > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
 func (o IotDeviceOutput) AllowInsecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.BoolPtrOutput { return v.AllowInsecure }).(pulumi.BoolPtrOutput)
 }
 
 // Allow more than one simultaneous connection using the same device credentials.
+//
+// > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
 func (o IotDeviceOutput) AllowMultipleConnections() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.BoolPtrOutput { return v.AllowMultipleConnections }).(pulumi.BoolPtrOutput)
 }
@@ -317,6 +351,8 @@ func (o IotDeviceOutput) MessageFilters() IotDeviceMessageFiltersPtrOutput {
 }
 
 // The name of the IoT device you want to create (e.g. `my-device`).
+//
+// > **Important:** Updates to `name` will destroy and recreate a new resource.
 func (o IotDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

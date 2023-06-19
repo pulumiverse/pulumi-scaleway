@@ -18,6 +18,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// Action to undertake when an ACL filter matches.
         /// </summary>
         public readonly Outputs.LoadbalancerFrontendAclAction Action;
+        public readonly string? CreatedAt;
+        public readonly string? Description;
         /// <summary>
         /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         /// </summary>
@@ -26,18 +28,28 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// The ACL name. If not provided it will be randomly generated.
         /// </summary>
         public readonly string? Name;
+        public readonly string? UpdatedAt;
 
         [OutputConstructor]
         private LoadbalancerFrontendAcl(
             Outputs.LoadbalancerFrontendAclAction action,
 
+            string? createdAt,
+
+            string? description,
+
             Outputs.LoadbalancerFrontendAclMatch match,
 
-            string? name)
+            string? name,
+
+            string? updatedAt)
         {
             Action = action;
+            CreatedAt = createdAt;
+            Description = description;
             Match = match;
             Name = name;
+            UpdatedAt = updatedAt;
         }
     }
 }

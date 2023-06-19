@@ -35,6 +35,9 @@ class ObjectBucketArgs:
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+               Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -140,6 +143,9 @@ class ObjectBucketArgs:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         """
         return pulumi.get(self, "project_id")
 
@@ -208,6 +214,9 @@ class _ObjectBucketState:
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+               Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -327,6 +336,9 @@ class _ObjectBucketState:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         """
         return pulumi.get(self, "project_id")
 
@@ -491,6 +503,9 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+               Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -680,6 +695,9 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+               Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
@@ -762,6 +780,9 @@ class ObjectBucket(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[str]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
+        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         """
         return pulumi.get(self, "project_id")
 

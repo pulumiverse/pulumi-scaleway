@@ -34,6 +34,47 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Add the required records to your DNS zone
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var domainName = config.Require("domainName");
+    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     {
+    ///         AcceptTos = true,
+    ///     });
+    /// 
+    ///     var spf = new Scaleway.DomainRecord("spf", new()
+    ///     {
+    ///         DnsZone = domainName,
+    ///         Type = "TXT",
+    ///         Data = main.SpfConfig.Apply(spfConfig =&gt; $"v=spf1 {spfConfig} -all"),
+    ///     });
+    /// 
+    ///     var dkim = new Scaleway.DomainRecord("dkim", new()
+    ///     {
+    ///         DnsZone = domainName,
+    ///         Type = "TXT",
+    ///         Data = main.DkimConfig,
+    ///     });
+    /// 
+    ///     var mx = new Scaleway.DomainRecord("mx", new()
+    ///     {
+    ///         DnsZone = domainName,
+    ///         Type = "MX",
+    ///         Data = ".",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Domains can be imported using the `{region}/{id}`, e.g. bash

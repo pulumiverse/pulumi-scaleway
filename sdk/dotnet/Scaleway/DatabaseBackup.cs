@@ -80,12 +80,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Expiration date (Format ISO 8601).
+        /// 
+        /// &gt; **Important:** `expires_at` cannot be removed after being set.
         /// </summary>
         [Output("expiresAt")]
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Backup.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -175,12 +179,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Expiration date (Format ISO 8601).
+        /// 
+        /// &gt; **Important:** `expires_at` cannot be removed after being set.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Backup.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -219,12 +227,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Expiration date (Format ISO 8601).
+        /// 
+        /// &gt; **Important:** `expires_at` cannot be removed after being set.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
         /// UUID of the rdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Backup.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

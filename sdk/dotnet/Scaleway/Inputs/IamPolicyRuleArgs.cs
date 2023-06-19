@@ -24,6 +24,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
         /// <summary>
         /// Names of permission sets bound to the rule.
+        /// 
+        /// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
         /// </summary>
         public InputList<string> PermissionSetNames
         {
@@ -36,6 +38,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
         /// <summary>
         /// List of project IDs scoped to the rule.
+        /// 
+        /// &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
         /// </summary>
         public InputList<string> ProjectIds
         {

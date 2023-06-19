@@ -109,7 +109,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class Container : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         /// </summary>
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
@@ -122,6 +122,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Boolean controlling whether the container is on a production environment.
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
@@ -169,7 +171,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<int> MaxScale { get; private set; } = null!;
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
         /// </summary>
         [Output("memoryLimit")]
         public Output<int> MemoryLimit { get; private set; } = null!;
@@ -188,6 +190,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// 
+        /// The following arguments are optional:
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -298,13 +304,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ContainerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
 
         /// <summary>
         /// Boolean controlling whether the container is on a production environment.
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -346,7 +354,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
@@ -365,6 +373,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// 
+        /// The following arguments are optional:
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -436,7 +448,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ContainerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
@@ -449,6 +461,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Boolean controlling whether the container is on a production environment.
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -502,7 +516,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
@@ -521,6 +535,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// 
+        /// The following arguments are optional:
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }

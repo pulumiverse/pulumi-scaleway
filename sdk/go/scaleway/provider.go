@@ -43,19 +43,29 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.AccessKey == nil {
-		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string))
+		if d := getEnvOrDefault(nil, nil, "SCW_ACCESS_KEY"); d != nil {
+			args.AccessKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ProjectId == nil {
-		args.ProjectId = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_PROJECT_ID").(string))
+		if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_PROJECT_ID"); d != nil {
+			args.ProjectId = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Region == nil {
-		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string))
+		if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_REGION"); d != nil {
+			args.Region = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.SecretKey == nil {
-		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string))
+		if d := getEnvOrDefault(nil, nil, "SCW_SECRET_KEY"); d != nil {
+			args.SecretKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Zone == nil {
-		args.Zone = pulumi.StringPtr(getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string))
+		if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_ZONE"); d != nil {
+			args.Zone = pulumi.StringPtr(d.(string))
+		}
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider

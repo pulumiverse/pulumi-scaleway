@@ -11,10 +11,6 @@ import (
 )
 
 // Gets information about a private network.
-//
-// ## Example Usage
-//
-// N/A, the usage will be meaningful in the next releases of VPC.
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult
@@ -27,8 +23,9 @@ func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkA
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkArgs struct {
-	// Exact name of the private network.
-	Name             *string `pulumi:"name"`
+	// Name of the private network. One of `name` and `privateNetworkId` should be specified.
+	Name *string `pulumi:"name"`
+	// ID of the private network. One of `name` and `privateNetworkId` should be specified.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 }
 
@@ -36,14 +33,21 @@ type LookupVpcPrivateNetworkArgs struct {
 type LookupVpcPrivateNetworkResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string   `pulumi:"id"`
-	Name             *string  `pulumi:"name"`
-	OrganizationId   string   `pulumi:"organizationId"`
-	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
-	ProjectId        string   `pulumi:"projectId"`
-	Tags             []string `pulumi:"tags"`
-	UpdatedAt        string   `pulumi:"updatedAt"`
-	Zone             string   `pulumi:"zone"`
+	Id string `pulumi:"id"`
+	// (Optional) The IPv4 subnet associated with the private network.
+	Ipv4Subnets []GetVpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnets"`
+	// (Optional) The IPv6 subnets associated with the private network.
+	Ipv6Subnets      []GetVpcPrivateNetworkIpv6Subnet `pulumi:"ipv6Subnets"`
+	IsRegional       bool                             `pulumi:"isRegional"`
+	Name             *string                          `pulumi:"name"`
+	OrganizationId   string                           `pulumi:"organizationId"`
+	PrivateNetworkId *string                          `pulumi:"privateNetworkId"`
+	ProjectId        string                           `pulumi:"projectId"`
+	Region           string                           `pulumi:"region"`
+	Tags             []string                         `pulumi:"tags"`
+	UpdatedAt        string                           `pulumi:"updatedAt"`
+	VpcId            string                           `pulumi:"vpcId"`
+	Zone             string                           `pulumi:"zone"`
 }
 
 func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPrivateNetworkResultOutput {
@@ -61,8 +65,9 @@ func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNet
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkOutputArgs struct {
-	// Exact name of the private network.
-	Name             pulumi.StringPtrInput `pulumi:"name"`
+	// Name of the private network. One of `name` and `privateNetworkId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// ID of the private network. One of `name` and `privateNetworkId` should be specified.
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
 }
 
@@ -94,6 +99,20 @@ func (o LookupVpcPrivateNetworkResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// (Optional) The IPv4 subnet associated with the private network.
+func (o LookupVpcPrivateNetworkResultOutput) Ipv4Subnets() GetVpcPrivateNetworkIpv4SubnetArrayOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) []GetVpcPrivateNetworkIpv4Subnet { return v.Ipv4Subnets }).(GetVpcPrivateNetworkIpv4SubnetArrayOutput)
+}
+
+// (Optional) The IPv6 subnets associated with the private network.
+func (o LookupVpcPrivateNetworkResultOutput) Ipv6Subnets() GetVpcPrivateNetworkIpv6SubnetArrayOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) []GetVpcPrivateNetworkIpv6Subnet { return v.Ipv6Subnets }).(GetVpcPrivateNetworkIpv6SubnetArrayOutput)
+}
+
+func (o LookupVpcPrivateNetworkResultOutput) IsRegional() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) bool { return v.IsRegional }).(pulumi.BoolOutput)
+}
+
 func (o LookupVpcPrivateNetworkResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -110,12 +129,20 @@ func (o LookupVpcPrivateNetworkResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+func (o LookupVpcPrivateNetworkResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
 func (o LookupVpcPrivateNetworkResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupVpcPrivateNetworkResultOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.VpcId }).(pulumi.StringOutput)
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) Zone() pulumi.StringOutput {
