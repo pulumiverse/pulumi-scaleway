@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/pulumi/pulumi/sdk/v3 v3.17.0
-	github.com/lbrlabs/pulumi-scaleway/sdk v1.7.0
+	github.com/lbrlabs/pulumi-scaleway/sdk v1.8.0
 )
 
 require (
