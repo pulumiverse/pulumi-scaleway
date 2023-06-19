@@ -19,12 +19,16 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database User.
+     * 
      */
     @Import(name="instanceId", required=true)
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database User.
      * 
      */
     public Output<String> instanceId() {
@@ -49,12 +53,16 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Database User name.
      * 
+     * &gt; **Important:** Updates to `name` will recreate the Database User.
+     * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
      * @return Database User name.
+     * 
+     * &gt; **Important:** Updates to `name` will recreate the Database User.
      * 
      */
     public Optional<Output<String>> name() {
@@ -122,6 +130,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param instanceId UUID of the rdb instance.
          * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Database User.
+         * 
          * @return builder
          * 
          */
@@ -132,6 +142,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Database User.
          * 
          * @return builder
          * 
@@ -164,6 +176,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param name Database User name.
          * 
+         * &gt; **Important:** Updates to `name` will recreate the Database User.
+         * 
          * @return builder
          * 
          */
@@ -174,6 +188,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name Database User name.
+         * 
+         * &gt; **Important:** Updates to `name` will recreate the Database User.
          * 
          * @return builder
          * 

@@ -171,12 +171,16 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
     /**
      * The unique name of the function.
      * 
+     * &gt; **Important** Updates to `name` will recreate the function.
+     * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
      * @return The unique name of the function.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the function.
      * 
      */
     public Optional<Output<String>> name() {
@@ -590,6 +594,8 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param name The unique name of the function.
          * 
+         * &gt; **Important** Updates to `name` will recreate the function.
+         * 
          * @return builder
          * 
          */
@@ -600,6 +606,8 @@ public final class FunctionState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name The unique name of the function.
+         * 
+         * &gt; **Important** Updates to `name` will recreate the function.
          * 
          * @return builder
          * 

@@ -124,14 +124,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/container:Container")
 public class Container extends com.pulumi.resources.CustomResource {
     /**
-     * The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+     * The amount of vCPU computing resources to allocate to each container. Defaults to 140.
      * 
      */
     @Export(name="cpuLimit", refs={Integer.class}, tree="[0]")
     private Output<Integer> cpuLimit;
 
     /**
-     * @return The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+     * @return The amount of vCPU computing resources to allocate to each container. Defaults to 140.
      * 
      */
     public Output<Integer> cpuLimit() {
@@ -154,12 +154,16 @@ public class Container extends com.pulumi.resources.CustomResource {
     /**
      * Boolean controlling whether the container is on a production environment.
      * 
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+     * 
      */
     @Export(name="deploy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deploy;
 
     /**
      * @return Boolean controlling whether the container is on a production environment.
+     * 
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
      * 
      */
     public Output<Optional<Boolean>> deploy() {
@@ -264,14 +268,14 @@ public class Container extends com.pulumi.resources.CustomResource {
         return this.maxScale;
     }
     /**
-     * The memory computing resources in MB to allocate to each container. Defaults to 128.
+     * The memory computing resources in MB to allocate to each container. Defaults to 256.
      * 
      */
     @Export(name="memoryLimit", refs={Integer.class}, tree="[0]")
     private Output<Integer> memoryLimit;
 
     /**
-     * @return The memory computing resources in MB to allocate to each container. Defaults to 128.
+     * @return The memory computing resources in MB to allocate to each container. Defaults to 256.
      * 
      */
     public Output<Integer> memoryLimit() {
@@ -308,12 +312,20 @@ public class Container extends com.pulumi.resources.CustomResource {
     /**
      * The container namespace ID of the container.
      * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
+     * The following arguments are optional:
+     * 
      */
     @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
      * @return The container namespace ID of the container.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
+     * The following arguments are optional:
      * 
      */
     public Output<String> namespaceId() {

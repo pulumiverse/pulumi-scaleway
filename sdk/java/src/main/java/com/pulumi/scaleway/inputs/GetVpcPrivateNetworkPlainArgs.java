@@ -15,23 +15,31 @@ public final class GetVpcPrivateNetworkPlainArgs extends com.pulumi.resources.In
     public static final GetVpcPrivateNetworkPlainArgs Empty = new GetVpcPrivateNetworkPlainArgs();
 
     /**
-     * Exact name of the private network.
+     * Name of the private network. One of `name` and `private_network_id` should be specified.
      * 
      */
     @Import(name="name")
     private @Nullable String name;
 
     /**
-     * @return Exact name of the private network.
+     * @return Name of the private network. One of `name` and `private_network_id` should be specified.
      * 
      */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * ID of the private network. One of `name` and `private_network_id` should be specified.
+     * 
+     */
     @Import(name="privateNetworkId")
     private @Nullable String privateNetworkId;
 
+    /**
+     * @return ID of the private network. One of `name` and `private_network_id` should be specified.
+     * 
+     */
     public Optional<String> privateNetworkId() {
         return Optional.ofNullable(this.privateNetworkId);
     }
@@ -62,7 +70,7 @@ public final class GetVpcPrivateNetworkPlainArgs extends com.pulumi.resources.In
         }
 
         /**
-         * @param name Exact name of the private network.
+         * @param name Name of the private network. One of `name` and `private_network_id` should be specified.
          * 
          * @return builder
          * 
@@ -72,6 +80,12 @@ public final class GetVpcPrivateNetworkPlainArgs extends com.pulumi.resources.In
             return this;
         }
 
+        /**
+         * @param privateNetworkId ID of the private network. One of `name` and `private_network_id` should be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateNetworkId(@Nullable String privateNetworkId) {
             $.privateNetworkId = privateNetworkId;
             return this;

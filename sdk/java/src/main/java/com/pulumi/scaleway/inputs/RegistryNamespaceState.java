@@ -64,12 +64,16 @@ public final class RegistryNamespaceState extends com.pulumi.resources.ResourceA
     /**
      * The unique name of the namespace.
      * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
+     * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
      * @return The unique name of the namespace.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
      * 
      */
     public Optional<Output<String>> name() {
@@ -217,6 +221,8 @@ public final class RegistryNamespaceState extends com.pulumi.resources.ResourceA
         /**
          * @param name The unique name of the namespace.
          * 
+         * &gt; **Important** Updates to `name` will recreate the namespace.
+         * 
          * @return builder
          * 
          */
@@ -227,6 +233,8 @@ public final class RegistryNamespaceState extends com.pulumi.resources.ResourceA
 
         /**
          * @param name The unique name of the namespace.
+         * 
+         * &gt; **Important** Updates to `name` will recreate the namespace.
          * 
          * @return builder
          * 

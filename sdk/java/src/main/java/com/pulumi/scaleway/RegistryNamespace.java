@@ -108,12 +108,16 @@ public class RegistryNamespace extends com.pulumi.resources.CustomResource {
     /**
      * The unique name of the namespace.
      * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
+     * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
      * @return The unique name of the namespace.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
      * 
      */
     public Output<String> name() {

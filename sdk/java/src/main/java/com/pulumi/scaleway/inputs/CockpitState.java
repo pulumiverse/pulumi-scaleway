@@ -33,6 +33,36 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Name or ID of the plan to use.
+     * 
+     */
+    @Import(name="plan")
+    private @Nullable Output<String> plan;
+
+    /**
+     * @return Name or ID of the plan to use.
+     * 
+     */
+    public Optional<Output<String>> plan() {
+        return Optional.ofNullable(this.plan);
+    }
+
+    /**
+     * The ID of the current plan
+     * 
+     */
+    @Import(name="planId")
+    private @Nullable Output<String> planId;
+
+    /**
+     * @return The ID of the current plan
+     * 
+     */
+    public Optional<Output<String>> planId() {
+        return Optional.ofNullable(this.planId);
+    }
+
+    /**
      * `project_id`) The ID of the project the cockpit is associated with.
      * 
      */
@@ -51,6 +81,8 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
 
     private CockpitState(CockpitState $) {
         this.endpoints = $.endpoints;
+        this.plan = $.plan;
+        this.planId = $.planId;
         this.projectId = $.projectId;
     }
 
@@ -101,6 +133,48 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder endpoints(CockpitEndpointArgs... endpoints) {
             return endpoints(List.of(endpoints));
+        }
+
+        /**
+         * @param plan Name or ID of the plan to use.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder plan(@Nullable Output<String> plan) {
+            $.plan = plan;
+            return this;
+        }
+
+        /**
+         * @param plan Name or ID of the plan to use.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder plan(String plan) {
+            return plan(Output.of(plan));
+        }
+
+        /**
+         * @param planId The ID of the current plan
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planId(@Nullable Output<String> planId) {
+            $.planId = planId;
+            return this;
+        }
+
+        /**
+         * @param planId The ID of the current plan
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planId(String planId) {
+            return planId(Output.of(planId));
         }
 
         /**

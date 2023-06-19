@@ -25,6 +25,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
      * The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
      * attached to the server. Updates to this field will trigger a stop/start of the server.
      * 
+     * &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+     * 
+     * &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
+     * 
      */
     @Import(name="additionalVolumeIds")
     private @Nullable Output<List<String>> additionalVolumeIds;
@@ -32,6 +36,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
     /**
      * @return The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
      * attached to the server. Updates to this field will trigger a stop/start of the server.
+     * 
+     * &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+     * 
+     * &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
      * 
      */
     public Optional<Output<List<String>>> additionalVolumeIds() {
@@ -117,6 +125,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
      * 
+     * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+     * 
+     * To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
+     * 
      */
     @Import(name="image")
     private @Nullable Output<String> image;
@@ -124,6 +136,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
     /**
      * @return The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+     * 
+     * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+     * 
+     * To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
      * 
      */
     public Optional<Output<String>> image() {
@@ -223,12 +239,16 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
     /**
      * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      * 
+     * &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+     * 
      */
     @Import(name="placementGroupId")
     private @Nullable Output<String> placementGroupId;
 
     /**
      * @return The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+     * 
+     * &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
      * 
      */
     public Optional<Output<String>> placementGroupId() {
@@ -392,14 +412,24 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The user data associated with the server
+     * The user data associated with the server.
+     * Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
+     * - Binary files using filebase64.
      * 
      */
     @Import(name="userData")
     private @Nullable Output<Map<String,String>> userData;
 
     /**
-     * @return The user data associated with the server
+     * @return The user data associated with the server.
+     * Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
+     * - Binary files using filebase64.
      * 
      */
     public Optional<Output<Map<String,String>>> userData() {
@@ -474,6 +504,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
          * @param additionalVolumeIds The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
          * attached to the server. Updates to this field will trigger a stop/start of the server.
          * 
+         * &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+         * 
+         * &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
+         * 
          * @return builder
          * 
          */
@@ -486,6 +520,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
          * @param additionalVolumeIds The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
          * attached to the server. Updates to this field will trigger a stop/start of the server.
          * 
+         * &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+         * 
+         * &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
+         * 
          * @return builder
          * 
          */
@@ -496,6 +534,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
         /**
          * @param additionalVolumeIds The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
          * attached to the server. Updates to this field will trigger a stop/start of the server.
+         * 
+         * &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+         * 
+         * &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
          * 
          * @return builder
          * 
@@ -613,6 +655,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
          * @param image The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
          * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
          * 
+         * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+         * 
+         * To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
+         * 
          * @return builder
          * 
          */
@@ -624,6 +670,10 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
         /**
          * @param image The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
          * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+         * 
+         * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+         * 
+         * To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
          * 
          * @return builder
          * 
@@ -761,6 +811,8 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
         /**
          * @param placementGroupId The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
          * 
+         * &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+         * 
          * @return builder
          * 
          */
@@ -771,6 +823,8 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param placementGroupId The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+         * 
+         * &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
          * 
          * @return builder
          * 
@@ -1017,7 +1071,12 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param userData The user data associated with the server
+         * @param userData The user data associated with the server.
+         * Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+         * You can define values using:
+         * - string
+         * - UTF-8 encoded file content using file
+         * - Binary files using filebase64.
          * 
          * @return builder
          * 
@@ -1028,7 +1087,12 @@ public final class InstanceServerState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param userData The user data associated with the server
+         * @param userData The user data associated with the server.
+         * Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+         * You can define values using:
+         * - string
+         * - UTF-8 encoded file content using file
+         * - Binary files using filebase64.
          * 
          * @return builder
          * 

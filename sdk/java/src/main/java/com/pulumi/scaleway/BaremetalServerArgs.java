@@ -68,6 +68,8 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
      * The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
      * 
+     * &gt; **Important:** Updates to `offer` will recreate the server.
+     * 
      */
     @Import(name="offer", required=true)
     private Output<String> offer;
@@ -75,6 +77,8 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
     /**
      * @return The offer name or UUID of the baremetal server.
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+     * 
+     * &gt; **Important:** Updates to `offer` will recreate the server.
      * 
      */
     public Output<String> offer() {
@@ -375,6 +379,8 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
          * @param offer The offer name or UUID of the baremetal server.
          * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
          * 
+         * &gt; **Important:** Updates to `offer` will recreate the server.
+         * 
          * @return builder
          * 
          */
@@ -386,6 +392,8 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param offer The offer name or UUID of the baremetal server.
          * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
+         * 
+         * &gt; **Important:** Updates to `offer` will recreate the server.
          * 
          * @return builder
          * 

@@ -18,6 +18,160 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+ * 
+ * This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+ * 
+ * &gt; **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
+ * 
+ * ## Examples
+ * 
+ * ### Basic
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.InstanceSecurityGroup;
+ * import com.pulumi.scaleway.InstanceSecurityGroupArgs;
+ * import com.pulumi.scaleway.InstanceSecurityGroupRules;
+ * import com.pulumi.scaleway.InstanceSecurityGroupRulesArgs;
+ * import com.pulumi.scaleway.inputs.InstanceSecurityGroupRulesInboundRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var sg01 = new InstanceSecurityGroup(&#34;sg01&#34;, InstanceSecurityGroupArgs.builder()        
+ *             .externalRules(true)
+ *             .build());
+ * 
+ *         var sgrs01 = new InstanceSecurityGroupRules(&#34;sgrs01&#34;, InstanceSecurityGroupRulesArgs.builder()        
+ *             .securityGroupId(sg01.id())
+ *             .inboundRules(InstanceSecurityGroupRulesInboundRuleArgs.builder()
+ *                 .action(&#34;accept&#34;)
+ *                 .port(80)
+ *                 .ipRange(&#34;0.0.0.0/0&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Simplify your rules using dynamic block and `for_each` loop
+ * 
+ * You can use `for_each` syntax to simplify the definition of your rules.
+ * Let&#39;s suppose that your inbound default policy is to drop, but you want to build a list of exceptions to accept.
+ * Create a local containing your exceptions (`locals.trusted`) and use the `for_each` syntax in a dynamic block:
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.InstanceSecurityGroup;
+ * import com.pulumi.scaleway.InstanceSecurityGroupArgs;
+ * import com.pulumi.scaleway.InstanceSecurityGroupRules;
+ * import com.pulumi.scaleway.InstanceSecurityGroupRulesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var mainInstanceSecurityGroup = new InstanceSecurityGroup(&#34;mainInstanceSecurityGroup&#34;, InstanceSecurityGroupArgs.builder()        
+ *             .description(&#34;test&#34;)
+ *             .inboundDefaultPolicy(&#34;drop&#34;)
+ *             .outboundDefaultPolicy(&#34;accept&#34;)
+ *             .build());
+ * 
+ *         final var trusted =         
+ *             &#34;1.2.3.4&#34;,
+ *             &#34;4.5.6.7&#34;,
+ *             &#34;7.8.9.10&#34;;
+ * 
+ *         var mainInstanceSecurityGroupRules = new InstanceSecurityGroupRules(&#34;mainInstanceSecurityGroupRules&#34;, InstanceSecurityGroupRulesArgs.builder()        
+ *             .securityGroupId(mainInstanceSecurityGroup.id())
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * You can also use object to assign IP and port in the same time.
+ * In your locals, you can use objects to encapsulate several values that will be used later on in the loop:
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.InstanceSecurityGroup;
+ * import com.pulumi.scaleway.InstanceSecurityGroupArgs;
+ * import com.pulumi.scaleway.InstanceSecurityGroupRules;
+ * import com.pulumi.scaleway.InstanceSecurityGroupRulesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var mainInstanceSecurityGroup = new InstanceSecurityGroup(&#34;mainInstanceSecurityGroup&#34;, InstanceSecurityGroupArgs.builder()        
+ *             .description(&#34;test&#34;)
+ *             .inboundDefaultPolicy(&#34;drop&#34;)
+ *             .outboundDefaultPolicy(&#34;accept&#34;)
+ *             .build());
+ * 
+ *         final var trusted =         
+ *             Map.ofEntries(
+ *                 Map.entry(&#34;ip&#34;, &#34;1.2.3.4&#34;),
+ *                 Map.entry(&#34;port&#34;, &#34;80&#34;)
+ *             ),
+ *             Map.ofEntries(
+ *                 Map.entry(&#34;ip&#34;, &#34;5.6.7.8&#34;),
+ *                 Map.entry(&#34;port&#34;, &#34;81&#34;)
+ *             ),
+ *             Map.ofEntries(
+ *                 Map.entry(&#34;ip&#34;, &#34;9.10.11.12&#34;),
+ *                 Map.entry(&#34;port&#34;, &#34;81&#34;)
+ *             );
+ * 
+ *         var mainInstanceSecurityGroupRules = new InstanceSecurityGroupRules(&#34;mainInstanceSecurityGroupRules&#34;, InstanceSecurityGroupRulesArgs.builder()        
+ *             .securityGroupId(mainInstanceSecurityGroup.id())
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash

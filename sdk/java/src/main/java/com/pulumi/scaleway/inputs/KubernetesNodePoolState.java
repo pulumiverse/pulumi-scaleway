@@ -180,12 +180,16 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
      * 
+     * &gt; **Important:** Updates to this field will recreate a new resource.
+     * 
      */
     @Import(name="nodeType")
     private @Nullable Output<String> nodeType;
 
     /**
      * @return The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+     * 
+     * &gt; **Important:** Updates to this field will recreate a new resource.
      * 
      */
     public Optional<Output<String>> nodeType() {
@@ -661,6 +665,8 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         /**
          * @param nodeType The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
          * 
+         * &gt; **Important:** Updates to this field will recreate a new resource.
+         * 
          * @return builder
          * 
          */
@@ -671,6 +677,8 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
 
         /**
          * @param nodeType The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+         * 
+         * &gt; **Important:** Updates to this field will recreate a new resource.
          * 
          * @return builder
          * 

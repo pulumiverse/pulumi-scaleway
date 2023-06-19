@@ -21,10 +21,13 @@ public final class RedisClusterPrivateNetwork {
     /**
      * @return Endpoint IPv4 addresses
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-     * least one IP per node.
+     * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     * 
+     * &gt; The `private_network` conflict with `acl`. Only one should be specified.
      * 
      */
-    private List<String> serviceIps;
+    private @Nullable List<String> serviceIps;
     /**
      * @return `zone`) The zone in which the
      * Redis Cluster should be created.
@@ -46,11 +49,14 @@ public final class RedisClusterPrivateNetwork {
     /**
      * @return Endpoint IPv4 addresses
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-     * least one IP per node.
+     * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     * 
+     * &gt; The `private_network` conflict with `acl`. Only one should be specified.
      * 
      */
     public List<String> serviceIps() {
-        return this.serviceIps;
+        return this.serviceIps == null ? List.of() : this.serviceIps;
     }
     /**
      * @return `zone`) The zone in which the
@@ -72,7 +78,7 @@ public final class RedisClusterPrivateNetwork {
     public static final class Builder {
         private @Nullable String endpointId;
         private String id;
-        private List<String> serviceIps;
+        private @Nullable List<String> serviceIps;
         private @Nullable String zone;
         public Builder() {}
         public Builder(RedisClusterPrivateNetwork defaults) {
@@ -94,8 +100,8 @@ public final class RedisClusterPrivateNetwork {
             return this;
         }
         @CustomType.Setter
-        public Builder serviceIps(List<String> serviceIps) {
-            this.serviceIps = Objects.requireNonNull(serviceIps);
+        public Builder serviceIps(@Nullable List<String> serviceIps) {
+            this.serviceIps = serviceIps;
             return this;
         }
         public Builder serviceIps(String... serviceIps) {

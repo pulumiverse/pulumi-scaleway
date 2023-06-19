@@ -321,14 +321,14 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      * 
      */
     @Import(name="stickySessions")
     private @Nullable Output<String> stickySessions;
 
     /**
-     * @return Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+     * @return The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
      * 
      */
     public Optional<Output<String>> stickySessions() {
@@ -336,14 +336,14 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+     * Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
      * 
      */
     @Import(name="stickySessionsCookieName")
     private @Nullable Output<String> stickySessionsCookieName;
 
     /**
-     * @return Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+     * @return Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
      * 
      */
     public Optional<Output<String>> stickySessionsCookieName() {
@@ -866,7 +866,7 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param stickySessions Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+         * @param stickySessions The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
          * 
          * @return builder
          * 
@@ -877,7 +877,7 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param stickySessions Load balancing algorithm. Possible values are: `none`, `cookie` and `table`.
+         * @param stickySessions The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
          * 
          * @return builder
          * 
@@ -887,7 +887,7 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param stickySessionsCookieName Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+         * @param stickySessionsCookieName Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
          * 
          * @return builder
          * 
@@ -898,7 +898,7 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param stickySessionsCookieName Cookie name for for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
+         * @param stickySessionsCookieName Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
          * 
          * @return builder
          * 

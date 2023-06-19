@@ -55,12 +55,24 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * The number of nodes in the Redis Cluster.
      * 
+     * &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+     * which is minimum 3 (1 main node + 2 secondary nodes)
+     * 
+     * &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+     * keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
+     * 
      */
     @Import(name="clusterSize")
     private @Nullable Output<Integer> clusterSize;
 
     /**
      * @return The number of nodes in the Redis Cluster.
+     * 
+     * &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+     * which is minimum 3 (1 main node + 2 secondary nodes)
+     * 
+     * &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+     * keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
      * 
      */
     public Optional<Output<Integer>> clusterSize() {
@@ -100,12 +112,18 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * The type of Redis Cluster you want to create (e.g. `RED1-M`).
      * 
+     * &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+     * you cannot downgrade a Redis Cluster.
+     * 
      */
     @Import(name="nodeType")
     private @Nullable Output<String> nodeType;
 
     /**
      * @return The type of Redis Cluster you want to create (e.g. `RED1-M`).
+     * 
+     * &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+     * you cannot downgrade a Redis Cluster.
      * 
      */
     public Optional<Output<String>> nodeType() {
@@ -131,6 +149,38 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
      * Describes the private network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      * 
+     * &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+     * 
+     * - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+     * block). If you detach your only private network, your cluster won&#39;t be reachable until you define a new private or
+     * public network. You can modify your private_network and its specs, you can have both a private and public network side
+     * by side.
+     * 
+     * - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won&#39;t be
+     * able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * 
      */
     @Import(name="privateNetworks")
     private @Nullable Output<List<RedisClusterPrivateNetworkArgs>> privateNetworks;
@@ -138,6 +188,38 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Describes the private network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
+     * 
+     * &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+     * 
+     * - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+     * block). If you detach your only private network, your cluster won&#39;t be reachable until you define a new private or
+     * public network. You can modify your private_network and its specs, you can have both a private and public network side
+     * by side.
+     * 
+     * - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won&#39;t be
+     * able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
      * 
      */
     public Optional<Output<List<RedisClusterPrivateNetworkArgs>>> privateNetworks() {
@@ -213,12 +295,16 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * Whether TLS is enabled or not.
      * 
+     * &gt; The changes on `tls_enabled` will force the resource creation.
+     * 
      */
     @Import(name="tlsEnabled")
     private @Nullable Output<Boolean> tlsEnabled;
 
     /**
      * @return Whether TLS is enabled or not.
+     * 
+     * &gt; The changes on `tls_enabled` will force the resource creation.
      * 
      */
     public Optional<Output<Boolean>> tlsEnabled() {
@@ -258,12 +344,18 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * Redis&#39;s Cluster version (e.g. `6.2.6`).
      * 
+     * &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+     * cannot downgrade a Redis Cluster.
+     * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
      * @return Redis&#39;s Cluster version (e.g. `6.2.6`).
+     * 
+     * &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+     * cannot downgrade a Redis Cluster.
      * 
      */
     public Optional<Output<String>> version() {
@@ -382,6 +474,12 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param clusterSize The number of nodes in the Redis Cluster.
          * 
+         * &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+         * which is minimum 3 (1 main node + 2 secondary nodes)
+         * 
+         * &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+         * keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
+         * 
          * @return builder
          * 
          */
@@ -392,6 +490,12 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clusterSize The number of nodes in the Redis Cluster.
+         * 
+         * &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+         * which is minimum 3 (1 main node + 2 secondary nodes)
+         * 
+         * &gt; **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+         * keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
          * 
          * @return builder
          * 
@@ -445,6 +549,9 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param nodeType The type of Redis Cluster you want to create (e.g. `RED1-M`).
          * 
+         * &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+         * you cannot downgrade a Redis Cluster.
+         * 
          * @return builder
          * 
          */
@@ -455,6 +562,9 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param nodeType The type of Redis Cluster you want to create (e.g. `RED1-M`).
+         * 
+         * &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+         * you cannot downgrade a Redis Cluster.
          * 
          * @return builder
          * 
@@ -488,6 +598,38 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
          * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public
          * network will be provided. More details on the Private Network section
          * 
+         * &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+         * 
+         * - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+         * block). If you detach your only private network, your cluster won&#39;t be reachable until you define a new private or
+         * public network. You can modify your private_network and its specs, you can have both a private and public network side
+         * by side.
+         * 
+         * - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won&#39;t be
+         * able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
+         * 
          * @return builder
          * 
          */
@@ -500,6 +642,38 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
          * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public
          * network will be provided. More details on the Private Network section
          * 
+         * &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+         * 
+         * - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+         * block). If you detach your only private network, your cluster won&#39;t be reachable until you define a new private or
+         * public network. You can modify your private_network and its specs, you can have both a private and public network side
+         * by side.
+         * 
+         * - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won&#39;t be
+         * able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
+         * 
          * @return builder
          * 
          */
@@ -510,6 +684,38 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param privateNetworks Describes the private network you want to connect to your cluster. If not set, a public
          * network will be provided. More details on the Private Network section
+         * 
+         * &gt; **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+         * 
+         * - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+         * block). If you detach your only private network, your cluster won&#39;t be reachable until you define a new private or
+         * public network. You can modify your private_network and its specs, you can have both a private and public network side
+         * by side.
+         * 
+         * - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won&#39;t be
+         * able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
          * 
          * @return builder
          * 
@@ -621,6 +827,8 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param tlsEnabled Whether TLS is enabled or not.
          * 
+         * &gt; The changes on `tls_enabled` will force the resource creation.
+         * 
          * @return builder
          * 
          */
@@ -631,6 +839,8 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param tlsEnabled Whether TLS is enabled or not.
+         * 
+         * &gt; The changes on `tls_enabled` will force the resource creation.
          * 
          * @return builder
          * 
@@ -684,6 +894,9 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param version Redis&#39;s Cluster version (e.g. `6.2.6`).
          * 
+         * &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+         * cannot downgrade a Redis Cluster.
+         * 
          * @return builder
          * 
          */
@@ -694,6 +907,9 @@ public final class RedisClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param version Redis&#39;s Cluster version (e.g. `6.2.6`).
+         * 
+         * &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+         * cannot downgrade a Redis Cluster.
          * 
          * @return builder
          * 

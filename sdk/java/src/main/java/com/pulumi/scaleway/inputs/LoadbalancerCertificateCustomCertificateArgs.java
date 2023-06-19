@@ -16,12 +16,16 @@ public final class LoadbalancerCertificateCustomCertificateArgs extends com.pulu
     /**
      * Full PEM-formatted certificate chain.
      * 
+     * &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
+     * 
      */
     @Import(name="certificateChain", required=true)
     private Output<String> certificateChain;
 
     /**
      * @return Full PEM-formatted certificate chain.
+     * 
+     * &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
      * 
      */
     public Output<String> certificateChain() {
@@ -55,6 +59,8 @@ public final class LoadbalancerCertificateCustomCertificateArgs extends com.pulu
         /**
          * @param certificateChain Full PEM-formatted certificate chain.
          * 
+         * &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -65,6 +71,8 @@ public final class LoadbalancerCertificateCustomCertificateArgs extends com.pulu
 
         /**
          * @param certificateChain Full PEM-formatted certificate chain.
+         * 
+         * &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
          * 
          * @return builder
          * 

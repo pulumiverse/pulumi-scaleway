@@ -17,6 +17,8 @@ public final class InstanceSnapshotImport {
     /**
      * @return Key of the object to import
      * 
+     * &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
+     * 
      */
     private String key;
 
@@ -30,6 +32,8 @@ public final class InstanceSnapshotImport {
     }
     /**
      * @return Key of the object to import
+     * 
+     * &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
      * 
      */
     public String key() {

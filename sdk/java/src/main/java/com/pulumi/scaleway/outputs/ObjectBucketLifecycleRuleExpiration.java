@@ -12,12 +12,16 @@ public final class ObjectBucketLifecycleRuleExpiration {
     /**
      * @return Specifies the number of days after object creation when the specific rule action takes effect.
      * 
+     * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     * 
      */
     private Integer days;
 
     private ObjectBucketLifecycleRuleExpiration() {}
     /**
      * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
      * 
      */
     public Integer days() {

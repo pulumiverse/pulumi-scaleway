@@ -16,12 +16,16 @@ public final class ObjectBucketLifecycleRuleExpirationArgs extends com.pulumi.re
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
      * 
+     * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     * 
      */
     @Import(name="days", required=true)
     private Output<Integer> days;
 
     /**
      * @return Specifies the number of days after object creation when the specific rule action takes effect.
+     * 
+     * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
      * 
      */
     public Output<Integer> days() {
@@ -55,6 +59,8 @@ public final class ObjectBucketLifecycleRuleExpirationArgs extends com.pulumi.re
         /**
          * @param days Specifies the number of days after object creation when the specific rule action takes effect.
          * 
+         * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+         * 
          * @return builder
          * 
          */
@@ -65,6 +71,8 @@ public final class ObjectBucketLifecycleRuleExpirationArgs extends com.pulumi.re
 
         /**
          * @param days Specifies the number of days after object creation when the specific rule action takes effect.
+         * 
+         * &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
          * 
          * @return builder
          * 

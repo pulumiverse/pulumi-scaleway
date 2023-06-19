@@ -19,12 +19,16 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database.
+     * 
      */
     @Import(name="instanceId")
     private @Nullable Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database.
      * 
      */
     public Optional<Output<String>> instanceId() {
@@ -138,6 +142,8 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param instanceId UUID of the rdb instance.
          * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Database.
+         * 
          * @return builder
          * 
          */
@@ -148,6 +154,8 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** Updates to `instance_id` will recreate the Database.
          * 
          * @return builder
          * 

@@ -110,12 +110,16 @@ public class FunctionToken extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the function.
      * 
+     * &gt; Only one of `namespace_id` or `function_id` must be set.
+     * 
      */
     @Export(name="functionId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> functionId;
 
     /**
      * @return The ID of the function.
+     * 
+     * &gt; Only one of `namespace_id` or `function_id` must be set.
      * 
      */
     public Output<Optional<String>> functionId() {
@@ -138,12 +142,16 @@ public class FunctionToken extends com.pulumi.resources.CustomResource {
     /**
      * `region`). The region in which the namespace should be created.
      * 
+     * &gt; **Important** Updates to any fields will recreate the token.
+     * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
      * @return `region`). The region in which the namespace should be created.
+     * 
+     * &gt; **Important** Updates to any fields will recreate the token.
      * 
      */
     public Output<String> region() {

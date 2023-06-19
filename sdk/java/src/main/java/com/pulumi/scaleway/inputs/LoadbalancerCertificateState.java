@@ -66,12 +66,16 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
     /**
      * The load-balancer ID this certificate is attached to.
      * 
+     * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+     * 
      */
     @Import(name="lbId")
     private @Nullable Output<String> lbId;
 
     /**
      * @return The load-balancer ID this certificate is attached to.
+     * 
+     * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
      * 
      */
     public Optional<Output<String>> lbId() {
@@ -156,12 +160,16 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
     /**
      * Array of alternative domain names.  A new certificate will be created if this field is changed.
      * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+     * 
      */
     @Import(name="subjectAlternativeNames")
     private @Nullable Output<List<String>> subjectAlternativeNames;
 
     /**
      * @return Array of alternative domain names.  A new certificate will be created if this field is changed.
+     * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
      * 
      */
     public Optional<Output<List<String>>> subjectAlternativeNames() {
@@ -267,6 +275,8 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
         /**
          * @param lbId The load-balancer ID this certificate is attached to.
          * 
+         * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -277,6 +287,8 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
 
         /**
          * @param lbId The load-balancer ID this certificate is attached to.
+         * 
+         * &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
          * 
          * @return builder
          * 
@@ -393,6 +405,8 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
         /**
          * @param subjectAlternativeNames Array of alternative domain names.  A new certificate will be created if this field is changed.
          * 
+         * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -404,6 +418,8 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
         /**
          * @param subjectAlternativeNames Array of alternative domain names.  A new certificate will be created if this field is changed.
          * 
+         * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+         * 
          * @return builder
          * 
          */
@@ -413,6 +429,8 @@ public final class LoadbalancerCertificateState extends com.pulumi.resources.Res
 
         /**
          * @param subjectAlternativeNames Array of alternative domain names.  A new certificate will be created if this field is changed.
+         * 
+         * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
          * 
          * @return builder
          * 

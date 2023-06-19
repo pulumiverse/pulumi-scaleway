@@ -43,11 +43,12 @@ public final class DatabaseReadReplicaPrivateNetwork {
      */
     private String privateNetworkId;
     /**
-     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-     * limitations. (IP network).
+     * @return The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      * 
      */
-    private String serviceIp;
+    private @Nullable String serviceIp;
     private @Nullable String zone;
 
     private DatabaseReadReplicaPrivateNetwork() {}
@@ -94,12 +95,13 @@ public final class DatabaseReadReplicaPrivateNetwork {
         return this.privateNetworkId;
     }
     /**
-     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-     * limitations. (IP network).
+     * @return The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      * 
      */
-    public String serviceIp() {
-        return this.serviceIp;
+    public Optional<String> serviceIp() {
+        return Optional.ofNullable(this.serviceIp);
     }
     public Optional<String> zone() {
         return Optional.ofNullable(this.zone);
@@ -120,7 +122,7 @@ public final class DatabaseReadReplicaPrivateNetwork {
         private @Nullable String name;
         private @Nullable Integer port;
         private String privateNetworkId;
-        private String serviceIp;
+        private @Nullable String serviceIp;
         private @Nullable String zone;
         public Builder() {}
         public Builder(DatabaseReadReplicaPrivateNetwork defaults) {
@@ -166,8 +168,8 @@ public final class DatabaseReadReplicaPrivateNetwork {
             return this;
         }
         @CustomType.Setter
-        public Builder serviceIp(String serviceIp) {
-            this.serviceIp = Objects.requireNonNull(serviceIp);
+        public Builder serviceIp(@Nullable String serviceIp) {
+            this.serviceIp = serviceIp;
             return this;
         }
         @CustomType.Setter

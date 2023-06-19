@@ -20,10 +20,14 @@ public final class IamPolicyRule {
     /**
      * @return Names of permission sets bound to the rule.
      * 
+     * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+     * 
      */
     private List<String> permissionSetNames;
     /**
      * @return List of project IDs scoped to the rule.
+     * 
+     * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
      * 
      */
     private @Nullable List<String> projectIds;
@@ -39,12 +43,16 @@ public final class IamPolicyRule {
     /**
      * @return Names of permission sets bound to the rule.
      * 
+     * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+     * 
      */
     public List<String> permissionSetNames() {
         return this.permissionSetNames;
     }
     /**
      * @return List of project IDs scoped to the rule.
+     * 
+     * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
      * 
      */
     public List<String> projectIds() {

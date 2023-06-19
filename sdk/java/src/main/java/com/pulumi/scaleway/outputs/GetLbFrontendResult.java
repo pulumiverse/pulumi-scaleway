@@ -20,6 +20,7 @@ public final class GetLbFrontendResult {
     private String certificateId;
     private List<String> certificateIds;
     private Boolean enableHttp3;
+    private Boolean externalAcls;
     private @Nullable String frontendId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -46,6 +47,9 @@ public final class GetLbFrontendResult {
     }
     public Boolean enableHttp3() {
         return this.enableHttp3;
+    }
+    public Boolean externalAcls() {
+        return this.externalAcls;
     }
     public Optional<String> frontendId() {
         return Optional.ofNullable(this.frontendId);
@@ -84,6 +88,7 @@ public final class GetLbFrontendResult {
         private String certificateId;
         private List<String> certificateIds;
         private Boolean enableHttp3;
+        private Boolean externalAcls;
         private @Nullable String frontendId;
         private String id;
         private Integer inboundPort;
@@ -98,6 +103,7 @@ public final class GetLbFrontendResult {
     	      this.certificateId = defaults.certificateId;
     	      this.certificateIds = defaults.certificateIds;
     	      this.enableHttp3 = defaults.enableHttp3;
+    	      this.externalAcls = defaults.externalAcls;
     	      this.frontendId = defaults.frontendId;
     	      this.id = defaults.id;
     	      this.inboundPort = defaults.inboundPort;
@@ -138,6 +144,11 @@ public final class GetLbFrontendResult {
             return this;
         }
         @CustomType.Setter
+        public Builder externalAcls(Boolean externalAcls) {
+            this.externalAcls = Objects.requireNonNull(externalAcls);
+            return this;
+        }
+        @CustomType.Setter
         public Builder frontendId(@Nullable String frontendId) {
             this.frontendId = frontendId;
             return this;
@@ -174,6 +185,7 @@ public final class GetLbFrontendResult {
             o.certificateId = certificateId;
             o.certificateIds = certificateIds;
             o.enableHttp3 = enableHttp3;
+            o.externalAcls = externalAcls;
             o.frontendId = frontendId;
             o.id = id;
             o.inboundPort = inboundPort;

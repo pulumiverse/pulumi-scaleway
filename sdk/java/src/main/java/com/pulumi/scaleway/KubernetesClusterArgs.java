@@ -98,7 +98,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      * 
@@ -107,7 +107,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     private Output<Boolean> deleteAdditionalResources;
 
     /**
-     * @return Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * @return Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      * 
@@ -179,12 +179,18 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     /**
      * The ID of the private network of the cluster.
      * 
+     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * 
      */
     @Import(name="privateNetworkId")
     private @Nullable Output<String> privateNetworkId;
 
     /**
      * @return The ID of the private network of the cluster.
+     * 
+     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+     * Changes to this field will cause the cluster to be destroyed then recreated.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -433,7 +439,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param deleteAdditionalResources Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+         * @param deleteAdditionalResources Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
          * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
          * If you prefer keeping it, you should instead set it as `false`.
          * 
@@ -446,7 +452,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param deleteAdditionalResources Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+         * @param deleteAdditionalResources Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
          * &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
          * If you prefer keeping it, you should instead set it as `false`.
          * 
@@ -554,6 +560,9 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
          * 
+         * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+         * Changes to this field will cause the cluster to be destroyed then recreated.
+         * 
          * @return builder
          * 
          */
@@ -564,6 +573,9 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
+         * 
+         * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+         * Changes to this field will cause the cluster to be destroyed then recreated.
          * 
          * @return builder
          * 

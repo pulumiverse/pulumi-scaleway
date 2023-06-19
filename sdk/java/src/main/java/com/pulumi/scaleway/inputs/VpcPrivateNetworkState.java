@@ -5,6 +5,9 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;
+import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv6SubnetArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +32,55 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> createdAt() {
         return Optional.ofNullable(this.createdAt);
+    }
+
+    /**
+     * The IPv4 subnet associated with the private network.
+     * 
+     */
+    @Import(name="ipv4Subnet")
+    private @Nullable Output<VpcPrivateNetworkIpv4SubnetArgs> ipv4Subnet;
+
+    /**
+     * @return The IPv4 subnet associated with the private network.
+     * 
+     */
+    public Optional<Output<VpcPrivateNetworkIpv4SubnetArgs>> ipv4Subnet() {
+        return Optional.ofNullable(this.ipv4Subnet);
+    }
+
+    /**
+     * The IPv6 subnets associated with the private network.
+     * 
+     * &gt; **Note:** If using Regional Private Network:
+     * 
+     */
+    @Import(name="ipv6Subnets")
+    private @Nullable Output<List<VpcPrivateNetworkIpv6SubnetArgs>> ipv6Subnets;
+
+    /**
+     * @return The IPv6 subnets associated with the private network.
+     * 
+     * &gt; **Note:** If using Regional Private Network:
+     * 
+     */
+    public Optional<Output<List<VpcPrivateNetworkIpv6SubnetArgs>>> ipv6Subnets() {
+        return Optional.ofNullable(this.ipv6Subnets);
+    }
+
+    /**
+     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * 
+     */
+    @Import(name="isRegional")
+    private @Nullable Output<Boolean> isRegional;
+
+    /**
+     * @return Defines whether the private network is Regional. By default, it will be Zonal.
+     * 
+     */
+    public Optional<Output<Boolean>> isRegional() {
+        return Optional.ofNullable(this.isRegional);
     }
 
     /**
@@ -77,6 +129,21 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * `region`) The region of the private network.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return `region`) The region of the private network.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * The tags associated with the private network.
      * 
      */
@@ -107,6 +174,21 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The VPC in which to create the private network.
+     * 
+     */
+    @Import(name="vpcId")
+    private @Nullable Output<String> vpcId;
+
+    /**
+     * @return The VPC in which to create the private network.
+     * 
+     */
+    public Optional<Output<String>> vpcId() {
+        return Optional.ofNullable(this.vpcId);
+    }
+
+    /**
      * `zone`) The zone in which the private network should be created.
      * 
      */
@@ -125,11 +207,16 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
 
     private VpcPrivateNetworkState(VpcPrivateNetworkState $) {
         this.createdAt = $.createdAt;
+        this.ipv4Subnet = $.ipv4Subnet;
+        this.ipv6Subnets = $.ipv6Subnets;
+        this.isRegional = $.isRegional;
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.projectId = $.projectId;
+        this.region = $.region;
         this.tags = $.tags;
         this.updatedAt = $.updatedAt;
+        this.vpcId = $.vpcId;
         this.zone = $.zone;
     }
 
@@ -170,6 +257,85 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
          */
         public Builder createdAt(String createdAt) {
             return createdAt(Output.of(createdAt));
+        }
+
+        /**
+         * @param ipv4Subnet The IPv4 subnet associated with the private network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv4Subnet(@Nullable Output<VpcPrivateNetworkIpv4SubnetArgs> ipv4Subnet) {
+            $.ipv4Subnet = ipv4Subnet;
+            return this;
+        }
+
+        /**
+         * @param ipv4Subnet The IPv4 subnet associated with the private network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs ipv4Subnet) {
+            return ipv4Subnet(Output.of(ipv4Subnet));
+        }
+
+        /**
+         * @param ipv6Subnets The IPv6 subnets associated with the private network.
+         * 
+         * &gt; **Note:** If using Regional Private Network:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv6Subnets(@Nullable Output<List<VpcPrivateNetworkIpv6SubnetArgs>> ipv6Subnets) {
+            $.ipv6Subnets = ipv6Subnets;
+            return this;
+        }
+
+        /**
+         * @param ipv6Subnets The IPv6 subnets associated with the private network.
+         * 
+         * &gt; **Note:** If using Regional Private Network:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv6Subnets(List<VpcPrivateNetworkIpv6SubnetArgs> ipv6Subnets) {
+            return ipv6Subnets(Output.of(ipv6Subnets));
+        }
+
+        /**
+         * @param ipv6Subnets The IPv6 subnets associated with the private network.
+         * 
+         * &gt; **Note:** If using Regional Private Network:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv6Subnets(VpcPrivateNetworkIpv6SubnetArgs... ipv6Subnets) {
+            return ipv6Subnets(List.of(ipv6Subnets));
+        }
+
+        /**
+         * @param isRegional Defines whether the private network is Regional. By default, it will be Zonal.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isRegional(@Nullable Output<Boolean> isRegional) {
+            $.isRegional = isRegional;
+            return this;
+        }
+
+        /**
+         * @param isRegional Defines whether the private network is Regional. By default, it will be Zonal.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isRegional(Boolean isRegional) {
+            return isRegional(Output.of(isRegional));
         }
 
         /**
@@ -236,6 +402,27 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param region `region`) The region of the private network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region `region`) The region of the private network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
+        }
+
+        /**
          * @param tags The tags associated with the private network.
          * 
          * @return builder
@@ -285,6 +472,27 @@ public final class VpcPrivateNetworkState extends com.pulumi.resources.ResourceA
          */
         public Builder updatedAt(String updatedAt) {
             return updatedAt(Output.of(updatedAt));
+        }
+
+        /**
+         * @param vpcId The VPC in which to create the private network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vpcId(@Nullable Output<String> vpcId) {
+            $.vpcId = vpcId;
+            return this;
+        }
+
+        /**
+         * @param vpcId The VPC in which to create the private network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vpcId(String vpcId) {
+            return vpcId(Output.of(vpcId));
         }
 
         /**

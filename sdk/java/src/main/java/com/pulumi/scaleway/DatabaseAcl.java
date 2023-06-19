@@ -84,12 +84,16 @@ public class DatabaseAcl extends com.pulumi.resources.CustomResource {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
+     * 
      */
     @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
      * 
      */
     public Output<String> instanceId() {

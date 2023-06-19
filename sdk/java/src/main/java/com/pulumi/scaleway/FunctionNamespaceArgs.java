@@ -49,12 +49,16 @@ public final class FunctionNamespaceArgs extends com.pulumi.resources.ResourceAr
     /**
      * The unique name of the function namespace.
      * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
+     * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
      * @return The unique name of the function namespace.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
      * 
      */
     public Optional<Output<String>> name() {
@@ -180,6 +184,8 @@ public final class FunctionNamespaceArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param name The unique name of the function namespace.
          * 
+         * &gt; **Important** Updates to `name` will recreate the namespace.
+         * 
          * @return builder
          * 
          */
@@ -190,6 +196,8 @@ public final class FunctionNamespaceArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param name The unique name of the function namespace.
+         * 
+         * &gt; **Important** Updates to `name` will recreate the namespace.
          * 
          * @return builder
          * 

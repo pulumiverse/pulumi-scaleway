@@ -41,20 +41,26 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
     /**
      * Endpoint IPv4 addresses
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-     * least one IP per node.
+     * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     * 
+     * &gt; The `private_network` conflict with `acl`. Only one should be specified.
      * 
      */
-    @Import(name="serviceIps", required=true)
-    private Output<List<String>> serviceIps;
+    @Import(name="serviceIps")
+    private @Nullable Output<List<String>> serviceIps;
 
     /**
      * @return Endpoint IPv4 addresses
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-     * least one IP per node.
+     * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     * 
+     * &gt; The `private_network` conflict with `acl`. Only one should be specified.
      * 
      */
-    public Output<List<String>> serviceIps() {
-        return this.serviceIps;
+    public Optional<Output<List<String>>> serviceIps() {
+        return Optional.ofNullable(this.serviceIps);
     }
 
     /**
@@ -134,12 +140,15 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         /**
          * @param serviceIps Endpoint IPv4 addresses
          * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-         * least one IP per node.
+         * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+         * service if not set.
+         * 
+         * &gt; The `private_network` conflict with `acl`. Only one should be specified.
          * 
          * @return builder
          * 
          */
-        public Builder serviceIps(Output<List<String>> serviceIps) {
+        public Builder serviceIps(@Nullable Output<List<String>> serviceIps) {
             $.serviceIps = serviceIps;
             return this;
         }
@@ -147,7 +156,10 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         /**
          * @param serviceIps Endpoint IPv4 addresses
          * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-         * least one IP per node.
+         * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+         * service if not set.
+         * 
+         * &gt; The `private_network` conflict with `acl`. Only one should be specified.
          * 
          * @return builder
          * 
@@ -159,7 +171,10 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
         /**
          * @param serviceIps Endpoint IPv4 addresses
          * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-         * least one IP per node.
+         * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+         * service if not set.
+         * 
+         * &gt; The `private_network` conflict with `acl`. Only one should be specified.
          * 
          * @return builder
          * 
@@ -193,7 +208,6 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
 
         public RedisClusterPrivateNetworkArgs build() {
             $.id = Objects.requireNonNull($.id, "expected parameter 'id' to be non-null");
-            $.serviceIps = Objects.requireNonNull($.serviceIps, "expected parameter 'serviceIps' to be non-null");
             return $;
         }
     }

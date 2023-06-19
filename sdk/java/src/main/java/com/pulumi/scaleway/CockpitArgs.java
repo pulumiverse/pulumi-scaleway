@@ -16,6 +16,21 @@ public final class CockpitArgs extends com.pulumi.resources.ResourceArgs {
     public static final CockpitArgs Empty = new CockpitArgs();
 
     /**
+     * Name or ID of the plan to use.
+     * 
+     */
+    @Import(name="plan")
+    private @Nullable Output<String> plan;
+
+    /**
+     * @return Name or ID of the plan to use.
+     * 
+     */
+    public Optional<Output<String>> plan() {
+        return Optional.ofNullable(this.plan);
+    }
+
+    /**
      * `project_id`) The ID of the project the cockpit is associated with.
      * 
      */
@@ -33,6 +48,7 @@ public final class CockpitArgs extends com.pulumi.resources.ResourceArgs {
     private CockpitArgs() {}
 
     private CockpitArgs(CockpitArgs $) {
+        this.plan = $.plan;
         this.projectId = $.projectId;
     }
 
@@ -52,6 +68,27 @@ public final class CockpitArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(CockpitArgs defaults) {
             $ = new CockpitArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param plan Name or ID of the plan to use.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder plan(@Nullable Output<String> plan) {
+            $.plan = plan;
+            return this;
+        }
+
+        /**
+         * @param plan Name or ID of the plan to use.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder plan(String plan) {
+            return plan(Output.of(plan));
         }
 
         /**

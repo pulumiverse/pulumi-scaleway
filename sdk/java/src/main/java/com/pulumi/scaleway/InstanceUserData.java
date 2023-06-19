@@ -82,12 +82,22 @@ public class InstanceUserData extends com.pulumi.resources.CustomResource {
     /**
      * `zone`) The zone in which the server should be created.
      * 
+     * &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
+     * 
      */
     @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
      * @return `zone`) The zone in which the server should be created.
+     * 
+     * &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+     * You can define values using:
+     * - string
+     * - UTF-8 encoded file content using file
      * 
      */
     public Output<String> zone() {

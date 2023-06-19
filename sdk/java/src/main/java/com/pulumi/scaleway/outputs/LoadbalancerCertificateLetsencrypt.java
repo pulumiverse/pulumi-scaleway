@@ -19,6 +19,8 @@ public final class LoadbalancerCertificateLetsencrypt {
     /**
      * @return Array of alternative domain names.  A new certificate will be created if this field is changed.
      * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+     * 
      */
     private @Nullable List<String> subjectAlternativeNames;
 
@@ -32,6 +34,8 @@ public final class LoadbalancerCertificateLetsencrypt {
     }
     /**
      * @return Array of alternative domain names.  A new certificate will be created if this field is changed.
+     * 
+     * &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
      * 
      */
     public List<String> subjectAlternativeNames() {

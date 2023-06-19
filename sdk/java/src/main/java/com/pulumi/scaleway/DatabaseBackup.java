@@ -126,12 +126,16 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
     /**
      * Expiration date (Format ISO 8601).
      * 
+     * &gt; **Important:** `expires_at` cannot be removed after being set.
+     * 
      */
     @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiresAt;
 
     /**
      * @return Expiration date (Format ISO 8601).
+     * 
+     * &gt; **Important:** `expires_at` cannot be removed after being set.
      * 
      */
     public Output<Optional<String>> expiresAt() {
@@ -140,12 +144,16 @@ public class DatabaseBackup extends com.pulumi.resources.CustomResource {
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Backup.
+     * 
      */
     @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** Updates to `instance_id` will recreate the Backup.
      * 
      */
     public Output<String> instanceId() {

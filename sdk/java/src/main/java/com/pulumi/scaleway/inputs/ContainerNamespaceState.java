@@ -73,12 +73,16 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
     /**
      * The unique name of the container namespace.
      * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
+     * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
      * @return The unique name of the container namespace.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the namespace.
      * 
      */
     public Optional<Output<String>> name() {
@@ -282,6 +286,8 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
         /**
          * @param name The unique name of the container namespace.
          * 
+         * &gt; **Important** Updates to `name` will recreate the namespace.
+         * 
          * @return builder
          * 
          */
@@ -292,6 +298,8 @@ public final class ContainerNamespaceState extends com.pulumi.resources.Resource
 
         /**
          * @param name The unique name of the container namespace.
+         * 
+         * &gt; **Important** Updates to `name` will recreate the namespace.
          * 
          * @return builder
          * 

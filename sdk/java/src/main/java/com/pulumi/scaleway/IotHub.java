@@ -101,12 +101,16 @@ public class IotHub extends com.pulumi.resources.CustomResource {
     /**
      * Wether the IoT Hub instance should be enabled or not.
      * 
+     * &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
+     * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
      * @return Wether the IoT Hub instance should be enabled or not.
+     * 
+     * &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
      * 
      */
     public Output<Optional<Boolean>> enabled() {
@@ -199,12 +203,16 @@ public class IotHub extends com.pulumi.resources.CustomResource {
     /**
      * Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
      * 
+     * &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
+     * 
      */
     @Export(name="productPlan", refs={String.class}, tree="[0]")
     private Output<String> productPlan;
 
     /**
      * @return Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+     * 
+     * &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
      * 
      */
     public Output<String> productPlan() {

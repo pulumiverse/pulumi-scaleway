@@ -39,12 +39,16 @@ public final class GetContainerPlainArgs extends com.pulumi.resources.InvokeArgs
     /**
      * The container namespace ID of the container.
      * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
      */
     @Import(name="namespaceId", required=true)
     private String namespaceId;
 
     /**
      * @return The container namespace ID of the container.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the container.
      * 
      */
     public String namespaceId() {
@@ -111,6 +115,8 @@ public final class GetContainerPlainArgs extends com.pulumi.resources.InvokeArgs
 
         /**
          * @param namespaceId The container namespace ID of the container.
+         * 
+         * &gt; **Important** Updates to `name` will recreate the container.
          * 
          * @return builder
          * 

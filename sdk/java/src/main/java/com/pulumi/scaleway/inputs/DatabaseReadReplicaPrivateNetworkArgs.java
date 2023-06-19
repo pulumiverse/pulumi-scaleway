@@ -107,20 +107,22 @@ public final class DatabaseReadReplicaPrivateNetworkArgs extends com.pulumi.reso
     }
 
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-     * limitations. (IP network).
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      * 
      */
-    @Import(name="serviceIp", required=true)
-    private Output<String> serviceIp;
+    @Import(name="serviceIp")
+    private @Nullable Output<String> serviceIp;
 
     /**
-     * @return Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-     * limitations. (IP network).
+     * @return The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      * 
      */
-    public Output<String> serviceIp() {
-        return this.serviceIp;
+    public Optional<Output<String>> serviceIp() {
+        return Optional.ofNullable(this.serviceIp);
     }
 
     @Import(name="zone")
@@ -288,20 +290,22 @@ public final class DatabaseReadReplicaPrivateNetworkArgs extends com.pulumi.reso
         }
 
         /**
-         * @param serviceIp Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-         * limitations. (IP network).
+         * @param serviceIp The IP network address within the private subnet. This must be an IPv4 address with a
+         * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+         * service if not set.
          * 
          * @return builder
          * 
          */
-        public Builder serviceIp(Output<String> serviceIp) {
+        public Builder serviceIp(@Nullable Output<String> serviceIp) {
             $.serviceIp = serviceIp;
             return this;
         }
 
         /**
-         * @param serviceIp Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-         * limitations. (IP network).
+         * @param serviceIp The IP network address within the private subnet. This must be an IPv4 address with a
+         * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+         * service if not set.
          * 
          * @return builder
          * 
@@ -321,7 +325,6 @@ public final class DatabaseReadReplicaPrivateNetworkArgs extends com.pulumi.reso
 
         public DatabaseReadReplicaPrivateNetworkArgs build() {
             $.privateNetworkId = Objects.requireNonNull($.privateNetworkId, "expected parameter 'privateNetworkId' to be non-null");
-            $.serviceIp = Objects.requireNonNull($.serviceIp, "expected parameter 'serviceIp' to be non-null");
             return $;
         }
     }

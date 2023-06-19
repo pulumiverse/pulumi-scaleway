@@ -138,12 +138,16 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
      * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+     * 
      */
     @Import(name="engine")
     private @Nullable Output<String> engine;
 
     /**
      * @return Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
+     * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
      * 
      */
     public Optional<Output<String>> engine() {
@@ -153,12 +157,16 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * Map of engine settings to be set at database initialisation.
      * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+     * 
      */
     @Import(name="initSettings")
     private @Nullable Output<Map<String,String>> initSettings;
 
     /**
      * @return Map of engine settings to be set at database initialisation.
+     * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
      * 
      */
     public Optional<Output<Map<String,String>>> initSettings() {
@@ -168,12 +176,16 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * Enable or disable high availability for the database instance.
      * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+     * 
      */
     @Import(name="isHaCluster")
     private @Nullable Output<Boolean> isHaCluster;
 
     /**
      * @return Enable or disable high availability for the database instance.
+     * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
      * 
      */
     public Optional<Output<Boolean>> isHaCluster() {
@@ -213,12 +225,18 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
      * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * 
      */
     @Import(name="nodeType")
     private @Nullable Output<String> nodeType;
 
     /**
      * @return The type of database instance you want to create (e.g. `db-dev-s`).
+     * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      * 
      */
     public Optional<Output<String>> nodeType() {
@@ -271,14 +289,16 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * `project_id`) The ID of the project the Database Instance is associated with.
+     * `project_id`) The ID of the project the Database
+     * Instance is associated with.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return `project_id`) The ID of the project the Database Instance is associated with.
+     * @return `project_id`) The ID of the project the Database
+     * Instance is associated with.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -301,14 +321,16 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database Instance should be created.
+     * @return `region`) The region
+     * in which the Database Instance should be created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -348,6 +370,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * Identifier for the first user of the database instance.
      * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+     * 
      */
     @Import(name="userName")
     private @Nullable Output<String> userName;
@@ -355,20 +379,22 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * @return Identifier for the first user of the database instance.
      * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+     * 
      */
     public Optional<Output<String>> userName() {
         return Optional.ofNullable(this.userName);
     }
 
     /**
-     * Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
      */
     @Import(name="volumeSizeInGb")
     private @Nullable Output<Integer> volumeSizeInGb;
 
     /**
-     * @return Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+     * @return Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
      */
     public Optional<Output<Integer>> volumeSizeInGb() {
@@ -595,6 +621,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param engine Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
          * 
+         * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -606,6 +634,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param engine Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
          * 
+         * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -615,6 +645,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param initSettings Map of engine settings to be set at database initialisation.
+         * 
+         * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
          * 
          * @return builder
          * 
@@ -627,6 +659,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param initSettings Map of engine settings to be set at database initialisation.
          * 
+         * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -636,6 +670,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param isHaCluster Enable or disable high availability for the database instance.
+         * 
+         * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
          * 
          * @return builder
          * 
@@ -647,6 +683,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param isHaCluster Enable or disable high availability for the database instance.
+         * 
+         * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
          * 
          * @return builder
          * 
@@ -710,6 +748,9 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param nodeType The type of database instance you want to create (e.g. `db-dev-s`).
          * 
+         * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+         * interruption. Keep in mind that you cannot downgrade a Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -720,6 +761,9 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param nodeType The type of database instance you want to create (e.g. `db-dev-s`).
+         * 
+         * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+         * interruption. Keep in mind that you cannot downgrade a Database Instance.
          * 
          * @return builder
          * 
@@ -792,7 +836,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId `project_id`) The ID of the project the Database Instance is associated with.
+         * @param projectId `project_id`) The ID of the project the Database
+         * Instance is associated with.
          * 
          * @return builder
          * 
@@ -803,7 +848,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId `project_id`) The ID of the project the Database Instance is associated with.
+         * @param projectId `project_id`) The ID of the project the Database
+         * Instance is associated with.
          * 
          * @return builder
          * 
@@ -844,7 +890,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param region `region`) The region in which the Database Instance should be created.
+         * @param region `region`) The region
+         * in which the Database Instance should be created.
          * 
          * @return builder
          * 
@@ -855,7 +902,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param region `region`) The region in which the Database Instance should be created.
+         * @param region `region`) The region
+         * in which the Database Instance should be created.
          * 
          * @return builder
          * 
@@ -919,6 +967,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param userName Identifier for the first user of the database instance.
          * 
+         * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -930,6 +980,8 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param userName Identifier for the first user of the database instance.
          * 
+         * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -938,7 +990,7 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`.
          * 
          * @return builder
          * 
@@ -949,7 +1001,7 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`.
          * 
          * @return builder
          * 

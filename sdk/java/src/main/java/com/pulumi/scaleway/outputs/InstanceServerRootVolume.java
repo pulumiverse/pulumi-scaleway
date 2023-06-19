@@ -17,6 +17,8 @@ public final class InstanceServerRootVolume {
     /**
      * @return Forces deletion of the root volume on instance termination.
      * 
+     * &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+     * 
      */
     private @Nullable Boolean deleteOnTermination;
     /**
@@ -49,6 +51,8 @@ public final class InstanceServerRootVolume {
     }
     /**
      * @return Forces deletion of the root volume on instance termination.
+     * 
+     * &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
      * 
      */
     public Optional<Boolean> deleteOnTermination() {

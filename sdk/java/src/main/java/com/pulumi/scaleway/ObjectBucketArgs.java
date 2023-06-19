@@ -122,12 +122,18 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * `project_id`) The ID of the project the bucket is associated with.
      * 
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
+     * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
      * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -369,6 +375,9 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param projectId `project_id`) The ID of the project the bucket is associated with.
          * 
+         * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+         * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
+         * 
          * @return builder
          * 
          */
@@ -379,6 +388,9 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectId `project_id`) The ID of the project the bucket is associated with.
+         * 
+         * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
+         * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
          * 
          * @return builder
          * 

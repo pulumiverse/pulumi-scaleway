@@ -34,12 +34,16 @@ public final class ObjectBucketLifecycleRuleTransitionArgs extends com.pulumi.re
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
      * 
+     * &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+     * 
      */
     @Import(name="storageClass", required=true)
     private Output<String> storageClass;
 
     /**
      * @return Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     * 
+     * &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      * 
      */
     public Output<String> storageClass() {
@@ -95,6 +99,8 @@ public final class ObjectBucketLifecycleRuleTransitionArgs extends com.pulumi.re
         /**
          * @param storageClass Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
          * 
+         * &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+         * 
          * @return builder
          * 
          */
@@ -105,6 +111,8 @@ public final class ObjectBucketLifecycleRuleTransitionArgs extends com.pulumi.re
 
         /**
          * @param storageClass Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+         * 
+         * &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
          * 
          * @return builder
          * 

@@ -48,12 +48,16 @@ public final class FunctionTokenArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The ID of the function.
      * 
+     * &gt; Only one of `namespace_id` or `function_id` must be set.
+     * 
      */
     @Import(name="functionId")
     private @Nullable Output<String> functionId;
 
     /**
      * @return The ID of the function.
+     * 
+     * &gt; Only one of `namespace_id` or `function_id` must be set.
      * 
      */
     public Optional<Output<String>> functionId() {
@@ -78,12 +82,16 @@ public final class FunctionTokenArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * `region`). The region in which the namespace should be created.
      * 
+     * &gt; **Important** Updates to any fields will recreate the token.
+     * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
      * @return `region`). The region in which the namespace should be created.
+     * 
+     * &gt; **Important** Updates to any fields will recreate the token.
      * 
      */
     public Optional<Output<String>> region() {
@@ -163,6 +171,8 @@ public final class FunctionTokenArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param functionId The ID of the function.
          * 
+         * &gt; Only one of `namespace_id` or `function_id` must be set.
+         * 
          * @return builder
          * 
          */
@@ -173,6 +183,8 @@ public final class FunctionTokenArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param functionId The ID of the function.
+         * 
+         * &gt; Only one of `namespace_id` or `function_id` must be set.
          * 
          * @return builder
          * 
@@ -205,6 +217,8 @@ public final class FunctionTokenArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param region `region`). The region in which the namespace should be created.
          * 
+         * &gt; **Important** Updates to any fields will recreate the token.
+         * 
          * @return builder
          * 
          */
@@ -215,6 +229,8 @@ public final class FunctionTokenArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param region `region`). The region in which the namespace should be created.
+         * 
+         * &gt; **Important** Updates to any fields will recreate the token.
          * 
          * @return builder
          * 

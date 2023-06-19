@@ -34,12 +34,16 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Names of permission sets bound to the rule.
      * 
+     * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+     * 
      */
     @Import(name="permissionSetNames", required=true)
     private Output<List<String>> permissionSetNames;
 
     /**
      * @return Names of permission sets bound to the rule.
+     * 
+     * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
      * 
      */
     public Output<List<String>> permissionSetNames() {
@@ -49,12 +53,16 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * List of project IDs scoped to the rule.
      * 
+     * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
+     * 
      */
     @Import(name="projectIds")
     private @Nullable Output<List<String>> projectIds;
 
     /**
      * @return List of project IDs scoped to the rule.
+     * 
+     * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
      * 
      */
     public Optional<Output<List<String>>> projectIds() {
@@ -111,6 +119,8 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param permissionSetNames Names of permission sets bound to the rule.
          * 
+         * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+         * 
          * @return builder
          * 
          */
@@ -122,6 +132,8 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param permissionSetNames Names of permission sets bound to the rule.
          * 
+         * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+         * 
          * @return builder
          * 
          */
@@ -132,6 +144,8 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param permissionSetNames Names of permission sets bound to the rule.
          * 
+         * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+         * 
          * @return builder
          * 
          */
@@ -141,6 +155,8 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectIds List of project IDs scoped to the rule.
+         * 
+         * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
          * 
          * @return builder
          * 
@@ -153,6 +169,8 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param projectIds List of project IDs scoped to the rule.
          * 
+         * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
+         * 
          * @return builder
          * 
          */
@@ -162,6 +180,8 @@ public final class IamPolicyRuleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectIds List of project IDs scoped to the rule.
+         * 
+         * &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
          * 
          * @return builder
          * 

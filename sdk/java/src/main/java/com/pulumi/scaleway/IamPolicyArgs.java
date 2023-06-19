@@ -81,12 +81,16 @@ public final class IamPolicyArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * If the policy doesn&#39;t apply to a principal.
      * 
+     * &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+     * 
      */
     @Import(name="noPrincipal")
     private @Nullable Output<Boolean> noPrincipal;
 
     /**
      * @return If the policy doesn&#39;t apply to a principal.
+     * 
+     * &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
      * 
      */
     public Optional<Output<Boolean>> noPrincipal() {
@@ -256,6 +260,8 @@ public final class IamPolicyArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param noPrincipal If the policy doesn&#39;t apply to a principal.
          * 
+         * &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+         * 
          * @return builder
          * 
          */
@@ -266,6 +272,8 @@ public final class IamPolicyArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param noPrincipal If the policy doesn&#39;t apply to a principal.
+         * 
+         * &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
          * 
          * @return builder
          * 

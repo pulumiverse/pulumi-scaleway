@@ -18,6 +18,8 @@ public final class LoadbalancerFrontendAcl {
      * 
      */
     private LoadbalancerFrontendAclAction action;
+    private @Nullable String createdAt;
+    private @Nullable String description;
     /**
      * @return The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
      * 
@@ -28,6 +30,7 @@ public final class LoadbalancerFrontendAcl {
      * 
      */
     private @Nullable String name;
+    private @Nullable String updatedAt;
 
     private LoadbalancerFrontendAcl() {}
     /**
@@ -36,6 +39,12 @@ public final class LoadbalancerFrontendAcl {
      */
     public LoadbalancerFrontendAclAction action() {
         return this.action;
+    }
+    public Optional<String> createdAt() {
+        return Optional.ofNullable(this.createdAt);
+    }
+    public Optional<String> description() {
+        return Optional.ofNullable(this.description);
     }
     /**
      * @return The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
@@ -51,6 +60,9 @@ public final class LoadbalancerFrontendAcl {
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    public Optional<String> updatedAt() {
+        return Optional.ofNullable(this.updatedAt);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -62,19 +74,35 @@ public final class LoadbalancerFrontendAcl {
     @CustomType.Builder
     public static final class Builder {
         private LoadbalancerFrontendAclAction action;
+        private @Nullable String createdAt;
+        private @Nullable String description;
         private LoadbalancerFrontendAclMatch match;
         private @Nullable String name;
+        private @Nullable String updatedAt;
         public Builder() {}
         public Builder(LoadbalancerFrontendAcl defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.action = defaults.action;
+    	      this.createdAt = defaults.createdAt;
+    	      this.description = defaults.description;
     	      this.match = defaults.match;
     	      this.name = defaults.name;
+    	      this.updatedAt = defaults.updatedAt;
         }
 
         @CustomType.Setter
         public Builder action(LoadbalancerFrontendAclAction action) {
             this.action = Objects.requireNonNull(action);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder createdAt(@Nullable String createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(@Nullable String description) {
+            this.description = description;
             return this;
         }
         @CustomType.Setter
@@ -87,11 +115,19 @@ public final class LoadbalancerFrontendAcl {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
+        public Builder updatedAt(@Nullable String updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
         public LoadbalancerFrontendAcl build() {
             final var o = new LoadbalancerFrontendAcl();
             o.action = action;
+            o.createdAt = createdAt;
+            o.description = description;
             o.match = match;
             o.name = name;
+            o.updatedAt = updatedAt;
             return o;
         }
     }

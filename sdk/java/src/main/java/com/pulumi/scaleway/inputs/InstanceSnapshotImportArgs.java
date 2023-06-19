@@ -31,12 +31,16 @@ public final class InstanceSnapshotImportArgs extends com.pulumi.resources.Resou
     /**
      * Key of the object to import
      * 
+     * &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
+     * 
      */
     @Import(name="key", required=true)
     private Output<String> key;
 
     /**
      * @return Key of the object to import
+     * 
+     * &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
      * 
      */
     public Output<String> key() {
@@ -92,6 +96,8 @@ public final class InstanceSnapshotImportArgs extends com.pulumi.resources.Resou
         /**
          * @param key Key of the object to import
          * 
+         * &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
+         * 
          * @return builder
          * 
          */
@@ -102,6 +108,8 @@ public final class InstanceSnapshotImportArgs extends com.pulumi.resources.Resou
 
         /**
          * @param key Key of the object to import
+         * 
+         * &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
          * 
          * @return builder
          * 
