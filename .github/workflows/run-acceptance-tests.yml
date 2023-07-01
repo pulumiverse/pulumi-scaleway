@@ -1,11 +1,8 @@
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
-  PR_COMMIT_SHA: ${{ github.event.client_payload.pull_request.head.sha }}
   PROVIDER: scaleway
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   PULUMI_API: https://api.pulumi.com
@@ -39,11 +36,11 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v3
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.10.0
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -139,18 +136,18 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v3
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.10.0
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v2
     - if: github.event_name == 'pull_request'
       name: Install Schema Tools
-      uses: jaxxstorm/action-install-gh-release@v1.10.0
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: mikhailshilkov/schema-tools
     - name: Build tfgen & provider binaries
@@ -210,11 +207,11 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v3
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.10.0
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -259,7 +256,7 @@ jobs:
     - name: Install dependencies
       run: make install_${{ matrix.language}}_sdk
     - name: Run tests
-      run: cd examples # && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language}} -parallel 4 .
+      run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language}} -parallel 4 .
     strategy:
       fail-fast: true
       matrix:
