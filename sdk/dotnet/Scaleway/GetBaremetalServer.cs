@@ -142,6 +142,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetBaremetalServerIpResult> Ips;
+        public readonly ImmutableArray<Outputs.GetBaremetalServerIpv4Result> Ipv4s;
+        public readonly ImmutableArray<Outputs.GetBaremetalServerIpv6Result> Ipv6s;
         public readonly string? Name;
         public readonly string Offer;
         public readonly string OfferId;
@@ -173,6 +175,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string id,
 
             ImmutableArray<Outputs.GetBaremetalServerIpResult> ips,
+
+            ImmutableArray<Outputs.GetBaremetalServerIpv4Result> ipv4s,
+
+            ImmutableArray<Outputs.GetBaremetalServerIpv6Result> ipv6s,
 
             string? name,
 
@@ -217,6 +223,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Hostname = hostname;
             Id = id;
             Ips = ips;
+            Ipv4s = ipv4s;
+            Ipv6s = ipv6s;
             Name = name;
             Offer = offer;
             OfferId = offerId;

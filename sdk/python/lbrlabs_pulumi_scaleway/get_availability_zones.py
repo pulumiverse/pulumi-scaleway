@@ -91,9 +91,9 @@ def get_availability_zones(region: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult).value
 
     return AwaitableGetAvailabilityZonesResult(
-        id=__ret__.id,
-        region=__ret__.region,
-        zones=__ret__.zones)
+        id=pulumi.get(__ret__, 'id'),
+        region=pulumi.get(__ret__, 'region'),
+        zones=pulumi.get(__ret__, 'zones'))
 
 
 @_utilities.lift_output_func(get_availability_zones)

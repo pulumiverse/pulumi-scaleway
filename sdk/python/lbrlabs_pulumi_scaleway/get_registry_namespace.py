@@ -156,15 +156,15 @@ def get_registry_namespace(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getRegistryNamespace:getRegistryNamespace', __args__, opts=opts, typ=GetRegistryNamespaceResult).value
 
     return AwaitableGetRegistryNamespaceResult(
-        description=__ret__.description,
-        endpoint=__ret__.endpoint,
-        id=__ret__.id,
-        is_public=__ret__.is_public,
-        name=__ret__.name,
-        namespace_id=__ret__.namespace_id,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region)
+        description=pulumi.get(__ret__, 'description'),
+        endpoint=pulumi.get(__ret__, 'endpoint'),
+        id=pulumi.get(__ret__, 'id'),
+        is_public=pulumi.get(__ret__, 'is_public'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace_id=pulumi.get(__ret__, 'namespace_id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_registry_namespace)

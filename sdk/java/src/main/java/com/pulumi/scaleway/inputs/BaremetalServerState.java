@@ -6,6 +6,8 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.scaleway.inputs.BaremetalServerIpArgs;
+import com.pulumi.scaleway.inputs.BaremetalServerIpv4Args;
+import com.pulumi.scaleway.inputs.BaremetalServerIpv6Args;
 import com.pulumi.scaleway.inputs.BaremetalServerOptionArgs;
 import com.pulumi.scaleway.inputs.BaremetalServerPrivateNetworkArgs;
 import java.lang.Boolean;
@@ -78,6 +80,36 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<List<BaremetalServerIpArgs>>> ips() {
         return Optional.ofNullable(this.ips);
+    }
+
+    /**
+     * (List of) The IPv4 addresses of the server.
+     * 
+     */
+    @Import(name="ipv4s")
+    private @Nullable Output<List<BaremetalServerIpv4Args>> ipv4s;
+
+    /**
+     * @return (List of) The IPv4 addresses of the server.
+     * 
+     */
+    public Optional<Output<List<BaremetalServerIpv4Args>>> ipv4s() {
+        return Optional.ofNullable(this.ipv4s);
+    }
+
+    /**
+     * (List of) The IPv6 addresses of the server.
+     * 
+     */
+    @Import(name="ipv6s")
+    private @Nullable Output<List<BaremetalServerIpv6Args>> ipv6s;
+
+    /**
+     * @return (List of) The IPv6 addresses of the server.
+     * 
+     */
+    public Optional<Output<List<BaremetalServerIpv6Args>>> ipv6s() {
+        return Optional.ofNullable(this.ipv6s);
     }
 
     /**
@@ -371,6 +403,8 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         this.domain = $.domain;
         this.hostname = $.hostname;
         this.ips = $.ips;
+        this.ipv4s = $.ipv4s;
+        this.ipv6s = $.ipv6s;
         this.name = $.name;
         this.offer = $.offer;
         this.offerId = $.offerId;
@@ -501,6 +535,68 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
          */
         public Builder ips(BaremetalServerIpArgs... ips) {
             return ips(List.of(ips));
+        }
+
+        /**
+         * @param ipv4s (List of) The IPv4 addresses of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv4s(@Nullable Output<List<BaremetalServerIpv4Args>> ipv4s) {
+            $.ipv4s = ipv4s;
+            return this;
+        }
+
+        /**
+         * @param ipv4s (List of) The IPv4 addresses of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv4s(List<BaremetalServerIpv4Args> ipv4s) {
+            return ipv4s(Output.of(ipv4s));
+        }
+
+        /**
+         * @param ipv4s (List of) The IPv4 addresses of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv4s(BaremetalServerIpv4Args... ipv4s) {
+            return ipv4s(List.of(ipv4s));
+        }
+
+        /**
+         * @param ipv6s (List of) The IPv6 addresses of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv6s(@Nullable Output<List<BaremetalServerIpv6Args>> ipv6s) {
+            $.ipv6s = ipv6s;
+            return this;
+        }
+
+        /**
+         * @param ipv6s (List of) The IPv6 addresses of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv6s(List<BaremetalServerIpv6Args> ipv6s) {
+            return ipv6s(Output.of(ipv6s));
+        }
+
+        /**
+         * @param ipv6s (List of) The IPv6 addresses of the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipv6s(BaremetalServerIpv6Args... ipv6s) {
+            return ipv6s(List.of(ipv6s));
         }
 
         /**

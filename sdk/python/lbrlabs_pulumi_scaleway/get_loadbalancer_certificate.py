@@ -172,18 +172,18 @@ def get_loadbalancer_certificate(certificate_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate', __args__, opts=opts, typ=GetLoadbalancerCertificateResult).value
 
     return AwaitableGetLoadbalancerCertificateResult(
-        certificate_id=__ret__.certificate_id,
-        common_name=__ret__.common_name,
-        custom_certificates=__ret__.custom_certificates,
-        fingerprint=__ret__.fingerprint,
-        id=__ret__.id,
-        lb_id=__ret__.lb_id,
-        letsencrypts=__ret__.letsencrypts,
-        name=__ret__.name,
-        not_valid_after=__ret__.not_valid_after,
-        not_valid_before=__ret__.not_valid_before,
-        status=__ret__.status,
-        subject_alternative_names=__ret__.subject_alternative_names)
+        certificate_id=pulumi.get(__ret__, 'certificate_id'),
+        common_name=pulumi.get(__ret__, 'common_name'),
+        custom_certificates=pulumi.get(__ret__, 'custom_certificates'),
+        fingerprint=pulumi.get(__ret__, 'fingerprint'),
+        id=pulumi.get(__ret__, 'id'),
+        lb_id=pulumi.get(__ret__, 'lb_id'),
+        letsencrypts=pulumi.get(__ret__, 'letsencrypts'),
+        name=pulumi.get(__ret__, 'name'),
+        not_valid_after=pulumi.get(__ret__, 'not_valid_after'),
+        not_valid_before=pulumi.get(__ret__, 'not_valid_before'),
+        status=pulumi.get(__ret__, 'status'),
+        subject_alternative_names=pulumi.get(__ret__, 'subject_alternative_names'))
 
 
 @_utilities.lift_output_func(get_loadbalancer_certificate)

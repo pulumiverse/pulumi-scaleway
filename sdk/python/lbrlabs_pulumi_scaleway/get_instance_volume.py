@@ -177,18 +177,18 @@ def get_instance_volume(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceVolume:getInstanceVolume', __args__, opts=opts, typ=GetInstanceVolumeResult).value
 
     return AwaitableGetInstanceVolumeResult(
-        from_snapshot_id=__ret__.from_snapshot_id,
-        from_volume_id=__ret__.from_volume_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        server_id=__ret__.server_id,
-        size_in_gb=__ret__.size_in_gb,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        volume_id=__ret__.volume_id,
-        zone=__ret__.zone)
+        from_snapshot_id=pulumi.get(__ret__, 'from_snapshot_id'),
+        from_volume_id=pulumi.get(__ret__, 'from_volume_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        server_id=pulumi.get(__ret__, 'server_id'),
+        size_in_gb=pulumi.get(__ret__, 'size_in_gb'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        volume_id=pulumi.get(__ret__, 'volume_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_instance_volume)

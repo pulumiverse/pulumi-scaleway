@@ -247,22 +247,22 @@ def get_instance_image(architecture: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceImage:getInstanceImage', __args__, opts=opts, typ=GetInstanceImageResult).value
 
     return AwaitableGetInstanceImageResult(
-        additional_volume_ids=__ret__.additional_volume_ids,
-        architecture=__ret__.architecture,
-        creation_date=__ret__.creation_date,
-        default_bootscript_id=__ret__.default_bootscript_id,
-        from_server_id=__ret__.from_server_id,
-        id=__ret__.id,
-        image_id=__ret__.image_id,
-        latest=__ret__.latest,
-        modification_date=__ret__.modification_date,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        public=__ret__.public,
-        root_volume_id=__ret__.root_volume_id,
-        state=__ret__.state,
-        zone=__ret__.zone)
+        additional_volume_ids=pulumi.get(__ret__, 'additional_volume_ids'),
+        architecture=pulumi.get(__ret__, 'architecture'),
+        creation_date=pulumi.get(__ret__, 'creation_date'),
+        default_bootscript_id=pulumi.get(__ret__, 'default_bootscript_id'),
+        from_server_id=pulumi.get(__ret__, 'from_server_id'),
+        id=pulumi.get(__ret__, 'id'),
+        image_id=pulumi.get(__ret__, 'image_id'),
+        latest=pulumi.get(__ret__, 'latest'),
+        modification_date=pulumi.get(__ret__, 'modification_date'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        public=pulumi.get(__ret__, 'public'),
+        root_volume_id=pulumi.get(__ret__, 'root_volume_id'),
+        state=pulumi.get(__ret__, 'state'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_instance_image)

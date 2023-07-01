@@ -185,20 +185,20 @@ def get_vpc_private_network(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork', __args__, opts=opts, typ=GetVpcPrivateNetworkResult).value
 
     return AwaitableGetVpcPrivateNetworkResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        ipv4_subnets=__ret__.ipv4_subnets,
-        ipv6_subnets=__ret__.ipv6_subnets,
-        is_regional=__ret__.is_regional,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        private_network_id=__ret__.private_network_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        tags=__ret__.tags,
-        updated_at=__ret__.updated_at,
-        vpc_id=__ret__.vpc_id,
-        zone=__ret__.zone)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        ipv4_subnets=pulumi.get(__ret__, 'ipv4_subnets'),
+        ipv6_subnets=pulumi.get(__ret__, 'ipv6_subnets'),
+        is_regional=pulumi.get(__ret__, 'is_regional'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        vpc_id=pulumi.get(__ret__, 'vpc_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_private_network)

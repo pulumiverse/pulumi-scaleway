@@ -23,6 +23,54 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Examples
     /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var userData = config.GetObject&lt;dynamic&gt;("userData") ?? 
+    ///     {
+    ///         { "cloud-init", @"#cloud-config
+    /// apt-update: true
+    /// apt-upgrade: true
+    /// " },
+    ///         { "foo", "bar" },
+    ///     };
+    ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
+    ///     {
+    ///         Image = "ubuntu_focal",
+    ///         Type = "DEV1-S",
+    ///     });
+    /// 
+    ///     // User data with a single value
+    ///     var mainInstanceUserData = new Scaleway.InstanceUserData("mainInstanceUserData", new()
+    ///     {
+    ///         ServerId = mainInstanceServer.Id,
+    ///         Key = "foo",
+    ///         Value = "bar",
+    ///     });
+    /// 
+    ///     // User Data with many keys.
+    ///     var data = new List&lt;Scaleway.InstanceUserData&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; userData; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         data.Add(new Scaleway.InstanceUserData($"data-{range.Value}", new()
+    ///         {
+    ///             ServerId = mainInstanceServer.Id,
+    ///             Key = range.Key,
+    ///             Value = range.Value,
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash

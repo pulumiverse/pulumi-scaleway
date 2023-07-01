@@ -180,17 +180,17 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpReservationResult).value
 
     return AwaitableGetVpcPublicGatewayDhcpReservationResult(
-        created_at=__ret__.created_at,
-        gateway_network_id=__ret__.gateway_network_id,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        mac_address=__ret__.mac_address,
-        reservation_id=__ret__.reservation_id,
-        type=__ret__.type,
-        updated_at=__ret__.updated_at,
-        wait_for_dhcp=__ret__.wait_for_dhcp,
-        zone=__ret__.zone)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        gateway_network_id=pulumi.get(__ret__, 'gateway_network_id'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        mac_address=pulumi.get(__ret__, 'mac_address'),
+        reservation_id=pulumi.get(__ret__, 'reservation_id'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        wait_for_dhcp=pulumi.get(__ret__, 'wait_for_dhcp'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_gateway_dhcp_reservation)

@@ -16,14 +16,14 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
     public static final BaremetalServerIpArgs Empty = new BaremetalServerIpArgs();
 
     /**
-     * The address of the IP.
+     * The address of the IPv6.
      * 
      */
     @Import(name="address")
     private @Nullable Output<String> address;
 
     /**
-     * @return The address of the IP.
+     * @return The address of the IPv6.
      * 
      */
     public Optional<Output<String>> address() {
@@ -46,14 +46,14 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The reverse of the IP.
+     * The reverse of the IPv6.
      * 
      */
     @Import(name="reverse")
     private @Nullable Output<String> reverse;
 
     /**
-     * @return The reverse of the IP.
+     * @return The reverse of the IPv6.
      * 
      */
     public Optional<Output<String>> reverse() {
@@ -61,14 +61,14 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The type of the IP.
+     * The type of the IPv6.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return The type of the IP.
+     * @return The type of the IPv6.
      * 
      */
     public Optional<Output<String>> version() {
@@ -103,7 +103,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param address The address of the IP.
+         * @param address The address of the IPv6.
          * 
          * @return builder
          * 
@@ -114,7 +114,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param address The address of the IP.
+         * @param address The address of the IPv6.
          * 
          * @return builder
          * 
@@ -145,7 +145,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param reverse The reverse of the IP.
+         * @param reverse The reverse of the IPv6.
          * 
          * @return builder
          * 
@@ -156,7 +156,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param reverse The reverse of the IP.
+         * @param reverse The reverse of the IPv6.
          * 
          * @return builder
          * 
@@ -166,7 +166,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version The type of the IP.
+         * @param version The type of the IPv6.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class BaremetalServerIpArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version The type of the IP.
+         * @param version The type of the IPv6.
          * 
          * @return builder
          * 

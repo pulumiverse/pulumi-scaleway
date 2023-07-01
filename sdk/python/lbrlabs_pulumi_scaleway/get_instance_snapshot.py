@@ -176,18 +176,18 @@ def get_instance_snapshot(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceSnapshot:getInstanceSnapshot', __args__, opts=opts, typ=GetInstanceSnapshotResult).value
 
     return AwaitableGetInstanceSnapshotResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        imports=__ret__.imports,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        size_in_gb=__ret__.size_in_gb,
-        snapshot_id=__ret__.snapshot_id,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        volume_id=__ret__.volume_id,
-        zone=__ret__.zone)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        imports=pulumi.get(__ret__, 'imports'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        size_in_gb=pulumi.get(__ret__, 'size_in_gb'),
+        snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        volume_id=pulumi.get(__ret__, 'volume_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_instance_snapshot)

@@ -179,8 +179,8 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     /**
      * The ID of the private network of the cluster.
      * 
-     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      * 
      */
     @Import(name="privateNetworkId")
@@ -189,8 +189,8 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     /**
      * @return The ID of the private network of the cluster.
      * 
-     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -560,8 +560,8 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
          * 
-         * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-         * Changes to this field will cause the cluster to be destroyed then recreated.
+         * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+         * Any subsequent change after this field got set will prompt for cluster recreation.
          * 
          * @return builder
          * 
@@ -574,8 +574,8 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
          * 
-         * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-         * Changes to this field will cause the cluster to be destroyed then recreated.
+         * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+         * Any subsequent change after this field got set will prompt for cluster recreation.
          * 
          * @return builder
          * 

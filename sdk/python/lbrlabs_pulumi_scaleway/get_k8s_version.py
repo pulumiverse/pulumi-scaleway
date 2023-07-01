@@ -136,12 +136,12 @@ def get_k8s_version(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getK8sVersion:getK8sVersion', __args__, opts=opts, typ=GetK8sVersionResult).value
 
     return AwaitableGetK8sVersionResult(
-        available_cnis=__ret__.available_cnis,
-        available_container_runtimes=__ret__.available_container_runtimes,
-        available_feature_gates=__ret__.available_feature_gates,
-        id=__ret__.id,
-        name=__ret__.name,
-        region=__ret__.region)
+        available_cnis=pulumi.get(__ret__, 'available_cnis'),
+        available_container_runtimes=pulumi.get(__ret__, 'available_container_runtimes'),
+        available_feature_gates=pulumi.get(__ret__, 'available_feature_gates'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_k8s_version)

@@ -72,6 +72,9 @@ class ObjectBucketArgs:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
+        warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
+        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+
         return pulumi.get(self, "acl")
 
     @acl.setter
@@ -253,6 +256,9 @@ class _ObjectBucketState:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
+        warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
+        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+
         return pulumi.get(self, "acl")
 
     @acl.setter
@@ -725,6 +731,9 @@ class ObjectBucket(pulumi.CustomResource):
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
+        warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
+        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+
         return pulumi.get(self, "acl")
 
     @property

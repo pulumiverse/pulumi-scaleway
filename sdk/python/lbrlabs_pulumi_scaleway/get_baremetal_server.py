@@ -22,7 +22,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -38,6 +38,12 @@ class GetBaremetalServerResult:
         if ips and not isinstance(ips, list):
             raise TypeError("Expected argument 'ips' to be a list")
         pulumi.set(__self__, "ips", ips)
+        if ipv4s and not isinstance(ipv4s, list):
+            raise TypeError("Expected argument 'ipv4s' to be a list")
+        pulumi.set(__self__, "ipv4s", ipv4s)
+        if ipv6s and not isinstance(ipv6s, list):
+            raise TypeError("Expected argument 'ipv6s' to be a list")
+        pulumi.set(__self__, "ipv6s", ipv6s)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -123,6 +129,16 @@ class GetBaremetalServerResult:
     @pulumi.getter
     def ips(self) -> Sequence['outputs.GetBaremetalServerIpResult']:
         return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter
+    def ipv4s(self) -> Sequence['outputs.GetBaremetalServerIpv4Result']:
+        return pulumi.get(self, "ipv4s")
+
+    @property
+    @pulumi.getter
+    def ipv6s(self) -> Sequence['outputs.GetBaremetalServerIpv6Result']:
+        return pulumi.get(self, "ipv6s")
 
     @property
     @pulumi.getter
@@ -231,6 +247,8 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             hostname=self.hostname,
             id=self.id,
             ips=self.ips,
+            ipv4s=self.ipv4s,
+            ipv6s=self.ipv6s,
             name=self.name,
             offer=self.offer,
             offer_id=self.offer_id,
@@ -283,30 +301,32 @@ def get_baremetal_server(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalServer:getBaremetalServer', __args__, opts=opts, typ=GetBaremetalServerResult).value
 
     return AwaitableGetBaremetalServerResult(
-        description=__ret__.description,
-        domain=__ret__.domain,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        ips=__ret__.ips,
-        name=__ret__.name,
-        offer=__ret__.offer,
-        offer_id=__ret__.offer_id,
-        offer_name=__ret__.offer_name,
-        options=__ret__.options,
-        organization_id=__ret__.organization_id,
-        os=__ret__.os,
-        os_name=__ret__.os_name,
-        password=__ret__.password,
-        private_networks=__ret__.private_networks,
-        project_id=__ret__.project_id,
-        reinstall_on_config_changes=__ret__.reinstall_on_config_changes,
-        server_id=__ret__.server_id,
-        service_password=__ret__.service_password,
-        service_user=__ret__.service_user,
-        ssh_key_ids=__ret__.ssh_key_ids,
-        tags=__ret__.tags,
-        user=__ret__.user,
-        zone=__ret__.zone)
+        description=pulumi.get(__ret__, 'description'),
+        domain=pulumi.get(__ret__, 'domain'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        ips=pulumi.get(__ret__, 'ips'),
+        ipv4s=pulumi.get(__ret__, 'ipv4s'),
+        ipv6s=pulumi.get(__ret__, 'ipv6s'),
+        name=pulumi.get(__ret__, 'name'),
+        offer=pulumi.get(__ret__, 'offer'),
+        offer_id=pulumi.get(__ret__, 'offer_id'),
+        offer_name=pulumi.get(__ret__, 'offer_name'),
+        options=pulumi.get(__ret__, 'options'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        os=pulumi.get(__ret__, 'os'),
+        os_name=pulumi.get(__ret__, 'os_name'),
+        password=pulumi.get(__ret__, 'password'),
+        private_networks=pulumi.get(__ret__, 'private_networks'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        reinstall_on_config_changes=pulumi.get(__ret__, 'reinstall_on_config_changes'),
+        server_id=pulumi.get(__ret__, 'server_id'),
+        service_password=pulumi.get(__ret__, 'service_password'),
+        service_user=pulumi.get(__ret__, 'service_user'),
+        ssh_key_ids=pulumi.get(__ret__, 'ssh_key_ids'),
+        tags=pulumi.get(__ret__, 'tags'),
+        user=pulumi.get(__ret__, 'user'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_baremetal_server)

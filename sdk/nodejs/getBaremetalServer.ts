@@ -63,6 +63,8 @@ export interface GetBaremetalServerResult {
      */
     readonly id: string;
     readonly ips: outputs.GetBaremetalServerIp[];
+    readonly ipv4s: outputs.GetBaremetalServerIpv4[];
+    readonly ipv6s: outputs.GetBaremetalServerIpv6[];
     readonly name?: string;
     readonly offer: string;
     readonly offerId: string;

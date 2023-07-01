@@ -101,10 +101,10 @@ def get_database_acl(instance_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseAcl:getDatabaseAcl', __args__, opts=opts, typ=GetDatabaseAclResult).value
 
     return AwaitableGetDatabaseAclResult(
-        acl_rules=__ret__.acl_rules,
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        region=__ret__.region)
+        acl_rules=pulumi.get(__ret__, 'acl_rules'),
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_database_acl)

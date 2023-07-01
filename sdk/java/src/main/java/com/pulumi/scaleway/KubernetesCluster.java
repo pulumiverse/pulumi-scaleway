@@ -327,8 +327,8 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the private network of the cluster.
      * 
-     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      * 
      */
     @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
@@ -337,8 +337,8 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     /**
      * @return The ID of the private network of the cluster.
      * 
-     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      * 
      */
     public Output<Optional<String>> privateNetworkId() {

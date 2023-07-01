@@ -205,21 +205,21 @@ def get_iot_device(device_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIotDevice:getIotDevice', __args__, opts=opts, typ=GetIotDeviceResult).value
 
     return AwaitableGetIotDeviceResult(
-        allow_insecure=__ret__.allow_insecure,
-        allow_multiple_connections=__ret__.allow_multiple_connections,
-        certificates=__ret__.certificates,
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        device_id=__ret__.device_id,
-        hub_id=__ret__.hub_id,
-        id=__ret__.id,
-        is_connected=__ret__.is_connected,
-        last_activity_at=__ret__.last_activity_at,
-        message_filters=__ret__.message_filters,
-        name=__ret__.name,
-        region=__ret__.region,
-        status=__ret__.status,
-        updated_at=__ret__.updated_at)
+        allow_insecure=pulumi.get(__ret__, 'allow_insecure'),
+        allow_multiple_connections=pulumi.get(__ret__, 'allow_multiple_connections'),
+        certificates=pulumi.get(__ret__, 'certificates'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        device_id=pulumi.get(__ret__, 'device_id'),
+        hub_id=pulumi.get(__ret__, 'hub_id'),
+        id=pulumi.get(__ret__, 'id'),
+        is_connected=pulumi.get(__ret__, 'is_connected'),
+        last_activity_at=pulumi.get(__ret__, 'last_activity_at'),
+        message_filters=pulumi.get(__ret__, 'message_filters'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'),
+        status=pulumi.get(__ret__, 'status'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_iot_device)

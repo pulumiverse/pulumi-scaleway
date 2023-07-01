@@ -113,11 +113,11 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy', __args__, opts=opts, typ=GetObjectBucketPolicyResult).value
 
     return AwaitableGetObjectBucketPolicyResult(
-        bucket=__ret__.bucket,
-        id=__ret__.id,
-        policy=__ret__.policy,
-        project_id=__ret__.project_id,
-        region=__ret__.region)
+        bucket=pulumi.get(__ret__, 'bucket'),
+        id=pulumi.get(__ret__, 'id'),
+        policy=pulumi.get(__ret__, 'policy'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_object_bucket_policy)

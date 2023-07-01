@@ -135,12 +135,12 @@ def get_lbs(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbs:getLbs', __args__, opts=opts, typ=GetLbsResult).value
 
     return AwaitableGetLbsResult(
-        id=__ret__.id,
-        lbs=__ret__.lbs,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        lbs=pulumi.get(__ret__, 'lbs'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_lbs)

@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class BaremetalServerIp {
     /**
-     * @return The address of the IP.
+     * @return The address of the IPv6.
      * 
      */
     private @Nullable String address;
@@ -22,19 +22,19 @@ public final class BaremetalServerIp {
      */
     private @Nullable String id;
     /**
-     * @return The reverse of the IP.
+     * @return The reverse of the IPv6.
      * 
      */
     private @Nullable String reverse;
     /**
-     * @return The type of the IP.
+     * @return The type of the IPv6.
      * 
      */
     private @Nullable String version;
 
     private BaremetalServerIp() {}
     /**
-     * @return The address of the IP.
+     * @return The address of the IPv6.
      * 
      */
     public Optional<String> address() {
@@ -48,14 +48,14 @@ public final class BaremetalServerIp {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return The reverse of the IP.
+     * @return The reverse of the IPv6.
      * 
      */
     public Optional<String> reverse() {
         return Optional.ofNullable(this.reverse);
     }
     /**
-     * @return The type of the IP.
+     * @return The type of the IPv6.
      * 
      */
     public Optional<String> version() {

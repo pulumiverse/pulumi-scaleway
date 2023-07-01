@@ -164,16 +164,16 @@ def get_vpc(is_default: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpc:getVpc', __args__, opts=opts, typ=GetVpcResult).value
 
     return AwaitableGetVpcResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        is_default=__ret__.is_default,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        tags=__ret__.tags,
-        updated_at=__ret__.updated_at,
-        vpc_id=__ret__.vpc_id)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        is_default=pulumi.get(__ret__, 'is_default'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
 
 @_utilities.lift_output_func(get_vpc)

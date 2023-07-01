@@ -32,14 +32,44 @@ public final class ObjectItemState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the file to upload, defaults to an empty file
+     * The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    @Import(name="content")
+    private @Nullable Output<String> content;
+
+    /**
+     * @return The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    public Optional<Output<String>> content() {
+        return Optional.ofNullable(this.content);
+    }
+
+    /**
+     * The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    @Import(name="contentBase64")
+    private @Nullable Output<String> contentBase64;
+
+    /**
+     * @return The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    public Optional<Output<String>> contentBase64() {
+        return Optional.ofNullable(this.contentBase64);
+    }
+
+    /**
+     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
      * 
      */
     @Import(name="file")
     private @Nullable Output<String> file;
 
     /**
-     * @return The name of the file to upload, defaults to an empty file
+     * @return The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
      * 
      */
     public Optional<Output<String>> file() {
@@ -170,6 +200,8 @@ public final class ObjectItemState extends com.pulumi.resources.ResourceArgs {
 
     private ObjectItemState(ObjectItemState $) {
         this.bucket = $.bucket;
+        this.content = $.content;
+        this.contentBase64 = $.contentBase64;
         this.file = $.file;
         this.hash = $.hash;
         this.key = $.key;
@@ -221,7 +253,49 @@ public final class ObjectItemState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param file The name of the file to upload, defaults to an empty file
+         * @param content The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder content(@Nullable Output<String> content) {
+            $.content = content;
+            return this;
+        }
+
+        /**
+         * @param content The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder content(String content) {
+            return content(Output.of(content));
+        }
+
+        /**
+         * @param contentBase64 The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder contentBase64(@Nullable Output<String> contentBase64) {
+            $.contentBase64 = contentBase64;
+            return this;
+        }
+
+        /**
+         * @param contentBase64 The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder contentBase64(String contentBase64) {
+            return contentBase64(Output.of(contentBase64));
+        }
+
+        /**
+         * @param file The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
          * 
          * @return builder
          * 
@@ -232,7 +306,7 @@ public final class ObjectItemState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param file The name of the file to upload, defaults to an empty file
+         * @param file The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
          * 
          * @return builder
          * 

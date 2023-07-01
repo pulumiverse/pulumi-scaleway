@@ -259,6 +259,9 @@ class _LoadbalancerFrontendState:
         """
         (Deprecated) first certificate ID used by the frontend.
         """
+        warnings.warn("""Please use certificate_ids""", DeprecationWarning)
+        pulumi.log.warn("""certificate_id is deprecated: Please use certificate_ids""")
+
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
@@ -573,6 +576,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         """
         (Deprecated) first certificate ID used by the frontend.
         """
+        warnings.warn("""Please use certificate_ids""", DeprecationWarning)
+        pulumi.log.warn("""certificate_id is deprecated: Please use certificate_ids""")
+
         return pulumi.get(self, "certificate_id")
 
     @property

@@ -214,10 +214,10 @@ class FunctionTrigger(pulumi.CustomResource):
         main = scaleway.FunctionTrigger("main",
             function_id=scaleway_function["main"]["id"],
             sqs=scaleway.FunctionTriggerSqsArgs(
-                namespace_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                namespace_id=scaleway_mnq_namespace["main"]["id"],
                 queue="MyQueue",
-                project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-                region=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                project_id=scaleway_mnq_namespace["main"]["project_id"],
+                region=scaleway_mnq_namespace["main"]["region"],
             ))
         ```
 
@@ -258,10 +258,10 @@ class FunctionTrigger(pulumi.CustomResource):
         main = scaleway.FunctionTrigger("main",
             function_id=scaleway_function["main"]["id"],
             sqs=scaleway.FunctionTriggerSqsArgs(
-                namespace_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                namespace_id=scaleway_mnq_namespace["main"]["id"],
                 queue="MyQueue",
-                project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-                region=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                project_id=scaleway_mnq_namespace["main"]["project_id"],
+                region=scaleway_mnq_namespace["main"]["region"],
             ))
         ```
 

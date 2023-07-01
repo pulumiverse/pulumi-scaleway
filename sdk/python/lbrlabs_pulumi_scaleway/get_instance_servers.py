@@ -152,13 +152,13 @@ def get_instance_servers(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceServers:getInstanceServers', __args__, opts=opts, typ=GetInstanceServersResult).value
 
     return AwaitableGetInstanceServersResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        servers=__ret__.servers,
-        tags=__ret__.tags,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        servers=pulumi.get(__ret__, 'servers'),
+        tags=pulumi.get(__ret__, 'tags'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_instance_servers)

@@ -78,8 +78,8 @@ def get_cockpit_plan(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getCockpitPlan:getCockpitPlan', __args__, opts=opts, typ=GetCockpitPlanResult).value
 
     return AwaitableGetCockpitPlanResult(
-        id=__ret__.id,
-        name=__ret__.name)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'))
 
 
 @_utilities.lift_output_func(get_cockpit_plan)

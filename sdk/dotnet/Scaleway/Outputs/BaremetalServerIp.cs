@@ -15,7 +15,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class BaremetalServerIp
     {
         /// <summary>
-        /// The address of the IP.
+        /// The address of the IPv6.
         /// </summary>
         public readonly string? Address;
         /// <summary>
@@ -23,11 +23,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The reverse of the IP.
+        /// The reverse of the IPv6.
         /// </summary>
         public readonly string? Reverse;
         /// <summary>
-        /// The type of the IP.
+        /// The type of the IPv6.
         /// </summary>
         public readonly string? Version;
 

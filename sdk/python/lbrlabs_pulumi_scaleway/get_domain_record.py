@@ -233,21 +233,21 @@ def get_domain_record(data: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDomainRecord:getDomainRecord', __args__, opts=opts, typ=GetDomainRecordResult).value
 
     return AwaitableGetDomainRecordResult(
-        data=__ret__.data,
-        dns_zone=__ret__.dns_zone,
-        geo_ips=__ret__.geo_ips,
-        http_services=__ret__.http_services,
-        id=__ret__.id,
-        keep_empty_zone=__ret__.keep_empty_zone,
-        name=__ret__.name,
-        priority=__ret__.priority,
-        project_id=__ret__.project_id,
-        record_id=__ret__.record_id,
-        root_zone=__ret__.root_zone,
-        ttl=__ret__.ttl,
-        type=__ret__.type,
-        views=__ret__.views,
-        weighteds=__ret__.weighteds)
+        data=pulumi.get(__ret__, 'data'),
+        dns_zone=pulumi.get(__ret__, 'dns_zone'),
+        geo_ips=pulumi.get(__ret__, 'geo_ips'),
+        http_services=pulumi.get(__ret__, 'http_services'),
+        id=pulumi.get(__ret__, 'id'),
+        keep_empty_zone=pulumi.get(__ret__, 'keep_empty_zone'),
+        name=pulumi.get(__ret__, 'name'),
+        priority=pulumi.get(__ret__, 'priority'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        record_id=pulumi.get(__ret__, 'record_id'),
+        root_zone=pulumi.get(__ret__, 'root_zone'),
+        ttl=pulumi.get(__ret__, 'ttl'),
+        type=pulumi.get(__ret__, 'type'),
+        views=pulumi.get(__ret__, 'views'),
+        weighteds=pulumi.get(__ret__, 'weighteds'))
 
 
 @_utilities.lift_output_func(get_domain_record)

@@ -116,8 +116,8 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_front_id = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    by_front_id = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"])
+    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"],
         name="tf-acls-datasource")
     ```
 
@@ -136,13 +136,13 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbAcls:getLbAcls', __args__, opts=opts, typ=GetLbAclsResult).value
 
     return AwaitableGetLbAclsResult(
-        acls=__ret__.acls,
-        frontend_id=__ret__.frontend_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        zone=__ret__.zone)
+        acls=pulumi.get(__ret__, 'acls'),
+        frontend_id=pulumi.get(__ret__, 'frontend_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_lb_acls)
@@ -160,8 +160,8 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_front_id = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    by_front_id = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"])
+    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"],
         name="tf-acls-datasource")
     ```
 

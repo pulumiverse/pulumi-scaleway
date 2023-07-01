@@ -131,13 +131,13 @@ def get_account_project(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getAccountProject:getAccountProject', __args__, opts=opts, typ=GetAccountProjectResult).value
 
     return AwaitableGetAccountProjectResult(
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        updated_at=__ret__.updated_at)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_account_project)

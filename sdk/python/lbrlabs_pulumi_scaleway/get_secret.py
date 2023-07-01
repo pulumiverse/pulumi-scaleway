@@ -188,18 +188,18 @@ def get_secret(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult).value
 
     return AwaitableGetSecretResult(
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        secret_id=__ret__.secret_id,
-        status=__ret__.status,
-        tags=__ret__.tags,
-        updated_at=__ret__.updated_at,
-        version_count=__ret__.version_count)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        secret_id=pulumi.get(__ret__, 'secret_id'),
+        status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        version_count=pulumi.get(__ret__, 'version_count'))
 
 
 @_utilities.lift_output_func(get_secret)

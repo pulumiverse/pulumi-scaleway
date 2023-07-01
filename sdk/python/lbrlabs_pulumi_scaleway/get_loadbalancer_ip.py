@@ -153,15 +153,15 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancerIp:getLoadbalancerIp', __args__, opts=opts, typ=GetLoadbalancerIpResult).value
 
     return AwaitableGetLoadbalancerIpResult(
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        ip_id=__ret__.ip_id,
-        lb_id=__ret__.lb_id,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        reverse=__ret__.reverse,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        ip_id=pulumi.get(__ret__, 'ip_id'),
+        lb_id=pulumi.get(__ret__, 'lb_id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        reverse=pulumi.get(__ret__, 'reverse'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_loadbalancer_ip)

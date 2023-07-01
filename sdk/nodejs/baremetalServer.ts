@@ -82,6 +82,14 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly ips!: pulumi.Output<outputs.BaremetalServerIp[]>;
     /**
+     * (List of) The IPv4 addresses of the server.
+     */
+    public /*out*/ readonly ipv4s!: pulumi.Output<outputs.BaremetalServerIpv4[]>;
+    /**
+     * (List of) The IPv6 addresses of the server.
+     */
+    public /*out*/ readonly ipv6s!: pulumi.Output<outputs.BaremetalServerIpv6[]>;
+    /**
      * The name of the server.
      */
     public readonly name!: pulumi.Output<string>;
@@ -178,6 +186,8 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["ips"] = state ? state.ips : undefined;
+            resourceInputs["ipv4s"] = state ? state.ipv4s : undefined;
+            resourceInputs["ipv6s"] = state ? state.ipv6s : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["offer"] = state ? state.offer : undefined;
             resourceInputs["offerId"] = state ? state.offerId : undefined;
@@ -225,6 +235,8 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["domain"] = undefined /*out*/;
             resourceInputs["ips"] = undefined /*out*/;
+            resourceInputs["ipv4s"] = undefined /*out*/;
+            resourceInputs["ipv6s"] = undefined /*out*/;
             resourceInputs["offerId"] = undefined /*out*/;
             resourceInputs["offerName"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
@@ -257,6 +269,14 @@ export interface BaremetalServerState {
      * (List of) The IPs of the server.
      */
     ips?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIp>[]>;
+    /**
+     * (List of) The IPv4 addresses of the server.
+     */
+    ipv4s?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIpv4>[]>;
+    /**
+     * (List of) The IPv6 addresses of the server.
+     */
+    ipv6s?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIpv6>[]>;
     /**
      * The name of the server.
      */

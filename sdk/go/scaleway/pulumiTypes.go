@@ -11,13 +11,13 @@ import (
 )
 
 type BaremetalServerIp struct {
-	// The address of the IP.
+	// The address of the IPv6.
 	Address *string `pulumi:"address"`
 	// The id of the private network to attach.
 	Id *string `pulumi:"id"`
-	// The reverse of the IP.
+	// The reverse of the IPv6.
 	Reverse *string `pulumi:"reverse"`
-	// The type of the IP.
+	// The type of the IPv6.
 	Version *string `pulumi:"version"`
 }
 
@@ -33,13 +33,13 @@ type BaremetalServerIpInput interface {
 }
 
 type BaremetalServerIpArgs struct {
-	// The address of the IP.
+	// The address of the IPv6.
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The id of the private network to attach.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The reverse of the IP.
+	// The reverse of the IPv6.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
-	// The type of the IP.
+	// The type of the IPv6.
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -94,7 +94,7 @@ func (o BaremetalServerIpOutput) ToBaremetalServerIpOutputWithContext(ctx contex
 	return o
 }
 
-// The address of the IP.
+// The address of the IPv6.
 func (o BaremetalServerIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
@@ -104,12 +104,12 @@ func (o BaremetalServerIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The reverse of the IP.
+// The reverse of the IPv6.
 func (o BaremetalServerIpOutput) Reverse() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Reverse }).(pulumi.StringPtrOutput)
 }
 
-// The type of the IP.
+// The type of the IPv6.
 func (o BaremetalServerIpOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
@@ -132,6 +132,254 @@ func (o BaremetalServerIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerIp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerIp {
 		return vs[0].([]BaremetalServerIp)[vs[1].(int)]
 	}).(BaremetalServerIpOutput)
+}
+
+type BaremetalServerIpv4 struct {
+	// The address of the IPv6.
+	Address *string `pulumi:"address"`
+	// The id of the private network to attach.
+	Id *string `pulumi:"id"`
+	// The reverse of the IPv6.
+	Reverse *string `pulumi:"reverse"`
+	// The type of the IPv6.
+	Version *string `pulumi:"version"`
+}
+
+// BaremetalServerIpv4Input is an input type that accepts BaremetalServerIpv4Args and BaremetalServerIpv4Output values.
+// You can construct a concrete instance of `BaremetalServerIpv4Input` via:
+//
+//	BaremetalServerIpv4Args{...}
+type BaremetalServerIpv4Input interface {
+	pulumi.Input
+
+	ToBaremetalServerIpv4Output() BaremetalServerIpv4Output
+	ToBaremetalServerIpv4OutputWithContext(context.Context) BaremetalServerIpv4Output
+}
+
+type BaremetalServerIpv4Args struct {
+	// The address of the IPv6.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The id of the private network to attach.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The reverse of the IPv6.
+	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
+	// The type of the IPv6.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (BaremetalServerIpv4Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerIpv4)(nil)).Elem()
+}
+
+func (i BaremetalServerIpv4Args) ToBaremetalServerIpv4Output() BaremetalServerIpv4Output {
+	return i.ToBaremetalServerIpv4OutputWithContext(context.Background())
+}
+
+func (i BaremetalServerIpv4Args) ToBaremetalServerIpv4OutputWithContext(ctx context.Context) BaremetalServerIpv4Output {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerIpv4Output)
+}
+
+// BaremetalServerIpv4ArrayInput is an input type that accepts BaremetalServerIpv4Array and BaremetalServerIpv4ArrayOutput values.
+// You can construct a concrete instance of `BaremetalServerIpv4ArrayInput` via:
+//
+//	BaremetalServerIpv4Array{ BaremetalServerIpv4Args{...} }
+type BaremetalServerIpv4ArrayInput interface {
+	pulumi.Input
+
+	ToBaremetalServerIpv4ArrayOutput() BaremetalServerIpv4ArrayOutput
+	ToBaremetalServerIpv4ArrayOutputWithContext(context.Context) BaremetalServerIpv4ArrayOutput
+}
+
+type BaremetalServerIpv4Array []BaremetalServerIpv4Input
+
+func (BaremetalServerIpv4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerIpv4)(nil)).Elem()
+}
+
+func (i BaremetalServerIpv4Array) ToBaremetalServerIpv4ArrayOutput() BaremetalServerIpv4ArrayOutput {
+	return i.ToBaremetalServerIpv4ArrayOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerIpv4Array) ToBaremetalServerIpv4ArrayOutputWithContext(ctx context.Context) BaremetalServerIpv4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerIpv4ArrayOutput)
+}
+
+type BaremetalServerIpv4Output struct{ *pulumi.OutputState }
+
+func (BaremetalServerIpv4Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerIpv4)(nil)).Elem()
+}
+
+func (o BaremetalServerIpv4Output) ToBaremetalServerIpv4Output() BaremetalServerIpv4Output {
+	return o
+}
+
+func (o BaremetalServerIpv4Output) ToBaremetalServerIpv4OutputWithContext(ctx context.Context) BaremetalServerIpv4Output {
+	return o
+}
+
+// The address of the IPv6.
+func (o BaremetalServerIpv4Output) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv4) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The id of the private network to attach.
+func (o BaremetalServerIpv4Output) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv4) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The reverse of the IPv6.
+func (o BaremetalServerIpv4Output) Reverse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv4) *string { return v.Reverse }).(pulumi.StringPtrOutput)
+}
+
+// The type of the IPv6.
+func (o BaremetalServerIpv4Output) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv4) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type BaremetalServerIpv4ArrayOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerIpv4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerIpv4)(nil)).Elem()
+}
+
+func (o BaremetalServerIpv4ArrayOutput) ToBaremetalServerIpv4ArrayOutput() BaremetalServerIpv4ArrayOutput {
+	return o
+}
+
+func (o BaremetalServerIpv4ArrayOutput) ToBaremetalServerIpv4ArrayOutputWithContext(ctx context.Context) BaremetalServerIpv4ArrayOutput {
+	return o
+}
+
+func (o BaremetalServerIpv4ArrayOutput) Index(i pulumi.IntInput) BaremetalServerIpv4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerIpv4 {
+		return vs[0].([]BaremetalServerIpv4)[vs[1].(int)]
+	}).(BaremetalServerIpv4Output)
+}
+
+type BaremetalServerIpv6 struct {
+	// The address of the IPv6.
+	Address *string `pulumi:"address"`
+	// The id of the private network to attach.
+	Id *string `pulumi:"id"`
+	// The reverse of the IPv6.
+	Reverse *string `pulumi:"reverse"`
+	// The type of the IPv6.
+	Version *string `pulumi:"version"`
+}
+
+// BaremetalServerIpv6Input is an input type that accepts BaremetalServerIpv6Args and BaremetalServerIpv6Output values.
+// You can construct a concrete instance of `BaremetalServerIpv6Input` via:
+//
+//	BaremetalServerIpv6Args{...}
+type BaremetalServerIpv6Input interface {
+	pulumi.Input
+
+	ToBaremetalServerIpv6Output() BaremetalServerIpv6Output
+	ToBaremetalServerIpv6OutputWithContext(context.Context) BaremetalServerIpv6Output
+}
+
+type BaremetalServerIpv6Args struct {
+	// The address of the IPv6.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The id of the private network to attach.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The reverse of the IPv6.
+	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
+	// The type of the IPv6.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (BaremetalServerIpv6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerIpv6)(nil)).Elem()
+}
+
+func (i BaremetalServerIpv6Args) ToBaremetalServerIpv6Output() BaremetalServerIpv6Output {
+	return i.ToBaremetalServerIpv6OutputWithContext(context.Background())
+}
+
+func (i BaremetalServerIpv6Args) ToBaremetalServerIpv6OutputWithContext(ctx context.Context) BaremetalServerIpv6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerIpv6Output)
+}
+
+// BaremetalServerIpv6ArrayInput is an input type that accepts BaremetalServerIpv6Array and BaremetalServerIpv6ArrayOutput values.
+// You can construct a concrete instance of `BaremetalServerIpv6ArrayInput` via:
+//
+//	BaremetalServerIpv6Array{ BaremetalServerIpv6Args{...} }
+type BaremetalServerIpv6ArrayInput interface {
+	pulumi.Input
+
+	ToBaremetalServerIpv6ArrayOutput() BaremetalServerIpv6ArrayOutput
+	ToBaremetalServerIpv6ArrayOutputWithContext(context.Context) BaremetalServerIpv6ArrayOutput
+}
+
+type BaremetalServerIpv6Array []BaremetalServerIpv6Input
+
+func (BaremetalServerIpv6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerIpv6)(nil)).Elem()
+}
+
+func (i BaremetalServerIpv6Array) ToBaremetalServerIpv6ArrayOutput() BaremetalServerIpv6ArrayOutput {
+	return i.ToBaremetalServerIpv6ArrayOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerIpv6Array) ToBaremetalServerIpv6ArrayOutputWithContext(ctx context.Context) BaremetalServerIpv6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerIpv6ArrayOutput)
+}
+
+type BaremetalServerIpv6Output struct{ *pulumi.OutputState }
+
+func (BaremetalServerIpv6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerIpv6)(nil)).Elem()
+}
+
+func (o BaremetalServerIpv6Output) ToBaremetalServerIpv6Output() BaremetalServerIpv6Output {
+	return o
+}
+
+func (o BaremetalServerIpv6Output) ToBaremetalServerIpv6OutputWithContext(ctx context.Context) BaremetalServerIpv6Output {
+	return o
+}
+
+// The address of the IPv6.
+func (o BaremetalServerIpv6Output) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv6) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The id of the private network to attach.
+func (o BaremetalServerIpv6Output) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv6) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The reverse of the IPv6.
+func (o BaremetalServerIpv6Output) Reverse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv6) *string { return v.Reverse }).(pulumi.StringPtrOutput)
+}
+
+// The type of the IPv6.
+func (o BaremetalServerIpv6Output) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerIpv6) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type BaremetalServerIpv6ArrayOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerIpv6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerIpv6)(nil)).Elem()
+}
+
+func (o BaremetalServerIpv6ArrayOutput) ToBaremetalServerIpv6ArrayOutput() BaremetalServerIpv6ArrayOutput {
+	return o
+}
+
+func (o BaremetalServerIpv6ArrayOutput) ToBaremetalServerIpv6ArrayOutputWithContext(ctx context.Context) BaremetalServerIpv6ArrayOutput {
+	return o
+}
+
+func (o BaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) BaremetalServerIpv6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerIpv6 {
+		return vs[0].([]BaremetalServerIpv6)[vs[1].(int)]
+	}).(BaremetalServerIpv6Output)
 }
 
 type BaremetalServerOption struct {
@@ -12243,6 +12491,236 @@ func (o GetBaremetalServerIpArrayOutput) Index(i pulumi.IntInput) GetBaremetalSe
 	}).(GetBaremetalServerIpOutput)
 }
 
+type GetBaremetalServerIpv4 struct {
+	Address string `pulumi:"address"`
+	// The ID of the server.
+	Id      string `pulumi:"id"`
+	Reverse string `pulumi:"reverse"`
+	Version string `pulumi:"version"`
+}
+
+// GetBaremetalServerIpv4Input is an input type that accepts GetBaremetalServerIpv4Args and GetBaremetalServerIpv4Output values.
+// You can construct a concrete instance of `GetBaremetalServerIpv4Input` via:
+//
+//	GetBaremetalServerIpv4Args{...}
+type GetBaremetalServerIpv4Input interface {
+	pulumi.Input
+
+	ToGetBaremetalServerIpv4Output() GetBaremetalServerIpv4Output
+	ToGetBaremetalServerIpv4OutputWithContext(context.Context) GetBaremetalServerIpv4Output
+}
+
+type GetBaremetalServerIpv4Args struct {
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the server.
+	Id      pulumi.StringInput `pulumi:"id"`
+	Reverse pulumi.StringInput `pulumi:"reverse"`
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetBaremetalServerIpv4Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerIpv4)(nil)).Elem()
+}
+
+func (i GetBaremetalServerIpv4Args) ToGetBaremetalServerIpv4Output() GetBaremetalServerIpv4Output {
+	return i.ToGetBaremetalServerIpv4OutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerIpv4Args) ToGetBaremetalServerIpv4OutputWithContext(ctx context.Context) GetBaremetalServerIpv4Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerIpv4Output)
+}
+
+// GetBaremetalServerIpv4ArrayInput is an input type that accepts GetBaremetalServerIpv4Array and GetBaremetalServerIpv4ArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalServerIpv4ArrayInput` via:
+//
+//	GetBaremetalServerIpv4Array{ GetBaremetalServerIpv4Args{...} }
+type GetBaremetalServerIpv4ArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerIpv4ArrayOutput() GetBaremetalServerIpv4ArrayOutput
+	ToGetBaremetalServerIpv4ArrayOutputWithContext(context.Context) GetBaremetalServerIpv4ArrayOutput
+}
+
+type GetBaremetalServerIpv4Array []GetBaremetalServerIpv4Input
+
+func (GetBaremetalServerIpv4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerIpv4)(nil)).Elem()
+}
+
+func (i GetBaremetalServerIpv4Array) ToGetBaremetalServerIpv4ArrayOutput() GetBaremetalServerIpv4ArrayOutput {
+	return i.ToGetBaremetalServerIpv4ArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerIpv4Array) ToGetBaremetalServerIpv4ArrayOutputWithContext(ctx context.Context) GetBaremetalServerIpv4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerIpv4ArrayOutput)
+}
+
+type GetBaremetalServerIpv4Output struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerIpv4Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerIpv4)(nil)).Elem()
+}
+
+func (o GetBaremetalServerIpv4Output) ToGetBaremetalServerIpv4Output() GetBaremetalServerIpv4Output {
+	return o
+}
+
+func (o GetBaremetalServerIpv4Output) ToGetBaremetalServerIpv4OutputWithContext(ctx context.Context) GetBaremetalServerIpv4Output {
+	return o
+}
+
+func (o GetBaremetalServerIpv4Output) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv4) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the server.
+func (o GetBaremetalServerIpv4Output) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv4) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetBaremetalServerIpv4Output) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv4) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+func (o GetBaremetalServerIpv4Output) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv4) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetBaremetalServerIpv4ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerIpv4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerIpv4)(nil)).Elem()
+}
+
+func (o GetBaremetalServerIpv4ArrayOutput) ToGetBaremetalServerIpv4ArrayOutput() GetBaremetalServerIpv4ArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerIpv4ArrayOutput) ToGetBaremetalServerIpv4ArrayOutputWithContext(ctx context.Context) GetBaremetalServerIpv4ArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerIpv4ArrayOutput) Index(i pulumi.IntInput) GetBaremetalServerIpv4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalServerIpv4 {
+		return vs[0].([]GetBaremetalServerIpv4)[vs[1].(int)]
+	}).(GetBaremetalServerIpv4Output)
+}
+
+type GetBaremetalServerIpv6 struct {
+	Address string `pulumi:"address"`
+	// The ID of the server.
+	Id      string `pulumi:"id"`
+	Reverse string `pulumi:"reverse"`
+	Version string `pulumi:"version"`
+}
+
+// GetBaremetalServerIpv6Input is an input type that accepts GetBaremetalServerIpv6Args and GetBaremetalServerIpv6Output values.
+// You can construct a concrete instance of `GetBaremetalServerIpv6Input` via:
+//
+//	GetBaremetalServerIpv6Args{...}
+type GetBaremetalServerIpv6Input interface {
+	pulumi.Input
+
+	ToGetBaremetalServerIpv6Output() GetBaremetalServerIpv6Output
+	ToGetBaremetalServerIpv6OutputWithContext(context.Context) GetBaremetalServerIpv6Output
+}
+
+type GetBaremetalServerIpv6Args struct {
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the server.
+	Id      pulumi.StringInput `pulumi:"id"`
+	Reverse pulumi.StringInput `pulumi:"reverse"`
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetBaremetalServerIpv6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerIpv6)(nil)).Elem()
+}
+
+func (i GetBaremetalServerIpv6Args) ToGetBaremetalServerIpv6Output() GetBaremetalServerIpv6Output {
+	return i.ToGetBaremetalServerIpv6OutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerIpv6Args) ToGetBaremetalServerIpv6OutputWithContext(ctx context.Context) GetBaremetalServerIpv6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerIpv6Output)
+}
+
+// GetBaremetalServerIpv6ArrayInput is an input type that accepts GetBaremetalServerIpv6Array and GetBaremetalServerIpv6ArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalServerIpv6ArrayInput` via:
+//
+//	GetBaremetalServerIpv6Array{ GetBaremetalServerIpv6Args{...} }
+type GetBaremetalServerIpv6ArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerIpv6ArrayOutput() GetBaremetalServerIpv6ArrayOutput
+	ToGetBaremetalServerIpv6ArrayOutputWithContext(context.Context) GetBaremetalServerIpv6ArrayOutput
+}
+
+type GetBaremetalServerIpv6Array []GetBaremetalServerIpv6Input
+
+func (GetBaremetalServerIpv6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerIpv6)(nil)).Elem()
+}
+
+func (i GetBaremetalServerIpv6Array) ToGetBaremetalServerIpv6ArrayOutput() GetBaremetalServerIpv6ArrayOutput {
+	return i.ToGetBaremetalServerIpv6ArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerIpv6Array) ToGetBaremetalServerIpv6ArrayOutputWithContext(ctx context.Context) GetBaremetalServerIpv6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerIpv6ArrayOutput)
+}
+
+type GetBaremetalServerIpv6Output struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerIpv6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerIpv6)(nil)).Elem()
+}
+
+func (o GetBaremetalServerIpv6Output) ToGetBaremetalServerIpv6Output() GetBaremetalServerIpv6Output {
+	return o
+}
+
+func (o GetBaremetalServerIpv6Output) ToGetBaremetalServerIpv6OutputWithContext(ctx context.Context) GetBaremetalServerIpv6Output {
+	return o
+}
+
+func (o GetBaremetalServerIpv6Output) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv6) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the server.
+func (o GetBaremetalServerIpv6Output) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv6) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetBaremetalServerIpv6Output) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv6) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+func (o GetBaremetalServerIpv6Output) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerIpv6) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetBaremetalServerIpv6ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerIpv6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerIpv6)(nil)).Elem()
+}
+
+func (o GetBaremetalServerIpv6ArrayOutput) ToGetBaremetalServerIpv6ArrayOutput() GetBaremetalServerIpv6ArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerIpv6ArrayOutput) ToGetBaremetalServerIpv6ArrayOutputWithContext(ctx context.Context) GetBaremetalServerIpv6ArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) GetBaremetalServerIpv6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalServerIpv6 {
+		return vs[0].([]GetBaremetalServerIpv6)[vs[1].(int)]
+	}).(GetBaremetalServerIpv6Output)
+}
+
 type GetBaremetalServerOption struct {
 	ExpiresAt string `pulumi:"expiresAt"`
 	// The ID of the server.
@@ -20029,6 +20507,10 @@ func (o GetWebHostOfferProductArrayOutput) Index(i pulumi.IntInput) GetWebHostOf
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv4Input)(nil)).Elem(), BaremetalServerIpv4Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv4ArrayInput)(nil)).Elem(), BaremetalServerIpv4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv6Input)(nil)).Elem(), BaremetalServerIpv6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv6ArrayInput)(nil)).Elem(), BaremetalServerIpv6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionInput)(nil)).Elem(), BaremetalServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionArrayInput)(nil)).Elem(), BaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
@@ -20182,6 +20664,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferMemoryArrayInput)(nil)).Elem(), GetBaremetalOfferMemoryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpInput)(nil)).Elem(), GetBaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpArrayInput)(nil)).Elem(), GetBaremetalServerIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpv4Input)(nil)).Elem(), GetBaremetalServerIpv4Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpv4ArrayInput)(nil)).Elem(), GetBaremetalServerIpv4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpv6Input)(nil)).Elem(), GetBaremetalServerIpv6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpv6ArrayInput)(nil)).Elem(), GetBaremetalServerIpv6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionInput)(nil)).Elem(), GetBaremetalServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionArrayInput)(nil)).Elem(), GetBaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArgs{})
@@ -20306,6 +20792,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
+	pulumi.RegisterOutputType(BaremetalServerIpv4Output{})
+	pulumi.RegisterOutputType(BaremetalServerIpv4ArrayOutput{})
+	pulumi.RegisterOutputType(BaremetalServerIpv6Output{})
+	pulumi.RegisterOutputType(BaremetalServerIpv6ArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
@@ -20459,6 +20949,10 @@ func init() {
 	pulumi.RegisterOutputType(GetBaremetalOfferMemoryArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerIpArrayOutput{})
+	pulumi.RegisterOutputType(GetBaremetalServerIpv4Output{})
+	pulumi.RegisterOutputType(GetBaremetalServerIpv4ArrayOutput{})
+	pulumi.RegisterOutputType(GetBaremetalServerIpv6Output{})
+	pulumi.RegisterOutputType(GetBaremetalServerIpv6ArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerOptionOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkOutput{})

@@ -165,16 +165,16 @@ def get_secret_version(region: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getSecretVersion:getSecretVersion', __args__, opts=opts, typ=GetSecretVersionResult).value
 
     return AwaitableGetSecretVersionResult(
-        created_at=__ret__.created_at,
-        data=__ret__.data,
-        description=__ret__.description,
-        id=__ret__.id,
-        region=__ret__.region,
-        revision=__ret__.revision,
-        secret_id=__ret__.secret_id,
-        secret_name=__ret__.secret_name,
-        status=__ret__.status,
-        updated_at=__ret__.updated_at)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        data=pulumi.get(__ret__, 'data'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        region=pulumi.get(__ret__, 'region'),
+        revision=pulumi.get(__ret__, 'revision'),
+        secret_id=pulumi.get(__ret__, 'secret_id'),
+        secret_name=pulumi.get(__ret__, 'secret_name'),
+        status=pulumi.get(__ret__, 'status'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_secret_version)

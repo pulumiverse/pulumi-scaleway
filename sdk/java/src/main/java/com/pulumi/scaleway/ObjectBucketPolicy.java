@@ -45,32 +45,34 @@ import javax.annotation.Nullable;
  * 
  *         var policy = new ObjectBucketPolicy(&#34;policy&#34;, ObjectBucketPolicyArgs.builder()        
  *             .bucket(bucket.name())
- *             .policy(serializeJson(
- *                 jsonObject(
- *                     jsonProperty(&#34;Id&#34;, &#34;MyPolicy&#34;),
- *                     jsonProperty(&#34;Statement&#34;, jsonArray(jsonObject(
- *                         jsonProperty(&#34;Action&#34;, jsonArray(
- *                             &#34;s3:ListBucket&#34;, 
- *                             &#34;s3:GetObject&#34;
- *                         )),
- *                         jsonProperty(&#34;Effect&#34;, &#34;Allow&#34;),
- *                         jsonProperty(&#34;Principal&#34;, jsonObject(
- *                             jsonProperty(&#34;SCW&#34;, &#34;*&#34;)
- *                         )),
- *                         jsonProperty(&#34;Resource&#34;, jsonArray(
- *                             &#34;some-unique-name&#34;, 
- *                             &#34;some-unique-name/*&#34;
- *                         )),
- *                         jsonProperty(&#34;Sid&#34;, &#34;GrantToEveryone&#34;)
- *                     ))),
- *                     jsonProperty(&#34;Version&#34;, &#34;2012-10-17&#34;)
- *                 )))
+ *             .policy(Output.tuple(bucket.name(), bucket.name()).applyValue(values -&gt; {
+ *                 var bucketName = values.t1;
+ *                 var bucketName1 = values.t2;
+ *                 return serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty(&#34;Version&#34;, &#34;2023-04-17&#34;),
+ *                         jsonProperty(&#34;Id&#34;, &#34;MyBucketPolicy&#34;),
+ *                         jsonProperty(&#34;Statement&#34;, jsonArray(jsonObject(
+ *                             jsonProperty(&#34;Sid&#34;, &#34;Delegate access&#34;),
+ *                             jsonProperty(&#34;Effect&#34;, &#34;Allow&#34;),
+ *                             jsonProperty(&#34;Principal&#34;, jsonObject(
+ *                                 jsonProperty(&#34;SCW&#34;, &#34;application_id:&lt;APPLICATION_ID&gt;&#34;)
+ *                             )),
+ *                             jsonProperty(&#34;Action&#34;, &#34;s3:ListBucket&#34;),
+ *                             jsonProperty(&#34;Resources&#34;, jsonArray(
+ *                                 bucketName, 
+ *                                 String.format(&#34;%s/*&#34;, bucketName1)
+ *                             ))
+ *                         )))
+ *                     ));
+ *             }))
  *             .build());
  * 
  *     }
  * }
  * ```
  * ## Example with aws provider
+ * 
  * ```java
  * package generated_program;
  * 
@@ -98,25 +100,25 @@ import javax.annotation.Nullable;
  *         var bucket = new ObjectBucket(&#34;bucket&#34;);
  * 
  *         final var policy = IamFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
- *             .version(&#34;2012-10-17&#34;)
+ *             .version(&#34;2023-04-17&#34;)
+ *             .id(&#34;MyBucketPolicy&#34;)
  *             .statements(GetPolicyDocumentStatementArgs.builder()
- *                 .sid(&#34;MyPolicy&#34;)
+ *                 .sid(&#34;Delegate access&#34;)
+ *                 .effect(&#34;Allow&#34;)
  *                 .principals(GetPolicyDocumentStatementPrincipalArgs.builder()
  *                     .type(&#34;SCW&#34;)
- *                     .identifiers(&#34;project_id:&lt;project_id&gt;&#34;)
+ *                     .identifiers(&#34;application_id:&lt;APPLICATION_ID&gt;&#34;)
  *                     .build())
- *                 .actions(                
- *                     &#34;s3:GetObject&#34;,
- *                     &#34;s3:ListBucket&#34;)
+ *                 .actions(&#34;s3:ListBucket&#34;)
  *                 .resources(                
- *                     &#34;some-unique-name&#34;,
- *                     &#34;some-unique-name/*&#34;)
+ *                     bucket.name(),
+ *                     bucket.name().applyValue(name -&gt; String.format(&#34;%s/*&#34;, name)))
  *                 .build())
  *             .build());
  * 
  *         var main = new ObjectBucketPolicy(&#34;main&#34;, ObjectBucketPolicyArgs.builder()        
  *             .bucket(bucket.name())
- *             .policy(policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.json()))
+ *             .policy(policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult).applyValue(policy -&gt; policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.json())))
  *             .build());
  * 
  *     }

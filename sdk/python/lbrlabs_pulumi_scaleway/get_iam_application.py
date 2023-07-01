@@ -140,14 +140,14 @@ def get_iam_application(application_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIamApplication:getIamApplication', __args__, opts=opts, typ=GetIamApplicationResult).value
 
     return AwaitableGetIamApplicationResult(
-        application_id=__ret__.application_id,
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        editable=__ret__.editable,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        updated_at=__ret__.updated_at)
+        application_id=pulumi.get(__ret__, 'application_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        editable=pulumi.get(__ret__, 'editable'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_iam_application)

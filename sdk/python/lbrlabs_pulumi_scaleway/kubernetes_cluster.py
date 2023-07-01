@@ -50,8 +50,8 @@ class KubernetesClusterArgs:
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can only be set at cluster creation and cannot be updated later.
-               Changes to this field will cause the cluster to be destroyed then recreated.
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -228,8 +228,8 @@ class KubernetesClusterArgs:
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can only be set at cluster creation and cannot be updated later.
-        Changes to this field will cause the cluster to be destroyed then recreated.
+        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        Any subsequent change after this field got set will prompt for cluster recreation.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -334,8 +334,8 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can only be set at cluster creation and cannot be updated later.
-               Changes to this field will cause the cluster to be destroyed then recreated.
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -572,8 +572,8 @@ class _KubernetesClusterState:
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can only be set at cluster creation and cannot be updated later.
-        Changes to this field will cause the cluster to be destroyed then recreated.
+        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        Any subsequent change after this field got set will prompt for cluster recreation.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -812,8 +812,8 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can only be set at cluster creation and cannot be updated later.
-               Changes to this field will cause the cluster to be destroyed then recreated.
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -1041,8 +1041,8 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can only be set at cluster creation and cannot be updated later.
-               Changes to this field will cause the cluster to be destroyed then recreated.
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -1204,8 +1204,8 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can only be set at cluster creation and cannot be updated later.
-        Changes to this field will cause the cluster to be destroyed then recreated.
+        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        Any subsequent change after this field got set will prompt for cluster recreation.
         """
         return pulumi.get(self, "private_network_id")
 

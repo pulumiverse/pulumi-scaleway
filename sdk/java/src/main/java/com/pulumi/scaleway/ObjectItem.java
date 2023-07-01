@@ -45,14 +45,42 @@ public class ObjectItem extends com.pulumi.resources.CustomResource {
         return this.bucket;
     }
     /**
-     * The name of the file to upload, defaults to an empty file
+     * The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    @Export(name="content", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> content;
+
+    /**
+     * @return The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    public Output<Optional<String>> content() {
+        return Codegen.optional(this.content);
+    }
+    /**
+     * The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    @Export(name="contentBase64", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> contentBase64;
+
+    /**
+     * @return The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+     * 
+     */
+    public Output<Optional<String>> contentBase64() {
+        return Codegen.optional(this.contentBase64);
+    }
+    /**
+     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
      * 
      */
     @Export(name="file", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> file;
 
     /**
-     * @return The name of the file to upload, defaults to an empty file
+     * @return The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
      * 
      */
     public Output<Optional<String>> file() {

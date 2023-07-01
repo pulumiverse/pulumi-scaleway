@@ -12,6 +12,8 @@ from . import outputs
 
 __all__ = [
     'BaremetalServerIp',
+    'BaremetalServerIpv4',
+    'BaremetalServerIpv6',
     'BaremetalServerOption',
     'BaremetalServerPrivateNetwork',
     'CockpitEndpoint',
@@ -90,6 +92,8 @@ __all__ = [
     'GetBaremetalOfferDiskResult',
     'GetBaremetalOfferMemoryResult',
     'GetBaremetalServerIpResult',
+    'GetBaremetalServerIpv4Result',
+    'GetBaremetalServerIpv6Result',
     'GetBaremetalServerOptionResult',
     'GetBaremetalServerPrivateNetworkResult',
     'GetCockpitEndpointResult',
@@ -161,10 +165,10 @@ class BaremetalServerIp(dict):
                  reverse: Optional[str] = None,
                  version: Optional[str] = None):
         """
-        :param str address: The address of the IP.
+        :param str address: The address of the IPv6.
         :param str id: The id of the private network to attach.
-        :param str reverse: The reverse of the IP.
-        :param str version: The type of the IP.
+        :param str reverse: The reverse of the IPv6.
+        :param str version: The type of the IPv6.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -179,7 +183,7 @@ class BaremetalServerIp(dict):
     @pulumi.getter
     def address(self) -> Optional[str]:
         """
-        The address of the IP.
+        The address of the IPv6.
         """
         return pulumi.get(self, "address")
 
@@ -195,7 +199,7 @@ class BaremetalServerIp(dict):
     @pulumi.getter
     def reverse(self) -> Optional[str]:
         """
-        The reverse of the IP.
+        The reverse of the IPv6.
         """
         return pulumi.get(self, "reverse")
 
@@ -203,7 +207,117 @@ class BaremetalServerIp(dict):
     @pulumi.getter
     def version(self) -> Optional[str]:
         """
-        The type of the IP.
+        The type of the IPv6.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class BaremetalServerIpv4(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None,
+                 reverse: Optional[str] = None,
+                 version: Optional[str] = None):
+        """
+        :param str address: The address of the IPv6.
+        :param str id: The id of the private network to attach.
+        :param str reverse: The reverse of the IPv6.
+        :param str version: The type of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if reverse is not None:
+            pulumi.set(__self__, "reverse", reverse)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The id of the private network to attach.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> Optional[str]:
+        """
+        The reverse of the IPv6.
+        """
+        return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        The type of the IPv6.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class BaremetalServerIpv6(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None,
+                 reverse: Optional[str] = None,
+                 version: Optional[str] = None):
+        """
+        :param str address: The address of the IPv6.
+        :param str id: The id of the private network to attach.
+        :param str reverse: The reverse of the IPv6.
+        :param str version: The type of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if reverse is not None:
+            pulumi.set(__self__, "reverse", reverse)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The id of the private network to attach.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> Optional[str]:
+        """
+        The reverse of the IPv6.
+        """
+        return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        The type of the IPv6.
         """
         return pulumi.get(self, "version")
 
@@ -1615,6 +1729,9 @@ class InstanceSecurityGroupInboundRule(dict):
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @property
@@ -1708,6 +1825,9 @@ class InstanceSecurityGroupOutboundRule(dict):
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @property
@@ -1801,6 +1921,9 @@ class InstanceSecurityGroupRulesInboundRule(dict):
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @property
@@ -1894,6 +2017,9 @@ class InstanceSecurityGroupRulesOutboundRule(dict):
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @property
@@ -4902,6 +5028,84 @@ class GetBaremetalOfferMemoryResult(dict):
 
 @pulumi.output_type
 class GetBaremetalServerIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str,
+                 reverse: str,
+                 version: str):
+        """
+        :param str id: The ID of the server.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "reverse", reverse)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> str:
+        return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetBaremetalServerIpv4Result(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str,
+                 reverse: str,
+                 version: str):
+        """
+        :param str id: The ID of the server.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "reverse", reverse)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> str:
+        return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetBaremetalServerIpv6Result(dict):
     def __init__(__self__, *,
                  address: str,
                  id: str,

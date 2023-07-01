@@ -178,16 +178,16 @@ def get_registry_image(image_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getRegistryImage:getRegistryImage', __args__, opts=opts, typ=GetRegistryImageResult).value
 
     return AwaitableGetRegistryImageResult(
-        id=__ret__.id,
-        image_id=__ret__.image_id,
-        name=__ret__.name,
-        namespace_id=__ret__.namespace_id,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        size=__ret__.size,
-        tags=__ret__.tags,
-        visibility=__ret__.visibility)
+        id=pulumi.get(__ret__, 'id'),
+        image_id=pulumi.get(__ret__, 'image_id'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace_id=pulumi.get(__ret__, 'namespace_id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        size=pulumi.get(__ret__, 'size'),
+        tags=pulumi.get(__ret__, 'tags'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_registry_image)

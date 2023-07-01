@@ -174,7 +174,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         /// </summary>
         [Output("sendProxyV2")]
-        public Output<bool?> SendProxyV2 { get; private set; } = null!;
+        public Output<bool> SendProxyV2 { get; private set; } = null!;
 
         /// <summary>
         /// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.

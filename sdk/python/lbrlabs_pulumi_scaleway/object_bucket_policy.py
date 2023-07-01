@@ -185,53 +185,22 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         bucket = scaleway.ObjectBucket("bucket")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=json.dumps({
-                "Id": "MyPolicy",
+            policy=pulumi.Output.all(bucket.name, bucket.name).apply(lambda bucketName, bucketName1: json.dumps({
+                "Version": "2023-04-17",
+                "Id": "MyBucketPolicy",
                 "Statement": [{
-                    "Action": [
-                        "s3:ListBucket",
-                        "s3:GetObject",
-                    ],
+                    "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": "*",
+                        "SCW": "application_id:<APPLICATION_ID>",
                     },
-                    "Resource": [
-                        "some-unique-name",
-                        "some-unique-name/*",
+                    "Action": "s3:ListBucket",
+                    "Resources": [
+                        bucket_name,
+                        f"{bucket_name1}/*",
                     ],
-                    "Sid": "GrantToEveryone",
                 }],
-                "Version": "2012-10-17",
-            }))
-        ```
-        ## Example with aws provider
-
-        ```python
-        import pulumi
-        import lbrlabs_pulumi_scaleway as scaleway
-        import pulumi_aws as aws
-
-        bucket = scaleway.ObjectBucket("bucket")
-        policy = aws.iam.get_policy_document(version="2012-10-17",
-            statements=[aws.iam.GetPolicyDocumentStatementArgs(
-                sid="MyPolicy",
-                principals=[aws.iam.GetPolicyDocumentStatementPrincipalArgs(
-                    type="SCW",
-                    identifiers=["project_id:<project_id>"],
-                )],
-                actions=[
-                    "s3:GetObject",
-                    "s3:ListBucket",
-                ],
-                resources=[
-                    "some-unique-name",
-                    "some-unique-name/*",
-                ],
-            )])
-        main = scaleway.ObjectBucketPolicy("main",
-            bucket=bucket.name,
-            policy=policy.json)
+            })))
         ```
 
         ## Import
@@ -271,53 +240,22 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         bucket = scaleway.ObjectBucket("bucket")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=json.dumps({
-                "Id": "MyPolicy",
+            policy=pulumi.Output.all(bucket.name, bucket.name).apply(lambda bucketName, bucketName1: json.dumps({
+                "Version": "2023-04-17",
+                "Id": "MyBucketPolicy",
                 "Statement": [{
-                    "Action": [
-                        "s3:ListBucket",
-                        "s3:GetObject",
-                    ],
+                    "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": "*",
+                        "SCW": "application_id:<APPLICATION_ID>",
                     },
-                    "Resource": [
-                        "some-unique-name",
-                        "some-unique-name/*",
+                    "Action": "s3:ListBucket",
+                    "Resources": [
+                        bucket_name,
+                        f"{bucket_name1}/*",
                     ],
-                    "Sid": "GrantToEveryone",
                 }],
-                "Version": "2012-10-17",
-            }))
-        ```
-        ## Example with aws provider
-
-        ```python
-        import pulumi
-        import lbrlabs_pulumi_scaleway as scaleway
-        import pulumi_aws as aws
-
-        bucket = scaleway.ObjectBucket("bucket")
-        policy = aws.iam.get_policy_document(version="2012-10-17",
-            statements=[aws.iam.GetPolicyDocumentStatementArgs(
-                sid="MyPolicy",
-                principals=[aws.iam.GetPolicyDocumentStatementPrincipalArgs(
-                    type="SCW",
-                    identifiers=["project_id:<project_id>"],
-                )],
-                actions=[
-                    "s3:GetObject",
-                    "s3:ListBucket",
-                ],
-                resources=[
-                    "some-unique-name",
-                    "some-unique-name/*",
-                ],
-            )])
-        main = scaleway.ObjectBucketPolicy("main",
-            bucket=bucket.name,
-            policy=policy.json)
+            })))
         ```
 
         ## Import
