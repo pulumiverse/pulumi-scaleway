@@ -195,6 +195,39 @@ class InstanceUserData(pulumi.CustomResource):
 
         ## Examples
 
+        ### Basic
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        config = pulumi.Config()
+        user_data = config.get_object("userData")
+        if user_data is None:
+            user_data = {
+                "cloud-init": \"\"\"#cloud-config
+        apt-update: true
+        apt-upgrade: true
+        \"\"\",
+                "foo": "bar",
+            }
+        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+            image="ubuntu_focal",
+            type="DEV1-S")
+        # User data with a single value
+        main_instance_user_data = scaleway.InstanceUserData("mainInstanceUserData",
+            server_id=main_instance_server.id,
+            key="foo",
+            value="bar")
+        # User Data with many keys.
+        data = []
+        for range in [{"value": i} for i in range(0, user_data)]:
+            data.append(scaleway.InstanceUserData(f"data-{range['value']}",
+                server_id=main_instance_server.id,
+                key=range["key"],
+                value=range["value"]))
+        ```
+
         ## Import
 
         User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash
@@ -233,6 +266,39 @@ class InstanceUserData(pulumi.CustomResource):
         About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
 
         ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        config = pulumi.Config()
+        user_data = config.get_object("userData")
+        if user_data is None:
+            user_data = {
+                "cloud-init": \"\"\"#cloud-config
+        apt-update: true
+        apt-upgrade: true
+        \"\"\",
+                "foo": "bar",
+            }
+        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+            image="ubuntu_focal",
+            type="DEV1-S")
+        # User data with a single value
+        main_instance_user_data = scaleway.InstanceUserData("mainInstanceUserData",
+            server_id=main_instance_server.id,
+            key="foo",
+            value="bar")
+        # User Data with many keys.
+        data = []
+        for range in [{"value": i} for i in range(0, user_data)]:
+            data.append(scaleway.InstanceUserData(f"data-{range['value']}",
+                server_id=main_instance_server.id,
+                key=range["key"],
+                value=range["value"]))
+        ```
 
         ## Import
 

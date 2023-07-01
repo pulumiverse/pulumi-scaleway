@@ -22,6 +22,7 @@ import (
 // import (
 //
 //	"encoding/json"
+//	"fmt"
 //
 //	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -34,92 +35,36 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"Id": "MyPolicy",
-//				"Statement": []map[string]interface{}{
-//					map[string]interface{}{
-//						"Action": []string{
-//							"s3:ListBucket",
-//							"s3:GetObject",
-//						},
-//						"Effect": "Allow",
-//						"Principal": map[string]interface{}{
-//							"SCW": "*",
-//						},
-//						"Resource": []string{
-//							"some-unique-name",
-//							"some-unique-name/*",
-//						},
-//						"Sid": "GrantToEveryone",
-//					},
-//				},
-//				"Version": "2012-10-17",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
 //			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
 //				Bucket: bucket.Name,
-//				Policy: pulumi.String(json0),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// ## Example with aws provider
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
-//			if err != nil {
-//				return err
-//			}
-//			policy, err := iam.GetPolicyDocument(ctx, &iam.GetPolicyDocumentArgs{
-//				Version: pulumi.StringRef("2012-10-17"),
-//				Statements: []iam.GetPolicyDocumentStatement{
-//					{
-//						Sid: pulumi.StringRef("MyPolicy"),
-//						Principals: []iam.GetPolicyDocumentStatementPrincipal{
-//							{
-//								Type: "SCW",
-//								Identifiers: []string{
-//									"project_id:<project_id>",
+//				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
+//					bucketName := _args[0].(string)
+//					bucketName1 := _args[1].(string)
+//					var _zero string
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"Version": "2023-04-17",
+//						"Id":      "MyBucketPolicy",
+//						"Statement": []map[string]interface{}{
+//							map[string]interface{}{
+//								"Sid":    "Delegate access",
+//								"Effect": "Allow",
+//								"Principal": map[string]interface{}{
+//									"SCW": "application_id:<APPLICATION_ID>",
+//								},
+//								"Action": "s3:ListBucket",
+//								"Resources": []string{
+//									bucketName,
+//									fmt.Sprintf("%v/*", bucketName1),
 //								},
 //							},
 //						},
-//						Actions: []string{
-//							"s3:GetObject",
-//							"s3:ListBucket",
-//						},
-//						Resources: []string{
-//							"some-unique-name",
-//							"some-unique-name/*",
-//						},
-//					},
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
-//				Bucket: bucket.Name,
-//				Policy: *pulumi.String(policy.Json),
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return json0, nil
+//				}).(pulumi.StringOutput),
 //			})
 //			if err != nil {
 //				return err

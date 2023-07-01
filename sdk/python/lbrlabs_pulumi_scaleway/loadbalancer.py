@@ -143,6 +143,9 @@ class LoadbalancerArgs:
         """
         The release_ip allow release the ip address associated with the load-balancers.
         """
+        warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
+        pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
+
         return pulumi.get(self, "release_ip")
 
     @release_ip.setter
@@ -354,6 +357,9 @@ class _LoadbalancerState:
         """
         The release_ip allow release the ip address associated with the load-balancers.
         """
+        warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
+        pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
+
         return pulumi.get(self, "release_ip")
 
     @release_ip.setter
@@ -871,6 +877,9 @@ class Loadbalancer(pulumi.CustomResource):
         """
         The release_ip allow release the ip address associated with the load-balancers.
         """
+        warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
+        pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
+
         return pulumi.get(self, "release_ip")
 
     @property

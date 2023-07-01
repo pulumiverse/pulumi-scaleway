@@ -185,8 +185,8 @@ export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * The ID of the private network of the cluster.
      *
-     * > **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
@@ -372,8 +372,8 @@ export interface KubernetesClusterState {
     /**
      * The ID of the private network of the cluster.
      *
-     * > **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -464,8 +464,8 @@ export interface KubernetesClusterArgs {
     /**
      * The ID of the private network of the cluster.
      *
-     * > **Important:** This field can only be set at cluster creation and cannot be updated later.
-     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+     * Any subsequent change after this field got set will prompt for cluster recreation.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**

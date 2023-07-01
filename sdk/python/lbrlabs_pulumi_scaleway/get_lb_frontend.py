@@ -192,18 +192,18 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbFrontend:getLbFrontend', __args__, opts=opts, typ=GetLbFrontendResult).value
 
     return AwaitableGetLbFrontendResult(
-        acls=__ret__.acls,
-        backend_id=__ret__.backend_id,
-        certificate_id=__ret__.certificate_id,
-        certificate_ids=__ret__.certificate_ids,
-        enable_http3=__ret__.enable_http3,
-        external_acls=__ret__.external_acls,
-        frontend_id=__ret__.frontend_id,
-        id=__ret__.id,
-        inbound_port=__ret__.inbound_port,
-        lb_id=__ret__.lb_id,
-        name=__ret__.name,
-        timeout_client=__ret__.timeout_client)
+        acls=pulumi.get(__ret__, 'acls'),
+        backend_id=pulumi.get(__ret__, 'backend_id'),
+        certificate_id=pulumi.get(__ret__, 'certificate_id'),
+        certificate_ids=pulumi.get(__ret__, 'certificate_ids'),
+        enable_http3=pulumi.get(__ret__, 'enable_http3'),
+        external_acls=pulumi.get(__ret__, 'external_acls'),
+        frontend_id=pulumi.get(__ret__, 'frontend_id'),
+        id=pulumi.get(__ret__, 'id'),
+        inbound_port=pulumi.get(__ret__, 'inbound_port'),
+        lb_id=pulumi.get(__ret__, 'lb_id'),
+        name=pulumi.get(__ret__, 'name'),
+        timeout_client=pulumi.get(__ret__, 'timeout_client'))
 
 
 @_utilities.lift_output_func(get_lb_frontend)

@@ -149,7 +149,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      *
      * @deprecated Please use proxy_protocol instead
      */
-    public readonly sendProxyV2!: pulumi.Output<boolean | undefined>;
+    public readonly sendProxyV2!: pulumi.Output<boolean>;
     /**
      * List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
      */

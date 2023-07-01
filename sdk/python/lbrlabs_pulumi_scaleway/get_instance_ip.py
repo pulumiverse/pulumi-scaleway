@@ -144,14 +144,14 @@ def get_instance_ip(address: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceIp:getInstanceIp', __args__, opts=opts, typ=GetInstanceIpResult).value
 
     return AwaitableGetInstanceIpResult(
-        address=__ret__.address,
-        id=__ret__.id,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        reverse=__ret__.reverse,
-        server_id=__ret__.server_id,
-        tags=__ret__.tags,
-        zone=__ret__.zone)
+        address=pulumi.get(__ret__, 'address'),
+        id=pulumi.get(__ret__, 'id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        reverse=pulumi.get(__ret__, 'reverse'),
+        server_id=pulumi.get(__ret__, 'server_id'),
+        tags=pulumi.get(__ret__, 'tags'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_instance_ip)

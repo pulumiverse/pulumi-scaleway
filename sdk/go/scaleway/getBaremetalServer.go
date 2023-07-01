@@ -72,6 +72,8 @@ type LookupBaremetalServerResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id                       string                             `pulumi:"id"`
 	Ips                      []GetBaremetalServerIp             `pulumi:"ips"`
+	Ipv4s                    []GetBaremetalServerIpv4           `pulumi:"ipv4s"`
+	Ipv6s                    []GetBaremetalServerIpv6           `pulumi:"ipv6s"`
 	Name                     *string                            `pulumi:"name"`
 	Offer                    string                             `pulumi:"offer"`
 	OfferId                  string                             `pulumi:"offerId"`
@@ -153,6 +155,14 @@ func (o LookupBaremetalServerResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupBaremetalServerResultOutput) Ips() GetBaremetalServerIpArrayOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerIp { return v.Ips }).(GetBaremetalServerIpArrayOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) Ipv4s() GetBaremetalServerIpv4ArrayOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerIpv4 { return v.Ipv4s }).(GetBaremetalServerIpv4ArrayOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) Ipv6s() GetBaremetalServerIpv6ArrayOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerIpv6 { return v.Ipv6s }).(GetBaremetalServerIpv6ArrayOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) Name() pulumi.StringPtrOutput {

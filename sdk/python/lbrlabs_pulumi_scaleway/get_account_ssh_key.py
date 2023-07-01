@@ -157,16 +157,16 @@ def get_account_ssh_key(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getAccountSshKey:getAccountSshKey', __args__, opts=opts, typ=GetAccountSshKeyResult).value
 
     return AwaitableGetAccountSshKeyResult(
-        created_at=__ret__.created_at,
-        disabled=__ret__.disabled,
-        fingerprint=__ret__.fingerprint,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        public_key=__ret__.public_key,
-        ssh_key_id=__ret__.ssh_key_id,
-        updated_at=__ret__.updated_at)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        disabled=pulumi.get(__ret__, 'disabled'),
+        fingerprint=pulumi.get(__ret__, 'fingerprint'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        public_key=pulumi.get(__ret__, 'public_key'),
+        ssh_key_id=pulumi.get(__ret__, 'ssh_key_id'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_account_ssh_key)

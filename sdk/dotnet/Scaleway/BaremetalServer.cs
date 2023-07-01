@@ -81,6 +81,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<Outputs.BaremetalServerIp>> Ips { get; private set; } = null!;
 
         /// <summary>
+        /// (List of) The IPv4 addresses of the server.
+        /// </summary>
+        [Output("ipv4s")]
+        public Output<ImmutableArray<Outputs.BaremetalServerIpv4>> Ipv4s { get; private set; } = null!;
+
+        /// <summary>
+        /// (List of) The IPv6 addresses of the server.
+        /// </summary>
+        [Output("ipv6s")]
+        public Output<ImmutableArray<Outputs.BaremetalServerIpv6>> Ipv6s { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the server.
         /// </summary>
         [Output("name")]
@@ -430,6 +442,30 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         {
             get => _ips ?? (_ips = new InputList<Inputs.BaremetalServerIpGetArgs>());
             set => _ips = value;
+        }
+
+        [Input("ipv4s")]
+        private InputList<Inputs.BaremetalServerIpv4GetArgs>? _ipv4s;
+
+        /// <summary>
+        /// (List of) The IPv4 addresses of the server.
+        /// </summary>
+        public InputList<Inputs.BaremetalServerIpv4GetArgs> Ipv4s
+        {
+            get => _ipv4s ?? (_ipv4s = new InputList<Inputs.BaremetalServerIpv4GetArgs>());
+            set => _ipv4s = value;
+        }
+
+        [Input("ipv6s")]
+        private InputList<Inputs.BaremetalServerIpv6GetArgs>? _ipv6s;
+
+        /// <summary>
+        /// (List of) The IPv6 addresses of the server.
+        /// </summary>
+        public InputList<Inputs.BaremetalServerIpv6GetArgs> Ipv6s
+        {
+            get => _ipv6s ?? (_ipv6s = new InputList<Inputs.BaremetalServerIpv6GetArgs>());
+            set => _ipv6s = value;
         }
 
         /// <summary>

@@ -104,10 +104,10 @@ def get_iam_user(email: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIamUser:getIamUser', __args__, opts=opts, typ=GetIamUserResult).value
 
     return AwaitableGetIamUserResult(
-        email=__ret__.email,
-        id=__ret__.id,
-        organization_id=__ret__.organization_id,
-        user_id=__ret__.user_id)
+        email=pulumi.get(__ret__, 'email'),
+        id=pulumi.get(__ret__, 'id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        user_id=pulumi.get(__ret__, 'user_id'))
 
 
 @_utilities.lift_output_func(get_iam_user)

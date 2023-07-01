@@ -205,21 +205,21 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGateway:getVpcPublicGateway', __args__, opts=opts, typ=GetVpcPublicGatewayResult).value
 
     return AwaitableGetVpcPublicGatewayResult(
-        bastion_enabled=__ret__.bastion_enabled,
-        bastion_port=__ret__.bastion_port,
-        created_at=__ret__.created_at,
-        enable_smtp=__ret__.enable_smtp,
-        id=__ret__.id,
-        ip_id=__ret__.ip_id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        public_gateway_id=__ret__.public_gateway_id,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        updated_at=__ret__.updated_at,
-        upstream_dns_servers=__ret__.upstream_dns_servers,
-        zone=__ret__.zone)
+        bastion_enabled=pulumi.get(__ret__, 'bastion_enabled'),
+        bastion_port=pulumi.get(__ret__, 'bastion_port'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        enable_smtp=pulumi.get(__ret__, 'enable_smtp'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_id=pulumi.get(__ret__, 'ip_id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        public_gateway_id=pulumi.get(__ret__, 'public_gateway_id'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        upstream_dns_servers=pulumi.get(__ret__, 'upstream_dns_servers'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_gateway)

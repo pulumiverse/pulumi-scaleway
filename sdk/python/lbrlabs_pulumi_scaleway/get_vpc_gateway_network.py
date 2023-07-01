@@ -175,8 +175,8 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
         cleanup_dhcp=True,
         enable_masquerade=True)
     by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-        private_network_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
+        private_network_id=scaleway_vpc_private_network["pn01"]["id"])
     ```
 
 
@@ -198,19 +198,19 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork', __args__, opts=opts, typ=GetVpcGatewayNetworkResult).value
 
     return AwaitableGetVpcGatewayNetworkResult(
-        cleanup_dhcp=__ret__.cleanup_dhcp,
-        created_at=__ret__.created_at,
-        dhcp_id=__ret__.dhcp_id,
-        enable_dhcp=__ret__.enable_dhcp,
-        enable_masquerade=__ret__.enable_masquerade,
-        gateway_id=__ret__.gateway_id,
-        gateway_network_id=__ret__.gateway_network_id,
-        id=__ret__.id,
-        mac_address=__ret__.mac_address,
-        private_network_id=__ret__.private_network_id,
-        static_address=__ret__.static_address,
-        updated_at=__ret__.updated_at,
-        zone=__ret__.zone)
+        cleanup_dhcp=pulumi.get(__ret__, 'cleanup_dhcp'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        dhcp_id=pulumi.get(__ret__, 'dhcp_id'),
+        enable_dhcp=pulumi.get(__ret__, 'enable_dhcp'),
+        enable_masquerade=pulumi.get(__ret__, 'enable_masquerade'),
+        gateway_id=pulumi.get(__ret__, 'gateway_id'),
+        gateway_network_id=pulumi.get(__ret__, 'gateway_network_id'),
+        id=pulumi.get(__ret__, 'id'),
+        mac_address=pulumi.get(__ret__, 'mac_address'),
+        private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        static_address=pulumi.get(__ret__, 'static_address'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_gateway_network)
@@ -237,8 +237,8 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
         cleanup_dhcp=True,
         enable_masquerade=True)
     by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-        private_network_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
+        private_network_id=scaleway_vpc_private_network["pn01"]["id"])
     ```
 
 

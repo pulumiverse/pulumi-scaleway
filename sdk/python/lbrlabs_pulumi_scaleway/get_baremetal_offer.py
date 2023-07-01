@@ -200,18 +200,18 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalOffer:getBaremetalOffer', __args__, opts=opts, typ=GetBaremetalOfferResult).value
 
     return AwaitableGetBaremetalOfferResult(
-        bandwidth=__ret__.bandwidth,
-        commercial_range=__ret__.commercial_range,
-        cpu=__ret__.cpu,
-        disks=__ret__.disks,
-        id=__ret__.id,
-        include_disabled=__ret__.include_disabled,
-        memories=__ret__.memories,
-        name=__ret__.name,
-        offer_id=__ret__.offer_id,
-        stock=__ret__.stock,
-        subscription_period=__ret__.subscription_period,
-        zone=__ret__.zone)
+        bandwidth=pulumi.get(__ret__, 'bandwidth'),
+        commercial_range=pulumi.get(__ret__, 'commercial_range'),
+        cpu=pulumi.get(__ret__, 'cpu'),
+        disks=pulumi.get(__ret__, 'disks'),
+        id=pulumi.get(__ret__, 'id'),
+        include_disabled=pulumi.get(__ret__, 'include_disabled'),
+        memories=pulumi.get(__ret__, 'memories'),
+        name=pulumi.get(__ret__, 'name'),
+        offer_id=pulumi.get(__ret__, 'offer_id'),
+        stock=pulumi.get(__ret__, 'stock'),
+        subscription_period=pulumi.get(__ret__, 'subscription_period'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_baremetal_offer)

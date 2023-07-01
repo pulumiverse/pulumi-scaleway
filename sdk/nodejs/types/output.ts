@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 
 export interface BaremetalServerIp {
     /**
-     * The address of the IP.
+     * The address of the IPv6.
      */
     address: string;
     /**
@@ -15,11 +15,49 @@ export interface BaremetalServerIp {
      */
     id: string;
     /**
-     * The reverse of the IP.
+     * The reverse of the IPv6.
      */
     reverse: string;
     /**
-     * The type of the IP.
+     * The type of the IPv6.
+     */
+    version: string;
+}
+
+export interface BaremetalServerIpv4 {
+    /**
+     * The address of the IPv6.
+     */
+    address: string;
+    /**
+     * The id of the private network to attach.
+     */
+    id: string;
+    /**
+     * The reverse of the IPv6.
+     */
+    reverse: string;
+    /**
+     * The type of the IPv6.
+     */
+    version: string;
+}
+
+export interface BaremetalServerIpv6 {
+    /**
+     * The address of the IPv6.
+     */
+    address: string;
+    /**
+     * The id of the private network to attach.
+     */
+    id: string;
+    /**
+     * The reverse of the IPv6.
+     */
+    reverse: string;
+    /**
+     * The type of the IPv6.
      */
     version: string;
 }
@@ -380,6 +418,26 @@ export interface GetBaremetalOfferMemory {
 }
 
 export interface GetBaremetalServerIp {
+    address: string;
+    /**
+     * The ID of the server.
+     */
+    id: string;
+    reverse: string;
+    version: string;
+}
+
+export interface GetBaremetalServerIpv4 {
+    address: string;
+    /**
+     * The ID of the server.
+     */
+    id: string;
+    reverse: string;
+    version: string;
+}
+
+export interface GetBaremetalServerIpv6 {
     address: string;
     /**
      * The ID of the server.

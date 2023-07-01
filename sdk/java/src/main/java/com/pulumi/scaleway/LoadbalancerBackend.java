@@ -344,14 +344,14 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      */
     @Deprecated /* Please use proxy_protocol instead */
     @Export(name="sendProxyV2", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> sendProxyV2;
+    private Output<Boolean> sendProxyV2;
 
     /**
      * @return DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      * 
      */
-    public Output<Optional<Boolean>> sendProxyV2() {
-        return Codegen.optional(this.sendProxyV2);
+    public Output<Boolean> sendProxyV2() {
+        return this.sendProxyV2;
     }
     /**
      * List of backend server IP addresses. Addresses can be either IPv4 or IPv6.

@@ -11,6 +11,8 @@ from . import _utilities
 
 __all__ = [
     'BaremetalServerIpArgs',
+    'BaremetalServerIpv4Args',
+    'BaremetalServerIpv6Args',
     'BaremetalServerOptionArgs',
     'BaremetalServerPrivateNetworkArgs',
     'CockpitEndpointArgs',
@@ -95,10 +97,10 @@ class BaremetalServerIpArgs:
                  reverse: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The address of the IP.
+        :param pulumi.Input[str] address: The address of the IPv6.
         :param pulumi.Input[str] id: The id of the private network to attach.
-        :param pulumi.Input[str] reverse: The reverse of the IP.
-        :param pulumi.Input[str] version: The type of the IP.
+        :param pulumi.Input[str] reverse: The reverse of the IPv6.
+        :param pulumi.Input[str] version: The type of the IPv6.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -113,7 +115,7 @@ class BaremetalServerIpArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        The address of the IP.
+        The address of the IPv6.
         """
         return pulumi.get(self, "address")
 
@@ -137,7 +139,7 @@ class BaremetalServerIpArgs:
     @pulumi.getter
     def reverse(self) -> Optional[pulumi.Input[str]]:
         """
-        The reverse of the IP.
+        The reverse of the IPv6.
         """
         return pulumi.get(self, "reverse")
 
@@ -149,7 +151,149 @@ class BaremetalServerIpArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the IP.
+        The type of the IPv6.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class BaremetalServerIpv4Args:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 reverse: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The address of the IPv6.
+        :param pulumi.Input[str] id: The id of the private network to attach.
+        :param pulumi.Input[str] reverse: The reverse of the IPv6.
+        :param pulumi.Input[str] version: The type of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if reverse is not None:
+            pulumi.set(__self__, "reverse", reverse)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the private network to attach.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reverse of the IPv6.
+        """
+        return pulumi.get(self, "reverse")
+
+    @reverse.setter
+    def reverse(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reverse", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the IPv6.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class BaremetalServerIpv6Args:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 reverse: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The address of the IPv6.
+        :param pulumi.Input[str] id: The id of the private network to attach.
+        :param pulumi.Input[str] reverse: The reverse of the IPv6.
+        :param pulumi.Input[str] version: The type of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if reverse is not None:
+            pulumi.set(__self__, "reverse", reverse)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the private network to attach.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reverse of the IPv6.
+        """
+        return pulumi.get(self, "reverse")
+
+    @reverse.setter
+    def reverse(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reverse", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the IPv6.
         """
         return pulumi.get(self, "version")
 
@@ -1639,6 +1783,9 @@ class InstanceSecurityGroupInboundRuleArgs:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -1740,6 +1887,9 @@ class InstanceSecurityGroupOutboundRuleArgs:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -1841,6 +1991,9 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -1942,6 +2095,9 @@ class InstanceSecurityGroupRulesOutboundRuleArgs:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
+        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
+        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
+
         return pulumi.get(self, "ip")
 
     @ip.setter

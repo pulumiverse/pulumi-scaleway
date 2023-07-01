@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 
 export interface BaremetalServerIp {
     /**
-     * The address of the IP.
+     * The address of the IPv6.
      */
     address?: pulumi.Input<string>;
     /**
@@ -15,11 +15,49 @@ export interface BaremetalServerIp {
      */
     id?: pulumi.Input<string>;
     /**
-     * The reverse of the IP.
+     * The reverse of the IPv6.
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The type of the IP.
+     * The type of the IPv6.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface BaremetalServerIpv4 {
+    /**
+     * The address of the IPv6.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The id of the private network to attach.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The reverse of the IPv6.
+     */
+    reverse?: pulumi.Input<string>;
+    /**
+     * The type of the IPv6.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface BaremetalServerIpv6 {
+    /**
+     * The address of the IPv6.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The id of the private network to attach.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The reverse of the IPv6.
+     */
+    reverse?: pulumi.Input<string>;
+    /**
+     * The type of the IPv6.
      */
     version?: pulumi.Input<string>;
 }

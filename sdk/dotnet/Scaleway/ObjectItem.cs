@@ -32,7 +32,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Bucket { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the file to upload, defaults to an empty file
+        /// The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// </summary>
+        [Output("content")]
+        public Output<string?> Content { get; private set; } = null!;
+
+        /// <summary>
+        /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// </summary>
+        [Output("contentBase64")]
+        public Output<string?> ContentBase64 { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         /// </summary>
         [Output("file")]
         public Output<string?> File { get; private set; } = null!;
@@ -139,7 +151,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// The name of the file to upload, defaults to an empty file
+        /// The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// </summary>
+        [Input("content")]
+        public Input<string>? Content { get; set; }
+
+        /// <summary>
+        /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// </summary>
+        [Input("contentBase64")]
+        public Input<string>? ContentBase64 { get; set; }
+
+        /// <summary>
+        /// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         /// </summary>
         [Input("file")]
         public Input<string>? File { get; set; }
@@ -219,7 +243,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Bucket { get; set; }
 
         /// <summary>
-        /// The name of the file to upload, defaults to an empty file
+        /// The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// </summary>
+        [Input("content")]
+        public Input<string>? Content { get; set; }
+
+        /// <summary>
+        /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// </summary>
+        [Input("contentBase64")]
+        public Input<string>? ContentBase64 { get; set; }
+
+        /// <summary>
+        /// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         /// </summary>
         [Input("file")]
         public Input<string>? File { get; set; }

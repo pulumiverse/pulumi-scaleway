@@ -28,7 +28,11 @@ type ObjectItem struct {
 
 	// The name of the bucket.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
-	// The name of the file to upload, defaults to an empty file
+	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	Content pulumi.StringPtrOutput `pulumi:"content"`
+	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	ContentBase64 pulumi.StringPtrOutput `pulumi:"contentBase64"`
+	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
 	File pulumi.StringPtrOutput `pulumi:"file"`
 	// Hash of the file, used to trigger upload on file change
 	Hash pulumi.StringPtrOutput `pulumi:"hash"`
@@ -86,7 +90,11 @@ func GetObjectItem(ctx *pulumi.Context,
 type objectItemState struct {
 	// The name of the bucket.
 	Bucket *string `pulumi:"bucket"`
-	// The name of the file to upload, defaults to an empty file
+	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	Content *string `pulumi:"content"`
+	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	ContentBase64 *string `pulumi:"contentBase64"`
+	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
 	File *string `pulumi:"file"`
 	// Hash of the file, used to trigger upload on file change
 	Hash *string `pulumi:"hash"`
@@ -109,7 +117,11 @@ type objectItemState struct {
 type ObjectItemState struct {
 	// The name of the bucket.
 	Bucket pulumi.StringPtrInput
-	// The name of the file to upload, defaults to an empty file
+	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	Content pulumi.StringPtrInput
+	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	ContentBase64 pulumi.StringPtrInput
+	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
 	File pulumi.StringPtrInput
 	// Hash of the file, used to trigger upload on file change
 	Hash pulumi.StringPtrInput
@@ -136,7 +148,11 @@ func (ObjectItemState) ElementType() reflect.Type {
 type objectItemArgs struct {
 	// The name of the bucket.
 	Bucket string `pulumi:"bucket"`
-	// The name of the file to upload, defaults to an empty file
+	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	Content *string `pulumi:"content"`
+	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	ContentBase64 *string `pulumi:"contentBase64"`
+	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
 	File *string `pulumi:"file"`
 	// Hash of the file, used to trigger upload on file change
 	Hash *string `pulumi:"hash"`
@@ -160,7 +176,11 @@ type objectItemArgs struct {
 type ObjectItemArgs struct {
 	// The name of the bucket.
 	Bucket pulumi.StringInput
-	// The name of the file to upload, defaults to an empty file
+	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	Content pulumi.StringPtrInput
+	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	ContentBase64 pulumi.StringPtrInput
+	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
 	File pulumi.StringPtrInput
 	// Hash of the file, used to trigger upload on file change
 	Hash pulumi.StringPtrInput
@@ -272,7 +292,17 @@ func (o ObjectItemOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// The name of the file to upload, defaults to an empty file
+// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+func (o ObjectItemOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.Content }).(pulumi.StringPtrOutput)
+}
+
+// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+func (o ObjectItemOutput) ContentBase64() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.ContentBase64 }).(pulumi.StringPtrOutput)
+}
+
+// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
 func (o ObjectItemOutput) File() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.File }).(pulumi.StringPtrOutput)
 }

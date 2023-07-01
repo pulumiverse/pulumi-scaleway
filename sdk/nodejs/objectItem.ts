@@ -49,7 +49,15 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
-     * The name of the file to upload, defaults to an empty file
+     * The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     */
+    public readonly content!: pulumi.Output<string | undefined>;
+    /**
+     * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     */
+    public readonly contentBase64!: pulumi.Output<string | undefined>;
+    /**
+     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
      */
     public readonly file!: pulumi.Output<string | undefined>;
     /**
@@ -99,6 +107,8 @@ export class ObjectItem extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ObjectItemState | undefined;
             resourceInputs["bucket"] = state ? state.bucket : undefined;
+            resourceInputs["content"] = state ? state.content : undefined;
+            resourceInputs["contentBase64"] = state ? state.contentBase64 : undefined;
             resourceInputs["file"] = state ? state.file : undefined;
             resourceInputs["hash"] = state ? state.hash : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
@@ -117,6 +127,8 @@ export class ObjectItem extends pulumi.CustomResource {
                 throw new Error("Missing required property 'key'");
             }
             resourceInputs["bucket"] = args ? args.bucket : undefined;
+            resourceInputs["content"] = args ? args.content : undefined;
+            resourceInputs["contentBase64"] = args ? args.contentBase64 : undefined;
             resourceInputs["file"] = args ? args.file : undefined;
             resourceInputs["hash"] = args ? args.hash : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
@@ -141,7 +153,15 @@ export interface ObjectItemState {
      */
     bucket?: pulumi.Input<string>;
     /**
-     * The name of the file to upload, defaults to an empty file
+     * The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     */
+    content?: pulumi.Input<string>;
+    /**
+     * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     */
+    contentBase64?: pulumi.Input<string>;
+    /**
+     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
      */
     file?: pulumi.Input<string>;
     /**
@@ -187,7 +207,15 @@ export interface ObjectItemArgs {
      */
     bucket: pulumi.Input<string>;
     /**
-     * The name of the file to upload, defaults to an empty file
+     * The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     */
+    content?: pulumi.Input<string>;
+    /**
+     * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     */
+    contentBase64?: pulumi.Input<string>;
+    /**
+     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
      */
     file?: pulumi.Input<string>;
     /**

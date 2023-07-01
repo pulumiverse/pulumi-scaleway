@@ -14,7 +14,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class BaremetalServerIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The address of the IP.
+        /// The address of the IPv6.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -26,13 +26,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The reverse of the IP.
+        /// The reverse of the IPv6.
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// The type of the IP.
+        /// The type of the IPv6.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

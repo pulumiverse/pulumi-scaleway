@@ -150,15 +150,15 @@ def get_iam_group(group_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIamGroup:getIamGroup', __args__, opts=opts, typ=GetIamGroupResult).value
 
     return AwaitableGetIamGroupResult(
-        application_ids=__ret__.application_ids,
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        group_id=__ret__.group_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        updated_at=__ret__.updated_at,
-        user_ids=__ret__.user_ids)
+        application_ids=pulumi.get(__ret__, 'application_ids'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        group_id=pulumi.get(__ret__, 'group_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        user_ids=pulumi.get(__ret__, 'user_ids'))
 
 
 @_utilities.lift_output_func(get_iam_group)

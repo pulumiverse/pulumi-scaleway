@@ -116,8 +116,8 @@ def get_lb_frontends(lb_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_lbid = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    by_lbid = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"])
+    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"],
         name="tf-frontend-datasource")
     ```
 
@@ -135,13 +135,13 @@ def get_lb_frontends(lb_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbFrontends:getLbFrontends', __args__, opts=opts, typ=GetLbFrontendsResult).value
 
     return AwaitableGetLbFrontendsResult(
-        frontends=__ret__.frontends,
-        id=__ret__.id,
-        lb_id=__ret__.lb_id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        zone=__ret__.zone)
+        frontends=pulumi.get(__ret__, 'frontends'),
+        id=pulumi.get(__ret__, 'id'),
+        lb_id=pulumi.get(__ret__, 'lb_id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_lb_frontends)
@@ -159,8 +159,8 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_lbid = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    by_lbid = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"])
+    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"],
         name="tf-frontend-datasource")
     ```
 

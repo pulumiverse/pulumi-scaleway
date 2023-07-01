@@ -16,6 +16,8 @@ class ObjectItemArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[str],
                  key: pulumi.Input[str],
+                 content: Optional[pulumi.Input[str]] = None,
+                 content_base64: Optional[pulumi.Input[str]] = None,
                  file: Optional[pulumi.Input[str]] = None,
                  hash: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -28,7 +30,9 @@ class ObjectItemArgs:
         The set of arguments for constructing a ObjectItem resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] key: The path of the object.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file
+        :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
@@ -39,6 +43,10 @@ class ObjectItemArgs:
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if content_base64 is not None:
+            pulumi.set(__self__, "content_base64", content_base64)
         if file is not None:
             pulumi.set(__self__, "file", file)
         if hash is not None:
@@ -82,9 +90,33 @@ class ObjectItemArgs:
 
     @property
     @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter(name="contentBase64")
+    def content_base64(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        """
+        return pulumi.get(self, "content_base64")
+
+    @content_base64.setter
+    def content_base64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content_base64", value)
+
+    @property
+    @pulumi.getter
     def file(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the file to upload, defaults to an empty file
+        The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         """
         return pulumi.get(self, "file")
 
@@ -181,6 +213,8 @@ class ObjectItemArgs:
 class _ObjectItemState:
     def __init__(__self__, *,
                  bucket: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
+                 content_base64: Optional[pulumi.Input[str]] = None,
                  file: Optional[pulumi.Input[str]] = None,
                  hash: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -193,7 +227,9 @@ class _ObjectItemState:
         """
         Input properties used for looking up and filtering ObjectItem resources.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file
+        :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
@@ -205,6 +241,10 @@ class _ObjectItemState:
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if content_base64 is not None:
+            pulumi.set(__self__, "content_base64", content_base64)
         if file is not None:
             pulumi.set(__self__, "file", file)
         if hash is not None:
@@ -238,9 +278,33 @@ class _ObjectItemState:
 
     @property
     @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter(name="contentBase64")
+    def content_base64(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        """
+        return pulumi.get(self, "content_base64")
+
+    @content_base64.setter
+    def content_base64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content_base64", value)
+
+    @property
+    @pulumi.getter
     def file(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the file to upload, defaults to an empty file
+        The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         """
         return pulumi.get(self, "file")
 
@@ -351,6 +415,8 @@ class ObjectItem(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
+                 content_base64: Optional[pulumi.Input[str]] = None,
                  file: Optional[pulumi.Input[str]] = None,
                  hash: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -376,7 +442,9 @@ class ObjectItem(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file
+        :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
@@ -420,6 +488,8 @@ class ObjectItem(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
+                 content_base64: Optional[pulumi.Input[str]] = None,
                  file: Optional[pulumi.Input[str]] = None,
                  hash: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -441,6 +511,8 @@ class ObjectItem(pulumi.CustomResource):
             if bucket is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket'")
             __props__.__dict__["bucket"] = bucket
+            __props__.__dict__["content"] = content
+            __props__.__dict__["content_base64"] = content_base64
             __props__.__dict__["file"] = file
             __props__.__dict__["hash"] = hash
             if key is None and not opts.urn:
@@ -463,6 +535,8 @@ class ObjectItem(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: Optional[pulumi.Input[str]] = None,
+            content: Optional[pulumi.Input[str]] = None,
+            content_base64: Optional[pulumi.Input[str]] = None,
             file: Optional[pulumi.Input[str]] = None,
             hash: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
@@ -480,7 +554,9 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file
+        :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
@@ -495,6 +571,8 @@ class ObjectItem(pulumi.CustomResource):
         __props__ = _ObjectItemState.__new__(_ObjectItemState)
 
         __props__.__dict__["bucket"] = bucket
+        __props__.__dict__["content"] = content
+        __props__.__dict__["content_base64"] = content_base64
         __props__.__dict__["file"] = file
         __props__.__dict__["hash"] = hash
         __props__.__dict__["key"] = key
@@ -516,9 +594,25 @@ class ObjectItem(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def content(self) -> pulumi.Output[Optional[str]]:
+        """
+        The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter(name="contentBase64")
+    def content_base64(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        """
+        return pulumi.get(self, "content_base64")
+
+    @property
+    @pulumi.getter
     def file(self) -> pulumi.Output[Optional[str]]:
         """
-        The name of the file to upload, defaults to an empty file
+        The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         """
         return pulumi.get(self, "file")
 

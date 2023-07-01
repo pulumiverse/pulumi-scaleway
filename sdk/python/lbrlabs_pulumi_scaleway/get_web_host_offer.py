@@ -138,13 +138,13 @@ def get_web_host_offer(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getWebHostOffer:getWebHostOffer', __args__, opts=opts, typ=GetWebHostOfferResult).value
 
     return AwaitableGetWebHostOfferResult(
-        billing_operation_path=__ret__.billing_operation_path,
-        id=__ret__.id,
-        name=__ret__.name,
-        offer_id=__ret__.offer_id,
-        price=__ret__.price,
-        products=__ret__.products,
-        region=__ret__.region)
+        billing_operation_path=pulumi.get(__ret__, 'billing_operation_path'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        offer_id=pulumi.get(__ret__, 'offer_id'),
+        price=pulumi.get(__ret__, 'price'),
+        products=pulumi.get(__ret__, 'products'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_web_host_offer)

@@ -221,8 +221,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-        /// Changes to this field will cause the cluster to be destroyed then recreated.
+        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        /// Any subsequent change after this field got set will prompt for cluster recreation.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -416,8 +416,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-        /// Changes to this field will cause the cluster to be destroyed then recreated.
+        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        /// Any subsequent change after this field got set will prompt for cluster recreation.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -584,8 +584,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
-        /// Changes to this field will cause the cluster to be destroyed then recreated.
+        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        /// Any subsequent change after this field got set will prompt for cluster recreation.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

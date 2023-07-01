@@ -125,7 +125,7 @@ type LoadbalancerBackend struct {
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
-	SendProxyV2 pulumi.BoolPtrOutput `pulumi:"sendProxyV2"`
+	SendProxyV2 pulumi.BoolOutput `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayOutput `pulumi:"serverIps"`
 	// Enables SSL between load balancer and backend servers.
@@ -582,8 +582,8 @@ func (o LoadbalancerBackendOutput) ProxyProtocol() pulumi.StringPtrOutput {
 // DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 //
 // Deprecated: Please use proxy_protocol instead
-func (o LoadbalancerBackendOutput) SendProxyV2() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolPtrOutput { return v.SendProxyV2 }).(pulumi.BoolPtrOutput)
+func (o LoadbalancerBackendOutput) SendProxyV2() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolOutput { return v.SendProxyV2 }).(pulumi.BoolOutput)
 }
 
 // List of backend server IP addresses. Addresses can be either IPv4 or IPv6.

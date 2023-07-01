@@ -149,14 +149,14 @@ def get_lb_route(route_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbRoute:getLbRoute', __args__, opts=opts, typ=GetLbRouteResult).value
 
     return AwaitableGetLbRouteResult(
-        backend_id=__ret__.backend_id,
-        created_at=__ret__.created_at,
-        frontend_id=__ret__.frontend_id,
-        id=__ret__.id,
-        match_host_header=__ret__.match_host_header,
-        match_sni=__ret__.match_sni,
-        route_id=__ret__.route_id,
-        updated_at=__ret__.updated_at)
+        backend_id=pulumi.get(__ret__, 'backend_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        frontend_id=pulumi.get(__ret__, 'frontend_id'),
+        id=pulumi.get(__ret__, 'id'),
+        match_host_header=pulumi.get(__ret__, 'match_host_header'),
+        match_sni=pulumi.get(__ret__, 'match_sni'),
+        route_id=pulumi.get(__ret__, 'route_id'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_lb_route)

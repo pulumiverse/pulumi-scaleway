@@ -1,6 +1,6 @@
 module github.com/lbrlabs/pulumi-scaleway/sdk
 
-go 1.19
+go 1.20
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
@@ -67,4 +67,4 @@ require (
 	sourcegraph.com/sourcegraph/appdash v0.0.0-20211028080628-e2786a622600 // indirect
 )
 
-replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
+replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230327102345-3fa930f86570

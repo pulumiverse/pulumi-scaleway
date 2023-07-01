@@ -11,6 +11,8 @@ import com.pulumi.scaleway.BaremetalServerArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.BaremetalServerState;
 import com.pulumi.scaleway.outputs.BaremetalServerIp;
+import com.pulumi.scaleway.outputs.BaremetalServerIpv4;
+import com.pulumi.scaleway.outputs.BaremetalServerIpv6;
 import com.pulumi.scaleway.outputs.BaremetalServerOption;
 import com.pulumi.scaleway.outputs.BaremetalServerPrivateNetwork;
 import java.lang.Boolean;
@@ -129,6 +131,34 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      */
     public Output<List<BaremetalServerIp>> ips() {
         return this.ips;
+    }
+    /**
+     * (List of) The IPv4 addresses of the server.
+     * 
+     */
+    @Export(name="ipv4s", refs={List.class,BaremetalServerIpv4.class}, tree="[0,1]")
+    private Output<List<BaremetalServerIpv4>> ipv4s;
+
+    /**
+     * @return (List of) The IPv4 addresses of the server.
+     * 
+     */
+    public Output<List<BaremetalServerIpv4>> ipv4s() {
+        return this.ipv4s;
+    }
+    /**
+     * (List of) The IPv6 addresses of the server.
+     * 
+     */
+    @Export(name="ipv6s", refs={List.class,BaremetalServerIpv6.class}, tree="[0,1]")
+    private Output<List<BaremetalServerIpv6>> ipv6s;
+
+    /**
+     * @return (List of) The IPv6 addresses of the server.
+     * 
+     */
+    public Output<List<BaremetalServerIpv6>> ipv6s() {
+        return this.ipv6s;
     }
     /**
      * The name of the server.

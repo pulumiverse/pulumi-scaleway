@@ -117,11 +117,11 @@ def get_baremetal_option(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalOption:getBaremetalOption', __args__, opts=opts, typ=GetBaremetalOptionResult).value
 
     return AwaitableGetBaremetalOptionResult(
-        id=__ret__.id,
-        manageable=__ret__.manageable,
-        name=__ret__.name,
-        option_id=__ret__.option_id,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        manageable=pulumi.get(__ret__, 'manageable'),
+        name=pulumi.get(__ret__, 'name'),
+        option_id=pulumi.get(__ret__, 'option_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_baremetal_option)

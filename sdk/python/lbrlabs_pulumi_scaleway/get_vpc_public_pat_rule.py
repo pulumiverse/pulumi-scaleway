@@ -198,17 +198,17 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule', __args__, opts=opts, typ=GetVpcPublicPatRuleResult).value
 
     return AwaitableGetVpcPublicPatRuleResult(
-        created_at=__ret__.created_at,
-        gateway_id=__ret__.gateway_id,
-        id=__ret__.id,
-        organization_id=__ret__.organization_id,
-        pat_rule_id=__ret__.pat_rule_id,
-        private_ip=__ret__.private_ip,
-        private_port=__ret__.private_port,
-        protocol=__ret__.protocol,
-        public_port=__ret__.public_port,
-        updated_at=__ret__.updated_at,
-        zone=__ret__.zone)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        gateway_id=pulumi.get(__ret__, 'gateway_id'),
+        id=pulumi.get(__ret__, 'id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        pat_rule_id=pulumi.get(__ret__, 'pat_rule_id'),
+        private_ip=pulumi.get(__ret__, 'private_ip'),
+        private_port=pulumi.get(__ret__, 'private_port'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        public_port=pulumi.get(__ret__, 'public_port'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_pat_rule)

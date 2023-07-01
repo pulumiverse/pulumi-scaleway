@@ -149,16 +149,16 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp', __args__, opts=opts, typ=GetVpcPublicGatewayIpResult).value
 
     return AwaitableGetVpcPublicGatewayIpResult(
-        address=__ret__.address,
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        ip_id=__ret__.ip_id,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        reverse=__ret__.reverse,
-        tags=__ret__.tags,
-        updated_at=__ret__.updated_at,
-        zone=__ret__.zone)
+        address=pulumi.get(__ret__, 'address'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_id=pulumi.get(__ret__, 'ip_id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        reverse=pulumi.get(__ret__, 'reverse'),
+        tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_gateway_ip)

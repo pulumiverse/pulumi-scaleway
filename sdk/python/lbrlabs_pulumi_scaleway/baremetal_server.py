@@ -295,6 +295,8 @@ class _BaremetalServerState:
                  domain: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]] = None,
+                 ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]] = None,
+                 ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
                  offer_id: Optional[pulumi.Input[str]] = None,
@@ -319,6 +321,8 @@ class _BaremetalServerState:
         :param pulumi.Input[str] domain: The domain of the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]] ips: (List of) The IPs of the server.
+        :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]] ipv4s: (List of) The IPv4 addresses of the server.
+        :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
@@ -353,6 +357,10 @@ class _BaremetalServerState:
             pulumi.set(__self__, "hostname", hostname)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
+        if ipv4s is not None:
+            pulumi.set(__self__, "ipv4s", ipv4s)
+        if ipv6s is not None:
+            pulumi.set(__self__, "ipv6s", ipv6s)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if offer is not None:
@@ -437,6 +445,30 @@ class _BaremetalServerState:
     @ips.setter
     def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]]):
         pulumi.set(self, "ips", value)
+
+    @property
+    @pulumi.getter
+    def ipv4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]]:
+        """
+        (List of) The IPv4 addresses of the server.
+        """
+        return pulumi.get(self, "ipv4s")
+
+    @ipv4s.setter
+    def ipv4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]]):
+        pulumi.set(self, "ipv4s", value)
+
+    @property
+    @pulumi.getter
+    def ipv6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]]:
+        """
+        (List of) The IPv6 addresses of the server.
+        """
+        return pulumi.get(self, "ipv6s")
+
+    @ipv6s.setter
+    def ipv6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]]):
+        pulumi.set(self, "ipv6s", value)
 
     @property
     @pulumi.getter
@@ -836,6 +868,8 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["domain"] = None
             __props__.__dict__["ips"] = None
+            __props__.__dict__["ipv4s"] = None
+            __props__.__dict__["ipv6s"] = None
             __props__.__dict__["offer_id"] = None
             __props__.__dict__["offer_name"] = None
             __props__.__dict__["organization_id"] = None
@@ -856,6 +890,8 @@ class BaremetalServer(pulumi.CustomResource):
             domain: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]]] = None,
+            ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv4Args']]]]] = None,
+            ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             offer: Optional[pulumi.Input[str]] = None,
             offer_id: Optional[pulumi.Input[str]] = None,
@@ -885,6 +921,8 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] domain: The domain of the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]] ips: (List of) The IPs of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv4Args']]]] ipv4s: (List of) The IPv4 addresses of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
@@ -919,6 +957,8 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["domain"] = domain
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["ips"] = ips
+        __props__.__dict__["ipv4s"] = ipv4s
+        __props__.__dict__["ipv6s"] = ipv6s
         __props__.__dict__["name"] = name
         __props__.__dict__["offer"] = offer
         __props__.__dict__["offer_id"] = offer_id
@@ -970,6 +1010,22 @@ class BaremetalServer(pulumi.CustomResource):
         (List of) The IPs of the server.
         """
         return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter
+    def ipv4s(self) -> pulumi.Output[Sequence['outputs.BaremetalServerIpv4']]:
+        """
+        (List of) The IPv4 addresses of the server.
+        """
+        return pulumi.get(self, "ipv4s")
+
+    @property
+    @pulumi.getter
+    def ipv6s(self) -> pulumi.Output[Sequence['outputs.BaremetalServerIpv6']]:
+        """
+        (List of) The IPv6 addresses of the server.
+        """
+        return pulumi.get(self, "ipv6s")
 
     @property
     @pulumi.getter

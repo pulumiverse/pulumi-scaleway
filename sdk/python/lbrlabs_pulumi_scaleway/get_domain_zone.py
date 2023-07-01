@@ -170,16 +170,16 @@ def get_domain_zone(domain: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDomainZone:getDomainZone', __args__, opts=opts, typ=GetDomainZoneResult).value
 
     return AwaitableGetDomainZoneResult(
-        domain=__ret__.domain,
-        id=__ret__.id,
-        message=__ret__.message,
-        ns=__ret__.ns,
-        ns_defaults=__ret__.ns_defaults,
-        ns_masters=__ret__.ns_masters,
-        project_id=__ret__.project_id,
-        status=__ret__.status,
-        subdomain=__ret__.subdomain,
-        updated_at=__ret__.updated_at)
+        domain=pulumi.get(__ret__, 'domain'),
+        id=pulumi.get(__ret__, 'id'),
+        message=pulumi.get(__ret__, 'message'),
+        ns=pulumi.get(__ret__, 'ns'),
+        ns_defaults=pulumi.get(__ret__, 'ns_defaults'),
+        ns_masters=pulumi.get(__ret__, 'ns_masters'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        status=pulumi.get(__ret__, 'status'),
+        subdomain=pulumi.get(__ret__, 'subdomain'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_domain_zone)

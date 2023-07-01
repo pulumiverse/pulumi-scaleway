@@ -217,21 +217,21 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancer:getLoadbalancer', __args__, opts=opts, typ=GetLoadbalancerResult).value
 
     return AwaitableGetLoadbalancerResult(
-        description=__ret__.description,
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        ip_id=__ret__.ip_id,
-        lb_id=__ret__.lb_id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        private_networks=__ret__.private_networks,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        release_ip=__ret__.release_ip,
-        ssl_compatibility_level=__ret__.ssl_compatibility_level,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        zone=__ret__.zone)
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        ip_id=pulumi.get(__ret__, 'ip_id'),
+        lb_id=pulumi.get(__ret__, 'lb_id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        private_networks=pulumi.get(__ret__, 'private_networks'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        release_ip=pulumi.get(__ret__, 'release_ip'),
+        ssl_compatibility_level=pulumi.get(__ret__, 'ssl_compatibility_level'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_loadbalancer)

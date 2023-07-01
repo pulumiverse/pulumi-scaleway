@@ -184,19 +184,19 @@ def get_flexible_ip(flexible_ip_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getFlexibleIp:getFlexibleIp', __args__, opts=opts, typ=GetFlexibleIpResult).value
 
     return AwaitableGetFlexibleIpResult(
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        flexible_ip_id=__ret__.flexible_ip_id,
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        mac_address=__ret__.mac_address,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        reverse=__ret__.reverse,
-        server_id=__ret__.server_id,
-        tags=__ret__.tags,
-        updated_at=__ret__.updated_at,
-        zone=__ret__.zone)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        flexible_ip_id=pulumi.get(__ret__, 'flexible_ip_id'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        mac_address=pulumi.get(__ret__, 'mac_address'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        reverse=pulumi.get(__ret__, 'reverse'),
+        server_id=pulumi.get(__ret__, 'server_id'),
+        tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_flexible_ip)

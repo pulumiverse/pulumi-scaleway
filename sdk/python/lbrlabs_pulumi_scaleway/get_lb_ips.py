@@ -132,12 +132,12 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbIps:getLbIps', __args__, opts=opts, typ=GetLbIpsResult).value
 
     return AwaitableGetLbIpsResult(
-        id=__ret__.id,
-        ip_cidr_range=__ret__.ip_cidr_range,
-        ips=__ret__.ips,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        ip_cidr_range=pulumi.get(__ret__, 'ip_cidr_range'),
+        ips=pulumi.get(__ret__, 'ips'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_lb_ips)

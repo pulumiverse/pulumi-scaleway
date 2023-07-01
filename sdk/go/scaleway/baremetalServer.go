@@ -72,6 +72,10 @@ type BaremetalServer struct {
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
 	// (List of) The IPs of the server.
 	Ips BaremetalServerIpArrayOutput `pulumi:"ips"`
+	// (List of) The IPv4 addresses of the server.
+	Ipv4s BaremetalServerIpv4ArrayOutput `pulumi:"ipv4s"`
+	// (List of) The IPv6 addresses of the server.
+	Ipv6s BaremetalServerIpv6ArrayOutput `pulumi:"ipv6s"`
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
@@ -175,6 +179,10 @@ type baremetalServerState struct {
 	Hostname *string `pulumi:"hostname"`
 	// (List of) The IPs of the server.
 	Ips []BaremetalServerIp `pulumi:"ips"`
+	// (List of) The IPv4 addresses of the server.
+	Ipv4s []BaremetalServerIpv4 `pulumi:"ipv4s"`
+	// (List of) The IPv6 addresses of the server.
+	Ipv6s []BaremetalServerIpv6 `pulumi:"ipv6s"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
@@ -229,6 +237,10 @@ type BaremetalServerState struct {
 	Hostname pulumi.StringPtrInput
 	// (List of) The IPs of the server.
 	Ips BaremetalServerIpArrayInput
+	// (List of) The IPv4 addresses of the server.
+	Ipv4s BaremetalServerIpv4ArrayInput
+	// (List of) The IPv6 addresses of the server.
+	Ipv6s BaremetalServerIpv6ArrayInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
@@ -468,6 +480,16 @@ func (o BaremetalServerOutput) Hostname() pulumi.StringPtrOutput {
 // (List of) The IPs of the server.
 func (o BaremetalServerOutput) Ips() BaremetalServerIpArrayOutput {
 	return o.ApplyT(func(v *BaremetalServer) BaremetalServerIpArrayOutput { return v.Ips }).(BaremetalServerIpArrayOutput)
+}
+
+// (List of) The IPv4 addresses of the server.
+func (o BaremetalServerOutput) Ipv4s() BaremetalServerIpv4ArrayOutput {
+	return o.ApplyT(func(v *BaremetalServer) BaremetalServerIpv4ArrayOutput { return v.Ipv4s }).(BaremetalServerIpv4ArrayOutput)
+}
+
+// (List of) The IPv6 addresses of the server.
+func (o BaremetalServerOutput) Ipv6s() BaremetalServerIpv6ArrayOutput {
+	return o.ApplyT(func(v *BaremetalServer) BaremetalServerIpv6ArrayOutput { return v.Ipv6s }).(BaremetalServerIpv6ArrayOutput)
 }
 
 // The name of the server.

@@ -190,18 +190,18 @@ def get_object_bucket(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getObjectBucket:getObjectBucket', __args__, opts=opts, typ=GetObjectBucketResult).value
 
     return AwaitableGetObjectBucketResult(
-        acl=__ret__.acl,
-        cors_rules=__ret__.cors_rules,
-        endpoint=__ret__.endpoint,
-        force_destroy=__ret__.force_destroy,
-        id=__ret__.id,
-        lifecycle_rules=__ret__.lifecycle_rules,
-        name=__ret__.name,
-        object_lock_enabled=__ret__.object_lock_enabled,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        tags=__ret__.tags,
-        versionings=__ret__.versionings)
+        acl=pulumi.get(__ret__, 'acl'),
+        cors_rules=pulumi.get(__ret__, 'cors_rules'),
+        endpoint=pulumi.get(__ret__, 'endpoint'),
+        force_destroy=pulumi.get(__ret__, 'force_destroy'),
+        id=pulumi.get(__ret__, 'id'),
+        lifecycle_rules=pulumi.get(__ret__, 'lifecycle_rules'),
+        name=pulumi.get(__ret__, 'name'),
+        object_lock_enabled=pulumi.get(__ret__, 'object_lock_enabled'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        tags=pulumi.get(__ret__, 'tags'),
+        versionings=pulumi.get(__ret__, 'versionings'))
 
 
 @_utilities.lift_output_func(get_object_bucket)

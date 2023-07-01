@@ -5,6 +5,8 @@ package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.scaleway.outputs.GetBaremetalServerIp;
+import com.pulumi.scaleway.outputs.GetBaremetalServerIpv4;
+import com.pulumi.scaleway.outputs.GetBaremetalServerIpv6;
 import com.pulumi.scaleway.outputs.GetBaremetalServerOption;
 import com.pulumi.scaleway.outputs.GetBaremetalServerPrivateNetwork;
 import java.lang.Boolean;
@@ -25,6 +27,8 @@ public final class GetBaremetalServerResult {
      */
     private String id;
     private List<GetBaremetalServerIp> ips;
+    private List<GetBaremetalServerIpv4> ipv4s;
+    private List<GetBaremetalServerIpv6> ipv6s;
     private @Nullable String name;
     private String offer;
     private String offerId;
@@ -64,6 +68,12 @@ public final class GetBaremetalServerResult {
     }
     public List<GetBaremetalServerIp> ips() {
         return this.ips;
+    }
+    public List<GetBaremetalServerIpv4> ipv4s() {
+        return this.ipv4s;
+    }
+    public List<GetBaremetalServerIpv6> ipv6s() {
+        return this.ipv6s;
     }
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
@@ -137,6 +147,8 @@ public final class GetBaremetalServerResult {
         private String hostname;
         private String id;
         private List<GetBaremetalServerIp> ips;
+        private List<GetBaremetalServerIpv4> ipv4s;
+        private List<GetBaremetalServerIpv6> ipv6s;
         private @Nullable String name;
         private String offer;
         private String offerId;
@@ -164,6 +176,8 @@ public final class GetBaremetalServerResult {
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.ips = defaults.ips;
+    	      this.ipv4s = defaults.ipv4s;
+    	      this.ipv6s = defaults.ipv6s;
     	      this.name = defaults.name;
     	      this.offer = defaults.offer;
     	      this.offerId = defaults.offerId;
@@ -212,6 +226,22 @@ public final class GetBaremetalServerResult {
         }
         public Builder ips(GetBaremetalServerIp... ips) {
             return ips(List.of(ips));
+        }
+        @CustomType.Setter
+        public Builder ipv4s(List<GetBaremetalServerIpv4> ipv4s) {
+            this.ipv4s = Objects.requireNonNull(ipv4s);
+            return this;
+        }
+        public Builder ipv4s(GetBaremetalServerIpv4... ipv4s) {
+            return ipv4s(List.of(ipv4s));
+        }
+        @CustomType.Setter
+        public Builder ipv6s(List<GetBaremetalServerIpv6> ipv6s) {
+            this.ipv6s = Objects.requireNonNull(ipv6s);
+            return this;
+        }
+        public Builder ipv6s(GetBaremetalServerIpv6... ipv6s) {
+            return ipv6s(List.of(ipv6s));
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
@@ -327,6 +357,8 @@ public final class GetBaremetalServerResult {
             o.hostname = hostname;
             o.id = id;
             o.ips = ips;
+            o.ipv4s = ipv4s;
+            o.ipv6s = ipv6s;
             o.name = name;
             o.offer = offer;
             o.offerId = offerId;
