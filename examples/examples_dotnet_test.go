@@ -4,7 +4,7 @@
 package examples
 
 import (
-	"path"
+	//"path"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
