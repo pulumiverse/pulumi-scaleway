@@ -61,6 +61,10 @@ export class InstanceIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
+     * The IP Prefix.
+     */
+    public /*out*/ readonly prefix!: pulumi.Output<string>;
+    /**
      * `projectId`) The ID of the project the IP is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -76,6 +80,12 @@ export class InstanceIp extends pulumi.CustomResource {
      * The tags associated with the IP.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
+     * The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     *
+     * > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+     */
+    public readonly type!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
@@ -96,18 +106,22 @@ export class InstanceIp extends pulumi.CustomResource {
             const state = argsOrState as InstanceIpState | undefined;
             resourceInputs["address"] = state ? state.address : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["prefix"] = state ? state.prefix : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["reverse"] = state ? state.reverse : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as InstanceIpArgs | undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["address"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["prefix"] = undefined /*out*/;
             resourceInputs["reverse"] = undefined /*out*/;
             resourceInputs["serverId"] = undefined /*out*/;
         }
@@ -129,6 +143,10 @@ export interface InstanceIpState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The IP Prefix.
+     */
+    prefix?: pulumi.Input<string>;
+    /**
      * `projectId`) The ID of the project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -144,6 +162,12 @@ export interface InstanceIpState {
      * The tags associated with the IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     *
+     * > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+     */
+    type?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
@@ -162,6 +186,12 @@ export interface InstanceIpArgs {
      * The tags associated with the IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     *
+     * > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+     */
+    type?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */

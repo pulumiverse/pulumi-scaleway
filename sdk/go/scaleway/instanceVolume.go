@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance Volumes.
@@ -53,7 +55,7 @@ import (
 type InstanceVolume struct {
 	pulumi.CustomResourceState
 
-	// Create a volume based on a image
+	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromSnapshotId pulumi.StringPtrOutput `pulumi:"fromSnapshotId"`
 	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId pulumi.StringPtrOutput `pulumi:"fromVolumeId"`
@@ -69,7 +71,7 @@ type InstanceVolume struct {
 	SizeInGb pulumi.IntPtrOutput `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -85,7 +87,7 @@ func NewInstanceVolume(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceVolume
 	err := ctx.RegisterResource("scaleway:index/instanceVolume:InstanceVolume", name, args, &resource, opts...)
 	if err != nil {
@@ -108,7 +110,7 @@ func GetInstanceVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceVolume resources.
 type instanceVolumeState struct {
-	// Create a volume based on a image
+	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
 	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId *string `pulumi:"fromVolumeId"`
@@ -124,14 +126,14 @@ type instanceVolumeState struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 	Type *string `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceVolumeState struct {
-	// Create a volume based on a image
+	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromSnapshotId pulumi.StringPtrInput
 	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId pulumi.StringPtrInput
@@ -147,7 +149,7 @@ type InstanceVolumeState struct {
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 	Type pulumi.StringPtrInput
 	// `zone`) The zone in which the volume should be created.
 	Zone pulumi.StringPtrInput
@@ -158,7 +160,7 @@ func (InstanceVolumeState) ElementType() reflect.Type {
 }
 
 type instanceVolumeArgs struct {
-	// Create a volume based on a image
+	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
 	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId *string `pulumi:"fromVolumeId"`
@@ -170,7 +172,7 @@ type instanceVolumeArgs struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 	Type string `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
 	Zone *string `pulumi:"zone"`
@@ -178,7 +180,7 @@ type instanceVolumeArgs struct {
 
 // The set of arguments for constructing a InstanceVolume resource.
 type InstanceVolumeArgs struct {
-	// Create a volume based on a image
+	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromSnapshotId pulumi.StringPtrInput
 	// If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 	FromVolumeId pulumi.StringPtrInput
@@ -190,7 +192,7 @@ type InstanceVolumeArgs struct {
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
-	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+	// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 	Type pulumi.StringInput
 	// `zone`) The zone in which the volume should be created.
 	Zone pulumi.StringPtrInput
@@ -219,6 +221,12 @@ func (i *InstanceVolume) ToInstanceVolumeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeOutput)
 }
 
+func (i *InstanceVolume) ToOutput(ctx context.Context) pulumix.Output[*InstanceVolume] {
+	return pulumix.Output[*InstanceVolume]{
+		OutputState: i.ToInstanceVolumeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstanceVolumeArrayInput is an input type that accepts InstanceVolumeArray and InstanceVolumeArrayOutput values.
 // You can construct a concrete instance of `InstanceVolumeArrayInput` via:
 //
@@ -242,6 +250,12 @@ func (i InstanceVolumeArray) ToInstanceVolumeArrayOutput() InstanceVolumeArrayOu
 
 func (i InstanceVolumeArray) ToInstanceVolumeArrayOutputWithContext(ctx context.Context) InstanceVolumeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeArrayOutput)
+}
+
+func (i InstanceVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceVolume] {
+	return pulumix.Output[[]*InstanceVolume]{
+		OutputState: i.ToInstanceVolumeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstanceVolumeMapInput is an input type that accepts InstanceVolumeMap and InstanceVolumeMapOutput values.
@@ -269,6 +283,12 @@ func (i InstanceVolumeMap) ToInstanceVolumeMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeMapOutput)
 }
 
+func (i InstanceVolumeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceVolume] {
+	return pulumix.Output[map[string]*InstanceVolume]{
+		OutputState: i.ToInstanceVolumeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstanceVolumeOutput struct{ *pulumi.OutputState }
 
 func (InstanceVolumeOutput) ElementType() reflect.Type {
@@ -283,7 +303,13 @@ func (o InstanceVolumeOutput) ToInstanceVolumeOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Create a volume based on a image
+func (o InstanceVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceVolume] {
+	return pulumix.Output[*InstanceVolume]{
+		OutputState: o.OutputState,
+	}
+}
+
+// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
 func (o InstanceVolumeOutput) FromSnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringPtrOutput { return v.FromSnapshotId }).(pulumi.StringPtrOutput)
 }
@@ -323,7 +349,7 @@ func (o InstanceVolumeOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+// The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 func (o InstanceVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -347,6 +373,12 @@ func (o InstanceVolumeArrayOutput) ToInstanceVolumeArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o InstanceVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceVolume] {
+	return pulumix.Output[[]*InstanceVolume]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o InstanceVolumeArrayOutput) Index(i pulumi.IntInput) InstanceVolumeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceVolume {
 		return vs[0].([]*InstanceVolume)[vs[1].(int)]
@@ -365,6 +397,12 @@ func (o InstanceVolumeMapOutput) ToInstanceVolumeMapOutput() InstanceVolumeMapOu
 
 func (o InstanceVolumeMapOutput) ToInstanceVolumeMapOutputWithContext(ctx context.Context) InstanceVolumeMapOutput {
 	return o
+}
+
+func (o InstanceVolumeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceVolume] {
+	return pulumix.Output[map[string]*InstanceVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstanceVolumeMapOutput) MapIndex(k pulumi.StringInput) InstanceVolumeOutput {

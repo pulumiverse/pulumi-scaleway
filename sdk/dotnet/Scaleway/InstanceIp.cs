@@ -52,6 +52,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The IP Prefix.
+        /// </summary>
+        [Output("prefix")]
+        public Output<string> Prefix { get; private set; } = null!;
+
+        /// <summary>
         /// `project_id`) The ID of the project the IP is associated with.
         /// </summary>
         [Output("projectId")]
@@ -74,6 +80,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+        /// 
+        /// &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        /// </summary>
+        [Output("type")]
+        public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
@@ -147,6 +161,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
+        /// The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+        /// 
+        /// &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
@@ -171,6 +193,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The IP Prefix.
+        /// </summary>
+        [Input("prefix")]
+        public Input<string>? Prefix { get; set; }
 
         /// <summary>
         /// `project_id`) The ID of the project the IP is associated with.
@@ -201,6 +229,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+        /// 
+        /// &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.

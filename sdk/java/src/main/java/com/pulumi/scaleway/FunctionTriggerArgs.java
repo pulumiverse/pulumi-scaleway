@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.FunctionTriggerNatsArgs;
 import com.pulumi.scaleway.inputs.FunctionTriggerSqsArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -62,6 +63,21 @@ public final class FunctionTriggerArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * The configuration for the Scaleway&#39;s Nats used by the trigger
+     * 
+     */
+    @Import(name="nats")
+    private @Nullable Output<FunctionTriggerNatsArgs> nats;
+
+    /**
+     * @return The configuration for the Scaleway&#39;s Nats used by the trigger
+     * 
+     */
+    public Optional<Output<FunctionTriggerNatsArgs>> nats() {
+        return Optional.ofNullable(this.nats);
+    }
+
+    /**
      * `region`). The region in which the namespace should be created.
      * 
      */
@@ -97,6 +113,7 @@ public final class FunctionTriggerArgs extends com.pulumi.resources.ResourceArgs
         this.description = $.description;
         this.functionId = $.functionId;
         this.name = $.name;
+        this.nats = $.nats;
         this.region = $.region;
         this.sqs = $.sqs;
     }
@@ -180,6 +197,27 @@ public final class FunctionTriggerArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param nats The configuration for the Scaleway&#39;s Nats used by the trigger
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nats(@Nullable Output<FunctionTriggerNatsArgs> nats) {
+            $.nats = nats;
+            return this;
+        }
+
+        /**
+         * @param nats The configuration for the Scaleway&#39;s Nats used by the trigger
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nats(FunctionTriggerNatsArgs nats) {
+            return nats(Output.of(nats));
         }
 
         /**

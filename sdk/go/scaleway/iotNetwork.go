@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -56,7 +58,7 @@ func NewIotNetwork(ctx *pulumi.Context,
 		"secret",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IotNetwork
 	err := ctx.RegisterResource("scaleway:index/iotNetwork:IotNetwork", name, args, &resource, opts...)
 	if err != nil {
@@ -162,6 +164,12 @@ func (i *IotNetwork) ToIotNetworkOutputWithContext(ctx context.Context) IotNetwo
 	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkOutput)
 }
 
+func (i *IotNetwork) ToOutput(ctx context.Context) pulumix.Output[*IotNetwork] {
+	return pulumix.Output[*IotNetwork]{
+		OutputState: i.ToIotNetworkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IotNetworkArrayInput is an input type that accepts IotNetworkArray and IotNetworkArrayOutput values.
 // You can construct a concrete instance of `IotNetworkArrayInput` via:
 //
@@ -185,6 +193,12 @@ func (i IotNetworkArray) ToIotNetworkArrayOutput() IotNetworkArrayOutput {
 
 func (i IotNetworkArray) ToIotNetworkArrayOutputWithContext(ctx context.Context) IotNetworkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkArrayOutput)
+}
+
+func (i IotNetworkArray) ToOutput(ctx context.Context) pulumix.Output[[]*IotNetwork] {
+	return pulumix.Output[[]*IotNetwork]{
+		OutputState: i.ToIotNetworkArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IotNetworkMapInput is an input type that accepts IotNetworkMap and IotNetworkMapOutput values.
@@ -212,6 +226,12 @@ func (i IotNetworkMap) ToIotNetworkMapOutputWithContext(ctx context.Context) Iot
 	return pulumi.ToOutputWithContext(ctx, i).(IotNetworkMapOutput)
 }
 
+func (i IotNetworkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotNetwork] {
+	return pulumix.Output[map[string]*IotNetwork]{
+		OutputState: i.ToIotNetworkMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IotNetworkOutput struct{ *pulumi.OutputState }
 
 func (IotNetworkOutput) ElementType() reflect.Type {
@@ -224,6 +244,12 @@ func (o IotNetworkOutput) ToIotNetworkOutput() IotNetworkOutput {
 
 func (o IotNetworkOutput) ToIotNetworkOutputWithContext(ctx context.Context) IotNetworkOutput {
 	return o
+}
+
+func (o IotNetworkOutput) ToOutput(ctx context.Context) pulumix.Output[*IotNetwork] {
+	return pulumix.Output[*IotNetwork]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time the Network was created.
@@ -275,6 +301,12 @@ func (o IotNetworkArrayOutput) ToIotNetworkArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o IotNetworkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IotNetwork] {
+	return pulumix.Output[[]*IotNetwork]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IotNetworkArrayOutput) Index(i pulumi.IntInput) IotNetworkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotNetwork {
 		return vs[0].([]*IotNetwork)[vs[1].(int)]
@@ -293,6 +325,12 @@ func (o IotNetworkMapOutput) ToIotNetworkMapOutput() IotNetworkMapOutput {
 
 func (o IotNetworkMapOutput) ToIotNetworkMapOutputWithContext(ctx context.Context) IotNetworkMapOutput {
 	return o
+}
+
+func (o IotNetworkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotNetwork] {
+	return pulumix.Output[map[string]*IotNetwork]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IotNetworkMapOutput) MapIndex(k pulumi.StringInput) IotNetworkOutput {

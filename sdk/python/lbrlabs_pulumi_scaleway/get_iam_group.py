@@ -21,7 +21,7 @@ class GetIamGroupResult:
     """
     A collection of values returned by getIamGroup.
     """
-    def __init__(__self__, application_ids=None, created_at=None, description=None, group_id=None, id=None, name=None, organization_id=None, updated_at=None, user_ids=None):
+    def __init__(__self__, application_ids=None, created_at=None, description=None, external_membership=None, group_id=None, id=None, name=None, organization_id=None, updated_at=None, user_ids=None):
         if application_ids and not isinstance(application_ids, list):
             raise TypeError("Expected argument 'application_ids' to be a list")
         pulumi.set(__self__, "application_ids", application_ids)
@@ -31,6 +31,9 @@ class GetIamGroupResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if external_membership and not isinstance(external_membership, bool):
+            raise TypeError("Expected argument 'external_membership' to be a bool")
+        pulumi.set(__self__, "external_membership", external_membership)
         if group_id and not isinstance(group_id, str):
             raise TypeError("Expected argument 'group_id' to be a str")
         pulumi.set(__self__, "group_id", group_id)
@@ -64,6 +67,11 @@ class GetIamGroupResult:
     @pulumi.getter
     def description(self) -> str:
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="externalMembership")
+    def external_membership(self) -> bool:
+        return pulumi.get(self, "external_membership")
 
     @property
     @pulumi.getter(name="groupId")
@@ -108,6 +116,7 @@ class AwaitableGetIamGroupResult(GetIamGroupResult):
             application_ids=self.application_ids,
             created_at=self.created_at,
             description=self.description,
+            external_membership=self.external_membership,
             group_id=self.group_id,
             id=self.id,
             name=self.name,
@@ -153,6 +162,7 @@ def get_iam_group(group_id: Optional[str] = None,
         application_ids=pulumi.get(__ret__, 'application_ids'),
         created_at=pulumi.get(__ret__, 'created_at'),
         description=pulumi.get(__ret__, 'description'),
+        external_membership=pulumi.get(__ret__, 'external_membership'),
         group_id=pulumi.get(__ret__, 'group_id'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),

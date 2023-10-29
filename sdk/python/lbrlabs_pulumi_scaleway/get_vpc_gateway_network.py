@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetVpcGatewayNetworkResult',
@@ -21,7 +22,7 @@ class GetVpcGatewayNetworkResult:
     """
     A collection of values returned by getVpcGatewayNetwork.
     """
-    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, mac_address=None, private_network_id=None, static_address=None, updated_at=None, zone=None):
+    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, ipam_configs=None, mac_address=None, private_network_id=None, static_address=None, status=None, updated_at=None, zone=None):
         if cleanup_dhcp and not isinstance(cleanup_dhcp, bool):
             raise TypeError("Expected argument 'cleanup_dhcp' to be a bool")
         pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
@@ -46,6 +47,9 @@ class GetVpcGatewayNetworkResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ipam_configs and not isinstance(ipam_configs, list):
+            raise TypeError("Expected argument 'ipam_configs' to be a list")
+        pulumi.set(__self__, "ipam_configs", ipam_configs)
         if mac_address and not isinstance(mac_address, str):
             raise TypeError("Expected argument 'mac_address' to be a str")
         pulumi.set(__self__, "mac_address", mac_address)
@@ -55,6 +59,9 @@ class GetVpcGatewayNetworkResult:
         if static_address and not isinstance(static_address, str):
             raise TypeError("Expected argument 'static_address' to be a str")
         pulumi.set(__self__, "static_address", static_address)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -106,6 +113,11 @@ class GetVpcGatewayNetworkResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="ipamConfigs")
+    def ipam_configs(self) -> Sequence['outputs.GetVpcGatewayNetworkIpamConfigResult']:
+        return pulumi.get(self, "ipam_configs")
+
+    @property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> str:
         return pulumi.get(self, "mac_address")
@@ -119,6 +131,11 @@ class GetVpcGatewayNetworkResult:
     @pulumi.getter(name="staticAddress")
     def static_address(self) -> str:
         return pulumi.get(self, "static_address")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -145,9 +162,11 @@ class AwaitableGetVpcGatewayNetworkResult(GetVpcGatewayNetworkResult):
             gateway_id=self.gateway_id,
             gateway_network_id=self.gateway_network_id,
             id=self.id,
+            ipam_configs=self.ipam_configs,
             mac_address=self.mac_address,
             private_network_id=self.private_network_id,
             static_address=self.static_address,
+            status=self.status,
             updated_at=self.updated_at,
             zone=self.zone)
 
@@ -206,9 +225,11 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
         gateway_id=pulumi.get(__ret__, 'gateway_id'),
         gateway_network_id=pulumi.get(__ret__, 'gateway_network_id'),
         id=pulumi.get(__ret__, 'id'),
+        ipam_configs=pulumi.get(__ret__, 'ipam_configs'),
         mac_address=pulumi.get(__ret__, 'mac_address'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         static_address=pulumi.get(__ret__, 'static_address'),
+        status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
 

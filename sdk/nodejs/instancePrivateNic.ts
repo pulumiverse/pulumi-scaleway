@@ -78,6 +78,10 @@ export class InstancePrivateNic extends pulumi.CustomResource {
     }
 
     /**
+     * IPAM ip list, should be for internal use only
+     */
+    public readonly ipIds!: pulumi.Output<string[] | undefined>;
+    /**
      * The MAC address of the private NIC.
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
@@ -111,6 +115,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstancePrivateNicState | undefined;
+            resourceInputs["ipIds"] = state ? state.ipIds : undefined;
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
@@ -124,6 +129,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             if ((!args || args.serverId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serverId'");
             }
+            resourceInputs["ipIds"] = args ? args.ipIds : undefined;
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["serverId"] = args ? args.serverId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -139,6 +145,10 @@ export class InstancePrivateNic extends pulumi.CustomResource {
  * Input properties used for looking up and filtering InstancePrivateNic resources.
  */
 export interface InstancePrivateNicState {
+    /**
+     * IPAM ip list, should be for internal use only
+     */
+    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The MAC address of the private NIC.
      */
@@ -165,6 +175,10 @@ export interface InstancePrivateNicState {
  * The set of arguments for constructing a InstancePrivateNic resource.
  */
 export interface InstancePrivateNicArgs {
+    /**
+     * IPAM ip list, should be for internal use only
+     */
+    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of the private network attached to.
      */

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance server.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, opts ...pulumi.InvokeOption) (*LookupInstanceServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceServerResult
 	err := ctx.Invoke("scaleway:index/getInstanceServer:getInstanceServer", args, &rv, opts...)
 	if err != nil {
@@ -66,15 +68,16 @@ type LookupInstanceServerResult struct {
 	BootscriptId        string   `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server.
 	CloudInit string `pulumi:"cloudInit"`
-	// True is dynamic IP in enable on the server.
+	// True if dynamic IP in enable on the server.
 	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server.
 	EnableIpv6 bool `pulumi:"enableIpv6"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The UUID and the label of the base image used by the server.
-	Image string `pulumi:"image"`
-	IpId  string `pulumi:"ipId"`
+	Image string   `pulumi:"image"`
+	IpId  string   `pulumi:"ipId"`
+	IpIds []string `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address string `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
@@ -93,9 +96,14 @@ type LookupInstanceServerResult struct {
 	PrivateNetworks []GetInstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
-	// The public IPv4 address of the server.
-	PublicIp    string                        `pulumi:"publicIp"`
-	RootVolumes []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
+	// The public IP address of the server.
+	PublicIp string `pulumi:"publicIp"`
+	// The list of public IPs of the server
+	PublicIps           []GetInstanceServerPublicIp   `pulumi:"publicIps"`
+	ReplaceOnTypeChange bool                          `pulumi:"replaceOnTypeChange"`
+	RootVolumes         []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
+	// True if the server support routed ip only.
+	RoutedIpEnabled bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId string  `pulumi:"securityGroupId"`
 	ServerId        *string `pulumi:"serverId"`
@@ -153,6 +161,12 @@ func (o LookupInstanceServerResultOutput) ToLookupInstanceServerResultOutputWith
 	return o
 }
 
+func (o LookupInstanceServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceServerResult] {
+	return pulumix.Output[LookupInstanceServerResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
 // attached to the server.
 func (o LookupInstanceServerResultOutput) AdditionalVolumeIds() pulumi.StringArrayOutput {
@@ -172,7 +186,7 @@ func (o LookupInstanceServerResultOutput) CloudInit() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
-// True is dynamic IP in enable on the server.
+// True if dynamic IP in enable on the server.
 func (o LookupInstanceServerResultOutput) EnableDynamicIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) bool { return v.EnableDynamicIp }).(pulumi.BoolOutput)
 }
@@ -194,6 +208,10 @@ func (o LookupInstanceServerResultOutput) Image() pulumi.StringOutput {
 
 func (o LookupInstanceServerResultOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.IpId }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceServerResultOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
 }
 
 // The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
@@ -244,13 +262,27 @@ func (o LookupInstanceServerResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The public IPv4 address of the server.
+// The public IP address of the server.
 func (o LookupInstanceServerResultOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
+// The list of public IPs of the server
+func (o LookupInstanceServerResultOutput) PublicIps() GetInstanceServerPublicIpArrayOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) []GetInstanceServerPublicIp { return v.PublicIps }).(GetInstanceServerPublicIpArrayOutput)
+}
+
+func (o LookupInstanceServerResultOutput) ReplaceOnTypeChange() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) bool { return v.ReplaceOnTypeChange }).(pulumi.BoolOutput)
+}
+
 func (o LookupInstanceServerResultOutput) RootVolumes() GetInstanceServerRootVolumeArrayOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) []GetInstanceServerRootVolume { return v.RootVolumes }).(GetInstanceServerRootVolumeArrayOutput)
+}
+
+// True if the server support routed ip only.
+func (o LookupInstanceServerResultOutput) RoutedIpEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) bool { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
 // The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.

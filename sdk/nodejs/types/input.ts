@@ -150,6 +150,44 @@ export interface CockpitTokenScopes {
     writeMetrics?: pulumi.Input<boolean>;
 }
 
+export interface ContainerTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The subject to listen to
+     */
+    subject: pulumi.Input<string>;
+}
+
+export interface ContainerTriggerSqs {
+    /**
+     * ID of the mnq namespace. Deprecated.
+     */
+    namespaceId?: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * Name of the queue
+     */
+    queue: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+}
+
 export interface DatabaseAclAclRule {
     /**
      * A text describing this rule. Default description: `IP allowed`
@@ -163,15 +201,15 @@ export interface DatabaseAclAclRule {
 
 export interface DatabaseInstanceLoadBalancer {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId?: pulumi.Input<string>;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     /**
@@ -179,22 +217,22 @@ export interface DatabaseInstanceLoadBalancer {
      */
     name?: pulumi.Input<string>;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
 }
 
 export interface DatabaseInstancePrivateNetwork {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId?: pulumi.Input<string>;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     ipNet?: pulumi.Input<string>;
@@ -204,7 +242,7 @@ export interface DatabaseInstancePrivateNetwork {
     name?: pulumi.Input<string>;
     pnId: pulumi.Input<string>;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
     zone?: pulumi.Input<string>;
@@ -212,7 +250,7 @@ export interface DatabaseInstancePrivateNetwork {
 
 export interface DatabaseInstanceReadReplica {
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     /**
@@ -220,7 +258,7 @@ export interface DatabaseInstanceReadReplica {
      */
     name?: pulumi.Input<string>;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
 }
@@ -249,6 +287,63 @@ export interface DatabaseReadReplicaDirectAccess {
 }
 
 export interface DatabaseReadReplicaPrivateNetwork {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
+    endpointId?: pulumi.Input<string>;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
+    hostname?: pulumi.Input<string>;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
+    ip?: pulumi.Input<string>;
+    /**
+     * Name of the endpoint.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * UUID of the private network to be connected to the read replica.
+     */
+    privateNetworkId: pulumi.Input<string>;
+    /**
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     */
+    serviceIp?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
+}
+
+export interface DocumentdbReadReplicaDirectAccess {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
+    endpointId?: pulumi.Input<string>;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
+    hostname?: pulumi.Input<string>;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
+    ip?: pulumi.Input<string>;
+    /**
+     * Name of the endpoint.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint.
+     */
+    port?: pulumi.Input<number>;
+}
+
+export interface DocumentdbReadReplicaPrivateNetwork {
     /**
      * The ID of the endpoint of the read replica.
      */
@@ -314,7 +409,7 @@ export interface DomainRecordHttpService {
      */
     mustContain: pulumi.Input<string>;
     /**
-     * Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      */
     strategy: pulumi.Input<string>;
     /**
@@ -349,13 +444,32 @@ export interface DomainRecordWeighted {
     weight: pulumi.Input<number>;
 }
 
+export interface FunctionTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The subject to listen to
+     */
+    subject: pulumi.Input<string>;
+}
+
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      */
-    namespaceId: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * ID of the project that contain the mnq nats account, defaults to provider's project
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -366,6 +480,28 @@ export interface FunctionTriggerSqs {
      * `region`). The region in which the namespace should be created.
      */
     region?: pulumi.Input<string>;
+}
+
+export interface GetIpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     */
+    type?: string;
+}
+
+export interface GetIpamIpResourceArgs {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     */
+    type?: pulumi.Input<string>;
 }
 
 export interface IamPolicyRule {
@@ -554,6 +690,17 @@ export interface InstanceServerPrivateNetwork {
      * `zone`) The zone in which the server should be created.
      */
     zone?: pulumi.Input<string>;
+}
+
+export interface InstanceServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface InstanceServerRootVolume {
@@ -872,7 +1019,7 @@ export interface LoadbalancerBackendHealthCheckHttp {
      */
     method?: pulumi.Input<string>;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: pulumi.Input<string>;
 }
@@ -895,7 +1042,7 @@ export interface LoadbalancerBackendHealthCheckHttps {
      */
     sni?: pulumi.Input<string>;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: pulumi.Input<string>;
 }
@@ -1066,6 +1213,21 @@ export interface MnqQueueSqs {
     visibilityTimeoutSeconds?: pulumi.Input<number>;
 }
 
+export interface MnqSqsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive?: pulumi.Input<boolean>;
+}
+
 export interface ObjectBucketAclAccessControlPolicy {
     grants?: pulumi.Input<pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrant>[]>;
     owner: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyOwner>;
@@ -1217,6 +1379,9 @@ export interface RedisClusterAcl {
 }
 
 export interface RedisClusterPrivateNetwork {
+    /**
+     * The ID of the endpoint.
+     */
     endpointId?: pulumi.Input<string>;
     /**
      * The UUID of the private network resource.
@@ -1253,22 +1418,93 @@ export interface RedisClusterPublicNetwork {
     port?: pulumi.Input<number>;
 }
 
+export interface VpcGatewayNetworkIpamConfig {
+    /**
+     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     */
+    pushDefaultRoute?: pulumi.Input<boolean>;
+}
+
 export interface VpcPrivateNetworkIpv4Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength?: pulumi.Input<number>;
+    /**
+     * The subnet CIDR.
+     */
     subnet?: pulumi.Input<string>;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt?: pulumi.Input<string>;
 }
 
 export interface VpcPrivateNetworkIpv6Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength?: pulumi.Input<number>;
+    /**
+     * The subnet CIDR.
+     */
     subnet?: pulumi.Input<string>;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt?: pulumi.Input<string>;
+}
+
+export interface WebhostingCpanelUrl {
+    /**
+     * The URL of the Dashboard.
+     */
+    dashboard?: pulumi.Input<string>;
+    /**
+     * The URL of the Webmail interface.
+     */
+    webmail?: pulumi.Input<string>;
+}
+
+export interface WebhostingOption {
+    /**
+     * The option ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The option name.
+     */
+    name?: pulumi.Input<string>;
 }

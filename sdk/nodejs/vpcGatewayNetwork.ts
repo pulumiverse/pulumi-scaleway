@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -53,6 +55,30 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Create a gateway network with IPAM config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const main = new scaleway.VpcGatewayNetwork("main", {
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     enableMasquerade: true,
+ *     ipamConfigs: [{
+ *         pushDefaultRoute: true,
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -98,7 +124,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
+     * The ID of the public gateway DHCP config. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     public readonly dhcpId!: pulumi.Output<string | undefined>;
     /**
@@ -114,6 +140,10 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
+     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+     */
+    public readonly ipamConfigs!: pulumi.Output<outputs.VpcGatewayNetworkIpamConfig[] | undefined>;
+    /**
      * The mac address of the creation of the gateway network.
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
@@ -122,9 +152,13 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
     /**
-     * Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
+     * Enable DHCP config on this network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
-    public readonly staticAddress!: pulumi.Output<string | undefined>;
+    public readonly staticAddress!: pulumi.Output<string>;
+    /**
+     * The status of the Public Gateway's connection to the Private Network.
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * The date and time of the last update of the gateway network.
      */
@@ -153,9 +187,11 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
             resourceInputs["enableDhcp"] = state ? state.enableDhcp : undefined;
             resourceInputs["enableMasquerade"] = state ? state.enableMasquerade : undefined;
             resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
+            resourceInputs["ipamConfigs"] = state ? state.ipamConfigs : undefined;
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["staticAddress"] = state ? state.staticAddress : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
@@ -171,11 +207,13 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
             resourceInputs["enableDhcp"] = args ? args.enableDhcp : undefined;
             resourceInputs["enableMasquerade"] = args ? args.enableMasquerade : undefined;
             resourceInputs["gatewayId"] = args ? args.gatewayId : undefined;
+            resourceInputs["ipamConfigs"] = args ? args.ipamConfigs : undefined;
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["staticAddress"] = args ? args.staticAddress : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["macAddress"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -196,7 +234,7 @@ export interface VpcGatewayNetworkState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
+     * The ID of the public gateway DHCP config. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     dhcpId?: pulumi.Input<string>;
     /**
@@ -212,6 +250,10 @@ export interface VpcGatewayNetworkState {
      */
     gatewayId?: pulumi.Input<string>;
     /**
+     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+     */
+    ipamConfigs?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkIpamConfig>[]>;
+    /**
      * The mac address of the creation of the gateway network.
      */
     macAddress?: pulumi.Input<string>;
@@ -220,9 +262,13 @@ export interface VpcGatewayNetworkState {
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
+     * Enable DHCP config on this network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     staticAddress?: pulumi.Input<string>;
+    /**
+     * The status of the Public Gateway's connection to the Private Network.
+     */
+    status?: pulumi.Input<string>;
     /**
      * The date and time of the last update of the gateway network.
      */
@@ -242,7 +288,7 @@ export interface VpcGatewayNetworkArgs {
      */
     cleanupDhcp?: pulumi.Input<boolean>;
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcpId` and `staticAddress` should be specified.
+     * The ID of the public gateway DHCP config. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     dhcpId?: pulumi.Input<string>;
     /**
@@ -258,11 +304,15 @@ export interface VpcGatewayNetworkArgs {
      */
     gatewayId: pulumi.Input<string>;
     /**
+     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+     */
+    ipamConfigs?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkIpamConfig>[]>;
+    /**
      * The ID of the private network.
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network. Only one of `dhcpId` and `staticAddress` should be specified.
+     * Enable DHCP config on this network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     staticAddress?: pulumi.Input<string>;
     /**

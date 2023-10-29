@@ -7,12 +7,46 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a private network.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//				Name: pulumi.StringRef("foobar"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult
 	err := ctx.Invoke("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args, &rv, opts...)
 	if err != nil {
@@ -88,6 +122,12 @@ func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutp
 
 func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutputWithContext(ctx context.Context) LookupVpcPrivateNetworkResultOutput {
 	return o
+}
+
+func (o LookupVpcPrivateNetworkResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPrivateNetworkResult] {
+	return pulumix.Output[LookupVpcPrivateNetworkResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) CreatedAt() pulumi.StringOutput {

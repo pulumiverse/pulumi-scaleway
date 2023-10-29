@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.scaleway.outputs.GetInstanceServersServerPublicIp;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -33,7 +34,7 @@ public final class GetInstanceServersServer {
      */
     private Boolean enableIpv6;
     /**
-     * @return The ID of the server.
+     * @return The ID of the IP
      * 
      */
     private String id;
@@ -84,10 +85,20 @@ public final class GetInstanceServersServer {
      */
     private String projectId;
     /**
-     * @return The public IPv4 address of the server.
+     * @return The public IP address of the server.
      * 
      */
     private String publicIp;
+    /**
+     * @return The list of public IPs of the server
+     * 
+     */
+    private List<GetInstanceServersServerPublicIp> publicIps;
+    /**
+     * @return True if the server support routed ip only.
+     * 
+     */
+    private Boolean routedIpEnabled;
     /**
      * @return The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      * 
@@ -144,7 +155,7 @@ public final class GetInstanceServersServer {
         return this.enableIpv6;
     }
     /**
-     * @return The ID of the server.
+     * @return The ID of the IP
      * 
      */
     public String id() {
@@ -217,11 +228,25 @@ public final class GetInstanceServersServer {
         return this.projectId;
     }
     /**
-     * @return The public IPv4 address of the server.
+     * @return The public IP address of the server.
      * 
      */
     public String publicIp() {
         return this.publicIp;
+    }
+    /**
+     * @return The list of public IPs of the server
+     * 
+     */
+    public List<GetInstanceServersServerPublicIp> publicIps() {
+        return this.publicIps;
+    }
+    /**
+     * @return True if the server support routed ip only.
+     * 
+     */
+    public Boolean routedIpEnabled() {
+        return this.routedIpEnabled;
     }
     /**
      * @return The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -284,6 +309,8 @@ public final class GetInstanceServersServer {
         private String privateIp;
         private String projectId;
         private String publicIp;
+        private List<GetInstanceServersServerPublicIp> publicIps;
+        private Boolean routedIpEnabled;
         private String securityGroupId;
         private String state;
         private List<String> tags;
@@ -308,6 +335,8 @@ public final class GetInstanceServersServer {
     	      this.privateIp = defaults.privateIp;
     	      this.projectId = defaults.projectId;
     	      this.publicIp = defaults.publicIp;
+    	      this.publicIps = defaults.publicIps;
+    	      this.routedIpEnabled = defaults.routedIpEnabled;
     	      this.securityGroupId = defaults.securityGroupId;
     	      this.state = defaults.state;
     	      this.tags = defaults.tags;
@@ -396,6 +425,19 @@ public final class GetInstanceServersServer {
             return this;
         }
         @CustomType.Setter
+        public Builder publicIps(List<GetInstanceServersServerPublicIp> publicIps) {
+            this.publicIps = Objects.requireNonNull(publicIps);
+            return this;
+        }
+        public Builder publicIps(GetInstanceServersServerPublicIp... publicIps) {
+            return publicIps(List.of(publicIps));
+        }
+        @CustomType.Setter
+        public Builder routedIpEnabled(Boolean routedIpEnabled) {
+            this.routedIpEnabled = Objects.requireNonNull(routedIpEnabled);
+            return this;
+        }
+        @CustomType.Setter
         public Builder securityGroupId(String securityGroupId) {
             this.securityGroupId = Objects.requireNonNull(securityGroupId);
             return this;
@@ -441,6 +483,8 @@ public final class GetInstanceServersServer {
             o.privateIp = privateIp;
             o.projectId = projectId;
             o.publicIp = publicIp;
+            o.publicIps = publicIps;
+            o.routedIpEnabled = routedIpEnabled;
             o.securityGroupId = securityGroupId;
             o.state = state;
             o.tags = tags;

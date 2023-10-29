@@ -17,14 +17,14 @@ public final class DatabaseInstanceReadReplicaArgs extends com.pulumi.resources.
     public static final DatabaseInstanceReadReplicaArgs Empty = new DatabaseInstanceReadReplicaArgs();
 
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      * 
      */
     @Import(name="ip")
     private @Nullable Output<String> ip;
 
     /**
-     * @return IP of the endpoint.
+     * @return IPv4 address on the network.
      * 
      */
     public Optional<Output<String>> ip() {
@@ -47,14 +47,14 @@ public final class DatabaseInstanceReadReplicaArgs extends com.pulumi.resources.
     }
 
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return Port of the endpoint.
+     * @return Port in the Private Network.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -88,7 +88,7 @@ public final class DatabaseInstanceReadReplicaArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param ip IP of the endpoint.
+         * @param ip IPv4 address on the network.
          * 
          * @return builder
          * 
@@ -99,7 +99,7 @@ public final class DatabaseInstanceReadReplicaArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param ip IP of the endpoint.
+         * @param ip IPv4 address on the network.
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class DatabaseInstanceReadReplicaArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param port Port of the endpoint.
+         * @param port Port in the Private Network.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class DatabaseInstanceReadReplicaArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param port Port of the endpoint.
+         * @param port Port in the Private Network.
          * 
          * @return builder
          * 

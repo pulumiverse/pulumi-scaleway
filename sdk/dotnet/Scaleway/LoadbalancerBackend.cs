@@ -128,6 +128,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<int> HealthCheckPort { get; private set; } = null!;
 
         /// <summary>
+        /// Defines whether proxy protocol should be activated for the health check.
+        /// </summary>
+        [Output("healthCheckSendProxy")]
+        public Output<bool?> HealthCheckSendProxy { get; private set; } = null!;
+
+        /// <summary>
         /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         /// </summary>
         [Output("healthCheckTcp")]
@@ -138,6 +144,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("healthCheckTimeout")]
         public Output<string?> HealthCheckTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        /// </summary>
+        [Output("healthCheckTransientDelay")]
+        public Output<string?> HealthCheckTransientDelay { get; private set; } = null!;
 
         /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -151,6 +163,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of connections allowed per backend server.
+        /// </summary>
+        [Output("maxConnections")]
+        public Output<int?> MaxConnections { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of retries when a backend server connection failed.
+        /// </summary>
+        [Output("maxRetries")]
+        public Output<int?> MaxRetries { get; private set; } = null!;
 
         /// <summary>
         /// The name of the load-balancer backend.
@@ -169,6 +193,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("proxyProtocol")]
         public Output<string?> ProxyProtocol { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to use another backend server on each attempt.
+        /// </summary>
+        [Output("redispatchAttemptCount")]
+        public Output<int?> RedispatchAttemptCount { get; private set; } = null!;
 
         /// <summary>
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -205,6 +235,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("timeoutConnect")]
         public Output<string?> TimeoutConnect { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        /// </summary>
+        [Output("timeoutQueue")]
+        public Output<string?> TimeoutQueue { get; private set; } = null!;
 
         /// <summary>
         /// Maximum server connection inactivity time. (e.g.: `1s`)
@@ -322,6 +358,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<int>? HealthCheckPort { get; set; }
 
         /// <summary>
+        /// Defines whether proxy protocol should be activated for the health check.
+        /// </summary>
+        [Input("healthCheckSendProxy")]
+        public Input<bool>? HealthCheckSendProxy { get; set; }
+
+        /// <summary>
         /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         /// </summary>
         [Input("healthCheckTcp")]
@@ -332,6 +374,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("healthCheckTimeout")]
         public Input<string>? HealthCheckTimeout { get; set; }
+
+        /// <summary>
+        /// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        /// </summary>
+        [Input("healthCheckTransientDelay")]
+        public Input<string>? HealthCheckTransientDelay { get; set; }
 
         /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -345,6 +393,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
+
+        /// <summary>
+        /// Maximum number of connections allowed per backend server.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Number of retries when a backend server connection failed.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
 
         /// <summary>
         /// The name of the load-balancer backend.
@@ -363,6 +423,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("proxyProtocol")]
         public Input<string>? ProxyProtocol { get; set; }
+
+        /// <summary>
+        /// Whether to use another backend server on each attempt.
+        /// </summary>
+        [Input("redispatchAttemptCount")]
+        public Input<int>? RedispatchAttemptCount { get; set; }
 
         /// <summary>
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -405,6 +471,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("timeoutConnect")]
         public Input<string>? TimeoutConnect { get; set; }
+
+        /// <summary>
+        /// Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        /// </summary>
+        [Input("timeoutQueue")]
+        public Input<string>? TimeoutQueue { get; set; }
 
         /// <summary>
         /// Maximum server connection inactivity time. (e.g.: `1s`)
@@ -483,6 +555,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<int>? HealthCheckPort { get; set; }
 
         /// <summary>
+        /// Defines whether proxy protocol should be activated for the health check.
+        /// </summary>
+        [Input("healthCheckSendProxy")]
+        public Input<bool>? HealthCheckSendProxy { get; set; }
+
+        /// <summary>
         /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         /// </summary>
         [Input("healthCheckTcp")]
@@ -493,6 +571,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("healthCheckTimeout")]
         public Input<string>? HealthCheckTimeout { get; set; }
+
+        /// <summary>
+        /// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        /// </summary>
+        [Input("healthCheckTransientDelay")]
+        public Input<string>? HealthCheckTransientDelay { get; set; }
 
         /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -506,6 +590,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
+
+        /// <summary>
+        /// Maximum number of connections allowed per backend server.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Number of retries when a backend server connection failed.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
 
         /// <summary>
         /// The name of the load-balancer backend.
@@ -524,6 +620,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("proxyProtocol")]
         public Input<string>? ProxyProtocol { get; set; }
+
+        /// <summary>
+        /// Whether to use another backend server on each attempt.
+        /// </summary>
+        [Input("redispatchAttemptCount")]
+        public Input<int>? RedispatchAttemptCount { get; set; }
 
         /// <summary>
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -566,6 +668,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("timeoutConnect")]
         public Input<string>? TimeoutConnect { get; set; }
+
+        /// <summary>
+        /// Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        /// </summary>
+        [Input("timeoutQueue")]
+        public Input<string>? TimeoutQueue { get; set; }
 
         /// <summary>
         /// Maximum server connection inactivity time. (e.g.: `1s`)

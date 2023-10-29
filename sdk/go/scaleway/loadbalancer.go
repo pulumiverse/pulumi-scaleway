@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancers.
@@ -40,6 +42,35 @@ import (
 //				IpId: main.ID(),
 //				Zone: main.Zone,
 //				Type: pulumi.String("LB-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Private LB
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewLoadbalancer(ctx, "base", &scaleway.LoadbalancerArgs{
+//				IpId:             pulumi.Any(scaleway_lb_ip.Main.Id),
+//				Zone:             pulumi.Any(scaleway_lb_ip.Main.Zone),
+//				Type:             pulumi.String("LB-S"),
+//				AssignFlexibleIp: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -192,14 +223,16 @@ import (
 type Loadbalancer struct {
 	pulumi.CustomResourceState
 
+	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	AssignFlexibleIp pulumi.BoolPtrOutput `pulumi:"assignFlexibleIp"`
 	// The description of the load-balancer.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The load-balance public IP Address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
-	IpId pulumi.StringOutput `pulumi:"ipId"`
+	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
 	// The name of the load-balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the load-balancer is associated with.
@@ -218,7 +251,7 @@ type Loadbalancer struct {
 	SslCompatibilityLevel pulumi.StringPtrOutput `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of the load-balancer. Please check the migration section to upgrade the type
+	// The type of the load-balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -231,13 +264,10 @@ func NewLoadbalancer(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.IpId == nil {
-		return nil, errors.New("invalid value for required argument 'IpId'")
-	}
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Loadbalancer
 	err := ctx.RegisterResource("scaleway:index/loadbalancer:Loadbalancer", name, args, &resource, opts...)
 	if err != nil {
@@ -260,13 +290,15 @@ func GetLoadbalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Loadbalancer resources.
 type loadbalancerState struct {
+	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	AssignFlexibleIp *bool `pulumi:"assignFlexibleIp"`
 	// The description of the load-balancer.
 	Description *string `pulumi:"description"`
 	// The load-balance public IP Address
 	IpAddress *string `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the load-balancer.
 	IpId *string `pulumi:"ipId"`
 	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
@@ -286,20 +318,22 @@ type loadbalancerState struct {
 	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
-	// The type of the load-balancer. Please check the migration section to upgrade the type
+	// The type of the load-balancer. Please check the migration section to upgrade the type.
 	Type *string `pulumi:"type"`
 	// `zone`) The zone of the load-balancer.
 	Zone *string `pulumi:"zone"`
 }
 
 type LoadbalancerState struct {
+	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	AssignFlexibleIp pulumi.BoolPtrInput
 	// The description of the load-balancer.
 	Description pulumi.StringPtrInput
 	// The load-balance public IP Address
 	IpAddress pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the load-balancer.
 	IpId pulumi.StringPtrInput
 	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
@@ -319,7 +353,7 @@ type LoadbalancerState struct {
 	SslCompatibilityLevel pulumi.StringPtrInput
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
-	// The type of the load-balancer. Please check the migration section to upgrade the type
+	// The type of the load-balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringPtrInput
 	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringPtrInput
@@ -330,12 +364,14 @@ func (LoadbalancerState) ElementType() reflect.Type {
 }
 
 type loadbalancerArgs struct {
+	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	AssignFlexibleIp *bool `pulumi:"assignFlexibleIp"`
 	// The description of the load-balancer.
 	Description *string `pulumi:"description"`
 	// The ID of the associated LB IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
-	IpId string `pulumi:"ipId"`
+	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	IpId *string `pulumi:"ipId"`
 	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
 	// List of private network to connect with your load balancer
@@ -350,7 +386,7 @@ type loadbalancerArgs struct {
 	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
-	// The type of the load-balancer. Please check the migration section to upgrade the type
+	// The type of the load-balancer. Please check the migration section to upgrade the type.
 	Type string `pulumi:"type"`
 	// `zone`) The zone of the load-balancer.
 	Zone *string `pulumi:"zone"`
@@ -358,12 +394,14 @@ type loadbalancerArgs struct {
 
 // The set of arguments for constructing a Loadbalancer resource.
 type LoadbalancerArgs struct {
+	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	AssignFlexibleIp pulumi.BoolPtrInput
 	// The description of the load-balancer.
 	Description pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
-	IpId pulumi.StringInput
+	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	IpId pulumi.StringPtrInput
 	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
 	// List of private network to connect with your load balancer
@@ -378,7 +416,7 @@ type LoadbalancerArgs struct {
 	SslCompatibilityLevel pulumi.StringPtrInput
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
-	// The type of the load-balancer. Please check the migration section to upgrade the type
+	// The type of the load-balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringInput
 	// `zone`) The zone of the load-balancer.
 	Zone pulumi.StringPtrInput
@@ -407,6 +445,12 @@ func (i *Loadbalancer) ToLoadbalancerOutputWithContext(ctx context.Context) Load
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerOutput)
 }
 
+func (i *Loadbalancer) ToOutput(ctx context.Context) pulumix.Output[*Loadbalancer] {
+	return pulumix.Output[*Loadbalancer]{
+		OutputState: i.ToLoadbalancerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LoadbalancerArrayInput is an input type that accepts LoadbalancerArray and LoadbalancerArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerArrayInput` via:
 //
@@ -430,6 +474,12 @@ func (i LoadbalancerArray) ToLoadbalancerArrayOutput() LoadbalancerArrayOutput {
 
 func (i LoadbalancerArray) ToLoadbalancerArrayOutputWithContext(ctx context.Context) LoadbalancerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerArrayOutput)
+}
+
+func (i LoadbalancerArray) ToOutput(ctx context.Context) pulumix.Output[[]*Loadbalancer] {
+	return pulumix.Output[[]*Loadbalancer]{
+		OutputState: i.ToLoadbalancerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LoadbalancerMapInput is an input type that accepts LoadbalancerMap and LoadbalancerMapOutput values.
@@ -457,6 +507,12 @@ func (i LoadbalancerMap) ToLoadbalancerMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerMapOutput)
 }
 
+func (i LoadbalancerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Loadbalancer] {
+	return pulumix.Output[map[string]*Loadbalancer]{
+		OutputState: i.ToLoadbalancerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LoadbalancerOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerOutput) ElementType() reflect.Type {
@@ -471,6 +527,17 @@ func (o LoadbalancerOutput) ToLoadbalancerOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o LoadbalancerOutput) ToOutput(ctx context.Context) pulumix.Output[*Loadbalancer] {
+	return pulumix.Output[*Loadbalancer]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Defines whether to automatically assign a flexible public IP to the load-balancer.
+func (o LoadbalancerOutput) AssignFlexibleIp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.AssignFlexibleIp }).(pulumi.BoolPtrOutput)
+}
+
 // The description of the load-balancer.
 func (o LoadbalancerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -483,9 +550,9 @@ func (o LoadbalancerOutput) IpAddress() pulumi.StringOutput {
 
 // The ID of the associated LB IP. See below.
 //
-// > **Important:** Updates to `ipId` will not recreate the load-balancer.
-func (o LoadbalancerOutput) IpId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.IpId }).(pulumi.StringOutput)
+// > **Important:** Updates to `ipId` will recreate the load-balancer.
+func (o LoadbalancerOutput) IpId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.IpId }).(pulumi.StringPtrOutput)
 }
 
 // The name of the load-balancer.
@@ -530,7 +597,7 @@ func (o LoadbalancerOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of the load-balancer. Please check the migration section to upgrade the type
+// The type of the load-balancer. Please check the migration section to upgrade the type.
 func (o LoadbalancerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -554,6 +621,12 @@ func (o LoadbalancerArrayOutput) ToLoadbalancerArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o LoadbalancerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Loadbalancer] {
+	return pulumix.Output[[]*Loadbalancer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LoadbalancerArrayOutput) Index(i pulumi.IntInput) LoadbalancerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Loadbalancer {
 		return vs[0].([]*Loadbalancer)[vs[1].(int)]
@@ -572,6 +645,12 @@ func (o LoadbalancerMapOutput) ToLoadbalancerMapOutput() LoadbalancerMapOutput {
 
 func (o LoadbalancerMapOutput) ToLoadbalancerMapOutputWithContext(ctx context.Context) LoadbalancerMapOutput {
 	return o
+}
+
+func (o LoadbalancerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Loadbalancer] {
+	return pulumix.Output[map[string]*Loadbalancer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LoadbalancerMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerOutput {

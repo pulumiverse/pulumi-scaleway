@@ -90,6 +90,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        /// </summary>
+        [Output("externalMembership")]
+        public Output<bool?> ExternalMembership { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the IAM group.
         /// </summary>
         [Output("name")]
@@ -179,6 +185,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        /// </summary>
+        [Input("externalMembership")]
+        public Input<bool>? ExternalMembership { get; set; }
+
+        /// <summary>
         /// The name of the IAM group.
         /// </summary>
         [Input("name")]
@@ -233,6 +245,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        /// </summary>
+        [Input("externalMembership")]
+        public Input<bool>? ExternalMembership { get; set; }
 
         /// <summary>
         /// The name of the IAM group.

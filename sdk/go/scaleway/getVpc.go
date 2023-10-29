@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Scaleway Virtual Private Cloud.
@@ -50,7 +52,7 @@ import (
 //
 // ```
 func LookupVpc(ctx *pulumi.Context, args *LookupVpcArgs, opts ...pulumi.InvokeOption) (*LookupVpcResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcResult
 	err := ctx.Invoke("scaleway:index/getVpc:getVpc", args, &rv, opts...)
 	if err != nil {
@@ -134,6 +136,12 @@ func (o LookupVpcResultOutput) ToLookupVpcResultOutput() LookupVpcResultOutput {
 
 func (o LookupVpcResultOutput) ToLookupVpcResultOutputWithContext(ctx context.Context) LookupVpcResultOutput {
 	return o
+}
+
+func (o LookupVpcResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcResult] {
+	return pulumix.Output[LookupVpcResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcResultOutput) CreatedAt() pulumi.StringOutput {

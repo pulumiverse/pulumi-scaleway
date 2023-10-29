@@ -31,7 +31,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string? Sni;
         /// <summary>
-        /// The HTTP endpoint URL to call for HC requests.
+        /// The HTTPS endpoint URL to call for HC requests.
         /// </summary>
         public readonly string Uri;
 

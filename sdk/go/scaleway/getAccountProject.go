@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing Project.
@@ -44,7 +46,7 @@ import (
 //
 // ```
 func LookupAccountProject(ctx *pulumi.Context, args *LookupAccountProjectArgs, opts ...pulumi.InvokeOption) (*LookupAccountProjectResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountProjectResult
 	err := ctx.Invoke("scaleway:index/getAccountProject:getAccountProject", args, &rv, opts...)
 	if err != nil {
@@ -121,6 +123,12 @@ func (o LookupAccountProjectResultOutput) ToLookupAccountProjectResultOutput() L
 
 func (o LookupAccountProjectResultOutput) ToLookupAccountProjectResultOutputWithContext(ctx context.Context) LookupAccountProjectResultOutput {
 	return o
+}
+
+func (o LookupAccountProjectResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAccountProjectResult] {
+	return pulumix.Output[LookupAccountProjectResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupAccountProjectResultOutput) CreatedAt() pulumi.StringOutput {

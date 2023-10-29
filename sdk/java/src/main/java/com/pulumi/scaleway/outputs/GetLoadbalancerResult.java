@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetLoadbalancerResult {
+    private Boolean assignFlexibleIp;
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -55,6 +56,9 @@ public final class GetLoadbalancerResult {
     private @Nullable String zone;
 
     private GetLoadbalancerResult() {}
+    public Boolean assignFlexibleIp() {
+        return this.assignFlexibleIp;
+    }
     public String description() {
         return this.description;
     }
@@ -134,6 +138,7 @@ public final class GetLoadbalancerResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean assignFlexibleIp;
         private String description;
         private String id;
         private String ipAddress;
@@ -152,6 +157,7 @@ public final class GetLoadbalancerResult {
         public Builder() {}
         public Builder(GetLoadbalancerResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.assignFlexibleIp = defaults.assignFlexibleIp;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.ipAddress = defaults.ipAddress;
@@ -169,6 +175,11 @@ public final class GetLoadbalancerResult {
     	      this.zone = defaults.zone;
         }
 
+        @CustomType.Setter
+        public Builder assignFlexibleIp(Boolean assignFlexibleIp) {
+            this.assignFlexibleIp = Objects.requireNonNull(assignFlexibleIp);
+            return this;
+        }
         @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
@@ -252,6 +263,7 @@ public final class GetLoadbalancerResult {
         }
         public GetLoadbalancerResult build() {
             final var o = new GetLoadbalancerResult();
+            o.assignFlexibleIp = assignFlexibleIp;
             o.description = description;
             o.id = id;
             o.ipAddress = ipAddress;

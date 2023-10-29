@@ -14,19 +14,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class DatabaseInstancePrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the endpoint of the private network.
+        /// The ID of the endpoint.
         /// </summary>
         [Input("endpointId")]
         public Input<string>? EndpointId { get; set; }
 
         /// <summary>
-        /// Name of the endpoint.
+        /// Hostname of the endpoint.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// IP of the endpoint.
+        /// IPv4 address on the network.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
@@ -44,7 +44,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string> PnId { get; set; } = null!;
 
         /// <summary>
-        /// Port of the endpoint.
+        /// Port in the Private Network.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }

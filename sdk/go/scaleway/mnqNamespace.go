@@ -8,12 +8,16 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Messaging and queuing Namespace.
 // For further information please check
 // our [documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/mnq/v1alpha1#pkg-index)
+//
+// > NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS, NATS.
 //
 // ## Examples
 //
@@ -85,7 +89,7 @@ func NewMnqNamespace(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MnqNamespace
 	err := ctx.RegisterResource("scaleway:index/mnqNamespace:MnqNamespace", name, args, &resource, opts...)
 	if err != nil {
@@ -203,6 +207,12 @@ func (i *MnqNamespace) ToMnqNamespaceOutputWithContext(ctx context.Context) MnqN
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNamespaceOutput)
 }
 
+func (i *MnqNamespace) ToOutput(ctx context.Context) pulumix.Output[*MnqNamespace] {
+	return pulumix.Output[*MnqNamespace]{
+		OutputState: i.ToMnqNamespaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MnqNamespaceArrayInput is an input type that accepts MnqNamespaceArray and MnqNamespaceArrayOutput values.
 // You can construct a concrete instance of `MnqNamespaceArrayInput` via:
 //
@@ -226,6 +236,12 @@ func (i MnqNamespaceArray) ToMnqNamespaceArrayOutput() MnqNamespaceArrayOutput {
 
 func (i MnqNamespaceArray) ToMnqNamespaceArrayOutputWithContext(ctx context.Context) MnqNamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNamespaceArrayOutput)
+}
+
+func (i MnqNamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqNamespace] {
+	return pulumix.Output[[]*MnqNamespace]{
+		OutputState: i.ToMnqNamespaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MnqNamespaceMapInput is an input type that accepts MnqNamespaceMap and MnqNamespaceMapOutput values.
@@ -253,6 +269,12 @@ func (i MnqNamespaceMap) ToMnqNamespaceMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNamespaceMapOutput)
 }
 
+func (i MnqNamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqNamespace] {
+	return pulumix.Output[map[string]*MnqNamespace]{
+		OutputState: i.ToMnqNamespaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MnqNamespaceOutput struct{ *pulumi.OutputState }
 
 func (MnqNamespaceOutput) ElementType() reflect.Type {
@@ -265,6 +287,12 @@ func (o MnqNamespaceOutput) ToMnqNamespaceOutput() MnqNamespaceOutput {
 
 func (o MnqNamespaceOutput) ToMnqNamespaceOutputWithContext(ctx context.Context) MnqNamespaceOutput {
 	return o
+}
+
+func (o MnqNamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqNamespace] {
+	return pulumix.Output[*MnqNamespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time the Namespace was created.
@@ -319,6 +347,12 @@ func (o MnqNamespaceArrayOutput) ToMnqNamespaceArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o MnqNamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqNamespace] {
+	return pulumix.Output[[]*MnqNamespace]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MnqNamespaceArrayOutput) Index(i pulumi.IntInput) MnqNamespaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqNamespace {
 		return vs[0].([]*MnqNamespace)[vs[1].(int)]
@@ -337,6 +371,12 @@ func (o MnqNamespaceMapOutput) ToMnqNamespaceMapOutput() MnqNamespaceMapOutput {
 
 func (o MnqNamespaceMapOutput) ToMnqNamespaceMapOutputWithContext(ctx context.Context) MnqNamespaceMapOutput {
 	return o
+}
+
+func (o MnqNamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqNamespace] {
+	return pulumix.Output[map[string]*MnqNamespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MnqNamespaceMapOutput) MapIndex(k pulumi.StringInput) MnqNamespaceOutput {

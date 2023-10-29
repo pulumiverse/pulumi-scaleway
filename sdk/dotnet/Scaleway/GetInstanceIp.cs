@@ -130,6 +130,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The organization ID the IP is associated with.
         /// </summary>
         public readonly string OrganizationId;
+        /// <summary>
+        /// The IP Prefix.
+        /// </summary>
+        public readonly string Prefix;
         public readonly string ProjectId;
         /// <summary>
         /// The reverse dns attached to this IP
@@ -137,6 +141,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Reverse;
         public readonly string ServerId;
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The type of the IP
+        /// </summary>
+        public readonly string Type;
         public readonly string Zone;
 
         [OutputConstructor]
@@ -147,6 +155,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string organizationId,
 
+            string prefix,
+
             string projectId,
 
             string reverse,
@@ -155,15 +165,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             ImmutableArray<string> tags,
 
+            string type,
+
             string zone)
         {
             Address = address;
             Id = id;
             OrganizationId = organizationId;
+            Prefix = prefix;
             ProjectId = projectId;
             Reverse = reverse;
             ServerId = serverId;
             Tags = tags;
+            Type = type;
             Zone = zone;
         }
     }

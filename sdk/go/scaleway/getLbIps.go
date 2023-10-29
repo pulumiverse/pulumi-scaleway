@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about multiple Load Balancer IPs.
@@ -39,7 +41,7 @@ import (
 //
 // ```
 func GetLbIps(ctx *pulumi.Context, args *GetLbIpsArgs, opts ...pulumi.InvokeOption) (*GetLbIpsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbIpsResult
 	err := ctx.Invoke("scaleway:index/getLbIps:getLbIps", args, &rv, opts...)
 	if err != nil {
@@ -113,6 +115,12 @@ func (o GetLbIpsResultOutput) ToGetLbIpsResultOutput() GetLbIpsResultOutput {
 
 func (o GetLbIpsResultOutput) ToGetLbIpsResultOutputWithContext(ctx context.Context) GetLbIpsResultOutput {
 	return o
+}
+
+func (o GetLbIpsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbIpsResult] {
+	return pulumix.Output[GetLbIpsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DatabaseInstanceReadReplica {
     /**
-     * @return IP of the endpoint.
+     * @return IPv4 address on the network.
      * 
      */
     private @Nullable String ip;
@@ -23,14 +23,14 @@ public final class DatabaseInstanceReadReplica {
      */
     private @Nullable String name;
     /**
-     * @return Port of the endpoint.
+     * @return Port in the Private Network.
      * 
      */
     private @Nullable Integer port;
 
     private DatabaseInstanceReadReplica() {}
     /**
-     * @return IP of the endpoint.
+     * @return IPv4 address on the network.
      * 
      */
     public Optional<String> ip() {
@@ -44,7 +44,7 @@ public final class DatabaseInstanceReadReplica {
         return Optional.ofNullable(this.name);
     }
     /**
-     * @return Port of the endpoint.
+     * @return Port in the Private Network.
      * 
      */
     public Optional<Integer> port() {

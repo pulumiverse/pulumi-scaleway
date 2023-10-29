@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway IP.
@@ -41,7 +43,7 @@ import (
 //
 // ```
 func LookupVpcPublicGatewayIp(ctx *pulumi.Context, args *LookupVpcPublicGatewayIpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayIpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayIpResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args, &rv, opts...)
 	if err != nil {
@@ -105,6 +107,12 @@ func (o LookupVpcPublicGatewayIpResultOutput) ToLookupVpcPublicGatewayIpResultOu
 
 func (o LookupVpcPublicGatewayIpResultOutput) ToLookupVpcPublicGatewayIpResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayIpResultOutput {
 	return o
+}
+
+func (o LookupVpcPublicGatewayIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayIpResult] {
+	return pulumix.Output[LookupVpcPublicGatewayIpResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPublicGatewayIpResultOutput) Address() pulumi.StringOutput {

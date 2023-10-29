@@ -5,6 +5,7 @@ package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.scaleway.outputs.GetInstanceServerPrivateNetwork;
+import com.pulumi.scaleway.outputs.GetInstanceServerPublicIp;
 import com.pulumi.scaleway.outputs.GetInstanceServerRootVolume;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -31,7 +32,7 @@ public final class GetInstanceServerResult {
      */
     private String cloudInit;
     /**
-     * @return True is dynamic IP in enable on the server.
+     * @return True if dynamic IP in enable on the server.
      * 
      */
     private Boolean enableDynamicIp;
@@ -51,6 +52,7 @@ public final class GetInstanceServerResult {
      */
     private String image;
     private String ipId;
+    private List<String> ipIds;
     /**
      * @return The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
      * 
@@ -94,11 +96,22 @@ public final class GetInstanceServerResult {
      */
     private String projectId;
     /**
-     * @return The public IPv4 address of the server.
+     * @return The public IP address of the server.
      * 
      */
     private String publicIp;
+    /**
+     * @return The list of public IPs of the server
+     * 
+     */
+    private List<GetInstanceServerPublicIp> publicIps;
+    private Boolean replaceOnTypeChange;
     private List<GetInstanceServerRootVolume> rootVolumes;
+    /**
+     * @return True if the server support routed ip only.
+     * 
+     */
+    private Boolean routedIpEnabled;
     /**
      * @return The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      * 
@@ -151,7 +164,7 @@ public final class GetInstanceServerResult {
         return this.cloudInit;
     }
     /**
-     * @return True is dynamic IP in enable on the server.
+     * @return True if dynamic IP in enable on the server.
      * 
      */
     public Boolean enableDynamicIp() {
@@ -180,6 +193,9 @@ public final class GetInstanceServerResult {
     }
     public String ipId() {
         return this.ipId;
+    }
+    public List<String> ipIds() {
+        return this.ipIds;
     }
     /**
      * @return The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -244,14 +260,31 @@ public final class GetInstanceServerResult {
         return this.projectId;
     }
     /**
-     * @return The public IPv4 address of the server.
+     * @return The public IP address of the server.
      * 
      */
     public String publicIp() {
         return this.publicIp;
     }
+    /**
+     * @return The list of public IPs of the server
+     * 
+     */
+    public List<GetInstanceServerPublicIp> publicIps() {
+        return this.publicIps;
+    }
+    public Boolean replaceOnTypeChange() {
+        return this.replaceOnTypeChange;
+    }
     public List<GetInstanceServerRootVolume> rootVolumes() {
         return this.rootVolumes;
+    }
+    /**
+     * @return True if the server support routed ip only.
+     * 
+     */
+    public Boolean routedIpEnabled() {
+        return this.routedIpEnabled;
     }
     /**
      * @return The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -314,6 +347,7 @@ public final class GetInstanceServerResult {
         private String id;
         private String image;
         private String ipId;
+        private List<String> ipIds;
         private String ipv6Address;
         private String ipv6Gateway;
         private Integer ipv6PrefixLength;
@@ -325,7 +359,10 @@ public final class GetInstanceServerResult {
         private List<GetInstanceServerPrivateNetwork> privateNetworks;
         private String projectId;
         private String publicIp;
+        private List<GetInstanceServerPublicIp> publicIps;
+        private Boolean replaceOnTypeChange;
         private List<GetInstanceServerRootVolume> rootVolumes;
+        private Boolean routedIpEnabled;
         private String securityGroupId;
         private @Nullable String serverId;
         private String state;
@@ -345,6 +382,7 @@ public final class GetInstanceServerResult {
     	      this.id = defaults.id;
     	      this.image = defaults.image;
     	      this.ipId = defaults.ipId;
+    	      this.ipIds = defaults.ipIds;
     	      this.ipv6Address = defaults.ipv6Address;
     	      this.ipv6Gateway = defaults.ipv6Gateway;
     	      this.ipv6PrefixLength = defaults.ipv6PrefixLength;
@@ -356,7 +394,10 @@ public final class GetInstanceServerResult {
     	      this.privateNetworks = defaults.privateNetworks;
     	      this.projectId = defaults.projectId;
     	      this.publicIp = defaults.publicIp;
+    	      this.publicIps = defaults.publicIps;
+    	      this.replaceOnTypeChange = defaults.replaceOnTypeChange;
     	      this.rootVolumes = defaults.rootVolumes;
+    	      this.routedIpEnabled = defaults.routedIpEnabled;
     	      this.securityGroupId = defaults.securityGroupId;
     	      this.serverId = defaults.serverId;
     	      this.state = defaults.state;
@@ -413,6 +454,14 @@ public final class GetInstanceServerResult {
         public Builder ipId(String ipId) {
             this.ipId = Objects.requireNonNull(ipId);
             return this;
+        }
+        @CustomType.Setter
+        public Builder ipIds(List<String> ipIds) {
+            this.ipIds = Objects.requireNonNull(ipIds);
+            return this;
+        }
+        public Builder ipIds(String... ipIds) {
+            return ipIds(List.of(ipIds));
         }
         @CustomType.Setter
         public Builder ipv6Address(String ipv6Address) {
@@ -473,12 +522,30 @@ public final class GetInstanceServerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder publicIps(List<GetInstanceServerPublicIp> publicIps) {
+            this.publicIps = Objects.requireNonNull(publicIps);
+            return this;
+        }
+        public Builder publicIps(GetInstanceServerPublicIp... publicIps) {
+            return publicIps(List.of(publicIps));
+        }
+        @CustomType.Setter
+        public Builder replaceOnTypeChange(Boolean replaceOnTypeChange) {
+            this.replaceOnTypeChange = Objects.requireNonNull(replaceOnTypeChange);
+            return this;
+        }
+        @CustomType.Setter
         public Builder rootVolumes(List<GetInstanceServerRootVolume> rootVolumes) {
             this.rootVolumes = Objects.requireNonNull(rootVolumes);
             return this;
         }
         public Builder rootVolumes(GetInstanceServerRootVolume... rootVolumes) {
             return rootVolumes(List.of(rootVolumes));
+        }
+        @CustomType.Setter
+        public Builder routedIpEnabled(Boolean routedIpEnabled) {
+            this.routedIpEnabled = Objects.requireNonNull(routedIpEnabled);
+            return this;
         }
         @CustomType.Setter
         public Builder securityGroupId(String securityGroupId) {
@@ -529,6 +596,7 @@ public final class GetInstanceServerResult {
             o.id = id;
             o.image = image;
             o.ipId = ipId;
+            o.ipIds = ipIds;
             o.ipv6Address = ipv6Address;
             o.ipv6Gateway = ipv6Gateway;
             o.ipv6PrefixLength = ipv6PrefixLength;
@@ -540,7 +608,10 @@ public final class GetInstanceServerResult {
             o.privateNetworks = privateNetworks;
             o.projectId = projectId;
             o.publicIp = publicIp;
+            o.publicIps = publicIps;
+            o.replaceOnTypeChange = replaceOnTypeChange;
             o.rootVolumes = rootVolumes;
+            o.routedIpEnabled = routedIpEnabled;
             o.securityGroupId = securityGroupId;
             o.serverId = serverId;
             o.state = state;

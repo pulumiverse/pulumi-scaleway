@@ -110,6 +110,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/instancePrivateNic:InstancePrivateNic")
 public class InstancePrivateNic extends com.pulumi.resources.CustomResource {
     /**
+     * IPAM ip list, should be for internal use only
+     * 
+     */
+    @Export(name="ipIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> ipIds;
+
+    /**
+     * @return IPAM ip list, should be for internal use only
+     * 
+     */
+    public Output<Optional<List<String>>> ipIds() {
+        return Codegen.optional(this.ipIds);
+    }
+    /**
      * The MAC address of the private NIC.
      * 
      */

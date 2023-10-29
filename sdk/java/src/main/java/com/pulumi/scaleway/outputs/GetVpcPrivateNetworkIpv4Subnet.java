@@ -4,21 +4,28 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 
 @CustomType
 public final class GetVpcPrivateNetworkIpv4Subnet {
+    private String address;
     private String createdAt;
     /**
      * @return The ID of the private network.
      * 
      */
     private String id;
+    private Integer prefixLength;
     private String subnet;
+    private String subnetMask;
     private String updatedAt;
 
     private GetVpcPrivateNetworkIpv4Subnet() {}
+    public String address() {
+        return this.address;
+    }
     public String createdAt() {
         return this.createdAt;
     }
@@ -29,8 +36,14 @@ public final class GetVpcPrivateNetworkIpv4Subnet {
     public String id() {
         return this.id;
     }
+    public Integer prefixLength() {
+        return this.prefixLength;
+    }
     public String subnet() {
         return this.subnet;
+    }
+    public String subnetMask() {
+        return this.subnetMask;
     }
     public String updatedAt() {
         return this.updatedAt;
@@ -45,19 +58,30 @@ public final class GetVpcPrivateNetworkIpv4Subnet {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String address;
         private String createdAt;
         private String id;
+        private Integer prefixLength;
         private String subnet;
+        private String subnetMask;
         private String updatedAt;
         public Builder() {}
         public Builder(GetVpcPrivateNetworkIpv4Subnet defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.address = defaults.address;
     	      this.createdAt = defaults.createdAt;
     	      this.id = defaults.id;
+    	      this.prefixLength = defaults.prefixLength;
     	      this.subnet = defaults.subnet;
+    	      this.subnetMask = defaults.subnetMask;
     	      this.updatedAt = defaults.updatedAt;
         }
 
+        @CustomType.Setter
+        public Builder address(String address) {
+            this.address = Objects.requireNonNull(address);
+            return this;
+        }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
             this.createdAt = Objects.requireNonNull(createdAt);
@@ -69,8 +93,18 @@ public final class GetVpcPrivateNetworkIpv4Subnet {
             return this;
         }
         @CustomType.Setter
+        public Builder prefixLength(Integer prefixLength) {
+            this.prefixLength = Objects.requireNonNull(prefixLength);
+            return this;
+        }
+        @CustomType.Setter
         public Builder subnet(String subnet) {
             this.subnet = Objects.requireNonNull(subnet);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder subnetMask(String subnetMask) {
+            this.subnetMask = Objects.requireNonNull(subnetMask);
             return this;
         }
         @CustomType.Setter
@@ -80,9 +114,12 @@ public final class GetVpcPrivateNetworkIpv4Subnet {
         }
         public GetVpcPrivateNetworkIpv4Subnet build() {
             final var o = new GetVpcPrivateNetworkIpv4Subnet();
+            o.address = address;
             o.createdAt = createdAt;
             o.id = id;
+            o.prefixLength = prefixLength;
             o.subnet = subnet;
+            o.subnetMask = subnetMask;
             o.updatedAt = updatedAt;
             return o;
         }

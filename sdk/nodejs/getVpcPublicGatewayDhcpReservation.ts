@@ -26,7 +26,7 @@ export function getVpcPublicGatewayDhcpReservation(args?: GetVpcPublicGatewayDhc
  */
 export interface GetVpcPublicGatewayDhcpReservationArgs {
     /**
-     * The ID of the owning GatewayNetwork.
+     * The ID of the owning GatewayNetwork
      */
     gatewayNetworkId?: string;
     /**
@@ -98,7 +98,7 @@ export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGate
  */
 export interface GetVpcPublicGatewayDhcpReservationOutputArgs {
     /**
-     * The ID of the owning GatewayNetwork.
+     * The ID of the owning GatewayNetwork
      */
     gatewayNetworkId?: pulumi.Input<string>;
     /**

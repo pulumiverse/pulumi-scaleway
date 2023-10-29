@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
@@ -127,7 +129,7 @@ func NewFunctionCron(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FunctionCron
 	err := ctx.RegisterResource("scaleway:index/functionCron:FunctionCron", name, args, &resource, opts...)
 	if err != nil {
@@ -237,6 +239,12 @@ func (i *FunctionCron) ToFunctionCronOutputWithContext(ctx context.Context) Func
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionCronOutput)
 }
 
+func (i *FunctionCron) ToOutput(ctx context.Context) pulumix.Output[*FunctionCron] {
+	return pulumix.Output[*FunctionCron]{
+		OutputState: i.ToFunctionCronOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FunctionCronArrayInput is an input type that accepts FunctionCronArray and FunctionCronArrayOutput values.
 // You can construct a concrete instance of `FunctionCronArrayInput` via:
 //
@@ -260,6 +268,12 @@ func (i FunctionCronArray) ToFunctionCronArrayOutput() FunctionCronArrayOutput {
 
 func (i FunctionCronArray) ToFunctionCronArrayOutputWithContext(ctx context.Context) FunctionCronArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionCronArrayOutput)
+}
+
+func (i FunctionCronArray) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionCron] {
+	return pulumix.Output[[]*FunctionCron]{
+		OutputState: i.ToFunctionCronArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FunctionCronMapInput is an input type that accepts FunctionCronMap and FunctionCronMapOutput values.
@@ -287,6 +301,12 @@ func (i FunctionCronMap) ToFunctionCronMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionCronMapOutput)
 }
 
+func (i FunctionCronMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionCron] {
+	return pulumix.Output[map[string]*FunctionCron]{
+		OutputState: i.ToFunctionCronMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FunctionCronOutput struct{ *pulumi.OutputState }
 
 func (FunctionCronOutput) ElementType() reflect.Type {
@@ -299,6 +319,12 @@ func (o FunctionCronOutput) ToFunctionCronOutput() FunctionCronOutput {
 
 func (o FunctionCronOutput) ToFunctionCronOutputWithContext(ctx context.Context) FunctionCronOutput {
 	return o
+}
+
+func (o FunctionCronOutput) ToOutput(ctx context.Context) pulumix.Output[*FunctionCron] {
+	return pulumix.Output[*FunctionCron]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The key-value mapping to define arguments that will be passed to your function’s event object
@@ -343,6 +369,12 @@ func (o FunctionCronArrayOutput) ToFunctionCronArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o FunctionCronArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionCron] {
+	return pulumix.Output[[]*FunctionCron]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FunctionCronArrayOutput) Index(i pulumi.IntInput) FunctionCronOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FunctionCron {
 		return vs[0].([]*FunctionCron)[vs[1].(int)]
@@ -361,6 +393,12 @@ func (o FunctionCronMapOutput) ToFunctionCronMapOutput() FunctionCronMapOutput {
 
 func (o FunctionCronMapOutput) ToFunctionCronMapOutputWithContext(ctx context.Context) FunctionCronMapOutput {
 	return o
+}
+
+func (o FunctionCronMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionCron] {
+	return pulumix.Output[map[string]*FunctionCron]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FunctionCronMapOutput) MapIndex(k pulumi.StringInput) FunctionCronOutput {

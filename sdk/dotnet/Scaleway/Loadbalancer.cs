@@ -41,6 +41,27 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Private LB
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @base = new Scaleway.Loadbalancer("base", new()
+    ///     {
+    ///         IpId = scaleway_lb_ip.Main.Id,
+    ///         Zone = scaleway_lb_ip.Main.Zone,
+    ///         Type = "LB-S",
+    ///         AssignFlexibleIp = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### IP for Public Gateway
     /// resource "scaleway_vpc_public_gateway_ip" "main" {
     /// }
@@ -160,6 +181,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class Loadbalancer : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Defines whether to automatically assign a flexible public IP to the load-balancer.
+        /// </summary>
+        [Output("assignFlexibleIp")]
+        public Output<bool?> AssignFlexibleIp { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the load-balancer.
         /// </summary>
         [Output("description")]
@@ -174,10 +201,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the associated LB IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+        /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
         /// </summary>
         [Output("ipId")]
-        public Output<string> IpId { get; private set; } = null!;
+        public Output<string?> IpId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the load-balancer.
@@ -228,7 +255,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the load-balancer. Please check the migration section to upgrade the type
+        /// The type of the load-balancer. Please check the migration section to upgrade the type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -287,6 +314,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class LoadbalancerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Defines whether to automatically assign a flexible public IP to the load-balancer.
+        /// </summary>
+        [Input("assignFlexibleIp")]
+        public Input<bool>? AssignFlexibleIp { get; set; }
+
+        /// <summary>
         /// The description of the load-balancer.
         /// </summary>
         [Input("description")]
@@ -295,10 +328,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the associated LB IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+        /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
         /// </summary>
-        [Input("ipId", required: true)]
-        public Input<string> IpId { get; set; } = null!;
+        [Input("ipId")]
+        public Input<string>? IpId { get; set; }
 
         /// <summary>
         /// The name of the load-balancer.
@@ -349,7 +382,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The type of the load-balancer. Please check the migration section to upgrade the type
+        /// The type of the load-balancer. Please check the migration section to upgrade the type.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -369,6 +402,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class LoadbalancerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Defines whether to automatically assign a flexible public IP to the load-balancer.
+        /// </summary>
+        [Input("assignFlexibleIp")]
+        public Input<bool>? AssignFlexibleIp { get; set; }
+
+        /// <summary>
         /// The description of the load-balancer.
         /// </summary>
         [Input("description")]
@@ -383,7 +422,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the associated LB IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+        /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -449,7 +488,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The type of the load-balancer. Please check the migration section to upgrade the type
+        /// The type of the load-balancer. Please check the migration section to upgrade the type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Container.
@@ -55,7 +57,7 @@ import (
 //				Timeout:        pulumi.Int(600),
 //				MaxConcurrency: pulumi.Int(80),
 //				Privacy:        pulumi.String("private"),
-//				Protocol:       pulumi.String("h2c"),
+//				Protocol:       pulumi.String("http1"),
 //				Deploy:         pulumi.Bool(true),
 //				EnvironmentVariables: pulumi.StringMap{
 //					"foo": pulumi.String("var"),
@@ -191,7 +193,7 @@ func NewContainer(ctx *pulumi.Context,
 		"secretEnvironmentVariables",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Container
 	err := ctx.RegisterResource("scaleway:index/container:Container", name, args, &resource, opts...)
 	if err != nil {
@@ -362,6 +364,8 @@ type containerArgs struct {
 	Privacy *string `pulumi:"privacy"`
 	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol *string `pulumi:"protocol"`
+	// (Defaults to provider `region`) The region in which the container was created.
+	Region *string `pulumi:"region"`
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
@@ -410,6 +414,8 @@ type ContainerArgs struct {
 	Privacy pulumi.StringPtrInput
 	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrInput
+	// (Defaults to provider `region`) The region in which the container was created.
+	Region pulumi.StringPtrInput
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
@@ -445,6 +451,12 @@ func (i *Container) ToContainerOutputWithContext(ctx context.Context) ContainerO
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerOutput)
 }
 
+func (i *Container) ToOutput(ctx context.Context) pulumix.Output[*Container] {
+	return pulumix.Output[*Container]{
+		OutputState: i.ToContainerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ContainerArrayInput is an input type that accepts ContainerArray and ContainerArrayOutput values.
 // You can construct a concrete instance of `ContainerArrayInput` via:
 //
@@ -468,6 +480,12 @@ func (i ContainerArray) ToContainerArrayOutput() ContainerArrayOutput {
 
 func (i ContainerArray) ToContainerArrayOutputWithContext(ctx context.Context) ContainerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerArrayOutput)
+}
+
+func (i ContainerArray) ToOutput(ctx context.Context) pulumix.Output[[]*Container] {
+	return pulumix.Output[[]*Container]{
+		OutputState: i.ToContainerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ContainerMapInput is an input type that accepts ContainerMap and ContainerMapOutput values.
@@ -495,6 +513,12 @@ func (i ContainerMap) ToContainerMapOutputWithContext(ctx context.Context) Conta
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerMapOutput)
 }
 
+func (i ContainerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Container] {
+	return pulumix.Output[map[string]*Container]{
+		OutputState: i.ToContainerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ContainerOutput struct{ *pulumi.OutputState }
 
 func (ContainerOutput) ElementType() reflect.Type {
@@ -507,6 +531,12 @@ func (o ContainerOutput) ToContainerOutput() ContainerOutput {
 
 func (o ContainerOutput) ToContainerOutputWithContext(ctx context.Context) ContainerOutput {
 	return o
+}
+
+func (o ContainerOutput) ToOutput(ctx context.Context) pulumix.Output[*Container] {
+	return pulumix.Output[*Container]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The amount of vCPU computing resources to allocate to each container. Defaults to 140.
@@ -644,6 +674,12 @@ func (o ContainerArrayOutput) ToContainerArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o ContainerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Container] {
+	return pulumix.Output[[]*Container]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ContainerArrayOutput) Index(i pulumi.IntInput) ContainerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Container {
 		return vs[0].([]*Container)[vs[1].(int)]
@@ -662,6 +698,12 @@ func (o ContainerMapOutput) ToContainerMapOutput() ContainerMapOutput {
 
 func (o ContainerMapOutput) ToContainerMapOutputWithContext(ctx context.Context) ContainerMapOutput {
 	return o
+}
+
+func (o ContainerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Container] {
+	return pulumix.Output[map[string]*Container]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ContainerMapOutput) MapIndex(k pulumi.StringInput) ContainerOutput {

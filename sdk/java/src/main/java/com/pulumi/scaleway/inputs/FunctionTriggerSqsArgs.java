@@ -16,29 +16,29 @@ public final class FunctionTriggerSqsArgs extends com.pulumi.resources.ResourceA
     public static final FunctionTriggerSqsArgs Empty = new FunctionTriggerSqsArgs();
 
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      * 
      */
-    @Import(name="namespaceId", required=true)
-    private Output<String> namespaceId;
+    @Import(name="namespaceId")
+    private @Nullable Output<String> namespaceId;
 
     /**
-     * @return ID of the mnq namespace
+     * @return ID of the mnq namespace. Deprecated.
      * 
      */
-    public Output<String> namespaceId() {
-        return this.namespaceId;
+    public Optional<Output<String>> namespaceId() {
+        return Optional.ofNullable(this.namespaceId);
     }
 
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider&#39;s project
+     * ID of the project that contain the mnq nats account, defaults to provider&#39;s project
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return ID of the project that contain the mnq namespace, defaults to provider&#39;s project
+     * @return ID of the project that contain the mnq nats account, defaults to provider&#39;s project
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -103,18 +103,18 @@ public final class FunctionTriggerSqsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param namespaceId ID of the mnq namespace
+         * @param namespaceId ID of the mnq namespace. Deprecated.
          * 
          * @return builder
          * 
          */
-        public Builder namespaceId(Output<String> namespaceId) {
+        public Builder namespaceId(@Nullable Output<String> namespaceId) {
             $.namespaceId = namespaceId;
             return this;
         }
 
         /**
-         * @param namespaceId ID of the mnq namespace
+         * @param namespaceId ID of the mnq namespace. Deprecated.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class FunctionTriggerSqsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param projectId ID of the project that contain the mnq namespace, defaults to provider&#39;s project
+         * @param projectId ID of the project that contain the mnq nats account, defaults to provider&#39;s project
          * 
          * @return builder
          * 
@@ -135,7 +135,7 @@ public final class FunctionTriggerSqsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param projectId ID of the project that contain the mnq namespace, defaults to provider&#39;s project
+         * @param projectId ID of the project that contain the mnq nats account, defaults to provider&#39;s project
          * 
          * @return builder
          * 
@@ -187,7 +187,6 @@ public final class FunctionTriggerSqsArgs extends com.pulumi.resources.ResourceA
         }
 
         public FunctionTriggerSqsArgs build() {
-            $.namespaceId = Objects.requireNonNull($.namespaceId, "expected parameter 'namespaceId' to be non-null");
             $.queue = Objects.requireNonNull($.queue, "expected parameter 'queue' to be non-null");
             return $;
         }

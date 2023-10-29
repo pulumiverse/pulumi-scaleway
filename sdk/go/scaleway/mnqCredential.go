@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -48,7 +50,7 @@ func NewMnqCredential(ctx *pulumi.Context,
 	if args.NamespaceId == nil {
 		return nil, errors.New("invalid value for required argument 'NamespaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MnqCredential
 	err := ctx.RegisterResource("scaleway:index/mnqCredential:MnqCredential", name, args, &resource, opts...)
 	if err != nil {
@@ -158,6 +160,12 @@ func (i *MnqCredential) ToMnqCredentialOutputWithContext(ctx context.Context) Mn
 	return pulumi.ToOutputWithContext(ctx, i).(MnqCredentialOutput)
 }
 
+func (i *MnqCredential) ToOutput(ctx context.Context) pulumix.Output[*MnqCredential] {
+	return pulumix.Output[*MnqCredential]{
+		OutputState: i.ToMnqCredentialOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MnqCredentialArrayInput is an input type that accepts MnqCredentialArray and MnqCredentialArrayOutput values.
 // You can construct a concrete instance of `MnqCredentialArrayInput` via:
 //
@@ -181,6 +189,12 @@ func (i MnqCredentialArray) ToMnqCredentialArrayOutput() MnqCredentialArrayOutpu
 
 func (i MnqCredentialArray) ToMnqCredentialArrayOutputWithContext(ctx context.Context) MnqCredentialArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqCredentialArrayOutput)
+}
+
+func (i MnqCredentialArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqCredential] {
+	return pulumix.Output[[]*MnqCredential]{
+		OutputState: i.ToMnqCredentialArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MnqCredentialMapInput is an input type that accepts MnqCredentialMap and MnqCredentialMapOutput values.
@@ -208,6 +222,12 @@ func (i MnqCredentialMap) ToMnqCredentialMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(MnqCredentialMapOutput)
 }
 
+func (i MnqCredentialMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqCredential] {
+	return pulumix.Output[map[string]*MnqCredential]{
+		OutputState: i.ToMnqCredentialMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MnqCredentialOutput struct{ *pulumi.OutputState }
 
 func (MnqCredentialOutput) ElementType() reflect.Type {
@@ -220,6 +240,12 @@ func (o MnqCredentialOutput) ToMnqCredentialOutput() MnqCredentialOutput {
 
 func (o MnqCredentialOutput) ToMnqCredentialOutputWithContext(ctx context.Context) MnqCredentialOutput {
 	return o
+}
+
+func (o MnqCredentialOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqCredential] {
+	return pulumix.Output[*MnqCredential]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The credential name..
@@ -267,6 +293,12 @@ func (o MnqCredentialArrayOutput) ToMnqCredentialArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o MnqCredentialArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqCredential] {
+	return pulumix.Output[[]*MnqCredential]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MnqCredentialArrayOutput) Index(i pulumi.IntInput) MnqCredentialOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqCredential {
 		return vs[0].([]*MnqCredential)[vs[1].(int)]
@@ -285,6 +317,12 @@ func (o MnqCredentialMapOutput) ToMnqCredentialMapOutput() MnqCredentialMapOutpu
 
 func (o MnqCredentialMapOutput) ToMnqCredentialMapOutputWithContext(ctx context.Context) MnqCredentialMapOutput {
 	return o
+}
+
+func (o MnqCredentialMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqCredential] {
+	return pulumix.Output[map[string]*MnqCredential]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MnqCredentialMapOutput) MapIndex(k pulumi.StringInput) MnqCredentialOutput {

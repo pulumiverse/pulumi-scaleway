@@ -223,6 +223,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// 
+        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -252,7 +254,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        /// The type of Kubernetes cluster. Possible values are:
+        /// 
+        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// 
+        /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+        /// 
+        /// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -418,6 +426,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// 
+        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -447,7 +457,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        /// The type of Kubernetes cluster. Possible values are:
+        /// 
+        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// 
+        /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+        /// 
+        /// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -586,6 +602,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// 
+        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -621,7 +639,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        /// The type of Kubernetes cluster. Possible values are:
+        /// 
+        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// 
+        /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+        /// 
+        /// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

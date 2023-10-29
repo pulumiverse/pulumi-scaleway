@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
@@ -144,7 +146,7 @@ func NewVpcPublicGatewayDhcpReservation(ctx *pulumi.Context,
 	if args.MacAddress == nil {
 		return nil, errors.New("invalid value for required argument 'MacAddress'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcPublicGatewayDhcpReservation
 	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation", name, args, &resource, opts...)
 	if err != nil {
@@ -254,6 +256,12 @@ func (i *VpcPublicGatewayDhcpReservation) ToVpcPublicGatewayDhcpReservationOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpReservationOutput)
 }
 
+func (i *VpcPublicGatewayDhcpReservation) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayDhcpReservation] {
+	return pulumix.Output[*VpcPublicGatewayDhcpReservation]{
+		OutputState: i.ToVpcPublicGatewayDhcpReservationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcPublicGatewayDhcpReservationArrayInput is an input type that accepts VpcPublicGatewayDhcpReservationArray and VpcPublicGatewayDhcpReservationArrayOutput values.
 // You can construct a concrete instance of `VpcPublicGatewayDhcpReservationArrayInput` via:
 //
@@ -277,6 +285,12 @@ func (i VpcPublicGatewayDhcpReservationArray) ToVpcPublicGatewayDhcpReservationA
 
 func (i VpcPublicGatewayDhcpReservationArray) ToVpcPublicGatewayDhcpReservationArrayOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpReservationArrayOutput)
+}
+
+func (i VpcPublicGatewayDhcpReservationArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayDhcpReservation] {
+	return pulumix.Output[[]*VpcPublicGatewayDhcpReservation]{
+		OutputState: i.ToVpcPublicGatewayDhcpReservationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcPublicGatewayDhcpReservationMapInput is an input type that accepts VpcPublicGatewayDhcpReservationMap and VpcPublicGatewayDhcpReservationMapOutput values.
@@ -304,6 +318,12 @@ func (i VpcPublicGatewayDhcpReservationMap) ToVpcPublicGatewayDhcpReservationMap
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpReservationMapOutput)
 }
 
+func (i VpcPublicGatewayDhcpReservationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayDhcpReservation] {
+	return pulumix.Output[map[string]*VpcPublicGatewayDhcpReservation]{
+		OutputState: i.ToVpcPublicGatewayDhcpReservationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcPublicGatewayDhcpReservationOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayDhcpReservationOutput) ElementType() reflect.Type {
@@ -316,6 +336,12 @@ func (o VpcPublicGatewayDhcpReservationOutput) ToVpcPublicGatewayDhcpReservation
 
 func (o VpcPublicGatewayDhcpReservationOutput) ToVpcPublicGatewayDhcpReservationOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationOutput {
 	return o
+}
+
+func (o VpcPublicGatewayDhcpReservationOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayDhcpReservation] {
+	return pulumix.Output[*VpcPublicGatewayDhcpReservation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time of the creation of the public gateway DHCP config.
@@ -372,6 +398,12 @@ func (o VpcPublicGatewayDhcpReservationArrayOutput) ToVpcPublicGatewayDhcpReserv
 	return o
 }
 
+func (o VpcPublicGatewayDhcpReservationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayDhcpReservation] {
+	return pulumix.Output[[]*VpcPublicGatewayDhcpReservation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcPublicGatewayDhcpReservationArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayDhcpReservationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayDhcpReservation {
 		return vs[0].([]*VpcPublicGatewayDhcpReservation)[vs[1].(int)]
@@ -390,6 +422,12 @@ func (o VpcPublicGatewayDhcpReservationMapOutput) ToVpcPublicGatewayDhcpReservat
 
 func (o VpcPublicGatewayDhcpReservationMapOutput) ToVpcPublicGatewayDhcpReservationMapOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpReservationMapOutput {
 	return o
+}
+
+func (o VpcPublicGatewayDhcpReservationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayDhcpReservation] {
+	return pulumix.Output[map[string]*VpcPublicGatewayDhcpReservation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcPublicGatewayDhcpReservationMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayDhcpReservationOutput {

@@ -52,6 +52,24 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With IPv6
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.FlexibleIp("main", new()
+    ///     {
+    ///         IsIpv6 = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### With baremetal server
     /// 
     /// ```csharp
@@ -110,7 +128,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class FlexibleIp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the Flexible IP (Format ISO 8601)
+        /// The date and time of the creation of the Flexible IP (Format ISO 8601).
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -122,25 +140,25 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The IPv4 address of the Flexible IP
+        /// The IP address of the Flexible IP.
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The MAC address of the server associated with this flexible IP
+        /// Defines whether the flexible IP has an IPv6 address.
         /// </summary>
-        [Output("macAddress")]
-        public Output<string> MacAddress { get; private set; } = null!;
+        [Output("isIpv6")]
+        public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// The organization of the Flexible IP
+        /// The organization of the Flexible IP.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The project of the Flexible IP
+        /// The project of the Flexible IP.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -152,10 +170,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the associated server
+        /// The ID of the associated server.
         /// </summary>
         [Output("serverId")]
         public Output<string?> ServerId { get; private set; } = null!;
+
+        /// <summary>
+        /// The status of the flexible IP.
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
         /// A list of tags to apply to the flexible IP.
@@ -164,13 +188,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the Flexible IP (Format ISO 8601)
+        /// The date and time of the last update of the Flexible IP (Format ISO 8601).
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The zone of the Flexible IP
+        /// The zone of the Flexible IP.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -229,7 +253,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The project of the Flexible IP
+        /// Defines whether the flexible IP has an IPv6 address.
+        /// </summary>
+        [Input("isIpv6")]
+        public Input<bool>? IsIpv6 { get; set; }
+
+        /// <summary>
+        /// The project of the Flexible IP.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -241,7 +271,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// The ID of the associated server
+        /// The ID of the associated server.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
@@ -259,7 +289,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The zone of the Flexible IP
+        /// The zone of the Flexible IP.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -273,7 +303,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class FlexibleIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the Flexible IP (Format ISO 8601)
+        /// The date and time of the creation of the Flexible IP (Format ISO 8601).
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -285,25 +315,25 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The IPv4 address of the Flexible IP
+        /// The IP address of the Flexible IP.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The MAC address of the server associated with this flexible IP
+        /// Defines whether the flexible IP has an IPv6 address.
         /// </summary>
-        [Input("macAddress")]
-        public Input<string>? MacAddress { get; set; }
+        [Input("isIpv6")]
+        public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// The organization of the Flexible IP
+        /// The organization of the Flexible IP.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The project of the Flexible IP
+        /// The project of the Flexible IP.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -315,10 +345,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// The ID of the associated server
+        /// The ID of the associated server.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
+
+        /// <summary>
+        /// The status of the flexible IP.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -333,13 +369,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The date and time of the last update of the Flexible IP (Format ISO 8601)
+        /// The date and time of the last update of the Flexible IP (Format ISO 8601).
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The zone of the Flexible IP
+        /// The zone of the Flexible IP.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

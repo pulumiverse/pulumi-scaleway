@@ -12,6 +12,7 @@ import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.DatabaseReadReplicaState;
 import com.pulumi.scaleway.outputs.DatabaseReadReplicaDirectAccess;
 import com.pulumi.scaleway.outputs.DatabaseReadReplicaPrivateNetwork;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -190,6 +191,20 @@ public class DatabaseReadReplica extends com.pulumi.resources.CustomResource {
      */
     public Output<String> region() {
         return this.region;
+    }
+    /**
+     * Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+     * 
+     */
+    @Export(name="sameZone", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> sameZone;
+
+    /**
+     * @return Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+     * 
+     */
+    public Output<Optional<Boolean>> sameZone() {
+        return Codegen.optional(this.sameZone);
     }
 
     /**

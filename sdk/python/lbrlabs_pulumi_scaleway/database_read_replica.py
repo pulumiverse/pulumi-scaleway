@@ -19,7 +19,8 @@ class DatabaseReadReplicaArgs:
                  instance_id: pulumi.Input[str],
                  direct_access: Optional[pulumi.Input['DatabaseReadReplicaDirectAccessArgs']] = None,
                  private_network: Optional[pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a DatabaseReadReplica resource.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
@@ -29,6 +30,7 @@ class DatabaseReadReplicaArgs:
         :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if direct_access is not None:
@@ -37,6 +39,8 @@ class DatabaseReadReplicaArgs:
             pulumi.set(__self__, "private_network", private_network)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if same_zone is not None:
+            pulumi.set(__self__, "same_zone", same_zone)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -89,6 +93,18 @@ class DatabaseReadReplicaArgs:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter(name="sameZone")
+    def same_zone(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        """
+        return pulumi.get(self, "same_zone")
+
+    @same_zone.setter
+    def same_zone(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "same_zone", value)
+
 
 @pulumi.input_type
 class _DatabaseReadReplicaState:
@@ -96,7 +112,8 @@ class _DatabaseReadReplicaState:
                  direct_access: Optional[pulumi.Input['DatabaseReadReplicaDirectAccessArgs']] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering DatabaseReadReplica resources.
         :param pulumi.Input['DatabaseReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
@@ -106,6 +123,7 @@ class _DatabaseReadReplicaState:
         :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         if direct_access is not None:
             pulumi.set(__self__, "direct_access", direct_access)
@@ -115,6 +133,8 @@ class _DatabaseReadReplicaState:
             pulumi.set(__self__, "private_network", private_network)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if same_zone is not None:
+            pulumi.set(__self__, "same_zone", same_zone)
 
     @property
     @pulumi.getter(name="directAccess")
@@ -167,6 +187,18 @@ class _DatabaseReadReplicaState:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter(name="sameZone")
+    def same_zone(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        """
+        return pulumi.get(self, "same_zone")
+
+    @same_zone.setter
+    def same_zone(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "same_zone", value)
+
 
 class DatabaseReadReplica(pulumi.CustomResource):
     @overload
@@ -177,6 +209,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Database read replicas.
@@ -246,6 +279,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         ...
     @overload
@@ -331,6 +365,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -346,6 +381,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["region"] = region
+            __props__.__dict__["same_zone"] = same_zone
         super(DatabaseReadReplica, __self__).__init__(
             'scaleway:index/databaseReadReplica:DatabaseReadReplica',
             resource_name,
@@ -359,7 +395,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
             direct_access: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
-            region: Optional[pulumi.Input[str]] = None) -> 'DatabaseReadReplica':
+            region: Optional[pulumi.Input[str]] = None,
+            same_zone: Optional[pulumi.Input[bool]] = None) -> 'DatabaseReadReplica':
         """
         Get an existing DatabaseReadReplica resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -374,6 +411,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -383,6 +421,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["region"] = region
+        __props__.__dict__["same_zone"] = same_zone
         return DatabaseReadReplica(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -419,4 +458,12 @@ class DatabaseReadReplica(pulumi.CustomResource):
         in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="sameZone")
+    def same_zone(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        """
+        return pulumi.get(self, "same_zone")
 

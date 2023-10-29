@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance private NIC.
@@ -55,7 +57,7 @@ import (
 //
 // ```
 func LookupInstancePrivateNic(ctx *pulumi.Context, args *LookupInstancePrivateNicArgs, opts ...pulumi.InvokeOption) (*LookupInstancePrivateNicResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstancePrivateNicResult
 	err := ctx.Invoke("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args, &rv, opts...)
 	if err != nil {
@@ -85,6 +87,7 @@ type LookupInstancePrivateNicArgs struct {
 type LookupInstancePrivateNicResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id               string   `pulumi:"id"`
+	IpIds            []string `pulumi:"ipIds"`
 	MacAddress       string   `pulumi:"macAddress"`
 	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
 	PrivateNicId     *string  `pulumi:"privateNicId"`
@@ -142,9 +145,19 @@ func (o LookupInstancePrivateNicResultOutput) ToLookupInstancePrivateNicResultOu
 	return o
 }
 
+func (o LookupInstancePrivateNicResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstancePrivateNicResult] {
+	return pulumix.Output[LookupInstancePrivateNicResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupInstancePrivateNicResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstancePrivateNicResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupInstancePrivateNicResultOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstancePrivateNicResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupInstancePrivateNicResultOutput) MacAddress() pulumi.StringOutput {

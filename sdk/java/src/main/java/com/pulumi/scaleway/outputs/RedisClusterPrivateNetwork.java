@@ -12,6 +12,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RedisClusterPrivateNetwork {
+    /**
+     * @return The ID of the endpoint.
+     * 
+     */
     private @Nullable String endpointId;
     /**
      * @return The UUID of the private network resource.
@@ -36,6 +40,10 @@ public final class RedisClusterPrivateNetwork {
     private @Nullable String zone;
 
     private RedisClusterPrivateNetwork() {}
+    /**
+     * @return The ID of the endpoint.
+     * 
+     */
     public Optional<String> endpointId() {
         return Optional.ofNullable(this.endpointId);
     }

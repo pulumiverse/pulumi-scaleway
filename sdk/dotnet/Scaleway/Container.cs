@@ -47,7 +47,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///         Timeout = 600,
     ///         MaxConcurrency = 80,
     ///         Privacy = "private",
-    ///         Protocol = "h2c",
+    ///         Protocol = "http1",
     ///         Deploy = true,
     ///         EnvironmentVariables = 
     ///         {
@@ -398,6 +398,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// (Defaults to provider `region`) The region in which the container was created.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.

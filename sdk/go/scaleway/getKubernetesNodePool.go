@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Kubernetes Cluster's Pool.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupKubernetesNodePool(ctx *pulumi.Context, args *LookupKubernetesNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesNodePoolResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesNodePoolResult
 	err := ctx.Invoke("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args, &rv, opts...)
 	if err != nil {
@@ -89,6 +91,7 @@ type LookupKubernetesNodePoolResult struct {
 	// [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
 	PlacementGroupId   string  `pulumi:"placementGroupId"`
 	PoolId             *string `pulumi:"poolId"`
+	PublicIpDisabled   bool    `pulumi:"publicIpDisabled"`
 	Region             *string `pulumi:"region"`
 	RootVolumeSizeInGb int     `pulumi:"rootVolumeSizeInGb"`
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
@@ -151,6 +154,12 @@ func (o LookupKubernetesNodePoolResultOutput) ToLookupKubernetesNodePoolResultOu
 
 func (o LookupKubernetesNodePoolResultOutput) ToLookupKubernetesNodePoolResultOutputWithContext(ctx context.Context) LookupKubernetesNodePoolResultOutput {
 	return o
+}
+
+func (o LookupKubernetesNodePoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupKubernetesNodePoolResult] {
+	return pulumix.Output[LookupKubernetesNodePoolResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // True if the autohealing feature is enabled for this pool.
@@ -222,6 +231,10 @@ func (o LookupKubernetesNodePoolResultOutput) PlacementGroupId() pulumi.StringOu
 
 func (o LookupKubernetesNodePoolResultOutput) PoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) *string { return v.PoolId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupKubernetesNodePoolResultOutput) PublicIpDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) bool { return v.PublicIpDisabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupKubernetesNodePoolResultOutput) Region() pulumi.StringPtrOutput {

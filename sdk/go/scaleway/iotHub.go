@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -73,7 +75,7 @@ func NewIotHub(ctx *pulumi.Context,
 	if args.ProductPlan == nil {
 		return nil, errors.New("invalid value for required argument 'ProductPlan'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IotHub
 	err := ctx.RegisterResource("scaleway:index/iotHub:IotHub", name, args, &resource, opts...)
 	if err != nil {
@@ -259,6 +261,12 @@ func (i *IotHub) ToIotHubOutputWithContext(ctx context.Context) IotHubOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IotHubOutput)
 }
 
+func (i *IotHub) ToOutput(ctx context.Context) pulumix.Output[*IotHub] {
+	return pulumix.Output[*IotHub]{
+		OutputState: i.ToIotHubOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IotHubArrayInput is an input type that accepts IotHubArray and IotHubArrayOutput values.
 // You can construct a concrete instance of `IotHubArrayInput` via:
 //
@@ -282,6 +290,12 @@ func (i IotHubArray) ToIotHubArrayOutput() IotHubArrayOutput {
 
 func (i IotHubArray) ToIotHubArrayOutputWithContext(ctx context.Context) IotHubArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IotHubArrayOutput)
+}
+
+func (i IotHubArray) ToOutput(ctx context.Context) pulumix.Output[[]*IotHub] {
+	return pulumix.Output[[]*IotHub]{
+		OutputState: i.ToIotHubArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IotHubMapInput is an input type that accepts IotHubMap and IotHubMapOutput values.
@@ -309,6 +323,12 @@ func (i IotHubMap) ToIotHubMapOutputWithContext(ctx context.Context) IotHubMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(IotHubMapOutput)
 }
 
+func (i IotHubMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotHub] {
+	return pulumix.Output[map[string]*IotHub]{
+		OutputState: i.ToIotHubMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IotHubOutput struct{ *pulumi.OutputState }
 
 func (IotHubOutput) ElementType() reflect.Type {
@@ -321,6 +341,12 @@ func (o IotHubOutput) ToIotHubOutput() IotHubOutput {
 
 func (o IotHubOutput) ToIotHubOutputWithContext(ctx context.Context) IotHubOutput {
 	return o
+}
+
+func (o IotHubOutput) ToOutput(ctx context.Context) pulumix.Output[*IotHub] {
+	return pulumix.Output[*IotHub]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The current number of connected devices in the Hub.
@@ -426,6 +452,12 @@ func (o IotHubArrayOutput) ToIotHubArrayOutputWithContext(ctx context.Context) I
 	return o
 }
 
+func (o IotHubArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IotHub] {
+	return pulumix.Output[[]*IotHub]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IotHubArrayOutput) Index(i pulumi.IntInput) IotHubOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotHub {
 		return vs[0].([]*IotHub)[vs[1].(int)]
@@ -444,6 +476,12 @@ func (o IotHubMapOutput) ToIotHubMapOutput() IotHubMapOutput {
 
 func (o IotHubMapOutput) ToIotHubMapOutputWithContext(ctx context.Context) IotHubMapOutput {
 	return o
+}
+
+func (o IotHubMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotHub] {
+	return pulumix.Output[map[string]*IotHub]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IotHubMapOutput) MapIndex(k pulumi.StringInput) IotHubOutput {

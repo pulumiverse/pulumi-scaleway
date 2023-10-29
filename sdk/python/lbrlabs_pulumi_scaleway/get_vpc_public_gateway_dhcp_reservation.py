@@ -163,7 +163,7 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
     API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
 
 
-    :param str gateway_network_id: The ID of the owning GatewayNetwork.
+    :param str gateway_network_id: The ID of the owning GatewayNetwork
     :param str mac_address: The MAC address of the reservation to retrieve
     :param str reservation_id: The ID of the Reservation to retrieve
     :param bool wait_for_dhcp: Boolean to wait for mac_address to exist in dhcp
@@ -205,7 +205,7 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
     API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
 
 
-    :param str gateway_network_id: The ID of the owning GatewayNetwork.
+    :param str gateway_network_id: The ID of the owning GatewayNetwork
     :param str mac_address: The MAC address of the reservation to retrieve
     :param str reservation_id: The ID of the Reservation to retrieve
     :param bool wait_for_dhcp: Boolean to wait for mac_address to exist in dhcp

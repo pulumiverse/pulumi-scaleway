@@ -227,6 +227,22 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.placementGroupId);
     }
     /**
+     * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * &gt; **Important:** Updates to this field will recreate a new resource.
+     * 
+     */
+    @Export(name="publicIpDisabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> publicIpDisabled;
+
+    /**
+     * @return Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * &gt; **Important:** Updates to this field will recreate a new resource.
+     * 
+     */
+    public Output<Optional<Boolean>> publicIpDisabled() {
+        return Codegen.optional(this.publicIpDisabled);
+    }
+    /**
      * `region`) The region in which the pool should be created.
      * 
      */

@@ -84,6 +84,49 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Create a gateway network with IPAM config
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         EnableMasquerade = true,
+    ///         IpamConfigs = new[]
+    ///         {
+    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
+    ///             {
+    ///                 PushDefaultRoute = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -108,7 +151,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+        /// The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Output("dhcpId")]
         public Output<string?> DhcpId { get; private set; } = null!;
@@ -132,6 +175,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// </summary>
+        [Output("ipamConfigs")]
+        public Output<ImmutableArray<Outputs.VpcGatewayNetworkIpamConfig>> IpamConfigs { get; private set; } = null!;
+
+        /// <summary>
         /// The mac address of the creation of the gateway network.
         /// </summary>
         [Output("macAddress")]
@@ -144,10 +193,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+        /// Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Output("staticAddress")]
-        public Output<string?> StaticAddress { get; private set; } = null!;
+        public Output<string> StaticAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// The status of the Public Gateway's connection to the Private Network.
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the last update of the gateway network.
@@ -215,7 +270,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<bool>? CleanupDhcp { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+        /// The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
@@ -238,6 +293,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("gatewayId", required: true)]
         public Input<string> GatewayId { get; set; } = null!;
 
+        [Input("ipamConfigs")]
+        private InputList<Inputs.VpcGatewayNetworkIpamConfigArgs>? _ipamConfigs;
+
+        /// <summary>
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// </summary>
+        public InputList<Inputs.VpcGatewayNetworkIpamConfigArgs> IpamConfigs
+        {
+            get => _ipamConfigs ?? (_ipamConfigs = new InputList<Inputs.VpcGatewayNetworkIpamConfigArgs>());
+            set => _ipamConfigs = value;
+        }
+
         /// <summary>
         /// The ID of the private network.
         /// </summary>
@@ -245,7 +312,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+        /// Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
@@ -277,7 +344,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+        /// The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
@@ -300,6 +367,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
 
+        [Input("ipamConfigs")]
+        private InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs>? _ipamConfigs;
+
+        /// <summary>
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// </summary>
+        public InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs> IpamConfigs
+        {
+            get => _ipamConfigs ?? (_ipamConfigs = new InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs>());
+            set => _ipamConfigs = value;
+        }
+
         /// <summary>
         /// The mac address of the creation of the gateway network.
         /// </summary>
@@ -313,10 +392,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+        /// Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
+
+        /// <summary>
+        /// The status of the Public Gateway's connection to the Private Network.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
 
         /// <summary>
         /// The date and time of the last update of the gateway network.

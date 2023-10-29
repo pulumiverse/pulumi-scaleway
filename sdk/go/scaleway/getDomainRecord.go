@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a domain record.
@@ -48,7 +50,7 @@ import (
 //
 // ```
 func LookupDomainRecord(ctx *pulumi.Context, args *LookupDomainRecordArgs, opts ...pulumi.InvokeOption) (*LookupDomainRecordResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDomainRecordResult
 	err := ctx.Invoke("scaleway:index/getDomainRecord:getDomainRecord", args, &rv, opts...)
 	if err != nil {
@@ -149,6 +151,12 @@ func (o LookupDomainRecordResultOutput) ToLookupDomainRecordResultOutput() Looku
 
 func (o LookupDomainRecordResultOutput) ToLookupDomainRecordResultOutputWithContext(ctx context.Context) LookupDomainRecordResultOutput {
 	return o
+}
+
+func (o LookupDomainRecordResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDomainRecordResult] {
+	return pulumix.Output[LookupDomainRecordResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDomainRecordResultOutput) Data() pulumi.StringPtrOutput {

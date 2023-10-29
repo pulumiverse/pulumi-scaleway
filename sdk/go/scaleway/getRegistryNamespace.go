@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a registry namespace.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupRegistryNamespaceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryNamespaceResult
 	err := ctx.Invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", args, &rv, opts...)
 	if err != nil {
@@ -118,6 +120,12 @@ func (o LookupRegistryNamespaceResultOutput) ToLookupRegistryNamespaceResultOutp
 
 func (o LookupRegistryNamespaceResultOutput) ToLookupRegistryNamespaceResultOutputWithContext(ctx context.Context) LookupRegistryNamespaceResultOutput {
 	return o
+}
+
+func (o LookupRegistryNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRegistryNamespaceResult] {
+	return pulumix.Output[LookupRegistryNamespaceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRegistryNamespaceResultOutput) Description() pulumi.StringOutput {

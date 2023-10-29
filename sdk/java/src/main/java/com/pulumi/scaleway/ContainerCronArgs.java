@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ContainerCronArgs extends com.pulumi.resources.ResourceArgs {
@@ -46,6 +48,23 @@ public final class ContainerCronArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * (Defaults to provider `region`) The region
+     * in where the job was created.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return (Defaults to provider `region`) The region
+     * in where the job was created.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
      * executed.
      * 
@@ -67,6 +86,7 @@ public final class ContainerCronArgs extends com.pulumi.resources.ResourceArgs {
     private ContainerCronArgs(ContainerCronArgs $) {
         this.args = $.args;
         this.containerId = $.containerId;
+        this.region = $.region;
         this.schedule = $.schedule;
     }
 
@@ -130,6 +150,29 @@ public final class ContainerCronArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder containerId(String containerId) {
             return containerId(Output.of(containerId));
+        }
+
+        /**
+         * @param region (Defaults to provider `region`) The region
+         * in where the job was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region (Defaults to provider `region`) The region
+         * in where the job was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

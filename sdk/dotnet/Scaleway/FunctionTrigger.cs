@@ -16,7 +16,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Examples
     /// 
-    /// ### Basic
+    /// ### SQS
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -31,10 +31,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///         FunctionId = scaleway_function.Main.Id,
     ///         Sqs = new Scaleway.Inputs.FunctionTriggerSqsArgs
     ///         {
-    ///             NamespaceId = scaleway_mnq_namespace.Main.Id,
+    ///             ProjectId = scaleway_mnq_sqs.Main.Project_id,
     ///             Queue = "MyQueue",
-    ///             ProjectId = scaleway_mnq_namespace.Main.Project_id,
-    ///             Region = scaleway_mnq_namespace.Main.Region,
+    ///             Region = scaleway_mnq_sqs.Main.Region,
     ///         },
     ///     });
     /// 
@@ -69,6 +68,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The configuration for the Scaleway's Nats used by the trigger
+        /// </summary>
+        [Output("nats")]
+        public Output<Outputs.FunctionTriggerNats?> Nats { get; private set; } = null!;
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.
@@ -148,6 +153,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The configuration for the Scaleway's Nats used by the trigger
+        /// </summary>
+        [Input("nats")]
+        public Input<Inputs.FunctionTriggerNatsArgs>? Nats { get; set; }
+
+        /// <summary>
         /// `region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
@@ -184,6 +195,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The configuration for the Scaleway's Nats used by the trigger
+        /// </summary>
+        [Input("nats")]
+        public Input<Inputs.FunctionTriggerNatsGetArgs>? Nats { get; set; }
 
         /// <summary>
         /// `region`). The region in which the namespace should be created.

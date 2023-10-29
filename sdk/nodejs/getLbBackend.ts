@@ -81,23 +81,29 @@ export interface GetLbBackendResult {
     readonly healthCheckHttps: outputs.GetLbBackendHealthCheckHttp[];
     readonly healthCheckMaxRetries: number;
     readonly healthCheckPort: number;
+    readonly healthCheckSendProxy: boolean;
     readonly healthCheckTcps: outputs.GetLbBackendHealthCheckTcp[];
     readonly healthCheckTimeout: string;
+    readonly healthCheckTransientDelay: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly ignoreSslServerVerify: boolean;
     readonly lbId?: string;
+    readonly maxConnections: number;
+    readonly maxRetries: number;
     readonly name?: string;
     readonly onMarkedDownAction: string;
     readonly proxyProtocol: string;
+    readonly redispatchAttemptCount: number;
     readonly sendProxyV2: boolean;
     readonly serverIps: string[];
     readonly sslBridging: boolean;
     readonly stickySessions: string;
     readonly stickySessionsCookieName: string;
     readonly timeoutConnect: string;
+    readonly timeoutQueue: string;
     readonly timeoutServer: string;
     readonly timeoutTunnel: string;
 }

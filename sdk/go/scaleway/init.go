@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,6 +45,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerNamespace{}
 	case "scaleway:index/containerToken:ContainerToken":
 		r = &ContainerToken{}
+	case "scaleway:index/containerTrigger:ContainerTrigger":
+		r = &ContainerTrigger{}
 	case "scaleway:index/database:Database":
 		r = &Database{}
 	case "scaleway:index/databaseAcl:DatabaseAcl":
@@ -58,12 +61,26 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DatabaseReadReplica{}
 	case "scaleway:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
+	case "scaleway:index/documentdbDatabase:DocumentdbDatabase":
+		r = &DocumentdbDatabase{}
+	case "scaleway:index/documentdbInstance:DocumentdbInstance":
+		r = &DocumentdbInstance{}
+	case "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint":
+		r = &DocumentdbPrivateNetworkEndpoint{}
+	case "scaleway:index/documentdbPrivilege:DocumentdbPrivilege":
+		r = &DocumentdbPrivilege{}
+	case "scaleway:index/documentdbReadReplica:DocumentdbReadReplica":
+		r = &DocumentdbReadReplica{}
+	case "scaleway:index/documentdbUser:DocumentdbUser":
+		r = &DocumentdbUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
 		r = &DomainZone{}
 	case "scaleway:index/flexibleIp:FlexibleIp":
 		r = &FlexibleIp{}
+	case "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress":
+		r = &FlexibleIpMacAddress{}
 	case "scaleway:index/function:Function":
 		r = &Function{}
 	case "scaleway:index/functionCron:FunctionCron":
@@ -82,10 +99,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IamApplication{}
 	case "scaleway:index/iamGroup:IamGroup":
 		r = &IamGroup{}
+	case "scaleway:index/iamGroupMembership:IamGroupMembership":
+		r = &IamGroupMembership{}
 	case "scaleway:index/iamPolicy:IamPolicy":
 		r = &IamPolicy{}
 	case "scaleway:index/iamSshKey:IamSshKey":
 		r = &IamSshKey{}
+	case "scaleway:index/iamUser:IamUser":
+		r = &IamUser{}
 	case "scaleway:index/instanceImage:InstanceImage":
 		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
@@ -138,8 +159,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqCredential{}
 	case "scaleway:index/mnqNamespace:MnqNamespace":
 		r = &MnqNamespace{}
+	case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
+		r = &MnqNatsAccount{}
+	case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
+		r = &MnqNatsCredentials{}
 	case "scaleway:index/mnqQueue:MnqQueue":
 		r = &MnqQueue{}
+	case "scaleway:index/mnqSqs:MnqSqs":
+		r = &MnqSqs{}
+	case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
+		r = &MnqSqsCredentials{}
+	case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
+		r = &MnqSqsQueue{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -180,6 +211,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcPublicGatewayIpReverseDns{}
 	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
 		r = &VpcPublicGatewayPatRule{}
+	case "scaleway:index/webhosting:Webhosting":
+		r = &Webhosting{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -207,7 +240,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/accountProject",
@@ -270,6 +306,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/containerTrigger",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/database",
 		&module{version},
 	)
@@ -305,6 +346,36 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/documentdbDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentdbInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentdbPrivateNetworkEndpoint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentdbPrivilege",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentdbReadReplica",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentdbUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/domainRecord",
 		&module{version},
 	)
@@ -316,6 +387,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/flexibleIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/flexibleIpMacAddress",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -365,12 +441,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/iamGroupMembership",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/iamPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/iamSshKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/iamUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -505,7 +591,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/mnqNatsAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqNatsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/mnqQueue",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSqs",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSqsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSqsQueue",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -606,6 +717,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/vpcPublicGatewayPatRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/webhosting",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

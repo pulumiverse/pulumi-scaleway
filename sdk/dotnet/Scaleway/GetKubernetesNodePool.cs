@@ -198,6 +198,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string PlacementGroupId;
         public readonly string? PoolId;
+        public readonly bool PublicIpDisabled;
         public readonly string? Region;
         public readonly int RootVolumeSizeInGb;
         public readonly string RootVolumeType;
@@ -257,6 +258,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? poolId,
 
+            bool publicIpDisabled,
+
             string? region,
 
             int rootVolumeSizeInGb,
@@ -294,6 +297,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Nodes = nodes;
             PlacementGroupId = placementGroupId;
             PoolId = poolId;
+            PublicIpDisabled = publicIpDisabled;
             Region = region;
             RootVolumeSizeInGb = rootVolumeSizeInGb;
             RootVolumeType = rootVolumeType;

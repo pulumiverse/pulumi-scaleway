@@ -16,14 +16,14 @@ public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulum
     public static final GetVpcPublicGatewayDhcpReservationPlainArgs Empty = new GetVpcPublicGatewayDhcpReservationPlainArgs();
 
     /**
-     * The ID of the owning GatewayNetwork.
+     * The ID of the owning GatewayNetwork
      * 
      */
     @Import(name="gatewayNetworkId")
     private @Nullable String gatewayNetworkId;
 
     /**
-     * @return The ID of the owning GatewayNetwork.
+     * @return The ID of the owning GatewayNetwork
      * 
      */
     public Optional<String> gatewayNetworkId() {
@@ -121,7 +121,7 @@ public final class GetVpcPublicGatewayDhcpReservationPlainArgs extends com.pulum
         }
 
         /**
-         * @param gatewayNetworkId The ID of the owning GatewayNetwork.
+         * @param gatewayNetworkId The ID of the owning GatewayNetwork
          * 
          * @return builder
          * 

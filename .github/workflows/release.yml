@@ -85,7 +85,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.19.x
+        - 1.21.x
         language:
         - nodejs
         - python
@@ -156,7 +156,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.19.x
+        - 1.21.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -193,7 +193,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.19.x
+        - 1.21.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -268,7 +268,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.19.x
+        - 1.21.x
         nodeversion:
         - 14.x
         pythonversion:
@@ -345,7 +345,7 @@ jobs:
         dotnetversion:
         - 3.1.301
         goversion:
-        - 1.19.x
+        - 1.21.x
         language:
         - nodejs
         - python

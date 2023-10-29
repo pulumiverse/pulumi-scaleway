@@ -8,266 +8,11 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// Creates and manages Scaleway Database Instances.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
-//
-// ## Examples
-//
-// ### Example Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				DisableBackup: pulumi.Bool(true),
-//				Engine:        pulumi.String("PostgreSQL-11"),
-//				IsHaCluster:   pulumi.Bool(true),
-//				NodeType:      pulumi.String("DB-DEV-S"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
-//				UserName:      pulumi.String("my_initial_user"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example With IPAM
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				NodeType:      pulumi.String("DB-DEV-S"),
-//				Engine:        pulumi.String("PostgreSQL-11"),
-//				IsHaCluster:   pulumi.Bool(true),
-//				DisableBackup: pulumi.Bool(true),
-//				UserName:      pulumi.String("my_initial_user"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
-//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
-//					PnId: pn.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example with Settings
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				DisableBackup: pulumi.Bool(true),
-//				Engine:        pulumi.String("MySQL-8"),
-//				InitSettings: pulumi.StringMap{
-//					"lower_case_table_names": pulumi.String("1"),
-//				},
-//				NodeType: pulumi.String("db-dev-s"),
-//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
-//				Settings: pulumi.StringMap{
-//					"max_connections": pulumi.String("350"),
-//				},
-//				UserName: pulumi.String("my_initial_user"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example with backup schedule
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				BackupScheduleFrequency: pulumi.Int(24),
-//				BackupScheduleRetention: pulumi.Int(7),
-//				DisableBackup:           pulumi.Bool(false),
-//				Engine:                  pulumi.String("PostgreSQL-11"),
-//				IsHaCluster:             pulumi.Bool(true),
-//				NodeType:                pulumi.String("DB-DEV-S"),
-//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
-//				UserName:                pulumi.String("my_initial_user"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example with private network and dhcp configuration
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn02, err := scaleway.NewVpcPrivateNetwork(ctx, "pn02", nil)
-//			if err != nil {
-//				return err
-//			}
-//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
-//				Subnet: pulumi.String("192.168.1.0/24"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
-//			if err != nil {
-//				return err
-//			}
-//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
-//				Type: pulumi.String("VPC-GW-S"),
-//				IpId: mainVpcPublicGatewayIp.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			mainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
-//				GatewayId:        mainVpcPublicGateway.ID(),
-//				PrivateNetworkId: pn02.ID(),
-//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
-//				CleanupDhcp:      pulumi.Bool(true),
-//				EnableMasquerade: pulumi.Bool(true),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainVpcPublicGatewayIp,
-//				pn02,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			mainDatabaseInstance, err := scaleway.NewDatabaseInstance(ctx, "mainDatabaseInstance", &scaleway.DatabaseInstanceArgs{
-//				NodeType:      pulumi.String("db-dev-s"),
-//				Engine:        pulumi.String("PostgreSQL-11"),
-//				IsHaCluster:   pulumi.Bool(false),
-//				DisableBackup: pulumi.Bool(true),
-//				UserName:      pulumi.String("my_initial_user"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
-//				Region:        pulumi.String("fr-par"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform-test"),
-//					pulumi.String("scaleway_rdb_instance"),
-//					pulumi.String("volume"),
-//					pulumi.String("rdb_pn"),
-//				},
-//				VolumeType:     pulumi.String("bssd"),
-//				VolumeSizeInGb: pulumi.Int(10),
-//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
-//					IpNet: pulumi.String("192.168.1.254/24"),
-//					PnId:  pn02.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
-//				GatewayId: mainVpcPublicGateway.ID(),
-//				PrivateIp: mainVpcPublicGatewayDhcp.Address,
-//				PrivatePort: mainDatabaseInstance.PrivateNetwork.ApplyT(func(privateNetwork scaleway.DatabaseInstancePrivateNetwork) (*int, error) {
-//					return &privateNetwork.Port, nil
-//				}).(pulumi.IntPtrOutput),
-//				PublicPort: pulumi.Int(42),
-//				Protocol:   pulumi.String("both"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainVpcGatewayNetwork,
-//				pn02,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Settings
-//
-// Please consult
-// the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
-// available `settings` and `initSettings` on your `nodeType` of your convenient.
-//
-// ## Private Network
-//
-// > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
-//
-//   - `ipNet` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
-//     CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-//     service if not set.
-//   - `pnId` - (Required) The ID of the private network.
-//
-// ## Limitations
-//
-// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
-// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
-// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
-//
 // ## Import
 //
 // Database Instance can be imported using the `{region}/{id}`, e.g. bash
@@ -365,7 +110,7 @@ func NewDatabaseInstance(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DatabaseInstance
 	err := ctx.RegisterResource("scaleway:index/databaseInstance:DatabaseInstance", name, args, &resource, opts...)
 	if err != nil {
@@ -651,6 +396,12 @@ func (i *DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceOutput)
 }
 
+func (i *DatabaseInstance) ToOutput(ctx context.Context) pulumix.Output[*DatabaseInstance] {
+	return pulumix.Output[*DatabaseInstance]{
+		OutputState: i.ToDatabaseInstanceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DatabaseInstanceArrayInput is an input type that accepts DatabaseInstanceArray and DatabaseInstanceArrayOutput values.
 // You can construct a concrete instance of `DatabaseInstanceArrayInput` via:
 //
@@ -674,6 +425,12 @@ func (i DatabaseInstanceArray) ToDatabaseInstanceArrayOutput() DatabaseInstanceA
 
 func (i DatabaseInstanceArray) ToDatabaseInstanceArrayOutputWithContext(ctx context.Context) DatabaseInstanceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceArrayOutput)
+}
+
+func (i DatabaseInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseInstance] {
+	return pulumix.Output[[]*DatabaseInstance]{
+		OutputState: i.ToDatabaseInstanceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DatabaseInstanceMapInput is an input type that accepts DatabaseInstanceMap and DatabaseInstanceMapOutput values.
@@ -701,6 +458,12 @@ func (i DatabaseInstanceMap) ToDatabaseInstanceMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceMapOutput)
 }
 
+func (i DatabaseInstanceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseInstance] {
+	return pulumix.Output[map[string]*DatabaseInstance]{
+		OutputState: i.ToDatabaseInstanceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DatabaseInstanceOutput struct{ *pulumi.OutputState }
 
 func (DatabaseInstanceOutput) ElementType() reflect.Type {
@@ -713,6 +476,12 @@ func (o DatabaseInstanceOutput) ToDatabaseInstanceOutput() DatabaseInstanceOutpu
 
 func (o DatabaseInstanceOutput) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
 	return o
+}
+
+func (o DatabaseInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabaseInstance] {
+	return pulumix.Output[*DatabaseInstance]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Boolean to store logical backups in the same region as the database instance.
@@ -864,6 +633,12 @@ func (o DatabaseInstanceArrayOutput) ToDatabaseInstanceArrayOutputWithContext(ct
 	return o
 }
 
+func (o DatabaseInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseInstance] {
+	return pulumix.Output[[]*DatabaseInstance]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DatabaseInstanceArrayOutput) Index(i pulumi.IntInput) DatabaseInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseInstance {
 		return vs[0].([]*DatabaseInstance)[vs[1].(int)]
@@ -882,6 +657,12 @@ func (o DatabaseInstanceMapOutput) ToDatabaseInstanceMapOutput() DatabaseInstanc
 
 func (o DatabaseInstanceMapOutput) ToDatabaseInstanceMapOutputWithContext(ctx context.Context) DatabaseInstanceMapOutput {
 	return o
+}
+
+func (o DatabaseInstanceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseInstance] {
+	return pulumix.Output[map[string]*DatabaseInstance]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DatabaseInstanceMapOutput) MapIndex(k pulumi.StringInput) DatabaseInstanceOutput {

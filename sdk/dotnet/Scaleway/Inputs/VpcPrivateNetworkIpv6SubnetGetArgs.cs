@@ -13,18 +13,45 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
     public sealed class VpcPrivateNetworkIpv6SubnetGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        /// </summary>
+        [Input("address")]
+        public Input<string>? Address { get; set; }
+
+        /// <summary>
+        /// The date and time of the creation of the subnet.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the private network.
+        /// The subnet ID.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        /// </summary>
+        [Input("prefixLength")]
+        public Input<int>? PrefixLength { get; set; }
+
+        /// <summary>
+        /// The subnet CIDR.
+        /// </summary>
         [Input("subnet")]
         public Input<string>? Subnet { get; set; }
 
+        /// <summary>
+        /// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+        /// </summary>
+        [Input("subnetMask")]
+        public Input<string>? SubnetMask { get; set; }
+
+        /// <summary>
+        /// The date and time of the last update of the subnet.
+        /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 

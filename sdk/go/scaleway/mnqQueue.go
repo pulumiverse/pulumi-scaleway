@@ -8,146 +8,11 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// Creates and manages Scaleway Messaging and Queuing queues.
-//
-// For more information about MNQ, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/).
-//
-// ## Examples
-//
-// ### NATS
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainMnqNamespace, err := scaleway.NewMnqNamespace(ctx, "mainMnqNamespace", &scaleway.MnqNamespaceArgs{
-//				Protocol: pulumi.String("nats"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			mainMnqCredential, err := scaleway.NewMnqCredential(ctx, "mainMnqCredential", &scaleway.MnqCredentialArgs{
-//				NamespaceId: mainMnqNamespace.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewMnqQueue(ctx, "myQueue", &scaleway.MnqQueueArgs{
-//				NamespaceId: mainMnqNamespace.ID(),
-//				Nats: &scaleway.MnqQueueNatsArgs{
-//					Credentials: mainMnqCredential.NatsCredentials.ApplyT(func(natsCredentials scaleway.MnqCredentialNatsCredentials) (*string, error) {
-//						return &natsCredentials.Content, nil
-//					}).(pulumi.StringPtrOutput),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### SQS
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainMnqNamespace, err := scaleway.NewMnqNamespace(ctx, "mainMnqNamespace", &scaleway.MnqNamespaceArgs{
-//				Protocol: pulumi.String("sqs_sns"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			mainMnqCredential, err := scaleway.NewMnqCredential(ctx, "mainMnqCredential", &scaleway.MnqCredentialArgs{
-//				NamespaceId: mainMnqNamespace.ID(),
-//				SqsSnsCredentials: &scaleway.MnqCredentialSqsSnsCredentialsArgs{
-//					Permissions: &scaleway.MnqCredentialSqsSnsCredentialsPermissionsArgs{
-//						CanPublish: pulumi.Bool(true),
-//						CanReceive: pulumi.Bool(true),
-//						CanManage:  pulumi.Bool(true),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewMnqQueue(ctx, "myQueue", &scaleway.MnqQueueArgs{
-//				NamespaceId: mainMnqNamespace.ID(),
-//				Sqs: &scaleway.MnqQueueSqsArgs{
-//					AccessKey: mainMnqCredential.SqsSnsCredentials.ApplyT(func(sqsSnsCredentials scaleway.MnqCredentialSqsSnsCredentials) (*string, error) {
-//						return &sqsSnsCredentials.AccessKey, nil
-//					}).(pulumi.StringPtrOutput),
-//					SecretKey: mainMnqCredential.SqsSnsCredentials.ApplyT(func(sqsSnsCredentials scaleway.MnqCredentialSqsSnsCredentials) (*string, error) {
-//						return &sqsSnsCredentials.SecretKey, nil
-//					}).(pulumi.StringPtrOutput),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// * `namespaceId` - (Required) The ID of the Namespace associated to.
-//
-// * `name` - (Optional) The name of the queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
-//
-// * `namePrefix` - (Optional) Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-//
-// * `messageMaxAge` - (Optional) The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
-//
-// * `messageMaxSize` - (Optional) The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
-//
-// * `sqs` - (Optional) The SQS attributes of the queue. Conflicts with `nats`.
-//   - `endpoint` - (Optional) The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-//   - `accessKey` - (Required) The access key of the SQS queue.
-//   - `secretKey` - (Required) The secret key of the SQS queue.
-//   - `fifoQueue` - (Optional) Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
-//   - `contentBasedDeduplication` - (Optional) Specifies whether to enable content-based deduplication. Defaults to `false`.
-//   - `receiveWaitTimeSeconds` - (Optional) The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
-//   - `visibilityTimeoutSeconds` - (Optional) The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
-//   - For more information about the SQS limitations, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/#technical-limitations).
-//
-// * `nats` - (Optional) The NATS attributes of the queue. Conflicts with `sqs`.
-//   - `endpoint` - (Optional) The endpoint of the NATS queue. Can contain a {region} placeholder. Defaults to `nats://nats.mnq.{region}.scw.cloud:4222`.
-//   - `credentials` - (Required) Line jump separated key and seed.
-//   - `retentionPolicy` - (Optional) The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information. Defaults to `workqueue`.
-//
-// ### Attribute Reference
-//
-// In addition to all arguments above, the following attributes are exported:
-//
-//   - `sqs` - The SQS attributes of the queue.
-//     ~ `url` - The URL of the queue.
 type MnqQueue struct {
 	pulumi.CustomResourceState
 
@@ -177,7 +42,7 @@ func NewMnqQueue(ctx *pulumi.Context,
 	if args.NamespaceId == nil {
 		return nil, errors.New("invalid value for required argument 'NamespaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MnqQueue
 	err := ctx.RegisterResource("scaleway:index/mnqQueue:MnqQueue", name, args, &resource, opts...)
 	if err != nil {
@@ -295,6 +160,12 @@ func (i *MnqQueue) ToMnqQueueOutputWithContext(ctx context.Context) MnqQueueOutp
 	return pulumi.ToOutputWithContext(ctx, i).(MnqQueueOutput)
 }
 
+func (i *MnqQueue) ToOutput(ctx context.Context) pulumix.Output[*MnqQueue] {
+	return pulumix.Output[*MnqQueue]{
+		OutputState: i.ToMnqQueueOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MnqQueueArrayInput is an input type that accepts MnqQueueArray and MnqQueueArrayOutput values.
 // You can construct a concrete instance of `MnqQueueArrayInput` via:
 //
@@ -318,6 +189,12 @@ func (i MnqQueueArray) ToMnqQueueArrayOutput() MnqQueueArrayOutput {
 
 func (i MnqQueueArray) ToMnqQueueArrayOutputWithContext(ctx context.Context) MnqQueueArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqQueueArrayOutput)
+}
+
+func (i MnqQueueArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqQueue] {
+	return pulumix.Output[[]*MnqQueue]{
+		OutputState: i.ToMnqQueueArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MnqQueueMapInput is an input type that accepts MnqQueueMap and MnqQueueMapOutput values.
@@ -345,6 +222,12 @@ func (i MnqQueueMap) ToMnqQueueMapOutputWithContext(ctx context.Context) MnqQueu
 	return pulumi.ToOutputWithContext(ctx, i).(MnqQueueMapOutput)
 }
 
+func (i MnqQueueMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqQueue] {
+	return pulumix.Output[map[string]*MnqQueue]{
+		OutputState: i.ToMnqQueueMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MnqQueueOutput struct{ *pulumi.OutputState }
 
 func (MnqQueueOutput) ElementType() reflect.Type {
@@ -357,6 +240,12 @@ func (o MnqQueueOutput) ToMnqQueueOutput() MnqQueueOutput {
 
 func (o MnqQueueOutput) ToMnqQueueOutputWithContext(ctx context.Context) MnqQueueOutput {
 	return o
+}
+
+func (o MnqQueueOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqQueue] {
+	return pulumix.Output[*MnqQueue]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The number of seconds the queue retains a message.
@@ -408,6 +297,12 @@ func (o MnqQueueArrayOutput) ToMnqQueueArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o MnqQueueArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqQueue] {
+	return pulumix.Output[[]*MnqQueue]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MnqQueueArrayOutput) Index(i pulumi.IntInput) MnqQueueOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqQueue {
 		return vs[0].([]*MnqQueue)[vs[1].(int)]
@@ -426,6 +321,12 @@ func (o MnqQueueMapOutput) ToMnqQueueMapOutput() MnqQueueMapOutput {
 
 func (o MnqQueueMapOutput) ToMnqQueueMapOutputWithContext(ctx context.Context) MnqQueueMapOutput {
 	return o
+}
+
+func (o MnqQueueMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqQueue] {
+	return pulumix.Output[map[string]*MnqQueue]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MnqQueueMapOutput) MapIndex(k pulumi.StringInput) MnqQueueOutput {

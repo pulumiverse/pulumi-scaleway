@@ -26,8 +26,10 @@ public final class GetLbBackendResult {
     private List<GetLbBackendHealthCheckHttp> healthCheckHttps;
     private Integer healthCheckMaxRetries;
     private Integer healthCheckPort;
+    private Boolean healthCheckSendProxy;
     private List<GetLbBackendHealthCheckTcp> healthCheckTcps;
     private String healthCheckTimeout;
+    private String healthCheckTransientDelay;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -35,15 +37,19 @@ public final class GetLbBackendResult {
     private String id;
     private Boolean ignoreSslServerVerify;
     private @Nullable String lbId;
+    private Integer maxConnections;
+    private Integer maxRetries;
     private @Nullable String name;
     private String onMarkedDownAction;
     private String proxyProtocol;
+    private Integer redispatchAttemptCount;
     private Boolean sendProxyV2;
     private List<String> serverIps;
     private Boolean sslBridging;
     private String stickySessions;
     private String stickySessionsCookieName;
     private String timeoutConnect;
+    private String timeoutQueue;
     private String timeoutServer;
     private String timeoutTunnel;
 
@@ -78,11 +84,17 @@ public final class GetLbBackendResult {
     public Integer healthCheckPort() {
         return this.healthCheckPort;
     }
+    public Boolean healthCheckSendProxy() {
+        return this.healthCheckSendProxy;
+    }
     public List<GetLbBackendHealthCheckTcp> healthCheckTcps() {
         return this.healthCheckTcps;
     }
     public String healthCheckTimeout() {
         return this.healthCheckTimeout;
+    }
+    public String healthCheckTransientDelay() {
+        return this.healthCheckTransientDelay;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -97,6 +109,12 @@ public final class GetLbBackendResult {
     public Optional<String> lbId() {
         return Optional.ofNullable(this.lbId);
     }
+    public Integer maxConnections() {
+        return this.maxConnections;
+    }
+    public Integer maxRetries() {
+        return this.maxRetries;
+    }
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
@@ -105,6 +123,9 @@ public final class GetLbBackendResult {
     }
     public String proxyProtocol() {
         return this.proxyProtocol;
+    }
+    public Integer redispatchAttemptCount() {
+        return this.redispatchAttemptCount;
     }
     public Boolean sendProxyV2() {
         return this.sendProxyV2;
@@ -123,6 +144,9 @@ public final class GetLbBackendResult {
     }
     public String timeoutConnect() {
         return this.timeoutConnect;
+    }
+    public String timeoutQueue() {
+        return this.timeoutQueue;
     }
     public String timeoutServer() {
         return this.timeoutServer;
@@ -150,20 +174,26 @@ public final class GetLbBackendResult {
         private List<GetLbBackendHealthCheckHttp> healthCheckHttps;
         private Integer healthCheckMaxRetries;
         private Integer healthCheckPort;
+        private Boolean healthCheckSendProxy;
         private List<GetLbBackendHealthCheckTcp> healthCheckTcps;
         private String healthCheckTimeout;
+        private String healthCheckTransientDelay;
         private String id;
         private Boolean ignoreSslServerVerify;
         private @Nullable String lbId;
+        private Integer maxConnections;
+        private Integer maxRetries;
         private @Nullable String name;
         private String onMarkedDownAction;
         private String proxyProtocol;
+        private Integer redispatchAttemptCount;
         private Boolean sendProxyV2;
         private List<String> serverIps;
         private Boolean sslBridging;
         private String stickySessions;
         private String stickySessionsCookieName;
         private String timeoutConnect;
+        private String timeoutQueue;
         private String timeoutServer;
         private String timeoutTunnel;
         public Builder() {}
@@ -179,20 +209,26 @@ public final class GetLbBackendResult {
     	      this.healthCheckHttps = defaults.healthCheckHttps;
     	      this.healthCheckMaxRetries = defaults.healthCheckMaxRetries;
     	      this.healthCheckPort = defaults.healthCheckPort;
+    	      this.healthCheckSendProxy = defaults.healthCheckSendProxy;
     	      this.healthCheckTcps = defaults.healthCheckTcps;
     	      this.healthCheckTimeout = defaults.healthCheckTimeout;
+    	      this.healthCheckTransientDelay = defaults.healthCheckTransientDelay;
     	      this.id = defaults.id;
     	      this.ignoreSslServerVerify = defaults.ignoreSslServerVerify;
     	      this.lbId = defaults.lbId;
+    	      this.maxConnections = defaults.maxConnections;
+    	      this.maxRetries = defaults.maxRetries;
     	      this.name = defaults.name;
     	      this.onMarkedDownAction = defaults.onMarkedDownAction;
     	      this.proxyProtocol = defaults.proxyProtocol;
+    	      this.redispatchAttemptCount = defaults.redispatchAttemptCount;
     	      this.sendProxyV2 = defaults.sendProxyV2;
     	      this.serverIps = defaults.serverIps;
     	      this.sslBridging = defaults.sslBridging;
     	      this.stickySessions = defaults.stickySessions;
     	      this.stickySessionsCookieName = defaults.stickySessionsCookieName;
     	      this.timeoutConnect = defaults.timeoutConnect;
+    	      this.timeoutQueue = defaults.timeoutQueue;
     	      this.timeoutServer = defaults.timeoutServer;
     	      this.timeoutTunnel = defaults.timeoutTunnel;
         }
@@ -254,6 +290,11 @@ public final class GetLbBackendResult {
             return this;
         }
         @CustomType.Setter
+        public Builder healthCheckSendProxy(Boolean healthCheckSendProxy) {
+            this.healthCheckSendProxy = Objects.requireNonNull(healthCheckSendProxy);
+            return this;
+        }
+        @CustomType.Setter
         public Builder healthCheckTcps(List<GetLbBackendHealthCheckTcp> healthCheckTcps) {
             this.healthCheckTcps = Objects.requireNonNull(healthCheckTcps);
             return this;
@@ -264,6 +305,11 @@ public final class GetLbBackendResult {
         @CustomType.Setter
         public Builder healthCheckTimeout(String healthCheckTimeout) {
             this.healthCheckTimeout = Objects.requireNonNull(healthCheckTimeout);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder healthCheckTransientDelay(String healthCheckTransientDelay) {
+            this.healthCheckTransientDelay = Objects.requireNonNull(healthCheckTransientDelay);
             return this;
         }
         @CustomType.Setter
@@ -282,6 +328,16 @@ public final class GetLbBackendResult {
             return this;
         }
         @CustomType.Setter
+        public Builder maxConnections(Integer maxConnections) {
+            this.maxConnections = Objects.requireNonNull(maxConnections);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxRetries(Integer maxRetries) {
+            this.maxRetries = Objects.requireNonNull(maxRetries);
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
@@ -294,6 +350,11 @@ public final class GetLbBackendResult {
         @CustomType.Setter
         public Builder proxyProtocol(String proxyProtocol) {
             this.proxyProtocol = Objects.requireNonNull(proxyProtocol);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder redispatchAttemptCount(Integer redispatchAttemptCount) {
+            this.redispatchAttemptCount = Objects.requireNonNull(redispatchAttemptCount);
             return this;
         }
         @CustomType.Setter
@@ -330,6 +391,11 @@ public final class GetLbBackendResult {
             return this;
         }
         @CustomType.Setter
+        public Builder timeoutQueue(String timeoutQueue) {
+            this.timeoutQueue = Objects.requireNonNull(timeoutQueue);
+            return this;
+        }
+        @CustomType.Setter
         public Builder timeoutServer(String timeoutServer) {
             this.timeoutServer = Objects.requireNonNull(timeoutServer);
             return this;
@@ -351,20 +417,26 @@ public final class GetLbBackendResult {
             o.healthCheckHttps = healthCheckHttps;
             o.healthCheckMaxRetries = healthCheckMaxRetries;
             o.healthCheckPort = healthCheckPort;
+            o.healthCheckSendProxy = healthCheckSendProxy;
             o.healthCheckTcps = healthCheckTcps;
             o.healthCheckTimeout = healthCheckTimeout;
+            o.healthCheckTransientDelay = healthCheckTransientDelay;
             o.id = id;
             o.ignoreSslServerVerify = ignoreSslServerVerify;
             o.lbId = lbId;
+            o.maxConnections = maxConnections;
+            o.maxRetries = maxRetries;
             o.name = name;
             o.onMarkedDownAction = onMarkedDownAction;
             o.proxyProtocol = proxyProtocol;
+            o.redispatchAttemptCount = redispatchAttemptCount;
             o.sendProxyV2 = sendProxyV2;
             o.serverIps = serverIps;
             o.sslBridging = sslBridging;
             o.stickySessions = stickySessions;
             o.stickySessionsCookieName = stickySessionsCookieName;
             o.timeoutConnect = timeoutConnect;
+            o.timeoutQueue = timeoutQueue;
             o.timeoutServer = timeoutServer;
             o.timeoutTunnel = timeoutTunnel;
             return o;

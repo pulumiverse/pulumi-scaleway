@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information on an existing IAM user based on its ID or email address.
@@ -28,13 +30,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetIamUser(ctx, &scaleway.GetIamUserArgs{
+//			_, err := scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
 //				UserId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.GetIamUser(ctx, &scaleway.GetIamUserArgs{
+//			_, err = scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
 //				Email: pulumi.StringRef("foo@bar.com"),
 //			}, nil)
 //			if err != nil {
@@ -45,9 +47,9 @@ import (
 //	}
 //
 // ```
-func GetIamUser(ctx *pulumi.Context, args *GetIamUserArgs, opts ...pulumi.InvokeOption) (*GetIamUserResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
-	var rv GetIamUserResult
+func LookupIamUser(ctx *pulumi.Context, args *LookupIamUserArgs, opts ...pulumi.InvokeOption) (*LookupIamUserResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
+	var rv LookupIamUserResult
 	err := ctx.Invoke("scaleway:index/getIamUser:getIamUser", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -56,7 +58,7 @@ func GetIamUser(ctx *pulumi.Context, args *GetIamUserArgs, opts ...pulumi.Invoke
 }
 
 // A collection of arguments for invoking getIamUser.
-type GetIamUserArgs struct {
+type LookupIamUserArgs struct {
 	// The email address of the IAM user. Only one of the `email` and `userId` should be specified.
 	Email *string `pulumi:"email"`
 	// `organizationId`) The ID of the
@@ -67,7 +69,7 @@ type GetIamUserArgs struct {
 }
 
 // A collection of values returned by getIamUser.
-type GetIamUserResult struct {
+type LookupIamUserResult struct {
 	Email *string `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
@@ -75,21 +77,21 @@ type GetIamUserResult struct {
 	UserId         *string `pulumi:"userId"`
 }
 
-func GetIamUserOutput(ctx *pulumi.Context, args GetIamUserOutputArgs, opts ...pulumi.InvokeOption) GetIamUserResultOutput {
+func LookupIamUserOutput(ctx *pulumi.Context, args LookupIamUserOutputArgs, opts ...pulumi.InvokeOption) LookupIamUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetIamUserResult, error) {
-			args := v.(GetIamUserArgs)
-			r, err := GetIamUser(ctx, &args, opts...)
-			var s GetIamUserResult
+		ApplyT(func(v interface{}) (LookupIamUserResult, error) {
+			args := v.(LookupIamUserArgs)
+			r, err := LookupIamUser(ctx, &args, opts...)
+			var s LookupIamUserResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetIamUserResultOutput)
+		}).(LookupIamUserResultOutput)
 }
 
 // A collection of arguments for invoking getIamUser.
-type GetIamUserOutputArgs struct {
+type LookupIamUserOutputArgs struct {
 	// The email address of the IAM user. Only one of the `email` and `userId` should be specified.
 	Email pulumi.StringPtrInput `pulumi:"email"`
 	// `organizationId`) The ID of the
@@ -99,42 +101,48 @@ type GetIamUserOutputArgs struct {
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
-func (GetIamUserOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIamUserArgs)(nil)).Elem()
+func (LookupIamUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupIamUserArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getIamUser.
-type GetIamUserResultOutput struct{ *pulumi.OutputState }
+type LookupIamUserResultOutput struct{ *pulumi.OutputState }
 
-func (GetIamUserResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIamUserResult)(nil)).Elem()
+func (LookupIamUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupIamUserResult)(nil)).Elem()
 }
 
-func (o GetIamUserResultOutput) ToGetIamUserResultOutput() GetIamUserResultOutput {
+func (o LookupIamUserResultOutput) ToLookupIamUserResultOutput() LookupIamUserResultOutput {
 	return o
 }
 
-func (o GetIamUserResultOutput) ToGetIamUserResultOutputWithContext(ctx context.Context) GetIamUserResultOutput {
+func (o LookupIamUserResultOutput) ToLookupIamUserResultOutputWithContext(ctx context.Context) LookupIamUserResultOutput {
 	return o
 }
 
-func (o GetIamUserResultOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIamUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
+func (o LookupIamUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamUserResult] {
+	return pulumix.Output[LookupIamUserResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o LookupIamUserResultOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIamUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetIamUserResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIamUserResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupIamUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetIamUserResultOutput) OrganizationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIamUserResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+func (o LookupIamUserResultOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIamUserResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
-func (o GetIamUserResultOutput) UserId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIamUserResult) *string { return v.UserId }).(pulumi.StringPtrOutput)
+func (o LookupIamUserResultOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIamUserResult) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetIamUserResultOutput{})
+	pulumi.RegisterOutputType(LookupIamUserResultOutput{})
 }

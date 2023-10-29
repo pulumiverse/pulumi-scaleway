@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance snapshot.
@@ -44,7 +46,7 @@ import (
 //
 // ```
 func LookupInstanceSnapshot(ctx *pulumi.Context, args *LookupInstanceSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSnapshotResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceSnapshotResult
 	err := ctx.Invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args, &rv, opts...)
 	if err != nil {
@@ -124,6 +126,12 @@ func (o LookupInstanceSnapshotResultOutput) ToLookupInstanceSnapshotResultOutput
 
 func (o LookupInstanceSnapshotResultOutput) ToLookupInstanceSnapshotResultOutputWithContext(ctx context.Context) LookupInstanceSnapshotResultOutput {
 	return o
+}
+
+func (o LookupInstanceSnapshotResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceSnapshotResult] {
+	return pulumix.Output[LookupInstanceSnapshotResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupInstanceSnapshotResultOutput) CreatedAt() pulumi.StringOutput {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Load Balancer.
@@ -44,7 +46,7 @@ import (
 //
 // ```
 func LookupLoadbalancer(ctx *pulumi.Context, args *LookupLoadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerResult
 	err := ctx.Invoke("scaleway:index/getLoadbalancer:getLoadbalancer", args, &rv, opts...)
 	if err != nil {
@@ -65,7 +67,8 @@ type LookupLoadbalancerArgs struct {
 
 // A collection of values returned by getLoadbalancer.
 type LookupLoadbalancerResult struct {
-	Description string `pulumi:"description"`
+	AssignFlexibleIp bool   `pulumi:"assignFlexibleIp"`
+	Description      string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The load-balancer public IP Address.
@@ -128,6 +131,16 @@ func (o LookupLoadbalancerResultOutput) ToLookupLoadbalancerResultOutput() Looku
 
 func (o LookupLoadbalancerResultOutput) ToLookupLoadbalancerResultOutputWithContext(ctx context.Context) LookupLoadbalancerResultOutput {
 	return o
+}
+
+func (o LookupLoadbalancerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLoadbalancerResult] {
+	return pulumix.Output[LookupLoadbalancerResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o LookupLoadbalancerResultOutput) AssignFlexibleIp() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) bool { return v.AssignFlexibleIp }).(pulumi.BoolOutput)
 }
 
 func (o LookupLoadbalancerResultOutput) Description() pulumi.StringOutput {

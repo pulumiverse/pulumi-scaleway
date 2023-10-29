@@ -15,15 +15,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class DatabaseInstancePrivateNetwork
     {
         /// <summary>
-        /// The ID of the endpoint of the private network.
+        /// The ID of the endpoint.
         /// </summary>
         public readonly string? EndpointId;
         /// <summary>
-        /// Name of the endpoint.
+        /// Hostname of the endpoint.
         /// </summary>
         public readonly string? Hostname;
         /// <summary>
-        /// IP of the endpoint.
+        /// IPv4 address on the network.
         /// </summary>
         public readonly string? Ip;
         public readonly string? IpNet;
@@ -33,7 +33,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         public readonly string? Name;
         public readonly string PnId;
         /// <summary>
-        /// Port of the endpoint.
+        /// Port in the Private Network.
         /// </summary>
         public readonly int? Port;
         public readonly string? Zone;

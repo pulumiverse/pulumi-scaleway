@@ -102,6 +102,11 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
     /**
+     * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    public readonly publicIpDisabled!: pulumi.Output<boolean | undefined>;
+    /**
      * `region`) The region in which the pool should be created.
      */
     public readonly region!: pulumi.Output<string>;
@@ -175,6 +180,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["nodes"] = state ? state.nodes : undefined;
             resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
+            resourceInputs["publicIpDisabled"] = state ? state.publicIpDisabled : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["rootVolumeSizeInGb"] = state ? state.rootVolumeSizeInGb : undefined;
             resourceInputs["rootVolumeType"] = state ? state.rootVolumeType : undefined;
@@ -207,6 +213,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
+            resourceInputs["publicIpDisabled"] = args ? args.publicIpDisabled : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["rootVolumeSizeInGb"] = args ? args.rootVolumeSizeInGb : undefined;
             resourceInputs["rootVolumeType"] = args ? args.rootVolumeType : undefined;
@@ -289,6 +296,11 @@ export interface KubernetesNodePoolState {
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string>;
+    /**
+     * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    publicIpDisabled?: pulumi.Input<boolean>;
     /**
      * `region`) The region in which the pool should be created.
      */
@@ -388,6 +400,11 @@ export interface KubernetesNodePoolArgs {
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string>;
+    /**
+     * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    publicIpDisabled?: pulumi.Input<boolean>;
     /**
      * `region`) The region in which the pool should be created.
      */

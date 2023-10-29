@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.scaleway.ObjectBucket;
+ * import com.pulumi.scaleway.IamApplication;
+ * import com.pulumi.scaleway.IamApplicationArgs;
  * import com.pulumi.scaleway.ObjectBucketPolicy;
  * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
@@ -43,11 +45,16 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var bucket = new ObjectBucket(&#34;bucket&#34;);
  * 
+ *         var main = new IamApplication(&#34;main&#34;, IamApplicationArgs.builder()        
+ *             .description(&#34;a description&#34;)
+ *             .build());
+ * 
  *         var policy = new ObjectBucketPolicy(&#34;policy&#34;, ObjectBucketPolicyArgs.builder()        
  *             .bucket(bucket.name())
- *             .policy(Output.tuple(bucket.name(), bucket.name()).applyValue(values -&gt; {
- *                 var bucketName = values.t1;
- *                 var bucketName1 = values.t2;
+ *             .policy(Output.tuple(main.id(), bucket.name(), bucket.name()).applyValue(values -&gt; {
+ *                 var id = values.t1;
+ *                 var bucketName = values.t2;
+ *                 var bucketName1 = values.t3;
  *                 return serializeJson(
  *                     jsonObject(
  *                         jsonProperty(&#34;Version&#34;, &#34;2023-04-17&#34;),
@@ -56,10 +63,10 @@ import javax.annotation.Nullable;
  *                             jsonProperty(&#34;Sid&#34;, &#34;Delegate access&#34;),
  *                             jsonProperty(&#34;Effect&#34;, &#34;Allow&#34;),
  *                             jsonProperty(&#34;Principal&#34;, jsonObject(
- *                                 jsonProperty(&#34;SCW&#34;, &#34;application_id:&lt;APPLICATION_ID&gt;&#34;)
+ *                                 jsonProperty(&#34;SCW&#34;, String.format(&#34;application_id:%s&#34;, id))
  *                             )),
  *                             jsonProperty(&#34;Action&#34;, &#34;s3:ListBucket&#34;),
- *                             jsonProperty(&#34;Resources&#34;, jsonArray(
+ *                             jsonProperty(&#34;Resource&#34;, jsonArray(
  *                                 bucketName, 
  *                                 String.format(&#34;%s/*&#34;, bucketName1)
  *                             ))

@@ -150,6 +150,44 @@ export interface CockpitTokenScopes {
     writeMetrics?: boolean;
 }
 
+export interface ContainerTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: string;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId: string;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region: string;
+    /**
+     * The subject to listen to
+     */
+    subject: string;
+}
+
+export interface ContainerTriggerSqs {
+    /**
+     * ID of the mnq namespace. Deprecated.
+     */
+    namespaceId?: string;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId: string;
+    /**
+     * Name of the queue
+     */
+    queue: string;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region: string;
+}
+
 export interface DatabaseAclAclRule {
     /**
      * A text describing this rule. Default description: `IP allowed`
@@ -163,15 +201,15 @@ export interface DatabaseAclAclRule {
 
 export interface DatabaseInstanceLoadBalancer {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId: string;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname: string;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip: string;
     /**
@@ -179,22 +217,22 @@ export interface DatabaseInstanceLoadBalancer {
      */
     name: string;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port: number;
 }
 
 export interface DatabaseInstancePrivateNetwork {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId: string;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname: string;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip: string;
     ipNet: string;
@@ -204,7 +242,7 @@ export interface DatabaseInstancePrivateNetwork {
     name: string;
     pnId: string;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port: number;
     zone: string;
@@ -212,7 +250,7 @@ export interface DatabaseInstancePrivateNetwork {
 
 export interface DatabaseInstanceReadReplica {
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip: string;
     /**
@@ -220,7 +258,7 @@ export interface DatabaseInstanceReadReplica {
      */
     name: string;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port: number;
 }
@@ -249,6 +287,63 @@ export interface DatabaseReadReplicaDirectAccess {
 }
 
 export interface DatabaseReadReplicaPrivateNetwork {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
+    endpointId: string;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
+    hostname: string;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
+    ip: string;
+    /**
+     * Name of the endpoint.
+     */
+    name: string;
+    /**
+     * TCP port of the endpoint.
+     */
+    port: number;
+    /**
+     * UUID of the private network to be connected to the read replica.
+     */
+    privateNetworkId: string;
+    /**
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     */
+    serviceIp: string;
+    zone: string;
+}
+
+export interface DocumentdbReadReplicaDirectAccess {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
+    endpointId: string;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
+    hostname: string;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
+    ip: string;
+    /**
+     * Name of the endpoint.
+     */
+    name: string;
+    /**
+     * TCP port of the endpoint.
+     */
+    port: number;
+}
+
+export interface DocumentdbReadReplicaPrivateNetwork {
     /**
      * The ID of the endpoint of the read replica.
      */
@@ -314,7 +409,7 @@ export interface DomainRecordHttpService {
      */
     mustContain: string;
     /**
-     * Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      */
     strategy: string;
     /**
@@ -349,13 +444,32 @@ export interface DomainRecordWeighted {
     weight: number;
 }
 
+export interface FunctionTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: string;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId: string;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region: string;
+    /**
+     * The subject to listen to
+     */
+    subject: string;
+}
+
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      */
-    namespaceId: string;
+    namespaceId?: string;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * ID of the project that contain the mnq nats account, defaults to provider's project
      */
     projectId: string;
     /**
@@ -470,6 +584,49 @@ export interface GetBaremetalServerPrivateNetwork {
     vlan: number;
 }
 
+export interface GetBillingConsumptionsConsumption {
+    category: string;
+    description: string;
+    operationPath: string;
+    projectId: string;
+    value: string;
+}
+
+export interface GetBillingInvoicesInvoice {
+    /**
+     * The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+     */
+    dueDate: string;
+    /**
+     * The associated invoice ID.
+     */
+    id: string;
+    /**
+     * Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+     */
+    invoiceType: string;
+    /**
+     * The date when the invoice was sent to the customer (RFC 3339 format).
+     */
+    issuedDate: string;
+    /**
+     * The invoice number.
+     */
+    number: number;
+    /**
+     * The start date of the billing period (RFC 3339 format).
+     */
+    startDate: string;
+    /**
+     * The total amount, taxed.
+     */
+    totalTaxed: string;
+    /**
+     * The total amount, untaxed.
+     */
+    totalUntaxed: string;
+}
+
 export interface GetCockpitEndpoint {
     /**
      * The alertmanager URL
@@ -573,6 +730,85 @@ export interface GetDomainRecordWeighted {
     weight: number;
 }
 
+export interface GetFlexibleIpsIp {
+    /**
+     * The date on which the flexible IP was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The description of the flexible IP.
+     */
+    description: string;
+    /**
+     * The MAC address ID.
+     */
+    id: string;
+    ipAddress: string;
+    /**
+     * The MAC address of the Virtual MAC.
+     */
+    macAddresses: outputs.GetFlexibleIpsIpMacAddress[];
+    /**
+     * (Defaults to provider `organizationId`) The ID of the organization the IP is in.
+     */
+    organizationId: string;
+    /**
+     * (Defaults to provider `projectId`) The ID of the project the IP is in.
+     */
+    projectId: string;
+    /**
+     * The reverse domain associated with this IP.
+     */
+    reverse: string;
+    /**
+     * The status of virtual MAC.
+     */
+    status: string;
+    /**
+     * List of tags used as filter. IPs with these exact tags are listed.
+     */
+    tags: string[];
+    /**
+     * The date on which the flexible IP was last updated (RFC 3339 format).
+     */
+    updatedAt: string;
+    /**
+     * `zone`) The zone in which IPs exist.
+     */
+    zone: string;
+}
+
+export interface GetFlexibleIpsIpMacAddress {
+    /**
+     * The date on which the flexible IP was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The MAC address ID.
+     */
+    id: string;
+    /**
+     * The MAC address of the Virtual MAC.
+     */
+    macAddress: string;
+    /**
+     * The type of virtual MAC.
+     */
+    macType: string;
+    /**
+     * The status of virtual MAC.
+     */
+    status: string;
+    /**
+     * The date on which the flexible IP was last updated (RFC 3339 format).
+     */
+    updatedAt: string;
+    /**
+     * `zone`) The zone in which IPs exist.
+     */
+    zone: string;
+}
+
 export interface GetInstanceSecurityGroupInboundRule {
     /**
      * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -631,6 +867,17 @@ export interface GetInstanceServerPrivateNetwork {
     zone: string;
 }
 
+export interface GetInstanceServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
+}
+
 export interface GetInstanceServerRootVolume {
     boot: boolean;
     /**
@@ -670,7 +917,7 @@ export interface GetInstanceServersServer {
      */
     enableIpv6: boolean;
     /**
-     * The ID of the server.
+     * The ID of the IP
      */
     id: string;
     /**
@@ -711,9 +958,17 @@ export interface GetInstanceServersServer {
      */
     projectId: string;
     /**
-     * The public IPv4 address of the server.
+     * The public IP address of the server.
      */
     publicIp: string;
+    /**
+     * The list of public IPs of the server
+     */
+    publicIps: outputs.GetInstanceServersServerPublicIp[];
+    /**
+     * True if the server support routed ip only.
+     */
+    routedIpEnabled: boolean;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
@@ -734,6 +989,17 @@ export interface GetInstanceServersServer {
      * `zone`) The zone in which servers exist.
      */
     zone: string;
+}
+
+export interface GetInstanceServersServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
 }
 
 export interface GetInstanceSnapshotImport {
@@ -759,6 +1025,17 @@ export interface GetIotDeviceMessageFilterPublish {
 export interface GetIotDeviceMessageFilterSubscribe {
     policy: string;
     topics: string[];
+}
+
+export interface GetIpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     */
+    type?: string;
 }
 
 export interface GetKubernetesClusterAutoUpgrade {
@@ -1446,24 +1723,71 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetVpcGatewayNetworkIpamConfig {
+    pushDefaultRoute: boolean;
+}
+
 export interface GetVpcPrivateNetworkIpv4Subnet {
+    address: string;
     createdAt: string;
     /**
      * The ID of the private network.
      */
     id: string;
+    prefixLength: number;
     subnet: string;
+    subnetMask: string;
     updatedAt: string;
 }
 
 export interface GetVpcPrivateNetworkIpv6Subnet {
+    address: string;
     createdAt: string;
     /**
      * The ID of the private network.
      */
     id: string;
+    prefixLength: number;
     subnet: string;
+    subnetMask: string;
     updatedAt: string;
+}
+
+export interface GetVpcsVpc {
+    /**
+     * Date and time of VPC's creation (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The associated VPC ID.
+     * > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+     */
+    id: string;
+    /**
+     * Defines whether the VPC is the default one for its Project.
+     */
+    isDefault: boolean;
+    /**
+     * The VPC name used as filter. VPCs with a name like it are listed.
+     */
+    name: string;
+    /**
+     * The organization ID the VPC is associated with.
+     */
+    organizationId: string;
+    /**
+     * The ID of the project the VPC is associated with.
+     */
+    projectId: string;
+    /**
+     * `region`). The region in which vpcs exist.
+     */
+    region: string;
+    /**
+     * List of tags used as filter. VPCs with these exact tags are listed.
+     */
+    tags: string[];
+    updateAt: string;
 }
 
 export interface GetWebHostOfferProduct {
@@ -1503,6 +1827,16 @@ export interface GetWebHostOfferProduct {
      * The number of cores.
      */
     vCpu: number;
+}
+
+export interface GetWebhostingCpanelUrl {
+    dashboard: string;
+    webmail: string;
+}
+
+export interface GetWebhostingOption {
+    id: string;
+    name: string;
 }
 
 export interface IamPolicyRule {
@@ -1691,6 +2025,17 @@ export interface InstanceServerPrivateNetwork {
      * `zone`) The zone in which the server should be created.
      */
     zone: string;
+}
+
+export interface InstanceServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
 }
 
 export interface InstanceServerRootVolume {
@@ -2009,7 +2354,7 @@ export interface LoadbalancerBackendHealthCheckHttp {
      */
     method?: string;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: string;
 }
@@ -2032,7 +2377,7 @@ export interface LoadbalancerBackendHealthCheckHttps {
      */
     sni?: string;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: string;
 }
@@ -2203,6 +2548,21 @@ export interface MnqQueueSqs {
     visibilityTimeoutSeconds?: number;
 }
 
+export interface MnqSqsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage: boolean;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish: boolean;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive: boolean;
+}
+
 export interface ObjectBucketAclAccessControlPolicy {
     grants?: outputs.ObjectBucketAclAccessControlPolicyGrant[];
     owner: outputs.ObjectBucketAclAccessControlPolicyOwner;
@@ -2354,6 +2714,9 @@ export interface RedisClusterAcl {
 }
 
 export interface RedisClusterPrivateNetwork {
+    /**
+     * The ID of the endpoint.
+     */
     endpointId: string;
     /**
      * The UUID of the private network resource.
@@ -2367,7 +2730,7 @@ export interface RedisClusterPrivateNetwork {
      *
      * > The `privateNetwork` conflict with `acl`. Only one should be specified.
      */
-    serviceIps?: string[];
+    serviceIps: string[];
     /**
      * `zone`) The zone in which the
      * Redis Cluster should be created.
@@ -2390,23 +2753,94 @@ export interface RedisClusterPublicNetwork {
     port: number;
 }
 
+export interface VpcGatewayNetworkIpamConfig {
+    /**
+     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     */
+    pushDefaultRoute?: boolean;
+}
+
 export interface VpcPrivateNetworkIpv4Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address: string;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt: string;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id: string;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength: number;
+    /**
+     * The subnet CIDR.
+     */
     subnet: string;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask: string;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt: string;
 }
 
 export interface VpcPrivateNetworkIpv6Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address: string;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt: string;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id: string;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength: number;
+    /**
+     * The subnet CIDR.
+     */
     subnet: string;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask: string;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt: string;
+}
+
+export interface WebhostingCpanelUrl {
+    /**
+     * The URL of the Dashboard.
+     */
+    dashboard: string;
+    /**
+     * The URL of the Webmail interface.
+     */
+    webmail: string;
+}
+
+export interface WebhostingOption {
+    /**
+     * The option ID.
+     */
+    id: string;
+    /**
+     * The option name.
+     */
+    name: string;
 }
 

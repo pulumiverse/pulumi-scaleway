@@ -47,6 +47,21 @@ public final class InstanceIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The IP Prefix.
+     * 
+     */
+    @Import(name="prefix")
+    private @Nullable Output<String> prefix;
+
+    /**
+     * @return The IP Prefix.
+     * 
+     */
+    public Optional<Output<String>> prefix() {
+        return Optional.ofNullable(this.prefix);
+    }
+
+    /**
      * `project_id`) The ID of the project the IP is associated with.
      * 
      */
@@ -107,6 +122,25 @@ public final class InstanceIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     * 
+     * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+     * 
+     */
+    @Import(name="type")
+    private @Nullable Output<String> type;
+
+    /**
+     * @return The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     * 
+     * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+     * 
+     */
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
+    }
+
+    /**
      * `zone`) The zone in which the IP should be reserved.
      * 
      */
@@ -126,10 +160,12 @@ public final class InstanceIpState extends com.pulumi.resources.ResourceArgs {
     private InstanceIpState(InstanceIpState $) {
         this.address = $.address;
         this.organizationId = $.organizationId;
+        this.prefix = $.prefix;
         this.projectId = $.projectId;
         this.reverse = $.reverse;
         this.serverId = $.serverId;
         this.tags = $.tags;
+        this.type = $.type;
         this.zone = $.zone;
     }
 
@@ -191,6 +227,27 @@ public final class InstanceIpState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder organizationId(String organizationId) {
             return organizationId(Output.of(organizationId));
+        }
+
+        /**
+         * @param prefix The IP Prefix.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefix(@Nullable Output<String> prefix) {
+            $.prefix = prefix;
+            return this;
+        }
+
+        /**
+         * @param prefix The IP Prefix.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefix(String prefix) {
+            return prefix(Output.of(prefix));
         }
 
         /**
@@ -285,6 +342,31 @@ public final class InstanceIpState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        /**
+         * @param type The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+         * 
+         * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable Output<String> type) {
+            $.type = type;
+            return this;
+        }
+
+        /**
+         * @param type The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+         * 
+         * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(String type) {
+            return type(Output.of(type));
         }
 
         /**

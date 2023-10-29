@@ -5,8 +5,10 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.VpcGatewayNetworkIpamConfigArgs;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -47,14 +49,14 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+     * The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     @Import(name="dhcpId")
     private @Nullable Output<String> dhcpId;
 
     /**
-     * @return The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+     * @return The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     public Optional<Output<String>> dhcpId() {
@@ -107,6 +109,21 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * 
+     */
+    @Import(name="ipamConfigs")
+    private @Nullable Output<List<VpcGatewayNetworkIpamConfigArgs>> ipamConfigs;
+
+    /**
+     * @return Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * 
+     */
+    public Optional<Output<List<VpcGatewayNetworkIpamConfigArgs>>> ipamConfigs() {
+        return Optional.ofNullable(this.ipamConfigs);
+    }
+
+    /**
      * The mac address of the creation of the gateway network.
      * 
      */
@@ -137,18 +154,33 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+     * Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     @Import(name="staticAddress")
     private @Nullable Output<String> staticAddress;
 
     /**
-     * @return Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+     * @return Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     public Optional<Output<String>> staticAddress() {
         return Optional.ofNullable(this.staticAddress);
+    }
+
+    /**
+     * The status of the Public Gateway&#39;s connection to the Private Network.
+     * 
+     */
+    @Import(name="status")
+    private @Nullable Output<String> status;
+
+    /**
+     * @return The status of the Public Gateway&#39;s connection to the Private Network.
+     * 
+     */
+    public Optional<Output<String>> status() {
+        return Optional.ofNullable(this.status);
     }
 
     /**
@@ -190,9 +222,11 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
         this.enableDhcp = $.enableDhcp;
         this.enableMasquerade = $.enableMasquerade;
         this.gatewayId = $.gatewayId;
+        this.ipamConfigs = $.ipamConfigs;
         this.macAddress = $.macAddress;
         this.privateNetworkId = $.privateNetworkId;
         this.staticAddress = $.staticAddress;
+        this.status = $.status;
         this.updatedAt = $.updatedAt;
         this.zone = $.zone;
     }
@@ -258,7 +292,7 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dhcpId The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+         * @param dhcpId The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 
@@ -269,7 +303,7 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dhcpId The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+         * @param dhcpId The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 
@@ -342,6 +376,37 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipamConfigs(@Nullable Output<List<VpcGatewayNetworkIpamConfigArgs>> ipamConfigs) {
+            $.ipamConfigs = ipamConfigs;
+            return this;
+        }
+
+        /**
+         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipamConfigs(List<VpcGatewayNetworkIpamConfigArgs> ipamConfigs) {
+            return ipamConfigs(Output.of(ipamConfigs));
+        }
+
+        /**
+         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipamConfigs(VpcGatewayNetworkIpamConfigArgs... ipamConfigs) {
+            return ipamConfigs(List.of(ipamConfigs));
+        }
+
+        /**
          * @param macAddress The mac address of the creation of the gateway network.
          * 
          * @return builder
@@ -384,7 +449,7 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param staticAddress Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+         * @param staticAddress Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 
@@ -395,13 +460,34 @@ public final class VpcGatewayNetworkState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param staticAddress Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+         * @param staticAddress Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 
          */
         public Builder staticAddress(String staticAddress) {
             return staticAddress(Output.of(staticAddress));
+        }
+
+        /**
+         * @param status The status of the Public Gateway&#39;s connection to the Private Network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(@Nullable Output<String> status) {
+            $.status = status;
+            return this;
+        }
+
+        /**
+         * @param status The status of the Public Gateway&#39;s connection to the Private Network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(String status) {
+            return status(Output.of(status));
         }
 
         /**

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -52,6 +54,41 @@ import (
 //
 // ```
 //
+// ### Without install config
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-B112X-SSD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//				Zone:                   pulumi.String("fr-par-2"),
+//				Offer:                  *pulumi.String(myOffer.OfferId),
+//				InstallConfigAfterward: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -70,6 +107,8 @@ type BaremetalServer struct {
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The hostname of the server.
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward pulumi.BoolPtrOutput `pulumi:"installConfigAfterward"`
 	// (List of) The IPs of the server.
 	Ips BaremetalServerIpArrayOutput `pulumi:"ips"`
 	// (List of) The IPv4 addresses of the server.
@@ -95,7 +134,7 @@ type BaremetalServer struct {
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
-	Os pulumi.StringOutput `pulumi:"os"`
+	Os pulumi.StringPtrOutput `pulumi:"os"`
 	// The name of the os.
 	OsName pulumi.StringOutput `pulumi:"osName"`
 	// Password used for the installation. May be required depending on used os.
@@ -131,12 +170,6 @@ func NewBaremetalServer(ctx *pulumi.Context,
 	if args.Offer == nil {
 		return nil, errors.New("invalid value for required argument 'Offer'")
 	}
-	if args.Os == nil {
-		return nil, errors.New("invalid value for required argument 'Os'")
-	}
-	if args.SshKeyIds == nil {
-		return nil, errors.New("invalid value for required argument 'SshKeyIds'")
-	}
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
@@ -148,7 +181,7 @@ func NewBaremetalServer(ctx *pulumi.Context,
 		"servicePassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource BaremetalServer
 	err := ctx.RegisterResource("scaleway:index/baremetalServer:BaremetalServer", name, args, &resource, opts...)
 	if err != nil {
@@ -177,6 +210,8 @@ type baremetalServerState struct {
 	Domain *string `pulumi:"domain"`
 	// The hostname of the server.
 	Hostname *string `pulumi:"hostname"`
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward *bool `pulumi:"installConfigAfterward"`
 	// (List of) The IPs of the server.
 	Ips []BaremetalServerIp `pulumi:"ips"`
 	// (List of) The IPv4 addresses of the server.
@@ -235,6 +270,8 @@ type BaremetalServerState struct {
 	Domain pulumi.StringPtrInput
 	// The hostname of the server.
 	Hostname pulumi.StringPtrInput
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward pulumi.BoolPtrInput
 	// (List of) The IPs of the server.
 	Ips BaremetalServerIpArrayInput
 	// (List of) The IPv4 addresses of the server.
@@ -295,6 +332,8 @@ type baremetalServerArgs struct {
 	Description *string `pulumi:"description"`
 	// The hostname of the server.
 	Hostname *string `pulumi:"hostname"`
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward *bool `pulumi:"installConfigAfterward"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
@@ -308,7 +347,7 @@ type baremetalServerArgs struct {
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
-	Os string `pulumi:"os"`
+	Os *string `pulumi:"os"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -338,6 +377,8 @@ type BaremetalServerArgs struct {
 	Description pulumi.StringPtrInput
 	// The hostname of the server.
 	Hostname pulumi.StringPtrInput
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward pulumi.BoolPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
@@ -351,7 +392,7 @@ type BaremetalServerArgs struct {
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
-	Os pulumi.StringInput
+	Os pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -398,6 +439,12 @@ func (i *BaremetalServer) ToBaremetalServerOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerOutput)
 }
 
+func (i *BaremetalServer) ToOutput(ctx context.Context) pulumix.Output[*BaremetalServer] {
+	return pulumix.Output[*BaremetalServer]{
+		OutputState: i.ToBaremetalServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // BaremetalServerArrayInput is an input type that accepts BaremetalServerArray and BaremetalServerArrayOutput values.
 // You can construct a concrete instance of `BaremetalServerArrayInput` via:
 //
@@ -421,6 +468,12 @@ func (i BaremetalServerArray) ToBaremetalServerArrayOutput() BaremetalServerArra
 
 func (i BaremetalServerArray) ToBaremetalServerArrayOutputWithContext(ctx context.Context) BaremetalServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerArrayOutput)
+}
+
+func (i BaremetalServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*BaremetalServer] {
+	return pulumix.Output[[]*BaremetalServer]{
+		OutputState: i.ToBaremetalServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // BaremetalServerMapInput is an input type that accepts BaremetalServerMap and BaremetalServerMapOutput values.
@@ -448,6 +501,12 @@ func (i BaremetalServerMap) ToBaremetalServerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerMapOutput)
 }
 
+func (i BaremetalServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*BaremetalServer] {
+	return pulumix.Output[map[string]*BaremetalServer]{
+		OutputState: i.ToBaremetalServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type BaremetalServerOutput struct{ *pulumi.OutputState }
 
 func (BaremetalServerOutput) ElementType() reflect.Type {
@@ -460,6 +519,12 @@ func (o BaremetalServerOutput) ToBaremetalServerOutput() BaremetalServerOutput {
 
 func (o BaremetalServerOutput) ToBaremetalServerOutputWithContext(ctx context.Context) BaremetalServerOutput {
 	return o
+}
+
+func (o BaremetalServerOutput) ToOutput(ctx context.Context) pulumix.Output[*BaremetalServer] {
+	return pulumix.Output[*BaremetalServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A description for the server.
@@ -475,6 +540,11 @@ func (o BaremetalServerOutput) Domain() pulumi.StringOutput {
 // The hostname of the server.
 func (o BaremetalServerOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+// If True, this boolean allows to create a server without the install config if you want to provide it later.
+func (o BaremetalServerOutput) InstallConfigAfterward() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.BoolPtrOutput { return v.InstallConfigAfterward }).(pulumi.BoolPtrOutput)
 }
 
 // (List of) The IPs of the server.
@@ -529,8 +599,8 @@ func (o BaremetalServerOutput) OrganizationId() pulumi.StringOutput {
 // The UUID of the os to install on the server.
 // Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 // > **Important:** Updates to `os` will reinstall the server.
-func (o BaremetalServerOutput) Os() pulumi.StringOutput {
-	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+func (o BaremetalServerOutput) Os() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Os }).(pulumi.StringPtrOutput)
 }
 
 // The name of the os.
@@ -603,6 +673,12 @@ func (o BaremetalServerArrayOutput) ToBaremetalServerArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o BaremetalServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*BaremetalServer] {
+	return pulumix.Output[[]*BaremetalServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BaremetalServerArrayOutput) Index(i pulumi.IntInput) BaremetalServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *BaremetalServer {
 		return vs[0].([]*BaremetalServer)[vs[1].(int)]
@@ -621,6 +697,12 @@ func (o BaremetalServerMapOutput) ToBaremetalServerMapOutput() BaremetalServerMa
 
 func (o BaremetalServerMapOutput) ToBaremetalServerMapOutputWithContext(ctx context.Context) BaremetalServerMapOutput {
 	return o
+}
+
+func (o BaremetalServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*BaremetalServer] {
+	return pulumix.Output[map[string]*BaremetalServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BaremetalServerMapOutput) MapIndex(k pulumi.StringInput) BaremetalServerOutput {

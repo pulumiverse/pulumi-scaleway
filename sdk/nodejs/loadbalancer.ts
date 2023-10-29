@@ -26,6 +26,20 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Private LB
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const base = new scaleway.Loadbalancer("base", {
+ *     ipId: scaleway_lb_ip.main.id,
+ *     zone: scaleway_lb_ip.main.zone,
+ *     type: "LB-S",
+ *     assignFlexibleIp: false,
+ * });
+ * ```
+ *
  * ### IP for Public Gateway
  * resource "scaleway_vpc_public_gateway_ip" "main" {
  * }
@@ -155,6 +169,10 @@ export class Loadbalancer extends pulumi.CustomResource {
     }
 
     /**
+     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     */
+    public readonly assignFlexibleIp!: pulumi.Output<boolean | undefined>;
+    /**
      * The description of the load-balancer.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -165,9 +183,9 @@ export class Loadbalancer extends pulumi.CustomResource {
     /**
      * The ID of the associated LB IP. See below.
      *
-     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
+     * > **Important:** Updates to `ipId` will recreate the load-balancer.
      */
-    public readonly ipId!: pulumi.Output<string>;
+    public readonly ipId!: pulumi.Output<string | undefined>;
     /**
      * The name of the load-balancer.
      */
@@ -203,7 +221,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type
+     * The type of the load-balancer. Please check the migration section to upgrade the type.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -224,6 +242,7 @@ export class Loadbalancer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerState | undefined;
+            resourceInputs["assignFlexibleIp"] = state ? state.assignFlexibleIp : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
             resourceInputs["ipId"] = state ? state.ipId : undefined;
@@ -239,12 +258,10 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as LoadbalancerArgs | undefined;
-            if ((!args || args.ipId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'ipId'");
-            }
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["assignFlexibleIp"] = args ? args.assignFlexibleIp : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["ipId"] = args ? args.ipId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -269,6 +286,10 @@ export class Loadbalancer extends pulumi.CustomResource {
  */
 export interface LoadbalancerState {
     /**
+     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     */
+    assignFlexibleIp?: pulumi.Input<boolean>;
+    /**
      * The description of the load-balancer.
      */
     description?: pulumi.Input<string>;
@@ -279,7 +300,7 @@ export interface LoadbalancerState {
     /**
      * The ID of the associated LB IP. See below.
      *
-     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
+     * > **Important:** Updates to `ipId` will recreate the load-balancer.
      */
     ipId?: pulumi.Input<string>;
     /**
@@ -317,7 +338,7 @@ export interface LoadbalancerState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type
+     * The type of the load-balancer. Please check the migration section to upgrade the type.
      */
     type?: pulumi.Input<string>;
     /**
@@ -331,15 +352,19 @@ export interface LoadbalancerState {
  */
 export interface LoadbalancerArgs {
     /**
+     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     */
+    assignFlexibleIp?: pulumi.Input<boolean>;
+    /**
      * The description of the load-balancer.
      */
     description?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
      *
-     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
+     * > **Important:** Updates to `ipId` will recreate the load-balancer.
      */
-    ipId: pulumi.Input<string>;
+    ipId?: pulumi.Input<string>;
     /**
      * The name of the load-balancer.
      */
@@ -367,7 +392,7 @@ export interface LoadbalancerArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type
+     * The type of the load-balancer. Please check the migration section to upgrade the type.
      */
     type: pulumi.Input<string>;
     /**

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -67,7 +69,7 @@ func NewIotDevice(ctx *pulumi.Context,
 	if args.HubId == nil {
 		return nil, errors.New("invalid value for required argument 'HubId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IotDevice
 	err := ctx.RegisterResource("scaleway:index/iotDevice:IotDevice", name, args, &resource, opts...)
 	if err != nil {
@@ -237,6 +239,12 @@ func (i *IotDevice) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceO
 	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceOutput)
 }
 
+func (i *IotDevice) ToOutput(ctx context.Context) pulumix.Output[*IotDevice] {
+	return pulumix.Output[*IotDevice]{
+		OutputState: i.ToIotDeviceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IotDeviceArrayInput is an input type that accepts IotDeviceArray and IotDeviceArrayOutput values.
 // You can construct a concrete instance of `IotDeviceArrayInput` via:
 //
@@ -260,6 +268,12 @@ func (i IotDeviceArray) ToIotDeviceArrayOutput() IotDeviceArrayOutput {
 
 func (i IotDeviceArray) ToIotDeviceArrayOutputWithContext(ctx context.Context) IotDeviceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceArrayOutput)
+}
+
+func (i IotDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]*IotDevice] {
+	return pulumix.Output[[]*IotDevice]{
+		OutputState: i.ToIotDeviceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IotDeviceMapInput is an input type that accepts IotDeviceMap and IotDeviceMapOutput values.
@@ -287,6 +301,12 @@ func (i IotDeviceMap) ToIotDeviceMapOutputWithContext(ctx context.Context) IotDe
 	return pulumi.ToOutputWithContext(ctx, i).(IotDeviceMapOutput)
 }
 
+func (i IotDeviceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotDevice] {
+	return pulumix.Output[map[string]*IotDevice]{
+		OutputState: i.ToIotDeviceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IotDeviceOutput struct{ *pulumi.OutputState }
 
 func (IotDeviceOutput) ElementType() reflect.Type {
@@ -299,6 +319,12 @@ func (o IotDeviceOutput) ToIotDeviceOutput() IotDeviceOutput {
 
 func (o IotDeviceOutput) ToIotDeviceOutputWithContext(ctx context.Context) IotDeviceOutput {
 	return o
+}
+
+func (o IotDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[*IotDevice] {
+	return pulumix.Output[*IotDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
@@ -386,6 +412,12 @@ func (o IotDeviceArrayOutput) ToIotDeviceArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o IotDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IotDevice] {
+	return pulumix.Output[[]*IotDevice]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IotDeviceArrayOutput) Index(i pulumi.IntInput) IotDeviceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotDevice {
 		return vs[0].([]*IotDevice)[vs[1].(int)]
@@ -404,6 +436,12 @@ func (o IotDeviceMapOutput) ToIotDeviceMapOutput() IotDeviceMapOutput {
 
 func (o IotDeviceMapOutput) ToIotDeviceMapOutputWithContext(ctx context.Context) IotDeviceMapOutput {
 	return o
+}
+
+func (o IotDeviceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotDevice] {
+	return pulumix.Output[map[string]*IotDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IotDeviceMapOutput) MapIndex(k pulumi.StringInput) IotDeviceOutput {

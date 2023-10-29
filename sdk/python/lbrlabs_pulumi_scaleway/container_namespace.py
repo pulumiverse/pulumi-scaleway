@@ -428,9 +428,6 @@ class ContainerNamespace(pulumi.CustomResource):
             __props__ = ContainerNamespaceArgs.__new__(ContainerNamespaceArgs)
 
             __props__.__dict__["description"] = description
-            if destroy_registry is not None and not opts.urn:
-                warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
-                pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
             __props__.__dict__["destroy_registry"] = destroy_registry
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["name"] = name

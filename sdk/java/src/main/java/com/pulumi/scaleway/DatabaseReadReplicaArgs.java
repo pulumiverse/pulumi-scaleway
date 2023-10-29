@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.scaleway.inputs.DatabaseReadReplicaDirectAccessArgs;
 import com.pulumi.scaleway.inputs.DatabaseReadReplicaPrivateNetworkArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -83,6 +84,21 @@ public final class DatabaseReadReplicaArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+     * 
+     */
+    @Import(name="sameZone")
+    private @Nullable Output<Boolean> sameZone;
+
+    /**
+     * @return Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+     * 
+     */
+    public Optional<Output<Boolean>> sameZone() {
+        return Optional.ofNullable(this.sameZone);
+    }
+
     private DatabaseReadReplicaArgs() {}
 
     private DatabaseReadReplicaArgs(DatabaseReadReplicaArgs $) {
@@ -90,6 +106,7 @@ public final class DatabaseReadReplicaArgs extends com.pulumi.resources.Resource
         this.instanceId = $.instanceId;
         this.privateNetwork = $.privateNetwork;
         this.region = $.region;
+        this.sameZone = $.sameZone;
     }
 
     public static Builder builder() {
@@ -198,6 +215,27 @@ public final class DatabaseReadReplicaArgs extends com.pulumi.resources.Resource
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param sameZone Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sameZone(@Nullable Output<Boolean> sameZone) {
+            $.sameZone = sameZone;
+            return this;
+        }
+
+        /**
+         * @param sameZone Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sameZone(Boolean sameZone) {
+            return sameZone(Output.of(sameZone));
         }
 
         public DatabaseReadReplicaArgs build() {

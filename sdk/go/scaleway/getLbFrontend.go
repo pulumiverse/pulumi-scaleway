@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Frontends.
@@ -68,7 +70,7 @@ import (
 //
 // ```
 func GetLbFrontend(ctx *pulumi.Context, args *GetLbFrontendArgs, opts ...pulumi.InvokeOption) (*GetLbFrontendResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbFrontendResult
 	err := ctx.Invoke("scaleway:index/getLbFrontend:getLbFrontend", args, &rv, opts...)
 	if err != nil {
@@ -148,6 +150,12 @@ func (o GetLbFrontendResultOutput) ToGetLbFrontendResultOutput() GetLbFrontendRe
 
 func (o GetLbFrontendResultOutput) ToGetLbFrontendResultOutputWithContext(ctx context.Context) GetLbFrontendResultOutput {
 	return o
+}
+
+func (o GetLbFrontendResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbFrontendResult] {
+	return pulumix.Output[GetLbFrontendResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetLbFrontendResultOutput) Acls() GetLbFrontendAclArrayOutput {

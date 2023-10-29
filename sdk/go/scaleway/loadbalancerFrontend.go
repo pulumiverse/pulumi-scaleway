@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
@@ -100,7 +102,7 @@ func NewLoadbalancerFrontend(ctx *pulumi.Context,
 	if args.LbId == nil {
 		return nil, errors.New("invalid value for required argument 'LbId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LoadbalancerFrontend
 	err := ctx.RegisterResource("scaleway:index/loadbalancerFrontend:LoadbalancerFrontend", name, args, &resource, opts...)
 	if err != nil {
@@ -262,6 +264,12 @@ func (i *LoadbalancerFrontend) ToLoadbalancerFrontendOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendOutput)
 }
 
+func (i *LoadbalancerFrontend) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerFrontend] {
+	return pulumix.Output[*LoadbalancerFrontend]{
+		OutputState: i.ToLoadbalancerFrontendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LoadbalancerFrontendArrayInput is an input type that accepts LoadbalancerFrontendArray and LoadbalancerFrontendArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerFrontendArrayInput` via:
 //
@@ -285,6 +293,12 @@ func (i LoadbalancerFrontendArray) ToLoadbalancerFrontendArrayOutput() Loadbalan
 
 func (i LoadbalancerFrontendArray) ToLoadbalancerFrontendArrayOutputWithContext(ctx context.Context) LoadbalancerFrontendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendArrayOutput)
+}
+
+func (i LoadbalancerFrontendArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerFrontend] {
+	return pulumix.Output[[]*LoadbalancerFrontend]{
+		OutputState: i.ToLoadbalancerFrontendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LoadbalancerFrontendMapInput is an input type that accepts LoadbalancerFrontendMap and LoadbalancerFrontendMapOutput values.
@@ -312,6 +326,12 @@ func (i LoadbalancerFrontendMap) ToLoadbalancerFrontendMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerFrontendMapOutput)
 }
 
+func (i LoadbalancerFrontendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerFrontend] {
+	return pulumix.Output[map[string]*LoadbalancerFrontend]{
+		OutputState: i.ToLoadbalancerFrontendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LoadbalancerFrontendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerFrontendOutput) ElementType() reflect.Type {
@@ -324,6 +344,12 @@ func (o LoadbalancerFrontendOutput) ToLoadbalancerFrontendOutput() LoadbalancerF
 
 func (o LoadbalancerFrontendOutput) ToLoadbalancerFrontendOutputWithContext(ctx context.Context) LoadbalancerFrontendOutput {
 	return o
+}
+
+func (o LoadbalancerFrontendOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerFrontend] {
+	return pulumix.Output[*LoadbalancerFrontend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A list of ACL rules to apply to the load-balancer frontend.  Defined below.
@@ -397,6 +423,12 @@ func (o LoadbalancerFrontendArrayOutput) ToLoadbalancerFrontendArrayOutputWithCo
 	return o
 }
 
+func (o LoadbalancerFrontendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerFrontend] {
+	return pulumix.Output[[]*LoadbalancerFrontend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LoadbalancerFrontendArrayOutput) Index(i pulumi.IntInput) LoadbalancerFrontendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerFrontend {
 		return vs[0].([]*LoadbalancerFrontend)[vs[1].(int)]
@@ -415,6 +447,12 @@ func (o LoadbalancerFrontendMapOutput) ToLoadbalancerFrontendMapOutput() Loadbal
 
 func (o LoadbalancerFrontendMapOutput) ToLoadbalancerFrontendMapOutputWithContext(ctx context.Context) LoadbalancerFrontendMapOutput {
 	return o
+}
+
+func (o LoadbalancerFrontendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerFrontend] {
+	return pulumix.Output[map[string]*LoadbalancerFrontend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LoadbalancerFrontendMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerFrontendOutput {

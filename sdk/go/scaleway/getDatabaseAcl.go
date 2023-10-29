@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the RDB instance network Access Control List.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupDatabaseAcl(ctx *pulumi.Context, args *LookupDatabaseAclArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseAclResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseAclResult
 	err := ctx.Invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", args, &rv, opts...)
 	if err != nil {
@@ -103,6 +105,12 @@ func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutput() LookupD
 
 func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutputWithContext(ctx context.Context) LookupDatabaseAclResultOutput {
 	return o
+}
+
+func (o LookupDatabaseAclResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseAclResult] {
+	return pulumix.Output[LookupDatabaseAclResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A list of ACLs rules (structure is described below)

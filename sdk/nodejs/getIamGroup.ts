@@ -61,6 +61,7 @@ export interface GetIamGroupResult {
     readonly applicationIds: string[];
     readonly createdAt: string;
     readonly description: string;
+    readonly externalMembership: boolean;
     readonly groupId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.

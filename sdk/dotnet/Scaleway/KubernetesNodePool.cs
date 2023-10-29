@@ -107,6 +107,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> PlacementGroupId { get; private set; } = null!;
 
         /// <summary>
+        /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Output("publicIpDisabled")]
+        public Output<bool?> PublicIpDisabled { get; private set; } = null!;
+
+        /// <summary>
         /// `region`) The region in which the pool should be created.
         /// </summary>
         [Output("region")]
@@ -295,6 +302,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
+        /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Input("publicIpDisabled")]
+        public Input<bool>? PublicIpDisabled { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the pool should be created.
         /// </summary>
         [Input("region")]
@@ -454,6 +468,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
+
+        /// <summary>
+        /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Input("publicIpDisabled")]
+        public Input<bool>? PublicIpDisabled { get; set; }
 
         /// <summary>
         /// `region`) The region in which the pool should be created.

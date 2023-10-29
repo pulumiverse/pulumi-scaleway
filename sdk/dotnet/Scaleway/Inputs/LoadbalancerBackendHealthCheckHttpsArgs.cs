@@ -38,7 +38,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? Sni { get; set; }
 
         /// <summary>
-        /// The HTTP endpoint URL to call for HC requests.
+        /// The HTTPS endpoint URL to call for HC requests.
         /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;

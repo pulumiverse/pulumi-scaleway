@@ -45,6 +45,33 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Without install config
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-B112X-SSD",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
+    ///         InstallConfigAfterward = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -73,6 +100,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("hostname")]
         public Output<string?> Hostname { get; private set; } = null!;
+
+        /// <summary>
+        /// If True, this boolean allows to create a server without the install config if you want to provide it later.
+        /// </summary>
+        [Output("installConfigAfterward")]
+        public Output<bool?> InstallConfigAfterward { get; private set; } = null!;
 
         /// <summary>
         /// (List of) The IPs of the server.
@@ -138,7 +171,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Output("os")]
-        public Output<string> Os { get; private set; } = null!;
+        public Output<string?> Os { get; private set; } = null!;
 
         /// <summary>
         /// The name of the os.
@@ -272,6 +305,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
+        /// If True, this boolean allows to create a server without the install config if you want to provide it later.
+        /// </summary>
+        [Input("installConfigAfterward")]
+        public Input<bool>? InstallConfigAfterward { get; set; }
+
+        /// <summary>
         /// The name of the server.
         /// </summary>
         [Input("name")]
@@ -304,8 +343,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
         /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
-        [Input("os", required: true)]
-        public Input<string> Os { get; set; } = null!;
+        [Input("os")]
+        public Input<string>? Os { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -370,7 +409,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("serviceUser")]
         public Input<string>? ServiceUser { get; set; }
 
-        [Input("sshKeyIds", required: true)]
+        [Input("sshKeyIds")]
         private InputList<string>? _sshKeyIds;
 
         /// <summary>
@@ -431,6 +470,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
+
+        /// <summary>
+        /// If True, this boolean allows to create a server without the install config if you want to provide it later.
+        /// </summary>
+        [Input("installConfigAfterward")]
+        public Input<bool>? InstallConfigAfterward { get; set; }
 
         [Input("ips")]
         private InputList<Inputs.BaremetalServerIpGetArgs>? _ips;

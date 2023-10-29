@@ -28,6 +28,15 @@ import * as utilities from "./utilities";
  * const main = new scaleway.FlexibleIp("main", {zone: "fr-par-2"});
  * ```
  *
+ * ### With IPv6
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const main = new scaleway.FlexibleIp("main", {isIpv6: true});
+ * ```
+ *
  * ### With baremetal server
  *
  * ```typescript
@@ -94,7 +103,7 @@ export class FlexibleIp extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the Flexible IP (Format ISO 8601)
+     * The date and time of the creation of the Flexible IP (Format ISO 8601).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -102,19 +111,19 @@ export class FlexibleIp extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The IPv4 address of the Flexible IP
+     * The IP address of the Flexible IP.
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The MAC address of the server associated with this flexible IP
+     * Defines whether the flexible IP has an IPv6 address.
      */
-    public /*out*/ readonly macAddress!: pulumi.Output<string>;
+    public readonly isIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * The organization of the Flexible IP
+     * The organization of the Flexible IP.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project of the Flexible IP
+     * The project of the Flexible IP.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -122,19 +131,23 @@ export class FlexibleIp extends pulumi.CustomResource {
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
-     * The ID of the associated server
+     * The ID of the associated server.
      */
     public readonly serverId!: pulumi.Output<string | undefined>;
+    /**
+     * The status of the flexible IP.
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * A list of tags to apply to the flexible IP.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the Flexible IP (Format ISO 8601)
+     * The date and time of the last update of the Flexible IP (Format ISO 8601).
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The zone of the Flexible IP
+     * The zone of the Flexible IP.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -154,17 +167,19 @@ export class FlexibleIp extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
+            resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["reverse"] = state ? state.reverse : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as FlexibleIpArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reverse"] = args ? args.reverse : undefined;
             resourceInputs["serverId"] = args ? args.serverId : undefined;
@@ -172,8 +187,8 @@ export class FlexibleIp extends pulumi.CustomResource {
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["ipAddress"] = undefined /*out*/;
-            resourceInputs["macAddress"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -186,7 +201,7 @@ export class FlexibleIp extends pulumi.CustomResource {
  */
 export interface FlexibleIpState {
     /**
-     * The date and time of the creation of the Flexible IP (Format ISO 8601)
+     * The date and time of the creation of the Flexible IP (Format ISO 8601).
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -194,19 +209,19 @@ export interface FlexibleIpState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The IPv4 address of the Flexible IP
+     * The IP address of the Flexible IP.
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The MAC address of the server associated with this flexible IP
+     * Defines whether the flexible IP has an IPv6 address.
      */
-    macAddress?: pulumi.Input<string>;
+    isIpv6?: pulumi.Input<boolean>;
     /**
-     * The organization of the Flexible IP
+     * The organization of the Flexible IP.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project of the Flexible IP
+     * The project of the Flexible IP.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -214,19 +229,23 @@ export interface FlexibleIpState {
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The ID of the associated server
+     * The ID of the associated server.
      */
     serverId?: pulumi.Input<string>;
+    /**
+     * The status of the flexible IP.
+     */
+    status?: pulumi.Input<string>;
     /**
      * A list of tags to apply to the flexible IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The date and time of the last update of the Flexible IP (Format ISO 8601)
+     * The date and time of the last update of the Flexible IP (Format ISO 8601).
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The zone of the Flexible IP
+     * The zone of the Flexible IP.
      */
     zone?: pulumi.Input<string>;
 }
@@ -240,7 +259,11 @@ export interface FlexibleIpArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The project of the Flexible IP
+     * Defines whether the flexible IP has an IPv6 address.
+     */
+    isIpv6?: pulumi.Input<boolean>;
+    /**
+     * The project of the Flexible IP.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -248,7 +271,7 @@ export interface FlexibleIpArgs {
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The ID of the associated server
+     * The ID of the associated server.
      */
     serverId?: pulumi.Input<string>;
     /**
@@ -256,7 +279,7 @@ export interface FlexibleIpArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone of the Flexible IP
+     * The zone of the Flexible IP.
      */
     zone?: pulumi.Input<string>;
 }

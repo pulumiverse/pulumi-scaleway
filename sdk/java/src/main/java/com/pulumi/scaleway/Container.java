@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  *             .timeout(600)
  *             .maxConcurrency(80)
  *             .privacy(&#34;private&#34;)
- *             .protocol(&#34;h2c&#34;)
+ *             .protocol(&#34;http1&#34;)
  *             .deploy(true)
  *             .environmentVariables(Map.of(&#34;foo&#34;, &#34;var&#34;))
  *             .secretEnvironmentVariables(Map.of(&#34;key&#34;, &#34;secret&#34;))

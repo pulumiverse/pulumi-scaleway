@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a baremetal option.
@@ -45,7 +47,7 @@ import (
 //
 // ```
 func GetBaremetalOption(ctx *pulumi.Context, args *GetBaremetalOptionArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOptionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOptionResult
 	err := ctx.Invoke("scaleway:index/getBaremetalOption:getBaremetalOption", args, &rv, opts...)
 	if err != nil {
@@ -116,6 +118,12 @@ func (o GetBaremetalOptionResultOutput) ToGetBaremetalOptionResultOutput() GetBa
 
 func (o GetBaremetalOptionResultOutput) ToGetBaremetalOptionResultOutputWithContext(ctx context.Context) GetBaremetalOptionResultOutput {
 	return o
+}
+
+func (o GetBaremetalOptionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBaremetalOptionResult] {
+	return pulumix.Output[GetBaremetalOptionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

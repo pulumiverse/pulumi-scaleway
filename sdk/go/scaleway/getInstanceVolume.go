@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance volume.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, opts ...pulumi.InvokeOption) (*LookupInstanceVolumeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceVolumeResult
 	err := ctx.Invoke("scaleway:index/getInstanceVolume:getInstanceVolume", args, &rv, opts...)
 	if err != nil {
@@ -119,6 +121,12 @@ func (o LookupInstanceVolumeResultOutput) ToLookupInstanceVolumeResultOutput() L
 
 func (o LookupInstanceVolumeResultOutput) ToLookupInstanceVolumeResultOutputWithContext(ctx context.Context) LookupInstanceVolumeResultOutput {
 	return o
+}
+
+func (o LookupInstanceVolumeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceVolumeResult] {
+	return pulumix.Output[LookupInstanceVolumeResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupInstanceVolumeResultOutput) FromSnapshotId() pulumi.StringOutput {

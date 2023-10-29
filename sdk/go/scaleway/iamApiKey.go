@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway IAM API Keys. For more information, please
@@ -94,7 +96,7 @@ func NewIamApiKey(ctx *pulumi.Context,
 		"secretKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IamApiKey
 	err := ctx.RegisterResource("scaleway:index/iamApiKey:IamApiKey", name, args, &resource, opts...)
 	if err != nil {
@@ -232,6 +234,12 @@ func (i *IamApiKey) ToIamApiKeyOutputWithContext(ctx context.Context) IamApiKeyO
 	return pulumi.ToOutputWithContext(ctx, i).(IamApiKeyOutput)
 }
 
+func (i *IamApiKey) ToOutput(ctx context.Context) pulumix.Output[*IamApiKey] {
+	return pulumix.Output[*IamApiKey]{
+		OutputState: i.ToIamApiKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IamApiKeyArrayInput is an input type that accepts IamApiKeyArray and IamApiKeyArrayOutput values.
 // You can construct a concrete instance of `IamApiKeyArrayInput` via:
 //
@@ -255,6 +263,12 @@ func (i IamApiKeyArray) ToIamApiKeyArrayOutput() IamApiKeyArrayOutput {
 
 func (i IamApiKeyArray) ToIamApiKeyArrayOutputWithContext(ctx context.Context) IamApiKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamApiKeyArrayOutput)
+}
+
+func (i IamApiKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*IamApiKey] {
+	return pulumix.Output[[]*IamApiKey]{
+		OutputState: i.ToIamApiKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IamApiKeyMapInput is an input type that accepts IamApiKeyMap and IamApiKeyMapOutput values.
@@ -282,6 +296,12 @@ func (i IamApiKeyMap) ToIamApiKeyMapOutputWithContext(ctx context.Context) IamAp
 	return pulumi.ToOutputWithContext(ctx, i).(IamApiKeyMapOutput)
 }
 
+func (i IamApiKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamApiKey] {
+	return pulumix.Output[map[string]*IamApiKey]{
+		OutputState: i.ToIamApiKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IamApiKeyOutput struct{ *pulumi.OutputState }
 
 func (IamApiKeyOutput) ElementType() reflect.Type {
@@ -294,6 +314,12 @@ func (o IamApiKeyOutput) ToIamApiKeyOutput() IamApiKeyOutput {
 
 func (o IamApiKeyOutput) ToIamApiKeyOutputWithContext(ctx context.Context) IamApiKeyOutput {
 	return o
+}
+
+func (o IamApiKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*IamApiKey] {
+	return pulumix.Output[*IamApiKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The access key of the iam api key.
@@ -368,6 +394,12 @@ func (o IamApiKeyArrayOutput) ToIamApiKeyArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o IamApiKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IamApiKey] {
+	return pulumix.Output[[]*IamApiKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IamApiKeyArrayOutput) Index(i pulumi.IntInput) IamApiKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IamApiKey {
 		return vs[0].([]*IamApiKey)[vs[1].(int)]
@@ -386,6 +418,12 @@ func (o IamApiKeyMapOutput) ToIamApiKeyMapOutput() IamApiKeyMapOutput {
 
 func (o IamApiKeyMapOutput) ToIamApiKeyMapOutputWithContext(ctx context.Context) IamApiKeyMapOutput {
 	return o
+}
+
+func (o IamApiKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamApiKey] {
+	return pulumix.Output[map[string]*IamApiKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IamApiKeyMapOutput) MapIndex(k pulumi.StringInput) IamApiKeyOutput {

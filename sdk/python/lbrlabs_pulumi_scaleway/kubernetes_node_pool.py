@@ -27,6 +27,7 @@ class KubernetesNodePoolArgs:
                  min_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -53,6 +54,8 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[str] name: The name for the pool.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
@@ -83,6 +86,8 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "name", name)
         if placement_group_id is not None:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
+        if public_ip_disabled is not None:
+            pulumi.set(__self__, "public_ip_disabled", public_ip_disabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if root_volume_size_in_gb is not None:
@@ -238,6 +243,19 @@ class KubernetesNodePoolArgs:
         pulumi.set(self, "placement_group_id", value)
 
     @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "public_ip_disabled")
+
+    @public_ip_disabled.setter
+    def public_ip_disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "public_ip_disabled", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -340,6 +358,7 @@ class _KubernetesNodePoolState:
                  node_type: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -371,6 +390,8 @@ class _KubernetesNodePoolState:
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
@@ -413,6 +434,8 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "nodes", nodes)
         if placement_group_id is not None:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
+        if public_ip_disabled is not None:
+            pulumi.set(__self__, "public_ip_disabled", public_ip_disabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if root_volume_size_in_gb is not None:
@@ -599,6 +622,19 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "placement_group_id", value)
 
     @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "public_ip_disabled")
+
+    @public_ip_disabled.setter
+    def public_ip_disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "public_ip_disabled", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -749,6 +785,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -784,6 +821,8 @@ class KubernetesNodePool(pulumi.CustomResource):
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
@@ -837,6 +876,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -868,6 +908,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["placement_group_id"] = placement_group_id
+            __props__.__dict__["public_ip_disabled"] = public_ip_disabled
             __props__.__dict__["region"] = region
             __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
             __props__.__dict__["root_volume_type"] = root_volume_type
@@ -907,6 +948,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             node_type: Optional[pulumi.Input[str]] = None,
             nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolNodeArgs']]]]] = None,
             placement_group_id: Optional[pulumi.Input[str]] = None,
+            public_ip_disabled: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
             root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -944,6 +986,8 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolNodeArgs']]]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
@@ -976,6 +1020,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["placement_group_id"] = placement_group_id
+        __props__.__dict__["public_ip_disabled"] = public_ip_disabled
         __props__.__dict__["region"] = region
         __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
         __props__.__dict__["root_volume_type"] = root_volume_type
@@ -1098,6 +1143,15 @@ class KubernetesNodePool(pulumi.CustomResource):
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
+
+    @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "public_ip_disabled")
 
     @property
     @pulumi.getter

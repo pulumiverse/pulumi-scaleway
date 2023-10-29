@@ -267,9 +267,13 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly image!: pulumi.Output<string | undefined>;
     /**
-     * = (Optional) The ID of the reserved IP that is attached to the server.
+     * The ID of the reserved IP that is attached to the server.
      */
     public readonly ipId!: pulumi.Output<string | undefined>;
+    /**
+     * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+     */
+    public readonly ipIds!: pulumi.Output<string[] | undefined>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      */
@@ -315,13 +319,27 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The public IPv4 address of the server.
+     * The public IP address of the server.
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
+    /**
+     * The list of public IPs of the server.
+     */
+    public readonly publicIps!: pulumi.Output<outputs.InstanceServerPublicIp[]>;
+    /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     */
+    public readonly replaceOnTypeChange!: pulumi.Output<boolean | undefined>;
     /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     public readonly rootVolume!: pulumi.Output<outputs.InstanceServerRootVolume>;
+    /**
+     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+     *
+     * > **Important:** Enabling routed ip will restart the server
+     */
+    public readonly routedIpEnabled!: pulumi.Output<boolean>;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
@@ -337,7 +355,10 @@ export class InstanceServer extends pulumi.CustomResource {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replaceOnTypeChange` to trigger replacement instead of migration.
+     *
+     * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -375,6 +396,7 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
             resourceInputs["image"] = state ? state.image : undefined;
             resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["ipIds"] = state ? state.ipIds : undefined;
             resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
             resourceInputs["ipv6Gateway"] = state ? state.ipv6Gateway : undefined;
             resourceInputs["ipv6PrefixLength"] = state ? state.ipv6PrefixLength : undefined;
@@ -386,7 +408,10 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicIp"] = state ? state.publicIp : undefined;
+            resourceInputs["publicIps"] = state ? state.publicIps : undefined;
+            resourceInputs["replaceOnTypeChange"] = state ? state.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = state ? state.rootVolume : undefined;
+            resourceInputs["routedIpEnabled"] = state ? state.routedIpEnabled : undefined;
             resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -406,11 +431,15 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
             resourceInputs["image"] = args ? args.image : undefined;
             resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["ipIds"] = args ? args.ipIds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["publicIps"] = args ? args.publicIps : undefined;
+            resourceInputs["replaceOnTypeChange"] = args ? args.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
+            resourceInputs["routedIpEnabled"] = args ? args.routedIpEnabled : undefined;
             resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
             resourceInputs["state"] = args ? args.state : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -473,9 +502,13 @@ export interface InstanceServerState {
      */
     image?: pulumi.Input<string>;
     /**
-     * = (Optional) The ID of the reserved IP that is attached to the server.
+     * The ID of the reserved IP that is attached to the server.
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+     */
+    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      */
@@ -521,13 +554,27 @@ export interface InstanceServerState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The public IPv4 address of the server.
+     * The public IP address of the server.
      */
     publicIp?: pulumi.Input<string>;
+    /**
+     * The list of public IPs of the server.
+     */
+    publicIps?: pulumi.Input<pulumi.Input<inputs.InstanceServerPublicIp>[]>;
+    /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     */
+    replaceOnTypeChange?: pulumi.Input<boolean>;
     /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
+    /**
+     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+     *
+     * > **Important:** Enabling routed ip will restart the server
+     */
+    routedIpEnabled?: pulumi.Input<boolean>;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
@@ -543,7 +590,10 @@ export interface InstanceServerState {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replaceOnTypeChange` to trigger replacement instead of migration.
+     *
+     * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
     type?: pulumi.Input<string>;
     /**
@@ -604,9 +654,13 @@ export interface InstanceServerArgs {
      */
     image?: pulumi.Input<string>;
     /**
-     * = (Optional) The ID of the reserved IP that is attached to the server.
+     * The ID of the reserved IP that is attached to the server.
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+     */
+    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the server.
      */
@@ -628,9 +682,23 @@ export interface InstanceServerArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * The list of public IPs of the server.
+     */
+    publicIps?: pulumi.Input<pulumi.Input<inputs.InstanceServerPublicIp>[]>;
+    /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     */
+    replaceOnTypeChange?: pulumi.Input<boolean>;
+    /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
+    /**
+     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+     *
+     * > **Important:** Enabling routed ip will restart the server
+     */
+    routedIpEnabled?: pulumi.Input<boolean>;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
@@ -646,7 +714,10 @@ export interface InstanceServerArgs {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replaceOnTypeChange` to trigger replacement instead of migration.
+     *
+     * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
     type: pulumi.Input<string>;
     /**

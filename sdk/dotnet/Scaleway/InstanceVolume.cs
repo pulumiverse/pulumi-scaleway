@@ -45,7 +45,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class InstanceVolume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Create a volume based on a image
+        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Output("fromSnapshotId")]
         public Output<string?> FromSnapshotId { get; private set; } = null!;
@@ -93,7 +93,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class InstanceVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Create a volume based on a image
+        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
@@ -194,7 +194,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -214,7 +214,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class InstanceVolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Create a volume based on a image
+        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
@@ -268,7 +268,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         }
 
         /// <summary>
-        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        /// The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

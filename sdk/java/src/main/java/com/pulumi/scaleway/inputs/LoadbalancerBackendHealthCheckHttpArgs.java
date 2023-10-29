@@ -62,14 +62,14 @@ public final class LoadbalancerBackendHealthCheckHttpArgs extends com.pulumi.res
     }
 
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      * 
      */
     @Import(name="uri", required=true)
     private Output<String> uri;
 
     /**
-     * @return The HTTP endpoint URL to call for HC requests.
+     * @return The HTTPS endpoint URL to call for HC requests.
      * 
      */
     public Output<String> uri() {
@@ -167,7 +167,7 @@ public final class LoadbalancerBackendHealthCheckHttpArgs extends com.pulumi.res
         }
 
         /**
-         * @param uri The HTTP endpoint URL to call for HC requests.
+         * @param uri The HTTPS endpoint URL to call for HC requests.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class LoadbalancerBackendHealthCheckHttpArgs extends com.pulumi.res
         }
 
         /**
-         * @param uri The HTTP endpoint URL to call for HC requests.
+         * @param uri The HTTPS endpoint URL to call for HC requests.
          * 
          * @return builder
          * 

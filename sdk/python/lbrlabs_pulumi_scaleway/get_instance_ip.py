@@ -21,7 +21,7 @@ class GetInstanceIpResult:
     """
     A collection of values returned by getInstanceIp.
     """
-    def __init__(__self__, address=None, id=None, organization_id=None, project_id=None, reverse=None, server_id=None, tags=None, zone=None):
+    def __init__(__self__, address=None, id=None, organization_id=None, prefix=None, project_id=None, reverse=None, server_id=None, tags=None, type=None, zone=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -31,6 +31,9 @@ class GetInstanceIpResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if prefix and not isinstance(prefix, str):
+            raise TypeError("Expected argument 'prefix' to be a str")
+        pulumi.set(__self__, "prefix", prefix)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -43,6 +46,9 @@ class GetInstanceIpResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -72,6 +78,14 @@ class GetInstanceIpResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The IP Prefix.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -96,6 +110,14 @@ class GetInstanceIpResult:
 
     @property
     @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the IP
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
     def zone(self) -> str:
         return pulumi.get(self, "zone")
 
@@ -109,10 +131,12 @@ class AwaitableGetInstanceIpResult(GetInstanceIpResult):
             address=self.address,
             id=self.id,
             organization_id=self.organization_id,
+            prefix=self.prefix,
             project_id=self.project_id,
             reverse=self.reverse,
             server_id=self.server_id,
             tags=self.tags,
+            type=self.type,
             zone=self.zone)
 
 
@@ -147,10 +171,12 @@ def get_instance_ip(address: Optional[str] = None,
         address=pulumi.get(__ret__, 'address'),
         id=pulumi.get(__ret__, 'id'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        prefix=pulumi.get(__ret__, 'prefix'),
         project_id=pulumi.get(__ret__, 'project_id'),
         reverse=pulumi.get(__ret__, 'reverse'),
         server_id=pulumi.get(__ret__, 'server_id'),
         tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
 
 

@@ -12,12 +12,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class FunctionTriggerSqs {
     /**
-     * @return ID of the mnq namespace
+     * @return ID of the mnq namespace. Deprecated.
      * 
      */
-    private String namespaceId;
+    private @Nullable String namespaceId;
     /**
-     * @return ID of the project that contain the mnq namespace, defaults to provider&#39;s project
+     * @return ID of the project that contain the mnq nats account, defaults to provider&#39;s project
      * 
      */
     private @Nullable String projectId;
@@ -34,14 +34,14 @@ public final class FunctionTriggerSqs {
 
     private FunctionTriggerSqs() {}
     /**
-     * @return ID of the mnq namespace
+     * @return ID of the mnq namespace. Deprecated.
      * 
      */
-    public String namespaceId() {
-        return this.namespaceId;
+    public Optional<String> namespaceId() {
+        return Optional.ofNullable(this.namespaceId);
     }
     /**
-     * @return ID of the project that contain the mnq namespace, defaults to provider&#39;s project
+     * @return ID of the project that contain the mnq nats account, defaults to provider&#39;s project
      * 
      */
     public Optional<String> projectId() {
@@ -71,7 +71,7 @@ public final class FunctionTriggerSqs {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String namespaceId;
+        private @Nullable String namespaceId;
         private @Nullable String projectId;
         private String queue;
         private @Nullable String region;
@@ -85,8 +85,8 @@ public final class FunctionTriggerSqs {
         }
 
         @CustomType.Setter
-        public Builder namespaceId(String namespaceId) {
-            this.namespaceId = Objects.requireNonNull(namespaceId);
+        public Builder namespaceId(@Nullable String namespaceId) {
+            this.namespaceId = namespaceId;
             return this;
         }
         @CustomType.Setter

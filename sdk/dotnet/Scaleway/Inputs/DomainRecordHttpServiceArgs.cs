@@ -32,7 +32,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string> MustContain { get; set; } = null!;
 
         /// <summary>
-        /// Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+        /// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
         /// </summary>
         [Input("strategy", required: true)]
         public Input<string> Strategy { get; set; } = null!;

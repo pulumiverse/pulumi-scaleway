@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -55,6 +57,9 @@ type KubernetesNodePool struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled pulumi.BoolPtrOutput `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
@@ -98,7 +103,7 @@ func NewKubernetesNodePool(ctx *pulumi.Context,
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KubernetesNodePool
 	err := ctx.RegisterResource("scaleway:index/kubernetesNodePool:KubernetesNodePool", name, args, &resource, opts...)
 	if err != nil {
@@ -153,6 +158,9 @@ type kubernetesNodePoolState struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled *bool `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
@@ -213,6 +221,9 @@ type KubernetesNodePoolState struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled pulumi.BoolPtrInput
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
 	// The size of the system volume of the nodes in gigabyte
@@ -271,6 +282,9 @@ type kubernetesNodePoolArgs struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled *bool `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
@@ -320,6 +334,9 @@ type KubernetesNodePoolArgs struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled pulumi.BoolPtrInput
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
 	// The size of the system volume of the nodes in gigabyte
@@ -364,6 +381,12 @@ func (i *KubernetesNodePool) ToKubernetesNodePoolOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolOutput)
 }
 
+func (i *KubernetesNodePool) ToOutput(ctx context.Context) pulumix.Output[*KubernetesNodePool] {
+	return pulumix.Output[*KubernetesNodePool]{
+		OutputState: i.ToKubernetesNodePoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // KubernetesNodePoolArrayInput is an input type that accepts KubernetesNodePoolArray and KubernetesNodePoolArrayOutput values.
 // You can construct a concrete instance of `KubernetesNodePoolArrayInput` via:
 //
@@ -387,6 +410,12 @@ func (i KubernetesNodePoolArray) ToKubernetesNodePoolArrayOutput() KubernetesNod
 
 func (i KubernetesNodePoolArray) ToKubernetesNodePoolArrayOutputWithContext(ctx context.Context) KubernetesNodePoolArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolArrayOutput)
+}
+
+func (i KubernetesNodePoolArray) ToOutput(ctx context.Context) pulumix.Output[[]*KubernetesNodePool] {
+	return pulumix.Output[[]*KubernetesNodePool]{
+		OutputState: i.ToKubernetesNodePoolArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // KubernetesNodePoolMapInput is an input type that accepts KubernetesNodePoolMap and KubernetesNodePoolMapOutput values.
@@ -414,6 +443,12 @@ func (i KubernetesNodePoolMap) ToKubernetesNodePoolMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolMapOutput)
 }
 
+func (i KubernetesNodePoolMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*KubernetesNodePool] {
+	return pulumix.Output[map[string]*KubernetesNodePool]{
+		OutputState: i.ToKubernetesNodePoolMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KubernetesNodePoolOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolOutput) ElementType() reflect.Type {
@@ -426,6 +461,12 @@ func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutput() KubernetesNodePoo
 
 func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutputWithContext(ctx context.Context) KubernetesNodePoolOutput {
 	return o
+}
+
+func (o KubernetesNodePoolOutput) ToOutput(ctx context.Context) pulumix.Output[*KubernetesNodePool] {
+	return pulumix.Output[*KubernetesNodePool]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enables the autohealing feature for this pool.
@@ -497,6 +538,12 @@ func (o KubernetesNodePoolOutput) Nodes() KubernetesNodePoolNodeArrayOutput {
 // > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
+}
+
+// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+// > **Important:** Updates to this field will recreate a new resource.
+func (o KubernetesNodePoolOutput) PublicIpDisabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.BoolPtrOutput { return v.PublicIpDisabled }).(pulumi.BoolPtrOutput)
 }
 
 // `region`) The region in which the pool should be created.
@@ -571,6 +618,12 @@ func (o KubernetesNodePoolArrayOutput) ToKubernetesNodePoolArrayOutputWithContex
 	return o
 }
 
+func (o KubernetesNodePoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*KubernetesNodePool] {
+	return pulumix.Output[[]*KubernetesNodePool]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o KubernetesNodePoolArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *KubernetesNodePool {
 		return vs[0].([]*KubernetesNodePool)[vs[1].(int)]
@@ -589,6 +642,12 @@ func (o KubernetesNodePoolMapOutput) ToKubernetesNodePoolMapOutput() KubernetesN
 
 func (o KubernetesNodePoolMapOutput) ToKubernetesNodePoolMapOutputWithContext(ctx context.Context) KubernetesNodePoolMapOutput {
 	return o
+}
+
+func (o KubernetesNodePoolMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*KubernetesNodePool] {
+	return pulumix.Output[map[string]*KubernetesNodePool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o KubernetesNodePoolMapOutput) MapIndex(k pulumi.StringInput) KubernetesNodePoolOutput {

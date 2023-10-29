@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -32,14 +33,29 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The project of the Flexible IP
+     * Defines whether the flexible IP has an IPv6 address.
+     * 
+     */
+    @Import(name="isIpv6")
+    private @Nullable Output<Boolean> isIpv6;
+
+    /**
+     * @return Defines whether the flexible IP has an IPv6 address.
+     * 
+     */
+    public Optional<Output<Boolean>> isIpv6() {
+        return Optional.ofNullable(this.isIpv6);
+    }
+
+    /**
+     * The project of the Flexible IP.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The project of the Flexible IP
+     * @return The project of the Flexible IP.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -62,14 +78,14 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the associated server
+     * The ID of the associated server.
      * 
      */
     @Import(name="serverId")
     private @Nullable Output<String> serverId;
 
     /**
-     * @return The ID of the associated server
+     * @return The ID of the associated server.
      * 
      */
     public Optional<Output<String>> serverId() {
@@ -92,14 +108,14 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The zone of the Flexible IP
+     * The zone of the Flexible IP.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return The zone of the Flexible IP
+     * @return The zone of the Flexible IP.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -110,6 +126,7 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
 
     private FlexibleIpArgs(FlexibleIpArgs $) {
         this.description = $.description;
+        this.isIpv6 = $.isIpv6;
         this.projectId = $.projectId;
         this.reverse = $.reverse;
         this.serverId = $.serverId;
@@ -157,7 +174,28 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The project of the Flexible IP
+         * @param isIpv6 Defines whether the flexible IP has an IPv6 address.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isIpv6(@Nullable Output<Boolean> isIpv6) {
+            $.isIpv6 = isIpv6;
+            return this;
+        }
+
+        /**
+         * @param isIpv6 Defines whether the flexible IP has an IPv6 address.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isIpv6(Boolean isIpv6) {
+            return isIpv6(Output.of(isIpv6));
+        }
+
+        /**
+         * @param projectId The project of the Flexible IP.
          * 
          * @return builder
          * 
@@ -168,7 +206,7 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The project of the Flexible IP
+         * @param projectId The project of the Flexible IP.
          * 
          * @return builder
          * 
@@ -199,7 +237,7 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serverId The ID of the associated server
+         * @param serverId The ID of the associated server.
          * 
          * @return builder
          * 
@@ -210,7 +248,7 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serverId The ID of the associated server
+         * @param serverId The ID of the associated server.
          * 
          * @return builder
          * 
@@ -251,7 +289,7 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone The zone of the Flexible IP
+         * @param zone The zone of the Flexible IP.
          * 
          * @return builder
          * 
@@ -262,7 +300,7 @@ public final class FlexibleIpArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone The zone of the Flexible IP
+         * @param zone The zone of the Flexible IP.
          * 
          * @return builder
          * 

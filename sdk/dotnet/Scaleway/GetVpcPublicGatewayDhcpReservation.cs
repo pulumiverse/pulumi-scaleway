@@ -31,7 +31,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class GetVpcPublicGatewayDhcpReservationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the owning GatewayNetwork.
+        /// The ID of the owning GatewayNetwork
         /// </summary>
         [Input("gatewayNetworkId")]
         public string? GatewayNetworkId { get; set; }
@@ -70,7 +70,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class GetVpcPublicGatewayDhcpReservationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the owning GatewayNetwork.
+        /// The ID of the owning GatewayNetwork
         /// </summary>
         [Input("gatewayNetworkId")]
         public Input<string>? GatewayNetworkId { get; set; }

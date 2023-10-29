@@ -85,6 +85,10 @@ export class IamGroup extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+     */
+    public readonly externalMembership!: pulumi.Output<boolean | undefined>;
+    /**
      * The name of the IAM group.
      */
     public readonly name!: pulumi.Output<string>;
@@ -117,6 +121,7 @@ export class IamGroup extends pulumi.CustomResource {
             resourceInputs["applicationIds"] = state ? state.applicationIds : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["externalMembership"] = state ? state.externalMembership : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -125,6 +130,7 @@ export class IamGroup extends pulumi.CustomResource {
             const args = argsOrState as IamGroupArgs | undefined;
             resourceInputs["applicationIds"] = args ? args.applicationIds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["externalMembership"] = args ? args.externalMembership : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["userIds"] = args ? args.userIds : undefined;
@@ -152,6 +158,10 @@ export interface IamGroupState {
      * The description of the IAM group.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+     */
+    externalMembership?: pulumi.Input<boolean>;
     /**
      * The name of the IAM group.
      */
@@ -182,6 +192,10 @@ export interface IamGroupArgs {
      * The description of the IAM group.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+     */
+    externalMembership?: pulumi.Input<boolean>;
     /**
      * The name of the IAM group.
      */

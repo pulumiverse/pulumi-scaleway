@@ -10,8 +10,10 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.VpcGatewayNetworkArgs;
 import com.pulumi.scaleway.inputs.VpcGatewayNetworkState;
+import com.pulumi.scaleway.outputs.VpcGatewayNetworkIpamConfig;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -119,6 +121,61 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Create a gateway network with IPAM config
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.Vpc;
+ * import com.pulumi.scaleway.VpcPrivateNetwork;
+ * import com.pulumi.scaleway.VpcPrivateNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;
+ * import com.pulumi.scaleway.VpcPublicGateway;
+ * import com.pulumi.scaleway.VpcPublicGatewayArgs;
+ * import com.pulumi.scaleway.VpcGatewayNetwork;
+ * import com.pulumi.scaleway.VpcGatewayNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcGatewayNetworkIpamConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc01 = new Vpc(&#34;vpc01&#34;);
+ * 
+ *         var pn01 = new VpcPrivateNetwork(&#34;pn01&#34;, VpcPrivateNetworkArgs.builder()        
+ *             .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()
+ *                 .subnet(&#34;172.16.64.0/22&#34;)
+ *                 .build())
+ *             .vpcId(vpc01.id())
+ *             .build());
+ * 
+ *         var pg01 = new VpcPublicGateway(&#34;pg01&#34;, VpcPublicGatewayArgs.builder()        
+ *             .type(&#34;VPC-GW-S&#34;)
+ *             .build());
+ * 
+ *         var main = new VpcGatewayNetwork(&#34;main&#34;, VpcGatewayNetworkArgs.builder()        
+ *             .gatewayId(pg01.id())
+ *             .privateNetworkId(pn01.id())
+ *             .enableMasquerade(true)
+ *             .ipamConfigs(VpcGatewayNetworkIpamConfigArgs.builder()
+ *                 .pushDefaultRoute(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -159,14 +216,14 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+     * The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     @Export(name="dhcpId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dhcpId;
 
     /**
-     * @return The ID of the public gateway DHCP config. Only one of `dhcp_id` and `static_address` should be specified.
+     * @return The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     public Output<Optional<String>> dhcpId() {
@@ -215,6 +272,20 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
         return this.gatewayId;
     }
     /**
+     * Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * 
+     */
+    @Export(name="ipamConfigs", refs={List.class,VpcGatewayNetworkIpamConfig.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<VpcGatewayNetworkIpamConfig>> ipamConfigs;
+
+    /**
+     * @return Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * 
+     */
+    public Output<Optional<List<VpcGatewayNetworkIpamConfig>>> ipamConfigs() {
+        return Codegen.optional(this.ipamConfigs);
+    }
+    /**
      * The mac address of the creation of the gateway network.
      * 
      */
@@ -243,18 +314,32 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
         return this.privateNetworkId;
     }
     /**
-     * Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+     * Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     @Export(name="staticAddress", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> staticAddress;
+    private Output<String> staticAddress;
 
     /**
-     * @return Enable DHCP config on this network. Only one of `dhcp_id` and `static_address` should be specified.
+     * @return Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
-    public Output<Optional<String>> staticAddress() {
-        return Codegen.optional(this.staticAddress);
+    public Output<String> staticAddress() {
+        return this.staticAddress;
+    }
+    /**
+     * The status of the Public Gateway&#39;s connection to the Private Network.
+     * 
+     */
+    @Export(name="status", refs={String.class}, tree="[0]")
+    private Output<String> status;
+
+    /**
+     * @return The status of the Public Gateway&#39;s connection to the Private Network.
+     * 
+     */
+    public Output<String> status() {
+        return this.status;
     }
     /**
      * The date and time of the last update of the gateway network.

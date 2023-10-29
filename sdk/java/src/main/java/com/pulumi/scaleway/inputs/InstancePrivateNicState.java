@@ -17,6 +17,21 @@ public final class InstancePrivateNicState extends com.pulumi.resources.Resource
     public static final InstancePrivateNicState Empty = new InstancePrivateNicState();
 
     /**
+     * IPAM ip list, should be for internal use only
+     * 
+     */
+    @Import(name="ipIds")
+    private @Nullable Output<List<String>> ipIds;
+
+    /**
+     * @return IPAM ip list, should be for internal use only
+     * 
+     */
+    public Optional<Output<List<String>>> ipIds() {
+        return Optional.ofNullable(this.ipIds);
+    }
+
+    /**
      * The MAC address of the private NIC.
      * 
      */
@@ -94,6 +109,7 @@ public final class InstancePrivateNicState extends com.pulumi.resources.Resource
     private InstancePrivateNicState() {}
 
     private InstancePrivateNicState(InstancePrivateNicState $) {
+        this.ipIds = $.ipIds;
         this.macAddress = $.macAddress;
         this.privateNetworkId = $.privateNetworkId;
         this.serverId = $.serverId;
@@ -117,6 +133,37 @@ public final class InstancePrivateNicState extends com.pulumi.resources.Resource
 
         public Builder(InstancePrivateNicState defaults) {
             $ = new InstancePrivateNicState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param ipIds IPAM ip list, should be for internal use only
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipIds(@Nullable Output<List<String>> ipIds) {
+            $.ipIds = ipIds;
+            return this;
+        }
+
+        /**
+         * @param ipIds IPAM ip list, should be for internal use only
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipIds(List<String> ipIds) {
+            return ipIds(Output.of(ipIds));
+        }
+
+        /**
+         * @param ipIds IPAM ip list, should be for internal use only
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipIds(String... ipIds) {
+            return ipIds(List.of(ipIds));
         }
 
         /**

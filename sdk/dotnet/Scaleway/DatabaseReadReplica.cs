@@ -124,6 +124,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
+        /// <summary>
+        /// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        /// </summary>
+        [Output("sameZone")]
+        public Output<bool?> SameZone { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a DatabaseReadReplica resource with the given unique name, arguments, and options.
@@ -198,6 +204,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        /// </summary>
+        [Input("sameZone")]
+        public Input<bool>? SameZone { get; set; }
+
         public DatabaseReadReplicaArgs()
         {
         }
@@ -232,6 +244,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        /// </summary>
+        [Input("sameZone")]
+        public Input<bool>? SameZone { get; set; }
 
         public DatabaseReadReplicaState()
         {

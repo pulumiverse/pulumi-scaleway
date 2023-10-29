@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about multiple Load Balancer Frontends.
@@ -45,7 +47,7 @@ import (
 //
 // ```
 func GetLbFrontends(ctx *pulumi.Context, args *GetLbFrontendsArgs, opts ...pulumi.InvokeOption) (*GetLbFrontendsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbFrontendsResult
 	err := ctx.Invoke("scaleway:index/getLbFrontends:getLbFrontends", args, &rv, opts...)
 	if err != nil {
@@ -119,6 +121,12 @@ func (o GetLbFrontendsResultOutput) ToGetLbFrontendsResultOutput() GetLbFrontend
 
 func (o GetLbFrontendsResultOutput) ToGetLbFrontendsResultOutputWithContext(ctx context.Context) GetLbFrontendsResultOutput {
 	return o
+}
+
+func (o GetLbFrontendsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbFrontendsResult] {
+	return pulumix.Output[GetLbFrontendsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of found frontends

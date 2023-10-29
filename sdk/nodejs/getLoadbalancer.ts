@@ -55,6 +55,7 @@ export interface GetLoadbalancerArgs {
  * A collection of values returned by getLoadbalancer.
  */
 export interface GetLoadbalancerResult {
+    readonly assignFlexibleIp: boolean;
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.

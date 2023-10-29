@@ -17,14 +17,14 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
     public static final DatabaseInstancePrivateNetworkArgs Empty = new DatabaseInstancePrivateNetworkArgs();
 
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      * 
      */
     @Import(name="endpointId")
     private @Nullable Output<String> endpointId;
 
     /**
-     * @return The ID of the endpoint of the private network.
+     * @return The ID of the endpoint.
      * 
      */
     public Optional<Output<String>> endpointId() {
@@ -32,14 +32,14 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
     }
 
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      * 
      */
     @Import(name="hostname")
     private @Nullable Output<String> hostname;
 
     /**
-     * @return Name of the endpoint.
+     * @return Hostname of the endpoint.
      * 
      */
     public Optional<Output<String>> hostname() {
@@ -47,14 +47,14 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
     }
 
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      * 
      */
     @Import(name="ip")
     private @Nullable Output<String> ip;
 
     /**
-     * @return IP of the endpoint.
+     * @return IPv4 address on the network.
      * 
      */
     public Optional<Output<String>> ip() {
@@ -91,14 +91,14 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
     }
 
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return Port of the endpoint.
+     * @return Port in the Private Network.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -144,7 +144,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param endpointId The ID of the endpoint of the private network.
+         * @param endpointId The ID of the endpoint.
          * 
          * @return builder
          * 
@@ -155,7 +155,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param endpointId The ID of the endpoint of the private network.
+         * @param endpointId The ID of the endpoint.
          * 
          * @return builder
          * 
@@ -165,7 +165,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param hostname Name of the endpoint.
+         * @param hostname Hostname of the endpoint.
          * 
          * @return builder
          * 
@@ -176,7 +176,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param hostname Name of the endpoint.
+         * @param hostname Hostname of the endpoint.
          * 
          * @return builder
          * 
@@ -186,7 +186,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param ip IP of the endpoint.
+         * @param ip IPv4 address on the network.
          * 
          * @return builder
          * 
@@ -197,7 +197,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param ip IP of the endpoint.
+         * @param ip IPv4 address on the network.
          * 
          * @return builder
          * 
@@ -246,7 +246,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param port Port of the endpoint.
+         * @param port Port in the Private Network.
          * 
          * @return builder
          * 
@@ -257,7 +257,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param port Port of the endpoint.
+         * @param port Port in the Private Network.
          * 
          * @return builder
          * 

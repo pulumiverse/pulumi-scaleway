@@ -50,6 +50,21 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * If True, this boolean allows to create a server without the install config if you want to provide it later.
+     * 
+     */
+    @Import(name="installConfigAfterward")
+    private @Nullable Output<Boolean> installConfigAfterward;
+
+    /**
+     * @return If True, this boolean allows to create a server without the install config if you want to provide it later.
+     * 
+     */
+    public Optional<Output<Boolean>> installConfigAfterward() {
+        return Optional.ofNullable(this.installConfigAfterward);
+    }
+
+    /**
      * The name of the server.
      * 
      */
@@ -108,8 +123,8 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
      * &gt; **Important:** Updates to `os` will reinstall the server.
      * 
      */
-    @Import(name="os", required=true)
-    private Output<String> os;
+    @Import(name="os")
+    private @Nullable Output<String> os;
 
     /**
      * @return The UUID of the os to install on the server.
@@ -117,8 +132,8 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
      * &gt; **Important:** Updates to `os` will reinstall the server.
      * 
      */
-    public Output<String> os() {
-        return this.os;
+    public Optional<Output<String>> os() {
+        return Optional.ofNullable(this.os);
     }
 
     /**
@@ -217,15 +232,15 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
      * List of SSH keys allowed to connect to the server.
      * 
      */
-    @Import(name="sshKeyIds", required=true)
-    private Output<List<String>> sshKeyIds;
+    @Import(name="sshKeyIds")
+    private @Nullable Output<List<String>> sshKeyIds;
 
     /**
      * @return List of SSH keys allowed to connect to the server.
      * 
      */
-    public Output<List<String>> sshKeyIds() {
-        return this.sshKeyIds;
+    public Optional<Output<List<String>>> sshKeyIds() {
+        return Optional.ofNullable(this.sshKeyIds);
     }
 
     /**
@@ -278,6 +293,7 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
     private BaremetalServerArgs(BaremetalServerArgs $) {
         this.description = $.description;
         this.hostname = $.hostname;
+        this.installConfigAfterward = $.installConfigAfterward;
         this.name = $.name;
         this.offer = $.offer;
         this.options = $.options;
@@ -352,6 +368,27 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder hostname(String hostname) {
             return hostname(Output.of(hostname));
+        }
+
+        /**
+         * @param installConfigAfterward If True, this boolean allows to create a server without the install config if you want to provide it later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder installConfigAfterward(@Nullable Output<Boolean> installConfigAfterward) {
+            $.installConfigAfterward = installConfigAfterward;
+            return this;
+        }
+
+        /**
+         * @param installConfigAfterward If True, this boolean allows to create a server without the install config if you want to provide it later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder installConfigAfterward(Boolean installConfigAfterward) {
+            return installConfigAfterward(Output.of(installConfigAfterward));
         }
 
         /**
@@ -444,7 +481,7 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder os(Output<String> os) {
+        public Builder os(@Nullable Output<String> os) {
             $.os = os;
             return this;
         }
@@ -605,7 +642,7 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder sshKeyIds(Output<List<String>> sshKeyIds) {
+        public Builder sshKeyIds(@Nullable Output<List<String>> sshKeyIds) {
             $.sshKeyIds = sshKeyIds;
             return this;
         }
@@ -705,8 +742,6 @@ public final class BaremetalServerArgs extends com.pulumi.resources.ResourceArgs
 
         public BaremetalServerArgs build() {
             $.offer = Objects.requireNonNull($.offer, "expected parameter 'offer' to be non-null");
-            $.os = Objects.requireNonNull($.os, "expected parameter 'os' to be non-null");
-            $.sshKeyIds = Objects.requireNonNull($.sshKeyIds, "expected parameter 'sshKeyIds' to be non-null");
             return $;
         }
     }

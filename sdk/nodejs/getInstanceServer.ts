@@ -65,7 +65,7 @@ export interface GetInstanceServerResult {
      */
     readonly cloudInit: string;
     /**
-     * True is dynamic IP in enable on the server.
+     * True if dynamic IP in enable on the server.
      */
     readonly enableDynamicIp: boolean;
     /**
@@ -81,6 +81,7 @@ export interface GetInstanceServerResult {
      */
     readonly image: string;
     readonly ipId: string;
+    readonly ipIds: string[];
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      */
@@ -116,10 +117,19 @@ export interface GetInstanceServerResult {
      */
     readonly projectId: string;
     /**
-     * The public IPv4 address of the server.
+     * The public IP address of the server.
      */
     readonly publicIp: string;
+    /**
+     * The list of public IPs of the server
+     */
+    readonly publicIps: outputs.GetInstanceServerPublicIp[];
+    readonly replaceOnTypeChange: boolean;
     readonly rootVolumes: outputs.GetInstanceServerRootVolume[];
+    /**
+     * True if the server support routed ip only.
+     */
+    readonly routedIpEnabled: boolean;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */

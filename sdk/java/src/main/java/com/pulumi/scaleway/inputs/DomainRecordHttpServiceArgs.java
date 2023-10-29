@@ -47,14 +47,14 @@ public final class DomainRecordHttpServiceArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      * 
      */
     @Import(name="strategy", required=true)
     private Output<String> strategy;
 
     /**
-     * @return Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * @return Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      * 
      */
     public Output<String> strategy() {
@@ -172,7 +172,7 @@ public final class DomainRecordHttpServiceArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param strategy Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+         * @param strategy Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
          * 
          * @return builder
          * 
@@ -183,7 +183,7 @@ public final class DomainRecordHttpServiceArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param strategy Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+         * @param strategy Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
          * 
          * @return builder
          * 

@@ -16,7 +16,8 @@ class ContainerCronArgs:
     def __init__(__self__, *,
                  args: pulumi.Input[str],
                  container_id: pulumi.Input[str],
-                 schedule: pulumi.Input[str]):
+                 schedule: pulumi.Input[str],
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerCron resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your container’s event object
@@ -24,10 +25,14 @@ class ContainerCronArgs:
         :param pulumi.Input[str] container_id: The container ID to link with your cron.
         :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
                executed.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region
+               in where the job was created.
         """
         pulumi.set(__self__, "args", args)
         pulumi.set(__self__, "container_id", container_id)
         pulumi.set(__self__, "schedule", schedule)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -66,6 +71,19 @@ class ContainerCronArgs:
     @schedule.setter
     def schedule(self, value: pulumi.Input[str]):
         pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Defaults to provider `region`) The region
+        in where the job was created.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -169,6 +187,7 @@ class ContainerCron(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  args: Optional[pulumi.Input[str]] = None,
                  container_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -222,6 +241,8 @@ class ContainerCron(pulumi.CustomResource):
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your container’s event object
                during
         :param pulumi.Input[str] container_id: The container ID to link with your cron.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region
+               in where the job was created.
         :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
                executed.
         """
@@ -294,6 +315,7 @@ class ContainerCron(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  args: Optional[pulumi.Input[str]] = None,
                  container_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -310,10 +332,10 @@ class ContainerCron(pulumi.CustomResource):
             if container_id is None and not opts.urn:
                 raise TypeError("Missing required property 'container_id'")
             __props__.__dict__["container_id"] = container_id
+            __props__.__dict__["region"] = region
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
-            __props__.__dict__["region"] = None
             __props__.__dict__["status"] = None
         super(ContainerCron, __self__).__init__(
             'scaleway:index/containerCron:ContainerCron',

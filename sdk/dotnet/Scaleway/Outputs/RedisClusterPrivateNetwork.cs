@@ -14,6 +14,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class RedisClusterPrivateNetwork
     {
+        /// <summary>
+        /// The ID of the endpoint.
+        /// </summary>
         public readonly string? EndpointId;
         /// <summary>
         /// The UUID of the private network resource.

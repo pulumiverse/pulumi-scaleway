@@ -5,6 +5,7 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,38 +16,107 @@ public final class VpcPrivateNetworkIpv6SubnetArgs extends com.pulumi.resources.
 
     public static final VpcPrivateNetworkIpv6SubnetArgs Empty = new VpcPrivateNetworkIpv6SubnetArgs();
 
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., &#39;192.168.0.0&#39; for a &#39;192.168.0.0/24&#39; subnet.
+     * 
+     */
+    @Import(name="address")
+    private @Nullable Output<String> address;
+
+    /**
+     * @return The network address of the subnet in dotted decimal notation, e.g., &#39;192.168.0.0&#39; for a &#39;192.168.0.0/24&#39; subnet.
+     * 
+     */
+    public Optional<Output<String>> address() {
+        return Optional.ofNullable(this.address);
+    }
+
+    /**
+     * The date and time of the creation of the subnet.
+     * 
+     */
     @Import(name="createdAt")
     private @Nullable Output<String> createdAt;
 
+    /**
+     * @return The date and time of the creation of the subnet.
+     * 
+     */
     public Optional<Output<String>> createdAt() {
         return Optional.ofNullable(this.createdAt);
     }
 
     /**
-     * The ID of the private network.
+     * The subnet ID.
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return The ID of the private network.
+     * @return The subnet ID.
      * 
      */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     * 
+     */
+    @Import(name="prefixLength")
+    private @Nullable Output<Integer> prefixLength;
+
+    /**
+     * @return The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     * 
+     */
+    public Optional<Output<Integer>> prefixLength() {
+        return Optional.ofNullable(this.prefixLength);
+    }
+
+    /**
+     * The subnet CIDR.
+     * 
+     */
     @Import(name="subnet")
     private @Nullable Output<String> subnet;
 
+    /**
+     * @return The subnet CIDR.
+     * 
+     */
     public Optional<Output<String>> subnet() {
         return Optional.ofNullable(this.subnet);
     }
 
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., &#39;255.255.255.0&#39; for a /24 subnet
+     * 
+     */
+    @Import(name="subnetMask")
+    private @Nullable Output<String> subnetMask;
+
+    /**
+     * @return The subnet mask expressed in dotted decimal notation, e.g., &#39;255.255.255.0&#39; for a /24 subnet
+     * 
+     */
+    public Optional<Output<String>> subnetMask() {
+        return Optional.ofNullable(this.subnetMask);
+    }
+
+    /**
+     * The date and time of the last update of the subnet.
+     * 
+     */
     @Import(name="updatedAt")
     private @Nullable Output<String> updatedAt;
 
+    /**
+     * @return The date and time of the last update of the subnet.
+     * 
+     */
     public Optional<Output<String>> updatedAt() {
         return Optional.ofNullable(this.updatedAt);
     }
@@ -54,9 +124,12 @@ public final class VpcPrivateNetworkIpv6SubnetArgs extends com.pulumi.resources.
     private VpcPrivateNetworkIpv6SubnetArgs() {}
 
     private VpcPrivateNetworkIpv6SubnetArgs(VpcPrivateNetworkIpv6SubnetArgs $) {
+        this.address = $.address;
         this.createdAt = $.createdAt;
         this.id = $.id;
+        this.prefixLength = $.prefixLength;
         this.subnet = $.subnet;
+        this.subnetMask = $.subnetMask;
         this.updatedAt = $.updatedAt;
     }
 
@@ -78,17 +151,50 @@ public final class VpcPrivateNetworkIpv6SubnetArgs extends com.pulumi.resources.
             $ = new VpcPrivateNetworkIpv6SubnetArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param address The network address of the subnet in dotted decimal notation, e.g., &#39;192.168.0.0&#39; for a &#39;192.168.0.0/24&#39; subnet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder address(@Nullable Output<String> address) {
+            $.address = address;
+            return this;
+        }
+
+        /**
+         * @param address The network address of the subnet in dotted decimal notation, e.g., &#39;192.168.0.0&#39; for a &#39;192.168.0.0/24&#39; subnet.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder address(String address) {
+            return address(Output.of(address));
+        }
+
+        /**
+         * @param createdAt The date and time of the creation of the subnet.
+         * 
+         * @return builder
+         * 
+         */
         public Builder createdAt(@Nullable Output<String> createdAt) {
             $.createdAt = createdAt;
             return this;
         }
 
+        /**
+         * @param createdAt The date and time of the creation of the subnet.
+         * 
+         * @return builder
+         * 
+         */
         public Builder createdAt(String createdAt) {
             return createdAt(Output.of(createdAt));
         }
 
         /**
-         * @param id The ID of the private network.
+         * @param id The subnet ID.
          * 
          * @return builder
          * 
@@ -99,7 +205,7 @@ public final class VpcPrivateNetworkIpv6SubnetArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param id The ID of the private network.
+         * @param id The subnet ID.
          * 
          * @return builder
          * 
@@ -108,20 +214,86 @@ public final class VpcPrivateNetworkIpv6SubnetArgs extends com.pulumi.resources.
             return id(Output.of(id));
         }
 
+        /**
+         * @param prefixLength The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefixLength(@Nullable Output<Integer> prefixLength) {
+            $.prefixLength = prefixLength;
+            return this;
+        }
+
+        /**
+         * @param prefixLength The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefixLength(Integer prefixLength) {
+            return prefixLength(Output.of(prefixLength));
+        }
+
+        /**
+         * @param subnet The subnet CIDR.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subnet(@Nullable Output<String> subnet) {
             $.subnet = subnet;
             return this;
         }
 
+        /**
+         * @param subnet The subnet CIDR.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subnet(String subnet) {
             return subnet(Output.of(subnet));
         }
 
+        /**
+         * @param subnetMask The subnet mask expressed in dotted decimal notation, e.g., &#39;255.255.255.0&#39; for a /24 subnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subnetMask(@Nullable Output<String> subnetMask) {
+            $.subnetMask = subnetMask;
+            return this;
+        }
+
+        /**
+         * @param subnetMask The subnet mask expressed in dotted decimal notation, e.g., &#39;255.255.255.0&#39; for a /24 subnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subnetMask(String subnetMask) {
+            return subnetMask(Output.of(subnetMask));
+        }
+
+        /**
+         * @param updatedAt The date and time of the last update of the subnet.
+         * 
+         * @return builder
+         * 
+         */
         public Builder updatedAt(@Nullable Output<String> updatedAt) {
             $.updatedAt = updatedAt;
             return this;
         }
 
+        /**
+         * @param updatedAt The date and time of the last update of the subnet.
+         * 
+         * @return builder
+         * 
+         */
         public Builder updatedAt(String updatedAt) {
             return updatedAt(Output.of(updatedAt));
         }

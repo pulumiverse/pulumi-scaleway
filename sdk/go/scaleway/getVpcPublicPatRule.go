@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway PAT rule. For further information please check the
@@ -77,7 +79,7 @@ import (
 //
 // ```
 func GetVpcPublicPatRule(ctx *pulumi.Context, args *GetVpcPublicPatRuleArgs, opts ...pulumi.InvokeOption) (*GetVpcPublicPatRuleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcPublicPatRuleResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args, &rv, opts...)
 	if err != nil {
@@ -155,6 +157,12 @@ func (o GetVpcPublicPatRuleResultOutput) ToGetVpcPublicPatRuleResultOutput() Get
 
 func (o GetVpcPublicPatRuleResultOutput) ToGetVpcPublicPatRuleResultOutputWithContext(ctx context.Context) GetVpcPublicPatRuleResultOutput {
 	return o
+}
+
+func (o GetVpcPublicPatRuleResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVpcPublicPatRuleResult] {
+	return pulumix.Output[GetVpcPublicPatRuleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetVpcPublicPatRuleResultOutput) CreatedAt() pulumi.StringOutput {

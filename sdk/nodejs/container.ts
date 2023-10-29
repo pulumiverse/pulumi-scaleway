@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *     timeout: 600,
  *     maxConcurrency: 80,
  *     privacy: "private",
- *     protocol: "h2c",
+ *     protocol: "http1",
  *     deploy: true,
  *     environmentVariables: {
  *         foo: "var",
@@ -191,7 +191,7 @@ export class Container extends pulumi.CustomResource {
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
      */
@@ -268,6 +268,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["privacy"] = args ? args.privacy : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["registryImage"] = args ? args.registryImage : undefined;
             resourceInputs["registrySha256"] = args ? args.registrySha256 : undefined;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
@@ -276,7 +277,6 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["cronStatus"] = undefined /*out*/;
             resourceInputs["domainName"] = undefined /*out*/;
             resourceInputs["errorMessage"] = undefined /*out*/;
-            resourceInputs["region"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
@@ -455,6 +455,10 @@ export interface ContainerArgs {
      * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
      */
     protocol?: pulumi.Input<string>;
+    /**
+     * (Defaults to provider `region`) The region in which the container was created.
+     */
+    region?: pulumi.Input<string>;
     /**
      * The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
      */

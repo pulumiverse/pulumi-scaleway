@@ -147,6 +147,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly ImmutableArray<string> ApplicationIds;
         public readonly string CreatedAt;
         public readonly string Description;
+        public readonly bool ExternalMembership;
         public readonly string? GroupId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -165,6 +166,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string description,
 
+            bool externalMembership,
+
             string? groupId,
 
             string id,
@@ -180,6 +183,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             ApplicationIds = applicationIds;
             CreatedAt = createdAt;
             Description = description;
+            ExternalMembership = externalMembership;
             GroupId = groupId;
             Id = id;
             Name = name;
