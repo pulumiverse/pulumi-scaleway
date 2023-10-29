@@ -141,7 +141,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_domain_zone":                         {Tok: scalewayResource(scalewayMod, "DomainZone")},
 			"scaleway_documentdb_database":                 {Tok: scalewayResource(scalewayMod, "DocumentdbDatabase")},
 			"scaleway_documentdb_instance":                 {Tok: scalewayResource(scalewayMod, "DocumentdbInstance")},
-			"scaleway_documentdb_private_network_endpoint": {Tok: scalewayResource(scalewayMod, "DocumentdbPrivateNetworkEndpoint")},
+			"scaleway_documentdb_private_network_endpoint": {Tok: scalewayResource(scalewayMod, "DocumentdbPrivateNetworkEndpoint")}, //nolint:golint,lll
 			"scaleway_documentdb_privilege":                {Tok: scalewayResource(scalewayMod, "DocumentdbPrivilege")},
 			"scaleway_documentdb_read_replica":             {Tok: scalewayResource(scalewayMod, "DocumentdbReadReplica")},
 			"scaleway_documentdb_user":                     {Tok: scalewayResource(scalewayMod, "DocumentdbUser")},
@@ -194,7 +194,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_object_bucket_acl":                   {Tok: scalewayResource(scalewayMod, "ObjectBucketAcl")},
 			"scaleway_object_bucket_policy":                {Tok: scalewayResource(scalewayMod, "ObjectBucketPolicy")},
 			"scaleway_object_bucket_website_configuration": {Tok: scalewayResource(scalewayMod, "ObjectBucketWebsiteConfiguration")}, //nolint:golint,lll
-			"scaleway_object_bucket_lock_configuration":    {Tok: scalewayResource(scalewayMod, "ObjectBucketLockConfiguration")},
+			"scaleway_object_bucket_lock_configuration":    {Tok: scalewayResource(scalewayMod, "ObjectBucketLockConfiguration")}, //nolint:golint,lll
 			"scaleway_rdb_acl":                             {Tok: scalewayResource(scalewayMod, "DatabaseAcl")},
 			"scaleway_redis_cluster":                       {Tok: scalewayResource(scalewayMod, "RedisCluster")},
 			"scaleway_rdb_database":                        {Tok: scalewayResource(scalewayMod, "Database")},
@@ -244,7 +244,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_domain_zone":                         {Tok: scalewayDataSource(scalewayMod, "getDomainZone")},
 			"scaleway_documentdb_database":                 {Tok: scalewayDataSource(scalewayMod, "getDocumentdbDatabase")},
 			"scaleway_documentdb_instance":                 {Tok: scalewayDataSource(scalewayMod, "getDocumentdbInstance")},
-			"scaleway_documentdb_load_balancer_endpoint":   {Tok: scalewayDataSource(scalewayMod, "getDocumentdbLoadBalancerEndpoint")},
+			"scaleway_documentdb_load_balancer_endpoint":   {Tok: scalewayDataSource(scalewayMod, "getDocumentdbLoadBalancerEndpoint")}, //nolint:golint,lll
 			"scaleway_flexible_ip":                         {Tok: scalewayDataSource(scalewayMod, "getFlexibleIp")},
 			"scaleway_flexible_ips":                        {Tok: scalewayDataSource(scalewayMod, "getFlexibleIps")},
 			"scaleway_function":                            {Tok: scalewayDataSource(scalewayMod, "getFunction")},
