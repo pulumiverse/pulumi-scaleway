@@ -65,6 +65,45 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Without install config
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+ * import com.pulumi.scaleway.BaremetalServer;
+ * import com.pulumi.scaleway.BaremetalServerArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+ *             .zone(&#34;fr-par-2&#34;)
+ *             .name(&#34;EM-B112X-SSD&#34;)
+ *             .build());
+ * 
+ *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+ *             .zone(&#34;fr-par-2&#34;)
+ *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+ *             .installConfigAfterward(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -117,6 +156,20 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> hostname() {
         return Codegen.optional(this.hostname);
+    }
+    /**
+     * If True, this boolean allows to create a server without the install config if you want to provide it later.
+     * 
+     */
+    @Export(name="installConfigAfterward", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> installConfigAfterward;
+
+    /**
+     * @return If True, this boolean allows to create a server without the install config if you want to provide it later.
+     * 
+     */
+    public Output<Optional<Boolean>> installConfigAfterward() {
+        return Codegen.optional(this.installConfigAfterward);
     }
     /**
      * (List of) The IPs of the server.
@@ -259,7 +312,7 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="os", refs={String.class}, tree="[0]")
-    private Output<String> os;
+    private Output</* @Nullable */ String> os;
 
     /**
      * @return The UUID of the os to install on the server.
@@ -267,8 +320,8 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to `os` will reinstall the server.
      * 
      */
-    public Output<String> os() {
-        return this.os;
+    public Output<Optional<String>> os() {
+        return Codegen.optional(this.os);
     }
     /**
      * The name of the os.
@@ -375,14 +428,14 @@ public class BaremetalServer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="sshKeyIds", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> sshKeyIds;
+    private Output</* @Nullable */ List<String>> sshKeyIds;
 
     /**
      * @return List of SSH keys allowed to connect to the server.
      * 
      */
-    public Output<List<String>> sshKeyIds() {
-        return this.sshKeyIds;
+    public Output<Optional<List<String>>> sshKeyIds() {
+        return Codegen.optional(this.sshKeyIds);
     }
     /**
      * The tags associated with the server.

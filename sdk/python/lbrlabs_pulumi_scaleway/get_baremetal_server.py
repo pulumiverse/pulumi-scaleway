@@ -22,7 +22,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -35,6 +35,9 @@ class GetBaremetalServerResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if install_config_afterward and not isinstance(install_config_afterward, bool):
+            raise TypeError("Expected argument 'install_config_afterward' to be a bool")
+        pulumi.set(__self__, "install_config_afterward", install_config_afterward)
         if ips and not isinstance(ips, list):
             raise TypeError("Expected argument 'ips' to be a list")
         pulumi.set(__self__, "ips", ips)
@@ -124,6 +127,11 @@ class GetBaremetalServerResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="installConfigAfterward")
+    def install_config_afterward(self) -> bool:
+        return pulumi.get(self, "install_config_afterward")
 
     @property
     @pulumi.getter
@@ -246,6 +254,7 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             domain=self.domain,
             hostname=self.hostname,
             id=self.id,
+            install_config_afterward=self.install_config_afterward,
             ips=self.ips,
             ipv4s=self.ipv4s,
             ipv6s=self.ipv6s,
@@ -305,6 +314,7 @@ def get_baremetal_server(name: Optional[str] = None,
         domain=pulumi.get(__ret__, 'domain'),
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
+        install_config_afterward=pulumi.get(__ret__, 'install_config_afterward'),
         ips=pulumi.get(__ret__, 'ips'),
         ipv4s=pulumi.get(__ret__, 'ipv4s'),
         ipv6s=pulumi.get(__ret__, 'ipv6s'),

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
@@ -88,7 +90,7 @@ func NewInstanceSecurityGroupRules(ctx *pulumi.Context,
 	if args.SecurityGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'SecurityGroupId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceSecurityGroupRules
 	err := ctx.RegisterResource("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules", name, args, &resource, opts...)
 	if err != nil {
@@ -174,6 +176,12 @@ func (i *InstanceSecurityGroupRules) ToInstanceSecurityGroupRulesOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupRulesOutput)
 }
 
+func (i *InstanceSecurityGroupRules) ToOutput(ctx context.Context) pulumix.Output[*InstanceSecurityGroupRules] {
+	return pulumix.Output[*InstanceSecurityGroupRules]{
+		OutputState: i.ToInstanceSecurityGroupRulesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstanceSecurityGroupRulesArrayInput is an input type that accepts InstanceSecurityGroupRulesArray and InstanceSecurityGroupRulesArrayOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupRulesArrayInput` via:
 //
@@ -197,6 +205,12 @@ func (i InstanceSecurityGroupRulesArray) ToInstanceSecurityGroupRulesArrayOutput
 
 func (i InstanceSecurityGroupRulesArray) ToInstanceSecurityGroupRulesArrayOutputWithContext(ctx context.Context) InstanceSecurityGroupRulesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupRulesArrayOutput)
+}
+
+func (i InstanceSecurityGroupRulesArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceSecurityGroupRules] {
+	return pulumix.Output[[]*InstanceSecurityGroupRules]{
+		OutputState: i.ToInstanceSecurityGroupRulesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstanceSecurityGroupRulesMapInput is an input type that accepts InstanceSecurityGroupRulesMap and InstanceSecurityGroupRulesMapOutput values.
@@ -224,6 +238,12 @@ func (i InstanceSecurityGroupRulesMap) ToInstanceSecurityGroupRulesMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupRulesMapOutput)
 }
 
+func (i InstanceSecurityGroupRulesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceSecurityGroupRules] {
+	return pulumix.Output[map[string]*InstanceSecurityGroupRules]{
+		OutputState: i.ToInstanceSecurityGroupRulesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstanceSecurityGroupRulesOutput struct{ *pulumi.OutputState }
 
 func (InstanceSecurityGroupRulesOutput) ElementType() reflect.Type {
@@ -236,6 +256,12 @@ func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutput() I
 
 func (o InstanceSecurityGroupRulesOutput) ToInstanceSecurityGroupRulesOutputWithContext(ctx context.Context) InstanceSecurityGroupRulesOutput {
 	return o
+}
+
+func (o InstanceSecurityGroupRulesOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceSecurityGroupRules] {
+	return pulumix.Output[*InstanceSecurityGroupRules]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A list of inbound rule to add to the security group. (Structure is documented below.)
@@ -271,6 +297,12 @@ func (o InstanceSecurityGroupRulesArrayOutput) ToInstanceSecurityGroupRulesArray
 	return o
 }
 
+func (o InstanceSecurityGroupRulesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceSecurityGroupRules] {
+	return pulumix.Output[[]*InstanceSecurityGroupRules]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o InstanceSecurityGroupRulesArrayOutput) Index(i pulumi.IntInput) InstanceSecurityGroupRulesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceSecurityGroupRules {
 		return vs[0].([]*InstanceSecurityGroupRules)[vs[1].(int)]
@@ -289,6 +321,12 @@ func (o InstanceSecurityGroupRulesMapOutput) ToInstanceSecurityGroupRulesMapOutp
 
 func (o InstanceSecurityGroupRulesMapOutput) ToInstanceSecurityGroupRulesMapOutputWithContext(ctx context.Context) InstanceSecurityGroupRulesMapOutput {
 	return o
+}
+
+func (o InstanceSecurityGroupRulesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceSecurityGroupRules] {
+	return pulumix.Output[map[string]*InstanceSecurityGroupRules]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstanceSecurityGroupRulesMapOutput) MapIndex(k pulumi.StringInput) InstanceSecurityGroupRulesOutput {

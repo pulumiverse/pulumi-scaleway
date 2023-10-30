@@ -18,14 +18,14 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
     public static final InstanceVolumeArgs Empty = new InstanceVolumeArgs();
 
     /**
-     * Create a volume based on a image
+     * If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     @Import(name="fromSnapshotId")
     private @Nullable Output<String> fromSnapshotId;
 
     /**
-     * @return Create a volume based on a image
+     * @return If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     public Optional<Output<String>> fromSnapshotId() {
@@ -108,14 +108,14 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+     * The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+     * @return The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
      * 
      */
     public Output<String> type() {
@@ -169,7 +169,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param fromSnapshotId Create a volume based on a image
+         * @param fromSnapshotId If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 
@@ -180,7 +180,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param fromSnapshotId Create a volume based on a image
+         * @param fromSnapshotId If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 
@@ -305,7 +305,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+         * @param type The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
          * 
          * @return builder
          * 
@@ -316,7 +316,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+         * @param type The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
          * 
          * @return builder
          * 

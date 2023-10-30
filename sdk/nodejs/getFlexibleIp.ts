@@ -46,7 +46,7 @@ export interface GetFlexibleIpResult {
      */
     readonly id: string;
     readonly ipAddress?: string;
-    readonly macAddress: string;
+    readonly isIpv6: boolean;
     /**
      * (Defaults to provider `organizationId`) The ID of the organization the IP is in.
      */
@@ -63,6 +63,7 @@ export interface GetFlexibleIpResult {
      * The associated server ID if any
      */
     readonly serverId: string;
+    readonly status: string;
     readonly tags: string[];
     readonly updatedAt: string;
     readonly zone: string;

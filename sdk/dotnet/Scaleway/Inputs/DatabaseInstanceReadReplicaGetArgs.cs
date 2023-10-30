@@ -14,7 +14,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class DatabaseInstanceReadReplicaGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// IP of the endpoint.
+        /// IPv4 address on the network.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
@@ -26,7 +26,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Port of the endpoint.
+        /// Port in the Private Network.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }

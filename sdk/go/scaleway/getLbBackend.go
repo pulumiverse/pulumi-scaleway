@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Backends.
@@ -59,7 +61,7 @@ import (
 //
 // ```
 func GetLbBackend(ctx *pulumi.Context, args *GetLbBackendArgs, opts ...pulumi.InvokeOption) (*GetLbBackendResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbBackendResult
 	err := ctx.Invoke("scaleway:index/getLbBackend:getLbBackend", args, &rv, opts...)
 	if err != nil {
@@ -82,31 +84,37 @@ type GetLbBackendArgs struct {
 
 // A collection of values returned by getLbBackend.
 type GetLbBackendResult struct {
-	BackendId             *string                       `pulumi:"backendId"`
-	FailoverHost          string                        `pulumi:"failoverHost"`
-	ForwardPort           int                           `pulumi:"forwardPort"`
-	ForwardPortAlgorithm  string                        `pulumi:"forwardPortAlgorithm"`
-	ForwardProtocol       string                        `pulumi:"forwardProtocol"`
-	HealthCheckDelay      string                        `pulumi:"healthCheckDelay"`
-	HealthCheckHttp       []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
-	HealthCheckHttps      []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
-	HealthCheckMaxRetries int                           `pulumi:"healthCheckMaxRetries"`
-	HealthCheckPort       int                           `pulumi:"healthCheckPort"`
-	HealthCheckTcps       []GetLbBackendHealthCheckTcp  `pulumi:"healthCheckTcps"`
-	HealthCheckTimeout    string                        `pulumi:"healthCheckTimeout"`
+	BackendId                 *string                       `pulumi:"backendId"`
+	FailoverHost              string                        `pulumi:"failoverHost"`
+	ForwardPort               int                           `pulumi:"forwardPort"`
+	ForwardPortAlgorithm      string                        `pulumi:"forwardPortAlgorithm"`
+	ForwardProtocol           string                        `pulumi:"forwardProtocol"`
+	HealthCheckDelay          string                        `pulumi:"healthCheckDelay"`
+	HealthCheckHttp           []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
+	HealthCheckHttps          []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
+	HealthCheckMaxRetries     int                           `pulumi:"healthCheckMaxRetries"`
+	HealthCheckPort           int                           `pulumi:"healthCheckPort"`
+	HealthCheckSendProxy      bool                          `pulumi:"healthCheckSendProxy"`
+	HealthCheckTcps           []GetLbBackendHealthCheckTcp  `pulumi:"healthCheckTcps"`
+	HealthCheckTimeout        string                        `pulumi:"healthCheckTimeout"`
+	HealthCheckTransientDelay string                        `pulumi:"healthCheckTransientDelay"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                       string   `pulumi:"id"`
 	IgnoreSslServerVerify    bool     `pulumi:"ignoreSslServerVerify"`
 	LbId                     *string  `pulumi:"lbId"`
+	MaxConnections           int      `pulumi:"maxConnections"`
+	MaxRetries               int      `pulumi:"maxRetries"`
 	Name                     *string  `pulumi:"name"`
 	OnMarkedDownAction       string   `pulumi:"onMarkedDownAction"`
 	ProxyProtocol            string   `pulumi:"proxyProtocol"`
+	RedispatchAttemptCount   int      `pulumi:"redispatchAttemptCount"`
 	SendProxyV2              bool     `pulumi:"sendProxyV2"`
 	ServerIps                []string `pulumi:"serverIps"`
 	SslBridging              bool     `pulumi:"sslBridging"`
 	StickySessions           string   `pulumi:"stickySessions"`
 	StickySessionsCookieName string   `pulumi:"stickySessionsCookieName"`
 	TimeoutConnect           string   `pulumi:"timeoutConnect"`
+	TimeoutQueue             string   `pulumi:"timeoutQueue"`
 	TimeoutServer            string   `pulumi:"timeoutServer"`
 	TimeoutTunnel            string   `pulumi:"timeoutTunnel"`
 }
@@ -155,6 +163,12 @@ func (o GetLbBackendResultOutput) ToGetLbBackendResultOutputWithContext(ctx cont
 	return o
 }
 
+func (o GetLbBackendResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbBackendResult] {
+	return pulumix.Output[GetLbBackendResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetLbBackendResultOutput) BackendId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLbBackendResult) *string { return v.BackendId }).(pulumi.StringPtrOutput)
 }
@@ -195,12 +209,20 @@ func (o GetLbBackendResultOutput) HealthCheckPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbBackendResult) int { return v.HealthCheckPort }).(pulumi.IntOutput)
 }
 
+func (o GetLbBackendResultOutput) HealthCheckSendProxy() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbBackendResult) bool { return v.HealthCheckSendProxy }).(pulumi.BoolOutput)
+}
+
 func (o GetLbBackendResultOutput) HealthCheckTcps() GetLbBackendHealthCheckTcpArrayOutput {
 	return o.ApplyT(func(v GetLbBackendResult) []GetLbBackendHealthCheckTcp { return v.HealthCheckTcps }).(GetLbBackendHealthCheckTcpArrayOutput)
 }
 
 func (o GetLbBackendResultOutput) HealthCheckTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendResult) string { return v.HealthCheckTimeout }).(pulumi.StringOutput)
+}
+
+func (o GetLbBackendResultOutput) HealthCheckTransientDelay() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendResult) string { return v.HealthCheckTransientDelay }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -216,6 +238,14 @@ func (o GetLbBackendResultOutput) LbId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLbBackendResult) *string { return v.LbId }).(pulumi.StringPtrOutput)
 }
 
+func (o GetLbBackendResultOutput) MaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendResult) int { return v.MaxConnections }).(pulumi.IntOutput)
+}
+
+func (o GetLbBackendResultOutput) MaxRetries() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendResult) int { return v.MaxRetries }).(pulumi.IntOutput)
+}
+
 func (o GetLbBackendResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLbBackendResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -226,6 +256,10 @@ func (o GetLbBackendResultOutput) OnMarkedDownAction() pulumi.StringOutput {
 
 func (o GetLbBackendResultOutput) ProxyProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendResult) string { return v.ProxyProtocol }).(pulumi.StringOutput)
+}
+
+func (o GetLbBackendResultOutput) RedispatchAttemptCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbBackendResult) int { return v.RedispatchAttemptCount }).(pulumi.IntOutput)
 }
 
 func (o GetLbBackendResultOutput) SendProxyV2() pulumi.BoolOutput {
@@ -250,6 +284,10 @@ func (o GetLbBackendResultOutput) StickySessionsCookieName() pulumi.StringOutput
 
 func (o GetLbBackendResultOutput) TimeoutConnect() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendResult) string { return v.TimeoutConnect }).(pulumi.StringOutput)
+}
+
+func (o GetLbBackendResultOutput) TimeoutQueue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendResult) string { return v.TimeoutQueue }).(pulumi.StringOutput)
 }
 
 func (o GetLbBackendResultOutput) TimeoutServer() pulumi.StringOutput {

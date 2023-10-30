@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an IOT Hub.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupIotHub(ctx *pulumi.Context, args *LookupIotHubArgs, opts ...pulumi.InvokeOption) (*LookupIotHubResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIotHubResult
 	err := ctx.Invoke("scaleway:index/getIotHub:getIotHub", args, &rv, opts...)
 	if err != nil {
@@ -125,6 +127,12 @@ func (o LookupIotHubResultOutput) ToLookupIotHubResultOutput() LookupIotHubResul
 
 func (o LookupIotHubResultOutput) ToLookupIotHubResultOutputWithContext(ctx context.Context) LookupIotHubResultOutput {
 	return o
+}
+
+func (o LookupIotHubResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIotHubResult] {
+	return pulumix.Output[LookupIotHubResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupIotHubResultOutput) ConnectedDeviceCount() pulumi.IntOutput {

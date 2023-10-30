@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ObjectBucketLockConfiguration struct {
@@ -37,7 +39,7 @@ func NewObjectBucketLockConfiguration(ctx *pulumi.Context,
 	if args.Rule == nil {
 		return nil, errors.New("invalid value for required argument 'Rule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectBucketLockConfiguration
 	err := ctx.RegisterResource("scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration", name, args, &resource, opts...)
 	if err != nil {
@@ -131,6 +133,12 @@ func (i *ObjectBucketLockConfiguration) ToObjectBucketLockConfigurationOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationOutput)
 }
 
+func (i *ObjectBucketLockConfiguration) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketLockConfiguration] {
+	return pulumix.Output[*ObjectBucketLockConfiguration]{
+		OutputState: i.ToObjectBucketLockConfigurationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ObjectBucketLockConfigurationArrayInput is an input type that accepts ObjectBucketLockConfigurationArray and ObjectBucketLockConfigurationArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketLockConfigurationArrayInput` via:
 //
@@ -154,6 +162,12 @@ func (i ObjectBucketLockConfigurationArray) ToObjectBucketLockConfigurationArray
 
 func (i ObjectBucketLockConfigurationArray) ToObjectBucketLockConfigurationArrayOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationArrayOutput)
+}
+
+func (i ObjectBucketLockConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketLockConfiguration] {
+	return pulumix.Output[[]*ObjectBucketLockConfiguration]{
+		OutputState: i.ToObjectBucketLockConfigurationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ObjectBucketLockConfigurationMapInput is an input type that accepts ObjectBucketLockConfigurationMap and ObjectBucketLockConfigurationMapOutput values.
@@ -181,6 +195,12 @@ func (i ObjectBucketLockConfigurationMap) ToObjectBucketLockConfigurationMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLockConfigurationMapOutput)
 }
 
+func (i ObjectBucketLockConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketLockConfiguration] {
+	return pulumix.Output[map[string]*ObjectBucketLockConfiguration]{
+		OutputState: i.ToObjectBucketLockConfigurationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ObjectBucketLockConfigurationOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketLockConfigurationOutput) ElementType() reflect.Type {
@@ -193,6 +213,12 @@ func (o ObjectBucketLockConfigurationOutput) ToObjectBucketLockConfigurationOutp
 
 func (o ObjectBucketLockConfigurationOutput) ToObjectBucketLockConfigurationOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationOutput {
 	return o
+}
+
+func (o ObjectBucketLockConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketLockConfiguration] {
+	return pulumix.Output[*ObjectBucketLockConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The bucket name.
@@ -229,6 +255,12 @@ func (o ObjectBucketLockConfigurationArrayOutput) ToObjectBucketLockConfiguratio
 	return o
 }
 
+func (o ObjectBucketLockConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketLockConfiguration] {
+	return pulumix.Output[[]*ObjectBucketLockConfiguration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ObjectBucketLockConfigurationArrayOutput) Index(i pulumi.IntInput) ObjectBucketLockConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucketLockConfiguration {
 		return vs[0].([]*ObjectBucketLockConfiguration)[vs[1].(int)]
@@ -247,6 +279,12 @@ func (o ObjectBucketLockConfigurationMapOutput) ToObjectBucketLockConfigurationM
 
 func (o ObjectBucketLockConfigurationMapOutput) ToObjectBucketLockConfigurationMapOutputWithContext(ctx context.Context) ObjectBucketLockConfigurationMapOutput {
 	return o
+}
+
+func (o ObjectBucketLockConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketLockConfiguration] {
+	return pulumix.Output[map[string]*ObjectBucketLockConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ObjectBucketLockConfigurationMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketLockConfigurationOutput {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Routes.
@@ -72,7 +74,7 @@ import (
 //
 // ```
 func GetLbRoute(ctx *pulumi.Context, args *GetLbRouteArgs, opts ...pulumi.InvokeOption) (*GetLbRouteResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbRouteResult
 	err := ctx.Invoke("scaleway:index/getLbRoute:getLbRoute", args, &rv, opts...)
 	if err != nil {
@@ -136,6 +138,12 @@ func (o GetLbRouteResultOutput) ToGetLbRouteResultOutput() GetLbRouteResultOutpu
 
 func (o GetLbRouteResultOutput) ToGetLbRouteResultOutputWithContext(ctx context.Context) GetLbRouteResultOutput {
 	return o
+}
+
+func (o GetLbRouteResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbRouteResult] {
+	return pulumix.Output[GetLbRouteResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetLbRouteResultOutput) BackendId() pulumi.StringOutput {

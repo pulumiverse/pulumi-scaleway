@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.resources.InvokeArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
 import com.pulumi.scaleway.inputs.GetAccountProjectPlainArgs;
@@ -22,6 +23,8 @@ import com.pulumi.scaleway.inputs.GetBaremetalOsArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalOsPlainArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerPlainArgs;
+import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+import com.pulumi.scaleway.inputs.GetBillingInvoicesPlainArgs;
 import com.pulumi.scaleway.inputs.GetCockpitArgs;
 import com.pulumi.scaleway.inputs.GetCockpitPlainArgs;
 import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
@@ -40,12 +43,20 @@ import com.pulumi.scaleway.inputs.GetDatabaseInstancePlainArgs;
 import com.pulumi.scaleway.inputs.GetDatabasePlainArgs;
 import com.pulumi.scaleway.inputs.GetDatabasePrivilegeArgs;
 import com.pulumi.scaleway.inputs.GetDatabasePrivilegePlainArgs;
+import com.pulumi.scaleway.inputs.GetDocumentdbDatabaseArgs;
+import com.pulumi.scaleway.inputs.GetDocumentdbDatabasePlainArgs;
+import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+import com.pulumi.scaleway.inputs.GetDocumentdbInstancePlainArgs;
+import com.pulumi.scaleway.inputs.GetDocumentdbLoadBalancerEndpointArgs;
+import com.pulumi.scaleway.inputs.GetDocumentdbLoadBalancerEndpointPlainArgs;
 import com.pulumi.scaleway.inputs.GetDomainRecordArgs;
 import com.pulumi.scaleway.inputs.GetDomainRecordPlainArgs;
 import com.pulumi.scaleway.inputs.GetDomainZoneArgs;
 import com.pulumi.scaleway.inputs.GetDomainZonePlainArgs;
 import com.pulumi.scaleway.inputs.GetFlexibleIpArgs;
 import com.pulumi.scaleway.inputs.GetFlexibleIpPlainArgs;
+import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+import com.pulumi.scaleway.inputs.GetFlexibleIpsPlainArgs;
 import com.pulumi.scaleway.inputs.GetFunctionArgs;
 import com.pulumi.scaleway.inputs.GetFunctionNamespaceArgs;
 import com.pulumi.scaleway.inputs.GetFunctionNamespacePlainArgs;
@@ -78,6 +89,8 @@ import com.pulumi.scaleway.inputs.GetIotDeviceArgs;
 import com.pulumi.scaleway.inputs.GetIotDevicePlainArgs;
 import com.pulumi.scaleway.inputs.GetIotHubArgs;
 import com.pulumi.scaleway.inputs.GetIotHubPlainArgs;
+import com.pulumi.scaleway.inputs.GetIpamIpArgs;
+import com.pulumi.scaleway.inputs.GetIpamIpPlainArgs;
 import com.pulumi.scaleway.inputs.GetK8sVersionArgs;
 import com.pulumi.scaleway.inputs.GetK8sVersionPlainArgs;
 import com.pulumi.scaleway.inputs.GetKubernetesClusterArgs;
@@ -110,6 +123,8 @@ import com.pulumi.scaleway.inputs.GetLoadbalancerIpPlainArgs;
 import com.pulumi.scaleway.inputs.GetLoadbalancerPlainArgs;
 import com.pulumi.scaleway.inputs.GetMarketplaceImageArgs;
 import com.pulumi.scaleway.inputs.GetMarketplaceImagePlainArgs;
+import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+import com.pulumi.scaleway.inputs.GetMnqSqsPlainArgs;
 import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
 import com.pulumi.scaleway.inputs.GetObjectBucketPlainArgs;
 import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
@@ -142,8 +157,12 @@ import com.pulumi.scaleway.inputs.GetVpcPublicGatewayIpPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicGatewayPlainArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRuleArgs;
 import com.pulumi.scaleway.inputs.GetVpcPublicPatRulePlainArgs;
+import com.pulumi.scaleway.inputs.GetVpcsArgs;
+import com.pulumi.scaleway.inputs.GetVpcsPlainArgs;
 import com.pulumi.scaleway.inputs.GetWebHostOfferArgs;
 import com.pulumi.scaleway.inputs.GetWebHostOfferPlainArgs;
+import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+import com.pulumi.scaleway.inputs.GetWebhostingPlainArgs;
 import com.pulumi.scaleway.outputs.GetAccountProjectResult;
 import com.pulumi.scaleway.outputs.GetAccountSshKeyResult;
 import com.pulumi.scaleway.outputs.GetAvailabilityZonesResult;
@@ -151,6 +170,8 @@ import com.pulumi.scaleway.outputs.GetBaremetalOfferResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOptionResult;
 import com.pulumi.scaleway.outputs.GetBaremetalOsResult;
 import com.pulumi.scaleway.outputs.GetBaremetalServerResult;
+import com.pulumi.scaleway.outputs.GetBillingConsumptionsResult;
+import com.pulumi.scaleway.outputs.GetBillingInvoicesResult;
 import com.pulumi.scaleway.outputs.GetCockpitPlanResult;
 import com.pulumi.scaleway.outputs.GetCockpitResult;
 import com.pulumi.scaleway.outputs.GetContainerNamespaceResult;
@@ -160,9 +181,13 @@ import com.pulumi.scaleway.outputs.GetDatabaseBackupResult;
 import com.pulumi.scaleway.outputs.GetDatabaseInstanceResult;
 import com.pulumi.scaleway.outputs.GetDatabasePrivilegeResult;
 import com.pulumi.scaleway.outputs.GetDatabaseResult;
+import com.pulumi.scaleway.outputs.GetDocumentdbDatabaseResult;
+import com.pulumi.scaleway.outputs.GetDocumentdbInstanceResult;
+import com.pulumi.scaleway.outputs.GetDocumentdbLoadBalancerEndpointResult;
 import com.pulumi.scaleway.outputs.GetDomainRecordResult;
 import com.pulumi.scaleway.outputs.GetDomainZoneResult;
 import com.pulumi.scaleway.outputs.GetFlexibleIpResult;
+import com.pulumi.scaleway.outputs.GetFlexibleIpsResult;
 import com.pulumi.scaleway.outputs.GetFunctionNamespaceResult;
 import com.pulumi.scaleway.outputs.GetFunctionResult;
 import com.pulumi.scaleway.outputs.GetIamApplicationResult;
@@ -179,6 +204,7 @@ import com.pulumi.scaleway.outputs.GetInstanceSnapshotResult;
 import com.pulumi.scaleway.outputs.GetInstanceVolumeResult;
 import com.pulumi.scaleway.outputs.GetIotDeviceResult;
 import com.pulumi.scaleway.outputs.GetIotHubResult;
+import com.pulumi.scaleway.outputs.GetIpamIpResult;
 import com.pulumi.scaleway.outputs.GetK8sVersionResult;
 import com.pulumi.scaleway.outputs.GetKubernetesClusterResult;
 import com.pulumi.scaleway.outputs.GetKubernetesNodePoolResult;
@@ -195,6 +221,7 @@ import com.pulumi.scaleway.outputs.GetLoadbalancerCertificateResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerIpResult;
 import com.pulumi.scaleway.outputs.GetLoadbalancerResult;
 import com.pulumi.scaleway.outputs.GetMarketplaceImageResult;
+import com.pulumi.scaleway.outputs.GetMnqSqsResult;
 import com.pulumi.scaleway.outputs.GetObjectBucketPolicyResult;
 import com.pulumi.scaleway.outputs.GetObjectBucketResult;
 import com.pulumi.scaleway.outputs.GetRedisClusterResult;
@@ -211,7 +238,9 @@ import com.pulumi.scaleway.outputs.GetVpcPublicGatewayIpResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicGatewayResult;
 import com.pulumi.scaleway.outputs.GetVpcPublicPatRuleResult;
 import com.pulumi.scaleway.outputs.GetVpcResult;
+import com.pulumi.scaleway.outputs.GetVpcsResult;
 import com.pulumi.scaleway.outputs.GetWebHostOfferResult;
+import com.pulumi.scaleway.outputs.GetWebhostingResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class ScalewayFunctions {
@@ -1930,6 +1959,246 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetBaremetalServerResult> getBaremetalServerPlain(GetBaremetalServerPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getBaremetalServer:getBaremetalServer", TypeShape.of(GetBaremetalServerResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetBillingConsumptionsResult> getBillingConsumptions() {
+        return getBillingConsumptions(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBillingConsumptionsResult> getBillingConsumptionsPlain() {
+        return getBillingConsumptionsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetBillingConsumptionsResult> getBillingConsumptions(InvokeArgs args) {
+        return getBillingConsumptions(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBillingConsumptionsResult> getBillingConsumptionsPlain(InvokeArgs args) {
+        return getBillingConsumptionsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetBillingConsumptionsResult> getBillingConsumptions(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getBillingConsumptions:getBillingConsumptions", TypeShape.of(GetBillingConsumptionsResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetBillingConsumptionsResult> getBillingConsumptionsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getBillingConsumptions:getBillingConsumptions", TypeShape.of(GetBillingConsumptionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about your Invoices.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()
+     *             .invoiceType(&#34;periodic&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetBillingInvoicesResult> getBillingInvoices() {
+        return getBillingInvoices(GetBillingInvoicesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about your Invoices.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()
+     *             .invoiceType(&#34;periodic&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetBillingInvoicesResult> getBillingInvoicesPlain() {
+        return getBillingInvoicesPlain(GetBillingInvoicesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about your Invoices.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()
+     *             .invoiceType(&#34;periodic&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetBillingInvoicesResult> getBillingInvoices(GetBillingInvoicesArgs args) {
+        return getBillingInvoices(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about your Invoices.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()
+     *             .invoiceType(&#34;periodic&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetBillingInvoicesResult> getBillingInvoicesPlain(GetBillingInvoicesPlainArgs args) {
+        return getBillingInvoicesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about your Invoices.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()
+     *             .invoiceType(&#34;periodic&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetBillingInvoicesResult> getBillingInvoices(GetBillingInvoicesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getBillingInvoices:getBillingInvoices", TypeShape.of(GetBillingInvoicesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about your Invoices.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()
+     *             .invoiceType(&#34;periodic&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetBillingInvoicesResult> getBillingInvoicesPlain(GetBillingInvoicesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getBillingInvoices:getBillingInvoices", TypeShape.of(GetBillingInvoicesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about the Scaleway Cockpit.
@@ -3746,6 +4015,398 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", TypeShape.of(GetDatabasePrivilegeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getDocumentdbDatabase(GetDocumentdbDatabaseArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDocumentdbDatabaseResult> getDocumentdbDatabase(GetDocumentdbDatabaseArgs args) {
+        return getDocumentdbDatabase(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getDocumentdbDatabase(GetDocumentdbDatabaseArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDocumentdbDatabaseResult> getDocumentdbDatabasePlain(GetDocumentdbDatabasePlainArgs args) {
+        return getDocumentdbDatabasePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getDocumentdbDatabase(GetDocumentdbDatabaseArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDocumentdbDatabaseResult> getDocumentdbDatabase(GetDocumentdbDatabaseArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", TypeShape.of(GetDocumentdbDatabaseResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getDocumentdbDatabase(GetDocumentdbDatabaseArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .name(&#34;foobar&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDocumentdbDatabaseResult> getDocumentdbDatabasePlain(GetDocumentdbDatabasePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", TypeShape.of(GetDocumentdbDatabaseResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var db = ScalewayFunctions.getDocumentdbInstance(GetDocumentdbInstanceArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDocumentdbInstanceResult> getDocumentdbInstance() {
+        return getDocumentdbInstance(GetDocumentdbInstanceArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var db = ScalewayFunctions.getDocumentdbInstance(GetDocumentdbInstanceArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDocumentdbInstanceResult> getDocumentdbInstancePlain() {
+        return getDocumentdbInstancePlain(GetDocumentdbInstancePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var db = ScalewayFunctions.getDocumentdbInstance(GetDocumentdbInstanceArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDocumentdbInstanceResult> getDocumentdbInstance(GetDocumentdbInstanceArgs args) {
+        return getDocumentdbInstance(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var db = ScalewayFunctions.getDocumentdbInstance(GetDocumentdbInstanceArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDocumentdbInstanceResult> getDocumentdbInstancePlain(GetDocumentdbInstancePlainArgs args) {
+        return getDocumentdbInstancePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var db = ScalewayFunctions.getDocumentdbInstance(GetDocumentdbInstanceArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDocumentdbInstanceResult> getDocumentdbInstance(GetDocumentdbInstanceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", TypeShape.of(GetDocumentdbInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetDocumentdbInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var db = ScalewayFunctions.getDocumentdbInstance(GetDocumentdbInstanceArgs.builder()
+     *             .instanceId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDocumentdbInstanceResult> getDocumentdbInstancePlain(GetDocumentdbInstancePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", TypeShape.of(GetDocumentdbInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetDocumentdbLoadBalancerEndpointResult> getDocumentdbLoadBalancerEndpoint() {
+        return getDocumentdbLoadBalancerEndpoint(GetDocumentdbLoadBalancerEndpointArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetDocumentdbLoadBalancerEndpointResult> getDocumentdbLoadBalancerEndpointPlain() {
+        return getDocumentdbLoadBalancerEndpointPlain(GetDocumentdbLoadBalancerEndpointPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetDocumentdbLoadBalancerEndpointResult> getDocumentdbLoadBalancerEndpoint(GetDocumentdbLoadBalancerEndpointArgs args) {
+        return getDocumentdbLoadBalancerEndpoint(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetDocumentdbLoadBalancerEndpointResult> getDocumentdbLoadBalancerEndpointPlain(GetDocumentdbLoadBalancerEndpointPlainArgs args) {
+        return getDocumentdbLoadBalancerEndpointPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetDocumentdbLoadBalancerEndpointResult> getDocumentdbLoadBalancerEndpoint(GetDocumentdbLoadBalancerEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", TypeShape.of(GetDocumentdbLoadBalancerEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetDocumentdbLoadBalancerEndpointResult> getDocumentdbLoadBalancerEndpointPlain(GetDocumentdbLoadBalancerEndpointPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", TypeShape.of(GetDocumentdbLoadBalancerEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about a domain record.
      * 
      * ## Example Usage
@@ -4470,6 +5131,420 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetFlexibleIpResult> getFlexibleIpPlain(GetFlexibleIpPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getFlexibleIp:getFlexibleIp", TypeShape.of(GetFlexibleIpResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Flexible IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+     * import com.pulumi.scaleway.BaremetalServer;
+     * import com.pulumi.scaleway.BaremetalServerArgs;
+     * import com.pulumi.scaleway.FlexibleIp;
+     * import com.pulumi.scaleway.FlexibleIpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fipsByTags = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .tags(&#34;a tag&#34;)
+     *             .build());
+     * 
+     *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+     *             .name(&#34;EM-B112X-SSD&#34;)
+     *             .build());
+     * 
+     *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+     *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+     *             .installConfigAfterward(true)
+     *             .build());
+     * 
+     *         var first = new FlexibleIp(&#34;first&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;first&#34;)
+     *             .build());
+     * 
+     *         var second = new FlexibleIp(&#34;second&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;second&#34;)
+     *             .build());
+     * 
+     *         final var fipsByServerId = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .serverIds(base.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetFlexibleIpsResult> getFlexibleIps() {
+        return getFlexibleIps(GetFlexibleIpsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Flexible IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+     * import com.pulumi.scaleway.BaremetalServer;
+     * import com.pulumi.scaleway.BaremetalServerArgs;
+     * import com.pulumi.scaleway.FlexibleIp;
+     * import com.pulumi.scaleway.FlexibleIpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fipsByTags = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .tags(&#34;a tag&#34;)
+     *             .build());
+     * 
+     *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+     *             .name(&#34;EM-B112X-SSD&#34;)
+     *             .build());
+     * 
+     *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+     *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+     *             .installConfigAfterward(true)
+     *             .build());
+     * 
+     *         var first = new FlexibleIp(&#34;first&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;first&#34;)
+     *             .build());
+     * 
+     *         var second = new FlexibleIp(&#34;second&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;second&#34;)
+     *             .build());
+     * 
+     *         final var fipsByServerId = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .serverIds(base.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetFlexibleIpsResult> getFlexibleIpsPlain() {
+        return getFlexibleIpsPlain(GetFlexibleIpsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Flexible IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+     * import com.pulumi.scaleway.BaremetalServer;
+     * import com.pulumi.scaleway.BaremetalServerArgs;
+     * import com.pulumi.scaleway.FlexibleIp;
+     * import com.pulumi.scaleway.FlexibleIpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fipsByTags = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .tags(&#34;a tag&#34;)
+     *             .build());
+     * 
+     *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+     *             .name(&#34;EM-B112X-SSD&#34;)
+     *             .build());
+     * 
+     *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+     *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+     *             .installConfigAfterward(true)
+     *             .build());
+     * 
+     *         var first = new FlexibleIp(&#34;first&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;first&#34;)
+     *             .build());
+     * 
+     *         var second = new FlexibleIp(&#34;second&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;second&#34;)
+     *             .build());
+     * 
+     *         final var fipsByServerId = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .serverIds(base.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetFlexibleIpsResult> getFlexibleIps(GetFlexibleIpsArgs args) {
+        return getFlexibleIps(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Flexible IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+     * import com.pulumi.scaleway.BaremetalServer;
+     * import com.pulumi.scaleway.BaremetalServerArgs;
+     * import com.pulumi.scaleway.FlexibleIp;
+     * import com.pulumi.scaleway.FlexibleIpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fipsByTags = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .tags(&#34;a tag&#34;)
+     *             .build());
+     * 
+     *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+     *             .name(&#34;EM-B112X-SSD&#34;)
+     *             .build());
+     * 
+     *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+     *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+     *             .installConfigAfterward(true)
+     *             .build());
+     * 
+     *         var first = new FlexibleIp(&#34;first&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;first&#34;)
+     *             .build());
+     * 
+     *         var second = new FlexibleIp(&#34;second&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;second&#34;)
+     *             .build());
+     * 
+     *         final var fipsByServerId = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .serverIds(base.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetFlexibleIpsResult> getFlexibleIpsPlain(GetFlexibleIpsPlainArgs args) {
+        return getFlexibleIpsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Flexible IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+     * import com.pulumi.scaleway.BaremetalServer;
+     * import com.pulumi.scaleway.BaremetalServerArgs;
+     * import com.pulumi.scaleway.FlexibleIp;
+     * import com.pulumi.scaleway.FlexibleIpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fipsByTags = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .tags(&#34;a tag&#34;)
+     *             .build());
+     * 
+     *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+     *             .name(&#34;EM-B112X-SSD&#34;)
+     *             .build());
+     * 
+     *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+     *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+     *             .installConfigAfterward(true)
+     *             .build());
+     * 
+     *         var first = new FlexibleIp(&#34;first&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;first&#34;)
+     *             .build());
+     * 
+     *         var second = new FlexibleIp(&#34;second&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;second&#34;)
+     *             .build());
+     * 
+     *         final var fipsByServerId = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .serverIds(base.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetFlexibleIpsResult> getFlexibleIps(GetFlexibleIpsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getFlexibleIps:getFlexibleIps", TypeShape.of(GetFlexibleIpsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Flexible IPs.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetFlexibleIpsArgs;
+     * import com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;
+     * import com.pulumi.scaleway.BaremetalServer;
+     * import com.pulumi.scaleway.BaremetalServerArgs;
+     * import com.pulumi.scaleway.FlexibleIp;
+     * import com.pulumi.scaleway.FlexibleIpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var fipsByTags = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .tags(&#34;a tag&#34;)
+     *             .build());
+     * 
+     *         final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()
+     *             .name(&#34;EM-B112X-SSD&#34;)
+     *             .build());
+     * 
+     *         var base = new BaremetalServer(&#34;base&#34;, BaremetalServerArgs.builder()        
+     *             .offer(myOffer.applyValue(getBaremetalOfferResult -&gt; getBaremetalOfferResult.offerId()))
+     *             .installConfigAfterward(true)
+     *             .build());
+     * 
+     *         var first = new FlexibleIp(&#34;first&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;first&#34;)
+     *             .build());
+     * 
+     *         var second = new FlexibleIp(&#34;second&#34;, FlexibleIpArgs.builder()        
+     *             .serverId(base.id())
+     *             .tags(            
+     *                 &#34;foo&#34;,
+     *                 &#34;second&#34;)
+     *             .build());
+     * 
+     *         final var fipsByServerId = ScalewayFunctions.getFlexibleIps(GetFlexibleIpsArgs.builder()
+     *             .serverIds(base.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetFlexibleIpsResult> getFlexibleIpsPlain(GetFlexibleIpsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getFlexibleIps:getFlexibleIps", TypeShape.of(GetFlexibleIpsResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetFunctionResult> getFunction(GetFunctionArgs args) {
         return getFunction(args, InvokeOptions.Empty);
@@ -7914,6 +8989,230 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetIotHubResult> getIotHubPlain(GetIotHubPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getIotHub:getIotHub", TypeShape.of(GetIotHubResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs&#39; private networks.
+     * 
+     * ## Examples
+     * 
+     * ### Instance Private Network IP
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.InstancePrivateNic;
+     * import com.pulumi.scaleway.InstancePrivateNicArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
+     * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
+     *             .serverId(scaleway_instance_server.server().id())
+     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .build());
+     * 
+     *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .macAddress(nic.macAddress())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .id(nic.id())
+     *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIpamIpResult> getIpamIp(GetIpamIpArgs args) {
+        return getIpamIp(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs&#39; private networks.
+     * 
+     * ## Examples
+     * 
+     * ### Instance Private Network IP
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.InstancePrivateNic;
+     * import com.pulumi.scaleway.InstancePrivateNicArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
+     * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
+     *             .serverId(scaleway_instance_server.server().id())
+     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .build());
+     * 
+     *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .macAddress(nic.macAddress())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .id(nic.id())
+     *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIpamIpResult> getIpamIpPlain(GetIpamIpPlainArgs args) {
+        return getIpamIpPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs&#39; private networks.
+     * 
+     * ## Examples
+     * 
+     * ### Instance Private Network IP
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.InstancePrivateNic;
+     * import com.pulumi.scaleway.InstancePrivateNicArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
+     * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
+     *             .serverId(scaleway_instance_server.server().id())
+     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .build());
+     * 
+     *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .macAddress(nic.macAddress())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .id(nic.id())
+     *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIpamIpResult> getIpamIp(GetIpamIpArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getIpamIp:getIpamIp", TypeShape.of(GetIpamIpResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs&#39; private networks.
+     * 
+     * ## Examples
+     * 
+     * ### Instance Private Network IP
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.InstancePrivateNic;
+     * import com.pulumi.scaleway.InstancePrivateNicArgs;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
+     * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
+     *             .serverId(scaleway_instance_server.server().id())
+     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .build());
+     * 
+     *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .macAddress(nic.macAddress())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .id(nic.id())
+     *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIpamIpResult> getIpamIpPlain(GetIpamIpPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getIpamIp:getIpamIp", TypeShape.of(GetIpamIpResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a Kubernetes version.
@@ -11624,6 +12923,252 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getMarketplaceImage:getMarketplaceImage", TypeShape.of(GetMarketplaceImageResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about SQS for a project
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getMnqSqs();
+     * 
+     *         final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()
+     *             .projectId(scaleway_account_project.main().id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMnqSqsResult> getMnqSqs() {
+        return getMnqSqs(GetMnqSqsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about SQS for a project
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getMnqSqs();
+     * 
+     *         final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()
+     *             .projectId(scaleway_account_project.main().id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMnqSqsResult> getMnqSqsPlain() {
+        return getMnqSqsPlain(GetMnqSqsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about SQS for a project
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getMnqSqs();
+     * 
+     *         final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()
+     *             .projectId(scaleway_account_project.main().id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMnqSqsResult> getMnqSqs(GetMnqSqsArgs args) {
+        return getMnqSqs(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about SQS for a project
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getMnqSqs();
+     * 
+     *         final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()
+     *             .projectId(scaleway_account_project.main().id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMnqSqsResult> getMnqSqsPlain(GetMnqSqsPlainArgs args) {
+        return getMnqSqsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about SQS for a project
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getMnqSqs();
+     * 
+     *         final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()
+     *             .projectId(scaleway_account_project.main().id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMnqSqsResult> getMnqSqs(GetMnqSqsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getMnqSqs:getMnqSqs", TypeShape.of(GetMnqSqsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about SQS for a project
+     * 
+     * ## Examples
+     * 
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetMnqSqsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getMnqSqs();
+     * 
+     *         final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()
+     *             .projectId(scaleway_account_project.main().id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMnqSqsResult> getMnqSqsPlain(GetMnqSqsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getMnqSqs:getMnqSqs", TypeShape.of(GetMnqSqsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about the Bucket.
      * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
      * 
@@ -14023,7 +15568,6 @@ public final class ScalewayFunctions {
      * Gets information about a private network.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14050,7 +15594,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
-     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14065,7 +15609,6 @@ public final class ScalewayFunctions {
      * Gets information about a private network.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14092,7 +15635,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
-     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14107,7 +15650,6 @@ public final class ScalewayFunctions {
      * Gets information about a private network.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14134,7 +15676,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
-     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14149,7 +15691,6 @@ public final class ScalewayFunctions {
      * Gets information about a private network.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14176,7 +15717,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
-     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14191,7 +15732,6 @@ public final class ScalewayFunctions {
      * Gets information about a private network.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14218,7 +15758,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
-     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14233,7 +15773,6 @@ public final class ScalewayFunctions {
      * Gets information about a private network.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14260,7 +15799,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()
-     *             .privateNetworkIdId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .privateNetworkId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -15358,6 +16897,234 @@ public final class ScalewayFunctions {
         return Deployment.getInstance().invokeAsync("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", TypeShape.of(GetVpcPublicPatRuleResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about multiple Virtual Private Clouds.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()
+     *             .name(&#34;tf-vpc-datasource&#34;)
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetVpcsResult> getVpcs() {
+        return getVpcs(GetVpcsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Virtual Private Clouds.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()
+     *             .name(&#34;tf-vpc-datasource&#34;)
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetVpcsResult> getVpcsPlain() {
+        return getVpcsPlain(GetVpcsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Virtual Private Clouds.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()
+     *             .name(&#34;tf-vpc-datasource&#34;)
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetVpcsResult> getVpcs(GetVpcsArgs args) {
+        return getVpcs(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Virtual Private Clouds.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()
+     *             .name(&#34;tf-vpc-datasource&#34;)
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetVpcsResult> getVpcsPlain(GetVpcsPlainArgs args) {
+        return getVpcsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about multiple Virtual Private Clouds.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()
+     *             .name(&#34;tf-vpc-datasource&#34;)
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetVpcsResult> getVpcs(GetVpcsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getVpcs:getVpcs", TypeShape.of(GetVpcsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about multiple Virtual Private Clouds.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetVpcsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()
+     *             .name(&#34;tf-vpc-datasource&#34;)
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetVpcsResult> getVpcsPlain(GetVpcsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getVpcs:getVpcs", TypeShape.of(GetVpcsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Gets information about a webhosting offer.
      * 
      * ## Example Usage
@@ -15602,5 +17369,251 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetWebHostOfferResult> getWebHostOfferPlain(GetWebHostOfferPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getWebHostOffer:getWebHostOffer", TypeShape.of(GetWebHostOfferResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a webhosting.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .domain(&#34;foobar.com&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .webhostingId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetWebhostingResult> getWebhosting() {
+        return getWebhosting(GetWebhostingArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .domain(&#34;foobar.com&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .webhostingId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetWebhostingResult> getWebhostingPlain() {
+        return getWebhostingPlain(GetWebhostingPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .domain(&#34;foobar.com&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .webhostingId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetWebhostingResult> getWebhosting(GetWebhostingArgs args) {
+        return getWebhosting(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .domain(&#34;foobar.com&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .webhostingId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetWebhostingResult> getWebhostingPlain(GetWebhostingPlainArgs args) {
+        return getWebhostingPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about a webhosting.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .domain(&#34;foobar.com&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .webhostingId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetWebhostingResult> getWebhosting(GetWebhostingArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getWebhosting:getWebhosting", TypeShape.of(GetWebhostingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about a webhosting.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetWebhostingArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .domain(&#34;foobar.com&#34;)
+     *             .build());
+     * 
+     *         final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()
+     *             .webhostingId(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetWebhostingResult> getWebhostingPlain(GetWebhostingPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getWebhosting:getWebhosting", TypeShape.of(GetWebhostingResult.class), args, Utilities.withVersion(options));
     }
 }

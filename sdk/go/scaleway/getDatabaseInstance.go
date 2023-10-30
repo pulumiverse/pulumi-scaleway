@@ -7,12 +7,14 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseInstanceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseInstanceResult
 	err := ctx.Invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", args, &rv, opts...)
 	if err != nil {
@@ -106,6 +108,12 @@ func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutput
 
 func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutputWithContext(ctx context.Context) LookupDatabaseInstanceResultOutput {
 	return o
+}
+
+func (o LookupDatabaseInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseInstanceResult] {
+	return pulumix.Output[LookupDatabaseInstanceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDatabaseInstanceResultOutput) BackupSameRegion() pulumi.BoolOutput {

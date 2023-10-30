@@ -22,7 +22,10 @@ class GetLoadbalancerResult:
     """
     A collection of values returned by getLoadbalancer.
     """
-    def __init__(__self__, description=None, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+    def __init__(__self__, assign_flexible_ip=None, description=None, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+        if assign_flexible_ip and not isinstance(assign_flexible_ip, bool):
+            raise TypeError("Expected argument 'assign_flexible_ip' to be a bool")
+        pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -68,6 +71,11 @@ class GetLoadbalancerResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="assignFlexibleIp")
+    def assign_flexible_ip(self) -> bool:
+        return pulumi.get(self, "assign_flexible_ip")
 
     @property
     @pulumi.getter
@@ -169,6 +177,7 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
         if False:
             yield self
         return GetLoadbalancerResult(
+            assign_flexible_ip=self.assign_flexible_ip,
             description=self.description,
             id=self.id,
             ip_address=self.ip_address,
@@ -217,6 +226,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancer:getLoadbalancer', __args__, opts=opts, typ=GetLoadbalancerResult).value
 
     return AwaitableGetLoadbalancerResult(
+        assign_flexible_ip=pulumi.get(__ret__, 'assign_flexible_ip'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),

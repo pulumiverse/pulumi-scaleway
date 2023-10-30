@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Scaleway Container.
@@ -56,7 +58,7 @@ import (
 //
 // ```
 func LookupContainer(ctx *pulumi.Context, args *LookupContainerArgs, opts ...pulumi.InvokeOption) (*LookupContainerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerResult
 	err := ctx.Invoke("scaleway:index/getContainer:getContainer", args, &rv, opts...)
 	if err != nil {
@@ -170,6 +172,12 @@ func (o LookupContainerResultOutput) ToLookupContainerResultOutput() LookupConta
 
 func (o LookupContainerResultOutput) ToLookupContainerResultOutputWithContext(ctx context.Context) LookupContainerResultOutput {
 	return o
+}
+
+func (o LookupContainerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContainerResult] {
+	return pulumix.Output[LookupContainerResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupContainerResultOutput) ContainerId() pulumi.StringPtrOutput {

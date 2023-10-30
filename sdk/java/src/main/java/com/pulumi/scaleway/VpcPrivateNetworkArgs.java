@@ -20,14 +20,14 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
     public static final VpcPrivateNetworkArgs Empty = new VpcPrivateNetworkArgs();
 
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      * 
      */
     @Import(name="ipv4Subnet")
     private @Nullable Output<VpcPrivateNetworkIpv4SubnetArgs> ipv4Subnet;
 
     /**
-     * @return The IPv4 subnet associated with the private network.
+     * @return The IPv4 subnet to associate with the private network.
      * 
      */
     public Optional<Output<VpcPrivateNetworkIpv4SubnetArgs>> ipv4Subnet() {
@@ -35,18 +35,14 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The IPv6 subnets associated with the private network.
-     * 
-     * &gt; **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      * 
      */
     @Import(name="ipv6Subnets")
     private @Nullable Output<List<VpcPrivateNetworkIpv6SubnetArgs>> ipv6Subnets;
 
     /**
-     * @return The IPv6 subnets associated with the private network.
-     * 
-     * &gt; **Note:** If using Regional Private Network:
+     * @return The IPv6 subnets to associate with the private network.
      * 
      */
     public Optional<Output<List<VpcPrivateNetworkIpv6SubnetArgs>>> ipv6Subnets() {
@@ -54,16 +50,24 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in the next major version
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in the next major version */
     @Import(name="isRegional")
     private @Nullable Output<Boolean> isRegional;
 
     /**
-     * @return Defines whether the private network is Regional. By default, it will be Zonal.
+     * @return The private networks are necessarily regional now.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in the next major version
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in the next major version */
     public Optional<Output<Boolean>> isRegional() {
         return Optional.ofNullable(this.isRegional);
     }
@@ -144,16 +148,24 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in the next major version, please use `region` instead
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in the next major version, please use `region` instead */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the private network should be created.
+     * @return please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in the next major version, please use `region` instead
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in the next major version, please use `region` instead */
     public Optional<Output<String>> zone() {
         return Optional.ofNullable(this.zone);
     }
@@ -191,7 +203,7 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipv4Subnet The IPv4 subnet associated with the private network.
+         * @param ipv4Subnet The IPv4 subnet to associate with the private network.
          * 
          * @return builder
          * 
@@ -202,7 +214,7 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipv4Subnet The IPv4 subnet associated with the private network.
+         * @param ipv4Subnet The IPv4 subnet to associate with the private network.
          * 
          * @return builder
          * 
@@ -212,9 +224,7 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipv6Subnets The IPv6 subnets associated with the private network.
-         * 
-         * &gt; **Note:** If using Regional Private Network:
+         * @param ipv6Subnets The IPv6 subnets to associate with the private network.
          * 
          * @return builder
          * 
@@ -225,9 +235,7 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipv6Subnets The IPv6 subnets associated with the private network.
-         * 
-         * &gt; **Note:** If using Regional Private Network:
+         * @param ipv6Subnets The IPv6 subnets to associate with the private network.
          * 
          * @return builder
          * 
@@ -237,9 +245,7 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipv6Subnets The IPv6 subnets associated with the private network.
-         * 
-         * &gt; **Note:** If using Regional Private Network:
+         * @param ipv6Subnets The IPv6 subnets to associate with the private network.
          * 
          * @return builder
          * 
@@ -249,22 +255,30 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param isRegional Defines whether the private network is Regional. By default, it will be Zonal.
+         * @param isRegional The private networks are necessarily regional now.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in the next major version
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in the next major version */
         public Builder isRegional(@Nullable Output<Boolean> isRegional) {
             $.isRegional = isRegional;
             return this;
         }
 
         /**
-         * @param isRegional Defines whether the private network is Regional. By default, it will be Zonal.
+         * @param isRegional The private networks are necessarily regional now.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in the next major version
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in the next major version */
         public Builder isRegional(Boolean isRegional) {
             return isRegional(Output.of(isRegional));
         }
@@ -385,22 +399,30 @@ public final class VpcPrivateNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param zone `zone`) The zone in which the private network should be created.
+         * @param zone please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in the next major version, please use `region` instead
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in the next major version, please use `region` instead */
         public Builder zone(@Nullable Output<String> zone) {
             $.zone = zone;
             return this;
         }
 
         /**
-         * @param zone `zone`) The zone in which the private network should be created.
+         * @param zone please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in the next major version, please use `region` instead
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in the next major version, please use `region` instead */
         public Builder zone(String zone) {
             return zone(Output.of(zone));
         }

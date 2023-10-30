@@ -76,6 +76,7 @@ public final class GetKubernetesNodePoolResult {
      */
     private String placementGroupId;
     private @Nullable String poolId;
+    private Boolean publicIpDisabled;
     private @Nullable String region;
     private Integer rootVolumeSizeInGb;
     private String rootVolumeType;
@@ -198,6 +199,9 @@ public final class GetKubernetesNodePoolResult {
     public Optional<String> poolId() {
         return Optional.ofNullable(this.poolId);
     }
+    public Boolean publicIpDisabled() {
+        return this.publicIpDisabled;
+    }
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -276,6 +280,7 @@ public final class GetKubernetesNodePoolResult {
         private List<GetKubernetesNodePoolNode> nodes;
         private String placementGroupId;
         private @Nullable String poolId;
+        private Boolean publicIpDisabled;
         private @Nullable String region;
         private Integer rootVolumeSizeInGb;
         private String rootVolumeType;
@@ -305,6 +310,7 @@ public final class GetKubernetesNodePoolResult {
     	      this.nodes = defaults.nodes;
     	      this.placementGroupId = defaults.placementGroupId;
     	      this.poolId = defaults.poolId;
+    	      this.publicIpDisabled = defaults.publicIpDisabled;
     	      this.region = defaults.region;
     	      this.rootVolumeSizeInGb = defaults.rootVolumeSizeInGb;
     	      this.rootVolumeType = defaults.rootVolumeType;
@@ -397,6 +403,11 @@ public final class GetKubernetesNodePoolResult {
             return this;
         }
         @CustomType.Setter
+        public Builder publicIpDisabled(Boolean publicIpDisabled) {
+            this.publicIpDisabled = Objects.requireNonNull(publicIpDisabled);
+            return this;
+        }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
@@ -474,6 +485,7 @@ public final class GetKubernetesNodePoolResult {
             o.nodes = nodes;
             o.placementGroupId = placementGroupId;
             o.poolId = poolId;
+            o.publicIpDisabled = publicIpDisabled;
             o.region = region;
             o.rootVolumeSizeInGb = rootVolumeSizeInGb;
             o.rootVolumeType = rootVolumeType;

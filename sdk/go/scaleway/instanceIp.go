@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
@@ -52,6 +54,8 @@ type InstanceIp struct {
 	Address pulumi.StringOutput `pulumi:"address"`
 	// The organization ID the IP is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The IP Prefix.
+	Prefix pulumi.StringOutput `pulumi:"prefix"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The reverse dns attached to this IP
@@ -60,6 +64,10 @@ type InstanceIp struct {
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+	//
+	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -71,7 +79,7 @@ func NewInstanceIp(ctx *pulumi.Context,
 		args = &InstanceIpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceIp
 	err := ctx.RegisterResource("scaleway:index/instanceIp:InstanceIp", name, args, &resource, opts...)
 	if err != nil {
@@ -98,6 +106,8 @@ type instanceIpState struct {
 	Address *string `pulumi:"address"`
 	// The organization ID the IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The IP Prefix.
+	Prefix *string `pulumi:"prefix"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse dns attached to this IP
@@ -106,6 +116,10 @@ type instanceIpState struct {
 	ServerId *string `pulumi:"serverId"`
 	// The tags associated with the IP.
 	Tags []string `pulumi:"tags"`
+	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+	//
+	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	Type *string `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
@@ -115,6 +129,8 @@ type InstanceIpState struct {
 	Address pulumi.StringPtrInput
 	// The organization ID the IP is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The IP Prefix.
+	Prefix pulumi.StringPtrInput
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The reverse dns attached to this IP
@@ -123,6 +139,10 @@ type InstanceIpState struct {
 	ServerId pulumi.StringPtrInput
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayInput
+	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+	//
+	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	Type pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
@@ -136,6 +156,10 @@ type instanceIpArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The tags associated with the IP.
 	Tags []string `pulumi:"tags"`
+	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+	//
+	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	Type *string `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
@@ -146,6 +170,10 @@ type InstanceIpArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayInput
+	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+	//
+	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	Type pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
@@ -173,6 +201,12 @@ func (i *InstanceIp) ToInstanceIpOutputWithContext(ctx context.Context) Instance
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpOutput)
 }
 
+func (i *InstanceIp) ToOutput(ctx context.Context) pulumix.Output[*InstanceIp] {
+	return pulumix.Output[*InstanceIp]{
+		OutputState: i.ToInstanceIpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstanceIpArrayInput is an input type that accepts InstanceIpArray and InstanceIpArrayOutput values.
 // You can construct a concrete instance of `InstanceIpArrayInput` via:
 //
@@ -196,6 +230,12 @@ func (i InstanceIpArray) ToInstanceIpArrayOutput() InstanceIpArrayOutput {
 
 func (i InstanceIpArray) ToInstanceIpArrayOutputWithContext(ctx context.Context) InstanceIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpArrayOutput)
+}
+
+func (i InstanceIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceIp] {
+	return pulumix.Output[[]*InstanceIp]{
+		OutputState: i.ToInstanceIpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstanceIpMapInput is an input type that accepts InstanceIpMap and InstanceIpMapOutput values.
@@ -223,6 +263,12 @@ func (i InstanceIpMap) ToInstanceIpMapOutputWithContext(ctx context.Context) Ins
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpMapOutput)
 }
 
+func (i InstanceIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceIp] {
+	return pulumix.Output[map[string]*InstanceIp]{
+		OutputState: i.ToInstanceIpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstanceIpOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpOutput) ElementType() reflect.Type {
@@ -237,6 +283,12 @@ func (o InstanceIpOutput) ToInstanceIpOutputWithContext(ctx context.Context) Ins
 	return o
 }
 
+func (o InstanceIpOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceIp] {
+	return pulumix.Output[*InstanceIp]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The IP address.
 func (o InstanceIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
@@ -245,6 +297,11 @@ func (o InstanceIpOutput) Address() pulumi.StringOutput {
 // The organization ID the IP is associated with.
 func (o InstanceIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The IP Prefix.
+func (o InstanceIpOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Prefix }).(pulumi.StringOutput)
 }
 
 // `projectId`) The ID of the project the IP is associated with.
@@ -267,6 +324,13 @@ func (o InstanceIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+//
+// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+func (o InstanceIpOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
 // `zone`) The zone in which the IP should be reserved.
 func (o InstanceIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
@@ -284,6 +348,12 @@ func (o InstanceIpArrayOutput) ToInstanceIpArrayOutput() InstanceIpArrayOutput {
 
 func (o InstanceIpArrayOutput) ToInstanceIpArrayOutputWithContext(ctx context.Context) InstanceIpArrayOutput {
 	return o
+}
+
+func (o InstanceIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceIp] {
+	return pulumix.Output[[]*InstanceIp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstanceIpArrayOutput) Index(i pulumi.IntInput) InstanceIpOutput {
@@ -304,6 +374,12 @@ func (o InstanceIpMapOutput) ToInstanceIpMapOutput() InstanceIpMapOutput {
 
 func (o InstanceIpMapOutput) ToInstanceIpMapOutputWithContext(ctx context.Context) InstanceIpMapOutput {
 	return o
+}
+
+func (o InstanceIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceIp] {
+	return pulumix.Output[map[string]*InstanceIp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstanceIpMapOutput) MapIndex(k pulumi.StringInput) InstanceIpOutput {

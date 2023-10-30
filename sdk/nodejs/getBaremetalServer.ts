@@ -62,6 +62,7 @@ export interface GetBaremetalServerResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly installConfigAfterward: boolean;
     readonly ips: outputs.GetBaremetalServerIp[];
     readonly ipv4s: outputs.GetBaremetalServerIpv4[];
     readonly ipv6s: outputs.GetBaremetalServerIpv6[];

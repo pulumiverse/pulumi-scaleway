@@ -15,11 +15,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class FunctionTriggerSqs
     {
         /// <summary>
-        /// ID of the mnq namespace
+        /// ID of the mnq namespace. Deprecated.
         /// </summary>
-        public readonly string NamespaceId;
+        public readonly string? NamespaceId;
         /// <summary>
-        /// ID of the project that contain the mnq namespace, defaults to provider's project
+        /// ID of the project that contain the mnq nats account, defaults to provider's project
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
@@ -33,7 +33,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
         [OutputConstructor]
         private FunctionTriggerSqs(
-            string namespaceId,
+            string? namespaceId,
 
             string? projectId,
 

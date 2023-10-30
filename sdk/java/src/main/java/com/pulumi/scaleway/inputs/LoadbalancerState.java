@@ -19,6 +19,21 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     public static final LoadbalancerState Empty = new LoadbalancerState();
 
     /**
+     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * 
+     */
+    @Import(name="assignFlexibleIp")
+    private @Nullable Output<Boolean> assignFlexibleIp;
+
+    /**
+     * @return Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * 
+     */
+    public Optional<Output<Boolean>> assignFlexibleIp() {
+        return Optional.ofNullable(this.assignFlexibleIp);
+    }
+
+    /**
      * The description of the load-balancer.
      * 
      */
@@ -51,7 +66,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     /**
      * The ID of the associated LB IP. See below.
      * 
-     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
      * 
      */
     @Import(name="ipId")
@@ -60,7 +75,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return The ID of the associated LB IP. See below.
      * 
-     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
      * 
      */
     public Optional<Output<String>> ipId() {
@@ -196,14 +211,14 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type
+     * The type of the load-balancer. Please check the migration section to upgrade the type.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the load-balancer. Please check the migration section to upgrade the type
+     * @return The type of the load-balancer. Please check the migration section to upgrade the type.
      * 
      */
     public Optional<Output<String>> type() {
@@ -228,6 +243,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
     private LoadbalancerState() {}
 
     private LoadbalancerState(LoadbalancerState $) {
+        this.assignFlexibleIp = $.assignFlexibleIp;
         this.description = $.description;
         this.ipAddress = $.ipAddress;
         this.ipId = $.ipId;
@@ -259,6 +275,27 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(LoadbalancerState defaults) {
             $ = new LoadbalancerState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param assignFlexibleIp Defines whether to automatically assign a flexible public IP to the load-balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assignFlexibleIp(@Nullable Output<Boolean> assignFlexibleIp) {
+            $.assignFlexibleIp = assignFlexibleIp;
+            return this;
+        }
+
+        /**
+         * @param assignFlexibleIp Defines whether to automatically assign a flexible public IP to the load-balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assignFlexibleIp(Boolean assignFlexibleIp) {
+            return assignFlexibleIp(Output.of(assignFlexibleIp));
         }
 
         /**
@@ -306,7 +343,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ipId The ID of the associated LB IP. See below.
          * 
-         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+         * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
          * 
          * @return builder
          * 
@@ -319,7 +356,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ipId The ID of the associated LB IP. See below.
          * 
-         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+         * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
          * 
          * @return builder
          * 
@@ -525,7 +562,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the load-balancer. Please check the migration section to upgrade the type
+         * @param type The type of the load-balancer. Please check the migration section to upgrade the type.
          * 
          * @return builder
          * 
@@ -536,7 +573,7 @@ public final class LoadbalancerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the load-balancer. Please check the migration section to upgrade the type
+         * @param type The type of the load-balancer. Please check the migration section to upgrade the type.
          * 
          * @return builder
          * 

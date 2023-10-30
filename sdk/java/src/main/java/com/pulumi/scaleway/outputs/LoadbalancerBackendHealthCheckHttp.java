@@ -28,7 +28,7 @@ public final class LoadbalancerBackendHealthCheckHttp {
      */
     private @Nullable String method;
     /**
-     * @return The HTTP endpoint URL to call for HC requests.
+     * @return The HTTPS endpoint URL to call for HC requests.
      * 
      */
     private String uri;
@@ -56,7 +56,7 @@ public final class LoadbalancerBackendHealthCheckHttp {
         return Optional.ofNullable(this.method);
     }
     /**
-     * @return The HTTP endpoint URL to call for HC requests.
+     * @return The HTTPS endpoint URL to call for HC requests.
      * 
      */
     public String uri() {

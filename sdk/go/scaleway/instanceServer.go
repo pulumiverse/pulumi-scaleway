@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
@@ -388,8 +390,10 @@ type InstanceServer struct {
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image pulumi.StringPtrOutput `pulumi:"image"`
-	// = (Optional) The ID of the reserved IP that is attached to the server.
+	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
+	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
@@ -413,10 +417,18 @@ type InstanceServer struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The public IPv4 address of the server.
+	// The public IP address of the server.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
+	// The list of public IPs of the server.
+	PublicIps InstanceServerPublicIpArrayOutput `pulumi:"publicIps"`
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange pulumi.BoolPtrOutput `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumeOutput `pulumi:"rootVolume"`
+	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+	//
+	// > **Important:** Enabling routed ip will restart the server
+	RoutedIpEnabled pulumi.BoolOutput `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -425,7 +437,10 @@ type InstanceServer struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -448,7 +463,7 @@ func NewInstanceServer(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceServer
 	err := ctx.RegisterResource("scaleway:index/instanceServer:InstanceServer", name, args, &resource, opts...)
 	if err != nil {
@@ -495,8 +510,10 @@ type instanceServerState struct {
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image *string `pulumi:"image"`
-	// = (Optional) The ID of the reserved IP that is attached to the server.
+	// The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
+	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	IpIds []string `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address *string `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
@@ -520,10 +537,18 @@ type instanceServerState struct {
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The public IPv4 address of the server.
+	// The public IP address of the server.
 	PublicIp *string `pulumi:"publicIp"`
+	// The list of public IPs of the server.
+	PublicIps []InstanceServerPublicIp `pulumi:"publicIps"`
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
+	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+	//
+	// > **Important:** Enabling routed ip will restart the server
+	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -532,7 +557,10 @@ type instanceServerState struct {
 	Tags []string `pulumi:"tags"`
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type *string `pulumi:"type"`
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -570,8 +598,10 @@ type InstanceServerState struct {
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image pulumi.StringPtrInput
-	// = (Optional) The ID of the reserved IP that is attached to the server.
+	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
+	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	IpIds pulumi.StringArrayInput
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address pulumi.StringPtrInput
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
@@ -595,10 +625,18 @@ type InstanceServerState struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The public IPv4 address of the server.
+	// The public IP address of the server.
 	PublicIp pulumi.StringPtrInput
+	// The list of public IPs of the server.
+	PublicIps InstanceServerPublicIpArrayInput
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
+	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+	//
+	// > **Important:** Enabling routed ip will restart the server
+	RoutedIpEnabled pulumi.BoolPtrInput
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -607,7 +645,10 @@ type InstanceServerState struct {
 	Tags pulumi.StringArrayInput
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type pulumi.StringPtrInput
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -649,8 +690,10 @@ type instanceServerArgs struct {
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image *string `pulumi:"image"`
-	// = (Optional) The ID of the reserved IP that is attached to the server.
+	// The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
+	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	IpIds []string `pulumi:"ipIds"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
@@ -662,8 +705,16 @@ type instanceServerArgs struct {
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The list of public IPs of the server.
+	PublicIps []InstanceServerPublicIp `pulumi:"publicIps"`
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
+	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+	//
+	// > **Important:** Enabling routed ip will restart the server
+	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -672,7 +723,10 @@ type instanceServerArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type string `pulumi:"type"`
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -711,8 +765,10 @@ type InstanceServerArgs struct {
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
 	Image pulumi.StringPtrInput
-	// = (Optional) The ID of the reserved IP that is attached to the server.
+	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
+	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	IpIds pulumi.StringArrayInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
@@ -724,8 +780,16 @@ type InstanceServerArgs struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The list of public IPs of the server.
+	PublicIps InstanceServerPublicIpArrayInput
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
+	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+	//
+	// > **Important:** Enabling routed ip will restart the server
+	RoutedIpEnabled pulumi.BoolPtrInput
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -734,7 +798,10 @@ type InstanceServerArgs struct {
 	Tags pulumi.StringArrayInput
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type pulumi.StringInput
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -770,6 +837,12 @@ func (i *InstanceServer) ToInstanceServerOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerOutput)
 }
 
+func (i *InstanceServer) ToOutput(ctx context.Context) pulumix.Output[*InstanceServer] {
+	return pulumix.Output[*InstanceServer]{
+		OutputState: i.ToInstanceServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstanceServerArrayInput is an input type that accepts InstanceServerArray and InstanceServerArrayOutput values.
 // You can construct a concrete instance of `InstanceServerArrayInput` via:
 //
@@ -793,6 +866,12 @@ func (i InstanceServerArray) ToInstanceServerArrayOutput() InstanceServerArrayOu
 
 func (i InstanceServerArray) ToInstanceServerArrayOutputWithContext(ctx context.Context) InstanceServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerArrayOutput)
+}
+
+func (i InstanceServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceServer] {
+	return pulumix.Output[[]*InstanceServer]{
+		OutputState: i.ToInstanceServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstanceServerMapInput is an input type that accepts InstanceServerMap and InstanceServerMapOutput values.
@@ -820,6 +899,12 @@ func (i InstanceServerMap) ToInstanceServerMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerMapOutput)
 }
 
+func (i InstanceServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceServer] {
+	return pulumix.Output[map[string]*InstanceServer]{
+		OutputState: i.ToInstanceServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstanceServerOutput struct{ *pulumi.OutputState }
 
 func (InstanceServerOutput) ElementType() reflect.Type {
@@ -832,6 +917,12 @@ func (o InstanceServerOutput) ToInstanceServerOutput() InstanceServerOutput {
 
 func (o InstanceServerOutput) ToInstanceServerOutputWithContext(ctx context.Context) InstanceServerOutput {
 	return o
+}
+
+func (o InstanceServerOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceServer] {
+	return pulumix.Output[*InstanceServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
@@ -879,9 +970,14 @@ func (o InstanceServerOutput) Image() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.Image }).(pulumi.StringPtrOutput)
 }
 
-// = (Optional) The ID of the reserved IP that is attached to the server.
+// The ID of the reserved IP that is attached to the server.
 func (o InstanceServerOutput) IpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.IpId }).(pulumi.StringPtrOutput)
+}
+
+// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+func (o InstanceServerOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
 
 // The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
@@ -937,14 +1033,31 @@ func (o InstanceServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The public IPv4 address of the server.
+// The public IP address of the server.
 func (o InstanceServerOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PublicIp }).(pulumi.StringOutput)
+}
+
+// The list of public IPs of the server.
+func (o InstanceServerOutput) PublicIps() InstanceServerPublicIpArrayOutput {
+	return o.ApplyT(func(v *InstanceServer) InstanceServerPublicIpArrayOutput { return v.PublicIps }).(InstanceServerPublicIpArrayOutput)
+}
+
+// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+func (o InstanceServerOutput) ReplaceOnTypeChange() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.ReplaceOnTypeChange }).(pulumi.BoolPtrOutput)
 }
 
 // Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerRootVolumeOutput { return v.RootVolume }).(InstanceServerRootVolumeOutput)
+}
+
+// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+//
+// > **Important:** Enabling routed ip will restart the server
+func (o InstanceServerOutput) RoutedIpEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
 // The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -964,7 +1077,10 @@ func (o InstanceServerOutput) Tags() pulumi.StringArrayOutput {
 
 // The commercial type of the server.
 // You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-// Updates to this field will recreate a new resource.
+// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+//
+// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 func (o InstanceServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -998,6 +1114,12 @@ func (o InstanceServerArrayOutput) ToInstanceServerArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o InstanceServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceServer] {
+	return pulumix.Output[[]*InstanceServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o InstanceServerArrayOutput) Index(i pulumi.IntInput) InstanceServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceServer {
 		return vs[0].([]*InstanceServer)[vs[1].(int)]
@@ -1016,6 +1138,12 @@ func (o InstanceServerMapOutput) ToInstanceServerMapOutput() InstanceServerMapOu
 
 func (o InstanceServerMapOutput) ToInstanceServerMapOutputWithContext(ctx context.Context) InstanceServerMapOutput {
 	return o
+}
+
+func (o InstanceServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceServer] {
+	return pulumix.Output[map[string]*InstanceServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstanceServerMapOutput) MapIndex(k pulumi.StringInput) InstanceServerOutput {

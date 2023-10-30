@@ -23,7 +23,7 @@ public final class DomainRecordHttpService {
      */
     private String mustContain;
     /**
-     * @return Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * @return Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      * 
      */
     private String strategy;
@@ -54,7 +54,7 @@ public final class DomainRecordHttpService {
         return this.mustContain;
     }
     /**
-     * @return Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * @return Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      * 
      */
     public String strategy() {

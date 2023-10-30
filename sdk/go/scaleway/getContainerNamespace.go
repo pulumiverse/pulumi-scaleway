@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a container namespace.
@@ -44,7 +46,7 @@ import (
 //
 // ```
 func LookupContainerNamespace(ctx *pulumi.Context, args *LookupContainerNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupContainerNamespaceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerNamespaceResult
 	err := ctx.Invoke("scaleway:index/getContainerNamespace:getContainerNamespace", args, &rv, opts...)
 	if err != nil {
@@ -129,6 +131,12 @@ func (o LookupContainerNamespaceResultOutput) ToLookupContainerNamespaceResultOu
 
 func (o LookupContainerNamespaceResultOutput) ToLookupContainerNamespaceResultOutputWithContext(ctx context.Context) LookupContainerNamespaceResultOutput {
 	return o
+}
+
+func (o LookupContainerNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContainerNamespaceResult] {
+	return pulumix.Output[LookupContainerNamespaceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The description of the namespace.

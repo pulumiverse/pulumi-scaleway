@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  *
  * ## Example
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
@@ -22,36 +24,34 @@ import * as utilities from "./utilities";
  * ]});
  * ```
  *
- * > **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `isRegional` to `true`.
+ * ### With subnets
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {tags: [
- *     "terraform",
- *     "vpc",
- * ]});
- * const regionalPn = new scaleway.VpcPrivateNetwork("regionalPn", {
- *     tags: [
- *         "terraform",
- *         "pn",
- *         "regional",
+ * const pnPriv = new scaleway.VpcPrivateNetwork("pnPriv", {
+ *     ipv4Subnet: {
+ *         subnet: "192.168.0.0/24",
+ *     },
+ *     ipv6Subnets: [
+ *         {
+ *             subnet: "fd46:78ab:30b8:177c::/64",
+ *         },
+ *         {
+ *             subnet: "fd46:78ab:30b8:c7df::/64",
+ *         },
  *     ],
- *     isRegional: true,
- *     vpcId: vpc01.id,
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
  * });
  * ```
  *
  * ## Import
  *
- * Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- *
- *  bash
+ * Private networks can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
  *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
@@ -86,21 +86,21 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the private network
+     * The date and time of the creation of the subnet.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      */
     public readonly ipv4Subnet!: pulumi.Output<outputs.VpcPrivateNetworkIpv4Subnet>;
     /**
-     * The IPv6 subnets associated with the private network.
-     *
-     * > **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      */
     public readonly ipv6Subnets!: pulumi.Output<outputs.VpcPrivateNetworkIpv6Subnet[]>;
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version
      */
     public readonly isRegional!: pulumi.Output<boolean>;
     /**
@@ -124,7 +124,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the private network
+     * The date and time of the last update of the subnet.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -132,7 +132,9 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly vpcId!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -186,21 +188,21 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
  */
 export interface VpcPrivateNetworkState {
     /**
-     * The date and time of the creation of the private network
+     * The date and time of the creation of the subnet.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      */
     ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
     /**
-     * The IPv6 subnets associated with the private network.
-     *
-     * > **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version
      */
     isRegional?: pulumi.Input<boolean>;
     /**
@@ -224,7 +226,7 @@ export interface VpcPrivateNetworkState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The date and time of the last update of the private network
+     * The date and time of the last update of the subnet.
      */
     updatedAt?: pulumi.Input<string>;
     /**
@@ -232,7 +234,9 @@ export interface VpcPrivateNetworkState {
      */
     vpcId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
     zone?: pulumi.Input<string>;
 }
@@ -242,17 +246,17 @@ export interface VpcPrivateNetworkState {
  */
 export interface VpcPrivateNetworkArgs {
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      */
     ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
     /**
-     * The IPv6 subnets associated with the private network.
-     *
-     * > **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version
      */
     isRegional?: pulumi.Input<boolean>;
     /**
@@ -276,7 +280,9 @@ export interface VpcPrivateNetworkArgs {
      */
     vpcId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
     zone?: pulumi.Input<string>;
 }

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance image.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupInstanceImage(ctx *pulumi.Context, args *LookupInstanceImageArgs, opts ...pulumi.InvokeOption) (*LookupInstanceImageResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceImageResult
 	err := ctx.Invoke("scaleway:index/getInstanceImage:getInstanceImage", args, &rv, opts...)
 	if err != nil {
@@ -140,6 +142,12 @@ func (o LookupInstanceImageResultOutput) ToLookupInstanceImageResultOutput() Loo
 
 func (o LookupInstanceImageResultOutput) ToLookupInstanceImageResultOutputWithContext(ctx context.Context) LookupInstanceImageResultOutput {
 	return o
+}
+
+func (o LookupInstanceImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceImageResult] {
+	return pulumix.Output[LookupInstanceImageResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // IDs of the additional volumes in this image.

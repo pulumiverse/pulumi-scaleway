@@ -15,19 +15,20 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
  * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const main = new scaleway.IamApplication("main", {description: "a description"});
  * const policy = new scaleway.ObjectBucketPolicy("policy", {
  *     bucket: bucket.name,
- *     policy: pulumi.all([bucket.name, bucket.name]).apply(([bucketName, bucketName1]) => JSON.stringify({
+ *     policy: pulumi.all([main.id, bucket.name, bucket.name]).apply(([id, bucketName, bucketName1]) => JSON.stringify({
  *         Version: "2023-04-17",
  *         Id: "MyBucketPolicy",
  *         Statement: [{
  *             Sid: "Delegate access",
  *             Effect: "Allow",
  *             Principal: {
- *                 SCW: "application_id:<APPLICATION_ID>",
+ *                 SCW: `application_id:${id}`,
  *             },
  *             Action: "s3:ListBucket",
- *             Resources: [
+ *             Resource: [
  *                 bucketName,
  *                 `${bucketName1}/*`,
  *             ],

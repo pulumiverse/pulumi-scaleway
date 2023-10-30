@@ -651,9 +651,6 @@ class ObjectBucket(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ObjectBucketArgs.__new__(ObjectBucketArgs)
 
-            if acl is not None and not opts.urn:
-                warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
-                pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
             __props__.__dict__["acl"] = acl
             __props__.__dict__["cors_rules"] = cors_rules
             __props__.__dict__["force_destroy"] = force_destroy

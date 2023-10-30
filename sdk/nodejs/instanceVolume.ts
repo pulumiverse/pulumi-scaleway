@@ -57,7 +57,7 @@ export class InstanceVolume extends pulumi.CustomResource {
     }
 
     /**
-     * Create a volume based on a image
+     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     public readonly fromSnapshotId!: pulumi.Output<string | undefined>;
     /**
@@ -89,7 +89,7 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -146,7 +146,7 @@ export class InstanceVolume extends pulumi.CustomResource {
  */
 export interface InstanceVolumeState {
     /**
-     * Create a volume based on a image
+     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     fromSnapshotId?: pulumi.Input<string>;
     /**
@@ -178,7 +178,7 @@ export interface InstanceVolumeState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
      */
     type?: pulumi.Input<string>;
     /**
@@ -192,7 +192,7 @@ export interface InstanceVolumeState {
  */
 export interface InstanceVolumeArgs {
     /**
-     * Create a volume based on a image
+     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
      */
     fromSnapshotId?: pulumi.Input<string>;
     /**
@@ -216,7 +216,7 @@ export interface InstanceVolumeArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD).
+     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
      */
     type: pulumi.Input<string>;
     /**

@@ -111,6 +111,7 @@ export interface GetKubernetesNodePoolResult {
      */
     readonly placementGroupId: string;
     readonly poolId?: string;
+    readonly publicIpDisabled: boolean;
     readonly region?: string;
     readonly rootVolumeSizeInGb: number;
     readonly rootVolumeType: string;

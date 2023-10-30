@@ -241,6 +241,21 @@ public final class ContainerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * (Defaults to provider `region`) The region in which the container was created.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return (Defaults to provider `region`) The region in which the container was created.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
      * The registry image address. e.g: **&#34;rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE&#34;**.
      * 
      */
@@ -332,6 +347,7 @@ public final class ContainerArgs extends com.pulumi.resources.ResourceArgs {
         this.port = $.port;
         this.privacy = $.privacy;
         this.protocol = $.protocol;
+        this.region = $.region;
         this.registryImage = $.registryImage;
         this.registrySha256 = $.registrySha256;
         this.secretEnvironmentVariables = $.secretEnvironmentVariables;
@@ -661,6 +677,27 @@ public final class ContainerArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder protocol(String protocol) {
             return protocol(Output.of(protocol));
+        }
+
+        /**
+         * @param region (Defaults to provider `region`) The region in which the container was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region (Defaults to provider `region`) The region in which the container was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         /**

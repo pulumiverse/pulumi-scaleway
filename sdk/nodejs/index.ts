@@ -65,6 +65,11 @@ export type ContainerToken = import("./containerToken").ContainerToken;
 export const ContainerToken: typeof import("./containerToken").ContainerToken = null as any;
 utilities.lazyLoad(exports, ["ContainerToken"], () => require("./containerToken"));
 
+export { ContainerTriggerArgs, ContainerTriggerState } from "./containerTrigger";
+export type ContainerTrigger = import("./containerTrigger").ContainerTrigger;
+export const ContainerTrigger: typeof import("./containerTrigger").ContainerTrigger = null as any;
+utilities.lazyLoad(exports, ["ContainerTrigger"], () => require("./containerTrigger"));
+
 export { DatabaseArgs, DatabaseState } from "./database";
 export type Database = import("./database").Database;
 export const Database: typeof import("./database").Database = null as any;
@@ -100,6 +105,36 @@ export type DatabaseUser = import("./databaseUser").DatabaseUser;
 export const DatabaseUser: typeof import("./databaseUser").DatabaseUser = null as any;
 utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
 
+export { DocumentdbDatabaseArgs, DocumentdbDatabaseState } from "./documentdbDatabase";
+export type DocumentdbDatabase = import("./documentdbDatabase").DocumentdbDatabase;
+export const DocumentdbDatabase: typeof import("./documentdbDatabase").DocumentdbDatabase = null as any;
+utilities.lazyLoad(exports, ["DocumentdbDatabase"], () => require("./documentdbDatabase"));
+
+export { DocumentdbInstanceArgs, DocumentdbInstanceState } from "./documentdbInstance";
+export type DocumentdbInstance = import("./documentdbInstance").DocumentdbInstance;
+export const DocumentdbInstance: typeof import("./documentdbInstance").DocumentdbInstance = null as any;
+utilities.lazyLoad(exports, ["DocumentdbInstance"], () => require("./documentdbInstance"));
+
+export { DocumentdbPrivateNetworkEndpointArgs, DocumentdbPrivateNetworkEndpointState } from "./documentdbPrivateNetworkEndpoint";
+export type DocumentdbPrivateNetworkEndpoint = import("./documentdbPrivateNetworkEndpoint").DocumentdbPrivateNetworkEndpoint;
+export const DocumentdbPrivateNetworkEndpoint: typeof import("./documentdbPrivateNetworkEndpoint").DocumentdbPrivateNetworkEndpoint = null as any;
+utilities.lazyLoad(exports, ["DocumentdbPrivateNetworkEndpoint"], () => require("./documentdbPrivateNetworkEndpoint"));
+
+export { DocumentdbPrivilegeArgs, DocumentdbPrivilegeState } from "./documentdbPrivilege";
+export type DocumentdbPrivilege = import("./documentdbPrivilege").DocumentdbPrivilege;
+export const DocumentdbPrivilege: typeof import("./documentdbPrivilege").DocumentdbPrivilege = null as any;
+utilities.lazyLoad(exports, ["DocumentdbPrivilege"], () => require("./documentdbPrivilege"));
+
+export { DocumentdbReadReplicaArgs, DocumentdbReadReplicaState } from "./documentdbReadReplica";
+export type DocumentdbReadReplica = import("./documentdbReadReplica").DocumentdbReadReplica;
+export const DocumentdbReadReplica: typeof import("./documentdbReadReplica").DocumentdbReadReplica = null as any;
+utilities.lazyLoad(exports, ["DocumentdbReadReplica"], () => require("./documentdbReadReplica"));
+
+export { DocumentdbUserArgs, DocumentdbUserState } from "./documentdbUser";
+export type DocumentdbUser = import("./documentdbUser").DocumentdbUser;
+export const DocumentdbUser: typeof import("./documentdbUser").DocumentdbUser = null as any;
+utilities.lazyLoad(exports, ["DocumentdbUser"], () => require("./documentdbUser"));
+
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
@@ -114,6 +149,11 @@ export { FlexibleIpArgs, FlexibleIpState } from "./flexibleIp";
 export type FlexibleIp = import("./flexibleIp").FlexibleIp;
 export const FlexibleIp: typeof import("./flexibleIp").FlexibleIp = null as any;
 utilities.lazyLoad(exports, ["FlexibleIp"], () => require("./flexibleIp"));
+
+export { FlexibleIpMacAddressArgs, FlexibleIpMacAddressState } from "./flexibleIpMacAddress";
+export type FlexibleIpMacAddress = import("./flexibleIpMacAddress").FlexibleIpMacAddress;
+export const FlexibleIpMacAddress: typeof import("./flexibleIpMacAddress").FlexibleIpMacAddress = null as any;
+utilities.lazyLoad(exports, ["FlexibleIpMacAddress"], () => require("./flexibleIpMacAddress"));
 
 export { FunctionArgs, FunctionState } from "./function";
 export type Function = import("./function").Function;
@@ -180,6 +220,16 @@ export const getBaremetalServer: typeof import("./getBaremetalServer").getBareme
 export const getBaremetalServerOutput: typeof import("./getBaremetalServer").getBaremetalServerOutput = null as any;
 utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
 
+export { GetBillingConsumptionsResult } from "./getBillingConsumptions";
+export const getBillingConsumptions: typeof import("./getBillingConsumptions").getBillingConsumptions = null as any;
+export const getBillingConsumptionsOutput: typeof import("./getBillingConsumptions").getBillingConsumptionsOutput = null as any;
+utilities.lazyLoad(exports, ["getBillingConsumptions","getBillingConsumptionsOutput"], () => require("./getBillingConsumptions"));
+
+export { GetBillingInvoicesArgs, GetBillingInvoicesResult, GetBillingInvoicesOutputArgs } from "./getBillingInvoices";
+export const getBillingInvoices: typeof import("./getBillingInvoices").getBillingInvoices = null as any;
+export const getBillingInvoicesOutput: typeof import("./getBillingInvoices").getBillingInvoicesOutput = null as any;
+utilities.lazyLoad(exports, ["getBillingInvoices","getBillingInvoicesOutput"], () => require("./getBillingInvoices"));
+
 export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCockpit";
 export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
 export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
@@ -225,6 +275,21 @@ export const getDatabasePrivilege: typeof import("./getDatabasePrivilege").getDa
 export const getDatabasePrivilegeOutput: typeof import("./getDatabasePrivilege").getDatabasePrivilegeOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabasePrivilege","getDatabasePrivilegeOutput"], () => require("./getDatabasePrivilege"));
 
+export { GetDocumentdbDatabaseArgs, GetDocumentdbDatabaseResult, GetDocumentdbDatabaseOutputArgs } from "./getDocumentdbDatabase";
+export const getDocumentdbDatabase: typeof import("./getDocumentdbDatabase").getDocumentdbDatabase = null as any;
+export const getDocumentdbDatabaseOutput: typeof import("./getDocumentdbDatabase").getDocumentdbDatabaseOutput = null as any;
+utilities.lazyLoad(exports, ["getDocumentdbDatabase","getDocumentdbDatabaseOutput"], () => require("./getDocumentdbDatabase"));
+
+export { GetDocumentdbInstanceArgs, GetDocumentdbInstanceResult, GetDocumentdbInstanceOutputArgs } from "./getDocumentdbInstance";
+export const getDocumentdbInstance: typeof import("./getDocumentdbInstance").getDocumentdbInstance = null as any;
+export const getDocumentdbInstanceOutput: typeof import("./getDocumentdbInstance").getDocumentdbInstanceOutput = null as any;
+utilities.lazyLoad(exports, ["getDocumentdbInstance","getDocumentdbInstanceOutput"], () => require("./getDocumentdbInstance"));
+
+export { GetDocumentdbLoadBalancerEndpointArgs, GetDocumentdbLoadBalancerEndpointResult, GetDocumentdbLoadBalancerEndpointOutputArgs } from "./getDocumentdbLoadBalancerEndpoint";
+export const getDocumentdbLoadBalancerEndpoint: typeof import("./getDocumentdbLoadBalancerEndpoint").getDocumentdbLoadBalancerEndpoint = null as any;
+export const getDocumentdbLoadBalancerEndpointOutput: typeof import("./getDocumentdbLoadBalancerEndpoint").getDocumentdbLoadBalancerEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getDocumentdbLoadBalancerEndpoint","getDocumentdbLoadBalancerEndpointOutput"], () => require("./getDocumentdbLoadBalancerEndpoint"));
+
 export { GetDomainRecordArgs, GetDomainRecordResult, GetDomainRecordOutputArgs } from "./getDomainRecord";
 export const getDomainRecord: typeof import("./getDomainRecord").getDomainRecord = null as any;
 export const getDomainRecordOutput: typeof import("./getDomainRecord").getDomainRecordOutput = null as any;
@@ -239,6 +304,11 @@ export { GetFlexibleIpArgs, GetFlexibleIpResult, GetFlexibleIpOutputArgs } from 
 export const getFlexibleIp: typeof import("./getFlexibleIp").getFlexibleIp = null as any;
 export const getFlexibleIpOutput: typeof import("./getFlexibleIp").getFlexibleIpOutput = null as any;
 utilities.lazyLoad(exports, ["getFlexibleIp","getFlexibleIpOutput"], () => require("./getFlexibleIp"));
+
+export { GetFlexibleIpsArgs, GetFlexibleIpsResult, GetFlexibleIpsOutputArgs } from "./getFlexibleIps";
+export const getFlexibleIps: typeof import("./getFlexibleIps").getFlexibleIps = null as any;
+export const getFlexibleIpsOutput: typeof import("./getFlexibleIps").getFlexibleIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexibleIps","getFlexibleIpsOutput"], () => require("./getFlexibleIps"));
 
 export { GetFunctionArgs, GetFunctionResult, GetFunctionOutputArgs } from "./getFunction";
 export const getFunction: typeof import("./getFunction").getFunction = null as any;
@@ -320,6 +390,11 @@ export const getIotHub: typeof import("./getIotHub").getIotHub = null as any;
 export const getIotHubOutput: typeof import("./getIotHub").getIotHubOutput = null as any;
 utilities.lazyLoad(exports, ["getIotHub","getIotHubOutput"], () => require("./getIotHub"));
 
+export { GetIpamIpArgs, GetIpamIpResult, GetIpamIpOutputArgs } from "./getIpamIp";
+export const getIpamIp: typeof import("./getIpamIp").getIpamIp = null as any;
+export const getIpamIpOutput: typeof import("./getIpamIp").getIpamIpOutput = null as any;
+utilities.lazyLoad(exports, ["getIpamIp","getIpamIpOutput"], () => require("./getIpamIp"));
+
 export { GetK8sVersionArgs, GetK8sVersionResult, GetK8sVersionOutputArgs } from "./getK8sVersion";
 export const getK8sVersion: typeof import("./getK8sVersion").getK8sVersion = null as any;
 export const getK8sVersionOutput: typeof import("./getK8sVersion").getK8sVersionOutput = null as any;
@@ -399,6 +474,11 @@ export { GetMarketplaceImageArgs, GetMarketplaceImageResult, GetMarketplaceImage
 export const getMarketplaceImage: typeof import("./getMarketplaceImage").getMarketplaceImage = null as any;
 export const getMarketplaceImageOutput: typeof import("./getMarketplaceImage").getMarketplaceImageOutput = null as any;
 utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
+
+export { GetMnqSqsArgs, GetMnqSqsResult, GetMnqSqsOutputArgs } from "./getMnqSqs";
+export const getMnqSqs: typeof import("./getMnqSqs").getMnqSqs = null as any;
+export const getMnqSqsOutput: typeof import("./getMnqSqs").getMnqSqsOutput = null as any;
+utilities.lazyLoad(exports, ["getMnqSqs","getMnqSqsOutput"], () => require("./getMnqSqs"));
 
 export { GetObjectBucketArgs, GetObjectBucketResult, GetObjectBucketOutputArgs } from "./getObjectBucket";
 export const getObjectBucket: typeof import("./getObjectBucket").getObjectBucket = null as any;
@@ -480,10 +560,20 @@ export const getVpcPublicPatRule: typeof import("./getVpcPublicPatRule").getVpcP
 export const getVpcPublicPatRuleOutput: typeof import("./getVpcPublicPatRule").getVpcPublicPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcPublicPatRule","getVpcPublicPatRuleOutput"], () => require("./getVpcPublicPatRule"));
 
+export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
+export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
+export const getVpcsOutput: typeof import("./getVpcs").getVpcsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcs","getVpcsOutput"], () => require("./getVpcs"));
+
 export { GetWebHostOfferArgs, GetWebHostOfferResult, GetWebHostOfferOutputArgs } from "./getWebHostOffer";
 export const getWebHostOffer: typeof import("./getWebHostOffer").getWebHostOffer = null as any;
 export const getWebHostOfferOutput: typeof import("./getWebHostOffer").getWebHostOfferOutput = null as any;
 utilities.lazyLoad(exports, ["getWebHostOffer","getWebHostOfferOutput"], () => require("./getWebHostOffer"));
+
+export { GetWebhostingArgs, GetWebhostingResult, GetWebhostingOutputArgs } from "./getWebhosting";
+export const getWebhosting: typeof import("./getWebhosting").getWebhosting = null as any;
+export const getWebhostingOutput: typeof import("./getWebhosting").getWebhostingOutput = null as any;
+utilities.lazyLoad(exports, ["getWebhosting","getWebhostingOutput"], () => require("./getWebhosting"));
 
 export { IamApiKeyArgs, IamApiKeyState } from "./iamApiKey";
 export type IamApiKey = import("./iamApiKey").IamApiKey;
@@ -500,6 +590,11 @@ export type IamGroup = import("./iamGroup").IamGroup;
 export const IamGroup: typeof import("./iamGroup").IamGroup = null as any;
 utilities.lazyLoad(exports, ["IamGroup"], () => require("./iamGroup"));
 
+export { IamGroupMembershipArgs, IamGroupMembershipState } from "./iamGroupMembership";
+export type IamGroupMembership = import("./iamGroupMembership").IamGroupMembership;
+export const IamGroupMembership: typeof import("./iamGroupMembership").IamGroupMembership = null as any;
+utilities.lazyLoad(exports, ["IamGroupMembership"], () => require("./iamGroupMembership"));
+
 export { IamPolicyArgs, IamPolicyState } from "./iamPolicy";
 export type IamPolicy = import("./iamPolicy").IamPolicy;
 export const IamPolicy: typeof import("./iamPolicy").IamPolicy = null as any;
@@ -509,6 +604,11 @@ export { IamSshKeyArgs, IamSshKeyState } from "./iamSshKey";
 export type IamSshKey = import("./iamSshKey").IamSshKey;
 export const IamSshKey: typeof import("./iamSshKey").IamSshKey = null as any;
 utilities.lazyLoad(exports, ["IamSshKey"], () => require("./iamSshKey"));
+
+export { IamUserArgs, IamUserState } from "./iamUser";
+export type IamUser = import("./iamUser").IamUser;
+export const IamUser: typeof import("./iamUser").IamUser = null as any;
+utilities.lazyLoad(exports, ["IamUser"], () => require("./iamUser"));
 
 export { InstanceImageArgs, InstanceImageState } from "./instanceImage";
 export type InstanceImage = import("./instanceImage").InstanceImage;
@@ -640,10 +740,35 @@ export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
 export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
 utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
 
+export { MnqNatsAccountArgs, MnqNatsAccountState } from "./mnqNatsAccount";
+export type MnqNatsAccount = import("./mnqNatsAccount").MnqNatsAccount;
+export const MnqNatsAccount: typeof import("./mnqNatsAccount").MnqNatsAccount = null as any;
+utilities.lazyLoad(exports, ["MnqNatsAccount"], () => require("./mnqNatsAccount"));
+
+export { MnqNatsCredentialsArgs, MnqNatsCredentialsState } from "./mnqNatsCredentials";
+export type MnqNatsCredentials = import("./mnqNatsCredentials").MnqNatsCredentials;
+export const MnqNatsCredentials: typeof import("./mnqNatsCredentials").MnqNatsCredentials = null as any;
+utilities.lazyLoad(exports, ["MnqNatsCredentials"], () => require("./mnqNatsCredentials"));
+
 export { MnqQueueArgs, MnqQueueState } from "./mnqQueue";
 export type MnqQueue = import("./mnqQueue").MnqQueue;
 export const MnqQueue: typeof import("./mnqQueue").MnqQueue = null as any;
 utilities.lazyLoad(exports, ["MnqQueue"], () => require("./mnqQueue"));
+
+export { MnqSqsArgs, MnqSqsState } from "./mnqSqs";
+export type MnqSqs = import("./mnqSqs").MnqSqs;
+export const MnqSqs: typeof import("./mnqSqs").MnqSqs = null as any;
+utilities.lazyLoad(exports, ["MnqSqs"], () => require("./mnqSqs"));
+
+export { MnqSqsCredentialsArgs, MnqSqsCredentialsState } from "./mnqSqsCredentials";
+export type MnqSqsCredentials = import("./mnqSqsCredentials").MnqSqsCredentials;
+export const MnqSqsCredentials: typeof import("./mnqSqsCredentials").MnqSqsCredentials = null as any;
+utilities.lazyLoad(exports, ["MnqSqsCredentials"], () => require("./mnqSqsCredentials"));
+
+export { MnqSqsQueueArgs, MnqSqsQueueState } from "./mnqSqsQueue";
+export type MnqSqsQueue = import("./mnqSqsQueue").MnqSqsQueue;
+export const MnqSqsQueue: typeof import("./mnqSqsQueue").MnqSqsQueue = null as any;
+utilities.lazyLoad(exports, ["MnqSqsQueue"], () => require("./mnqSqsQueue"));
 
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
@@ -750,6 +875,11 @@ export type VpcPublicGatewayPatRule = import("./vpcPublicGatewayPatRule").VpcPub
 export const VpcPublicGatewayPatRule: typeof import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule = null as any;
 utilities.lazyLoad(exports, ["VpcPublicGatewayPatRule"], () => require("./vpcPublicGatewayPatRule"));
 
+export { WebhostingArgs, WebhostingState } from "./webhosting";
+export type Webhosting = import("./webhosting").Webhosting;
+export const Webhosting: typeof import("./webhosting").Webhosting = null as any;
+utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -788,6 +918,8 @@ const _module = {
                 return new ContainerNamespace(name, <any>undefined, { urn })
             case "scaleway:index/containerToken:ContainerToken":
                 return new ContainerToken(name, <any>undefined, { urn })
+            case "scaleway:index/containerTrigger:ContainerTrigger":
+                return new ContainerTrigger(name, <any>undefined, { urn })
             case "scaleway:index/database:Database":
                 return new Database(name, <any>undefined, { urn })
             case "scaleway:index/databaseAcl:DatabaseAcl":
@@ -802,12 +934,26 @@ const _module = {
                 return new DatabaseReadReplica(name, <any>undefined, { urn })
             case "scaleway:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbDatabase:DocumentdbDatabase":
+                return new DocumentdbDatabase(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbInstance:DocumentdbInstance":
+                return new DocumentdbInstance(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint":
+                return new DocumentdbPrivateNetworkEndpoint(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbPrivilege:DocumentdbPrivilege":
+                return new DocumentdbPrivilege(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbReadReplica:DocumentdbReadReplica":
+                return new DocumentdbReadReplica(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbUser:DocumentdbUser":
+                return new DocumentdbUser(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
                 return new DomainZone(name, <any>undefined, { urn })
             case "scaleway:index/flexibleIp:FlexibleIp":
                 return new FlexibleIp(name, <any>undefined, { urn })
+            case "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress":
+                return new FlexibleIpMacAddress(name, <any>undefined, { urn })
             case "scaleway:index/function:Function":
                 return new Function(name, <any>undefined, { urn })
             case "scaleway:index/functionCron:FunctionCron":
@@ -826,10 +972,14 @@ const _module = {
                 return new IamApplication(name, <any>undefined, { urn })
             case "scaleway:index/iamGroup:IamGroup":
                 return new IamGroup(name, <any>undefined, { urn })
+            case "scaleway:index/iamGroupMembership:IamGroupMembership":
+                return new IamGroupMembership(name, <any>undefined, { urn })
             case "scaleway:index/iamPolicy:IamPolicy":
                 return new IamPolicy(name, <any>undefined, { urn })
             case "scaleway:index/iamSshKey:IamSshKey":
                 return new IamSshKey(name, <any>undefined, { urn })
+            case "scaleway:index/iamUser:IamUser":
+                return new IamUser(name, <any>undefined, { urn })
             case "scaleway:index/instanceImage:InstanceImage":
                 return new InstanceImage(name, <any>undefined, { urn })
             case "scaleway:index/instanceIp:InstanceIp":
@@ -882,8 +1032,18 @@ const _module = {
                 return new MnqCredential(name, <any>undefined, { urn })
             case "scaleway:index/mnqNamespace:MnqNamespace":
                 return new MnqNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
+                return new MnqNatsAccount(name, <any>undefined, { urn })
+            case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
+                return new MnqNatsCredentials(name, <any>undefined, { urn })
             case "scaleway:index/mnqQueue:MnqQueue":
                 return new MnqQueue(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSqs:MnqSqs":
+                return new MnqSqs(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
+                return new MnqSqsCredentials(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
+                return new MnqSqsQueue(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -924,6 +1084,8 @@ const _module = {
                 return new VpcPublicGatewayIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
                 return new VpcPublicGatewayPatRule(name, <any>undefined, { urn })
+            case "scaleway:index/webhosting:Webhosting":
+                return new Webhosting(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -941,6 +1103,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/containerDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerToken", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/containerTrigger", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/database", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseBackup", _module)
@@ -948,9 +1111,16 @@ pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbDatabase", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbInstance", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbPrivateNetworkEndpoint", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbPrivilege", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbReadReplica", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIpMacAddress", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/function", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionDomain", _module)
@@ -960,8 +1130,10 @@ pulumi.runtime.registerResourceModule("scaleway", "index/functionTrigger", _modu
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApiKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApplication", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamGroupMembership", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamSshKey", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
@@ -988,7 +1160,12 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqQueue", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqs", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsCredentials", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsQueue", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)
@@ -1009,6 +1186,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcpRes
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPatRule", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/webhosting", _module)
 pulumi.runtime.registerResourcePackage("scaleway", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

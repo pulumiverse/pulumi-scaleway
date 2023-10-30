@@ -7,13 +7,15 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a dhcp entries. For further information please check the
 // API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
 func LookupVpcPublicGatewayDhcpReservation(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpReservationArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpReservationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpReservationResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args, &rv, opts...)
 	if err != nil {
@@ -24,7 +26,7 @@ func LookupVpcPublicGatewayDhcpReservation(ctx *pulumi.Context, args *LookupVpcP
 
 // A collection of arguments for invoking getVpcPublicGatewayDhcpReservation.
 type LookupVpcPublicGatewayDhcpReservationArgs struct {
-	// The ID of the owning GatewayNetwork.
+	// The ID of the owning GatewayNetwork
 	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve
 	MacAddress *string `pulumi:"macAddress"`
@@ -74,7 +76,7 @@ func LookupVpcPublicGatewayDhcpReservationOutput(ctx *pulumi.Context, args Looku
 
 // A collection of arguments for invoking getVpcPublicGatewayDhcpReservation.
 type LookupVpcPublicGatewayDhcpReservationOutputArgs struct {
-	// The ID of the owning GatewayNetwork.
+	// The ID of the owning GatewayNetwork
 	GatewayNetworkId pulumi.StringPtrInput `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
@@ -104,6 +106,12 @@ func (o LookupVpcPublicGatewayDhcpReservationResultOutput) ToLookupVpcPublicGate
 
 func (o LookupVpcPublicGatewayDhcpReservationResultOutput) ToLookupVpcPublicGatewayDhcpReservationResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayDhcpReservationResultOutput {
 	return o
+}
+
+func (o LookupVpcPublicGatewayDhcpReservationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayDhcpReservationResult] {
+	return pulumix.Output[LookupVpcPublicGatewayDhcpReservationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time of the creation of the public gateway DHCP config.

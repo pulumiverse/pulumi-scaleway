@@ -187,6 +187,8 @@ export class KubernetesCluster extends pulumi.CustomResource {
      *
      * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     *
+     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
@@ -206,7 +208,13 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     *
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     *
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     *
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -374,6 +382,8 @@ export interface KubernetesClusterState {
      *
      * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     *
+     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -393,7 +403,13 @@ export interface KubernetesClusterState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     *
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     *
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     *
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     type?: pulumi.Input<string>;
     /**
@@ -466,6 +482,8 @@ export interface KubernetesClusterArgs {
      *
      * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     *
+     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -481,7 +499,13 @@ export interface KubernetesClusterArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     *
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     *
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     *
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     type?: pulumi.Input<string>;
     /**

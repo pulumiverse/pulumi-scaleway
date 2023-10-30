@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Kubernetes Cluster.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesClusterResult
 	err := ctx.Invoke("scaleway:index/getKubernetesCluster:getKubernetesCluster", args, &rv, opts...)
 	if err != nil {
@@ -146,6 +148,12 @@ func (o LookupKubernetesClusterResultOutput) ToLookupKubernetesClusterResultOutp
 
 func (o LookupKubernetesClusterResultOutput) ToLookupKubernetesClusterResultOutputWithContext(ctx context.Context) LookupKubernetesClusterResultOutput {
 	return o
+}
+
+func (o LookupKubernetesClusterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupKubernetesClusterResult] {
+	return pulumix.Output[LookupKubernetesClusterResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) enabled on the cluster.

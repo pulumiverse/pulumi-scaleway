@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets local image ID of an image from its label name.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func GetMarketplaceImage(ctx *pulumi.Context, args *GetMarketplaceImageArgs, opts ...pulumi.InvokeOption) (*GetMarketplaceImageResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetMarketplaceImageResult
 	err := ctx.Invoke("scaleway:index/getMarketplaceImage:getMarketplaceImage", args, &rv, opts...)
 	if err != nil {
@@ -110,6 +112,12 @@ func (o GetMarketplaceImageResultOutput) ToGetMarketplaceImageResultOutput() Get
 
 func (o GetMarketplaceImageResultOutput) ToGetMarketplaceImageResultOutputWithContext(ctx context.Context) GetMarketplaceImageResultOutput {
 	return o
+}
+
+func (o GetMarketplaceImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetMarketplaceImageResult] {
+	return pulumix.Output[GetMarketplaceImageResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Apple silicon M1. For more information,
@@ -93,7 +95,7 @@ func NewAppleSliconValleyServer(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AppleSliconValleyServer
 	err := ctx.RegisterResource("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer", name, args, &resource, opts...)
 	if err != nil {
@@ -233,6 +235,12 @@ func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerOutput)
 }
 
+func (i *AppleSliconValleyServer) ToOutput(ctx context.Context) pulumix.Output[*AppleSliconValleyServer] {
+	return pulumix.Output[*AppleSliconValleyServer]{
+		OutputState: i.ToAppleSliconValleyServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AppleSliconValleyServerArrayInput is an input type that accepts AppleSliconValleyServerArray and AppleSliconValleyServerArrayOutput values.
 // You can construct a concrete instance of `AppleSliconValleyServerArrayInput` via:
 //
@@ -256,6 +264,12 @@ func (i AppleSliconValleyServerArray) ToAppleSliconValleyServerArrayOutput() App
 
 func (i AppleSliconValleyServerArray) ToAppleSliconValleyServerArrayOutputWithContext(ctx context.Context) AppleSliconValleyServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerArrayOutput)
+}
+
+func (i AppleSliconValleyServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*AppleSliconValleyServer] {
+	return pulumix.Output[[]*AppleSliconValleyServer]{
+		OutputState: i.ToAppleSliconValleyServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AppleSliconValleyServerMapInput is an input type that accepts AppleSliconValleyServerMap and AppleSliconValleyServerMapOutput values.
@@ -283,6 +297,12 @@ func (i AppleSliconValleyServerMap) ToAppleSliconValleyServerMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerMapOutput)
 }
 
+func (i AppleSliconValleyServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AppleSliconValleyServer] {
+	return pulumix.Output[map[string]*AppleSliconValleyServer]{
+		OutputState: i.ToAppleSliconValleyServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AppleSliconValleyServerOutput struct{ *pulumi.OutputState }
 
 func (AppleSliconValleyServerOutput) ElementType() reflect.Type {
@@ -295,6 +315,12 @@ func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutput() AppleSl
 
 func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutputWithContext(ctx context.Context) AppleSliconValleyServerOutput {
 	return o
+}
+
+func (o AppleSliconValleyServerOutput) ToOutput(ctx context.Context) pulumix.Output[*AppleSliconValleyServer] {
+	return pulumix.Output[*AppleSliconValleyServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time of the creation of the Apple Silicon server.
@@ -371,6 +397,12 @@ func (o AppleSliconValleyServerArrayOutput) ToAppleSliconValleyServerArrayOutput
 	return o
 }
 
+func (o AppleSliconValleyServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AppleSliconValleyServer] {
+	return pulumix.Output[[]*AppleSliconValleyServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AppleSliconValleyServerArrayOutput) Index(i pulumi.IntInput) AppleSliconValleyServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AppleSliconValleyServer {
 		return vs[0].([]*AppleSliconValleyServer)[vs[1].(int)]
@@ -389,6 +421,12 @@ func (o AppleSliconValleyServerMapOutput) ToAppleSliconValleyServerMapOutput() A
 
 func (o AppleSliconValleyServerMapOutput) ToAppleSliconValleyServerMapOutputWithContext(ctx context.Context) AppleSliconValleyServerMapOutput {
 	return o
+}
+
+func (o AppleSliconValleyServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AppleSliconValleyServer] {
+	return pulumix.Output[map[string]*AppleSliconValleyServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AppleSliconValleyServerMapOutput) MapIndex(k pulumi.StringInput) AppleSliconValleyServerOutput {

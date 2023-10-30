@@ -161,6 +161,21 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Defines whether proxy protocol should be activated for the health check.
+     * 
+     */
+    @Import(name="healthCheckSendProxy")
+    private @Nullable Output<Boolean> healthCheckSendProxy;
+
+    /**
+     * @return Defines whether proxy protocol should be activated for the health check.
+     * 
+     */
+    public Optional<Output<Boolean>> healthCheckSendProxy() {
+        return Optional.ofNullable(this.healthCheckSendProxy);
+    }
+
+    /**
      * This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
      * 
      */
@@ -188,6 +203,21 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> healthCheckTimeout() {
         return Optional.ofNullable(this.healthCheckTimeout);
+    }
+
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     * 
+     */
+    @Import(name="healthCheckTransientDelay")
+    private @Nullable Output<String> healthCheckTransientDelay;
+
+    /**
+     * @return The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     * 
+     */
+    public Optional<Output<String>> healthCheckTransientDelay() {
+        return Optional.ofNullable(this.healthCheckTransientDelay);
     }
 
     /**
@@ -220,6 +250,36 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> lbId() {
         return Optional.ofNullable(this.lbId);
+    }
+
+    /**
+     * Maximum number of connections allowed per backend server.
+     * 
+     */
+    @Import(name="maxConnections")
+    private @Nullable Output<Integer> maxConnections;
+
+    /**
+     * @return Maximum number of connections allowed per backend server.
+     * 
+     */
+    public Optional<Output<Integer>> maxConnections() {
+        return Optional.ofNullable(this.maxConnections);
+    }
+
+    /**
+     * Number of retries when a backend server connection failed.
+     * 
+     */
+    @Import(name="maxRetries")
+    private @Nullable Output<Integer> maxRetries;
+
+    /**
+     * @return Number of retries when a backend server connection failed.
+     * 
+     */
+    public Optional<Output<Integer>> maxRetries() {
+        return Optional.ofNullable(this.maxRetries);
     }
 
     /**
@@ -265,6 +325,21 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> proxyProtocol() {
         return Optional.ofNullable(this.proxyProtocol);
+    }
+
+    /**
+     * Whether to use another backend server on each attempt.
+     * 
+     */
+    @Import(name="redispatchAttemptCount")
+    private @Nullable Output<Integer> redispatchAttemptCount;
+
+    /**
+     * @return Whether to use another backend server on each attempt.
+     * 
+     */
+    public Optional<Output<Integer>> redispatchAttemptCount() {
+        return Optional.ofNullable(this.redispatchAttemptCount);
     }
 
     /**
@@ -366,6 +441,21 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+     * 
+     */
+    @Import(name="timeoutQueue")
+    private @Nullable Output<String> timeoutQueue;
+
+    /**
+     * @return Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+     * 
+     */
+    public Optional<Output<String>> timeoutQueue() {
+        return Optional.ofNullable(this.timeoutQueue);
+    }
+
+    /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      * 
      */
@@ -407,19 +497,25 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
         this.healthCheckHttps = $.healthCheckHttps;
         this.healthCheckMaxRetries = $.healthCheckMaxRetries;
         this.healthCheckPort = $.healthCheckPort;
+        this.healthCheckSendProxy = $.healthCheckSendProxy;
         this.healthCheckTcp = $.healthCheckTcp;
         this.healthCheckTimeout = $.healthCheckTimeout;
+        this.healthCheckTransientDelay = $.healthCheckTransientDelay;
         this.ignoreSslServerVerify = $.ignoreSslServerVerify;
         this.lbId = $.lbId;
+        this.maxConnections = $.maxConnections;
+        this.maxRetries = $.maxRetries;
         this.name = $.name;
         this.onMarkedDownAction = $.onMarkedDownAction;
         this.proxyProtocol = $.proxyProtocol;
+        this.redispatchAttemptCount = $.redispatchAttemptCount;
         this.sendProxyV2 = $.sendProxyV2;
         this.serverIps = $.serverIps;
         this.sslBridging = $.sslBridging;
         this.stickySessions = $.stickySessions;
         this.stickySessionsCookieName = $.stickySessionsCookieName;
         this.timeoutConnect = $.timeoutConnect;
+        this.timeoutQueue = $.timeoutQueue;
         this.timeoutServer = $.timeoutServer;
         this.timeoutTunnel = $.timeoutTunnel;
     }
@@ -636,6 +732,27 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param healthCheckSendProxy Defines whether proxy protocol should be activated for the health check.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder healthCheckSendProxy(@Nullable Output<Boolean> healthCheckSendProxy) {
+            $.healthCheckSendProxy = healthCheckSendProxy;
+            return this;
+        }
+
+        /**
+         * @param healthCheckSendProxy Defines whether proxy protocol should be activated for the health check.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder healthCheckSendProxy(Boolean healthCheckSendProxy) {
+            return healthCheckSendProxy(Output.of(healthCheckSendProxy));
+        }
+
+        /**
          * @param healthCheckTcp This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
          * 
          * @return builder
@@ -675,6 +792,27 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
          */
         public Builder healthCheckTimeout(String healthCheckTimeout) {
             return healthCheckTimeout(Output.of(healthCheckTimeout));
+        }
+
+        /**
+         * @param healthCheckTransientDelay The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder healthCheckTransientDelay(@Nullable Output<String> healthCheckTransientDelay) {
+            $.healthCheckTransientDelay = healthCheckTransientDelay;
+            return this;
+        }
+
+        /**
+         * @param healthCheckTransientDelay The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder healthCheckTransientDelay(String healthCheckTransientDelay) {
+            return healthCheckTransientDelay(Output.of(healthCheckTransientDelay));
         }
 
         /**
@@ -719,6 +857,48 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
          */
         public Builder lbId(String lbId) {
             return lbId(Output.of(lbId));
+        }
+
+        /**
+         * @param maxConnections Maximum number of connections allowed per backend server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxConnections(@Nullable Output<Integer> maxConnections) {
+            $.maxConnections = maxConnections;
+            return this;
+        }
+
+        /**
+         * @param maxConnections Maximum number of connections allowed per backend server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxConnections(Integer maxConnections) {
+            return maxConnections(Output.of(maxConnections));
+        }
+
+        /**
+         * @param maxRetries Number of retries when a backend server connection failed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(@Nullable Output<Integer> maxRetries) {
+            $.maxRetries = maxRetries;
+            return this;
+        }
+
+        /**
+         * @param maxRetries Number of retries when a backend server connection failed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(Integer maxRetries) {
+            return maxRetries(Output.of(maxRetries));
         }
 
         /**
@@ -782,6 +962,27 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
          */
         public Builder proxyProtocol(String proxyProtocol) {
             return proxyProtocol(Output.of(proxyProtocol));
+        }
+
+        /**
+         * @param redispatchAttemptCount Whether to use another backend server on each attempt.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redispatchAttemptCount(@Nullable Output<Integer> redispatchAttemptCount) {
+            $.redispatchAttemptCount = redispatchAttemptCount;
+            return this;
+        }
+
+        /**
+         * @param redispatchAttemptCount Whether to use another backend server on each attempt.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redispatchAttemptCount(Integer redispatchAttemptCount) {
+            return redispatchAttemptCount(Output.of(redispatchAttemptCount));
         }
 
         /**
@@ -926,6 +1127,27 @@ public final class LoadbalancerBackendState extends com.pulumi.resources.Resourc
          */
         public Builder timeoutConnect(String timeoutConnect) {
             return timeoutConnect(Output.of(timeoutConnect));
+        }
+
+        /**
+         * @param timeoutQueue Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeoutQueue(@Nullable Output<String> timeoutQueue) {
+            $.timeoutQueue = timeoutQueue;
+            return this;
+        }
+
+        /**
+         * @param timeoutQueue Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeoutQueue(String timeoutQueue) {
+            return timeoutQueue(Output.of(timeoutQueue));
         }
 
         /**

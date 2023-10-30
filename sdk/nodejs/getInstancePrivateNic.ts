@@ -76,6 +76,7 @@ export interface GetInstancePrivateNicResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly ipIds: string[];
     readonly macAddress: string;
     readonly privateNetworkId?: string;
     readonly privateNicId?: string;

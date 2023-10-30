@@ -116,6 +116,10 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      */
     public readonly healthCheckPort!: pulumi.Output<number>;
     /**
+     * Defines whether proxy protocol should be activated for the health check.
+     */
+    public readonly healthCheckSendProxy!: pulumi.Output<boolean | undefined>;
+    /**
      * This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
      */
     public readonly healthCheckTcp!: pulumi.Output<outputs.LoadbalancerBackendHealthCheckTcp>;
@@ -123,6 +127,10 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * Timeout before we consider a HC request failed.
      */
     public readonly healthCheckTimeout!: pulumi.Output<string | undefined>;
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     */
+    public readonly healthCheckTransientDelay!: pulumi.Output<string | undefined>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      */
@@ -132,6 +140,14 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * > **Important:** Updates to `lbId` will recreate the backend.
      */
     public readonly lbId!: pulumi.Output<string>;
+    /**
+     * Maximum number of connections allowed per backend server.
+     */
+    public readonly maxConnections!: pulumi.Output<number | undefined>;
+    /**
+     * Number of retries when a backend server connection failed.
+     */
+    public readonly maxRetries!: pulumi.Output<number | undefined>;
     /**
      * The name of the load-balancer backend.
      */
@@ -144,6 +160,10 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
      */
     public readonly proxyProtocol!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to use another backend server on each attempt.
+     */
+    public readonly redispatchAttemptCount!: pulumi.Output<number | undefined>;
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
@@ -170,6 +190,10 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      */
     public readonly timeoutConnect!: pulumi.Output<string | undefined>;
+    /**
+     * Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+     */
+    public readonly timeoutQueue!: pulumi.Output<string | undefined>;
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      */
@@ -201,19 +225,25 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckHttps"] = state ? state.healthCheckHttps : undefined;
             resourceInputs["healthCheckMaxRetries"] = state ? state.healthCheckMaxRetries : undefined;
             resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
+            resourceInputs["healthCheckSendProxy"] = state ? state.healthCheckSendProxy : undefined;
             resourceInputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
+            resourceInputs["healthCheckTransientDelay"] = state ? state.healthCheckTransientDelay : undefined;
             resourceInputs["ignoreSslServerVerify"] = state ? state.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
+            resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
+            resourceInputs["maxRetries"] = state ? state.maxRetries : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["onMarkedDownAction"] = state ? state.onMarkedDownAction : undefined;
             resourceInputs["proxyProtocol"] = state ? state.proxyProtocol : undefined;
+            resourceInputs["redispatchAttemptCount"] = state ? state.redispatchAttemptCount : undefined;
             resourceInputs["sendProxyV2"] = state ? state.sendProxyV2 : undefined;
             resourceInputs["serverIps"] = state ? state.serverIps : undefined;
             resourceInputs["sslBridging"] = state ? state.sslBridging : undefined;
             resourceInputs["stickySessions"] = state ? state.stickySessions : undefined;
             resourceInputs["stickySessionsCookieName"] = state ? state.stickySessionsCookieName : undefined;
             resourceInputs["timeoutConnect"] = state ? state.timeoutConnect : undefined;
+            resourceInputs["timeoutQueue"] = state ? state.timeoutQueue : undefined;
             resourceInputs["timeoutServer"] = state ? state.timeoutServer : undefined;
             resourceInputs["timeoutTunnel"] = state ? state.timeoutTunnel : undefined;
         } else {
@@ -236,19 +266,25 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckHttps"] = args ? args.healthCheckHttps : undefined;
             resourceInputs["healthCheckMaxRetries"] = args ? args.healthCheckMaxRetries : undefined;
             resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
+            resourceInputs["healthCheckSendProxy"] = args ? args.healthCheckSendProxy : undefined;
             resourceInputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
+            resourceInputs["healthCheckTransientDelay"] = args ? args.healthCheckTransientDelay : undefined;
             resourceInputs["ignoreSslServerVerify"] = args ? args.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = args ? args.lbId : undefined;
+            resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
+            resourceInputs["maxRetries"] = args ? args.maxRetries : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["onMarkedDownAction"] = args ? args.onMarkedDownAction : undefined;
             resourceInputs["proxyProtocol"] = args ? args.proxyProtocol : undefined;
+            resourceInputs["redispatchAttemptCount"] = args ? args.redispatchAttemptCount : undefined;
             resourceInputs["sendProxyV2"] = args ? args.sendProxyV2 : undefined;
             resourceInputs["serverIps"] = args ? args.serverIps : undefined;
             resourceInputs["sslBridging"] = args ? args.sslBridging : undefined;
             resourceInputs["stickySessions"] = args ? args.stickySessions : undefined;
             resourceInputs["stickySessionsCookieName"] = args ? args.stickySessionsCookieName : undefined;
             resourceInputs["timeoutConnect"] = args ? args.timeoutConnect : undefined;
+            resourceInputs["timeoutQueue"] = args ? args.timeoutQueue : undefined;
             resourceInputs["timeoutServer"] = args ? args.timeoutServer : undefined;
             resourceInputs["timeoutTunnel"] = args ? args.timeoutTunnel : undefined;
         }
@@ -300,6 +336,10 @@ export interface LoadbalancerBackendState {
      */
     healthCheckPort?: pulumi.Input<number>;
     /**
+     * Defines whether proxy protocol should be activated for the health check.
+     */
+    healthCheckSendProxy?: pulumi.Input<boolean>;
+    /**
      * This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
      */
     healthCheckTcp?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckTcp>;
@@ -307,6 +347,10 @@ export interface LoadbalancerBackendState {
      * Timeout before we consider a HC request failed.
      */
     healthCheckTimeout?: pulumi.Input<string>;
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     */
+    healthCheckTransientDelay?: pulumi.Input<string>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      */
@@ -316,6 +360,14 @@ export interface LoadbalancerBackendState {
      * > **Important:** Updates to `lbId` will recreate the backend.
      */
     lbId?: pulumi.Input<string>;
+    /**
+     * Maximum number of connections allowed per backend server.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
+     * Number of retries when a backend server connection failed.
+     */
+    maxRetries?: pulumi.Input<number>;
     /**
      * The name of the load-balancer backend.
      */
@@ -328,6 +380,10 @@ export interface LoadbalancerBackendState {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
      */
     proxyProtocol?: pulumi.Input<string>;
+    /**
+     * Whether to use another backend server on each attempt.
+     */
+    redispatchAttemptCount?: pulumi.Input<number>;
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
@@ -354,6 +410,10 @@ export interface LoadbalancerBackendState {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      */
     timeoutConnect?: pulumi.Input<string>;
+    /**
+     * Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+     */
+    timeoutQueue?: pulumi.Input<string>;
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      */
@@ -407,6 +467,10 @@ export interface LoadbalancerBackendArgs {
      */
     healthCheckPort?: pulumi.Input<number>;
     /**
+     * Defines whether proxy protocol should be activated for the health check.
+     */
+    healthCheckSendProxy?: pulumi.Input<boolean>;
+    /**
      * This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
      */
     healthCheckTcp?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckTcp>;
@@ -414,6 +478,10 @@ export interface LoadbalancerBackendArgs {
      * Timeout before we consider a HC request failed.
      */
     healthCheckTimeout?: pulumi.Input<string>;
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     */
+    healthCheckTransientDelay?: pulumi.Input<string>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      */
@@ -423,6 +491,14 @@ export interface LoadbalancerBackendArgs {
      * > **Important:** Updates to `lbId` will recreate the backend.
      */
     lbId: pulumi.Input<string>;
+    /**
+     * Maximum number of connections allowed per backend server.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
+     * Number of retries when a backend server connection failed.
+     */
+    maxRetries?: pulumi.Input<number>;
     /**
      * The name of the load-balancer backend.
      */
@@ -435,6 +511,10 @@ export interface LoadbalancerBackendArgs {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
      */
     proxyProtocol?: pulumi.Input<string>;
+    /**
+     * Whether to use another backend server on each attempt.
+     */
+    redispatchAttemptCount?: pulumi.Input<number>;
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
@@ -461,6 +541,10 @@ export interface LoadbalancerBackendArgs {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      */
     timeoutConnect?: pulumi.Input<string>;
+    /**
+     * Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+     */
+    timeoutQueue?: pulumi.Input<string>;
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      */

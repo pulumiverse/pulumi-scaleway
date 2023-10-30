@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer Backends.
@@ -107,21 +109,31 @@ type LoadbalancerBackend struct {
 	HealthCheckMaxRetries pulumi.IntPtrOutput `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntOutput `pulumi:"healthCheckPort"`
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy pulumi.BoolPtrOutput `pulumi:"healthCheckSendProxy"`
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp LoadbalancerBackendHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrOutput `pulumi:"healthCheckTimeout"`
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay pulumi.StringPtrOutput `pulumi:"healthCheckTransientDelay"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolPtrOutput `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
+	// Maximum number of connections allowed per backend server.
+	MaxConnections pulumi.IntPtrOutput `pulumi:"maxConnections"`
+	// Number of retries when a backend server connection failed.
+	MaxRetries pulumi.IntPtrOutput `pulumi:"maxRetries"`
 	// The name of the load-balancer backend.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrOutput `pulumi:"onMarkedDownAction"`
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol pulumi.StringPtrOutput `pulumi:"proxyProtocol"`
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount pulumi.IntPtrOutput `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -136,6 +148,8 @@ type LoadbalancerBackend struct {
 	StickySessionsCookieName pulumi.StringPtrOutput `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrOutput `pulumi:"timeoutConnect"`
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue pulumi.StringPtrOutput `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrOutput `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -158,7 +172,7 @@ func NewLoadbalancerBackend(ctx *pulumi.Context,
 	if args.LbId == nil {
 		return nil, errors.New("invalid value for required argument 'LbId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LoadbalancerBackend
 	err := ctx.RegisterResource("scaleway:index/loadbalancerBackend:LoadbalancerBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -201,21 +215,31 @@ type loadbalancerBackendState struct {
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to.
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy *bool `pulumi:"healthCheckSendProxy"`
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay *string `pulumi:"healthCheckTransientDelay"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId *string `pulumi:"lbId"`
+	// Maximum number of connections allowed per backend server.
+	MaxConnections *int `pulumi:"maxConnections"`
+	// Number of retries when a backend server connection failed.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The name of the load-balancer backend.
 	Name *string `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction *string `pulumi:"onMarkedDownAction"`
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol *string `pulumi:"proxyProtocol"`
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount *int `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -230,6 +254,8 @@ type loadbalancerBackendState struct {
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue *string `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer *string `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -257,21 +283,31 @@ type LoadbalancerBackendState struct {
 	HealthCheckMaxRetries pulumi.IntPtrInput
 	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntPtrInput
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy pulumi.BoolPtrInput
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp LoadbalancerBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay pulumi.StringPtrInput
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringPtrInput
+	// Maximum number of connections allowed per backend server.
+	MaxConnections pulumi.IntPtrInput
+	// Number of retries when a backend server connection failed.
+	MaxRetries pulumi.IntPtrInput
 	// The name of the load-balancer backend.
 	Name pulumi.StringPtrInput
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrInput
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol pulumi.StringPtrInput
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount pulumi.IntPtrInput
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -286,6 +322,8 @@ type LoadbalancerBackendState struct {
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue pulumi.StringPtrInput
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrInput
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -317,21 +355,31 @@ type loadbalancerBackendArgs struct {
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to.
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy *bool `pulumi:"healthCheckSendProxy"`
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay *string `pulumi:"healthCheckTransientDelay"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId string `pulumi:"lbId"`
+	// Maximum number of connections allowed per backend server.
+	MaxConnections *int `pulumi:"maxConnections"`
+	// Number of retries when a backend server connection failed.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The name of the load-balancer backend.
 	Name *string `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction *string `pulumi:"onMarkedDownAction"`
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol *string `pulumi:"proxyProtocol"`
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount *int `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -346,6 +394,8 @@ type loadbalancerBackendArgs struct {
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue *string `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer *string `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -374,21 +424,31 @@ type LoadbalancerBackendArgs struct {
 	HealthCheckMaxRetries pulumi.IntPtrInput
 	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntPtrInput
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy pulumi.BoolPtrInput
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp LoadbalancerBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay pulumi.StringPtrInput
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringInput
+	// Maximum number of connections allowed per backend server.
+	MaxConnections pulumi.IntPtrInput
+	// Number of retries when a backend server connection failed.
+	MaxRetries pulumi.IntPtrInput
 	// The name of the load-balancer backend.
 	Name pulumi.StringPtrInput
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrInput
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol pulumi.StringPtrInput
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount pulumi.IntPtrInput
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -403,6 +463,8 @@ type LoadbalancerBackendArgs struct {
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue pulumi.StringPtrInput
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrInput
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -432,6 +494,12 @@ func (i *LoadbalancerBackend) ToLoadbalancerBackendOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendOutput)
 }
 
+func (i *LoadbalancerBackend) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerBackend] {
+	return pulumix.Output[*LoadbalancerBackend]{
+		OutputState: i.ToLoadbalancerBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LoadbalancerBackendArrayInput is an input type that accepts LoadbalancerBackendArray and LoadbalancerBackendArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendArrayInput` via:
 //
@@ -455,6 +523,12 @@ func (i LoadbalancerBackendArray) ToLoadbalancerBackendArrayOutput() Loadbalance
 
 func (i LoadbalancerBackendArray) ToLoadbalancerBackendArrayOutputWithContext(ctx context.Context) LoadbalancerBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendArrayOutput)
+}
+
+func (i LoadbalancerBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerBackend] {
+	return pulumix.Output[[]*LoadbalancerBackend]{
+		OutputState: i.ToLoadbalancerBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LoadbalancerBackendMapInput is an input type that accepts LoadbalancerBackendMap and LoadbalancerBackendMapOutput values.
@@ -482,6 +556,12 @@ func (i LoadbalancerBackendMap) ToLoadbalancerBackendMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendMapOutput)
 }
 
+func (i LoadbalancerBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerBackend] {
+	return pulumix.Output[map[string]*LoadbalancerBackend]{
+		OutputState: i.ToLoadbalancerBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LoadbalancerBackendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerBackendOutput) ElementType() reflect.Type {
@@ -494,6 +574,12 @@ func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutput() LoadbalancerBac
 
 func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutputWithContext(ctx context.Context) LoadbalancerBackendOutput {
 	return o
+}
+
+func (o LoadbalancerBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerBackend] {
+	return pulumix.Output[*LoadbalancerBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Scaleway S3 bucket website to be served in case all backend servers are down.
@@ -543,6 +629,11 @@ func (o LoadbalancerBackendOutput) HealthCheckPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.IntOutput { return v.HealthCheckPort }).(pulumi.IntOutput)
 }
 
+// Defines whether proxy protocol should be activated for the health check.
+func (o LoadbalancerBackendOutput) HealthCheckSendProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolPtrOutput { return v.HealthCheckSendProxy }).(pulumi.BoolPtrOutput)
+}
+
 // This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 func (o LoadbalancerBackendOutput) HealthCheckTcp() LoadbalancerBackendHealthCheckTcpOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendHealthCheckTcpOutput { return v.HealthCheckTcp }).(LoadbalancerBackendHealthCheckTcpOutput)
@@ -551,6 +642,11 @@ func (o LoadbalancerBackendOutput) HealthCheckTcp() LoadbalancerBackendHealthChe
 // Timeout before we consider a HC request failed.
 func (o LoadbalancerBackendOutput) HealthCheckTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.HealthCheckTimeout }).(pulumi.StringPtrOutput)
+}
+
+// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+func (o LoadbalancerBackendOutput) HealthCheckTransientDelay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.HealthCheckTransientDelay }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -562,6 +658,16 @@ func (o LoadbalancerBackendOutput) IgnoreSslServerVerify() pulumi.BoolPtrOutput 
 // > **Important:** Updates to `lbId` will recreate the backend.
 func (o LoadbalancerBackendOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
+}
+
+// Maximum number of connections allowed per backend server.
+func (o LoadbalancerBackendOutput) MaxConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.IntPtrOutput { return v.MaxConnections }).(pulumi.IntPtrOutput)
+}
+
+// Number of retries when a backend server connection failed.
+func (o LoadbalancerBackendOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.IntPtrOutput { return v.MaxRetries }).(pulumi.IntPtrOutput)
 }
 
 // The name of the load-balancer backend.
@@ -577,6 +683,11 @@ func (o LoadbalancerBackendOutput) OnMarkedDownAction() pulumi.StringPtrOutput {
 // Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 func (o LoadbalancerBackendOutput) ProxyProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.ProxyProtocol }).(pulumi.StringPtrOutput)
+}
+
+// Whether to use another backend server on each attempt.
+func (o LoadbalancerBackendOutput) RedispatchAttemptCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.IntPtrOutput { return v.RedispatchAttemptCount }).(pulumi.IntPtrOutput)
 }
 
 // DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -611,6 +722,11 @@ func (o LoadbalancerBackendOutput) TimeoutConnect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.TimeoutConnect }).(pulumi.StringPtrOutput)
 }
 
+// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+func (o LoadbalancerBackendOutput) TimeoutQueue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.TimeoutQueue }).(pulumi.StringPtrOutput)
+}
+
 // Maximum server connection inactivity time. (e.g.: `1s`)
 func (o LoadbalancerBackendOutput) TimeoutServer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.TimeoutServer }).(pulumi.StringPtrOutput)
@@ -635,6 +751,12 @@ func (o LoadbalancerBackendArrayOutput) ToLoadbalancerBackendArrayOutputWithCont
 	return o
 }
 
+func (o LoadbalancerBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerBackend] {
+	return pulumix.Output[[]*LoadbalancerBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LoadbalancerBackendArrayOutput) Index(i pulumi.IntInput) LoadbalancerBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerBackend {
 		return vs[0].([]*LoadbalancerBackend)[vs[1].(int)]
@@ -653,6 +775,12 @@ func (o LoadbalancerBackendMapOutput) ToLoadbalancerBackendMapOutput() Loadbalan
 
 func (o LoadbalancerBackendMapOutput) ToLoadbalancerBackendMapOutputWithContext(ctx context.Context) LoadbalancerBackendMapOutput {
 	return o
+}
+
+func (o LoadbalancerBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerBackend] {
+	return pulumix.Output[map[string]*LoadbalancerBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LoadbalancerBackendMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerBackendOutput {

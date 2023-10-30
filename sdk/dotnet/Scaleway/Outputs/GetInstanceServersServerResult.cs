@@ -31,7 +31,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly bool EnableIpv6;
         /// <summary>
-        /// The ID of the server.
+        /// The ID of the IP
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -72,9 +72,17 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The public IPv4 address of the server.
+        /// The public IP address of the server.
         /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// The list of public IPs of the server
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetInstanceServersServerPublicIpResult> PublicIps;
+        /// <summary>
+        /// True if the server support routed ip only.
+        /// </summary>
+        public readonly bool RoutedIpEnabled;
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         /// </summary>
@@ -130,6 +138,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string publicIp,
 
+            ImmutableArray<Outputs.GetInstanceServersServerPublicIpResult> publicIps,
+
+            bool routedIpEnabled,
+
             string securityGroupId,
 
             string state,
@@ -156,6 +168,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
             PrivateIp = privateIp;
             ProjectId = projectId;
             PublicIp = publicIp;
+            PublicIps = publicIps;
+            RoutedIpEnabled = routedIpEnabled;
             SecurityGroupId = securityGroupId;
             State = state;
             Tags = tags;

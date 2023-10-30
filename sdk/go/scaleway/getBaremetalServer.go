@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a baremetal server.
@@ -46,7 +48,7 @@ import (
 //
 // ```
 func LookupBaremetalServer(ctx *pulumi.Context, args *LookupBaremetalServerArgs, opts ...pulumi.InvokeOption) (*LookupBaremetalServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBaremetalServerResult
 	err := ctx.Invoke("scaleway:index/getBaremetalServer:getBaremetalServer", args, &rv, opts...)
 	if err != nil {
@@ -71,6 +73,7 @@ type LookupBaremetalServerResult struct {
 	Hostname    string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                       string                             `pulumi:"id"`
+	InstallConfigAfterward   bool                               `pulumi:"installConfigAfterward"`
 	Ips                      []GetBaremetalServerIp             `pulumi:"ips"`
 	Ipv4s                    []GetBaremetalServerIpv4           `pulumi:"ipv4s"`
 	Ipv6s                    []GetBaremetalServerIpv6           `pulumi:"ipv6s"`
@@ -136,6 +139,12 @@ func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutputWi
 	return o
 }
 
+func (o LookupBaremetalServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupBaremetalServerResult] {
+	return pulumix.Output[LookupBaremetalServerResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupBaremetalServerResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -151,6 +160,10 @@ func (o LookupBaremetalServerResultOutput) Hostname() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupBaremetalServerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) InstallConfigAfterward() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) bool { return v.InstallConfigAfterward }).(pulumi.BoolOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) Ips() GetBaremetalServerIpArrayOutput {

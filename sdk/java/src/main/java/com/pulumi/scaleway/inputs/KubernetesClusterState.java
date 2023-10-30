@@ -243,6 +243,8 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
      * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
      * 
+     * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+     * 
      */
     @Import(name="privateNetworkId")
     private @Nullable Output<String> privateNetworkId;
@@ -252,6 +254,8 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
      * 
      * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     * 
+     * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -319,14 +323,26 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     * 
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     * 
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     * 
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * @return The type of Kubernetes cluster. Possible values are:
+     * 
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     * 
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     * 
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -786,6 +802,8 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
          * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
          * Any subsequent change after this field got set will prompt for cluster recreation.
          * 
+         * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+         * 
          * @return builder
          * 
          */
@@ -799,6 +817,8 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
          * 
          * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
          * Any subsequent change after this field got set will prompt for cluster recreation.
+         * 
+         * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
          * 
          * @return builder
          * 
@@ -902,7 +922,13 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param type The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+         * @param type The type of Kubernetes cluster. Possible values are:
+         * 
+         * - for mutualized clusters: `kapsule` or `multicloud`
+         * 
+         * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+         * 
+         * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
          * 
          * @return builder
          * 
@@ -913,7 +939,13 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param type The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+         * @param type The type of Kubernetes cluster. Possible values are:
+         * 
+         * - for mutualized clusters: `kapsule` or `multicloud`
+         * 
+         * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+         * 
+         * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
          * 
          * @return builder
          * 

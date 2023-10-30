@@ -11,6 +11,7 @@ import com.pulumi.scaleway.InstanceServerArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.InstanceServerState;
 import com.pulumi.scaleway.outputs.InstanceServerPrivateNetwork;
+import com.pulumi.scaleway.outputs.InstanceServerPublicIp;
 import com.pulumi.scaleway.outputs.InstanceServerRootVolume;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -507,18 +508,32 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.image);
     }
     /**
-     * = (Optional) The ID of the reserved IP that is attached to the server.
+     * The ID of the reserved IP that is attached to the server.
      * 
      */
     @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ipId;
 
     /**
-     * @return = (Optional) The ID of the reserved IP that is attached to the server.
+     * @return The ID of the reserved IP that is attached to the server.
      * 
      */
     public Output<Optional<String>> ipId() {
         return Codegen.optional(this.ipId);
+    }
+    /**
+     * List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+     * 
+     */
+    @Export(name="ipIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> ipIds;
+
+    /**
+     * @return List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+     * 
+     */
+    public Output<Optional<List<String>>> ipIds() {
+        return Codegen.optional(this.ipIds);
     }
     /**
      * The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -667,18 +682,46 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * The public IPv4 address of the server.
+     * The public IP address of the server.
      * 
      */
     @Export(name="publicIp", refs={String.class}, tree="[0]")
     private Output<String> publicIp;
 
     /**
-     * @return The public IPv4 address of the server.
+     * @return The public IP address of the server.
      * 
      */
     public Output<String> publicIp() {
         return this.publicIp;
+    }
+    /**
+     * The list of public IPs of the server.
+     * 
+     */
+    @Export(name="publicIps", refs={List.class,InstanceServerPublicIp.class}, tree="[0,1]")
+    private Output<List<InstanceServerPublicIp>> publicIps;
+
+    /**
+     * @return The list of public IPs of the server.
+     * 
+     */
+    public Output<List<InstanceServerPublicIp>> publicIps() {
+        return this.publicIps;
+    }
+    /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     * 
+     */
+    @Export(name="replaceOnTypeChange", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> replaceOnTypeChange;
+
+    /**
+     * @return If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     * 
+     */
+    public Output<Optional<Boolean>> replaceOnTypeChange() {
+        return Codegen.optional(this.replaceOnTypeChange);
     }
     /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
@@ -693,6 +736,24 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
      */
     public Output<InstanceServerRootVolume> rootVolume() {
         return this.rootVolume;
+    }
+    /**
+     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+     * 
+     * &gt; **Important:** Enabling routed ip will restart the server
+     * 
+     */
+    @Export(name="routedIpEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> routedIpEnabled;
+
+    /**
+     * @return If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+     * 
+     * &gt; **Important:** Enabling routed ip will restart the server
+     * 
+     */
+    public Output<Boolean> routedIpEnabled() {
+        return this.routedIpEnabled;
     }
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -739,7 +800,10 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replace_on_type_change` to trigger replacement instead of migration.
+     * 
+     * &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
@@ -748,7 +812,10 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
     /**
      * @return The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replace_on_type_change` to trigger replacement instead of migration.
+     * 
+     * &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      * 
      */
     public Output<String> type() {

@@ -29,6 +29,24 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Without install config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myOffer = scaleway.getBaremetalOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-B112X-SSD",
+ * });
+ * const base = new scaleway.BaremetalServer("base", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     installConfigAfterward: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -78,6 +96,10 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string | undefined>;
     /**
+     * If True, this boolean allows to create a server without the install config if you want to provide it later.
+     */
+    public readonly installConfigAfterward!: pulumi.Output<boolean | undefined>;
+    /**
      * (List of) The IPs of the server.
      */
     public /*out*/ readonly ips!: pulumi.Output<outputs.BaremetalServerIp[]>;
@@ -122,7 +144,7 @@ export class BaremetalServer extends pulumi.CustomResource {
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
-    public readonly os!: pulumi.Output<string>;
+    public readonly os!: pulumi.Output<string | undefined>;
     /**
      * The name of the os.
      */
@@ -155,7 +177,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     /**
      * List of SSH keys allowed to connect to the server.
      */
-    public readonly sshKeyIds!: pulumi.Output<string[]>;
+    public readonly sshKeyIds!: pulumi.Output<string[] | undefined>;
     /**
      * The tags associated with the server.
      */
@@ -185,6 +207,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["installConfigAfterward"] = state ? state.installConfigAfterward : undefined;
             resourceInputs["ips"] = state ? state.ips : undefined;
             resourceInputs["ipv4s"] = state ? state.ipv4s : undefined;
             resourceInputs["ipv6s"] = state ? state.ipv6s : undefined;
@@ -211,14 +234,9 @@ export class BaremetalServer extends pulumi.CustomResource {
             if ((!args || args.offer === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'offer'");
             }
-            if ((!args || args.os === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'os'");
-            }
-            if ((!args || args.sshKeyIds === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'sshKeyIds'");
-            }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["installConfigAfterward"] = args ? args.installConfigAfterward : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["offer"] = args ? args.offer : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
@@ -265,6 +283,10 @@ export interface BaremetalServerState {
      * The hostname of the server.
      */
     hostname?: pulumi.Input<string>;
+    /**
+     * If True, this boolean allows to create a server without the install config if you want to provide it later.
+     */
+    installConfigAfterward?: pulumi.Input<boolean>;
     /**
      * (List of) The IPs of the server.
      */
@@ -371,6 +393,10 @@ export interface BaremetalServerArgs {
      */
     hostname?: pulumi.Input<string>;
     /**
+     * If True, this boolean allows to create a server without the install config if you want to provide it later.
+     */
+    installConfigAfterward?: pulumi.Input<boolean>;
+    /**
      * The name of the server.
      */
     name?: pulumi.Input<string>;
@@ -391,7 +417,7 @@ export interface BaremetalServerArgs {
      * Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
-    os: pulumi.Input<string>;
+    os?: pulumi.Input<string>;
     /**
      * Password used for the installation. May be required depending on used os.
      */
@@ -420,7 +446,7 @@ export interface BaremetalServerArgs {
     /**
      * List of SSH keys allowed to connect to the server.
      */
-    sshKeyIds: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags associated with the server.
      */

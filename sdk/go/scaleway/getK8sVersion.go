@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Kubernetes version.
@@ -67,7 +69,7 @@ import (
 //
 // ```
 func GetK8sVersion(ctx *pulumi.Context, args *GetK8sVersionArgs, opts ...pulumi.InvokeOption) (*GetK8sVersionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetK8sVersionResult
 	err := ctx.Invoke("scaleway:index/getK8sVersion:getK8sVersion", args, &rv, opts...)
 	if err != nil {
@@ -136,6 +138,12 @@ func (o GetK8sVersionResultOutput) ToGetK8sVersionResultOutput() GetK8sVersionRe
 
 func (o GetK8sVersionResultOutput) ToGetK8sVersionResultOutputWithContext(ctx context.Context) GetK8sVersionResultOutput {
 	return o
+}
+
+func (o GetK8sVersionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetK8sVersionResult] {
+	return pulumix.Output[GetK8sVersionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The list of supported Container Network Interface (CNI) plugins for this version.

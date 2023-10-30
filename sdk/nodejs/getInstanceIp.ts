@@ -60,6 +60,10 @@ export interface GetInstanceIpResult {
      * The organization ID the IP is associated with.
      */
     readonly organizationId: string;
+    /**
+     * The IP Prefix.
+     */
+    readonly prefix: string;
     readonly projectId: string;
     /**
      * The reverse dns attached to this IP
@@ -67,6 +71,10 @@ export interface GetInstanceIpResult {
     readonly reverse: string;
     readonly serverId: string;
     readonly tags: string[];
+    /**
+     * The type of the IP
+     */
+    readonly type: string;
     readonly zone: string;
 }
 /**

@@ -141,6 +141,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly bool InstallConfigAfterward;
         public readonly ImmutableArray<Outputs.GetBaremetalServerIpResult> Ips;
         public readonly ImmutableArray<Outputs.GetBaremetalServerIpv4Result> Ipv4s;
         public readonly ImmutableArray<Outputs.GetBaremetalServerIpv6Result> Ipv6s;
@@ -173,6 +174,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string hostname,
 
             string id,
+
+            bool installConfigAfterward,
 
             ImmutableArray<Outputs.GetBaremetalServerIpResult> ips,
 
@@ -222,6 +225,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Domain = domain;
             Hostname = hostname;
             Id = id;
+            InstallConfigAfterward = installConfigAfterward;
             Ips = ips;
             Ipv4s = ipv4s;
             Ipv6s = ipv6s;

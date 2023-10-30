@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the privilege on RDB database.
@@ -40,7 +42,7 @@ import (
 //
 // ```
 func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeArgs, opts ...pulumi.InvokeOption) (*LookupDatabasePrivilegeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabasePrivilegeResult
 	err := ctx.Invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args, &rv, opts...)
 	if err != nil {
@@ -116,6 +118,12 @@ func (o LookupDatabasePrivilegeResultOutput) ToLookupDatabasePrivilegeResultOutp
 
 func (o LookupDatabasePrivilegeResultOutput) ToLookupDatabasePrivilegeResultOutputWithContext(ctx context.Context) LookupDatabasePrivilegeResultOutput {
 	return o
+}
+
+func (o LookupDatabasePrivilegeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabasePrivilegeResult] {
+	return pulumix.Output[LookupDatabasePrivilegeResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDatabasePrivilegeResultOutput) DatabaseName() pulumi.StringOutput {

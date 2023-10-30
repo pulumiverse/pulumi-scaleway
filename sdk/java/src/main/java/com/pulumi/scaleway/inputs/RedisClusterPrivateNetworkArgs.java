@@ -16,9 +16,17 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
 
     public static final RedisClusterPrivateNetworkArgs Empty = new RedisClusterPrivateNetworkArgs();
 
+    /**
+     * The ID of the endpoint.
+     * 
+     */
     @Import(name="endpointId")
     private @Nullable Output<String> endpointId;
 
+    /**
+     * @return The ID of the endpoint.
+     * 
+     */
     public Optional<Output<String>> endpointId() {
         return Optional.ofNullable(this.endpointId);
     }
@@ -107,11 +115,23 @@ public final class RedisClusterPrivateNetworkArgs extends com.pulumi.resources.R
             $ = new RedisClusterPrivateNetworkArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param endpointId The ID of the endpoint.
+         * 
+         * @return builder
+         * 
+         */
         public Builder endpointId(@Nullable Output<String> endpointId) {
             $.endpointId = endpointId;
             return this;
         }
 
+        /**
+         * @param endpointId The ID of the endpoint.
+         * 
+         * @return builder
+         * 
+         */
         public Builder endpointId(String endpointId) {
             return endpointId(Output.of(endpointId));
         }

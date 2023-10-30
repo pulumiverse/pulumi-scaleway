@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.FlexibleIpArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.FlexibleIpState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +76,36 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var main = new FlexibleIp(&#34;main&#34;, FlexibleIpArgs.builder()        
  *             .zone(&#34;fr-par-2&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### With IPv6
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.FlexibleIp;
+ * import com.pulumi.scaleway.FlexibleIpArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new FlexibleIp(&#34;main&#34;, FlexibleIpArgs.builder()        
+ *             .isIpv6(&#34;true&#34;)
  *             .build());
  * 
  *     }
@@ -153,14 +184,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/flexibleIp:FlexibleIp")
 public class FlexibleIp extends com.pulumi.resources.CustomResource {
     /**
-     * The date and time of the creation of the Flexible IP (Format ISO 8601)
+     * The date and time of the creation of the Flexible IP (Format ISO 8601).
      * 
      */
     @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
-     * @return The date and time of the creation of the Flexible IP (Format ISO 8601)
+     * @return The date and time of the creation of the Flexible IP (Format ISO 8601).
      * 
      */
     public Output<String> createdAt() {
@@ -181,56 +212,56 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * The IPv4 address of the Flexible IP
+     * The IP address of the Flexible IP.
      * 
      */
     @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
-     * @return The IPv4 address of the Flexible IP
+     * @return The IP address of the Flexible IP.
      * 
      */
     public Output<String> ipAddress() {
         return this.ipAddress;
     }
     /**
-     * The MAC address of the server associated with this flexible IP
+     * Defines whether the flexible IP has an IPv6 address.
      * 
      */
-    @Export(name="macAddress", refs={String.class}, tree="[0]")
-    private Output<String> macAddress;
+    @Export(name="isIpv6", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> isIpv6;
 
     /**
-     * @return The MAC address of the server associated with this flexible IP
+     * @return Defines whether the flexible IP has an IPv6 address.
      * 
      */
-    public Output<String> macAddress() {
-        return this.macAddress;
+    public Output<Optional<Boolean>> isIpv6() {
+        return Codegen.optional(this.isIpv6);
     }
     /**
-     * The organization of the Flexible IP
+     * The organization of the Flexible IP.
      * 
      */
     @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output<String> organizationId;
 
     /**
-     * @return The organization of the Flexible IP
+     * @return The organization of the Flexible IP.
      * 
      */
     public Output<String> organizationId() {
         return this.organizationId;
     }
     /**
-     * The project of the Flexible IP
+     * The project of the Flexible IP.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The project of the Flexible IP
+     * @return The project of the Flexible IP.
      * 
      */
     public Output<String> projectId() {
@@ -251,18 +282,32 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
         return this.reverse;
     }
     /**
-     * The ID of the associated server
+     * The ID of the associated server.
      * 
      */
     @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serverId;
 
     /**
-     * @return The ID of the associated server
+     * @return The ID of the associated server.
      * 
      */
     public Output<Optional<String>> serverId() {
         return Codegen.optional(this.serverId);
+    }
+    /**
+     * The status of the flexible IP.
+     * 
+     */
+    @Export(name="status", refs={String.class}, tree="[0]")
+    private Output<String> status;
+
+    /**
+     * @return The status of the flexible IP.
+     * 
+     */
+    public Output<String> status() {
+        return this.status;
     }
     /**
      * A list of tags to apply to the flexible IP.
@@ -279,28 +324,28 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The date and time of the last update of the Flexible IP (Format ISO 8601)
+     * The date and time of the last update of the Flexible IP (Format ISO 8601).
      * 
      */
     @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
-     * @return The date and time of the last update of the Flexible IP (Format ISO 8601)
+     * @return The date and time of the last update of the Flexible IP (Format ISO 8601).
      * 
      */
     public Output<String> updatedAt() {
         return this.updatedAt;
     }
     /**
-     * The zone of the Flexible IP
+     * The zone of the Flexible IP.
      * 
      */
     @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return The zone of the Flexible IP
+     * @return The zone of the Flexible IP.
      * 
      */
     public Output<String> zone() {

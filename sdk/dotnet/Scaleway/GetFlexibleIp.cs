@@ -86,7 +86,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? IpAddress;
-        public readonly string MacAddress;
+        public readonly bool IsIpv6;
         /// <summary>
         /// (Defaults to provider `organization_id`) The ID of the organization the IP is in.
         /// </summary>
@@ -103,6 +103,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The associated server ID if any
         /// </summary>
         public readonly string ServerId;
+        public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly string Zone;
@@ -119,7 +120,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? ipAddress,
 
-            string macAddress,
+            bool isIpv6,
 
             string organizationId,
 
@@ -128,6 +129,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string reverse,
 
             string serverId,
+
+            string status,
 
             ImmutableArray<string> tags,
 
@@ -140,11 +143,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             FlexibleIpId = flexibleIpId;
             Id = id;
             IpAddress = ipAddress;
-            MacAddress = macAddress;
+            IsIpv6 = isIpv6;
             OrganizationId = organizationId;
             ProjectId = projectId;
             Reverse = reverse;
             ServerId = serverId;
+            Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;
             Zone = zone;

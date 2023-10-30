@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.FunctionTriggerArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.FunctionTriggerState;
+import com.pulumi.scaleway.outputs.FunctionTriggerNats;
 import com.pulumi.scaleway.outputs.FunctionTriggerSqs;
 import java.lang.String;
 import java.util.Optional;
@@ -21,7 +22,7 @@ import javax.annotation.Nullable;
  * 
  * ## Examples
  * 
- * ### Basic
+ * ### SQS
  * ```java
  * package generated_program;
  * 
@@ -47,10 +48,46 @@ import javax.annotation.Nullable;
  *         var main = new FunctionTrigger(&#34;main&#34;, FunctionTriggerArgs.builder()        
  *             .functionId(scaleway_function.main().id())
  *             .sqs(FunctionTriggerSqsArgs.builder()
- *                 .namespaceId(scaleway_mnq_namespace.main().id())
+ *                 .projectId(scaleway_mnq_sqs.main().project_id())
  *                 .queue(&#34;MyQueue&#34;)
- *                 .projectId(scaleway_mnq_namespace.main().project_id())
- *                 .region(scaleway_mnq_namespace.main().region())
+ *                 .region(scaleway_mnq_sqs.main().region())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Nats
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.FunctionTrigger;
+ * import com.pulumi.scaleway.FunctionTriggerArgs;
+ * import com.pulumi.scaleway.inputs.FunctionTriggerNatsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new FunctionTrigger(&#34;main&#34;, FunctionTriggerArgs.builder()        
+ *             .containerId(scaleway_container.main().id())
+ *             .nats(FunctionTriggerNatsArgs.builder()
+ *                 .accountId(scaleway_mnq_nats_account.main().id())
+ *                 .subject(&#34;MySubject&#34;)
+ *                 .region(scaleway_mnq_nats_account.main().region())
  *                 .build())
  *             .build());
  * 
@@ -110,6 +147,20 @@ public class FunctionTrigger extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The configuration for the Scaleway&#39;s Nats used by the trigger
+     * 
+     */
+    @Export(name="nats", refs={FunctionTriggerNats.class}, tree="[0]")
+    private Output</* @Nullable */ FunctionTriggerNats> nats;
+
+    /**
+     * @return The configuration for the Scaleway&#39;s Nats used by the trigger
+     * 
+     */
+    public Output<Optional<FunctionTriggerNats>> nats() {
+        return Codegen.optional(this.nats);
     }
     /**
      * `region`). The region in which the namespace should be created.

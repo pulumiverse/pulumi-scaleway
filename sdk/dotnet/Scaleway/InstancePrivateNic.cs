@@ -79,6 +79,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class InstancePrivateNic : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// IPAM ip list, should be for internal use only
+        /// </summary>
+        [Output("ipIds")]
+        public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
+
+        /// <summary>
         /// The MAC address of the private NIC.
         /// </summary>
         [Output("macAddress")]
@@ -155,6 +161,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
     public sealed class InstancePrivateNicArgs : global::Pulumi.ResourceArgs
     {
+        [Input("ipIds")]
+        private InputList<string>? _ipIds;
+
+        /// <summary>
+        /// IPAM ip list, should be for internal use only
+        /// </summary>
+        public InputList<string> IpIds
+        {
+            get => _ipIds ?? (_ipIds = new InputList<string>());
+            set => _ipIds = value;
+        }
+
         /// <summary>
         /// The ID of the private network attached to.
         /// </summary>
@@ -193,6 +211,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
     public sealed class InstancePrivateNicState : global::Pulumi.ResourceArgs
     {
+        [Input("ipIds")]
+        private InputList<string>? _ipIds;
+
+        /// <summary>
+        /// IPAM ip list, should be for internal use only
+        /// </summary>
+        public InputList<string> IpIds
+        {
+            get => _ipIds ?? (_ipIds = new InputList<string>());
+            set => _ipIds = value;
+        }
+
         /// <summary>
         /// The MAC address of the private NIC.
         /// </summary>

@@ -47,6 +47,25 @@ public final class InstanceIpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     * 
+     * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+     * 
+     */
+    @Import(name="type")
+    private @Nullable Output<String> type;
+
+    /**
+     * @return The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     * 
+     * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+     * 
+     */
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
+    }
+
+    /**
      * `zone`) The zone in which the IP should be reserved.
      * 
      */
@@ -66,6 +85,7 @@ public final class InstanceIpArgs extends com.pulumi.resources.ResourceArgs {
     private InstanceIpArgs(InstanceIpArgs $) {
         this.projectId = $.projectId;
         this.tags = $.tags;
+        this.type = $.type;
         this.zone = $.zone;
     }
 
@@ -137,6 +157,31 @@ public final class InstanceIpArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        /**
+         * @param type The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+         * 
+         * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable Output<String> type) {
+            $.type = type;
+            return this;
+        }
+
+        /**
+         * @param type The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+         * 
+         * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(String type) {
+            return type(Output.of(type));
         }
 
         /**

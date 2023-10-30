@@ -26,6 +26,7 @@ public final class GetBaremetalServerResult {
      * 
      */
     private String id;
+    private Boolean installConfigAfterward;
     private List<GetBaremetalServerIp> ips;
     private List<GetBaremetalServerIpv4> ipv4s;
     private List<GetBaremetalServerIpv6> ipv6s;
@@ -65,6 +66,9 @@ public final class GetBaremetalServerResult {
      */
     public String id() {
         return this.id;
+    }
+    public Boolean installConfigAfterward() {
+        return this.installConfigAfterward;
     }
     public List<GetBaremetalServerIp> ips() {
         return this.ips;
@@ -146,6 +150,7 @@ public final class GetBaremetalServerResult {
         private String domain;
         private String hostname;
         private String id;
+        private Boolean installConfigAfterward;
         private List<GetBaremetalServerIp> ips;
         private List<GetBaremetalServerIpv4> ipv4s;
         private List<GetBaremetalServerIpv6> ipv6s;
@@ -175,6 +180,7 @@ public final class GetBaremetalServerResult {
     	      this.domain = defaults.domain;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
+    	      this.installConfigAfterward = defaults.installConfigAfterward;
     	      this.ips = defaults.ips;
     	      this.ipv4s = defaults.ipv4s;
     	      this.ipv6s = defaults.ipv6s;
@@ -217,6 +223,11 @@ public final class GetBaremetalServerResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder installConfigAfterward(Boolean installConfigAfterward) {
+            this.installConfigAfterward = Objects.requireNonNull(installConfigAfterward);
             return this;
         }
         @CustomType.Setter
@@ -356,6 +367,7 @@ public final class GetBaremetalServerResult {
             o.domain = domain;
             o.hostname = hostname;
             o.id = id;
+            o.installConfigAfterward = installConfigAfterward;
             o.ips = ips;
             o.ipv4s = ipv4s;
             o.ipv6s = ipv6s;

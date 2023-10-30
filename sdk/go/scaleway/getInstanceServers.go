@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about multiple instance servers.
@@ -41,7 +43,7 @@ import (
 //
 // ```
 func GetInstanceServers(ctx *pulumi.Context, args *GetInstanceServersArgs, opts ...pulumi.InvokeOption) (*GetInstanceServersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInstanceServersResult
 	err := ctx.Invoke("scaleway:index/getInstanceServers:getInstanceServers", args, &rv, opts...)
 	if err != nil {
@@ -122,6 +124,12 @@ func (o GetInstanceServersResultOutput) ToGetInstanceServersResultOutput() GetIn
 
 func (o GetInstanceServersResultOutput) ToGetInstanceServersResultOutputWithContext(ctx context.Context) GetInstanceServersResultOutput {
 	return o
+}
+
+func (o GetInstanceServersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetInstanceServersResult] {
+	return pulumix.Output[GetInstanceServersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

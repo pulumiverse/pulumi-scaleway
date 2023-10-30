@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Bucket.
@@ -73,7 +75,7 @@ import (
 //
 // ```
 func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts ...pulumi.InvokeOption) (*LookupObjectBucketResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectBucketResult
 	err := ctx.Invoke("scaleway:index/getObjectBucket:getObjectBucket", args, &rv, opts...)
 	if err != nil {
@@ -150,6 +152,12 @@ func (o LookupObjectBucketResultOutput) ToLookupObjectBucketResultOutput() Looku
 
 func (o LookupObjectBucketResultOutput) ToLookupObjectBucketResultOutputWithContext(ctx context.Context) LookupObjectBucketResultOutput {
 	return o
+}
+
+func (o LookupObjectBucketResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectBucketResult] {
+	return pulumix.Output[LookupObjectBucketResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupObjectBucketResultOutput) Acl() pulumi.StringOutput {

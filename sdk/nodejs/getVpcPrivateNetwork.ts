@@ -8,6 +8,20 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a private network.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myName = scaleway.getVpcPrivateNetwork({
+ *     name: "foobar",
+ * });
+ * const myId = scaleway.getVpcPrivateNetwork({
+ *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
  */
 export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPrivateNetworkResult> {
     args = args || {};
@@ -63,6 +77,20 @@ export interface GetVpcPrivateNetworkResult {
 }
 /**
  * Gets information about a private network.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myName = scaleway.getVpcPrivateNetwork({
+ *     name: "foobar",
+ * });
+ * const myId = scaleway.getVpcPrivateNetwork({
+ *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
  */
 export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
     return pulumi.output(args).apply((a: any) => getVpcPrivateNetwork(a, opts))

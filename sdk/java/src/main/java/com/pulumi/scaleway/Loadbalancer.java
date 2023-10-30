@@ -61,6 +61,39 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ### Private LB
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.Loadbalancer;
+ * import com.pulumi.scaleway.LoadbalancerArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var base = new Loadbalancer(&#34;base&#34;, LoadbalancerArgs.builder()        
+ *             .ipId(scaleway_lb_ip.main().id())
+ *             .zone(scaleway_lb_ip.main().zone())
+ *             .type(&#34;LB-S&#34;)
+ *             .assignFlexibleIp(false)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ### IP for Public Gateway
  * resource &#34;scaleway_vpc_public_gateway_ip&#34; &#34;main&#34; {
  * }
@@ -249,6 +282,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/loadbalancer:Loadbalancer")
 public class Loadbalancer extends com.pulumi.resources.CustomResource {
     /**
+     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * 
+     */
+    @Export(name="assignFlexibleIp", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> assignFlexibleIp;
+
+    /**
+     * @return Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * 
+     */
+    public Output<Optional<Boolean>> assignFlexibleIp() {
+        return Codegen.optional(this.assignFlexibleIp);
+    }
+    /**
      * The description of the load-balancer.
      * 
      */
@@ -279,20 +326,20 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the associated LB IP. See below.
      * 
-     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
      * 
      */
     @Export(name="ipId", refs={String.class}, tree="[0]")
-    private Output<String> ipId;
+    private Output</* @Nullable */ String> ipId;
 
     /**
      * @return The ID of the associated LB IP. See below.
      * 
-     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
      * 
      */
-    public Output<String> ipId() {
-        return this.ipId;
+    public Output<Optional<String>> ipId() {
+        return Codegen.optional(this.ipId);
     }
     /**
      * The name of the load-balancer.
@@ -411,14 +458,14 @@ public class Loadbalancer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type
+     * The type of the load-balancer. Please check the migration section to upgrade the type.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of the load-balancer. Please check the migration section to upgrade the type
+     * @return The type of the load-balancer. Please check the migration section to upgrade the type.
      * 
      */
     public Output<String> type() {

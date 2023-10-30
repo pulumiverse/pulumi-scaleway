@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The provider type for the scaleway package. By default, resources use package-wide configuration
@@ -43,31 +45,31 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.AccessKey == nil {
-		if d := getEnvOrDefault(nil, nil, "SCW_ACCESS_KEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SCW_ACCESS_KEY"); d != nil {
 			args.AccessKey = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.ProjectId == nil {
-		if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_PROJECT_ID"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SCW_DEFAULT_PROJECT_ID"); d != nil {
 			args.ProjectId = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.Region == nil {
-		if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_REGION"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SCW_DEFAULT_REGION"); d != nil {
 			args.Region = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.SecretKey == nil {
-		if d := getEnvOrDefault(nil, nil, "SCW_SECRET_KEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SCW_SECRET_KEY"); d != nil {
 			args.SecretKey = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.Zone == nil {
-		if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_ZONE"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SCW_DEFAULT_ZONE"); d != nil {
 			args.Zone = pulumi.StringPtr(d.(string))
 		}
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:scaleway", name, args, &resource, opts...)
 	if err != nil {
@@ -138,6 +140,12 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: i.ToProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
@@ -150,6 +158,12 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Scaleway access key.

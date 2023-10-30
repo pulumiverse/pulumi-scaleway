@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Transactional Email Domains.
@@ -161,7 +163,7 @@ func NewTemDomain(ctx *pulumi.Context,
 	if args.AcceptTos == nil {
 		return nil, errors.New("invalid value for required argument 'AcceptTos'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TemDomain
 	err := ctx.RegisterResource("scaleway:index/temDomain:TemDomain", name, args, &resource, opts...)
 	if err != nil {
@@ -319,6 +321,12 @@ func (i *TemDomain) ToTemDomainOutputWithContext(ctx context.Context) TemDomainO
 	return pulumi.ToOutputWithContext(ctx, i).(TemDomainOutput)
 }
 
+func (i *TemDomain) ToOutput(ctx context.Context) pulumix.Output[*TemDomain] {
+	return pulumix.Output[*TemDomain]{
+		OutputState: i.ToTemDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TemDomainArrayInput is an input type that accepts TemDomainArray and TemDomainArrayOutput values.
 // You can construct a concrete instance of `TemDomainArrayInput` via:
 //
@@ -342,6 +350,12 @@ func (i TemDomainArray) ToTemDomainArrayOutput() TemDomainArrayOutput {
 
 func (i TemDomainArray) ToTemDomainArrayOutputWithContext(ctx context.Context) TemDomainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TemDomainArrayOutput)
+}
+
+func (i TemDomainArray) ToOutput(ctx context.Context) pulumix.Output[[]*TemDomain] {
+	return pulumix.Output[[]*TemDomain]{
+		OutputState: i.ToTemDomainArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TemDomainMapInput is an input type that accepts TemDomainMap and TemDomainMapOutput values.
@@ -369,6 +383,12 @@ func (i TemDomainMap) ToTemDomainMapOutputWithContext(ctx context.Context) TemDo
 	return pulumi.ToOutputWithContext(ctx, i).(TemDomainMapOutput)
 }
 
+func (i TemDomainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TemDomain] {
+	return pulumix.Output[map[string]*TemDomain]{
+		OutputState: i.ToTemDomainMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TemDomainOutput struct{ *pulumi.OutputState }
 
 func (TemDomainOutput) ElementType() reflect.Type {
@@ -381,6 +401,12 @@ func (o TemDomainOutput) ToTemDomainOutput() TemDomainOutput {
 
 func (o TemDomainOutput) ToTemDomainOutputWithContext(ctx context.Context) TemDomainOutput {
 	return o
+}
+
+func (o TemDomainOutput) ToOutput(ctx context.Context) pulumix.Output[*TemDomain] {
+	return pulumix.Output[*TemDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
@@ -489,6 +515,12 @@ func (o TemDomainArrayOutput) ToTemDomainArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o TemDomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TemDomain] {
+	return pulumix.Output[[]*TemDomain]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TemDomainArrayOutput) Index(i pulumi.IntInput) TemDomainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TemDomain {
 		return vs[0].([]*TemDomain)[vs[1].(int)]
@@ -507,6 +539,12 @@ func (o TemDomainMapOutput) ToTemDomainMapOutput() TemDomainMapOutput {
 
 func (o TemDomainMapOutput) ToTemDomainMapOutputWithContext(ctx context.Context) TemDomainMapOutput {
 	return o
+}
+
+func (o TemDomainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TemDomain] {
+	return pulumix.Output[map[string]*TemDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TemDomainMapOutput) MapIndex(k pulumi.StringInput) TemDomainOutput {

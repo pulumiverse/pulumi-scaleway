@@ -68,6 +68,21 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * If True, this boolean allows to create a server without the install config if you want to provide it later.
+     * 
+     */
+    @Import(name="installConfigAfterward")
+    private @Nullable Output<Boolean> installConfigAfterward;
+
+    /**
+     * @return If True, this boolean allows to create a server without the install config if you want to provide it later.
+     * 
+     */
+    public Optional<Output<Boolean>> installConfigAfterward() {
+        return Optional.ofNullable(this.installConfigAfterward);
+    }
+
+    /**
      * (List of) The IPs of the server.
      * 
      */
@@ -402,6 +417,7 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
         this.description = $.description;
         this.domain = $.domain;
         this.hostname = $.hostname;
+        this.installConfigAfterward = $.installConfigAfterward;
         this.ips = $.ips;
         this.ipv4s = $.ipv4s;
         this.ipv6s = $.ipv6s;
@@ -504,6 +520,27 @@ public final class BaremetalServerState extends com.pulumi.resources.ResourceArg
          */
         public Builder hostname(String hostname) {
             return hostname(Output.of(hostname));
+        }
+
+        /**
+         * @param installConfigAfterward If True, this boolean allows to create a server without the install config if you want to provide it later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder installConfigAfterward(@Nullable Output<Boolean> installConfigAfterward) {
+            $.installConfigAfterward = installConfigAfterward;
+            return this;
+        }
+
+        /**
+         * @param installConfigAfterward If True, this boolean allows to create a server without the install config if you want to provide it later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder installConfigAfterward(Boolean installConfigAfterward) {
+            return installConfigAfterward(Output.of(installConfigAfterward));
         }
 
         /**

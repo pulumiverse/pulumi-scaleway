@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
@@ -99,7 +101,7 @@ func NewLoadbalancerAcl(ctx *pulumi.Context,
 	if args.Index == nil {
 		return nil, errors.New("invalid value for required argument 'Index'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LoadbalancerAcl
 	err := ctx.RegisterResource("scaleway:index/loadbalancerAcl:LoadbalancerAcl", name, args, &resource, opts...)
 	if err != nil {
@@ -217,6 +219,12 @@ func (i *LoadbalancerAcl) ToLoadbalancerAclOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerAclOutput)
 }
 
+func (i *LoadbalancerAcl) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerAcl] {
+	return pulumix.Output[*LoadbalancerAcl]{
+		OutputState: i.ToLoadbalancerAclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LoadbalancerAclArrayInput is an input type that accepts LoadbalancerAclArray and LoadbalancerAclArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerAclArrayInput` via:
 //
@@ -240,6 +248,12 @@ func (i LoadbalancerAclArray) ToLoadbalancerAclArrayOutput() LoadbalancerAclArra
 
 func (i LoadbalancerAclArray) ToLoadbalancerAclArrayOutputWithContext(ctx context.Context) LoadbalancerAclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerAclArrayOutput)
+}
+
+func (i LoadbalancerAclArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerAcl] {
+	return pulumix.Output[[]*LoadbalancerAcl]{
+		OutputState: i.ToLoadbalancerAclArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LoadbalancerAclMapInput is an input type that accepts LoadbalancerAclMap and LoadbalancerAclMapOutput values.
@@ -267,6 +281,12 @@ func (i LoadbalancerAclMap) ToLoadbalancerAclMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerAclMapOutput)
 }
 
+func (i LoadbalancerAclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerAcl] {
+	return pulumix.Output[map[string]*LoadbalancerAcl]{
+		OutputState: i.ToLoadbalancerAclMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LoadbalancerAclOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerAclOutput) ElementType() reflect.Type {
@@ -279,6 +299,12 @@ func (o LoadbalancerAclOutput) ToLoadbalancerAclOutput() LoadbalancerAclOutput {
 
 func (o LoadbalancerAclOutput) ToLoadbalancerAclOutputWithContext(ctx context.Context) LoadbalancerAclOutput {
 	return o
+}
+
+func (o LoadbalancerAclOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerAcl] {
+	return pulumix.Output[*LoadbalancerAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Action to undertake when an ACL filter matches.
@@ -335,6 +361,12 @@ func (o LoadbalancerAclArrayOutput) ToLoadbalancerAclArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o LoadbalancerAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerAcl] {
+	return pulumix.Output[[]*LoadbalancerAcl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LoadbalancerAclArrayOutput) Index(i pulumi.IntInput) LoadbalancerAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerAcl {
 		return vs[0].([]*LoadbalancerAcl)[vs[1].(int)]
@@ -353,6 +385,12 @@ func (o LoadbalancerAclMapOutput) ToLoadbalancerAclMapOutput() LoadbalancerAclMa
 
 func (o LoadbalancerAclMapOutput) ToLoadbalancerAclMapOutputWithContext(ctx context.Context) LoadbalancerAclMapOutput {
 	return o
+}
+
+func (o LoadbalancerAclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerAcl] {
+	return pulumix.Output[map[string]*LoadbalancerAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LoadbalancerAclMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerAclOutput {

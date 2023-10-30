@@ -17,14 +17,14 @@ public final class GetVpcPublicGatewayDhcpReservationArgs extends com.pulumi.res
     public static final GetVpcPublicGatewayDhcpReservationArgs Empty = new GetVpcPublicGatewayDhcpReservationArgs();
 
     /**
-     * The ID of the owning GatewayNetwork.
+     * The ID of the owning GatewayNetwork
      * 
      */
     @Import(name="gatewayNetworkId")
     private @Nullable Output<String> gatewayNetworkId;
 
     /**
-     * @return The ID of the owning GatewayNetwork.
+     * @return The ID of the owning GatewayNetwork
      * 
      */
     public Optional<Output<String>> gatewayNetworkId() {
@@ -122,7 +122,7 @@ public final class GetVpcPublicGatewayDhcpReservationArgs extends com.pulumi.res
         }
 
         /**
-         * @param gatewayNetworkId The ID of the owning GatewayNetwork.
+         * @param gatewayNetworkId The ID of the owning GatewayNetwork
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class GetVpcPublicGatewayDhcpReservationArgs extends com.pulumi.res
         }
 
         /**
-         * @param gatewayNetworkId The ID of the owning GatewayNetwork.
+         * @param gatewayNetworkId The ID of the owning GatewayNetwork
          * 
          * @return builder
          * 

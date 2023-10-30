@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.IamGroupArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.IamGroupState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -139,6 +140,20 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+     * 
+     */
+    @Export(name="externalMembership", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> externalMembership;
+
+    /**
+     * @return Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+     * 
+     */
+    public Output<Optional<Boolean>> externalMembership() {
+        return Codegen.optional(this.externalMembership);
     }
     /**
      * The name of the IAM group.

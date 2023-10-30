@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a function namespace.
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupFunctionNamespace(ctx *pulumi.Context, args *LookupFunctionNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupFunctionNamespaceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionNamespaceResult
 	err := ctx.Invoke("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, &rv, opts...)
 	if err != nil {
@@ -122,6 +124,12 @@ func (o LookupFunctionNamespaceResultOutput) ToLookupFunctionNamespaceResultOutp
 
 func (o LookupFunctionNamespaceResultOutput) ToLookupFunctionNamespaceResultOutputWithContext(ctx context.Context) LookupFunctionNamespaceResultOutput {
 	return o
+}
+
+func (o LookupFunctionNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFunctionNamespaceResult] {
+	return pulumix.Output[LookupFunctionNamespaceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The description of the namespace.

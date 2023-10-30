@@ -17,18 +17,19 @@ __all__ = ['BaremetalServerArgs', 'BaremetalServer']
 class BaremetalServerArgs:
     def __init__(__self__, *,
                  offer: pulumi.Input[str],
-                 os: pulumi.Input[str],
-                 ssh_key_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  description: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
+                 install_config_afterward: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
                  service_user: Optional[pulumi.Input[str]] = None,
+                 ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
@@ -38,15 +39,15 @@ class BaremetalServerArgs:
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
-        :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-               > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
         :param pulumi.Input[str] description: A description for the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
+        :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]] options: The options to enable on the server.
                > The `options` block supports:
+        :param pulumi.Input[str] os: The UUID of the os to install on the server.
+               Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+               > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -54,21 +55,24 @@ class BaremetalServerArgs:
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[str] service_password: Password used for the service to install. May be required depending on used os.
         :param pulumi.Input[str] service_user: User used for the service to install.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "offer", offer)
-        pulumi.set(__self__, "os", os)
-        pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
+        if install_config_afterward is not None:
+            pulumi.set(__self__, "install_config_afterward", install_config_afterward)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_networks is not None:
@@ -81,6 +85,8 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "service_password", service_password)
         if service_user is not None:
             pulumi.set(__self__, "service_user", service_user)
+        if ssh_key_ids is not None:
+            pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if user is not None:
@@ -102,32 +108,6 @@ class BaremetalServerArgs:
     @offer.setter
     def offer(self, value: pulumi.Input[str]):
         pulumi.set(self, "offer", value)
-
-    @property
-    @pulumi.getter
-    def os(self) -> pulumi.Input[str]:
-        """
-        The UUID of the os to install on the server.
-        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
-        > **Important:** Updates to `os` will reinstall the server.
-        """
-        return pulumi.get(self, "os")
-
-    @os.setter
-    def os(self, value: pulumi.Input[str]):
-        pulumi.set(self, "os", value)
-
-    @property
-    @pulumi.getter(name="sshKeyIds")
-    def ssh_key_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        List of SSH keys allowed to connect to the server.
-        """
-        return pulumi.get(self, "ssh_key_ids")
-
-    @ssh_key_ids.setter
-    def ssh_key_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "ssh_key_ids", value)
 
     @property
     @pulumi.getter
@@ -154,6 +134,18 @@ class BaremetalServerArgs:
         pulumi.set(self, "hostname", value)
 
     @property
+    @pulumi.getter(name="installConfigAfterward")
+    def install_config_afterward(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If True, this boolean allows to create a server without the install config if you want to provide it later.
+        """
+        return pulumi.get(self, "install_config_afterward")
+
+    @install_config_afterward.setter
+    def install_config_afterward(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "install_config_afterward", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -177,6 +169,20 @@ class BaremetalServerArgs:
     @options.setter
     def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]):
         pulumi.set(self, "options", value)
+
+    @property
+    @pulumi.getter
+    def os(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UUID of the os to install on the server.
+        Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
+        > **Important:** Updates to `os` will reinstall the server.
+        """
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os", value)
 
     @property
     @pulumi.getter
@@ -252,6 +258,18 @@ class BaremetalServerArgs:
         pulumi.set(self, "service_user", value)
 
     @property
+    @pulumi.getter(name="sshKeyIds")
+    def ssh_key_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of SSH keys allowed to connect to the server.
+        """
+        return pulumi.get(self, "ssh_key_ids")
+
+    @ssh_key_ids.setter
+    def ssh_key_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ssh_key_ids", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -294,6 +312,7 @@ class _BaremetalServerState:
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
+                 install_config_afterward: Optional[pulumi.Input[bool]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]] = None,
                  ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]] = None,
                  ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]] = None,
@@ -320,6 +339,7 @@ class _BaremetalServerState:
         :param pulumi.Input[str] description: A description for the server.
         :param pulumi.Input[str] domain: The domain of the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
+        :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]] ips: (List of) The IPs of the server.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]] ipv4s: (List of) The IPv4 addresses of the server.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]] ipv6s: (List of) The IPv6 addresses of the server.
@@ -355,6 +375,8 @@ class _BaremetalServerState:
             pulumi.set(__self__, "domain", domain)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
+        if install_config_afterward is not None:
+            pulumi.set(__self__, "install_config_afterward", install_config_afterward)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
         if ipv4s is not None:
@@ -433,6 +455,18 @@ class _BaremetalServerState:
     @hostname.setter
     def hostname(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="installConfigAfterward")
+    def install_config_afterward(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If True, this boolean allows to create a server without the install config if you want to provide it later.
+        """
+        return pulumi.get(self, "install_config_afterward")
+
+    @install_config_afterward.setter
+    def install_config_afterward(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "install_config_afterward", value)
 
     @property
     @pulumi.getter
@@ -701,6 +735,7 @@ class BaremetalServer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
+                 install_config_afterward: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
@@ -736,6 +771,21 @@ class BaremetalServer(pulumi.CustomResource):
             ssh_key_ids=[main.id])
         ```
 
+        ### Without install config
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_scaleway as scaleway
+
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            install_config_afterward=True)
+        ```
+
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -748,6 +798,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description for the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
+        :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-334154) to find the right offer.
@@ -796,6 +847,21 @@ class BaremetalServer(pulumi.CustomResource):
             ssh_key_ids=[main.id])
         ```
 
+        ### Without install config
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_scaleway as scaleway
+
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            install_config_afterward=True)
+        ```
+
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -821,6 +887,7 @@ class BaremetalServer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
+                 install_config_afterward: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
@@ -846,13 +913,12 @@ class BaremetalServer(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["hostname"] = hostname
+            __props__.__dict__["install_config_afterward"] = install_config_afterward
             __props__.__dict__["name"] = name
             if offer is None and not opts.urn:
                 raise TypeError("Missing required property 'offer'")
             __props__.__dict__["offer"] = offer
             __props__.__dict__["options"] = options
-            if os is None and not opts.urn:
-                raise TypeError("Missing required property 'os'")
             __props__.__dict__["os"] = os
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_networks"] = private_networks
@@ -860,8 +926,6 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
             __props__.__dict__["service_password"] = None if service_password is None else pulumi.Output.secret(service_password)
             __props__.__dict__["service_user"] = service_user
-            if ssh_key_ids is None and not opts.urn:
-                raise TypeError("Missing required property 'ssh_key_ids'")
             __props__.__dict__["ssh_key_ids"] = ssh_key_ids
             __props__.__dict__["tags"] = tags
             __props__.__dict__["user"] = user
@@ -889,6 +953,7 @@ class BaremetalServer(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
+            install_config_afterward: Optional[pulumi.Input[bool]] = None,
             ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]]] = None,
             ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv4Args']]]]] = None,
             ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]]] = None,
@@ -920,6 +985,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description for the server.
         :param pulumi.Input[str] domain: The domain of the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
+        :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]] ips: (List of) The IPs of the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv4Args']]]] ipv4s: (List of) The IPv4 addresses of the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]] ipv6s: (List of) The IPv6 addresses of the server.
@@ -956,6 +1022,7 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
         __props__.__dict__["hostname"] = hostname
+        __props__.__dict__["install_config_afterward"] = install_config_afterward
         __props__.__dict__["ips"] = ips
         __props__.__dict__["ipv4s"] = ipv4s
         __props__.__dict__["ipv6s"] = ipv6s
@@ -1002,6 +1069,14 @@ class BaremetalServer(pulumi.CustomResource):
         The hostname of the server.
         """
         return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter(name="installConfigAfterward")
+    def install_config_afterward(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If True, this boolean allows to create a server without the install config if you want to provide it later.
+        """
+        return pulumi.get(self, "install_config_afterward")
 
     @property
     @pulumi.getter
@@ -1081,7 +1156,7 @@ class BaremetalServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def os(self) -> pulumi.Output[str]:
+    def os(self) -> pulumi.Output[Optional[str]]:
         """
         The UUID of the os to install on the server.
         Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
@@ -1148,7 +1223,7 @@ class BaremetalServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sshKeyIds")
-    def ssh_key_ids(self) -> pulumi.Output[Sequence[str]]:
+    def ssh_key_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of SSH keys allowed to connect to the server.
         """

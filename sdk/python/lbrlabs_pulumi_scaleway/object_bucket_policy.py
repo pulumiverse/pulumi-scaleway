@@ -183,19 +183,20 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import lbrlabs_pulumi_scaleway as scaleway
 
         bucket = scaleway.ObjectBucket("bucket")
+        main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=pulumi.Output.all(bucket.name, bucket.name).apply(lambda bucketName, bucketName1: json.dumps({
+            policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
                 "Statement": [{
                     "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": "application_id:<APPLICATION_ID>",
+                        "SCW": f"application_id:{id}",
                     },
                     "Action": "s3:ListBucket",
-                    "Resources": [
+                    "Resource": [
                         bucket_name,
                         f"{bucket_name1}/*",
                     ],
@@ -238,19 +239,20 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import lbrlabs_pulumi_scaleway as scaleway
 
         bucket = scaleway.ObjectBucket("bucket")
+        main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=pulumi.Output.all(bucket.name, bucket.name).apply(lambda bucketName, bucketName1: json.dumps({
+            policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
                 "Statement": [{
                     "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": "application_id:<APPLICATION_ID>",
+                        "SCW": f"application_id:{id}",
                     },
                     "Action": "s3:ListBucket",
-                    "Resources": [
+                    "Resource": [
                         bucket_name,
                         f"{bucket_name1}/*",
                     ],

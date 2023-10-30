@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
@@ -192,6 +194,8 @@ type KubernetesCluster struct {
 	//
 	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
 	// Any subsequent change after this field got set will prompt for cluster recreation.
+	//
+	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -201,7 +205,13 @@ type KubernetesCluster struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+	// The type of Kubernetes cluster. Possible values are:
+	//
+	// - for mutualized clusters: `kapsule` or `multicloud`
+	//
+	// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+	//
+	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The last update date of the cluster.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -233,7 +243,7 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 		"kubeconfigs",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("scaleway:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
 	if err != nil {
@@ -291,6 +301,8 @@ type kubernetesClusterState struct {
 	//
 	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
 	// Any subsequent change after this field got set will prompt for cluster recreation.
+	//
+	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -300,7 +312,13 @@ type kubernetesClusterState struct {
 	Status *string `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
 	Tags []string `pulumi:"tags"`
-	// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+	// The type of Kubernetes cluster. Possible values are:
+	//
+	// - for mutualized clusters: `kapsule` or `multicloud`
+	//
+	// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+	//
+	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type *string `pulumi:"type"`
 	// The last update date of the cluster.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -348,6 +366,8 @@ type KubernetesClusterState struct {
 	//
 	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
 	// Any subsequent change after this field got set will prompt for cluster recreation.
+	//
+	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -357,7 +377,13 @@ type KubernetesClusterState struct {
 	Status pulumi.StringPtrInput
 	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayInput
-	// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+	// The type of Kubernetes cluster. Possible values are:
+	//
+	// - for mutualized clusters: `kapsule` or `multicloud`
+	//
+	// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+	//
+	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type pulumi.StringPtrInput
 	// The last update date of the cluster.
 	UpdatedAt pulumi.StringPtrInput
@@ -401,6 +427,8 @@ type kubernetesClusterArgs struct {
 	//
 	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
 	// Any subsequent change after this field got set will prompt for cluster recreation.
+	//
+	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -408,7 +436,13 @@ type kubernetesClusterArgs struct {
 	Region *string `pulumi:"region"`
 	// The tags associated with the Kubernetes cluster.
 	Tags []string `pulumi:"tags"`
-	// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+	// The type of Kubernetes cluster. Possible values are:
+	//
+	// - for mutualized clusters: `kapsule` or `multicloud`
+	//
+	// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+	//
+	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type *string `pulumi:"type"`
 	// The version of the Kubernetes cluster.
 	Version string `pulumi:"version"`
@@ -443,6 +477,8 @@ type KubernetesClusterArgs struct {
 	//
 	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
 	// Any subsequent change after this field got set will prompt for cluster recreation.
+	//
+	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -450,7 +486,13 @@ type KubernetesClusterArgs struct {
 	Region pulumi.StringPtrInput
 	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayInput
-	// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+	// The type of Kubernetes cluster. Possible values are:
+	//
+	// - for mutualized clusters: `kapsule` or `multicloud`
+	//
+	// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+	//
+	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type pulumi.StringPtrInput
 	// The version of the Kubernetes cluster.
 	Version pulumi.StringInput
@@ -479,6 +521,12 @@ func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterOutput)
 }
 
+func (i *KubernetesCluster) ToOutput(ctx context.Context) pulumix.Output[*KubernetesCluster] {
+	return pulumix.Output[*KubernetesCluster]{
+		OutputState: i.ToKubernetesClusterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // KubernetesClusterArrayInput is an input type that accepts KubernetesClusterArray and KubernetesClusterArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterArrayInput` via:
 //
@@ -502,6 +550,12 @@ func (i KubernetesClusterArray) ToKubernetesClusterArrayOutput() KubernetesClust
 
 func (i KubernetesClusterArray) ToKubernetesClusterArrayOutputWithContext(ctx context.Context) KubernetesClusterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterArrayOutput)
+}
+
+func (i KubernetesClusterArray) ToOutput(ctx context.Context) pulumix.Output[[]*KubernetesCluster] {
+	return pulumix.Output[[]*KubernetesCluster]{
+		OutputState: i.ToKubernetesClusterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // KubernetesClusterMapInput is an input type that accepts KubernetesClusterMap and KubernetesClusterMapOutput values.
@@ -529,6 +583,12 @@ func (i KubernetesClusterMap) ToKubernetesClusterMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterMapOutput)
 }
 
+func (i KubernetesClusterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*KubernetesCluster] {
+	return pulumix.Output[map[string]*KubernetesCluster]{
+		OutputState: i.ToKubernetesClusterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KubernetesClusterOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterOutput) ElementType() reflect.Type {
@@ -541,6 +601,12 @@ func (o KubernetesClusterOutput) ToKubernetesClusterOutput() KubernetesClusterOu
 
 func (o KubernetesClusterOutput) ToKubernetesClusterOutputWithContext(ctx context.Context) KubernetesClusterOutput {
 	return o
+}
+
+func (o KubernetesClusterOutput) ToOutput(ctx context.Context) pulumix.Output[*KubernetesCluster] {
+	return pulumix.Output[*KubernetesCluster]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
@@ -620,6 +686,8 @@ func (o KubernetesClusterOutput) OrganizationId() pulumi.StringOutput {
 //
 // > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
 // Any subsequent change after this field got set will prompt for cluster recreation.
+//
+// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
 func (o KubernetesClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
@@ -644,7 +712,13 @@ func (o KubernetesClusterOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+// The type of Kubernetes cluster. Possible values are:
+//
+// - for mutualized clusters: `kapsule` or `multicloud`
+//
+// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+//
+// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 func (o KubernetesClusterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -683,6 +757,12 @@ func (o KubernetesClusterArrayOutput) ToKubernetesClusterArrayOutputWithContext(
 	return o
 }
 
+func (o KubernetesClusterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*KubernetesCluster] {
+	return pulumix.Output[[]*KubernetesCluster]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o KubernetesClusterArrayOutput) Index(i pulumi.IntInput) KubernetesClusterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *KubernetesCluster {
 		return vs[0].([]*KubernetesCluster)[vs[1].(int)]
@@ -701,6 +781,12 @@ func (o KubernetesClusterMapOutput) ToKubernetesClusterMapOutput() KubernetesClu
 
 func (o KubernetesClusterMapOutput) ToKubernetesClusterMapOutputWithContext(ctx context.Context) KubernetesClusterMapOutput {
 	return o
+}
+
+func (o KubernetesClusterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*KubernetesCluster] {
+	return pulumix.Output[map[string]*KubernetesCluster]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o KubernetesClusterMapOutput) MapIndex(k pulumi.StringInput) KubernetesClusterOutput {

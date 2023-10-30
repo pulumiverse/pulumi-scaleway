@@ -17,6 +17,7 @@ public final class GetInstancePrivateNicResult {
      * 
      */
     private String id;
+    private List<String> ipIds;
     private String macAddress;
     private @Nullable String privateNetworkId;
     private @Nullable String privateNicId;
@@ -31,6 +32,9 @@ public final class GetInstancePrivateNicResult {
      */
     public String id() {
         return this.id;
+    }
+    public List<String> ipIds() {
+        return this.ipIds;
     }
     public String macAddress() {
         return this.macAddress;
@@ -61,6 +65,7 @@ public final class GetInstancePrivateNicResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
+        private List<String> ipIds;
         private String macAddress;
         private @Nullable String privateNetworkId;
         private @Nullable String privateNicId;
@@ -71,6 +76,7 @@ public final class GetInstancePrivateNicResult {
         public Builder(GetInstancePrivateNicResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
+    	      this.ipIds = defaults.ipIds;
     	      this.macAddress = defaults.macAddress;
     	      this.privateNetworkId = defaults.privateNetworkId;
     	      this.privateNicId = defaults.privateNicId;
@@ -83,6 +89,14 @@ public final class GetInstancePrivateNicResult {
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
+        }
+        @CustomType.Setter
+        public Builder ipIds(List<String> ipIds) {
+            this.ipIds = Objects.requireNonNull(ipIds);
+            return this;
+        }
+        public Builder ipIds(String... ipIds) {
+            return ipIds(List.of(ipIds));
         }
         @CustomType.Setter
         public Builder macAddress(String macAddress) {
@@ -120,6 +134,7 @@ public final class GetInstancePrivateNicResult {
         public GetInstancePrivateNicResult build() {
             final var o = new GetInstancePrivateNicResult();
             o.id = id;
+            o.ipIds = ipIds;
             o.macAddress = macAddress;
             o.privateNetworkId = privateNetworkId;
             o.privateNicId = privateNicId;

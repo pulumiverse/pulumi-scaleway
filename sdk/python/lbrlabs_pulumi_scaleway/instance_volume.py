@@ -24,8 +24,8 @@ class InstanceVolumeArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceVolume resource.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
-        :param pulumi.Input[str] from_snapshot_id: Create a volume based on a image
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] from_volume_id: If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
@@ -53,7 +53,7 @@ class InstanceVolumeArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         """
         return pulumi.get(self, "type")
 
@@ -65,7 +65,7 @@ class InstanceVolumeArgs:
     @pulumi.getter(name="fromSnapshotId")
     def from_snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Create a volume based on a image
+        If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "from_snapshot_id")
 
@@ -161,7 +161,7 @@ class _InstanceVolumeState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceVolume resources.
-        :param pulumi.Input[str] from_snapshot_id: Create a volume based on a image
+        :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] from_volume_id: If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the volume is associated with.
@@ -169,7 +169,7 @@ class _InstanceVolumeState:
         :param pulumi.Input[str] server_id: The id of the associated server.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
         if from_snapshot_id is not None:
@@ -197,7 +197,7 @@ class _InstanceVolumeState:
     @pulumi.getter(name="fromSnapshotId")
     def from_snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Create a volume based on a image
+        If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "from_snapshot_id")
 
@@ -293,7 +293,7 @@ class _InstanceVolumeState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         """
         return pulumi.get(self, "type")
 
@@ -353,13 +353,13 @@ class InstanceVolume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] from_snapshot_id: Create a volume based on a image
+        :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] from_volume_id: If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
         ...
@@ -462,7 +462,7 @@ class InstanceVolume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] from_snapshot_id: Create a volume based on a image
+        :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] from_volume_id: If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the volume is associated with.
@@ -470,7 +470,7 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[str] server_id: The id of the associated server.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -493,7 +493,7 @@ class InstanceVolume(pulumi.CustomResource):
     @pulumi.getter(name="fromSnapshotId")
     def from_snapshot_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Create a volume based on a image
+        If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "from_snapshot_id")
 
@@ -557,7 +557,7 @@ class InstanceVolume(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         """
         return pulumi.get(self, "type")
 

@@ -15,7 +15,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class DatabaseInstanceReadReplica
     {
         /// <summary>
-        /// IP of the endpoint.
+        /// IPv4 address on the network.
         /// </summary>
         public readonly string? Ip;
         /// <summary>
@@ -23,7 +23,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Port of the endpoint.
+        /// Port in the Private Network.
         /// </summary>
         public readonly int? Port;
 

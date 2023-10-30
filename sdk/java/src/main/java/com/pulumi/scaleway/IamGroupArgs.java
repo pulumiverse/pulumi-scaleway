@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -44,6 +45,21 @@ public final class IamGroupArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+     * 
+     */
+    @Import(name="externalMembership")
+    private @Nullable Output<Boolean> externalMembership;
+
+    /**
+     * @return Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+     * 
+     */
+    public Optional<Output<Boolean>> externalMembership() {
+        return Optional.ofNullable(this.externalMembership);
     }
 
     /**
@@ -96,6 +112,7 @@ public final class IamGroupArgs extends com.pulumi.resources.ResourceArgs {
     private IamGroupArgs(IamGroupArgs $) {
         this.applicationIds = $.applicationIds;
         this.description = $.description;
+        this.externalMembership = $.externalMembership;
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.userIds = $.userIds;
@@ -169,6 +186,27 @@ public final class IamGroupArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param externalMembership Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalMembership(@Nullable Output<Boolean> externalMembership) {
+            $.externalMembership = externalMembership;
+            return this;
+        }
+
+        /**
+         * @param externalMembership Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalMembership(Boolean externalMembership) {
+            return externalMembership(Output.of(externalMembership));
         }
 
         /**

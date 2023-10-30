@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Database read replicas.
@@ -127,6 +129,8 @@ type DatabaseReadReplica struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone pulumi.BoolPtrOutput `pulumi:"sameZone"`
 }
 
 // NewDatabaseReadReplica registers a new resource with the given unique name, arguments, and options.
@@ -139,7 +143,7 @@ func NewDatabaseReadReplica(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DatabaseReadReplica
 	err := ctx.RegisterResource("scaleway:index/databaseReadReplica:DatabaseReadReplica", name, args, &resource, opts...)
 	if err != nil {
@@ -173,6 +177,8 @@ type databaseReadReplicaState struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone *bool `pulumi:"sameZone"`
 }
 
 type DatabaseReadReplicaState struct {
@@ -187,6 +193,8 @@ type DatabaseReadReplicaState struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone pulumi.BoolPtrInput
 }
 
 func (DatabaseReadReplicaState) ElementType() reflect.Type {
@@ -205,6 +213,8 @@ type databaseReadReplicaArgs struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone *bool `pulumi:"sameZone"`
 }
 
 // The set of arguments for constructing a DatabaseReadReplica resource.
@@ -220,6 +230,8 @@ type DatabaseReadReplicaArgs struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone pulumi.BoolPtrInput
 }
 
 func (DatabaseReadReplicaArgs) ElementType() reflect.Type {
@@ -243,6 +255,12 @@ func (i *DatabaseReadReplica) ToDatabaseReadReplicaOutput() DatabaseReadReplicaO
 
 func (i *DatabaseReadReplica) ToDatabaseReadReplicaOutputWithContext(ctx context.Context) DatabaseReadReplicaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseReadReplicaOutput)
+}
+
+func (i *DatabaseReadReplica) ToOutput(ctx context.Context) pulumix.Output[*DatabaseReadReplica] {
+	return pulumix.Output[*DatabaseReadReplica]{
+		OutputState: i.ToDatabaseReadReplicaOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DatabaseReadReplicaArrayInput is an input type that accepts DatabaseReadReplicaArray and DatabaseReadReplicaArrayOutput values.
@@ -270,6 +288,12 @@ func (i DatabaseReadReplicaArray) ToDatabaseReadReplicaArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseReadReplicaArrayOutput)
 }
 
+func (i DatabaseReadReplicaArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseReadReplica] {
+	return pulumix.Output[[]*DatabaseReadReplica]{
+		OutputState: i.ToDatabaseReadReplicaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DatabaseReadReplicaMapInput is an input type that accepts DatabaseReadReplicaMap and DatabaseReadReplicaMapOutput values.
 // You can construct a concrete instance of `DatabaseReadReplicaMapInput` via:
 //
@@ -295,6 +319,12 @@ func (i DatabaseReadReplicaMap) ToDatabaseReadReplicaMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseReadReplicaMapOutput)
 }
 
+func (i DatabaseReadReplicaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseReadReplica] {
+	return pulumix.Output[map[string]*DatabaseReadReplica]{
+		OutputState: i.ToDatabaseReadReplicaMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DatabaseReadReplicaOutput struct{ *pulumi.OutputState }
 
 func (DatabaseReadReplicaOutput) ElementType() reflect.Type {
@@ -307,6 +337,12 @@ func (o DatabaseReadReplicaOutput) ToDatabaseReadReplicaOutput() DatabaseReadRep
 
 func (o DatabaseReadReplicaOutput) ToDatabaseReadReplicaOutputWithContext(ctx context.Context) DatabaseReadReplicaOutput {
 	return o
+}
+
+func (o DatabaseReadReplicaOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabaseReadReplica] {
+	return pulumix.Output[*DatabaseReadReplica]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Creates a direct access endpoint to rdb replica.
@@ -332,6 +368,11 @@ func (o DatabaseReadReplicaOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+func (o DatabaseReadReplicaOutput) SameZone() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.BoolPtrOutput { return v.SameZone }).(pulumi.BoolPtrOutput)
+}
+
 type DatabaseReadReplicaArrayOutput struct{ *pulumi.OutputState }
 
 func (DatabaseReadReplicaArrayOutput) ElementType() reflect.Type {
@@ -344,6 +385,12 @@ func (o DatabaseReadReplicaArrayOutput) ToDatabaseReadReplicaArrayOutput() Datab
 
 func (o DatabaseReadReplicaArrayOutput) ToDatabaseReadReplicaArrayOutputWithContext(ctx context.Context) DatabaseReadReplicaArrayOutput {
 	return o
+}
+
+func (o DatabaseReadReplicaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseReadReplica] {
+	return pulumix.Output[[]*DatabaseReadReplica]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DatabaseReadReplicaArrayOutput) Index(i pulumi.IntInput) DatabaseReadReplicaOutput {
@@ -364,6 +411,12 @@ func (o DatabaseReadReplicaMapOutput) ToDatabaseReadReplicaMapOutput() DatabaseR
 
 func (o DatabaseReadReplicaMapOutput) ToDatabaseReadReplicaMapOutputWithContext(ctx context.Context) DatabaseReadReplicaMapOutput {
 	return o
+}
+
+func (o DatabaseReadReplicaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseReadReplica] {
+	return pulumix.Output[map[string]*DatabaseReadReplica]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DatabaseReadReplicaMapOutput) MapIndex(k pulumi.StringInput) DatabaseReadReplicaOutput {

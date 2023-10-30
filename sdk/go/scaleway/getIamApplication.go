@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing IAM application.
@@ -44,7 +46,7 @@ import (
 //
 // ```
 func LookupIamApplication(ctx *pulumi.Context, args *LookupIamApplicationArgs, opts ...pulumi.InvokeOption) (*LookupIamApplicationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamApplicationResult
 	err := ctx.Invoke("scaleway:index/getIamApplication:getIamApplication", args, &rv, opts...)
 	if err != nil {
@@ -122,6 +124,12 @@ func (o LookupIamApplicationResultOutput) ToLookupIamApplicationResultOutput() L
 
 func (o LookupIamApplicationResultOutput) ToLookupIamApplicationResultOutputWithContext(ctx context.Context) LookupIamApplicationResultOutput {
 	return o
+}
+
+func (o LookupIamApplicationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamApplicationResult] {
+	return pulumix.Output[LookupIamApplicationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupIamApplicationResultOutput) ApplicationId() pulumi.StringPtrOutput {

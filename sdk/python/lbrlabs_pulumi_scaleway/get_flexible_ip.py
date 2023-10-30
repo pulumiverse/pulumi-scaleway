@@ -21,7 +21,7 @@ class GetFlexibleIpResult:
     """
     A collection of values returned by getFlexibleIp.
     """
-    def __init__(__self__, created_at=None, description=None, flexible_ip_id=None, id=None, ip_address=None, mac_address=None, organization_id=None, project_id=None, reverse=None, server_id=None, tags=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, description=None, flexible_ip_id=None, id=None, ip_address=None, is_ipv6=None, organization_id=None, project_id=None, reverse=None, server_id=None, status=None, tags=None, updated_at=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -37,9 +37,9 @@ class GetFlexibleIpResult:
         if ip_address and not isinstance(ip_address, str):
             raise TypeError("Expected argument 'ip_address' to be a str")
         pulumi.set(__self__, "ip_address", ip_address)
-        if mac_address and not isinstance(mac_address, str):
-            raise TypeError("Expected argument 'mac_address' to be a str")
-        pulumi.set(__self__, "mac_address", mac_address)
+        if is_ipv6 and not isinstance(is_ipv6, bool):
+            raise TypeError("Expected argument 'is_ipv6' to be a bool")
+        pulumi.set(__self__, "is_ipv6", is_ipv6)
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
@@ -52,6 +52,9 @@ class GetFlexibleIpResult:
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -91,9 +94,9 @@ class GetFlexibleIpResult:
         return pulumi.get(self, "ip_address")
 
     @property
-    @pulumi.getter(name="macAddress")
-    def mac_address(self) -> str:
-        return pulumi.get(self, "mac_address")
+    @pulumi.getter(name="isIpv6")
+    def is_ipv6(self) -> bool:
+        return pulumi.get(self, "is_ipv6")
 
     @property
     @pulumi.getter(name="organizationId")
@@ -129,6 +132,11 @@ class GetFlexibleIpResult:
 
     @property
     @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
     def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
@@ -154,11 +162,12 @@ class AwaitableGetFlexibleIpResult(GetFlexibleIpResult):
             flexible_ip_id=self.flexible_ip_id,
             id=self.id,
             ip_address=self.ip_address,
-            mac_address=self.mac_address,
+            is_ipv6=self.is_ipv6,
             organization_id=self.organization_id,
             project_id=self.project_id,
             reverse=self.reverse,
             server_id=self.server_id,
+            status=self.status,
             tags=self.tags,
             updated_at=self.updated_at,
             zone=self.zone)
@@ -189,11 +198,12 @@ def get_flexible_ip(flexible_ip_id: Optional[str] = None,
         flexible_ip_id=pulumi.get(__ret__, 'flexible_ip_id'),
         id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
-        mac_address=pulumi.get(__ret__, 'mac_address'),
+        is_ipv6=pulumi.get(__ret__, 'is_ipv6'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         reverse=pulumi.get(__ret__, 'reverse'),
         server_id=pulumi.get(__ret__, 'server_id'),
+        status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))

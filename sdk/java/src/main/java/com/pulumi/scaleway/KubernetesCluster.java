@@ -330,6 +330,8 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
      * 
+     * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+     * 
      */
     @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateNetworkId;
@@ -339,6 +341,8 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     * 
+     * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
      * 
      */
     public Output<Optional<String>> privateNetworkId() {
@@ -401,14 +405,26 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     * 
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     * 
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     * 
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * @return The type of Kubernetes cluster. Possible values are:
+     * 
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     * 
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     * 
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      * 
      */
     public Output<String> type() {

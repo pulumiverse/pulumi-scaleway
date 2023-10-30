@@ -197,9 +197,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<Outputs.GetVpcGatewayNetworkIpamConfigResult> IpamConfigs;
         public readonly string MacAddress;
         public readonly string? PrivateNetworkId;
         public readonly string StaticAddress;
+        public readonly string Status;
         public readonly string UpdatedAt;
         public readonly string Zone;
 
@@ -221,11 +223,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string id,
 
+            ImmutableArray<Outputs.GetVpcGatewayNetworkIpamConfigResult> ipamConfigs,
+
             string macAddress,
 
             string? privateNetworkId,
 
             string staticAddress,
+
+            string status,
 
             string updatedAt,
 
@@ -239,9 +245,11 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             GatewayId = gatewayId;
             GatewayNetworkId = gatewayNetworkId;
             Id = id;
+            IpamConfigs = ipamConfigs;
             MacAddress = macAddress;
             PrivateNetworkId = privateNetworkId;
             StaticAddress = staticAddress;
+            Status = status;
             UpdatedAt = updatedAt;
             Zone = zone;
         }

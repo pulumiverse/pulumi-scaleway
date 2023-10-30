@@ -91,7 +91,7 @@ export class ContainerCron extends pulumi.CustomResource {
      * (Defaults to provider `region`) The region
      * in where the job was created.
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
      * executed.
@@ -133,8 +133,8 @@ export class ContainerCron extends pulumi.CustomResource {
             }
             resourceInputs["args"] = args ? args.args : undefined;
             resourceInputs["containerId"] = args ? args.containerId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
-            resourceInputs["region"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -184,6 +184,11 @@ export interface ContainerCronArgs {
      * The container ID to link with your cron.
      */
     containerId: pulumi.Input<string>;
+    /**
+     * (Defaults to provider `region`) The region
+     * in where the job was created.
+     */
+    region?: pulumi.Input<string>;
     /**
      * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
      * executed.

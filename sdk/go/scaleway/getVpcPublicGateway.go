@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway.
@@ -46,7 +48,7 @@ import (
 //
 // ```
 func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args, &rv, opts...)
 	if err != nil {
@@ -125,6 +127,12 @@ func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutput
 
 func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayResultOutput {
 	return o
+}
+
+func (o LookupVpcPublicGatewayResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayResult] {
+	return pulumix.Output[LookupVpcPublicGatewayResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPublicGatewayResultOutput) BastionEnabled() pulumi.BoolOutput {

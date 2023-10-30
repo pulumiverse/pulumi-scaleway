@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Cockpit Tokens.
@@ -111,7 +113,7 @@ func NewCockpitToken(ctx *pulumi.Context,
 		"secretKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CockpitToken
 	err := ctx.RegisterResource("scaleway:index/cockpitToken:CockpitToken", name, args, &resource, opts...)
 	if err != nil {
@@ -201,6 +203,12 @@ func (i *CockpitToken) ToCockpitTokenOutputWithContext(ctx context.Context) Cock
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenOutput)
 }
 
+func (i *CockpitToken) ToOutput(ctx context.Context) pulumix.Output[*CockpitToken] {
+	return pulumix.Output[*CockpitToken]{
+		OutputState: i.ToCockpitTokenOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CockpitTokenArrayInput is an input type that accepts CockpitTokenArray and CockpitTokenArrayOutput values.
 // You can construct a concrete instance of `CockpitTokenArrayInput` via:
 //
@@ -224,6 +232,12 @@ func (i CockpitTokenArray) ToCockpitTokenArrayOutput() CockpitTokenArrayOutput {
 
 func (i CockpitTokenArray) ToCockpitTokenArrayOutputWithContext(ctx context.Context) CockpitTokenArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenArrayOutput)
+}
+
+func (i CockpitTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*CockpitToken] {
+	return pulumix.Output[[]*CockpitToken]{
+		OutputState: i.ToCockpitTokenArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CockpitTokenMapInput is an input type that accepts CockpitTokenMap and CockpitTokenMapOutput values.
@@ -251,6 +265,12 @@ func (i CockpitTokenMap) ToCockpitTokenMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenMapOutput)
 }
 
+func (i CockpitTokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CockpitToken] {
+	return pulumix.Output[map[string]*CockpitToken]{
+		OutputState: i.ToCockpitTokenMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CockpitTokenOutput struct{ *pulumi.OutputState }
 
 func (CockpitTokenOutput) ElementType() reflect.Type {
@@ -263,6 +283,12 @@ func (o CockpitTokenOutput) ToCockpitTokenOutput() CockpitTokenOutput {
 
 func (o CockpitTokenOutput) ToCockpitTokenOutputWithContext(ctx context.Context) CockpitTokenOutput {
 	return o
+}
+
+func (o CockpitTokenOutput) ToOutput(ctx context.Context) pulumix.Output[*CockpitToken] {
+	return pulumix.Output[*CockpitToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the token
@@ -299,6 +325,12 @@ func (o CockpitTokenArrayOutput) ToCockpitTokenArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o CockpitTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CockpitToken] {
+	return pulumix.Output[[]*CockpitToken]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CockpitTokenArrayOutput) Index(i pulumi.IntInput) CockpitTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CockpitToken {
 		return vs[0].([]*CockpitToken)[vs[1].(int)]
@@ -317,6 +349,12 @@ func (o CockpitTokenMapOutput) ToCockpitTokenMapOutput() CockpitTokenMapOutput {
 
 func (o CockpitTokenMapOutput) ToCockpitTokenMapOutputWithContext(ctx context.Context) CockpitTokenMapOutput {
 	return o
+}
+
+func (o CockpitTokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CockpitToken] {
+	return pulumix.Output[map[string]*CockpitToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CockpitTokenMapOutput) MapIndex(k pulumi.StringInput) CockpitTokenOutput {

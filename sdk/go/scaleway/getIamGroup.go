@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing IAM group. For more information, please
@@ -45,7 +47,7 @@ import (
 //
 // ```
 func LookupIamGroup(ctx *pulumi.Context, args *LookupIamGroupArgs, opts ...pulumi.InvokeOption) (*LookupIamGroupResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamGroupResult
 	err := ctx.Invoke("scaleway:index/getIamGroup:getIamGroup", args, &rv, opts...)
 	if err != nil {
@@ -69,10 +71,11 @@ type LookupIamGroupArgs struct {
 
 // A collection of values returned by getIamGroup.
 type LookupIamGroupResult struct {
-	ApplicationIds []string `pulumi:"applicationIds"`
-	CreatedAt      string   `pulumi:"createdAt"`
-	Description    string   `pulumi:"description"`
-	GroupId        *string  `pulumi:"groupId"`
+	ApplicationIds     []string `pulumi:"applicationIds"`
+	CreatedAt          string   `pulumi:"createdAt"`
+	Description        string   `pulumi:"description"`
+	ExternalMembership bool     `pulumi:"externalMembership"`
+	GroupId            *string  `pulumi:"groupId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
@@ -126,6 +129,12 @@ func (o LookupIamGroupResultOutput) ToLookupIamGroupResultOutputWithContext(ctx 
 	return o
 }
 
+func (o LookupIamGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamGroupResult] {
+	return pulumix.Output[LookupIamGroupResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupIamGroupResultOutput) ApplicationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) []string { return v.ApplicationIds }).(pulumi.StringArrayOutput)
 }
@@ -136,6 +145,10 @@ func (o LookupIamGroupResultOutput) CreatedAt() pulumi.StringOutput {
 
 func (o LookupIamGroupResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupIamGroupResultOutput) ExternalMembership() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamGroupResult) bool { return v.ExternalMembership }).(pulumi.BoolOutput)
 }
 
 func (o LookupIamGroupResultOutput) GroupId() pulumi.StringPtrOutput {

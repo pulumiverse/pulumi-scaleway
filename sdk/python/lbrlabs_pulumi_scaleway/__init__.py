@@ -17,6 +17,7 @@ from .container_cron import *
 from .container_domain import *
 from .container_namespace import *
 from .container_token import *
+from .container_trigger import *
 from .database import *
 from .database_acl import *
 from .database_backup import *
@@ -24,9 +25,16 @@ from .database_instance import *
 from .database_privilege import *
 from .database_read_replica import *
 from .database_user import *
+from .documentdb_database import *
+from .documentdb_instance import *
+from .documentdb_private_network_endpoint import *
+from .documentdb_privilege import *
+from .documentdb_read_replica import *
+from .documentdb_user import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
+from .flexible_ip_mac_address import *
 from .function import *
 from .function_cron import *
 from .function_domain import *
@@ -40,6 +48,8 @@ from .get_baremetal_offer import *
 from .get_baremetal_option import *
 from .get_baremetal_os import *
 from .get_baremetal_server import *
+from .get_billing_consumptions import *
+from .get_billing_invoices import *
 from .get_cockpit import *
 from .get_cockpit_plan import *
 from .get_container import *
@@ -49,9 +59,13 @@ from .get_database_acl import *
 from .get_database_backup import *
 from .get_database_instance import *
 from .get_database_privilege import *
+from .get_documentdb_database import *
+from .get_documentdb_instance import *
+from .get_documentdb_load_balancer_endpoint import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
+from .get_flexible_ips import *
 from .get_function import *
 from .get_function_namespace import *
 from .get_iam_application import *
@@ -68,6 +82,7 @@ from .get_instance_snapshot import *
 from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
+from .get_ipam_ip import *
 from .get_k8s_version import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
@@ -84,6 +99,7 @@ from .get_loadbalancer import *
 from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
 from .get_marketplace_image import *
+from .get_mnq_sqs import *
 from .get_object_bucket import *
 from .get_object_bucket_policy import *
 from .get_redis_cluster import *
@@ -100,12 +116,16 @@ from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_pat_rule import *
+from .get_vpcs import *
 from .get_web_host_offer import *
+from .get_webhosting import *
 from .iam_api_key import *
 from .iam_application import *
 from .iam_group import *
+from .iam_group_membership import *
 from .iam_policy import *
 from .iam_ssh_key import *
+from .iam_user import *
 from .instance_image import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
@@ -132,7 +152,12 @@ from .loadbalancer_ip import *
 from .loadbalancer_route import *
 from .mnq_credential import *
 from .mnq_namespace import *
+from .mnq_nats_account import *
+from .mnq_nats_credentials import *
 from .mnq_queue import *
+from .mnq_sqs import *
+from .mnq_sqs_credentials import *
+from .mnq_sqs_queue import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -154,6 +179,7 @@ from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
 from .vpc_public_gateway_ip_reverse_dns import *
 from .vpc_public_gateway_pat_rule import *
+from .webhosting import *
 from ._inputs import *
 from . import outputs
 
@@ -265,6 +291,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/containerTrigger",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/containerTrigger:ContainerTrigger": "ContainerTrigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/database",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -321,6 +355,54 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/documentdbDatabase",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/documentdbDatabase:DocumentdbDatabase": "DocumentdbDatabase"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentdbInstance",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/documentdbInstance:DocumentdbInstance": "DocumentdbInstance"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentdbPrivateNetworkEndpoint",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint": "DocumentdbPrivateNetworkEndpoint"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentdbPrivilege",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/documentdbPrivilege:DocumentdbPrivilege": "DocumentdbPrivilege"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentdbReadReplica",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/documentdbReadReplica:DocumentdbReadReplica": "DocumentdbReadReplica"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentdbUser",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/documentdbUser:DocumentdbUser": "DocumentdbUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/domainRecord",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -341,6 +423,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/flexibleIp:FlexibleIp": "FlexibleIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/flexibleIpMacAddress",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress": "FlexibleIpMacAddress"
   }
  },
  {
@@ -417,6 +507,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/iamGroupMembership",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamGroupMembership:IamGroupMembership": "IamGroupMembership"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/iamPolicy",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
@@ -429,6 +527,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/iamSshKey:IamSshKey": "IamSshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamUser",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/iamUser:IamUser": "IamUser"
   }
  },
  {
@@ -641,10 +747,50 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/mnqNatsAccount",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqNatsAccount:MnqNatsAccount": "MnqNatsAccount"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqNatsCredentials",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": "MnqNatsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/mnqQueue",
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/mnqQueue:MnqQueue": "MnqQueue"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSqs",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqSqs:MnqSqs": "MnqSqs"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSqsCredentials",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqSqsCredentials:MnqSqsCredentials": "MnqSqsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSqsQueue",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/mnqSqsQueue:MnqSqsQueue": "MnqSqsQueue"
   }
  },
  {
@@ -805,6 +951,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule": "VpcPublicGatewayPatRule"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/webhosting",
+  "fqn": "lbrlabs_pulumi_scaleway",
+  "classes": {
+   "scaleway:index/webhosting:Webhosting": "Webhosting"
   }
  }
 ]

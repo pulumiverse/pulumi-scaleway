@@ -138,7 +138,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string CloudInit;
         /// <summary>
-        /// True is dynamic IP in enable on the server.
+        /// True if dynamic IP in enable on the server.
         /// </summary>
         public readonly bool EnableDynamicIp;
         /// <summary>
@@ -154,6 +154,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string Image;
         public readonly string IpId;
+        public readonly ImmutableArray<string> IpIds;
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         /// </summary>
@@ -189,10 +190,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The public IPv4 address of the server.
+        /// The public IP address of the server.
         /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// The list of public IPs of the server
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetInstanceServerPublicIpResult> PublicIps;
+        public readonly bool ReplaceOnTypeChange;
         public readonly ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> RootVolumes;
+        /// <summary>
+        /// True if the server support routed ip only.
+        /// </summary>
+        public readonly bool RoutedIpEnabled;
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         /// </summary>
@@ -237,6 +247,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string ipId,
 
+            ImmutableArray<string> ipIds,
+
             string ipv6Address,
 
             string ipv6Gateway,
@@ -259,7 +271,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string publicIp,
 
+            ImmutableArray<Outputs.GetInstanceServerPublicIpResult> publicIps,
+
+            bool replaceOnTypeChange,
+
             ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> rootVolumes,
+
+            bool routedIpEnabled,
 
             string securityGroupId,
 
@@ -284,6 +302,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Id = id;
             Image = image;
             IpId = ipId;
+            IpIds = ipIds;
             Ipv6Address = ipv6Address;
             Ipv6Gateway = ipv6Gateway;
             Ipv6PrefixLength = ipv6PrefixLength;
@@ -295,7 +314,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             PublicIp = publicIp;
+            PublicIps = publicIps;
+            ReplaceOnTypeChange = replaceOnTypeChange;
             RootVolumes = rootVolumes;
+            RoutedIpEnabled = routedIpEnabled;
             SecurityGroupId = securityGroupId;
             ServerId = serverId;
             State = state;

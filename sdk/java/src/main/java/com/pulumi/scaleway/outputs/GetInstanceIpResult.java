@@ -27,6 +27,11 @@ public final class GetInstanceIpResult {
      * 
      */
     private String organizationId;
+    /**
+     * @return The IP Prefix.
+     * 
+     */
+    private String prefix;
     private String projectId;
     /**
      * @return The reverse dns attached to this IP
@@ -35,6 +40,11 @@ public final class GetInstanceIpResult {
     private String reverse;
     private String serverId;
     private List<String> tags;
+    /**
+     * @return The type of the IP
+     * 
+     */
+    private String type;
     private String zone;
 
     private GetInstanceIpResult() {}
@@ -59,6 +69,13 @@ public final class GetInstanceIpResult {
     public String organizationId() {
         return this.organizationId;
     }
+    /**
+     * @return The IP Prefix.
+     * 
+     */
+    public String prefix() {
+        return this.prefix;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -74,6 +91,13 @@ public final class GetInstanceIpResult {
     }
     public List<String> tags() {
         return this.tags;
+    }
+    /**
+     * @return The type of the IP
+     * 
+     */
+    public String type() {
+        return this.type;
     }
     public String zone() {
         return this.zone;
@@ -91,10 +115,12 @@ public final class GetInstanceIpResult {
         private @Nullable String address;
         private @Nullable String id;
         private String organizationId;
+        private String prefix;
         private String projectId;
         private String reverse;
         private String serverId;
         private List<String> tags;
+        private String type;
         private String zone;
         public Builder() {}
         public Builder(GetInstanceIpResult defaults) {
@@ -102,10 +128,12 @@ public final class GetInstanceIpResult {
     	      this.address = defaults.address;
     	      this.id = defaults.id;
     	      this.organizationId = defaults.organizationId;
+    	      this.prefix = defaults.prefix;
     	      this.projectId = defaults.projectId;
     	      this.reverse = defaults.reverse;
     	      this.serverId = defaults.serverId;
     	      this.tags = defaults.tags;
+    	      this.type = defaults.type;
     	      this.zone = defaults.zone;
         }
 
@@ -122,6 +150,11 @@ public final class GetInstanceIpResult {
         @CustomType.Setter
         public Builder organizationId(String organizationId) {
             this.organizationId = Objects.requireNonNull(organizationId);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder prefix(String prefix) {
+            this.prefix = Objects.requireNonNull(prefix);
             return this;
         }
         @CustomType.Setter
@@ -148,6 +181,11 @@ public final class GetInstanceIpResult {
             return tags(List.of(tags));
         }
         @CustomType.Setter
+        public Builder type(String type) {
+            this.type = Objects.requireNonNull(type);
+            return this;
+        }
+        @CustomType.Setter
         public Builder zone(String zone) {
             this.zone = Objects.requireNonNull(zone);
             return this;
@@ -157,10 +195,12 @@ public final class GetInstanceIpResult {
             o.address = address;
             o.id = id;
             o.organizationId = organizationId;
+            o.prefix = prefix;
             o.projectId = projectId;
             o.reverse = reverse;
             o.serverId = serverId;
             o.tags = tags;
+            o.type = type;
             o.zone = zone;
             return o;
         }

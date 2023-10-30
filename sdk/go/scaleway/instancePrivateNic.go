@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Instance Private NICs. For more information, see
@@ -97,6 +99,8 @@ import (
 type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 
+	// IPAM ip list, should be for internal use only
+	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -122,7 +126,7 @@ func NewInstancePrivateNic(ctx *pulumi.Context,
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstancePrivateNic
 	err := ctx.RegisterResource("scaleway:index/instancePrivateNic:InstancePrivateNic", name, args, &resource, opts...)
 	if err != nil {
@@ -145,6 +149,8 @@ func GetInstancePrivateNic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstancePrivateNic resources.
 type instancePrivateNicState struct {
+	// IPAM ip list, should be for internal use only
+	IpIds []string `pulumi:"ipIds"`
 	// The MAC address of the private NIC.
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -158,6 +164,8 @@ type instancePrivateNicState struct {
 }
 
 type InstancePrivateNicState struct {
+	// IPAM ip list, should be for internal use only
+	IpIds pulumi.StringArrayInput
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringPtrInput
 	// The ID of the private network attached to.
@@ -175,6 +183,8 @@ func (InstancePrivateNicState) ElementType() reflect.Type {
 }
 
 type instancePrivateNicArgs struct {
+	// IPAM ip list, should be for internal use only
+	IpIds []string `pulumi:"ipIds"`
 	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -187,6 +197,8 @@ type instancePrivateNicArgs struct {
 
 // The set of arguments for constructing a InstancePrivateNic resource.
 type InstancePrivateNicArgs struct {
+	// IPAM ip list, should be for internal use only
+	IpIds pulumi.StringArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
 	// The ID of the server associated with.
@@ -220,6 +232,12 @@ func (i *InstancePrivateNic) ToInstancePrivateNicOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicOutput)
 }
 
+func (i *InstancePrivateNic) ToOutput(ctx context.Context) pulumix.Output[*InstancePrivateNic] {
+	return pulumix.Output[*InstancePrivateNic]{
+		OutputState: i.ToInstancePrivateNicOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstancePrivateNicArrayInput is an input type that accepts InstancePrivateNicArray and InstancePrivateNicArrayOutput values.
 // You can construct a concrete instance of `InstancePrivateNicArrayInput` via:
 //
@@ -243,6 +261,12 @@ func (i InstancePrivateNicArray) ToInstancePrivateNicArrayOutput() InstancePriva
 
 func (i InstancePrivateNicArray) ToInstancePrivateNicArrayOutputWithContext(ctx context.Context) InstancePrivateNicArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicArrayOutput)
+}
+
+func (i InstancePrivateNicArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstancePrivateNic] {
+	return pulumix.Output[[]*InstancePrivateNic]{
+		OutputState: i.ToInstancePrivateNicArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstancePrivateNicMapInput is an input type that accepts InstancePrivateNicMap and InstancePrivateNicMapOutput values.
@@ -270,6 +294,12 @@ func (i InstancePrivateNicMap) ToInstancePrivateNicMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicMapOutput)
 }
 
+func (i InstancePrivateNicMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstancePrivateNic] {
+	return pulumix.Output[map[string]*InstancePrivateNic]{
+		OutputState: i.ToInstancePrivateNicMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstancePrivateNicOutput struct{ *pulumi.OutputState }
 
 func (InstancePrivateNicOutput) ElementType() reflect.Type {
@@ -282,6 +312,17 @@ func (o InstancePrivateNicOutput) ToInstancePrivateNicOutput() InstancePrivateNi
 
 func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx context.Context) InstancePrivateNicOutput {
 	return o
+}
+
+func (o InstancePrivateNicOutput) ToOutput(ctx context.Context) pulumix.Output[*InstancePrivateNic] {
+	return pulumix.Output[*InstancePrivateNic]{
+		OutputState: o.OutputState,
+	}
+}
+
+// IPAM ip list, should be for internal use only
+func (o InstancePrivateNicOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
 
 // The MAC address of the private NIC.
@@ -323,6 +364,12 @@ func (o InstancePrivateNicArrayOutput) ToInstancePrivateNicArrayOutputWithContex
 	return o
 }
 
+func (o InstancePrivateNicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstancePrivateNic] {
+	return pulumix.Output[[]*InstancePrivateNic]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o InstancePrivateNicArrayOutput) Index(i pulumi.IntInput) InstancePrivateNicOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstancePrivateNic {
 		return vs[0].([]*InstancePrivateNic)[vs[1].(int)]
@@ -341,6 +388,12 @@ func (o InstancePrivateNicMapOutput) ToInstancePrivateNicMapOutput() InstancePri
 
 func (o InstancePrivateNicMapOutput) ToInstancePrivateNicMapOutputWithContext(ctx context.Context) InstancePrivateNicMapOutput {
 	return o
+}
+
+func (o InstancePrivateNicMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstancePrivateNic] {
+	return pulumix.Output[map[string]*InstancePrivateNic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstancePrivateNicMapOutput) MapIndex(k pulumi.StringInput) InstancePrivateNicOutput {

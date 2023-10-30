@@ -168,6 +168,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
+        /// (Defaults to provider `region`) The region
+        /// in where the job was created.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
         /// executed.
         /// </summary>

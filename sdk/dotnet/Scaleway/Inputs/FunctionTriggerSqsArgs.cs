@@ -14,13 +14,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class FunctionTriggerSqsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the mnq namespace
+        /// ID of the mnq namespace. Deprecated.
         /// </summary>
-        [Input("namespaceId", required: true)]
-        public Input<string> NamespaceId { get; set; } = null!;
+        [Input("namespaceId")]
+        public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// ID of the project that contain the mnq namespace, defaults to provider's project
+        /// ID of the project that contain the mnq nats account, defaults to provider's project
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

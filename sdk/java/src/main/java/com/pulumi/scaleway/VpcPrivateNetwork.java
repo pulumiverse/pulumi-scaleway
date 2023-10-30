@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
  * 
  * ## Example
+ * 
+ * ### Basic
  * ```java
  * package generated_program;
  * 
@@ -54,17 +56,17 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
- * &gt; **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.
+ * ### With subnets
  * ```java
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.Vpc;
- * import com.pulumi.scaleway.VpcArgs;
  * import com.pulumi.scaleway.VpcPrivateNetwork;
  * import com.pulumi.scaleway.VpcPrivateNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;
+ * import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv6SubnetArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -78,19 +80,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc01 = new Vpc(&#34;vpc01&#34;, VpcArgs.builder()        
+ *         var pnPriv = new VpcPrivateNetwork(&#34;pnPriv&#34;, VpcPrivateNetworkArgs.builder()        
+ *             .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()
+ *                 .subnet(&#34;192.168.0.0/24&#34;)
+ *                 .build())
+ *             .ipv6Subnets(            
+ *                 VpcPrivateNetworkIpv6SubnetArgs.builder()
+ *                     .subnet(&#34;fd46:78ab:30b8:177c::/64&#34;)
+ *                     .build(),
+ *                 VpcPrivateNetworkIpv6SubnetArgs.builder()
+ *                     .subnet(&#34;fd46:78ab:30b8:c7df::/64&#34;)
+ *                     .build())
  *             .tags(            
- *                 &#34;terraform&#34;,
- *                 &#34;vpc&#34;)
- *             .build());
- * 
- *         var regionalPn = new VpcPrivateNetwork(&#34;regionalPn&#34;, VpcPrivateNetworkArgs.builder()        
- *             .tags(            
- *                 &#34;terraform&#34;,
- *                 &#34;pn&#34;,
- *                 &#34;regional&#34;)
- *             .isRegional(true)
- *             .vpcId(vpc01.id())
+ *                 &#34;demo&#34;,
+ *                 &#34;terraform&#34;)
  *             .build());
  * 
  *     }
@@ -99,13 +102,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
- * 
- * ```sh
- *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- * 
- *  bash
+ * Private networks can be imported using the `{region}/{id}`, e.g. bash
  * 
  * ```sh
  *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
@@ -115,60 +112,60 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork")
 public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
     /**
-     * The date and time of the creation of the private network
+     * The date and time of the creation of the subnet.
      * 
      */
     @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
-     * @return The date and time of the creation of the private network
+     * @return The date and time of the creation of the subnet.
      * 
      */
     public Output<String> createdAt() {
         return this.createdAt;
     }
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      * 
      */
     @Export(name="ipv4Subnet", refs={VpcPrivateNetworkIpv4Subnet.class}, tree="[0]")
     private Output<VpcPrivateNetworkIpv4Subnet> ipv4Subnet;
 
     /**
-     * @return The IPv4 subnet associated with the private network.
+     * @return The IPv4 subnet to associate with the private network.
      * 
      */
     public Output<VpcPrivateNetworkIpv4Subnet> ipv4Subnet() {
         return this.ipv4Subnet;
     }
     /**
-     * The IPv6 subnets associated with the private network.
-     * 
-     * &gt; **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      * 
      */
     @Export(name="ipv6Subnets", refs={List.class,VpcPrivateNetworkIpv6Subnet.class}, tree="[0,1]")
     private Output<List<VpcPrivateNetworkIpv6Subnet>> ipv6Subnets;
 
     /**
-     * @return The IPv6 subnets associated with the private network.
-     * 
-     * &gt; **Note:** If using Regional Private Network:
+     * @return The IPv6 subnets to associate with the private network.
      * 
      */
     public Output<List<VpcPrivateNetworkIpv6Subnet>> ipv6Subnets() {
         return this.ipv6Subnets;
     }
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in the next major version
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in the next major version */
     @Export(name="isRegional", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isRegional;
 
     /**
-     * @return Defines whether the private network is Regional. By default, it will be Zonal.
+     * @return The private networks are necessarily regional now.
      * 
      */
     public Output<Boolean> isRegional() {
@@ -245,14 +242,14 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The date and time of the last update of the private network
+     * The date and time of the last update of the subnet.
      * 
      */
     @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
-     * @return The date and time of the last update of the private network
+     * @return The date and time of the last update of the subnet.
      * 
      */
     public Output<String> updatedAt() {
@@ -273,14 +270,18 @@ public class VpcPrivateNetwork extends com.pulumi.resources.CustomResource {
         return this.vpcId;
     }
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in the next major version, please use `region` instead
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in the next major version, please use `region` instead */
     @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**
-     * @return `zone`) The zone in which the private network should be created.
+     * @return please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
      * 
      */
     public Output<String> zone() {

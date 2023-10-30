@@ -16,6 +16,7 @@ class IamGroupArgs:
     def __init__(__self__, *,
                  application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -23,6 +24,7 @@ class IamGroupArgs:
         The set of arguments for constructing a IamGroup resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[str] description: The description of the IAM group.
+        :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
@@ -31,6 +33,8 @@ class IamGroupArgs:
             pulumi.set(__self__, "application_ids", application_ids)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if external_membership is not None:
+            pulumi.set(__self__, "external_membership", external_membership)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
@@ -61,6 +65,18 @@ class IamGroupArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="externalMembership")
+    def external_membership(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        """
+        return pulumi.get(self, "external_membership")
+
+    @external_membership.setter
+    def external_membership(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "external_membership", value)
 
     @property
     @pulumi.getter
@@ -105,6 +121,7 @@ class _IamGroupState:
                  application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -114,6 +131,7 @@ class _IamGroupState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[str] created_at: The date and time of the creation of the group
         :param pulumi.Input[str] description: The description of the IAM group.
+        :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the group
@@ -125,6 +143,8 @@ class _IamGroupState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if external_membership is not None:
+            pulumi.set(__self__, "external_membership", external_membership)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
@@ -169,6 +189,18 @@ class _IamGroupState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="externalMembership")
+    def external_membership(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        """
+        return pulumi.get(self, "external_membership")
+
+    @external_membership.setter
+    def external_membership(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "external_membership", value)
 
     @property
     @pulumi.getter
@@ -226,6 +258,7 @@ class IamGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -272,6 +305,7 @@ class IamGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[str] description: The description of the IAM group.
+        :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
@@ -337,6 +371,7 @@ class IamGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -351,6 +386,7 @@ class IamGroup(pulumi.CustomResource):
 
             __props__.__dict__["application_ids"] = application_ids
             __props__.__dict__["description"] = description
+            __props__.__dict__["external_membership"] = external_membership
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["user_ids"] = user_ids
@@ -369,6 +405,7 @@ class IamGroup(pulumi.CustomResource):
             application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            external_membership: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
@@ -383,6 +420,7 @@ class IamGroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[str] created_at: The date and time of the creation of the group
         :param pulumi.Input[str] description: The description of the IAM group.
+        :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the group
@@ -395,6 +433,7 @@ class IamGroup(pulumi.CustomResource):
         __props__.__dict__["application_ids"] = application_ids
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["external_membership"] = external_membership
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["updated_at"] = updated_at
@@ -424,6 +463,14 @@ class IamGroup(pulumi.CustomResource):
         The description of the IAM group.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="externalMembership")
+    def external_membership(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        """
+        return pulumi.get(self, "external_membership")
 
     @property
     @pulumi.getter

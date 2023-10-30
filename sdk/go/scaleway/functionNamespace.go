@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Function Namespace.
@@ -89,7 +91,7 @@ func NewFunctionNamespace(ctx *pulumi.Context,
 		"secretEnvironmentVariables",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FunctionNamespace
 	err := ctx.RegisterResource("scaleway:index/functionNamespace:FunctionNamespace", name, args, &resource, opts...)
 	if err != nil {
@@ -219,6 +221,12 @@ func (i *FunctionNamespace) ToFunctionNamespaceOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionNamespaceOutput)
 }
 
+func (i *FunctionNamespace) ToOutput(ctx context.Context) pulumix.Output[*FunctionNamespace] {
+	return pulumix.Output[*FunctionNamespace]{
+		OutputState: i.ToFunctionNamespaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FunctionNamespaceArrayInput is an input type that accepts FunctionNamespaceArray and FunctionNamespaceArrayOutput values.
 // You can construct a concrete instance of `FunctionNamespaceArrayInput` via:
 //
@@ -242,6 +250,12 @@ func (i FunctionNamespaceArray) ToFunctionNamespaceArrayOutput() FunctionNamespa
 
 func (i FunctionNamespaceArray) ToFunctionNamespaceArrayOutputWithContext(ctx context.Context) FunctionNamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionNamespaceArrayOutput)
+}
+
+func (i FunctionNamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionNamespace] {
+	return pulumix.Output[[]*FunctionNamespace]{
+		OutputState: i.ToFunctionNamespaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FunctionNamespaceMapInput is an input type that accepts FunctionNamespaceMap and FunctionNamespaceMapOutput values.
@@ -269,6 +283,12 @@ func (i FunctionNamespaceMap) ToFunctionNamespaceMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionNamespaceMapOutput)
 }
 
+func (i FunctionNamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionNamespace] {
+	return pulumix.Output[map[string]*FunctionNamespace]{
+		OutputState: i.ToFunctionNamespaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FunctionNamespaceOutput struct{ *pulumi.OutputState }
 
 func (FunctionNamespaceOutput) ElementType() reflect.Type {
@@ -281,6 +301,12 @@ func (o FunctionNamespaceOutput) ToFunctionNamespaceOutput() FunctionNamespaceOu
 
 func (o FunctionNamespaceOutput) ToFunctionNamespaceOutputWithContext(ctx context.Context) FunctionNamespaceOutput {
 	return o
+}
+
+func (o FunctionNamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*FunctionNamespace] {
+	return pulumix.Output[*FunctionNamespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The description of the namespace.
@@ -344,6 +370,12 @@ func (o FunctionNamespaceArrayOutput) ToFunctionNamespaceArrayOutputWithContext(
 	return o
 }
 
+func (o FunctionNamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionNamespace] {
+	return pulumix.Output[[]*FunctionNamespace]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FunctionNamespaceArrayOutput) Index(i pulumi.IntInput) FunctionNamespaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FunctionNamespace {
 		return vs[0].([]*FunctionNamespace)[vs[1].(int)]
@@ -362,6 +394,12 @@ func (o FunctionNamespaceMapOutput) ToFunctionNamespaceMapOutput() FunctionNames
 
 func (o FunctionNamespaceMapOutput) ToFunctionNamespaceMapOutputWithContext(ctx context.Context) FunctionNamespaceMapOutput {
 	return o
+}
+
+func (o FunctionNamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionNamespace] {
+	return pulumix.Output[map[string]*FunctionNamespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FunctionNamespaceMapOutput) MapIndex(k pulumi.StringInput) FunctionNamespaceOutput {

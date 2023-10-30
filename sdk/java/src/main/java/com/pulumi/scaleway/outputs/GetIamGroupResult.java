@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public final class GetIamGroupResult {
     private List<String> applicationIds;
     private String createdAt;
     private String description;
+    private Boolean externalMembership;
     private @Nullable String groupId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -35,6 +37,9 @@ public final class GetIamGroupResult {
     }
     public String description() {
         return this.description;
+    }
+    public Boolean externalMembership() {
+        return this.externalMembership;
     }
     public Optional<String> groupId() {
         return Optional.ofNullable(this.groupId);
@@ -71,6 +76,7 @@ public final class GetIamGroupResult {
         private List<String> applicationIds;
         private String createdAt;
         private String description;
+        private Boolean externalMembership;
         private @Nullable String groupId;
         private String id;
         private @Nullable String name;
@@ -83,6 +89,7 @@ public final class GetIamGroupResult {
     	      this.applicationIds = defaults.applicationIds;
     	      this.createdAt = defaults.createdAt;
     	      this.description = defaults.description;
+    	      this.externalMembership = defaults.externalMembership;
     	      this.groupId = defaults.groupId;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
@@ -107,6 +114,11 @@ public final class GetIamGroupResult {
         @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder externalMembership(Boolean externalMembership) {
+            this.externalMembership = Objects.requireNonNull(externalMembership);
             return this;
         }
         @CustomType.Setter
@@ -147,6 +159,7 @@ public final class GetIamGroupResult {
             o.applicationIds = applicationIds;
             o.createdAt = createdAt;
             o.description = description;
+            o.externalMembership = externalMembership;
             o.groupId = groupId;
             o.id = id;
             o.name = name;

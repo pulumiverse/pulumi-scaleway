@@ -28,6 +28,7 @@ class ContainerArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  privacy: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -55,6 +56,7 @@ class ContainerArgs:
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
         :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
         :param pulumi.Input[str] protocol: The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
@@ -88,6 +90,8 @@ class ContainerArgs:
             pulumi.set(__self__, "privacy", privacy)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if registry_image is not None:
             pulumi.set(__self__, "registry_image", registry_image)
         if registry_sha256 is not None:
@@ -272,6 +276,18 @@ class ContainerArgs:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Defaults to provider `region`) The region in which the container was created.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter(name="registryImage")
@@ -741,6 +757,7 @@ class Container(pulumi.CustomResource):
                  port: Optional[pulumi.Input[int]] = None,
                  privacy: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -775,7 +792,7 @@ class Container(pulumi.CustomResource):
             timeout=600,
             max_concurrency=80,
             privacy="private",
-            protocol="h2c",
+            protocol="http1",
             deploy=True,
             environment_variables={
                 "foo": "var",
@@ -850,6 +867,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
         :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
         :param pulumi.Input[str] protocol: The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
@@ -890,7 +908,7 @@ class Container(pulumi.CustomResource):
             timeout=600,
             max_concurrency=80,
             privacy="private",
-            protocol="h2c",
+            protocol="http1",
             deploy=True,
             environment_variables={
                 "foo": "var",
@@ -972,6 +990,7 @@ class Container(pulumi.CustomResource):
                  port: Optional[pulumi.Input[int]] = None,
                  privacy: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -1002,6 +1021,7 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["port"] = port
             __props__.__dict__["privacy"] = privacy
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["region"] = region
             __props__.__dict__["registry_image"] = registry_image
             __props__.__dict__["registry_sha256"] = registry_sha256
             __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
@@ -1010,7 +1030,6 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["cron_status"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["error_message"] = None
-            __props__.__dict__["region"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Container, __self__).__init__(

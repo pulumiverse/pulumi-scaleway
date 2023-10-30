@@ -85,6 +85,20 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
         return this.organizationId;
     }
     /**
+     * The IP Prefix.
+     * 
+     */
+    @Export(name="prefix", refs={String.class}, tree="[0]")
+    private Output<String> prefix;
+
+    /**
+     * @return The IP Prefix.
+     * 
+     */
+    public Output<String> prefix() {
+        return this.prefix;
+    }
+    /**
      * `project_id`) The ID of the project the IP is associated with.
      * 
      */
@@ -139,6 +153,24 @@ public class InstanceIp extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
+    }
+    /**
+     * The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     * 
+     * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+     * 
+     */
+    @Export(name="type", refs={String.class}, tree="[0]")
+    private Output<String> type;
+
+    /**
+     * @return The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+     * 
+     * &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+     * 
+     */
+    public Output<String> type() {
+        return this.type;
     }
     /**
      * `zone`) The zone in which the IP should be reserved.

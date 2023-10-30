@@ -13,6 +13,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
 
     public sealed class RedisClusterPrivateNetworkGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the endpoint.
+        /// </summary>
         [Input("endpointId")]
         public Input<string>? EndpointId { get; set; }
 

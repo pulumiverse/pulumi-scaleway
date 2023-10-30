@@ -19,6 +19,21 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     public static final LoadbalancerArgs Empty = new LoadbalancerArgs();
 
     /**
+     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * 
+     */
+    @Import(name="assignFlexibleIp")
+    private @Nullable Output<Boolean> assignFlexibleIp;
+
+    /**
+     * @return Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * 
+     */
+    public Optional<Output<Boolean>> assignFlexibleIp() {
+        return Optional.ofNullable(this.assignFlexibleIp);
+    }
+
+    /**
      * The description of the load-balancer.
      * 
      */
@@ -36,20 +51,20 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The ID of the associated LB IP. See below.
      * 
-     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
      * 
      */
-    @Import(name="ipId", required=true)
-    private Output<String> ipId;
+    @Import(name="ipId")
+    private @Nullable Output<String> ipId;
 
     /**
      * @return The ID of the associated LB IP. See below.
      * 
-     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
      * 
      */
-    public Output<String> ipId() {
-        return this.ipId;
+    public Optional<Output<String>> ipId() {
+        return Optional.ofNullable(this.ipId);
     }
 
     /**
@@ -151,14 +166,14 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type
+     * The type of the load-balancer. Please check the migration section to upgrade the type.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The type of the load-balancer. Please check the migration section to upgrade the type
+     * @return The type of the load-balancer. Please check the migration section to upgrade the type.
      * 
      */
     public Output<String> type() {
@@ -183,6 +198,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
     private LoadbalancerArgs() {}
 
     private LoadbalancerArgs(LoadbalancerArgs $) {
+        this.assignFlexibleIp = $.assignFlexibleIp;
         this.description = $.description;
         this.ipId = $.ipId;
         this.name = $.name;
@@ -214,6 +230,27 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param assignFlexibleIp Defines whether to automatically assign a flexible public IP to the load-balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assignFlexibleIp(@Nullable Output<Boolean> assignFlexibleIp) {
+            $.assignFlexibleIp = assignFlexibleIp;
+            return this;
+        }
+
+        /**
+         * @param assignFlexibleIp Defines whether to automatically assign a flexible public IP to the load-balancer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assignFlexibleIp(Boolean assignFlexibleIp) {
+            return assignFlexibleIp(Output.of(assignFlexibleIp));
+        }
+
+        /**
          * @param description The description of the load-balancer.
          * 
          * @return builder
@@ -237,12 +274,12 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ipId The ID of the associated LB IP. See below.
          * 
-         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+         * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
          * 
          * @return builder
          * 
          */
-        public Builder ipId(Output<String> ipId) {
+        public Builder ipId(@Nullable Output<String> ipId) {
             $.ipId = ipId;
             return this;
         }
@@ -250,7 +287,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ipId The ID of the associated LB IP. See below.
          * 
-         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+         * &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
          * 
          * @return builder
          * 
@@ -414,7 +451,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the load-balancer. Please check the migration section to upgrade the type
+         * @param type The type of the load-balancer. Please check the migration section to upgrade the type.
          * 
          * @return builder
          * 
@@ -425,7 +462,7 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the load-balancer. Please check the migration section to upgrade the type
+         * @param type The type of the load-balancer. Please check the migration section to upgrade the type.
          * 
          * @return builder
          * 
@@ -456,7 +493,6 @@ public final class LoadbalancerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public LoadbalancerArgs build() {
-            $.ipId = Objects.requireNonNull($.ipId, "expected parameter 'ipId' to be non-null");
             $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
             return $;
         }

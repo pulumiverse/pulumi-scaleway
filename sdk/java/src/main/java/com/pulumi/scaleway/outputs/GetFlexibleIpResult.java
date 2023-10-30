@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public final class GetFlexibleIpResult {
      */
     private String id;
     private @Nullable String ipAddress;
-    private String macAddress;
+    private Boolean isIpv6;
     /**
      * @return (Defaults to provider `organization_id`) The ID of the organization the IP is in.
      * 
@@ -42,6 +43,7 @@ public final class GetFlexibleIpResult {
      * 
      */
     private String serverId;
+    private String status;
     private List<String> tags;
     private String updatedAt;
     private String zone;
@@ -66,8 +68,8 @@ public final class GetFlexibleIpResult {
     public Optional<String> ipAddress() {
         return Optional.ofNullable(this.ipAddress);
     }
-    public String macAddress() {
-        return this.macAddress;
+    public Boolean isIpv6() {
+        return this.isIpv6;
     }
     /**
      * @return (Defaults to provider `organization_id`) The ID of the organization the IP is in.
@@ -97,6 +99,9 @@ public final class GetFlexibleIpResult {
     public String serverId() {
         return this.serverId;
     }
+    public String status() {
+        return this.status;
+    }
     public List<String> tags() {
         return this.tags;
     }
@@ -121,11 +126,12 @@ public final class GetFlexibleIpResult {
         private @Nullable String flexibleIpId;
         private String id;
         private @Nullable String ipAddress;
-        private String macAddress;
+        private Boolean isIpv6;
         private String organizationId;
         private String projectId;
         private String reverse;
         private String serverId;
+        private String status;
         private List<String> tags;
         private String updatedAt;
         private String zone;
@@ -137,11 +143,12 @@ public final class GetFlexibleIpResult {
     	      this.flexibleIpId = defaults.flexibleIpId;
     	      this.id = defaults.id;
     	      this.ipAddress = defaults.ipAddress;
-    	      this.macAddress = defaults.macAddress;
+    	      this.isIpv6 = defaults.isIpv6;
     	      this.organizationId = defaults.organizationId;
     	      this.projectId = defaults.projectId;
     	      this.reverse = defaults.reverse;
     	      this.serverId = defaults.serverId;
+    	      this.status = defaults.status;
     	      this.tags = defaults.tags;
     	      this.updatedAt = defaults.updatedAt;
     	      this.zone = defaults.zone;
@@ -173,8 +180,8 @@ public final class GetFlexibleIpResult {
             return this;
         }
         @CustomType.Setter
-        public Builder macAddress(String macAddress) {
-            this.macAddress = Objects.requireNonNull(macAddress);
+        public Builder isIpv6(Boolean isIpv6) {
+            this.isIpv6 = Objects.requireNonNull(isIpv6);
             return this;
         }
         @CustomType.Setter
@@ -195,6 +202,11 @@ public final class GetFlexibleIpResult {
         @CustomType.Setter
         public Builder serverId(String serverId) {
             this.serverId = Objects.requireNonNull(serverId);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder status(String status) {
+            this.status = Objects.requireNonNull(status);
             return this;
         }
         @CustomType.Setter
@@ -222,11 +234,12 @@ public final class GetFlexibleIpResult {
             o.flexibleIpId = flexibleIpId;
             o.id = id;
             o.ipAddress = ipAddress;
-            o.macAddress = macAddress;
+            o.isIpv6 = isIpv6;
             o.organizationId = organizationId;
             o.projectId = projectId;
             o.reverse = reverse;
             o.serverId = serverId;
+            o.status = status;
             o.tags = tags;
             o.updatedAt = updatedAt;
             o.zone = zone;

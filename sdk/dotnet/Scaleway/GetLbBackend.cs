@@ -186,23 +186,29 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly ImmutableArray<Outputs.GetLbBackendHealthCheckHttpResult> HealthCheckHttps;
         public readonly int HealthCheckMaxRetries;
         public readonly int HealthCheckPort;
+        public readonly bool HealthCheckSendProxy;
         public readonly ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> HealthCheckTcps;
         public readonly string HealthCheckTimeout;
+        public readonly string HealthCheckTransientDelay;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly bool IgnoreSslServerVerify;
         public readonly string? LbId;
+        public readonly int MaxConnections;
+        public readonly int MaxRetries;
         public readonly string? Name;
         public readonly string OnMarkedDownAction;
         public readonly string ProxyProtocol;
+        public readonly int RedispatchAttemptCount;
         public readonly bool SendProxyV2;
         public readonly ImmutableArray<string> ServerIps;
         public readonly bool SslBridging;
         public readonly string StickySessions;
         public readonly string StickySessionsCookieName;
         public readonly string TimeoutConnect;
+        public readonly string TimeoutQueue;
         public readonly string TimeoutServer;
         public readonly string TimeoutTunnel;
 
@@ -228,9 +234,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             int healthCheckPort,
 
+            bool healthCheckSendProxy,
+
             ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> healthCheckTcps,
 
             string healthCheckTimeout,
+
+            string healthCheckTransientDelay,
 
             string id,
 
@@ -238,11 +248,17 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? lbId,
 
+            int maxConnections,
+
+            int maxRetries,
+
             string? name,
 
             string onMarkedDownAction,
 
             string proxyProtocol,
+
+            int redispatchAttemptCount,
 
             bool sendProxyV2,
 
@@ -255,6 +271,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             string stickySessionsCookieName,
 
             string timeoutConnect,
+
+            string timeoutQueue,
 
             string timeoutServer,
 
@@ -270,20 +288,26 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             HealthCheckHttps = healthCheckHttps;
             HealthCheckMaxRetries = healthCheckMaxRetries;
             HealthCheckPort = healthCheckPort;
+            HealthCheckSendProxy = healthCheckSendProxy;
             HealthCheckTcps = healthCheckTcps;
             HealthCheckTimeout = healthCheckTimeout;
+            HealthCheckTransientDelay = healthCheckTransientDelay;
             Id = id;
             IgnoreSslServerVerify = ignoreSslServerVerify;
             LbId = lbId;
+            MaxConnections = maxConnections;
+            MaxRetries = maxRetries;
             Name = name;
             OnMarkedDownAction = onMarkedDownAction;
             ProxyProtocol = proxyProtocol;
+            RedispatchAttemptCount = redispatchAttemptCount;
             SendProxyV2 = sendProxyV2;
             ServerIps = serverIps;
             SslBridging = sslBridging;
             StickySessions = stickySessions;
             StickySessionsCookieName = stickySessionsCookieName;
             TimeoutConnect = timeoutConnect;
+            TimeoutQueue = timeoutQueue;
             TimeoutServer = timeoutServer;
             TimeoutTunnel = timeoutTunnel;
         }

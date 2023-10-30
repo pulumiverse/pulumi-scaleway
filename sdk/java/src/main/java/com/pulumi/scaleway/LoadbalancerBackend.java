@@ -236,6 +236,20 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
         return this.healthCheckPort;
     }
     /**
+     * Defines whether proxy protocol should be activated for the health check.
+     * 
+     */
+    @Export(name="healthCheckSendProxy", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> healthCheckSendProxy;
+
+    /**
+     * @return Defines whether proxy protocol should be activated for the health check.
+     * 
+     */
+    public Output<Optional<Boolean>> healthCheckSendProxy() {
+        return Codegen.optional(this.healthCheckSendProxy);
+    }
+    /**
      * This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
      * 
      */
@@ -262,6 +276,20 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> healthCheckTimeout() {
         return Codegen.optional(this.healthCheckTimeout);
+    }
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     * 
+     */
+    @Export(name="healthCheckTransientDelay", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> healthCheckTransientDelay;
+
+    /**
+     * @return The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     * 
+     */
+    public Output<Optional<String>> healthCheckTransientDelay() {
+        return Codegen.optional(this.healthCheckTransientDelay);
     }
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -292,6 +320,34 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> lbId() {
         return this.lbId;
+    }
+    /**
+     * Maximum number of connections allowed per backend server.
+     * 
+     */
+    @Export(name="maxConnections", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxConnections;
+
+    /**
+     * @return Maximum number of connections allowed per backend server.
+     * 
+     */
+    public Output<Optional<Integer>> maxConnections() {
+        return Codegen.optional(this.maxConnections);
+    }
+    /**
+     * Number of retries when a backend server connection failed.
+     * 
+     */
+    @Export(name="maxRetries", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxRetries;
+
+    /**
+     * @return Number of retries when a backend server connection failed.
+     * 
+     */
+    public Output<Optional<Integer>> maxRetries() {
+        return Codegen.optional(this.maxRetries);
     }
     /**
      * The name of the load-balancer backend.
@@ -334,6 +390,20 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> proxyProtocol() {
         return Codegen.optional(this.proxyProtocol);
+    }
+    /**
+     * Whether to use another backend server on each attempt.
+     * 
+     */
+    @Export(name="redispatchAttemptCount", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> redispatchAttemptCount;
+
+    /**
+     * @return Whether to use another backend server on each attempt.
+     * 
+     */
+    public Output<Optional<Integer>> redispatchAttemptCount() {
+        return Codegen.optional(this.redispatchAttemptCount);
     }
     /**
      * DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -422,6 +492,20 @@ public class LoadbalancerBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> timeoutConnect() {
         return Codegen.optional(this.timeoutConnect);
+    }
+    /**
+     * Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+     * 
+     */
+    @Export(name="timeoutQueue", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> timeoutQueue;
+
+    /**
+     * @return Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+     * 
+     */
+    public Output<Optional<String>> timeoutQueue() {
+        return Codegen.optional(this.timeoutQueue);
     }
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)

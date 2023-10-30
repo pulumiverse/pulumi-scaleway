@@ -13,17 +13,17 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DatabaseInstancePrivateNetwork {
     /**
-     * @return The ID of the endpoint of the private network.
+     * @return The ID of the endpoint.
      * 
      */
     private @Nullable String endpointId;
     /**
-     * @return Name of the endpoint.
+     * @return Hostname of the endpoint.
      * 
      */
     private @Nullable String hostname;
     /**
-     * @return IP of the endpoint.
+     * @return IPv4 address on the network.
      * 
      */
     private @Nullable String ip;
@@ -35,7 +35,7 @@ public final class DatabaseInstancePrivateNetwork {
     private @Nullable String name;
     private String pnId;
     /**
-     * @return Port of the endpoint.
+     * @return Port in the Private Network.
      * 
      */
     private @Nullable Integer port;
@@ -43,21 +43,21 @@ public final class DatabaseInstancePrivateNetwork {
 
     private DatabaseInstancePrivateNetwork() {}
     /**
-     * @return The ID of the endpoint of the private network.
+     * @return The ID of the endpoint.
      * 
      */
     public Optional<String> endpointId() {
         return Optional.ofNullable(this.endpointId);
     }
     /**
-     * @return Name of the endpoint.
+     * @return Hostname of the endpoint.
      * 
      */
     public Optional<String> hostname() {
         return Optional.ofNullable(this.hostname);
     }
     /**
-     * @return IP of the endpoint.
+     * @return IPv4 address on the network.
      * 
      */
     public Optional<String> ip() {
@@ -77,7 +77,7 @@ public final class DatabaseInstancePrivateNetwork {
         return this.pnId;
     }
     /**
-     * @return Port of the endpoint.
+     * @return Port in the Private Network.
      * 
      */
     public Optional<Integer> port() {

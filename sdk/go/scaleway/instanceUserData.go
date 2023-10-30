@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance User Data values.
@@ -124,7 +126,7 @@ func NewInstanceUserData(ctx *pulumi.Context,
 	if args.Value == nil {
 		return nil, errors.New("invalid value for required argument 'Value'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceUserData
 	err := ctx.RegisterResource("scaleway:index/instanceUserData:InstanceUserData", name, args, &resource, opts...)
 	if err != nil {
@@ -238,6 +240,12 @@ func (i *InstanceUserData) ToInstanceUserDataOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceUserDataOutput)
 }
 
+func (i *InstanceUserData) ToOutput(ctx context.Context) pulumix.Output[*InstanceUserData] {
+	return pulumix.Output[*InstanceUserData]{
+		OutputState: i.ToInstanceUserDataOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstanceUserDataArrayInput is an input type that accepts InstanceUserDataArray and InstanceUserDataArrayOutput values.
 // You can construct a concrete instance of `InstanceUserDataArrayInput` via:
 //
@@ -261,6 +269,12 @@ func (i InstanceUserDataArray) ToInstanceUserDataArrayOutput() InstanceUserDataA
 
 func (i InstanceUserDataArray) ToInstanceUserDataArrayOutputWithContext(ctx context.Context) InstanceUserDataArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceUserDataArrayOutput)
+}
+
+func (i InstanceUserDataArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceUserData] {
+	return pulumix.Output[[]*InstanceUserData]{
+		OutputState: i.ToInstanceUserDataArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstanceUserDataMapInput is an input type that accepts InstanceUserDataMap and InstanceUserDataMapOutput values.
@@ -288,6 +302,12 @@ func (i InstanceUserDataMap) ToInstanceUserDataMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceUserDataMapOutput)
 }
 
+func (i InstanceUserDataMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceUserData] {
+	return pulumix.Output[map[string]*InstanceUserData]{
+		OutputState: i.ToInstanceUserDataMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstanceUserDataOutput struct{ *pulumi.OutputState }
 
 func (InstanceUserDataOutput) ElementType() reflect.Type {
@@ -300,6 +320,12 @@ func (o InstanceUserDataOutput) ToInstanceUserDataOutput() InstanceUserDataOutpu
 
 func (o InstanceUserDataOutput) ToInstanceUserDataOutputWithContext(ctx context.Context) InstanceUserDataOutput {
 	return o
+}
+
+func (o InstanceUserDataOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceUserData] {
+	return pulumix.Output[*InstanceUserData]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Key of the user data.
@@ -341,6 +367,12 @@ func (o InstanceUserDataArrayOutput) ToInstanceUserDataArrayOutputWithContext(ct
 	return o
 }
 
+func (o InstanceUserDataArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceUserData] {
+	return pulumix.Output[[]*InstanceUserData]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o InstanceUserDataArrayOutput) Index(i pulumi.IntInput) InstanceUserDataOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceUserData {
 		return vs[0].([]*InstanceUserData)[vs[1].(int)]
@@ -359,6 +391,12 @@ func (o InstanceUserDataMapOutput) ToInstanceUserDataMapOutput() InstanceUserDat
 
 func (o InstanceUserDataMapOutput) ToInstanceUserDataMapOutputWithContext(ctx context.Context) InstanceUserDataMapOutput {
 	return o
+}
+
+func (o InstanceUserDataMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceUserData] {
+	return pulumix.Output[map[string]*InstanceUserData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstanceUserDataMapOutput) MapIndex(k pulumi.StringInput) InstanceUserDataOutput {

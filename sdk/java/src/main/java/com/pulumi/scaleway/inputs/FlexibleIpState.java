@@ -5,6 +5,7 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -17,14 +18,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     public static final FlexibleIpState Empty = new FlexibleIpState();
 
     /**
-     * The date and time of the creation of the Flexible IP (Format ISO 8601)
+     * The date and time of the creation of the Flexible IP (Format ISO 8601).
      * 
      */
     @Import(name="createdAt")
     private @Nullable Output<String> createdAt;
 
     /**
-     * @return The date and time of the creation of the Flexible IP (Format ISO 8601)
+     * @return The date and time of the creation of the Flexible IP (Format ISO 8601).
      * 
      */
     public Optional<Output<String>> createdAt() {
@@ -47,14 +48,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The IPv4 address of the Flexible IP
+     * The IP address of the Flexible IP.
      * 
      */
     @Import(name="ipAddress")
     private @Nullable Output<String> ipAddress;
 
     /**
-     * @return The IPv4 address of the Flexible IP
+     * @return The IP address of the Flexible IP.
      * 
      */
     public Optional<Output<String>> ipAddress() {
@@ -62,29 +63,29 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The MAC address of the server associated with this flexible IP
+     * Defines whether the flexible IP has an IPv6 address.
      * 
      */
-    @Import(name="macAddress")
-    private @Nullable Output<String> macAddress;
+    @Import(name="isIpv6")
+    private @Nullable Output<Boolean> isIpv6;
 
     /**
-     * @return The MAC address of the server associated with this flexible IP
+     * @return Defines whether the flexible IP has an IPv6 address.
      * 
      */
-    public Optional<Output<String>> macAddress() {
-        return Optional.ofNullable(this.macAddress);
+    public Optional<Output<Boolean>> isIpv6() {
+        return Optional.ofNullable(this.isIpv6);
     }
 
     /**
-     * The organization of the Flexible IP
+     * The organization of the Flexible IP.
      * 
      */
     @Import(name="organizationId")
     private @Nullable Output<String> organizationId;
 
     /**
-     * @return The organization of the Flexible IP
+     * @return The organization of the Flexible IP.
      * 
      */
     public Optional<Output<String>> organizationId() {
@@ -92,14 +93,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The project of the Flexible IP
+     * The project of the Flexible IP.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The project of the Flexible IP
+     * @return The project of the Flexible IP.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -122,18 +123,33 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the associated server
+     * The ID of the associated server.
      * 
      */
     @Import(name="serverId")
     private @Nullable Output<String> serverId;
 
     /**
-     * @return The ID of the associated server
+     * @return The ID of the associated server.
      * 
      */
     public Optional<Output<String>> serverId() {
         return Optional.ofNullable(this.serverId);
+    }
+
+    /**
+     * The status of the flexible IP.
+     * 
+     */
+    @Import(name="status")
+    private @Nullable Output<String> status;
+
+    /**
+     * @return The status of the flexible IP.
+     * 
+     */
+    public Optional<Output<String>> status() {
+        return Optional.ofNullable(this.status);
     }
 
     /**
@@ -152,14 +168,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The date and time of the last update of the Flexible IP (Format ISO 8601)
+     * The date and time of the last update of the Flexible IP (Format ISO 8601).
      * 
      */
     @Import(name="updatedAt")
     private @Nullable Output<String> updatedAt;
 
     /**
-     * @return The date and time of the last update of the Flexible IP (Format ISO 8601)
+     * @return The date and time of the last update of the Flexible IP (Format ISO 8601).
      * 
      */
     public Optional<Output<String>> updatedAt() {
@@ -167,14 +183,14 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The zone of the Flexible IP
+     * The zone of the Flexible IP.
      * 
      */
     @Import(name="zone")
     private @Nullable Output<String> zone;
 
     /**
-     * @return The zone of the Flexible IP
+     * @return The zone of the Flexible IP.
      * 
      */
     public Optional<Output<String>> zone() {
@@ -187,11 +203,12 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         this.createdAt = $.createdAt;
         this.description = $.description;
         this.ipAddress = $.ipAddress;
-        this.macAddress = $.macAddress;
+        this.isIpv6 = $.isIpv6;
         this.organizationId = $.organizationId;
         this.projectId = $.projectId;
         this.reverse = $.reverse;
         this.serverId = $.serverId;
+        this.status = $.status;
         this.tags = $.tags;
         this.updatedAt = $.updatedAt;
         this.zone = $.zone;
@@ -216,7 +233,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createdAt The date and time of the creation of the Flexible IP (Format ISO 8601)
+         * @param createdAt The date and time of the creation of the Flexible IP (Format ISO 8601).
          * 
          * @return builder
          * 
@@ -227,7 +244,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createdAt The date and time of the creation of the Flexible IP (Format ISO 8601)
+         * @param createdAt The date and time of the creation of the Flexible IP (Format ISO 8601).
          * 
          * @return builder
          * 
@@ -258,7 +275,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ipAddress The IPv4 address of the Flexible IP
+         * @param ipAddress The IP address of the Flexible IP.
          * 
          * @return builder
          * 
@@ -269,7 +286,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ipAddress The IPv4 address of the Flexible IP
+         * @param ipAddress The IP address of the Flexible IP.
          * 
          * @return builder
          * 
@@ -279,28 +296,28 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param macAddress The MAC address of the server associated with this flexible IP
+         * @param isIpv6 Defines whether the flexible IP has an IPv6 address.
          * 
          * @return builder
          * 
          */
-        public Builder macAddress(@Nullable Output<String> macAddress) {
-            $.macAddress = macAddress;
+        public Builder isIpv6(@Nullable Output<Boolean> isIpv6) {
+            $.isIpv6 = isIpv6;
             return this;
         }
 
         /**
-         * @param macAddress The MAC address of the server associated with this flexible IP
+         * @param isIpv6 Defines whether the flexible IP has an IPv6 address.
          * 
          * @return builder
          * 
          */
-        public Builder macAddress(String macAddress) {
-            return macAddress(Output.of(macAddress));
+        public Builder isIpv6(Boolean isIpv6) {
+            return isIpv6(Output.of(isIpv6));
         }
 
         /**
-         * @param organizationId The organization of the Flexible IP
+         * @param organizationId The organization of the Flexible IP.
          * 
          * @return builder
          * 
@@ -311,7 +328,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param organizationId The organization of the Flexible IP
+         * @param organizationId The organization of the Flexible IP.
          * 
          * @return builder
          * 
@@ -321,7 +338,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The project of the Flexible IP
+         * @param projectId The project of the Flexible IP.
          * 
          * @return builder
          * 
@@ -332,7 +349,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The project of the Flexible IP
+         * @param projectId The project of the Flexible IP.
          * 
          * @return builder
          * 
@@ -363,7 +380,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serverId The ID of the associated server
+         * @param serverId The ID of the associated server.
          * 
          * @return builder
          * 
@@ -374,13 +391,34 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serverId The ID of the associated server
+         * @param serverId The ID of the associated server.
          * 
          * @return builder
          * 
          */
         public Builder serverId(String serverId) {
             return serverId(Output.of(serverId));
+        }
+
+        /**
+         * @param status The status of the flexible IP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(@Nullable Output<String> status) {
+            $.status = status;
+            return this;
+        }
+
+        /**
+         * @param status The status of the flexible IP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(String status) {
+            return status(Output.of(status));
         }
 
         /**
@@ -415,7 +453,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param updatedAt The date and time of the last update of the Flexible IP (Format ISO 8601)
+         * @param updatedAt The date and time of the last update of the Flexible IP (Format ISO 8601).
          * 
          * @return builder
          * 
@@ -426,7 +464,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param updatedAt The date and time of the last update of the Flexible IP (Format ISO 8601)
+         * @param updatedAt The date and time of the last update of the Flexible IP (Format ISO 8601).
          * 
          * @return builder
          * 
@@ -436,7 +474,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone The zone of the Flexible IP
+         * @param zone The zone of the Flexible IP.
          * 
          * @return builder
          * 
@@ -447,7 +485,7 @@ public final class FlexibleIpState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param zone The zone of the Flexible IP
+         * @param zone The zone of the Flexible IP.
          * 
          * @return builder
          * 

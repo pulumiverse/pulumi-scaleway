@@ -183,6 +183,23 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * &gt; **Important:** Updates to this field will recreate a new resource.
+     * 
+     */
+    @Import(name="publicIpDisabled")
+    private @Nullable Output<Boolean> publicIpDisabled;
+
+    /**
+     * @return Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     * &gt; **Important:** Updates to this field will recreate a new resource.
+     * 
+     */
+    public Optional<Output<Boolean>> publicIpDisabled() {
+        return Optional.ofNullable(this.publicIpDisabled);
+    }
+
+    /**
      * `region`) The region in which the pool should be created.
      * 
      */
@@ -321,6 +338,7 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         this.name = $.name;
         this.nodeType = $.nodeType;
         this.placementGroupId = $.placementGroupId;
+        this.publicIpDisabled = $.publicIpDisabled;
         this.region = $.region;
         this.rootVolumeSizeInGb = $.rootVolumeSizeInGb;
         this.rootVolumeType = $.rootVolumeType;
@@ -569,6 +587,29 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
          */
         public Builder placementGroupId(String placementGroupId) {
             return placementGroupId(Output.of(placementGroupId));
+        }
+
+        /**
+         * @param publicIpDisabled Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+         * &gt; **Important:** Updates to this field will recreate a new resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicIpDisabled(@Nullable Output<Boolean> publicIpDisabled) {
+            $.publicIpDisabled = publicIpDisabled;
+            return this;
+        }
+
+        /**
+         * @param publicIpDisabled Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+         * &gt; **Important:** Updates to this field will recreate a new resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicIpDisabled(Boolean publicIpDisabled) {
+            return publicIpDisabled(Output.of(publicIpDisabled));
         }
 
         /**

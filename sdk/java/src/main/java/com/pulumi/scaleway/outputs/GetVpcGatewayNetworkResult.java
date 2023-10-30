@@ -4,8 +4,10 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.scaleway.outputs.GetVpcGatewayNetworkIpamConfig;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -24,9 +26,11 @@ public final class GetVpcGatewayNetworkResult {
      * 
      */
     private String id;
+    private List<GetVpcGatewayNetworkIpamConfig> ipamConfigs;
     private String macAddress;
     private @Nullable String privateNetworkId;
     private String staticAddress;
+    private String status;
     private String updatedAt;
     private String zone;
 
@@ -59,6 +63,9 @@ public final class GetVpcGatewayNetworkResult {
     public String id() {
         return this.id;
     }
+    public List<GetVpcGatewayNetworkIpamConfig> ipamConfigs() {
+        return this.ipamConfigs;
+    }
     public String macAddress() {
         return this.macAddress;
     }
@@ -67,6 +74,9 @@ public final class GetVpcGatewayNetworkResult {
     }
     public String staticAddress() {
         return this.staticAddress;
+    }
+    public String status() {
+        return this.status;
     }
     public String updatedAt() {
         return this.updatedAt;
@@ -92,9 +102,11 @@ public final class GetVpcGatewayNetworkResult {
         private @Nullable String gatewayId;
         private @Nullable String gatewayNetworkId;
         private String id;
+        private List<GetVpcGatewayNetworkIpamConfig> ipamConfigs;
         private String macAddress;
         private @Nullable String privateNetworkId;
         private String staticAddress;
+        private String status;
         private String updatedAt;
         private String zone;
         public Builder() {}
@@ -108,9 +120,11 @@ public final class GetVpcGatewayNetworkResult {
     	      this.gatewayId = defaults.gatewayId;
     	      this.gatewayNetworkId = defaults.gatewayNetworkId;
     	      this.id = defaults.id;
+    	      this.ipamConfigs = defaults.ipamConfigs;
     	      this.macAddress = defaults.macAddress;
     	      this.privateNetworkId = defaults.privateNetworkId;
     	      this.staticAddress = defaults.staticAddress;
+    	      this.status = defaults.status;
     	      this.updatedAt = defaults.updatedAt;
     	      this.zone = defaults.zone;
         }
@@ -156,6 +170,14 @@ public final class GetVpcGatewayNetworkResult {
             return this;
         }
         @CustomType.Setter
+        public Builder ipamConfigs(List<GetVpcGatewayNetworkIpamConfig> ipamConfigs) {
+            this.ipamConfigs = Objects.requireNonNull(ipamConfigs);
+            return this;
+        }
+        public Builder ipamConfigs(GetVpcGatewayNetworkIpamConfig... ipamConfigs) {
+            return ipamConfigs(List.of(ipamConfigs));
+        }
+        @CustomType.Setter
         public Builder macAddress(String macAddress) {
             this.macAddress = Objects.requireNonNull(macAddress);
             return this;
@@ -168,6 +190,11 @@ public final class GetVpcGatewayNetworkResult {
         @CustomType.Setter
         public Builder staticAddress(String staticAddress) {
             this.staticAddress = Objects.requireNonNull(staticAddress);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder status(String status) {
+            this.status = Objects.requireNonNull(status);
             return this;
         }
         @CustomType.Setter
@@ -190,9 +217,11 @@ public final class GetVpcGatewayNetworkResult {
             o.gatewayId = gatewayId;
             o.gatewayNetworkId = gatewayNetworkId;
             o.id = id;
+            o.ipamConfigs = ipamConfigs;
             o.macAddress = macAddress;
             o.privateNetworkId = privateNetworkId;
             o.staticAddress = staticAddress;
+            o.status = status;
             o.updatedAt = updatedAt;
             o.zone = zone;
             return o;

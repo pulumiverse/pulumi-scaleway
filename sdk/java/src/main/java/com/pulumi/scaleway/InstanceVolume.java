@@ -63,14 +63,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/instanceVolume:InstanceVolume")
 public class InstanceVolume extends com.pulumi.resources.CustomResource {
     /**
-     * Create a volume based on a image
+     * If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     @Export(name="fromSnapshotId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fromSnapshotId;
 
     /**
-     * @return Create a volume based on a image
+     * @return If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
      * 
      */
     public Output<Optional<String>> fromSnapshotId() {
@@ -175,14 +175,14 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+     * The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD).
+     * @return The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
      * 
      */
     public Output<String> type() {
